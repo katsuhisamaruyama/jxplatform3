@@ -127,7 +127,7 @@ public class JavaModelBuilderTest {
         JavaModelBuilderTest tester = new JavaModelBuilderTest();
         
         /* The files are stored inside the workspace */
-        //tester.testSimple();
+        tester.testSimple();
         //tester.testSimpleBytecode();
         //tester.testDrawTool();
         //tester.testLambda();
@@ -140,7 +140,7 @@ public class JavaModelBuilderTest {
         /* The files are stored outside the workspace */
         //tester.run("ant-1.9.14");                     // Ant
         //tester.run("ant-1.10.8");                     // Ant
-//tester.run("antlr4-4.8");                     // Maven
+        //tester.run("antlr4-4.8");                     // Maven
         //tester.run("commons-bcel-6.5.0");             // Maven
         //tester.run("commons-cli-1.4");                // Maven
         //tester.run("commons-codec-1.14");             // Maven
@@ -158,8 +158,5 @@ public class JavaModelBuilderTest {
         //tester.run("junit-4.13");                     // Maven/Eclipse
         //tester.run("mockito-3.3.13");                 // Gradle
         //tester.run("pmd-6.24.0");                     // Maven
-        
-tester.run("spotbugs-4.1.2/spotbugs");                 // Gradle  // Unresolved
-//tester.run("guava-29.0");                     // Maven  // Unresolved
     }
 }
