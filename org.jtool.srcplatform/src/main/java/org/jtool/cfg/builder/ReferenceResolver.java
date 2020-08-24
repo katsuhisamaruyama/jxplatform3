@@ -48,10 +48,6 @@ class ReferenceResolver {
     }
     
     private void findDefUseFieldsInCalledMethod(CFGMethodCall callnode) {
-        System.err.println(callnode.getReceiver());
-        
-        
-        
         for (String className : callnode.getReceiver().getApproximatedTypes()) {
             JavaClass jclass = jproject.getClass(className);
             if (jclass == null || !jclass.isInProject()) {

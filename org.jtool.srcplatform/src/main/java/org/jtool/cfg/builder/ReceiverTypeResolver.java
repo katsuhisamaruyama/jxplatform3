@@ -203,14 +203,14 @@ class ReceiverTypeResolver {
             if (jmethod != null) {
                 for (JavaMethod jm : jmethod.getCallingMethods()) {
                     if (jm.isInProject()) {
-                        CFG cfg = jproject.getCFGStore().createCFGWithoutResolvingMethodCalls(jm);
+                        CFG cfg = jproject.getCFGStore().getCFGWithoutResolvingMethodCalls(jm);
                         callnodes.addAll(getMethodCalls(jmethod, cfg));
                     }
                 }
                 
                 for (JavaField jf : jmethod.getAccessingFields()) {
                     if (jf.isInProject()) {
-                        CFG cfg = jproject.getCFGStore().createCFGWithoutResolvingMethodCalls(jf);
+                        CFG cfg = jproject.getCFGStore().getCFGWithoutResolvingMethodCalls(jf);
                         callnodes.addAll(getMethodCalls(jmethod, cfg));
                     }
                 }

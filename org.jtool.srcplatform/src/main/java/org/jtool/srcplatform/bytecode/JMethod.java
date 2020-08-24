@@ -29,6 +29,8 @@ abstract public class JMethod extends JCommon {
     
     protected JMethod(QualifiedName qname, JClass declaringClass) {
         super(qname, declaringClass.bcStore);
+        
+        this.declaringClass = declaringClass;
     }
     
     public JClass getDeclaringClass() {

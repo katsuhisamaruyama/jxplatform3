@@ -28,7 +28,7 @@ class JFieldInternal extends JField {
     }
     
     private void collectDefUseFields(JavaField jfield) {
-        CFG cfg = bcStore.getJavaProject().getCFGStore().getCFG(jfield, false);
+        CFG cfg = bcStore.getJavaProject().getCFGStore().getCFGWithoutResolvingMethodCalls(jfield);
         
         for (CFGNode node : cfg.getNodes()) {
             if (node instanceof CFGStatement) {
@@ -49,7 +49,12 @@ class JFieldInternal extends JField {
     
     private void collectAccessedMethods(JavaField jfield) {
         for (JavaMethod jm : jfield.getCalledMethods()) {
-            JMethod method = bcStore.getJMethod(jm.getClassName(), jm.getSignature());
+            JMethod method;
+            if (jm.getDeclaringClass().getClassName().equals(declaringClass.getClassName())) {
+                method = declaringClass.getMethod(jm.getSignature());
+            } else {
+                method = bcStore.getJMethod(jm.getClassName(), jm.getSignature());
+            }
             if (method != null) {
                 accessedMethods.add(method);
             }

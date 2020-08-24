@@ -141,7 +141,7 @@ public class CFGStore {
         return cfg;
     }
     
-    CFG createCFGWithoutResolvingMethodCalls(JavaMethod jmethod) {
+    public CFG getCFGWithoutResolvingMethodCalls(JavaMethod jmethod) {
         CFG cfg = cfgs.get(jmethod.getQualifiedName().fqn());
         if (cfg != null) {
             return cfg;
@@ -154,7 +154,7 @@ public class CFGStore {
         return cfg;
     }
     
-    CFG createCFGWithoutResolvingMethodCalls(JavaField jfield) {
+    public CFG getCFGWithoutResolvingMethodCalls(JavaField jfield) {
         CFG cfg = cfgs.get(jfield.getQualifiedName().fqn());
         if (cfg != null) {
             return cfg;

@@ -202,33 +202,25 @@ public class CFGModelBuilderTest {
         //print();
         
         /* The files are stored outside the workspace */
-        //tester.run("ant-1.9.14");
-        //tester.run("ant-1.10.8");
-        //tester.run("antlr4-4.8");
-        //tester.run("closure-compiler-v20200614");  // Long time
-        //tester.run("commons-bcel-6.5.0");
-        //tester.run("commons-cli-1.4");
-        //tester.run("commons-codec-1.14");
-        //tester.run("commons-collections-4.4");
-        //tester.run("commons-compress-1.20");
-        //tester.run("commons-csv-1.8");
-        //tester.run("commons-jxpath-1.3");
-        //tester.run("commons-lang-3.10");
-        //tester.run("commons-math-3.6.1");
-        //tester.run("findbugs-3.0.1");
-        //tester.run("gson-2.8.6");
-        //tester.run("jackson-core-2.10.4");
-        //tester.run("jackson-databind-2.10.4");
-        //tester.run("jackson-dataformat-xml-2.10.4");
-        //tester.run("jfreechart-1.5.0");
-        //tester.run("joda-time-2.10.6");
-        //tester.run("jsoup-1.13.1");
-        //tester.run("junit-4.13");
-        //tester.run("log4j-2.13.3");
-        //tester.run("mockito-3.3.13");
-        //tester.run("pmd-6.24.0");
-        
-            //tester.run("spotbugs-4.0.4");
-            //tester.run("guava-29.0");
+        //tester.run("ant-1.9.14");                     // Ant
+        //tester.run("ant-1.10.8");                     // Ant
+        //tester.run("antlr4-4.8");                     // Maven
+        //tester.run("commons-bcel-6.5.0");             // Maven
+        //tester.run("commons-cli-1.4");                // Maven
+        //tester.run("commons-codec-1.14");             // Maven
+        //tester.run("commons-collections-4.4");        // Maven
+        //tester.run("commons-compress-1.20");          // Maven
+        //tester.run("commons-csv-1.8");                // Maven
+        //tester.run("commons-jxpath-1.3");             // Maven
+        //tester.run("commons-lang-3.10");              // Maven
+        //tester.run("commons-math-3.6.1");             // Maven
+        //tester.run("jackson-core-2.12");              // Maven
+        //tester.run("jackson-databind-2.12");          // Maven
+        //tester.run("jfreechart-1.5.0");               // Maven
+        //tester.run("joda-time-2.10.6");               // Maven
+        //tester.run("jsoup-1.13.1");                   // Maven
+        //tester.run("junit-4.13");                     // Maven/Eclipse
+        //tester.run("mockito-3.3.13");                 // Gradle
+        //tester.run("pmd-6.24.0");                     // Maven
     }
 }

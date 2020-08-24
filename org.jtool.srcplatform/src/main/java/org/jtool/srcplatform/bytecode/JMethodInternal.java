@@ -28,7 +28,7 @@ class JMethodInternal extends JMethod {
     }
     
     private void collectDefUseFields(JavaMethod jmethod) {
-        CFG cfg = bcStore.getJavaProject().getCFGStore().getCFG(jmethod, false);
+        CFG cfg = bcStore.getJavaProject().getCFGStore().getCFGWithoutResolvingMethodCalls(jmethod);
         
         for (CFGNode node : cfg.getNodes()) {
             if (node instanceof CFGStatement) {
@@ -49,7 +49,12 @@ class JMethodInternal extends JMethod {
     
     private void collectAccessedMethods(JavaMethod jmethod) {
         for (JavaMethod jm : jmethod.getCalledMethods()) {
-            JMethod method = bcStore.getJMethod(jm.getClassName(), jm.getSignature());
+            JMethod method;
+            if (jm.getDeclaringClass().getClassName().equals(declaringClass.getClassName())) {
+                method = declaringClass.getMethod(jm.getSignature());
+            } else {
+                method = bcStore.getJMethod(jm.getClassName(), jm.getSignature());
+            }
             if (method != null) {
                 accessedMethods.add(method);
             }
@@ -61,7 +66,12 @@ class JMethodInternal extends JMethod {
             return;
         }
         
-        JClass clazz = bcStore.getJClass(jmethod.getClassName());
+        JClass clazz;
+        if (jmethod.getDeclaringClass().getClassName().equals(declaringClass.getClassName())) {
+            clazz = declaringClass;
+        } else {
+            clazz = bcStore.getJClass(jmethod.getClassName());
+        }
         for (JClass descendant : clazz.getDescendants()) {
             JMethod method = descendant.getMethod(jmethod.getSignature());
             if (method != null) {
