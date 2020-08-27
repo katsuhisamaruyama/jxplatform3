@@ -368,16 +368,19 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     public void loadBytecode(JavaProject jproject) {
         BytecodeClassStore bcStore = jproject.getCFGStore().getBCStore();
         Set<BytecodeName> names = bcStore.getBytecodeNamesToBeLoaded();
-        Logger.getInstance().printMessage("** Ready to build java models of " + names.size() + " bytecode-classes");
-        ConsoleProgressMonitor pm = new ConsoleProgressMonitor();
-        
-        pm.begin(names.size());
-        for (BytecodeName bytecodeName : names) {
-            bcStore.loadBytecode(bytecodeName);
-            pm.work(1);
+        if (names.size() > 0) {
+            Logger.getInstance().printMessage("** Ready to build java models of " + names.size() + " bytecode-classes");
+            ConsoleProgressMonitor pm = new ConsoleProgressMonitor();
+            
+            pm.begin(names.size());
+            for (BytecodeName bytecodeName : names) {
+                bcStore.loadBytecode(bytecodeName);
+                pm.work(1);
+            }
+            pm.done();
         }
-        pm.done();
         
         bcStore.setClassHierarchy();
+        bcStore.writeBytecodeCache();
     }
 }

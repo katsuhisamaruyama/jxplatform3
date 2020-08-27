@@ -5,6 +5,8 @@
 
 package org.jtool.srcplatform.bytecode;
 
+import java.util.ArrayList;
+
 import org.jtool.srcmodel.QualifiedName;
 import javassist.CannotCompileException;
 import javassist.CtClass;
@@ -43,6 +45,7 @@ public class BytecodeClassJavassist extends BytecodeClass {
             if (sclass != null) {
                 superClass = bcStore.getCanonicalClassName(sclass);
             }
+            superInterfaces = new ArrayList<>();
             for (CtClass c : ctClass.getInterfaces()) {
                 superInterfaces.add(bcStore.getCanonicalClassName(c));
             }
@@ -94,14 +97,14 @@ public class BytecodeClassJavassist extends BytecodeClass {
                 @Override
                 public void edit(MethodCall cm) throws CannotCompileException {
                     try {
-                        QualifiedName qname = createQualifiedName(cm.getMethod());
+                        QualifiedName qname = methodQualifiedName(cm.getMethod());
                         if (!calledMethodsCache.containsEntry(thisSignature, qname)) {
                             calledMethodsCache.put(thisSignature, qname);
                         }
                     } catch (NotFoundException e) { /* empty */ }
                 }
                 
-                private QualifiedName createQualifiedName(CtMethod cm) throws NotFoundException {
+                private QualifiedName methodQualifiedName(CtMethod cm) throws NotFoundException {
                     String className = bcStore.getCanonicalClassName(cm.getDeclaringClass());
                     String signature = bcStore.getMethodSignature(cm);
                     return new QualifiedName(className, signature);
@@ -110,7 +113,7 @@ public class BytecodeClassJavassist extends BytecodeClass {
                 @Override
                 public void edit(ConstructorCall cm) throws CannotCompileException {
                     try {
-                        QualifiedName qname = createQualifiedName(cm.getConstructor());
+                        QualifiedName qname = constructorQualifiedName(cm.getConstructor());
                         if (!calledMethodsCache.containsEntry(thisSignature, qname)) {
                             calledMethodsCache.put(thisSignature, qname);
                         }
@@ -120,14 +123,14 @@ public class BytecodeClassJavassist extends BytecodeClass {
                 @Override
                 public void edit(NewExpr cm) throws CannotCompileException {
                     try {
-                        QualifiedName qname = createQualifiedName(cm.getConstructor());
+                        QualifiedName qname = constructorQualifiedName(cm.getConstructor());
                         if (!calledMethodsCache.containsEntry(thisSignature, qname)) {
                             calledMethodsCache.put(thisSignature, qname);
                         }
                     } catch (NotFoundException e) { /* empty */ }
                 }
                 
-                private QualifiedName createQualifiedName(CtConstructor cc) throws NotFoundException {
+                private QualifiedName constructorQualifiedName(CtConstructor cc) throws NotFoundException {
                     String className = bcStore.getCanonicalClassName(cc.getDeclaringClass());
                     String signature = bcStore.getConstructorSignature(cc);
                     return new QualifiedName(className, signature);
@@ -135,8 +138,6 @@ public class BytecodeClassJavassist extends BytecodeClass {
             });
         } catch (CannotCompileException e) { /* empty */ }
     }
-    
-    
     
     public static boolean isPublic(int mod) {
         return Modifier.isPublic(mod);
@@ -157,6 +158,4 @@ public class BytecodeClassJavassist extends BytecodeClass {
     public static boolean isStatic(int mod) {
         return Modifier.isStatic(mod);
     }
-    
-    
 }

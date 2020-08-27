@@ -19,16 +19,40 @@ import java.util.Set;
  */
 class JMethodInternal extends JMethod {
     
+    private JavaMethod jmethod;
+    
     JMethodInternal(JavaMethod jmethod, JClass declaringClass) {
         super(jmethod.getQualifiedName(), declaringClass);
         
-        collectDefUseFields(jmethod);
-        collectAccessedMethods(jmethod);
-        collectOverridingMethods(jmethod);
+        this.jmethod = jmethod;
     }
     
-    private void collectDefUseFields(JavaMethod jmethod) {
+    @Override
+    public boolean isInProject() {
+        return true;
+    }
+    
+    @Override
+    protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
+        if (isDefUseDecided || visitedMethods.contains(this)) {
+            return;
+        }
+        
+        isDefUseDecided = true;
+        visitedMethods.add(this);
+        
+        collectDefUseFields();
+        collectAccessedMethods();
+        collectOverridingMethods();
+        
+        collectDefUseFields(visitedMethods, visitedFields, count);
+    }
+    
+    private void collectDefUseFields() {
         CFG cfg = bcStore.getJavaProject().getCFGStore().getCFGWithoutResolvingMethodCalls(jmethod);
+        if (cfg  == null) {
+            return;
+        }
         
         for (CFGNode node : cfg.getNodes()) {
             if (node instanceof CFGStatement) {
@@ -47,53 +71,25 @@ class JMethodInternal extends JMethod {
         }
     }
     
-    private void collectAccessedMethods(JavaMethod jmethod) {
+    private void collectAccessedMethods() {
         for (JavaMethod jm : jmethod.getCalledMethods()) {
-            JMethod method;
-            if (jm.getDeclaringClass().getClassName().equals(declaringClass.getClassName())) {
-                method = declaringClass.getMethod(jm.getSignature());
-            } else {
-                method = bcStore.getJMethod(jm.getClassName(), jm.getSignature());
-            }
+            JMethod method = bcStore.getJMethod(jm.getClassName(), jm.getSignature());
             if (method != null) {
                 accessedMethods.add(method);
             }
         }
     }
     
-    private void collectOverridingMethods(JavaMethod jmethod) {
+    private void collectOverridingMethods() {
         if (jmethod.isConstructor()) {
             return;
         }
         
-        JClass clazz;
-        if (jmethod.getDeclaringClass().getClassName().equals(declaringClass.getClassName())) {
-            clazz = declaringClass;
-        } else {
-            clazz = bcStore.getJClass(jmethod.getClassName());
-        }
-        for (JClass descendant : clazz.getDescendants()) {
+        for (JClass descendant : declaringClass.getDescendants()) {
             JMethod method = descendant.getMethod(jmethod.getSignature());
             if (method != null) {
                 overridingMethods.add(method);
             }
         }
-    }
-    
-    @Override
-    public boolean isInProject() {
-        return true;
-    }
-    
-    @Override
-    protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        if (isDefUseDecided || visitedMethods.contains(this)) {
-            return;
-        }
-        
-        isDefUseDecided = true;
-        visitedMethods.add(this);
-        
-        collectDefUseFields(visitedMethods, visitedFields, count);
     }
 }

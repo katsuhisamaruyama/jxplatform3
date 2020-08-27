@@ -32,13 +32,25 @@ public class BytecodeClassProxy extends BytecodeClass {
     
     void addMethod(Map<String, String> attr) {
         String signature = attr.get(BytecodeCacheManager.SignatureAttr);
-        defFieldsCache.put(signature, DefUseField.create(attr.get(BytecodeCacheManager.DefAttr)));
-        useFieldsCache.put(signature, DefUseField.create(attr.get(BytecodeCacheManager.UseAttr)));
-        calledMethodsCache.put(signature, new QualifiedName(name, attr.get(BytecodeCacheManager.CallAttr)));
+        
+        String def = attr.get(BytecodeCacheManager.DefAttr);
+        if (def != null) {
+            defFieldsCache.put(signature, DefUseField.create(def));
+        }
+        String use = attr.get(BytecodeCacheManager.UseAttr);
+        if (use != null) {
+            useFieldsCache.put(signature, DefUseField.create(use));
+        }
+        String call = attr.get(BytecodeCacheManager.CallAttr);
+        if (call != null) {
+            calledMethodsCache.put(signature, new QualifiedName(name, call));
+        }
     }
     
     @Override
     protected void collectInfo() {
         super.collectInfo();
+        
+        bcStore.registerBytecode(this);
     }
 }

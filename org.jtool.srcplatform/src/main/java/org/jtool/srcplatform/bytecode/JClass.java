@@ -21,7 +21,7 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
     protected int modifiers;
     protected boolean isInterface;
     protected String superClass = null;
-    protected List<String> superInterfaces = new ArrayList<>();
+    protected List<String> superInterfaces;
     
     protected List<JMethod> methods = new ArrayList<>();
     protected List<JField> fields = new ArrayList<>();
@@ -34,6 +34,10 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
     
     protected JClass(QualifiedName qname, BytecodeClassStore bcStore) {
         super(qname, bcStore);
+    }
+    
+    public String getName() {
+        return qname.getClassName();
     }
     
     public List<JMethod> getMethods() {
@@ -97,7 +101,9 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
         if (superClass != null) {
             cache.put(BytecodeCacheManager.SuperClassAttr, superClass);
         }
-        cache.put(BytecodeCacheManager.SuperClassAttr, BytecodeClass.convertString(superInterfaces));
+        if (superInterfaces.size() > 0) {
+            cache.put(BytecodeCacheManager.SuperClassAttr, BytecodeClass.convertString(superInterfaces));
+        }
         return cache;
     }
     
@@ -105,20 +111,22 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
     public List<Map<String, String>> getMethodCacheData() {
         List<Map<String, String>> cache = new ArrayList<>();
         for (JMethod method : methods) {
-            Map<String, String> attr = new HashMap<>();
             String signature = method.getSignature();
             
             for (DefUseField def : method.getDefFields()) {
+                Map<String, String> attr = new HashMap<>();
                 attr.put(BytecodeCacheManager.SignatureAttr, signature);
                 attr.put(BytecodeCacheManager.DefAttr, def.toString());
                 cache.add(attr);
             }
             for (DefUseField use : method.getUseFields()) {
+                Map<String, String> attr = new HashMap<>();
                 attr.put(BytecodeCacheManager.SignatureAttr, signature);
                 attr.put(BytecodeCacheManager.UseAttr, use.toString());
                 cache.add(attr);
             }
             for (JMethod acc : method.getAccessedMethods()) {
+                Map<String, String> attr = new HashMap<>();
                 attr.put(BytecodeCacheManager.SignatureAttr, signature);
                 attr.put(BytecodeCacheManager.CallAttr, acc.getQualifiedName().fqn());
                 cache.add(attr);

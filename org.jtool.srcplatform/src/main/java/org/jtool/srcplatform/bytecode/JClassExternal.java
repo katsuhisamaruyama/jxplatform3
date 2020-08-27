@@ -19,12 +19,14 @@ public class JClassExternal extends JClass {
     JClassExternal(BytecodeClass bclass, BytecodeClassStore bcStore) {
         super(new QualifiedName(bclass.getName()), bcStore);
         
+        this.bclass = bclass;
         this.modifiers = bclass.getModifiers();
         this.isInterface = bclass.isInterface();
+        this.superClass = bclass.getSuperClass();
+        this.superInterfaces = bclass.getSuperInterfaces();
         
-        for (String signature : bclass.getMethods()) {
-            methods.add(new JMethodExternal(signature, this, bclass));
-        }
+        bclass.getMethods().stream()
+                .forEach(sig -> methods.add(new JMethodExternal(sig, this, bclass)));
     }
     
     @Override

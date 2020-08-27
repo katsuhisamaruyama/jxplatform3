@@ -32,8 +32,8 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     protected String name;
     protected int modifiers;
     protected boolean isInterface;
-    protected String superClass = null;
-    protected List<String> superInterfaces = new ArrayList<>();
+    protected String superClass;
+    protected List<String> superInterfaces;
     
     protected Multimap<String, DefUseField> defFieldsCache = HashMultimap.create();
     protected Multimap<String, DefUseField> useFieldsCache = HashMultimap.create();
@@ -52,7 +52,7 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     
     private List<BytecodeClass> superClassChainCache;
     private List<BytecodeClass> ancestorsCache;
-    private List<BytecodeClass> descendantsCache;
+    private List<BytecodeClass> descendantsCache = new ArrayList<>();
     
     protected final static String ElementSeparator = ";";
     
@@ -69,14 +69,6 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         methods.addAll(defFieldsMap.keySet());
         methods.addAll(useFieldsMap.keySet());
         methods.addAll(calledMethodsMap.keySet());
-        
-        defFieldsCache.clear();
-        useFieldsCache.clear();
-        calledMethodsCache.clear();
-        
-        defFieldsCache = null;
-        useFieldsCache = null;
-        calledMethodsCache = null;
     }
     
     String getCacheName() {
@@ -132,7 +124,9 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         if (superClass != null) {
             cache.put(BytecodeCacheManager.SuperClassAttr, superClass);
         }
-        cache.put(BytecodeCacheManager.SuperInterfaceAttr, BytecodeClass.convertString(superInterfaces));
+        if (superInterfaces.size() > 0) {
+            cache.put(BytecodeCacheManager.SuperInterfaceAttr, BytecodeClass.convertString(superInterfaces));
+        }
         return cache;
     }
     
@@ -158,20 +152,20 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     @Override
     public List<Map<String, String>> getMethodCacheData() {
         List<Map<String, String>> cache = new ArrayList<>();
-        cache.addAll(createCachDataForDefUseFields(defFieldsMap, BytecodeCacheManager.DefAttr));
-        cache.addAll(createCachDataForDefUseFields(useFieldsMap, BytecodeCacheManager.UseAttr));
-        cache.addAll(createCachDataForAccessedMethods(calledMethodsMap, BytecodeCacheManager.CallAttr)); 
+        cache.addAll(createCacheDataForDefUseFields(defFieldsMap, BytecodeCacheManager.DefAttr));
+        cache.addAll(createCacheDataForDefUseFields(useFieldsMap, BytecodeCacheManager.UseAttr));
+        cache.addAll(createCacheDataForAccessedMethods(calledMethodsMap, BytecodeCacheManager.CallAttr)); 
         return cache;
     }
     
-    private List<Map<String, String>> createCachDataForDefUseFields(
+    private List<Map<String, String>> createCacheDataForDefUseFields(
             Map<String, Collection<DefUseField>> map, String label) {
         List<Map<String, String>> cache = new ArrayList<>();
         for (Entry<String, Collection<DefUseField>> entry : map.entrySet()) {
-            Map<String, String> attr = new HashMap<>();
             String signature = entry.getKey();
             
             for (DefUseField field : entry.getValue()) {
+                Map<String, String> attr = new HashMap<>();
                 attr.put(BytecodeCacheManager.SignatureAttr, signature);
                 attr.put(label, field.toStr());
                 cache.add(attr);
@@ -180,14 +174,14 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         return cache;
     }
     
-    private <T> List<Map<String, String>> createCachDataForAccessedMethods(
+    private List<Map<String, String>> createCacheDataForAccessedMethods(
             Map<String, Collection<QualifiedName>> map, String label) {
         List<Map<String, String>> cache = new ArrayList<>();
         for (Entry<String, Collection<QualifiedName>> entry : map.entrySet()) {
-            Map<String, String> attr = new HashMap<>();
             String signature = entry.getKey();
             
             for (QualifiedName qname : entry.getValue()) {
+                Map<String, String> attr = new HashMap<>();
                 attr.put(BytecodeCacheManager.SignatureAttr, signature);
                 attr.put(label, qname.getMemberSignature());
                 cache.add(attr);
@@ -202,16 +196,6 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         descendants = descendantsCache.stream().map(bclass -> bclass.getName()).collect(Collectors.toList());
     }
     
-    void clearClassHierarchyCache() {
-        superClassChainCache.clear();
-        ancestorsCache.clear();
-        descendantsCache.clear();
-        
-        superClassChainCache = null;
-        ancestorsCache = null;
-        descendantsCache = null;
-    }
-    
     public List<String> getSuperClassChain() {
         return superClassChain;
     }
@@ -224,7 +208,7 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         return descendants;
     }
     
-    void findChierarchy() {
+    void findClassHierarchy() {
         collectSuperClassChain();
         collectAncestors();
     }
@@ -248,7 +232,7 @@ public abstract class BytecodeClass implements BytecodeClassCache {
             
             BytecodeClass bclass = bcStore.getBcClass(superClass);
             if (bclass != null) {
-                ancestors.add(bclass.getName());
+                ancestorsCache.add(bclass);
                 bclass.addDescendant(this);
                 
                 List<BytecodeClass> aclasses = bclass.collectAncestors();

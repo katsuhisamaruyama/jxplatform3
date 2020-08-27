@@ -16,6 +16,8 @@ import java.util.List;
 
 public interface BytecodeClassCache {
     
+    public String getName();
+    
     public Map<String, String> getClassCacheData();
     
     public List<Map<String, String>> getMethodCacheData();

@@ -16,41 +16,12 @@ import java.util.Collection;
  */
 public class JMethodExternal extends JMethod {
     
+    private BytecodeClass bclass;
+    
     JMethodExternal(String signature, JClass declaringClass, BytecodeClass bclass) {
         super(new QualifiedName(declaringClass.getClassName(), signature), declaringClass);
         
-        defFields.addAll(bclass.getDefFields(signature));
-        useFields.addAll(bclass.getUseFields(signature));
-        
-        collectAccessedMethods(bclass.getCalledMethods(signature));
-        collectOverridingMethods(signature);
-    }
-    
-    private void collectAccessedMethods(Collection<QualifiedName> qnames) {
-        for (QualifiedName qname : qnames) {
-            JMethod method = bcStore.getJMethod(qname.getClassName(), qname.getMemberSignature());
-            if (method != null) {
-                accessedMethods.add(method);
-            }
-        }
-    }
-    
-    private void collectOverridingMethods(String signature) {
-        if (isConstructor(this)) {
-            return;
-        }
-        
-        for (JClass descendant : declaringClass.getDescendants()) {
-            JMethod m = descendant.getMethod(signature);
-            if (m != null) {
-                overridingMethods.add(m);
-            }
-        }
-    }
-    
-    private boolean isConstructor(JMethod method) {
-        String methodName = method.getSignature().substring(0, method.getSignature().indexOf("("));
-        return method.declaringClass.getClassName().contentEquals(methodName);
+        this.bclass = bclass;
     }
     
     @Override
@@ -71,6 +42,53 @@ public class JMethodExternal extends JMethod {
         isDefUseDecided = true;
         visitedMethods.add(this);
         
+        collectDefUseFields();
+        collectAccessedMethods();
+        collectOverridingMethods();
+        
         collectDefUseFields(visitedMethods, visitedFields, count + 1);
+    }
+    
+    private void collectDefUseFields() {
+        Collection<DefUseField> defs = bclass.getDefFields(getSignature());
+        if (defs != null) {
+            defFields.addAll(defs);
+        }
+        Collection<DefUseField> uses = bclass.getUseFields(getSignature());
+        if (uses != null) {
+            useFields.addAll(uses);
+        }
+    }
+    
+    private void collectAccessedMethods() {
+        Collection<QualifiedName> qnames = bclass.getCalledMethods(getSignature());
+        if (qnames == null) {
+            return;
+        }
+        
+        for (QualifiedName qname : qnames) {
+            JMethod method = bcStore.getJMethod(qname.getClassName(), qname.getMemberSignature());
+            if (method != null) {
+                accessedMethods.add(method);
+            }
+        }
+    }
+    
+    private void collectOverridingMethods() {
+        if (isConstructor(this)) {
+            return;
+        }
+        
+        for (JClass descendant : declaringClass.getDescendants()) {
+            JMethod method = descendant.getMethod(getSignature());
+            if (method != null) {
+                overridingMethods.add(method);
+            }
+        }
+    }
+    
+    private boolean isConstructor(JMethod method) {
+        String methodName = method.getSignature().substring(0, method.getSignature().indexOf("("));
+        return method.declaringClass.getClassName().contentEquals(methodName);
     }
 }

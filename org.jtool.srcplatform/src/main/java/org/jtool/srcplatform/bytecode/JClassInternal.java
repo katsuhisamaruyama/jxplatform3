@@ -6,6 +6,7 @@
 package org.jtool.srcplatform.bytecode;
 
 import org.jtool.srcmodel.JavaClass;
+import java.util.ArrayList;
 
 /**
  * Concise information on a class inside the project.
@@ -24,15 +25,13 @@ public class JClassInternal extends JClass {
         this.modifiers = jclass.getModifiers();
         this.isInterface = jclass.isInterface();
         this.superClass = jclass.getSuperClassName();
-        this.superInterfaces.addAll(jclass.getSuperInterfaceNames());
+        this.superInterfaces = new ArrayList<>(jclass.getSuperInterfaceNames());
         
-        jclass.getMethods()
-                .stream()
+        jclass.getMethods().stream()
                 .filter(jm -> jm.getQualifiedName().isResolve())
                 .forEach(jm -> methods.add(new JMethodInternal(jm, this)));
         
-        jclass.getFields()
-                .stream()
+        jclass.getFields().stream()
                 .filter(jf -> jf.getQualifiedName().isResolve())
                 .forEach(jf -> fields.add(new JFieldInternal(jf, this)));
     }

@@ -21,8 +21,11 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Enumeration;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
@@ -37,12 +40,12 @@ import java.lang.module.ModuleReference;
  */
 public class BytecodeClassStore {
     
-    static final String VM_VERSION_FILENAME = "#vmversion";
+    static final String BOOT_VERSION_FILENAME = "#boot.module.version";
     static final String BOOT_CACHE_FILENAME = "#boot.module";
     static final String PROJECT_CACHE_FILENAME = "#project.complete";
     static final String NO_CACHE_LABEL = "#";
     
-    private static final String JavaVMVersion = System.getProperty("java.vm.version");
+    private static final String BootModuleVersion = System.getProperty("java.vm.version");
     
     private JavaProject jproject;
     
@@ -64,7 +67,7 @@ public class BytecodeClassStore {
             analysisLevel = 1;
             if (jproject.getModelBuilderImpl().useBytecodeCache()) {
                 loadProjectCache();
-                analysisLevel = 2;
+                analysisLevel = 10;
             }
         }
     }
@@ -82,7 +85,7 @@ public class BytecodeClassStore {
     
     private void writeProjectCache(Collection<JClass> classes) {
         bytecodeClassMap.clear();
-        BytecodeCacheManager.writeCache(jproject, new HashSet<BytecodeClassCache>(classes), PROJECT_CACHE_FILENAME);
+        //BytecodeCacheManager.writeCache(jproject, new HashSet<BytecodeClassCache>(classes), PROJECT_CACHE_FILENAME);
     }
     
     public JavaProject getJavaProject() {
@@ -101,15 +104,19 @@ public class BytecodeClassStore {
     private Set<BytecodeName> collectBytecodeNames(List<String> classPaths) {
         Set<BytecodeName> bytecodeNames = new HashSet<>();
         
-        if (!JavaVMVersion.equals(BytecodeCacheManager.getVMVersion(jproject, VM_VERSION_FILENAME))) {
+        if (BootModuleVersion.equals(BytecodeCacheManager.readBootModuleVersion(jproject, BOOT_VERSION_FILENAME)) &&
+            BytecodeCacheManager.canRead(jproject, BOOT_CACHE_FILENAME)) {
+            BytecodeCacheManager.readCache(jproject, BOOT_CACHE_FILENAME);
+            analysisLevel = 2;
+        } else {
             bytecodeNames.addAll(collectClassNamesFromJavaModules());
             cacheNames.add(BOOT_CACHE_FILENAME);
         }
         
-        bytecodeNames.addAll(classPaths
-                .stream()
+        bytecodeNames.addAll(classPaths.stream()
                 .flatMap(path -> collectClassNames(path).stream())
                 .collect(Collectors.toSet()));
+        
         return bytecodeNames;
     }
     
@@ -181,12 +188,15 @@ public class BytecodeClassStore {
         if (cacheNames.contains(cacheName)) {
             return;
         }
-        cacheNames.add(cacheName);
         
         long cacheTime = BytecodeCacheManager.getLastModifiedTimeJarsCacheFile(jproject, cacheName);
-        if (cacheTime >= file.lastModified()) {
+        if (cacheTime >= file.lastModified() && BytecodeCacheManager.canRead(jproject, cacheName)) {
+            BytecodeCacheManager.readCache(jproject, cacheName);
+            analysisLevel = 2;
             return;
         }
+        
+        cacheNames.add(cacheName);
         
         try (ZipFile zipFile = new ZipFile(file)) {
             for (Enumeration<? extends ZipEntry> entries = zipFile.entries(); entries.hasMoreElements(); ) {
@@ -224,16 +234,40 @@ public class BytecodeClassStore {
                 
                 if (ctClass.isInterface() || ctClass.getModifiers() != Modifier.PRIVATE) {
                     BytecodeClassJavassist clazz = new BytecodeClassJavassist(ctClass, byteCodeName.cacheName, this);
+                    clazz.collectInfo();
+                    
                     bytecodeClassMap.put(getCanonicalClassName(ctClass), clazz);
                 }
             }
         } catch (NotFoundException e) { /* empty */ }
     }
     
+    void registerBytecode(BytecodeClassProxy clazz) {
+        bytecodeClassMap.put(clazz.getName(), clazz);
+    }
+    
+    public void writeBytecodeCache() {
+        for (String cacheName : cacheNames) {
+            List<BytecodeClass> classes = bytecodeClassMap.values().stream()
+                    .filter(bclass -> bclass.getCacheName().equals(cacheName))
+                    .collect(Collectors.toList());
+            
+            BytecodeCacheManager.writeCache(jproject, sortBytecodeClasses(classes), cacheName);
+        }
+        
+        BytecodeCacheManager.writeBootModuleVersion(jproject, BOOT_VERSION_FILENAME, BootModuleVersion);
+    }
+    
     public void setClassHierarchy() {
-        bytecodeClassMap.values().forEach(bclass -> bclass.findChierarchy());
+        analysisLevel = 3;
+        
+        bytecodeClassMap.values().forEach(bclass -> bclass.findClassHierarchy());
         bytecodeClassMap.values().forEach(bclass -> bclass.setClassHierarchy());
         
+        addClassHierarchyForInternalClasses();
+    }
+    
+    private void addClassHierarchyForInternalClasses() {
         for (JavaClass jclass : jproject.getClasses()) {
             BytecodeClass superClass = bytecodeClassMap.get(jclass.getSuperClassName());
             if (superClass != null) {
@@ -244,11 +278,7 @@ public class BytecodeClassStore {
                 .filter(parent -> parent != null)
                 .forEach(parent -> parent.collectAncestors()
                         .forEach(ancestor -> ancestor.addDescendant(jclass.getClassName())));
-        
         }
-        
-        bytecodeClassMap.values().forEach(bclass -> bclass.clearClassHierarchyCache());
-        analysisLevel = 3;
     }
     
     public JClass getJClass(String className) {
@@ -379,5 +409,15 @@ public class BytecodeClassStore {
         } catch (NotFoundException e) {
             return null;
         }
+    }
+    
+    private List<BytecodeClass> sortBytecodeClasses(List<? extends BytecodeClass> co) {
+        List<BytecodeClass> classes = new ArrayList<>(co);
+        Collections.sort(classes, new Comparator<>() {
+            public int compare(BytecodeClass bc1, BytecodeClass bc2) {
+                return bc1.getName().compareTo(bc2.getName());
+            }
+        });
+        return classes;
     }
 }

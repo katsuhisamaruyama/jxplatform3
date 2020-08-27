@@ -20,15 +20,39 @@ import java.util.Set;
  */
 class JFieldInternal extends JField {
     
+    private JavaField jfield;
+    
     JFieldInternal(JavaField jfield, JClass declaringClass) {
         super(jfield.getQualifiedName(), declaringClass);
         
-        collectDefUseFields(jfield);
-        collectAccessedMethods(jfield);
+        this.jfield = jfield;
     }
     
-    private void collectDefUseFields(JavaField jfield) {
+    @Override
+    public boolean isInProject() {
+        return true;
+    }
+    
+    @Override
+    protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
+        if (isDefUseDecided || visitedFields.contains(this)) {
+            return;
+        }
+        
+        isDefUseDecided = true;
+        visitedFields.add(this);
+        
+        collectDefUseFields();
+        collectAccessedMethods();
+        
+        collectDefUseFields(visitedMethods, visitedFields, count);
+    }
+    
+    private void collectDefUseFields() {
         CFG cfg = bcStore.getJavaProject().getCFGStore().getCFGWithoutResolvingMethodCalls(jfield);
+        if (cfg == null) {
+            return;
+        }
         
         for (CFGNode node : cfg.getNodes()) {
             if (node instanceof CFGStatement) {
@@ -47,7 +71,7 @@ class JFieldInternal extends JField {
         }
     }
     
-    private void collectAccessedMethods(JavaField jfield) {
+    private void collectAccessedMethods() {
         for (JavaMethod jm : jfield.getCalledMethods()) {
             JMethod method;
             if (jm.getDeclaringClass().getClassName().equals(declaringClass.getClassName())) {
@@ -59,22 +83,5 @@ class JFieldInternal extends JField {
                 accessedMethods.add(method);
             }
         }
-    }
-    
-    @Override
-    public boolean isInProject() {
-        return true;
-    }
-    
-    @Override
-    protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        if (isDefUseDecided || visitedFields.contains(this)) {
-            return;
-        }
-        
-        isDefUseDecided = true;
-        visitedFields.add(this);
-        
-        collectDefUseFields(visitedMethods, visitedFields, count);
     }
 }

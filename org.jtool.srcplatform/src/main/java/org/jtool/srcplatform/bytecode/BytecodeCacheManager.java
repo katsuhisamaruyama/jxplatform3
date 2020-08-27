@@ -28,7 +28,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import java.util.Set;
+import java.util.List;
 import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
@@ -44,7 +44,7 @@ import java.io.StringWriter;
  */
 public class BytecodeCacheManager {
     
-    static final String BYTECODE_CACHE_DIR = ".jxplatform";
+    static final String BYTECODE_CACHE_DIR = ".srcplatform";
     static final String CACHE_FILE_EXTION = ".cache";
     
     static final String ProjectElem = "project";
@@ -70,7 +70,7 @@ public class BytecodeCacheManager {
     public static final String UseAttr = "use";
     public static final String CallAttr = "call";
     
-    static String getVMVersion(JavaProject jproject, String name) {
+    static String readBootModuleVersion(JavaProject jproject, String name) {
         if (jproject.makeDir(BYTECODE_CACHE_DIR)) {
             return "0";
         }
@@ -84,6 +84,18 @@ public class BytecodeCacheManager {
         }
     }
     
+    static boolean writeBootModuleVersion(JavaProject jproject, String name, String version) {
+        String filename = jproject.getPath() + File.separator +
+                BYTECODE_CACHE_DIR + File.separator + name;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            writer.write(version);
+            writer.newLine();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+    
     static long getLastModifiedTimeJarsCacheFile(JavaProject jproject, String cacheName) {
         String filename = jproject.getPath() + File.separator + BYTECODE_CACHE_DIR +
                 File.separator + cacheName + CACHE_FILE_EXTION;
@@ -94,20 +106,14 @@ public class BytecodeCacheManager {
         return -1;
     }
     
-    static void writeBootCache(JavaProject jproject, Set<BytecodeClassCache>classes, String cacheName, String vname, String version) {
-        boolean result = writeCache(jproject, classes, cacheName);
-        
-        if (result) {
-            String filename = jproject.getPath() + File.separator +
-                    BYTECODE_CACHE_DIR + File.separator + vname;
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-                writer.write(version);
-                writer.newLine();
-            } catch (IOException e) { /* empty */ }
-        }
+    static boolean canRead(JavaProject jproject, String cacheName) {
+        String filename = jproject.getPath() + File.separator + BYTECODE_CACHE_DIR +
+                File.separator + cacheName + CACHE_FILE_EXTION;
+        File file = new File(filename);
+        return file.canRead();
     }
     
-    static boolean writeCache(JavaProject jproject, Set<BytecodeClassCache>classes, String cacheName) {
+    static boolean writeCache(JavaProject jproject, List<? extends BytecodeClassCache>classes, String cacheName) {
         String filename = jproject.getPath() + File.separator + BYTECODE_CACHE_DIR +
                 File.separator + cacheName + CACHE_FILE_EXTION;
         
@@ -174,7 +180,7 @@ public class BytecodeCacheManager {
 
 class CacheExporter {
     
-    Document createDocument(String path, Collection<BytecodeClassCache> classes) throws ParserConfigurationException {
+    Document createDocument(String path, Collection<? extends BytecodeClassCache> classes) throws ParserConfigurationException {
         DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         Document doc = builder.newDocument();
         Element projectElem = doc.createElement(BytecodeCacheManager.ProjectElem);
@@ -184,26 +190,29 @@ class CacheExporter {
         doc.appendChild(projectElem);
         
         for (BytecodeClassCache clazz : classes) {
-            export(doc, projectElem, clazz);
+            exportClass(doc, projectElem, clazz);
         }
         return doc;
     }
     
-    private void export(Document doc, Element parent, BytecodeClassCache clazz) {
+    private void exportClass(Document doc, Element parent, BytecodeClassCache clazz) {
         Element classElem = doc.createElement(BytecodeCacheManager.ClassElem);
         parent.appendChild(classElem);
         
         for (Entry<String, String> entry : clazz.getClassCacheData().entrySet()) {
             classElem.setAttribute(entry.getKey(), entry.getValue());
         }
-        
-        Element methodElem = doc.createElement(BytecodeCacheManager.MethodElem);
+        exportMethod(doc, classElem, clazz);
+    }
+    
+    private void exportMethod(Document doc, Element parent, BytecodeClassCache clazz) {
         for (Map<String, String> method : clazz.getMethodCacheData()) {
+            Element methodElem = doc.createElement(BytecodeCacheManager.MethodElem);
             for (Entry<String, String> entry : method.entrySet()) {
                 methodElem.setAttribute(entry.getKey(), entry.getValue());
             }
+            parent.appendChild(methodElem);
         }
-        parent.appendChild(methodElem);
     }
 }
 

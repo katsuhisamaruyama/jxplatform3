@@ -14,7 +14,7 @@ import org.jtool.cfg.JReference;
  */
 public class DefUseField {
     
-    final static String FieldPropertySeparator = "#";
+    final static String FieldPropertySeparator = "%";
     
     private String className;
     private String name;
