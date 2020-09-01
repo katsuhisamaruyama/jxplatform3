@@ -44,6 +44,8 @@ import java.io.StringWriter;
  */
 public class BytecodeCacheManager {
     
+    static final String FORMAT_VERSION = "0.1";
+    
     static final String BYTECODE_CACHE_DIR = ".srcplatform";
     static final String CACHE_FILE_EXTION = ".cache";
     
@@ -53,17 +55,17 @@ public class BytecodeCacheManager {
     static final String JavaVMAttr = "jvm";
     
     static final String FormatVersionAttr = "version";
-    static final String FORMAT_VERSION = "1.0";
     
     static final String ClassElem = "class";
     static final String MethodElem = "method";
     static final String FieldElem = "field";
     
     public static final String NameAttr = "name";
+    public static final String ModifierAttr = "mod";
+    public static final String isInterfaceAttr = "intf";
+    public static final String isInProjectAttr = "inproj";
     public static final String SuperClassAttr = "sclass";
     public static final String SuperInterfaceAttr = "sintf";
-    public static final String isInterfaceAttr = "intf";
-    public static final String ModifierAttr = "mod";
     
     public static final String SignatureAttr = "sig";
     public static final String DefAttr = "def";
@@ -157,18 +159,20 @@ public class BytecodeCacheManager {
             return false;
         }
         
-        Logger.getInstance().printMessage("** Reading cache " + filename);
+        Logger.getInstance().recordLog("-Read cache " + filename);
         
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setNamespaceAware(true);
             
             SAXParser parser = factory.newSAXParser();
-            ProxyImporter handler = new ProxyImporter(jproject, cacheName);
+            DefaultHandler handler = new ProxyImporter(jproject, cacheName);
             parser.parse(file, handler);
             return true;
-            
-        } catch (ParserConfigurationException | SAXException e) {
+        } catch (SAXException e) {
+            System.err.println(e.getMessage());
+            return false;
+        } catch (ParserConfigurationException e) {
             System.err.println("DOM: Export error occurred: " + e.getMessage() + ".");
             return false;
         } catch (IOException e) {
@@ -213,6 +217,14 @@ class CacheExporter {
             }
             parent.appendChild(methodElem);
         }
+        
+        for (Map<String, String> field : clazz.getFieldCacheData()) {
+            Element fieldElem = doc.createElement(BytecodeCacheManager.FieldElem);
+            for (Entry<String, String> entry : field.entrySet()) {
+                fieldElem.setAttribute(entry.getKey(), entry.getValue());
+            }
+            parent.appendChild(fieldElem);
+        }
     }
 }
 
@@ -229,7 +241,16 @@ class ProxyImporter extends DefaultHandler {
     }
     
     @Override
-    public void startElement(String uri, String name, String qname, Attributes attrs) {
+    public void startElement(String uri, String name, String qname, Attributes attrs) throws SAXException {
+        if (qname.equals(BytecodeCacheManager.ProjectElem)) {
+            Map<String, String> attr = attributes(attrs);
+            String format = attr.get(BytecodeCacheManager.FormatVersionAttr);
+            if (!format.equals(BytecodeCacheManager.FORMAT_VERSION)) {
+                throw new SAXException("Cache format was changed");
+            }
+            return;
+        }
+        
         if (qname.equals(BytecodeCacheManager.ClassElem)) {
             clazz = new BytecodeClassProxy(cacheName, jproject.getCFGStore().getBCStore());
             clazz.addClass(attributes(attrs));
@@ -239,6 +260,13 @@ class ProxyImporter extends DefaultHandler {
         if (qname.equals(BytecodeCacheManager.MethodElem)) {
             if (clazz != null) {
                 clazz.addMethod(attributes(attrs));
+            }
+            return;
+        }
+        
+        if (qname.equals(BytecodeCacheManager.FieldElem)) {
+            if (clazz != null) {
+                clazz.addField(attributes(attrs));
             }
             return;
         }

@@ -9,17 +9,14 @@ import org.jtool.srcmodel.QualifiedName;
 import java.util.Set;
 
 /**
- * Concise information on a cached method.
+ * Concise information on a cached field.
  * 
  * @author Katsuhisa Maruyama
  */
-class JMethodCache extends JMethod {
+class JFieldCache extends JField {
     
-    JMethodCache(String signature, JClass declaringClass, BytecodeClass bclass) {
+    JFieldCache(String signature, JClass declaringClass, BytecodeClass bclass) {
         super(new QualifiedName(declaringClass.getClassName(), signature), declaringClass);
-        
-        defFields.addAll(bclass.getDefFields(signature));
-        useFields.addAll(bclass.getUseFields(signature));
         
         isDefUseDecided = true;
     }

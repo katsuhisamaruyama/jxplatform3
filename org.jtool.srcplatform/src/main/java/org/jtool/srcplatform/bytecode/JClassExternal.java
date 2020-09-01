@@ -17,21 +17,21 @@ public class JClassExternal extends JClass {
     private BytecodeClass bclass;
     
     JClassExternal(BytecodeClass bclass, BytecodeClassStore bcStore) {
-        super(new QualifiedName(bclass.getName()), bcStore);
+        super(new QualifiedName(bclass.getName(), ""), bcStore);
         
         this.bclass = bclass;
+        
         this.modifiers = bclass.getModifiers();
         this.isInterface = bclass.isInterface();
+        this.isInProject = false;
         this.superClass = bclass.getSuperClass();
         this.superInterfaces = bclass.getSuperInterfaces();
         
         bclass.getMethods().stream()
-                .forEach(sig -> methods.add(new JMethodExternal(sig, this, bclass)));
-    }
-    
-    @Override
-    public boolean isInProject() {
-        return false;
+                .forEach(sig -> this.methods.add(new JMethodExternal(sig, this, bclass)));
+        
+        bclass.getFields().stream()
+            .forEach(sig -> this.fields.add(new JFieldExternal(sig, this)));
     }
     
     @Override

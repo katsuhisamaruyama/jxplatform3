@@ -7,6 +7,7 @@ package org.jtool.srcplatform.bytecode;
 
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.srcplatform.project.ModelBuilderImpl;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtConstructor;
@@ -23,7 +24,6 @@ import java.util.List;
 import java.util.Enumeration;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Optional;
@@ -55,37 +55,71 @@ public class BytecodeClassStore {
     
     private Set<String> cacheNames = new HashSet<>();
     
-    private int analysisLevel = 0;
+    private int analysisLevel;
     
     private Map<String, JClass> internalClassMap = new HashMap<>();
     private Map<String, JClass> externalClassMap = new HashMap<>();
     
     public BytecodeClassStore(JavaProject jproject) {
         this.jproject = jproject;
+    }
+    
+    public void create() {
+        ModelBuilderImpl builderImpl = jproject.getModelBuilderImpl();
         
-        if (jproject.getModelBuilderImpl().isAnalyzingBytecode()) {
-            analysisLevel = 1;
-            if (jproject.getModelBuilderImpl().useBytecodeCache()) {
-                loadProjectCache();
-                analysisLevel = 10;
+        JMethod.MaxNumberOfChain = builderImpl.getBytecodeAnalysisLevel().maxNumberOfChain;
+        JMethod.MaxNumberOfOverriding = builderImpl.getBytecodeAnalysisLevel().maxNumberOfOverriding;
+        if (builderImpl.useProjectCache()) {
+            builderImpl.analyzeBytecode(true);
+            boolean result = loadProjectCache();
+            if (!result) {
+                analysisLevel = 1;
+            }
+        } else {
+            if (builderImpl.analyzeBytecode()) {
+                analysisLevel = 1;
+            } else {
+                analysisLevel = 0;
             }
         }
     }
     
     public void destroy() {
-        if (analysisLevel > 1) {
-            writeProjectCache(externalClassMap.values());
+        writeProjectCache();
+    }
+    
+    public boolean analyzingBytecode() {
+        return jproject.getModelBuilderImpl().analyzeBytecode();
+    }
+    
+    private boolean loadProjectCache() {
+        boolean readCacheOk = BytecodeCacheManager.readCache(jproject, PROJECT_CACHE_FILENAME);
+        if (!readCacheOk) {
+            return false;
         }
+        
+        analysisLevel = 3;
+        bytecodeClassMap.values().forEach(bclass -> bclass.findClassHierarchy());
+        bytecodeClassMap.values().forEach(bclass -> bclass.setClassHierarchy());
+        
+        for (BytecodeClass bclass : bytecodeClassMap.values()) {
+            JClass clazz = bclass.createCacheClass(this);
+            if (clazz.isInProject()) {
+                internalClassMap.put(clazz.getQualifiedName().fqn(), clazz);
+            } else {
+                externalClassMap.put(clazz.getQualifiedName().fqn(), clazz);
+            }
+        }
+        return true;
     }
     
-    private void loadProjectCache() {
-        bytecodeClassMap.clear();
-        BytecodeCacheManager.readCache(jproject, PROJECT_CACHE_FILENAME);
-    }
-    
-    private void writeProjectCache(Collection<JClass> classes) {
-        bytecodeClassMap.clear();
-        //BytecodeCacheManager.writeCache(jproject, new HashSet<BytecodeClassCache>(classes), PROJECT_CACHE_FILENAME);
+    public void writeProjectCache() {
+        if (jproject.getModelBuilderImpl().useProjectCache()) {
+            List<JClass> classes = new ArrayList<>();
+            classes.addAll(internalClassMap.values());
+            classes.addAll(externalClassMap.values());
+            BytecodeCacheManager.writeCache(jproject, classes, PROJECT_CACHE_FILENAME);
+        }
     }
     
     public JavaProject getJavaProject() {
@@ -104,9 +138,10 @@ public class BytecodeClassStore {
     private Set<BytecodeName> collectBytecodeNames(List<String> classPaths) {
         Set<BytecodeName> bytecodeNames = new HashSet<>();
         
-        if (BootModuleVersion.equals(BytecodeCacheManager.readBootModuleVersion(jproject, BOOT_VERSION_FILENAME)) &&
-            BytecodeCacheManager.canRead(jproject, BOOT_CACHE_FILENAME)) {
-            BytecodeCacheManager.readCache(jproject, BOOT_CACHE_FILENAME);
+        boolean bootModuleVersionOk = BootModuleVersion
+                .equals(BytecodeCacheManager.readBootModuleVersion(jproject, BOOT_VERSION_FILENAME));
+        boolean readCacheOk = BytecodeCacheManager.readCache(jproject, BOOT_CACHE_FILENAME);
+        if (bootModuleVersionOk && readCacheOk) {
             analysisLevel = 2;
         } else {
             bytecodeNames.addAll(collectClassNamesFromJavaModules());
@@ -177,8 +212,6 @@ public class BytecodeClassStore {
             }
             
         } else if (file.isFile() && name.endsWith(".class")) {
-            name = name.substring(0, name.length() - ".class".length());
-            name = name.replace(File.separatorChar, '.');
             registerClassName(bytecodeNames, name, NO_CACHE_LABEL);
         }
     }
@@ -189,11 +222,14 @@ public class BytecodeClassStore {
             return;
         }
         
-        long cacheTime = BytecodeCacheManager.getLastModifiedTimeJarsCacheFile(jproject, cacheName);
-        if (cacheTime >= file.lastModified() && BytecodeCacheManager.canRead(jproject, cacheName)) {
-            BytecodeCacheManager.readCache(jproject, cacheName);
-            analysisLevel = 2;
-            return;
+        if (analysisLevel == 2) {
+            long cacheTime = BytecodeCacheManager.getLastModifiedTimeJarsCacheFile(jproject, cacheName);
+            if (cacheTime >= file.lastModified() && BytecodeCacheManager.canRead(jproject, cacheName)) {
+                boolean readCacheOk = BytecodeCacheManager.readCache(jproject, cacheName);
+                if (readCacheOk) {
+                    return;
+                }
+            }
         }
         
         cacheNames.add(cacheName);
@@ -222,7 +258,9 @@ public class BytecodeClassStore {
     private void registerClassName(Set<BytecodeName> bytecodeNames, String name, String cacheName) {
         String className = name.substring(0, name.length() - ".class".length());
         className = className.replace(File.separatorChar, '.');
-        bytecodeNames.add(new BytecodeName(className, cacheName));
+        if (jproject.getClass(className) == null) {
+            bytecodeNames.add(new BytecodeName(className, cacheName));
+        }
     }
     
     public void loadBytecode(BytecodeName byteCodeName) {
@@ -239,7 +277,7 @@ public class BytecodeClassStore {
                     bytecodeClassMap.put(getCanonicalClassName(ctClass), clazz);
                 }
             }
-        } catch (NotFoundException e) { /* empty */ }
+        } catch (Exception e) { /* empty */ }
     }
     
     void registerBytecode(BytecodeClassProxy clazz) {
@@ -269,9 +307,11 @@ public class BytecodeClassStore {
     
     private void addClassHierarchyForInternalClasses() {
         for (JavaClass jclass : jproject.getClasses()) {
-            BytecodeClass superClass = bytecodeClassMap.get(jclass.getSuperClassName());
-            if (superClass != null) {
-                superClass.collectAncestors().forEach(ancestor -> ancestor.addDescendant(jclass.getClassName()));
+            if (jclass.getSuperClassName() != null) {
+                BytecodeClass superClass = bytecodeClassMap.get(jclass.getSuperClassName());
+                if (superClass != null) {
+                    superClass.collectAncestors().forEach(ancestor -> ancestor.addDescendant(jclass.getClassName()));
+                }
             }
             jclass.getSuperInterfaceNames().stream()
                 .map(name -> bytecodeClassMap.get(name))
@@ -307,7 +347,7 @@ public class BytecodeClassStore {
             return method;
         }
         
-        for (JClass jc: clazz.getSuperClassChain()) {
+        for (JClass jc : clazz.getSuperClassChain()) {
             JMethod jm = jc.getMethod(signature);
             if (jm != null) {
                 return jm;
@@ -318,11 +358,21 @@ public class BytecodeClassStore {
     
     public JField getJField(String className, String signature) {
         JClass clazz = getJClass(className);
-        if (clazz == null || !clazz.isInProject()) {
+        if (clazz == null) {
             return null;
         }
+        JField field = clazz.getField(signature);
+        if (field != null) {
+            return field;
+        }
         
-        return clazz.getField(signature);
+        for (JClass jc : clazz.getSuperClassChain()) {
+            JField jf = jc.getField(signature);
+            if (jf != null) {
+                return jf;
+            }
+        }
+        return null;
     }
     
     private JClass registerInternalClass(String className) {
@@ -394,12 +444,18 @@ public class BytecodeClassStore {
     
     String getConstructorSignature(CtConstructor cm) {
         String className = getCanonicalSimpleClassName(cm.getDeclaringClass()); 
-        return className + BytecodeMethodSignature.methodSignatureToString(cm.getSignature(), this);
+        int index = className.lastIndexOf(".");
+        String name = index != -1 ? className.substring(index + 1) : className;
+        return name + BytecodeMethodSignature.methodSignatureToString(cm.getSignature(), this);
     }
     
     private String getCanonicalSimpleClassName(CtClass ctClass) {
         String className = getCanonicalClassName(ctClass);
-        return className.substring(ctClass.getPackageName().length() + 1);
+        if (ctClass.getPackageName() != null) {
+            return className.substring(ctClass.getPackageName().length() + 1);
+        } else {
+            return className;
+        }
     }
     
     String getCanonicalClassName(String className) {

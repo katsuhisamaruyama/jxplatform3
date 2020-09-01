@@ -9,19 +9,14 @@ import org.jtool.srcmodel.QualifiedName;
 import java.util.Set;
 
 /**
- * Concise information on a cached method.
+ * Concise information on a field outside the project.
  * 
  * @author Katsuhisa Maruyama
  */
-class JMethodCache extends JMethod {
+public class JFieldExternal extends JField {
     
-    JMethodCache(String signature, JClass declaringClass, BytecodeClass bclass) {
+    JFieldExternal(String signature, JClass declaringClass) {
         super(new QualifiedName(declaringClass.getClassName(), signature), declaringClass);
-        
-        defFields.addAll(bclass.getDefFields(signature));
-        useFields.addAll(bclass.getUseFields(signature));
-        
-        isDefUseDecided = true;
     }
     
     @Override

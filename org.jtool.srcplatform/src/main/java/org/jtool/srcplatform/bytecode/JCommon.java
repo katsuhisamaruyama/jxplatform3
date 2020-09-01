@@ -5,6 +5,8 @@
 
 package org.jtool.srcplatform.bytecode;
 
+import java.util.Collection;
+
 import org.jtool.srcmodel.QualifiedName;
 
 /**
@@ -37,6 +39,19 @@ abstract class JCommon {
     }
     
     abstract protected boolean isInProject();
+    
+    protected DefUseField updateClassName(DefUseField var) {
+        JField field = bcStore.getJField(var.getClassName(), var.getName());
+        if (field != null) {
+            var.updateClassName(field.getClassName());
+        }
+        return var;
+    }
+    
+    protected Collection<DefUseField> updateClassName(Collection<DefUseField> vars) {
+        vars.forEach(var -> updateClassName(var));
+        return vars;
+    }
     
     @Override
     public String toString() {

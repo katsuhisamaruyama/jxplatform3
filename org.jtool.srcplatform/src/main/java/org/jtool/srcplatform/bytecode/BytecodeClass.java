@@ -32,12 +32,14 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     protected String name;
     protected int modifiers;
     protected boolean isInterface;
+    protected boolean isInProject;
     protected String superClass;
     protected List<String> superInterfaces;
     
     protected Multimap<String, DefUseField> defFieldsCache = HashMultimap.create();
     protected Multimap<String, DefUseField> useFieldsCache = HashMultimap.create();
     protected Multimap<String, QualifiedName> calledMethodsCache = HashMultimap.create();
+    protected Set<String> notSpecialMethods = new HashSet<>();
     
     protected Map<String, Collection<DefUseField>> defFieldsMap;
     protected Map<String, Collection<DefUseField>> useFieldsMap;
@@ -69,6 +71,12 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         methods.addAll(defFieldsMap.keySet());
         methods.addAll(useFieldsMap.keySet());
         methods.addAll(calledMethodsMap.keySet());
+        methods.addAll(notSpecialMethods);
+    }
+    
+    JClass createCacheClass(BytecodeClassStore bcStore) {
+        JClass clazz = new JClassCache(this, bcStore);
+        return clazz;
     }
     
     String getCacheName() {
@@ -85,6 +93,10 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     
     public boolean isInterface() {
         return isInterface;
+    }
+    
+    public boolean isInProject() {
+        return isInProject;
     }
     
     public String getSuperClass() {
@@ -104,11 +116,21 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     }
     
     public Collection<DefUseField> getDefFields(String signature) {
-        return defFieldsMap.get(signature);
+        Collection<DefUseField> defs = defFieldsMap.get(signature);
+        if (defs != null) {
+            return defs;
+        } else {
+            return new HashSet<>();
+        }
     }
     
     public Collection<DefUseField> getUseFields(String signature) {
-        return useFieldsMap.get(signature);
+        Collection<DefUseField> uses = useFieldsMap.get(signature);
+        if (uses != null) {
+            return uses;
+        } else {
+            return new HashSet<>();
+        }
     }
     
     public Collection<QualifiedName> getCalledMethods(String signature) {
@@ -121,6 +143,7 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         cache.put(BytecodeCacheManager.NameAttr, name);
         cache.put(BytecodeCacheManager.ModifierAttr, String.valueOf(modifiers));
         cache.put(BytecodeCacheManager.isInterfaceAttr, String.valueOf(isInterface));
+        cache.put(BytecodeCacheManager.isInProjectAttr, String.valueOf(isInProject));
         if (superClass != null) {
             cache.put(BytecodeCacheManager.SuperClassAttr, superClass);
         }
@@ -154,7 +177,8 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         List<Map<String, String>> cache = new ArrayList<>();
         cache.addAll(createCacheDataForDefUseFields(defFieldsMap, BytecodeCacheManager.DefAttr));
         cache.addAll(createCacheDataForDefUseFields(useFieldsMap, BytecodeCacheManager.UseAttr));
-        cache.addAll(createCacheDataForAccessedMethods(calledMethodsMap, BytecodeCacheManager.CallAttr)); 
+        cache.addAll(createCacheDataForAccessedMethods(calledMethodsMap, BytecodeCacheManager.CallAttr));
+        cache.addAll(createCacheDataForNotSpecialMethodsOrFields(notSpecialMethods));
         return cache;
     }
     
@@ -183,10 +207,27 @@ public abstract class BytecodeClass implements BytecodeClassCache {
             for (QualifiedName qname : entry.getValue()) {
                 Map<String, String> attr = new HashMap<>();
                 attr.put(BytecodeCacheManager.SignatureAttr, signature);
-                attr.put(label, qname.getMemberSignature());
+                attr.put(label, qname.fqn());
                 cache.add(attr);
             }
         }
+        return cache;
+    }
+    
+    private List<Map<String, String>> createCacheDataForNotSpecialMethodsOrFields(Set<String> set) {
+        List<Map<String, String>> cache = new ArrayList<>();
+        for (String signature : set) {
+            Map<String, String> attr = new HashMap<>();
+            attr.put(BytecodeCacheManager.SignatureAttr, signature);
+            cache.add(attr);
+        }
+        return cache;
+    }
+    
+    @Override
+    public List<Map<String, String>> getFieldCacheData() {
+        List<Map<String, String>> cache = new ArrayList<>();
+        cache.addAll(createCacheDataForNotSpecialMethodsOrFields(fields));
         return cache;
     }
     
@@ -239,6 +280,9 @@ public abstract class BytecodeClass implements BytecodeClassCache {
                 ancestorsCache.addAll(aclasses);
                 aclasses.forEach(a -> a.addDescendant(this));
             }
+            
+            //System.err.println("Name = " + name + " " + superInterfaces);
+            
             for (String parent : superInterfaces) {
                 BytecodeClass pclass = bcStore.getBcClass(parent);
                 if (pclass != null) {

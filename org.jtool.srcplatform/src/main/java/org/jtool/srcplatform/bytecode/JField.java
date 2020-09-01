@@ -32,6 +32,11 @@ abstract public class JField extends JCommon {
         return declaringClass;
     }
     
+    @Override
+    protected boolean isInProject() {
+        return declaringClass.isInProject();
+    }
+    
     public Set<DefUseField> getDefFields() {
         return defFields;
     }

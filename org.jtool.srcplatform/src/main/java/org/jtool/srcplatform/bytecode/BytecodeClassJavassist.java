@@ -11,6 +11,7 @@ import org.jtool.srcmodel.QualifiedName;
 import javassist.CannotCompileException;
 import javassist.CtClass;
 import javassist.CtMethod;
+import javassist.CtField;
 import javassist.CtConstructor;
 import javassist.CtBehavior;
 import javassist.Modifier;
@@ -39,12 +40,18 @@ public class BytecodeClassJavassist extends BytecodeClass {
         name = bcStore.getCanonicalClassName(ctClass);
         modifiers = ctClass.getModifiers();
         isInterface = ctClass.isInterface();
+        isInProject = false;
         
         try {
-            CtClass sclass = ctClass.getSuperclass();
-            if (sclass != null) {
-                superClass = bcStore.getCanonicalClassName(sclass);
+            if (!ctClass.isInterface() && !ctClass.isEnum()) {
+                CtClass sclass = ctClass.getSuperclass();
+                if (sclass != null) {
+                    superClass = bcStore.getCanonicalClassName(sclass);
+                }
             }
+        } catch (NotFoundException e) { /* empty */ }
+        
+        try {
             superInterfaces = new ArrayList<>();
             for (CtClass c : ctClass.getInterfaces()) {
                 superInterfaces.add(bcStore.getCanonicalClassName(c));
@@ -62,10 +69,17 @@ public class BytecodeClassJavassist extends BytecodeClass {
             parseMethod(cc, bcStore.getConstructorSignature(cc));
         }
         
+        for (CtField cf : ctClass.getDeclaredFields()) {
+            fields.add(cf.getName());
+        }
+        
         super.collectInfo();
     }
     
+    private boolean exist;
+    
     private void parseMethod(CtBehavior ctBehavior, String thisSignature) {
+        exist = false;
         try {
             ctBehavior.instrument(new ExprEditor() {
                 
@@ -76,12 +90,14 @@ public class BytecodeClassJavassist extends BytecodeClass {
                             DefUseField def = createDefUseField(cf);
                             if (!defFieldsCache.containsEntry(thisSignature, def)) {
                                 defFieldsCache.put(thisSignature, def);
+                                exist = true;
                             }
                         }
                         if (cf.isReader()) {
                             DefUseField use = createDefUseField(cf);
                             if (!useFieldsCache.containsEntry(thisSignature, use)) {
                                 useFieldsCache.put(thisSignature, use);
+                                exist = true;
                             }
                         }
                     } catch (NotFoundException e) { /* empty */ }
@@ -100,6 +116,7 @@ public class BytecodeClassJavassist extends BytecodeClass {
                         QualifiedName qname = methodQualifiedName(cm.getMethod());
                         if (!calledMethodsCache.containsEntry(thisSignature, qname)) {
                             calledMethodsCache.put(thisSignature, qname);
+                            exist = true;
                         }
                     } catch (NotFoundException e) { /* empty */ }
                 }
@@ -116,6 +133,7 @@ public class BytecodeClassJavassist extends BytecodeClass {
                         QualifiedName qname = constructorQualifiedName(cm.getConstructor());
                         if (!calledMethodsCache.containsEntry(thisSignature, qname)) {
                             calledMethodsCache.put(thisSignature, qname);
+                            exist = true;
                         }
                     } catch (NotFoundException e) { /* empty */ }
                 }
@@ -126,6 +144,7 @@ public class BytecodeClassJavassist extends BytecodeClass {
                         QualifiedName qname = constructorQualifiedName(cm.getConstructor());
                         if (!calledMethodsCache.containsEntry(thisSignature, qname)) {
                             calledMethodsCache.put(thisSignature, qname);
+                            exist = true;
                         }
                     } catch (NotFoundException e) { /* empty */ }
                 }
@@ -137,6 +156,10 @@ public class BytecodeClassJavassist extends BytecodeClass {
                 }
             });
         } catch (CannotCompileException e) { /* empty */ }
+        
+        if (!exist) {
+            notSpecialMethods.add(thisSignature);
+        }
     }
     
     public static boolean isPublic(int mod) {

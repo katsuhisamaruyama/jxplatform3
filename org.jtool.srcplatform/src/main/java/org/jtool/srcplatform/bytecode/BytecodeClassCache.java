@@ -21,4 +21,6 @@ public interface BytecodeClassCache {
     public Map<String, String> getClassCacheData();
     
     public List<Map<String, String>> getMethodCacheData();
+    
+    public List<Map<String, String>> getFieldCacheData();
 }

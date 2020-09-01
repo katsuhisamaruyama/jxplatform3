@@ -24,28 +24,33 @@ public class JClassInternal extends JClass {
         
         this.modifiers = jclass.getModifiers();
         this.isInterface = jclass.isInterface();
+        this.isInProject = true;
         this.superClass = jclass.getSuperClassName();
         this.superInterfaces = new ArrayList<>(jclass.getSuperInterfaceNames());
         
         jclass.getMethods().stream()
                 .filter(jm -> jm.getQualifiedName().isResolve())
-                .forEach(jm -> methods.add(new JMethodInternal(jm, this)));
+                .forEach(jm -> this.methods.add(new JMethodInternal(jm, this)));
         
         jclass.getFields().stream()
                 .filter(jf -> jf.getQualifiedName().isResolve())
-                .forEach(jf -> fields.add(new JFieldInternal(jf, this)));
+                .forEach(jf -> this.fields.add(new JFieldInternal(jf, this)));
     }
     
     @Override
     protected void findSuperClassChain() {
+        if (jclass.isInterface() || jclass.isEnum()) {
+            return;
+        }
         JavaClass parent = jclass.getSuperClass();
-        while (parent != null) {
-            JClass clazz = bcStore.getJClass(parent.getQualifiedName().fqn());
-            if (clazz == null) {
-                break;
-            }
+        if (parent == null) {
+            return;
+        }
+        
+        JClass clazz = bcStore.getJClass(parent.getQualifiedName().fqn());
+        while (clazz != null) {
             superClassChain.add(clazz);
-            parent = parent.getSuperClass();
+            clazz = bcStore.getJClass(clazz.getSuperClass());
         }
     }
     
@@ -71,10 +76,5 @@ public class JClassInternal extends JClass {
                 }
             }
         }
-    }
-    
-    @Override
-    public boolean isInProject() {
-        return true;
     }
 }

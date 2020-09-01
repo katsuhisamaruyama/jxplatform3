@@ -16,8 +16,6 @@ import java.util.HashSet;
  */
 abstract public class JMethod extends JCommon {
     
-    protected static int MaxNumberOfChain = 10;
-    
     protected JClass declaringClass;
     
     protected boolean isDefUseDecided = false;
@@ -27,6 +25,9 @@ abstract public class JMethod extends JCommon {
     protected Set<JMethod> accessedMethods = new HashSet<>();
     protected Set<JMethod> overridingMethods = new HashSet<>();
     
+    protected static int MaxNumberOfChain = 0;
+    protected static int MaxNumberOfOverriding = 0;
+    
     protected JMethod(QualifiedName qname, JClass declaringClass) {
         super(qname, declaringClass.bcStore);
         
@@ -35,6 +36,11 @@ abstract public class JMethod extends JCommon {
     
     public JClass getDeclaringClass() {
         return declaringClass;
+    }
+    
+    @Override
+    protected boolean isInProject() {
+        return declaringClass.isInProject();
     }
     
     public Set<DefUseField> getDefFields() {

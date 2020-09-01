@@ -47,6 +47,13 @@ public class DefUseField {
         return className + FieldPropertySeparator + name + FieldPropertySeparator + referenceForm;
     }
     
+    public void updateClassName(String newClassName) {
+        if (referenceForm.startsWith(className)) {
+            referenceForm = newClassName + referenceForm.substring(className.length());
+        }
+        className = newClassName;
+    }
+    
     public String getClassName() {
         return className;
     }

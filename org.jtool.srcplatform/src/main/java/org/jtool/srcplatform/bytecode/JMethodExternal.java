@@ -25,11 +25,6 @@ public class JMethodExternal extends JMethod {
     }
     
     @Override
-    public boolean isInProject() {
-        return false;
-    }
-    
-    @Override
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
         if (isDefUseDecided || visitedMethods.contains(this)) {
             return;
@@ -43,21 +38,18 @@ public class JMethodExternal extends JMethod {
         visitedMethods.add(this);
         
         collectDefUseFields();
+        
         collectAccessedMethods();
-        collectOverridingMethods();
+        if (count < MaxNumberOfOverriding) {
+            collectOverridingMethods();
+        }
         
         collectDefUseFields(visitedMethods, visitedFields, count + 1);
     }
     
     private void collectDefUseFields() {
-        Collection<DefUseField> defs = bclass.getDefFields(getSignature());
-        if (defs != null) {
-            defFields.addAll(defs);
-        }
-        Collection<DefUseField> uses = bclass.getUseFields(getSignature());
-        if (uses != null) {
-            useFields.addAll(uses);
-        }
+        defFields.addAll(updateClassName(bclass.getDefFields(getSignature())));
+        useFields.addAll(updateClassName(bclass.getUseFields(getSignature())));
     }
     
     private void collectAccessedMethods() {
@@ -76,6 +68,10 @@ public class JMethodExternal extends JMethod {
     
     private void collectOverridingMethods() {
         if (isConstructor(this)) {
+            return;
+        }
+        
+        if (declaringClass.getClassName().contentEquals("java.lang.Object")) {
             return;
         }
         

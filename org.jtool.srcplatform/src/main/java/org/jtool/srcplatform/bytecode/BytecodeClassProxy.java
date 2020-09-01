@@ -26,6 +26,7 @@ public class BytecodeClassProxy extends BytecodeClass {
         name = attr.get(BytecodeCacheManager.NameAttr);
         modifiers = Integer.parseInt(attr.get(BytecodeCacheManager.ModifierAttr));
         isInterface = Boolean.parseBoolean(attr.get(BytecodeCacheManager.isInterfaceAttr));
+        isInProject = Boolean.parseBoolean(attr.get(BytecodeCacheManager.isInProjectAttr));
         superClass = attr.get(BytecodeCacheManager.SuperClassAttr);
         superInterfaces = BytecodeClass.collectStringElems(attr.get(BytecodeCacheManager.SuperInterfaceAttr));
     }
@@ -43,8 +44,17 @@ public class BytecodeClassProxy extends BytecodeClass {
         }
         String call = attr.get(BytecodeCacheManager.CallAttr);
         if (call != null) {
-            calledMethodsCache.put(signature, new QualifiedName(name, call));
+            calledMethodsCache.put(signature, new QualifiedName(call));
         }
+        
+        if (def == null && use == null && call == null) {
+            notSpecialMethods.add(signature);
+        }
+    }
+    
+    void addField(Map<String, String> attr) {
+        String signature = attr.get(BytecodeCacheManager.SignatureAttr);
+        fields.add(signature);
     }
     
     @Override

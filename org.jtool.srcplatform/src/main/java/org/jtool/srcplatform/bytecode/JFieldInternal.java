@@ -29,11 +29,6 @@ class JFieldInternal extends JField {
     }
     
     @Override
-    public boolean isInProject() {
-        return true;
-    }
-    
-    @Override
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
         if (isDefUseDecided || visitedFields.contains(this)) {
             return;

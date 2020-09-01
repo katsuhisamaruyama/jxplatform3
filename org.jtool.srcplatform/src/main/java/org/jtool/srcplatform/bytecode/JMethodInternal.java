@@ -28,13 +28,12 @@ class JMethodInternal extends JMethod {
     }
     
     @Override
-    public boolean isInProject() {
-        return true;
-    }
-    
-    @Override
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
         if (isDefUseDecided || visitedMethods.contains(this)) {
+            return;
+        }
+        
+        if (count > MaxNumberOfChain) {
             return;
         }
         
@@ -42,10 +41,13 @@ class JMethodInternal extends JMethod {
         visitedMethods.add(this);
         
         collectDefUseFields();
-        collectAccessedMethods();
-        collectOverridingMethods();
         
-        collectDefUseFields(visitedMethods, visitedFields, count);
+        collectAccessedMethods();
+        if (count < MaxNumberOfOverriding) {
+            collectOverridingMethods();
+        }
+        
+        collectDefUseFields(visitedMethods, visitedFields, count + 1);
     }
     
     private void collectDefUseFields() {
@@ -59,12 +61,12 @@ class JMethodInternal extends JMethod {
                 CFGStatement stNode = (CFGStatement)node;
                 for (JReference var : stNode.getDefVariables()) {
                     if (var.isFieldAccess()) {
-                        defFields.add(new DefUseField(var));
+                        defFields.add(updateClassName(new DefUseField(var)));
                     }
                 }
                 for (JReference var : stNode.getUseVariables()) {
                     if (var.isFieldAccess()) {
-                        useFields.add(new DefUseField(var));
+                        useFields.add(updateClassName(new DefUseField(var)));
                     }
                 }
             }
