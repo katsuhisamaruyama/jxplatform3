@@ -182,7 +182,7 @@ public class PDGBuilder {
             for (CFGNode node : cfg.getNodes()) {
                 if (node.isMethodCall()) {
                     CFGMethodCall callnode = (CFGMethodCall)node;
-                    for (String className : callnode.getReceiver().getApproximatedTypes()) {
+                    for (String className : callnode.getApproximatedTypes()) {
                         QualifiedName qname = new QualifiedName(className, callnode.getSignature());
                         PDG callee = sdg.getPDG(qname.fqn());
                         if (callee != null) {
