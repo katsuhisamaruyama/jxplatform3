@@ -122,16 +122,17 @@ public abstract class JavaElement {
      */
     protected static QualifiedName retrieveQualifiedName(ITypeBinding tbinding) {
         if (tbinding.isTypeVariable()) {
-            return new QualifiedName("java.lang.Object");
+            return new QualifiedName("java.lang.Object", "");
         }
         
-        String qname = tbinding.getQualifiedName();
-        if (qname.length() != 0) {
-            return new QualifiedName(qname);
+        String className = tbinding.getQualifiedName();
+        if (className.length() != 0) {
+            return new QualifiedName(className, "");
         }
-        qname = tbinding.getBinaryName();
-        if (qname.length() != 0) {
-            return new QualifiedName(qname);
+        
+        className = tbinding.getBinaryName();
+        if (className.length() != 0) {
+            return new QualifiedName(className, "");
         }
         
         ITypeBinding tb = tbinding.getDeclaringClass();
@@ -142,7 +143,7 @@ public abstract class JavaElement {
             return new QualifiedName();
         }
         
-        qname = tb.getQualifiedName();
+        className = tb.getQualifiedName();
         String key = tbinding.getKey();
         int index = key.indexOf('$');
         if (index != -1) {
@@ -150,7 +151,7 @@ public abstract class JavaElement {
         } else {
             key = "$";
         }
-        return new QualifiedName(qname + key);
+        return new QualifiedName(className + key, "");
     }
     
     /**
@@ -316,7 +317,7 @@ public abstract class JavaElement {
      * @param type the type string
      * @return {@code true} if the string indicates the {@code void} type, otherwise {@code false}
      */
-    protected static boolean isVoid(String type) {
+    public static boolean isVoid(String type) {
         return type.equals("void");
     }
     
@@ -325,7 +326,7 @@ public abstract class JavaElement {
      * @param type the type string
      * @return {@code true} if the string indicates the primitive type, otherwise {@code false}
      */
-    protected static boolean isPrimitiveType(String type) {
+    public static boolean isPrimitiveType(String type) {
         return type.equals("byte") || type.equals("short") || type.equals("int") || type.equals("long") ||
                type.equals("float") || type.equals("double") || type.equals("char") || type.equals("boolean");
     }

@@ -39,10 +39,17 @@ public class QualifiedName {
     
     /**
      * Creates a new object that represents a fully-qualified name for a class.
-     * @param className the name of the class
+     * @param fqn the fully qualified name ({@code class#member})
      */
-    public QualifiedName(String className) {
-        this(className, "");
+    public QualifiedName(String fqn) {
+        int index = fqn.indexOf(QualifiedNameSeparator);
+        if (index == -1) {
+            this.className = fqn;
+            this.memberSignature = "";
+        } else {
+            this.className = fqn.substring(0, index);
+            this.memberSignature = fqn.substring(index + 1);
+        }
     }
     
     /**
@@ -58,7 +65,7 @@ public class QualifiedName {
      * @param memberSignature the signature of the member
      */
     public QualifiedName(QualifiedName qname, String memberSignature) {
-        this(qname.fqn(), memberSignature);
+        this(qname.className, memberSignature);
     }
     
     /**
@@ -66,7 +73,7 @@ public class QualifiedName {
      * @param qname the fully-qualified name of the class
      */
     public QualifiedName(QualifiedName qname) {
-        this(qname.fqn());
+        this(qname.className, qname.memberSignature);
     }
     
     /**
