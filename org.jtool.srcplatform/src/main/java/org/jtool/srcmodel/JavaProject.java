@@ -353,6 +353,10 @@ public class JavaProject {
     
     private void collectDependentClasses(JavaClass jclass, Set<JavaClass> classes) {
         if (jclass != null && getClass(jclass.getQualifiedName().fqn()) != null) {
+            for (JavaClass jc : jclass.getAncestors()) {
+                classes.add(jc);
+                collectDependentClasses(jc, classes);
+            }
             for (JavaClass jc : jclass.getDescendants()) {
                 classes.add(jc);
                 collectDependentClasses(jc, classes);
