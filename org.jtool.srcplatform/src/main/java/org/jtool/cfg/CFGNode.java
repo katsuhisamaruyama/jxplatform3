@@ -28,22 +28,22 @@ public class CFGNode extends GraphNode {
     /**
      * The AST node corresponding to this node.
      */
-    private ASTNode astNode;
+    protected ASTNode astNode;
     
     /**
      * The kind of this node.
      */
-    private Kind kind;
+    protected Kind kind;
     
     /**
      * The PDG node corresponding to this node.
      */
-    private PDGNode pdgNode = null;
+    protected PDGNode pdgNode = null;
     
     /**
      * The basic block that encloses this node.
      */
-    private BasicBlock basicBlock = null;
+    protected BasicBlock basicBlock = null;
     
     /**
      * The number prepared for generating the identification number when creating a new CFG node.
@@ -74,6 +74,9 @@ public class CFGNode extends GraphNode {
         enumConstantExit,           // CFGExit
         
         assignment,                 // CFGStatement (Assignment)
+        lambda,                     // CFGStatement (LambdaExpression)
+        conditionalExpression,      // CFGStatement (ConditionalExpression)
+        switchExpression,           // CFGStatement (SwitchExpression)
         methodCall,                 // CFGMethodCall (MethodInvocation/SuperMethodInvocation)
         constructorCall,            // CFGMethodCall (ConstructorInvocation/SuperConstructorInvocation)
         instanceCreation,           // CFGMethodCall (InstanceCreation)
@@ -86,7 +89,7 @@ public class CFGNode extends GraphNode {
         breakSt,                    // CFGStatement (BreakStatement)
         continueSt,                 // CFGStatement (ContinueStatement)
         doSt,                       // CFGStatement (DoStatement)
-        forSt,                      // CFGStatement (ForStatement)    
+        forSt,                      // CFGStatement (ForStatement)
         ifSt,                       // CFGStatement (IfStatement)
         returnSt,                   // CFGStatement (ReturnStatement)
         switchCaseSt,               // CFGStatement (SwitchCase)
