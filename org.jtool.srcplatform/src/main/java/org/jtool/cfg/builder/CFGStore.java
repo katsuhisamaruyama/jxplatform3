@@ -47,6 +47,7 @@ public class CFGStore {
     public void create(JavaProject jproject) {
         this.jproject = jproject;
         this.bcStore = new BytecodeClassStore(jproject);
+        bcStore.create();
     }
     
     public void destroy() {
