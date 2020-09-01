@@ -69,7 +69,7 @@ import java.util.Stack;
  *   TypeDeclarationStatement (not needed to visit because it was already visited under model creation)
  *   ExpressionStatement
  *   VariableDeclarationStatement
- *   VariableDeclarationExpression (is not a subclass of Statement but Expression)
+ *   VariableDeclarationExpression (this originally belongs to Expression)
  *   ConstructorInvocation
  *   SuperConstructorInvocation
  *   IfStatement
@@ -173,18 +173,18 @@ public class StatementVisitor extends ASTVisitor {
     @Override
     @SuppressWarnings("unchecked")
     public boolean visit(VariableDeclarationStatement node) {
-        visitVariableDeclaration(node, node.fragments());
+        variableDeclaration(node, node.fragments());
         return false;
     }
     
     @Override
     @SuppressWarnings("unchecked")
     public boolean visit(VariableDeclarationExpression node) {
-        visitVariableDeclaration(node, node.fragments());
+        variableDeclaration(node, node.fragments());
         return false;
     }
     
-    private void visitVariableDeclaration(ASTNode node, List<VariableDeclarationFragment> fragments) {
+    private void variableDeclaration(ASTNode node, List<VariableDeclarationFragment> fragments) {
         for (VariableDeclarationFragment frag : fragments) {
             CFGStatement declNode = new CFGStatement(node, CFGNode.Kind.assignment);
             reconnect(declNode);
@@ -287,8 +287,8 @@ public class StatementVisitor extends ASTVisitor {
         for (Statement statement : (List<Statement>)node.statements()) {
             remaining.remove(0);
             
-            if (statement instanceof SwitchCase) {  
-                visitSwitchCase((SwitchCase)statement, switchNode, remaining);
+            if (statement instanceof SwitchCase) {
+                switchCase((SwitchCase)statement, switchNode, remaining);
             }
         }
         if (switchNode.hasDefault()) {
@@ -337,7 +337,7 @@ public class StatementVisitor extends ASTVisitor {
     }
     
     @SuppressWarnings("deprecation")
-    private void visitSwitchCase(SwitchCase node, SwitchNode switchNode, List<Statement> remaining)  {
+    private void switchCase(SwitchCase node, SwitchNode switchNode, List<Statement> remaining)  {
         CFGStatement caseNode;
         if (!node.isDefault()) {
             caseNode = new CFGStatement(node, CFGNode.Kind.switchCaseSt);
@@ -745,12 +745,12 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow trueEdge = createFlow(mergeNode, nextNode);
         trueEdge.setTrue();
         
-        findCatchNodes(tryNode);
+        catchClause(tryNode);
         
         return false;
     }
     
-    private void findCatchNodes(TryNode tryNode) {
+    private void catchClause(TryNode tryNode) {
         Set<TryNode.ExceptionOccurrence> occurrences = new HashSet<>(tryNode.getExceptionOccurrences());
         for (TryNode.ExceptionOccurrence occurence : occurrences) {
             for (CFGException catchNode : getCatchNodes(occurence.getType(), tryNode.getCatchNodes())) {
