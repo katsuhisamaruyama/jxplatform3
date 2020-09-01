@@ -62,7 +62,7 @@ public class JavaASTVisitor extends ASTVisitor {
     @Override
     public boolean visit(TypeDeclaration node) {
         JavaClass jclass = new JavaClass(node, jfile);
-        visitClass(jclass);
+        createClass(jclass);
         return true;
     }
     
@@ -74,7 +74,7 @@ public class JavaASTVisitor extends ASTVisitor {
     @Override
     public boolean visit(AnonymousClassDeclaration node) {
         JavaClass jclass = new JavaClass(node, jfile);
-        visitClass(jclass);
+        createClass(jclass);
         return true;
     }
     
@@ -85,7 +85,7 @@ public class JavaASTVisitor extends ASTVisitor {
     @Override
     public boolean visit(EnumDeclaration node) {
         JavaClass jclass = new JavaClass(node, jfile);
-        visitClass(jclass);
+        createClass(jclass);
         return true;
     }
     
@@ -97,7 +97,7 @@ public class JavaASTVisitor extends ASTVisitor {
     @Override
     public boolean visit(AnnotationTypeDeclaration node) {
         JavaClass jclass = new JavaClass(node, jfile);
-        visitClass(jclass);
+        createClass(jclass);
         return true;
     }
     
@@ -106,7 +106,7 @@ public class JavaASTVisitor extends ASTVisitor {
         endVisitClass();
     }
     
-    private void visitClass(JavaClass jclass) {
+    private void createClass(JavaClass jclass) {
         if (!outerClasses.empty()) {
             JavaClass jc = outerClasses.peek();
             jc.addInnerClass(jclass);
@@ -163,6 +163,6 @@ public class JavaASTVisitor extends ASTVisitor {
         
         JavaClass jclass = outerClasses.peek();
         new JavaField(node, jclass);
-        return false;
+        return true;
     }
 }
