@@ -42,7 +42,7 @@ public abstract class ModelBuilderImpl {
         this.modelBuilder = modelBuiler;
     }
     
-    public ModelBuilder getModelBuilder1() {
+    public ModelBuilder getModelBuilder() {
         return modelBuilder;
     }
     

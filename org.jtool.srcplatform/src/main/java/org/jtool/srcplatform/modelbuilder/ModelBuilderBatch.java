@@ -20,7 +20,7 @@ public class ModelBuilderBatch extends ModelBuilder {
     /**
      * The implementation module of this model builder.
      */
-    private ModelBuilderBatchImpl batchImpl;
+    private ModelBuilderBatchImpl builderImpl;
     
     /**
      * Creates a batch-mode model builder.
@@ -59,8 +59,8 @@ public class ModelBuilderBatch extends ModelBuilder {
      * Creates the implementation of this model builder.
      */
     private void createImpl() {
-        this.batchImpl = new ModelBuilderBatchImpl(this);
-        super.impl= batchImpl;
+        this.builderImpl = new ModelBuilderBatchImpl(this);
+        super.impl= builderImpl;
     }
     
     /**
@@ -70,7 +70,7 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @return the collection of created project data
      */
     public List<JavaProject> build(String name, String target) {
-        return batchImpl.build(name, target);
+        return builderImpl.build(name, target);
     }
     
     /**
@@ -94,7 +94,7 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @return the created project data
      */
     public JavaProject build(String name, String target, String classpath, String srcpath, String binpath) {
-        return batchImpl.build(name, target, classpath, srcpath, binpath);
+        return builderImpl.build(name, target, classpath, srcpath, binpath);
     }
     
     /**
@@ -107,6 +107,6 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @return the created project data
      */
     public JavaProject build(String name, String target, String[] classpath, String[] srcpath, String[] binpath) {
-        return batchImpl.build(name, target, classpath, srcpath, binpath);
+        return builderImpl.build(name, target, classpath, srcpath, binpath);
     }
 }
