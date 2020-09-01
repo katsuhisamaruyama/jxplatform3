@@ -88,7 +88,7 @@ public class Logger {
      * Records a log message.
      * @param mesg the message
      */
-    public void printLog(String mesg) {
+    public void recordLog(String mesg) {
         logMessages.add(mesg);
     }
     
@@ -110,7 +110,7 @@ public class Logger {
      * @param mesg the message
      */
     public void printUnresolvedError(String mesg) {
-        printError("!Unresolved : " + mesg);
+        printError("**Unresolved : " + mesg);
     }
     
     /**
