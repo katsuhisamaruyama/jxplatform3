@@ -27,7 +27,7 @@ public class CFGModelBuilderTest {
     
     private final static String testDirInside = new File(".").getAbsoluteFile().getParent() + "/test_target/";
     
-    private final static String testDirOutside = "/Users/maru/Desktop/JxPlatformTestTarget/";
+    private final static String testDirOutside = "/Users/maru/Work/JxPlatformTestTarget/";
     
     private CCFG[] buildCFGsForTest(ModelBuilderBatch builder, JavaProject jproject) {
         int size = jproject.getClasses().size();
@@ -59,7 +59,7 @@ public class CFGModelBuilderTest {
     }
     
     @Test
-    public void testSimple() {
+    public void testSimpleWithoutBytecodeAnalysis() {
         String target = testDirInside + "Simple/";
         ModelBuilderBatch builder = new ModelBuilderBatch(false);  // without byte-code analysis
         JavaProject jproject = builder.build(target, target, target, target, target);
@@ -70,12 +70,14 @@ public class CFGModelBuilderTest {
     }
     
     @Test
-    public void testSimpleBytecode() {
+    public void testSimpleWithBytecodeAnalysis() {
         String target = testDirInside + "Simple/";
         ModelBuilderBatch builder = new ModelBuilderBatch(true);  // with byte-code analysis
+        builder.useProjectCache(true);                            // using the project cache
         JavaProject jproject = builder.build(target, target, target, target, target);
         
-        buildCFGsForTest(builder, jproject);
+        CCFG[] ccfgs = buildCFGsForTest(builder, jproject);
+        checkDetails(ccfgs);
         builder.unbuild();
     }
     
@@ -83,7 +85,7 @@ public class CFGModelBuilderTest {
     public void testDrawTool() {
         String target = testDirInside + "DrawTool/";
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
-        JavaProject jproject = builder.build(target, target, target, target + "/src", target);
+        JavaProject jproject = builder.build(target, target, target + "/src", target + "/src", target);
         
         buildCFGsForTest(builder, jproject);
         builder.unbuild();
@@ -103,7 +105,7 @@ public class CFGModelBuilderTest {
     public void testJrb() {
         String target = testDirInside + "jrb-1.0.2/";
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
-        JavaProject jproject = builder.build(target, target, target, target + "/src", target);
+        JavaProject jproject = builder.build(target, target, target + "/src", target + "/src", target);
         
         buildCFGsForTest(builder, jproject);
         builder.unbuild();
@@ -122,7 +124,7 @@ public class CFGModelBuilderTest {
     @Test
     public void testCSClassroom() {
         String target = testDirInside + "CS-classroom/";
-        String classpath = target + "../lib/*";
+        String classpath = target + "lib/*";
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
         JavaProject jproject = builder.build(target, target, classpath, target + "/src/", target);
         
@@ -191,36 +193,35 @@ public class CFGModelBuilderTest {
         CFGModelBuilderTest tester = new CFGModelBuilderTest();
         
         /* The files are stored inside the workspace */
-        tester.testSimple();
-        //tester.testSimpleBytecode();
+        tester.testSimpleWithoutBytecodeAnalysis();
+        tester.testSimpleWithBytecodeAnalysis();
         //tester.testDrawTool();
         //tester.testLambda();
         //tester.testJrb();
-        //tester.testTetris();
+        //tester.testTetris(); 
         //tester.testCSClassroom();
         
         //print();
         
         /* The files are stored outside the workspace */
-        //tester.run("ant-1.9.14");                     // Ant
-        //tester.run("ant-1.10.8");                     // Ant
-        //tester.run("antlr4-4.8");                     // Maven
-        //tester.run("commons-bcel-6.5.0");             // Maven
-        //tester.run("commons-cli-1.4");                // Maven
-        //tester.run("commons-codec-1.14");             // Maven
-        //tester.run("commons-collections-4.4");        // Maven
-        //tester.run("commons-compress-1.20");          // Maven
-        //tester.run("commons-csv-1.8");                // Maven
-        //tester.run("commons-jxpath-1.3");             // Maven
-        //tester.run("commons-lang-3.10");              // Maven
-        //tester.run("commons-math-3.6.1");             // Maven
-        //tester.run("jackson-core-2.12");              // Maven
-        //tester.run("jackson-databind-2.12");          // Maven
-        //tester.run("jfreechart-1.5.0");               // Maven
-        //tester.run("joda-time-2.10.6");               // Maven
-        //tester.run("jsoup-1.13.1");                   // Maven
-        //tester.run("junit-4.13");                     // Maven/Eclipse
-        //tester.run("mockito-3.3.13");                 // Gradle
-        //tester.run("pmd-6.24.0");                     // Maven
+        //tester.run("ant-1.9.14");
+        //tester.run("ant-1.10.8");
+        //tester.run("antlr4-4.8");
+        //tester.run("commons-bcel-6.5.0");
+        //tester.run("commons-cli-1.4");
+        //tester.run("commons-codec-1.14");
+        //tester.run("commons-collections-4.4");
+        //tester.run("commons-compress-1.20");
+        //tester.run("commons-csv-1.8");
+        //tester.run("commons-jxpath-1.3");
+        //tester.run("commons-lang-3.10");
+        //tester.run("commons-math-3.6.1");
+        //tester.run("jackson-core-2.12");
+        //tester.run("jackson-databind-2.12");
+        //tester.run("jfreechart-1.5.0");
+        //tester.run("joda-time-2.10.6");
+        //tester.run("jsoup-1.13.1");
+        //tester.run("junit-4.13");
+        //tester.run("mockito-3.3.13");
     }
 }

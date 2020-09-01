@@ -29,7 +29,7 @@ public class JavaModelBuilderTest {
     private final static String testDirOutside = "/Users/maru/Work/JxPlatformTestTarget/";
     
     @Test
-    public void testSimple() {
+    public void testSimpleWithoutBytecodeAnalysis() {
         String target = testDirInside + "Simple/";
         ModelBuilderBatch builder = new ModelBuilderBatch(false); // without byte-code analysis
         builder.build(target, target, target, target, target);
@@ -37,7 +37,7 @@ public class JavaModelBuilderTest {
     }
     
     @Test
-    public void testSimpleBytecode() {
+    public void testSimpleWithBytecodeAnalysis() {
         String target = testDirInside + "Simple/";
         ModelBuilderBatch builder = new ModelBuilderBatch(true); // with byte-code analysis
         builder.build(target, target, target, target, target);
@@ -127,8 +127,8 @@ public class JavaModelBuilderTest {
         JavaModelBuilderTest tester = new JavaModelBuilderTest();
         
         /* The files are stored inside the workspace */
-        tester.testSimple();
-        //tester.testSimpleBytecode();
+        tester.testSimpleWithoutBytecodeAnalysis();
+        tester.testSimpleWithBytecodeAnalysis();
         //tester.testDrawTool();
         //tester.testLambda();
         //tester.testJrb();
