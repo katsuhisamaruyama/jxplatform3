@@ -16,6 +16,7 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.IMethodBinding;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
+import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 
 /**
  * An abstract class that represents a reference to a field, a local variable, or a method.
@@ -60,7 +61,7 @@ public abstract class JReference {
     protected String referenceForm;
     
     /**
-     * the type of the referenced element.
+     * The type of the referenced element.
      */
     protected String type;
     
@@ -403,11 +404,12 @@ public abstract class JReference {
         }
         
         String qname = tbinding.getQualifiedName();
-        if (qname.length() != 0) {
+        if (qname.length() > 0) {
             return qname;
         }
+        
         qname = tbinding.getBinaryName();
-        if (qname != null && qname.length() != 0) {
+        if (qname != null && qname.length() > 0) {
             return qname;
         }
         
@@ -418,6 +420,7 @@ public abstract class JReference {
         if (tb == null) {
             return "";
         }
+        
         qname = tb.getQualifiedName();
         String key = tbinding.getKey();
         int index = key.indexOf('$');
@@ -446,6 +449,15 @@ public abstract class JReference {
      */
     protected static String getSignature(IMethodBinding mbinding) {
         return JavaMethod.getSignature(mbinding);
+    }
+    
+    /**
+     * Obtains the string that represents parameters of a method having a given method binding information.
+     * @param mbinding the method binding information
+     * @return the string representing the parameters
+     */
+    protected static String getParameterString(IMethodBinding mbinding) {
+        return JavaMethod.getParameterString(mbinding);
     }
     
     /**
@@ -478,6 +490,11 @@ public abstract class JReference {
         EnumDeclaration enode = (EnumDeclaration)getEnclosingElement(node, ASTNode.ENUM_DECLARATION);
         if (enode != null) {
             return enode.resolveBinding();
+        }
+        
+        AnonymousClassDeclaration anode = (AnonymousClassDeclaration)getEnclosingElement(node, ASTNode.ANONYMOUS_CLASS_DECLARATION);
+        if (anode != null) {
+            return anode.resolveBinding();
         }
         return null;
     }

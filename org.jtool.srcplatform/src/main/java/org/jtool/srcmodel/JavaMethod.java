@@ -113,7 +113,7 @@ public class JavaMethod extends JavaElement {
             if (mbinding.isConstructor()) {
                 this.returnType = binding.getName();
             } else {
-                this.returnType = binding.getReturnType().getQualifiedName();
+                this.returnType = binding.getReturnType().getErasure().getQualifiedName();
             }
             this.modifiers = binding.getModifiers();
             this.kind = getKind(binding);
@@ -546,7 +546,7 @@ public class JavaMethod extends JavaElement {
      * @return the string representing the signature
      */
     public static String getSignature(IMethodBinding mbinding) {
-        return mbinding.getName() + "(" + getParameterString(mbinding) +")";
+        return mbinding.getName() + "(" + getParameterString(mbinding) + ")";
     }
     
     /**
@@ -554,15 +554,20 @@ public class JavaMethod extends JavaElement {
      * @param mbinding the method binding information
      * @return the string representing the parameters
      */
-    protected static String getParameterString(IMethodBinding mbinding) {
+    public static String getParameterString(IMethodBinding mbinding) {
         StringBuilder buf = new StringBuilder();
         ITypeBinding[] bindings = mbinding.getParameterTypes();
         for (int i = 0; i < bindings.length; i++) {
             buf.append(" ");
-            if (bindings[i].isTypeVariable()) {
-                buf.append("java.lang.Object");
+            if (bindings[i].isTypeVariable() || bindings[i].isCapture()) {
+                ITypeBinding[] types = bindings[i].getTypeBounds();
+                if (types.length > 0) {
+                    buf.append(types[0].getErasure().getQualifiedName());
+                } else {
+                    buf.append("java.lang.Object");
+                }
             } else {
-                buf.append(bindings[i].getQualifiedName());
+                buf.append(bindings[i].getErasure().getQualifiedName());
             }
         }
         return buf.toString() + " ";

@@ -9,6 +9,7 @@ import org.jtool.srcmodel.QualifiedName;
 import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * A node that represents a method call.
@@ -129,6 +130,17 @@ public class CFGMethodCall extends CFGStatement {
      */
     public boolean isConstructorCall() {
         return jmethodCall.isConstructor();
+    }
+    
+    /**
+     * Returns the approximated types of receiver associated to this node.
+     * These types include classes declaring method that might be dynamically called.
+     * In the case of a field access, the approximated types are not supported
+     * because no dynamic binding is performed.
+     * @return the collection of the approximated types
+     */
+    public Set<String> getApproximatedTypes() {
+        return jmethodCall.getApproximatedTypes();
     }
     
     /**

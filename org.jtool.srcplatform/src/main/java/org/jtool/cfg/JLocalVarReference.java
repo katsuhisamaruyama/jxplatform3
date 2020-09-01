@@ -22,6 +22,11 @@ public class JLocalVarReference extends JReference {
     private boolean isParameter;
     
     /**
+     * The name of this local variable without its attributes.
+     */
+    private String simpleName;
+    
+    /**
      * The identification number of a referenced variable.
      */
     private int variableId;
@@ -40,6 +45,7 @@ public class JLocalVarReference extends JReference {
         this.declaringClassName = enclosingClassName;
         this.declaringMethodName = enclosingMethodName;
         
+        this.simpleName = binding.getName();
         String name = declaringMethodName + "!" + binding.getName() + "$" + String.valueOf(binding.getVariableId());
         this.fqn = new QualifiedName("", name);
         this.referenceForm = binding.getName() + "$" + String.valueOf(binding.getVariableId());
@@ -66,6 +72,14 @@ public class JLocalVarReference extends JReference {
      */
     public boolean isParameter() {
         return isParameter;
+    }
+    
+    /**
+     * Returns the name of this local variable without its attributes.
+     * @return the simple name
+     */
+    public String getSimpleName() {
+        return simpleName;
     }
     
     /**

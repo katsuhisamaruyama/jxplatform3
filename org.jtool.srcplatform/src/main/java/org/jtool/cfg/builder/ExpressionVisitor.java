@@ -20,18 +20,22 @@ import org.jtool.cfg.JReference;
 import org.jtool.cfg.JSpecialVarReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaClass;
+import org.jtool.srcmodel.JavaElement;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.builder.ExceptionTypeCollector;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ArrayAccess;
+import org.eclipse.jdt.core.dom.ArrayCreation;
 import org.eclipse.jdt.core.dom.Assignment;
 import org.eclipse.jdt.core.dom.ClassInstanceCreation;
+import org.eclipse.jdt.core.dom.ConditionalExpression;
 import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.FieldAccess;
 import org.eclipse.jdt.core.dom.SuperFieldAccess;
 import org.eclipse.jdt.core.dom.InfixExpression;
+import org.eclipse.jdt.core.dom.LambdaExpression;
 import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.SuperMethodInvocation;
 import org.eclipse.jdt.core.dom.PostfixExpression;
@@ -42,6 +46,8 @@ import org.eclipse.jdt.core.dom.ThisExpression;
 import org.eclipse.jdt.core.dom.QualifiedName;
 import org.eclipse.jdt.core.dom.VariableDeclaration;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
+import org.eclipse.jdt.core.dom.StringLiteral;
+import org.eclipse.jdt.core.dom.SwitchExpression;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 import org.eclipse.jdt.core.dom.ConstructorInvocation;
 import org.eclipse.jdt.core.dom.SuperConstructorInvocation;
@@ -54,9 +60,14 @@ import org.eclipse.jdt.core.dom.BooleanLiteral;
 import org.eclipse.jdt.core.dom.CharacterLiteral;
 import org.eclipse.jdt.core.dom.NullLiteral;
 import org.eclipse.jdt.core.dom.NumberLiteral;
-import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jdt.core.dom.TypeLiteral;
+import org.eclipse.jdt.core.dom.CreationReference;
+import org.eclipse.jdt.core.dom.ExpressionMethodReference;
+import org.eclipse.jdt.core.dom.SuperMethodReference;
+import org.eclipse.jdt.core.dom.TypeMethodReference;
+import org.eclipse.jdt.core.dom.Statement;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Stack;
@@ -68,6 +79,8 @@ import java.util.Stack;
  * 
  * Expression:
  *   ArrayAccess
+ *   
+ *   ArrayCreation
  *   Assignment
  *   PrefixExpression
  *   PostfixExpression
@@ -75,36 +88,41 @@ import java.util.Stack;
  *   FieldAccess
  *   SuperFieldAccess
  *   ThisExpression
+ *   LambdaExpression
  *   SingleVariableDeclaration
- *   VariableDeclarationFragment
+ *   VariableDeclarationExpression
+ *    -VariableDeclarationFragment
  *   MethodInvocation
  *   SuperMethodInvocation
  *   ClassInstanceCreation
  *   ConstructorInvocation (this originally belongs to Statement)
  *   SuperConstructorInvocation (this originally belongs to Statement)
  *   EnumConstantDeclaration  (this originally belongs to BodyDeclaration)
- *   
- * Nothing to do for the following AST nodes:
- *   Annotation
- *   ArrayCreation
- *   ArrayInitializer
- *   MethodReference
- *   CastExpression
  *   ConditionalExpression
+ *   SwitchExpression
+ *   StringLiteral
+ *   TypeLiteral
+ *   Name
+ *    -SimpleName
+ *    -QualifiedName
+ *   LambdaExpression (this is treated as a method and its invocation)
+ *   MethodReference
+ *    -CreationReference
+ *    -ExpressionMethodReference
+ *    -SuperMethodReference
+ *    -TypeMethodReference
+ *   ArrayInitializer (this is treated in ArrayCreation)
+ *   CastExpression (this is treated in MethodInvocation and ClassInstanceCreation)
+ *   
+ * Nothing special to do for the following AST nodes:
+ *   Annotation
  *   InstanceofExpression
  *   ParenthesizedExpression
- *   LambdaExpression
- *   CreationReference
- *   ExpressionMethodReference
- *   SuperMethodReference
- *   TypeMethodReference
+ *   LambdaExpression (this is treated as a method and its invocation)
  *   BooleanLiteral
  *   CharacterLiteral
  *   NullLiteral
  *   NumberLiteral
- *   StringLiteral
- *   TypeLiteral
- *   Name (SimpleName/QualifiedName)
  * 
  * @author Katsuhisa Maruyama
  */
@@ -170,6 +188,24 @@ public class ExpressionVisitor extends ASTVisitor {
     }
     
     @Override
+    @SuppressWarnings("unchecked")
+    public boolean visit(ArrayCreation node) {
+        analysisMode.push(AnalysisMode.USE);
+        for (Expression expr : (List<Expression>)node.dimensions()) {
+            expr.accept(this);
+        }
+        if (node.getInitializer() != null) {
+            node.getInitializer().accept(this);
+        }
+        
+        JReference jv = new JSpecialVarReference(node,
+                "$" + String.valueOf(ExpressionVisitor.temporaryVariableId), JavaClass.ArrayClassFqn.fqn(), false);
+        ExpressionVisitor.temporaryVariableId++;
+        curNode.setUseVariable(jv);
+        return false;
+    }
+    
+    @Override
     public boolean visit(Assignment node) {
         curNode.setASTNode(node);
         curNode.setKind(CFGNode.Kind.assignment);
@@ -189,7 +225,6 @@ public class ExpressionVisitor extends ASTVisitor {
         analysisMode.push(AnalysisMode.USE);
         righthand.accept(this);
         analysisMode.pop();
-        
         return false;
     }
     
@@ -273,7 +308,11 @@ public class ExpressionVisitor extends ASTVisitor {
             
             JFieldReference jfacc = new JFieldReference(node, node.getName(), vbinding);
             jfacc.changeReferenceForm(referenceForm);
-            curNode.addUseVariable(jfacc);
+            if (analysisMode.peek() == AnalysisMode.DEF) {
+                curNode.addDefVariable(jfacc);
+            } else {
+                curNode.addUseVariable(jfacc);
+            }
         }
         return false;
     }
@@ -285,37 +324,144 @@ public class ExpressionVisitor extends ASTVisitor {
         if (qualifier != null) {
             referenceName = qualifier.getFullyQualifiedName() + "." + referenceName;
         }
-        JReference jvar = new JFieldReference(node, node.getName(), referenceName, node.resolveFieldBinding());
-        curNode.addUseVariable(jvar);
+        
+        JFieldReference jfacc = new JFieldReference(node, node.getName(), referenceName, node.resolveFieldBinding());
+        if (analysisMode.peek() == AnalysisMode.DEF) {
+            curNode.addDefVariable(jfacc);
+        } else {
+            curNode.addUseVariable(jfacc);
+        }
         return false;
     }
     
     @Override
     public boolean visit(ThisExpression node) {
         Name qualifier = node.getQualifier();
-        JReference jvar;
+        JReference jv;
         if (qualifier != null) {
-            jvar = new JSpecialVarReference(node, "this", qualifier.resolveTypeBinding());
+            jv = new JSpecialVarReference(node, "this", qualifier.resolveTypeBinding());
         } else {
-            jvar = new JSpecialVarReference(node, "this", false);
+            jv = new JSpecialVarReference(node, "this", false);
         }
-        curNode.addUseVariable(jvar);
+        curNode.addUseVariable(jv);
+        return false;
+    }
+    
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean visit(LambdaExpression node) {
+        ITypeBinding tbinding = node.resolveTypeBinding();
+        if (tbinding == null) {
+            return false;
+        }
+        
+        CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
+        
+        insertBeforeCurrentNode(lambdaNode);
+        
+        CFGStatement tmpNode = curNode;
+        curNode = lambdaNode;
+        analysisMode.push(AnalysisMode.USE);
+        node.getBody().accept(this);
+        analysisMode.pop();
+        curNode = tmpNode;
+        
+        Set<String> formals = new HashSet<>();
+        for (VariableDeclaration vardecl : (List<VariableDeclaration>)node.parameters()) {
+            formals.add(vardecl.getName().getIdentifier());
+        }
+        
+        for (JReference ref : new ArrayList<>(lambdaNode.getUseVariables())) {
+            if (ref.isLocalAccess()) {
+                JLocalVarReference var = (JLocalVarReference)ref;
+                if (formals.contains(var.getSimpleName())) {
+                    lambdaNode.getUseVariables().remove(ref);
+                }
+            }
+        }
+        
+        JReference jv = new JSpecialVarReference(node,
+                "$" + String.valueOf(temporaryVariableId),
+                tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
+        temporaryVariableId++;
+        lambdaNode.setDefVariable(jv);
+        curNode.setUseVariable(jv);
+        return false;
+    }
+    
+    @Override
+    public boolean visit(CreationReference node) {
+        return methodReference(node, node.resolveTypeBinding());
+    }
+    
+    @Override
+    public boolean visit(SuperMethodReference node) {
+        return methodReference(node, node.resolveTypeBinding());
+    }
+    
+    @Override
+    public boolean visit(TypeMethodReference node) {
+        return methodReference(node, node.resolveTypeBinding());
+    }
+    
+    private boolean methodReference(ASTNode node, ITypeBinding tbinding) {
+        if (tbinding == null) {
+            return false;
+        }
+        
+        CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
+        
+        insertBeforeCurrentNode(lambdaNode);
+        
+        JReference jv = new JSpecialVarReference(node,
+                "$" + String.valueOf(temporaryVariableId),
+                tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
+        temporaryVariableId++;
+        lambdaNode.setDefVariable(jv);
+        curNode.setUseVariable(jv);
+        return false;
+    }
+    
+    @Override
+    public boolean visit(ExpressionMethodReference node) {
+        ITypeBinding tbinding = node.resolveTypeBinding();
+        if (tbinding == null) {
+            return false;
+        }
+        
+        CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
+        
+        insertBeforeCurrentNode(lambdaNode);
+        
+        CFGStatement tmpNode = curNode;
+        curNode = lambdaNode;
+        analysisMode.push(AnalysisMode.USE);
+        node.getExpression().accept(this);
+        analysisMode.pop();
+        curNode = tmpNode;
+        
+        JReference jv = new JSpecialVarReference(node,
+                "$" + String.valueOf(temporaryVariableId),
+                tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
+        temporaryVariableId++;
+        lambdaNode.setDefVariable(jv);
+        curNode.setUseVariable(jv);
         return false;
     }
     
     @Override
     public boolean visit(SingleVariableDeclaration node) {
-        visitVariableDeclaration(node);
+        variableDeclaration(node);
         return false;
     }
     
     @Override
     public boolean visit(VariableDeclarationFragment node) {
-        visitVariableDeclaration(node);
+        variableDeclaration(node);
         return false;
     }
     
-    private void visitVariableDeclaration(VariableDeclaration node) {
+    private void variableDeclaration(VariableDeclaration node) {
         IVariableBinding vbinding = getVariableBinding(node.getName());
         if (vbinding == null) {
             return;
@@ -363,16 +509,12 @@ public class ExpressionVisitor extends ASTVisitor {
         
         insertBeforeCurrentNode(receiverNode);
         
-        JMethodReference jcall = new JMethodReference(node, node.getName(),
-                mbinding, node.arguments());
-        CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.methodCall, jcall);
-        
         receiverNode.setName("this");
         if (receiver != null) {
             CFGStatement tmpNode = curNode;
             curNode = receiverNode;
             analysisMode.push(AnalysisMode.USE);
-            receiverNode.getASTNode().accept(this);
+            receiver.accept(this);
             analysisMode.pop();
             curNode = tmpNode;
             
@@ -380,12 +522,13 @@ public class ExpressionVisitor extends ASTVisitor {
                 JReference ref = receiverNode.getUseVariables().get(receiverNode.getUseVariables().size() - 1);
                 receiverNode.setName(ref.getReferenceForm());
             }
-        } else {
-            receiverNode.addUseVariable(new JSpecialVarReference(node, "this", false));
         }
+        
+        JMethodReference jcall = new JMethodReference(node, node.getName(),
+                mbinding, node.arguments());
+        CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.methodCall, jcall);
         jcall.setReceiver(receiverNode);
         
-        //setDefUseFields(callNode, jcall, receiverNode.getName());
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);
         return false;
@@ -417,6 +560,7 @@ public class ExpressionVisitor extends ASTVisitor {
         
         JMethodReference jcall = new JMethodReference(node, node, mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
+        jcall.setReceiver(null);
         
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);
@@ -431,8 +575,16 @@ public class ExpressionVisitor extends ASTVisitor {
             return false;
         }
         
+        Expression receiver = node.getExpression();
+        if (receiver != null) {
+            analysisMode.push(AnalysisMode.USE);
+            receiver.accept(this);
+            analysisMode.pop();
+        }
+        
         JMethodReference jcall = new JMethodReference(node, node, mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
+        jcall.setReceiver(null);
         
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);
@@ -457,10 +609,6 @@ public class ExpressionVisitor extends ASTVisitor {
         
         insertBeforeCurrentNode(receiverNode);
         
-        JMethodReference jcall = new JMethodReference(node, node.getType(),
-                mbinding, node.arguments());
-        CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.methodCall, jcall);
-        
         final String TEMP_INSTANCE_NAME = "$InstanceName";
         receiverNode.setName(TEMP_INSTANCE_NAME);
         if (receiver != null) {
@@ -477,6 +625,9 @@ public class ExpressionVisitor extends ASTVisitor {
             }
         }
         
+        JMethodReference jcall = new JMethodReference(node, node.getType(),
+                mbinding, node.arguments());
+        CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.methodCall, jcall);
         jcall.setReceiver(receiverNode);
         
         setActualNodes(callNode, node.arguments());
@@ -492,7 +643,7 @@ public class ExpressionVisitor extends ASTVisitor {
         if (node.getParent().equals(entryNode.getASTNode()) &&
            (entryNode.isLocalDeclaration() || entryNode.isFieldDeclaration())) {
             instanceName = entryNode.getDefVariables().get(0).getReferenceForm();
-        } else if (curNode.isAssignment()) {
+        } else if (curNode.getDefVariables().size() > 0) {
             instanceName = curNode.getDefVariables().get(0).getReferenceForm();
         } else {
             instanceName = callNode.getActualOutForReturn().getDefVariable().getName();
@@ -506,24 +657,8 @@ public class ExpressionVisitor extends ASTVisitor {
         }
     }
     
-    @Override
-    @SuppressWarnings("unchecked")
-    public boolean visit(EnumConstantDeclaration node) {
-        IMethodBinding mbinding = node.resolveConstructorBinding();
-        if (mbinding == null) {
-            return false;
-        }
-        
-        JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
-        CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
-        
-        setActualNodes(callNode, node.arguments());
-        setExceptionFlow(callNode, jcall);
-        return false;
-    }
-    
     private void setActualNodes(CFGMethodCall callNode, List<Expression> arguments) {
-        boolean actual = callNode.getMethodCall().isInProject() && !callNode.getMethodCall().callSelfDirectly();
+        boolean actual = callNode.getMethodCall().isInProject();
         if (actual) {
             createActualIns(callNode, arguments);
             insertBeforeCurrentNode(callNode);
@@ -619,6 +754,80 @@ public class ExpressionVisitor extends ASTVisitor {
     }
     
     @Override
+    @SuppressWarnings("unchecked")
+    public boolean visit(EnumConstantDeclaration node) {
+        IMethodBinding mbinding = node.resolveConstructorBinding();
+        if (mbinding == null) {
+            return false;
+        }
+        
+        JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
+        CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
+        
+        setActualNodes(callNode, node.arguments());
+        setExceptionFlow(callNode, jcall);
+        return false;
+    }
+    
+    
+    @Override
+    public boolean visit(ConditionalExpression node) {
+        CFGStatement condExpNode = new CFGStatement(node, CFGNode.Kind.conditionalExpression);
+        
+        insertBeforeCurrentNode(condExpNode);
+        
+        CFGStatement tmpNode = curNode;
+        curNode = condExpNode;
+        analysisMode.push(AnalysisMode.USE);
+        node.getExpression().accept(this);
+        node.getThenExpression().accept(this);
+        node.getElseExpression().accept(this);
+        analysisMode.pop();
+        curNode = tmpNode;
+        
+        ITypeBinding tbinding = node.resolveTypeBinding();
+        String type = tbinding.getErasure().getQualifiedName();
+        if (!JavaElement.isVoid(type)) {
+            JReference def = new JSpecialVarReference(node,
+                    "$" + String.valueOf(temporaryVariableId), type, tbinding.isPrimitive());
+            temporaryVariableId++;
+            condExpNode.addDefVariable(def);
+            curNode.addUseVariable(def);
+        }
+        return false;
+    }
+    
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean visit(SwitchExpression node) {
+        
+        CFGStatement switchExpNode = new CFGStatement(node, CFGNode.Kind.switchExpression);
+        
+        insertBeforeCurrentNode(switchExpNode);
+        
+        CFGStatement tmpNode = curNode;
+        curNode = switchExpNode;
+        analysisMode.push(AnalysisMode.USE);
+        node.getExpression().accept(this);
+        for (Statement st : (List<Statement>)node.statements()) {
+            st.accept(this);
+        }
+        analysisMode.pop();
+        curNode = tmpNode;
+        
+        ITypeBinding tbinding = node.resolveTypeBinding();
+        String type = tbinding.getErasure().getQualifiedName();
+        if (!JavaElement.isVoid(type)) {
+            JReference def = new JSpecialVarReference(node,
+                "$" + String.valueOf(temporaryVariableId), type, tbinding.isPrimitive());
+            temporaryVariableId++;
+            switchExpNode.addDefVariable(def);
+            curNode.addUseVariable(def);
+        }
+        return false;
+    }
+    
+    @Override
     public boolean visit(SimpleName node) {
         collectVariable(node);
         return false;
@@ -646,7 +855,15 @@ public class ExpressionVisitor extends ASTVisitor {
                 } else {
                     curNode.addUseVariable(fvar);
                 }
+                
             } else {
+                JReference fvar = new JFieldReference(node, node, vbinding);
+                if (analysisMode.peek() == AnalysisMode.DEF) {
+                    curNode.addDefVariable(fvar);
+                } else {
+                    curNode.addUseVariable(fvar);
+                }
+                
                 analysisMode.push(AnalysisMode.USE);
                 node.getQualifier().accept(this);
                 analysisMode.pop();
@@ -692,7 +909,9 @@ public class ExpressionVisitor extends ASTVisitor {
                 node instanceof PostfixExpression ||
                 node instanceof PrefixExpression ||
                 node instanceof SingleVariableDeclaration ||
-                node instanceof VariableDeclarationFragment
+                node instanceof VariableDeclarationFragment ||
+                node instanceof ConditionalExpression ||
+                node instanceof SwitchExpression
             );
     }
     

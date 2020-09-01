@@ -12,6 +12,7 @@ import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.builder.JavaASTVisitor;
 import org.jtool.srcmodel.builder.ProjectStore;
 import org.jtool.srcplatform.modelbuilder.ModelBuilder;
+import org.jtool.srcplatform.modelbuilder.ModelBuilder.BytecodeAnalysisLevel;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.compiler.IProblem;
 import org.eclipse.jdt.core.dom.AST;
@@ -31,8 +32,9 @@ public abstract class ModelBuilderImpl {
     
     protected ModelBuilder modelBuilder;
     
-    protected boolean analyzingBytecode = false;
-    protected boolean useBytecodeCache = false;
+    protected boolean analyzeBytecode = false;
+    protected boolean useProjectCache = false;
+    protected BytecodeAnalysisLevel bytecodeAnalysisLevel = BytecodeAnalysisLevel.SHALLOW1;
     
     protected boolean verbose = true;
     
@@ -50,20 +52,28 @@ public abstract class ModelBuilderImpl {
     
     public abstract void loadBytecode(JavaProject jproject);
     
-    public void setAnalyzingBytecode(boolean bool) {
-        analyzingBytecode = bool;
+    public void analyzeBytecode(boolean bool) {
+        analyzeBytecode = bool;
     }
     
-    public boolean isAnalyzingBytecode() {
-        return analyzingBytecode;
+    public boolean analyzeBytecode() {
+        return analyzeBytecode;
     }
     
-    public void useBytecodeCache(boolean bool) {
-        useBytecodeCache = bool;
+    public void useProjectCache(boolean bool) {
+        useProjectCache = bool;
     }
     
-    public boolean useBytecodeCache() {
-        return useBytecodeCache;
+    public boolean useProjectCache() {
+        return useProjectCache;
+    }
+    
+    public void setBytecodeAnalysisLevel(BytecodeAnalysisLevel level) {
+        this.bytecodeAnalysisLevel = level;
+    }
+    
+    public BytecodeAnalysisLevel getBytecodeAnalysisLevel() {
+        return bytecodeAnalysisLevel;
     }
     
     public void unbuild() {

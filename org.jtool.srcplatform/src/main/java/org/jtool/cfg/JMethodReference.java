@@ -8,12 +8,15 @@ package org.jtool.cfg;
 import org.jtool.srcmodel.QualifiedName;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.SuperMethodInvocation;
+import org.eclipse.jdt.core.dom.SuperConstructorInvocation;
 import org.eclipse.jdt.core.dom.Expression;
+import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.IMethodBinding;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.Modifier;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * An class that represents reference to a method or a constructor.
@@ -21,6 +24,11 @@ import java.util.ArrayList;
  * @author Katsuhisa Maruyama
  */
 public class JMethodReference extends JReference {
+    
+    /**
+     * The AST node corresponding to the name of this reference.
+     */
+    protected ASTNode nameNode;
     
     /**
      * A flag that indicates whether this is a reference to a method.
@@ -33,19 +41,14 @@ public class JMethodReference extends JReference {
     private boolean isConstructor;
     
     /**
-     * A flag that indicates whether this is a reference a method within the same class.
+     * A flag that indicates whether this is a reference to an enum.
      */
-    private boolean isLocal;
+    private boolean isEnum;
     
     /**
-     * A flag that indicates whether this is a reference to a method within the parent class.
+     * A flag that indicates whether this is a reference to a variable-arity method.
      */
-    private boolean isSuper;
-    
-    /**
-     * The AST node corresponding to the name of this reference.
-     */
-    protected ASTNode nameNode;
+    private boolean isVarargs;
     
     /**
      * The collection of AST nodes corresponding to the arguments of this method reference.
@@ -73,7 +76,12 @@ public class JMethodReference extends JReference {
     private CFGReceiver receiver = null;
     
     /**
-     * Creates a new object that represents a reference to a method.
+     * The collection of the approximated types of receiver associated to this node.
+     */
+    private Set<String> approximatedTypes;
+    
+    /**
+     * Creates a new object that represents a reference to a method or a constructor.
      * @param node the AST node corresponding to this reference
      * @param nameNode the node of the name part of this method reference
      * @param mbinding the method binding information on this reference
@@ -85,13 +93,38 @@ public class JMethodReference extends JReference {
         this.nameNode = nameNode;
         
         IMethodBinding binding = mbinding.getMethodDeclaration();
+        this.isMethod = isMethod(binding);
+        this.isConstructor = isConstructor(binding);
+        this.isEnum = binding.getDeclaringClass().isEnum();
+        this.isVarargs = binding.isVarargs();
+        
         this.enclosingClassName = findEnclosingClassName(node);
         this.enclosingMethodName = findEnclosingMethodName(node);
-        this.declaringClassName = getQualifiedClassName(binding.getDeclaringClass().getTypeDeclaration());
+        this.declaringClassName = getQualifiedClassName(binding.getDeclaringClass().getTypeDeclaration().getErasure());
         this.declaringMethodName = "";
         
-        this.fqn = new QualifiedName(declaringClassName, getSignature(binding));
+        String signature = getSignature(binding);
+        if (isConstructor) {
+            if (binding.getName().length() > 0) {
+                signature = binding.getName() + "(" + getParameterString(binding) + ")";
+            } else {
+                if (nameNode instanceof Type) {
+                    Type instanceType = (Type)nameNode;
+                    this.declaringClassName = getQualifiedClassName(instanceType.resolveBinding().getErasure());
+                }
+                int index = declaringClassName.lastIndexOf(".");
+                String className = index != -1 ? declaringClassName.substring(index + 1) : declaringClassName;
+                signature = className + "(" + getParameterString(binding) + ")";
+            }
+            
+            this.type = declaringClassName;
+        } else {
+            this.type = binding.getReturnType().getQualifiedName();
+        }
+        
+        this.fqn = new QualifiedName(declaringClassName, signature);
         this.referenceForm = "";
+        this.isMethod = isMethod(binding);
         this.isConstructor = isConstructor(binding);
         if (isConstructor) {
             this.type = declaringClassName;
@@ -101,9 +134,6 @@ public class JMethodReference extends JReference {
         this.isPrimitiveType = binding.getReturnType().isPrimitive();
         this.modifiers = binding.getModifiers();
         this.inProject = binding.getDeclaringClass().isFromSource();
-        this.isMethod = isMethod(binding);
-        this.isLocal = enclosingClassName.equals(declaringClassName);
-        this.isSuper = node instanceof SuperMethodInvocation;
         for (ITypeBinding tbinding : mbinding.getExceptionTypes()) {
             this.exceptionTypes.add(tbinding);
         }
@@ -118,6 +148,17 @@ public class JMethodReference extends JReference {
      */
     public ASTNode getNameNode() {
         return nameNode;
+    }
+    
+    /**
+     * Returns the receiver name of the referenced element.
+     * @return the receiver name, or the empty string if the element does not have any receiver
+     */
+    public String getReceiverName() {
+        if (receiver != null) {
+            receiver.getName();
+        }
+        return super.getReceiverName();
     }
     
     /**
@@ -146,19 +187,35 @@ public class JMethodReference extends JReference {
     }
     
     /**
-     * Tests if this is a reference a method within the same class.
-     * @return {@code true} if this is a reference to a method within the same class, otherwise {@code false}
+     * Tests if this is a reference to an enum.
+     * @return {@code true} if this is a method reference, otherwise {@code false}
      */
-    public boolean isLocal() {
-        return isLocal;
+    public boolean isEnum() {
+        return isEnum;
     }
     
     /**
-     * Tests if this is a reference to a method within the parent class.
-     * @return {@code true} if this is a reference to a method within the parent, otherwise {@code false}
+     * Tests if this is a reference to a variable-arity method.
+     * @return {@code true} if this is a variable-arity method reference, otherwise {@code false}
+     */
+    public boolean isVarargs() {
+        return isVarargs;
+    }
+    
+    /**
+     * Tests if this is a reference to a constructor within the parent class.
+     * @return {@code true} if this is a reference to a constructor within the parent, otherwise {@code false}
      */
     public boolean isSuper() {
-        return isSuper;
+        return astNode instanceof SuperMethodInvocation || astNode instanceof SuperConstructorInvocation;
+    }
+    
+    /**
+     * Tests if this is a reference to a local method or constructor within the class itself.
+     * @return {@code true} if this is a reference to a local method or constructor within the class itself, otherwise {@code false}
+     */
+    public boolean isLocal() {
+        return receiver != null ? "this".equals(receiver.getName()) : false;
     }
     
     /**
@@ -287,7 +344,9 @@ public class JMethodReference extends JReference {
      */
     public void setReceiver(CFGReceiver receiver) {
         this.receiver = receiver;
-        referenceForm = new QualifiedName(receiver.getName(), fqn.getMemberSignature()).fqn();
+        if (receiver != null) {
+            referenceForm = new QualifiedName(receiver.getName(), fqn.getMemberSignature()).fqn();
+        }
     }
     
     /**
@@ -296,6 +355,25 @@ public class JMethodReference extends JReference {
      */
     public CFGReceiver getReceiver() {
         return receiver;
+    }
+    
+    /**
+     * Sets the approximated types of receiver associated to this node.
+     * @param types the collection of the approximated types to be set
+     */
+    public void setApproximatedTypes(Set<String> types) {
+        approximatedTypes = types;
+    }
+    
+    /**
+     * Returns the approximated types of receiver associated to this node.
+     * These types include classes declaring method that might be dynamically called.
+     * In the case of a field access, the approximated types are not supported
+     * because no dynamic binding is performed.
+     * @return the collection of the approximated types
+     */
+    public Set<String> getApproximatedTypes() {
+        return approximatedTypes;
     }
     
     /**

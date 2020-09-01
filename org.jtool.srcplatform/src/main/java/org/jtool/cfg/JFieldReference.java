@@ -31,7 +31,7 @@ public class JFieldReference extends JReference {
     private boolean isEnumConstant;
     
     /**
-     * A flag that indicates whether this is a reference a field within the same class.
+     * A flag that indicates whether this is a reference a field within the class itself.
      */
     private boolean isLocal;
     
@@ -107,6 +107,41 @@ public class JFieldReference extends JReference {
         } else {
             this.referenceForm = referenceForm;
         }
+    }
+    
+    /**
+     * Creates a new object that represents a reference to a type literal.
+     * @param node the AST node corresponding to this reference
+     * @param tbinding the type binding information on this reference
+     */
+    public JFieldReference(ASTNode node, ITypeBinding tbinding) {
+        super(node);
+        
+        this.nameNode = node;
+        
+        this.enclosingClassName = findEnclosingClassName(node);
+        this.enclosingMethodName = findEnclosingMethodName(node);
+        if (tbinding != null) {
+            this.declaringClassName = getQualifiedClassName(tbinding);
+            this.type = tbinding.getErasure().getQualifiedName();
+            this.isPrimitiveType = tbinding.isPrimitive();
+            this.modifiers = tbinding.getModifiers();
+            this.inProject = tbinding.isFromSource();
+        } else {
+            this.declaringClassName = "void";
+            this.type = declaringClassName;
+            this.isPrimitiveType = false;
+            this.modifiers = 0;
+            this.inProject = false;
+        }
+        this.declaringMethodName = "";
+        this.fqn = new QualifiedName(declaringClassName, "class");
+        this.referenceForm = fqn.fqn();
+        
+        this.isField = false;
+        this.isEnumConstant = false;
+        this.isLocal = enclosingClassName.equals(declaringClassName);
+        this.isSuper = false;
     }
     
     /**
@@ -192,6 +227,14 @@ public class JFieldReference extends JReference {
      */
     public boolean isEnumConstant() {
         return isEnumConstant;
+    }
+    
+    /**
+     * Tests if this is a reference to a type literal.
+     * @return {@code true} if this is a type literal reference, otherwise {@code false}
+     */
+    public boolean isTypeLiteral() {
+        return fqn.getMemberSignature().equals("class");
     }
     
     /**

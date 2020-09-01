@@ -26,8 +26,10 @@ public class ModelBuilderBatch extends ModelBuilder {
      * Creates a batch-mode model builder.
      */
     public ModelBuilderBatch() {
-        this.batchImpl = new ModelBuilderBatchImpl(this);
-        super.impl= batchImpl;
+        createImpl();
+        
+        impl.analyzeBytecode(false);
+        impl.useProjectCache(false);
     }
     
     /**
@@ -35,9 +37,10 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @param analyzingBytecode {@code true} if byte-code analysis is performed, otherwise {@code false}
      */
     public ModelBuilderBatch(boolean analyzingBytecode) {
-        this();
+        createImpl();
         
-        impl.setAnalyzingBytecode(analyzingBytecode);
+        impl.analyzeBytecode(analyzingBytecode);
+        impl.useProjectCache(false);
     }
     
     /**
@@ -46,10 +49,18 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @param useBytecodeCache {@code true} if the byte-code cache is preferentially used, otherwise {@code false}
      */
     public ModelBuilderBatch(boolean analyzingBytecode, boolean useBytecodeCache) {
-        this();
+        createImpl();
         
-        impl.setAnalyzingBytecode(analyzingBytecode);
-        impl.useBytecodeCache(useBytecodeCache);
+        impl.analyzeBytecode(analyzingBytecode);
+        impl.useProjectCache(useBytecodeCache);
+    }
+    
+    /**
+     * Creates the implementation of this model builder.
+     */
+    private void createImpl() {
+        this.batchImpl = new ModelBuilderBatchImpl(this);
+        super.impl= batchImpl;
     }
     
     /**

@@ -15,13 +15,12 @@ import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JReference;
 import org.jtool.cfg.StopConditionOnReachablePath;
 import org.jtool.srcmodel.JavaClass;
-import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcplatform.bytecode.BytecodeClassStore;
 import org.jtool.srcplatform.bytecode.JClass;
 import org.jtool.srcplatform.bytecode.JMethod;
-
+import org.jtool.srcplatform.util.Logger;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -32,103 +31,207 @@ import java.util.HashSet;
  */
 class ReceiverTypeResolver {
     
-    private JavaProject jproject;
     private BytecodeClassStore bcStore;
     
     ReceiverTypeResolver(JavaProject jproject) {
-        this.jproject = jproject;
         this.bcStore = jproject.getCFGStore().getBCStore();
     }
     
     void findReceiverTypes(CFG cfg) {
-        for (CFGMethodCall callnode : cfg.getMethodCallNodes()) {
-            findReceiverTypes(callnode.getMethodCall(), cfg);
+        if (bcStore.analyzingBytecode()) {
+            for (CFGMethodCall callnode : cfg.getMethodCallNodes()) {
+                findReceiverTypes(callnode.getMethodCall(), cfg, new HashSet<>());
+            }
+        } else {
+            for (CFGMethodCall callnode : cfg.getMethodCallNodes()) {
+                findReceiverTypesWithoutBytecode(callnode.getMethodCall());
+            }
         }
     }
     
-    private void findReceiverTypes(JMethodReference jcall, CFG cfg) {
+    private void findReceiverTypes(JMethodReference jcall, CFG cfg, Set<CFGNode> track) {
         Set<String> types = new HashSet<>();
-        if (jcall.isConstructor()) {
-            JClass clazz = checkDefaultConstructor(jcall);
-            if (clazz != null) {
-                types.add(clazz.getQualifiedName().getClassName());
+        String upperType = jcall.getDeclaringClassName();
+        
+        if (jcall.hasReceiver()) {
+            String stringLiteral = jcall.getReceiver().stringLiteral();
+            if (stringLiteral != null) {
+                JClass clazz = getTargetClass(stringLiteral, jcall.getSignature());
+                if (clazz != null) {
+                    types.add(clazz.getClassName());
+                    jcall.setApproximatedTypes(types);
+                }
+                return;
             }
             
-        } else if(jcall.isStatic()) {
+            String typeLiteral = jcall.getReceiver().typeLiteral();
+            if (typeLiteral != null) {
+                JClass clazz = getTargetClass(typeLiteral, jcall.getSignature());
+                if (clazz != null) {
+                    types.add(clazz.getClassName());
+                    jcall.setApproximatedTypes(types);
+                }
+                return;
+            }
+            
+            String type = jcall.getReceiver().castType();
+            if (type != null) {
+                upperType = type;
+            }
+        }
+        
+        // This condition is checked prior to the conditions "jcall.isConstructor()" and "jcall.isStatic()"
+        // because the call to the enum is a kind of a constructor call or a static call.
+        if (jcall.isEnum()) { 
             JClass clazz = bcStore.getJClass(jcall.getDeclaringClassName());
             if (clazz != null) {
-                types.add(clazz.getQualifiedName().getClassName());
-            }
-            
-        } else {
-            JReference jv = jcall.getReceiver().getUseVariables().get(0);
-            if (jv.getName().equals("this")) {
-                JClass clazz = getTargetClass(jcall.getEnclosingClassName(), jcall.getSignature());
-                if (clazz != null) {
-                    types.add(clazz.getQualifiedName().getClassName());
-                }
-                
-            } else if (jv.isFieldAccess()) {
-                types.addAll(getAllPosssibleTypes(jv.getType(), jcall.getSignature()));
-                
+                types.add(clazz.getClassName());
+                jcall.setApproximatedTypes(types);
             } else {
-                collectReceiverTypes(jcall.getReceiver(), jv, jcall.getSignature(), cfg, new HashSet<>(), types);
+                Logger.getInstance().printError(
+                        "**Not found receiver enum type for method invocation " + jcall.getQualifiedName());
             }
+            return;
         }
         
-        jcall.getReceiver().setApproximatedTypes(types);
+        if (jcall.isConstructor()) {
+            if (jcall.getSignature().endsWith("( )")) {
+                JClass clazz = getTargetClassForDefaultConstructor(jcall.getDeclaringClassName());
+                if (clazz != null) {
+                    types.add(clazz.getClassName());
+                    jcall.setApproximatedTypes(types);
+                } else {
+                    types.add(jcall.getDeclaringClassName());
+                    jcall.setApproximatedTypes(types);
+                }
+                
+            } else {
+                JMethod method = bcStore.getJMethod(jcall.getDeclaringClassName(), jcall.getSignature());
+                if (method != null) {
+                    types.add(method.getClassName());
+                    jcall.setApproximatedTypes(types);
+                } else {
+                    Logger.getInstance().printError(
+                            "**Not found receiver type for constructor invocation " + jcall.getQualifiedName());
+                }
+            }
+            return;
+        }
         
-        for (String type : types) {
-            JavaClass jclass = jproject.getClass(type);
-            if (jclass != null && jclass.isInProject()) {
-                JavaMethod jmethod = jclass.getMethod(jcall.getSignature());
-                jproject.getCFGStore().getCFG(jmethod, false);
+        if(jcall.isStatic()) {
+            JClass clazz = bcStore.getJClass(jcall.getDeclaringClassName());
+            if (clazz != null) {
+                types.add(clazz.getClassName());
+                jcall.setApproximatedTypes(types);
+            }
+            return;
+        }
+        
+        if (jcall.isSuper()) {
+            JClass clazz = getTargetClass(jcall.getDeclaringClassName(), jcall.getSignature());
+            if (clazz != null) {
+                types.add(clazz.getClassName());
+                jcall.setApproximatedTypes(types);
+            }
+            return;
+        }
+        
+        if (jcall.isLocal()) {
+            JClass clazz = getTargetClass(jcall.getDeclaringClassName(), jcall.getSignature());
+            if (clazz != null) {
+                types.add(clazz.getClassName());
+                jcall.setApproximatedTypes(types);
+            }
+            return;
+        }
+        
+        if (jcall.hasReceiver()) {
+            JReference jv = jcall.getReceiver().getUseVariables().get(0);
+            if (jv.isFieldAccess()) {
+                upperType = findUpperType(upperType, jv.getType());
+                types.addAll(getAllPosssibleDescendants(upperType, jcall.getSignature()));
+                jcall.setApproximatedTypes(types);
+            } else {
+                collectReceiverTypes(jcall.getReceiver(), jcall.getSignature(), upperType, jv, cfg, track, types);
+                jcall.setApproximatedTypes(types);
             }
         }
     }
     
-    private JClass checkDefaultConstructor(JMethodReference jcall) {
-        JClass clazz = bcStore.getJClass(jcall.getDeclaringClassName());
+    private String findUpperType(String upperType, String targetType) {
+        JClass clazz = bcStore.getJClass(upperType);
         if (clazz != null) {
-            String signature = clazz.getQualifiedName().getClassName() + "( )";
-            
-            if (clazz.getMethod(signature) != null) {
-                return clazz;
+            if (clazz.getClassName().contentEquals(targetType)) {
+                return targetType;
             }
-            for (JClass jc: clazz.getSuperClassChain()) {
-                if (jc.getMethod(signature) != null) {
-                    return jc;
+            for (JClass jc: clazz.getAncestors()) {
+                if (jc.getClassName().equals(targetType)) {
+                    return upperType;
                 }
+            }
+        }
+        return targetType;
+    }
+    
+    
+    private String simpleClassName(String className) {
+        int index = className.lastIndexOf(".");
+        return index != -1 ? className.substring(index + 1) : className;
+    }
+    
+    private JClass getTargetClassForDefaultConstructor(String className) {
+        JClass clazz = bcStore.getJClass(className);
+        if (clazz == null) {
+            return null;
+        }
+        
+        if (clazz.getMethod(className + "( )") != null) {
+            return clazz;
+        }
+        
+        for (JClass jc: clazz.getSuperClassChain()) {
+            if (jc.getMethod(simpleClassName(jc.getClassName()) + "( )") != null) {
+                return jc;
             }
         }
         return null;
     }
     
     private JClass getTargetClass(String className, String signature) {
-        JMethod method = bcStore.getJMethod(className, signature);
-        if (method != null) {
-            return method.getDeclaringClass();
+        JClass clazz = bcStore.getJClass(className);
+        if (clazz == null) {
+            return null;
+        }
+        
+        if (clazz.getMethod(signature) != null) {
+            return clazz;
+        }
+        
+        for (JClass jc: clazz.getSuperClassChain()) {
+            if (jc.getMethod(signature) != null) {
+                return jc;
+            }
         }
         return null;
     }
     
-    private Set<String> getAllPosssibleTypes(String className, String signature) {
+    private Set<String> getAllPosssibleDescendants(String className, String signature) {
         Set<String> types = new HashSet<>();
         JClass clazz = getTargetClass(className, signature);
         if (clazz == null) {
             return types;
         }
+        types.add(clazz.getClassName());
         
-        types.add(clazz.getQualifiedName().getClassName());
         for (JClass jc : clazz.getDescendants()) {
             if (jc.getMethod(signature) != null) {
-                types.add(clazz.getQualifiedName().getClassName());
+                types.add(clazz.getClassName());
             }
         }
         return types;
     }
     
-    private void collectReceiverTypes(CFGNode node, JReference jv, String signature,
+    private void collectReceiverTypes(CFGNode node, String signature, String upperType, JReference jv,
             CFG cfg, Set<CFGNode> track, Set<String> types) {
         if (track.contains(node)) {
             return;
@@ -137,39 +240,11 @@ class ReceiverTypeResolver {
         
         for (CFGStatement defnode : getDefineNode(node, jv, cfg)) {
             if (defnode.isActualOut()) {
-                CFGParameter actualOut = (CFGParameter)defnode;
-                CFGMethodCall callnode = (CFGMethodCall)actualOut.getParent();
-                if (callnode.isConstructorCall() || callnode.getMethodCall().isStatic()) {
-                    types.add(callnode.getReturnType());
-                    
-                } else {
-                    types.addAll(getAllPosssibleTypes(callnode.getReturnType(), signature));
-                }
-                
+                checkReturn(defnode, signature, upperType, types);
             } else if (defnode.isFormalIn()) {
-                CFGParameter formalIn = (CFGParameter)defnode;
-                CFGMethodEntry entry = (CFGMethodEntry)formalIn.getParent();
-                for (CFGMethodCall callnode2 : getMethodCalls(entry.getJavaMethod(), cfg)) {
-                    CFGParameter actualIn = callnode2.getActualIn(formalIn.getIndex());
-                    if (actualIn.getUseVariables().size() > 0) {
-                        JReference jv2 = actualIn.getUseVariables().get(actualIn.getUseVariables().size() - 1);
-                        CFG cfg2 = jproject.getCFGStore().findCFG(callnode2.getQualifiedName().fqn());
-                        
-                        for (CFGStatement defnode2 : getDefineNode(actualIn, jv2, cfg2)) {
-                            collectReceiverTypes(defnode2, jv2, signature, cfg2, track, types);
-                        }
-                    }
-                }
-                
+                checkCallingMethods((CFGParameter)defnode, signature, upperType, track, types);
             } else {
-                if (defnode.getUseVariables().size() > 0) {
-                    JReference use = defnode.getUseVariables().get(defnode.getUseVariables().size() - 1);
-                    if (use.isFieldAccess()) {
-                        types.addAll(getAllPosssibleTypes(jv.getType(), signature));
-                    } else {
-                        collectReceiverTypes(defnode, use, signature, cfg, track, types);
-                    }
-                }
+                checkDataFlow(defnode, signature, upperType, jv, cfg, track, types);
             }
         }
     }
@@ -193,44 +268,87 @@ class ReceiverTypeResolver {
         return nodes;
     }
     
-    Set<CFGMethodCall> getMethodCalls(String className, String signature) {
-        Set<CFGMethodCall> callnodes = new HashSet<>();
-        
-        JavaClass jclass = jproject.getClass(className);
-        if (jclass != null) {
-            
-            JavaMethod jmethod = jclass.getMethod(signature);
-            if (jmethod != null) {
-                for (JavaMethod jm : jmethod.getCallingMethods()) {
-                    if (jm.isInProject()) {
-                        CFG cfg = jproject.getCFGStore().getCFGWithoutResolvingMethodCalls(jm);
-                        callnodes.addAll(getMethodCalls(jmethod, cfg));
-                    }
-                }
-                
-                for (JavaField jf : jmethod.getAccessingFields()) {
-                    if (jf.isInProject()) {
-                        CFG cfg = jproject.getCFGStore().getCFGWithoutResolvingMethodCalls(jf);
-                        callnodes.addAll(getMethodCalls(jmethod, cfg));
-                    }
-                }
+    private void checkReturn(CFGStatement defnode, String signature, String upperType, Set<String> types) {
+        CFGParameter actualOut = (CFGParameter)defnode;
+        CFGMethodCall callnode = (CFGMethodCall)actualOut.getParent();
+        if (callnode.isConstructorCall()) {
+            JClass clazz = getTargetClass(callnode.getReturnType(), signature);
+            if (clazz != null) {
+                types.add(clazz.getClassName());
             }
+        } else {
+            upperType = findUpperType(upperType, callnode.getReturnType());
+            types.addAll(getAllPosssibleDescendants(upperType, signature));
         }
-        return callnodes;
     }
     
-    private Set<CFGMethodCall> getMethodCalls(JavaMethod jmethod, CFG cfg) {
-        Set<CFGMethodCall> callnodes = new HashSet<>();
-        if (cfg == null) {
-            return callnodes;
-        }
+    private void checkCallingMethods(CFGParameter formalIn, String signature, String upperType,
+            Set<CFGNode> track, Set<String> types) {
+        CFGMethodEntry entry = (CFGMethodEntry)formalIn.getParent();
+        JavaMethod jmethod = entry.getJavaMethod();
         
-        for (CFGNode node : cfg.getMethodCallNodes()) {
-            CFGMethodCall callnode = (CFGMethodCall)node;
-            if (callnode.getSignature().equals(jmethod.getSignature())) {
-                callnodes.add(callnode);
+        for (JavaMethod jm : jmethod.getCallingMethods()) {
+            CFG cfg = bcStore.getJavaProject().getCFGStore().getCFGWithoutResolvingMethodCalls(jm);
+            if (cfg != null) {
+                for (CFGNode node : cfg.getMethodCallNodes()) {
+                    CFGMethodCall callnode = (CFGMethodCall)node;
+                    if (callnode.getSignature().equals(jmethod.getSignature()) && callnode.getActualIns().size() > 0) {
+                        
+                        findReceiverTypes(callnode.getMethodCall(), cfg, track);
+                        if (callnode.getApproximatedTypes().contains(jmethod.getDeclaringClass().getClassName())) {
+                            CFGParameter actualIn = callnode.getActualIn(formalIn.getIndex());
+                            if (callnode.getMethodCall().isVarargs() && actualIn == null) {
+                                continue;
+                            }
+                            if (actualIn.getUseVariables().size() > 0) {
+                                JReference jv = actualIn.getUseVariables().get(actualIn.getUseVariables().size() - 1);
+                                
+                                for (CFGStatement defnode : getDefineNode(actualIn, jv, cfg)) {
+                                    collectReceiverTypes(defnode, signature, upperType, jv, cfg, track, types);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
-        return callnodes;
+    }
+    
+    private void checkDataFlow(CFGStatement defnode, String signature, String upperType, JReference jv,
+            CFG cfg, Set<CFGNode> track, Set<String> types) {
+        if (defnode.getUseVariables().size() > 0) {
+            JReference use = defnode.getUseVariables().get(defnode.getUseVariables().size() - 1);
+            if (use.isFieldAccess()) {
+                upperType = findUpperType(upperType, jv.getType());
+                types.addAll(getAllPosssibleDescendants(upperType, signature));
+            } else {
+                collectReceiverTypes(defnode, signature, upperType, use, cfg, track, types);
+            }
+        }
+    }
+    
+    private void findReceiverTypesWithoutBytecode(JMethodReference jcall) {
+        Set<String> types = new HashSet<>();
+        if (jcall.hasReceiver()) {
+            String type = jcall.getReceiver().explicitType();
+            if (type != null) {
+                types.add(type);
+                jcall.setApproximatedTypes(types);
+                return;
+            }
+        }
+        
+        if (jcall.isConstructor() || jcall.isStatic() || jcall.isLocal()) {
+            types.add(jcall.getDeclaringClassName());
+        } else if (jcall.isSuper()) {
+            JavaClass jc = bcStore.getJavaProject().getClass(jcall.getDeclaringClassName());
+            if (jc != null) {
+                types.add(jc.getSuperClassName());
+            }
+        } else if (jcall.hasReceiver()) {
+            JReference jv = jcall.getReceiver().getUseVariables().get(0);
+            types.add(jv.getType());
+        }
+        jcall.setApproximatedTypes(types);
     }
 }

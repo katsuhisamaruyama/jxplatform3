@@ -37,13 +37,13 @@ public class JavaClass extends JavaElement {
      * The kind of a class.
      */
     enum Kind {
-        J_CLASS, J_INTERFACE, J_ENUM, J_ANONYMOUS_LAMBDA, UNKNOWN;
+        J_CLASS, J_INTERFACE, J_ENUM, J_ANONYMOUS, J_LAMBDA, UNKNOWN;
     }
     
     /**
      * The constant value that represents the array class.
      */
-    public static QualifiedName ArrayClassFqn = new QualifiedName(".JavaArray");
+    public static QualifiedName ArrayClassFqn = new QualifiedName(".JavaArray", "");
     
     /**
      * The fully-qualified name of this class.
@@ -156,6 +156,7 @@ public class JavaClass extends JavaElement {
             } else {
                 this.superClassName = null;
             }
+            
             for (ITypeBinding tb : binding.getInterfaces()) {
                 if (tb != null && tb.isInterface()) {
                     this.superInterfaceNames.add(tb.getTypeDeclaration().getQualifiedName());
@@ -190,9 +191,9 @@ public class JavaClass extends JavaElement {
         
         if (tbinding != null) {
             this.binding = tbinding.getTypeDeclaration();
-            this.qname = new QualifiedName(name);
+            this.qname = new QualifiedName(name, "");
             this.modifiers = Modifier.PUBLIC;
-            this.kind = JavaClass.Kind.J_ANONYMOUS_LAMBDA;
+            this.kind = JavaClass.Kind.J_LAMBDA;
             this.inProject = true;
             this.declaringClass = jmethod.getDeclaringClass();
             this.declaringMethod = jmethod;
@@ -216,7 +217,7 @@ public class JavaClass extends JavaElement {
     
     /**
      * Creates a new object representing a class.
-     * This method is not intended to be invoked by clients.
+     * This method is not intended to be invoked by clients
      * @param tbinding the type binding information on this class
      * @param inProject {@code true} if this class exists inside the target project, otherwise {@code false}
      */
@@ -244,15 +245,15 @@ public class JavaClass extends JavaElement {
     
     /**
      * Creates a new object representing a class.
-     * This method is not intended to be invoked by clients.
-     * @param fqn the fully-qualified name of this class.
+     * This method is not intended to be invoked by clients
+     * @param className the fully-qualified name of this class
      * @param inProject {@code true} if this class exists inside the target project, otherwise {@code false}
      */
-    JavaClass(String fqn, boolean inProject) {
+    JavaClass(String className, boolean inProject) {
         super(null, null);
         
         this.binding = null;
-        this.qname = new QualifiedName(fqn);
+        this.qname = new QualifiedName(className, "");
         this.kind = JavaClass.Kind.J_CLASS;
         this.modifiers = Modifier.PUBLIC;
         this.inProject = inProject;
@@ -267,7 +268,9 @@ public class JavaClass extends JavaElement {
      * @return the kind of this class
      */
     private JavaClass.Kind getKind(ITypeBinding binding) {
-        if (binding.isClass()) {
+        if (binding.isAnonymous()) {
+            return JavaClass.Kind.J_ANONYMOUS;
+        } else if (binding.isClass()) {
             return JavaClass.Kind.J_CLASS;
         } else if (binding.isInterface()) {
             return JavaClass.Kind.J_INTERFACE;
@@ -367,11 +370,19 @@ public class JavaClass extends JavaElement {
     }
     
     /**
+     * Tests if this is an anonymous class.
+     * @return {@code true} if this is an anonymous class, otherwise {@code false}
+     */
+    public boolean isAnonymous() {
+        return kind == JavaClass.Kind.J_ANONYMOUS;
+    }
+    
+    /**
      * Tests if this is an anonymous class for the lambda expression.
      * @return {@code true} if this is an anonymous class for the lambda expression, otherwise {@code false}
      */
     public boolean isLambda() {
-        return kind == JavaClass.Kind.J_ANONYMOUS_LAMBDA;
+        return kind == JavaClass.Kind.J_LAMBDA;
     }
     
     /**

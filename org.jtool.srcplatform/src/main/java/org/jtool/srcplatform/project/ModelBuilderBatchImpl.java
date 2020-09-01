@@ -272,14 +272,10 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                 
                 pm.work(1);
                 count++;
-                Logger.getInstance().printLog("-Parsed " +
+                Logger.getInstance().recordLog("-Parsed " +
                         filepath.substring(jproject.getPath().length() + 1) + " (" + count + "/" + size + ")");
             }
         };
-        
-        if (verbose) {
-            Arrays.asList(jproject.getClassPath()).forEach(a -> System.out.println("C = " + a));
-        }
         
         Logger.getInstance().printMessage("Target = " + jproject.getPath() + " (" + jproject.getName() + ")");
         Logger.getInstance().printMessage("** Ready to parse " + size + " files");
@@ -318,7 +314,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
             
             pm.work(1);
             count++;
-            Logger.getInstance().printLog("-Built " + jclass.getQualifiedName() + " (" + count + "/" + size + ")");
+            Logger.getInstance().recordLog("-Built " + jclass.getQualifiedName() + " (" + count + "/" + size + ")");
         }
         pm.done();
     }

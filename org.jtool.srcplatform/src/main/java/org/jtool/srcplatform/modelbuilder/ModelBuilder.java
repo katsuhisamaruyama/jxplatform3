@@ -36,35 +36,74 @@ public abstract class ModelBuilder {
     protected ModelBuilderImpl impl;
     
     /**
+     * The level of analyzing byte-code classes, which is determined by the maximum numbers of
+     * call chains of called methods and ones that override them.
+     */
+    public enum BytecodeAnalysisLevel {
+        SHALLOW1("Shallow", 2, 1),
+        SHALLOW2("Somewhiat shallow", 5, 2),
+        SHALLOW3("Feasible", 10, 2),
+        DEEP1("Somewhat deep", 10, 5),
+        DEEP2("Deep", 10, 10);
+        
+        @SuppressWarnings("unused")
+        private String label;
+        public int maxNumberOfChain;
+        public int maxNumberOfOverriding;
+        
+        private BytecodeAnalysisLevel(String label, int mc, int mo) {
+            this.label = label;
+            this.maxNumberOfChain = mc;
+            this.maxNumberOfOverriding = mo;
+        }
+    }
+    
+    /**
+     * Sets the level of analyzing byte-code classes.
+     * @param level the analysis level
+     */
+    public void setBytecodeAnalysisLevel(BytecodeAnalysisLevel level) {
+        impl.setBytecodeAnalysisLevel(level);
+    }
+    
+    /**
      * Sets whether byte-code analysis is performed.
      * @param bool {@code true} if byte-code analysis is performed, otherwise {@code false}
      */
-    public void setAnalyzingBytecode(boolean bool) {
-        impl.setAnalyzingBytecode(bool);
+    public void analyzeBytecode(boolean bool) {
+        impl.analyzeBytecode(bool);
     }
     
     /**
      * Tests if byte-code analysis is performed.
      * @return {@code true} if byte-code analysis is performed, otherwise {@code false}
      */
-    public boolean isAnalyzingBytecode() {
-        return impl.isAnalyzingBytecode();
+    public boolean analyzeBytecode() {
+        return impl.analyzeBytecode();
     }
     
     /**
-     * Sets whether the byte-code cache is preferentially used.
-     * @param bool {@code true} if the byte-code cache is preferentially used, otherwise {@code false}
+     * Sets whether the project cache is used.
+     * 
+     * The use of a project cache can skip analysis of source code and byte-code within the project,
+     * and thus largely reduce the analysis time.
+     * 
+     * Note that a project cache is never automatically updated although the source code and byte-code
+     * has been changed since the cache was created. If the update is needed, you should manually delete
+     * the cache file {@code #project.complete.cache} in the directory {@code .srcplatform}.
+     * 
+     * @param bool {@code true} if the project cache is preferentially used, otherwise {@code false}
      */
-    public void useBytecodeCache(boolean bool) {
-        impl.useBytecodeCache(bool);
+    public void useProjectCache(boolean bool) {
+        impl.useProjectCache(bool);
     }
     
     /**
-     * Tests if the byte-code cache is preferentially used.
-     * @return {@code true} if the byte-code cache is preferentially used, otherwise {@code false}
+     * Tests if the project cache is used.
+     * @return {@code true} if the project cache is used, otherwise {@code false}
      */
-    public boolean useBytecodeCache() {
-        return impl.useBytecodeCache();
+    public boolean useProjectCache() {
+        return impl.useProjectCache();
     }
     
     /**
