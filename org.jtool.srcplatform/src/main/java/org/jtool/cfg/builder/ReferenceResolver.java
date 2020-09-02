@@ -45,8 +45,6 @@ class ReferenceResolver {
                 }
             }
         }
-        
-        bcStore.writeProjectCache();
     }
     
     private void findDefUseFieldsInCalledMethod(CFGMethodCall callnode) {
