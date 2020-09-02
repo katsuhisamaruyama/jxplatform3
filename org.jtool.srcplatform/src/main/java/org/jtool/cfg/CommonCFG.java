@@ -366,24 +366,6 @@ public class CommonCFG extends Graph<CFGNode, ControlFlow> {
     }
     
     /**
-     * Calculates post-dominant nodes for a given CFG.
-     * @param anchor the anchor node that might dominate other nodes
-     * @return the collection of the dominated nodes
-     */
-    public Set<CFGNode> postDominator(CFGNode anchor) {
-        Set<CFGNode> postDominator = new HashSet<>();
-        for (CFGNode node : getNodes()) {
-            if (!anchor.equals(node)) {
-                Set<CFGNode> track = forwardReachableNodes(anchor, node, true);
-                if (track.contains(node) && !track.contains(getExitNode())) {
-                    postDominator.add(node);
-                }
-            }
-        }
-        return postDominator;
-    }
-    
-    /**
      * Calculates a constrained reachable nodes between two nodes.
      * @param from the source node
      * @param to the destination node
@@ -404,8 +386,8 @@ public class CommonCFG extends Graph<CFGNode, ControlFlow> {
     
     /**
      * Walks forward and collects the traversed nodes.
-     * @param from the source node
-     * @param to the destination node
+     * @param node the node to be traversed
+     * @param condition the condition that stops traversing
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
      * @param track the collection of already traversed nodes
      */
@@ -427,8 +409,8 @@ public class CommonCFG extends Graph<CFGNode, ControlFlow> {
     
     /**
      * Walks backward and collects the traversed nodes.
-     * @param from the source node
-     * @param to the destination node
+     * @param node the node to be traversed
+     * @param condition the condition that stops traversing
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
      * @param track the collection of already traversed nodes
      */
@@ -446,6 +428,33 @@ public class CommonCFG extends Graph<CFGNode, ControlFlow> {
                 }
             }
         }
+    }
+    
+    /**
+     * Calculates post-dominant nodes for a given CFG.
+     * This is a naive implementation not Lengauer-Tarjan Dominator Tree Algorithm.
+     * @param anchor the anchor node that might dominate other nodes
+     * @return the collection of the dominated nodes
+     */
+    public Set<CFGNode> postDominator(CFGNode anchor) {
+        Set<CFGNode> postDominator = new HashSet<>();
+        for (CFGNode node : CFGNode.sortCFGNodesInverse(getNodes())) {
+            if (!anchor.equals(node)) {
+                if (node.getOutgoingFlows().size() == 1) {
+                    CFGNode succ = node.getOutgoingFlows().iterator().next().getDstNode();
+                    if (succ.getIncomingFlows().size() == 1 && postDominator.contains(succ)) {
+                        postDominator.add(node);
+                        continue;
+                    }
+                }
+                
+                Set<CFGNode> track = forwardReachableNodes(anchor, node, true);
+                if (track.contains(node) && !track.contains(getExitNode())) {
+                    postDominator.add(node);
+                }
+            }
+        }
+        return postDominator;
     }
     
     /**

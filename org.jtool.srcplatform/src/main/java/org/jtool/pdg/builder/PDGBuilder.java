@@ -203,14 +203,31 @@ public class PDGBuilder {
     }
     
     private static void connectParameters(PDG pdg, CFGMethodCall caller, CFGMethodEntry callee) {
-        for (int ordinal = 0; ordinal < caller.getActualIns().size(); ordinal++) {
-            CFGParameter actualIn = caller.getActualIn(ordinal);
-            CFGParameter formalIn = callee.getFormalIn(ordinal);
-            
-            JReference jvar = formalIn.getUseVariables().get(0);
-            DD edge = new DD(actualIn.getPDGNode(), formalIn.getPDGNode(), jvar);
-            edge.setParameterIn();
-            pdg.add(edge);
+        if (caller.getMethodCall().isVarargs()) {
+            CFGParameter formalIn;
+            for (int index = 0; index < caller.getActualIns().size() - 1; index++) {
+                CFGParameter actualIn = caller.getActualIn(index);
+                if (index < callee.getFormalIns().size()) {
+                    formalIn = callee.getFormalIn(index);
+                } else {
+                    formalIn = callee.getFormalIn(callee.getFormalIns().size() - 1);
+                }
+                
+                JReference jvar = formalIn.getUseVariables().get(0);
+                DD edge = new DD(actualIn.getPDGNode(), formalIn.getPDGNode(), jvar);
+                edge.setParameterIn();
+                pdg.add(edge);
+            }
+        } else {
+            for (int ordinal = 0; ordinal < caller.getActualIns().size(); ordinal++) {
+                CFGParameter actualIn = caller.getActualIn(ordinal);
+                CFGParameter formalIn = callee.getFormalIn(ordinal);
+                
+                JReference jvar = formalIn.getUseVariables().get(0);
+                DD edge = new DD(actualIn.getPDGNode(), formalIn.getPDGNode(), jvar);
+                edge.setParameterIn();
+                pdg.add(edge);
+            }
         }
         
         CFGParameter actualOut = caller.getActualOutForReturn();

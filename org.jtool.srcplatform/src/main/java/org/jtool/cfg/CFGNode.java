@@ -779,4 +779,21 @@ public class CFGNode extends GraphNode {
         });
         return nodes;
     }
+    
+    /**
+     * Sorts inversely the list of CFG nodes
+     * @param co the list of the CFG nodes to be sorted
+     * @return the sorted list of the CFG nodes
+     */
+    public static List<CFGNode> sortCFGNodesInverse(Collection<? extends CFGNode> co) {
+        List<CFGNode> nodes = new ArrayList<>(co);
+        Collections.sort(nodes, new Comparator<>() {
+            
+            @Override
+            public int compare(CFGNode node1, CFGNode node2) {
+                return (node2.id == node1.id) ? 0 : (node1.id < node2.id) ? 1 : -1;
+            }
+        });
+        return nodes;
+    }
 }

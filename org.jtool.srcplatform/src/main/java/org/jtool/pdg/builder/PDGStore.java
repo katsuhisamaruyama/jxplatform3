@@ -118,7 +118,6 @@ public class PDGStore {
         if (ccfg == null) {
             return null;
         }
-        
         return getClDG(ccfg, force);
     }
     

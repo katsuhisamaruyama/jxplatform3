@@ -17,8 +17,6 @@ import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JReference;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -31,11 +29,7 @@ import java.util.HashSet;
  */
 public class DDFinder {
     
-    private static Map<PDGNode, List<PDGNode>> dominatorMap = new HashMap<>();
-    
     public static void find(PDG pdg, CFG cfg) {
-        dominatorMap.clear();
-        
         findDDs(pdg, cfg);
         findDefOrderDDs(pdg, cfg);
     }
@@ -115,53 +109,43 @@ public class DDFinder {
     }
     
     private static PDGNode getLoopCarried(PDG pdg, CFG cfg, CFGNode def, CFGNode use) {
-        List<PDGNode> dtrack = findDominators(def.getPDGNode());
-        if (dtrack.isEmpty()) {
+        Set<PDGNode> track = new HashSet<>();
+        
+        track.clear();
+        List<PDGNode> deftrack = new ArrayList<PDGNode>();
+        findReachableNodes(def.getPDGNode(), deftrack, track);
+        if (deftrack.isEmpty()) {
             return null;
         }
         
-        List<PDGNode> utrack = findDominators(use.getPDGNode());
-        if (utrack.isEmpty()) {
+        track.clear();
+        List<PDGNode> usetrack = new ArrayList<PDGNode>();
+        findReachableNodes(use.getPDGNode(), usetrack, track);
+        if (usetrack.isEmpty()) {
             return null;
         }
         
         Set<CFGNode> reachanbleNodes = cfg.constrainedReachableNodes(def, use);
-        for (PDGNode pdgnode : dtrack) {
-            CFGNode cfgnode = pdgnode.getCFGNode();
-            if (utrack.contains(pdgnode) && reachanbleNodes.contains(cfgnode)) {
+        for (PDGNode pdgnode : deftrack) {
+            if (usetrack.contains(pdgnode) && reachanbleNodes.contains(pdgnode.getCFGNode())) {
                 return pdgnode;
             }
         }
         return null;
     }
     
-    private static List<PDGNode> findDominators(PDGNode pdgnode) {
-        Set<PDGNode> track = new HashSet<>();
-        List<PDGNode> dominators = new ArrayList<>();
-        findDominators(pdgnode, dominators, track);
-        return dominators;
-    }
-    
-    private static void findDominators(PDGNode pdgnode, List<PDGNode> dominators, Set<PDGNode> track) {
-        List<PDGNode> nodes = dominatorMap.get(pdgnode);
-        if (nodes != null) {
-            dominators.addAll(nodes);
-            return;
+    private static void findReachableNodes(PDGNode node, List<PDGNode> nodes, Set<PDGNode> track) {
+        track.add(node);
+        if (node.isLoop()) {
+            nodes.add(node);
         }
         
-        track.add(pdgnode);
-        if (pdgnode.isLoop()) {
-            dominators.add(pdgnode);
-        }
-        
-        for (CD edge : pdgnode.getIncomingCDEdges()) {
+        for (CD edge : node.getIncomingCDEdges()) {
             PDGNode src = edge.getSrcNode();
             if (!track.contains(src)) {
-                findDominators(src, dominators, track);
+                findReachableNodes(src, nodes, track);
             }
         }
-        
-        dominatorMap.put(pdgnode, dominators);
     }
     
     private static void findDefOrderDDs(PDG pdg, CFG cfg) {
