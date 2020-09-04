@@ -48,9 +48,10 @@ class ReferenceResolver {
     }
     
     private void findDefUseFieldsInCalledMethod(CFGMethodCall callnode) {
-        
-        //System.err.println("CALL = " + callnode.getMethodCall().getEnclosingClassName() + " " + callnode.getASTNode());
-        
+        if (callnode.getApproximatedTypes() == null) {
+            System.err.println("CALL = " + callnode.getMethodCall().getEnclosingClassName() + " " + callnode.getASTNode());
+            return;
+        }
         
         for (String className : callnode.getApproximatedTypes()) {
             JMethod method = bcStore.getJMethod(className, callnode.getSignature());

@@ -82,9 +82,17 @@ public abstract class GraphElement {
     public static <E extends GraphElement> Set<E> intersection(Set<E> s1, Set<E> s2) {
         Set<E> s = new HashSet<>();
         if (s1.size() > s2.size()) {
-            s2.parallelStream().filter(e -> s1.contains(e)).forEach(e -> s.add(e));
+            for (E e : s2) {
+                if (s1.contains(e)) {
+                    s.add(e);
+                }
+            }
         } else {
-            s1.parallelStream().filter(e -> s2.contains(e)).forEach(e -> s.add(e));
+            for (E e : s1) {
+                if (s2.contains(e)) {
+                    s.add(e);
+                }
+            }
         }
         return s;
     }

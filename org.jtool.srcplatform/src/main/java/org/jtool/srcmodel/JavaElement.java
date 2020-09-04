@@ -202,6 +202,13 @@ public abstract class JavaElement {
                     }
                     return jmethod;
                 }
+            } else {
+                jclass = getArrayClass(jproject);
+                JavaMethod jmethod = jclass.getMethod(mbinding.getName());
+                if (jmethod == null) {
+                    jmethod = new JavaMethod(mbinding, jclass, false);
+                }
+                return jmethod;
             }
         }
         return null;

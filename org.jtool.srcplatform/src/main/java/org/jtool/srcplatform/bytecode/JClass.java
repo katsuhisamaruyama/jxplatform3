@@ -117,7 +117,7 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
             cache.put(BytecodeCacheManager.SuperClassAttr, superClass);
         }
         if (superInterfaces.size() > 0) {
-            cache.put(BytecodeCacheManager.SuperClassAttr, BytecodeClass.convertString(superInterfaces));
+            cache.put(BytecodeCacheManager.SuperInterfaceAttr, BytecodeClass.convertString(superInterfaces));
         }
         return cache;
     }
