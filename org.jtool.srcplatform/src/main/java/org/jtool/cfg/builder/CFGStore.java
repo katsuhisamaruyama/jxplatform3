@@ -54,6 +54,10 @@ public class CFGStore {
         bcStore.destroy();
     }
     
+    public void flushCache() {
+        bcStore.writeProjectCache();
+    }
+    
     public BytecodeClassStore getBCStore() {
         return bcStore;
     }

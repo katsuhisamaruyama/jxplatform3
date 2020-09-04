@@ -157,6 +157,13 @@ public class JavaProject {
     }
     
     /**
+     * Flushes the project cache.
+     */
+    public void flushCache() {
+        cfgStore.flushCache();
+    }
+    
+    /**
      * Returns the name of this project.
      * @return the project name
      */
