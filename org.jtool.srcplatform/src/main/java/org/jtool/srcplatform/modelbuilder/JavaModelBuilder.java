@@ -109,16 +109,6 @@ public class JavaModelBuilder {
      * @param classpath the path where the needed class (or jar) files are located
      * @param srcpath the path where the source files are located
      * @param binpath the path where the binary files are located
-     * @return the created project data
-     */
-    
-    /**
-     * Creates a command-line mode model builder.
-     * @param name the name of the created model
-     * @param target the directory storing the target project
-     * @param classpath the path where the needed class (or jar) files are located
-     * @param srcpath the path where the source files are located
-     * @param binpath the path where the binary files are located
      */
     public JavaModelBuilder(String name, String target, String classpath, String srcpath, String binpath) {
         try {

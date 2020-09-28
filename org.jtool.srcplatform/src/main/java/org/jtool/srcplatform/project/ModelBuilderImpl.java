@@ -142,7 +142,7 @@ public abstract class ModelBuilderImpl {
         return errors;
     }
     
-    protected Set<JavaClass> getAllClassesForward(JavaClass jclass) {
+    public Set<JavaClass> getAllClassesForward(JavaClass jclass) {
         Set<JavaClass> classes = new HashSet<>();
         collectAllClassesForward(jclass, classes);
         return classes;
@@ -159,7 +159,7 @@ public abstract class ModelBuilderImpl {
         }
     }
     
-    protected Set<JavaClass> getAllClassesBackward(JavaClass jclass) {
+    public Set<JavaClass> getAllClassesBackward(JavaClass jclass) {
         Set<JavaClass> classes = new HashSet<JavaClass>();
         collectAllClassesBackward(jclass, classes);
         return classes;
@@ -176,7 +176,7 @@ public abstract class ModelBuilderImpl {
         }
     }
     
-    protected Set<JavaMethod> getAllMethodsForward(JavaMethod jmethod) {
+    public Set<JavaMethod> getAllMethodsForward(JavaMethod jmethod) {
         Set<JavaMethod> methods = new HashSet<>();
         collectAllMethodsForward(jmethod, methods);
         return methods;
@@ -193,7 +193,7 @@ public abstract class ModelBuilderImpl {
         }
     }
     
-    protected Set<JavaMethod> getAllMethodsBackward(JavaMethod jmethod) {
+    public Set<JavaMethod> getAllMethodsBackward(JavaMethod jmethod) {
         Set<JavaMethod> methods = new HashSet<>();
         collectAllMethodsBackward(jmethod, methods);
         return methods;

@@ -357,7 +357,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                 buf = new char[1024];
             }
         }
-        return  content.toString();
+        return content.toString();
     }
     
     @Override

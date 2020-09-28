@@ -19,7 +19,6 @@ import org.jtool.pdg.PDG;
 import org.jtool.pdg.SDG;
 import org.jtool.srcplatform.project.ModelBuilderImpl;
 import org.jtool.srcplatform.util.Logger;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -41,9 +40,9 @@ public abstract class ModelBuilder {
      */
     public enum BytecodeAnalysisLevel {
         SHALLOW1("Shallow", 2, 1),
-        SHALLOW2("Somewhiat shallow", 5, 2),
+        SHALLOW2("Lightly Shallow", 5, 2),
         SHALLOW3("Feasible", 10, 2),
-        DEEP1("Somewhat deep", 10, 5),
+        DEEP1("Lightly Deep", 10, 5),
         DEEP2("Deep", 10, 10);
         
         @SuppressWarnings("unused")
@@ -559,20 +558,7 @@ public abstract class ModelBuilder {
      * @return the collection of classes used by the class
      */
     public Set<JavaClass> getAllClassesForward(JavaClass jclass) {
-        Set<JavaClass> classes = new HashSet<>();
-        collectAllClassesForward(jclass, classes);
-        return classes;
-    }
-    
-    private void collectAllClassesForward(JavaClass jclass, Set<JavaClass> classes) {
-        if (classes.contains(jclass)) {
-            return;
-        }
-        classes.add(jclass);
-        
-        for (JavaClass jc : jclass.getEfferentClassesInProject()) {
-            collectAllClassesForward(jc, classes);
-        }
+        return impl.getAllClassesForward(jclass);
     }
     
     /**
@@ -581,20 +567,7 @@ public abstract class ModelBuilder {
      * @return the collection of classes using the class
      */
     public Set<JavaClass> getAllClassesBackward(JavaClass jclass) {
-        Set<JavaClass> classes = new HashSet<JavaClass>();
-        collectAllClassesBackward(jclass, classes);
-        return classes;
-    }
-    
-    private void collectAllClassesBackward(JavaClass jclass, Set<JavaClass> classes) {
-        if (classes.contains(jclass)) {
-            return;
-        }
-        classes.add(jclass);
-        
-        for (JavaClass jc : jclass.getAfferentClassesInProject()) {
-            collectAllClassesBackward(jc, classes);
-        }
+        return impl.getAllClassesBackward(jclass);
     }
     
     /**
@@ -603,20 +576,7 @@ public abstract class ModelBuilder {
      * @return the collection of methods called by the method
      */
     public Set<JavaMethod> getAllMethodsForward(JavaMethod jmethod) {
-        Set<JavaMethod> methods = new HashSet<>();
-        collectAllMethodsForward(jmethod, methods);
-        return methods;
-    }
-    
-    private void collectAllMethodsForward(JavaMethod jmethod, Set<JavaMethod> methods) {
-        if (methods.contains(jmethod)) {
-            return;
-        }
-        methods.add(jmethod);
-        
-        for (JavaMethod jm : jmethod.getCalledMethods()) {
-            collectAllMethodsForward(jm, methods);
-        }
+        return impl.getAllMethodsForward(jmethod);
     }
     
     /**
@@ -625,19 +585,6 @@ public abstract class ModelBuilder {
      * @return the collection of methods calling the method
      */
     public Set<JavaMethod> getAllMethodsBackward(JavaMethod jmethod) {
-        Set<JavaMethod> methods = new HashSet<>();
-        collectAllMethodsBackward(jmethod, methods);
-        return methods;
-    }
-    
-    private void collectAllMethodsBackward(JavaMethod jmethod, Set<JavaMethod> methods) {
-        if (methods.contains(jmethod)) {
-            return;
-        }
-        methods.add(jmethod);
-        
-        for (JavaMethod jm : jmethod.getCallingMethods()) {
-            collectAllMethodsBackward(jm, methods);
-        }
+        return impl.getAllMethodsBackward(jmethod);
     }
 }

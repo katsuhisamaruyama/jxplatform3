@@ -37,15 +37,46 @@ public class DDFinder {
     private static void findDDs(PDG pdg, CFG cfg) {
         for (CFGNode cfgnode : cfg.getNodes()) {
             if (cfgnode.isStatement() && cfgnode.hasDefVariable()) {
-                findDDs(pdg, cfg, (CFGStatement)cfgnode);
+                CFGStatement anchor = (CFGStatement)cfgnode;
+                
+                Set<CFGNode> reachableNodes = new HashSet<>();
+                findReachableNodes(cfg, anchor, anchor, reachableNodes);
+                reachableNodes.remove(anchor);
+                
+                for (JReference jvar : anchor.getDefVariables()) {
+                    if (checkReachableNodes(reachableNodes, jvar)) {
+                        findDDs(pdg, cfg, anchor, jvar);
+                    }
+                }
             }
         }
     }
     
-    private static void findDDs(PDG pdg, CFG cfg, CFGStatement anchor) {
-        for (JReference jvar : anchor.getDefVariables()) {
-            findDDs(pdg, cfg, anchor, jvar);
+    private static void findReachableNodes(CFG cfg, CFGNode anchor, CFGNode node, Set<CFGNode> nodes) {
+        if (nodes.contains(node)) {
+            return;
         }
+        
+        nodes.add(node);
+        
+        for (ControlFlow flow : node.getOutgoingFlows()) {
+            if (!flow.isFallThrough()) {
+                CFGNode succ = (CFGNode)flow.getDstNode();
+                findReachableNodes(cfg, anchor, succ, nodes);
+            }
+        }
+    }
+    
+    private static boolean checkReachableNodes(Set<CFGNode> nodes, JReference jvar) {
+        for (CFGNode node : nodes) {
+            if (node.isStatement()) {
+                CFGStatement candidate = (CFGStatement)node;
+                if (candidate.defineVariable(jvar) || candidate.useVariable(jvar)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
     private static void findDDs(PDG pdg, CFG cfg, CFGStatement anchor, JReference jvar) {
@@ -60,6 +91,7 @@ public class DDFinder {
     
     private static void findDD(PDG pdg, CFG cfg, CFGNode anchor, CFGNode node, JReference jvar, Set<CFGNode> track) {
         track.add(node);
+        
         if (node.hasUseVariable()) {
             CFGStatement candidate = (CFGStatement)node;
             if (candidate.useVariable(jvar)) {
@@ -105,7 +137,7 @@ public class DDFinder {
                     findDD(pdg, cfg, anchor, succ, jvar, track);
                 }
             }
-        } 
+        }
     }
     
     private static PDGNode getLoopCarried(PDG pdg, CFG cfg, CFGNode def, CFGNode use) {
