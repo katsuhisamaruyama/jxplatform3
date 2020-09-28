@@ -132,21 +132,6 @@ public class CFGModelBuilderTest {
         builder.unbuild();
     }
     
-    static void print() {
-        String target = testDirInside + "Simple/";
-        ModelBuilderBatch builder = new ModelBuilderBatch();
-        JavaProject jproject = builder.build(target, target, target, target, target);
-        
-        for (JavaClass jclass : jproject.getClasses()) {
-            CCFG ccfg = builder.getCCFG(jclass);
-            for (CFG cfg : ccfg.getCFGs()) {
-                cfg.print();
-            }
-        }
-        
-        builder.unbuild();
-    }
-    
     void run(String name) {
         String target = testDirOutside + name + "/";
         
@@ -200,8 +185,6 @@ public class CFGModelBuilderTest {
         //tester.testJrb();
         //tester.testTetris(); 
         //tester.testCSClassroom();
-        
-        //print();
         
         /* The files are stored outside the workspace */
         //tester.run("ant-1.9.14");
