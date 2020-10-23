@@ -166,7 +166,7 @@ public class CFGStatement extends CFGNode {
      * @return {@code true} if the variable is used in this node, otherwise {@code false}
      */
     public boolean useVariable(JReference jv) {
-        return uses.stream().anyMatch(v -> jv.equals(jv));
+        return uses.stream().anyMatch(v -> v.equals(jv));
     }
     
     /**
