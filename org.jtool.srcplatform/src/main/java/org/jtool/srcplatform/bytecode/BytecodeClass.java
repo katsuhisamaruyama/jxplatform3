@@ -281,8 +281,6 @@ public abstract class BytecodeClass implements BytecodeClassCache {
                 aclasses.forEach(a -> a.addDescendant(this));
             }
             
-            //System.err.println("Name = " + name + " " + superInterfaces);
-            
             for (String parent : superInterfaces) {
                 BytecodeClass pclass = bcStore.getBcClass(parent);
                 if (pclass != null) {
