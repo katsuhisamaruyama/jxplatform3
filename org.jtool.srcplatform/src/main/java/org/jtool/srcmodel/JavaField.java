@@ -259,7 +259,7 @@ public class JavaField extends JavaVariable {
     protected Set<JavaMethod> accessingMethods = new HashSet<>();
     
     /**
-     * The collection of fields that this field accesses in its declaration..
+     * The collection of fields that this field accesses in its declaration.
      */
     protected Set<JavaField> accessedFields = new HashSet<>();
     
