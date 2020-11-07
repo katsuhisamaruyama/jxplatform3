@@ -296,12 +296,14 @@ public class ExpressionVisitor extends ASTVisitor {
         analysisMode.push(AnalysisMode.USE);
         receiver.accept(this);
         analysisMode.pop();
-            
+        
         if (curNode.getUseVariables().size() > 0) {
             JReference ref = curNode.getUseVariables().get(curNode.getUseVariables().size() - 1);
             String referenceForm = ref.getReferenceForm();
             if (referenceForm.startsWith("$")) {
                 referenceForm = referenceForm + "." + node.getName().getIdentifier();
+            } else if (referenceForm.startsWith("this")) {
+                referenceForm = referenceForm + "." + node.getName().getFullyQualifiedName();
             } else {
                 referenceForm = node.getName().getFullyQualifiedName();
             }
@@ -337,13 +339,13 @@ public class ExpressionVisitor extends ASTVisitor {
     @Override
     public boolean visit(ThisExpression node) {
         Name qualifier = node.getQualifier();
-        JReference jv;
+        JReference jvar;
         if (qualifier != null) {
-            jv = new JSpecialVarReference(node, "this", qualifier.resolveTypeBinding());
+            jvar = new JSpecialVarReference(node, "this", qualifier.resolveTypeBinding());
         } else {
-            jv = new JSpecialVarReference(node, "this", false);
+            jvar = new JSpecialVarReference(node, "this", false);
         }
-        curNode.addUseVariable(jv);
+        curNode.addUseVariable(jvar);
         return false;
     }
     
