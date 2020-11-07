@@ -53,26 +53,39 @@ class ReferenceResolver {
             return;
         }
         
+        String receiverName = "";
+        if (callnode.hasReceiver()) {
+            receiverName = callnode.getReceiver().getName();
+        }
+        
         for (String className : callnode.getApproximatedTypes()) {
             JMethod method = bcStore.getJMethod(className, callnode.getSignature());
             if (method != null) {
                 method.findDefUseFields();
                 
+                boolean existExternalDefField = false;
                 for (DefUseField def : method.getDefFields()) {
-                    String receiverName = "";
-                    if (callnode.hasReceiver()) {
-                        receiverName = callnode.getReceiver().getName();
-                    }
+                    
                     JReference fvar = createFieldReference(callnode.getASTNode(), def, receiverName);
                     callnode.addDefVariable(fvar);
-                }
-                for (DefUseField use : method.getUseFields()) {
-                    String receiverName = "";
-                    if (callnode.hasReceiver()) {
-                        receiverName = callnode.getReceiver().getName();
+                    if (!fvar.isInProject()) {
+                        existExternalDefField = true;
                     }
+                }
+                if (existExternalDefField && callnode.hasReceiver()) {
+                    callnode.addDefVariables(callnode.getReceiver().getUseVariables());
+                }
+                
+                boolean existExternalUseField = false;
+                for (DefUseField use : method.getUseFields()) {
                     JReference fvar = createFieldReference(callnode.getASTNode(), use, receiverName);
                     callnode.addUseVariable(fvar);
+                    if (!fvar.isInProject()) {
+                        existExternalUseField = true;
+                    }
+                }
+                if (existExternalUseField && callnode.hasReceiver()) {
+                    callnode.addUseVariables(callnode.getReceiver().getUseVariables());
                 }
             }
         }
