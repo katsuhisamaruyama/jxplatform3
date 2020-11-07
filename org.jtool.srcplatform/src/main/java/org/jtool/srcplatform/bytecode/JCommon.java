@@ -38,7 +38,7 @@ abstract class JCommon {
         return qname.getMemberSignature();
     }
     
-    abstract protected boolean isInProject();
+    abstract public boolean isInProject();
     
     protected DefUseField updateClassName(DefUseField var) {
         JField field = bcStore.getJField(var.getClassName(), var.getName());

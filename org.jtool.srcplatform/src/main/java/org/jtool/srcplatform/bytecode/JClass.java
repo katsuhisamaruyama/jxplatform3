@@ -76,7 +76,7 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
     }
     
     @Override
-    protected boolean isInProject() {
+    public boolean isInProject() {
         return isInProject;
     }
     

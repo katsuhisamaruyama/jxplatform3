@@ -33,7 +33,7 @@ abstract public class JField extends JCommon {
     }
     
     @Override
-    protected boolean isInProject() {
+    public boolean isInProject() {
         return declaringClass.isInProject();
     }
     

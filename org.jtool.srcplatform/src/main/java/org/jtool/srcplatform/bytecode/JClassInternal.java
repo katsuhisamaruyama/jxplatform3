@@ -37,6 +37,10 @@ public class JClassInternal extends JClass {
                 .forEach(jf -> this.fields.add(new JFieldInternal(jf, this)));
     }
     
+    public JavaClass getJavaClass() {
+        return jclass;
+    }
+    
     @Override
     protected void findSuperClassChain() {
         if (jclass.isInterface() || jclass.isEnum()) {

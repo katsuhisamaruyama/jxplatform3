@@ -27,6 +27,10 @@ class JMethodInternal extends JMethod {
         this.jmethod = jmethod;
     }
     
+    public JavaMethod getJavaMethod() {
+        return jmethod;
+    }
+    
     @Override
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
         if (isDefUseDecided || visitedMethods.contains(this)) {

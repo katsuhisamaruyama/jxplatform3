@@ -28,6 +28,10 @@ class JFieldInternal extends JField {
         this.jfield = jfield;
     }
     
+    public JavaField getJavaField() {
+        return jfield;
+    }
+    
     @Override
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
         if (isDefUseDecided || visitedFields.contains(this)) {

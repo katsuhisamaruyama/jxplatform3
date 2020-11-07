@@ -35,7 +35,7 @@ class JClassCache extends JClass {
     }
     
     @Override
-    protected boolean isInProject() {
+    public boolean isInProject() {
         return false;
     }
     

@@ -39,7 +39,7 @@ abstract public class JMethod extends JCommon {
     }
     
     @Override
-    protected boolean isInProject() {
+    public boolean isInProject() {
         return declaringClass.isInProject();
     }
     
@@ -72,8 +72,17 @@ abstract public class JMethod extends JCommon {
             method.findDefUseFields(visitedMethods, visitedFields, count);
             
             for (JMethod m : tmpVisitedMethods) {
-                m.defFields.addAll(method.getDefFields());
-                m.useFields.addAll(method.getUseFields());
+                
+                for (DefUseField def : method.getDefFields()) {
+                    if (!def.getReferenceForm().startsWith("this")) {
+                        m.defFields.add(def);
+                    }
+                }
+                for (DefUseField use : method.getUseFields()) {
+                    if (!use.getReferenceForm().startsWith("this")) {
+                        m.useFields.add(use);
+                    }
+                }
             }
             
             if (count > 0) {
