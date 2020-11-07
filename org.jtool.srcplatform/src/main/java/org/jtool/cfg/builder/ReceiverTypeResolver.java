@@ -16,9 +16,11 @@ import org.jtool.cfg.JReference;
 import org.jtool.cfg.StopConditionOnReachablePath;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
+import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcplatform.bytecode.BytecodeClassStore;
 import org.jtool.srcplatform.bytecode.JClass;
+import org.jtool.srcplatform.bytecode.JClassInternal;
 import org.jtool.srcplatform.bytecode.JMethod;
 import org.jtool.srcplatform.util.Logger;
 import java.util.Set;
@@ -80,7 +82,7 @@ class ReceiverTypeResolver {
             }
         }
         
-        // This condition is checked prior to the conditions "jcall.isConstructor()" and "jcall.isStatic()"
+        // This condition should be checked prior to the conditions "jcall.isConstructor()" and "jcall.isStatic()"
         // because the call to the enum is a kind of a constructor call or a static call.
         if (jcall.isEnum()) { 
             JClass clazz = bcStore.getJClass(jcall.getDeclaringClassName());
@@ -148,9 +150,16 @@ class ReceiverTypeResolver {
         if (jcall.hasReceiver()) {
             JReference jv = jcall.getReceiver().getUseVariables().get(0);
             if (jv.isFieldAccess()) {
-                upperType = findUpperType(upperType, jv.getType());
-                types.addAll(getAllPosssibleDescendants(upperType, jcall.getSignature()));
-                jcall.setApproximatedTypes(types);
+                Set<String> fieldTypes = getFieldTypes(jv);
+                if (fieldTypes.size() > 0) {
+                    types.addAll(fieldTypes);
+                    jcall.setApproximatedTypes(types);
+                    
+                } else {
+                    upperType = findUpperType(upperType, jv.getType());
+                    types.addAll(getAllPosssibleDescendants(upperType, jcall.getSignature()));
+                    jcall.setApproximatedTypes(types);
+                }
             } else {
                 collectReceiverTypes(jcall.getReceiver(), jcall.getSignature(), upperType, jv, cfg, track, types);
                 jcall.setApproximatedTypes(types);
@@ -158,10 +167,38 @@ class ReceiverTypeResolver {
         }
     }
     
+    private Set<String> getFieldTypes(JReference jv) {
+        Set<String> types = new HashSet<>();
+        JClass clazz = bcStore.getJClass(jv.getDeclaringClassName());
+        
+        if (clazz == null || !clazz.isInProject()) {
+            return types;
+        }
+        
+        JClassInternal internalClass = (JClassInternal)clazz;
+        JavaClass jclass = internalClass.getJavaClass();
+        JavaField jfield = jclass.getField(jv.getSignature());
+        if (jfield == null) {
+            return types;
+        }
+        
+        CFG cfg = bcStore.getJavaProject().getCFGStore().getCFGWithoutResolvingMethodCalls(jfield);
+        for (CFGNode cfgnode : cfg.getNodes()) {
+            if (cfgnode.isFieldDeclaration()) {
+                CFGStatement fieldDecl = (CFGStatement)cfgnode;
+                for (JReference use : fieldDecl.getUseVariables()) {
+                    types.add(use.getType());
+                }
+            }
+        }
+        
+        return types;
+    }
+    
     private String findUpperType(String upperType, String targetType) {
         JClass clazz = bcStore.getJClass(upperType);
         if (clazz != null) {
-            if (clazz.getClassName().contentEquals(targetType)) {
+            if (clazz.getClassName().equals(targetType)) {
                 return targetType;
             }
             for (JClass jc: clazz.getAncestors()) {
@@ -172,7 +209,6 @@ class ReceiverTypeResolver {
         }
         return targetType;
     }
-    
     
     private String simpleClassName(String className) {
         int index = className.lastIndexOf(".");
@@ -225,11 +261,13 @@ class ReceiverTypeResolver {
         
         for (JClass jc : clazz.getDescendants()) {
             if (jc.getMethod(signature) != null) {
-                types.add(clazz.getClassName());
+                types.add(jc.getClassName());
             }
         }
         return types;
     }
+    
+    
     
     private void collectReceiverTypes(CFGNode node, String signature, String upperType, JReference jv,
             CFG cfg, Set<CFGNode> track, Set<String> types) {
