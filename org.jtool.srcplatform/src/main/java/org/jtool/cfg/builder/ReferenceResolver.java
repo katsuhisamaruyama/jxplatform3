@@ -65,7 +65,6 @@ class ReferenceResolver {
                 
                 boolean existExternalDefField = false;
                 for (DefUseField def : method.getDefFields()) {
-                    
                     JReference fvar = createFieldReference(callnode.getASTNode(), def, receiverName);
                     callnode.addDefVariable(fvar);
                     if (!fvar.isInProject()) {
