@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 class Test130 {
     
     public void m() {
