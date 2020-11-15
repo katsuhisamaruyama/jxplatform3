@@ -6,7 +6,6 @@
 package org.jtool.srcplatform.bytecode;
 
 import org.jtool.srcmodel.QualifiedName;
-import java.util.Set;
 
 /**
  * Concise information on a cached field.
@@ -19,9 +18,5 @@ class JFieldCache extends JField {
         super(new QualifiedName(declaringClass.getClassName(), signature), declaringClass);
         
         isDefUseDecided = true;
-    }
-    
-    @Override
-    protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
     }
 }

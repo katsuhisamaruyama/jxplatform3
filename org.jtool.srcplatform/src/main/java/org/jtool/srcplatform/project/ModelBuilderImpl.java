@@ -12,7 +12,6 @@ import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.builder.JavaASTVisitor;
 import org.jtool.srcmodel.builder.ProjectStore;
 import org.jtool.srcplatform.modelbuilder.ModelBuilder;
-import org.jtool.srcplatform.modelbuilder.ModelBuilder.BytecodeAnalysisLevel;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.compiler.IProblem;
 import org.eclipse.jdt.core.dom.AST;
@@ -34,7 +33,7 @@ public abstract class ModelBuilderImpl {
     
     protected boolean analyzeBytecode = false;
     protected boolean useProjectCache = false;
-    protected BytecodeAnalysisLevel bytecodeAnalysisLevel = BytecodeAnalysisLevel.SHALLOW1;
+    protected int bytecodeAnalysisChain = 2;
     
     protected boolean verbose = true;
     
@@ -68,12 +67,12 @@ public abstract class ModelBuilderImpl {
         return useProjectCache;
     }
     
-    public void setBytecodeAnalysisLevel(BytecodeAnalysisLevel level) {
-        this.bytecodeAnalysisLevel = level;
+    public void setBytecodeAnalysisChain(int bytecodeAnalysisChain) {
+        this.bytecodeAnalysisChain = bytecodeAnalysisChain;
     }
     
-    public BytecodeAnalysisLevel getBytecodeAnalysisLevel() {
-        return bytecodeAnalysisLevel;
+    public int getBytecodeAnalysisChain() {
+        return bytecodeAnalysisChain;
     }
     
     public void unbuild() {

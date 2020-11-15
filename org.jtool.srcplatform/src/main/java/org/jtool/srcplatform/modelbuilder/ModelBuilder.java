@@ -35,34 +35,11 @@ public abstract class ModelBuilder {
     protected ModelBuilderImpl impl;
     
     /**
-     * The level of analyzing byte-code classes, which is determined by the maximum numbers of
-     * call chains of called methods and ones that override them.
+     * Sets the maximum number of a chain when analyzing byte-code classes.
+     * @param bytecodeAnalysisChain the maximum number of the chain
      */
-    public enum BytecodeAnalysisLevel {
-        SHALLOW1("Shallow", 2, 1),
-        SHALLOW2("Lightly Shallow", 5, 2),
-        SHALLOW3("Feasible", 10, 2),
-        DEEP1("Lightly Deep", 10, 5),
-        DEEP2("Deep", 10, 10);
-        
-        @SuppressWarnings("unused")
-        private String label;
-        public int maxNumberOfChain;
-        public int maxNumberOfOverriding;
-        
-        private BytecodeAnalysisLevel(String label, int mc, int mo) {
-            this.label = label;
-            this.maxNumberOfChain = mc;
-            this.maxNumberOfOverriding = mo;
-        }
-    }
-    
-    /**
-     * Sets the level of analyzing byte-code classes.
-     * @param level the analysis level
-     */
-    public void setBytecodeAnalysisLevel(BytecodeAnalysisLevel level) {
-        impl.setBytecodeAnalysisLevel(level);
+    public void setBytecodeAnalysisLevel(int bytecodeAnalysisChain) {
+        impl.setBytecodeAnalysisChain(bytecodeAnalysisChain);
     }
     
     /**

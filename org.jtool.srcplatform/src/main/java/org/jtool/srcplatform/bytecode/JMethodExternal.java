@@ -26,25 +26,17 @@ public class JMethodExternal extends JMethod {
     
     @Override
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        if (isDefUseDecided || visitedMethods.contains(this)) {
+        if (visitedMethods.contains(this) || count > maxNumberOfChain) {
             return;
         }
         
-        if (count > MaxNumberOfChain) {
-            return;
-        }
-        
-        isDefUseDecided = true;
         visitedMethods.add(this);
         
         collectDefUseFields();
         
         collectAccessedMethods();
-        if (count < MaxNumberOfOverriding) {
-            collectOverridingMethods();
-        }
         
-        collectDefUseFields(visitedMethods, visitedFields, count + 1);
+        collectDefUseFields(this, visitedMethods, visitedFields, count + 1);
     }
     
     private void collectDefUseFields() {
@@ -64,27 +56,5 @@ public class JMethodExternal extends JMethod {
                 accessedMethods.add(method);
             }
         }
-    }
-    
-    private void collectOverridingMethods() {
-        if (isConstructor(this)) {
-            return;
-        }
-        
-        if (declaringClass.getClassName().contentEquals("java.lang.Object")) {
-            return;
-        }
-        
-        for (JClass descendant : declaringClass.getDescendants()) {
-            JMethod method = descendant.getMethod(getSignature());
-            if (method != null) {
-                overridingMethods.add(method);
-            }
-        }
-    }
-    
-    private boolean isConstructor(JMethod method) {
-        String methodName = method.getSignature().substring(0, method.getSignature().indexOf("("));
-        return method.declaringClass.getClassName().contentEquals(methodName);
     }
 }

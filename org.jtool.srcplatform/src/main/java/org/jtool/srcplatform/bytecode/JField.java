@@ -50,21 +50,23 @@ abstract public class JField extends JCommon {
     }
     
     public void findDefUseFields() {
+        if (isDefUseDecided) {
+            return;
+        }
+        isDefUseDecided = true;
+        
         findDefUseFields(new HashSet<>(), new HashSet<>(), 0);
     }
     
-    abstract protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count);
+    protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
+    }
     
-    protected void collectDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        Set<JMethod> tmpVisitedMethods = new HashSet<>(visitedMethods);
-        
-        for (JMethod method : getAccessedMethods()) {
-            method.findDefUseFields(visitedMethods, visitedFields, count + 1);
+    protected void collectDefUseFields(JField field, Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
+        for (JMethod m : accessedMethods) {
+            m.findDefUseFields(visitedMethods, visitedFields, count);
             
-            for (JMethod m : tmpVisitedMethods) {
-                m.defFields.addAll(method.getDefFields());
-                m.useFields.addAll(method.getUseFields());
-            }
+            field.defFields.addAll(m.getDefFields());
+            field.useFields.addAll(m.getUseFields());
         }
     }
     

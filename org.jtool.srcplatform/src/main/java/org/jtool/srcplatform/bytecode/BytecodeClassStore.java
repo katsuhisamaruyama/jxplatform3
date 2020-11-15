@@ -67,8 +67,7 @@ public class BytecodeClassStore {
     public void create() {
         ModelBuilderImpl builderImpl = jproject.getModelBuilderImpl();
         
-        JMethod.MaxNumberOfChain = builderImpl.getBytecodeAnalysisLevel().maxNumberOfChain;
-        JMethod.MaxNumberOfOverriding = builderImpl.getBytecodeAnalysisLevel().maxNumberOfOverriding;
+        JCommon.maxNumberOfChain = builderImpl.getBytecodeAnalysisChain();
         if (builderImpl.useProjectCache()) {
             builderImpl.analyzeBytecode(true);
             boolean result = loadProjectCache();

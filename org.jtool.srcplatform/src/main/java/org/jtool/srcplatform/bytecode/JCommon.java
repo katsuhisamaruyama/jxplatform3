@@ -21,6 +21,8 @@ abstract class JCommon {
     
     protected BytecodeClassStore bcStore;
     
+    protected static int maxNumberOfChain;
+    
     protected JCommon(QualifiedName qname, BytecodeClassStore bcStore) {
         this.qname = qname;
         this.bcStore = bcStore;

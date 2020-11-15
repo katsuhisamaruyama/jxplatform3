@@ -6,7 +6,6 @@
 package org.jtool.srcplatform.bytecode;
 
 import org.jtool.srcmodel.QualifiedName;
-import java.util.Set;
 
 /**
  * Concise information on a cached method.
@@ -22,9 +21,5 @@ class JMethodCache extends JMethod {
         useFields.addAll(bclass.getUseFields(signature));
         
         isDefUseDecided = true;
-    }
-    
-    @Override
-    protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
     }
 }

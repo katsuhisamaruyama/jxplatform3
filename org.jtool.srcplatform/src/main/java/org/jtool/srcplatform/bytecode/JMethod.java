@@ -23,10 +23,6 @@ abstract public class JMethod extends JCommon {
     protected Set<DefUseField> defFields = new HashSet<>();
     protected Set<DefUseField> useFields = new HashSet<>();
     protected Set<JMethod> accessedMethods = new HashSet<>();
-    protected Set<JMethod> overridingMethods = new HashSet<>();
-    
-    protected static int MaxNumberOfChain = 0;
-    protected static int MaxNumberOfOverriding = 0;
     
     protected JMethod(QualifiedName qname, JClass declaringClass) {
         super(qname, declaringClass.bcStore);
@@ -55,44 +51,31 @@ abstract public class JMethod extends JCommon {
         return accessedMethods;
     }
     
-    public Set<JMethod> getOverridingMethods() {
-        return overridingMethods;
-    }
-    
     public void findDefUseFields() {
+        if (isDefUseDecided) {
+            return;
+        }
+        isDefUseDecided = true;
+        
         findDefUseFields(new HashSet<>(), new HashSet<>(), 0);
     }
     
-    abstract protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count);
+    protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
+    }
     
-    protected void collectDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        Set<JMethod> tmpVisitedMethods = new HashSet<>(visitedMethods);
-        
-        for (JMethod method : getAccessedMethods()) {
-            method.findDefUseFields(visitedMethods, visitedFields, count);
+    protected void collectDefUseFields(JMethod method, Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
+        for (JMethod m : accessedMethods) {
+            m.findDefUseFields(visitedMethods, visitedFields, count);
             
-            for (JMethod m : tmpVisitedMethods) {
-                
-                for (DefUseField def : method.getDefFields()) {
-                    if (!def.getReferenceForm().startsWith("this")) {
-                        m.defFields.add(def);
-                    }
-                }
-                for (DefUseField use : method.getUseFields()) {
-                    if (!use.getReferenceForm().startsWith("this")) {
-                        m.useFields.add(use);
-                    }
+            for (DefUseField def : m.getDefFields()) {
+                if (!def.getReferenceForm().startsWith("this")) {
+                    method.defFields.add(def);
                 }
             }
             
-            if (count > 0) {
-                for (JMethod omethod : method.getOverridingMethods()) {
-                    omethod.findDefUseFields(visitedMethods, visitedFields, count);
-                    
-                    for (JMethod m : tmpVisitedMethods) {
-                        m.defFields.addAll(method.getDefFields());
-                        m.useFields.addAll(method.getUseFields());
-                    }
+            for (DefUseField use : m.getUseFields()) {
+                if (!use.getReferenceForm().startsWith("this")) {
+                    method.useFields.add(use);
                 }
             }
         }
