@@ -216,8 +216,8 @@ public class JavaClass extends JavaElement {
     }
     
     /**
-     * Creates a new object representing a class.
-     * This method is not intended to be invoked by clients
+     * Creates a new object representing a class that does not have its source code.
+     * This method is not intended to be invoked by clients.
      * @param tbinding the type binding information on this class
      * @param inProject {@code true} if this class exists inside the target project, otherwise {@code false}
      */
@@ -244,7 +244,7 @@ public class JavaClass extends JavaElement {
     }
     
     /**
-     * Creates a new object representing a class.
+     * Creates a new object representing a class for the array.
      * This method is not intended to be invoked by clients
      * @param className the fully-qualified name of this class
      * @param inProject {@code true} if this class exists inside the target project, otherwise {@code false}

@@ -173,6 +173,18 @@ public abstract class JavaElement {
                     if (jclass == null) {
                         jclass = new JavaClass(tbinding, false);
                         jproject.addExternalClass(jclass);
+                        
+                        for (IMethodBinding mbinding : tbinding.getDeclaredMethods()) {
+                            JavaMethod jmethod = new JavaMethod(mbinding, jclass, false);
+                            jclass.addMethod(jmethod);
+                        }
+                        
+                        for (IVariableBinding vbinding : tbinding.getDeclaredFields()) {
+                            if (vbinding.isField()) {
+                                JavaField jfield = new JavaField(vbinding, jclass, false);
+                                jclass.addField(jfield);
+                            }
+                        }
                     }
                     return jclass;
                 }
@@ -232,6 +244,7 @@ public abstract class JavaElement {
                     JavaField jfield = jclass.getField(vbinding.getName());
                     if (jfield == null) {
                         jfield = new JavaField(vbinding, jclass, false);
+                        jclass.addField(jfield);
                     }
                     return jfield;
                 }
@@ -240,6 +253,7 @@ public abstract class JavaElement {
                 JavaField jfield = jclass.getField(vbinding.getName());
                 if (jfield == null) {
                     jfield = new JavaField(vbinding, jclass, false);
+                    jclass.addField(jfield);
                 }
                 return jfield;
             }
@@ -258,6 +272,7 @@ public abstract class JavaElement {
         if (jclass == null) {
             jclass = new JavaClass(qname.fqn(), false);
             jproject.addExternalClass(jclass);
+            
         }
         return jclass;
     }
