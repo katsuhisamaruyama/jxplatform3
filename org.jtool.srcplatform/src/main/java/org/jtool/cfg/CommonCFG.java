@@ -262,6 +262,17 @@ public class CommonCFG extends Graph<CFGNode, ControlFlow> {
     }
     
     /**
+     * Obtains CFG nodes for return statements.
+     * @return the collection of the return statement nodes
+     */
+    public Set<CFGStatement> getReturnNodes() {
+        return getNodes().stream()
+                         .filter(node -> node.isReturn())
+                         .map(node -> (CFGStatement)node)
+                         .collect(Collectors.toSet());
+    }
+    
+    /**
      * Calculates nodes traversed forward from a given node on this CFG.
      * @param from the source node
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
