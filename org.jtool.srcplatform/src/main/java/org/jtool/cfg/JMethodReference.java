@@ -119,18 +119,11 @@ public class JMethodReference extends JReference {
             
             this.type = declaringClassName;
         } else {
-            this.type = binding.getReturnType().getQualifiedName();
+            this.type = binding.getReturnType().getErasure().getQualifiedName();
         }
         
         this.fqn = new QualifiedName(declaringClassName, signature);
         this.referenceForm = "";
-        this.isMethod = isMethod(binding);
-        this.isConstructor = isConstructor(binding);
-        if (isConstructor) {
-            this.type = declaringClassName;
-        } else {
-            this.type = binding.getReturnType().getQualifiedName();
-        }
         this.isPrimitiveType = binding.getReturnType().isPrimitive();
         this.modifiers = binding.getModifiers();
         this.inProject = binding.getDeclaringClass().isFromSource();
