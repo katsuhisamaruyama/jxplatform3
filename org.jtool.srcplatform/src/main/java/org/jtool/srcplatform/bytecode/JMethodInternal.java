@@ -56,12 +56,12 @@ class JMethodInternal extends JMethod {
             if (node instanceof CFGStatement) {
                 CFGStatement stNode = (CFGStatement)node;
                 for (JReference var : stNode.getDefVariables()) {
-                    if (var.isFieldAccess()) {
+                    if (var.isFieldAccess() && var.getReferenceForm().startsWith("this")) {
                         defFields.add(updateClassName(new DefUseField(var)));
                     }
                 }
                 for (JReference var : stNode.getUseVariables()) {
-                    if (var.isFieldAccess()) {
+                    if (var.isFieldAccess() && var.getReferenceForm().startsWith("this")) {
                         useFields.add(updateClassName(new DefUseField(var)));
                     }
                 }
