@@ -56,16 +56,13 @@ class JFieldInternal extends JField {
         for (CFGNode node : cfg.getNodes()) {
             if (node instanceof CFGStatement) {
                 CFGStatement stNode = (CFGStatement)node;
-                for (JReference var : stNode.getDefVariables()) {
-                    if (var.isFieldAccess()) {
-                        defFields.add(new DefUseField(var));
-                    }
-                }
-                for (JReference var : stNode.getUseVariables()) {
-                    if (var.isFieldAccess()) {
-                        useFields.add(new DefUseField(var));
-                    }
-                }
+                
+                stNode.getDefVariables().stream()
+                    .filter(var -> var.isFieldAccess())
+                    .forEach(var -> defFields.add(new DefUseField(var)));
+                stNode.getUseVariables().stream()
+                    .filter(var -> var.isFieldAccess())
+                    .forEach(var -> useFields.add(new DefUseField(var)));
             }
         }
     }

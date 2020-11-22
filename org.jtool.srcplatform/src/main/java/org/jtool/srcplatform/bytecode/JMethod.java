@@ -67,17 +67,12 @@ abstract public class JMethod extends JCommon {
         for (JMethod m : accessedMethods) {
             m.findDefUseFields(visitedMethods, visitedFields, count);
             
-            for (DefUseField def : m.getDefFields()) {
-                if (!def.getReferenceForm().startsWith("this")) {
-                    method.defFields.add(def);
-                }
-            }
-            
-            for (DefUseField use : m.getUseFields()) {
-                if (!use.getReferenceForm().startsWith("this")) {
-                    method.useFields.add(use);
-                }
-            }
+            m.getDefFields().stream()
+                .filter(var -> !var.getReferenceForm().startsWith("this"))
+                .forEach(var -> method.defFields.add(var));
+            m.getUseFields().stream()
+                .filter(var -> !var.getReferenceForm().startsWith("this"))
+                .forEach(var -> method.useFields.add(var));
         }
     }
     
