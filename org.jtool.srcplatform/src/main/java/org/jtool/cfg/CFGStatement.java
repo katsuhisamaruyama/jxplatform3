@@ -209,9 +209,20 @@ public class CFGStatement extends CFGNode {
      * Returns the first one from the collection of variables defined in this node.
      * @return the defined variable at the first position, or {@code null} if this node never defines any variable
      */
-    public JReference getFirst() {
+    public JReference getDefFirst() {
         if (hasDefVariable()) {
             return defs.get(0);
+        }
+        return null;
+    }
+    
+    /**
+     * Returns the first one from the collection of variables used in this node.
+     * @return the used variable at the first position, or {@code null} if this node never uses any variable
+     */
+    public JReference getUseFirst() {
+        if (hasUseVariable()) {
+            return uses.get(0);
         }
         return null;
     }

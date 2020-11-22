@@ -64,7 +64,7 @@ public class CFGFieldEntry extends CFGEntry {
      * @return the reference to this field
      */
     public JReference getDefField() {
-        return declNode.getFirst();
+        return declNode.getDefFirst();
     }
     
     /**
