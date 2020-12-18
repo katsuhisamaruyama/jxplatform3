@@ -9,7 +9,6 @@ import org.jtool.srcmodel.JavaMethod;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
-import org.jtool.cfg.JReference;
 import java.util.Set;
 
 /**

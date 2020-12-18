@@ -5,8 +5,6 @@
 
 package org.jtool.srcplatform.bytecode;
 
-import java.util.ArrayList;
-
 import org.jtool.srcmodel.QualifiedName;
 import javassist.CannotCompileException;
 import javassist.CtClass;
@@ -21,6 +19,7 @@ import javassist.expr.ExprEditor;
 import javassist.expr.FieldAccess;
 import javassist.expr.MethodCall;
 import javassist.expr.NewExpr;
+import java.util.ArrayList;
 
 /**
  * An object that represents a class obtained from its byte-code.

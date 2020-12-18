@@ -5,9 +5,8 @@
 
 package org.jtool.srcplatform.bytecode;
 
-import java.util.Collection;
-
 import org.jtool.srcmodel.QualifiedName;
+import java.util.Collection;
 
 /**
  * An element common to a class, a method, and a field
