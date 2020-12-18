@@ -9,12 +9,21 @@ import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodEntry;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
+import org.jtool.cfg.CFGReceiver;
+import org.jtool.cfg.CFGMethodCall;
+import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JReference;
+import org.jtool.cfg.JSpecialVarReference;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
+import java.util.Collection;
 import java.util.HashSet;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 
 /**
  * Resolves the alias relations in local variables in the method
@@ -23,6 +32,12 @@ import java.util.HashSet;
  * @author Katsuhisa Maruyama
  */
 class LocalAliasResolver {
+    
+    private Multimap<String, JReference> aliasMap = HashMultimap.create();
+    
+    Collection<JReference> getAliasVariables(String name) {
+        return aliasMap.get(name);
+    }
     
     void resolve(CFG cfg) {
         if (!cfg.isMethod()) {
@@ -37,7 +52,7 @@ class LocalAliasResolver {
         for (JavaField jfield : jmethod.getDeclaringClass().getFields()) {
             CFG fcfg = cfgStore.getCFG(jfield, false);
             for (CFGNode node : fcfg.getNodes()) {
-                Alias alias = getAliasRelation(node);
+                Alias alias = getAliasRelationForStatement(node);
                 if (alias != null) {
                     aliasesInFieldDeclarations.add(alias);
                 }
@@ -46,14 +61,89 @@ class LocalAliasResolver {
         
         for (CFGNode node : cfg.getNodes()) {
             aliasesInFieldDeclarations.forEach(a -> walkForward(node, a));
-            Alias alias = getAliasRelation(node);
+            Alias alias = getAliasRelationForStatement(node);
             if (alias != null) {
+                aliasMap.put(alias.one.getReferenceForm(), alias.another);
+                aliasMap.put(alias.another.getReferenceForm(), alias.one);
                 walkForward(node, alias);
+            }
+        }
+        
+        for (CFGNode node : cfg.getNodes()) {
+            if (node.isReceiver()) {
+                aliasRelationForReceiver(cfg, node);
             }
         }
     }
     
-    private Alias getAliasRelation(CFGNode node) {
+    private void aliasRelationForReceiver(CFG cfg, CFGNode node) {
+        CFGReceiver receiverNode = (CFGReceiver)node;
+        JReference var = receiverNode.getUseFirst();
+        if (var != null && !var.isVisible()) {
+            String refForm = getReferenceForm(cfg, receiverNode, "");
+            String refName = refForm.substring(0, refForm.length() - 1);
+            
+            JReference v = new JSpecialVarReference(var.getASTNode(),
+                    refName, var.getType(), var.isPrimitiveType());
+            receiverNode.addUseVariable(v);
+            
+            getNames(refName)
+                .forEach(name -> aliasMap.get(name)
+                .forEach(alias -> {
+                    String aliasRefName = refName.replace(name, alias.getReferenceForm());
+                    JReference avar = new JSpecialVarReference(alias.getASTNode(),
+                            aliasRefName, alias.getType(), alias.isPrimitiveType());
+                    receiverNode.addUseVariable(avar);
+                }));
+        }
+    }
+    
+    private String getReferenceForm(CFG cfg, CFGReceiver receiverNode, String ref) {
+        CFGMethodCall callNode = getPredecentMethodCall(cfg, receiverNode);
+        if (callNode != null) {
+            CFGReceiver preceiverNode = callNode.getReceiver();
+            if (preceiverNode.getUseFirst() != null && preceiverNode.getUseFirst().isVisible()) {
+                return preceiverNode.getUseFirst().getReferenceForm() + "." + callNode.getSignature() + "." + ref;
+            } else {
+                return getReferenceForm(cfg, preceiverNode, callNode.getSignature() + "." + ref);
+            }
+        }
+        return ".";
+    }
+    
+    private CFGMethodCall getPredecentMethodCall(CFG cfg, CFGReceiver receiverNode) {
+        for (CFGNode node : cfg.getNodes()) {
+            if (node.isActualOut()) {
+                CFGParameter actualOutNode = (CFGParameter)node;
+                if (actualOutNode.getDefVariable().equals(receiverNode.getUseFirst())) {
+                    CFGMethodCall callNode = (CFGMethodCall)actualOutNode.getParent();
+                    if (!callNode.hasDefVariable()) {
+                        return callNode;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    
+    private List<String> getNames(String name) {
+        List<String> names = new ArrayList<>();
+        if (name.length() == 0) {
+            return names;
+        }
+        
+        int index = -1;
+        while (true) {
+            index = name.indexOf('.', index + 1);
+            if (index == -1) {
+                break;
+            }
+            names.add(name.substring(0, index));
+        }
+        return names;
+    }
+    
+    private Alias getAliasRelationForStatement(CFGNode node) {
         if (!node.isStatement()) {
             return null;
         }
@@ -86,7 +176,6 @@ class LocalAliasResolver {
         for (ControlFlow flow : node.getOutgoingFlows()) {
             CFGNode succ = flow.getDstNode();
             if (!track.contains(succ)) {
-                
                 walkForward(succ, alias.one, alias.another, track);
             }
         }
