@@ -33,7 +33,7 @@ public class CFGReceiver extends CFGStatement {
     }
     
     /**
-     * Sets the name of the receiver associated to this node.
+     * Sets the name of the receiver.
      * @param name the name to be set
      */
     public void setName(String name) {
@@ -46,6 +46,15 @@ public class CFGReceiver extends CFGStatement {
      */
     public String getName() {
         return name;
+    }
+    
+    /**
+     * Returns the type of the receiver.
+     * @return the receiver type
+     */
+    public String getType() {
+        JReference use = getUseFirst();
+        return use != null ? use.getType() : "";
     }
     
     /**

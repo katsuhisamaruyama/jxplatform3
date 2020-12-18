@@ -719,11 +719,8 @@ public class ExpressionVisitor extends ASTVisitor {
         boolean primitive = callNode.isPrimitiveType();
         JReference def = new JSpecialVarReference(callNode.getASTNode(),
                 "$" + String.valueOf(temporaryVariableId), type, primitive);
-        JReference use = new JSpecialVarReference(callNode.getASTNode(),
-                "$" + String.valueOf(temporaryVariableId), type, primitive);
         temporaryVariableId++;
         actualOutNodeForReturn.addDefVariable(def);
-        actualOutNodeForReturn.addUseVariable(use);
         
         insertBeforeCurrentNode(actualOutNodeForReturn);
         
