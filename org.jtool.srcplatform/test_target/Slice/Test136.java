@@ -7,22 +7,22 @@ class Test136 {
 
     public void m() {
         int a = 0;
-        s1.set2("A", "AAAA");
-        s2.set2("B", "BBBB");
+        s1.set("A", "AAAA");
+        s2.set("B", "BBBB");
         int b = a + 1;
-        String v1 = s1.get2("A");
-        String v2 = s2.get2("B");
+        String v1 = s1.get("A");
+        String v2 = s2.get("B");
     }
 }
 
 class S136 {
     private Map<String, String> map = new HashMap<>();
     
-    public void set2(String key, String value) {
+    public void set(String key, String value) {
         map.put(key, value);
     }
 
-    public String get2(String key) {
+    public String get(String key) {
         return map.get(key);
     }
 }

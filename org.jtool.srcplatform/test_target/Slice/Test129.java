@@ -10,7 +10,8 @@ class Test129 {
         s2.getP().set2("B", "BBBB");
         int b = a + 1;
         String v1 = s1.getP().get1("A");
-        String v2 = s2.getP().get2("B");
+        S129 s3 = s2;
+        String v2 = s3.getP().get2("B");
 
         T129 t = new T129();
         t.set1("C", "CCCC");
