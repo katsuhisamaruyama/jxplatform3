@@ -41,12 +41,12 @@ class ReceiverTypeResolver {
     
     void findReceiverTypes(CFG cfg) {
         if (bcStore.analyzingBytecode()) {
-            for (CFGMethodCall callnode : cfg.getMethodCallNodes()) {
-                findReceiverTypes(callnode.getMethodCall(), cfg, new HashSet<>());
+            for (CFGMethodCall callNode : cfg.getMethodCallNodes()) {
+                findReceiverTypes(callNode.getMethodCall(), cfg, new HashSet<>());
             }
         } else {
-            for (CFGMethodCall callnode : cfg.getMethodCallNodes()) {
-                findReceiverTypesWithoutBytecode(callnode.getMethodCall());
+            for (CFGMethodCall callNode : cfg.getMethodCallNodes()) {
+                findReceiverTypesWithoutBytecode(callNode.getMethodCall());
             }
         }
     }
@@ -308,14 +308,14 @@ class ReceiverTypeResolver {
     
     private void checkReturn(CFGStatement defnode, String signature, String upperType, Set<String> types) {
         CFGParameter actualOut = (CFGParameter)defnode;
-        CFGMethodCall callnode = (CFGMethodCall)actualOut.getParent();
-        if (callnode.isConstructorCall()) {
-            JClass clazz = getTargetClass(callnode.getReturnType(), signature);
+        CFGMethodCall callNode = (CFGMethodCall)actualOut.getParent();
+        if (callNode.isConstructorCall()) {
+            JClass clazz = getTargetClass(callNode.getReturnType(), signature);
             if (clazz != null) {
                 types.add(clazz.getClassName());
             }
         } else {
-            upperType = findUpperType(upperType, callnode.getReturnType());
+            upperType = findUpperType(upperType, callNode.getReturnType());
             types.addAll(getAllPosssibleDescendants(upperType, signature));
         }
     }
@@ -329,13 +329,13 @@ class ReceiverTypeResolver {
             CFG cfg = bcStore.getJavaProject().getCFGStore().getCFGWithoutResolvingMethodCalls(jm);
             if (cfg != null) {
                 for (CFGNode node : cfg.getMethodCallNodes()) {
-                    CFGMethodCall callnode = (CFGMethodCall)node;
-                    if (callnode.getSignature().equals(jmethod.getSignature()) && callnode.getActualIns().size() > 0) {
+                    CFGMethodCall callNode = (CFGMethodCall)node;
+                    if (callNode.getSignature().equals(jmethod.getSignature()) && callNode.getActualIns().size() > 0) {
                         
-                        findReceiverTypes(callnode.getMethodCall(), cfg, track);
-                        if (callnode.getApproximatedTypes().contains(jmethod.getDeclaringClass().getClassName())) {
-                            CFGParameter actualIn = callnode.getActualIn(formalIn.getIndex());
-                            if (callnode.getMethodCall().isVarargs() && actualIn == null) {
+                        findReceiverTypes(callNode.getMethodCall(), cfg, track);
+                        if (callNode.getApproximatedTypes().contains(jmethod.getDeclaringClass().getClassName())) {
+                            CFGParameter actualIn = callNode.getActualIn(formalIn.getIndex());
+                            if (callNode.getMethodCall().isVarargs() && actualIn == null) {
                                 continue;
                             }
                             if (actualIn.getUseVariables().size() > 0) {
