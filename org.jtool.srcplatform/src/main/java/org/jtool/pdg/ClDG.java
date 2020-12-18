@@ -88,10 +88,12 @@ public class ClDG extends CommonPDG {
      */
     @Override
     public Set<PDGNode> getNodes() {
-        return pdgs.values()
+        Set<PDGNode> nodes = pdgs.values()
                 .stream()
                 .flatMap(pdg -> pdg.getNodes().stream())
                 .collect(Collectors.toSet());
+        nodes.add(entry);
+        return nodes;
     }
     
     /**
@@ -100,10 +102,12 @@ public class ClDG extends CommonPDG {
      */
     @Override
     public Set<Dependence> getEdges() {
-        return pdgs.values()
+        Set<Dependence> edges = pdgs.values()
                 .stream()
                 .flatMap(pdg -> pdg.getEdges().stream())
                 .collect(Collectors.toSet());
+        edges.addAll(entry.getOutgoingDependeceEdges());
+        return edges;
     }
     
     /**

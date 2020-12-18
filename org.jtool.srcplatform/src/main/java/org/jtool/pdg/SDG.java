@@ -147,7 +147,7 @@ public class SDG extends CommonPDG {
      */
     @Override
     public Set<PDGNode> getNodes() {
-        return pdgs.values()
+        return cldgs.values()
                 .stream()
                 .flatMap(pdg -> pdg.getNodes().stream())
                 .collect(Collectors.toSet());
@@ -159,7 +159,7 @@ public class SDG extends CommonPDG {
      */
     @Override
     public Set<Dependence> getEdges() {
-        return pdgs.values()
+        return cldgs.values()
                 .stream()
                 .flatMap(pdg -> pdg.getEdges().stream())
                 .collect(Collectors.toSet());
