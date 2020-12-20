@@ -49,6 +49,8 @@ import org.eclipse.jdt.core.dom.EmptyStatement;
 import org.eclipse.jdt.core.dom.ForStatement;
 import org.eclipse.jdt.core.dom.IfStatement;
 import org.eclipse.jdt.core.dom.ReturnStatement;
+import org.eclipse.jdt.core.dom.SimpleName;
+import org.eclipse.jdt.core.dom.SimpleType;
 import org.eclipse.jdt.core.dom.SuperConstructorInvocation;
 import org.eclipse.jdt.core.dom.SuperMethodInvocation;
 import org.eclipse.jdt.core.dom.SwitchCase;
@@ -298,6 +300,9 @@ public class SliceExtractor extends ASTVisitor {
     
     @Override
     public boolean visit(ConditionalExpression node) {
+        
+        System.err.println("NODE = " + node);
+        
         if (removeWholeElement(node)) {
             return false;
         }
@@ -747,6 +752,26 @@ public class SliceExtractor extends ASTVisitor {
         return true;
     }
     
+    @SuppressWarnings("unchecked")
+    private void checkBreakStatement(Statement node) {
+        if (node instanceof Block) {
+            Block block = (Block)node;
+            for (Statement statement : (List<Statement>)block.statements()) {
+                if (statement instanceof BreakStatement) {
+                    checkBreakStatement((BreakStatement)statement);
+                }
+            }
+        } else if (node instanceof BreakStatement) {
+            checkBreakStatement((BreakStatement)node);
+        }
+    }
+    
+    private void checkBreakStatement(BreakStatement statement) {
+        if (statement instanceof BreakStatement && !sliceNodes.contains(statement)) {
+            sliceNodes.add(statement);
+        }
+    }
+    
     @Override
     public boolean visit(ContinueStatement node) {
         if (removeWholeElement(node.getParent())) {
@@ -755,10 +780,37 @@ public class SliceExtractor extends ASTVisitor {
         return true;
     }
     
+    @SuppressWarnings("unchecked")
+    private void checkContinueStatement(Statement node) {
+        if (node instanceof Block) {
+            Block block = (Block)node;
+            for (Statement statement : (List<Statement>)block.statements()) {
+                if (statement instanceof ContinueStatement) {
+                    checkContinueStatement((ContinueStatement)statement);
+                }
+            }
+        } else if (node instanceof ContinueStatement) {
+            checkContinueStatement((ContinueStatement)node);
+        }
+    }
+    
+    private void checkContinueStatement(ContinueStatement statement) {
+        if (statement instanceof ContinueStatement && !sliceNodes.contains(statement)) {
+            sliceNodes.add(statement);
+        }
+    }
+    
     @Override
     public boolean visit(DoStatement node) {
         if (removeWholeElement(node)) {
             return false;
+        }
+        
+        if (contains(node)) {
+            checkReturnStatement(node.getBody());
+            checkThrowStatement(node.getBody());
+            checkBreakStatement(node.getBody());
+            checkContinueStatement(node.getBody());
         }
         
         if (!containsAnyInSubTree(node.getBody())) {
@@ -774,6 +826,13 @@ public class SliceExtractor extends ASTVisitor {
     public boolean visit(EnhancedForStatement node) {
         if (removeWholeElement(node)) {
             return false;
+        }
+        
+        if (contains(node)) {
+            checkReturnStatement(node.getBody());
+            checkThrowStatement(node.getBody());
+            checkBreakStatement(node.getBody());
+            checkContinueStatement(node.getBody());
         }
         
         if (!containsAnyInSubTree(node.getBody())) {
@@ -800,6 +859,13 @@ public class SliceExtractor extends ASTVisitor {
             return false;
         }
         
+        if (contains(node)) {
+            checkReturnStatement(node.getBody());
+            checkThrowStatement(node.getBody());
+            checkBreakStatement(node.getBody());
+            checkContinueStatement(node.getBody());
+        }
+        
         if (!containsAnyInSubTree(node.getBody()) && node.updaters().size() == 0) {
             List<Expression> exprs = new ArrayList<>();
             exprs.addAll((List<Expression>)node.initializers());
@@ -824,9 +890,21 @@ public class SliceExtractor extends ASTVisitor {
     }
     
     @Override
+    
     public boolean visit(IfStatement node) {
         if (removeWholeElement(node)) {
             return false;
+        }
+        
+        if (contains(node)) {
+            checkReturnStatement(node.getThenStatement());
+            checkReturnStatement(node.getElseStatement());
+            checkThrowStatement(node.getThenStatement());
+            checkThrowStatement(node.getElseStatement());
+            checkBreakStatement(node.getThenStatement());
+            checkBreakStatement(node.getElseStatement());
+            checkContinueStatement(node.getThenStatement());
+            checkContinueStatement(node.getElseStatement());
         }
         
         if (!containsAnyInSubTree(node.getThenStatement()) && !containsAnyInSubTree(node.getElseStatement())) {
@@ -848,10 +926,23 @@ public class SliceExtractor extends ASTVisitor {
     }
     
     @Override
+    @SuppressWarnings("unchecked")
     public boolean visit(SwitchStatement node) {
         if (removeWholeElement(node)) {
             return false;
         }
+        
+        if (contains(node)) {
+            for (Statement statement : (List<Statement>)node.statements()) {
+                if (statement instanceof ReturnStatement) {
+                    checkReturnStatement((ReturnStatement)statement);
+                    checkThrowStatement((ThrowStatement)statement);
+                    checkBreakStatement((BreakStatement)statement);
+                    checkContinueStatement((ContinueStatement)statement);
+                }
+            }
+        }
+        
         return true;
     }
     
@@ -867,6 +958,13 @@ public class SliceExtractor extends ASTVisitor {
     public boolean visit(WhileStatement node) {
         if (removeWholeElement(node)) {
             return false;
+        }
+        
+        if (contains(node)) {
+            checkReturnStatement(node.getBody());
+            checkThrowStatement(node.getBody());
+            checkBreakStatement(node.getBody());
+            checkContinueStatement(node.getBody());
         }
         
         if (!containsAnyInSubTree(node.getBody())) {
@@ -905,7 +1003,7 @@ public class SliceExtractor extends ASTVisitor {
     
     @SuppressWarnings("unchecked")
     protected void pullUpMethodInvocationInReturn(ReturnStatement statement) {
-        Expression returnExpression = getReturnExpression(statement);
+        Expression returnExpression = getDummyReturnExpression(statement);
         
         Expression expr = statement.getExpression();
         if (!containsAnyInSubTree(expr)) {
@@ -943,7 +1041,7 @@ public class SliceExtractor extends ASTVisitor {
         }
     }
     
-    protected Expression getReturnExpression(ReturnStatement node) {
+    protected Expression getDummyReturnExpression(ReturnStatement node) {
         MethodDeclaration methodNode = getEnclosingMethod(node);
         if (methodNode == null) {
             return null;
@@ -973,6 +1071,29 @@ public class SliceExtractor extends ASTVisitor {
             newExpression = node.getAST().newNullLiteral();
         }
         return newExpression;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void checkReturnStatement(Statement node) {
+        if (node instanceof Block) {
+            Block block = (Block)node;
+            for (Statement statement : (List<Statement>)block.statements()) {
+                if (statement instanceof ReturnStatement) {
+                    checkReturnStatement((ReturnStatement)statement);
+                }
+            }
+        } else if (node instanceof ReturnStatement) {
+            checkReturnStatement((ReturnStatement)node);
+        }
+    }
+    
+    private void checkReturnStatement(ReturnStatement statement) {
+        if (statement instanceof ReturnStatement && !sliceNodes.contains(statement)) {
+            Expression returnExpression = getDummyReturnExpression(statement);
+            statement.setExpression(returnExpression);
+            
+            sliceNodes.add(statement);
+        }
     }
     
     @Override
@@ -1012,5 +1133,36 @@ public class SliceExtractor extends ASTVisitor {
             return false;
         }
         return true;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void checkThrowStatement(Statement node) {
+        if (node instanceof Block) {
+            Block block = (Block)node;
+            for (Statement statement : (List<Statement>)block.statements()) {
+                if (statement instanceof ThrowStatement) {
+                    checkThrowStatement((ThrowStatement)statement);
+                }
+            }
+        } else if (node instanceof ThrowStatement) {
+            checkThrowStatement((ThrowStatement)node);
+        }
+    }
+    
+    private void checkThrowStatement(ThrowStatement statement) {
+        if (statement instanceof ThrowStatement && !sliceNodes.contains(statement)) {
+            Expression throwExpression = getDummyThrowExpression(statement);
+            statement.setExpression(throwExpression);
+            
+            sliceNodes.add(statement);
+        }
+    }
+    
+    protected Expression getDummyThrowExpression(ThrowStatement statement) {
+        ClassInstanceCreation instanceCreation = statement.getAST().newClassInstanceCreation();
+        SimpleName name = statement.getAST().newSimpleName("Throwable");
+        SimpleType type = statement.getAST().newSimpleType(name);
+        instanceCreation.setType(type);
+        return instanceCreation;
     }
 }
