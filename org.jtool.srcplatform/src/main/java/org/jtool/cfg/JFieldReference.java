@@ -290,8 +290,7 @@ public class JFieldReference extends JReference {
      */
     @Override
     public int getStartPosition() {
-        int index = referenceForm.lastIndexOf('.');
-        return (index == -1) ? astNode.getStartPosition() : index + astNode.getStartPosition() - 1;
+        return nameNode.getStartPosition();
     }
     
     /**
