@@ -16,6 +16,7 @@ import org.jtool.pdg.PDGStatement;
 import org.jtool.pdg.SDG;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGNode;
+import org.jtool.cfg.CFGReceiver;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.CommonCFG;
 import org.jtool.cfg.JReference;
@@ -36,10 +37,13 @@ public class Slice {
     protected SliceCriterion criterion;
     
     private PDG pdgForTargetMethod;
+    private Set<PDGNode> nodesInSlice = new HashSet<>();
+    
     private Set<CFGNode> nodesInTargetMethod;
     private Set<CFGNode> reachableNodesToCriterion;
+    
     private Set<PDGNode> reachableMethodCalls = new HashSet<>();
-    private Set<PDGNode> nodesInSlice = new HashSet<>();
+    private Set<PDGNode> pendingNodes = new HashSet<>();
     
     public Slice(SliceCriterion criterion) {
         this.criterion = criterion;
@@ -89,44 +93,50 @@ public class Slice {
     
     private void extract(PDGNode node, JReference jv) {
         Set<PDGNode> startnodes = findStartNode(node, jv);
-        startnodes.forEach(n -> System.err.println("START = " + n));
         
         for (PDGNode start : startnodes) {
             traverseBackward(start);
         }
         
         if (node.getCFGNode().isActual()) {
-            for (CD edge : getIncomingNormalCD(node.getIncomingCDEdges())) {
-                for (CD edge2 : getIncomingNormalCD(edge.getSrcNode().getIncomingCDEdges())) {
-                    for (CD edge3 : getIncomingNormalCD(edge2.getSrcNode().getIncomingCDEdges())) {
-                        traverseBackward(edge3.getSrcNode());
+            for (CD edge : getIncomingNormalCD(node)) {
+                for (CD edge2 : getIncomingNormalCD(edge.getSrcNode())) {
+                    if (isConditional(edge2.getSrcNode())) {
+                        traverseBackward(edge2.getSrcNode());
                     }
                 }
             }
             
         } else if (node.getCFGNode().isMethodCall()) {
-            for (CD edge : getIncomingNormalCD(node.getIncomingCDEdges())) {
-                for (CD edge2 : getIncomingNormalCD(edge.getSrcNode().getIncomingCDEdges())) {
+            for (CD edge : getIncomingNormalCD(node)) {
+                for (CD edge2 : getIncomingNormalCD(edge.getSrcNode())) {
                     traverseBackward(edge2.getSrcNode());
                 }
             }
             
         } else {
-            for (CD edge : getIncomingNormalCD(node.getIncomingCDEdges())) {
+            for (CD edge : getIncomingNormalCD(node)) {
                 traverseBackward(edge.getSrcNode());
             }
         }
         
         for (PDGNode start : startnodes) {
-            for (CD edge : start.getIncomingCDEdges()) {
+            for (CD edge : getIncomingNormalCD(start)) {
                 traverseBackward(edge.getSrcNode());
             }
         }
     }
     
-    private List<CD> getIncomingNormalCD(Set<CD> edges) {
-        return edges.stream()
-                .filter(edge -> edge.isTrue() || edge.isFalse() || edge.isFallThrough())
+    private boolean isConditional(PDGNode node) {
+        return node.getCFGNode().getOutgoingFlows().stream()
+                .filter(edge -> edge.isTrue() || edge.isFalse())
+                .collect(Collectors.toList())
+                .size() > 1;
+    }
+    
+    private List<CD> getIncomingNormalCD(PDGNode node) {
+        return node.getIncomingCDEdges().stream()
+                .filter(edge -> edge.isTrue() || edge.isFalse())
                 .collect(Collectors.toList());
     }
     
@@ -171,71 +181,50 @@ public class Slice {
     
     private void traverseBackward(PDGNode node) {
         if (nodesInSlice.contains(node)) {
+            for (DD edge : node.getIncomingDDEdges()) {
+                PDGNode src = edge.getSrcNode();
+                if (src.getCFGNode().isMethodCall() &&
+                    reachableTo(src) &&
+                    checkFieldAccessForMethodCall(node, src, edge.getVariable())) {
+                    checkPendingNodes(src);
+                }
+            }
             return;
         }
         
-        node.getSrcNodes().forEach(src -> System.err.println("TRAVERSE = " + src + " -> " + node));
-        
         nodesInSlice.add(node);
         
-        if (node.getCFGNode().isActualOut()) {
+        if (node.getCFGNode().isMethodCall()) {
+            addReachableMethodCall(node);
+            
+        } else if (node.getCFGNode().isActualOut()) {
             PDGNode callNode = getDominantNode(node);
-            reachableMethodCalls.add(callNode);
+            addReachableMethodCall(callNode);
             
-        } /*else if (node.getCFGNode().isMethodCall()) {
-            
-            CFGMethodCall call = (CFGMethodCall)node.getCFGNode();
-            
-            System.err.println("CALL = " + call);
-            
-            if (!mayChangeState(call)) {
-                Set<JReference> receivers = traversableMethods.get(call.getQualifiedName());
-                if (receivers != null) {
-                    receivers.clear();
-                }
-            }
-            
-            System.err.println("CLEAR[");
-            printMethods();
-            System.err.println("]");
-        }
-        */
-        
-        else if (node.getCFGNode().isCatch()) {
+        } else if (node.getCFGNode().isCatch()) {
             for (Dependence edge : node.getIncomingDependeceEdges()) {
                 PDGNode src = edge.getSrcNode();
                 if (src.getCFGNode().isMethodCall()) {
-                    reachableMethodCalls.add(src);
+                    addReachableMethodCall(src);
                 }
             }
         }
-        
-        /*
-        for (Dependence edge : node.getIncomingDependeceEdges()) {
-            PDGNode src = edge.getSrcNode();
-            
-            if (edge.isFieldAccess() && src.getCFGNode().isMethodCall()) {
-                DD dd = (DD)edge;
-                CFGMethodCall callNode = (CFGMethodCall)src.getCFGNode();
-                if (!callNode.getMethodCall().getQualifiedName().equals(pdgForTargetMethod.getQualifiedName()) &&
-                    canTraverseMethodCall(src, dd.getVariable())) {
-                    callNodes.add(src);
-                }
-            }
-        }
-        */
         
         for (Dependence edge : Dependence.sortDependenceEdges(node.getIncomingDependeceEdges())) {
             PDGNode src = edge.getSrcNode();
             
-            if (edge.isCD()) {
+            if (edge.isCD() && !edge.isFallThrough()) {
                 traverseBackward(src);
                 
             } else if (edge.isLIDD() || edge.isLCDD()) {
                 if (src.getCFGNode().isMethodCall()) {
                     if (reachableTo(src)) {
-                        traverseBackward(src);
+                        DD dd = (DD)edge;
+                        if (dd.getVariable().isInProject()) {
+                            traverseBackward(src);
+                        }
                     }
+                    
                 } else {
                     traverseBackward(src);
                 }
@@ -251,8 +240,12 @@ public class Slice {
                 
             } else if (edge.isParameterIn()) {
                 PDGNode callNode = getDominantNode(src);
-                if (reachableTo(callNode) && checkTraversable(callNode)) {
-                    traverseBackward(src);
+                if (reachableTo(callNode)) {
+                    if (checkTraversable(callNode)) {
+                        traverseBackward(src);
+                    } else {
+                        pendingNodes.add(src);
+                    }
                 }
                 
             } else if (edge.isParameterOut()) {
@@ -266,33 +259,96 @@ public class Slice {
                 }
                 
             } else if (edge.isFieldAccess()) {
-                if (src.getCFGNode().isMethodCall()) {
-                    reachableMethodCalls.addAll(getReachableMethodCalls(src, (DD)edge));
-                    reachableMethodCalls.forEach(m -> System.err.println("M= " + m));
-                    if (reachableTo(src) && checkTraversable(src)) {
-                        traverseBackward(src);
-                    }
-                    
-                } else if (getDominantNode(src).getCFGNode().isFieldEntry()) {
+                DD dd = (DD)edge;
+                
+                if (getDominantNode(src).getCFGNode().isFieldEntry()) {
                     traverseBackward(src);
                     
+                } else if (src.getCFGNode().isMethodCall()) {
+                    addReachableMethodCalls(src, dd.getVariable());
+                    
+                    if (reachableTo(src)) {
+                        if (checkFieldAccessForMethodCall(node, src, dd.getVariable()) ||
+                            checkTraversable(src)) {
+                            traverseBackward(src);
+                        } else {
+                            pendingNodes.add(src);
+                        }
+                    }
+                    
                 } else {
-                    System.err.println("FACC = " + src + "->" + node);
-                    
-                    reachableMethodCalls.addAll(getReachableMethodCalls(src, (DD)edge));
-                    reachableMethodCalls.forEach(m -> System.err.println("M= " + m));
-                    
-                    System.err.println("CALLS = " + getMethodCalls(src).size());
+                    addReachableMethodCalls(src, dd.getVariable());
                     
                     for (PDGNode callNode : getMethodCalls(src)) {
                         if (reachableTo(callNode) && checkTraversable(callNode)) {
                             traverseBackward(src);
-                            break;
+                        } else {
+                            pendingNodes.add(src);
                         }
                     }
                 }
             }
         }
+    }
+    
+    private boolean checkFieldAccessForMethodCall(PDGNode node, PDGNode src, JReference jv) {
+        for (DD edge : src.getOutgoingDDEdges()) {
+            if (edge.isOutput() &&
+                jv.getQualifiedName().equals(edge.getVariable().getQualifiedName()) &&
+                reachableTo(getDominantNode(edge.getDstNode()))) {
+                return false;
+            }
+        }
+        
+        for (DD dd : node.getOutgoingDDEdges()) {
+            PDGNode dst = dd.getDstNode();
+            if (!dst.equals(node) && !dst.equals(src)) {
+                CFGStatement srcSt = (CFGStatement)src.getCFGNode();
+                CFGStatement nextSt = (CFGStatement)dst.getCFGNode();
+                for (JReference def: srcSt.getDefVariables()) {
+                    if (def.isInProject() && nextSt.getUseVariables().contains(def)) {
+                        if (nodesInSlice.contains(dst)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    private void addReachableMethodCalls(PDGNode node, JReference jv) {
+        for (PDGNode callNode : getReachableMethodCalls(node, jv)) {
+            addReachableMethodCall(callNode);
+        }
+    }
+    
+    private void addReachableMethodCall(PDGNode callNode) {
+        reachableMethodCalls.add(callNode);
+        checkPendingNodes(callNode);
+    }
+    
+    private void checkPendingNodes(PDGNode callNode) {
+        for (PDGNode pendingNode : new HashSet<PDGNode>(pendingNodes)) {
+            for (PDGNode node : getDominantCallNodes(pendingNode)) {
+                if (callNode.equals(node)) {
+                    pendingNodes.remove(pendingNode);
+                    traverseBackward(pendingNode);
+                }
+            }
+        }
+    }
+    
+    private Set<PDGNode> getDominantCallNodes(PDGNode node) {
+        Set<PDGNode> nodes = new HashSet<>();
+        if (node.getCFGNode().isReceiver()) {
+            nodes.add(getDominatedNode(node));
+        } else if (node.getCFGNode().isActual()) {
+            nodes.add(getDominantNode(node));
+        } else {
+            nodes.addAll(getMethodCalls(node));
+        }
+        return nodes;
     }
     
     private boolean reachableTo(PDGNode node) {
@@ -322,13 +378,19 @@ public class Slice {
         return null;
     }
     
-    private Set<PDGNode> getReachableMethodCalls(PDGNode node, DD dd) {
+    private PDGNode getDominatedNode(PDGNode node) {
+        for (CD edge : node.getOutgoingCDEdges()) {
+            if (edge.isTrue() || edge.isFalse()) {
+                return edge.getDstNode();
+            }
+        }
+        return null;
+    }
+    
+    private Set<PDGNode> getReachableMethodCalls(PDGNode node, JReference jv) {
         Set<PDGNode> nodes = new HashSet<>();
         for (PDGNode callNode : collectMethodCalls(node)) {
-            System.err.println("CHECK = " + callNode);
-            
-            if (reachableMethodCall(callNode, dd.getVariable())) {
-                System.err.println("REGISTER = " + callNode);
+            if (reachableMethodCall(callNode, jv)) {
                 nodes.add(callNode);
             }
         }
@@ -340,19 +402,22 @@ public class Slice {
             return false;
         }
         
-        PDGNode receiver = ((CFGMethodCall)callNode.getCFGNode()).getReceiver().getPDGNode();
-        System.err.println("RECEIVER= " + receiver);
-        for (DD edge : receiver.getOutgoingDDEdges()) {
-            
-            System.err.println("EDGE = " + edge);
-            
+        for (DD edge : callNode.getOutgoingDDEdges()) {
             if (edge.isOutput() &&
                 jv.getQualifiedName().equals(edge.getVariable().getQualifiedName()) &&
                 reachableTo(getDominantNode(edge.getDstNode()))) {
                 return false;
             }
         }
-        return true;
+        
+        CFGMethodCall call = (CFGMethodCall)callNode.getCFGNode();
+        CFGReceiver receiverNode = call.getReceiver();
+        if (receiverNode != null) {
+            if (nodesInSlice.contains(receiverNode.getPDGNode())) {
+                return true;
+            }
+        }
+        return false;
     }
     
     private Set<PDGNode> collectMethodCalls(PDGNode node) {
