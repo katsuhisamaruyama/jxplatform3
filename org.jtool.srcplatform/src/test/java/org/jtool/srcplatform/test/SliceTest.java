@@ -16,7 +16,6 @@ import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcplatform.modelbuilder.ModelBuilderBatch;
-
 import java.io.File;
 import java.util.Map;
 import java.util.HashMap;
@@ -25,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 import org.junit.Test;
-import org.junit.Ignore;
+//import org.junit.Ignore;
 
 /**
  * Tests a class that extracts a slice.
@@ -41,7 +40,7 @@ public class SliceTest {
     public static void build() {
         String dir = new File(".").getAbsoluteFile().getParent() + "/test_target/";
         String target = dir +  "Slice/";
-        builder = new ModelBuilderBatch(true, true);
+        builder = new ModelBuilderBatch(true);
         jproject = builder.build(target, target, target, target, target);
     }
     
@@ -58,7 +57,7 @@ public class SliceTest {
         Set<JavaClass> classes = builder.getAllClassesBackward(jclass);
         SDG sdg = builder.getSDG(classes);
         ClDG cldg = sdg.getClDG(jclass.getQualifiedName().fqn());
-        sdg.print();
+        //sdg.print();
         //cldg.getCFG().print();
         
         String code = jclass.getFile().getCode();
@@ -243,7 +242,7 @@ public class SliceTest {
     @Test
     public void testSlice103_2() {
         String code = getSlicedCode("Test103", 10, 12);
-        System.out.println(code);
+        //System.out.println(code);
         String expected = 
                 "class Test103 {\n" + 
                 "    private int a;\n" + 
@@ -303,7 +302,7 @@ public class SliceTest {
     @Test
     public void testSlice103_5() {
         String code = getSlicedCode("Test103", 15, 12);
-        System.out.println(code);
+        //System.out.println(code);
         String expected = 
                 "class Test103 {\n" + 
                 "    private int a;\n" + 
@@ -934,6 +933,7 @@ public class SliceTest {
         assertEquals(expected, code);
     }
     
+    @Test
     public void testSlice118_2() {
         String code = getSlicedCode("Test118", 5, 12);
         //System.out.println(code);
@@ -949,6 +949,7 @@ public class SliceTest {
         assertEquals(expected, code);
     }
     
+    @Test
     public void testSlice118_3() {
         String code = getSlicedCode("Test118", 6, 12);
         //System.out.println(code);
@@ -964,6 +965,7 @@ public class SliceTest {
         assertEquals(expected, code);
     }
     
+    @Test
     public void testSlice118_4() {
         String code = getSlicedCode("Test118", 7, 12);
         //System.out.println(code);
@@ -979,6 +981,7 @@ public class SliceTest {
         assertEquals(expected, code);
     }
     
+    @Test
     public void testSlice118_5() {
         String code = getSlicedCode("Test118", 8, 12);
         //System.out.println(code);
@@ -994,6 +997,7 @@ public class SliceTest {
         assertEquals(expected, code);
     }
     
+    @Test
     public void testSlice118_6() {
         String code = getSlicedCode("Test118", 9, 12);
         //System.out.println(code);
@@ -1009,6 +1013,7 @@ public class SliceTest {
         assertEquals(expected, code);
     }
     
+    @Test
     public void testSlice118_7() {
         String code = getSlicedCode("Test118", 10, 12);
         //System.out.println(code);
@@ -1024,6 +1029,7 @@ public class SliceTest {
         assertEquals(expected, code);
     }
     
+    @Test
     public void testSlice118_8() {
         String code = getSlicedCode("Test118", 11, 12);
         //System.out.println(code);
@@ -1073,7 +1079,7 @@ public class SliceTest {
     @Test
     public void testSlice119_2() {
         String code = getSlicedCode("Test119", 8, 16);
-        System.out.println(code);
+        //System.out.println(code);
         String expected = 
                 "class Test119 {\n" + 
                 "    public void m() {\n" + 
@@ -1144,7 +1150,7 @@ public class SliceTest {
     @Test
     public void testSlice119_7() {
         String code = getSlicedCode("Test119", 11, 18); 
-        //System.out.println(code);
+System.out.println(code);
         String expected = 
                 "class Test119 {\n" + 
                 "    public void m() {\n" + 
@@ -1158,7 +1164,7 @@ public class SliceTest {
     @Test
     public void testSlice119_8() {
         String code = getSlicedCode("Test119", 12, 12); 
-        System.out.println(code);
+        //System.out.println(code);
         String expected = 
                 "class Test119 {\n" + 
                 "    private int p;\n" + 
@@ -1625,7 +1631,7 @@ public class SliceTest {
     @Test
     public void testSlice126_1() {
         String code = getSlicedCode("Test126", 8, 13);
-        System.out.println(code);
+        //System.out.println(code);
         String expected = 
                 "class Test126 {\n" + 
                 "    public void m() {\n" + 
@@ -1641,7 +1647,7 @@ public class SliceTest {
     @Test
     public void testSlice126_2() {
         String code = getSlicedCode("Test126", 10, 12);
-        System.out.println(code);
+        //System.out.println(code);
         String expected = 
                 "class Test126 {\n" + 
                 "    public void m() {\n" + 
@@ -1659,7 +1665,7 @@ public class SliceTest {
     @Test
     public void testSlice126_3() {
         String code = getSlicedCode("Test126", 11, 12);
-        System.out.println(code);
+        //System.out.println(code);
         String expected = 
                 "class Test126 {\n" + 
                 "    public void m() {\n" + 
@@ -1726,7 +1732,7 @@ public class SliceTest {
         //System.out.println(code);
         String expected = 
                 "class Test129 {\n" + 
-                "    private S s1 = new S();\n" + 
+                "    private S129 s1 = new S129();\n" + 
                 "    public void m() {\n" + 
                 "        s1.getP().set1(\"A\", \"AAAA\");\n" + 
                 "        String v1 = s1.getP().get1(\"A\");\n" + 
@@ -1737,14 +1743,14 @@ public class SliceTest {
     
     @Test
     public void testSlice129_2() {
-        String code = getSlicedCode("Test129", 13, 15);
+        String code = getSlicedCode("Test129", 14, 15);
         //System.out.println(code);
         String expected = 
                 "class Test129 {\n" + 
-                "    private S s2 = new S();\n" + 
+                "    private S129 s2 = new S129();\n" + 
                 "    public void m() {\n" + 
-                "        s2.getP().set2(\"B\", \"BBBB\");\n" + 
-                "        String v2 = s2.getP().get2(\"B\");\n" + 
+                "        S129 s3 = s2;\n" + 
+                "        String v2 = s3.getP().get2(\"B\");\n" + 
                 "    }\n" + 
                 "}\n";
         assertEquals(expected, code);
@@ -1752,12 +1758,12 @@ public class SliceTest {
     
     @Test
     public void testSlice129_3() {
-        String code = getSlicedCode("Test129", 17, 15);
+        String code = getSlicedCode("Test129", 18, 15);
         //System.out.println(code);
         String expected = 
                 "class Test129 {\n" + 
                 "    public void m() {\n" + 
-                "        T t = new T();\n" + 
+                "        T129 t = new T129();\n" + 
                 "        t.set1(\"C\", \"CCCC\");\n" + 
                 "        String v3 = t.get1(\"C\");\n" + 
                 "    }\n" + 
@@ -1767,12 +1773,12 @@ public class SliceTest {
     
     @Test
     public void testSlice129_4() {
-        String code = getSlicedCode("Test129", 21, 15);
+        String code = getSlicedCode("Test129", 22, 15);
         //System.out.println(code);
         String expected = 
                 "class Test129 {\n" + 
                 "    public void m() {\n" + 
-                "        U u = new U();\n" + 
+                "        U129 u = new U129();\n" + 
                 "        u.set1(\"D\", \"DDDD\");\n" + 
                 "        String v4 = u.get1(\"D\");\n" + 
                 "    }\n" + 
@@ -1782,7 +1788,7 @@ public class SliceTest {
     
     @Test
     public void testSlice130_1() {
-        String code = getSlicedCode("Test130", 8, 16);
+        String code = getSlicedCode("Test130", 6, 16);
         //System.out.println(code);
         String expected = 
                 "class Test130 {\n" + 
@@ -1856,76 +1862,61 @@ public class SliceTest {
         assertEquals(expected, code);
     }
     
-    @Ignore
-    public void testCustomer1() {
-        String code = getSlicedCode("Customer", 22, 12);
+    @Test
+    public void testSlice135_1() {
+        String code = getSlicedCode("Test135", 12, 15);
         //System.out.println(code);
         String expected = 
-                "class Customer {\n" + 
-                "    private String name = \"\";\n" + 
-                "    public double discount = 0;\n" + 
-                "    public Customer(String name) {\n" + 
-                "        this.name = name;\n" + 
-                "    }\n" + 
-                "    public String statement(Order order) {\n" + 
-                "        if (order == null) {\n" + 
-                "            return \"No order\";\n" + 
-                "        }\n" + 
-                "        if (order.getSize() > 1 && discount < 0.2) {\n" + 
-                "            discount = discount * 2;\n" + 
-                "        }\n" + 
-                "        int amount = getAmount(order);\n" + 
-                "        return null;\n" + 
-                "    }\n" + 
-                "    public int getAmount(Order order) {\n" + 
-                "        int amount = 0;\n" + 
-                "        for (Rental rental : order.rentals) {\n" + 
-                "            amount += rental.getCharge(discount);\n" + 
-                "        }\n" + 
-                "        return amount;\n" + 
+                "class Test135 {\n" + 
+                "    private S135 s1 = new S135();\n" + 
+                "    public void m() {\n" + 
+                "        s1.set2(\"A\", \"AAAA\");\n" + 
+                "        String v1 = s1.get2(\"A\");\n" + 
                 "    }\n" + 
                 "}\n";
         assertEquals(expected, code);
     }
     
-    @Ignore
-    public void testCustomer2() {
-        String code = getSlicedCode("Customer", 27, 31);
+    @Test
+    public void testSlice135_2() {
+        String code = getSlicedCode("Test135", 13, 15);
         //System.out.println(code);
         String expected = 
-                "class Customer {\n" + 
-                "    public int getAmount(Order order) {\n" + 
-                "        return 0;\n" + 
+                "class Test135 {\n" + 
+                "    private S135 s2 = new S135();\n" + 
+                "    public void m() {\n" + 
+                "        s2.set2(\"B\", \"BBBB\");\n" + 
+                "        String v2 = s2.get2(\"B\");\n" + 
                 "    }\n" + 
                 "}\n";
         assertEquals(expected, code);
     }
     
-    @Ignore
-    public void testCustomer3() {
-        String code = getSlicedCode("Customer", 28, 12);
+    @Test
+    public void testSlice136_1() {
+        String code = getSlicedCode("Test136", 13, 15);
         //System.out.println(code);
         String expected = 
-                "class Customer {\n" + 
-                "    public int getAmount() {\n" + 
-                "        int amount = 0;\n" + 
-                "        return 0;\n" + 
+                "class Test136 {\n" + 
+                "    private S136 s1 = new S136();\n" + 
+                "    public void m() {\n" + 
+                "        s1.set(\"A\", \"AAAA\");\n" + 
+                "        String v1 = s1.get(\"A\");\n" + 
                 "    }\n" + 
                 "}\n";
         assertEquals(expected, code);
     }
     
-    @Ignore
-    public void testCustomer4() {
-        String code = getSlicedCode("Customer", 22, 31);
+    @Test
+    public void testSlice136_2() {
+        String code = getSlicedCode("Test136", 14, 15);
         //System.out.println(code);
         String expected = 
-                "class Customer {\n" + 
-                "    public String statement(Order order) {\n" + 
-                "        if (order == null) {\n" + 
-                "            return \"No order\";\n" + 
-                "        }\n" + 
-                "        return null;\n" + 
+                "class Test136 {\n" + 
+                "    private S136 s2 = new S136();\n" + 
+                "    public void m() {\n" + 
+                "        s2.set(\"B\", \"BBBB\");\n" + 
+                "        String v2 = s2.get(\"B\");\n" + 
                 "    }\n" + 
                 "}\n";
         assertEquals(expected, code);
@@ -1995,6 +1986,94 @@ public class SliceTest {
         assertEquals(expected, code);
     }
     
+    @Test
+    public void testCustomer1() {
+        String code = getSlicedCode("Customer", 22, 12);
+        //System.out.println(code);
+        String expected = 
+                "class Customer {\n" + 
+                "    public double discount = 0;\n" + 
+                "    public String statement(Order order) {\n" + 
+                "        if (order == null) {\n" + 
+                "            return null;\n" + 
+                "        }\n" + 
+                "        if (order.getSize() > 1 && discount < 0.2) {\n" + 
+                "            discount = discount * 2;\n" + 
+                "        }\n" + 
+                "        int amount = getAmount(order);\n" + 
+                "        return null;\n" + 
+                "    }\n" + 
+                "    public int getAmount(Order order) {\n" + 
+                "        int amount = 0;\n" + 
+                "        for (Rental rental : order.rentals) {\n" + 
+                "            amount += rental.getCharge(discount);\n" + 
+                "        }\n" + 
+                "        return amount;\n" + 
+                "    }\n" + 
+                "}\n";
+        assertEquals(expected, code);
+    }
+    
+    @Test
+    public void testCustomer2() {
+        String code = getSlicedCode("Customer", 27, 31);
+        //System.out.println(code);
+        String expected = 
+                "class Customer {\n" + 
+                "    public int getAmount(Order order) {\n" + 
+                "        return 0;\n" + 
+                "    }\n" + 
+                "}\n";
+        assertEquals(expected, code);
+    }
+    
+    @Test
+    public void testCustomer3() {
+        String code = getSlicedCode("Customer", 28, 12);
+        //System.out.println(code);
+        String expected = 
+                "class Customer {\n" + 
+                "    public int getAmount() {\n" + 
+                "        int amount = 0;\n" + 
+                "        return 0;\n" + 
+                "    }\n" + 
+                "}\n";
+        assertEquals(expected, code);
+    }
+    
+    @Test
+    public void testCustomer4() {
+        String code = getSlicedCode("Customer", 22, 31);
+        //System.out.println(code);
+        String expected = 
+                "class Customer {\n" + 
+                "    public String statement(Order order) {\n" + 
+                "        if (order == null) {\n" + 
+                "            return null;\n" + 
+                "        }\n" + 
+                "        return null;\n" + 
+                "    }\n" + 
+                "}\n";
+        assertEquals(expected, code);
+    }
+    
+    @Test
+    public void testCustomer5() {
+        String code = getSlicedCode("Customer", 24, 15);
+        //System.out.println(code);
+        String expected = 
+                "class Customer {\n" + 
+                "    private String name = \"\";\n" + 
+                "    public String statement(Order order) {\n" + 
+                "        if (order == null) {\n" + 
+                "            return null;\n" + 
+                "        }\n" + 
+                "        return null;\n" + 
+                "    }\n" + 
+                "}\n";
+        assertEquals(expected, code);
+    }
+    
     @SuppressWarnings("unused")
     public static void main(String[] args) {
         build();
@@ -2005,7 +2084,7 @@ public class SliceTest {
         tester.testSlice101_1m();
         tester.testSlice101_2();
         tester.testSlice101_3();
-        /*
+        
         tester.testSlice102_1();
         tester.testSlice102_2();
         tester.testSlice102_3();
@@ -2126,6 +2205,20 @@ public class SliceTest {
         
         tester.testSlice130_1();
         
+        tester.testSlice131_1();
+        
+        tester.testSlice132_1();
+        
+        tester.testSlice133_1();
+        
+        tester.testSlice134_1();
+        
+        tester.testSlice135_1();
+        tester.testSlice135_2();
+        
+        tester.testSlice136_1();
+        tester.testSlice136_2();
+        
         tester.testCustomer1();
         tester.testCustomer2();
         tester.testCustomer3();
@@ -2135,20 +2228,6 @@ public class SliceTest {
         tester.testTest200_2();
         tester.testTest200_3();
         */
-        
-        tester.testSlice129_1();
-        //tester.testSlice103_2();
-        
-        
-        
-        //tester.testSlice119_2();
-        
-        //tester.testSlice126_2();
-        //tester.testSlice132_1();
-        
-        //tester.testSlice133_1();
-        
-        //tester.testSlice134_1();
         
         unbuild();
     }
