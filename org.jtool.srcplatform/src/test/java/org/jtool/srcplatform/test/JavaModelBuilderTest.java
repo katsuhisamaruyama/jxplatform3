@@ -26,7 +26,7 @@ public class JavaModelBuilderTest {
     
     private final static String testDirInside = new File(".").getAbsoluteFile().getParent() + "/test_target/";
     
-    private final static String testDirOutside = "/Users/maru/Work/JxPlatformTestTarget/";
+    private final static String testDirOutside = "/Users/maru/Work/SrcPlatformTestTarget/";
     
     @Test
     public void testSimpleWithoutBytecodeAnalysis() {
