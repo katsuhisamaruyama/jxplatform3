@@ -49,10 +49,12 @@ class ReferenceResolver {
         }
         
         for (CFGStatement stnode : cfg.getReturnNodes()) {
-            String type = stnode.getDefVariables().get(0).getType();
-            for (JReference jv : new ArrayList<>(stnode.getUseVariables())) {
-                if (!jv.isPrimitiveType() && !type.equals("java.lang.String")) {
-                    findFieldsForReturn(stnode, jv, type);
+            if (stnode.getDefVariables().size() > 0) {
+                String type = stnode.getDefVariables().get(0).getType();
+                for (JReference jv : new ArrayList<>(stnode.getUseVariables())) {
+                    if (!jv.isPrimitiveType() && !type.equals("java.lang.String")) {
+                        findFieldsForReturn(stnode, jv, type);
+                    }
                 }
             }
         }
