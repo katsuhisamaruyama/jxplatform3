@@ -544,8 +544,12 @@ public class ExpressionVisitor extends ASTVisitor {
             return false;
         }
         
+        CFGReceiver receiverNode = new CFGReceiver(node, CFGNode.Kind.receiver);
+        receiverNode.setName("super");
+        
         JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.methodCall, jcall);
+        jcall.setReceiver(receiverNode);
         
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);
