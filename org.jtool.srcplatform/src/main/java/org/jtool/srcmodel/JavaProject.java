@@ -7,6 +7,7 @@ package org.jtool.srcmodel;
 
 import org.jtool.srcmodel.builder.ProjectStore;
 import org.jtool.srcplatform.project.ModelBuilderImpl;
+import org.jtool.srcplatform.modelbuilder.ModelBuilder;
 import org.jtool.cfg.builder.CFGStore;
 import org.jtool.pdg.builder.PDGStore;
 import java.util.Set;
@@ -121,6 +122,14 @@ public class JavaProject {
      */
     public ModelBuilderImpl getModelBuilderImpl() {
         return modelBuilderImpl;
+    }
+    
+    /**
+     * Return the model builder implementation that creates Java models in this project.
+     * @return the model builder
+     */
+    public ModelBuilder getModelBuilder() {
+        return modelBuilderImpl.getModelBuilder();
     }
     
     /**
