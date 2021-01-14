@@ -81,22 +81,20 @@ class LocalAliasResolver {
         JReference var = receiverNode.getUseFirst();
         if (var != null && !var.isVisible()) {
             String refForm = getReferenceForm(cfg, receiverNode, "");
-            
             String refName = refForm.substring(0, refForm.length() - 1);
-            if (refName.length() > 0) {
-                JReference v = new JSpecialVarReference(var.getASTNode(),
-                        refName, var.getType(), var.isPrimitiveType());
-                receiverNode.addUseVariable(v);
-                
-                getNames(refName)
-                    .forEach(name -> aliasMap.get(name)
-                    .forEach(alias -> {
-                        String aliasRefName = refName.replace(name, alias.getReferenceForm());
-                        JReference avar = new JSpecialVarReference(alias.getASTNode(),
-                                aliasRefName, alias.getType(), alias.isPrimitiveType());
-                        receiverNode.addUseVariable(avar);
-                    }));
-            }
+            
+            JReference v = new JSpecialVarReference(var.getASTNode(),
+                    refName, var.getType(), var.isPrimitiveType());
+            receiverNode.addUseVariable(v);
+            
+            getNames(refName)
+                .forEach(name -> aliasMap.get(name)
+                .forEach(alias -> {
+                    String aliasRefName = refName.replace(name, alias.getReferenceForm());
+                    JReference avar = new JSpecialVarReference(alias.getASTNode(),
+                            aliasRefName, alias.getType(), alias.isPrimitiveType());
+                    receiverNode.addUseVariable(avar);
+                }));
         }
     }
     
