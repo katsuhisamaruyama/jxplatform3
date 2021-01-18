@@ -146,11 +146,22 @@ class CFGMethodBuilder {
         
         ExceptionTypeCollector collector = new ExceptionTypeCollector(jmethod.getJavaProject());
         for (ITypeBinding tbinding : collector.getExceptions(jmethod)) {
-            CFGException exceptionNode = createExceptionNode(entry, cfg, tbinding);
-            nodes.add(exceptionNode);
+            if (!alreadyIncluded(nodes, tbinding)) {
+                CFGException exceptionNode = createExceptionNode(entry, cfg, tbinding);
+                nodes.add(exceptionNode);
+            }
         }
         
         return nodes;
+    }
+    
+    private static boolean alreadyIncluded(Set<CFGException> nodes, ITypeBinding tbinding) {
+        for (CFGException node : nodes) {
+            if (node.getTypeName().equals(tbinding.getQualifiedName())) {
+                return true;
+            }
+        }
+        return false;
     }
     
     private static CFGException createExceptionNode(CFGMethodEntry entry, CFG cfg, ITypeBinding tbinding) {
