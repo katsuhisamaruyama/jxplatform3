@@ -403,7 +403,7 @@ public class CommonCFG extends Graph<CFGNode, ControlFlow> {
      * @param track the collection of already traversed nodes
      */
     private void walkForward(CFGNode node, StopConditionOnReachablePath condition, boolean loopbackOk, Set<CFGNode> track) {
-        if (condition.isStop(node)) {
+        if (condition.isStop(node) || track.contains(node)) {
             return;
         }
         track.add(node);
@@ -426,7 +426,7 @@ public class CommonCFG extends Graph<CFGNode, ControlFlow> {
      * @param track the collection of already traversed nodes
      */
     private void walkBackward(CFGNode node, StopConditionOnReachablePath condition, boolean loopbackOk, Set<CFGNode> track) {
-        if (condition.isStop(node)) {
+        if (condition.isStop(node) || track.contains(node)) {
             return;
         }
         track.add(node);
