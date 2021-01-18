@@ -68,7 +68,7 @@ class GradleEnv extends ProjectEnv {
                 
                 Set<String> dependencies = project.getClasspath().stream()
                         .filter(elem -> elem.getSource() != null)
-                        .map(elem -> elem.getSource().getAbsolutePath()).collect(Collectors.toSet());
+                        .map(elem -> elem.getFile().getAbsolutePath()).collect(Collectors.toSet());
                 
                 final Path libpath = basePath.resolve("lib");
                 if (!libpath.toFile().exists()) {
