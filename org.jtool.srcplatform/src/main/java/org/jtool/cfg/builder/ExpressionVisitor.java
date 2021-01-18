@@ -508,10 +508,10 @@ public class ExpressionVisitor extends ASTVisitor {
         } else {
             receiverNode = new CFGReceiver(node, CFGNode.Kind.receiver);
         }
+        receiverNode.setName("this");
         
         insertBeforeCurrentNode(receiverNode);
         
-        receiverNode.setName("this");
         if (receiver != null) {
             CFGStatement tmpNode = curNode;
             curNode = receiverNode;
@@ -546,6 +546,8 @@ public class ExpressionVisitor extends ASTVisitor {
         
         CFGReceiver receiverNode = new CFGReceiver(node, CFGNode.Kind.receiver);
         receiverNode.setName("super");
+        
+        insertBeforeCurrentNode(receiverNode);
         
         JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.methodCall, jcall);
