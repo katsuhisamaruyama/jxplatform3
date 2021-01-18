@@ -21,7 +21,7 @@ public class CFGMerge extends CFGNode {
     
     /**
      * Creates a new object that represents a merge.
-     * @param the ASt node corresponding to this node
+     * @param node the ASt node corresponding to this node
      * @param branch the node for the branch that causes the merge
      */
     public CFGMerge(ASTNode node, CFGStatement branch) {

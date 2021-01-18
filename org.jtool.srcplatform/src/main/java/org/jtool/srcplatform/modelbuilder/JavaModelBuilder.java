@@ -67,7 +67,6 @@ public class JavaModelBuilder {
      * Builds a source code model for target projects.
      * @param name the name of the created model
      * @param target the directory storing the target projects
-     * @return the collection of created project data
      */
     public JavaModelBuilder(String name, String target) {
         this(name, target, target, target, target);

@@ -259,6 +259,7 @@ public abstract class ModelBuilder {
     
     /**
      * Obtains the PDG for a given CFG.
+     * @param jproject the project containing the target CFG
      * @param cfg the target CFG
      * @param force {@code true} if the PDG will be forcibly recreated,
      *        or {@code false} if a PDG stored in the repository will be reused
@@ -270,6 +271,7 @@ public abstract class ModelBuilder {
     
     /**
      * Obtains the PDG for a given CFG.
+     * @param jproject the project containing the target CFG
      * @param cfg the target CFG
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
@@ -359,6 +361,7 @@ public abstract class ModelBuilder {
     
     /**
      * Obtains the ClDG for a given CCFG.
+     * @param jproject the project containing the target CCFG
      * @param ccfg the target CCFG
      * @param force {@code true} if the ClDG will be forcibly recreated,
      *        or {@code false} if a ClDG stored in the repository will be reused
@@ -370,6 +373,7 @@ public abstract class ModelBuilder {
     
     /**
      * Obtains the ClDG for a given CCFG.
+     * @param jproject the project containing the target CCFG
      * @param ccfg the target CCFG
      * @return the created or found ClDG, or {@code null} if no ClDG is created or found
      */

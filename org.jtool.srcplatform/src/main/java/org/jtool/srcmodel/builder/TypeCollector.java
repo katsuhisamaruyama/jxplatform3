@@ -65,11 +65,11 @@ import org.eclipse.jdt.core.dom.ITypeBinding;
  * WildcardType:
  *   { Annotation } ? [ ( extends | super) Type ]
  * ParameterizedType:
- *   Type < Type { , Type } >
+ *   Type &lt; Type { , Type } &gt;
  * UnionType:
  *   Type | Type { | Type }
  * IntersectionType:
- *   Type & Type { & Type }
+ *   Type &amp; Type { &amp; Type }
  * 
  * @author Katsuhisa Maruyama
  */

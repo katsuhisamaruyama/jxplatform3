@@ -78,7 +78,7 @@ public class CFGMethodEntry extends CFGEntry {
     
     /**
      * Sets formal-in nodes to this method entry node.
-     * @param node the collection of the formal-in nodes to be set
+     * @param nodes the collection of the formal-in nodes to be set
      */
     public void setFormalIns(List<CFGParameter> nodes) {
         formalIns.addAll(nodes);
@@ -86,7 +86,7 @@ public class CFGMethodEntry extends CFGEntry {
     
     /**
      * Sets formal-out nodes to this method entry node.
-     * @param node the collection of the formal-out nodes to be set
+     * @param nodes the collection of the formal-out nodes to be set
      */
     public void setFormalOuts(List<CFGParameter> nodes) {
         formalOuts.addAll(nodes);

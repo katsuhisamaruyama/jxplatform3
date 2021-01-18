@@ -37,16 +37,16 @@ public class PDGEntry extends PDGNode {
     }
     
     /**
-     * Associates a PFG with this entry node
-     * @param cfg the CFG to be associated
+     * Associates a PDG with this entry node
+     * @param pdg the PDG to be associated
      */
     public void setPDG(CommonPDG pdg) {
         this.pdg = pdg;
     }
     
     /**
-     * Returns the PFG that has this entry node
-     * @return the PFG
+     * Returns the PDG that has this entry node
+     * @return the PDG
      */
     public CommonPDG getPDG() {
         return pdg;

@@ -38,7 +38,7 @@ public class CallGraph extends Graph<CFGNode, ControlFlow> {
     
     /**
      * Adds a control flow edge to this call graph.
-     * @param the control flow edge to be added
+     * @param flow the control flow edge to be added
      */
     @Override
     public void add(ControlFlow flow) {

@@ -159,7 +159,7 @@ public abstract class JReference {
     
     /**
      * Returns the reference name of the referenced element.
-     * @return
+     * @return the reference name
      */
     public String getReferenceForm() {
         return referenceForm;
@@ -176,7 +176,7 @@ public abstract class JReference {
     
     /**
      * Returns the type of the referenced element.
-     * @return
+     * @return the type name
      */
     public String getType() {
         return type;
@@ -315,7 +315,7 @@ public abstract class JReference {
     
     /**
      * Tests if a given reference is equal to this reference.
-     * @param node the reference to be checked
+     * @param jvar the reference to be checked
      * @return the {@code true} if the given reference is equal to this reference
      */
     public boolean equals(JReference jvar) {

@@ -478,7 +478,7 @@ public class CommonCFG extends Graph<CFGNode, ControlFlow> {
     
     /**
      * Tests if a given CFG is equal to this CFG.
-     * @param node the CFG to be checked
+     * @param cfg the CFG to be checked
      * @return the {@code true} if the given CFG is equal to this CFG
      */
     public boolean equals(CommonCFG cfg) {

@@ -155,7 +155,7 @@ public class JavaPackage {
     
     /**
      * Tests if a given package is equal to this package.
-     * @param jfile the package to be checked
+     * @param jpackage the package to be checked
      * @return the {@code true} if the given package is equal to this package
      */
     public boolean equals(JavaPackage jpackage) {

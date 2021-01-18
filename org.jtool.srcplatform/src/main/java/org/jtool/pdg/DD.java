@@ -80,7 +80,7 @@ public class DD extends Dependence {
     
     /**
      * Tests if this dependence edge is carried by a loop.
-     * {@code true} if the edge is a loop-carried dependence, otherwise {@code false}
+     * @return {@code true} if the edge is a loop-carried dependence, otherwise {@code false}
      */
     public boolean isLoopCarried() {
         return loopCarriedNode != null;
@@ -88,7 +88,7 @@ public class DD extends Dependence {
     
     /**
      * Tests if this dependence edge is independent to a loop.
-     * {@code true} if the edge is a loop-independent dependence, otherwise {@code false}
+     * @return {@code true} if the edge is a loop-independent dependence, otherwise {@code false}
      */
     public boolean isLoopIndependent() {
         return loopCarriedNode == null;

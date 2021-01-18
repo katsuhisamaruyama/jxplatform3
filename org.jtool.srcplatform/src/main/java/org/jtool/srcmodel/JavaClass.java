@@ -514,7 +514,7 @@ public class JavaClass extends JavaElement {
     
     /**
      * Obtains a method enclosed in this class, having a given name.
-     * @param name the name of the method to be retrieved
+     * @param sig the signature of the method to be retrieved
      * @return the found method, or {@code null} if a corresponding method is not found
      */
     public JavaMethod getMethod(String sig) {

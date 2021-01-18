@@ -123,9 +123,9 @@ public class QualifiedName {
     }
     
     /**
-     * Tests if a given fully-qualified is equal to this fully-qualified.
-     * @param jclass the fully-qualified to be checked
-     * @return the {@code true} if the given fully-qualified is equal to this fully-qualified
+     * Tests if a given fully-qualified name is equal to this fully-qualified name.
+     * @param qname the fully-qualified name to be checked
+     * @return {@code true} if the given fully-qualified is equal to this fully-qualified
      */
     public boolean equals(QualifiedName qname) {
         return qname != null && (this == qname || fqn().equals(qname.fqn()));

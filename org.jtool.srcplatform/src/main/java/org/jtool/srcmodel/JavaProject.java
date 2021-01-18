@@ -110,7 +110,7 @@ public class JavaProject {
     
     /**
      * Sets a model builder implementation that creates Java models in this project.
-     * @param modelBuilderImp the model builder implementation
+     * @param modelBuilderImpl the model builder implementation
      */
     public void setModelBuilderImpl(ModelBuilderImpl modelBuilderImpl) {
         this.modelBuilderImpl = modelBuilderImpl;
@@ -134,7 +134,7 @@ public class JavaProject {
     
     /**
      * Tests if this project is under the workspace managed by an Eclipse's plug-in.
-     * @return
+     * @return {@code true} if this project is under the workspace, otherwise {@code false}
      */
     public boolean isManagedByPlugin() {
         return modelBuilderImpl.isUnderPlugin();
@@ -210,7 +210,7 @@ public class JavaProject {
     /**
      * Removes a file from this project.
      * This method is not intended to be invoked by clients.
-     * @param jfile the file to be removed
+     * @param path the path of a file to be removed
      */
     public void removeFile(String path) {
         JavaFile jfile = fileStore.get(path);
@@ -527,11 +527,11 @@ public class JavaProject {
     
     /**
      * Sorts the list of source files.
-     * @param list the file list
+     * @param files the file list
      * @return the sorted file list
      */
-    protected static List<JavaFile> sortFiles(List<? extends JavaFile> co) {
-        List<JavaFile> jfiles = new ArrayList<>(co);
+    protected static List<JavaFile> sortFiles(List<? extends JavaFile> files) {
+        List<JavaFile> jfiles = new ArrayList<>(files);
         Collections.sort(jfiles, new Comparator<>() {
             public int compare(JavaFile jf1, JavaFile jf2) {
                 return jf1.getPath().compareTo(jf2.getPath());
@@ -542,11 +542,11 @@ public class JavaProject {
     
     /**
      * Sorts the list of packages.
-     * @param list the package list
+     * @param packages the package list
      * @return the sorted package list
      */
-    protected static List<JavaPackage> sortPackages(List<? extends JavaPackage> collection) {
-        return collection
+    protected static List<JavaPackage> sortPackages(List<? extends JavaPackage> packages) {
+        return packages
                 .stream()
                 .sorted((jp1, jp2) -> jp1.getName().compareTo(jp2.getName()))
                 .collect(Collectors.toList());

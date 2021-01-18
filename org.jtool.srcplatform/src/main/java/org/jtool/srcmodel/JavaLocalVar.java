@@ -127,7 +127,7 @@ public class JavaLocalVar extends JavaVariable {
     
     /**
      * Tests if a given local variable is equal to this local variable.
-     * @param jfield the local variable to be checked
+     * @param jlocal the local variable to be checked
      * @return the {@code true} if the given local variable is equal to this local variable
      */
     public boolean equals(JavaLocalVar jlocal) {

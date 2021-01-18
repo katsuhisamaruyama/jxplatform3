@@ -54,7 +54,7 @@ public class CFGException extends CFGStatement {
     
     /**
      * The parent node that this node directly dangles on.
-     * @param node the parent node to be set
+     * @param parent the parent node to be set
      */
     public void setParent(CFGNode parent) {
         this.parent = parent;

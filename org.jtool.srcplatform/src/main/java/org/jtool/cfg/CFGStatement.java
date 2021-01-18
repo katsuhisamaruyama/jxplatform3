@@ -73,7 +73,8 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Removes a variable from the collection of variables defined this node.
-     * @param jvs the collection of the variables to be removed
+     * @param jv the collection of the variables to be removed
+     * @return {@code true} if the removal is successfully done, otherwise {@code false}
      */
     public boolean removeDefVariable(JReference jv) {
         return defs.remove(jv);
@@ -81,7 +82,8 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Removes a variable from the collection of variables used this node.
-     * @param jvs the collection of the variables to be removed
+     * @param jv the collection of the variables to be removed
+     * @return {@code true} if the removal is successfully done, otherwise {@code false}
      */
     public boolean removeUseVariable(JReference jv) {
         return uses.remove(jv);
@@ -251,6 +253,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Obtains information on variables.
+     * @param jvars the set of variables
      * @return the string representing the information
      */
     protected String toStringForVariables(List<JReference> jvars) {

@@ -160,6 +160,7 @@ public class JavaMethod extends JavaElement {
     /**
      * Creates a new object representing a method.
      * @param node the AST node for this method for a lambda expression
+     * @param mbinding the binding information on this method
      * @param jclass the class that declares this method
      */
     @SuppressWarnings("unchecked")
@@ -583,7 +584,7 @@ public class JavaMethod extends JavaElement {
     
     /**
      * Tests if a given method is equal to this method.
-     * @param jfield the method to be checked
+     * @param jmethod the method to be checked
      * @return the {@code true} if the given method is equal to this method
      */
     public boolean equals(JavaMethod jmethod) {

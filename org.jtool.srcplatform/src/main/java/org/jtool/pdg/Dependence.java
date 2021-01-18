@@ -260,7 +260,7 @@ public class Dependence extends GraphEdge {
     
     /**
      * Tests if a given dependence edge is equal to this edge.
-     * @param edge the edge to be checked
+     * @param dependence the dependence edge to be checked
      * @return the {@code true} if the given edge is equal to this edge
      */
     public boolean equals(Dependence dependence) {

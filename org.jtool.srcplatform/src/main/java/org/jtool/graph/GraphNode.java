@@ -47,6 +47,7 @@ public abstract class GraphNode extends GraphElement {
     
     /**
      * Creates a new, empty object that represents a node.
+     * @param id the identification number this node independently has
      */
     protected GraphNode(long id) {
         this.id = id;

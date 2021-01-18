@@ -133,7 +133,7 @@ public class CommonPDG extends Graph<PDGNode, Dependence> {
     
     /**
      * Tests if a given PDG is equal to this PDG.
-     * @param edge the PDG to be checked
+     * @param pdg the PDG to be checked
      * @return the {@code true} if the given PDG is equal to this PDG
      */
     public boolean equals(CommonPDG pdg) {
@@ -157,7 +157,7 @@ public class CommonPDG extends Graph<PDGNode, Dependence> {
     
     /**
      * Obtains information on this graph.
-     * @return the string representing the information
+     * @return the string representing the information on this PDG
      */
     @Override
     public String toString() {
@@ -190,6 +190,7 @@ public class CommonPDG extends Graph<PDGNode, Dependence> {
     
     /**
      * Displays information on a graph to show control dependence edges.
+     * @return the string representing the information on control dependence
      */
     public String printCDG() {
         StringBuilder buf = new StringBuilder();
@@ -204,6 +205,7 @@ public class CommonPDG extends Graph<PDGNode, Dependence> {
     
     /**
      * Displays information on a graph to show data dependence edges.
+     * @return the string representing the information on data dependence
      */
     public String printDDG() {
         StringBuilder buf = new StringBuilder();

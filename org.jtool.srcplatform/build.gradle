@@ -76,3 +76,17 @@ task copyJar(type:Copy) {
     from 'build/libs'
     into 'releases'
 }
+
+task javadoc(type: Javadoc, overwrite: true) {
+    description = 'Generates API documents.'
+    source = sourceSets.main.allJava
+    //destinationDir = file("releases/javadoc")
+    include("**/org/jtool/srcmodel/*.java")
+    include("**/org/jtool/cfg/*.java")
+    include("**/org/jtool/pdg/*.java")
+    include("**/org/jtool/graph/*.java")
+    include("**/org/jtool/slice/*.java")
+    include("**/org/jtool/srcplatform/modelbuilder/*.java")
+    include("**/org/jtool/srcplatform/util/*.java")
+}
+

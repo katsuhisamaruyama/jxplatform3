@@ -35,6 +35,7 @@ public abstract class GraphElement {
     
     /**
      * Tests if two graph element sets are equal.
+     * @param <E> the type of graph elements
      * @param s1 the first set of graph elements
      * @param s2 the second set of graph elements
      * @return {@code true} if the two sets are equal, otherwise {@code false}
@@ -49,6 +50,7 @@ public abstract class GraphElement {
     
     /**
      * Obtains a difference set of two graph element sets.
+     * @param <E> the type of graph elements
      * @param s1 the first set of graph elements
      * @param s2 the second set of graph elements
      * @return the collection of graph elements that remain after removing the second one from the first one
@@ -62,6 +64,7 @@ public abstract class GraphElement {
     
     /**
      * Obtains a union set of two graph element sets.
+     * @param <E> the type of graph elements
      * @param s1 the first set of graph elements
      * @param s2 the second set of graph elements
      * @return the collection of graph elements that are contained in either the first one or the second one
@@ -75,6 +78,7 @@ public abstract class GraphElement {
     
     /**
      * Obtains an intersection set of two graph element sets.
+     * @param <E> the type of graph elements
      * @param s1 the first set of graph elements
      * @param s2 the second set of graph elements
      * @return the collection of graph elements that are contained in both the first one and the second one
@@ -99,6 +103,7 @@ public abstract class GraphElement {
     
     /**
      * Tests if one graph element set is the subset of or equals to the other set.
+     * @param <E> the type of graph elements
      * @param s1 the first set of graph elements
      * @param s2 the second set of graph elements
      * @return {@code true} if all graph elements of the first one are contained in the second one,
@@ -111,6 +116,7 @@ public abstract class GraphElement {
     
     /**
      * Tests if one graph element set is the subset of the other set.
+     * @param <E> the type of graph elements
      * @param s1 the first set of graph elements
      * @param s2 the second set of graph elements
      * @return {@code true} if all graph elements of the first one are contained in the second one

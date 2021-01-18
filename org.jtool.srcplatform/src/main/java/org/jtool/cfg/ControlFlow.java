@@ -210,7 +210,7 @@ public class ControlFlow extends GraphEdge {
     
     /**
      * Tests if a given control flow edge is equal to this edge.
-     * @param edge the edge to be checked
+     * @param flow the flow edge to be checked
      * @return the {@code true} if the given edge is equal to this edge
      */
     public boolean equals(ControlFlow flow) {

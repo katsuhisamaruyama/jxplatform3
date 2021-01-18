@@ -88,7 +88,7 @@ public class CFGClassEntry extends CFGEntry {
     
     /**
      * Adds a CCFG for an inner class to the class associated with this entry node.
-     * @param cfg the CCFG to be added 
+     * @param ccfg the CCFG to be added 
      */
     public void addClass(CCFG ccfg) {
         classes.add(ccfg);
