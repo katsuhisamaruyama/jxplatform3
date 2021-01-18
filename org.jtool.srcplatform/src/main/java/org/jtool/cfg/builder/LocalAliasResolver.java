@@ -81,16 +81,14 @@ class LocalAliasResolver {
         JReference var = receiverNode.getUseFirst();
         if (var != null && !var.isVisible()) {
             String refForm = getReferenceForm(cfg, receiverNode, "");
-            String refName = refForm.substring(0, refForm.length() - 1);
-            
             JReference v = new JSpecialVarReference(var.getASTNode(),
-                    refName, var.getType(), var.isPrimitiveType());
+                    refForm, var.getType(), var.isPrimitiveType());
             receiverNode.addUseVariable(v);
             
-            getNames(refName)
+            getNames(refForm)
                 .forEach(name -> aliasMap.get(name)
                 .forEach(alias -> {
-                    String aliasRefName = refName.replace(name, alias.getReferenceForm());
+                    String aliasRefName = refForm.replace(name, alias.getReferenceForm());
                     JReference avar = new JSpecialVarReference(alias.getASTNode(),
                             aliasRefName, alias.getType(), alias.isPrimitiveType());
                     receiverNode.addUseVariable(avar);
@@ -102,17 +100,19 @@ class LocalAliasResolver {
         CFGMethodCall predCallNode = getPredecentMethodCall(cfg, receiverNode);
         if (predCallNode != null) {
             CFGReceiver predReceiverNode = predCallNode.getReceiver();
-            
             if (predReceiverNode != null) {
-                JReference predVar = receiverNode.getUseFirst();
-                if (predVar != null && predVar.isVisible()) {
-                    return predVar.getReferenceForm() + "." + predCallNode.getSignature() + "." + ref;
-                } else {
-                    return getReferenceForm(cfg, predReceiverNode, predCallNode.getSignature() + "." + ref);
+                JReference predVar = predReceiverNode.getUseFirst();
+                if (predVar != null) {
+                    String preName = predVar.getReferenceForm() + "." + predCallNode.getSignature();
+                    if (predVar.isVisible()) {
+                        return preName;
+                    } else {
+                        return getReferenceForm(cfg, predReceiverNode, preName);
+                    }
                 }
             }
         }
-        return ".";
+        return "";
     }
     
     private CFGMethodCall getPredecentMethodCall(CFG cfg, CFGReceiver receiverNode) {
