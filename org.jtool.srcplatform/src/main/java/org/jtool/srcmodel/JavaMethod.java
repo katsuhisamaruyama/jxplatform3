@@ -274,6 +274,14 @@ public class JavaMethod extends JavaElement {
     
     /**
      * Returns the name of this method.
+     * @return the method name
+     */
+    public String getName() {
+        return getSignature().substring(0, getSignature().indexOf('(') - 1);
+    }
+    
+    /**
+     * Returns the name of this method.
      * @return the class name
      */
     public String getClassName() {
