@@ -6,6 +6,7 @@
 package org.jtool.srcmodel;
 
 import org.eclipse.jdt.core.dom.PackageDeclaration;
+import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.IPackageBinding;
 import java.util.Set;
 import java.util.HashSet;
@@ -18,6 +19,11 @@ import java.util.ArrayList;
  * @author Katsuhisa Maruyama
  */
 public class JavaPackage {
+    
+    /**
+     * The AST node corresponding to this model element.
+     */
+    private ASTNode astNode;
     
     /**
      * The file that declares this model element.
@@ -46,7 +52,8 @@ public class JavaPackage {
      * @param jfile the file that declares this package
      * @param name the name of this package
      */
-    private JavaPackage(JavaFile jfile, String name) {
+    private JavaPackage(PackageDeclaration node, JavaFile jfile, String name) {
+        this.astNode = node;
         this.jfile = jfile;
         this.name = name;
     }
@@ -82,9 +89,17 @@ public class JavaPackage {
             return jpackage;
         }
         
-        jpackage = new JavaPackage(jfile, name);
+        jpackage = new JavaPackage(node, jfile, name);
         jfile.getProject().addPackage(jpackage);
         return jpackage;
+    }
+    
+    /**
+     * Returns the AST node corresponding to this model element.
+     * @return the corresponding AST node
+     */
+    public ASTNode getASTNode() {
+        return astNode;
     }
     
     /**
