@@ -277,7 +277,7 @@ public class JavaMethod extends JavaElement {
      * @return the method name
      */
     public String getName() {
-        return getSignature().substring(0, getSignature().indexOf('(') - 1);
+        return getSignature().substring(0, getSignature().indexOf('('));
     }
     
     /**
