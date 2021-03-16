@@ -293,6 +293,14 @@ public class JavaClass extends JavaElement {
      * Returns the name of this class.
      * @return the class name
      */
+    public String getName() {
+        return qname.getClassName().substring(qname.getClassName().lastIndexOf('.') + 1);
+    }
+    
+    /**
+     * Returns the fully-qualified name of this class.
+     * @return the fully-qualified class name
+     */
     public String getClassName() {
         return qname.getClassName();
     }
