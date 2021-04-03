@@ -69,7 +69,7 @@ public class CFGParameter extends CFGStatement {
     
     /**
      * Returns the variable defined when a method is called.
-     * @return the defined ariable
+     * @return the defined variable
      */
     public JReference getDefVariable() {
         return getDefVariables().get(0);
