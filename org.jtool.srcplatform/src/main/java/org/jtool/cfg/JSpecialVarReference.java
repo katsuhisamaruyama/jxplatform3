@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2021
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -25,15 +25,7 @@ public class JSpecialVarReference extends JReference {
      * @param vbinding the variable binding information on the variable reference
      */
     public JSpecialVarReference(ASTNode node, String name, IVariableBinding vbinding) {
-        super(node);
-        
-        this.fqn = new QualifiedName("", name);
-        IVariableBinding binding = vbinding.getVariableDeclaration();
-        this.type = binding.getType().getQualifiedName();
-        this.isPrimitiveType = binding.getType().isPrimitive();
-        this.modifiers = binding.getModifiers();
-        
-        setProperties(node, name);
+        this(node, name, vbinding.getVariableDeclaration().getType());
     }
     
     /**
@@ -45,9 +37,9 @@ public class JSpecialVarReference extends JReference {
     public JSpecialVarReference(ASTNode node, String name, ITypeBinding tbinding) {
         super(node);
         
-        this.isPrimitiveType = false;
         ITypeBinding binding = tbinding.getTypeDeclaration();
         this.type = binding.getQualifiedName();
+        this.isPrimitiveType = binding.isPrimitive();
         this.modifiers = binding.getModifiers();
         
         setProperties(node, name);
@@ -98,6 +90,7 @@ public class JSpecialVarReference extends JReference {
         this.declaringClassName = enclosingClassName;
         this.declaringMethodName = enclosingMethodName;
         
+        this.name = name;
         this.fqn = new QualifiedName("", declaringMethodName + "!" + name);
         this.referenceForm = name;
         this.inProject = true;

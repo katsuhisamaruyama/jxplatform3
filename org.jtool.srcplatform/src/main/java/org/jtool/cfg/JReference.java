@@ -56,6 +56,11 @@ public abstract class JReference {
     protected QualifiedName fqn;
     
     /**
+     * The referenced name without its attributes.
+     */
+    protected String name;
+    
+    /**
      * The form of this reference, e.g., {@code a}, {@code x.b} or {@code y.m()}
      */
     protected String referenceForm;
@@ -134,11 +139,11 @@ public abstract class JReference {
     }
     
     /**
-     * Returns the name of the referenced element, which is equal to its signature.
+     * Returns the name of the referenced element without its attributes.
      * @return the name
      */
     public String getName() {
-        return getSignature();
+        return name;
     }
     
     /**

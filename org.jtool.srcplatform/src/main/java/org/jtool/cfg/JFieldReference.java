@@ -72,6 +72,7 @@ public class JFieldReference extends JReference {
         }
         this.declaringMethodName = "";
         
+        this.name = binding.getName();
         this.fqn = new QualifiedName(declaringClassName, binding.getName());
         this.referenceForm = fqn.fqn();
         this.type = binding.getType().getErasure().getQualifiedName();
@@ -135,7 +136,8 @@ public class JFieldReference extends JReference {
             this.inProject = false;
         }
         this.declaringMethodName = "";
-        this.fqn = new QualifiedName(declaringClassName, "class");
+        this.name = "class";
+        this.fqn = new QualifiedName(declaringClassName, name);
         this.referenceForm = fqn.fqn();
         
         this.isField = false;
@@ -166,6 +168,7 @@ public class JFieldReference extends JReference {
         this.declaringClassName = className;
         this.declaringMethodName = "";
         
+        this.name = name;
         this.fqn = new QualifiedName(declaringClassName, name);
         this.referenceForm = referenceForm;
         this.type = type;

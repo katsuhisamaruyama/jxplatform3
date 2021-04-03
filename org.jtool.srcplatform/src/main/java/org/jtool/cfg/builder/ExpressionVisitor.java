@@ -376,7 +376,7 @@ public class ExpressionVisitor extends ASTVisitor {
         for (JReference ref : new ArrayList<>(lambdaNode.getUseVariables())) {
             if (ref.isLocalAccess()) {
                 JLocalVarReference var = (JLocalVarReference)ref;
-                if (formals.contains(var.getSimpleName())) {
+                if (formals.contains(var.getName())) {
                     lambdaNode.getUseVariables().remove(ref);
                 }
             }
