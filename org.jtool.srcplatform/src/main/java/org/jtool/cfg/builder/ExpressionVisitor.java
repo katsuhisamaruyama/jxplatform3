@@ -641,12 +641,11 @@ public class ExpressionVisitor extends ASTVisitor {
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);
         
-        replaceInstanceName(node, callNode, receiverNode, TEMP_INSTANCE_NAME);
+        replaceInstanceName(node, callNode, TEMP_INSTANCE_NAME);
         return false;
     }
     
-    private void replaceInstanceName(ASTNode node, CFGMethodCall callNode, CFGReceiver receiverNode,
-            final String TEMP_INSTANCE_NAME) {
+    private void replaceInstanceName(ASTNode node, CFGMethodCall callNode, final String TEMP_INSTANCE_NAME) {
         String instanceName;
         if (node.getParent().equals(entryNode.getASTNode()) &&
            (entryNode.isLocalDeclaration() || entryNode.isFieldDeclaration())) {
@@ -657,12 +656,7 @@ public class ExpressionVisitor extends ASTVisitor {
             instanceName = callNode.getActualOutForReturn().getDefVariable().getName();
         }
         
-        for (JReference ref : receiverNode.getDefVariables()) {
-            if (ref.isFieldAccess()) {
-                JFieldReference fref = (JFieldReference)ref;
-                fref.changeReferenceForm(fref.getReferenceForm().replace(TEMP_INSTANCE_NAME, instanceName));
-            }
-        }
+        callNode.getReceiver().setName(instanceName);
     }
     
     private void setActualNodes(CFGMethodCall callNode, List<Expression> arguments) {
