@@ -120,8 +120,6 @@ class ReferenceResolver {
                 if (existExternalUseField && callNode.hasReceiver()) {
                     callNode.addUseVariables(callNode.getReceiver().getUseVariables());
                 }
-                
-                System.err.println("CALL1 = " + callNode.toString());
             }
         }
     }
