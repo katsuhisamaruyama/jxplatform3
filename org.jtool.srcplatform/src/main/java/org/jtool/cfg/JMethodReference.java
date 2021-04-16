@@ -103,6 +103,7 @@ public class JMethodReference extends JReference {
         this.declaringClassName = getQualifiedClassName(binding.getDeclaringClass().getTypeDeclaration().getErasure());
         this.declaringMethodName = "";
         
+        this.name = binding.getName();
         String signature = getSignature(binding);
         if (isConstructor) {
             if (binding.getName().length() > 0) {
@@ -351,19 +352,19 @@ public class JMethodReference extends JReference {
     }
     
     /**
-     * Sets the approximated types of receiver associated to this node.
-     * @param types the collection of the approximated types to be set
+     * Sets the approximated type names of receiver associated to this node.
+     * @param types the collection of the approximated type names to be set
      */
     public void setApproximatedTypes(Set<String> types) {
         approximatedTypes = types;
     }
     
     /**
-     * Returns the approximated types of receiver associated to this node.
+     * Returns the approximated type names of receiver associated to this node.
      * These types include classes declaring method that might be dynamically called.
      * In the case of a field access, the approximated types are not supported
-     * because no dynamic binding is performed.
-     * @return the collection of the approximated types
+     * because no dynamic binding is performed
+     * @return the collection of the approximated type names
      */
     public Set<String> getApproximatedTypes() {
         return approximatedTypes;
