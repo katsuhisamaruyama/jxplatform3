@@ -24,12 +24,22 @@ public class ModelBuilderBatch extends ModelBuilder {
     
     /**
      * Creates a batch-mode model builder.
+     * @param analyzingBytecode {@code true} if byte-code analysis is performed, otherwise {@code false}
+     * @param useBytecodeCache {@code true} if the byte-code cache is preferentially used, otherwise {@code false}
+     */
+    public ModelBuilderBatch(boolean analyzingBytecode, boolean useBytecodeCache) {
+        this.builderImpl = new ModelBuilderBatchImpl(this);
+        impl = builderImpl;
+        
+        impl.analyzeBytecode(analyzingBytecode);
+        impl.useProjectCache(useBytecodeCache);
+    }
+    
+    /**
+     * Creates a batch-mode model builder.
      */
     public ModelBuilderBatch() {
-        createImpl();
-        
-        impl.analyzeBytecode(false);
-        impl.useProjectCache(false);
+        this(false, false);
     }
     
     /**
@@ -37,30 +47,7 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @param analyzingBytecode {@code true} if byte-code analysis is performed, otherwise {@code false}
      */
     public ModelBuilderBatch(boolean analyzingBytecode) {
-        createImpl();
-        
-        impl.analyzeBytecode(analyzingBytecode);
-        impl.useProjectCache(false);
-    }
-    
-    /**
-     * Creates a batch-mode model builder.
-     * @param analyzingBytecode {@code true} if byte-code analysis is performed, otherwise {@code false}
-     * @param useBytecodeCache {@code true} if the byte-code cache is preferentially used, otherwise {@code false}
-     */
-    public ModelBuilderBatch(boolean analyzingBytecode, boolean useBytecodeCache) {
-        createImpl();
-        
-        impl.analyzeBytecode(analyzingBytecode);
-        impl.useProjectCache(useBytecodeCache);
-    }
-    
-    /**
-     * Creates the implementation of this model builder.
-     */
-    private void createImpl() {
-        this.builderImpl = new ModelBuilderBatchImpl(this);
-        super.impl= builderImpl;
+        this(analyzingBytecode, false);
     }
     
     /**
