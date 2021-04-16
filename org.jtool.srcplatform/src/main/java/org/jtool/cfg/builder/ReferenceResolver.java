@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2021
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -19,6 +19,8 @@ import org.jtool.srcplatform.bytecode.JMethod;
 import org.jtool.srcplatform.bytecode.JField;
 import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * Finds fields defined and/or used in invoked methods and accessed fields.
@@ -67,14 +69,17 @@ class ReferenceResolver {
         }
         
         String receiverName = "";
-        String receiverType = "";
         if (callNode.hasReceiver()) {
             receiverName = callNode.getReceiver().getName();
-            receiverType = callNode.getReceiver().getType();
         }
         
         for (String className : callNode.getApproximatedTypes()) {
-            JMethod method = bcStore.getJMethod(className, callNode.getSignature());
+            String sig = callNode.getSignature();
+            String name = className.lastIndexOf(".") == -1 ? className : className.substring(className.lastIndexOf(".") + 1);
+            if (callNode.isConstructorCall()) {
+                sig = sig.replaceFirst(callNode.getName(), name);
+            }
+            JMethod method = bcStore.getJMethod(className, sig);
             if (method != null) {
                 method.findDefUseFields();
                 
@@ -84,7 +89,7 @@ class ReferenceResolver {
                     
                     if (!method.isInProject() || method.isInProject() == inProject) {
                         JReference fvar = createFieldReference(callNode.getASTNode(),
-                                def, receiverName, receiverType, inProject);
+                                def, receiverName, callNode.getApproximatedTypes(), inProject);
                         callNode.addDefVariable(fvar);
                     }
                     
@@ -103,7 +108,7 @@ class ReferenceResolver {
                     
                     if (!method.isInProject() || method.isInProject() == inProject) {
                         JReference fvar = createFieldReference(callNode.getASTNode(),
-                                use, receiverName, receiverType, inProject);
+                                use, receiverName, callNode.getApproximatedTypes(), inProject);
                         callNode.addUseVariable(fvar);
                     }
                     
@@ -115,12 +120,17 @@ class ReferenceResolver {
                 if (existExternalUseField && callNode.hasReceiver()) {
                     callNode.addUseVariables(callNode.getReceiver().getUseVariables());
                 }
+                
+                System.err.println("CALL1 = " + callNode.toString());
             }
         }
     }
     
     private void findFieldsForAccessedField(CFGStatement stnode, JFieldReference jfacc) {
         String className = jfacc.getDeclaringClassName();
+        Set<String> receiverTypes = new HashSet<>();
+        receiverTypes.add(jfacc.getType());
+        
         JavaClass jclass = jproject.getClass(className);
         if (jclass != null && jclass.isInProject()) {
             
@@ -131,7 +141,7 @@ class ReferenceResolver {
                 for (DefUseField use : field.getUseFields()) {
                     boolean inProject = bcStore.findInternalClass(use.getClassName()) != null;
                     JReference fvar = createFieldReference(jfacc.getASTNode(),
-                            use, jfacc.getType(), jfacc.getReceiverName(), inProject);
+                            use, jfacc.getReceiverName(), receiverTypes, inProject);
                     stnode.addUseVariable(fvar);
                 }
             }
@@ -157,14 +167,16 @@ class ReferenceResolver {
     }
     
     private JReference createFieldReference(ASTNode node, DefUseField var,
-            String receiverName, String receiverType, boolean inProject) {
+            String receiverName, Set<String> receiverTypes, boolean inProject) {
         String referenceForm = var.getReferenceForm();
         if (inProject) {
             if (referenceForm.startsWith("this")) {
                 referenceForm = referenceForm.replace("this", receiverName);
             }
         } else {
-            referenceForm = referenceForm.replace(receiverType, receiverName);
+            for (String receiverType : receiverTypes) {
+                referenceForm = referenceForm.replace(receiverType, receiverName);
+            }
         }
         return new JFieldReference(node, var.getClassName(), var.getName(), referenceForm,
                 var.getType(), var.isPrimitive(), var.getModifier(), inProject, false);

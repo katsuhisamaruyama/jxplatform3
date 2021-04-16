@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.HashMap;
 
 class Test129 {
@@ -56,7 +57,7 @@ class U129 {
 }
 
 class P129 {
-    private HashMap<String, String> map = new HashMap<>();
+    private Map<String, String> map = new HashMap<>();
     private String value;
     private String key;
     

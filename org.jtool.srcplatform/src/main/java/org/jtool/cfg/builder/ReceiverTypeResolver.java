@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2021
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -25,6 +25,7 @@ import org.jtool.srcplatform.bytecode.JMethod;
 import org.jtool.srcplatform.util.Logger;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 /**
  * Searches the approximated types of a receiver for dynamic binding of method invocations.
@@ -186,12 +187,25 @@ class ReceiverTypeResolver {
         for (CFGNode cfgnode : cfg.getNodes()) {
             if (cfgnode.isFieldDeclaration()) {
                 CFGStatement fieldDecl = (CFGStatement)cfgnode;
-                for (JReference use : fieldDecl.getUseVariables()) {
-                    types.add(use.getType());
-                }
+                types.addAll(findLowestTypes(fieldDecl));
             }
         }
         
+        return types;
+    }
+    
+    private Set<String> findLowestTypes(CFGStatement fieldDecl) {
+        Set<JClass> classes = fieldDecl.getUseVariables().stream()
+                .map(use -> bcStore.getJClass(use.getType())).collect(Collectors.toSet());
+        Set<String> types = new HashSet<>();
+        for (JClass clazz : classes) {
+            Set<JClass> tmpClasses = new HashSet<>(classes);
+            tmpClasses.remove(clazz);
+            boolean exists = clazz.getDescendants().stream().anyMatch(c -> tmpClasses.contains(c));
+            if (!exists) {
+                types.add(clazz.getClassName());
+            }
+        }
         return types;
     }
     
@@ -266,8 +280,6 @@ class ReceiverTypeResolver {
         }
         return types;
     }
-    
-    
     
     private void collectReceiverTypes(CFGNode node, String signature, String upperType, JReference jv,
             CFG cfg, Set<CFGNode> track, Set<String> types) {

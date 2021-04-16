@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2021
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -46,7 +46,7 @@ class JMethodInternal extends JMethod {
     }
     
     private void collectDefUseFields() {
-        CFG cfg = bcStore.getJavaProject().getCFGStore().getCFGWithoutResolvingMethodCalls(jmethod);
+        CFG cfg = bcStore.getJavaProject().getCFGStore().getCFG(jmethod, false);
         if (cfg  == null) {
             return;
         }

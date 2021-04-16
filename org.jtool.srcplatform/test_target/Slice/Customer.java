@@ -31,6 +31,10 @@ class Customer {
         }
         return amount;
     }
+
+    public void setDiscount(double dis) {
+        this.discount = dis;
+    }
 }
 
 class Order {
