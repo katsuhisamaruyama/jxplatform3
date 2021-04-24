@@ -304,9 +304,9 @@ public class Slice {
             PDGNode dst = dd.getDstNode();
             if (!dst.equals(node) && !dst.equals(src)) {
                 CFGStatement srcSt = (CFGStatement)src.getCFGNode();
-                CFGStatement nextSt = (CFGStatement)dst.getCFGNode();
-                for (JReference def: srcSt.getDefVariables()) {
-                    if (def.isInProject() && nextSt.getUseVariables().contains(def)) {
+                CFGStatement dstSt = (CFGStatement)dst.getCFGNode();
+                for (JReference def : srcSt.getDefVariables()) {
+                    if (def.isInProject() && dstSt.getUseVariables().contains(def)) {
                         if (nodesInSlice.contains(dst)) {
                             return true;
                         }
