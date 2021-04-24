@@ -18,6 +18,7 @@ import org.jtool.srcplatform.bytecode.DefUseField;
 import org.jtool.srcplatform.bytecode.JMethod;
 import org.jtool.srcplatform.bytecode.JField;
 import org.eclipse.jdt.core.dom.ASTNode;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
@@ -99,7 +100,10 @@ class ReferenceResolver {
                 }
                 
                 if (existExternalDefField && callNode.hasReceiver()) {
-                    callNode.addDefVariables(callNode.getReceiver().getUseVariables());
+                    List<JReference> vars = callNode.getReceiver().getUseVariables();
+                    callNode.addDefVariables(vars);
+                    callNode.getActualOutForReturn().addDefVariables(vars);
+                    callNode.getActualOutForReturn().addUseVariables(vars);
                 }
                 
                 boolean existExternalUseField = false;

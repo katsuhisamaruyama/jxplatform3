@@ -38,7 +38,7 @@ class Customer {
 }
 
 class Order {
-    List<Rental>rentals = new ArrayList<Rental>();
+    List<Rental>rentals = new ArrayList<>();
 
     public void addRental(Rental rental) {
         rentals.add(rental);
