@@ -103,10 +103,10 @@ public class JMethodReference extends JReference {
         this.declaringClassName = getQualifiedClassName(binding.getDeclaringClass().getTypeDeclaration().getErasure());
         this.declaringMethodName = "";
         
-        this.name = binding.getName();
         String signature = getSignature(binding);
         if (isConstructor) {
             if (binding.getName().length() > 0) {
+                this.name = binding.getName();
                 signature = binding.getName() + "(" + getParameterString(binding) + ")";
             } else {
                 if (nameNode instanceof Type) {
@@ -115,11 +115,13 @@ public class JMethodReference extends JReference {
                 }
                 int index = declaringClassName.lastIndexOf(".");
                 String className = index != -1 ? declaringClassName.substring(index + 1) : declaringClassName;
+                this.name = className;
                 signature = className + "(" + getParameterString(binding) + ")";
             }
             
             this.type = declaringClassName;
         } else {
+            this.name = binding.getName();
             this.type = binding.getReturnType().getErasure().getQualifiedName();
         }
         

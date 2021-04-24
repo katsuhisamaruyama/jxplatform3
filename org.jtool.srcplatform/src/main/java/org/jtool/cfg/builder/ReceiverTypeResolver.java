@@ -203,7 +203,7 @@ class ReceiverTypeResolver {
     
     private Set<JClass> findLowestTypes(CFGStatement fieldDecl) {
         Set<JClass> classes = fieldDecl.getUseVariables().stream()
-                .map(use -> bcStore.getJClass(use.getType())).collect(Collectors.toSet());
+                .map(use -> bcStore.getJClass(use.getType())).filter(c -> c != null).collect(Collectors.toSet());
         Set<JClass> types = new HashSet<>();
         for (JClass clazz : classes) {
             Set<JClass> tmpClasses = new HashSet<>(classes);
