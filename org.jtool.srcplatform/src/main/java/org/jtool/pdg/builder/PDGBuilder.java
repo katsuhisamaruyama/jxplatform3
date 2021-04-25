@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2021
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -182,7 +182,7 @@ public class PDGBuilder {
             for (CFGNode node : cfg.getNodes()) {
                 if (node.isMethodCall()) {
                     CFGMethodCall callnode = (CFGMethodCall)node;
-                    for (String className : callnode.getApproximatedTypes()) {
+                    for (String className : callnode.getApproximatedTypeNames()) {
                         QualifiedName qname = new QualifiedName(className, callnode.getSignature());
                         PDG callee = sdg.getPDG(qname.fqn());
                         if (callee != null) {

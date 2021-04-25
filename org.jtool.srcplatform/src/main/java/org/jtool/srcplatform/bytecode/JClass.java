@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2021
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -39,6 +39,15 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
     
     public String getName() {
         return qname.getClassName();
+    }
+    
+    public String getSimpleName() {
+        String className = qname.getClassName();
+        int index = className.lastIndexOf(".");
+        String name = (index == -1) ? className : className.substring(index + 1);
+        String sepName = name.replaceAll("\\$\\d+", "-");
+        int index2 = sepName.lastIndexOf("-");
+        return (index2 == -1) ? sepName : sepName.substring(index2 + 1);
     }
     
     public List<JMethod> getMethods() {

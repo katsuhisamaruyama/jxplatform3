@@ -113,14 +113,16 @@ public class JavaModelBuilderTest {
         }
         
         ZonedDateTime startTime = TimeInfo.getCurrentTime();
+        
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
         builder.build(name, target);
-        ZonedDateTime endTime = TimeInfo.getCurrentTime();
-        builder.unbuild();
         
+        ZonedDateTime endTime = TimeInfo.getCurrentTime();
         System.out.println("** Execution time (" + name + ") = " +
                 ChronoUnit.MILLIS.between(startTime, endTime) +
                 " (" + TimeInfo.getFormatedTime(startTime) + " - " + TimeInfo.getFormatedTime(endTime) + ")");
+        
+        builder.unbuild();
     }
     
     public static void main(String[] args) {
@@ -129,11 +131,11 @@ public class JavaModelBuilderTest {
         /* The files are stored inside the workspace */
         tester.testSimpleWithoutBytecodeAnalysis();
         tester.testSimpleWithBytecodeAnalysis();
-        //tester.testDrawTool();
-        //tester.testLambda();
-        //tester.testJrb();
-        //tester.testTetris();
-        //tester.testCSClassroom();
+        tester.testDrawTool();
+        tester.testLambda();
+        tester.testJrb();
+        tester.testTetris();
+        tester.testCSClassroom();
         
         //print();
         
@@ -158,5 +160,7 @@ public class JavaModelBuilderTest {
         //tester.run("junit-4.13");                     // Maven/Eclipse
         //tester.run("mockito-3.3.13");                 // Gradle
         //tester.run("pmd-6.24.0");                     // Maven
+        //tester.run("WorldWindJava-2.2.0");            // Ant
+        //tester.run("guava-30.1/guava");               // Maven
     }
 }

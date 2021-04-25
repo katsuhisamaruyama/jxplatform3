@@ -1,10 +1,11 @@
 /*
- *  Copyright 2020
+ *  Copyright 2021
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.cfg;
 
+import org.jtool.srcplatform.bytecode.JClass;
 import org.jtool.srcmodel.QualifiedName;
 import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.List;
@@ -139,8 +140,16 @@ public class CFGMethodCall extends CFGStatement {
      * because no dynamic binding is performed.
      * @return the collection of the approximated types
      */
-    public Set<String> getApproximatedTypes() {
+    public Set<JClass> getApproximatedTypes() {
         return jmethodCall.getApproximatedTypes();
+    }
+    
+    /**
+     * Returns the approximated type names of receiver associated to this node.
+     * @return the collection of the approximated type names
+     */
+    public Set<String> getApproximatedTypeNames() {
+        return jmethodCall.getApproximatedTypeNames();
     }
     
     /**

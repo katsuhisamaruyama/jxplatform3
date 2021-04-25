@@ -15,6 +15,7 @@ import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcplatform.bytecode.BytecodeClassStore;
 import org.jtool.srcplatform.bytecode.DefUseField;
+import org.jtool.srcplatform.bytecode.JClass;
 import org.jtool.srcplatform.bytecode.JMethod;
 import org.jtool.srcplatform.bytecode.JField;
 import org.eclipse.jdt.core.dom.ASTNode;
@@ -74,13 +75,14 @@ class ReferenceResolver {
             receiverName = callNode.getReceiver().getName();
         }
         
-        for (String className : callNode.getApproximatedTypes()) {
+        for (JClass type : callNode.getApproximatedTypes()) {
             String sig = callNode.getSignature();
-            String name = className.lastIndexOf(".") == -1 ? className : className.substring(className.lastIndexOf(".") + 1);
+            
             if (callNode.isConstructorCall()) {
-                sig = sig.replaceFirst(callNode.getName(), name);
+                sig = type.getSimpleName() + sig.substring(sig.lastIndexOf('('));
             }
-            JMethod method = bcStore.getJMethod(className, sig);
+            
+            JMethod method = type.getMethod(sig);
             if (method != null) {
                 method.findDefUseFields();
                 
@@ -90,7 +92,7 @@ class ReferenceResolver {
                     
                     if (!method.isInProject() || method.isInProject() == inProject) {
                         JReference fvar = createFieldReference(callNode.getASTNode(),
-                                def, receiverName, callNode.getApproximatedTypes(), inProject);
+                                def, receiverName, callNode.getApproximatedTypeNames(), inProject);
                         callNode.addDefVariable(fvar);
                     }
                     
@@ -100,10 +102,10 @@ class ReferenceResolver {
                 }
                 
                 if (existExternalDefField && callNode.hasReceiver()) {
-                    List<JReference> vars = callNode.getReceiver().getUseVariables();
-                    callNode.addDefVariables(vars);
-                    callNode.getActualOutForReturn().addDefVariables(vars);
-                    callNode.getActualOutForReturn().addUseVariables(vars);
+                    List<JReference> fvars = callNode.getReceiver().getUseVariables();
+                    callNode.addDefVariables(fvars);
+                    callNode.getActualOutForReturn().addDefVariables(fvars);
+                    callNode.getActualOutForReturn().addUseVariables(fvars);
                 }
                 
                 boolean existExternalUseField = false;
@@ -112,7 +114,7 @@ class ReferenceResolver {
                     
                     if (!method.isInProject() || method.isInProject() == inProject) {
                         JReference fvar = createFieldReference(callNode.getASTNode(),
-                                use, receiverName, callNode.getApproximatedTypes(), inProject);
+                                use, receiverName, callNode.getApproximatedTypeNames(), inProject);
                         callNode.addUseVariable(fvar);
                     }
                     

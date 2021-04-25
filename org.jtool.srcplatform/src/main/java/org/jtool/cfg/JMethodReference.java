@@ -1,11 +1,12 @@
 /*
- *  Copyright 2020
+ *  Copyright 2021
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.cfg;
 
 import org.jtool.srcmodel.QualifiedName;
+import org.jtool.srcplatform.bytecode.JClass;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.SuperMethodInvocation;
 import org.eclipse.jdt.core.dom.SuperConstructorInvocation;
@@ -17,6 +18,7 @@ import org.eclipse.jdt.core.dom.Modifier;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * An class that represents reference to a method or a constructor.
@@ -78,7 +80,7 @@ public class JMethodReference extends JReference {
     /**
      * The collection of the approximated types of receiver associated to this node.
      */
-    private Set<String> approximatedTypes;
+    private Set<JClass> approximatedTypes;
     
     /**
      * Creates a new object that represents a reference to a method or a constructor.
@@ -114,7 +116,7 @@ public class JMethodReference extends JReference {
                     this.declaringClassName = getQualifiedClassName(instanceType.resolveBinding().getErasure());
                 }
                 int index = declaringClassName.lastIndexOf(".");
-                String className = index != -1 ? declaringClassName.substring(index + 1) : declaringClassName;
+                String className = (index == -1) ? declaringClassName : declaringClassName.substring(index + 1);
                 this.name = className;
                 signature = className + "(" + getParameterString(binding) + ")";
             }
@@ -354,22 +356,30 @@ public class JMethodReference extends JReference {
     }
     
     /**
-     * Sets the approximated type names of receiver associated to this node.
-     * @param types the collection of the approximated type names to be set
+     * Sets the approximated types of receiver associated to this node.
+     * @param types the collection of the approximated types to be set
      */
-    public void setApproximatedTypes(Set<String> types) {
+    public void setApproximatedTypes(Set<JClass> types) {
         approximatedTypes = types;
     }
     
     /**
-     * Returns the approximated type names of receiver associated to this node.
+     * Returns the approximated types of receiver associated to this node.
      * These types include classes declaring method that might be dynamically called.
      * In the case of a field access, the approximated types are not supported
      * because no dynamic binding is performed
+     * @return the collection of the approximated types
+     */
+    public Set<JClass> getApproximatedTypes() {
+        return approximatedTypes;
+    }
+    
+    /**
+     * Returns the approximated type names of receiver associated to this node.
      * @return the collection of the approximated type names
      */
-    public Set<String> getApproximatedTypes() {
-        return approximatedTypes;
+    public Set<String> getApproximatedTypeNames() {
+        return approximatedTypes.stream().map(c -> c.getClassName()).collect(Collectors.toSet());
     }
     
     /**
