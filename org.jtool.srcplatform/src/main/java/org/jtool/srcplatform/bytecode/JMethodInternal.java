@@ -32,16 +32,14 @@ class JMethodInternal extends JMethod {
     
     @Override
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        if (visitedMethods.contains(this) || count > maxNumberOfChain) {
+        if (visitedMethods.contains(this) || count >= maxNumberOfChain) {
             return;
         }
         
         visitedMethods.add(this);
         
         collectDefUseFields();
-        
         collectAccessedMethods();
-        
         collectDefUseFields(this, visitedMethods, visitedFields, count);
     }
     

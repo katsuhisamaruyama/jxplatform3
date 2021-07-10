@@ -33,16 +33,14 @@ class JFieldInternal extends JField {
     
     @Override
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        if (visitedFields.contains(this) || count > maxNumberOfChain) {
+        if (visitedFields.contains(this) || count >= maxNumberOfChain) {
             return;
         }
         
         visitedFields.add(this);
         
         collectDefUseFields();
-        
         collectAccessedMethods();
-        
         collectDefUseFields(this, visitedMethods, visitedFields, count);
     }
     

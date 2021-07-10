@@ -34,6 +34,12 @@ import java.util.stream.Collectors;
  */
 class ReceiverTypeResolver {
     
+    /**
+     * A flag that indicates whether descendants of the uppermost type
+     * are included when type is not clearly specified.
+     */
+    public static boolean includesDescendants = false;
+    
     private BytecodeClassStore bcStore;
     
     ReceiverTypeResolver(JavaProject jproject) {
@@ -54,7 +60,7 @@ class ReceiverTypeResolver {
     
     private void findReceiverTypes(JMethodReference jcall, CFG cfg, Set<CFGNode> track) {
         Set<JClass> types = new HashSet<>();
-        String upperType = jcall.getDeclaringClassName();
+        String uppermostType = jcall.getDeclaringClassName();
         
         if (jcall.hasReceiver()) {
             String stringLiteral = jcall.getReceiver().stringLiteral();
@@ -79,7 +85,7 @@ class ReceiverTypeResolver {
             
             String type = jcall.getReceiver().castType();
             if (type != null) {
-                upperType = type;
+                uppermostType = type;
             }
         }
         
@@ -157,12 +163,12 @@ class ReceiverTypeResolver {
                     jcall.setApproximatedTypes(types);
                     
                 } else {
-                    upperType = findUpperType(upperType, jv.getType());
-                    types.addAll(getAllPosssibleDescendants(upperType, jcall.getSignature()));
+                    uppermostType = findUppermostType(uppermostType, jv.getType());
+                    types.addAll(getAllPosssibleTypes(uppermostType, jcall.getSignature()));
                     jcall.setApproximatedTypes(types);
                 }
             } else {
-                collectReceiverTypes(jcall.getReceiver(), jcall.getSignature(), upperType, jv, cfg, track, types);
+                collectReceiverTypes(jcall.getReceiver(), jcall.getSignature(), uppermostType, jv, cfg, track, types);
                 jcall.setApproximatedTypes(types);
             }
         }
@@ -187,7 +193,7 @@ class ReceiverTypeResolver {
         for (CFGNode cfgnode : cfg.getNodes()) {
             if (cfgnode.isFieldDeclaration()) {
                 CFGStatement fieldDecl = (CFGStatement)cfgnode;
-                for (JClass type : findLowestTypes(fieldDecl)) {
+                for (JClass type : findLowermostTypes(fieldDecl)) {
                     types.add(type);
                     for (JClass ancestor : type.getAncestors()) {
                         if (ancestor.getFields().size() > 0) {
@@ -201,7 +207,7 @@ class ReceiverTypeResolver {
         return types;
     }
     
-    private Set<JClass> findLowestTypes(CFGStatement fieldDecl) {
+    private Set<JClass> findLowermostTypes(CFGStatement fieldDecl) {
         Set<JClass> classes = fieldDecl.getUseVariables().stream()
                 .map(use -> bcStore.getJClass(use.getType())).filter(c -> c != null).collect(Collectors.toSet());
         Set<JClass> types = new HashSet<>();
@@ -216,7 +222,7 @@ class ReceiverTypeResolver {
         return types;
     }
     
-    private String findUpperType(String upperType, String targetType) {
+    private String findUppermostType(String upperType, String targetType) {
         JClass clazz = bcStore.getJClass(upperType);
         if (clazz != null) {
             if (clazz.getClassName().equals(targetType)) {
@@ -272,7 +278,7 @@ class ReceiverTypeResolver {
         return null;
     }
     
-    private Set<JClass> getAllPosssibleDescendants(String className, String signature) {
+    private Set<JClass> getAllPosssibleTypes(String className, String signature) {
         Set<JClass> types = new HashSet<>();
         JClass clazz = getTargetClass(className, signature);
         if (clazz == null) {
@@ -280,9 +286,11 @@ class ReceiverTypeResolver {
         }
         types.add(clazz);
         
-        for (JClass jc : clazz.getDescendants()) {
-            if (jc.getMethod(signature) != null) {
-                types.add(jc);
+        if (includesDescendants) {
+            for (JClass jc : clazz.getDescendants()) {
+                if (jc.getMethod(signature) != null) {
+                    types.add(jc);
+                }
             }
         }
         return types;
@@ -334,8 +342,8 @@ class ReceiverTypeResolver {
                 types.add(clazz);
             }
         } else {
-            upperType = findUpperType(upperType, callNode.getReturnType());
-            types.addAll(getAllPosssibleDescendants(upperType, signature));
+            upperType = findUppermostType(upperType, callNode.getReturnType());
+            types.addAll(getAllPosssibleTypes(upperType, signature));
         }
     }
     
@@ -376,8 +384,8 @@ class ReceiverTypeResolver {
         if (defnode.getUseVariables().size() > 0) {
             JReference use = defnode.getUseVariables().get(defnode.getUseVariables().size() - 1);
             if (use.isFieldAccess()) {
-                upperType = findUpperType(upperType, jv.getType());
-                types.addAll(getAllPosssibleDescendants(upperType, signature));
+                upperType = findUppermostType(upperType, jv.getType());
+                types.addAll(getAllPosssibleTypes(upperType, signature));
             } else {
                 collectReceiverTypes(defnode, signature, upperType, use, cfg, track, types);
             }
