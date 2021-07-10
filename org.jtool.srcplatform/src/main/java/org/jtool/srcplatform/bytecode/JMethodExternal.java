@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2021
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -26,7 +26,7 @@ public class JMethodExternal extends JMethod {
     
     @Override
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        if (visitedMethods.contains(this) || count >= maxNumberOfChain) {
+        if (visitedMethods.contains(this) || count >= maxNumberOfChainForBytecode) {
             return;
         }
         

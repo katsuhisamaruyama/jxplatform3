@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2021
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -33,6 +33,7 @@ public abstract class ModelBuilderImpl {
     
     protected boolean analyzeBytecode = false;
     protected boolean useProjectCache = false;
+    protected int sourcecodeAnalysisChain = 2;
     protected int bytecodeAnalysisChain = 2;
     
     protected boolean verbose = true;
@@ -65,6 +66,14 @@ public abstract class ModelBuilderImpl {
     
     public boolean useProjectCache() {
         return useProjectCache;
+    }
+    
+    public void setSourcecodeAnalysisChain(int bytecodeAnalysisChain) {
+        this.sourcecodeAnalysisChain = bytecodeAnalysisChain;
+    }
+    
+    public int getSourcecodeAnalysisChain() {
+        return sourcecodeAnalysisChain;
     }
     
     public void setBytecodeAnalysisChain(int bytecodeAnalysisChain) {
