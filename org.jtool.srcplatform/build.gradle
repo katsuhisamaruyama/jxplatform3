@@ -73,6 +73,11 @@ shadowJar {
 }
 
 task copyJar(type:Copy) {
+    from 'build/docs'
+    into 'releases'
+}
+
+task copyJavadoc(type:Copy) {
     from 'build/libs'
     into 'releases'
 }
@@ -89,4 +94,3 @@ task javadoc(type: Javadoc, overwrite: true) {
     include("**/org/jtool/srcplatform/modelbuilder/*.java")
     include("**/org/jtool/srcplatform/util/*.java")
 }
-
