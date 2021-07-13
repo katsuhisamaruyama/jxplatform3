@@ -40,10 +40,6 @@ class CFGMethodBuilder {
     
     @SuppressWarnings("unchecked")
     static CFG build(JavaMethod jmethod, boolean toBeResolved) {
-        if (jmethod.getMethodBinding() == null) {
-            return null;
-        }
-        
         List<VariableDeclaration> params;
         if (!jmethod.isInitializer()) {
             if (jmethod.isLambda()) {
