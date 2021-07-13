@@ -67,7 +67,6 @@ class MavenEnv extends ProjectEnv {
             testSourceDirectory = basePath.resolve("src").resolve("test").resolve("java").toString();
         }
         
-        
         sourcePath.add(resolvePath(sourceDirectory));
         sourcePath.add(resolvePath(testSourceDirectory));
         
