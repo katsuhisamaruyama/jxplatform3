@@ -280,6 +280,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         Logger.getInstance().printMessage("Target = " + jproject.getPath() + " (" + jproject.getName() + ")");
         Logger.getInstance().printMessage("** Ready to parse " + size + " files");
         ASTParser parser = getParser();
+        
         parser.setEnvironment(jproject.getClassPath(), null, null, true);
         parser.createASTs(paths, encodings, new String[]{ }, requestor, null);
         pm.done();

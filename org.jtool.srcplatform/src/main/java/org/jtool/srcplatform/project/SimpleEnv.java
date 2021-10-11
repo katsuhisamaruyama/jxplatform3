@@ -20,6 +20,10 @@ class SimpleEnv extends ProjectEnv {
         sourcePath = new HashSet<String>();
         binaryPath = new HashSet<String>();
         classPath = new HashSet<String>();
+        
+        sourcePath.add(basePath.resolve("src").toString());
+        binaryPath.add(basePath.resolve("bin").toString());
+        classPath.add(basePath.resolve("lib").toString());
     }
     
     @Override
