@@ -48,7 +48,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.22.+'
+    implementation group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.26.+'
     implementation group: 'org.apache.maven.shared', name: 'maven-invoker', version: '2.1.+'
     //implementation group: 'org.apache.maven', name: 'maven-project', version: '2.2.+'
     implementation group: 'org.apache.maven', name: 'maven-model', version: '3.6.+'
