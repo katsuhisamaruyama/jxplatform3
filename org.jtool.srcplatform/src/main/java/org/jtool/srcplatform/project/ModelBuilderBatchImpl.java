@@ -100,7 +100,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     }
     
     private String getLibrarryPath(String path) {
-        return (path.endsWith(".jar")) ? path : path + File.separator + "*";
+        return path.endsWith(".jar") ? path : path + File.separator + "*";
     }
     
     public JavaProject build(String name, Path basePath, String classpath, String srcpath, String binpath) {
@@ -336,7 +336,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         
         File res = new File(path);
         if (res.isFile()) {
-            if (path.endsWith(".java")) {
+            if (path.endsWith(".java") && !path.endsWith(File.separator + "module-info.java")) {
                 files.add(res);
             }
         } else if (res.isDirectory()) {
