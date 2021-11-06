@@ -25,13 +25,13 @@ eclipse {
 }
 
 jar {
-    archiveBaseName = 'srcplatform'
+    archiveBaseName = 'jtoolplatform'
     classifier = ''
     archiveVersion = '1.0'
 }
 
 shadowJar {
-    archiveBaseName = 'srcplatform'
+    archiveBaseName = 'jtoolplatform'
     classifier = 'all'
     archiveVersion = '1.0'
 }
