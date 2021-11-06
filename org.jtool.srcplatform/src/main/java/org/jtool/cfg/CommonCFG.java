@@ -408,12 +408,26 @@ public class CommonCFG extends Graph<CFGNode, ControlFlow> {
         }
         track.add(node);
         
-        for (ControlFlow flow : node.getOutgoingFlows()) {
+        Set<ControlFlow> flows = node.getOutgoingFlows();
+        while (flows.size() == 1) {
+            ControlFlow flow = flows.iterator().next();
             if (loopbackOk || !flow.isLoopBack()) {
                 CFGNode succ = flow.getDstNode();
-                if (!track.contains(succ)) {
-                    walkForward(succ, condition, loopbackOk, track);
+                
+                if (condition.isStop(succ) || track.contains(succ)) {
+                    return;
                 }
+                track.add(succ);
+                flows = succ.getOutgoingFlows();
+            } else {
+                return;
+            }
+        }
+        
+        for (ControlFlow flow : flows) {
+            if (loopbackOk || !flow.isLoopBack()) {
+                CFGNode succ = flow.getDstNode();
+                walkForward(succ, condition, loopbackOk, track);
             }
         }
     }
@@ -431,19 +445,34 @@ public class CommonCFG extends Graph<CFGNode, ControlFlow> {
         }
         track.add(node);
         
-        for (ControlFlow flow : node.getIncomingFlows()) {
+        Set<ControlFlow> flows = node.getIncomingFlows();
+        while (flows.size() == 1) {
+            ControlFlow flow = flows.iterator().next();
             if (loopbackOk || !flow.isLoopBack()) {
                 CFGNode pred = flow.getSrcNode();
-                if (!track.contains(pred)) {
-                    walkBackward(pred, condition, loopbackOk, track);
+                
+                if (condition.isStop(pred) || track.contains(pred)) {
+                    return;
                 }
+                track.add(pred);
+                flows = pred.getIncomingFlows();
+            } else {
+                return;
+            }
+        }
+        
+        for (ControlFlow flow : flows) {
+            if (loopbackOk || !flow.isLoopBack()) {
+                CFGNode pred = flow.getSrcNode();
+                walkBackward(pred, condition, loopbackOk, track);
             }
         }
     }
     
     /**
      * Calculates post-dominant nodes for a given CFG.
-     * This is a naive implementation not Lengauer-Tarjan Dominator Tree Algorithm.
+     * This is a naive implementation.
+     * Use Lengauer-Tarjan Dominator Tree Algorithm to make the calculation efficient.
      * @param anchor the anchor node that might dominate other nodes
      * @return the collection of the dominated nodes
      */
