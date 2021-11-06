@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2021
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -14,6 +14,8 @@ import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.JReference;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 /**
@@ -25,26 +27,44 @@ import java.util.stream.Collectors;
 public class SummaryEdgeFinder {
     
     public static void find(PDG pdg) {
+        Map<PDGStatement, Set<PDGStatement>> nodeMap = new HashMap<>();
+        
         for (PDGNode pdgnode : pdg.getNodes()) {
             CFGNode cfgnode = pdgnode.getCFGNode();
             if (cfgnode.isMethodCall()) {
                 CFGMethodCall callNode = (CFGMethodCall)cfgnode;
                 Set<PDGStatement> ains = findActualIns(callNode);
                 PDGStatement aoutForReturn = (PDGStatement)callNode.getActualOutForReturn().getPDGNode();
+                PDGStatement formalOutForReturn = getFormalOutForReturn(aoutForReturn);
                 
-                Set<PDGStatement> nodes = new HashSet<>();
-                traverseBackward(nodes, aoutForReturn, ains);
-                
-                for (PDGStatement ain : ains) {
-                    if (nodes.contains(ain)) {
-                        JReference jvar = ain.getDefVariables().get(0);
-                        DD edge = new DD(ain, aoutForReturn, jvar);
-                        edge.setSummary();
-                        pdg.add(edge);
+                if (formalOutForReturn != null) {
+                    Set<PDGStatement> nodes = nodeMap.get(formalOutForReturn);
+                    if (nodes == null) {
+                        nodes = new HashSet<>();
+                        traverseBackward(formalOutForReturn, ains, nodes);
+                        nodeMap.put(formalOutForReturn, nodes);
+                    }
+                    
+                    for (PDGStatement ain : ains) {
+                        if (nodes.contains(ain)) {
+                            JReference jvar = ain.getDefVariables().get(0);
+                            DD edge = new DD(ain, aoutForReturn, jvar);
+                            edge.setSummary();
+                            pdg.add(edge);
+                        }
                     }
                 }
             }
         }
+    }
+    
+    private static PDGStatement getFormalOutForReturn(PDGStatement aoutForReturn) {
+        for (DD dd : aoutForReturn.getIncomingDDEdges()) {
+            if (dd.isParameterOut()) {
+                return (PDGStatement)dd.getSrcNode();
+            }
+        }
+        return null;
     }
     
     private static Set<PDGStatement> findActualIns(CFGMethodCall callNode) {
@@ -53,16 +73,35 @@ public class SummaryEdgeFinder {
                        .collect(Collectors.toSet());
     }
     
-    private static void traverseBackward(Set<PDGStatement> nodes, PDGStatement anchor, Set<PDGStatement> ains) {
-        nodes.add(anchor);
-        anchor.getIncomingDDEdges().stream()
-              .map(edge -> (PDGStatement)edge.getSrcNode())
-              .forEach(node -> {
-                  if (ains.contains(node)) {
-                      nodes.add(node);
-                  } else if (!nodes.contains(node)) {
-                      traverseBackward(nodes, node, ains);
-                  }
-              });
+    private static void traverseBackward(PDGStatement node, Set<PDGStatement> ains, Set<PDGStatement> nodes) {
+        if (nodes.contains(node)) {
+            return;
+        }
+        nodes.add(node);
+        
+        if (ains.contains(node)) {
+            return;
+        }
+        
+        Set<DD> edges = node.getIncomingDDEdges();
+        while (edges.size() == 1) {
+            DD dd = edges.iterator().next();
+            PDGStatement pred = (PDGStatement)dd.getSrcNode();
+            
+            if (nodes.contains(pred)) {
+                return;
+            }
+            nodes.add(pred);
+            
+            if (ains.contains(pred)) {
+                return;
+            }
+            edges = pred.getIncomingDDEdges();
+        }
+        
+        for (DD dd : edges) {
+            PDGStatement pred = (PDGStatement)dd.getSrcNode();
+            traverseBackward(pred, ains, nodes);
+        }
     }
 }
