@@ -13,6 +13,7 @@ import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.JReference;
 import java.util.Set;
+import java.util.Stack;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
@@ -73,35 +74,27 @@ public class SummaryEdgeFinder {
                        .collect(Collectors.toSet());
     }
     
-    private static void traverseBackward(PDGStatement node, Set<PDGStatement> ains, Set<PDGStatement> nodes) {
-        if (nodes.contains(node)) {
-            return;
-        }
-        nodes.add(node);
+    private static void traverseBackward(PDGStatement startnode, Set<PDGStatement> ains, Set<PDGStatement> nodes) {
+        Stack<PDGStatement> nodeStack = new Stack<>();
+        nodeStack.push(startnode);
         
-        if (ains.contains(node)) {
-            return;
-        }
-        
-        Set<DD> edges = node.getIncomingDDEdges();
-        while (edges.size() == 1) {
-            DD dd = edges.iterator().next();
-            PDGStatement pred = (PDGStatement)dd.getSrcNode();
+        while (!nodeStack.isEmpty()) {
+            PDGStatement node = nodeStack.pop();
             
-            if (nodes.contains(pred)) {
-                return;
+            if (nodes.contains(node)) {
+                continue;
             }
-            nodes.add(pred);
+            nodes.add(node);
             
-            if (ains.contains(pred)) {
-                return;
-            }
-            edges = pred.getIncomingDDEdges();
-        }
-        
-        for (DD dd : edges) {
-            PDGStatement pred = (PDGStatement)dd.getSrcNode();
-            traverseBackward(pred, ains, nodes);
+            node.getIncomingDDEdges().stream()
+                .map(edge -> (PDGStatement)edge.getSrcNode())
+                .forEach(pred -> {
+                    if (ains.contains(pred)) {
+                        nodes.add(pred);
+                    } else if (!nodes.contains(node)) {
+                        nodeStack.push(pred);
+                    }
+                });
         }
     }
 }

@@ -18,6 +18,7 @@ import org.jtool.cfg.JReference;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.Stack;
 import java.util.HashSet;
 
 /**
@@ -40,7 +41,7 @@ public class DDFinder {
                 CFGStatement anchor = (CFGStatement)cfgnode;
                 
                 Set<CFGNode> reachableNodes = new HashSet<>();
-                findReachableNodes(cfg, anchor, anchor, reachableNodes);
+                findReachableNodes(cfg, anchor, reachableNodes);
                 reachableNodes.remove(anchor);
                 
                 for (JReference jvar : anchor.getDefVariables()) {
@@ -52,33 +53,22 @@ public class DDFinder {
         }
     }
     
-    private static void findReachableNodes(CFG cfg, CFGNode anchor, CFGNode node, Set<CFGNode> nodes) {
-        if (nodes.contains(node)) {
-            return;
-        }
-        nodes.add(node);
+    private static void findReachableNodes(CFG cfg, CFGNode startnode, Set<CFGNode> track) {
+        Stack<CFGNode> nodeStack = new Stack<>();
+        nodeStack.push(startnode);
         
-        Set<ControlFlow> flows = node.getOutgoingFlows();
-        while (flows.size() == 1) {
-            ControlFlow flow = flows.iterator().next();
-            if (!flow.isFallThrough()) {
-                CFGNode succ = flow.getDstNode();
-                
-                if (nodes.contains(succ)) {
-                    return;
-                }
-                nodes.add(succ);
-                flows = succ.getOutgoingFlows();
-            } else {
-                return;
+        while (!nodeStack.isEmpty()) {
+            CFGNode node = nodeStack.pop();
+            
+            if (track.contains(node)) {
+                continue;
             }
-        }
-        
-        for (ControlFlow flow : flows) {
-            if (!flow.isFallThrough()) {
-                CFGNode succ = flow.getDstNode();
-                findReachableNodes(cfg, anchor, succ, nodes);
-            }
+            track.add(node);
+            
+            node.getOutgoingFlows().stream()
+                .filter(flow -> !flow.isFallThrough())
+                .map(flow -> flow.getDstNode())
+                .forEach(succ -> nodeStack.push(succ));
         }
     }
     
@@ -104,80 +94,61 @@ public class DDFinder {
         }
     }
     
-    private static void findDD(PDG pdg, CFG cfg, CFGNode anchor, CFGNode node, JReference jvar, Set<CFGNode> track) {
-        track.add(node);
-        if (findUseDefNode(pdg, cfg, anchor, node, jvar, track)) {
-            return;
-        }
+    private static void findDD(PDG pdg, CFG cfg, CFGNode anchor, CFGNode startnode, JReference jvar, Set<CFGNode> track) {
+        Stack<CFGNode> nodeStack = new Stack<>();
+        nodeStack.push(startnode);
         
-        Set<ControlFlow> flows = node.getOutgoingFlows();
-        while (flows.size() == 1) {
-            ControlFlow flow = flows.iterator().next();
-            if (!flow.isFallThrough()) {
-                CFGNode succ = flow.getDstNode();
-                
-                if (track.contains(succ)) {
-                    return;
-                }
-                track.add(succ);
-                if (findUseDefNode(pdg, cfg, anchor, succ, jvar, track)) {
-                    return;
-                }
-                flows = succ.getOutgoingFlows();
-            } else {
-                return;
+        while (!nodeStack.isEmpty()) {
+            CFGNode node = nodeStack.pop();
+            
+            if (track.contains(node)) {
+                continue;
             }
-        }
-        
-        for (ControlFlow flow : flows) {
-            if (!flow.isFallThrough()) {
-                CFGNode succ = flow.getDstNode();
-                if (!track.contains(succ)) {
-                    findDD(pdg, cfg, anchor, succ, jvar, track);
-                }
-            }
-        }
-    }
-    
-    private static boolean findUseDefNode(PDG pdg, CFG cfg, CFGNode anchor, CFGNode node, JReference jvar, Set<CFGNode> track) {
-        if (node.hasUseVariable()) {
-            CFGStatement candidate = (CFGStatement)node;
-            if (candidate.useVariable(jvar)) {
-                DD edge;
-                if (anchor.isFormalIn()) {
-                    edge = new DD(anchor.getPDGNode(), candidate.getPDGNode(), jvar);
-                    edge.setLIDD();
-                
-                } else if (candidate.isFormalOut()) {
-                    edge = new DD(anchor.getPDGNode(), candidate.getPDGNode(), jvar);
-                    edge.setLIDD();
-                
-                } else {
-                    PDGNode lc = getLoopCarried(pdg, cfg, anchor, candidate);
-                    edge = new DD(anchor.getPDGNode(), candidate.getPDGNode(), jvar);
-                    if (lc != null && track.contains(lc.getCFGNode())) {
-                        edge.setLCDD();
-                        edge.setLoopCarriedNode(lc);
-                    } else {
+            track.add(node);
+            
+            if (node.hasUseVariable()) {
+                CFGStatement candidate = (CFGStatement)node;
+                if (candidate.useVariable(jvar)) {
+                    DD edge;
+                    if (anchor.isFormalIn()) {
+                        edge = new DD(anchor.getPDGNode(), candidate.getPDGNode(), jvar);
                         edge.setLIDD();
+                    
+                    } else if (candidate.isFormalOut()) {
+                        edge = new DD(anchor.getPDGNode(), candidate.getPDGNode(), jvar);
+                        edge.setLIDD();
+                    
+                    } else {
+                        PDGNode lc = getLoopCarried(pdg, cfg, anchor, candidate);
+                        edge = new DD(anchor.getPDGNode(), candidate.getPDGNode(), jvar);
+                        if (lc != null && track.contains(lc.getCFGNode())) {
+                            edge.setLCDD();
+                            edge.setLoopCarriedNode(lc);
+                        } else {
+                            edge.setLIDD();
+                        }
                     }
-                }
-                pdg.add(edge);
-            }
-        }
-        
-        if (node.hasDefVariable()) {
-            CFGStatement candidate = (CFGStatement)node;
-            if (candidate.defineVariable(jvar)) {
-                if (!candidate.useVariable(jvar)) {
-                    DD edge = new DD(anchor.getPDGNode(), candidate.getPDGNode(), jvar);
-                    edge.setOutput();
                     pdg.add(edge);
                 }
-                return true;
             }
+            
+            if (node.hasDefVariable()) {
+                CFGStatement candidate = (CFGStatement)node;
+                if (candidate.defineVariable(jvar)) {
+                    if (!candidate.useVariable(jvar)) {
+                        DD edge = new DD(anchor.getPDGNode(), candidate.getPDGNode(), jvar);
+                        edge.setOutput();
+                        pdg.add(edge);
+                    }
+                    continue;
+                }
+            }
+            
+            node.getOutgoingFlows().stream()
+                .filter(flow -> !flow.isFallThrough())
+                .map(flow -> flow.getDstNode())
+                .forEach(succ -> nodeStack.push(succ));
         }
-        return false;
     }
     
     private static PDGNode getLoopCarried(PDG pdg, CFG cfg, CFGNode def, CFGNode use) {

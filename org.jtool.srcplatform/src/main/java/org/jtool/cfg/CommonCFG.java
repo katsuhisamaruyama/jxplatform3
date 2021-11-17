@@ -11,6 +11,7 @@ import org.jtool.graph.GraphElement;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.stream.Collectors;
+import java.util.Stack;
 
 /**
  * An object storing common information on a control flow graph (CFG)
@@ -397,75 +398,53 @@ public class CommonCFG extends Graph<CFGNode, ControlFlow> {
     
     /**
      * Walks forward and collects the traversed nodes.
-     * @param node the node to be traversed
+     * @param startnode the starting node to be traversed
      * @param condition the condition that stops traversing
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
      * @param track the collection of already traversed nodes
      */
-    private void walkForward(CFGNode node, StopConditionOnReachablePath condition, boolean loopbackOk, Set<CFGNode> track) {
-        if (condition.isStop(node) || track.contains(node)) {
-            return;
-        }
-        track.add(node);
+    private void walkForward(CFGNode startnode, StopConditionOnReachablePath condition, boolean loopbackOk, Set<CFGNode> track) {
+        Stack<CFGNode> nodeStack = new Stack<>();
+        nodeStack.push(startnode);
         
-        Set<ControlFlow> flows = node.getOutgoingFlows();
-        while (flows.size() == 1) {
-            ControlFlow flow = flows.iterator().next();
-            if (loopbackOk || !flow.isLoopBack()) {
-                CFGNode succ = flow.getDstNode();
-                
-                if (condition.isStop(succ) || track.contains(succ)) {
-                    return;
-                }
-                track.add(succ);
-                flows = succ.getOutgoingFlows();
-            } else {
-                return;
+        while (!nodeStack.isEmpty()) {
+            CFGNode node = nodeStack.pop();
+            
+            if (condition.isStop(node) || track.contains(node)) {
+                continue;
             }
-        }
-        
-        for (ControlFlow flow : flows) {
-            if (loopbackOk || !flow.isLoopBack()) {
-                CFGNode succ = flow.getDstNode();
-                walkForward(succ, condition, loopbackOk, track);
-            }
+            track.add(node);
+            
+            node.getOutgoingFlows().stream() 
+                .filter(flow -> loopbackOk || !flow.isLoopBack())
+                .map(flow -> flow.getDstNode())
+                .forEach(succ -> nodeStack.push(succ));
         }
     }
     
     /**
      * Walks backward and collects the traversed nodes.
-     * @param node the node to be traversed
+     * @param startnode the starting node to be traversed
      * @param condition the condition that stops traversing
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
      * @param track the collection of already traversed nodes
      */
-    private void walkBackward(CFGNode node, StopConditionOnReachablePath condition, boolean loopbackOk, Set<CFGNode> track) {
-        if (condition.isStop(node) || track.contains(node)) {
-            return;
-        }
-        track.add(node);
+    private void walkBackward(CFGNode startnode, StopConditionOnReachablePath condition, boolean loopbackOk, Set<CFGNode> track) {
+        Stack<CFGNode> nodeStack = new Stack<>();
+        nodeStack.push(startnode);
         
-        Set<ControlFlow> flows = node.getIncomingFlows();
-        while (flows.size() == 1) {
-            ControlFlow flow = flows.iterator().next();
-            if (loopbackOk || !flow.isLoopBack()) {
-                CFGNode pred = flow.getSrcNode();
-                
-                if (condition.isStop(pred) || track.contains(pred)) {
-                    return;
-                }
-                track.add(pred);
-                flows = pred.getIncomingFlows();
-            } else {
-                return;
+        while (!nodeStack.isEmpty()) {
+            CFGNode node = nodeStack.pop();
+            
+            if (condition.isStop(node) || track.contains(node)) {
+                continue;
             }
-        }
-        
-        for (ControlFlow flow : flows) {
-            if (loopbackOk || !flow.isLoopBack()) {
-                CFGNode pred = flow.getSrcNode();
-                walkBackward(pred, condition, loopbackOk, track);
-            }
+            track.add(node);
+            
+            node.getIncomingFlows().stream()
+                .filter(flow -> loopbackOk || !flow.isLoopBack())
+                .map(flow -> flow.getSrcNode())
+                .forEach(pred -> nodeStack.push(pred));
         }
     }
     
