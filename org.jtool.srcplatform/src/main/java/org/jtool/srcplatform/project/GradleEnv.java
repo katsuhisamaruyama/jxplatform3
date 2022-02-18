@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -8,13 +8,18 @@ package org.jtool.srcplatform.project;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.io.File;
 import java.io.IOException;
-import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 import org.gradle.tooling.ProjectConnection;
 import org.gradle.tooling.GradleConnector;
+import org.gradle.tooling.BuildLauncher;
+import org.gradle.tooling.model.GradleProject;
+import org.gradle.tooling.model.GradleTask;
+import org.gradle.tooling.model.DomainObjectSet;
 import org.gradle.tooling.model.eclipse.EclipseProject;
 
 /**
@@ -24,23 +29,20 @@ import org.gradle.tooling.model.eclipse.EclipseProject;
  */
 class GradleEnv extends ProjectEnv {
     
-    final static String configName = ".gradle";
+    private final static GradleConnector connector = GradleConnector.newConnector();
     
-    GradleEnv(Path basePath) {
-        super(basePath);
+    private final static String configName = ".gradle";
+    
+    private static String addedTaskName = "copyDependenciesForJxplatform";
+    
+    GradleEnv(String name, Path basePath) {
+        super(name, basePath);
+        configFile = basePath.resolve(getFileName(basePath, GradleEnv.configName));
     }
     
     @Override
-    boolean isApplicable() {
-        try {
-            String config = getFileName(basePath, GradleEnv.configName);
-            if (config != null) {
-                setPaths(basePath);
-                return true;
-            }
-            return false;
-        } catch (Exception e) { /* empty */ }
-        return false;
+    ProjectEnv createProjectEnv(String name, Path basePath) {
+        return new GradleEnv(name, basePath);
     }
     
     private String getFileName(Path path, String sufix) {
@@ -48,53 +50,151 @@ class GradleEnv extends ProjectEnv {
         if (files.length > 0) {
             return files[0].getAbsolutePath();
         }
-        return null;
+        return GradleEnv.configName;
     }
     
-    private void setPaths(Path path) throws Exception {
+    @Override
+    boolean isApplicable() {
+        try {
+            if (configFile.toFile().exists()) {
+                setPaths(configFile.toString());
+                return true;
+            }
+            return false;
+        } catch (Exception e) { /* empty */ }
+        return false;
+    }
+    
+    @Override
+    boolean isProject() {
+        return sourcePath.size() > 0;
+    }
+    
+    private void setPaths(String configFile) throws Exception {
         sourcePath = new HashSet<>();
         binaryPath = new HashSet<>();
         classPath = new HashSet<>();
         
-        ProjectConnection connection = GradleConnector.newConnector().forProjectDirectory(path.toFile()).connect();
+        ProjectConnection connection = connector.forProjectDirectory(basePath.toFile()).connect();
         try {
             EclipseProject project = connection.model(EclipseProject.class).get();
-            if (project != null) {
-                sourcePath = project.getSourceDirectories().stream()
-                            .map(elem -> basePath.resolve(elem.getPath()).toString()).collect(Collectors.toSet());
-                
-                binaryPath = project.getSourceDirectories().stream()
-                        .map(elem -> basePath.resolve(elem.getOutput()).toString()).collect(Collectors.toSet());
-                
-                Set<String> dependencies = project.getClasspath().stream()
-                        .filter(elem -> elem.getSource() != null)
-                        .map(elem -> elem.getFile().getAbsolutePath()).collect(Collectors.toSet());
-                
-                final Path libpath = basePath.resolve("lib");
-                if (!libpath.toFile().exists()) {
-                    System.out.println("Copying dependency jar files to " + libpath.toString());
-                    Files.createDirectory(libpath);
-                    copyDependentLibraries(dependencies, libpath);
-                }
-                classPath.add(libpath.toString());
+            if (project == null) {
+                return;
             }
+            
+            sourcePath = project.getSourceDirectories().stream()
+                    .map(elem -> basePath.resolve(elem.getPath()).toString()).collect(Collectors.toSet());
+            
+            binaryPath = project.getSourceDirectories().stream()
+                    .map(elem -> basePath.resolve(elem.getOutput()).toString()).collect(Collectors.toSet());
+            
+            classPath.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
+            classPath.add(libPath.toString());
         } finally {
            connection.close();
         }
     }
     
-    private void copyDependentLibraries(Set<String> dependencies, Path libpath) {
-        for (String dep : dependencies) {
-            try {
-                int index = dep.lastIndexOf(File.separator);
-                String name = dep.substring(index + 1);
-                Files.copy(Paths.get(dep), libpath.resolve(name));
-            } catch (IOException e) { /* empty */ }
+    @Override
+    void setUpTopProject() throws Exception {
+        collectModules();
+    }
+    
+    @Override
+    void setUpEachProject() throws Exception {
+        copyDependentLibrariesByCommandExecutor();
+    }
+    
+    private void collectModules() {
+        ProjectConnection connection = connector.forProjectDirectory(basePath.toFile()).connect();
+        modules = new ArrayList<>();
+        try {
+            GradleProject gproject = connection.model(GradleProject.class).get();
+            modules = gproject.getChildren().stream()
+                    .map(elem -> elem.getName()).collect(Collectors.toList());
+        } finally {
+            connection.close();
         }
+    }
+    
+    private void copyDependentLibrariesByCommandExecutor() throws Exception {
+        if (libPath.toFile().exists()) {
+            return;
+        }
+        
+        Files.createDirectory(libPath);
+        
+        System.out.println("Resolving dependencies");
+        
+        Path movedFile = Paths.get(configFile.toString() + ".original-moved");
+        if (movedFile.toFile().exists()) {
+            return;
+        }
+        
+        Files.move(configFile, movedFile);
+        Files.copy(movedFile, configFile);
+        
+        ProjectConnection connection = GradleConnector.newConnector().forProjectDirectory(basePath.toFile()).connect();
+        try {
+            String taskName = getTaskName(connection, addedTaskName);
+            addTask(taskName);
+            
+            BuildLauncher build = connection.newBuild();
+            build.forTasks(taskName);
+            build.run();
+        } catch (Exception e) {
+            Files.move(movedFile, configFile);
+            throw e;
+        } finally {
+            connection.close();
+        }
+    }
+    
+    private String getTaskName(ProjectConnection connection, String taskName) {
+        GradleProject project = connection.model(GradleProject.class).get();
+        StringBuilder str = new StringBuilder(taskName);
+        DomainObjectSet<? extends GradleTask> tasks = project.getTasks();
+        while (tasks.stream().anyMatch(task -> task.getName().equals(str.toString()))) {
+            str.append("Z");
+        }
+        return str.toString();
+    }
+    
+    private void addTask(String taskName) throws IOException {
+        String[] configs = new String[] {
+                "implementation",
+                "testImplementation",
+                "compileOnly",
+                "testCompileOnly"
+        };
+        String content = getConfiguration(taskName, configs);
+        Files.write(configFile, content.getBytes(), StandardOpenOption.APPEND);
+    }
+    
+    private String getConfiguration(String taskName, String[] dependencies) throws IOException {
+        StringBuilder str = new StringBuilder();
+        str.append("\n");
+        str.append("//THESE SETTINGS AND TASK WERE ADDED BY JxPlatform\n");
+        for (int index = 0; index < dependencies.length; index++) {
+            str.append("configurations.");
+            str.append(dependencies[index]);
+            str.append(".setCanBeResolved(true)\n");
+        }
+        str.append("task ");
+        str.append(taskName);
+        str.append("(type: Copy) {\n");
+        for (int index = 0; index < dependencies.length; index++) {
+            str.append("  from ");
+            str.append("configurations.");
+            str.append(dependencies[index]);
+            str.append(" into '" + COPIED_CLASSPATH + "'\n");
+        }
+        str.append("}\n");
+        return str.toString();
     }
     
     @Override
     public String toString() {
-        return "Gradle (Eclipse) Env " + basePath.toString();
+        return "Gradle Env " + basePath.toString();
     }
 }

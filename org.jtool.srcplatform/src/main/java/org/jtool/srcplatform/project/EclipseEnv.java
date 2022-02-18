@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.io.File;
 import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashSet;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -23,10 +24,16 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 class EclipseEnv extends ProjectEnv {
     
-    final static String configName = ".classpath";
+    private final static String configName = ".classpath";
     
-    EclipseEnv(Path basePath) {
-        super(basePath);
+    EclipseEnv(String name, Path basePath) {
+        super(name, basePath);
+        configFile = basePath.resolve(Paths.get(EclipseEnv.configName));
+    }
+    
+    @Override
+    ProjectEnv createProjectEnv(String name, Path basePath) {
+        return new EclipseEnv(name, basePath);
     }
     
     @Override

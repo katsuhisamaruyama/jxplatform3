@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -23,10 +24,16 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 class AntEnv extends ProjectEnv {
     
-    final static String configName = "build.xml";
+    private final static String configName = "build.xml";
     
-    AntEnv(Path basePath) {
-        super(basePath);
+    AntEnv(String name, Path basePath) {
+        super(name, basePath);
+        configFile = basePath.resolve(Paths.get(AntEnv.configName));
+    }
+    
+    @Override
+    ProjectEnv createProjectEnv(String name, Path basePath) {
+        return new AntEnv(name, basePath);
     }
     
     @Override
@@ -41,12 +48,17 @@ class AntEnv extends ProjectEnv {
         return false;
     }
     
+    @Override
+    boolean isProject() {
+        return sourcePath.size() > 0;
+    }
+    
     private void setPaths(String configFile) throws Exception {
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         ConfigParser parser = new ConfigParser();
         SAXParser saxParser = saxParserFactory.newSAXParser();
         saxParser.parse(configFile.toString(), parser);
-        parser.finish();
+        parser.postProcess();
         
         sourcePath = parser.srcpath;
         binaryPath = parser.binpath;
@@ -145,7 +157,7 @@ class AntEnv extends ProjectEnv {
             return value;
         }
         
-        private void finish() {
+        private void postProcess() {
             if (properties.get("lib.dir") != null) {
                 classpath.add(basePath.resolve(properties.get("lib.dir")).toString());
             }

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -15,8 +15,24 @@ import java.util.HashSet;
  */
 class SimpleEnv extends ProjectEnv {
     
-    SimpleEnv(Path basePath) {
-        super(basePath);
+    SimpleEnv(String name, Path basePath) {
+        super(name, basePath);
+        configFile = null;
+        
+        setPaths();
+    }
+    
+    @Override
+    ProjectEnv createProjectEnv(String name, Path basePath) {
+        return new SimpleEnv(name, basePath);
+    }
+    
+    @Override
+    boolean isApplicable() {
+        return true;
+    }
+    
+    private void setPaths() {
         sourcePath = new HashSet<String>();
         binaryPath = new HashSet<String>();
         classPath = new HashSet<String>();
@@ -24,11 +40,6 @@ class SimpleEnv extends ProjectEnv {
         sourcePath.add(basePath.resolve("src").toString());
         binaryPath.add(basePath.resolve("bin").toString());
         classPath.add(basePath.resolve("lib").toString());
-    }
-    
-    @Override
-    boolean isApplicable() {
-        return true;
     }
     
     @Override
