@@ -1,0 +1,16 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+    id 'java'
+}
+
+description = "Kotlin tests for Mockito."
+
+apply from: "$rootDir/gradle/dependencies.gradle"
+
+dependencies {
+    testImplementation project(":")
+    testImplementation libraries.junit4
+
+    testImplementation libraries.kotlin.stdlib
+    testImplementation libraries.kotlin.coroutines
+}

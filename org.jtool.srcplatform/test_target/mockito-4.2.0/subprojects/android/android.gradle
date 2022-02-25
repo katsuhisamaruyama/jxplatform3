@@ -1,0 +1,10 @@
+description = "Mockito for Android"
+
+apply from: "$rootDir/gradle/java-library.gradle"
+
+dependencies {
+    api project.rootProject
+    implementation libraries.bytebuddyandroid
+}
+
+tasks.javadoc.enabled = false
