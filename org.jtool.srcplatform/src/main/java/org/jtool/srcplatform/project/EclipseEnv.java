@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 import java.io.File;
 import java.util.List;
 import java.util.Set;
-import java.util.ArrayList;
 import java.util.HashSet;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -54,15 +53,15 @@ class EclipseEnv extends ProjectEnv {
         SAXParser saxParser = saxParserFactory.newSAXParser();
         saxParser.parse(configFile, parser);
         
-        sourcePath = parser.srcpath;
-        binaryPath = parser.binpath;
-        classPath = parser.classpath;
+        sourcePaths = parser.srcpaths;
+        binaryPaths = parser.binpaths;
+        classPaths = parser.classpaths;
     }
     
     private class ConfigParser extends DefaultHandler {
-        Set<String> srcpath = new HashSet<>();
-        Set<String> binpath = new HashSet<>();
-        Set<String> classpath = new HashSet<>();
+        Set<String> srcpaths = new HashSet<>();
+        Set<String> binpaths = new HashSet<>();
+        Set<String> classpaths = new HashSet<>();
         
         @Override
         public void startElement(String uri, String lname, String qname, Attributes attr) {
@@ -72,19 +71,19 @@ class EclipseEnv extends ProjectEnv {
                     String srcPath = basePath.resolve(path).toString();
                     List<File> files = ModelBuilderBatchImpl.collectAllJavaFiles(srcPath.toString());
                     if (files.size() > 0) {
-                        srcpath.add(srcPath);
+                        srcpaths.add(srcPath);
                     }
                     
                 } else if (attr.getValue("kind").equals("output")) {
                     Path path = Paths.get(attr.getValue("path"));
-                    binpath.add(basePath.resolve(path).toString());
+                    binpaths.add(basePath.resolve(path).toString());
                     
                 } else if (attr.getValue("kind").equals("lib")) {
                     Path path = Paths.get(attr.getValue("path"));
                     if (path.isAbsolute()) {
-                        classpath.add(path.toString());
+                        classpaths.add(path.toString());
                     } else {
-                        classpath.add(basePath.resolve(path).toString());
+                        classpaths.add(basePath.resolve(path).toString());
                     }
                 }
             }

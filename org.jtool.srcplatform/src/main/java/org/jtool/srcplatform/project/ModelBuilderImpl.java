@@ -12,6 +12,7 @@ import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.builder.JavaASTVisitor;
 import org.jtool.srcmodel.builder.ProjectStore;
 import org.jtool.srcplatform.modelbuilder.ModelBuilder;
+import org.jtool.srcplatform.util.Logger;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.compiler.IProblem;
 import org.eclipse.jdt.core.dom.AST;
@@ -26,7 +27,6 @@ import java.util.HashSet;
  * 
  * @author Katsuhisa Maruyama
  */
-
 public abstract class ModelBuilderImpl {
     
     protected ModelBuilder modelBuilder;
@@ -108,7 +108,7 @@ public abstract class ModelBuilderImpl {
         if (cu != null) {
             JavaFile jfile = new JavaFile(cu, filepath, code, charset, jproject);
             if (getParseErrors(cu).size() != 0) {
-                System.err.println("Incomplete parse: " + filepath);
+                Logger.getInstance().printError("Incomplete parse: " + filepath);
             }
             
             JavaASTVisitor visitor = new JavaASTVisitor(jfile);
@@ -119,14 +119,14 @@ public abstract class ModelBuilderImpl {
         return null;
     }
     
-    @SuppressWarnings("deprecation")
     protected ASTParser getParser() {
-        ASTParser parser = ASTParser.newParser(AST.JLS11);
+        ASTParser parser = ASTParser.newParser(AST.JLS17);
         Map<String, String> options = JavaCore.getOptions();
-        options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_11);
-        options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_11);
-        options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_11);
+        options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
+        options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
+        options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_1_8);
         options.put(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
+        options.put(JavaCore.COMPILER_PB_FORBIDDEN_REFERENCE, JavaCore.IGNORE);
         parser.setCompilerOptions(options);
         
         parser.setKind(ASTParser.K_COMPILATION_UNIT);
@@ -142,7 +142,7 @@ public abstract class ModelBuilderImpl {
         if (problems.length > 0) {
             for (IProblem problem : problems) {
                 if (problem.isError()) {
-                    System.err.println("Error: " + problem.getMessage());
+                    Logger.getInstance().printError("Error: " + problem.getMessage());
                     errors.add(problem);
                 }
             }

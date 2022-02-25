@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
@@ -52,38 +53,109 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     }
     
     public List<JavaProject> build(String name, String target) {
-        List<String> subProjects = getSubProjects(new File(target));
-        if (subProjects.size() > 0) {
-            return buildMultiTargets(name, subProjects);
+        ProjectEnv projectEnv = createTopProjectEnv(name, target);
+        
+        List<ProjectEnv> projectEnvs = getSubProjects(projectEnv);
+        if (projectEnvs.size() > 0) {
+            return buildMultiTargets(projectEnvs);
         } else {
-            List<JavaProject> projects = new ArrayList<>();
-            JavaProject jproject = buildSingleTarget(name, target);
-            projects.add(jproject);
-            return projects;
+            return buildSingleTarget(projectEnv);
         }
     }
     
-    private List<JavaProject> buildMultiTargets(String name, List<String> subProjects) {
+    private List<ProjectEnv> getSubProjects(ProjectEnv projectEnv) {
+        List<ProjectEnv> projectEnvs = new ArrayList<>();
+        
+        List<String> modules = projectEnv.getModules();
+        if (modules.size() == 0) {
+            if (projectEnv.isProject() &&
+                    ModelBuilderBatchImpl.containJavaFile(projectEnv.getSourcePaths())) {
+                projectEnvs.add(projectEnv);
+            }
+            
+        } else {
+            for (String module : modules) {
+                File dir = projectEnv.getBasePath().resolve(module).toFile();
+                if (dir.isDirectory()) {
+                    String path = dir.getAbsolutePath();
+                    String subprojectname = projectEnv.getName() + "#" + module;
+                    ProjectEnv env = createProjectEnv(subprojectname, path, projectEnv);
+                    
+                    if (env.isProject()) {
+                        if (ModelBuilderBatchImpl.containJavaFile(env.getSourcePaths())) {
+                            projectEnvs.add(env);
+                        }
+                    } else {
+                        projectEnvs.addAll(getSubProjects(env));
+                    }
+                }
+            }
+        }
+        return projectEnvs;
+    }
+    
+    private ProjectEnv createTopProjectEnv(String name, String target) {
+        ProjectEnv env = createProjectEnv(name, target, null);
+        try {
+            env.setUpTopProject();
+        } catch (Exception e) {
+            Logger.getInstance().printError("Fail to collect dependent files.");
+        }
+        return env;
+    }
+    
+    private ProjectEnv createProjectEnv(String name, String target, ProjectEnv parent) {
+        String cdir = new File(".").getAbsoluteFile().getParent();
+        Path basePath = Paths.get(getFullPath(target, cdir));
+        return ProjectEnv.getProjectEnv(name, basePath, parent);
+    }
+    
+    private List<JavaProject> buildMultiTargets(List<ProjectEnv> projectEnvs) {
         List<JavaProject> projects = new ArrayList<>();
-        for (String subproject : subProjects) {
-            int index = subproject.lastIndexOf(File.separatorChar);
-            String subname = name + "#" + subproject.substring(index + 1);
-            System.out.println("Checking sub-project " + subproject);
-            JavaProject project = buildSingleTarget(subname, subproject);
-            projects.add(project);
+        for (ProjectEnv env : projectEnvs) {
+            Logger.getInstance().printMessage("Checking sub-project " + env.getName());
+            
+            JavaProject jproject = buildTarget(env);
+            if (jproject != null) {
+                projects.add(jproject);
+            }
         }
         return projects;
     }
     
-    private JavaProject buildSingleTarget(String name, String target) {
-        String cdir = new File(".").getAbsoluteFile().getParent();
-        Path basePath = Paths.get(getFullPath(target, cdir));
+    private List<JavaProject> buildSingleTarget(ProjectEnv projectEnv) {
+        List<JavaProject> projects = new ArrayList<>();
+        Logger.getInstance().printMessage("Checking project " + projectEnv.getName());
         
-        ProjectEnv env = ProjectEnv.getProjectEnv(basePath);
-        String[] classPath = getClassPath(env.getClassPath());
-        String[] sourcePath = getPath(env.getSourcePath());
-        String[] binaryPath = getPath(env.getBinaryPath());
-        JavaProject jproject = build(name, basePath, classPath, sourcePath, binaryPath);
+        JavaProject jproject = buildTarget(projectEnv);
+        if (jproject != null) {
+            projects.add(jproject);
+        }
+        return projects;
+    }
+    
+    private JavaProject buildTarget(ProjectEnv projectEnv) {
+        try {
+            projectEnv.setUpEachProject();
+        } catch (Exception e) {
+            Logger.getInstance().printError("Fail to collect dependent files.");
+            return null;
+        }
+        
+        JavaProject jproject = build(projectEnv);
+        return jproject;
+    }
+    
+    private JavaProject build(ProjectEnv projectEnv) {
+        String[] classpath = getClassPath(projectEnv.getClassPaths());
+        String[] srcpath = getPath(projectEnv.getSourcePaths());
+        String[] binpath = getPath(projectEnv.getBinaryPaths());
+        JavaProject jproject = createProject(projectEnv.getName(), projectEnv.getBasePath(),
+                classpath, srcpath, binpath);
+        
+        run(jproject, projectEnv.getExcludedSourceFiles());
+        
+        Logger.getInstance().writeLog();
         return jproject;
     }
     
@@ -94,12 +166,12 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     private String[] getClassPath(Set<String> pathSet) {
         String classPathStr;
         Set<String> libPath = pathSet.stream()
-                .map(path -> getLibrarryPath(path)).collect(Collectors.toSet());
+                .map(path -> getLibraryPath(path)).collect(Collectors.toSet());
         classPathStr = String.join(File.pathSeparator, libPath);
         return getClassPath(classPathStr);
     }
     
-    private String getLibrarryPath(String path) {
+    private String getLibraryPath(String path) {
         return path.endsWith(".jar") ? path : path + File.separator + "*";
     }
     
@@ -123,39 +195,26 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     }
     
     public JavaProject build(String name, Path basePath, String[] classpath, String[] srcpath, String[] binpath) {
+        JavaProject jproject = createProject(name, basePath, classpath, srcpath, binpath);
+        
+        run(jproject);
+        
+        Logger.getInstance().writeLog();
+        return jproject;
+    }
+    
+    public JavaProject createProject(String name, Path basePath, String[] classpath, String[] srcpath, String[] binpath) {
         JavaProject jproject = new JavaProject(name, basePath.toString(), basePath.toString());
         jproject.setModelBuilderImpl(this);
         jproject.getCFGStore().create(jproject);
         jproject.setClassPath(getClassPath(classpath));
         jproject.setSourceBinaryPaths(srcpath, binpath);
-        ProjectStore.getInstance().addProject(jproject);
         
-        run(jproject);
-        Logger.getInstance().writeLog();
+        ProjectStore.getInstance().addProject(jproject);
         return jproject;
     }
     
-    private List<String> getSubProjects(File dir) {
-        List<String> targets = new ArrayList<>();
-        for (File file : dir.listFiles()) {
-            if (file.isDirectory() && isProject(file)) {
-                String path = file.getAbsolutePath();
-                if (ModelBuilderBatchImpl.collectAllJavaFiles(path + File.separator + "src").size() > 0) {
-                    targets.add(path);
-                }
-                targets.addAll(getSubProjects(new File(file.getAbsolutePath())));
-            }
-        }
-        return targets;
-    }
-    
-    private boolean isProject(File dir) {
-        File[] files = dir.listFiles((file, name)
-                -> (name.equals(AntEnv.configName) || name.equals(MavenEnv.configName) || name.endsWith(GradleEnv.configName)));
-        return files.length > 0;
-    }
-    
-    public String[] getPath(String path, Path basePath, String dirname) {
+    private String[] getPath(String path, Path basePath, String dirname) {
         if (path == null) {
             Path src = basePath.resolve(dirname);
             String[] paths = new String[1];
@@ -187,7 +246,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                             File dir = new File(path);
                             if (dir != null && dir.exists()) {
                                 for (File file : dir.listFiles()) {
-                                    if (file.getAbsolutePath().endsWith(".jar")) {
+                                    if (file.getName().endsWith(".jar")) {
                                         classpaths.add(file.getCanonicalPath());
                                     }
                                 }
@@ -221,11 +280,23 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     @Override
     public void update(JavaProject jproject) {
         ProjectStore.getInstance().removeProject(jproject.getPath());
-        build(jproject.getName(), jproject.getPath(), jproject.getClassPath(), jproject.getSourcePath(), jproject.getBinaryPath());
+        build(jproject.getName(), jproject.getPath(), jproject.getClassPath(),
+                jproject.getSourcePath(), jproject.getBinaryPath());
     }
     
     private void run(JavaProject jproject) {
         List<File> sourceFiles = collectAllJavaFiles(jproject.getSourcePath());
+        run(jproject, sourceFiles);
+    }
+    
+    private void run(JavaProject jproject, Set<String> excludedSourceFiles) {
+        List<File> allFiles = collectAllJavaFiles(jproject.getSourcePath());
+        List<File> sourceFiles = allFiles.stream()
+                .filter(f -> !excludedSourceFiles.contains(f.getAbsolutePath())).collect(Collectors.toList());
+        run(jproject, sourceFiles);
+    }
+    
+    private void run(JavaProject jproject, List<File> sourceFiles) {
         if (sourceFiles.size() > 0) {
             String[] paths = new String[sourceFiles.size()];
             String[] encodings = new String[sourceFiles.size()];
@@ -249,7 +320,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
             parse(jproject, paths, encodings, sources, charsets);
             collectInfo(jproject);
         } else {
-            System.err.println("Found no Java source files in " + jproject.getPath());
+            Logger.getInstance().printError("Found no Java source files in " + jproject.getPath());
         }
     }
     
@@ -267,7 +338,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                     cu.accept(visitor);
                     visitor.terminate();
                 } else {
-                    System.err.println("Incomplete parse: " + filepath);
+                    Logger.getInstance().printError("Incomplete parse: " + filepath);
                 }
                 
                 pm.work(1);
@@ -320,23 +391,66 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         pm.done();
     }
     
-    protected static List<File> collectAllJavaFiles(String[] paths) {
-        List<File> files = new ArrayList<>();
-        for (String path : paths) {
-            files.addAll(collectAllJavaFiles(path));
+    protected static boolean containJavaFile(Set<String> paths) {
+        return paths.stream().anyMatch(path -> containJavaFile(path));
+    }
+    
+    private static boolean containJavaFile(String path) {
+        if (path == null) {
+            return false;
         }
-        return files;
+        
+        File res = new File(path);
+        if (res.isFile()) {
+            if (isCompilableJavaFile(path)) {
+                return true;
+            }
+        } else if (res.isDirectory()) {
+            for (File r : res.listFiles()) {
+                if (containJavaFile(r.getPath())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    private static boolean isCompilableJavaFile(String path) {
+        return path.endsWith(".java") &&
+                !path.endsWith(File.separator + "module-info.java") &&
+                !path.endsWith(File.separator + "package-info.java") &&
+                path.indexOf("archetypes" + File.separator) == -1;
+    }
+    
+    protected static List<File> collectAllJavaFiles(String[] paths) {
+        Set<File> set = collectAllJavaFileSet(paths);
+        return set.stream()
+            .sorted(Comparator.comparing(File::getAbsolutePath))
+            .collect(Collectors.toList());
     }
     
     protected static List<File> collectAllJavaFiles(String path) {
-        List<File> files = new ArrayList<>();
+        Set<File> set = collectAllJavaFileSet(path);
+        return set.stream()
+            .sorted(Comparator.comparing(File::getAbsolutePath))
+            .collect(Collectors.toList());
+    }
+    
+    private static Set<File> collectAllJavaFileSet(String[] paths) {
+        return Arrays.stream(paths)
+            .flatMap(path -> collectAllJavaFileSet(path).stream())
+            .collect(Collectors.toSet());
+    }
+    
+    private static Set<File> collectAllJavaFileSet(String path) {
+        Set<File> files = new HashSet<>();
         if (path == null) {
             return files;
         }
         
         File res = new File(path);
         if (res.isFile()) {
-            if (path.endsWith(".java") && !path.endsWith(File.separator + "module-info.java")) {
+            if (isCompilableJavaFile(path)) {
                 files.add(res);
             }
         } else if (res.isDirectory()) {

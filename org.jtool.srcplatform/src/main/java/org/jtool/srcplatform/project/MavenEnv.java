@@ -9,12 +9,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.io.File;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Arrays;
 import java.util.Properties;
-import java.util.HashSet;
 import java.io.InputStream;
-//import java.io.OutputStream;
-//import java.io.PrintStream;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
@@ -22,7 +21,7 @@ import org.apache.maven.shared.invoker.InvocationRequest;
 import org.apache.maven.shared.invoker.DefaultInvocationRequest;
 import org.apache.maven.shared.invoker.Invoker;
 import org.apache.maven.shared.invoker.DefaultInvoker;
-//import org.apache.maven.cli.MavenCli;
+import org.codehaus.plexus.util.xml.Xpp3Dom;
 
 /**
  * Obtains path information from the Maven setting.
@@ -69,9 +68,9 @@ class MavenEnv extends ProjectEnv {
         model.setPomFile(Paths.get(configFile).toFile());
         modules = model.getModules();
         
-        sourcePath = new HashSet<>();
-        binaryPath = new HashSet<>();
-        classPath = new HashSet<>();
+        sourcePaths = new HashSet<>();
+        binaryPaths = new HashSet<>();
+        classPaths = new HashSet<>();
         
         Build build = model.getBuild();
         if (build == null) {
@@ -93,10 +92,10 @@ class MavenEnv extends ProjectEnv {
                     .anyMatch(file -> file.isFile() && file.getName().endsWith(".java"));
         }
         if (sourceDirectory != null) {
-            sourcePath.add(sourceDirectory);
+            sourcePaths.add(sourceDirectory);
         }
         if (testSourceDirectory != null) {
-            sourcePath.add(testSourceDirectory);
+            sourcePaths.add(testSourceDirectory);
         }
         
         String buildDirectory  = build.getDirectory();
@@ -109,14 +108,14 @@ class MavenEnv extends ProjectEnv {
         String generatedSourceDirectory = getGeneratedSourceDirectory(buildPath,
                 generatedSourceDirectoryCandidates);
         if (generatedSourceDirectory != null) {
-            sourcePath.add(generatedSourceDirectory);
+            sourcePaths.add(generatedSourceDirectory);
         }
         
         String generatedTestSourceDirectoryCandidates[] = { "generated-test-sources", "generated" };
         String generatedTestSourceDirectory = getGeneratedSourceDirectory(buildPath,
                 generatedTestSourceDirectoryCandidates);
         if (generatedTestSourceDirectory != null) {
-            sourcePath.add(generatedTestSourceDirectory);
+            sourcePaths.add(generatedTestSourceDirectory);
         }
         
         String outputDirectory = build.getOutputDirectory();
@@ -127,11 +126,28 @@ class MavenEnv extends ProjectEnv {
         if (testOutputDirectory == null) {
             testOutputDirectory = buildPath.resolve("test-classes").toString();
         }
-        binaryPath.add(toAbsolutePath(outputDirectory));
-        binaryPath.add(toAbsolutePath(testOutputDirectory));
+        binaryPaths.add(toAbsolutePath(outputDirectory));
+        binaryPaths.add(toAbsolutePath(testOutputDirectory));
         
-        classPath.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
-        classPath.add(libPath.toString());
+        classPaths.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
+        classPaths.add(libPath.toString());
+        
+        Set<String> excludes = new HashSet<>();
+        model.getProfiles().stream()
+            .filter(p -> p.getBuild() != null).map(p -> p.getBuild())
+            .flatMap(m -> m.getPlugins().stream())
+            .filter(p -> p.getConfiguration() != null)
+            .map(p -> (Xpp3Dom)p.getConfiguration())
+            .forEach(d -> collectExcludes(d, excludes));
+        
+        for (String srcPath : sourcePaths) {
+            for (String exclude : excludes) {
+                Path path = Paths.get(srcPath, exclude);
+                if (path.toFile().exists()) {
+                    excludedSourceFiles.add(path.toString());
+                }
+            }
+        }
     }
     
     private String getSourceDirectory(String dir, String[][] names) {
@@ -162,10 +178,19 @@ class MavenEnv extends ProjectEnv {
         return null;
     }
     
+    private void collectExcludes(Xpp3Dom dom, Set<String> qnames) {
+        for (Xpp3Dom child : dom.getChildren()) {
+            if (child.getName().equals("exclude") || child.getName().equals("testExclude")) {
+                qnames.add(child.getValue());
+            }
+            collectExcludes(child, qnames);
+        }
+    }
+    
     @Override
     void setUpTopProject() throws Exception {
         copyDependentLibrariesByCommandExecutor();
-        //copyDependentLibrariesByPluginExecutor();
+        super.setUpTopProject();
     }
     
     private void copyDependentLibrariesByCommandExecutor() throws Exception {
@@ -221,30 +246,6 @@ class MavenEnv extends ProjectEnv {
         invoker.setInputStream(InputStream.nullInputStream());
         invoker.execute(request);
     }
-    
-    /*
-    private void copyDependentLibrariesByPluginExecutor() throws Exception {
-        if (libPath.toFile().exists()) {
-            return;
-        }
-        
-        System.out.print("Resolving dependencies");
-        
-        MavenCli cli = new MavenCli();
-        System.setProperty(MavenCli.MULTIMODULE_PROJECT_DIRECTORY, basePath.toString());
-        String[] goals = new String[]{
-                // "clean",
-                "generate-sources", "-Denforcer.skip=true",
-                "generate-test-sources", "-Denforcer.skip=true",
-                "package", "-Dmaven.test.skip=true", "-Denforcer.skip=true",
-                "dependency:copy-dependencies", "-DoutputDirectory=" + COPIED_CLASSPATH,
-                };
-        cli.doMain(goals, basePath.toString(),
-                new PrintStream(OutputStream.nullOutputStream()),
-                new PrintStream(OutputStream.nullOutputStream()));
-        //cli.doMain(goals, basePath.toString(), System.out, System.out);
-    }
-    */
     
     @Override
     public String toString() {

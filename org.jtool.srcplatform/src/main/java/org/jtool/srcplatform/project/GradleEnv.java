@@ -12,7 +12,6 @@ import java.nio.file.StandardOpenOption;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.stream.Collectors;
 import org.gradle.tooling.ProjectConnection;
 import org.gradle.tooling.GradleConnector;
@@ -67,14 +66,10 @@ class GradleEnv extends ProjectEnv {
     
     @Override
     boolean isProject() {
-        return sourcePath.size() > 0;
+        return sourcePaths.size() > 0;
     }
     
     private void setPaths(String configFile) throws Exception {
-        sourcePath = new HashSet<>();
-        binaryPath = new HashSet<>();
-        classPath = new HashSet<>();
-        
         ProjectConnection connection = connector.forProjectDirectory(basePath.toFile()).connect();
         try {
             EclipseProject project = connection.model(EclipseProject.class).get();
@@ -82,14 +77,14 @@ class GradleEnv extends ProjectEnv {
                 return;
             }
             
-            sourcePath = project.getSourceDirectories().stream()
+            sourcePaths = project.getSourceDirectories().stream()
                     .map(elem -> basePath.resolve(elem.getPath()).toString()).collect(Collectors.toSet());
             
-            binaryPath = project.getSourceDirectories().stream()
+            binaryPaths = project.getSourceDirectories().stream()
                     .map(elem -> basePath.resolve(elem.getOutput()).toString()).collect(Collectors.toSet());
             
-            classPath.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
-            classPath.add(libPath.toString());
+            classPaths.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
+            classPaths.add(libPath.toString());
         } finally {
            connection.close();
         }
@@ -98,11 +93,13 @@ class GradleEnv extends ProjectEnv {
     @Override
     void setUpTopProject() throws Exception {
         collectModules();
+        super.setUpTopProject();
     }
     
     @Override
     void setUpEachProject() throws Exception {
         copyDependentLibrariesByCommandExecutor();
+        super.setUpEachProject();
     }
     
     private void collectModules() {

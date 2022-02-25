@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 import java.io.File;
 import java.io.IOException;
@@ -34,9 +35,11 @@ abstract class ProjectEnv {
     
     protected List<String> modules;
     
-    protected Set<String> classPath;
-    protected Set<String> sourcePath;
-    protected Set<String> binaryPath;
+    protected Set<String> classPaths = new HashSet<String>();
+    protected Set<String> sourcePaths = new HashSet<String>();
+    protected Set<String> binaryPaths = new HashSet<String>();
+    
+    protected Set<String> excludedSourceFiles = new HashSet<String>();
     
     ProjectEnv(String name, Path basePath) {
         this.name = name;
@@ -87,30 +90,37 @@ abstract class ProjectEnv {
         return basePath;
     }
     
+    Path getConfigFile() {
+        return configFile;
+    }
+    
     List<String> getModules() {
         return modules;
     }
     
-    Set<String> getSourcePath() {
-        if (sourcePath.size() == 0) {
-            sourcePath.add(basePath.resolve(DEFAULT_SOURCEPATH).toString());
+    Set<String> getSourcePaths() {
+        if (sourcePaths.size() == 0) {
+            sourcePaths.add(basePath.resolve(DEFAULT_SOURCEPATH).toString());
         }
-        return sourcePath;
+        return sourcePaths;
     }
     
-    Set<String> getBinaryPath() {
-        if (binaryPath.size() == 0) {
-            binaryPath.add(basePath.resolve(DEFAULT_BINARYPATH).toString());
+    Set<String> getBinaryPaths() {
+        if (binaryPaths.size() == 0) {
+            binaryPaths.add(basePath.resolve(DEFAULT_BINARYPATH).toString());
         }
-        return binaryPath;
+        return binaryPaths;
     }
     
-    Set<String> getClassPath() {
-        if (classPath.size() == 0) {
-            classPath.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
-            classPath.add(basePath.resolve(COPIED_CLASSPATH).toString());
+    Set<String> getClassPaths() {
+        if (classPaths.size() == 0) {
+            classPaths.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
         }
-        return classPath;
+        return classPaths;
+    }
+    
+    Set<String> getExcludedSourceFiles() {
+        return excludedSourceFiles;
     }
     
     protected String resolvePath(String names[]) {
@@ -138,6 +148,7 @@ abstract class ProjectEnv {
     }
     
     void setUpEachProject() throws Exception {
+        AARFile.extract(libPath);
     }
     
     protected static String findCommandPath(String command, String option) {

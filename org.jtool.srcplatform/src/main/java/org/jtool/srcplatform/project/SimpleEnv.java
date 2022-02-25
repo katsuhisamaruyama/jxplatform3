@@ -6,7 +6,6 @@
 package org.jtool.srcplatform.project;
 
 import java.nio.file.Path;
-import java.util.HashSet;
 
 /**
  * Obtains path information from the Eclipse setting.
@@ -33,13 +32,10 @@ class SimpleEnv extends ProjectEnv {
     }
     
     private void setPaths() {
-        sourcePath = new HashSet<String>();
-        binaryPath = new HashSet<String>();
-        classPath = new HashSet<String>();
-        
-        sourcePath.add(basePath.resolve("src").toString());
-        binaryPath.add(basePath.resolve("bin").toString());
-        classPath.add(basePath.resolve("lib").toString());
+        sourcePaths.add(basePath.resolve("src").toString());
+        sourcePaths.add(basePath.toString());
+        binaryPaths.add(basePath.resolve("bin").toString());
+        classPaths.add(basePath.resolve("lib").toString());
     }
     
     @Override

@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.HashMap;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -50,19 +49,18 @@ class AntEnv extends ProjectEnv {
     
     @Override
     boolean isProject() {
-        return sourcePath.size() > 0;
+        return sourcePaths.size() > 0;
     }
     
     private void setPaths(String configFile) throws Exception {
-        SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         ConfigParser parser = new ConfigParser();
-        SAXParser saxParser = saxParserFactory.newSAXParser();
+        SAXParser saxParser = SAXParserFactory.newInstance().newSAXParser();
         saxParser.parse(configFile.toString(), parser);
         parser.postProcess();
         
-        sourcePath = parser.srcpath;
-        binaryPath = parser.binpath;
-        classPath = parser.classpath;
+        sourcePaths = parser.srcpath;
+        binaryPaths = parser.binpath;
+        classPaths = parser.classpath;
     }
     
     private class ConfigParser extends DefaultHandler {
