@@ -3,11 +3,11 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.bytecode;
+package org.jtool.jxplatform.bytecode;
 
+import org.jtool.jxplatform.util.Logger;
+import org.jtool.jxplatform.util.TimeInfo;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.srcplatform.util.Logger;
-import org.jtool.srcplatform.util.TimeInfo;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;

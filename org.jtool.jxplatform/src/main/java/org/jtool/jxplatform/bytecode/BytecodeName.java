@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.bytecode;
+package org.jtool.jxplatform.bytecode;
 
 /**
  * An object that represents the name of a byte-code class.

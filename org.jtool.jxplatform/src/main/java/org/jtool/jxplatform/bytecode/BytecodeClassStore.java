@@ -3,11 +3,12 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.bytecode;
+package org.jtool.jxplatform.bytecode;
 
+import org.jtool.jxplatform.project.ModelBuilderImpl;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.srcplatform.project.ModelBuilderImpl;
+
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtConstructor;

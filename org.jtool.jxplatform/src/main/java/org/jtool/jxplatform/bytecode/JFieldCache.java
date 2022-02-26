@@ -3,18 +3,20 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.bytecode;
+package org.jtool.jxplatform.bytecode;
 
 import org.jtool.srcmodel.QualifiedName;
 
 /**
- * Concise information on a field outside the project.
+ * Concise information on a cached field.
  * 
  * @author Katsuhisa Maruyama
  */
-public class JFieldExternal extends JField {
+class JFieldCache extends JField {
     
-    JFieldExternal(String signature, JClass declaringClass) {
+    JFieldCache(String signature, JClass declaringClass, BytecodeClass bclass) {
         super(new QualifiedName(declaringClass.getClassName(), signature), declaringClass);
+        
+        isDefUseDecided = true;
     }
 }

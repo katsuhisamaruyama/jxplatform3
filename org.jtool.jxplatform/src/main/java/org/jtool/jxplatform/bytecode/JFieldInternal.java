@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.bytecode;
+package org.jtool.jxplatform.bytecode;
 
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;

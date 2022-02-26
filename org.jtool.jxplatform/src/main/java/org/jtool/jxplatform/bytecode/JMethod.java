@@ -3,29 +3,31 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.bytecode;
+package org.jtool.jxplatform.bytecode;
 
 import org.jtool.srcmodel.QualifiedName;
 import java.util.Set;
 import java.util.HashSet;
 
 /**
- * Concise information on a field.
+ * Concise information on a method.
  * 
  * @author Katsuhisa Maruyama
  */
-abstract public class JField extends JCommon {
+abstract public class JMethod extends JCommon {
     
     protected JClass declaringClass;
     
-    protected boolean isDefUseDecided = true;
+    protected boolean isDefUseDecided = false;
     
     protected Set<DefUseField> defFields = new HashSet<>();
     protected Set<DefUseField> useFields = new HashSet<>();
     protected Set<JMethod> accessedMethods = new HashSet<>();
     
-    protected JField(QualifiedName qname, JClass declaringClass) {
+    protected JMethod(QualifiedName qname, JClass declaringClass) {
         super(qname, declaringClass.bcStore);
+        
+        this.declaringClass = declaringClass;
     }
     
     public JClass getDeclaringClass() {
@@ -61,16 +63,20 @@ abstract public class JField extends JCommon {
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
     }
     
-    protected void collectDefUseFields(JField field, Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
+    protected void collectDefUseFields(JMethod method, Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
         for (JMethod m : accessedMethods) {
             m.findDefUseFields(visitedMethods, visitedFields, count);
             
-            field.defFields.addAll(m.getDefFields());
-            field.useFields.addAll(m.getUseFields());
+            m.getDefFields().stream()
+                .filter(var -> !var.getReferenceForm().startsWith("this"))
+                .forEach(var -> method.defFields.add(var));
+            m.getUseFields().stream()
+                .filter(var -> !var.getReferenceForm().startsWith("this"))
+                .forEach(var -> method.useFields.add(var));
         }
     }
     
-    public boolean equals(JField field) {
-        return field != null && (this == field || getQualifiedName().fqn().equals(field.getQualifiedName().fqn()));
+    public boolean equals(JMethod method) {
+        return method != null && (this == method || getQualifiedName().fqn().equals(method.getQualifiedName().fqn()));
     }
 }
