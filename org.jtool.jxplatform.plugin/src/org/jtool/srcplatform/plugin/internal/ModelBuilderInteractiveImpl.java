@@ -18,7 +18,7 @@ import org.jtool.jxplatform.builder.ModelBuilder;
 import org.jtool.jxplatform.bytecode.BytecodeClassStore;
 import org.jtool.jxplatform.bytecode.BytecodeName;
 import org.jtool.jxplatform.project.ModelBuilderImpl;
-import org.jtool.jxplatform.util.Logger;
+import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.IClasspathEntry;

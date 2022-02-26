@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -7,7 +7,7 @@ package org.jtool.srcmodel.builder;
 
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaElement;
-import org.jtool.srcplatform.util.Logger;
+import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 import org.eclipse.jdt.core.dom.PrimitiveType;
@@ -141,13 +141,15 @@ public class TypeCollector extends ASTVisitor {
     }
     
     private void collectUsedClasses(JavaClass jc, ITypeBinding tbinding) {
+        Logger logger = jclass.getJavaProject().getModelBuilderImpl().getLogger();
+        
         if (tbinding.isRawType()) {
             JavaClass jc2 = JavaElement.findDeclaringClass(jclass.getJavaProject(), tbinding);
             if (jc2 != null) {
                 jc.addUsedClass(jc2);
             } else {
                 bindingOk = false;
-                Logger.getInstance().printUnresolvedError(tbinding.getQualifiedName());
+                logger.printUnresolvedError(tbinding.getQualifiedName());
             }
             
         } else if (tbinding.isParameterizedType()) {
@@ -159,7 +161,7 @@ public class TypeCollector extends ASTVisitor {
                 }
             } else {
                 bindingOk = false;
-                Logger.getInstance().printUnresolvedError(tbinding.getQualifiedName());
+                logger.printUnresolvedError(tbinding.getQualifiedName());
             }
         } else if (tbinding.isWildcardType()) {
             ITypeBinding b = tbinding.getBound();
@@ -169,7 +171,7 @@ public class TypeCollector extends ASTVisitor {
                     jc.addUsedClass(jc2);
                 } else {
                     bindingOk = false;
-                    Logger.getInstance().printUnresolvedError(b.getQualifiedName());
+                    logger.printUnresolvedError(b.getQualifiedName());
                 }
             }
         }

@@ -5,8 +5,8 @@
 
 package org.jtool.srcplatform.plugin;
 
-import org.jtool.srcplatform.modelbuilder.ModelBuilder;
 import org.jtool.srcplatform.plugin.internal.ModelBuilderInteractiveImpl;
+import org.jtool.jxplatform.builder.ModelBuilder;
 import org.jtool.srcmodel.JavaProject;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.core.resources.IFile;

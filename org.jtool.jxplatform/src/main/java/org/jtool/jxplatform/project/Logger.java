@@ -1,9 +1,9 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.util;
+package org.jtool.jxplatform.project;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -19,8 +19,6 @@ import java.io.IOException;
  */
 public class Logger {
     
-    private static Logger instance = new Logger();
-    
     /**
      * Recorded log messages.
      */
@@ -34,14 +32,14 @@ public class Logger {
     /**
      * A flag that indicates whether the log information is displayed.
      */
-    private boolean visible = true;
+    private boolean visible;
     
     /**
-     * Returns the singleton object of the logger.
-     * @return the logger object
+     * Creates an object for logging.
+     * @param visible {@code true} if the log information is displayed, otherwise {@code false}
      */
-    public static Logger getInstance() {
-        return instance;
+    public Logger(boolean visible) {
+        this.visible = visible;
     }
     
     /**

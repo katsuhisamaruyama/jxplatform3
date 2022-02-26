@@ -1,12 +1,12 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.srcmodel;
 
 import org.jtool.srcmodel.builder.TypeCollector;
-import org.jtool.srcplatform.util.Logger;
+import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.EnumDeclaration;
@@ -773,7 +773,8 @@ public class JavaClass extends JavaElement {
         }
         
         if (!resolveOk) {
-            Logger.getInstance().printUnresolvedError("Class in " + jfile.getPath());
+            Logger logger = getJavaProject().getModelBuilderImpl().getLogger();
+            logger.printUnresolvedError("Class in " + jfile.getPath());
         }
         resolved = true;
     }

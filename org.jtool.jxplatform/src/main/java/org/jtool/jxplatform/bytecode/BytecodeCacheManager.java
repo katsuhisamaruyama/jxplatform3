@@ -1,13 +1,12 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.jxplatform.bytecode;
 
-import org.jtool.jxplatform.util.Logger;
-import org.jtool.jxplatform.util.TimeInfo;
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.jxplatform.builder.TimeInfo;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -159,7 +158,7 @@ public class BytecodeCacheManager {
             return false;
         }
         
-        Logger.getInstance().recordLog("-Read cache " + filename);
+        jproject.getModelBuilderImpl().getLogger().recordLog("-Read cache " + filename);
         
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();

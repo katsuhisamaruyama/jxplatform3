@@ -1,9 +1,9 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.project;
+package org.jtool.jxplatform.project;
 
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaFile;
@@ -11,8 +11,7 @@ import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.builder.JavaASTVisitor;
 import org.jtool.srcmodel.builder.ProjectStore;
-import org.jtool.srcplatform.modelbuilder.ModelBuilder;
-import org.jtool.srcplatform.util.Logger;
+import org.jtool.jxplatform.builder.ModelBuilder;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.compiler.IProblem;
 import org.eclipse.jdt.core.dom.AST;
@@ -33,17 +32,27 @@ public abstract class ModelBuilderImpl {
     
     protected boolean analyzeBytecode = false;
     protected boolean useProjectCache = false;
+    
     protected int sourcecodeAnalysisChain = 2;
     protected int bytecodeAnalysisChain = 2;
+    
+    protected Logger logger;
+    
+    protected boolean visible = true;
     
     protected boolean verbose = true;
     
     protected ModelBuilderImpl(ModelBuilder modelBuiler) {
         this.modelBuilder = modelBuiler;
+        this.logger = new Logger(visible);
     }
     
     public ModelBuilder getModelBuilder() {
         return modelBuilder;
+    }
+    
+    public Logger getLogger() {
+        return logger;
     }
     
     public abstract boolean isUnderPlugin();
@@ -88,6 +97,15 @@ public abstract class ModelBuilderImpl {
         ProjectStore.getInstance().clear();
     }
     
+    public void setLogVisible(boolean visible) {
+        this.visible = visible;
+        
+    }
+    
+    public boolean isLogVisible() {
+        return visible;
+    }
+    
     public JavaFile copyJavaFile(JavaFile jfile) {
         return getUnregisteredJavaFile(jfile.getPath(), jfile.getCode(), jfile.getProject(), jfile.getCharset());
     }
@@ -108,7 +126,7 @@ public abstract class ModelBuilderImpl {
         if (cu != null) {
             JavaFile jfile = new JavaFile(cu, filepath, code, charset, jproject);
             if (getParseErrors(cu).size() != 0) {
-                Logger.getInstance().printError("Incomplete parse: " + filepath);
+                logger.printError("Incomplete parse: " + filepath);
             }
             
             JavaASTVisitor visitor = new JavaASTVisitor(jfile);
@@ -142,7 +160,7 @@ public abstract class ModelBuilderImpl {
         if (problems.length > 0) {
             for (IProblem problem : problems) {
                 if (problem.isError()) {
-                    Logger.getInstance().printError("Error: " + problem.getMessage());
+                    logger.printError("Error: " + problem.getMessage());
                     errors.add(problem);
                 }
             }

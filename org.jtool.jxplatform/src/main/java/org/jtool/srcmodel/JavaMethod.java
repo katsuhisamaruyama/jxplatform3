@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -9,7 +9,7 @@ import org.jtool.srcmodel.builder.FieldAccessCollector;
 import org.jtool.srcmodel.builder.LambdaCollector;
 import org.jtool.srcmodel.builder.LocalDeclarationCollector;
 import org.jtool.srcmodel.builder.MethodCallCollector;
-import org.jtool.srcplatform.util.Logger;
+import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Initializer;
@@ -717,11 +717,12 @@ public class JavaMethod extends JavaElement {
         }
         
         if (!resolveOk) {
+            Logger logger = getJavaProject().getModelBuilderImpl().getLogger();
             if (declaringClass != null) {
-                Logger.getInstance().printUnresolvedError("Method " + getSignature() + " of " +
+                logger.printUnresolvedError("Method " + getSignature() + " of " +
                     declaringClass.getQualifiedName() + " in " + jfile.getPath());
             } else {
-                Logger.getInstance().printUnresolvedError("Method in " + jfile.getPath());
+                logger.printUnresolvedError("Method in " + jfile.getPath());
             }
         }
         resolved = true;
@@ -739,7 +740,8 @@ public class JavaMethod extends JavaElement {
                 exceptions.add(jc);
             } else {
                 resolveOk = false;
-                Logger.getInstance().printUnresolvedError("Exception type in " + jfile.getPath());
+                Logger logger = getJavaProject().getModelBuilderImpl().getLogger();
+                logger.printUnresolvedError("Exception type in " + jfile.getPath());
             }
         }
         return resolveOk;

@@ -1,11 +1,9 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.project;
-
-import org.jtool.srcplatform.util.Logger;
+package org.jtool.jxplatform.project;
 
 /**
  * A progress monitor.
@@ -18,6 +16,9 @@ public class ConsoleProgressMonitor {
     private int num;
     private int count;
     
+    public ConsoleProgressMonitor() {
+    }
+    
     public void begin(int size) {
         this.size = size;
         this.count = 0;
@@ -25,10 +26,8 @@ public class ConsoleProgressMonitor {
     }
     
     public void done() {
-        if (Logger.getInstance().isVisible()) {
-            System.out.println();
-            System.out.flush();
-        }
+        System.out.println();
+        System.out.flush();
     }
     
     public void work(int done) {
@@ -45,9 +44,7 @@ public class ConsoleProgressMonitor {
     }
     
     private void display(char ch) {
-        if (Logger.getInstance().isVisible()) {
-            System.out.print(ch);
-            System.out.flush();
-        }
+        System.out.print(ch);
+        System.out.flush();
     }
 }

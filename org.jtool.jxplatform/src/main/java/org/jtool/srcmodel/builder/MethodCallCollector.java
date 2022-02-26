@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -8,7 +8,7 @@ package org.jtool.srcmodel.builder;
 import org.jtool.srcmodel.JavaElement;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.srcplatform.util.Logger;
+import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 import org.eclipse.jdt.core.dom.ClassInstanceCreation;
@@ -112,7 +112,9 @@ public class MethodCallCollector extends ASTVisitor {
                 }
             } else {
                 if (!mbinding.getDeclaringClass().isEnum() || !isImplicitMethodOfEnum(mbinding.getName())) {
-                    Logger.getInstance().printUnresolvedError(mbinding.getName() + " of " + mbinding.getDeclaringClass().getQualifiedName());
+                    Logger logger = jproject.getModelBuilderImpl().getLogger();
+                    logger.printUnresolvedError(mbinding.getName() + " of " +
+                    mbinding.getDeclaringClass().getQualifiedName());
                     bindingOk = false;
                 }
             }

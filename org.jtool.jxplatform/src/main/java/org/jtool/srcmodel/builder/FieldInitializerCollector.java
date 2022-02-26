@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -8,7 +8,7 @@ package org.jtool.srcmodel.builder;
 import org.jtool.srcmodel.JavaElement;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.srcplatform.util.Logger;
+import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 import org.eclipse.jdt.core.dom.CreationReference;
@@ -84,7 +84,8 @@ public class FieldInitializerCollector extends ASTVisitor {
                         }
                     } else {
                         bindingOk = false;
-                        Logger.getInstance().printUnresolvedError(binding.getName() + " of " + vbinding.getDeclaringClass().getQualifiedName());
+                        Logger logger = jproject.getModelBuilderImpl().getLogger();
+                        logger.printUnresolvedError(binding.getName() + " of " + vbinding.getDeclaringClass().getQualifiedName());
                     }
                 }
             }

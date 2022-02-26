@@ -3,18 +3,16 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.project;
+package org.jtool.jxplatform.project;
 
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.builder.JavaASTVisitor;
 import org.jtool.srcmodel.builder.ProjectStore;
-import org.jtool.srcplatform.bytecode.BytecodeClassStore;
-import org.jtool.srcplatform.bytecode.BytecodeName;
-import org.jtool.srcplatform.modelbuilder.ModelBuilder;
-import org.jtool.srcplatform.util.DetectCharset;
-import org.jtool.srcplatform.util.Logger;
+import org.jtool.jxplatform.builder.ModelBuilder;
+import org.jtool.jxplatform.bytecode.BytecodeClassStore;
+import org.jtool.jxplatform.bytecode.BytecodeName;
 import org.eclipse.jdt.core.compiler.IProblem;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.FileASTRequestor;
@@ -99,7 +97,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         try {
             env.setUpTopProject();
         } catch (Exception e) {
-            Logger.getInstance().printError("Fail to collect dependent files.");
+            logger.printError("Fail to collect dependent files.");
         }
         return env;
     }
@@ -113,7 +111,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     private List<JavaProject> buildMultiTargets(List<ProjectEnv> projectEnvs) {
         List<JavaProject> projects = new ArrayList<>();
         for (ProjectEnv env : projectEnvs) {
-            Logger.getInstance().printMessage("Checking sub-project " + env.getName());
+            logger.printMessage("Checking sub-project " + env.getName());
             
             JavaProject jproject = buildTarget(env);
             if (jproject != null) {
@@ -125,7 +123,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     
     private List<JavaProject> buildSingleTarget(ProjectEnv projectEnv) {
         List<JavaProject> projects = new ArrayList<>();
-        Logger.getInstance().printMessage("Checking project " + projectEnv.getName());
+        logger.printMessage("Checking project " + projectEnv.getName());
         
         JavaProject jproject = buildTarget(projectEnv);
         if (jproject != null) {
@@ -138,7 +136,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         try {
             projectEnv.setUpEachProject();
         } catch (Exception e) {
-            Logger.getInstance().printError("Fail to collect dependent files.");
+            logger.printError("Fail to collect dependent files.");
             return null;
         }
         
@@ -155,7 +153,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         
         run(jproject, projectEnv.getExcludedSourceFiles());
         
-        Logger.getInstance().writeLog();
+        logger.writeLog();
         return jproject;
     }
     
@@ -199,7 +197,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         
         run(jproject);
         
-        Logger.getInstance().writeLog();
+        logger.writeLog();
         return jproject;
     }
     
@@ -320,13 +318,14 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
             parse(jproject, paths, encodings, sources, charsets);
             collectInfo(jproject);
         } else {
-            Logger.getInstance().printError("Found no Java source files in " + jproject.getPath());
+            logger.printError("Found no Java source files in " + jproject.getPath());
         }
     }
     
     private void parse(JavaProject jproject, String[] paths, String[] encodings, Map<String, String> sources, Map<String, String> charsets) {
         final int size = paths.length;
-        ConsoleProgressMonitor pm = new ConsoleProgressMonitor();
+        
+        ConsoleProgressMonitor pm = visible ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
         pm.begin(size);
         FileASTRequestor requestor = new FileASTRequestor() {
             private int count = 0;
@@ -338,18 +337,18 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                     cu.accept(visitor);
                     visitor.terminate();
                 } else {
-                    Logger.getInstance().printError("Incomplete parse: " + filepath);
+                    logger.printError("Incomplete parse: " + filepath);
                 }
                 
                 pm.work(1);
                 count++;
-                Logger.getInstance().recordLog("-Parsed " +
+                logger.recordLog("-Parsed " +
                         filepath.substring(jproject.getPath().length() + 1) + " (" + count + "/" + size + ")");
             }
         };
         
-        Logger.getInstance().printMessage("Target = " + jproject.getPath() + " (" + jproject.getName() + ")");
-        Logger.getInstance().printMessage("** Ready to parse " + size + " files");
+        logger.printMessage("Target = " + jproject.getPath() + " (" + jproject.getName() + ")");
+        logger.printMessage("** Ready to parse " + size + " files");
         ASTParser parser = getParser();
         
         parser.setEnvironment(jproject.getClassPath(), null, null, true);
@@ -377,8 +376,9 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     
     protected void collectInfo(JavaProject jproject) {
         int size = jproject.getClasses().size();
-        Logger.getInstance().printMessage("** Ready to build java models of " + size + " classes");
-        ConsoleProgressMonitor pm = new ConsoleProgressMonitor();
+        logger.printMessage("** Ready to build java models of " + size + " classes");
+        ConsoleProgressMonitor pm = visible ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
+        
         pm.begin(size);
         int count = 0;
         for (JavaClass jclass : jproject.getClasses()) {
@@ -386,7 +386,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
             
             pm.work(1);
             count++;
-            Logger.getInstance().recordLog("-Built " + jclass.getQualifiedName() + " (" + count + "/" + size + ")");
+            logger.recordLog("-Built " + jclass.getQualifiedName() + " (" + count + "/" + size + ")");
         }
         pm.done();
     }
@@ -480,8 +480,8 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         BytecodeClassStore bcStore = jproject.getCFGStore().getBCStore();
         Set<BytecodeName> names = bcStore.getBytecodeNamesToBeLoaded();
         if (names.size() > 0) {
-            Logger.getInstance().printMessage("** Ready to build java models of " + names.size() + " bytecode-classes");
-            ConsoleProgressMonitor pm = new ConsoleProgressMonitor();
+            logger.printMessage("** Ready to build java models of " + names.size() + " bytecode-classes");
+            ConsoleProgressMonitor pm = visible ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
             
             pm.begin(names.size());
             for (BytecodeName bytecodeName : names) {

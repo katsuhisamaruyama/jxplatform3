@@ -5,10 +5,8 @@
 
 package org.jtool.jxplatform.builder;
 
-import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
-import org.jtool.jxplatform.util.Logger;
 import org.jtool.srcmodel.JavaProject;
-
+import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
@@ -55,9 +53,6 @@ public class JavaModelBuilder {
             }
             
             logfile = options.get("-logfile", "");
-            if (logfile.length() > 0) {
-                Logger.getInstance().setLogFile(projectPath + File.separator + logfile);
-            }
         } catch (IOException e) {
             System.err.println("Cannot build a Java model due to the invalid options/settings.");
         }
@@ -153,11 +148,19 @@ public class JavaModelBuilder {
     public List<JavaProject> build() {
         if (!autoCheckEnv.equals("yes")) {
             modelBuilder = new ModelBuilderBatch(true);
+            if (logfile.length() > 0) {
+                modelBuilder.getModelBuilderImpl().getLogger().setLogFile(projectPath + File.separator + logfile);
+            }
+            
             List<JavaProject> projects = new ArrayList<>();
             projects.add(modelBuilder.build(projectName, projectPath, classpath, srcpath, binpath));
             return projects;
         } else {
             modelBuilder = new ModelBuilderBatch(true);
+            if (logfile.length() > 0) {
+                modelBuilder.getModelBuilderImpl().getLogger().setLogFile(projectPath + File.separator + logfile);
+            }
+            
             return modelBuilder.build(projectName, projectPath);
         }
     }

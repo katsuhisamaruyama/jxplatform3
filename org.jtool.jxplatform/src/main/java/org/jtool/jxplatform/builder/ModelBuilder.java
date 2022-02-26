@@ -1,9 +1,9 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.modelbuilder;
+package org.jtool.jxplatform.builder;
 
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
@@ -14,11 +14,10 @@ import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CallGraph;
 import org.jtool.cfg.builder.CallGraphBuilder;
+import org.jtool.jxplatform.project.ModelBuilderImpl;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.SDG;
-import org.jtool.srcplatform.project.ModelBuilderImpl;
-import org.jtool.srcplatform.util.Logger;
 import java.util.Set;
 
 /**
@@ -33,6 +32,14 @@ public abstract class ModelBuilder {
      * The implementation module of this model builder.
      */
     protected ModelBuilderImpl impl;
+    
+    /**
+     * Obtains the implementation module of this model builder.
+     * @return the implementation module.
+     */
+    protected ModelBuilderImpl getModelBuilderImpl() {
+        return impl;
+    }
     
     /**
      * Sets the maximum number of a chain when analyzing byte-code classes.
@@ -522,15 +529,7 @@ public abstract class ModelBuilder {
      * @param visible {@code true} if the log information is displayed, otherwise {@code false}
      */
     public void setLogVisible(boolean visible) {
-        Logger.getInstance().setVisible(visible);
-    }
-    
-    /**
-     * Test if the log information is displayed.
-     * @return {@code true} if the log information is displayed, otherwise {@code false}
-     */
-    public boolean isLogVisible() {
-        return Logger.getInstance().isVisible();
+        impl.setLogVisible(visible);
     }
     
     /**

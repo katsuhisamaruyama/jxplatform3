@@ -1,12 +1,12 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.modelbuilder;
+package org.jtool.jxplatform.builder;
 
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.srcplatform.project.ModelBuilderBatchImpl;
+import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
 import java.util.List;
 
 /**

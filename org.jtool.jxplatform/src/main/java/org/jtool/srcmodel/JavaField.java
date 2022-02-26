@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -7,7 +7,7 @@ package org.jtool.srcmodel;
 
 import org.jtool.srcmodel.builder.FieldInitializerCollector;
 import org.jtool.srcmodel.builder.MethodCallCollector;
-import org.jtool.srcplatform.util.Logger;
+import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.EnumConstantDeclaration;
 import org.eclipse.jdt.core.dom.IVariableBinding;
@@ -286,11 +286,12 @@ public class JavaField extends JavaVariable {
         }
         
         if (!resolveOk) {
+            Logger logger = getJavaProject().getModelBuilderImpl().getLogger();
             if (declaringClass != null) {
-                Logger.getInstance().printUnresolvedError("Field " + getQualifiedName() +
+                logger.printUnresolvedError("Field " + getQualifiedName() +
                         " of " + declaringClass.getQualifiedName() + " in " + jfile.getPath());
             } else {
-                Logger.getInstance().printUnresolvedError("Field in " + jfile.getPath());
+                logger.printUnresolvedError("Field in " + jfile.getPath());
             }
         }
         resolved = true;

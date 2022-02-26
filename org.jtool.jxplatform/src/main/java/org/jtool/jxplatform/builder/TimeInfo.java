@@ -1,9 +1,9 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.util;
+package org.jtool.jxplatform.builder;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;

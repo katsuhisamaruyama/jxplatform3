@@ -1,5 +1,5 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -22,7 +22,7 @@ import org.jtool.jxplatform.bytecode.BytecodeClassStore;
 import org.jtool.jxplatform.bytecode.JClass;
 import org.jtool.jxplatform.bytecode.JClassInternal;
 import org.jtool.jxplatform.bytecode.JMethod;
-import org.jtool.jxplatform.util.Logger;
+import org.jtool.jxplatform.project.Logger;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -41,9 +41,11 @@ class ReceiverTypeResolver {
     public static boolean includesDescendants = false;
     
     private BytecodeClassStore bcStore;
+    private Logger logger = bcStore.getJavaProject().getModelBuilderImpl().getLogger();
     
     ReceiverTypeResolver(JavaProject jproject) {
         this.bcStore = jproject.getCFGStore().getBCStore();
+        this.logger = jproject.getModelBuilderImpl().getLogger();
     }
     
     void findReceiverTypes(CFG cfg) {
@@ -97,7 +99,7 @@ class ReceiverTypeResolver {
                 types.add(clazz);
                 jcall.setApproximatedTypes(types);
             } else {
-                Logger.getInstance().printError(
+                logger.printError(
                         "**Not found receiver enum type for method invocation " + jcall.getQualifiedName());
             }
             return;
@@ -110,7 +112,7 @@ class ReceiverTypeResolver {
                     types.add(clazz);
                     jcall.setApproximatedTypes(types);
                 } else {
-                    Logger.getInstance().printError(
+                    logger.printError(
                             "**Not found receiver type for constructor invocation " + jcall.getQualifiedName());
                 }
                 
@@ -120,7 +122,7 @@ class ReceiverTypeResolver {
                     types.add(method.getDeclaringClass());
                     jcall.setApproximatedTypes(types);
                 } else {
-                    Logger.getInstance().printError(
+                    logger.printError(
                             "**Not found receiver type for constructor invocation " + jcall.getQualifiedName());
                 }
             }
