@@ -5,9 +5,9 @@
 
 package org.jtool.jxplatform.project;
 
+import org.jtool.jxplatform.util.TestUtil;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.jtool.platform.util.TestUtil;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 

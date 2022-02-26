@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.platform.util;
+package org.jtool.jxplatform.util;
 
 import java.io.File;
 import java.util.List;
