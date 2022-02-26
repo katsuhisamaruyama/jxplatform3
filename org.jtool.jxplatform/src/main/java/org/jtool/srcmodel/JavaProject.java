@@ -6,10 +6,10 @@
 package org.jtool.srcmodel;
 
 import org.jtool.srcmodel.builder.ProjectStore;
-import org.jtool.srcplatform.project.ModelBuilderImpl;
-import org.jtool.srcplatform.modelbuilder.ModelBuilder;
 import org.jtool.cfg.builder.CFGStore;
 import org.jtool.pdg.builder.PDGStore;
+import org.jtool.jxplatform.builder.ModelBuilder;
+import org.jtool.jxplatform.project.ModelBuilderImpl;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;

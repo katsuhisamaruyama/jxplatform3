@@ -6,7 +6,7 @@
 package org.jtool.cfg;
 
 import org.jtool.srcmodel.QualifiedName;
-import org.jtool.srcplatform.bytecode.JClass;
+import org.jtool.jxplatform.bytecode.JClass;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.SuperMethodInvocation;
 import org.eclipse.jdt.core.dom.SuperConstructorInvocation;

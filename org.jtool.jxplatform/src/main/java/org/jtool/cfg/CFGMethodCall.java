@@ -5,8 +5,8 @@
 
 package org.jtool.cfg;
 
-import org.jtool.srcplatform.bytecode.JClass;
 import org.jtool.srcmodel.QualifiedName;
+import org.jtool.jxplatform.bytecode.JClass;
 import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.List;
 import java.util.ArrayList;

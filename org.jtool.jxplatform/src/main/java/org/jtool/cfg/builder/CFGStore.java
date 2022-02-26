@@ -12,8 +12,7 @@ import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.srcplatform.bytecode.BytecodeClassStore;
-
+import org.jtool.jxplatform.bytecode.BytecodeClassStore;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;

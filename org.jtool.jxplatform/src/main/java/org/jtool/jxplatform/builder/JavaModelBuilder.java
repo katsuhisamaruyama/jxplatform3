@@ -3,12 +3,12 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.modelbuilder;
+package org.jtool.jxplatform.builder;
 
+import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
+import org.jtool.jxplatform.util.Logger;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.srcplatform.project.CommandLineOptions;
-import org.jtool.srcplatform.project.ModelBuilderBatchImpl;
-import org.jtool.srcplatform.util.Logger;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.io.File;

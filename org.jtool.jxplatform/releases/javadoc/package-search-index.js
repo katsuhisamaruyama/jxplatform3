@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.jtool.cfg"},{"l":"org.jtool.graph"},{"l":"org.jtool.pdg"},{"l":"org.jtool.slice"},{"l":"org.jtool.srcmodel"},{"l":"org.jtool.srcplatform.modelbuilder"},{"l":"org.jtool.srcplatform.util"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.jtool.cfg"},{"l":"org.jtool.graph"},{"l":"org.jtool.pdg"},{"l":"org.jtool.slice"},{"l":"org.jtool.srcmodel"},{"l":"org.jtool.jxplatform.builder"},{"l":"org.jtool.srcplatform.util"}]

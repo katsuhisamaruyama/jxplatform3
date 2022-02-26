@@ -17,7 +17,7 @@ import org.jtool.srcmodel.JavaElement;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaMethod;
-import org.jtool.srcplatform.modelbuilder.ModelBuilder;
+import org.jtool.jxplatform.builder.ModelBuilder;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.MethodDeclaration;

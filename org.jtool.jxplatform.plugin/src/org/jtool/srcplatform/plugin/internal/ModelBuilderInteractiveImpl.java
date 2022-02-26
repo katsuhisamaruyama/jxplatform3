@@ -6,20 +6,19 @@
 package org.jtool.srcplatform.plugin.internal;
 
 import org.jtool.srcplatform.plugin.Activator;
-import org.jtool.srcplatform.bytecode.BytecodeClassStore;
-import org.jtool.srcplatform.bytecode.BytecodeName;
-import org.jtool.srcplatform.modelbuilder.ModelBuilder;
 import org.jtool.srcplatform.plugin.IFileChangeListener;
 import org.jtool.srcplatform.plugin.SrcPlatConsole;
-import org.jtool.srcplatform.project.ModelBuilderImpl;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaPackage;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.builder.JavaASTVisitor;
 import org.jtool.srcmodel.builder.ProjectStore;
-import org.jtool.srcplatform.util.Logger;
-
+import org.jtool.jxplatform.builder.ModelBuilder;
+import org.jtool.jxplatform.bytecode.BytecodeClassStore;
+import org.jtool.jxplatform.bytecode.BytecodeName;
+import org.jtool.jxplatform.project.ModelBuilderImpl;
+import org.jtool.jxplatform.util.Logger;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.IClasspathEntry;
