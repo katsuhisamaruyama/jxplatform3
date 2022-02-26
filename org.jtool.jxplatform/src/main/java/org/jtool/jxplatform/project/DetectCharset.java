@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.util;
+package org.jtool.jxplatform.project;
 
 import java.io.InputStream;
 import java.io.FileInputStream;

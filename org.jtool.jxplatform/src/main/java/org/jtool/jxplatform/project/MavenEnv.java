@@ -3,19 +3,23 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.project;
+package org.jtool.jxplatform.project;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.io.File;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.HashSet;
 import java.util.Arrays;
 import java.util.Properties;
 import java.io.InputStream;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Build;
+import org.apache.maven.model.Plugin;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.shared.invoker.InvocationRequest;
 import org.apache.maven.shared.invoker.DefaultInvocationRequest;
@@ -132,22 +136,23 @@ class MavenEnv extends ProjectEnv {
         classPaths.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
         classPaths.add(libPath.toString());
         
-        Set<String> excludes = new HashSet<>();
-        model.getProfiles().stream()
-            .filter(p -> p.getBuild() != null).map(p -> p.getBuild())
-            .flatMap(m -> m.getPlugins().stream())
-            .filter(p -> p.getConfiguration() != null)
-            .map(p -> (Xpp3Dom)p.getConfiguration())
-            .forEach(d -> collectExcludes(d, excludes));
+        Stream<Plugin> plugins1 = build.getPlugins().stream();
+        Stream<Plugin> plugins2 = model.getProfiles().stream()
+                .filter(p -> p.getBuild() != null).map(p -> p.getBuild()).flatMap(m -> m.getPlugins().stream());
         
-        for (String srcPath : sourcePaths) {
-            for (String exclude : excludes) {
-                Path path = Paths.get(srcPath, exclude);
-                if (path.toFile().exists()) {
-                    excludedSourceFiles.add(path.toString());
-                }
-            }
-        }
+        List<Xpp3Dom> configurations = Stream.concat(plugins1, plugins2)
+                .filter(p -> p.getArtifactId().equals("maven-compiler-plugin"))
+                .filter(p -> p.getConfiguration() != null)
+                .map(p -> (Xpp3Dom)p.getConfiguration())
+                .collect(Collectors.toList());
+        
+        Set<String> includes = new HashSet<>();
+        configurations.forEach(dom -> collectFileNames(dom, includes, "include", "testInclude"));
+        includedSourceFiles = collectFileNames(includes);
+        
+        Set<String> excludes = new HashSet<>();
+        configurations.forEach(dom -> collectFileNames(dom, excludes, "exclude", "testExclude"));
+        excludedSourceFiles = collectFileNames(excludes);
     }
     
     private String getSourceDirectory(String dir, String[][] names) {
@@ -178,13 +183,26 @@ class MavenEnv extends ProjectEnv {
         return null;
     }
     
-    private void collectExcludes(Xpp3Dom dom, Set<String> qnames) {
+    private void collectFileNames(Xpp3Dom dom, Set<String> filenames, String qname, String testqname) {
         for (Xpp3Dom child : dom.getChildren()) {
-            if (child.getName().equals("exclude") || child.getName().equals("testExclude")) {
-                qnames.add(child.getValue());
+            if (child.getName().equals(qname) || child.getName().equals(testqname)) {
+                filenames.add(child.getValue());
             }
-            collectExcludes(child, qnames);
+            collectFileNames(child, filenames, qname, testqname);
         }
+    }
+    
+    private Set<String> collectFileNames(Set<String> filenames) {
+        Set<String> paths = new HashSet<>();
+        for (String srcpath : sourcePaths) {
+            for (String filename : filenames) {
+                Path path = Paths.get(srcpath, filename);
+                if (path.toFile().exists()) {
+                    paths.add(path.toString());
+                }
+            }
+        }
+        return paths;
     }
     
     @Override

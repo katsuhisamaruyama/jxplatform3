@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.project;
+package org.jtool.jxplatform.project;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -39,6 +39,7 @@ abstract class ProjectEnv {
     protected Set<String> sourcePaths = new HashSet<String>();
     protected Set<String> binaryPaths = new HashSet<String>();
     
+    protected Set<String> includedSourceFiles = new HashSet<String>();
     protected Set<String> excludedSourceFiles = new HashSet<String>();
     
     ProjectEnv(String name, Path basePath) {
@@ -117,6 +118,10 @@ abstract class ProjectEnv {
             classPaths.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
         }
         return classPaths;
+    }
+    
+    Set<String> getIncludedSourceFiles() {
+        return includedSourceFiles;
     }
     
     Set<String> getExcludedSourceFiles() {

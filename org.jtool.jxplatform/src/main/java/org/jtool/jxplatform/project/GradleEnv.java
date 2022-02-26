@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.project;
+package org.jtool.jxplatform.project;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -158,13 +158,13 @@ class GradleEnv extends ProjectEnv {
     }
     
     private void addTask(String taskName) throws IOException {
-        String[] configs = new String[] {
+        String[] dependencies = new String[] {
                 "implementation",
                 "testImplementation",
                 "compileOnly",
                 "testCompileOnly"
         };
-        String content = getConfiguration(taskName, configs);
+        String content = getConfiguration(taskName, dependencies);
         Files.write(configFile, content.getBytes(), StandardOpenOption.APPEND);
     }
     

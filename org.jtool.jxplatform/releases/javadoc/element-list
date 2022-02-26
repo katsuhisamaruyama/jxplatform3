@@ -3,5 +3,5 @@ org.jtool.graph
 org.jtool.pdg
 org.jtool.slice
 org.jtool.srcmodel
-org.jtool.srcplatform.modelbuilder
+org.jtool.jxplatform.builder
 org.jtool.srcplatform.util
