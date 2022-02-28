@@ -41,7 +41,7 @@ class ReceiverTypeResolver {
     public static boolean includesDescendants = false;
     
     private BytecodeClassStore bcStore;
-    private Logger logger = bcStore.getJavaProject().getModelBuilderImpl().getLogger();
+    private Logger logger;
     
     ReceiverTypeResolver(JavaProject jproject) {
         this.bcStore = jproject.getCFGStore().getBCStore();
