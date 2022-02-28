@@ -99,7 +99,7 @@ public abstract class ModelBuilderImpl {
     
     public void setLogVisible(boolean visible) {
         this.visible = visible;
-        
+        logger.setVisible(visible);
     }
     
     public boolean isLogVisible() {
