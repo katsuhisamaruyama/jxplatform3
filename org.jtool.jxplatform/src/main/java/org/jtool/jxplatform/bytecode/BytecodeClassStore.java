@@ -5,10 +5,12 @@
 
 package org.jtool.jxplatform.bytecode;
 
+import org.jtool.jxplatform.project.ConsoleProgressMonitor;
 import org.jtool.jxplatform.project.ModelBuilderImpl;
+import org.jtool.jxplatform.project.NullConsoleProgressMonitor;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaProject;
-
+import org.jtool.jxplatform.project.Logger;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtConstructor;
@@ -286,6 +288,10 @@ public class BytecodeClassStore {
         bytecodeClassMap.put(clazz.getName(), clazz);
     }
     
+    public void cleanCache(JavaProject jproject) {
+        BytecodeCacheManager.cleanCache(jproject);
+    }
+    
     public void writeBytecodeCache() {
         for (String cacheName : cacheNames) {
             List<BytecodeClass> classes = bytecodeClassMap.values().stream()
@@ -296,6 +302,7 @@ public class BytecodeClassStore {
         }
         
         BytecodeCacheManager.writeBootModuleVersion(jproject, BOOT_VERSION_FILENAME, BootModuleVersion);
+        BytecodeCacheManager.writeGitIgnore(jproject);
     }
     
     public void setClassHierarchy() {
@@ -399,9 +406,30 @@ public class BytecodeClassStore {
     
     BytecodeClass getBcClass(String className) {
         if (analysisLevel < 3) {
-            jproject.getModelBuilderImpl().loadBytecode(jproject);
+            loadBytecode(jproject);
         }
         return bytecodeClassMap.get(className);
+    }
+    
+    private void loadBytecode(JavaProject jproject) {
+        BytecodeClassStore bcStore = jproject.getCFGStore().getBCStore();
+        Set<BytecodeName> names = bcStore.getBytecodeNamesToBeLoaded();
+        if (names.size() > 0) {
+            Logger logger = jproject.getModelBuilderImpl().getLogger();
+            
+            logger.printMessage("** Ready to build java models of " + names.size() + " bytecode-classes");
+            ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
+            
+            pm.begin(names.size());
+            for (BytecodeName bytecodeName : names) {
+                bcStore.loadBytecode(bytecodeName);
+                pm.work(1);
+            }
+            pm.done();
+        }
+        
+        bcStore.setClassHierarchy();
+        bcStore.writeBytecodeCache();
     }
     
     public JClass findInternalClass(String className) {

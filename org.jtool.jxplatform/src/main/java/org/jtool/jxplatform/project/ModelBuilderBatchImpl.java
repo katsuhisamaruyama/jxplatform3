@@ -11,8 +11,6 @@ import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.builder.JavaASTVisitor;
 import org.jtool.srcmodel.builder.ProjectStore;
 import org.jtool.jxplatform.builder.ModelBuilder;
-import org.jtool.jxplatform.bytecode.BytecodeClassStore;
-import org.jtool.jxplatform.bytecode.BytecodeName;
 import org.eclipse.jdt.core.compiler.IProblem;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.FileASTRequestor;
@@ -473,25 +471,5 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
             }
         }
         return content.toString();
-    }
-    
-    @Override
-    public void loadBytecode(JavaProject jproject) {
-        BytecodeClassStore bcStore = jproject.getCFGStore().getBCStore();
-        Set<BytecodeName> names = bcStore.getBytecodeNamesToBeLoaded();
-        if (names.size() > 0) {
-            logger.printMessage("** Ready to build java models of " + names.size() + " bytecode-classes");
-            ConsoleProgressMonitor pm = visible ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
-            
-            pm.begin(names.size());
-            for (BytecodeName bytecodeName : names) {
-                bcStore.loadBytecode(bytecodeName);
-                pm.work(1);
-            }
-            pm.done();
-        }
-        
-        bcStore.setClassHierarchy();
-        bcStore.writeBytecodeCache();
     }
 }

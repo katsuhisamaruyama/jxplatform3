@@ -59,8 +59,6 @@ public abstract class ModelBuilderImpl {
     
     public abstract void update(JavaProject jproject);
     
-    public abstract void loadBytecode(JavaProject jproject);
-    
     public void analyzeBytecode(boolean bool) {
         analyzeBytecode = bool;
     }

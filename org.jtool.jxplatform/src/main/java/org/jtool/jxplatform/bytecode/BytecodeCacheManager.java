@@ -18,23 +18,26 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 import java.util.Collection;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.List;
 import java.io.File;
-import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.nio.file.Files;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+import org.apache.commons.io.FileUtils;
 
 /**
  * Manages (plus reads and writes) the cache of byte-code classes.
@@ -47,6 +50,8 @@ public class BytecodeCacheManager {
     
     static final String BYTECODE_CACHE_DIR = ".srcplatform";
     static final String CACHE_FILE_EXTION = ".cache";
+    
+    static final String GIT_IGNORE_FILE = ".gitignore";
     
     static final String ProjectElem = "project";
     static final String PathAttr = "path";
@@ -71,24 +76,22 @@ public class BytecodeCacheManager {
     public static final String UseAttr = "use";
     public static final String CallAttr = "call";
     
-    static String readBootModuleVersion(JavaProject jproject, String name) {
+    static String readBootModuleVersion(JavaProject jproject, String filename) {
         if (jproject.makeDir(BYTECODE_CACHE_DIR)) {
             return "0";
         }
         
-        String filename = jproject.getPath() + File.separator +
-                BYTECODE_CACHE_DIR + File.separator + name;
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, filename);
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
             return reader.readLine();
         } catch (IOException e) {
             return "0";
         }
     }
     
-    static boolean writeBootModuleVersion(JavaProject jproject, String name, String version) {
-        String filename = jproject.getPath() + File.separator +
-                BYTECODE_CACHE_DIR + File.separator + name;
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+    static boolean writeBootModuleVersion(JavaProject jproject, String filename, String version) {
+        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, filename);
+        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write(version);
             writer.newLine();
             return true;
@@ -97,26 +100,47 @@ public class BytecodeCacheManager {
         }
     }
     
+    static boolean writeGitIgnore(JavaProject jproject) {
+        Path filepath = Paths.get(jproject.getPath(), GIT_IGNORE_FILE);
+        try (BufferedWriter writer = Files.newBufferedWriter(filepath)) {
+            writer.write(BYTECODE_CACHE_DIR);
+            writer.newLine();
+            writer.write(GIT_IGNORE_FILE);
+            writer.newLine();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+    
+    static boolean cleanCache(JavaProject jproject) {
+        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR);
+        Path filepath = Paths.get(jproject.getPath(), GIT_IGNORE_FILE);
+        try {
+            FileUtils.deleteDirectory(path.toFile());
+            FileUtils.deleteDirectory(filepath.toFile());
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+    
     static long getLastModifiedTimeJarsCacheFile(JavaProject jproject, String cacheName) {
-        String filename = jproject.getPath() + File.separator + BYTECODE_CACHE_DIR +
-                File.separator + cacheName + CACHE_FILE_EXTION;
-        File file = new File(filename);
-        if (file.exists()) {
+        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + CACHE_FILE_EXTION);
+        File file = path.toFile();
+        if (path.toFile().exists()) {
             return file.lastModified();
         }
         return -1;
     }
     
     static boolean canRead(JavaProject jproject, String cacheName) {
-        String filename = jproject.getPath() + File.separator + BYTECODE_CACHE_DIR +
-                File.separator + cacheName + CACHE_FILE_EXTION;
-        File file = new File(filename);
-        return file.canRead();
+        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + CACHE_FILE_EXTION);
+        return path.toFile().canRead();
     }
     
     static boolean writeCache(JavaProject jproject, List<? extends BytecodeClassCache>classes, String cacheName) {
-        String filename = jproject.getPath() + File.separator + BYTECODE_CACHE_DIR +
-                File.separator + cacheName + CACHE_FILE_EXTION;
+        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + CACHE_FILE_EXTION);
         
         try {
             CacheExporter exporter = new CacheExporter();
@@ -130,7 +154,7 @@ public class BytecodeCacheManager {
             StringWriter writer = new StringWriter();
             transformer.transform(src, new StreamResult(writer));
             
-            File file = new File(filename);
+            File file = path.toFile();
             if (file.exists()) {
                 file.delete();
             }
@@ -151,21 +175,20 @@ public class BytecodeCacheManager {
     }
     
     static boolean readCache(JavaProject jproject, String cacheName) {
-        String filename = jproject.getPath() + File.separator + BYTECODE_CACHE_DIR +
-                File.separator + cacheName + CACHE_FILE_EXTION;
-        File file = new File(filename);
+        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + CACHE_FILE_EXTION);
+        File file = path.toFile();
         if (!file.canRead()) {
             return false;
         }
         
-        jproject.getModelBuilderImpl().getLogger().recordLog("-Read cache " + filename);
+        jproject.getModelBuilderImpl().getLogger().recordLog("-Read cache " + file.getName());
         
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setNamespaceAware(true);
             
             SAXParser parser = factory.newSAXParser();
-            DefaultHandler handler = new ProxyImporter(jproject, cacheName);
+            DefaultHandler handler = new ProxyImporter(jproject, path.toString());
             parser.parse(file, handler);
             return true;
         } catch (SAXException e) {
