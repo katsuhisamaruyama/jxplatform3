@@ -29,6 +29,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
 /**
@@ -304,7 +305,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                 try {
                     String path = file.getCanonicalPath();
                     String source = read(file);
-                    String charset = DetectCharset.getCharsetName(source.getBytes());
+                    String charset = StandardCharsets.UTF_8.name();
                     paths[count] = path;
                     encodings[count] = charset;
                     sources.put(path, source);
