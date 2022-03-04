@@ -50,7 +50,7 @@ class JClassCache extends JClass {
     }
     
     @Override
-    protected void findAncestors() {
+    protected void findAncestorClasses() {
         for (String className : bclass.getAncestors()) {
             JClass clazz = bcStore.getJClass(className);
             if (clazz != null) {
@@ -60,7 +60,7 @@ class JClassCache extends JClass {
     }
     
     @Override
-    protected void findDescendants() {
+    protected void findDescendantClasses() {
         for (String className : bclass.getDescendants()) {
             JClass clazz = bcStore.getJClass(className);
             if (clazz != null) {

@@ -59,7 +59,7 @@ public class JClassInternal extends JClass {
     }
     
     @Override
-    protected void findAncestors() {
+    protected void findAncestorClasses() {
         for (JavaClass jc : jclass.getAncestors()) {
             if (jc.isClass()) {
                 JClass clazz = bcStore.getJClass(jc.getQualifiedName().fqn());
@@ -71,7 +71,7 @@ public class JClassInternal extends JClass {
     }
     
     @Override
-    protected void findDescendants() {
+    protected void findDescendantClasses() {
         for (JavaClass jc : jclass.getDescendants()) {
             if (jc.isClass()) {
                 JClass clazz = bcStore.getJClass(jc.getQualifiedName().fqn());

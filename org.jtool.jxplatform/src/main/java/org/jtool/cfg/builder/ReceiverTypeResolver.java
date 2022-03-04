@@ -197,7 +197,7 @@ class ReceiverTypeResolver {
                 CFGStatement fieldDecl = (CFGStatement)cfgnode;
                 for (JClass type : findLowermostTypes(fieldDecl)) {
                     types.add(type);
-                    for (JClass ancestor : type.getAncestors()) {
+                    for (JClass ancestor : type.getAncestorClasses()) {
                         if (ancestor.getFields().size() > 0) {
                             types.add(ancestor);
                         }
@@ -216,7 +216,7 @@ class ReceiverTypeResolver {
         for (JClass clazz : classes) {
             Set<JClass> tmpClasses = new HashSet<>(classes);
             tmpClasses.remove(clazz);
-            boolean exists = clazz.getDescendants().stream().anyMatch(c -> tmpClasses.contains(c));
+            boolean exists = clazz.getDescendantClasses().stream().anyMatch(c -> tmpClasses.contains(c));
             if (!exists) {
                 types.add(clazz);
             }
@@ -230,7 +230,7 @@ class ReceiverTypeResolver {
             if (clazz.getClassName().equals(targetType)) {
                 return targetType;
             }
-            for (JClass jc: clazz.getAncestors()) {
+            for (JClass jc: clazz.getAncestorClasses()) {
                 if (jc.getClassName().equals(targetType)) {
                     return upperType;
                 }
@@ -289,7 +289,7 @@ class ReceiverTypeResolver {
         types.add(clazz);
         
         if (includesDescendants) {
-            for (JClass jc : clazz.getDescendants()) {
+            for (JClass jc : clazz.getDescendantClasses()) {
                 if (jc.getMethod(signature) != null) {
                     types.add(jc);
                 }

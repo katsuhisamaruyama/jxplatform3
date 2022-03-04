@@ -38,27 +38,27 @@ public class JClassExternal extends JClass {
     protected void findSuperClassChain() {
         for (String className : bclass.getSuperClassChain()) {
             JClass clazz = bcStore.getJClass(className);
-            if (clazz != null) {
+            if (clazz != null && !clazz.isInterface) {
                 superClassChain.add(clazz);
             }
         }
     }
     
     @Override
-    protected void findAncestors() {
+    protected void findAncestorClasses() {
         for (String className : bclass.getAncestors()) {
             JClass clazz = bcStore.getJClass(className);
-            if (clazz != null) {
+            if (clazz != null && !clazz.isInterface) {
                 ancestors.add(clazz);
             }
         }
     }
     
     @Override
-    protected void findDescendants() {
+    protected void findDescendantClasses() {
         for (String className : bclass.getDescendants()) {
             JClass clazz = bcStore.getJClass(className);
-            if (clazz != null) {
+            if (clazz != null && !clazz.isInterface) {
                 descendants.add(clazz);
             }
         }
