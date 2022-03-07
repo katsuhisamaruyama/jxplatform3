@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -61,6 +61,10 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     BytecodeClass(String cacheName, BytecodeClassStore bcStore) {
         this.cacheName = cacheName;
         this.bcStore = bcStore;
+    }
+    
+    boolean isCache() {
+        return false;
     }
     
     protected void collectInfo() {
@@ -235,6 +239,11 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         superClassChain = superClassChainCache.stream().map(bc -> bc.getName()).collect(Collectors.toList());
         ancestors = ancestorsCache.stream().map(bclass -> bclass.getName()).collect(Collectors.toList());
         descendants = descendantsCache.stream().map(bclass -> bclass.getName()).collect(Collectors.toList());
+        
+        //if (this.getName().equals("java.util.List")) {
+            //System.err.println(this.getClass().toString());
+            //descendants.forEach(e -> System.err.println("  *DD = " + e));
+        //}
     }
     
     public List<String> getSuperClassChain() {

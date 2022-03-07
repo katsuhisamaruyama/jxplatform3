@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import java.util.List;
 import java.io.File;
 import java.io.BufferedReader;
@@ -49,7 +50,7 @@ public class BytecodeCacheManager {
     static final String FORMAT_VERSION = "0.1";
     
     static final String BYTECODE_CACHE_DIR = ".srcplatform";
-    static final String CACHE_FILE_EXTION = ".cache";
+    static final String CACHE_FILE_EXTION = "cache";
     
     static final String GIT_IGNORE_FILE = ".gitignore";
     
@@ -113,6 +114,15 @@ public class BytecodeCacheManager {
         }
     }
     
+    static List<String> getCacheFiles(JavaProject jproject) {
+        Path cachepath = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR);
+        return FileUtils.listFiles(cachepath.toFile(), new String[]{ CACHE_FILE_EXTION }, false).stream()
+                .map(f -> f.getName())
+                .filter(n -> !n.startsWith("#"))
+                .map(n -> n.replace("." + CACHE_FILE_EXTION, ""))
+                .collect(Collectors.toList());
+    }
+    
     static boolean removeBytecodeCache(JavaProject jproject) {
         try {
             Path cachepath = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR);
@@ -126,7 +136,7 @@ public class BytecodeCacheManager {
     }
     
     static long getLastModifiedTimeJarsCacheFile(JavaProject jproject, String cacheName) {
-        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + CACHE_FILE_EXTION);
+        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + "." + CACHE_FILE_EXTION);
         File file = path.toFile();
         if (path.toFile().exists()) {
             return file.lastModified();
@@ -135,12 +145,12 @@ public class BytecodeCacheManager {
     }
     
     static boolean canRead(JavaProject jproject, String cacheName) {
-        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + CACHE_FILE_EXTION);
+        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + "." + CACHE_FILE_EXTION);
         return path.toFile().canRead();
     }
     
     static boolean writeCache(JavaProject jproject, List<? extends BytecodeClassCache>classes, String cacheName) {
-        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + CACHE_FILE_EXTION);
+        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + "." + CACHE_FILE_EXTION);
         
         try {
             CacheExporter exporter = new CacheExporter();
@@ -175,7 +185,7 @@ public class BytecodeCacheManager {
     }
     
     static boolean readCache(JavaProject jproject, String cacheName) {
-        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + CACHE_FILE_EXTION);
+        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR, cacheName + "." + CACHE_FILE_EXTION);
         File file = path.toFile();
         if (!file.canRead()) {
             return false;

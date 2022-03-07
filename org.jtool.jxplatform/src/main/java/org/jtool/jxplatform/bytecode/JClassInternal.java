@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -63,7 +63,7 @@ public class JClassInternal extends JClass {
         for (JavaClass jc : jclass.getAncestors()) {
             if (jc.isClass()) {
                 JClass clazz = bcStore.getJClass(jc.getQualifiedName().fqn());
-                if (clazz != null) {
+                if (clazz != null && !clazz.isInterface && !ancestors.contains(clazz)) {
                     ancestors.add(clazz);
                 }
             }
@@ -75,7 +75,7 @@ public class JClassInternal extends JClass {
         for (JavaClass jc : jclass.getDescendants()) {
             if (jc.isClass()) {
                 JClass clazz = bcStore.getJClass(jc.getQualifiedName().fqn());
-                if (clazz != null) {
+                if (clazz != null && !clazz.isInterface && !descendants.contains(clazz)) {
                     descendants.add(clazz);
                 }
             }

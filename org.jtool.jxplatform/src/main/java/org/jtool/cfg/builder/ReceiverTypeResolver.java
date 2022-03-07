@@ -20,7 +20,6 @@ import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.bytecode.BytecodeClassStore;
 import org.jtool.jxplatform.bytecode.JClass;
-import org.jtool.jxplatform.bytecode.JClassInternal;
 import org.jtool.jxplatform.bytecode.JMethod;
 import org.jtool.jxplatform.project.Logger;
 import java.util.Set;
@@ -178,14 +177,11 @@ class ReceiverTypeResolver {
     
     private Set<JClass> getFieldTypes(JReference jv) {
         Set<JClass> types = new HashSet<>();
-        JClass clazz = bcStore.getJClass(jv.getDeclaringClassName());
-        
-        if (clazz == null || !clazz.isInProject()) {
+        JavaClass jclass = bcStore.getJavaProject().getClass(jv.getDeclaringClassName());
+        if (jclass == null || !jclass.isInProject()) {
             return types;
         }
         
-        JClassInternal internalClass = (JClassInternal)clazz;
-        JavaClass jclass = internalClass.getJavaClass();
         JavaField jfield = jclass.getField(jv.getSignature());
         if (jfield == null) {
             return types;

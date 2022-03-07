@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -20,6 +20,11 @@ public class BytecodeClassProxy extends BytecodeClass {
     
     BytecodeClassProxy(String cacheName, BytecodeClassStore bcStore) {
         super(cacheName, bcStore);
+    }
+    
+    @Override
+    boolean isCache() {
+        return true;
     }
     
     void addClass(Map<String, String> attr) {

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -48,7 +48,7 @@ public class JClassExternal extends JClass {
     protected void findAncestorClasses() {
         for (String className : bclass.getAncestors()) {
             JClass clazz = bcStore.getJClass(className);
-            if (clazz != null && !clazz.isInterface) {
+            if (clazz != null && !clazz.isInterface && !ancestors.contains(clazz)) {
                 ancestors.add(clazz);
             }
         }
@@ -58,7 +58,7 @@ public class JClassExternal extends JClass {
     protected void findDescendantClasses() {
         for (String className : bclass.getDescendants()) {
             JClass clazz = bcStore.getJClass(className);
-            if (clazz != null && !clazz.isInterface) {
+            if (clazz != null && !clazz.isInterface && !descendants.contains(clazz)) {
                 descendants.add(clazz);
             }
         }

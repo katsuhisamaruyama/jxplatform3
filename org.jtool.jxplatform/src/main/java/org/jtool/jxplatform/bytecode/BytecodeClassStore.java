@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -67,6 +67,10 @@ public class BytecodeClassStore {
         this.jproject = jproject;
     }
     
+    public JavaProject getJavaProject() {
+        return jproject;
+    }
+    
     public void create() {
         ModelBuilderImpl builderImpl = jproject.getModelBuilderImpl();
         
@@ -76,7 +80,9 @@ public class BytecodeClassStore {
         if (builderImpl.useProjectCache()) {
             builderImpl.analyzeBytecode(true);
             boolean result = loadProjectCache();
-            if (!result) {
+            if (result) {
+                analysisLevel = 3;
+            } else {
                 analysisLevel = 1;
             }
         } else {
@@ -97,12 +103,22 @@ public class BytecodeClassStore {
     }
     
     private boolean loadProjectCache() {
-        boolean readCacheOk = BytecodeCacheManager.readCache(jproject, PROJECT_CACHE_FILENAME);
-        if (!readCacheOk) {
+        boolean readProjectCacheOk = BytecodeCacheManager.readCache(jproject, PROJECT_CACHE_FILENAME);
+        if (!readProjectCacheOk) {
             return false;
         }
         
-        analysisLevel = 3;
+        boolean readBootCacheOk = readBootCache();
+        if (!readBootCacheOk) {
+            return false;
+        }
+        
+        boolean readLibCaheOk = BytecodeCacheManager.getCacheFiles(jproject).stream()
+            .allMatch(n -> BytecodeCacheManager.readCache(jproject, n));
+        if (!readLibCaheOk) {
+            return false;
+        }
+        
         bytecodeClassMap.values().forEach(bclass -> bclass.findClassHierarchy());
         bytecodeClassMap.values().forEach(bclass -> bclass.setClassHierarchy());
         
@@ -122,13 +138,8 @@ public class BytecodeClassStore {
             jproject.getClasses().stream().forEach(jc -> jproject.getCFGStore().getCCFG(jc, false));
             List<JClass> classes = new ArrayList<>();
             classes.addAll(internalClassMap.values());
-            classes.addAll(externalClassMap.values());
             BytecodeCacheManager.writeCache(jproject, classes, PROJECT_CACHE_FILENAME);
         }
-    }
-    
-    public JavaProject getJavaProject() {
-        return jproject;
     }
     
     public Set<BytecodeName> getBytecodeNamesToBeLoaded() {
@@ -140,13 +151,18 @@ public class BytecodeClassStore {
         return bytecodeNames;
     }
     
-    private Set<BytecodeName> collectBytecodeNames(List<String> classPaths) {
-        Set<BytecodeName> bytecodeNames = new HashSet<>();
-        
+    private boolean readBootCache() {
         boolean bootModuleVersionOk = BootModuleVersion
                 .equals(BytecodeCacheManager.readBootModuleVersion(jproject, BOOT_VERSION_FILENAME));
         boolean readCacheOk = BytecodeCacheManager.readCache(jproject, BOOT_CACHE_FILENAME);
-        if (bootModuleVersionOk && readCacheOk) {
+        return bootModuleVersionOk && readCacheOk;
+    }
+    
+    private Set<BytecodeName> collectBytecodeNames(List<String> classPaths) {
+        Set<BytecodeName> bytecodeNames = new HashSet<>();
+        
+        boolean readBootCacheOk = readBootCache();
+        if (readBootCacheOk) {
             analysisLevel = 2;
         } else {
             bytecodeNames.addAll(collectClassNamesFromJavaModules());
@@ -389,7 +405,7 @@ public class BytecodeClassStore {
     private JClass registerInternalClass(String className) {
         JavaClass jclass = jproject.getClass(className);
         if (jclass != null) {
-            JClassInternal clazz = new JClassInternal(jclass, this);
+            JClass clazz = new JClassInternal(jclass, this);
             internalClassMap.put(clazz.getQualifiedName().fqn(), clazz);
             return clazz;
         }
@@ -399,7 +415,12 @@ public class BytecodeClassStore {
     private JClass registerExternalClass(String className) {
         BytecodeClass bclass = getBcClass(className);
         if (bclass != null) {
-            JClassExternal clazz = new JClassExternal(bclass, this);
+            JClass clazz;
+            if (bclass.isCache()) {
+                clazz = new JClassCache(bclass, this);
+            } else {
+                clazz = new JClassExternal(bclass, this);
+            }
             externalClassMap.put(clazz.getQualifiedName().fqn(), clazz);
             return clazz;
         }
