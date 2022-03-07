@@ -119,6 +119,7 @@ public class BytecodeClassStore {
     
     public void writeProjectCache() {
         if (jproject.getModelBuilderImpl().useProjectCache()) {
+            jproject.getClasses().stream().forEach(jc -> jproject.getCFGStore().getCCFG(jc, false));
             List<JClass> classes = new ArrayList<>();
             classes.addAll(internalClassMap.values());
             classes.addAll(externalClassMap.values());
