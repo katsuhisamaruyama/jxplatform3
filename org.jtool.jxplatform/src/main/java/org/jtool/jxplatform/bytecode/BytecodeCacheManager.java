@@ -181,7 +181,7 @@ public class BytecodeCacheManager {
             return false;
         }
         
-        jproject.getModelBuilderImpl().getLogger().printMessage("** Read cache " + file.getName());
+        jproject.getModelBuilderImpl().getLogger().recordLog("** Read cache " + file.getName());
         
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
