@@ -314,7 +314,7 @@ public class JavaProject {
     
     /**
      * Obtains classes existing in this project.
-     * @return the collection of the existing classes
+     * @return the collection of the classes in this project
      */
     public List<JavaClass> getClasses() {
         return new ArrayList<>(classStore.values());
@@ -322,14 +322,14 @@ public class JavaProject {
     
     /**
      * Obtains classes existing in this project.
-     * @return the sorted collection of the existing classes
+     * @return the sorted collection of the classes in this project
      */
     public List<JavaClass> getSortedClasses() {
         return JavaClass.sortClasses(getClasses());
     }
     
     /**
-     * Obtains a class having a given fully-qualified name
+     * Obtains a class having a given fully-qualified name from the inside of this project.
      * @param fqn the fully-qualified name of the class
      * @return the found class, or {@code null} if no class is found
      */
@@ -345,7 +345,7 @@ public class JavaProject {
     }
     
     /**
-     * Obtains a class outside this project, not having source code.
+     * Obtains a class having a given fully-qualified name from the outside of this project.
      * @param fqn the fully-qualified name of the class
      * @return the found class, or {@code null} if no class is found
      */
