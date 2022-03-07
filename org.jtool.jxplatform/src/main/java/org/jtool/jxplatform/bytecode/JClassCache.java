@@ -35,11 +35,6 @@ class JClassCache extends JClass {
     }
     
     @Override
-    public boolean isInProject() {
-        return false;
-    }
-    
-    @Override
     protected void findSuperClassChain() {
         for (String className : bclass.getSuperClassChain()) {
             JClass clazz = bcStore.getJClass(className);

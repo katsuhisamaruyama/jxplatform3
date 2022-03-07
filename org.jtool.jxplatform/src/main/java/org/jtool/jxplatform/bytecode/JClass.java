@@ -85,6 +85,10 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
         return superClassChain;
     }
     
+    public boolean isInterface() {
+        return isInterface;
+    }
+    
     @Override
     public boolean isInProject() {
         return isInProject;
@@ -92,25 +96,25 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
     
     abstract protected void findSuperClassChain();
     
-    public List<JClass> getAncestors() {
+    public List<JClass> getAncestorClasses() {
         if (ancestors == null) {
             ancestors = new ArrayList<>();
-            findAncestors();
+            findAncestorClasses();
         }
         return ancestors;
     }
     
-    abstract protected void findAncestors();
+    abstract protected void findAncestorClasses();
     
-    public List<JClass> getDescendants() {
+    public List<JClass> getDescendantClasses() {
         if (descendants == null) {
             descendants = new ArrayList<>();
-            findDescendants();
+            findDescendantClasses();
         }
         return descendants;
     }
     
-    abstract protected void findDescendants();
+    abstract protected void findDescendantClasses();
     
     public boolean equals(JClass clazz) {
         return clazz != null && (this == clazz || getQualifiedName().equals(clazz.getQualifiedName()));

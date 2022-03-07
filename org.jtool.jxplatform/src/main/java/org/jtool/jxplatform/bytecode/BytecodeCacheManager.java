@@ -113,12 +113,12 @@ public class BytecodeCacheManager {
         }
     }
     
-    static boolean cleanCache(JavaProject jproject) {
-        Path path = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR);
-        Path filepath = Paths.get(jproject.getPath(), GIT_IGNORE_FILE);
+    static boolean removeBytecodeCache(JavaProject jproject) {
         try {
-            FileUtils.deleteDirectory(path.toFile());
-            FileUtils.deleteDirectory(filepath.toFile());
+            Path cachepath = Paths.get(jproject.getPath(), BYTECODE_CACHE_DIR);
+            Path gitfilepath = Paths.get(jproject.getPath(), GIT_IGNORE_FILE);
+            FileUtils.deleteDirectory(cachepath.toFile());
+            FileUtils.forceDelete(gitfilepath.toFile());
             return true;
         } catch (IOException e) {
             return false;
@@ -181,7 +181,7 @@ public class BytecodeCacheManager {
             return false;
         }
         
-        jproject.getModelBuilderImpl().getLogger().recordLog("-Read cache " + file.getName());
+        jproject.getModelBuilderImpl().getLogger().printMessage("** Read cache " + file.getName());
         
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();

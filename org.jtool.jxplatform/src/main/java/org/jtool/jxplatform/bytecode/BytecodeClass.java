@@ -297,10 +297,14 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     }
     
     void addDescendant(BytecodeClass bclass) {
-        descendantsCache.add(bclass);
+        if (!descendantsCache.contains(bclass)) {
+            descendantsCache.add(bclass);
+        }
     }
     
     void addDescendant(String className) {
-        descendants.add(className);
+        if (!descendants.contains(className)) {
+            descendants.add(className);
+        }
     }
 }

@@ -248,6 +248,7 @@ public class BytecodeClassStore {
             }
         } catch (IOException e) { /* empty */ }
     }
+    
     private String getCacheName(File file) {
         String filename = file.getName();
         if (filename.endsWith(".jar")) {
@@ -288,8 +289,8 @@ public class BytecodeClassStore {
         bytecodeClassMap.put(clazz.getName(), clazz);
     }
     
-    public void cleanCache(JavaProject jproject) {
-        BytecodeCacheManager.cleanCache(jproject);
+    public void removeBytecodeCache() {
+        BytecodeCacheManager.removeBytecodeCache(jproject);
     }
     
     public void writeBytecodeCache() {
@@ -406,14 +407,13 @@ public class BytecodeClassStore {
     
     BytecodeClass getBcClass(String className) {
         if (analysisLevel < 3) {
-            loadBytecode(jproject);
+            loadBytecode();
         }
         return bytecodeClassMap.get(className);
     }
     
-    private void loadBytecode(JavaProject jproject) {
-        BytecodeClassStore bcStore = jproject.getCFGStore().getBCStore();
-        Set<BytecodeName> names = bcStore.getBytecodeNamesToBeLoaded();
+    void loadBytecode() {
+        Set<BytecodeName> names = getBytecodeNamesToBeLoaded();
         if (names.size() > 0) {
             Logger logger = jproject.getModelBuilderImpl().getLogger();
             
@@ -422,14 +422,14 @@ public class BytecodeClassStore {
             
             pm.begin(names.size());
             for (BytecodeName bytecodeName : names) {
-                bcStore.loadBytecode(bytecodeName);
+                loadBytecode(bytecodeName);
                 pm.work(1);
             }
             pm.done();
         }
         
-        bcStore.setClassHierarchy();
-        bcStore.writeBytecodeCache();
+        setClassHierarchy();
+        writeBytecodeCache();
     }
     
     public JClass findInternalClass(String className) {
