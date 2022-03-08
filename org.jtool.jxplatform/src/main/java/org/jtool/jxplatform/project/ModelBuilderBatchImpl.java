@@ -193,9 +193,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     
     public JavaProject build(String name, Path basePath, String[] classpath, String[] srcpath, String[] binpath) {
         JavaProject jproject = createProject(name, basePath, classpath, srcpath, binpath);
-        
         run(jproject);
-        
         logger.writeLog();
         return jproject;
     }
@@ -203,9 +201,9 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     public JavaProject createProject(String name, Path basePath, String[] classpath, String[] srcpath, String[] binpath) {
         JavaProject jproject = new JavaProject(name, basePath.toString(), basePath.toString());
         jproject.setModelBuilderImpl(this);
-        jproject.getCFGStore().create(jproject);
         jproject.setClassPath(getClassPath(classpath));
         jproject.setSourceBinaryPaths(srcpath, binpath);
+        jproject.getCFGStore().create(jproject);
         
         ProjectStore.getInstance().addProject(jproject);
         return jproject;
