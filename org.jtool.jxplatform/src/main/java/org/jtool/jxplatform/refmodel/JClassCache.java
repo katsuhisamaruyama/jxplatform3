@@ -5,62 +5,20 @@
 
 package org.jtool.jxplatform.refmodel;
 
-import org.jtool.srcmodel.QualifiedName;
-
 /**
- * Concise information on a cached class.
+ * Concise information on a class with data extracted from a cache file.
  * 
  * @author Katsuhisa Maruyama
  */
-class JClassCache extends JClass {
-    
-    private BytecodeClass bclass;
+class JClassCache extends JClassFrozen {
     
     JClassCache(BytecodeClass bclass, BytecodeClassStore bcStore) {
-        super(new QualifiedName(bclass.getName(), ""), bcStore);
-        
-        this.bclass = bclass;
-        
-        this.modifiers = bclass.getModifiers();
-        this.isInterface = bclass.isInterface();
-        this.isInProject = bclass.isInProject();
-        this.superClass = bclass.getSuperClass();
-        this.superInterfaces = bclass.getSuperInterfaces();
+        super(bclass, bcStore);
         
         bclass.getMethods().stream()
-                .forEach(signature -> this.methods.add(new JMethodCache(signature, this, bclass)));
+                .forEach(sig -> methods.add(new JMethodCache(sig, this, bclass)));
         
         bclass.getFields().stream()
-                .forEach(signature -> this.fields.add(new JFieldCache(signature, this, bclass)));
-    }
-    
-    @Override
-    protected void findSuperClassChain() {
-        for (String className : bclass.getSuperClassChain()) {
-            JClass clazz = bcStore.getJClass(className);
-            if (clazz != null && !clazz.isInterface) {
-                superClassChain.add(clazz);
-            }
-        }
-    }
-    
-    @Override
-    protected void findAncestorClasses() {
-        for (String className : bclass.getAncestors()) {
-            JClass clazz = bcStore.getJClass(className);
-            if (clazz != null && !clazz.isInterface && !ancestors.contains(clazz)) {
-                ancestors.add(clazz);
-            }
-        }
-    }
-    
-    @Override
-    protected void findDescendantClasses() {
-        for (String className : bclass.getDescendants()) {
-            JClass clazz = bcStore.getJClass(className);
-            if (clazz != null && !clazz.isInterface && !descendants.contains(clazz)) {
-                descendants.add(clazz);
-            }
-        }
+                .forEach(sig -> fields.add(new JFieldCache(sig, this)));
     }
 }

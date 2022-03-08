@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * 
  * @author Katsuhisa Maruyama
  */
-public class JClassInternal extends JClass {
+class JClassInternal extends JClass {
     
     private JavaClass jclass;
     

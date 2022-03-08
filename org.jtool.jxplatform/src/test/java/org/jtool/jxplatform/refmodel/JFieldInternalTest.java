@@ -5,35 +5,26 @@
 
 package org.jtool.jxplatform.refmodel;
 
-import org.jtool.jxplatform.refmodel.BytecodeClassStore;
-import org.jtool.jxplatform.refmodel.JClass;
-import org.jtool.jxplatform.refmodel.JMethod;
-import org.jtool.jxplatform.refmodel.JMethodInternal;
 import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.srcmodel.JavaProject;
-import java.util.List;
 import org.junit.Test;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 
 public class JFieldInternalTest {
     
     private static JavaProject project;
     private static BytecodeClassStore bcStore;
     
-    private static JMethod customerMethodInCustomer;
-    private static JMethod addRentalMethodInCustomer;
-    private static JMethod statementMethodInCustomer;
-    
-    private static JMethod getChargeMethodInPrice;
-    private static JMethod getFrequentRenterPointsMethodInPrice;
-    
-    private static JMethod getChargeMethodInNewReleasePrice;
-    private static JMethod getFrequentRenterPointsInNewReleasePrice;
+    private static JField nameField;
+    private static JField rentalsField;
+    private static JField priceField;
+    private static JField titleField;
+    private static JField movieField;
+    private static JField daysRentedField;
+    private static JField priceCodeField;
     
     @BeforeClass
     public static void setUp() {
@@ -45,17 +36,20 @@ public class JFieldInternalTest {
         bcStore = project.getCFGStore().getBCStore();
         
         JClass customerClass = bcStore.getJClass("org.jtool.videostore.after.Customer");
-        customerMethodInCustomer = customerClass.getMethod("Customer( String )");
-        addRentalMethodInCustomer = customerClass.getMethod("addRental( org.jtool.videostore.after.Rental)");
-        statementMethodInCustomer = customerClass.getMethod("statement( )");
+        nameField = customerClass.getField("name");
+        
+        rentalsField = customerClass.getField("rentals");
+        
+        JClass movieClass = bcStore.getJClass("org.jtool.videostore.after.Movie");
+        priceField = movieClass.getField("price");
+        titleField = movieClass.getField("title");
+        
+        JClass rentalClass = bcStore.getJClass("org.jtool.videostore.after.Rental");
+        movieField = rentalClass.getField("movie");
+        daysRentedField = rentalClass.getField("daysRented");
         
         JClass priceClass = bcStore.getJClass("org.jtool.videostore.after.Price");
-        getChargeMethodInPrice = priceClass.getMethod("getCharge( int )");
-        getFrequentRenterPointsMethodInPrice = priceClass.getMethod("getFrequentRenterPoints( int )");
-        
-        JClass newReleasePriceClass = bcStore.getJClass("org.jtool.videostore.after.NewReleasePrice");
-        getChargeMethodInNewReleasePrice = newReleasePriceClass.getMethod("getCharge( int )");
-        getFrequentRenterPointsInNewReleasePrice = newReleasePriceClass.getMethod("getFrequentRenterPoints( int )");
+        priceCodeField = priceClass.getField("priceCode");
     }
     
     @AfterClass
@@ -65,120 +59,83 @@ public class JFieldInternalTest {
     
     @Test
     public void testInstanceOf() {
-        assertTrue(customerMethodInCustomer instanceof JMethodInternal);
+        assertTrue(nameField instanceof JFieldInternal);
         
-        assertTrue(addRentalMethodInCustomer instanceof JMethodInternal);
+        assertTrue(rentalsField instanceof JFieldInternal);
         
-        assertTrue(statementMethodInCustomer instanceof JMethodInternal);
+        assertTrue(priceField instanceof JFieldInternal);
         
-        assertTrue(getChargeMethodInPrice instanceof JMethodInternal);
+        assertTrue(titleField instanceof JFieldInternal);
         
-        assertTrue(getFrequentRenterPointsMethodInPrice instanceof JMethodInternal);
+        assertTrue(movieField instanceof JFieldInternal);
         
-        assertTrue(getChargeMethodInNewReleasePrice instanceof JMethodInternal);
+        assertTrue(daysRentedField instanceof JFieldInternal);
         
-        assertTrue(getFrequentRenterPointsInNewReleasePrice instanceof JMethodInternal);
+        assertTrue(priceCodeField instanceof JFieldInternal);
     }
     
     @Test
     public void testGetQualifiedName() {
-        assertEquals("org.jtool.videostore.after.Customer", customerMethodInCustomer.getQualifiedName().fqn());
+        assertEquals("org.jtool.videostore.after.Customer#name",
+                nameField.getQualifiedName().fqn());
         
-        assertEquals("org.jtool.videostore.after.Rental", addRentalMethodInCustomer.getQualifiedName().fqn());
+        assertEquals("org.jtool.videostore.after.Customer#rentals",
+                rentalsField.getQualifiedName().fqn());
         
-        assertEquals("org.jtool.videostore.after.Movie", statementMethodInCustomer.getQualifiedName().fqn());
+        assertEquals("org.jtool.videostore.after.Movie#price",
+                priceField.getQualifiedName().fqn());
         
-        assertEquals("org.jtool.videostore.after.Price", getChargeMethodInPrice.getQualifiedName().fqn());
+        assertEquals("org.jtool.videostore.after.Movie#title",
+                titleField.getQualifiedName().fqn());
         
-        assertEquals("org.jtool.videostore.after.RegularPrice", getFrequentRenterPointsMethodInPrice.getQualifiedName().fqn());
+        assertEquals("org.jtool.videostore.after.Rental#movie",
+                movieField.getQualifiedName().fqn());
         
-        assertEquals("org.jtool.videostore.after.NewReleasePrice", getChargeMethodInNewReleasePrice.getQualifiedName().fqn());
+        assertEquals("org.jtool.videostore.after.Rental#daysRented",
+                daysRentedField.getQualifiedName().fqn());
         
-        assertEquals("org.jtool.videostore.after.ChildrensPrice", getFrequentRenterPointsInNewReleasePrice.getQualifiedName().fqn());
+        assertEquals("org.jtool.videostore.after.Price#priceCode",
+                priceCodeField.getQualifiedName().fqn());
     }
     
     @Test
     public void testGetDeclaringClass() {
-        assertEquals("Customer", customerMethodInCustomer.getDeclaringClass());
+        assertEquals("org.jtool.videostore.after.Customer",
+                nameField.getDeclaringClass().getClassName());
         
-        assertEquals("Rental", addRentalMethodInCustomer.getDeclaringClass());
+        assertEquals("org.jtool.videostore.after.Customer",
+                rentalsField.getDeclaringClass().getClassName());
         
-        assertEquals("Movie", statementMethodInCustomer.getDeclaringClass());
+        assertEquals("org.jtool.videostore.after.Movie",
+                priceField.getDeclaringClass().getClassName());
         
-        assertEquals("Price", getChargeMethodInPrice.getDeclaringClass());
+        assertEquals("org.jtool.videostore.after.Movie",
+                titleField.getDeclaringClass().getClassName());
         
-        assertEquals("RegularPrice", getFrequentRenterPointsMethodInPrice.getDeclaringClass());
+        assertEquals("org.jtool.videostore.after.Rental",
+                movieField.getDeclaringClass().getClassName());
         
-        assertEquals("NewReleasePrice", getChargeMethodInNewReleasePrice.getDeclaringClass());
+        assertEquals("org.jtool.videostore.after.Rental",
+                daysRentedField.getDeclaringClass().getClassName());
         
-        assertEquals("ChildrensPrice", getFrequentRenterPointsInNewReleasePrice.getDeclaringClass());
+        assertEquals("org.jtool.videostore.after.Price",
+                priceCodeField.getDeclaringClass().getClassName());
     }
     
     @Test
     public void testIsInProject() {
-        assertTrue(customerMethodInCustomer.isInProject());
+        assertTrue(nameField.isInProject());
         
-        assertTrue(addRentalMethodInCustomer.isInProject());
+        assertTrue(rentalsField.isInProject());
         
-        assertTrue(statementMethodInCustomer.isInProject());
+        assertTrue(priceField.isInProject());
         
-        assertTrue(getChargeMethodInPrice.isInProject());
+        assertTrue(titleField.isInProject());
         
-        assertTrue(getFrequentRenterPointsMethodInPrice.isInProject());
+        assertTrue(movieField.isInProject());
         
-        assertTrue(getChargeMethodInNewReleasePrice.isInProject());
+        assertTrue(daysRentedField.isInProject());
         
-        assertTrue(getFrequentRenterPointsInNewReleasePrice.isInProject());
-    }
-    
-    @Test
-    public void testGetDefFields() {
-        assertEquals("Customer", customerMethodInCustomer.getDefFields().size());
-        
-        assertEquals("Rental", addRentalMethodInCustomer.getDefFields().size());
-        
-        assertEquals("Movie", statementMethodInCustomer.getDefFields().size());
-        
-        assertEquals("Price", getChargeMethodInPrice.getDefFields().size());
-        
-        assertEquals("RegularPrice", getFrequentRenterPointsMethodInPrice.getDefFields().size());
-        
-        assertEquals("NewReleasePrice", getChargeMethodInNewReleasePrice.getDefFields().size());
-        
-        assertEquals("ChildrensPrice", getFrequentRenterPointsInNewReleasePrice.getDefFields().size());
-    }
-    
-    @Test
-    public void testGetUseFields() {
-        assertEquals("Customer", customerMethodInCustomer.getDeclaringClass());
-        
-        assertEquals("Rental", addRentalMethodInCustomer.getUseFields().size());
-        
-        assertEquals("Movie", statementMethodInCustomer.getUseFields().size());
-        
-        assertEquals("Price", getChargeMethodInPrice.getUseFields().size());
-        
-        assertEquals("RegularPrice", getFrequentRenterPointsMethodInPrice.getUseFields().size());
-        
-        assertEquals("NewReleasePrice", getChargeMethodInNewReleasePrice.getUseFields().size());
-        
-        assertEquals("ChildrensPrice", getFrequentRenterPointsInNewReleasePrice.getUseFields().size());
-    }
-    
-    @Test
-    public void tstGetAccessedMethods() {
-        assertEquals("Customer", customerMethodInCustomer.getAccessedMethods().size());
-        
-        assertEquals("Rental", addRentalMethodInCustomer.getAccessedMethods().size());
-        
-        assertEquals("Movie", statementMethodInCustomer.getAccessedMethods().size());
-        
-        assertEquals("Price", getChargeMethodInPrice.getAccessedMethods().size());
-        
-        assertEquals("RegularPrice", getFrequentRenterPointsMethodInPrice.getAccessedMethods().size());
-        
-        assertEquals("NewReleasePrice", getChargeMethodInNewReleasePrice.getAccessedMethods().size());
-        
-        assertEquals("ChildrensPrice", getFrequentRenterPointsInNewReleasePrice.getAccessedMethods().size());
+        assertTrue(priceCodeField.isInProject());
     }
 }

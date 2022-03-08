@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-public class JMethodCacheTest {
+public class JMethodCacheLibTest {
     
     private static JavaProject project;
     private static BytecodeClassStore bcStore;
@@ -33,7 +33,7 @@ public class JMethodCacheTest {
         String target = TestUtil.getTarget(name);
         String classpath = target + "/lib/*";
         
-        project = RefModelTestUtil.createProjectFromCache(target, classpath);
+        project = RefModelTestUtil.createProjectFromSourceWithLibCache(target, classpath);
         bcStore = project.getCFGStore().getBCStore();
         
         JClass customerClass = bcStore.getJClass("org.jtool.videostore.after.Customer");
@@ -60,11 +60,11 @@ public class JMethodCacheTest {
     
     @Test
     public void testInstanceOf() {
-        assertTrue(customerMethod instanceof JMethodCache);
+        assertTrue(customerMethod instanceof JMethodInternal);
         
-        assertTrue(addRentalMethod instanceof JMethodCache);
+        assertTrue(addRentalMethod instanceof JMethodInternal);
         
-        assertTrue(statementMethod instanceof JMethodCache);
+        assertTrue(statementMethod instanceof JMethodInternal);
         
         assertTrue(indexOfMethod instanceof JMethodCache);
         

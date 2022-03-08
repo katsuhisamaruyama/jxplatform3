@@ -5,23 +5,14 @@
 
 package org.jtool.jxplatform.refmodel;
 
-import org.jtool.jxplatform.refmodel.BytecodeClassStore;
-import org.jtool.jxplatform.refmodel.JClass;
-import org.jtool.jxplatform.refmodel.JMethod;
-import org.jtool.jxplatform.refmodel.JMethodInternal;
 import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.srcmodel.JavaProject;
 import java.util.List;
-import java.util.Set;
-
 import org.junit.Test;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
-import org.junit.Ignore;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 
 public class JMethodInternalTest {
     

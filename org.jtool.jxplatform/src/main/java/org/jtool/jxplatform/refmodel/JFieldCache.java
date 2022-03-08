@@ -1,22 +1,18 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.jxplatform.refmodel;
 
-import org.jtool.srcmodel.QualifiedName;
-
 /**
- * Concise information on a cached field.
+ * Concise information on a field with data extracted from a cache file.
  * 
  * @author Katsuhisa Maruyama
  */
-class JFieldCache extends JField {
+class JFieldCache extends JFieldFrozen {
     
-    JFieldCache(String signature, JClass declaringClass, BytecodeClass bclass) {
-        super(new QualifiedName(declaringClass.getClassName(), signature), declaringClass);
-        
-        isDefUseDecided = true;
+    JFieldCache(String signature, JClass declaringClass) {
+        super(signature, declaringClass);
     }
 }

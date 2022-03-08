@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -9,8 +9,7 @@ import org.jtool.srcmodel.QualifiedName;
 import java.util.Collection;
 
 /**
- * An element common to a class, a method, and a field
- * when following method call and field access chains.
+ * An element common to classes, methods, and fields with concise information.
  * 
  * @author Katsuhisa Maruyama
  */

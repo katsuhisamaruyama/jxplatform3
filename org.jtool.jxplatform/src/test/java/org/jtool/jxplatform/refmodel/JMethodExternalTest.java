@@ -5,23 +5,15 @@
 
 package org.jtool.jxplatform.refmodel;
 
-import org.jtool.jxplatform.refmodel.BytecodeClassStore;
-import org.jtool.jxplatform.refmodel.JClass;
-import org.jtool.jxplatform.refmodel.JMethod;
-import org.jtool.jxplatform.refmodel.JMethodExternal;
 import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.srcmodel.JavaProject;
 import org.junit.Test;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
-import org.junit.Ignore;
+import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 
 public class JMethodExternalTest {
     
@@ -47,8 +39,6 @@ public class JMethodExternalTest {
         indexOfMethod = stringClass.getMethod("indexOf( byte[] byte int java.lang.String int )");
         indexOfMethod.findDefUseFields();
         
-        indexOfMethod.useFields.forEach(System.err::println);
-        
         JClass listClass = bcStore.getJClass("java.util.List");
         addMethodInList = listClass.getMethod("add( java.lang.Object )");
         addMethodInList.findDefUseFields();
@@ -69,7 +59,6 @@ public class JMethodExternalTest {
         project.getModelBuilder().unbuild();
     }
     
-    @Ignore
     @Test
     public void testInstanceOf() {
         assertTrue(indexOfMethod instanceof JMethodExternal);

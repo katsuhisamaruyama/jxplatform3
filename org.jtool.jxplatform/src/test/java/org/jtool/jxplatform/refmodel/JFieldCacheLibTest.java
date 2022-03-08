@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-public class JFieldCacheTest {
+public class JFieldCacheLibTest {
     
     private static JavaProject project;
     private static BytecodeClassStore bcStore;
@@ -31,7 +31,7 @@ public class JFieldCacheTest {
         String target = TestUtil.getTarget(name);
         String classpath = target + "/lib/*";
         
-        project = RefModelTestUtil.createProjectFromCache(target, classpath);
+        project = RefModelTestUtil.createProjectFromSourceWithLibCache(target, classpath);
         bcStore = project.getCFGStore().getBCStore();
         
         JClass customerClass = bcStore.getJClass("org.jtool.videostore.after.Customer");
@@ -52,9 +52,9 @@ public class JFieldCacheTest {
     
     @Test
     public void testInstanceOf() {
-        assertTrue(nameField instanceof JFieldCache);
+        assertTrue(nameField instanceof JFieldInternal);
         
-        assertTrue(rentalsField instanceof JFieldCache);
+        assertTrue(rentalsField instanceof JFieldInternal);
         
         assertTrue(valueField instanceof JFieldCache);
         

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -16,13 +16,11 @@ import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.refmodel.BytecodeClassStore;
 import org.jtool.jxplatform.refmodel.DefUseField;
 import org.jtool.jxplatform.refmodel.JClass;
-import org.jtool.jxplatform.refmodel.JField;
 import org.jtool.jxplatform.refmodel.JMethod;
 import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.HashSet;
 
 /**
  * Finds fields defined and/or used in invoked methods and accessed fields.
@@ -42,14 +40,6 @@ class ReferenceResolver {
     void findDefUseFields(CFG cfg) {
         for (CFGMethodCall callnode : cfg.getMethodCallNodes()) {
             findFieldsForCalledMethod(callnode);
-        }
-        
-        for (CFGStatement stnode : cfg.getFieldAccessNodes()) {
-            for (JReference jv : stnode.getUseVariables()) {
-                if (jv.isFieldAccess()) {
-                    findFieldsForAccessedField(stnode, (JFieldReference)jv);
-                }
-            }
         }
         
         for (CFGStatement stnode : cfg.getReturnNodes()) {
@@ -125,28 +115,6 @@ class ReferenceResolver {
                 
                 if (existExternalUseField && callNode.hasReceiver()) {
                     callNode.addUseVariables(callNode.getReceiver().getUseVariables());
-                }
-            }
-        }
-    }
-    
-    private void findFieldsForAccessedField(CFGStatement stnode, JFieldReference jfacc) {
-        String className = jfacc.getDeclaringClassName();
-        Set<String> receiverTypes = new HashSet<>();
-        receiverTypes.add(jfacc.getType());
-        
-        JavaClass jclass = jproject.getClass(className);
-        if (jclass != null && jclass.isInProject()) {
-            
-            JField field = bcStore.getJField(className, jfacc.getName());
-            if (field != null) {
-                field.findDefUseFields();
-                
-                for (DefUseField use : field.getUseFields()) {
-                    boolean inProject = bcStore.findInternalClass(use.getClassName()) != null;
-                    JReference fvar = createFieldReference(jfacc.getASTNode(),
-                            use, jfacc.getReceiverName(), receiverTypes, inProject);
-                    stnode.addUseVariable(fvar);
                 }
             }
         }
