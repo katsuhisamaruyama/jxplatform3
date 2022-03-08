@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.bytecode;
+package org.jtool.jxplatform.refmodel;
 
 import java.util.Map;
 import java.util.List;

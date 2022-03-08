@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.bytecode;
+package org.jtool.jxplatform.refmodel;
 
 import org.jtool.srcmodel.QualifiedName;
 
@@ -19,7 +19,5 @@ class JMethodCache extends JMethod {
         
         defFields.addAll(bclass.getDefFields(signature));
         useFields.addAll(bclass.getUseFields(signature));
-        
-        isDefUseDecided = true;
     }
 }

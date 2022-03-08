@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.bytecode;
+package org.jtool.jxplatform.refmodel;
 
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.cfg.CFG;

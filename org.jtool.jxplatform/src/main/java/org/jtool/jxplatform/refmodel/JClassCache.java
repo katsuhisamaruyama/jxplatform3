@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.bytecode;
+package org.jtool.jxplatform.refmodel;
 
 import org.jtool.srcmodel.QualifiedName;
 
@@ -38,7 +38,7 @@ class JClassCache extends JClass {
     protected void findSuperClassChain() {
         for (String className : bclass.getSuperClassChain()) {
             JClass clazz = bcStore.getJClass(className);
-            if (clazz != null) {
+            if (clazz != null && !clazz.isInterface) {
                 superClassChain.add(clazz);
             }
         }

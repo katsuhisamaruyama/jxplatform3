@@ -3,14 +3,14 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.bytecode;
+package org.jtool.jxplatform.refmodel;
 
 import org.jtool.jxplatform.project.ConsoleProgressMonitor;
 import org.jtool.jxplatform.project.ModelBuilderImpl;
 import org.jtool.jxplatform.project.NullConsoleProgressMonitor;
+import org.jtool.jxplatform.project.Logger;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.project.Logger;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtConstructor;
