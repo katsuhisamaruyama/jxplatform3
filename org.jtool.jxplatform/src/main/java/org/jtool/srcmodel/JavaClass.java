@@ -5,7 +5,7 @@
 
 package org.jtool.srcmodel;
 
-import org.jtool.srcmodel.builder.TypeCollector;
+import org.jtool.jxplatform.builder.srcmodel.TypeCollector;
 import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
