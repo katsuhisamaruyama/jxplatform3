@@ -239,11 +239,6 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         superClassChain = superClassChainCache.stream().map(bc -> bc.getName()).collect(Collectors.toList());
         ancestors = ancestorsCache.stream().map(bclass -> bclass.getName()).collect(Collectors.toList());
         descendants = descendantsCache.stream().map(bclass -> bclass.getName()).collect(Collectors.toList());
-        
-        //if (this.getName().equals("java.util.List")) {
-            //System.err.println(this.getClass().toString());
-            //descendants.forEach(e -> System.err.println("  *DD = " + e));
-        //}
     }
     
     public List<String> getSuperClassChain() {
