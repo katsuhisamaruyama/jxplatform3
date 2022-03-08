@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.bytecode;
+package org.jtool.jxplatform.refmodel;
 
 import org.jtool.jxplatform.refmodel.BytecodeClassStore;
 import org.jtool.jxplatform.refmodel.JClass;
@@ -11,18 +11,16 @@ import org.jtool.jxplatform.refmodel.JMethod;
 import org.jtool.jxplatform.refmodel.JMethodInternal;
 import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.srcmodel.JavaProject;
+import java.util.List;
 import org.junit.Test;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 
-public class JFieldExternalTest {
+public class JFieldInternalTest {
     
     private static JavaProject project;
     private static BytecodeClassStore bcStore;
@@ -43,7 +41,7 @@ public class JFieldExternalTest {
         String target = TestUtil.getTarget(name);
         String classpath = target + "/lib/*";
         
-        project = BytecodeTestUtil.createProjectFromSourceWithoutLibCache(target, classpath);
+        project = RefModelTestUtil.createProjectFromSourceWithoutLibCache(target, classpath);
         bcStore = project.getCFGStore().getBCStore();
         
         JClass customerClass = bcStore.getJClass("org.jtool.videostore.after.Customer");

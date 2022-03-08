@@ -3,34 +3,35 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.bytecode;
+package org.jtool.jxplatform.refmodel;
 
 import org.jtool.jxplatform.refmodel.BytecodeClassStore;
 import org.jtool.jxplatform.refmodel.JClass;
-import org.jtool.jxplatform.refmodel.JClassInternal;
+import org.jtool.jxplatform.refmodel.JClassCache;
 import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.srcmodel.JavaProject;
 import java.util.List;
 import org.junit.Test;
-import org.junit.BeforeClass;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 
-public class JClassInternalTest {
+public class JFieldCacheTest {
     
     private static JavaProject project;
     private static BytecodeClassStore bcStore;
     
     private static JClass customerClass;
-    private static JClass rentalClass;
-    private static JClass movieClass;
     private static JClass priceClass;
     private static JClass regularPriceClass;
-    private static JClass newReleasePriceClass;
-    private static JClass childrensPriceClass;
+    
+    private static JClass listClass;
+    private static JClass arrayListClass;
+    private static JClass assertClass;
+    
     
     @BeforeClass
     public static void setUp() {
@@ -38,16 +39,16 @@ public class JClassInternalTest {
         String target = TestUtil.getTarget(name);
         String classpath = target + "/lib/*";
         
-        project = BytecodeTestUtil.createProjectFromSourceWithoutLibCache(target, classpath);
+        project = RefModelTestUtil.createProjectFromCache(target, classpath);
         bcStore = project.getCFGStore().getBCStore();
         
         customerClass = bcStore.getJClass("org.jtool.videostore.after.Customer");
-        rentalClass = bcStore.getJClass("org.jtool.videostore.after.Rental");
-        movieClass = bcStore.getJClass("org.jtool.videostore.after.Movie");
         priceClass = bcStore.getJClass("org.jtool.videostore.after.Price");
         regularPriceClass = bcStore.getJClass("org.jtool.videostore.after.RegularPrice");
-        newReleasePriceClass = bcStore.getJClass("org.jtool.videostore.after.NewReleasePrice");
-        childrensPriceClass = bcStore.getJClass("org.jtool.videostore.after.ChildrensPrice");
+        
+        listClass = bcStore.getJClass("java.util.List");
+        arrayListClass = bcStore.getJClass("java.util.ArrayList");
+        assertClass = bcStore.getJClass("org.junit.Assert");
     }
     
     @AfterClass
@@ -57,101 +58,83 @@ public class JClassInternalTest {
     
     @Test
     public void testInstanceOf() {
-        assertTrue(customerClass instanceof JClassInternal);
+        assertTrue(customerClass instanceof JClassCache);
         
-        assertTrue(rentalClass instanceof JClassInternal);
+        assertTrue(priceClass instanceof JClassCache);
         
-        assertTrue(movieClass instanceof JClassInternal);
+        assertTrue(regularPriceClass instanceof JClassCache);
         
-        assertTrue(priceClass instanceof JClassInternal);
+        assertTrue(listClass instanceof JClassCache);
         
-        assertTrue(regularPriceClass instanceof JClassInternal);
+        assertTrue(arrayListClass instanceof JClassCache);
         
-        assertTrue(newReleasePriceClass instanceof JClassInternal);
-        
-        assertTrue(childrensPriceClass instanceof JClassInternal);
+        assertTrue(assertClass instanceof JClassCache);
     }
     
     @Test
     public void testGetQualifiedName() {
         assertEquals("org.jtool.videostore.after.Customer", customerClass.getQualifiedName().fqn());
         
-        assertEquals("org.jtool.videostore.after.Rental", rentalClass.getQualifiedName().fqn());
-        
-        assertEquals("org.jtool.videostore.after.Movie", movieClass.getQualifiedName().fqn());
-        
         assertEquals("org.jtool.videostore.after.Price", priceClass.getQualifiedName().fqn());
         
         assertEquals("org.jtool.videostore.after.RegularPrice", regularPriceClass.getQualifiedName().fqn());
         
-        assertEquals("org.jtool.videostore.after.NewReleasePrice", newReleasePriceClass.getQualifiedName().fqn());
+        assertEquals("java.util.List", listClass.getQualifiedName().fqn());
         
-        assertEquals("org.jtool.videostore.after.ChildrensPrice", childrensPriceClass.getQualifiedName().fqn());
+        assertEquals("java.util.ArrayList", arrayListClass.getQualifiedName().fqn());
+        
+        assertEquals("org.junit.Assert", assertClass.getQualifiedName().fqn());
     }
     
     @Test
     public void testGetName() {
         assertEquals("org.jtool.videostore.after.Customer", customerClass.getName());
         
-        assertEquals("org.jtool.videostore.after.Rental", rentalClass.getName());
-        
-        assertEquals("org.jtool.videostore.after.Movie", movieClass.getName());
-        
         assertEquals("org.jtool.videostore.after.Price", priceClass.getName());
         
         assertEquals("org.jtool.videostore.after.RegularPrice", regularPriceClass.getName());
         
-        assertEquals("org.jtool.videostore.after.NewReleasePrice", newReleasePriceClass.getName());
+        assertEquals("java.util.List", listClass.getName());
         
-        assertEquals("org.jtool.videostore.after.ChildrensPrice", childrensPriceClass.getName());
+        assertEquals("java.util.ArrayList", arrayListClass.getName());
+        
+        assertEquals("org.junit.Assert", assertClass.getName());
     }
     
     @Test
     public void testGetSimpleName() {
         assertEquals("Customer", customerClass.getSimpleName());
         
-        assertEquals("Rental", rentalClass.getSimpleName());
-        
-        assertEquals("Movie", movieClass.getSimpleName());
-        
         assertEquals("Price", priceClass.getSimpleName());
         
         assertEquals("RegularPrice", regularPriceClass.getSimpleName());
         
-        assertEquals("NewReleasePrice", newReleasePriceClass.getSimpleName());
+        assertEquals("List", listClass.getSimpleName());
         
-        assertEquals("ChildrensPrice", childrensPriceClass.getSimpleName());
+        assertEquals("ArrayList", arrayListClass.getSimpleName());
+        
+        assertEquals("Assert", assertClass.getSimpleName());
     }
     
     @Test
     public void testGetMethods() {
         assertEquals(6, customerClass.getMethods().size());
         
-        assertEquals(5, rentalClass.getMethods().size());
-        
-        assertEquals(6, movieClass.getMethods().size());
-        
         assertEquals(4, priceClass.getMethods().size());
         
         assertEquals(2, regularPriceClass.getMethods().size());
         
-        assertEquals(3, newReleasePriceClass.getMethods().size());
+        assertEquals(41, listClass.getMethods().size());
         
-        assertEquals(2, childrensPriceClass.getMethods().size());
+        assertEquals(63, arrayListClass.getMethods().size());
+        
+        assertEquals(67, assertClass.getMethods().size());
     }
     
     @Test
     public void testGetMethod() {
         assertEquals("org.jtool.videostore.after.Customer#addRental( org.jtool.videostore.after.Rental )",
                 customerClass.getMethod("addRental( org.jtool.videostore.after.Rental )")
-                .getQualifiedName().fqn());
-        
-        assertEquals("org.jtool.videostore.after.Rental#getCharge( )",
-                rentalClass.getMethod("getCharge( )")
-                .getQualifiedName().fqn());
-        
-        assertEquals("org.jtool.videostore.after.Movie#Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )",
-                movieClass.getMethod("Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )")
                 .getQualifiedName().fqn());
         
         assertEquals("org.jtool.videostore.after.Price#getCharge( int )",
@@ -162,28 +145,33 @@ public class JClassInternalTest {
                 regularPriceClass.getMethod("getCharge( int )")
                 .getQualifiedName().fqn());
         
+        assertEquals("java.util.List#get( int )",
+                listClass.getMethod("get( int )")
+                .getQualifiedName().fqn());
+        
+        assertEquals("java.util.ArrayList#contains( java.lang.Object )",
+                arrayListClass.getMethod("contains( java.lang.Object )")
+                .getQualifiedName().fqn());
     }
     
     @Test
     public void testGetMethodReturningNull() {
         assertNull(customerClass.getMethod("addRental( org.jtool.videostore.after.Movie )"));
+        
+        assertNull(arrayListClass.getMethod("indexOf( java.lang.String )"));
     }
     
     @Test
     public void testGetFields() {
         assertEquals(2, customerClass.getFields().size());
         
-        assertEquals(2, rentalClass.getFields().size());
-        
-        assertEquals(2, movieClass.getFields().size());
-        
         assertEquals(1, priceClass.getFields().size());
         
         assertEquals(0, regularPriceClass.getFields().size());
         
-        assertEquals(0, newReleasePriceClass.getFields().size());
+        assertEquals(7, arrayListClass.getFields().size());
         
-        assertEquals(0, childrensPriceClass.getFields().size());
+        assertEquals(0, assertClass.getFields().size());
     }
     
     @Test
@@ -192,57 +180,57 @@ public class JClassInternalTest {
                 customerClass.getField("rentals")
                 .getQualifiedName().fqn());
         
-        assertEquals("org.jtool.videostore.after.Rental#daysRented",
-                rentalClass.getField("daysRented")
-                .getQualifiedName().fqn());
-        
-        assertEquals("org.jtool.videostore.after.Movie#title",
-                movieClass.getField("title")
-                .getQualifiedName().fqn());
-        
         assertEquals("org.jtool.videostore.after.Price#priceCode",
                 priceClass.getField("priceCode")
+                .getQualifiedName().fqn());
+        
+        assertEquals("java.util.ArrayList#size",
+                arrayListClass.getField("size")
                 .getQualifiedName().fqn());
     }
     
     @Test
     public void testGetFieldRetuningNull() {
         assertNull(priceClass.getField("title"));
+        
+        assertNull(arrayListClass.getField("length"));
     }
     
     @Test
     public void testGetSuperClass() {
         assertEquals("java.lang.Object", customerClass.getSuperClass());
         
-        assertEquals("java.lang.Object", rentalClass.getSuperClass());
-        
-        assertEquals("java.lang.Object", movieClass.getSuperClass());
-        
         assertEquals("java.lang.Object", priceClass.getSuperClass());
         
         assertEquals("org.jtool.videostore.after.Price", regularPriceClass.getSuperClass());
         
-        assertEquals("org.jtool.videostore.after.Price", newReleasePriceClass.getSuperClass());
+        assertNull(listClass.getSuperClass());
         
-        assertEquals("org.jtool.videostore.after.Price", childrensPriceClass.getSuperClass());
+        assertEquals("java.util.AbstractList", arrayListClass.getSuperClass());
+        
+        assertEquals("java.lang.Object", assertClass.getSuperClass());
     }
     
     @Test
     public void testGetSuperInterfaces() {
         assertEquals(0, customerClass.getSuperInterfaces().size());
         
-        assertEquals(0, rentalClass.getSuperInterfaces().size());
-        
-        assertEquals(1, movieClass.getSuperInterfaces().size());
-        assertEquals("java.io.Serializable", movieClass.getSuperInterfaces().get(0));
-        
         assertEquals(0, priceClass.getSuperInterfaces().size());
         
         assertEquals(0, regularPriceClass.getSuperInterfaces().size());
         
-        assertEquals(0, newReleasePriceClass.getSuperInterfaces().size());
+        List<String> lresult = TestUtil.asSortedList(listClass.getSuperInterfaces());
+        assertEquals(1, lresult.size());
+        assertEquals("java.util.Collection", lresult.get(0));
         
-        assertEquals(0, childrensPriceClass.getSuperInterfaces().size());
+        List<String> aresult = TestUtil.asSortedList(arrayListClass.getSuperInterfaces());
+        assertEquals(4, aresult.size());
+        assertEquals("java.io.Serializable", aresult.get(0));
+        assertEquals("java.lang.Cloneable", aresult.get(1));
+        assertEquals("java.util.List", aresult.get(2));
+        assertEquals("java.util.RandomAccess", aresult.get(3));
+        
+        assertEquals(0, assertClass.getSuperInterfaces().size());
     }
     
     @Test
@@ -250,46 +238,49 @@ public class JClassInternalTest {
         assertEquals(1, customerClass.getSuperClassChain().size());
         assertEquals("java.lang.Object", customerClass.getSuperClassChain().get(0).getName());
         
-        assertEquals(1, movieClass.getSuperClassChain().size());
-        assertEquals("java.lang.Object", movieClass.getSuperClassChain().get(0).getName());
-        
         assertEquals(2, regularPriceClass.getSuperClassChain().size());
         assertEquals("org.jtool.videostore.after.Price", regularPriceClass.getSuperClassChain().get(0).getName());
         assertEquals("java.lang.Object", regularPriceClass.getSuperClassChain().get(1).getName());
+        
+        assertEquals(0, listClass.getSuperClassChain().size());
+        
+        assertEquals(3, arrayListClass.getSuperClassChain().size());
+        assertEquals("java.util.AbstractList", arrayListClass.getSuperClassChain().get(0).getName());
+        assertEquals("java.util.AbstractCollection", arrayListClass.getSuperClassChain().get(1).getName());
+        assertEquals("java.lang.Object", arrayListClass.getSuperClassChain().get(2).getName());
+        
+        assertEquals(1, assertClass.getSuperClassChain().size());
+        assertEquals("java.lang.Object", assertClass.getSuperClassChain().get(0).getName());
     }
     
     @Test
     public void testIsInterface() {
         assertFalse(customerClass.isInterface());
         
-        assertFalse(rentalClass.isInterface());
-        
-        assertFalse(movieClass.isInterface());
-        
         assertFalse(priceClass.isInterface());
         
         assertFalse(regularPriceClass.isInterface());
         
-        assertFalse(newReleasePriceClass.isInterface());
+        assertTrue(listClass.isInterface());
         
-        assertFalse(childrensPriceClass.isInterface());
+        assertFalse(arrayListClass.isInterface());
+        
+        assertFalse(assertClass.isInterface());
     }
     
     @Test
     public void testIsInProject() {
         assertTrue(customerClass.isInProject());
         
-        assertTrue(rentalClass.isInProject());
-        
-        assertTrue(movieClass.isInProject());
-        
         assertTrue(priceClass.isInProject());
         
         assertTrue(regularPriceClass.isInProject());
         
-        assertTrue(newReleasePriceClass.isInProject());
+        assertFalse(listClass.isInProject());
         
-        assertTrue(childrensPriceClass.isInProject());
+        assertFalse(arrayListClass.isInProject());
+        
+        assertFalse(assertClass.isInProject());
     }
     
     @Test
@@ -297,10 +288,6 @@ public class JClassInternalTest {
         List<String> cresult = TestUtil.asSortedList(customerClass.getAncestorClasses().stream().map(o -> o.getName()));
         assertEquals(1, cresult.size());
         assertEquals("java.lang.Object", cresult.get(0));
-        
-        List<String> mresult = TestUtil.asSortedList(movieClass.getAncestorClasses().stream().map(o -> o.getName()));
-        assertEquals(1, mresult.size());
-        assertEquals("java.lang.Object", mresult.get(0));
         
         List<String> presult = TestUtil.asSortedList(priceClass.getAncestorClasses().stream().map(o -> o.getName()));
         assertEquals(1, presult.size());
@@ -310,18 +297,38 @@ public class JClassInternalTest {
         assertEquals(2, rresult.size());
         assertEquals("java.lang.Object", rresult.get(0));
         assertEquals("org.jtool.videostore.after.Price", rresult.get(1));
+        
+        assertEquals(0, listClass.getAncestorClasses().size());
+        
+        List<String> aresult = TestUtil.asSortedList(arrayListClass.getAncestorClasses().stream().map(o -> o.getName()));
+        assertEquals(3, aresult.size());
+        assertEquals("java.lang.Object", aresult.get(0));
+        assertEquals("java.util.AbstractCollection", aresult.get(1));
+        assertEquals("java.util.AbstractList", aresult.get(2));
+        
+        List<String> asresult = TestUtil.asSortedList(assertClass.getAncestorClasses().stream().map(o -> o.getName()));
+        assertEquals(1, asresult.size());
+        assertEquals("java.lang.Object", asresult.get(0));
     }
     
     @Test
     public void testGetDescendantClasses() {
         assertEquals(0, customerClass.getDescendantClasses().size());
         
-        assertEquals(0, movieClass.getDescendantClasses().size());
-        
         List<String> presult = TestUtil.asSortedList(priceClass.getDescendantClasses().stream().map(o -> o.getName()));
         assertEquals(3, presult.size());
         assertEquals("org.jtool.videostore.after.ChildrensPrice", presult.get(0));
         assertEquals("org.jtool.videostore.after.NewReleasePrice", presult.get(1));
         assertEquals("org.jtool.videostore.after.RegularPrice", presult.get(2));
+        
+        List<String> lresult = TestUtil.asSortedList(listClass.getDescendantClasses().stream().map(o -> o.getName()));
+        assertEquals(61, lresult.size());
+        assertEquals("com.sun.java.util.jar.pack.ConstantPool.Index", lresult.get(0));
+        
+        List<String> aresult = TestUtil.asSortedList(arrayListClass.getDescendantClasses().stream().map(o -> o.getName()));
+        assertEquals(7, aresult.size());
+        assertEquals("com.sun.tools.jdi.EventSetImpl", aresult.get(0));
+        
+        assertEquals(0, assertClass.getDescendantClasses().size());
     }
 }

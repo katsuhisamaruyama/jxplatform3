@@ -3,11 +3,8 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.bytecode;
+package org.jtool.jxplatform.refmodel;
 
-import org.jtool.jxplatform.refmodel.BytecodeClassStore;
-import org.jtool.jxplatform.refmodel.JClass;
-import org.jtool.jxplatform.refmodel.JClassExternal;
 import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.srcmodel.JavaProject;
 import org.junit.Test;
@@ -42,7 +39,7 @@ public class JClassExternalTest {
         String target = TestUtil.getTarget(name);
         String classpath = target + "/lib/*";
         
-        project = BytecodeTestUtil.createProjectFromSourceWithoutLibCache(target, classpath);
+        project = RefModelTestUtil.createProjectFromSourceWithoutLibCache(target, classpath);
         bcStore = project.getCFGStore().getBCStore();
         
         stringClass = bcStore.getJClass("java.lang.String");
@@ -409,7 +406,6 @@ public class JClassExternalTest {
         List<String> lresult = TestUtil.asSortedList(listClass.getDescendantClasses().stream().map(o -> o.getName()));
         assertEquals(61, lresult.size());
         assertEquals("com.sun.java.util.jar.pack.ConstantPool.Index", lresult.get(0));
-        lresult.forEach(System.err::println);
         
         List<String> aresult = TestUtil.asSortedList(arrayListClass.getDescendantClasses().stream().map(o -> o.getName()));
         assertEquals(7, aresult.size());
