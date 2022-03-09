@@ -19,7 +19,7 @@ public class RefModelTestUtil {
         String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
-        JavaProject project = builder.build(target, target, target + lib, target + src, target);
+        JavaProject project = builder.build(name, target, target + lib, target + src, target);
         
         BytecodeClassStore bcStore = project.getCFGStore().getBCStore();
         bcStore.loadBytecode();
@@ -33,7 +33,7 @@ public class RefModelTestUtil {
         removeCache(target);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
-        JavaProject project = builder.build(target, target, target + lib, target + src, target);
+        JavaProject project = builder.build(name, target, target + lib, target + src, target);
         
         BytecodeClassStore bcStore = project.getCFGStore().getBCStore();
         bcStore.loadBytecode();
@@ -48,7 +48,7 @@ public class RefModelTestUtil {
         createCache(name, lib, src);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
-        JavaProject project = builder.build(target, target, target + lib, target + src, target);
+        JavaProject project = builder.build(name, target, target + lib, target + src, target);
         
         BytecodeClassStore bcStore = project.getCFGStore().getBCStore();
         bcStore.loadBytecode();
@@ -63,7 +63,7 @@ public class RefModelTestUtil {
         createCache(name, lib, src);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true, true);
-        JavaProject project = builder.build(target, target, target + lib, target + src, target);
+        JavaProject project = builder.build(name, target, target + lib, target + src, target);
         
         BytecodeClassStore bcStore = project.getCFGStore().getBCStore();
         bcStore.loadBytecode();

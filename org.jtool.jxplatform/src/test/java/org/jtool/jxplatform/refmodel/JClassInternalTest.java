@@ -31,11 +31,7 @@ public class JClassInternalTest {
     
     @BeforeClass
     public static void setUp() {
-        String name = "VideoStore";
-        String target = TestUtil.getTarget(name);
-        String classpath = target + "/lib/*";
-        
-        project = RefModelTestUtil.createProjectFromSourceWithoutLibCache(target, classpath);
+        project = RefModelTestUtil.createProjectFromSourceWithoutLibCache("VideoStore", "/lib/*", "");
         bcStore = project.getCFGStore().getBCStore();
         
         customerClass = bcStore.getJClass("org.jtool.videostore.after.Customer");

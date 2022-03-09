@@ -5,7 +5,6 @@
 
 package org.jtool.jxplatform.refmodel;
 
-import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.srcmodel.JavaProject;
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -26,11 +25,7 @@ public class JFieldExternalTest {
     
     @BeforeClass
     public static void setUp() {
-        String name = "VideoStore";
-        String target = TestUtil.getTarget(name);
-        String classpath = target + "/lib/*";
-        
-        project = RefModelTestUtil.createProjectFromSourceWithoutLibCache(target, classpath);
+        project = RefModelTestUtil.createProjectFromSourceWithoutLibCache("VideoStore", "/lib/*", "");
         bcStore = project.getCFGStore().getBCStore();
         
         JClass stringClass = bcStore.getJClass("java.lang.String");

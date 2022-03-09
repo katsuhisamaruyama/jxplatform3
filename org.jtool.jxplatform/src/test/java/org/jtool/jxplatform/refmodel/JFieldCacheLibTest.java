@@ -5,7 +5,6 @@
 
 package org.jtool.jxplatform.refmodel;
 
-import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.srcmodel.JavaProject;
 import org.junit.Test;
 import org.junit.AfterClass;
@@ -27,11 +26,7 @@ public class JFieldCacheLibTest {
     
     @BeforeClass
     public static void setUp() {
-        String name = "VideoStore";
-        String target = TestUtil.getTarget(name);
-        String classpath = target + "/lib/*";
-        
-        project = RefModelTestUtil.createProjectFromSourceWithLibCache(target, classpath);
+        project = RefModelTestUtil.createProjectFromSourceWithLibCache("VideoStore", "/lib/*", "");
         bcStore = project.getCFGStore().getBCStore();
         
         JClass customerClass = bcStore.getJClass("org.jtool.videostore.after.Customer");

@@ -28,11 +28,7 @@ public class JMethodExternalTest {
     
     @BeforeClass
     public static void setUp() {
-        String name = "VideoStore";
-        String target = TestUtil.getTarget(name);
-        String classpath = target + "/lib/*";
-        
-        project = RefModelTestUtil.createProjectFromSourceWithoutLibCache(target, classpath);
+        project = RefModelTestUtil.createProjectFromSourceWithoutLibCache("VideoStore", "/lib/*", "");
         bcStore = project.getCFGStore().getBCStore();
         
         JClass stringClass = bcStore.getJClass("java.lang.String");
