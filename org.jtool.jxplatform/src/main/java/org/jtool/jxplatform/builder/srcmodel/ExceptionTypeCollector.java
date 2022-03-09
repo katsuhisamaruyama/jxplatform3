@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -40,17 +40,18 @@ public class ExceptionTypeCollector {
     
     private Set<ITypeBinding> exceptionTypes = new HashSet<>();
     
-    public ExceptionTypeCollector(JavaProject jproject) {
-        this.jproject = jproject;
+    public ExceptionTypeCollector() {
     }
     
     public Set<ITypeBinding> getExceptions(JavaMethod jmethod) {
+        jproject = jmethod.getJavaProject();
+        
         Set<JavaMethod> methods = new HashSet<JavaMethod>();
-        collectCalledMethods(jmethod, methods);
+        collectExceptions(jmethod, methods);
         return exceptionTypes;
     }
     
-    private void collectCalledMethods(JavaMethod jmethod, Set<JavaMethod> methods) {
+    private void collectExceptions(JavaMethod jmethod, Set<JavaMethod> methods) {
         if (methods.contains(jmethod)) {
             return;
         }
@@ -61,7 +62,7 @@ public class ExceptionTypeCollector {
         jmethod.getASTNode().accept(visitor);
         exceptionTypes.addAll(visitor.exceptionTypes);
         for (JavaMethod jm : visitor.calledMethods) {
-            collectCalledMethods(jm, methods);
+            collectExceptions(jm, methods);
         }
     }
     

@@ -262,11 +262,6 @@ public class JavaClass extends JavaElement {
         this.superClassName = "";
     }
     
-    /**
-     * Returns the kind of this class.
-     * @param binding the type binding information on the class
-     * @return the kind of this class
-     */
     private JavaClass.Kind getKind(ITypeBinding binding) {
         if (binding.isAnonymous()) {
             return JavaClass.Kind.J_ANONYMOUS;
@@ -831,7 +826,11 @@ public class JavaClass extends JavaElement {
     private boolean findUsedClass() {
         TypeCollector visitor = new TypeCollector(this);
         astNode.accept(visitor);
-        return visitor.isBindingOk();
+        boolean bindingOk = visitor.isBindingOk();
+        if (visitor.isBindingOk()) {
+            usedClasses.addAll(visitor.getTypes());
+        }
+        return bindingOk;
     }
     
     /**

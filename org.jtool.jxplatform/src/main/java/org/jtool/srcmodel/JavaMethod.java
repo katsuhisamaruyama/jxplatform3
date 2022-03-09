@@ -43,7 +43,7 @@ public class JavaMethod extends JavaElement {
     /**
      * The constant value that represents the a static initializer.
      */
-    static final String InitializerName = ".init()";
+    static final String InitializerName = ".init( )";
     
     /**
      * The kind of a method.
@@ -261,6 +261,7 @@ public class JavaMethod extends JavaElement {
         }
         LambdaCollector visitor = new LambdaCollector(this);
         node.accept(visitor);
+        visitor.getLambdas().forEach(e -> getDeclaringClass().addInnerClass(e));
     }
     
     /**

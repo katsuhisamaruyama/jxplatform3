@@ -5,22 +5,36 @@
 
 package org.jtool.jxplatform.util;
 
+import org.jtool.srcmodel.JavaElement;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.eclipse.jdt.core.dom.ITypeBinding;
 
 public class TestUtil {
     
-    public static <T> List<String> asSortedList(Set<T> set) {
+public static <T> List<String> asSortedList(Set<T> set) {
         return set.stream().map(o -> o.toString()).sorted().collect(Collectors.toList());
     }
     
-    public static <T> List<String> asSortedList(List<T> list) {
+public static <T> List<String> asSortedList(List<T> list) {
         return list.stream().map(o -> o.toString()).sorted().collect(Collectors.toList());
     }
     
-    public static <T> List<String> asSortedList(Stream<T> stream) {
+public static <T> List<String> asSortedList(Stream<T> stream) {
         return stream.map(o -> o.toString()).sorted().collect(Collectors.toList());
+    }
+    
+    public static <T> String asSortedStr(Stream<String> stream) {
+        return stream.sorted().collect(Collectors.joining(";"));
+    }
+    
+    public static String asSortedStrOfTypeBinding(Set<ITypeBinding> set) {
+        return asSortedStr(set.stream().map(e -> e.getQualifiedName()));
+    }
+    
+    public static String asSortedStrOfJavaElement(Set<? extends JavaElement> set) {
+        return asSortedStr(set.stream().map(e -> e.getQualifiedName().fqn()));
     }
 }

@@ -21,7 +21,7 @@ public class BuilderTestUtil {
     public static JavaProject createProject(String name, String lib, String src) {
         String target = getTarget(name);
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
-        JavaProject project = builder.build(target, target, target + lib, target + src, target);
+        JavaProject project = builder.build(name, target, target + lib, target + src, target);
         return project;
     }
     

@@ -1,8 +1,9 @@
 public class Test26 {
 
-    private int x;
+    private int xxx;
     
     {
-        x = 1;
+        int c = 1;
+        xxx = c;
     }
 }

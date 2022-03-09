@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -18,6 +18,8 @@ import org.eclipse.jdt.core.dom.LambdaExpression;
 import org.eclipse.jdt.core.dom.SuperMethodReference;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.TypeMethodReference;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * Parses Java source code and stores information on lambda expressions.
@@ -32,10 +34,16 @@ public class LambdaCollector extends ASTVisitor {
     
     private JavaMethod jmethod;
     
+    private Set<JavaClass> lambdas = new HashSet<>();
+    
     private int id = 1;
     
     public LambdaCollector(JavaMethod jmethod) {
         this.jmethod = jmethod;
+    }
+    
+    public Set<JavaClass> getLambdas() {
+        return lambdas;
     }
     
     @Override
@@ -58,7 +66,7 @@ public class LambdaCollector extends ASTVisitor {
                 JavaClass anonymousClass = new JavaClass(node, name, tbinding, jmethod);
                 JavaMethod anonymousMethod = new JavaMethod(node, ibinding, anonymousClass);
                 anonymousClass.addMethod(anonymousMethod);
-                jmethod.getDeclaringClass().addInnerClass(anonymousClass);
+                lambdas.add(anonymousClass);
             }
         }
     }

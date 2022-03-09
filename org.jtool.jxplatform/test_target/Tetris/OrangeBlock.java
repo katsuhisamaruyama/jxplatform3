@@ -12,7 +12,6 @@ public class OrangeBlock extends Block {
     OrangeBlock(int x, int y) {
         super(x, y);
         
-
         addTile(1, 1, COLOR);
         addTile(0, 2, COLOR);
         addTile(1, 2, COLOR);

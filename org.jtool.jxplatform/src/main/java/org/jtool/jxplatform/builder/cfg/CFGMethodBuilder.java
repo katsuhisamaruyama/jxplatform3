@@ -140,7 +140,7 @@ class CFGMethodBuilder {
             nodes.add(exceptionNode);
         }
         
-        ExceptionTypeCollector collector = new ExceptionTypeCollector(jmethod.getJavaProject());
+        ExceptionTypeCollector collector = new ExceptionTypeCollector();
         for (ITypeBinding tbinding : collector.getExceptions(jmethod)) {
             if (!alreadyIncluded(nodes, tbinding)) {
                 CFGException exceptionNode = createExceptionNode(entry, cfg, tbinding);
