@@ -5,6 +5,7 @@
 
 package org.jtool.jxplatform.project;
 
+import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,7 +19,7 @@ public class GradleEnvTest {
     @Test
     public void testGetName() {
         String name = "mockito-4.2.0";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new GradleEnv(name, basePath);
@@ -30,7 +31,7 @@ public class GradleEnvTest {
     @Test
     public void testGetBasePath() {
         String name = "mockito-4.2.0";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new GradleEnv(name, basePath);
@@ -42,7 +43,7 @@ public class GradleEnvTest {
     @Test
     public void testGetConfigFile() {
         String name = "mockito-4.2.0";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new GradleEnv(name, basePath);
@@ -54,7 +55,7 @@ public class GradleEnvTest {
     @Test
     public void testGetModules() {
         String name = "mockito-4.2.0";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new GradleEnv(name, basePath);
@@ -66,7 +67,7 @@ public class GradleEnvTest {
     @Test
     public void testGetSourcePaths() {
         String name = "mockito-4.2.0";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new GradleEnv(name, basePath);
@@ -81,7 +82,7 @@ public class GradleEnvTest {
     @Test
     public void testGetBinaryPaths() {
         String name = "mockito-4.2.0";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new GradleEnv(name, basePath);
@@ -96,7 +97,7 @@ public class GradleEnvTest {
     @Test
     public void testGetClassPaths() {
         String name = "mockito-4.2.0";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new GradleEnv(name, basePath);
@@ -111,7 +112,7 @@ public class GradleEnvTest {
     @Test
     public void testGetIncludedSourceFiles() {
         String name = "mockito-4.2.0";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new GradleEnv(name, basePath);
@@ -123,7 +124,7 @@ public class GradleEnvTest {
     @Test
     public void testGetExcludedSourceFiles() {
         String name = "mockito-4.2.0";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new GradleEnv(name, basePath);

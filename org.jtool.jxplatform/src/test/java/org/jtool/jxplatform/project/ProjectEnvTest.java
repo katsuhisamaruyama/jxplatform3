@@ -5,7 +5,7 @@
 
 package org.jtool.jxplatform.project;
 
-import org.jtool.jxplatform.util.TestUtil;
+import org.jtool.jxplatform.util.BuilderTestUtil;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class ProjectEnvTest {
     @Test
     public void testSimpleEnv() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null);
@@ -27,7 +27,7 @@ public class ProjectEnvTest {
     @Test
     public void testEclipseEnv() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null);
@@ -38,7 +38,7 @@ public class ProjectEnvTest {
     @Test
     public void testAntUsingAnt() {
         String name = "ant-1.10.12";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null);
@@ -49,7 +49,7 @@ public class ProjectEnvTest {
     @Test
     public void testGuavaUsingMaven() {
         String name = "guava-31.0.1";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null);
@@ -65,7 +65,7 @@ public class ProjectEnvTest {
     @Test
     public void testMockitoUsingGradle() {
         String name = "mockito-4.2.0";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null);

@@ -5,6 +5,7 @@
 
 package org.jtool.jxplatform.project;
 
+import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,7 +19,7 @@ public class SimpleEnvTest {
     @Test
     public void testGetName() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new SimpleEnv(name, basePath);
@@ -30,7 +31,7 @@ public class SimpleEnvTest {
     @Test
     public void testGetBasePath() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new SimpleEnv(name, basePath);
@@ -42,7 +43,7 @@ public class SimpleEnvTest {
     @Test
     public void testGetConfigFile() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new SimpleEnv(name, basePath);
@@ -54,7 +55,7 @@ public class SimpleEnvTest {
     @Test
     public void testGetModules() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new SimpleEnv(name, basePath);
@@ -66,7 +67,7 @@ public class SimpleEnvTest {
     @Test
     public void testGetSourcePaths() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new SimpleEnv(name, basePath);
@@ -81,7 +82,7 @@ public class SimpleEnvTest {
     @Test
     public void testGetBinaryPaths() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new SimpleEnv(name, basePath);
@@ -95,7 +96,7 @@ public class SimpleEnvTest {
     @Test
     public void testGetClassPaths() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new SimpleEnv(name, basePath);
@@ -109,7 +110,7 @@ public class SimpleEnvTest {
     @Test
     public void testGetIncludedSourceFiles() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new EclipseEnv(name, basePath);
@@ -121,7 +122,7 @@ public class SimpleEnvTest {
     @Test
     public void testGetExcludedSourceFiles() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new SimpleEnv(name, basePath);

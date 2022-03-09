@@ -5,6 +5,7 @@
 
 package org.jtool.jxplatform.project;
 
+import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,7 +19,7 @@ public class AntEnvTest {
     @Test
     public void testGetName() {
         String name = "ant-1.10.12";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new AntEnv(name, basePath);
@@ -30,7 +31,7 @@ public class AntEnvTest {
     @Test
     public void testGetBasePath() {
         String name = "ant-1.10.12";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new AntEnv(name, basePath);
@@ -42,7 +43,7 @@ public class AntEnvTest {
     @Test
     public void testGetConfigFile() {
         String name = "ant-1.10.12";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new AntEnv(name, basePath);
@@ -54,7 +55,7 @@ public class AntEnvTest {
     @Test
     public void testGetModules() {
         String name = "ant-1.10.12";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new AntEnv(name, basePath);
@@ -66,7 +67,7 @@ public class AntEnvTest {
     @Test
     public void testGetSourcePaths() {
         String name = "ant-1.10.12";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new AntEnv(name, basePath);
@@ -81,7 +82,7 @@ public class AntEnvTest {
     @Test
     public void testGetBinaryPaths() {
         String name = "ant-1.10.12";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new AntEnv(name, basePath);
@@ -95,7 +96,7 @@ public class AntEnvTest {
     @Test
     public void testGetClassPaths() {
         String name = "ant-1.10.12";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new AntEnv(name, basePath);
@@ -110,7 +111,7 @@ public class AntEnvTest {
     @Test
     public void testGetIncludedSourceFiles() {
         String name = "ant-1.10.12";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new AntEnv(name, basePath);
@@ -122,7 +123,7 @@ public class AntEnvTest {
     @Test
     public void testGetExcludedSourceFiles() {
         String name = "ant-1.10.12";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new AntEnv(name, basePath);

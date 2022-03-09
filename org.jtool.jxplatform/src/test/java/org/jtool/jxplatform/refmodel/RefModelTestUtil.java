@@ -5,6 +5,7 @@
 
 package org.jtool.jxplatform.refmodel;
 
+import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.srcmodel.JavaProject;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -14,9 +15,11 @@ import org.jtool.jxplatform.builder.ModelBuilderBatch;
 
 public class RefModelTestUtil {
     
-    public static JavaProject createProject(String target, String classpath) {
+    public static JavaProject createProject(String name, String lib, String src) {
+        String target = BuilderTestUtil.getTarget(name);
+        
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
-        JavaProject project = builder.build(target, target, classpath, target, target);
+        JavaProject project = builder.build(target, target, target + lib, target + src, target);
         
         BytecodeClassStore bcStore = project.getCFGStore().getBCStore();
         bcStore.loadBytecode();
@@ -24,11 +27,13 @@ public class RefModelTestUtil {
         return project;
     }
     
-    public static JavaProject createProjectFromSourceWithoutLibCache(String target, String classpath) {
+    public static JavaProject createProjectFromSourceWithoutLibCache(String name, String lib, String src) {
+        String target = BuilderTestUtil.getTarget(name);
+        
         removeCache(target);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
-        JavaProject project = builder.build(target, target, classpath, target, target);
+        JavaProject project = builder.build(target, target, target + lib, target + src, target);
         
         BytecodeClassStore bcStore = project.getCFGStore().getBCStore();
         bcStore.loadBytecode();
@@ -36,12 +41,14 @@ public class RefModelTestUtil {
         return project;
     }
     
-    public static JavaProject createProjectFromSourceWithLibCache(String target, String classpath) {
+    public static JavaProject createProjectFromSourceWithLibCache(String name, String lib, String src) {
+        String target = BuilderTestUtil.getTarget(name);
+        
         removeCache(target);
-        createCache(target, classpath);
+        createCache(name, lib, src);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
-        JavaProject project = builder.build(target, target, classpath, target, target);
+        JavaProject project = builder.build(target, target, target + lib, target + src, target);
         
         BytecodeClassStore bcStore = project.getCFGStore().getBCStore();
         bcStore.loadBytecode();
@@ -49,12 +56,14 @@ public class RefModelTestUtil {
         return project;
     }
     
-    public static JavaProject createProjectFromCache(String target, String classpath) {
+    public static JavaProject createProjectFromCache(String name, String lib, String src) {
+        String target = BuilderTestUtil.getTarget(name);
+        
         removeCache(target);
-        createCache(target, classpath);
+        createCache(name, lib, src);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true, true);
-        JavaProject project = builder.build(target, target, classpath, target, target);
+        JavaProject project = builder.build(target, target, target + lib, target + src, target);
         
         BytecodeClassStore bcStore = project.getCFGStore().getBCStore();
         bcStore.loadBytecode();
@@ -62,10 +71,12 @@ public class RefModelTestUtil {
         return project;
     }
     
-    static void createCache(String target, String classpath) {
+    public static void createCache(String name, String lib, String src) {
+        String target = BuilderTestUtil.getTarget(name);
+        
         ModelBuilderBatch builder = new ModelBuilderBatch(true, true);
         //builder.setLogVisible(false);
-        JavaProject project = builder.build(target, target, classpath, target, target);
+        JavaProject project = builder.build(target, target, target + lib, target + src, target);
         
         BytecodeClassStore bcStore = project.getCFGStore().getBCStore();
         bcStore.loadBytecode();
@@ -73,7 +84,7 @@ public class RefModelTestUtil {
         builder.unbuild();
     }
     
-    static boolean removeCache(String target) {
+    public static boolean removeCache(String target) {
         try {
             Path cachepath = Paths.get(target, BytecodeCacheManager.BYTECODE_CACHE_DIR);
             Path gitfilepath = Paths.get(target, BytecodeCacheManager.GIT_IGNORE_FILE);

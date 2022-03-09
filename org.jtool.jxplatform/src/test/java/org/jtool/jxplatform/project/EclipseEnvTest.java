@@ -5,6 +5,7 @@
 
 package org.jtool.jxplatform.project;
 
+import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,7 +19,7 @@ public class EclipseEnvTest {
     @Test
     public void testGetName() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new EclipseEnv(name, basePath);
@@ -30,7 +31,7 @@ public class EclipseEnvTest {
     @Test
     public void testGetBasePath() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new EclipseEnv(name, basePath);
@@ -42,7 +43,7 @@ public class EclipseEnvTest {
     @Test
     public void testGetConfigFile() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new EclipseEnv(name, basePath);
@@ -54,7 +55,7 @@ public class EclipseEnvTest {
     @Test
     public void testGetModules() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new EclipseEnv(name, basePath);
@@ -66,7 +67,7 @@ public class EclipseEnvTest {
     @Test
     public void testGetSourcePaths() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new EclipseEnv(name, basePath);
@@ -80,7 +81,7 @@ public class EclipseEnvTest {
     @Test
     public void testGetBinaryPaths() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new EclipseEnv(name, basePath);
@@ -94,7 +95,7 @@ public class EclipseEnvTest {
     @Test
     public void testGetClassPaths() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new EclipseEnv(name, basePath);
@@ -108,7 +109,7 @@ public class EclipseEnvTest {
     @Test
     public void testGetIncludedSourceFiles() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new EclipseEnv(name, basePath);
@@ -120,7 +121,7 @@ public class EclipseEnvTest {
     @Test
     public void testGetExcludedSourceFiles() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
         ProjectEnv env = new EclipseEnv(name, basePath);

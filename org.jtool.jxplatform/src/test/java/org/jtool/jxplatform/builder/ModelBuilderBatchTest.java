@@ -6,7 +6,7 @@
 package org.jtool.jxplatform.builder;
 
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.util.TestUtil;
+import org.jtool.jxplatform.util.BuilderTestUtil;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -16,13 +16,13 @@ public class ModelBuilderBatchTest {
     @Test
     public void testSimple1() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(false);
         JavaProject project = builder.build(name, target, target);
         
-        assertEquals(29, project.getFiles().size());
-        assertEquals(33, project.getClasses().size());
+        assertEquals(26, project.getFiles().size());
+        assertEquals(30, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -30,14 +30,14 @@ public class ModelBuilderBatchTest {
     @Test
     public void testSimple2() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(false);
         builder.setLogVisible(false);
         JavaProject project = builder.build(name, target, target, target, target);
         
-        assertEquals(29, project.getFiles().size());
-        assertEquals(33, project.getClasses().size());
+        assertEquals(26, project.getFiles().size());
+        assertEquals(30, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -45,14 +45,29 @@ public class ModelBuilderBatchTest {
     @Test
     public void testSimple3() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         String[] path = { target };
         
         ModelBuilderBatch builder = new ModelBuilderBatch(false);
         JavaProject project = builder.build(name, target, path, path, path);
         
-        assertEquals(29, project.getFiles().size());
-        assertEquals(33, project.getClasses().size());
+        assertEquals(26, project.getFiles().size());
+        assertEquals(30, project.getClasses().size());
+        
+        builder.unbuild();
+    }
+    
+    @Test
+    public void testVideoStore() {
+        String name = "VideoStore";
+        String target = BuilderTestUtil.getTarget(name);
+        String classpath = target + "/lib/*";
+        
+        ModelBuilderBatch builder = new ModelBuilderBatch(false);
+        JavaProject project = builder.build(target, target, classpath, target, target);
+        
+        assertEquals(16, project.getFiles().size());
+        assertEquals(18, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -60,7 +75,7 @@ public class ModelBuilderBatchTest {
     @Test
     public void testDrawTool() {
         String name = "DrawTool";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
         JavaProject project = builder.build(name, target, target, target + "/src", target);
@@ -74,7 +89,7 @@ public class ModelBuilderBatchTest {
     @Test
     public void testLambda() {
         String name = "Lambda";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
         JavaProject project = builder.build(target, target, target, target, target);
@@ -88,7 +103,7 @@ public class ModelBuilderBatchTest {
     @Test
     public void testJrb() {
         String name = "jrb-1.0.2";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
         JavaProject project = builder.build(target, target, target, target + "/src", target);
@@ -102,7 +117,7 @@ public class ModelBuilderBatchTest {
     @Test
     public void testTetris() {
         String name = "Tetris";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
         JavaProject project = builder.build(target, target, target, target, target);
@@ -116,7 +131,7 @@ public class ModelBuilderBatchTest {
     @Test
     public void testCSClassroom() {
         String name = "CS-classroom";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         String classpath = target + "/lib/*";
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
@@ -129,16 +144,30 @@ public class ModelBuilderBatchTest {
     }
     
     @Test
+    public void testSlice() {
+        String name = "Slice";
+        String target = BuilderTestUtil.getTarget(name);
+        
+        ModelBuilderBatch builder = new ModelBuilderBatch(true);
+        JavaProject project = builder.build(target, target, target, target, target);
+        
+        assertEquals(43, project.getFiles().size());
+        assertEquals(66, project.getClasses().size());
+        
+        builder.unbuild();
+    }
+    
+    @Test
     public void testSimple() {
         String name = "Simple";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(false);
         List<JavaProject> projects = builder.build(name, target);
         
         assertEquals(1, projects.size());
-        assertEquals(29, projects.get(0).getFiles().size());
-        assertEquals(33, projects.get(0).getClasses().size());
+        assertEquals(26, projects.get(0).getFiles().size());
+        assertEquals(30, projects.get(0).getClasses().size());
         
         builder.unbuild();
     }
@@ -146,7 +175,7 @@ public class ModelBuilderBatchTest {
     @Test
     public void testAnt() {
         String name = "ant-1.10.12";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
         List<JavaProject> projects = builder.build(name, target);
@@ -161,7 +190,7 @@ public class ModelBuilderBatchTest {
     @Test
     public void testGuava() {
         String name = "guava-31.0.1";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
         List<JavaProject> projects = builder.build(name, target);
@@ -182,7 +211,7 @@ public class ModelBuilderBatchTest {
     @Test
     public void testMockito() {
         String name = "mockito-4.2.0";
-        String target = TestUtil.getTarget(name);
+        String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
         List<JavaProject> projects =  builder.build(name, target);
