@@ -29,7 +29,6 @@ public class SrcModelBuilderTest {
     private static JavaProject SimpleProject;
     private static JavaProject SliceProject;
     private static JavaProject TetrisProject;
-    //private static JavaProject VideoStoreProject;
     
     @BeforeClass
     public static void setUp() {
@@ -39,7 +38,6 @@ public class SrcModelBuilderTest {
         SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
         SliceProject = BuilderTestUtil.createProject("Slice", "", "");
         TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
-        //VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
     }
     
     @AfterClass
@@ -50,7 +48,6 @@ public class SrcModelBuilderTest {
         SimpleProject.getModelBuilder().unbuild();
         SliceProject.getModelBuilder().unbuild();
         TetrisProject.getModelBuilder().unbuild();
-        //VideoStoreProject.getModelBuilder().unbuild();
     }
     
     @Test
@@ -102,7 +99,7 @@ public class SrcModelBuilderTest {
         
         assertEquals(2, result.size());
         assertEquals("jp.ac.ritsumei.cs.draw.Figure#startX;jp.ac.ritsumei.cs.draw.Figure#startY",
-                   TestUtil.asSortedStrOfJavaElement(result));
+                   TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -113,7 +110,7 @@ public class SrcModelBuilderTest {
         Set<JavaField> result = collector.getAccessedFields();
         
         assertEquals(3, result.size());
-        assertEquals("Block#posX;Block#posY;Block#tiles", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("Block#posX;Block#posY;Block#tiles", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -124,7 +121,7 @@ public class SrcModelBuilderTest {
         Set<JavaField> result = collector.getAccessedFields();
         
         assertEquals(1, result.size());
-        assertEquals("Test101#p", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("Test101#p", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -135,7 +132,7 @@ public class SrcModelBuilderTest {
         Set<JavaField> result = collector.getAccessedFields();
         
         assertEquals(1, result.size());
-        assertEquals("Test26#xxx", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("Test26#xxx", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -146,7 +143,7 @@ public class SrcModelBuilderTest {
         Set<JavaField> result = collector.getAccessedFields();
         
         assertEquals(1, result.size());
-        assertEquals("java.awt.Color#blue", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("java.awt.Color#blue", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -178,7 +175,7 @@ public class SrcModelBuilderTest {
         
         assertEquals(2, result.size());
         assertEquals("Tile#Tile( int int java.awt.Color );java.util.Set#add( java.lang.Object )",
-                TestUtil.asSortedStrOfJavaElement(result));
+                TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -189,7 +186,7 @@ public class SrcModelBuilderTest {
         Set<JavaMethod> result = collector.getCalledMethods();
         
         assertEquals(1, result.size());
-        assertEquals("jp.ac.ritsumei.cs.draw.Figure#Figure( java.awt.Color )", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("jp.ac.ritsumei.cs.draw.Figure#Figure( java.awt.Color )", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -200,7 +197,7 @@ public class SrcModelBuilderTest {
         Set<JavaMethod> result = collector.getCalledMethods();
         
         assertEquals(1, result.size());
-        assertEquals("java.util.HashSet#HashSet( )", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("java.util.HashSet#HashSet( )", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -211,7 +208,7 @@ public class SrcModelBuilderTest {
         Set<JavaMethod> result = collector.getCalledMethods();
         
         assertEquals(1, result.size());
-        assertEquals("java.util.ArrayList#ArrayList( )", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("java.util.ArrayList#ArrayList( )", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -250,7 +247,7 @@ public class SrcModelBuilderTest {
         Set<JavaLocalVar> result = collector.getLocalDeclarations();
         
         assertEquals(2, result.size());
-        assertEquals("block;keyCode", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("block;keyCode", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -262,7 +259,7 @@ public class SrcModelBuilderTest {
         Set<JavaLocalVar> result = collector.getLocalDeclarations();
         
         assertEquals(1, result.size());
-        assertEquals("seed", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("seed", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -274,7 +271,7 @@ public class SrcModelBuilderTest {
         Set<JavaLocalVar> result = collector.getLocalDeclarations();
         
         assertEquals(1, result.size());
-        assertEquals("amount", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("amount", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -286,7 +283,7 @@ public class SrcModelBuilderTest {
         Set<JavaLocalVar> result = collector.getLocalDeclarations();
         
         assertEquals(1, result.size());
-        assertEquals("c", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("c", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -304,7 +301,7 @@ public class SrcModelBuilderTest {
                    + "java.lang.Object;"
                    + "java.lang.String;"
                    + "jp.ac.ritsumei.cs.draw.Figure",
-                TestUtil.asSortedStrOfJavaElement(result));
+                TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -326,7 +323,7 @@ public class SrcModelBuilderTest {
                    + "jp.ac.ritsumei.cs.draw.DrawMenu;"
                    + "jp.ac.ritsumei.cs.draw.FigureManager;"
                    + "jp.ac.ritsumei.cs.draw.FigureSelector",
-                TestUtil.asSortedStrOfJavaElement(result));
+                TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -339,7 +336,7 @@ public class SrcModelBuilderTest {
         assertEquals(9, result.size());
         assertEquals("Block;GameInfo;Tile;"
                    + "java.awt.Canvas;java.awt.Color;java.awt.Font;java.awt.Graphics;java.awt.Image;java.util.Random",
-                TestUtil.asSortedStrOfJavaElement(result));
+                TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -355,7 +352,7 @@ public class SrcModelBuilderTest {
                    + "java.util.function.BinaryOperator;"
                    + "java.util.function.Function;"
                    + "java.util.function.UnaryOperator",
-                TestUtil.asSortedStrOfJavaElement(result));
+                TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -367,7 +364,7 @@ public class SrcModelBuilderTest {
         
         assertEquals(3, result.size());
         assertEquals("java.lang.String;java.util.HashMap;java.util.Map",
-                TestUtil.asSortedStrOfJavaElement(result));
+                TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -379,7 +376,7 @@ public class SrcModelBuilderTest {
         Set<JavaClass> result = collector.getLambdas();
         
         assertEquals(1, result.size());
-        assertEquals("Sample110FX#start( javafx.stage.Stage )$1", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("Sample110FX#start( javafx.stage.Stage )$1", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -391,7 +388,7 @@ public class SrcModelBuilderTest {
         Set<JavaClass> result = collector.getLambdas();
         
         assertEquals(1, result.size());
-        assertEquals("Test#run1( )$1", TestUtil.asSortedStrOfJavaElement(result));
+        assertEquals("Test#run1( )$1", TestUtil.asSortedStrOf(result));
     }
     
     @Test
