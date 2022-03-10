@@ -38,7 +38,7 @@ public class JavaFile {
     /**
      * The contents (source code) of this file.
      */
-    protected String code;
+    protected String source;
     
     /**
      * The character set of the contents of this file.
@@ -64,15 +64,15 @@ public class JavaFile {
      * Creates a new object representing a file.
      * @param cu the compilation unit of this file
      * @param path the absolute path of this file in the file system
-     * @param code the contents of this file
+     * @param source the contents of this file
      * @param charset the character set of the contents of this file
      * @param jproject the project that this file exists
      */
-    public JavaFile(CompilationUnit cu, String path, String code, String charset, JavaProject jproject) {
+    public JavaFile(CompilationUnit cu, String path, String source, String charset, JavaProject jproject) {
         this.compilationUnit = cu;
         this.jproject = jproject;
         this.path = path;
-        this.code = code;
+        this.source = source;
         this.charset = charset;
         jproject.addFile(this);
     }
@@ -121,8 +121,8 @@ public class JavaFile {
      * Returns the contents of this file, which represents source code.
      * @return the contents of this file
      */
-    public String getCode() {
-        return code;
+    public String getSource() {
+        return source;
     }
     
     /**
