@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -26,9 +26,9 @@ public class JavaPackage {
     private ASTNode astNode;
     
     /**
-     * The file that declares this model element.
+     * The files that declares this package.
      */
-    private JavaFile jfile;
+    private Set<JavaFile> files = new HashSet<>();
     
     /**
      * The name of this package.
@@ -49,12 +49,10 @@ public class JavaPackage {
      * Creates a new object representing a package.
      * The object is not allowed to be directly created.
      * @param node the AST node for this method
-     * @param jfile the file that declares this package
      * @param name the name of this package
      */
-    private JavaPackage(PackageDeclaration node, JavaFile jfile, String name) {
+    private JavaPackage(PackageDeclaration node, String name) {
         this.astNode = node;
-        this.jfile = jfile;
         this.name = name;
     }
     
@@ -85,12 +83,12 @@ public class JavaPackage {
         }
         
         JavaPackage jpackage = jfile.getProject().getPackage(name);
-        if (jpackage != null) {
-            return jpackage;
+        if (jpackage == null) {
+            jpackage = new JavaPackage(node, name);
+            jfile.getProject().addPackage(jpackage);
         }
-        
-        jpackage = new JavaPackage(node, jfile, name);
-        jfile.getProject().addPackage(jpackage);
+        jfile.setPackage(jpackage);
+        jpackage.addFile(jfile);
         return jpackage;
     }
     
@@ -103,11 +101,19 @@ public class JavaPackage {
     }
     
     /**
-     * Returns the file that declares this package.
-     * @return the declaring file
+     * Obtains files that declare this package.
+     * @return the collection of the declaring files
      */
-    public JavaFile getFile() {
-        return jfile;
+    public Set<JavaFile> getFiles() {
+        return files;
+    }
+    
+    /**
+     * Adds a file that declares this package.
+     * @param jfile the file that declares this package
+     */
+    protected void addFile(JavaFile jfile) {
+        files.add(jfile);
     }
     
     /**
@@ -204,25 +210,14 @@ public class JavaPackage {
     protected boolean resolved = false;
     
     /**
-     * The collection of packages whose class uses a class belonging to this package.
-     */
-    protected Set<JavaPackage> afferentPackages = null;
-    
-    /**
      * The collection of packages containing classes that a class of this package uses.
      */
     protected Set<JavaPackage> efferentPackages = null;
     
     /**
-     * Obtains packages whose class uses a class belonging to this package.
-     * @return the collection of the afferent packages
+     * The collection of packages whose class uses a class belonging to this package.
      */
-    public Set<JavaPackage> getAfferentJavaPackages() {
-        if (afferentPackages == null) {
-            findEfferentPackages();
-        }
-        return afferentPackages;
-    }
+    protected Set<JavaPackage> afferentPackages = null;
     
     /**
      * Obtains packages containing classes that a class of this package uses.
@@ -230,35 +225,43 @@ public class JavaPackage {
      */
     public Set<JavaPackage> getEfferentJavaPackages() {
         if (efferentPackages == null) {
+            efferentPackages = new HashSet<>();
             findEfferentPackages();
         }
         return efferentPackages;
     }
     
     private void findEfferentPackages() {
-        if (efferentPackages == null) {
-            efferentPackages = new HashSet<>();
-        }
-        if (afferentPackages == null) {
-            afferentPackages = new HashSet<>();
-        }
         for (JavaClass jclass : classes) {
             for (JavaClass jc : jclass.getEfferentClassesInProject()) {
                 JavaPackage jpackage = jc.getPackage();
                 if (jpackage != null && !jpackage.equals(this)) {
                     efferentPackages.add(jpackage);
-                    jpackage.addAfferentPackage(this);
                 }
             }
         }
     }
     
-    private void addAfferentPackage(JavaPackage jpackage) {
+    /**
+     * Obtains packages whose class uses a class belonging to this package.
+     * @return the collection of the afferent packages
+     */
+    public Set<JavaPackage> getAfferentJavaPackages() {
         if (afferentPackages == null) {
             afferentPackages = new HashSet<>();
+            findAfferentPackages();
         }
-        if (jpackage != null && !afferentPackages.contains(jpackage)) {
-            afferentPackages.add(jpackage);
+        return afferentPackages;
+    }
+    
+    private void findAfferentPackages() {
+        for (JavaClass jclass : classes) {
+            for (JavaClass jc : jclass.getAfferentClassesInProject()) {
+                JavaPackage jpackage = jc.getPackage();
+                if (jpackage != null && !jpackage.equals(this)) {
+                    afferentPackages.add(jpackage);
+                }
+            }
         }
     }
 }

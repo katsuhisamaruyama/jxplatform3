@@ -8,14 +8,14 @@ public class Test24 {
         q.m();
         ((Q24)q).n();
     }
-}
 
-class P24 {
-    void m() {
+    protected class P24 {
+        void m() {
+        }
     }
-}
 
-class Q24 extends P24 {
-    void n() {
+    final private class Q24 extends P24 {
+        void n() {
+        }
     }
 }

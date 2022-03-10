@@ -49,7 +49,6 @@ public class JavaASTVisitor extends ASTVisitor {
     @Override
     public boolean visit(PackageDeclaration node) {
         jpackage = JavaPackage.create(node, jfile);
-        jfile.setPackage(jpackage);
         return true;
     }
     

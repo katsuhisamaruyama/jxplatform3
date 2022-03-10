@@ -25,23 +25,23 @@ public class Sample12 {
         frame.setSize(200, 80);
         frame.setVisible(true);
     }
-}
 
-class ButtonListener implements ActionListener {
-    private JLabel label;
-    private boolean flag = true;
-    
-    ButtonListener(JLabel l) {
-        label = l;
-    }
-    
-    public void actionPerformed(ActionEvent e) {
-        if (flag == true) {
-            label.setText("Enjoy Swing.");
-            flag = false;
-        } else {
-            label.setText("Enjoy Java.");
-            flag = true;
+    private static class ButtonListener implements ActionListener {
+        private JLabel label;
+        private boolean flag = true;
+        
+        ButtonListener(JLabel l) {
+            label = l;
+        }
+        
+        public void actionPerformed(ActionEvent e) {
+            if (flag == true) {
+                label.setText("Enjoy Swing.");
+                flag = false;
+            } else {
+                label.setText("Enjoy Java.");
+                flag = true;
+            }
         }
     }
 }

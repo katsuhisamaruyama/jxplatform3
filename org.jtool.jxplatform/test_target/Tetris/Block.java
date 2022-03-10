@@ -42,7 +42,7 @@ public abstract class Block {
         posX = x;
         posY = y;
 
-        Iterator<Tile> it = tiles.iterator();
+        final Iterator<Tile> it = tiles.iterator();
         while (it.hasNext()) {
             Tile tile = it.next();
             tile.setPosXY(tile.getPosX() + x, tile.getPosY() + y);

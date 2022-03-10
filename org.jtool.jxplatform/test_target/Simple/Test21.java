@@ -1,6 +1,6 @@
 public class Test21 {
 
-    public void m() {
+    final public void m() {
         int a = 0;
         for (int i = 0; i < 10; i++) {
             a++;

@@ -3,7 +3,7 @@ package org.jtool.videostore.before;
 import java.util.List;
 import java.util.ArrayList;
 
-class Customer {
+public class Customer {
     
     private String name;
     

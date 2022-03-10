@@ -34,7 +34,19 @@ public static <T> List<String> asSortedList(Stream<T> stream) {
         return asSortedStr(set.stream().map(e -> e.getQualifiedName()));
     }
     
-    public static String asSortedStrOfJavaElement(Set<? extends JavaElement> set) {
+    public static String asSortedStrOf(List<? extends JavaElement> list) {
+        return asSortedStr(list.stream().map(e -> e.getQualifiedName().fqn()));
+    }
+    
+    public static String asSortedStrOf(Set<? extends JavaElement> set) {
         return asSortedStr(set.stream().map(e -> e.getQualifiedName().fqn()));
+    }
+    
+    public static String asSortedStr(List<String> list) {
+        return asSortedStr(list.stream());
+    }
+    
+    public static String asSortedStr(Set<String> set) {
+        return asSortedStr(set.stream());
     }
 }

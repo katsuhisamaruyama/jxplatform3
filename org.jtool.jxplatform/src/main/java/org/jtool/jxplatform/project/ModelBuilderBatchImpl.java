@@ -199,7 +199,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     }
     
     public JavaProject createProject(String name, Path basePath, String[] classpath, String[] srcpath, String[] binpath) {
-        JavaProject jproject = new JavaProject(name, basePath.toString(), basePath.toString());
+        JavaProject jproject = new JavaProject(name, basePath.toString());
         jproject.setModelBuilderImpl(this);
         jproject.setClassPath(getClassPath(classpath));
         jproject.setSourceBinaryPaths(srcpath, binpath);

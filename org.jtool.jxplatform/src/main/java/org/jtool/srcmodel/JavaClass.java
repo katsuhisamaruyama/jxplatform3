@@ -167,7 +167,6 @@ public class JavaClass extends JavaElement {
             JavaPackage jpackage = jfile.getPackage();
             if (jpackage == null) {
                 jpackage = JavaPackage.createDefault(jfile);
-                jfile.setPackage(jpackage);
             }
             jpackage.addClass(this);
             jfile.addClass(this);
@@ -204,7 +203,6 @@ public class JavaClass extends JavaElement {
             JavaPackage jpackage = jfile.getPackage();
             if (jpackage == null) {
                 jpackage = JavaPackage.createDefault(jfile);
-                jfile.setPackage(jpackage);
             }
             jpackage.addClass(this);
             
@@ -677,8 +675,7 @@ public class JavaClass extends JavaElement {
      * @return the sorted field list
      */
     protected static List<JavaField> sortFields(List<? extends JavaField> list) {
-        return list
-                .stream()
+        return list.stream()
                 .sorted((jf1, jf2) -> jf1.getName().compareTo(jf2.getName()))
                 .collect(Collectors.toList());
     }
@@ -689,8 +686,7 @@ public class JavaClass extends JavaElement {
      * @return the sorted method list
      */
     protected static List<JavaMethod> sortMethods(List<? extends JavaMethod> list) {
-        return list
-                .stream()
+        return list.stream()
                 .sorted((jm1, jm2) -> jm1.getSignature().compareTo(jm2.getSignature()))
                 .collect(Collectors.toList());
     }
@@ -701,8 +697,7 @@ public class JavaClass extends JavaElement {
      * @return the sorted class list
      */
     protected static List<JavaClass> sortClasses(List<? extends JavaClass> list) {
-        return list
-                .stream()
+        return list.stream()
                 .sorted((jc1, jc2) -> jc1.getQualifiedName().fqn().compareTo(jc2.getQualifiedName().fqn()))
                 .collect(Collectors.toList());
     }
@@ -728,14 +723,14 @@ public class JavaClass extends JavaElement {
     protected Set<JavaClass> usedClasses = new HashSet<>();
     
     /**
-     * The collection of classes whose method or field accesses this class.
-     */
-    protected Set<JavaClass> afferentClasses = new HashSet<>();
-    
-    /**
      * The collection of classes that a method or a field of this class accesses.
      */
     protected Set<JavaClass> efferentClasses = new HashSet<>();
+    
+    /**
+     * The collection of classes whose method or field accesses this class.
+     */
+    protected Set<JavaClass> afferentClasses = null;
     
     /**
      * Collects additional information on this class.
@@ -835,6 +830,44 @@ public class JavaClass extends JavaElement {
         return bindingOk;
     }
     
+    private void findEfferentClasses() {
+        for (JavaClass jclass : usedClasses) {
+            if (!jclass.equals(this)) {
+                efferentClasses.add(jclass);
+            }
+        }
+        
+        for (JavaMethod jmethod : methods) {
+            for (JavaMethod jm : jmethod.getCalledMethods()) {
+                JavaClass jclass = jm.getDeclaringClass();
+                if (!jclass.equals(this)) {
+                    efferentClasses.add(jclass);
+                }
+            }
+            for (JavaField jf : jmethod.getAccessedFields()) {
+                JavaClass jclass = jf.getDeclaringClass();
+                if (!jclass.equals(this)) {
+                    efferentClasses.add(jclass);
+                }
+            }
+        }
+        
+        for (JavaField jfield : fields) {
+            for (JavaMethod jm : jfield.getCalledMethods()) {
+                JavaClass jclass = jm.getDeclaringClass();
+                if (!jclass.equals(this)) {
+                    efferentClasses.add(jclass);
+                }
+            }
+            for (JavaField jf : jfield.getAccessedFields()) {
+                JavaClass jclass = jf.getDeclaringClass();
+                if (!jclass.equals(this)) {
+                    efferentClasses.add(jclass);
+                }
+            }
+        }
+    }
+    
     /**
      * Adds a class used by this class.
      * This method is not intended to be invoked by clients.
@@ -843,61 +876,6 @@ public class JavaClass extends JavaElement {
     public void addUsedClass(JavaClass jclass) {
         if (jclass != null && !jclass.equals(this) && !usedClasses.contains(jclass)) {
             usedClasses.add(jclass);
-        }
-    }
-    
-    private void findEfferentClasses() {
-        if (efferentClasses == null) {
-            efferentClasses = new HashSet<>();
-        }
-        if (afferentClasses == null) {
-            afferentClasses = new HashSet<>();
-        }
-        for (JavaClass jclass : usedClasses) {
-            if (!jclass.equals(this)) {
-                efferentClasses.add(jclass);
-                jclass.addAfferentClass(this);
-            }
-        }
-        
-        for (JavaMethod jmethod : getMethods()) {
-            for (JavaMethod jm : jmethod.getCalledMethods()) {
-                JavaClass jclass = jm.getDeclaringClass();
-                if (!jclass.equals(this)) {
-                    efferentClasses.add(jclass);
-                    jclass.addAfferentClass(this);
-                }
-            }
-            for (JavaField jf : jmethod.getAccessedFields()) {
-                JavaClass jclass = jf.getDeclaringClass();
-                if (!jclass.equals(this)) {
-                    efferentClasses.add(jclass);
-                    jclass.addAfferentClass(this);
-                }
-            }
-        }
-        
-        for (JavaField jfield : getFields()) {
-            for (JavaMethod jm : jfield.getCalledMethods()) {
-                JavaClass jclass = jm.getDeclaringClass();
-                if (!jclass.equals(this)) {
-                    efferentClasses.add(jclass);
-                    jclass.addAfferentClass(this);
-                }
-            }
-            for (JavaField jf : jfield.getAccessedFields()) {
-                JavaClass jclass = jf.getDeclaringClass();
-                if (!jclass.equals(this)) {
-                    efferentClasses.add(jclass);
-                    jclass.addAfferentClass(this);
-                }
-            }
-        }
-    }
-    
-    private void addAfferentClass(JavaClass jclass) {
-        if (jclass != null && !afferentClasses.contains(jclass)) {
-            afferentClasses.add(jclass);
         }
     }
     
@@ -929,14 +907,21 @@ public class JavaClass extends JavaElement {
     }
     
     /**
+     * Obtains classes whose method or field accesses this class.
+     * @return the collection of the efferent classes
+     */
+    public Set<JavaClass> getEfferentClasses() {
+        collectInfo();
+        return efferentClasses;
+    }
+    
+    /**
      * Obtains child classes of this class.
      * @return the list of the child classes
      */
     public List<JavaClass> getChildren() {
         collectInfo();
-        
-        return jfile.getProject().getClasses()
-                .stream()
+        return jfile.getProject().getClasses().stream()
                 .filter(jc -> jc.isChildOf(this))
                 .collect(Collectors.toList());
     }
@@ -1027,10 +1012,24 @@ public class JavaClass extends JavaElement {
     }
     
     /**
+     * Obtains classes whose method or field accesses this class, which are enclosed in the target project.
+     * @return the collection of the efferent classes
+     */
+    public Set<JavaClass> getEfferentClassesInProject() {
+        return getEfferentClasses().stream()
+                .filter(jc -> jc.isInProject())
+                .collect(Collectors.toSet());
+    }
+    
+    /**
      * Obtains classes whose method or field accesses this class.
      * @return the collection of the afferent classes
      */
     public Set<JavaClass> getAfferentClasses() {
+        if (afferentClasses == null) {
+            afferentClasses = new HashSet<>();
+            findAfferentClasses();
+        }
         return afferentClasses;
     }
     
@@ -1039,28 +1038,22 @@ public class JavaClass extends JavaElement {
      * @return the collection of the afferent classes
      */
     public Set<JavaClass> getAfferentClassesInProject() {
-        return afferentClasses
-                .stream()
+        return getAfferentClasses().stream()
                 .filter(jc -> jc.isInProject())
                 .collect(Collectors.toSet());
     }
     
-    /**
-     * Obtains classes whose method or field accesses this class.
-     * @return the collection of the efferent classes
-     */
-    public Set<JavaClass> getEfferentClasses() {
-        return efferentClasses;
+    private void findAfferentClasses() {
+        for (JavaClass jclass : getJavaProject().getClasses()) {
+            jclass.collectInfo();
+            jclass.getEfferentClasses().forEach(jc -> jc.addAfferentClass(jclass));
+        }
     }
     
-    /**
-     * Obtains classes whose method or field accesses this class, which are enclosed in the target project.
-     * @return the collection of the efferent classes
-     */
-    public Set<JavaClass> getEfferentClassesInProject() {
-        return efferentClasses
-                .stream()
-                .filter(jc -> jc.isInProject())
-                .collect(Collectors.toSet());
+    private void addAfferentClass(JavaClass jclass) {
+        if (afferentClasses == null) {
+            afferentClasses = new HashSet<>();
+        }
+        afferentClasses.add(jclass);
     }
 }

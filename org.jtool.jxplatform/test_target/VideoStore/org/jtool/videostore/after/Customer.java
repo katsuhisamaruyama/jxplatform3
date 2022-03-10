@@ -3,9 +3,9 @@ package org.jtool.videostore.after;
 import java.util.List;
 import java.util.ArrayList;
 
-class Customer {
+public class Customer {
     
-    private String name;
+    String name;
     
     private List<Rental> rentals = new ArrayList<>();
     
