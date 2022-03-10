@@ -454,7 +454,7 @@ public class JavaClass extends JavaElement {
     
     /**
      * Returns the name of the super class of this class.
-     * @return the super class name
+     * @return the super class name, or {@code null} if this is an interface
      */
     public String getSuperClassName() {
         return superClassName;
@@ -630,7 +630,7 @@ public class JavaClass extends JavaElement {
         buf.append(getKindLabel() + ": ");
         buf.append(getQualifiedName());
         buf.append("\n");
-        if (getSuperClassName().length() > 0) {
+        if (getSuperClassName() != null && getSuperClassName().length() > 0) {
             buf.append(" EXTENDS: ");
             buf.append(getSuperClassName());
         }
@@ -748,10 +748,12 @@ public class JavaClass extends JavaElement {
         
         boolean resolveOk = true;
         if (binding != null) {
-            if (!binding.isTopLevel()) {
+            if (declaringClass == null && !binding.isTopLevel()) {
                 declaringClass = findDeclaringClass(getJavaProject(), binding.getDeclaringClass());
             }
-            declaringMethod = findDeclaringMethod(getJavaProject(), binding.getDeclaringMethod());
+            if (declaringMethod == null) {
+                declaringMethod = findDeclaringMethod(getJavaProject(), binding.getDeclaringMethod());
+            }
             
             resolveOk = resolveOk & findSuperClass();
             resolveOk = resolveOk & findSuperInterfaces();
