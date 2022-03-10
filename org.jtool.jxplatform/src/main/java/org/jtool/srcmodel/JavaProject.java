@@ -96,6 +96,20 @@ public class JavaProject {
     /**
      * Creates a project that stores source files and their related information.
      * @param name the name of this project
+     * @param path the absolute path that indicates the root directory of this project in the file system
+     */
+    public JavaProject(String name, String path) {
+        this.name = name;
+        this.pathInWorkspace = path;
+        this.path = path;
+        
+        cfgStore = new CFGStore();
+        pdgStore = new PDGStore(cfgStore);
+    }
+    
+    /**
+     * Creates a project that stores source files and their related information.
+     * @param name the name of this project
      * @param wpath the absolute path that indicates the root directory of this project relative to the workspace
      * @param path the absolute path that indicates the root directory of this project in the file system
      */
@@ -182,7 +196,7 @@ public class JavaProject {
     
     /**
      * Returns the path string that indicates the root directory of this project relative to the workspace.
-     * @return the absolute path of this project
+     * @return the relative path of this project, or the absolute path when there is no workspace
      */
     public String getPathRelativeToWorkspace() {
         return pathInWorkspace;
