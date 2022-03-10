@@ -96,7 +96,7 @@ public abstract class JavaElement {
      */
     public String getSource() {
         if (codeRange != null && codeRange.getCodeLength() > 0) {
-            StringBuilder buf = new StringBuilder(jfile.getCode());
+            StringBuilder buf = new StringBuilder(jfile.getSource());
             return buf.substring(codeRange.getStartPosition(), codeRange.getEndPosition() + 1);
         }
         return "";
@@ -109,7 +109,7 @@ public abstract class JavaElement {
      */
     public String getExtendedSource() {
         if (codeRange != null && codeRange.getCodeLength() > 0) {
-            StringBuffer buf = new StringBuffer(jfile.getCode());
+            StringBuffer buf = new StringBuffer(jfile.getSource());
             return buf.substring(codeRange.getExtendedStartPosition(), codeRange.getExtendedEndPosition() + 1);
         }
         return "";

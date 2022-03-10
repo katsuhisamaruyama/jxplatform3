@@ -178,7 +178,7 @@ public class SliceExtractor extends ASTVisitor {
         CodeGenerator codeGenerator = new CodeGenerator();
         codeGenerator.setOptions(options);
         
-        String code = codeGenerator.generate(astNode, jclass.getFile().getCode(), sliceNodes);
+        String code = codeGenerator.generate(astNode, jclass.getFile().getSource(), sliceNodes);
         return code;
     }
     
