@@ -61,7 +61,7 @@ public class JavaProject {
     /**
      * The map the fully-qualified names and outside classes corresponding to the names.
      */
-    protected Map<String, JavaClass> externalClasseStore = new HashMap<>();
+    protected Map<String, JavaClass> externalClassStore = new HashMap<>();
     
     /**
      * The class paths that store class files in this project.
@@ -355,7 +355,15 @@ public class JavaProject {
     }
     
     void addExternalClass(JavaClass jclass) {
-        externalClasseStore.put(jclass.getQualifiedName().fqn(), jclass);
+        externalClassStore.put(jclass.getQualifiedName().fqn(), jclass);
+    }
+    
+    /**
+     * Obtains classes existing outside this project.
+     * @return the collection of the outside classes
+     */
+    public List<JavaClass> getExternalClasses() {
+        return new ArrayList<>(externalClassStore.values());
     }
     
     /**
@@ -365,7 +373,7 @@ public class JavaProject {
      */
     public JavaClass getExternalClass(String fqn) {
         if (fqn != null && fqn.length() > 0) {
-            return externalClasseStore.get(fqn);
+            return externalClassStore.get(fqn);
         }
         return null;
     }

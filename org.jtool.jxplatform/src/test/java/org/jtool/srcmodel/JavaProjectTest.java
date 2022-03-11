@@ -186,6 +186,13 @@ public class JavaProjectTest {
     }
     
     @Test
+    public void testGetPackage4() {
+        JavaPackage result = VideoStoreProject.getPackage("java.util");
+        
+        assertNull(result);
+    }
+    
+    @Test
     public void testGetPackages1() {
         List<String> result = TetrisProject.getPackages().stream().map(JavaPackage::getName).collect(Collectors.toList());
         
@@ -268,6 +275,54 @@ public class JavaProjectTest {
         JavaClass result = VideoStoreProject.getClass("org.jtool.videostore.after.Customer1");
         
         assertNull(result);
+    }
+    
+    @Test
+    public void testGetExternalClasses1() {
+        List<JavaClass> result = TetrisProject.getExternalClasses();
+        
+        assertEquals(23, result.size());
+        assertEquals("java.awt.Canvas;"
+                   + "java.awt.Color;"
+                   + "java.awt.Component;"
+                   + "java.awt.Container;"
+                   + "java.awt.FlowLayout;"
+                   + "java.awt.Font;"
+                   + "java.awt.Graphics;"
+                   + "java.awt.Image;"
+                   + "java.awt.Window;"
+                   + "java.awt.event.KeyEvent;"
+                   + "java.awt.event.KeyListener;"
+                   + "java.lang.InterruptedException;"
+                   + "java.lang.Object;"
+                   + "java.lang.Runnable;"
+                   + "java.lang.Runtime;"
+                   + "java.lang.String;"
+                   + "java.lang.System;"
+                   + "java.lang.Thread;"
+                   + "java.util.HashSet;"
+                   + "java.util.Iterator;"
+                   + "java.util.Random;"
+                   + "java.util.Set;"
+                   + "javax.swing.JFrame",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
+    public void testGetExternalClasses2() {
+        List<JavaClass> result = VideoStoreProject.getExternalClasses();
+        
+        assertEquals(9, result.size());
+        assertEquals("java.io.PrintStream;"
+                   + "java.io.Serializable;"
+                   + "java.lang.AssertionError;"
+                   + "java.lang.Object;"
+                   + "java.lang.String;"
+                   + "java.lang.System;"
+                   + "java.util.ArrayList;"
+                   + "java.util.List;"
+                   + "org.junit.Assert",
+            TestUtil.asSortedStrOf(result));
     }
     
     @Test
