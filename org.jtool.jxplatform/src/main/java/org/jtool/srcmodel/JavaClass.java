@@ -14,12 +14,16 @@ import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 import org.eclipse.jdt.core.dom.AnnotationTypeDeclaration;
 import org.eclipse.jdt.core.dom.LambdaExpression;
 import org.eclipse.jdt.core.dom.ITypeBinding;
+import org.eclipse.jdt.core.dom.IMethodBinding;
+import org.eclipse.jdt.core.dom.IPackageBinding;
 import org.eclipse.jdt.core.dom.Modifier;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 /**
  * An object representing a class, an interface, an enum, or an anonymous class for a lambda expression.
@@ -29,26 +33,29 @@ import java.util.stream.Collectors;
 public class JavaClass extends JavaElement {
     
     /**
-     * The type binding information on this class.
+     * A project which this model element exists in
+     */
+    protected JavaProject jproject;
+    
+    /**
+     * A file that declares this model element.
+     */
+    protected JavaFile jfile;
+    
+    /**
+     * Type binding information on this class.
      */
     private ITypeBinding binding;
-    
-    /**
-     * The kind of a class.
-     */
-    enum Kind {
-        J_CLASS, J_INTERFACE, J_ENUM, J_ANONYMOUS, J_LAMBDA, UNKNOWN;
-    }
-    
-    /**
-     * The constant value that represents the array class.
-     */
-    public static QualifiedName ArrayClassFqn = new QualifiedName(".JavaArray", "");
     
     /**
      * The fully-qualified name of this class.
      */
     private QualifiedName qname;
+    
+    /**
+     * The constant value that represents the array class.
+     */
+    public static QualifiedName ArrayClassFqn = new QualifiedName(".JavaArray", "");
     
     /**
      * The modifiers of this class.
@@ -61,19 +68,11 @@ public class JavaClass extends JavaElement {
     private Kind kind;
     
     /**
-     * A flag indicating whether this class exists inside the target project.
+     * The kind of a class.
      */
-    private boolean inProject = false;
-    
-    /**
-     * A class that declares (and encloses the declaration of) this class.
-     */
-    private JavaClass declaringClass = null;
-    
-    /**
-     * A method that declares (and encloses the declaration of) this class.
-     */
-    private JavaMethod declaringMethod = null;
+    enum Kind {
+        J_CLASS, J_INTERFACE, J_ENUM, J_ANONYMOUS, J_LAMBDA, UNKNOWN;
+    }
     
     /**
      * The name of the super class of this class.
@@ -86,26 +85,47 @@ public class JavaClass extends JavaElement {
     private Set<String> superInterfaceNames = new HashSet<>();
     
     /**
-     * A collection of all fields within this class.
+     * The collection of all fields within this class.
      */
     private List<JavaField> fields = new ArrayList<>();
     
     /**
-     * A collection of all methods within this class.
+     * The collection of all methods within this class.
      */
     private List<JavaMethod> methods = new ArrayList<>();
     
     /**
-     * A collection of all inner classes within this class.
+     * The collection of all inner classes within this class.
      */
     private List<JavaClass> innerClasses = new ArrayList<>();
+    
+    /**
+     * A flag indicating whether this class exists inside the target project.
+     */
+    private boolean inProject = false;
+    
+    /**
+     * A class that declares (or encloses the declaration of) this class.
+     */
+    private JavaClass declaringClass;
+    
+    /**
+     * A method that declares (or encloses the declaration of) this class.
+     */
+    private JavaMethod declaringMethod;
+    
+    /**
+     * A package that declares this class.
+     */
+    private JavaPackage jpackage;
     
     /**
      * Creates a new object representing a class.
      * @param node the AST node for this class or interface
      * @param jfile the file that declares this class
+     * @throws the exception occurs when the creation of a new object fails
      */
-    public JavaClass(TypeDeclaration node, JavaFile jfile) {
+    public JavaClass(TypeDeclaration node, JavaFile jfile) throws JavaElementException {
         this(node, node.resolveBinding(), jfile);
     }
     
@@ -113,17 +133,19 @@ public class JavaClass extends JavaElement {
      * Creates a new object representing a class.
      * @param node the AST node for this anonymous class
      * @param jfile the file that declares this class
+     * @throws the exception occurs when the creation of a new object fails
      */
-    public JavaClass(AnonymousClassDeclaration node, JavaFile jfile) {
+    public JavaClass(AnonymousClassDeclaration node, JavaFile jfile) throws JavaElementException {
         this(node, node.resolveBinding(), jfile);
     }
     
     /**
      * Creates a new object representing a class.
-     * @param node the AST node for this enum
+     * @param node the AST node for this class holding the enum constant declarations
      * @param jfile the file that declares this class
+     * @throws the exception occurs when the creation of a new object fails
      */
-    public JavaClass(EnumDeclaration node, JavaFile jfile) {
+    public JavaClass(EnumDeclaration node, JavaFile jfile) throws JavaElementException {
         this(node, node.resolveBinding(), jfile);
     }
     
@@ -131,26 +153,31 @@ public class JavaClass extends JavaElement {
      * Creates a new object representing a class.
      * @param node the AST node for this annotation type
      * @param jfile the file that declares this class
+     * @throws the exception occurs when the creation of a new object fails
      */
-    public JavaClass(AnnotationTypeDeclaration node, JavaFile jfile) {
+    public JavaClass(AnnotationTypeDeclaration node, JavaFile jfile) throws JavaElementException {
         this(node, node.resolveBinding(), jfile);
     }
     
     /**
      * Creates a new object representing a class.
-     * @param node the AST node for this class
-     * @param tbinding the type binding for this class
-     * @param jfile the file that declares this class
+     * @param node an AST node for this class
+     * @param tbinding type binding information on this class
+     * @param jfile a file that declares this class
+     * @throws the exception occurs when the creation of a new object fails
      */
-    public JavaClass(ASTNode node, ITypeBinding tbinding, JavaFile jfile) {
-        super(node, jfile);
+    public JavaClass(ASTNode node, ITypeBinding tbinding, JavaFile jfile) throws JavaElementException {
+        super(node);
+        
+        this.jproject = jfile.getJavaProject();
+        this.jfile = jfile;
         
         if (tbinding != null) {
             this.binding = tbinding.getTypeDeclaration();
-            this.qname = retrieveQualifiedName(binding);
+            this.qname = JavaElementUtil.findQualifiedName(binding);
             this.modifiers = binding.getModifiers();
             this.kind = getKind(binding);
-            this.inProject = true;
+            
             if (binding.getSuperclass() != null) {
                 this.superClassName = binding.getSuperclass().getTypeDeclaration().getQualifiedName();
             } else {
@@ -163,103 +190,151 @@ public class JavaClass extends JavaElement {
                 }
             }
             
-            jfile.getProject().addClass(this);
+            this.inProject = true;
+            this.declaringClass = JavaElementUtil.findDeclaringClass(binding.getDeclaringClass(), jproject);
+            this.declaringMethod = JavaElementUtil.findDeclaringMethod(binding.getDeclaringMethod(), jproject);
+            
+            jfile.getJavaProject().addClass(this);
             JavaPackage jpackage = jfile.getPackage();
             if (jpackage == null) {
                 jpackage = JavaPackage.createDefault(jfile);
             }
             jpackage.addClass(this);
             jfile.addClass(this);
+            this.jpackage = jpackage;
             
-        } else {
-            this.binding = null;
-            this.qname = new QualifiedName();
-            this.kind = JavaClass.Kind.UNKNOWN;
-        }
-    }
-    
-    /**
-     * Creates a new object representing a class.
-     * @param node the AST node for this anonymous class for a lambda expression
-     * @param name the name of this class
-     * @param tbinding the type binding for this class
-     * @param jmethod the method that encloses this class
-     */
-    public JavaClass(LambdaExpression node, String name, ITypeBinding tbinding, JavaMethod jmethod) {
-        super(node, jmethod.getFile());
-        
-        if (tbinding != null) {
-            this.binding = tbinding.getTypeDeclaration();
-            this.qname = new QualifiedName(name, "");
-            this.modifiers = Modifier.PUBLIC;
-            this.kind = JavaClass.Kind.J_LAMBDA;
-            this.inProject = true;
-            this.declaringClass = jmethod.getDeclaringClass();
-            this.declaringMethod = jmethod;
-            this.superClassName = null;
-            this.superInterfaceNames.add(binding.getQualifiedName());
+            Optional<IMethodBinding> defaultConstructor = Arrays.asList(binding.getDeclaredMethods()).stream()
+                    .filter(e -> e.isDefaultConstructor()).findFirst();
             
-            jfile.getProject().addClass(this);
-            JavaPackage jpackage = jfile.getPackage();
-            if (jpackage == null) {
-                jpackage = JavaPackage.createDefault(jfile);
+            if (defaultConstructor.isPresent()) {
+                IMethodBinding mb = defaultConstructor.get();
+                if (mb.getName().length() > 0) {
+                    new JavaMethod(mb, this);
+                }
             }
-            jpackage.addClass(this);
             
         } else {
-            this.binding = null;
-            this.qname = new QualifiedName();
-            this.kind = JavaClass.Kind.UNKNOWN;
+            throw new JavaElementException("class in file " + jfile.getName());
         }
     }
     
     /**
      * Creates a new object representing a class that does not have its source code.
      * This method is not intended to be invoked by clients.
-     * @param tbinding the type binding information on this class
-     * @param inProject {@code true} if this class exists inside the target project, otherwise {@code false}
+     * @param tbinding type binding information on this class
+     * @param jproject a project which this model element exists in
      */
-    JavaClass(ITypeBinding tbinding, boolean inProject) {
-        super(null, null);
+    JavaClass(ITypeBinding tbinding, JavaProject jproject) {
+        super(null);
         
-        if (tbinding != null) {
-            this.binding = tbinding.getTypeDeclaration();
-            this.qname = retrieveQualifiedName(binding);
-            this.modifiers = binding.getModifiers();
-            this.kind = getKind(binding);
-            this.inProject = inProject;
-            if (binding.getSuperclass() != null) {
-                this.superClassName = binding.getSuperclass().getTypeDeclaration().getQualifiedName();
-            } else {
-                this.superClassName = "";
-            }
-            
+        this.jproject = jproject;
+        this.jfile = null;
+        
+        this.binding = tbinding.getTypeDeclaration();
+        this.qname = JavaElementUtil.findQualifiedName(binding);
+        this.modifiers = binding.getModifiers();
+        this.kind = getKind(binding);
+        this.inProject = false;
+        if (binding.getSuperclass() != null) {
+            this.superClassName = binding.getSuperclass().getTypeDeclaration().getQualifiedName();
         } else {
-            this.binding = null;
-            this.qname = new QualifiedName();
-            this.kind = JavaClass.Kind.UNKNOWN;
+            this.superClassName = null;
         }
+        
+        for (ITypeBinding tb : binding.getInterfaces()) {
+            if (tb != null && tb.isInterface()) {
+                this.superInterfaceNames.add(tb.getTypeDeclaration().getQualifiedName());
+            }
+        }
+        
+        for (int index = 0; index < binding.getDeclaredTypes().length; index++) {
+            ITypeBinding tb = binding.getDeclaredTypes()[index];
+            JavaClass jc = new JavaClass(tb, jproject);
+            this.addInnerClass(jc);
+        }
+        
+        IPackageBinding pbinding = tbinding.getPackage();
+        JavaPackage jpackage = JavaPackage.createExternal(pbinding, jproject);
+        jpackage.addClass(this);
+        this.jpackage = jpackage;
     }
     
     /**
-     * Creates a new object representing a class for the array.
-     * This method is not intended to be invoked by clients
-     * @param className the fully-qualified name of this class
-     * @param inProject {@code true} if this class exists inside the target project, otherwise {@code false}
+     * Creates a new object representing a class.
+     * @param node the AST node for this anonymous class for a lambda expression
+     * @param tbinding type binding information on this class
+     * @param name the name of this class
+     * @param jmethod a method that encloses this class
      */
-    JavaClass(String className, boolean inProject) {
-        super(null, null);
+    public JavaClass(LambdaExpression node, ITypeBinding tbinding, String name, JavaMethod jmethod) {
+        super(node);
         
-        this.binding = null;
-        this.qname = new QualifiedName(className, "");
-        this.kind = JavaClass.Kind.J_CLASS;
+        this.jproject = jmethod.getFile().getJavaProject();
+        this.jfile = jmethod.getFile();
+        
+        this.binding = tbinding.getTypeDeclaration();
+        this.qname = new QualifiedName(name, "");
         this.modifiers = Modifier.PUBLIC;
-        this.inProject = inProject;
-        this.declaringClass = null;
-        this.declaringMethod = null;
-        this.superClassName = "";
+        this.kind = JavaClass.Kind.J_LAMBDA;
+        this.inProject = true;
+        this.superClassName = null;
+        this.superInterfaceNames.add(binding.getQualifiedName());
+        this.declaringClass = jmethod.getDeclaringClass();
+        this.declaringMethod = jmethod;
+        
+        jfile.getJavaProject().addClass(this);
+        JavaPackage jpackage = jfile.getPackage();
+        if (jpackage == null) {
+            jpackage = JavaPackage.createDefault(jfile);
+        }
+        jpackage.addClass(this);
+        this.jpackage = jpackage;
     }
     
+    /**
+     * Creates a special class that represents an array.
+     * @param jproject a project which this model element exists in
+     * @return the special array class
+     */
+    protected static JavaClass getArrayClass(JavaProject jproject) {
+        QualifiedName qname = JavaClass.ArrayClassFqn;
+        JavaClass jclass = jproject.getExternalClass(qname.fqn());
+        if (jclass == null) {
+            jclass = new JavaClass(qname, jproject);
+            jproject.addExternalClass(jclass);
+        }
+        return jclass;
+    }
+    
+    /**
+     * Creates a new object representing a class.
+     * The object is not allowed to be directly created.
+     * @param qname the fully-qualified name of this class
+     * @param jproject a project which this model element exists in
+     */
+    private JavaClass(QualifiedName qname, JavaProject jproject) {
+        super(null);
+        
+        this.jproject = jproject;
+        this.jfile = null;
+        
+        this.binding = null;
+        this.qname = qname;
+        this.kind = JavaClass.Kind.J_CLASS;
+        this.modifiers = Modifier.PUBLIC;
+        this.inProject = false;
+        this.superClassName = null;
+        this.superInterfaceNames = null;
+        this.declaringClass = null;
+        this.declaringMethod = null;
+        this.jpackage = null;
+    }
+    
+    /**
+     * Returns the kind of a class.
+     * @param binding type binding information on the class
+     * @return the kind of the class
+     */
     private JavaClass.Kind getKind(ITypeBinding binding) {
         if (binding.isAnonymous()) {
             return JavaClass.Kind.J_ANONYMOUS;
@@ -271,6 +346,22 @@ public class JavaClass extends JavaElement {
             return JavaClass.Kind.J_ENUM;
         }
         return JavaClass.Kind.UNKNOWN;
+    }
+    
+    /**
+     * Returns the project which this class exists in.
+     * @return the project
+     */
+    public JavaProject getJavaProject() {
+        return jproject;
+    }
+    
+    /**
+     * Returns the file that declares this class.
+     * @return the declaring file
+     */
+    public JavaFile getFile() {
+        return jfile;
     }
     
     /**
@@ -323,7 +414,7 @@ public class JavaClass extends JavaElement {
     }
     
     /**
-     * A class that declares (and encloses the declaration of) this class.
+     * Returns the class that declares this class.
      * @return the declaring class, or {@code null} if this class is not enclosed by any class
      */
     public JavaClass getDeclaringClass() {
@@ -331,7 +422,7 @@ public class JavaClass extends JavaElement {
     }
     
     /**
-     * A method that declares (and encloses the declaration of) this class.
+     * Returns the method that declares this class.
      * @return the declaring method, or {@code null} if this class is not enclosed by any method
      */
     public JavaMethod getDeclaringMethod() {
@@ -339,11 +430,11 @@ public class JavaClass extends JavaElement {
     }
     
     /**
-     * The package that this class belongs to.
-     * @return the package of this class
+     * Returns the package that this class belongs to.
+     * @return the package of this class, or {@code null} if this class does not have its source code
      */
     public JavaPackage getPackage() {
-        return jfile.getPackage();
+        return jpackage; 
     }
     
     /**
@@ -363,7 +454,7 @@ public class JavaClass extends JavaElement {
     }
     
     /**
-     * Tests if this is an enum.
+     * Tests if this is a class holding the enum constant declarations.
      * @return {@code true} if this is an enum, otherwise {@code false}
      */
     public boolean isEnum() {
@@ -737,19 +828,12 @@ public class JavaClass extends JavaElement {
      * This method is not intended to be invoked by clients, which will be automatically invoked as needed.
      */
     protected void collectInfo() {
-        if (!inProject || resolved) {
+        if (resolved) {
             return;
         }
         
         boolean resolveOk = true;
         if (binding != null) {
-            if (declaringClass == null && !binding.isTopLevel()) {
-                declaringClass = findDeclaringClass(getJavaProject(), binding.getDeclaringClass());
-            }
-            if (declaringMethod == null) {
-                declaringMethod = findDeclaringMethod(getJavaProject(), binding.getDeclaringMethod());
-            }
-            
             resolveOk = resolveOk & findSuperClass();
             resolveOk = resolveOk & findSuperInterfaces();
             if (inProject) {
@@ -760,21 +844,25 @@ public class JavaClass extends JavaElement {
                 for (JavaField jfield : fields) {
                     jfield.collectInfo();
                 }
-                findEfferentClasses();
+                collectEfferentClasses();
             }
         }
         
         if (!resolveOk) {
-            Logger logger = getJavaProject().getModelBuilderImpl().getLogger();
+            Logger logger = jproject.getModelBuilderImpl().getLogger();
             logger.printUnresolvedError("Class in " + jfile.getPath());
         }
         resolved = true;
     }
     
+    /**
+     * Finds a super class of this class.
+     * @return {@code true} if a super class was successfully specified, otherwise {@code false}
+     */
     private boolean findSuperClass() {
         if (isClass()) {
             if (binding.getSuperclass() != null) {
-                superClass = findDeclaringClass(getJavaProject(), binding.getSuperclass());
+                superClass = JavaElementUtil.findDeclaringClass(binding.getSuperclass(), jproject);
                 if (superClass == null) {
                     return false;
                 }
@@ -783,13 +871,17 @@ public class JavaClass extends JavaElement {
         return true;
     }
     
+    /**
+     * Finds super interfaces of this class.
+     * @return {@code true} if all super interfaces were successfully specified, otherwise {@code false}
+     */
     private boolean findSuperInterfaces() {
         boolean resolveOk = true;
         if (isLambda()) {
             if (binding.isIntersectionType()) {
                 for (ITypeBinding tbinding : binding.getTypeBounds()) {
                     if (tbinding.isInterface()) {
-                        JavaClass jclass = findDeclaringClass(getJavaProject(), tbinding);
+                        JavaClass jclass = JavaElementUtil.findDeclaringClass(tbinding, jproject);
                         if (jclass != null) {
                             superInterfaces.add(jclass);
                         } else {
@@ -799,7 +891,7 @@ public class JavaClass extends JavaElement {
                 }
                 
             } else {
-                JavaClass jclass = findDeclaringClass(getJavaProject(), binding);
+                JavaClass jclass = JavaElementUtil.findDeclaringClass(binding, jproject);
                 if (jclass != null) {
                     superInterfaces.add(jclass);
                 } else {
@@ -809,7 +901,7 @@ public class JavaClass extends JavaElement {
             
         } else {
             for (ITypeBinding tbinding : binding.getInterfaces()) {
-                JavaClass jclass = findDeclaringClass(getJavaProject(), tbinding);
+                JavaClass jclass = JavaElementUtil.findDeclaringClass(tbinding, jproject);
                 if (jclass != null) {
                     superInterfaces.add(jclass);
                 } else {
@@ -820,6 +912,10 @@ public class JavaClass extends JavaElement {
         return resolveOk;
     }
     
+    /**
+     * Finds classes appearing in this class.
+     * @return {@code true} if all classes were successfully specified, otherwise {@code false}
+     */
     private boolean findUsedClass() {
         TypeCollector visitor = new TypeCollector(this);
         astNode.accept(visitor);
@@ -830,7 +926,10 @@ public class JavaClass extends JavaElement {
         return bindingOk;
     }
     
-    private void findEfferentClasses() {
+    /**
+     * Collects classes required by this class.
+     */
+    private void collectEfferentClasses() {
         for (JavaClass jclass : usedClasses) {
             if (!jclass.equals(this)) {
                 efferentClasses.add(jclass);
@@ -880,7 +979,7 @@ public class JavaClass extends JavaElement {
     }
     
     /**
-     * Obtains a super class of this class.
+     * Returns the super class of this class.
      * @return the super class
      */
     public JavaClass getSuperClass() {
@@ -899,7 +998,7 @@ public class JavaClass extends JavaElement {
     
     /**
      * Obtains classes used by this class.
-     * @return the collection of the used classes
+     * @return the collection of the used classes, an empty set when this class does not have its corresponding file
      */
     public Set<JavaClass> getUsedClasses() {
         collectInfo();
@@ -907,8 +1006,8 @@ public class JavaClass extends JavaElement {
     }
     
     /**
-     * Obtains classes whose method or field accesses this class.
-     * @return the collection of the efferent classes
+     * Obtains classes required by this class.
+     * @return the collection of the required classes
      */
     public Set<JavaClass> getEfferentClasses() {
         collectInfo();
@@ -919,11 +1018,11 @@ public class JavaClass extends JavaElement {
      * Obtains child classes of this class.
      * @return the list of the child classes
      */
-    public List<JavaClass> getChildren() {
+    public Set<JavaClass> getChildren() {
         collectInfo();
-        return jfile.getProject().getClasses().stream()
+        return jproject.getAllClasses().stream()
                 .filter(jc -> jc.isChildOf(this))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
     
     /**
@@ -932,13 +1031,11 @@ public class JavaClass extends JavaElement {
      * @return {@code true} if this class is a child of the given class, otherwise {@code false}
      */
     public boolean isChildOf(JavaClass jclass) {
-        collectInfo();
-        if (superClass != null && superClass.getQualifiedName().equals(jclass.getQualifiedName())) {
+        if (superClassName != null && superClassName.equals(jclass.getClassName())) {
             return true;
         }
-        return superInterfaces
-                .stream()
-                .anyMatch(jc -> jc.getQualifiedName().equals(jclass.getQualifiedName()));
+        return superInterfaceNames.stream()
+                .anyMatch(n -> n.equals(jclass.getClassName()));
     }
     
     /**
@@ -961,28 +1058,38 @@ public class JavaClass extends JavaElement {
      * Obtains super interfaces.
      * @return the collection of the super interfaces
      */
-    public List<JavaClass> getAllSuperInterfaces() {
+    public Set<JavaClass> getAllSuperInterfaces() {
         collectInfo();
-        List<JavaClass> jclasses = new ArrayList<>();
-        getAllSuperInterfaces(this, jclasses);
+        Set<JavaClass> jclasses = new HashSet<>();
+        collectAllSuperInterfaces(this, jclasses);
         return jclasses;
     }
     
-    private void getAllSuperInterfaces(JavaClass jclass, List<JavaClass> jclasses) {
+    /**
+     * Collects super interfaces of a given class
+     * @param jclass the class of interest
+     * @param jclasses the collection of the super interfaces
+     */
+    private void collectAllSuperInterfaces(JavaClass jclass, Set<JavaClass> jclasses) {
         for (JavaClass parent : jclass.getSuperInterfaces()) {
             if (!jclasses.contains(parent)) {
                 jclasses.add(parent);
-                getAllSuperInterfaces(parent, jclasses);
+                collectAllSuperInterfaces(parent, jclasses);
             }
         }
     }
     
-    private void getAllChildren(JavaClass jclass, List<JavaClass> jclasses) {
+    /**
+     * Collects sub-classes of a given class
+     * @param jclass the class of interest
+     * @param jclasses the collection of sub-classes
+     */
+    private void collectAllChildren(JavaClass jclass, Set<JavaClass> jclasses) {
         for (JavaClass child : jclass.getChildren()) {
             if (child != null) {
                 if (!jclasses.contains(child)) {
                     jclasses.add(child);
-                    getAllChildren(child, jclasses);
+                    collectAllChildren(child, jclasses);
                 }
             }
         }
@@ -992,9 +1099,9 @@ public class JavaClass extends JavaElement {
      * Obtains ancestors of this class.
      * @return the collection of the ancestors
      */
-    public List<JavaClass> getAncestors() {
+    public Set<JavaClass> getAncestors() {
         collectInfo();
-        List<JavaClass> jclasses = new ArrayList<>();
+        Set<JavaClass> jclasses = new HashSet<>();
         jclasses.addAll(getAllSuperClasses());
         jclasses.addAll(getAllSuperInterfaces());
         return jclasses;
@@ -1004,16 +1111,16 @@ public class JavaClass extends JavaElement {
      * Obtains descendants of this class.
      * @return the collection of the descendants
      */
-    public List<JavaClass> getDescendants() {
+    public Set<JavaClass> getDescendants() {
         collectInfo();
-        List<JavaClass> jclasses = new ArrayList<>();
-        getAllChildren(this, jclasses);
+        Set<JavaClass> jclasses = new HashSet<>();
+        collectAllChildren(this, jclasses);
         return jclasses;
     }
     
     /**
-     * Obtains classes whose method or field accesses this class, which are enclosed in the target project.
-     * @return the collection of the efferent classes
+     * Obtains classes required by this class that has its corresponding file.
+     * @return the collection of the required classes
      */
     public Set<JavaClass> getEfferentClassesInProject() {
         return getEfferentClasses().stream()
@@ -1022,34 +1129,39 @@ public class JavaClass extends JavaElement {
     }
     
     /**
-     * Obtains classes whose method or field accesses this class.
-     * @return the collection of the afferent classes
+     * Obtains classes requiring this class.
+     * @return the collection of the requiring classes
      */
     public Set<JavaClass> getAfferentClasses() {
         if (afferentClasses == null) {
             afferentClasses = new HashSet<>();
-            findAfferentClasses();
+            collectAfferentClasses();
         }
         return afferentClasses;
     }
     
     /**
-     * Obtains classes whose method or field accesses this class, which are enclosed in the target project.
-     * @return the collection of the afferent classes
+     * Obtains classes requiring this class, which have their corresponding files.
+     * @return the collection of the requiring classes
      */
     public Set<JavaClass> getAfferentClassesInProject() {
-        return getAfferentClasses().stream()
-                .filter(jc -> jc.isInProject())
-                .collect(Collectors.toSet());
+        return getAfferentClasses();
     }
     
-    private void findAfferentClasses() {
+    /**
+     * Collects classes requiring this class.
+     */
+    private void collectAfferentClasses() {
         for (JavaClass jclass : getJavaProject().getClasses()) {
             jclass.collectInfo();
             jclass.getEfferentClasses().forEach(jc -> jc.addAfferentClass(jclass));
         }
     }
     
+    /**
+     * Adds a class requiring this class.
+     * @param jclass the requiring class
+     */
     private void addAfferentClass(JavaClass jclass) {
         if (afferentClasses == null) {
             afferentClasses = new HashSet<>();

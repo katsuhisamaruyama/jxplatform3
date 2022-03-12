@@ -105,7 +105,7 @@ public abstract class ModelBuilderImpl {
     }
     
     public JavaFile copyJavaFile(JavaFile jfile) {
-        return getUnregisteredJavaFile(jfile.getPath(), jfile.getSource(), jfile.getProject(), jfile.getCharset());
+        return getUnregisteredJavaFile(jfile.getPath(), jfile.getSource(), jfile.getJavaProject(), jfile.getCharset());
     }
     
     public JavaFile getUnregisteredJavaFile(String filepath, String code, JavaProject jproject) {

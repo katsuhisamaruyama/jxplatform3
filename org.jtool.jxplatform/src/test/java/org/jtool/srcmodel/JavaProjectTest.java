@@ -189,20 +189,52 @@ public class JavaProjectTest {
     public void testGetPackage4() {
         JavaPackage result = VideoStoreProject.getPackage("java.util");
         
-        assertNull(result);
+        assertEquals("java.util", result.getName());
     }
     
     @Test
     public void testGetPackages1() {
-        List<String> result = TetrisProject.getPackages().stream().map(JavaPackage::getName).collect(Collectors.toList());
+        List<String> result = TetrisProject.getPackages().stream()
+                .map(JavaPackage::getName).collect(Collectors.toList());
+        
+        assertEquals(9, result.size());
+        assertEquals("(default);"
+                   + "java.awt;"
+                   + "java.awt.event;"
+                   + "java.awt.image;"
+                   + "java.io;"
+                   + "java.lang;"
+                   + "java.util;"
+                   + "javax.accessibility;"
+                   + "javax.swing",
+            TestUtil.asSortedStr(result));
+    }
+    
+    @Test
+    public void testGetPackages2() {
+        List<String> result = VideoStoreProject.getPackages().stream()
+                .map(JavaPackage::getName).collect(Collectors.toList());
+        
+        assertEquals(7, result.size());
+        assertEquals("java.io;java.lang;java.util;"
+                   + "org.jtool.videostore.after;org.jtool.videostore.before;org.jtool.videostore.use;"
+                   + "org.junit",
+            TestUtil.asSortedStr(result));
+    }
+    
+    @Test
+    public void testGetPackagesInProject1() {
+        List<String> result = TetrisProject.getPackagesInProject().stream()
+                .map(JavaPackage::getName).collect(Collectors.toList());
         
         assertEquals(1, result.size());
         assertEquals("(default)", TestUtil.asSortedStr(result));
     }
     
     @Test
-    public void testGetPackages2() {
-        List<String> result = VideoStoreProject.getPackages().stream().map(JavaPackage::getName).collect(Collectors.toList());
+    public void testGetPackagesInProject2() {
+        List<String> result = VideoStoreProject.getPackagesInProject().stream()
+                .map(JavaPackage::getName).collect(Collectors.toList());
         
         assertEquals(3, result.size());
         assertEquals("org.jtool.videostore.after;org.jtool.videostore.before;org.jtool.videostore.use",
@@ -347,11 +379,11 @@ public class JavaProjectTest {
     }
     
     @Test
-    public void testCollectDependentClasses1() {
+    public void testCollectClassesDependingOn1() {
         JavaClass jc = TetrisProject.getClass("Block");
-        Set<JavaClass> result = TetrisProject.collectDependentClasses(jc);
+        Set<JavaClass> result = TetrisProject.collectClassesDependingOn(jc);
         
-        assertEquals(16, result.size());
+        assertEquals(11, result.size());
         assertEquals("Block;"
                    + "BlueBlock;"
                    + "CyanBlock;"
@@ -362,22 +394,18 @@ public class JavaProjectTest {
                    + "Pit;"
                    + "RedBlock;"
                    + "Tetris;"
-                   + "YellowBlock;"
-                   + "java.awt.Canvas;"
-                   + "java.awt.event.KeyListener;"
-                   + "java.lang.Object;"
-                   + "java.lang.Runnable;"
-                   + "javax.swing.JFrame",
+                   + "YellowBlock",
          TestUtil.asSortedStrOf(result));
     }
     
     @Test
-    public void testCollectDependentClasses2() {
+    public void testCollectClassesDependingOn2() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
-        Set<JavaClass> result = VideoStoreProject.collectDependentClasses(jc);
+        Set<JavaClass> result = VideoStoreProject.collectClassesDependingOn(jc);
         
-        assertEquals(3, result.size());
-        assertEquals("java.lang.Object;org.jtool.videostore.after.CustomerTest;org.jtool.videostore.use.CustomerUse",
+        assertEquals(2, result.size());
+        assertEquals("org.jtool.videostore.after.CustomerTest;"
+                   + "org.jtool.videostore.use.CustomerUse",
             TestUtil.asSortedStrOf(result));
     }
     

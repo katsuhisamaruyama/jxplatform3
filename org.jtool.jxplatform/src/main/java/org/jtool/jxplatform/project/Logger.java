@@ -60,11 +60,11 @@ public class Logger {
     
     /**
      * Records a progress message.
-     * @param mesg the message
+     * @param message the message
      */
-    public void printProgress(String mesg) {
+    public void printProgress(String message) {
         if (visible) {
-            System.out.print(mesg);
+            System.out.print(message);
             System.out.flush();
         }
     }
@@ -73,42 +73,50 @@ public class Logger {
      * Records a simple message.
      * @param mesg the message
      */
-    public void printMessage(String mesg) {
-        logMessages.add(mesg);
+    public void printMessage(String message) {
+        logMessages.add(message);
         
         if (visible) {
-            System.out.println(mesg);
+            System.out.println(message);
             System.out.flush();
         }
     }
     
     /**
      * Records a log message.
-     * @param mesg the message
+     * @param message the message
      */
-    public void recordLog(String mesg) {
-        logMessages.add(mesg);
+    public void recordLog(String message) {
+        logMessages.add(message);
     }
     
     /**
      * Records an error message.
-     * @param mesg the message
+     * @param message the message
      */
-    public void printError(String mesg) {
-        logMessages.add(mesg);
+    public void printError(String message) {
+        logMessages.add(message);
         
         if (visible) {
-            System.err.println(mesg);
+            System.err.println(message);
             System.err.flush();
         }
     }
     
     /**
      * Records an error message when the source model contains unresolved factors.
-     * @param mesg the message
+     * @param message the message
      */
-    public void printUnresolvedError(String mesg) {
-        printError("**Unresolved : " + mesg);
+    public void printUnresolvedError(String message) {
+        printError("**Unresolved : " + message);
+    }
+    
+    /**
+     * Records an error message when the source model contains unresolved factors.
+     * @param message the message
+     */
+    public void printCreationError(String message) {
+        printError("**Creation Error : " + message);
     }
     
     /**

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -10,10 +10,10 @@ import org.jtool.pdg.PDGStatement;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.JReference;
 import org.jtool.srcmodel.JavaClass;
-import org.jtool.srcmodel.JavaElement;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaMethod;
+import org.jtool.srcmodel.JavaElementUtil;
 import org.jtool.jxplatform.builder.ModelBuilder;
 import org.jtool.jxplatform.builder.slice.ASTNodeOnCFGCollector;
 import org.jtool.jxplatform.builder.slice.CodeGenerator;
@@ -523,12 +523,12 @@ public class SliceExtractor extends ASTVisitor {
     }
     
     protected String findEnclosingClass(ASTNode node) {
-        TypeDeclaration tnode = (TypeDeclaration)JavaElement.findAncestorWith(node, ASTNode.TYPE_DECLARATION);
+        TypeDeclaration tnode = (TypeDeclaration)JavaElementUtil.findAncestorNode(node, ASTNode.TYPE_DECLARATION);
         if (tnode != null) {
             return tnode.resolveBinding().getQualifiedName();
         }
         
-        EnumDeclaration enode = (EnumDeclaration)JavaElement.findAncestorWith(node, ASTNode.ENUM_DECLARATION);
+        EnumDeclaration enode = (EnumDeclaration)JavaElementUtil.findAncestorNode(node, ASTNode.ENUM_DECLARATION);
         if (enode != null) {
             return enode.resolveBinding().getQualifiedName();
         }

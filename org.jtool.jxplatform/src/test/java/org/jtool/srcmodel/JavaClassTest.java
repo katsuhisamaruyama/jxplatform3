@@ -60,6 +60,14 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetQualifiedName3() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        QualifiedName result = jc.getQualifiedName();
+        
+        assertEquals("java.util.ArrayList", result.fqn());
+    }
+    
+    @Test
     public void testGetName1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         String result = jc.getName();
@@ -76,6 +84,14 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetName3() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        String result = jc.getName();
+        
+        assertEquals("ArrayList", result);
+    }
+    
+    @Test
     public void testGetClassName1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         String result = jc.getClassName();
@@ -89,6 +105,14 @@ public class JavaClassTest {
         String result = jc.getClassName();
         
         assertEquals("R134", result);
+    }
+    
+    @Test
+    public void testGetClassName3() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        String result = jc.getClassName();
+        
+        assertEquals("java.util.ArrayList", result);
     }
     
     @Test
@@ -117,7 +141,7 @@ public class JavaClassTest {
     
     @Test
     public void testGetDeclaringClass2() {
-        JavaClass jc = CSclassroomProject.getClass("Sample110FX#start( javafx.stage.Stage )$1");
+        JavaClass jc = CSclassroomProject.getClass("Sample110FX$LAMBDA1");
         JavaClass result = jc.getDeclaringClass();
         
         assertEquals("Sample110FX", result.getQualifiedName().fqn());
@@ -141,7 +165,7 @@ public class JavaClassTest {
     
     @Test
     public void testGetDeclaringMethod2() {
-        JavaClass jc = CSclassroomProject.getClass("Sample110FX#start( javafx.stage.Stage )$1");
+        JavaClass jc = CSclassroomProject.getClass("Sample110FX$LAMBDA1");
         JavaMethod result = jc.getDeclaringMethod();
         
         assertEquals("Sample110FX#start( javafx.stage.Stage )", result.getQualifiedName().fqn());
@@ -172,6 +196,14 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetPackage3() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        JavaPackage result = jc.getPackage();
+        
+        assertEquals("java.util", result.getName());
+    }
+    
+    @Test
     public void testIsClass1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         boolean result = jc.isClass();
@@ -188,6 +220,14 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testIsClass3() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        boolean result = jc.isClass();
+        
+        assertTrue(result);
+    }
+    
+    @Test
     public void testIsInterface1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         boolean result = jc.isInterface();
@@ -198,6 +238,14 @@ public class JavaClassTest {
     @Test
     public void testIsInterface2() {
         JavaClass jc = SliceProject.getClass("I134");
+        boolean result = jc.isInterface();
+        
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testIsInterface3() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.List");
         boolean result = jc.isInterface();
         
         assertTrue(result);
@@ -237,7 +285,7 @@ public class JavaClassTest {
     
     @Test
     public void testIsLambda2() {
-        JavaClass jc = CSclassroomProject.getClass("Sample110FX#start( javafx.stage.Stage )$1");
+        JavaClass jc = CSclassroomProject.getClass("Sample110FX$LAMBDA1");
         boolean result = jc.isLambda();
         
         assertTrue(result);
@@ -254,6 +302,14 @@ public class JavaClassTest {
     @Test
     public void testIsPublic2() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Price");
+        boolean result = jc.isPublic();
+        
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testIsPublic3() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
         boolean result = jc.isPublic();
         
         assertTrue(result);
@@ -407,6 +463,19 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetInnerClasses4() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        List<JavaClass> result = jc.getInnerClasses();
+        
+        assertEquals(4, result.size());
+        assertEquals("java.util.ArrayList.ArrayListSpliterator;"
+                   + "java.util.ArrayList.Itr;"
+                   + "java.util.ArrayList.ListItr;"
+                   + "java.util.ArrayList.SubList",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
     public void testGetSuperClassName1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         String result = jc.getSuperClassName();
@@ -444,6 +513,14 @@ public class JavaClassTest {
         String result = jc.getSuperClassName();
         
         assertNull(result);
+    }
+    
+    @Test
+    public void testGetSuperClassName6() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        String result = jc.getSuperClassName();
+        
+        assertEquals("java.util.AbstractList", result);
     }
     
     @Test
@@ -487,6 +564,14 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetSuperClass6() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        JavaClass result = jc.getSuperClass();
+        
+        assertEquals("java.util.AbstractList", result.getQualifiedName().fqn());
+    }
+    
+    @Test
     public void testGetSuperInterfaceNames1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         Set<String> result = jc.getSuperInterfaceNames();
@@ -519,6 +604,19 @@ public class JavaClassTest {
         
         assertEquals(2, result.size());
         assertEquals("java.awt.event.KeyListener;java.lang.Runnable", TestUtil.asSortedStr(result));
+    }
+    
+    @Test
+    public void testGetSuperInterfaceNames5() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<String> result = jc.getSuperInterfaceNames();
+        
+        assertEquals(4, result.size());
+        assertEquals("java.io.Serializable;"
+                   + "java.lang.Cloneable;"
+                   + "java.util.List;"
+                   + "java.util.RandomAccess",
+            TestUtil.asSortedStr(result));
     }
     
     @Test
@@ -557,6 +655,19 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetSuperInterfaces5() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<JavaClass> result = jc.getSuperInterfaces();
+        
+        assertEquals(4, result.size());
+        assertEquals("java.io.Serializable;"
+                   + "java.lang.Cloneable;"
+                   + "java.util.List;"
+                   + "java.util.RandomAccess",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
     public void testGetFields1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         List<JavaField> result = jc.getFields();
@@ -583,6 +694,22 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetFields4() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        List<JavaField> result = jc.getFields();
+        
+        assertEquals(7, result.size());
+        assertEquals("java.util.ArrayList#DEFAULTCAPACITY_EMPTY_ELEMENTDATA;"
+                   + "java.util.ArrayList#DEFAULT_CAPACITY;"
+                   + "java.util.ArrayList#EMPTY_ELEMENTDATA;"
+                   + "java.util.ArrayList#MAX_ARRAY_SIZE;"
+                   + "java.util.ArrayList#elementData;"
+                   + "java.util.ArrayList#serialVersionUID;"
+                   + "java.util.ArrayList#size",
+            TestUtil.asSortedStrOf(jc.getFields()));
+    }
+    
+    @Test
     public void testGetField1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         JavaField result = jc.getField("rentals");
@@ -604,6 +731,14 @@ public class JavaClassTest {
         JavaField result = jc.getField("title");
         
         assertNull(result);
+    }
+    
+    @Test
+    public void testGetField4() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        JavaField result = jc.getField("size");
+        
+        assertEquals("java.util.ArrayList#size", result.getQualifiedName().fqn());
     }
     
     @Test
@@ -642,6 +777,17 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetMethods4() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        List<JavaMethod> result = jc.getMethods();
+        
+        assertEquals(63, result.size());
+        String resultStr = TestUtil.asSortedStrOf(result);
+        assertTrue(resultStr.startsWith("java.util.ArrayList#ArrayList( );"));
+        assertTrue(resultStr.endsWith(";java.util.ArrayList#writeObject( java.io.ObjectOutputStream )"));
+    }
+    
+    @Test
     public void testInitializer1() {
         JavaClass jc = SimpleProject.getClass("Test26");
         JavaMethod result = jc.getInitializer();
@@ -650,7 +796,7 @@ public class JavaClassTest {
     }
     
     @Test
-    public void testMethods1() {
+    public void testGetMethod1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         JavaMethod result = jc.getMethod("addRental( org.jtool.videostore.after.Rental )");
         
@@ -659,7 +805,7 @@ public class JavaClassTest {
     }
     
     @Test
-    public void testMethods2() {
+    public void testGetMethod2() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.RegularPrice");
         JavaMethod result = jc.getMethod("getCharge( int )");
         
@@ -667,11 +813,19 @@ public class JavaClassTest {
     }
     
     @Test
-    public void testMethods3() {
+    public void testGetMethod3() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         JavaMethod result = jc.getMethod("getCharge( int )");
         
         assertNull(result);
+    }
+    
+    @Test
+    public void testGetMethod4() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        JavaMethod result = jc.getMethod("add( java.lang.Object )");
+        
+        assertEquals("java.util.ArrayList#add( java.lang.Object )", result.getQualifiedName().fqn());
     }
     
     @Test
@@ -731,9 +885,17 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetUsedClasses6() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<JavaClass> result = jc.getUsedClasses();
+        
+        assertEquals(0, result.size());
+    }
+    
+    @Test
     public void testGetChildren1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
-        List<JavaClass> result = jc.getChildren();
+        Set<JavaClass> result = jc.getChildren();
         
         assertEquals(0, result.size());
     }
@@ -741,7 +903,7 @@ public class JavaClassTest {
     @Test
     public void testGetChildren2() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Price");
-        List<JavaClass> result = jc.getChildren();
+        Set<JavaClass> result = jc.getChildren();
         
         assertEquals(3, result.size());
         assertEquals("org.jtool.videostore.after.ChildrensPrice;"
@@ -753,17 +915,34 @@ public class JavaClassTest {
     @Test
     public void testGetChildren3() {
         JavaClass jc = SliceProject.getClass("P134");
-        List<JavaClass> result = jc.getChildren();
+        Set<JavaClass> result = jc.getChildren();
         
         assertEquals(1, result.size());
         assertEquals("Q134", TestUtil.asSortedStrOf(result));
     }
     
     @Test
+    public void testGetChildren4() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<JavaClass> result = jc.getChildren();
+        
+        assertEquals(0, result.size());
+    }
+    
+    @Test
+    public void testGetChildren5() {
+        JavaClass jc = TetrisProject.getExternalClass("java.awt.Canvas");
+        Set<JavaClass> result = jc.getChildren();
+        
+        assertEquals(2, result.size());
+        assertEquals("GameInfo;Pit", TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
     public void testIsChildOf1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
-        JavaClass cc = VideoStoreProject.getClass("org.jtool.videostore.after.Rental");
-        boolean result = jc.isChildOf(cc);
+        JavaClass sc = VideoStoreProject.getClass("org.jtool.videostore.after.Rental");
+        boolean result = jc.isChildOf(sc);
         
         assertFalse(result);
     }
@@ -771,8 +950,8 @@ public class JavaClassTest {
     @Test
     public void testIsChildOf2() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Price");
-        JavaClass cc = VideoStoreProject.getClass("org.jtool.videostore.after.RegularPrice");
-        boolean result = jc.isChildOf(cc);
+        JavaClass sc = VideoStoreProject.getClass("org.jtool.videostore.after.RegularPrice");
+        boolean result = jc.isChildOf(sc);
         
         assertFalse(result);
     }
@@ -780,10 +959,28 @@ public class JavaClassTest {
     @Test
     public void testIsChildOf3() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.RegularPrice");
-        JavaClass cc = VideoStoreProject.getClass("org.jtool.videostore.after.Price");
-        boolean result = jc.isChildOf(cc);
+        JavaClass sc = VideoStoreProject.getClass("org.jtool.videostore.after.Price");
+        boolean result = jc.isChildOf(sc);
         
         assertTrue(result);
+    }
+    
+    @Test
+    public void testIsChildOf4() {
+        JavaClass jc = TetrisProject.getClass("Pit");
+        JavaClass sc = TetrisProject.getExternalClass("java.awt.Canvas");
+        boolean result = jc.isChildOf(sc);
+        
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testIsChildOf5() {
+        JavaClass jc = TetrisProject.getExternalClass("java.awt.Canvas");
+        JavaClass cc = TetrisProject.getClass("Pit");
+        boolean result = jc.isChildOf(cc);
+        
+        assertFalse(result);
     }
     
     @Test
@@ -823,9 +1020,21 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetAllSuperClasses5() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        List<JavaClass> result = jc.getAllSuperClasses();
+        
+        assertEquals(3, result.size());
+        assertEquals("java.lang.Object;"
+                   + "java.util.AbstractCollection;"
+                   + "java.util.AbstractList",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
     public void testGetAllSuperInterfaces1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
-        List<JavaClass> result = jc.getAllSuperInterfaces();
+        Set<JavaClass> result = jc.getAllSuperInterfaces();
         
         assertEquals(0, result.size());
     }
@@ -833,7 +1042,7 @@ public class JavaClassTest {
     @Test
     public void testGetAllSuperInterfaces2() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Movie");
-        List<JavaClass> result = jc.getAllSuperInterfaces();
+        Set<JavaClass> result = jc.getAllSuperInterfaces();
         
         assertEquals(1, result.size());
         assertEquals("java.io.Serializable", TestUtil.asSortedStrOf(result));
@@ -842,7 +1051,7 @@ public class JavaClassTest {
     @Test
     public void testGetAllSuperInterfaces3() {
         JavaClass jc = SliceProject.getClass("R134");
-        List<JavaClass> result = jc.getAllSuperInterfaces();
+        Set<JavaClass> result = jc.getAllSuperInterfaces();
         
         assertEquals(1, result.size());
         assertEquals("I134", TestUtil.asSortedStrOf(result));
@@ -851,16 +1060,34 @@ public class JavaClassTest {
     @Test
     public void testGetAllSuperInterfaces4() {
         JavaClass jc = TetrisProject.getClass("Tetris");
-        List<JavaClass> result = jc.getAllSuperInterfaces();
+        Set<JavaClass> result = jc.getAllSuperInterfaces();
         
-        assertEquals(2, result.size());
-        assertEquals("java.awt.event.KeyListener;java.lang.Runnable", TestUtil.asSortedStrOf(result));
+        assertEquals(3, result.size());
+        assertEquals("java.awt.event.KeyListener;"
+                   + "java.lang.Runnable;"
+                   + "java.util.EventListener",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
+    public void testGetAllSuperInterfaces5() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<JavaClass> result = jc.getAllSuperInterfaces();
+        
+        assertEquals(6, result.size());
+        assertEquals("java.io.Serializable;"
+                   + "java.lang.Cloneable;"
+                   + "java.lang.Iterable;"
+                   + "java.util.Collection;"
+                   + "java.util.List;"
+                   + "java.util.RandomAccess",
+            TestUtil.asSortedStrOf(result));
     }
     
     @Test
     public void testGetAncestors1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
-        List<JavaClass> result = jc.getAncestors();
+        Set<JavaClass> result = jc.getAncestors();
         
         assertEquals(1, result.size());
         assertEquals("java.lang.Object", TestUtil.asSortedStrOf(result));
@@ -869,7 +1096,7 @@ public class JavaClassTest {
     @Test
     public void testGetAncestors2() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Price");
-        List<JavaClass> result = jc.getAncestors();
+        Set<JavaClass> result = jc.getAncestors();
         
         assertEquals(1, result.size());
         assertEquals("java.lang.Object", TestUtil.asSortedStrOf(result));
@@ -878,7 +1105,7 @@ public class JavaClassTest {
     @Test
     public void testGetAncestors3() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.RegularPrice");
-        List<JavaClass> result = jc.getAncestors();
+        Set<JavaClass> result = jc.getAncestors();
         
         assertEquals(2, result.size());
         assertEquals("java.lang.Object;org.jtool.videostore.after.Price", TestUtil.asSortedStrOf(result));
@@ -887,16 +1114,46 @@ public class JavaClassTest {
     @Test
     public void testGetAncestors4() {
         JavaClass jc = SliceProject.getClass("R134");
-        List<JavaClass> result = jc.getAncestors();
+        Set<JavaClass> result = jc.getAncestors();
         
         assertEquals(4, result.size());
         assertEquals("I134;P134;Q134;java.lang.Object", TestUtil.asSortedStrOf(result));
     }
     
     @Test
+    public void testGetAncestors5() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<JavaClass> result = jc.getAncestors();
+        
+        assertEquals(9, result.size());
+        assertEquals("java.io.Serializable;"
+                   + "java.lang.Cloneable;"
+                   + "java.lang.Iterable;"
+                   + "java.lang.Object;"
+                   + "java.util.AbstractCollection;"
+                   + "java.util.AbstractList;"
+                   + "java.util.Collection;"
+                   + "java.util.List;"
+                   + "java.util.RandomAccess",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
+    public void testGetAncestors6() {
+        JavaClass jc = TetrisProject.getExternalClass("java.awt.Canvas");
+        Set<JavaClass> result = jc.getAncestors();
+        
+        assertEquals(3, result.size());
+        assertEquals("java.awt.Component;"
+                   + "java.lang.Object;"
+                   + "javax.accessibility.Accessible",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
     public void testGetDescendants1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
-        List<JavaClass> result = jc.getChildren();
+        Set<JavaClass> result = jc.getDescendants();
         
         assertEquals(0, result.size());
     }
@@ -904,7 +1161,7 @@ public class JavaClassTest {
     @Test
     public void testGetDescendants2() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Price");
-        List<JavaClass> result = jc.getChildren();
+        Set<JavaClass> result = jc.getDescendants();
         
         assertEquals(3, result.size());
         assertEquals("org.jtool.videostore.after.ChildrensPrice;"
@@ -916,10 +1173,27 @@ public class JavaClassTest {
     @Test
     public void testGetDescendants3() {
         JavaClass jc = SliceProject.getClass("P134");
-        List<JavaClass> result = jc.getChildren();
+        Set<JavaClass> result = jc.getDescendants();
         
-        assertEquals(1, result.size());
-        assertEquals("Q134", TestUtil.asSortedStrOf(result));
+        assertEquals(2, result.size());
+        assertEquals("Q134;R134", TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
+    public void testGetDescendants4() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<JavaClass> result = jc.getDescendants();
+        
+        assertEquals(0, result.size());
+    }
+    
+    @Test
+    public void testGetDescendants5() {
+        JavaClass jc = TetrisProject.getExternalClass("java.awt.Canvas");
+        Set<JavaClass> result = jc.getDescendants();
+        
+        assertEquals(2, result.size());
+        assertEquals("GameInfo;Pit", TestUtil.asSortedStrOf(result));
     }
     
     @Test
@@ -983,6 +1257,14 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetEfferentClasses6() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<JavaClass> result = jc.getEfferentClasses();
+        
+        assertEquals(0, result.size());
+    }
+    
+    @Test
     public void testGetEfferentClassesInProject1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         Set<JavaClass> result = jc.getEfferentClassesInProject();
@@ -1032,6 +1314,14 @@ public class JavaClassTest {
         
         assertEquals(1, result.size());
         assertEquals("org.jtool.videostore.after.Customer", TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
+    public void testGetEfferentClassesInProject6() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<JavaClass> result = jc.getEfferentClassesInProject();
+        
+        assertEquals(0, result.size());
     }
     
     @Test
@@ -1093,6 +1383,17 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetAfferentClasses6() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<JavaClass> result = jc.getAfferentClasses();
+        
+        assertEquals(2, result.size());
+        assertEquals("org.jtool.videostore.after.Customer;"
+                   + "org.jtool.videostore.before.Customer",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
     public void testGetAfferentClassesInProject1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         Set<JavaClass> result = jc.getAfferentClassesInProject();
@@ -1148,5 +1449,16 @@ public class JavaClassTest {
         Set<JavaClass> result = jc.getAfferentClassesInProject();
         
         assertEquals(0, result.size());
+    }
+    
+    @Test
+    public void testGetAfferentClassesInProject6() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<JavaClass> result = jc.getAfferentClassesInProject();
+        
+        assertEquals(2, result.size());
+        assertEquals("org.jtool.videostore.after.Customer;"
+                   + "org.jtool.videostore.before.Customer",
+            TestUtil.asSortedStrOf(result));
     }
 }

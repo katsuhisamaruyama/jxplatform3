@@ -89,7 +89,7 @@ public class JavaFile {
      * Returns the project that this file exists.
      * @return the project of this file
      */
-    public JavaProject getProject() {
+    public JavaProject getJavaProject() {
         return jproject;
     }
     
@@ -158,7 +158,7 @@ public class JavaFile {
      */
     protected void addClass(JavaClass jclass) {
         classes.add(jclass);
-        jclass.getFile().getProject().addClass(jclass);
+        jproject.addClass(jclass);
     }
     
     /**

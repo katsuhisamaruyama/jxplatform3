@@ -38,6 +38,10 @@ public static <T> List<String> asSortedList(Stream<T> stream) {
         return asSortedStr(list.stream().map(e -> e.getQualifiedName().fqn()));
     }
     
+    public static String asStrOf(List<? extends JavaElement> list) {
+        return list.stream().map(e -> e.getQualifiedName().fqn()).collect(Collectors.joining(";"));
+    }
+    
     public static String asSortedStrOf(Set<? extends JavaElement> set) {
         return asSortedStr(set.stream().map(e -> e.getQualifiedName().fqn()));
     }

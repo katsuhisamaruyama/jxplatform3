@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -49,42 +49,42 @@ public class JavaProject {
     protected Map<String, JavaFile> fileStore = new HashMap<>();
     
     /**
-     * The map package names and packages corresponding to the names.
+     * The map between package names and their corresponding packages.
      */
     protected Map<String, JavaPackage> packageStore = new HashMap<>();
     
     /**
-     * The map the fully-qualified names and classes corresponding to the names.
+     * The map between the fully-qualified names and their corresponding classes.
      */
     protected Map<String, JavaClass> classStore = new HashMap<>();
     
     /**
-     * The map the fully-qualified names and outside classes corresponding to the names.
+     * The map between the fully-qualified names and their corresponding classes not having their files.
      */
     protected Map<String, JavaClass> externalClassStore = new HashMap<>();
     
     /**
-     * The class paths that store class files in this project.
+     * The collection of class paths that store class files for this project.
      */
     protected String[] classPath;
     
     /**
-     * The class paths that store source files in this project.
+     * The collection of class paths that store source files for this project.
      */
     protected String[] sourcePath;
     
     /**
-     * The class paths that store binary files in this project.
+     * The collection of class paths that store binary files for this project.
      */
     protected String[] binaryPath;
     
     /**
-     * The CFG repository that store CFGs for source files in this project.
+     * A CFG repository that stores CFGs for source files for this project.
      */
     protected CFGStore cfgStore;
     
     /**
-     * The PDG repository that store PDGs for source files in this project.
+     * A PDG repository that stores PDGs for source files for this project.
      */
     protected PDGStore pdgStore;
     
@@ -155,7 +155,7 @@ public class JavaProject {
     }
     
     /**
-     * Obtains the collection of all projects.
+     * Returns the collection of all projects.
      * @return the collection of all the projects that were already analyzed
      */
     public static List<JavaProject> getAllProjects() {
@@ -288,6 +288,15 @@ public class JavaProject {
     
     /**
      * Obtains packages appearing in this project.
+     * @return the collection of the existing packages
+     */
+    public List<JavaPackage> getPackagesInProject() {
+        return packageStore.values().stream()
+                .filter(jp -> jp.isInProject()).collect(Collectors.toList());
+    }
+    
+    /**
+     * Obtains packages appearing in this project.
      * @return the sorted collection of the existing packages
      */
     public List<JavaPackage> getSortedPackages() {
@@ -367,6 +376,17 @@ public class JavaProject {
     }
     
     /**
+     * Obtains all classes related to this project.
+     * @return the collection of all the related classes
+     */
+    public List<JavaClass> getAllClasses() {
+        List<JavaClass> classes = new ArrayList<>();
+        classes.addAll(classStore.values());
+        classes.addAll(externalClassStore.values());
+        return classes;
+    }
+    
+    /**
      * Obtains a class having a given fully-qualified name from the outside of this project.
      * @param fqn the fully-qualified name of the class
      * @return the found class, or {@code null} if no class is found
@@ -379,34 +399,39 @@ public class JavaProject {
     }
     
     /**
-     * Obtains the classes depending a given class.
+     * Obtains the classes depending on a given class, which are needed to be re-analyzed when the given class is modified
      * @param jclass the class of interest
      * @return the collection of the dependent classes
      */
-    public Set<JavaClass> collectDependentClasses(JavaClass jclass) {
+    public Set<JavaClass> collectClassesDependingOn(JavaClass jclass) {
         Set<JavaClass> classes = new HashSet<>();
-        collectDependentClasses(jclass, classes);
+        collectClassesDependingOn(jclass, classes);
         return classes;
     }
     
-    private void collectDependentClasses(JavaClass jclass, Set<JavaClass> classes) {
+    /**
+     * Collects the classes depending on a given class.
+     * @param jclass the class of interest
+     * @param classes the collection of the dependent classes
+     */
+    private void collectClassesDependingOn(JavaClass jclass, Set<JavaClass> classes) {
         if (jclass != null && getClass(jclass.getQualifiedName().fqn()) != null) {
             for (JavaClass jc : jclass.getAncestors()) {
-                if (!classes.contains(jc)) {
+                if (jc.isInProject() && !classes.contains(jc)) {
                     classes.add(jc);
-                    collectDependentClasses(jc, classes);
+                    collectClassesDependingOn(jc, classes);
                 }
             }
             for (JavaClass jc : jclass.getDescendants()) {
-                if (!classes.contains(jc)) {
+                if (jc.isInProject() && !classes.contains(jc)) {
                     classes.add(jc);
-                    collectDependentClasses(jc, classes);
+                    collectClassesDependingOn(jc, classes);
                 }
             }
             for (JavaClass jc: jclass.getAfferentClassesInProject()) {
-                if (!classes.contains(jc)) {
+                if (jc.isInProject() && !classes.contains(jc)) {
                     classes.add(jc);
-                    collectDependentClasses(jc, classes);
+                    collectClassesDependingOn(jc, classes);
                 }
             }
         }
@@ -466,7 +491,7 @@ public class JavaProject {
     
     /**
      * Returns the absolute path where source files are located in the project.
-     * @return the absolute path of the source files
+     * @return the collection of the absolute path of the source files
      */
     public String[] getSourcePath() {
         return sourcePath;
@@ -474,7 +499,7 @@ public class JavaProject {
     
     /**
      * Returns the absolute path where binary files are located in the project.
-     * @return the absolute path of the binary files
+     * @return the collection of the absolute path of the binary files
      */
     public String[] getBinaryPath() {
         return binaryPath;
@@ -490,7 +515,7 @@ public class JavaProject {
     }
     
     /**
-     * Return a repository that stores CFGs for source files in this project.
+     * Return the repository that stores CFGs for source files in this project.
      * @return the CFG repository
      */
     public CFGStore getCFGStore() {
@@ -498,7 +523,7 @@ public class JavaProject {
     }
     
     /**
-     * Return a repository that stores PDGs for source files in this project.
+     * Return the repository that stores PDGs for source files in this project.
      * @return the PDG repository
      */
     public PDGStore getPDGStore() {
@@ -506,7 +531,7 @@ public class JavaProject {
     }
     
     /**
-     * Makes the directory.
+     * Makes the directory having a given name.
      * @param name the directory name relative to the project path
      * @return {@code true} if the directory are newly made, otherwise {@code false}
      */
@@ -574,8 +599,7 @@ public class JavaProject {
      * @return the sorted package list
      */
     protected static List<JavaPackage> sortPackages(List<? extends JavaPackage> packages) {
-        return packages
-                .stream()
+        return packages.stream()
                 .sorted((jp1, jp2) -> jp1.getName().compareTo(jp2.getName()))
                 .collect(Collectors.toList());
     }

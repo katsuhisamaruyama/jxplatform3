@@ -35,46 +35,6 @@ public class JavaPackageTest {
     }
     
     @Test
-    public void testGetFiles1() {
-        JavaPackage jp = TetrisProject.getPackage("(default)");
-        List<String> result = jp.getFiles().stream().map(JavaFile::getName).collect(Collectors.toList());
-        
-        assertEquals(12, result.size());
-        assertEquals("Block.java;"
-                   + "BlueBlock.java;"
-                   + "CyanBlock.java;"
-                   + "GameInfo.java;"
-                   + "GreenBlock.java;"
-                   + "MagentaBlock.java;"
-                   + "OrangeBlock.java;"
-                   + "Pit.java;"
-                   + "RedBlock.java;"
-                   + "Tetris.java;"
-                   + "Tile.java;"
-                   + "YellowBlock.java",
-            TestUtil.asSortedStr(result));
-    }
-    
-    @Test
-    public void testGetFiles2() {
-        JavaPackage jp = VideoStoreProject.getPackage("org.jtool.videostore.after");
-        List<String> result = jp.getFiles().stream().map(JavaFile::getName).collect(Collectors.toList());
-        
-        assertEquals(10, result.size());
-        assertEquals("ChildrensPrice.java;"
-                   + "Customer.java;"
-                   + "CustomerTest.java;"
-                   + "Movie.java;"
-                   + "MovieTest.java;"
-                   + "NewReleasePrice.java;"
-                   + "Price.java;"
-                   + "RegularPrice.java;"
-                   + "Rental.java;"
-                   + "RentalTest.java",
-            TestUtil.asSortedStr(result));
-    }
-    
-    @Test
     public void testGetName1() {
         JavaPackage jp = TetrisProject.getPackage("(default)");
         String result = jp.getName();
@@ -148,11 +108,29 @@ public class JavaPackageTest {
     }
     
     @Test
+    public void testGetClasses3() {
+        JavaPackage jp = VideoStoreProject.getPackage("java.lang");
+        Set<JavaClass> result = jp.getClasses();
+        
+        assertEquals(8, result.size());
+        assertEquals("java.lang.AssertionError;"
+                   + "java.lang.Object;"
+                   + "java.lang.String;"
+                   + "java.lang.String.CaseInsensitiveComparator;"
+                   + "java.lang.System;"
+                   + "java.lang.System.Logger;"
+                   + "java.lang.System.Logger.Level;"
+                   + "java.lang.System.LoggerFinder",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
     public void testGetEfferentJavaPackages1() {
         JavaPackage jp = TetrisProject.getPackage("(default)");
         List<String> result = jp.getEfferentJavaPackages().stream().map(JavaPackage::getName).collect(Collectors.toList());
         
-        assertEquals(0, result.size());
+        assertEquals(5, result.size());
+        assertEquals("java.awt;java.awt.event;java.lang;java.util;javax.swing", TestUtil.asSortedStr(result));
     }
     
     @Test
@@ -160,7 +138,8 @@ public class JavaPackageTest {
         JavaPackage jp = VideoStoreProject.getPackage("org.jtool.videostore.after");
         List<String> result = jp.getEfferentJavaPackages().stream().map(JavaPackage::getName).collect(Collectors.toList());
         
-        assertEquals(0, result.size());
+        assertEquals(4, result.size());
+        assertEquals("java.io;java.lang;java.util;org.junit", TestUtil.asSortedStr(result));
     }
     
     @Test
@@ -168,8 +147,16 @@ public class JavaPackageTest {
         JavaPackage jp = VideoStoreProject.getPackage("org.jtool.videostore.use");
         List<String> result = jp.getEfferentJavaPackages().stream().map(JavaPackage::getName).collect(Collectors.toList());
         
-        assertEquals(1, result.size());
-        assertEquals("org.jtool.videostore.after", TestUtil.asSortedStr(result));
+        assertEquals(3, result.size());
+        assertEquals("java.io;java.lang;org.jtool.videostore.after", TestUtil.asSortedStr(result));
+    }
+    
+    @Test
+    public void testGetEfferentJavaPackages4() {
+        JavaPackage jp = VideoStoreProject.getPackage("java.lang");
+        List<String> result = jp.getAfferentJavaPackages().stream().map(JavaPackage::getName).collect(Collectors.toList());
+        
+        assertEquals(0, result.size());
     }
     
     @Test
@@ -192,6 +179,14 @@ public class JavaPackageTest {
     @Test
     public void testGetAfferentJavaPackages3() {
         JavaPackage jp = VideoStoreProject.getPackage("org.jtool.videostore.use");
+        List<String> result = jp.getAfferentJavaPackages().stream().map(JavaPackage::getName).collect(Collectors.toList());
+        
+        assertEquals(0, result.size());
+    }
+    
+    @Test
+    public void testGetAfferentJavaPackages4() {
+        JavaPackage jp = VideoStoreProject.getPackage("java.lang");
         List<String> result = jp.getAfferentJavaPackages().stream().map(JavaPackage::getName).collect(Collectors.toList());
         
         assertEquals(0, result.size());

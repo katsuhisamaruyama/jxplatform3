@@ -1,15 +1,17 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.jxplatform.builder.srcmodel;
 
 import org.jtool.srcmodel.JavaClass;
+import org.jtool.srcmodel.JavaElementException;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaPackage;
+import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.PackageDeclaration;
 import org.eclipse.jdt.core.dom.ImportDeclaration;
@@ -34,21 +36,18 @@ public class JavaASTVisitor extends ASTVisitor {
     
     protected JavaFile jfile;
     private Stack<JavaClass> outerClasses = new Stack<JavaClass>();
-    private JavaPackage jpackage = null;
     
     public JavaASTVisitor(JavaFile jfile) {
         this.jfile = jfile;
     }
     
     public void terminate() {
-        jfile = null;
         outerClasses.clear();
-        jpackage = null;
     }
     
     @Override
     public boolean visit(PackageDeclaration node) {
-        jpackage = JavaPackage.create(node, jfile);
+        JavaPackage.create(node, jfile);
         return true;
     }
     
@@ -60,9 +59,15 @@ public class JavaASTVisitor extends ASTVisitor {
     
     @Override
     public boolean visit(TypeDeclaration node) {
-        JavaClass jclass = new JavaClass(node, jfile);
-        createClass(jclass);
-        return true;
+        try {
+            JavaClass jclass = new JavaClass(node, jfile);
+            createClass(jclass);
+            return true;
+        } catch (JavaElementException e) {
+            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
+            logger.printCreationError(e.getMessage());
+            return false;
+        }
     }
     
     @Override
@@ -72,9 +77,15 @@ public class JavaASTVisitor extends ASTVisitor {
     
     @Override
     public boolean visit(AnonymousClassDeclaration node) {
-        JavaClass jclass = new JavaClass(node, jfile);
-        createClass(jclass);
-        return true;
+        try {
+            JavaClass jclass = new JavaClass(node, jfile);
+            createClass(jclass);
+            return true;
+        } catch (JavaElementException e) {
+            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
+            logger.printCreationError(e.getMessage());
+            return false;
+        }
     }
     
     public void endVisit(AnonymousClassDeclaration node) {
@@ -83,9 +94,15 @@ public class JavaASTVisitor extends ASTVisitor {
     
     @Override
     public boolean visit(EnumDeclaration node) {
-        JavaClass jclass = new JavaClass(node, jfile);
-        createClass(jclass);
-        return true;
+        try {
+            JavaClass jclass = new JavaClass(node, jfile);
+            createClass(jclass);
+            return true;
+        } catch (JavaElementException e) {
+            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
+            logger.printCreationError(e.getMessage());
+            return false;
+        }
     }
     
     @Override
@@ -95,9 +112,15 @@ public class JavaASTVisitor extends ASTVisitor {
     
     @Override
     public boolean visit(AnnotationTypeDeclaration node) {
-        JavaClass jclass = new JavaClass(node, jfile);
-        createClass(jclass);
-        return true;
+        try {
+            JavaClass jclass = new JavaClass(node, jfile);
+            createClass(jclass);
+            return true;
+        } catch (JavaElementException e) {
+            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
+            logger.printCreationError(e.getMessage());
+            return false;
+        }
     }
     
     @Override
@@ -124,8 +147,14 @@ public class JavaASTVisitor extends ASTVisitor {
         }
         
         JavaClass jclass = outerClasses.peek();
-        new JavaMethod(node, jclass);
-        return true;
+        try {
+            new JavaMethod(node, jclass);
+            return true;
+        } catch (JavaElementException e) {
+            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
+            logger.printCreationError(e.getMessage());
+            return false;
+        }
     }
     
     @Override
@@ -149,7 +178,12 @@ public class JavaASTVisitor extends ASTVisitor {
         @SuppressWarnings("unchecked")
         List<VariableDeclarationFragment> fields = (List<VariableDeclarationFragment>)node.fragments();
         for (VariableDeclarationFragment fragment : fields) {
-            new JavaField(fragment, jclass);
+            try {
+                new JavaField(fragment, jclass);
+            } catch (JavaElementException e) {
+                Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
+                logger.printCreationError(e.getMessage());
+            }
         }
         return false;
     }
@@ -161,7 +195,12 @@ public class JavaASTVisitor extends ASTVisitor {
         }
         
         JavaClass jclass = outerClasses.peek();
-        new JavaField(node, jclass);
+        try {
+            new JavaField(node, jclass);
+        } catch (JavaElementException e) {
+            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
+            logger.printCreationError(e.getMessage());
+        }
         return true;
     }
 }

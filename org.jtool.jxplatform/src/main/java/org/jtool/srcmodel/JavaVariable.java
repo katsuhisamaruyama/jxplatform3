@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -17,11 +17,9 @@ import org.eclipse.jdt.core.dom.Modifier;
 public abstract class JavaVariable extends JavaElement {
     
     /**
-     * The kind of a variable.
+     * A file that declares this model element.
      */
-    enum Kind {
-        J_FIELD, J_ENUM_CONSTANT, J_LOCAL, J_PARAMETER, UNKNOWN;
-    }
+    protected JavaFile jfile;
     
     /**
      * The fully-qualified name of this variable.
@@ -49,12 +47,21 @@ public abstract class JavaVariable extends JavaElement {
     protected Kind kind;
     
     /**
+     * The kind of a variable.
+     */
+    enum Kind {
+        J_FIELD, J_ENUM_CONSTANT, J_LOCAL, J_PARAMETER, UNKNOWN;
+    }
+    
+    /**
      * Creates a new object representing a variable.
      * @param node node the AST node for this variable
      * @param jfile the file that declares this variable
      */
     protected JavaVariable(ASTNode node, JavaFile jfile) {
-        super(node, jfile);
+        super(node);
+        
+        this.jfile = jfile;
     }
     
     JavaVariable.Kind getKind(IVariableBinding binding) {
@@ -67,6 +74,22 @@ public abstract class JavaVariable extends JavaElement {
         } else {
             return JavaVariable.Kind.J_LOCAL;
         }
+    }
+    
+    /**
+     * Returns the project which this class exists in.
+     * @return the project of this model element
+     */
+    public JavaProject getJavaProject() {
+        return jfile.getJavaProject();
+    }
+    
+    /**
+     * Returns the file that declares this class.
+     * @return the declaring file
+     */
+    public JavaFile getFile() {
+        return jfile;
     }
     
     /**

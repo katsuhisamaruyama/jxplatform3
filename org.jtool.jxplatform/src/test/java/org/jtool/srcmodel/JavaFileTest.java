@@ -75,7 +75,7 @@ public class JavaFileTest {
     @Test
     public void testGetProject1() {
         JavaFile jfile = getFile(VideoStoreProject, "org/jtool/videostore/after/Customer.java");
-        JavaProject result = jfile.getProject();
+        JavaProject result = jfile.getJavaProject();
         
         assertEquals("VideoStore", result.getName());
     }
@@ -83,7 +83,7 @@ public class JavaFileTest {
     @Test
     public void testGetProject2() {
         JavaFile jfile = getFile(TetrisProject, "Block.java");
-        JavaProject result = jfile.getProject();
+        JavaProject result = jfile.getJavaProject();
         
         assertEquals("Tetris", result.getName());
     }

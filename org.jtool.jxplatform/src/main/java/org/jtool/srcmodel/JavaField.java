@@ -26,26 +26,22 @@ import java.util.stream.Collectors;
 public class JavaField extends JavaVariable {
     
     /**
-     * The variable binding information on this class.
+     * Variable binding information on this class.
      */
     private IVariableBinding binding;
     
     /**
-     * A flag indicating whether this field exists inside the target project.
+     * A class that declares (or encloses the declaration of) this field.
      */
-    private boolean inProject = false;
-    
-    /**
-     * A class that declares (and encloses the declaration of) this method.
-     */
-    private JavaClass declaringClass = null;
+    private JavaClass declaringClass;
     
     /**
      * Creates a new object representing a field.
      * @param node the AST node for this field
      * @param jclass the class that declares this field
+     * @throws the exception occurs when the creation of a new object fails
      */
-    public JavaField(VariableDeclaration node, JavaClass jclass) {
+    public JavaField(VariableDeclaration node, JavaClass jclass) throws JavaElementException {
         this(node, node.resolveBinding(), jclass);
     }
     
@@ -53,8 +49,9 @@ public class JavaField extends JavaVariable {
      * Creates a new object representing a field.
      * @param node the AST node for this field
      * @param jclass the class that declares this field
+     * @throws the exception occurs when the creation of a new object fails
      */
-    public JavaField(VariableDeclarationFragment node, JavaClass jclass) {
+    public JavaField(VariableDeclarationFragment node, JavaClass jclass) throws JavaElementException {
         this(node, node.resolveBinding(), jclass);
     }
     
@@ -62,8 +59,9 @@ public class JavaField extends JavaVariable {
      * Creates a new object representing a field.
      * @param node the AST node for this enum constant
      * @param jclass the class that declares this field
+     * @throws the exception occurs when the creation of a new object fails
      */
-    public JavaField(EnumConstantDeclaration node, JavaClass jclass) {
+    public JavaField(EnumConstantDeclaration node, JavaClass jclass) throws JavaElementException {
         this(node, node.resolveVariable(), jclass);
     }
     
@@ -72,26 +70,25 @@ public class JavaField extends JavaVariable {
      * @param node the AST node for this field
      * @param vbinding the variable binding of this field
      * @param jclass the class that declares this field
+     * @throws the exception occurs when the creation of a new object fails
      */
-    protected JavaField(ASTNode node, IVariableBinding vbinding, JavaClass jclass) {
+    protected JavaField(ASTNode node, IVariableBinding vbinding, JavaClass jclass) throws JavaElementException {
         super(node, jclass.getFile());
+        
+        this.declaringClass = jclass;
         
         if (vbinding != null) {
             this.binding = vbinding.getVariableDeclaration();
             this.qname = new QualifiedName(jclass.getQualifiedName(), vbinding.getName());
-            this.type = retrieveQualifiedName(binding.getType()).fqn();
+            this.kind = getKind(binding);
+            this.type = JavaElementUtil.findQualifiedName(binding.getType()).fqn();
             this.isPrimitive = vbinding.getType().isPrimitive();
             this.modifiers = vbinding.getModifiers();
-            this.kind = getKind(binding);
-            this.inProject = true;
-            this.declaringClass = jclass;
             
             jclass.addField(this);
             
         } else {
-            this.binding = null;
-            this.qname = new QualifiedName();
-            this.kind = JavaVariable.Kind.UNKNOWN;
+            throw new JavaElementException("for field in class" + jclass.getClassName());
         }
     }
     
@@ -99,28 +96,10 @@ public class JavaField extends JavaVariable {
      * Creates a new object representing a field.
      * @param vbinding the variable binding information on this field
      * @param jclass the class that declares this field
-     * @param inProject {@code true} if this field exists inside the target project, otherwise {@code false}
+     * @throws the exception occurs when the creation of a new object fails
      */
-    public JavaField(IVariableBinding vbinding, JavaClass jclass, boolean inProject) {
-        super(null, null);
-        
-        if (vbinding != null) {
-            this.binding = vbinding.getVariableDeclaration();
-            this.qname = new QualifiedName(jclass.getQualifiedName(), vbinding.getName());
-            this.type = retrieveQualifiedName(binding.getType()).fqn();
-            this.isPrimitive = vbinding.getType().isPrimitive();
-            this.modifiers = vbinding.getModifiers();
-            this.kind = getKind(binding);
-            this.inProject = inProject;
-            this.declaringClass = jclass;
-            
-            jclass.addField(this);
-            
-        } else {
-            this.binding = null;
-            this.qname = new QualifiedName();
-            this.kind = JavaVariable.Kind.UNKNOWN;
-        }
+    public JavaField(IVariableBinding vbinding, JavaClass jclass) throws JavaElementException {
+        this(null, vbinding, jclass);
     }
     
     /**
@@ -136,12 +115,12 @@ public class JavaField extends JavaVariable {
      * @return {@code true} if this field exists inside the target project, otherwise {@code false}
      */
     public boolean isInProject() {
-        return inProject;
+        return declaringClass.isInProject();
     }
     
     /**
-     * A class that declares (and encloses the declaration of) this field.
-     * @return the declaring class
+     * Returns the class that declares this class.
+     * @return the declaring class, or {@code null} if this class is not enclosed by any class
      */
     public JavaClass getDeclaringClass() {
         return declaringClass;
@@ -273,10 +252,6 @@ public class JavaField extends JavaVariable {
      * This method is not intended to be invoked by clients, which will be automatically invoked as needed.
      */
     protected void collectInfo() {
-        if (!inProject || resolved) {
-            return;
-        }
-        
         boolean resolveOk = true;
         if (binding != null) {
             resolveOk = resolveOk && findCalledMethods();
@@ -289,14 +264,18 @@ public class JavaField extends JavaVariable {
             Logger logger = getJavaProject().getModelBuilderImpl().getLogger();
             if (declaringClass != null) {
                 logger.printUnresolvedError("Field " + getQualifiedName() +
-                        " of " + declaringClass.getQualifiedName() + " in " + jfile.getPath());
+                        " of " + declaringClass.getQualifiedName() + " in " + getFile().getPath());
             } else {
-                logger.printUnresolvedError("Field in " + jfile.getPath());
+                logger.printUnresolvedError("Field in " + getFile().getPath());
             }
         }
         resolved = true;
     }
     
+    /**
+     * Finds methods accessed by this field.
+     * @return {@code true} if all methods were successfully specified, otherwise {@code false}
+     */
     private boolean findCalledMethods() {
         MethodCallCollector visitor = new MethodCallCollector(getJavaProject());
         astNode.accept(visitor);
@@ -319,6 +298,10 @@ public class JavaField extends JavaVariable {
         accessingMethods.add(jmethod);
     }
     
+    /**
+     * Finds fields accessed by this field.
+     * @return {@code true} if all fields were successfully specified, otherwise {@code false}
+     */
     private boolean findAccessedFields() {
         FieldInitializerCollector visitor = new FieldInitializerCollector(getJavaProject());
         astNode.accept(visitor);
@@ -377,8 +360,7 @@ public class JavaField extends JavaVariable {
      */
     public Set<JavaField> getAccessingFieldsInProject() {
         collectInfo();
-        return accessingFields
-                .stream()
+        return accessingFields.stream()
                 .filter(jf -> jf.isInProject())
                 .collect(Collectors.toSet());
     }
@@ -407,8 +389,7 @@ public class JavaField extends JavaVariable {
      */
     public Set<JavaMethod> getCalledMethodsInProject() {
         collectInfo();
-        return calledMethods
-                .stream()
+        return calledMethods.stream()
                 .filter(jm -> jm.isInProject())
                 .collect(Collectors.toSet());
     }
@@ -419,8 +400,7 @@ public class JavaField extends JavaVariable {
      */
     public Set<JavaMethod> getAccessingMethodsInProject() {
         collectInfo();
-        return accessingMethods
-                .stream()
+        return accessingMethods.stream()
                 .filter(jm -> jm.isInProject())
                 .collect(Collectors.toSet());
     }

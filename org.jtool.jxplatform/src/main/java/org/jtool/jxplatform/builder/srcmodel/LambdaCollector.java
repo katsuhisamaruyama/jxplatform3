@@ -59,15 +59,12 @@ public class LambdaCollector extends ASTVisitor {
         if (tbinding != null && mbinding != null) {
             tbinding = tbinding.getTypeDeclaration();
             mbinding = mbinding.getMethodDeclaration();
-            IMethodBinding ibinding = tbinding.getFunctionalInterfaceMethod().getMethodDeclaration();
             
-            if (ibinding != null) {
-                String name = jmethod.getQualifiedName() + "$" + String.valueOf(id);
-                JavaClass anonymousClass = new JavaClass(node, name, tbinding, jmethod);
-                JavaMethod anonymousMethod = new JavaMethod(node, ibinding, anonymousClass);
-                anonymousClass.addMethod(anonymousMethod);
-                lambdas.add(anonymousClass);
-            }
+            String name = jmethod.getClassName() + "$LAMBDA" + String.valueOf(id);
+            JavaClass anonymousClass = new JavaClass(node, tbinding, name, jmethod);
+            JavaMethod anonymousMethod = new JavaMethod(node, mbinding, anonymousClass);
+            anonymousClass.addMethod(anonymousMethod);
+            lambdas.add(anonymousClass);
         }
     }
     

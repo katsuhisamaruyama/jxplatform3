@@ -36,21 +36,19 @@ import java.util.stream.Collectors;
 public class JavaMethod extends JavaElement {
     
     /**
-     * The method binding information on this method.
+     * Method binding information on this method.
      */
     private IMethodBinding binding;
+    
+    /**
+     * A class that declares (or encloses the declaration of) this method.
+     */
+    private JavaClass declaringClass;
     
     /**
      * The constant value that represents the a static initializer.
      */
     static final String InitializerName = ".init( )";
-    
-    /**
-     * The kind of a method.
-     */
-    enum Kind {
-        J_METHOD, J_CONSTRUCTOR, J_INITIALIZER, J_LAMBDA, UNKNOWN;
-    }
     
     /**
      * The fully-qualified name of this method.
@@ -73,14 +71,11 @@ public class JavaMethod extends JavaElement {
     private Kind kind;
     
     /**
-     * A flag indicating whether this method exists inside the target project.
+     * The kind of a method.
      */
-    private boolean inProject;
-    
-    /**
-     * A class that declares (and encloses the declaration of) this method.
-     */
-    private JavaClass declaringClass = null;
+    enum Kind {
+        J_METHOD, J_CONSTRUCTOR, J_INITIALIZER, J_LAMBDA, UNKNOWN;
+    }
     
     /**
      * The list of parameters of this method.
@@ -101,10 +96,13 @@ public class JavaMethod extends JavaElement {
      * Creates a new object representing a method.
      * @param node the AST node for this method
      * @param jclass the class that declares this method
+     * @throws the exception occurs when the creation of a new object fails
      */
     @SuppressWarnings("unchecked")
-    public JavaMethod(MethodDeclaration node, JavaClass jclass) {
-        super(node, jclass.getFile());
+    public JavaMethod(MethodDeclaration node, JavaClass jclass) throws JavaElementException {
+        super(node);
+        
+        this.declaringClass = jclass;
         
         IMethodBinding mbinding = node.resolveBinding();
         if (mbinding != null) {
@@ -117,8 +115,6 @@ public class JavaMethod extends JavaElement {
             }
             this.modifiers = binding.getModifiers();
             this.kind = getKind(binding);
-            this.inProject = true;
-            this.declaringClass = jclass;
             
             collectParameters(node.parameters());
             collectLocalVariables(node.getBody());
@@ -130,9 +126,7 @@ public class JavaMethod extends JavaElement {
             jclass.addMethod(this);
             
         } else {
-            this.binding = null;
-            this.qname = new QualifiedName();
-            this.kind = JavaMethod.Kind.UNKNOWN;
+            throw new JavaElementException("for method " + node.getName());
         }
     }
     
@@ -142,14 +136,15 @@ public class JavaMethod extends JavaElement {
      * @param jclass the class that declares this method
      */
     public JavaMethod(Initializer node, JavaClass jclass) {
-        super(node, jclass.getFile());
+        super(node);
         
+        this.declaringClass = jclass;
+        
+        this.binding = null;
         this.qname = new QualifiedName(jclass.getQualifiedName(), JavaMethod.InitializerName);
         this.returnType = "void";
         this.modifiers = 0;
         this.kind = JavaMethod.Kind.J_INITIALIZER;
-        this.inProject = true;
-        this.declaringClass = jclass;
         
         collectLocalVariables(node.getBody());
         collectLambdas(node.getBody());
@@ -159,44 +154,14 @@ public class JavaMethod extends JavaElement {
     
     /**
      * Creates a new object representing a method.
-     * @param node the AST node for this method for a lambda expression
-     * @param mbinding the binding information on this method
-     * @param jclass the class that declares this method
-     */
-    @SuppressWarnings("unchecked")
-    public JavaMethod(LambdaExpression node, IMethodBinding mbinding, JavaClass jclass) {
-        super(node, jclass.getFile());
-        
-        if (mbinding != null) {
-            this.binding = mbinding.getMethodDeclaration();
-            this.qname =  new QualifiedName(jclass.getQualifiedName(), getSignature(binding));
-            this.returnType = binding.getReturnType().getQualifiedName();
-            this.modifiers = binding.getModifiers();
-            this.kind = JavaMethod.Kind.J_LAMBDA;
-            this.inProject = true;
-            this.declaringClass = jclass;
-            
-            collectParameters(node.parameters());
-            collectLocalVariables(node.getBody());
-            collectLambdas(node.getBody());
-            
-            jclass.addMethod(this);
-            
-        } else {
-            this.binding = null;
-            this.qname = new QualifiedName();
-            this.kind = JavaMethod.Kind.UNKNOWN;
-        }
-    }
-    
-    /**
-     * Creates a new object representing a method.
      * @param mbinding the method binding information on this method
-     * @param jclass the class that declares this field
-     * @param inProject {@code true} if this field exists inside the target project, otherwise {@code false}
+     * @param jclass the class that declares this method
+     * @throws the exception occurs when the creation of a new object fails
      */
-    protected JavaMethod(IMethodBinding mbinding, JavaClass jclass, boolean inProject) {
-        super(null, null);
+    protected JavaMethod(IMethodBinding mbinding, JavaClass jclass) throws JavaElementException {
+        super(null);
+        
+        this.declaringClass = jclass;
         
         if (mbinding != null) {
             this.binding = mbinding.getMethodDeclaration();
@@ -208,20 +173,45 @@ public class JavaMethod extends JavaElement {
             }
             this.modifiers = binding.getModifiers();
             this.kind = getKind(binding);
-            this.inProject = inProject;
-            this.declaringClass = jclass;
             
             collectParameters(mbinding.getParameterTypes());
             
             jclass.addMethod(this);
-            
         } else {
-            this.binding = null;
-            this.qname = new QualifiedName();
-            this.kind = JavaMethod.Kind.UNKNOWN;
+            throw new JavaElementException("for method in class" + jclass.getClassName());
         }
     }
     
+    /**
+     * Creates a new object representing a method.
+     * @param node the AST node for this method for a lambda expression
+     * @param mbinding the binding information on this method
+     * @param jclass the class that declares this method
+     */
+    @SuppressWarnings("unchecked")
+    public JavaMethod(LambdaExpression node, IMethodBinding mbinding, JavaClass jclass) {
+        super(node);
+        
+        this.declaringClass = jclass;
+        
+        this.binding = mbinding.getMethodDeclaration();
+        this.qname =  new QualifiedName(jclass.getQualifiedName(), getSignature(binding));
+        this.returnType = binding.getReturnType().getQualifiedName();
+        this.modifiers = binding.getModifiers();
+        this.kind = JavaMethod.Kind.J_LAMBDA;
+        
+        collectParameters(node.parameters());
+        collectLocalVariables(node.getBody());
+        collectLambdas(node.getBody());
+        
+        jclass.addMethod(this);
+    }
+    
+    /**
+     * Returns the kind of a method.
+     * @param binding type binding information on the method
+     * @return the kind of the method
+     */
     private Kind getKind(IMethodBinding mbinding) {
         if (mbinding.isConstructor() || mbinding.isDefaultConstructor()) {
             return JavaMethod.Kind.J_CONSTRUCTOR;
@@ -230,6 +220,10 @@ public class JavaMethod extends JavaElement {
         }
     }
     
+    /**
+     * Collects information on parameters.
+     * @param params the collection of the parameters
+     */
     private void collectParameters(List<VariableDeclaration> params) {
         for (VariableDeclaration decl : params) {
             if (decl.resolveBinding() != null) {
@@ -239,6 +233,10 @@ public class JavaMethod extends JavaElement {
         }
     }
     
+    /**
+     * Collects information on parameters.
+     * @param types the collection of types of the parameters
+     */
     private void collectParameters(ITypeBinding[] types) {
         for (ITypeBinding tbinding : types) {
             JavaLocalVar param = new JavaLocalVar(tbinding, this);
@@ -246,6 +244,10 @@ public class JavaMethod extends JavaElement {
         }
     }
     
+    /**
+     * Collects local variables within this method.
+     * @param node the node for this method
+     */
     private void collectLocalVariables(ASTNode node) {
         if (node == null) {
             return;
@@ -255,6 +257,10 @@ public class JavaMethod extends JavaElement {
         localDecls.addAll(visitor.getLocalDeclarations());
     }
     
+    /**
+     * Collects lambda expressions within this method.
+     * @param node the node for this method
+     */
     private void collectLambdas(ASTNode node) {
         if (node == null) {
             return;
@@ -262,6 +268,22 @@ public class JavaMethod extends JavaElement {
         LambdaCollector visitor = new LambdaCollector(this);
         node.accept(visitor);
         visitor.getLambdas().forEach(e -> getDeclaringClass().addInnerClass(e));
+    }
+    
+    /**
+     * Returns the project which this method exists in.
+     * @return the project
+     */
+    public JavaProject getJavaProject() {
+        return declaringClass.getJavaProject();
+    }
+    
+    /**
+     * Returns the file that declares this method.
+     * @return the declaring file
+     */
+    public JavaFile getFile() {
+        return declaringClass.getFile();
     }
     
     /**
@@ -310,7 +332,7 @@ public class JavaMethod extends JavaElement {
      * @return {@code true} if the return type of this method is primitive, otherwise {@code false}
      */
     public boolean isPrimitiveReturnType() {
-        return returnType != null ? isPrimitiveType(returnType) : false;
+        return returnType != null ? JavaElementUtil.isPrimitiveType(returnType) : false;
     }
     
     /**
@@ -318,7 +340,7 @@ public class JavaMethod extends JavaElement {
      * @return {@code true} if the return type of this method is void, otherwise {@code false}
      */
     public boolean isVoid() {
-        return returnType != null ? JavaElement.isVoid(returnType) : false;
+        return returnType != null ? JavaElementUtil.isVoid(returnType) : false;
     }
     /**
      * The the value that stores information on the modifiers of this variable.
@@ -341,7 +363,7 @@ public class JavaMethod extends JavaElement {
      * @return {@code true} if this method exists inside the target project, otherwise {@code false}
      */
     public boolean isInProject() {
-        return inProject;
+        return declaringClass.isInProject();
     }
     
     /**
@@ -699,36 +721,42 @@ public class JavaMethod extends JavaElement {
      * This method is not intended to be invoked by clients, which will be automatically invoked as needed.
      */
     protected void collectInfo() {
-        if (!inProject || resolved) {
+        if (resolved) {
             return;
         }
         
         boolean resolveOk = true;
-        if (!isInitializer()) {
-            if (binding != null) {
-                resolveOk = resolveOk && findExceptions();
+        if (astNode != null && isInProject()) {
+            if (!isInitializer()) {
+                if (binding != null) {
+                    resolveOk = resolveOk && findExceptions();
+                    resolveOk = resolveOk && findCalledMethods();
+                    resolveOk = resolveOk && findAccessedFields();
+                } else {
+                    resolveOk = false;
+                }
+            } else {
                 resolveOk = resolveOk && findCalledMethods();
                 resolveOk = resolveOk && findAccessedFields();
-            } else {
-                resolveOk = false;
             }
-        } else {
-            resolveOk = resolveOk && findCalledMethods();
-            resolveOk = resolveOk && findAccessedFields();
         }
         
         if (!resolveOk) {
             Logger logger = getJavaProject().getModelBuilderImpl().getLogger();
             if (declaringClass != null) {
                 logger.printUnresolvedError("Method " + getSignature() + " of " +
-                    declaringClass.getQualifiedName() + " in " + jfile.getPath());
+                    declaringClass.getQualifiedName() + " in " + getFile().getPath());
             } else {
-                logger.printUnresolvedError("Method in " + jfile.getPath());
+                logger.printUnresolvedError("Method in " + getFile().getPath());
             }
         }
         resolved = true;
     }
     
+    /**
+     * Finds exceptions that this method throws.
+     * @return {@code true} if all exceptions were successfully specified, otherwise {@code false}
+     */
     private boolean findExceptions() {
         boolean resolveOk = true;
         for (ITypeBinding tbinding : binding.getExceptionTypes()) {
@@ -736,18 +764,22 @@ public class JavaMethod extends JavaElement {
                 break;
             }
             
-            JavaClass jc = findDeclaringClass(getJavaProject(), tbinding);
+            JavaClass jc = JavaElementUtil.findDeclaringClass(tbinding, getJavaProject());
             if (jc != null) {
                 exceptions.add(jc);
             } else {
                 resolveOk = false;
                 Logger logger = getJavaProject().getModelBuilderImpl().getLogger();
-                logger.printUnresolvedError("Exception type in " + jfile.getPath());
+                logger.printUnresolvedError("Exception type in " + getFile().getPath());
             }
         }
         return resolveOk;
     }
     
+    /**
+     * Finds methods called by this method.
+     * @return {@code true} if all called methods were successfully specified, otherwise {@code false}
+     */
     private boolean findCalledMethods() {
         MethodCallCollector visitor = new MethodCallCollector(getJavaProject());
         astNode.accept(visitor);
@@ -770,6 +802,10 @@ public class JavaMethod extends JavaElement {
         callingMethods.add(jmethod);
     }
     
+    /**
+     * Finds fields accessed by this method.
+     * @return {@code true} if all accessed fields were successfully specified, otherwise {@code false}
+     */
     private boolean findAccessedFields() {
         FieldAccessCollector visitor = new FieldAccessCollector(getJavaProject());
         astNode.accept(visitor);
@@ -892,10 +928,12 @@ public class JavaMethod extends JavaElement {
     public Set<JavaMethod> getOverriddenMethods() {
         collectInfo();
         if (overriddenMethods == null) {
-            findOverriddenMethods();
-        }
-        if (overriddenMethods == null) {
             overriddenMethods = new HashSet<>();
+            findOverriddenMethods();
+            
+            if (overriddenMethods == null) {
+                overriddenMethods = new HashSet<>();
+            }
         }
         return overriddenMethods;
     }
@@ -908,15 +946,28 @@ public class JavaMethod extends JavaElement {
         collectInfo();
         if (overridingMethods == null) {
             findOverriddenMethods();
-        }
-        if (overridingMethods == null) {
-            overridingMethods = new HashSet<>();
+            
+            if (overridingMethods == null) {
+                overridingMethods = new HashSet<>();
+            }
         }
         return overridingMethods;
     }
     
+    /**
+     * Finds methods that override this method.
+     */
     private void findOverriddenMethods() {
         for (JavaClass jc : declaringClass.getAncestors()) {
+            for (JavaMethod jm : jc.getMethods()) {
+                if (qname.getMemberSignature().equals(jm.getSignature())) {
+                    addOverridingMethod(jm);
+                    jm.addOverriddenMethod(this);
+                }
+            }
+        }
+        
+        for (JavaClass jc : declaringClass.getDescendants()) {
             for (JavaMethod jm : jc.getMethods()) {
                 if (qname.getMemberSignature().equals(jm.getSignature())) {
                     addOverriddenMethod(jm);
@@ -928,10 +979,8 @@ public class JavaMethod extends JavaElement {
     
     /**
      * Adds a method that this method overrides.
-     * This method is not intended to be invoked by clients.
-     * @param jm the overridden method to be added
      */
-    void addOverriddenMethod(JavaMethod jm) {
+    private void addOverriddenMethod(JavaMethod jm) {
         if (overriddenMethods == null) {
             overriddenMethods = new HashSet<>();
         }
@@ -940,10 +989,8 @@ public class JavaMethod extends JavaElement {
     
     /**
      * Adds a method that overrides this method.
-     * This method is not intended to be invoked by clients.
-     * @param jm the overriding method to be added
      */
-    void addOverridingMethod(JavaMethod jm) {
+    private void addOverridingMethod(JavaMethod jm) {
         if (overridingMethods == null) {
             overridingMethods = new HashSet<>();
         }
