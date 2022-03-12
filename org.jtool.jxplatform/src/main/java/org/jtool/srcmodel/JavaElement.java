@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -22,19 +22,19 @@ import org.eclipse.jdt.core.dom.ITypeBinding;
 public abstract class JavaElement {
     
     /**
-     * The AST node corresponding to this model element.
+     * An AST node corresponding to this model element.
      */
     protected ASTNode astNode;
     
     /**
-     * The file that declares this model element.
-     */
-    protected JavaFile jfile;
-    
-    /**
-     * The information on a code fragment for this model element.
+     * Information on a code fragment for this model element.
      */
     protected CodeRange codeRange;
+    
+    /**
+     * A class that encloses the declaration of this this model element.
+     */
+    protected JavaClass declaringClass;
     
     /**
      * Returns the fully qualified name of this model element.
@@ -55,7 +55,15 @@ public abstract class JavaElement {
      * @return the declaring file
      */
     public JavaFile getFile() {
-        return jfile;
+        return declaringClass.getFile();
+    }
+    
+    /**
+     * Returns the class that encloses the declaration of this model element.
+     * @return the declaring class
+     */
+    public JavaClass getDeclaringClass() {
+        return declaringClass;
     }
     
     /**
@@ -63,18 +71,18 @@ public abstract class JavaElement {
      * @return the project of this model element
      */
     public JavaProject getJavaProject() {
-        return jfile.getProject();
+        return declaringClass.getFile().getProject();
     }
     
     /**
      * Creates a new object of this model element.
      * This constructor is intended to be invoked by subclasses when creation their objects.
-     * @param node the AST node corresponding to this model element
-     * @param jfile the file that declares this model element
+     * @param node an AST node corresponding to this model element
+     * @param jclass a class that encloses the declaration of this this model element
      */
-    protected JavaElement(ASTNode node, JavaFile jfile) {
+    protected JavaElement(ASTNode node, JavaClass jclass) {
         this.astNode = node;
-        this.jfile = jfile;
+        this.declaringClass = jclass;
         if (node != null) {
             codeRange = new CodeRange(node);
         } else {
@@ -83,7 +91,7 @@ public abstract class JavaElement {
     }
     
     /**
-     * Returns the range information on a code fragment for an AST node of this model element.
+     * Returns the range information on a code fragment of this model element.
      * @return the code range information on this model element
      */
     public CodeRange getCodeRange() {
@@ -96,7 +104,7 @@ public abstract class JavaElement {
      */
     public String getSource() {
         if (codeRange != null && codeRange.getCodeLength() > 0) {
-            StringBuilder buf = new StringBuilder(jfile.getSource());
+            StringBuilder buf = new StringBuilder(declaringClass.getFile().getSource());
             return buf.substring(codeRange.getStartPosition(), codeRange.getEndPosition() + 1);
         }
         return "";
@@ -109,18 +117,18 @@ public abstract class JavaElement {
      */
     public String getExtendedSource() {
         if (codeRange != null && codeRange.getCodeLength() > 0) {
-            StringBuffer buf = new StringBuffer(jfile.getSource());
+            StringBuffer buf = new StringBuffer(declaringClass.getFile().getSource());
             return buf.substring(codeRange.getExtendedStartPosition(), codeRange.getExtendedEndPosition() + 1);
         }
         return "";
     }
     
     /**
-     * Retrieves the fully-qualified name of a class from a given type binding information.
+     * Finds the fully-qualified name of a class having given type binding information.
      * @param tbinding the type binding information on the class
      * @return the fully-qualified name
      */
-    protected static QualifiedName retrieveQualifiedName(ITypeBinding tbinding) {
+    protected static QualifiedName findQualifiedName(ITypeBinding tbinding) {
         if (tbinding.isTypeVariable()) {
             return new QualifiedName("java.lang.Object", "");
         }
@@ -155,15 +163,15 @@ public abstract class JavaElement {
     }
     
     /**
-     * Finds a class existing a given project by using the type binding information.
-     * @param jproject the project that the class might exist
+     * Finds a class having given type binding information within a given project.
      * @param tbinding the type binding information on the class
+     * @param jproject the project that the class might exist
      * @return the found class, or {@code null} if no class is found
      */
-    public static JavaClass findDeclaringClass(JavaProject jproject, ITypeBinding tbinding) {
+    public static JavaClass findDeclaringClass(ITypeBinding tbinding, JavaProject jproject) {
         if (tbinding != null) {
             tbinding = tbinding.getTypeDeclaration();
-            QualifiedName qname = retrieveQualifiedName(tbinding);
+            QualifiedName qname = findQualifiedName(tbinding);
             
             if (qname.isResolve()) {
                 if (tbinding.isFromSource()) {
@@ -181,7 +189,7 @@ public abstract class JavaElement {
                         
                         for (IVariableBinding vbinding : tbinding.getDeclaredFields()) {
                             if (vbinding.isField()) {
-                                JavaField jfield = new JavaField(vbinding, jclass, false);
+                                JavaField jfield = new JavaField(vbinding, jclass);
                                 jclass.addField(jfield);
                             }
                         }
@@ -194,15 +202,15 @@ public abstract class JavaElement {
     }
     
     /**
-     * Finds a method existing a given project by using the method binding information.
-     * @param jproject the project that the method might exist
+     * Finds a method having given method binding information within a given project.
      * @param mbinding the method binding information on the method
+     * @param jproject the project that the method might exist
      * @return the found method, or {@code null} if no method is found
      */
-    public static JavaMethod findDeclaringMethod(JavaProject jproject, IMethodBinding mbinding) {
+    public static JavaMethod findDeclaringMethod(IMethodBinding mbinding, JavaProject jproject) {
         if (mbinding != null) { 
             mbinding = mbinding.getMethodDeclaration();
-            JavaClass jclass = findDeclaringClass(jproject, mbinding.getDeclaringClass());
+            JavaClass jclass = findDeclaringClass(mbinding.getDeclaringClass(), jproject);
             if (jclass != null) {
                 if (jclass.isInProject()) {
                     return jclass.getMethod(JavaMethod.getSignature(mbinding));
@@ -215,7 +223,7 @@ public abstract class JavaElement {
                     return jmethod;
                 }
             } else {
-                jclass = getArrayClass(jproject);
+                jclass = JavaClass.getArrayClass(jproject);
                 JavaMethod jmethod = jclass.getMethod(mbinding.getName());
                 if (jmethod == null) {
                     jmethod = new JavaMethod(mbinding, jclass, false);
@@ -227,15 +235,15 @@ public abstract class JavaElement {
     }
     
     /**
-     * Finds a field existing a given project by using the variable binding information.
-     * @param jproject the project that the field might exist
+     * Finds a having given variable binding information within a given project.
      * @param vbinding the variable binding information on the field
+     * @param jproject the project that the field might exist
      * @return the found field, or {@code null} if no field is found
      */
-    public static JavaField findDeclaringField(JavaProject jproject, IVariableBinding vbinding) {
+    public static JavaField findDeclaringField(IVariableBinding vbinding, JavaProject jproject) {
         if (vbinding != null && vbinding.isField()) {
             vbinding = vbinding.getVariableDeclaration();
-            JavaClass jclass = findDeclaringClass(jproject, vbinding.getDeclaringClass());
+            JavaClass jclass = findDeclaringClass(vbinding.getDeclaringClass(), jproject);
             if (jclass != null) {
                 if (jclass.isInProject()) {
                     return jclass.getField(vbinding.getName());
@@ -243,16 +251,16 @@ public abstract class JavaElement {
                 } else {
                     JavaField jfield = jclass.getField(vbinding.getName());
                     if (jfield == null) {
-                        jfield = new JavaField(vbinding, jclass, false);
+                        jfield = new JavaField(vbinding, jclass);
                         jclass.addField(jfield);
                     }
                     return jfield;
                 }
             } else {
-                jclass = getArrayClass(jproject);
+                jclass = JavaClass.getArrayClass(jproject);
                 JavaField jfield = jclass.getField(vbinding.getName());
                 if (jfield == null) {
-                    jfield = new JavaField(vbinding, jclass, false);
+                    jfield = new JavaField(vbinding, jclass);
                     jclass.addField(jfield);
                 }
                 return jfield;
@@ -262,71 +270,55 @@ public abstract class JavaElement {
     }
     
     /**
-     * Creates a special class that represents an array.
-     * @param jproject the project that the array class might exist
-     * @return the special array class
-     */
-    private static JavaClass getArrayClass(JavaProject jproject) {
-        QualifiedName qname = JavaClass.ArrayClassFqn;
-        JavaClass jclass = jproject.getExternalClass(qname.fqn());
-        if (jclass == null) {
-            jclass = new JavaClass(qname.fqn(), false);
-            jproject.addExternalClass(jclass);
-            
-        }
-        return jclass;
-    }
-    
-    /**
      * Finds an ancestor of an AST node for this model element, having a specified sort.
      * @param node the base AST node
      * @param sort the value representing the sort
-     * (e.g., {@code ASTNode.TYPE_DECLARATION} for the type declaration)
+     *        (e.g., {@code ASTNode.TYPE_DECLARATION} for the type declaration)
      * @return the found ancestor, or {@code null} if no AST node is found
      */
-    public static ASTNode findAncestorWith(ASTNode node, int sort) {
+    public static ASTNode findAncestorNode(ASTNode node, int sort) {
         if (node.getNodeType() == sort) {
             return node;
         }
         ASTNode parent = node.getParent();
         if (parent != null) {
-            return findAncestorWith(parent, sort);
+            return findAncestorNode(parent, sort);
         }
         return null;
     }
     
     /**
-     * Finds a class that enclosing a given model element within a given project.
-     * @param jproject the project that the model element exists
+     * Finds a class that encloses a given model element within a given project.
      * @param node the enclosed model element
+     * @param jproject the project that the model element exists
      * @return the found class, or {@code null} if there is no class enclosing the model element
      */
-    public static JavaClass findEnclosingClass(JavaProject jproject, ASTNode node) {
-        TypeDeclaration tnode = (TypeDeclaration)findAncestorWith(node, ASTNode.TYPE_DECLARATION);
+    public static JavaClass findEnclosingClass(ASTNode node, JavaProject jproject) {
+        TypeDeclaration tnode = (TypeDeclaration)findAncestorNode(node, ASTNode.TYPE_DECLARATION);
         if (tnode != null) {
-            return findDeclaringClass(jproject, tnode.resolveBinding());
+            return findDeclaringClass(tnode.resolveBinding(), jproject);
         }
-        EnumDeclaration enode = (EnumDeclaration)findAncestorWith(node, ASTNode.ENUM_DECLARATION);
+        EnumDeclaration enode = (EnumDeclaration)findAncestorNode(node, ASTNode.ENUM_DECLARATION);
         if (enode != null) {
-            return findDeclaringClass(jproject, enode.resolveBinding());
+            return findDeclaringClass(enode.resolveBinding(), jproject);
         }
         return null;
     }
     
     /**
-     * Finds a method that enclosing a given model element within a given project.
-     * @param jproject the project that the model element exists
+     * Finds a method that encloses a given model element within a given project.
      * @param node the enclosed model element
+     * @param jproject the project that the model element exists
      * @return the found method, or {@code null} if there is no method enclosing the model element
      */
-    public static JavaMethod findEnclosingMethod(JavaProject jproject, ASTNode node) {
-        MethodDeclaration mnode = (MethodDeclaration)findAncestorWith(node, ASTNode.METHOD_DECLARATION);
+    public static JavaMethod findEnclosingMethod(ASTNode node, JavaProject jproject) {
+        MethodDeclaration mnode = (MethodDeclaration)findAncestorNode(node, ASTNode.METHOD_DECLARATION);
         if (mnode != null) {
-            return findDeclaringMethod(jproject, mnode.resolveBinding());
+            return findDeclaringMethod(mnode.resolveBinding(), jproject);
         }
-        Initializer inode = (Initializer)findAncestorWith(node, ASTNode.INITIALIZER);
+        Initializer inode = (Initializer)findAncestorNode(node, ASTNode.INITIALIZER);
         if (inode != null) {
-            JavaClass jc = findEnclosingClass(jproject, inode);
+            JavaClass jc = findEnclosingClass(inode, jproject);
             if (jc != null) {
                 return jc.getInitializer();
             }
