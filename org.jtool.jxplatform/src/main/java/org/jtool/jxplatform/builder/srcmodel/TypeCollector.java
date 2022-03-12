@@ -7,7 +7,7 @@ package org.jtool.jxplatform.builder.srcmodel;
 
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaClass;
-import org.jtool.srcmodel.JavaElement;
+import org.jtool.srcmodel.JavaElementUtil;
 import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
@@ -105,7 +105,7 @@ public class TypeCollector extends ASTVisitor {
     public boolean visit(SimpleType node) {
         ITypeBinding tbinding = node.resolveBinding();
         if (tbinding != null) {
-            JavaClass jc = JavaElement.findDeclaringClass(jproject, tbinding);
+            JavaClass jc = JavaElementUtil.findDeclaringClass(tbinding, jproject);
             types.add(jc);
         }
         return false;
@@ -135,7 +135,7 @@ public class TypeCollector extends ASTVisitor {
     public boolean visit(ParameterizedType node) {
         ITypeBinding tbinding = node.resolveBinding();
         if (tbinding != null) {
-            JavaClass jc = JavaElement.findDeclaringClass(jproject, tbinding);
+            JavaClass jc = JavaElementUtil.findDeclaringClass(tbinding, jproject);
             if (jc != null) {
                 types.add(jc);
                 for (ITypeBinding b : tbinding.getTypeArguments()) {
@@ -154,7 +154,7 @@ public class TypeCollector extends ASTVisitor {
         Logger logger = jproject.getModelBuilderImpl().getLogger();
         
         if (tbinding.isRawType()) {
-            JavaClass jc2 = JavaElement.findDeclaringClass(jproject, tbinding);
+            JavaClass jc2 = JavaElementUtil.findDeclaringClass(tbinding, jproject);
             if (jc2 != null) {
                 jc.addUsedClass(jc2);
             } else {
@@ -163,7 +163,7 @@ public class TypeCollector extends ASTVisitor {
             }
             
         } else if (tbinding.isParameterizedType()) {
-            JavaClass jc2 = JavaElement.findDeclaringClass(jproject, tbinding);
+            JavaClass jc2 = JavaElementUtil.findDeclaringClass(tbinding, jproject);
             if (jc2 != null) {
                 jc.addUsedClass(jc2);
                 for (ITypeBinding b : tbinding.getTypeArguments()) {
@@ -176,7 +176,7 @@ public class TypeCollector extends ASTVisitor {
         } else if (tbinding.isWildcardType()) {
             ITypeBinding b = tbinding.getBound();
             if (b != null && b.isRawType()) {
-                JavaClass jc2 = JavaElement.findDeclaringClass(jproject, tbinding.getBound());
+                JavaClass jc2 = JavaElementUtil.findDeclaringClass(tbinding.getBound(), jproject);
                 if (jc2 != null) {
                     jc.addUsedClass(jc2);
                 } else {

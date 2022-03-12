@@ -5,9 +5,9 @@
 
 package org.jtool.jxplatform.builder.srcmodel;
 
-import org.jtool.srcmodel.JavaElement;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.srcmodel.JavaElementUtil;
 import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
@@ -77,7 +77,7 @@ public class FieldInitializerCollector extends ASTVisitor {
             if (binding.getKind() == IBinding.VARIABLE) {
                 IVariableBinding vbinding = (IVariableBinding)binding;
                 if (vbinding.isField() || vbinding.isEnumConstant()) {
-                    JavaField jfield = JavaElement.findDeclaringField(jproject, vbinding);
+                    JavaField jfield = JavaElementUtil.findDeclaringField(vbinding, jproject);
                     if (jfield != null) {
                         if (!accessedFields.contains(jfield)) {
                             accessedFields.add(jfield);

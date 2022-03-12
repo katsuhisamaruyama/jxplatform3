@@ -5,9 +5,9 @@
 
 package org.jtool.jxplatform.builder.srcmodel;
 
-import org.jtool.srcmodel.JavaElement;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.srcmodel.JavaElementUtil;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.ClassInstanceCreation;
 import org.eclipse.jdt.core.dom.ConstructorInvocation;
@@ -129,7 +129,7 @@ public class ExceptionTypeCollector {
                     return;
                 }
                 
-                JavaMethod jmethod = JavaElement.findDeclaringMethod(jproject, mbinding);
+                JavaMethod jmethod = JavaElementUtil.findDeclaringMethod(mbinding, jproject);
                 if (jmethod != null && jmethod.getASTNode() != null) {
                     calledMethods.add(jmethod);
                 }

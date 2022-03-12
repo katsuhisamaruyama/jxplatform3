@@ -5,9 +5,9 @@
 
 package org.jtool.jxplatform.builder.srcmodel;
 
-import org.jtool.srcmodel.JavaElement;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.srcmodel.JavaElementUtil;
 import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
@@ -105,7 +105,7 @@ public class MethodCallCollector extends ASTVisitor {
                 return;
             }
             
-            JavaMethod jmethod = JavaElement.findDeclaringMethod(jproject, mbinding);
+            JavaMethod jmethod = JavaElementUtil.findDeclaringMethod(mbinding, jproject);
             if (jmethod != null) {
                 if (!calledMethods.contains(jmethod)) {
                     calledMethods.add(jmethod);

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -19,9 +19,9 @@ import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JReference;
 import org.jtool.cfg.JSpecialVarReference;
 import org.jtool.graph.GraphEdge;
-import org.jtool.srcmodel.JavaElement;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.srcmodel.JavaElementUtil;
 import org.jtool.jxplatform.builder.srcmodel.ExceptionTypeCollector;
 import org.jtool.srcmodel.JavaClass;
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -786,7 +786,7 @@ public class ExpressionVisitor extends ASTVisitor {
         
         ITypeBinding tbinding = node.resolveTypeBinding();
         String type = tbinding.getErasure().getQualifiedName();
-        if (!JavaElement.isVoid(type)) {
+        if (!JavaElementUtil.isVoid(type)) {
             JReference def = new JSpecialVarReference(node,
                     "$" + String.valueOf(temporaryVariableId), type, tbinding.isPrimitive());
             temporaryVariableId++;
@@ -816,7 +816,7 @@ public class ExpressionVisitor extends ASTVisitor {
         
         ITypeBinding tbinding = node.resolveTypeBinding();
         String type = tbinding.getErasure().getQualifiedName();
-        if (!JavaElement.isVoid(type)) {
+        if (!JavaElementUtil.isVoid(type)) {
             JReference def = new JSpecialVarReference(node,
                 "$" + String.valueOf(temporaryVariableId), type, tbinding.isPrimitive());
             temporaryVariableId++;
