@@ -45,7 +45,6 @@ public abstract class JavaElement {
      */
     public abstract QualifiedName getQualifiedName();
     
-    
     /**
      * Returns the project which this model element exists in.
      * @return the project of this model element
@@ -79,22 +78,9 @@ public abstract class JavaElement {
      * @return the source code of this model element, or the empty string if there is no source code
      */
     public String getSource() {
-        if (codeRange != null && codeRange.getCodeLength() > 0) {
+        if (codeRange != null) {
             StringBuilder buf = new StringBuilder(getFile().getSource());
             return buf.substring(codeRange.getStartPosition(), codeRange.getEndPosition() + 1);
-        }
-        return "";
-    }
-    
-    /**
-     * Obtains the source code corresponding to a code fragment of this model element,
-     * including comments and whitespace immediately exist before or after.
-     * @return the source code of this model element, or the empty string if there is no source code
-     */
-    public String getExtendedSource() {
-        if (codeRange != null && codeRange.getCodeLength() > 0) {
-            StringBuffer buf = new StringBuffer(getFile().getSource());
-            return buf.substring(codeRange.getExtendedStartPosition(), codeRange.getExtendedEndPosition() + 1);
         }
         return "";
     }
