@@ -23,45 +23,46 @@ public class JavaFile {
     /**
      * The compilation unit created by the Eclipse's JDT parser.
      */
-    protected CompilationUnit compilationUnit;
+    private CompilationUnit compilationUnit;
     
     /**
      * The project that this file exists.
      */
-    protected JavaProject jproject;
+    private JavaProject jproject;
     
     /**
      * The absolute path that indicates the location of this file in the file system.
      */
-    protected String path;
+    private String path;
     
     /**
      * The contents (source code) of this file.
      */
-    protected String source;
+    private String source;
     
     /**
      * The character set of the contents of this file.
      */
-    protected String charset;
+    private String charset;
     
     /**
      * The package declared in this file.
      */
-    protected JavaPackage jpackage;
+    private JavaPackage jpackage;
     
     /**
      * The collection of classes declared in this file.
      */
-    protected Set<JavaClass> classes = new HashSet<>();
+    private Set<JavaClass> classes = new HashSet<>();
     
     /**
      * The collection of AST nodes corresponding to the import declarations appearing in this file.
      */
-    protected List<ASTNode> imports = new ArrayList<>();
+    private List<ASTNode> imports = new ArrayList<>();
     
     /**
      * Creates a new object representing a file.
+     * This constructor is not intended to be invoked by clients.
      * @param cu the compilation unit of this file
      * @param path the absolute path of this file in the file system
      * @param source the contents of this file
@@ -69,6 +70,12 @@ public class JavaFile {
      * @param jproject the project that this file exists
      */
     public JavaFile(CompilationUnit cu, String path, String source, String charset, JavaProject jproject) {
+        assert cu != null;
+        assert path != null;
+        assert source != null;
+        assert charset != null;
+        assert jproject != null;
+        
         this.compilationUnit = cu;
         this.jproject = jproject;
         this.path = path;
@@ -153,10 +160,9 @@ public class JavaFile {
     
     /**
      * Adds a class declared in this file.
-     * This method is not intended to be invoked by clients.
      * @param jclass a class to be added
      */
-    protected void addClass(JavaClass jclass) {
+    void addClass(JavaClass jclass) {
         classes.add(jclass);
         jproject.addClass(jclass);
     }
@@ -171,6 +177,7 @@ public class JavaFile {
     
     /**
      * Adds an AST node corresponding to an import declaration appearing in this file.
+     * This method is not intended to be invoked by clients.
      * @param node the corresponding AST node 
      */
     public void addImport(ASTNode node) {

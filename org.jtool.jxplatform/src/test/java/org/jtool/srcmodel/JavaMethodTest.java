@@ -42,6 +42,38 @@ public class JavaMethodTest {
     }
     
     @Test
+    public void testGetJavaProject1() {
+        JavaMethod jm = VideoStoreProject.getClass("org.jtool.videostore.after.Customer").getMethod("statement( )");
+        JavaProject result = jm.getJavaProject(); 
+        
+        assertEquals("VideoStore", result.getName());
+    }
+    
+    @Test
+    public void testGetJavaProject2() {
+        JavaMethod jm = TetrisProject.getClass("Block").getMethod("paint( java.awt.Graphics )");
+        JavaProject result = jm.getJavaProject(); 
+        
+        assertEquals("Tetris", result.getName());
+    }
+    
+    @Test
+    public void testGetFile1() {
+        JavaMethod jm = VideoStoreProject.getClass("org.jtool.videostore.after.Customer").getMethod("statement( )");
+        JavaFile result = jm.getFile(); 
+        
+        assertEquals("Customer.java", result.getName());
+    }
+    
+    @Test
+    public void testGetFile2() {
+        JavaMethod jm = TetrisProject.getClass("Block").getMethod("paint( java.awt.Graphics )");
+        JavaFile result = jm.getFile(); 
+        
+        assertEquals("Block.java", result.getName());
+    }
+    
+    @Test
     public void testGetQualifiedName1() {
         JavaMethod jm = VideoStoreProject.getClass("org.jtool.videostore.after.Customer").getMethod("statement( )");
         QualifiedName result = jm.getQualifiedName();

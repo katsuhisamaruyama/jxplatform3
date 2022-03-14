@@ -55,16 +55,23 @@ public abstract class JavaVariable extends JavaElement {
     
     /**
      * Creates a new object representing a variable.
+     * This constructor is not intended to be invoked by clients.
      * @param node node the AST node for this variable
      * @param jfile the file that declares this variable
      */
     protected JavaVariable(ASTNode node, JavaFile jfile) {
         super(node);
         
+        assert jfile != null;
         this.jfile = jfile;
     }
     
-    JavaVariable.Kind getKind(IVariableBinding binding) {
+    /**
+     * Returns the kind of a variable.
+     * @param binding type binding information on the variable
+     * @return the kind of the variable
+     */
+    protected JavaVariable.Kind getKind(IVariableBinding binding) {
         if (binding.isEnumConstant()) {
             return JavaVariable.Kind.J_ENUM_CONSTANT;
         } else if (binding.isField()) {

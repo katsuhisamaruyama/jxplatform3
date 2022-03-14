@@ -94,6 +94,7 @@ public class JavaMethod extends JavaElement {
     
     /**
      * Creates a new object representing a method.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this method
      * @param jclass the class that declares this method
      * @throws the exception occurs when the creation of a new object fails
@@ -102,6 +103,7 @@ public class JavaMethod extends JavaElement {
     public JavaMethod(MethodDeclaration node, JavaClass jclass) throws JavaElementException {
         super(node);
         
+        assert jclass != null;
         this.declaringClass = jclass;
         
         IMethodBinding mbinding = node.resolveBinding();
@@ -132,12 +134,14 @@ public class JavaMethod extends JavaElement {
     
     /**
      * Creates a new object representing a method.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this static initializer
      * @param jclass the class that declares this method
      */
     public JavaMethod(Initializer node, JavaClass jclass) {
         super(node);
         
+        assert jclass != null;
         this.declaringClass = jclass;
         
         this.binding = null;
@@ -158,9 +162,10 @@ public class JavaMethod extends JavaElement {
      * @param jclass the class that declares this method
      * @throws the exception occurs when the creation of a new object fails
      */
-    protected JavaMethod(IMethodBinding mbinding, JavaClass jclass) throws JavaElementException {
+    JavaMethod(IMethodBinding mbinding, JavaClass jclass) throws JavaElementException {
         super(null);
         
+        assert jclass != null;
         this.declaringClass = jclass;
         
         if (mbinding != null) {
@@ -184,6 +189,7 @@ public class JavaMethod extends JavaElement {
     
     /**
      * Creates a new object representing a method.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this method for a lambda expression
      * @param mbinding the binding information on this method
      * @param jclass the class that declares this method
@@ -192,6 +198,7 @@ public class JavaMethod extends JavaElement {
     public JavaMethod(LambdaExpression node, IMethodBinding mbinding, JavaClass jclass) {
         super(node);
         
+        assert jclass != null;
         this.declaringClass = jclass;
         
         this.binding = mbinding.getMethodDeclaration();
@@ -666,7 +673,7 @@ public class JavaMethod extends JavaElement {
      * Obtains information on all methods invoked by this method.
      * @return the string representing the information
      */
-    protected String toStringCalledMethods() {
+    String toStringCalledMethods() {
         StringBuilder buf = new StringBuilder();
         for (JavaMethod jm : getCalledMethods()) {
             buf.append("\n");
@@ -679,17 +686,17 @@ public class JavaMethod extends JavaElement {
     /**
      * A flag indicating whether the collected binding information is resolved.
      */
-    protected boolean resolved = false;
+    private boolean resolved = false;
     
     /**
      * The collection of classes corresponding to the types of exceptions.
      */
-    protected Set<JavaClass> exceptions = new HashSet<>();
+    private Set<JavaClass> exceptions = new HashSet<>();
     
     /**
      * The collection of methods that this method invokes.
      */
-    protected Set<JavaMethod> calledMethods = new HashSet<>();
+    private Set<JavaMethod> calledMethods = new HashSet<>();
     
     /**
      * The collection of methods that invoke this method.
@@ -699,12 +706,12 @@ public class JavaMethod extends JavaElement {
     /**
      * The collection of fields that this method accesses.
      */
-    protected Set<JavaField> accessedFields = new HashSet<>();
+    private Set<JavaField> accessedFields = new HashSet<>();
     
     /**
      * The collection of fields that call this method in their declarations.
      */
-    protected Set<JavaField> accessingFields = new HashSet<>();
+    private Set<JavaField> accessingFields = new HashSet<>();
     
     /**
      * The collection of methods that this method overrides.
@@ -714,13 +721,13 @@ public class JavaMethod extends JavaElement {
     /**
      * The collection of methods that override this method.
      */
-    protected Set<JavaMethod> overridingMethods = null;
+    private Set<JavaMethod> overridingMethods = null;
     
     /**
      * Collects additional information on this method.
      * This method is not intended to be invoked by clients, which will be automatically invoked as needed.
      */
-    protected void collectInfo() {
+    void collectInfo() {
         if (resolved) {
             return;
         }
@@ -795,7 +802,6 @@ public class JavaMethod extends JavaElement {
     
     /**
      * Adds a method that invokes this method.
-     * This method is not intended to be invoked by clients.
      * @param jmethod the method to be added
      */
     void addCallingMethod(JavaMethod jmethod) {
@@ -821,7 +827,6 @@ public class JavaMethod extends JavaElement {
     
     /**
      * Adds a field that calls this method in their declarations.
-     * This method is not intended to be invoked by clients.
      * @param jmethod the method to be added
      */
     void addAccessingField(JavaField jfield) {

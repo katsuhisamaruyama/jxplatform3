@@ -20,20 +20,21 @@ public class JavaLocalVar extends JavaVariable {
     /**
      * The variable binding information on this class.
      */
-    protected IVariableBinding binding;
+    private IVariableBinding binding;
     
     /**
      * the identification number of this local variable.
      */
-    protected long variableId;
+    private long variableId;
     
     /**
      * A method that contains this local variable.
      */
-    protected JavaMethod declaringMethod = null;
+    private JavaMethod declaringMethod = null;
     
     /**
      * Creates a new object representing a local variable.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this local variable
      * @param jmethod the method that contains this local variable in its body
      */
@@ -43,11 +44,12 @@ public class JavaLocalVar extends JavaVariable {
     
     /**
      * Creates a new object representing a local variable.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this local variable
      * @param vbinding the variable binding information on this local variable
      * @param jmethod the method that contains this local variable in its body
      */
-    protected JavaLocalVar(ASTNode node, IVariableBinding vbinding, JavaMethod jmethod) {
+    JavaLocalVar(ASTNode node, IVariableBinding vbinding, JavaMethod jmethod) {
         super(node, jmethod.getFile());
         
         if (vbinding != null && vbinding.getType() != null) {
@@ -68,34 +70,20 @@ public class JavaLocalVar extends JavaVariable {
     
     /**
      * Creates a new object representing a formal parameter.
+     * This constructor is not intended to be invoked by clients.
      * @param tbinding the type binding information on this formal parameter
      * @param jmethod the method that contains this local variable in its body
      */
-    protected JavaLocalVar(ITypeBinding tbinding, JavaMethod jmethod) {
+    JavaLocalVar(ITypeBinding tbinding, JavaMethod jmethod) {
         super(null, jmethod.getFile());
+        
+        assert tbinding != null;
         
         tbinding = tbinding.getTypeDeclaration();
         this.qname = new QualifiedName("", tbinding.getName());
         this.type = tbinding.getQualifiedName();
         this.isPrimitive = tbinding.isPrimitive();
         this.modifiers = tbinding.getModifiers();
-        this.kind = JavaVariable.Kind.J_PARAMETER;
-        this.variableId = -1;
-        this.declaringMethod = jmethod;
-    }
-    
-    /**
-     * Creates a new object representing a local variable.
-     * @param jmethod the method that contains this local variable in its body
-     * @param name the name of this local variable
-     */
-    public JavaLocalVar(JavaMethod jmethod, String name) {
-        super(null, jmethod.getFile());
-        
-        this.qname = new QualifiedName("", name);
-        this.modifiers = jmethod.getModifiers();
-        this.type = jmethod.getReturnType();
-        this.isPrimitive = jmethod.isPrimitiveReturnType();
         this.kind = JavaVariable.Kind.J_PARAMETER;
         this.variableId = -1;
         this.declaringMethod = jmethod;
@@ -113,7 +101,7 @@ public class JavaLocalVar extends JavaVariable {
      * Returns the identification number of this local variable.
      * @return the identification number
      */
-    protected long getVariableId() {
+    public long getVariableId() {
         return variableId;
     }
     

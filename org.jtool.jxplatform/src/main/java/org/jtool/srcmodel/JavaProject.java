@@ -99,6 +99,9 @@ public class JavaProject {
      * @param path the absolute path that indicates the root directory of this project in the file system
      */
     public JavaProject(String name, String path) {
+        assert name != null;
+        assert path != null;
+        
         this.name = name;
         this.pathInWorkspace = path;
         this.path = path;
@@ -114,6 +117,10 @@ public class JavaProject {
      * @param path the absolute path that indicates the root directory of this project in the file system
      */
     public JavaProject(String name, String wpath, String path) {
+        assert name != null;
+        assert wpath != null;
+        assert path != null;
+        
         this.name = name;
         this.pathInWorkspace = wpath;
         this.path = path;
@@ -127,6 +134,8 @@ public class JavaProject {
      * @param modelBuilderImpl the model builder implementation
      */
     public void setModelBuilderImpl(ModelBuilderImpl modelBuilderImpl) {
+        assert modelBuilderImpl != null;
+        
         this.modelBuilderImpl = modelBuilderImpl;
     }
     
@@ -175,15 +184,19 @@ public class JavaProject {
      * Clears information on this project.
      */
     public void clear() {
-        cfgStore.destroy();
-        pdgStore.destroy();
+        if (cfgStore != null && pdgStore != null) {
+            cfgStore.destroy();
+            pdgStore.destroy();
+        }
     }
     
     /**
      * Flushes the project cache.
      */
     public void flushCache() {
-        cfgStore.flushCache();
+        if (cfgStore != null) {
+            cfgStore.flushCache();
+        }
     }
     
     /**
@@ -212,10 +225,9 @@ public class JavaProject {
     
     /**
      * Adds a file to this project.
-     * This method is not intended to be invoked by clients.
      * @param jfile the file to be added
      */
-    public void addFile(JavaFile jfile) {
+    void addFile(JavaFile jfile) {
         if (fileStore.get(jfile.getPath()) == null) {
             fileStore.put(jfile.getPath(), jfile);
         }
@@ -223,10 +235,9 @@ public class JavaProject {
     
     /**
      * Removes a file from this project.
-     * This method is not intended to be invoked by clients.
      * @param path the path of a file to be removed
      */
-    public void removeFile(String path) {
+    void removeFile(String path) {
         JavaFile jfile = fileStore.get(path);
         if (jfile != null) {
             fileStore.remove(path);
@@ -260,10 +271,9 @@ public class JavaProject {
     
     /**
      * Adds a package to this project.
-     * This method is not intended to be invoked by clients.
      * @param jpackage the package to be added
      */
-    protected void addPackage(JavaPackage jpackage) {
+    void addPackage(JavaPackage jpackage) {
         if (packageStore.get(jpackage.getName()) == null) {
             packageStore.put(jpackage.getName(), jpackage);
         }
@@ -271,10 +281,9 @@ public class JavaProject {
     
     /**
      * Removes a package from this project.
-     * This method is not intended to be invoked by clients.
      * @param jpackage the package to be removed
      */
-    public void removePackage(JavaPackage jpackage) {
+    void removePackage(JavaPackage jpackage) {
         packageStore.remove(jpackage.getName());
     }
     
@@ -317,10 +326,9 @@ public class JavaProject {
     
     /**
      * Adds a class to this project.
-     * This method is not intended to be invoked by clients.
      * @param jclass the class to be added
      */
-    protected void addClass(JavaClass jclass) {
+    void addClass(JavaClass jclass) {
         if (classStore.get(jclass.getQualifiedName().fqn()) == null) {
             classStore.put(jclass.getQualifiedName().fqn(), jclass);
         }
@@ -328,10 +336,9 @@ public class JavaProject {
     
     /**
      * Removes a class from this project.
-     * This method is not intended to be invoked by clients.
      * @param jclass the class to be removed
      */
-    public void removeClass(JavaClass jclass) {
+    void removeClass(JavaClass jclass) {
         classStore.remove(jclass.getQualifiedName().fqn());
     }
     
@@ -363,6 +370,10 @@ public class JavaProject {
         return null;
     }
     
+    /**
+     * Adds a class to this project, which exists outside this project.
+     * @param jclass the class to be added
+     */
     void addExternalClass(JavaClass jclass) {
         externalClassStore.put(jclass.getQualifiedName().fqn(), jclass);
     }
@@ -439,10 +450,9 @@ public class JavaProject {
     
     /**
      * Removes classes from this project.
-     * This method is not intended to be invoked by clients.
      * @param classes the classes to be removed
      */
-    public void removeClasses(List<JavaClass> classes) {
+    void removeClasses(List<JavaClass> classes) {
         for (JavaClass jclass : classes) {
             removeFile(jclass.getFile().getPath());
             removeClass(jclass);
@@ -583,7 +593,7 @@ public class JavaProject {
      * @param files the file list
      * @return the sorted file list
      */
-    protected static List<JavaFile> sortFiles(List<? extends JavaFile> files) {
+    public static List<JavaFile> sortFiles(List<? extends JavaFile> files) {
         List<JavaFile> jfiles = new ArrayList<>(files);
         Collections.sort(jfiles, new Comparator<>() {
             public int compare(JavaFile jf1, JavaFile jf2) {
@@ -598,7 +608,7 @@ public class JavaProject {
      * @param packages the package list
      * @return the sorted package list
      */
-    protected static List<JavaPackage> sortPackages(List<? extends JavaPackage> packages) {
+    public static List<JavaPackage> sortPackages(List<? extends JavaPackage> packages) {
         return packages.stream()
                 .sorted((jp1, jp2) -> jp1.getName().compareTo(jp2.getName()))
                 .collect(Collectors.toList());

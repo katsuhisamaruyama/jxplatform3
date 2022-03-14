@@ -52,12 +52,15 @@ public class JavaPackage {
      * @param name the name of this package
      */
     private JavaPackage(PackageDeclaration node, String name) {
+        assert name != null;
+        
         this.astNode = node;
         this.name = name;
     }
     
     /**
      * Creates a new object representing a default package.
+     * This constructor is not intended to be invoked by clients.
      * @param jfile the file declaring this package
      * @return the created package
      */
@@ -67,11 +70,14 @@ public class JavaPackage {
     
     /**
      * Creates a new object representing a package.
+     * This constructor is not intended to be invoked by clients.
      * @param node an AST node for this package
      * @param jfile a file that declares this package
      * @return the created package
      */
     public static JavaPackage create(PackageDeclaration node, JavaFile jfile) {
+        assert jfile != null;
+        
         String name = "";
         if (node != null) {
             IPackageBinding binding = node.resolveBinding();
@@ -94,11 +100,15 @@ public class JavaPackage {
     
     /**
      * Creates a new object representing a package used in a class not having its corresponding file.
+     * This constructor is not intended to be invoked by clients.
      * @param pbinding the package binding for this package
      * @param jproject a project which this package is used in
      * @return the created package
      */
     public static JavaPackage createExternal(IPackageBinding pbinding, JavaProject jproject) {
+        assert pbinding != null;
+        assert jproject != null;
+        
         String name = pbinding.getName();
         JavaPackage jpackage = jproject.getPackage(name);
         if (jpackage == null) {
@@ -143,7 +153,6 @@ public class JavaPackage {
     
     /**
      * Adds a class to this package.
-     * This method is not intended to be invoked by clients.
      * @param jclass the class to be added
      */
     void addClass(JavaClass jclass) {
@@ -152,7 +161,6 @@ public class JavaPackage {
     
     /**
      * Removes a class from this package.
-     * This method is not intended to be invoked by clients.
      * @param jclass the class to be removed
      */
     void removeClass(JavaClass jclass) {
@@ -214,19 +222,14 @@ public class JavaPackage {
     }
     
     /**
-     * A flag indicating whether the collected binding information is resolved.
-     */
-    protected boolean resolved = false;
-    
-    /**
      * The collection of packages containing classes that a class of this package uses.
      */
-    protected Set<JavaPackage> efferentPackages = null;
+    private Set<JavaPackage> efferentPackages = null;
     
     /**
      * The collection of packages whose class uses a class belonging to this package.
      */
-    protected Set<JavaPackage> afferentPackages = null;
+    private Set<JavaPackage> afferentPackages = null;
     
     /**
      * Obtains packages containing classes that are used by classes belonging to this package.
@@ -239,12 +242,15 @@ public class JavaPackage {
         
         if (efferentPackages == null) {
             efferentPackages = new HashSet<>();
-            findEfferentPackages();
+            collectEfferentPackages();
         }
         return efferentPackages;
     }
     
-    private void findEfferentPackages() {
+    /**
+     * Collects packages containing classes that are used by classes belonging to this package.
+     */
+    private void collectEfferentPackages() {
         for (JavaClass jclass : classes) {
             for (JavaClass jc : jclass.getEfferentClasses()) {
                 JavaPackage jpackage = jc.getPackage();

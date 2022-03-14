@@ -35,12 +35,12 @@ public class JavaClass extends JavaElement {
     /**
      * A project which this model element exists in
      */
-    protected JavaProject jproject;
+    private JavaProject jproject;
     
     /**
      * A file that declares this model element.
      */
-    protected JavaFile jfile;
+    private JavaFile jfile;
     
     /**
      * Type binding information on this class.
@@ -121,6 +121,7 @@ public class JavaClass extends JavaElement {
     
     /**
      * Creates a new object representing a class.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this class or interface
      * @param jfile the file that declares this class
      * @throws the exception occurs when the creation of a new object fails
@@ -131,6 +132,7 @@ public class JavaClass extends JavaElement {
     
     /**
      * Creates a new object representing a class.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this anonymous class
      * @param jfile the file that declares this class
      * @throws the exception occurs when the creation of a new object fails
@@ -141,6 +143,7 @@ public class JavaClass extends JavaElement {
     
     /**
      * Creates a new object representing a class.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this class holding the enum constant declarations
      * @param jfile the file that declares this class
      * @throws the exception occurs when the creation of a new object fails
@@ -151,6 +154,7 @@ public class JavaClass extends JavaElement {
     
     /**
      * Creates a new object representing a class.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this annotation type
      * @param jfile the file that declares this class
      * @throws the exception occurs when the creation of a new object fails
@@ -161,6 +165,7 @@ public class JavaClass extends JavaElement {
     
     /**
      * Creates a new object representing a class.
+     * This constructor is not intended to be invoked by clients.
      * @param node an AST node for this class
      * @param tbinding type binding information on this class
      * @param jfile a file that declares this class
@@ -168,6 +173,8 @@ public class JavaClass extends JavaElement {
      */
     public JavaClass(ASTNode node, ITypeBinding tbinding, JavaFile jfile) throws JavaElementException {
         super(node);
+        
+        assert jfile != null;
         
         this.jproject = jfile.getJavaProject();
         this.jfile = jfile;
@@ -220,13 +227,14 @@ public class JavaClass extends JavaElement {
     
     /**
      * Creates a new object representing a class that does not have its source code.
-     * This method is not intended to be invoked by clients.
+     * This constructor is not intended to be invoked by clients.
      * @param tbinding type binding information on this class
      * @param jproject a project which this model element exists in
      */
     JavaClass(ITypeBinding tbinding, JavaProject jproject) {
         super(null);
         
+        assert jfile != null;
         this.jproject = jproject;
         this.jfile = null;
         
@@ -261,6 +269,7 @@ public class JavaClass extends JavaElement {
     
     /**
      * Creates a new object representing a class.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this anonymous class for a lambda expression
      * @param tbinding type binding information on this class
      * @param name the name of this class
@@ -268,6 +277,10 @@ public class JavaClass extends JavaElement {
      */
     public JavaClass(LambdaExpression node, ITypeBinding tbinding, String name, JavaMethod jmethod) {
         super(node);
+        
+        assert tbinding != null;
+        assert name != null;
+        assert jmethod != null;
         
         this.jproject = jmethod.getFile().getJavaProject();
         this.jfile = jmethod.getFile();
@@ -296,7 +309,7 @@ public class JavaClass extends JavaElement {
      * @param jproject a project which this model element exists in
      * @return the special array class
      */
-    protected static JavaClass getArrayClass(JavaProject jproject) {
+    static JavaClass getArrayClass(JavaProject jproject) {
         QualifiedName qname = JavaClass.ArrayClassFqn;
         JavaClass jclass = jproject.getExternalClass(qname.fqn());
         if (jclass == null) {
@@ -562,7 +575,7 @@ public class JavaClass extends JavaElement {
      * This method is not intended to be invoked by clients.
      * @param jfield the field to be added
      */
-    protected void addField(JavaField jfield) {
+    void addField(JavaField jfield) {
         if (!fields.contains(jfield)) {
             fields.add(jfield);
         }
@@ -740,7 +753,7 @@ public class JavaClass extends JavaElement {
      * Obtains information on all the fields enclosed in this class.
      * @return the string representing the information
      */
-    protected String toStringForFields() {
+    String toStringForFields() {
         return getFields().stream().map(jf -> jf.toString()).collect(Collectors.joining());
     }
     
@@ -748,7 +761,7 @@ public class JavaClass extends JavaElement {
      * Obtains information on all the methods enclosed in this class.
      * @return the string representing the information
      */
-    protected String toStringForMethods() {
+    String toStringForMethods() {
         return getMethods().stream().map(jm -> jm.toString()).collect(Collectors.joining());
     }
     
@@ -756,7 +769,7 @@ public class JavaClass extends JavaElement {
      * Obtains information on all the inner classes enclosed in this class.
      * @return the string representing the information
      */
-    protected String toStringInnerClasses() {
+    String toStringInnerClasses() {
         return getInnerClasses().stream().map(jc -> jc.toString()).collect(Collectors.joining());
     }
     
@@ -765,7 +778,7 @@ public class JavaClass extends JavaElement {
      * @param list the field list
      * @return the sorted field list
      */
-    protected static List<JavaField> sortFields(List<? extends JavaField> list) {
+    public static List<JavaField> sortFields(List<? extends JavaField> list) {
         return list.stream()
                 .sorted((jf1, jf2) -> jf1.getName().compareTo(jf2.getName()))
                 .collect(Collectors.toList());
@@ -776,7 +789,7 @@ public class JavaClass extends JavaElement {
      * @param list the method list
      * @return the sorted method list
      */
-    protected static List<JavaMethod> sortMethods(List<? extends JavaMethod> list) {
+    public static List<JavaMethod> sortMethods(List<? extends JavaMethod> list) {
         return list.stream()
                 .sorted((jm1, jm2) -> jm1.getSignature().compareTo(jm2.getSignature()))
                 .collect(Collectors.toList());
@@ -787,7 +800,7 @@ public class JavaClass extends JavaElement {
      * @param list the class list
      * @return the sorted class list
      */
-    protected static List<JavaClass> sortClasses(List<? extends JavaClass> list) {
+    public static List<JavaClass> sortClasses(List<? extends JavaClass> list) {
         return list.stream()
                 .sorted((jc1, jc2) -> jc1.getQualifiedName().fqn().compareTo(jc2.getQualifiedName().fqn()))
                 .collect(Collectors.toList());
@@ -796,38 +809,38 @@ public class JavaClass extends JavaElement {
     /**
      * A flag indicating whether the collected binding information is resolved.
      */
-    protected boolean resolved = false;
+    private boolean resolved = false;
     
     /**
      * The superclass of this class.
      */
-    protected JavaClass superClass = null;
+    private JavaClass superClass = null;
     
     /**
      * The collection of super interfaces.
      */
-    protected Set<JavaClass> superInterfaces = new HashSet<>();
+    private Set<JavaClass> superInterfaces = new HashSet<>();
     
     /**
      * The collection of classes used by this class.
      */
-    protected Set<JavaClass> usedClasses = new HashSet<>();
+    private Set<JavaClass> usedClasses = new HashSet<>();
     
     /**
      * The collection of classes that a method or a field of this class accesses.
      */
-    protected Set<JavaClass> efferentClasses = new HashSet<>();
+    private Set<JavaClass> efferentClasses = new HashSet<>();
     
     /**
      * The collection of classes whose method or field accesses this class.
      */
-    protected Set<JavaClass> afferentClasses = null;
+    private Set<JavaClass> afferentClasses = null;
     
     /**
      * Collects additional information on this class.
      * This method is not intended to be invoked by clients, which will be automatically invoked as needed.
      */
-    protected void collectInfo() {
+    void collectInfo() {
         if (resolved) {
             return;
         }

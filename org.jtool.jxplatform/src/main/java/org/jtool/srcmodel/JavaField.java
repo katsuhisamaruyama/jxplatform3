@@ -37,6 +37,7 @@ public class JavaField extends JavaVariable {
     
     /**
      * Creates a new object representing a field.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this field
      * @param jclass the class that declares this field
      * @throws the exception occurs when the creation of a new object fails
@@ -47,6 +48,7 @@ public class JavaField extends JavaVariable {
     
     /**
      * Creates a new object representing a field.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this field
      * @param jclass the class that declares this field
      * @throws the exception occurs when the creation of a new object fails
@@ -57,6 +59,7 @@ public class JavaField extends JavaVariable {
     
     /**
      * Creates a new object representing a field.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this enum constant
      * @param jclass the class that declares this field
      * @throws the exception occurs when the creation of a new object fails
@@ -72,8 +75,10 @@ public class JavaField extends JavaVariable {
      * @param jclass the class that declares this field
      * @throws the exception occurs when the creation of a new object fails
      */
-    protected JavaField(ASTNode node, IVariableBinding vbinding, JavaClass jclass) throws JavaElementException {
+    JavaField(ASTNode node, IVariableBinding vbinding, JavaClass jclass) throws JavaElementException {
         super(node, jclass.getFile());
+        
+        assert jclass != null;
         
         this.declaringClass = jclass;
         
@@ -94,6 +99,7 @@ public class JavaField extends JavaVariable {
     
     /**
      * Creates a new object representing a field.
+     * This constructor is not intended to be invoked by clients.
      * @param vbinding the variable binding information on this field
      * @param jclass the class that declares this field
      * @throws the exception occurs when the creation of a new object fails
@@ -225,33 +231,37 @@ public class JavaField extends JavaVariable {
     /**
      * A flag indicating whether the collected binding information is resolved.
      */
-    protected boolean resolved = false;
+    private boolean resolved = false;
     
     /**
      * The collection of methods that this field calls in its declaration.
      */
-    protected Set<JavaMethod> calledMethods = new HashSet<>();
+    private Set<JavaMethod> calledMethods = new HashSet<>();
     
     /**
      * The collection of methods that access this field in their bodies.
      */
-    protected Set<JavaMethod> accessingMethods = new HashSet<>();
+    private Set<JavaMethod> accessingMethods = new HashSet<>();
     
     /**
      * The collection of fields that this field accesses in its declaration.
      */
-    protected Set<JavaField> accessedFields = new HashSet<>();
+    private Set<JavaField> accessedFields = new HashSet<>();
     
     /**
      * The collection of fields that access this field in their declarations.
      */
-    protected Set<JavaField> accessingFields = new HashSet<>();
+    private Set<JavaField> accessingFields = new HashSet<>();
     
     /**
      * Collects additional information on this field.
      * This method is not intended to be invoked by clients, which will be automatically invoked as needed.
      */
-    protected void collectInfo() {
+    void collectInfo() {
+        if (resolved) {
+            return;
+        }
+        
         boolean resolveOk = true;
         if (binding != null) {
             resolveOk = resolveOk && findCalledMethods();

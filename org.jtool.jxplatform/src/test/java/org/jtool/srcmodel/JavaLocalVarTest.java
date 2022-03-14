@@ -29,6 +29,43 @@ public class JavaLocalVarTest {
         TetrisProject.getModelBuilder().unbuild();
         VideoStoreProject.getModelBuilder().unbuild();
     }
+    
+    @Test
+    public void testGetJavaProject1() {
+        JavaMethod jm = VideoStoreProject.getClass("org.jtool.videostore.after.Customer").getMethod("statement( )");
+        JavaLocalVar jv = jm.getLocalVariable("each", 1);
+        JavaProject result = jv.getJavaProject(); 
+        
+        assertEquals("VideoStore", result.getName());
+    }
+    
+    @Test
+    public void testGetJavaProject2() {
+        JavaMethod jm = TetrisProject.getClass("Block").getMethod("setPosXY( int int )");
+        JavaLocalVar jv = jm.getParameter("x");
+        JavaProject result = jv.getJavaProject(); 
+        
+        assertEquals("Tetris", result.getName());
+    }
+    
+    @Test
+    public void testGetFile1() {
+        JavaMethod jm = VideoStoreProject.getClass("org.jtool.videostore.after.Customer").getMethod("statement( )");
+        JavaLocalVar jv = jm.getLocalVariable("each", 1);
+        JavaFile result = jv.getFile(); 
+        
+        assertEquals("Customer.java", result.getName());
+    }
+    
+    @Test
+    public void testGetFile2() {
+        JavaMethod jm = TetrisProject.getClass("Block").getMethod("setPosXY( int int )");
+        JavaLocalVar jv = jm.getParameter("x");
+        JavaFile result = jv.getFile(); 
+        
+        assertEquals("Block.java", result.getName());
+    }
+    
     @Test
     public void testGetQualifiedName1() {
         JavaMethod jm = VideoStoreProject.getClass("org.jtool.videostore.after.Customer").getMethod("statement( )");
@@ -41,7 +78,6 @@ public class JavaLocalVarTest {
     @Test
     public void testGetQualifiedName2() {
         JavaMethod jm = TetrisProject.getClass("Block").getMethod("setPosXY( int int )");
-        
         JavaLocalVar jv = jm.getParameter("x");
         QualifiedName result = jv.getQualifiedName();
         

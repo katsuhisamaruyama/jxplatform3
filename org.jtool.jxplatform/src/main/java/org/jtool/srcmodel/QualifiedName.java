@@ -33,6 +33,9 @@ public class QualifiedName {
      * @param memberSignature the signature of the member
      */
     public QualifiedName(String className, String memberSignature) {
+        assert className != null;
+        assert memberSignature != null;
+        
         this.className = className;
         this.memberSignature = memberSignature;
     }
@@ -42,6 +45,8 @@ public class QualifiedName {
      * @param fqn the fully qualified name ({@code class#member})
      */
     public QualifiedName(String fqn) {
+        assert fqn != null;
+        
         int index = fqn.indexOf(QualifiedNameSeparator);
         if (index == -1) {
             this.className = fqn;
@@ -54,6 +59,7 @@ public class QualifiedName {
     
     /**
      * Creates a new object that represents an unresolved fully-qualified name.
+     * This constructor is not intended to be invoked by clients.
      */
     public QualifiedName() {
         this("", "");
@@ -61,6 +67,7 @@ public class QualifiedName {
     
     /**
      * Creates a new object that represents a fully-qualified name for a method or a field.
+     * This constructor is not intended to be invoked by clients.
      * @param qname the fully-qualified name of the class
      * @param memberSignature the signature of the member
      */
@@ -70,6 +77,7 @@ public class QualifiedName {
     
     /**
      * Creates a new object that represents a fully-qualified name for a method or a field.
+     * This constructor is not intended to be invoked by clients.
      * @param qname the fully-qualified name of the class
      */
     public QualifiedName(QualifiedName qname) {

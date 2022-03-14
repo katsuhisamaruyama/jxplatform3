@@ -36,6 +36,38 @@ public class JavaFieldTest {
     }
     
     @Test
+    public void testGetJavaProject1() {
+        JavaField jf = VideoStoreProject.getClass("org.jtool.videostore.after.Customer").getField("rentals");
+        JavaProject result = jf.getJavaProject(); 
+        
+        assertEquals("VideoStore", result.getName());
+    }
+    
+    @Test
+    public void testGetJavaProject2() {
+        JavaField jf = TetrisProject.getClass("Block").getField("pit");
+        JavaProject result = jf.getJavaProject(); 
+        
+        assertEquals("Tetris", result.getName());
+    }
+    
+    @Test
+    public void testGetFile1() {
+        JavaField jf = VideoStoreProject.getClass("org.jtool.videostore.after.Customer").getField("rentals");
+        JavaFile result = jf.getFile(); 
+        
+        assertEquals("Customer.java", result.getName());
+    }
+    
+    @Test
+    public void testGetFile2() {
+        JavaField jf = TetrisProject.getClass("Block").getField("pit");
+        JavaFile result = jf.getFile(); 
+        
+        assertEquals("Block.java", result.getName());
+    }
+    
+    @Test
     public void testGetQualifiedName1() {
         JavaField jf = VideoStoreProject.getClass("org.jtool.videostore.after.Customer").getField("rentals");
         QualifiedName result = jf.getQualifiedName();

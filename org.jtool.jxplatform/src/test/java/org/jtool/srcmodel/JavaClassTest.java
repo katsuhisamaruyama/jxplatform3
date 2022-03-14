@@ -44,6 +44,54 @@ public class JavaClassTest {
     }
     
     @Test
+    public void testGetJavaProject1() {
+        JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
+        JavaProject result = jc.getJavaProject(); 
+        
+        assertEquals("VideoStore", result.getName());
+    }
+    
+    @Test
+    public void testGetJavaProject2() {
+        JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Rental");
+        JavaProject result = jc.getJavaProject(); 
+        
+        assertEquals("VideoStore", result.getName());
+    }
+    
+    @Test
+    public void testGetJavaProject3() {
+        JavaClass jc = SliceProject.getClass("R134");
+        JavaProject result = jc.getJavaProject(); 
+        
+        assertEquals("Slice", result.getName());
+    }
+    
+    @Test
+    public void testGetFile1() {
+        JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
+        JavaFile result = jc.getFile(); 
+        
+        assertEquals("Customer.java", result.getName());
+    }
+    
+    @Test
+    public void testGetFile2() {
+        JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Rental");
+        JavaFile result = jc.getFile(); 
+        
+        assertEquals("Rental.java", result.getName());
+    }
+    
+    @Test
+    public void testGetFile3() {
+        JavaClass jc = SliceProject.getClass("R134");
+        JavaFile result = jc.getFile(); 
+        
+        assertEquals("Test134.java", result.getName());
+    }
+    
+    @Test
     public void testGetQualifiedName1() {
         JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
         QualifiedName result = jc.getQualifiedName();
