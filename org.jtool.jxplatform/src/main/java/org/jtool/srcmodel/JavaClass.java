@@ -234,7 +234,7 @@ public class JavaClass extends JavaElement {
     JavaClass(ITypeBinding tbinding, JavaProject jproject) {
         super(null);
         
-        assert jfile != null;
+        assert jproject != null;
         this.jproject = jproject;
         this.jfile = null;
         
