@@ -21,20 +21,12 @@ import static org.junit.Assert.assertNotNull;
 public class JavaFileTest {
     
     private static JavaProject CSclassroomProject;
-    //private static JavaProject DrawToolProject;
-    //private static JavaProject LambdaProject;
-    //private static JavaProject SimpleProject;
-    //private static JavaProject SliceProject;
     private static JavaProject TetrisProject;
     private static JavaProject VideoStoreProject;
     
     @BeforeClass
     public static void setUp() {
         CSclassroomProject = BuilderTestUtil.createProject("CS-classroom", "/lib/*", "/src");
-        //DrawToolProject = BuilderTestUtil.createProject("DrawTool", "", "/src");
-        //LambdaProject = BuilderTestUtil.createProject("Lambda", "", "");
-        //SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-        //SliceProject = BuilderTestUtil.createProject("Slice", "", "");
         TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
         VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
     }
@@ -42,10 +34,6 @@ public class JavaFileTest {
     @AfterClass
     public static void tearDown() {
         CSclassroomProject.getModelBuilder().unbuild();
-        //DrawToolProject.getModelBuilder().unbuild();
-        //LambdaProject.getModelBuilder().unbuild();
-        //SimpleProject.getModelBuilder().unbuild();
-        //SliceProject.getModelBuilder().unbuild();
         TetrisProject.getModelBuilder().unbuild();
         VideoStoreProject.getModelBuilder().unbuild();
     }
