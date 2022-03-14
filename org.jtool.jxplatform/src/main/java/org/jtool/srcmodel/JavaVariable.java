@@ -62,7 +62,6 @@ public abstract class JavaVariable extends JavaElement {
     protected JavaVariable(ASTNode node, JavaFile jfile) {
         super(node);
         
-        assert jfile != null;
         this.jfile = jfile;
     }
     
