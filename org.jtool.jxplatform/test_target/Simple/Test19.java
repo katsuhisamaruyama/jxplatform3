@@ -1,4 +1,4 @@
-public class Test19{
+public class Test19 {
 
     public void m() {
         int i = 0;

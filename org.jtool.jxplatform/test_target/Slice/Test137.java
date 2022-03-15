@@ -10,14 +10,14 @@ class Test137 {
 }
 
 class S137 {
-    private P137 p137 = new P137();
+    private P137 p = new P137();
     
     public void add(String elem) {
-        p137.add(elem);
+        p.add(elem);
     }
 
     public String get(int index) {
-        return p137.get(index);
+        return p.get(index);
     }
 }
 

@@ -108,4 +108,3 @@ class R134 extends Q134 implements I134 {
 interface I134 {
     public int f(int a);
 }
-
