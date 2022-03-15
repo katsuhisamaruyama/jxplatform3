@@ -314,6 +314,22 @@ public class JavaMethodTest {
     }
     
     @Test
+    public void testIsSynthetic1() {
+        JavaMethod jm = SimpleProject.getClass("A119").getMethod("A119( )");
+        boolean result = jm.isSynthetic();
+        
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testIsSynthetic2() {
+        JavaMethod jm = TetrisProject.getClass("A126").getMethod("A126( )");
+        boolean result = jm.isSynthetic();
+        
+        assertFalse(result);
+    }
+    
+    @Test
     public void testGetParameters1() {
         JavaMethod jm = VideoStoreProject.getClass("org.jtool.videostore.after.Customer").getMethod("statement( )");
         List<String> result = jm.getParameters().stream().map(JavaLocalVar::getName).collect(Collectors.toList());

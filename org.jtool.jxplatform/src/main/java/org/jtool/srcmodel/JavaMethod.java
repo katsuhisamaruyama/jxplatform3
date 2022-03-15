@@ -414,6 +414,14 @@ public class JavaMethod extends JavaElement {
     }
     
     /**
+     * Tests if this is a synthetic method that was made up by the compiler.
+     * @return {@code true} if this is a synthetic method, otherwise {@code false}
+     */
+    public boolean isSynthetic() {
+        return astNode == null;
+    }
+    
+    /**
      * Obtains the list of all parameters of this method.
      * @return the parameter list
      */
