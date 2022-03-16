@@ -34,12 +34,20 @@ public static <T> List<String> asSortedList(Stream<T> stream) {
         return asSortedStr(set.stream().map(e -> e.getQualifiedName()));
     }
     
+    public static String asSortedStrOfTypeBinding(List<ITypeBinding> set) {
+        return asSortedStr(set.stream().map(e -> e.getQualifiedName()));
+    }
+    
     public static String asSortedStrOf(List<? extends JavaElement> list) {
         return asSortedStr(list.stream().map(e -> e.getQualifiedName().fqn()));
     }
     
     public static String asStrOf(List<? extends JavaElement> list) {
         return list.stream().map(e -> e.getQualifiedName().fqn()).collect(Collectors.joining(";"));
+    }
+    
+    public static String asStr(List<? extends Object> list) {
+        return list.stream().map(Object::toString).collect(Collectors.joining(";"));
     }
     
     public static String asSortedStrOf(Set<? extends JavaElement> set) {

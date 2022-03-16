@@ -34,6 +34,7 @@ public class CFGReceiver extends CFGStatement {
     
     /**
      * Sets the name of the receiver.
+     * This method is not intended to be invoked by clients.
      * @param name the name to be set
      */
     public void setName(String name) {

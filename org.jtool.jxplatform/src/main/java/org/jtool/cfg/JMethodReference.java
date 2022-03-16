@@ -18,6 +18,7 @@ import org.eclipse.jdt.core.dom.Modifier;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 /**
@@ -70,7 +71,7 @@ public class JMethodReference extends JReference {
     /**
      * The collection of the exception types that the referenced method might throw.
      */
-    private List<ITypeBinding> exceptionTypes = new ArrayList<>();
+    private Set<ITypeBinding> exceptionTypes = new HashSet<>();
     
     /**
      * The node corresponding to the receiver of this method reference.
@@ -84,6 +85,7 @@ public class JMethodReference extends JReference {
     
     /**
      * Creates a new object that represents a reference to a method or a constructor.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node corresponding to this reference
      * @param nameNode the node of the name part of this method reference
      * @param mbinding the method binding information on this reference
@@ -128,7 +130,7 @@ public class JMethodReference extends JReference {
         }
         
         this.fqn = new QualifiedName(declaringClassName, signature);
-        this.referenceForm = "";
+        this.referenceForm = signature;
         this.isPrimitiveType = binding.getReturnType().isPrimitive();
         this.modifiers = binding.getModifiers();
         this.inProject = binding.getDeclaringClass().isFromSource();
@@ -152,9 +154,10 @@ public class JMethodReference extends JReference {
      * Returns the receiver name of the referenced element.
      * @return the receiver name, or the empty string if the element does not have any receiver
      */
+    @Override
     public String getReceiverName() {
         if (receiver != null) {
-            receiver.getName();
+            return receiver.getName();
         }
         return super.getReceiverName();
     }
@@ -213,7 +216,11 @@ public class JMethodReference extends JReference {
      * @return {@code true} if this is a reference to a local method or constructor within the class itself, otherwise {@code false}
      */
     public boolean isLocal() {
-        return receiver != null ? "this".equals(receiver.getName()) : false;
+        if (receiver != null) {
+            return "this".equals(receiver.getName());
+        } else {
+            return !isSuper();
+        }
     }
     
     /**
@@ -268,7 +275,7 @@ public class JMethodReference extends JReference {
      * Returns the exception types that the referenced method might throw.
      * @return the collection of type binding information for the thrown exceptions
      */
-    public List<ITypeBinding> getExceptionTypes() {
+    public Set<ITypeBinding> getExceptionTypes() {
         return exceptionTypes;
     }
     
@@ -323,7 +330,7 @@ public class JMethodReference extends JReference {
      * @param index the index number of the argument of the referencing method
      * @return {@code true} if the type of the argument is primitive, otherwise {@code false}
      */
-    public boolean getArgumentPrimitiveType(int index) {
+    public boolean isArgumentPrimitiveType(int index) {
         return (index >= 0 && index < argumentPrimitiveTypes.size())
                 ? argumentPrimitiveTypes.get(index) : false;
     }
@@ -338,6 +345,7 @@ public class JMethodReference extends JReference {
     
     /**
      * Sets a receiver of this method reference.
+     * This method is not intended to be invoked by clients.
      * @param receiver the receiver node to be set
      */
     public void setReceiver(CFGReceiver receiver) {
@@ -357,6 +365,7 @@ public class JMethodReference extends JReference {
     
     /**
      * Sets the approximated types of receiver associated to this node.
+     * This method is not intended to be invoked by clients.
      * @param types the collection of the approximated types to be set
      */
     public void setApproximatedTypes(Set<JClass> types) {

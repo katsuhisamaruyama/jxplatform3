@@ -568,7 +568,6 @@ public class ExpressionVisitor extends ASTVisitor {
         
         JMethodReference jcall = new JMethodReference(node, node, mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
-        jcall.setReceiver(null);
         
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);
@@ -592,7 +591,6 @@ public class ExpressionVisitor extends ASTVisitor {
         
         JMethodReference jcall = new JMethodReference(node, node, mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
-        jcall.setReceiver(null);
         
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);
@@ -683,7 +681,7 @@ public class ExpressionVisitor extends ASTVisitor {
         callNode.addActualIn(actualInNode);
         
         String type = callNode.getMethodCall().getArgumentType(ordinal);
-        boolean primitive = callNode.getMethodCall().getArgumentPrimitiveType(ordinal);
+        boolean primitive = callNode.getMethodCall().isArgumentPrimitiveType(ordinal);
         JReference actualIn = new JSpecialVarReference(node,
                 "$" + String.valueOf(temporaryVariableId), type, primitive);
         temporaryVariableId++;
