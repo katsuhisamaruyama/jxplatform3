@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -18,12 +18,12 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
     /**
      * Nodes of this graph.
      */
-    private Set<N> nodes = new HashSet<>();
+    protected Set<N> nodes = new HashSet<>();
     
     /**
      * Edges of this graph.
      */
-    private Set<E> edges = new HashSet<>();
+    protected Set<E> edges = new HashSet<>();
     
     /**
      * Creates a new, empty object.
@@ -33,11 +33,11 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
     }
     
     /**
-     * Sets nodes of this graph.
-     * @param set a collection of nodes
+     * Clears all nodes and all edges of this graph.
      */
-    public void setNodes(Set<N> set) {
-        nodes = set;
+    public void clear() {
+        nodes.clear();
+        edges.clear();
     }
     
     /**
@@ -49,14 +49,6 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
     }
     
     /**
-     * Sets edges of this graph.
-     * @param set a collection of edges
-     */
-    public void setEdges(Set<E> set) {
-        edges = set;
-    }
-    
-    /**
      * Returns all edges of this graph.
      * @return the collection of the edges
      */
@@ -65,11 +57,19 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
     }
     
     /**
-     * Clears all nodes and all edges of this graph.
+     * Adds nodes of this graph.
+     * @param set a collection of nodes to be added
      */
-    public void clear() {
-        nodes.clear();
-        edges.clear();
+    public void addNodes(Set<N> set) {
+        nodes = set;
+    }
+    
+    /**
+     * Sets edges of this graph.
+     * @param set a collection of edges to be added
+     */
+    public void addEdges(Set<E> set) {
+        edges = set;
     }
     
     /**

@@ -176,27 +176,6 @@ public class DD extends Dependence {
     }
     
     /**
-     * Creates a clone of this object.
-     * @return the created clone
-     */
-    @Override
-    public DD clone() {
-        DD cloneEdge = new DD(getSrcNode(), getDstNode());
-        super.setClone(cloneEdge);
-        setClone(cloneEdge);
-        return cloneEdge;
-    }
-    
-    /**
-     * Copies information on this edge into a given clone.
-     * @param cloneEdge the clone of this edge
-     */
-    protected void setClone(DD cloneEdge) {
-        cloneEdge.setVariable(getVariable());
-        cloneEdge.setLoopCarriedNode(getLoopCarriedNode());
-    }
-    
-    /**
      * {@inheritDoc}
      */
     @Override

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -41,6 +41,22 @@ public abstract class GraphEdge extends GraphElement {
     }
     
     /**
+     * Returns the source node for this edge.
+     * @return the source node
+     */
+    public GraphNode getSrcNode() {
+        return src;
+    }
+    
+    /**
+     * Returns the destination node for this edge.
+     * @return the destination node
+     */
+    public GraphNode getDstNode() {
+        return dst;
+    }
+    
+    /**
      * Sets a source node for this edge.
      * @param node the source node to be set
      */
@@ -62,22 +78,6 @@ public abstract class GraphEdge extends GraphElement {
         dst = node;
         src.addOutgoingEdge(this);
         dst.addIncomingEdge(this);
-    }
-    
-    /**
-     * Returns the source node for this edge.
-     * @return the source node
-     */
-    public GraphNode getSrcNode() {
-        return src;
-    }
-    
-    /**
-     * Returns the destination node for this edge.
-     * @return the destination node
-     */
-    public GraphNode getDstNode() {
-        return dst;
     }
     
     /**
@@ -103,15 +103,6 @@ public abstract class GraphEdge extends GraphElement {
     @Override
     public int hashCode() {
         return Long.valueOf(src.id + dst.id).hashCode();
-    }
-    
-    /**
-     * Copies information on this edge into a given clone.
-     * @param cloneEdge the clone of this edge
-     */
-    protected void setClone(GraphEdge cloneEdge) {
-        cloneEdge.setSrcNode(src);
-        cloneEdge.setDstNode(dst);
     }
     
     /**

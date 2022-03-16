@@ -276,18 +276,6 @@ public class Dependence extends GraphEdge {
     }
     
     /**
-     * Creates a clone of this object.
-     * @return the created clone
-     */
-    @Override
-    public Dependence clone() {
-        Dependence cloneEdge = new Dependence(getSrcNode(), getDstNode());
-        super.setClone(cloneEdge);
-        setClone(cloneEdge);
-        return cloneEdge;
-    }
-    
-    /**
      * Displays information on this dependence.
      */
     public void print() {

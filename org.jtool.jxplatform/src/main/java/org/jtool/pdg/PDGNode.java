@@ -215,17 +215,6 @@ public class PDGNode extends GraphNode {
     }
     
     /**
-     * Creates a clone of this object.
-     * @return the created clone
-     */
-    @Override
-    public PDGNode clone() {
-        PDGNode cloneNode = new PDGNode(getCFGNode());
-        super.setClone(cloneNode);
-        return cloneNode;
-    }
-    
-    /**
      * Displays information on this node.
      */
     public void print() {

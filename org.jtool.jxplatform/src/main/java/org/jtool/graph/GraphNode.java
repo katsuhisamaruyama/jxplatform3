@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -28,22 +28,22 @@ public abstract class GraphNode extends GraphElement {
     /**
      * The collection of edges incoming to this node. 
      */
-    private Set<GraphEdge> incomingEdges = new HashSet<>();
+    protected Set<GraphEdge> incomingEdges = new HashSet<>();
     
     /**
      * The collection of edges outgoing from this node. 
      */
-    private Set<GraphEdge> outgoingEdges = new HashSet<>();
+    protected Set<GraphEdge> outgoingEdges = new HashSet<>();
     
     /**
      * The collection of source nodes of this node. 
      */
-    private Set<GraphNode> srcNodes = new HashSet<>();
+    protected Set<GraphNode> srcNodes = new HashSet<>();
     
     /**
      * The collection of destination nodes of this node. 
      */
-    private Set<GraphNode> dstNodes = new HashSet<>();
+    protected Set<GraphNode> dstNodes = new HashSet<>();
     
     /**
      * Creates a new, empty object that represents a node.
@@ -54,7 +54,7 @@ public abstract class GraphNode extends GraphElement {
     }
     
     /**
-     * Clears information on this node. 
+     * Clears information on this node.
      */
     public void clear() {
         incomingEdges.clear();
@@ -64,7 +64,7 @@ public abstract class GraphNode extends GraphElement {
     }
     
     /**
-     * Sets the identification number
+     * Sets the identification number.
      * @param id the identification number to be assigned
      */
     public void setId(long id) {
@@ -80,7 +80,7 @@ public abstract class GraphNode extends GraphElement {
     }
     
     /**
-     * Adds an edge incoming to this node. 
+     * Adds an edge incoming to this node.
      * @param edge the incoming edge to be added
      */
     public void addIncomingEdge(GraphEdge edge) {
@@ -100,7 +100,7 @@ public abstract class GraphNode extends GraphElement {
     }
     
     /**
-     * Adds edges incoming to this node. 
+     * Adds edges incoming to this node.
      * @param edges the collection of the incoming edges to be added
      */
     public void addIncomingEdges(Set<GraphEdge> edges) {
@@ -108,7 +108,7 @@ public abstract class GraphNode extends GraphElement {
     }
     
     /**
-     * Adds edges outgoing to this node. 
+     * Adds edges outgoing to this node.
      * @param edges the collection of the outgoing edges to be added
      */
     public void addOutgoingEdges(Set<GraphEdge> edges) {
@@ -121,7 +121,11 @@ public abstract class GraphNode extends GraphElement {
      */
     public void removeIncomingEdge(GraphEdge edge) {
         incomingEdges.remove(edge);
-        srcNodes.remove(edge.getSrcNode());
+        
+        GraphNode src = edge.getSrcNode();
+        srcNodes.remove(src);
+        src.outgoingEdges.remove(edge);
+        src.dstNodes.remove(this);
     }
     
     /**
@@ -130,37 +134,12 @@ public abstract class GraphNode extends GraphElement {
      */
     public void removeOutgoingEdge(GraphEdge edge) {
         outgoingEdges.remove(edge);
-        dstNodes.remove(edge.getDstNode());
-    }
-    
-    /**
-     * Clears information on incoming edges stored in this node.
-     */
-    public void clearIncomingEdges() {
-        incomingEdges.clear();
-    }
-    
-    /**
-     * Clears information on outgoing edges stored in this node.
-     */
-    public void clearOutgoingEdges() {
-        outgoingEdges.clear();
-    }
-    
-    /**
-     * Sets edges incoming to this node.
-     * @param edges the collection of the incoming edges to be set
-     */
-    public void setIncomingEdges(Set<GraphEdge> edges) {
-        incomingEdges = edges;
-    }
-    
-    /**
-     * Sets edges outgoing from this node.
-     * @param edges the collection of the outgoing edges to be set
-     */
-    public void setOutgoingEdges(Set<GraphEdge> edges) {
-        outgoingEdges = edges;
+        
+        GraphNode dst = edge.getDstNode();
+        dstNodes.remove(dst);
+        srcNodes.remove(dst);
+        dst.incomingEdges.remove(edge);
+        dst.srcNodes.remove(this);
     }
     
     /**
@@ -218,15 +197,6 @@ public abstract class GraphNode extends GraphElement {
     @Override
     public int hashCode() {
         return Long.valueOf(id).hashCode();
-    }
-    
-    /**
-     * Copies information on this node into a given clone.
-     * @param cloneNode the clone of this node
-     */
-    protected void setClone(GraphNode cloneNode) {
-        cloneNode.addIncomingEdges(incomingEdges);
-        cloneNode.addOutgoingEdges(outgoingEdges);
     }
     
     /**
