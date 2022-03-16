@@ -1,5 +1,5 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -7,7 +7,6 @@ package org.jtool.cfg;
 
 import org.jtool.srcmodel.QualifiedName;
 import org.eclipse.jdt.core.dom.ASTNode;
-import org.eclipse.jdt.core.dom.IVariableBinding;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.Modifier;
 
@@ -20,16 +19,7 @@ public class JSpecialVarReference extends JReference {
     
     /**
      * Creates a new object that represents a reference to a variable invisible on source code.
-     * @param node the AST node for this variable reference
-     * @param name the name of the referenced variable
-     * @param vbinding the variable binding information on the variable reference
-     */
-    public JSpecialVarReference(ASTNode node, String name, IVariableBinding vbinding) {
-        this(node, name, vbinding.getVariableDeclaration().getType());
-    }
-    
-    /**
-     * Creates a new object that represents a reference to a variable invisible on source code.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this variable reference
      * @param name the name of the referenced variable
      * @param tbinding the type binding information on the variable reference
@@ -47,6 +37,7 @@ public class JSpecialVarReference extends JReference {
     
     /**
      * Creates a new object that represents a reference to a variable invisible on source code.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this variable reference
      * @param name the name of the referenced variable
      * @param type the type of the referenced variable
@@ -64,6 +55,7 @@ public class JSpecialVarReference extends JReference {
     
     /**
      * Creates a new object that represents a reference to a variable invisible on source code.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this variable reference
      * @param name the name of the referenced variable
      * @param primitive {@code true} if the type of the referenced variable is primitive, otherwise {@code false}
@@ -97,11 +89,11 @@ public class JSpecialVarReference extends JReference {
     }
     
     /**
-     * Tests if this variable reference is visible.
-     * @return always {@code false} that indicate a reference to an invisible variable.
+     * Tests if an element for this reference is exposed.
+     * @return {@code false} that indicate a reference to an exposed element.
      */
     @Override
-    public boolean isVisible() {
+    public boolean isExposed() {
         return false;
     }
     

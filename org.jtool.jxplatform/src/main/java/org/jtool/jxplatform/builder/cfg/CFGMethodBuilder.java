@@ -46,8 +46,12 @@ class CFGMethodBuilder {
                 LambdaExpression node = (LambdaExpression)jmethod.getASTNode();
                 params = node.parameters();
             } else {
-                MethodDeclaration node = (MethodDeclaration)jmethod.getASTNode();
-                params = node.parameters();
+                if (jmethod.isSynthetic()) {
+                    params = new ArrayList<>();
+                } else {
+                    MethodDeclaration node = (MethodDeclaration)jmethod.getASTNode();
+                    params = node.parameters();
+                }
             }
         } else {
             params = new ArrayList<>();
@@ -73,6 +77,17 @@ class CFGMethodBuilder {
         cfg.setEntryNode(entry);
         cfg.add(entry);
         
+        if (jmethod.isSynthetic()) {
+            CFGExit exit = getExitNode(jmethod, mbinding);
+            cfg.setExitNode(exit);
+            cfg.add(exit);
+            
+            ControlFlow exitEdge = new ControlFlow(entry, exit);
+            exitEdge.setTrue();
+            cfg.add(exitEdge);
+            return cfg;
+        }
+        
         CFGNode tmpExit = new CFGNode();
         cfg.setExitNode(tmpExit);
         
@@ -89,16 +104,7 @@ class CFGMethodBuilder {
         jmethod.getASTNode().accept(visitor);
         nextNode = visitor.getNextCFGNode();
         
-        CFGExit exit;
-        if (mbinding == null) {
-            exit = new CFGExit(jmethod.getASTNode(), CFGNode.Kind.initializerExit);
-        } else {
-            if (mbinding.isConstructor()) {
-                exit = new CFGExit(jmethod.getASTNode(), CFGNode.Kind.constructorExit);
-            } else {
-                exit = new CFGExit(jmethod.getASTNode(), CFGNode.Kind.methodExit);
-            }
-        }
+        CFGExit exit = getExitNode(jmethod, mbinding);
         cfg.setExitNode(exit);
         cfg.add(exit);
         
@@ -125,6 +131,19 @@ class CFGMethodBuilder {
         
         return cfg;
     }
+    
+    private static CFGExit getExitNode(JavaMethod jmethod, IMethodBinding mbinding) {
+        if (mbinding == null) {
+            return new CFGExit(jmethod.getASTNode(), CFGNode.Kind.initializerExit);
+        } else {
+            if (mbinding.isConstructor()) {
+                return new CFGExit(jmethod.getASTNode(), CFGNode.Kind.constructorExit);
+            } else {
+                return new CFGExit(jmethod.getASTNode(), CFGNode.Kind.methodExit);
+            }
+        }
+    }
+    
     
     private static void replace(CFG cfg, CFGNode tmpNode, CFGNode node) {
         Set<GraphEdge> edges = new HashSet<>(tmpNode.getIncomingEdges());

@@ -28,6 +28,7 @@ public class JLocalVarReference extends JReference {
     
     /**
      * Creates a new object that represents a reference to a local variable.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node corresponding to this reference
      * @param vbinding the variable binding information on this reference
      */

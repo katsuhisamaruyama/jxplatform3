@@ -91,10 +91,11 @@ public abstract class JReference {
     protected CodeRange codeRange = null;
     
     /**
-     * Creates a new object that represents a reference
+     * Creates a new object that represents a reference.
+     * This constructor is not intended to be invoked by clients.
      * @param node AST node corresponding to this reference
      */
-    public JReference(ASTNode node) {
+    protected JReference(ASTNode node) {
         astNode = node;
     }
     
@@ -276,10 +277,10 @@ public abstract class JReference {
     }
     
     /**
-     * Tests if this reference is visible.
-     * @return default {@code true} that indicate a reference to an visible element.
+     * Tests if an element for this reference is exposed.
+     * @return default {@code true} that indicate a reference to an exposed element.
      */
-    public boolean isVisible() {
+    public boolean isExposed() {
         return true;
     }
     

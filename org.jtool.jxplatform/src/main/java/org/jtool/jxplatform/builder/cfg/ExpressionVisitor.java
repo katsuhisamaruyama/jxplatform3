@@ -742,7 +742,7 @@ public class ExpressionVisitor extends ASTVisitor {
             JavaClass jclass = jproject.getClass(jcall.getDeclaringClassName());
             if (jclass != null) {
                 JavaMethod jmethod = jclass.getMethod(jcall.getSignature());
-                if (jmethod != null) {
+                if (jmethod != null && !jmethod.isSynthetic()) {
                     ExceptionTypeCollector collector = new ExceptionTypeCollector();
                     for (ITypeBinding type : collector.getExceptions(jmethod)) {
                         statementVisitor.setExceptionFlowOnMethodCall(callNode, type);

@@ -79,7 +79,7 @@ class LocalAliasResolver {
     private void aliasRelationForReceiver(CFG cfg, CFGNode node) {
         CFGReceiver receiverNode = (CFGReceiver)node;
         JReference var = receiverNode.getUseFirst();
-        if (var != null && !var.isVisible()) {
+        if (var != null && !var.isExposed()) {
             String refForm = getReferenceForm(cfg, receiverNode, "");
             JReference v = new JSpecialVarReference(var.getASTNode(),
                     refForm, var.getType(), var.isPrimitiveType());
@@ -104,7 +104,7 @@ class LocalAliasResolver {
                 JReference predVar = predReceiverNode.getUseFirst();
                 if (predVar != null) {
                     String preName = predVar.getReferenceForm() + "." + predCallNode.getSignature();
-                    if (predVar.isVisible()) {
+                    if (predVar.isExposed()) {
                         return preName;
                     } else {
                         return getReferenceForm(cfg, predReceiverNode, preName);
@@ -161,12 +161,12 @@ class LocalAliasResolver {
             return null;
         }
         JReference def = stNode.getDefVariables().get(0);
-        if (def.isPrimitiveType() || !def.isVisible()) {
+        if (def.isPrimitiveType() || !def.isExposed()) {
             return null;
         }
         
         JReference use = stNode.getUseVariables().get(0);
-        if (use.isMethodCall() || !use.isVisible()) {
+        if (use.isMethodCall() || !use.isExposed()) {
             return null;
         }
         

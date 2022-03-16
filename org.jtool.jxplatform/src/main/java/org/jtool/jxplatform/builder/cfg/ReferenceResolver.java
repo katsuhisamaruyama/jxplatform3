@@ -81,7 +81,7 @@ class ReferenceResolver {
                     boolean inProject = bcStore.findInternalClass(def.getClassName()) != null;
                     
                     if (!method.isInProject() || method.isInProject() == inProject) {
-                        JReference fvar = createFieldReference(callNode.getASTNode(),
+                        JReference fvar = createExternalFieldReference(callNode.getASTNode(),
                                 def, receiverName, callNode.getApproximatedTypeNames(), inProject);
                         callNode.addDefVariable(fvar);
                     }
@@ -103,7 +103,7 @@ class ReferenceResolver {
                     boolean inProject = bcStore.findInternalClass(use.getClassName()) != null;
                     
                     if (!method.isInProject() || method.isInProject() == inProject) {
-                        JReference fvar = createFieldReference(callNode.getASTNode(),
+                        JReference fvar = createExternalFieldReference(callNode.getASTNode(),
                                 use, receiverName, callNode.getApproximatedTypeNames(), inProject);
                         callNode.addUseVariable(fvar);
                     }
@@ -138,7 +138,7 @@ class ReferenceResolver {
         }
     }
     
-    private JReference createFieldReference(ASTNode node, DefUseField var,
+    private JReference createExternalFieldReference(ASTNode node, DefUseField var,
             String receiverName, Set<String> receiverTypes, boolean inProject) {
         String referenceForm = var.getReferenceForm();
         if (inProject) {

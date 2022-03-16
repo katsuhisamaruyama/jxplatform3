@@ -43,15 +43,16 @@ public class JFieldReference extends JReference {
     /**
      * The AST node corresponding to the name of this reference.
      */
-    protected ASTNode nameNode;
+    private ASTNode nameNode;
     
     /**
-     * A flag that indicates whether this is a reference to a visible field.
+     * A flag that indicates whether an element for this reference is exposed.
      */
-    protected boolean visible = true;
+    private boolean exposed = true;
     
     /**
      * Creates a new object that represents a reference to a field.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node corresponding to this reference
      * @param nameNode the node of the name part of this field reference
      * @param vbinding the variable binding information on this reference
@@ -91,6 +92,7 @@ public class JFieldReference extends JReference {
     
     /**
      * Creates a new object that represents a reference to a field.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node corresponding to this reference
      * @param nameNode the node of the name part of this field reference
      * @param referenceForm the form of this reference
@@ -112,6 +114,7 @@ public class JFieldReference extends JReference {
     
     /**
      * Creates a new object that represents a reference to a type literal.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node corresponding to this reference
      * @param tbinding the type binding information on this reference
      */
@@ -148,6 +151,7 @@ public class JFieldReference extends JReference {
     
     /**
      * Creates a new object that represents a reference to a field.
+     * This constructor is not intended to be invoked by clients.
      * @param node the AST node corresponding to this reference
      * @param className the name of a class declaring the referenced field
      * @param name the name of the referenced field
@@ -156,10 +160,10 @@ public class JFieldReference extends JReference {
      * @param primitive {@code true} if the type of the referenced field is primitive, otherwise {@code false}
      * @param modifiers the modifier information on the referenced field
      * @param inProject {@code true} if the referenced field exists in the target project, otherwise {@code false}
-     * @param visible {@code true} if this is a reference to a visible field, otherwise {@code false}
+     * @param accessible {@code true} if this is a reference to an exposed field, otherwise {@code false}
      */
     public JFieldReference(ASTNode node, String className, String name,
-            String referenceForm, String type, boolean primitive, int modifiers, boolean inProject, boolean visible) {
+            String referenceForm, String type, boolean primitive, int modifiers, boolean inProject, boolean exposed) {
         super(node);
         
         this.nameNode = node;
@@ -179,7 +183,7 @@ public class JFieldReference extends JReference {
         this.isEnumConstant = false;
         this.isLocal = enclosingClassName.equals(declaringClassName);
         this.isSuper = node instanceof SuperFieldAccess;
-        this.visible = visible;
+        this.exposed = exposed;
     }
     
     /**
@@ -199,12 +203,12 @@ public class JFieldReference extends JReference {
     }
     
     /**
-     * Tests if this reference is visible.
-     * @return {@code true} if this is a reference to a visible field, otherwise {@code false}
+     * Tests if an element for this reference is exposed.
+     * @return {@code true} if this is a reference to an exposed element.
      */
     @Override
-    public boolean isVisible() {
-        return visible;
+    public boolean isExposed() {
+        return exposed;
     }
     
     /**

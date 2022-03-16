@@ -122,12 +122,12 @@ public class SliceCriterion {
             if (node.isStatement() && !node.getCFGNode().isActualOut()) {
                 PDGStatement stnode = (PDGStatement)node;
                 for (JReference def : stnode.getDefVariables()) {
-                    if (def.isVisible() && position == def.getStartPosition()) {
+                    if (def.isExposed() && position == def.getStartPosition()) {
                         return new SliceCriterion(pdg, stnode, def);
                     }
                 }
                 for (JReference use : stnode.getUseVariables()) {
-                    if (use.isVisible() && position == use.getStartPosition()) {
+                    if (use.isExposed() && position == use.getStartPosition()) {
                         return new SliceCriterion(pdg, stnode, use);
                     }
                 }
