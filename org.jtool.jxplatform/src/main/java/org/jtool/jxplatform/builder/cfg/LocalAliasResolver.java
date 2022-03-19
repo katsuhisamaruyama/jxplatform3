@@ -81,6 +81,10 @@ class LocalAliasResolver {
         JReference var = receiverNode.getUseFirst();
         if (var != null && !var.isExposed()) {
             String refForm = getReferenceForm(cfg, receiverNode, "");
+            if (refForm.length() == 0) {
+                return;
+            }
+            
             JReference v = new JSpecialVarReference(var.getASTNode(),
                     refForm, var.getType(), var.isPrimitiveType());
             receiverNode.addUseVariable(v);
@@ -132,10 +136,6 @@ class LocalAliasResolver {
     
     private List<String> getNames(String name) {
         List<String> names = new ArrayList<>();
-        if (name.length() == 0) {
-            return names;
-        }
-        
         int index = -1;
         while (true) {
             index = name.indexOf('.', index + 1);
