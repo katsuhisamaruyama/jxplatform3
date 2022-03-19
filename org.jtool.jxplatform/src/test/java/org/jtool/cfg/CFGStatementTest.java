@@ -601,6 +601,7 @@ public class CFGStatementTest {
         
         assertEquals("$102.x", TestUtil.asStrOfReference(result));
     }
+    
     @Test
     public void testGetDefVariablesTest130_4() {
         CFG cfg = CFGTestUtil.createCFGFromSliceProject("Test130", "n( int )");
@@ -609,6 +610,7 @@ public class CFGStatementTest {
         
         assertEquals("$101", TestUtil.asStrOfReference(result));
     }
+    
     @Test
     public void testGetDefVariablesTest130_5() {
         CFG cfg = CFGTestUtil.createCFGFromSliceProject("Test130", "n( int )");
@@ -861,7 +863,6 @@ public class CFGStatementTest {
         assertEquals("$108", TestUtil.asStrOfReference(result));
     }
     
-    
     @Test
     public void testGetDefVariablesTest133_26() {
         CFG cfg = CFGTestUtil.createCFGFromSliceProject("Test133", "m( )");
@@ -1023,7 +1024,6 @@ public class CFGStatementTest {
         
         assertEquals("$100", TestUtil.asStrOfReference(result));
     }
-    
     
     @Test
     public void testGetDefVariablesTest135_4() {
@@ -1780,6 +1780,7 @@ public class CFGStatementTest {
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
+    
     @Test
     public void testGetUseVariablesTest130_4() {
         CFG cfg = CFGTestUtil.createCFGFromSliceProject("Test130", "n( int )");
@@ -1788,6 +1789,7 @@ public class CFGStatementTest {
         
         assertEquals("x$0", TestUtil.asStrOfReference(result));
     }
+    
     @Test
     public void testGetUseVariablesTest130_5() {
         CFG cfg = CFGTestUtil.createCFGFromSliceProject("Test130", "n( int )");
@@ -2040,7 +2042,6 @@ public class CFGStatementTest {
         assertEquals("", TestUtil.asStrOfReference(result));
     }
     
-    
     @Test
     public void testGetUseVariablesTest133_26() {
         CFG cfg = CFGTestUtil.createCFGFromSliceProject("Test133", "m( )");
@@ -2202,7 +2203,6 @@ public class CFGStatementTest {
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
-    
     
     @Test
     public void testGetUseVariablesTest135_4() {
