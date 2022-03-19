@@ -154,6 +154,10 @@ public class ExpressionVisitor extends ASTVisitor {
         analysisMode.push(AnalysisMode.USE);
     }
     
+    static void resetTemporaryVariableId() {
+        temporaryVariableId = 100;
+    }
+    
     public CFGNode getEntryNode() {
         return entryNode;
     }

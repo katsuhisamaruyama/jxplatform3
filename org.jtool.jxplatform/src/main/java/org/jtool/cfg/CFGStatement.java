@@ -37,6 +37,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Adds a variable to the collection of variables defined this node.
+     * This method is not intended to be invoked by clients.
      * @param jv the variable to be added
      */
     public void addDefVariable(JReference jv) {
@@ -47,6 +48,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Adds a variable to the collection of variables used this node.
+     * This method is not intended to be invoked by clients.
      * @param jv the variable to be added
      */
     public void addUseVariable(JReference jv) {
@@ -57,6 +59,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Adds variables to the collection of variables defined this node.
+     * This method is not intended to be invoked by clients.
      * @param jvs the collection of the variables to be added
      */
     public void addDefVariables(List<JReference> jvs) {
@@ -65,6 +68,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Adds variables to the collection of variables used this node.
+     * This method is not intended to be invoked by clients.
      * @param jvs the collection of the variables to be added
      */
     public void addUseVariables(List<JReference> jvs) {
@@ -73,6 +77,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Removes a variable from the collection of variables defined this node.
+     * This method is not intended to be invoked by clients.
      * @param jv the collection of the variables to be removed
      * @return {@code true} if the removal is successfully done, otherwise {@code false}
      */
@@ -82,6 +87,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Removes a variable from the collection of variables used this node.
+     * This method is not intended to be invoked by clients.
      * @param jv the collection of the variables to be removed
      * @return {@code true} if the removal is successfully done, otherwise {@code false}
      */
@@ -91,6 +97,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Clears the collection of variables defined this node.
+     * This method is not intended to be invoked by clients.
      */
     public void clearDefVariables() {
         defs.clear();
@@ -98,6 +105,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Clears the collection of variables defined this node.
+     * This method is not intended to be invoked by clients.
      */
     public void clearUseVariables() {
         uses.clear();
@@ -105,6 +113,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Sets the collection of variables defined in this node.
+     * This method is not intended to be invoked by clients.
      * @param jvs the collection of the variables to be set
      */
     public void setDefVariables(List<JReference> jvs) {
@@ -113,6 +122,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Sets the collection of variables used in this node.
+     * This method is not intended to be invoked by clients.
      * @param jvs the collection of the variables to be set
      */
     public void setUseVariables(List<JReference> jvs) {
@@ -121,6 +131,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Sets the collection that stores a variable defined in this node.
+     * This method is not intended to be invoked by clients.
      * @param jv the variable to be set
      */
     public void setDefVariable(JReference jv) {
@@ -130,6 +141,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Sets the collection that stores a variable used in this node.
+     * This method is not intended to be invoked by clients.
      * @param jv the variable to be set
      */
     public void setUseVariable(JReference jv) {
@@ -227,15 +239,6 @@ public class CFGStatement extends CFGNode {
             return uses.get(0);
         }
         return null;
-    }
-    
-    /**
-     * Copies information on this node into a given clone.
-     * @param cloneNode the clone of this node
-     */
-    protected void setClone(CFGStatement cloneNode) {
-        cloneNode.addDefVariables(this.getDefVariables());
-        cloneNode.addUseVariables(this.getUseVariables());
     }
     
     /**
