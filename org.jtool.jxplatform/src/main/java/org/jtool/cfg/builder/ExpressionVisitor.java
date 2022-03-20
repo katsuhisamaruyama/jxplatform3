@@ -530,10 +530,10 @@ public class ExpressionVisitor extends ASTVisitor {
             }
         }
         
-        JMethodReference jcall = new JMethodReference(node, node.getName(),
-                mbinding, node.arguments());
+        JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.methodCall, jcall);
         jcall.setReceiver(receiverNode);
+        jcall.setExplicitReceiver(receiver != null);
         
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);
@@ -549,13 +549,18 @@ public class ExpressionVisitor extends ASTVisitor {
         }
         
         CFGReceiver receiverNode = new CFGReceiver(node, CFGNode.Kind.receiver);
-        receiverNode.setName("super");
-        
+        Name qualifier = node.getQualifier();
+        if (qualifier != null) {
+            receiverNode.setName(qualifier.getFullyQualifiedName() + "." + "super");
+        } else {
+            receiverNode.setName("super");
+        }
         insertBeforeCurrentNode(receiverNode);
         
         JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.methodCall, jcall);
         jcall.setReceiver(receiverNode);
+        jcall.setExplicitReceiver(true);
         
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);
@@ -570,8 +575,15 @@ public class ExpressionVisitor extends ASTVisitor {
             return false;
         }
         
+        CFGReceiver receiverNode = new CFGReceiver(node, CFGNode.Kind.receiver);
+        receiverNode.setName("this");
+        
+        insertBeforeCurrentNode(receiverNode);
+        
         JMethodReference jcall = new JMethodReference(node, node, mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
+        jcall.setReceiver(receiverNode);
+        jcall.setExplicitReceiver(false);
         
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);
@@ -587,14 +599,34 @@ public class ExpressionVisitor extends ASTVisitor {
         }
         
         Expression receiver = node.getExpression();
+        CFGReceiver receiverNode;
         if (receiver != null) {
+            receiverNode = new CFGReceiver(receiver, CFGNode.Kind.receiver);
+        } else {
+            receiverNode = new CFGReceiver(node, CFGNode.Kind.receiver);
+        }
+        receiverNode.setName("super");
+        
+        insertBeforeCurrentNode(receiverNode);
+        
+        if (receiver != null) {
+            CFGStatement tmpNode = curNode;
+            curNode = receiverNode;
             analysisMode.push(AnalysisMode.USE);
             receiver.accept(this);
             analysisMode.pop();
+            curNode = tmpNode;
+            
+            if (receiverNode.getUseVariables().size() > 0) {
+                JReference ref = receiverNode.getUseVariables().get(receiverNode.getUseVariables().size() - 1);
+                receiverNode.setName(ref.getReferenceForm() + "." + "super");
+            }
         }
         
         JMethodReference jcall = new JMethodReference(node, node, mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
+        jcall.setReceiver(receiverNode);
+        jcall.setExplicitReceiver(receiver != null);
         
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);

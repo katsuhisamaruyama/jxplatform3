@@ -1,5 +1,5 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -59,6 +59,14 @@ public class CFGMethodCall extends CFGStatement {
      */
     public boolean hasReceiver() {
         return jmethodCall.hasReceiver();
+    }
+    
+    /**
+     * Tests if a method call corresponding to this reference has explicitly a receiver.
+     * @return {@code true} a method call corresponding to this reference has a receiver, otherwise {@code false}
+     */
+    public boolean hasExplicitReceiver() {
+        return jmethodCall.hasExplicitReceiver();
     }
     
     /**

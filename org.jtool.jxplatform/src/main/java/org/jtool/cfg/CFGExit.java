@@ -16,6 +16,7 @@ public class CFGExit extends CFGNode {
     
     /**
      * Creates a new object that represents an exit.
+     * This method is not intended to be invoked by clients.
      * @param node the AST node corresponding to this node
      * @param kind the kind of this node
      */

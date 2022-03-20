@@ -21,6 +21,7 @@ public class CFGMerge extends CFGNode {
     
     /**
      * Creates a new object that represents a merge.
+     * This method is not intended to be invoked by clients.
      * @param node the ASt node corresponding to this node
      * @param branch the node for the branch that causes the merge
      */
@@ -31,6 +32,7 @@ public class CFGMerge extends CFGNode {
     
     /**
      * Sets the node for the branch that causes the merge.
+     * This method is not intended to be invoked by clients.
      * @param branch the branch node to be set
      */
     public void setBranch(CFGStatement branch) {

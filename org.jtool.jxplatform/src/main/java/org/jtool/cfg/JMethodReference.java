@@ -79,6 +79,11 @@ public class JMethodReference extends JReference {
     private CFGReceiver receiver = null;
     
     /**
+     * A fag that indicate if a method call corresponding to this reference has explicitly a receiver.
+     */
+    private boolean hasExplicitReceiver = false;
+    
+    /**
      * The collection of the approximated types of receiver associated to this node.
      */
     private Set<JClass> approximatedTypes;
@@ -361,6 +366,23 @@ public class JMethodReference extends JReference {
      */
     public CFGReceiver getReceiver() {
         return receiver;
+    }
+    
+    /**
+     * Tests if a method call corresponding to this reference has explicitly a receiver.
+     * @return {@code true} a method call corresponding to this reference has a receiver, otherwise {@code false}
+     */
+    public boolean hasExplicitReceiver() {
+        return hasExplicitReceiver;
+    }
+    
+    /**
+     * Sets if a method call corresponding to this reference has explicitly a receiver.
+     * This method is not intended to be invoked by clients.
+     * @param bool {@code true} a method call corresponding to this reference has a receiver, otherwise {@code false}
+     */
+    public void setExplicitReceiver(boolean bool) {
+        hasExplicitReceiver = bool;
     }
     
     /**

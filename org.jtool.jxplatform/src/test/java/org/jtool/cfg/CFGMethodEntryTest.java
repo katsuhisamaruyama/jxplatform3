@@ -18,11 +18,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-/**
- * Tests a class that builds a CFG.
- * 
- * @author Katsuhisa Maruyama
- */
 public class CFGMethodEntryTest {
     
     private static JavaProject SliceProject;

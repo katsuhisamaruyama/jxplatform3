@@ -17,11 +17,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-/**
- * Tests a class that builds a CFG.
- * 
- * @author Katsuhisa Maruyama
- */
 public class CFGFieldEntryTest {
     
     private static JavaProject SimpleProject;

@@ -60,6 +60,10 @@ public static <T> List<String> asSortedList(Set<T> set) {
         return list.stream().map(Object::toString).collect(Collectors.joining(";"));
     }
     
+    public static String asSortedStrOfString(Set<String> set) {
+        return set.stream().sorted().collect(Collectors.joining(";"));
+    }
+    
     public static String asSortedStrOf(Set<? extends JavaElement> set) {
         return asSortedStr(set.stream().map(e -> e.getQualifiedName().fqn()));
     }

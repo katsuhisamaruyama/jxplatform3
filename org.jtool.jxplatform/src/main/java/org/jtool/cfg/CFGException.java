@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -27,6 +27,7 @@ public class CFGException extends CFGStatement {
     
     /**
      * Creates a new object that represents an exception.
+     * This method is not intended to be invoked by clients.
      * @param node the AST node corresponding to this node
      * @param kind the kind of this node
      * @param type type binding information on the type of the exception
@@ -54,6 +55,7 @@ public class CFGException extends CFGStatement {
     
     /**
      * The parent node that this node directly dangles on.
+     * This method is not intended to be invoked by clients.
      * @param parent the parent node to be set
      */
     public void setParent(CFGNode parent) {
