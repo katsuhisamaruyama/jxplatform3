@@ -6,7 +6,7 @@ class Test133 {
     
     public void m() {
         int p1 = a;
-        int p2= x.a;
+        int p2 = x.a;
         int p3 = x.getA();
         int p4 = getX().a;
         int p5 = getX().getA();

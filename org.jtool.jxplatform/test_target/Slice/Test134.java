@@ -35,13 +35,17 @@ class Test134 {
         P134 p4 = getPQ();
         int d3 = p4.f(x);
         
-        P134 pp;
+    }
+
+    public void m2() {
+        int x = 1;
+        P134 p;
         if (x > 1) {
-            pp = new Q134();
+            p = new Q134();
         } else {
-            pp = new R134();
+            p = new R134();
         }
-        int dd = pp.f(x);
+        int d = p.f(x);
         
         ArrayList<String> l1 = new ArrayList<>();
         l1.add("A");
@@ -49,6 +53,13 @@ class Test134 {
         List<String> l2 = new ArrayList<>();
         l2.add("B");
     }
+
+    public void m3() {
+        int x = 1;
+        P134 p = new R134();
+        int d1 = p.f(x);
+        int d2 = ((Q134)p).f(x);
+    }        
     
     public void a1() {
         this.n1(new P134(), 1);

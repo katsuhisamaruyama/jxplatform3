@@ -20,6 +20,7 @@ class S140 extends Test140 {
 
     S140(int x) {
         super(x);
+        this.x = x;
     }
 
     public void m() {
