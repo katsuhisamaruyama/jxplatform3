@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.pdg;
+package org.jtool.pdg.builder;
 
 import org.jtool.pdg.CD;
 import org.jtool.pdg.CallEdge;
@@ -13,14 +13,14 @@ import org.jtool.pdg.DD;
 import org.jtool.pdg.Dependence;
 import org.jtool.pdg.DependenceGraph;
 import org.jtool.pdg.PDG;
-import org.jtool.pdg.PDGClassEntry;
+import org.jtool.pdg.ClDGEntry;
 import org.jtool.pdg.PDGEntry;
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
 import org.jtool.pdg.SDG;
 import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CFG;
-import org.jtool.cfg.CFGClassEntry;
+import org.jtool.cfg.CCFGEntry;
 import org.jtool.cfg.CFGEntry;
 import org.jtool.cfg.CFGException;
 import org.jtool.cfg.CFGFieldEntry;
@@ -63,7 +63,7 @@ public class PDGBuilder {
     
     private static PDGNode createNode(DependenceGraph dgraph, CFGNode node) {
         if (node.isInterfaceEntry() || node.isClassEntry() || node.isEnumEntry()) {
-            PDGClassEntry pdgnode = new PDGClassEntry((CFGClassEntry)node);
+            ClDGEntry pdgnode = new ClDGEntry((CCFGEntry)node);
             ClDG cldg = (ClDG)dgraph;
             cldg.setEntryNode(pdgnode);
             return pdgnode;
@@ -84,7 +84,7 @@ public class PDGBuilder {
     
     public static ClDG buildClDG(CCFG ccfg) {
         ClDG cldg = new ClDG();
-        PDGClassEntry entry = new PDGClassEntry(ccfg.getEntryNode());
+        ClDGEntry entry = new ClDGEntry(ccfg.getEntryNode());
         cldg.setEntryNode(entry);
         cldg.add(entry);
         

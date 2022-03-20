@@ -3,14 +3,14 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.pdg;
+package org.jtool.pdg.builder;
 
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.SDG;
 import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CFG;
-import org.jtool.jxplatform.builder.cfg.CFGStore;
+import org.jtool.cfg.builder.CFGStore;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
