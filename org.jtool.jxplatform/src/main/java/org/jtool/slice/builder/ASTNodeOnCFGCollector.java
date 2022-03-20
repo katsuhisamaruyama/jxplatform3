@@ -3,10 +3,10 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.slice;
+package org.jtool.slice.builder;
 
-import org.jtool.jxplatform.builder.cfg.ExpressionVisitor;
-import org.jtool.jxplatform.builder.cfg.StatementVisitor;
+import org.jtool.cfg.builder.ExpressionVisitor;
+import org.jtool.cfg.builder.StatementVisitor;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.BodyDeclaration;

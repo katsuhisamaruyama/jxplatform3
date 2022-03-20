@@ -1,9 +1,9 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.cfg;
+package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CFG;
@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Collection;
 
 /**
  * A repository that stores information on CFGs in the project.
@@ -67,6 +68,10 @@ public class CFGStore {
     
     public JavaProject getJavaProject() {
         return jproject;
+    }
+    
+    public Collection<CCFG> getCCFG() {
+        return ccfgs.values();
     }
     
     private void addCFG(CFG cfg) {

@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.pdg;
+package org.jtool.pdg.builder;
 
 import org.jtool.pdg.DD;
 import org.jtool.pdg.PDG;

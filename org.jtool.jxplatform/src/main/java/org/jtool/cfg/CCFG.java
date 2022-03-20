@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -10,40 +10,62 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
 /**
  * An object storing information on a class control flow graph (CCFG).
  * 
  * @author Katsuhisa Maruyama
  */
-public class CCFG extends CommonCFG {
+public class CCFG {
+    
+    /**
+     * The entry node of this CCFG.
+     */
+    private CCFGEntry entry;
     
     /**
      * The map between the fully-qualified names and CFGs that have their corresponding names.
      */
-    protected Map<String, CFG> cfgs = new HashMap<>();
+    private Map<String, CFG> cfgs = new HashMap<>();
+    
+    /**
+     * Sets the entry node of this CFG.
+     * This method is not intended to be invoked by clients.
+     * @param node the entry node of this CFG
+     */
+    public void setEntryNode(CCFGEntry node) {
+        entry = node;
+        entry.setCCFG(this);
+    }
     
     /**
      * Returns the entry node of this CCFG.
      * @return the entry node
      */
-    @Override
-    public CFGClassEntry getEntryNode() {
-        return (CFGClassEntry)entry;
+    public CCFGEntry getEntryNode() {
+        return (CCFGEntry)entry;
     }
     
     /**
      * Returns the fully qualified name of this CCFG.
      * @return the fully qualified name
      */
-    @Override
     public QualifiedName getQualifiedName() {
         return entry.getQualifiedName();
     }
     
     /**
+     * Returns a CFG that has a given name.
+     * @param fqn the fully-qualified name of the CFG to be retrieved
+     * @return the found CFG, or {@code null} if no CFG is found
+     */
+    public CFG getCCFG(String fqn) {
+        return cfgs.get(fqn);
+    }
+    
+    /**
      * Adds a CFG to this CCFG.
+     * This method is not intended to be invoked by clients.
      * @param cfg the CFG to be added
      */
     public void add(CFG cfg) {
@@ -61,34 +83,35 @@ public class CCFG extends CommonCFG {
     }
     
     /**
-     * Returns a CFG that has a given name.
-     * @param fqn the fully-qualified name of the CFG to be retrieved
-     * @return the found CFG, or {@code null} if no CFG is found
+     * {@inheritDoc}
      */
-    public CFG getCFG(String fqn) {
-        return cfgs.get(fqn);
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof CCFG) ? equals((CCFG)obj) : false;
     }
     
     /**
-     * Returns all nodes in this CCFG.
-     * @return the collection of the nodes
+     * Tests if a given CCFG is equal to this CCFG.
+     * @param ccfg the CCFG to be checked
+     * @return the {@code true} if the given CCFG is equal to this CCFG
      */
-    @Override
-    public Set<CFGNode> getNodes() {
-        return cfgs.values()
-                .stream()
-                .flatMap(cfg -> cfg.getNodes().stream()).collect(Collectors.toSet());
+    public boolean equals(CCFG ccfg) {
+        return ccfg != null && (this == ccfg || getQualifiedName().equals(ccfg.getQualifiedName()));
     }
     
     /**
-     * Returns all edges in this CCFG.
-     * @return the collection of the edges
+     * {@inheritDoc}
      */
     @Override
-    public Set<ControlFlow> getEdges() {
-        return cfgs.values()
-                .stream()
-                .flatMap(cfg -> cfg.getEdges().stream()).collect(Collectors.toSet());
+    public int hashCode() {
+        return getQualifiedName().hashCode();
+    }
+    
+    /**
+     * Displays information on this graph.
+     */
+    public void print() {
+        System.out.println(toString());
     }
     
     /**
@@ -101,8 +124,8 @@ public class CCFG extends CommonCFG {
         buf.append("----- CCFG (from here) -----\n");
         buf.append("Class Name = " + getQualifiedName());
         buf.append("\n");
-        cfgs.values().forEach(cfg -> buf.append(cfg.toStringForNodes()));
-        cfgs.values().forEach(cfg -> buf.append(cfg.toStringForEdges()));
+        cfgs.values().forEach(cfg -> buf.append(cfg.toStringForNodes() + "--\n"));
+        cfgs.values().forEach(cfg -> buf.append(cfg.toStringForEdges() + "--\n"));
         buf.append("----- CCFG (to here) -----\n");
         return buf.toString();
     }

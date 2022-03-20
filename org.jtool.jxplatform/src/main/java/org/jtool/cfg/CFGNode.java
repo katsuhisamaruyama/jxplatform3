@@ -117,6 +117,7 @@ public class CFGNode extends GraphNode {
     
     /**
      * Creates a new object that represents a dummy node.
+     * This method is not intended to be invoked by clients.
      */
     public CFGNode() {
         super(0);
@@ -124,6 +125,7 @@ public class CFGNode extends GraphNode {
     
     /**
      * Creates a new object that represents a CFG node.
+     * This method is not intended to be invoked by clients.
      * @param node the ASt node corresponding to this node
      * @param kind the kind of this node
      */
@@ -143,6 +145,7 @@ public class CFGNode extends GraphNode {
     
     /**
      * Resets the identification number for CFG nodes.
+     * This method is not intended to be invoked by clients.
      */
     public static void resetId() {
         num = 1;
@@ -150,6 +153,7 @@ public class CFGNode extends GraphNode {
     
     /**
      * Sets the AST node corresponding to this node.
+     * This method is not intended to be invoked by clients.
      * @param node the AST node to be set
      */
     public void setASTNode(ASTNode node) {
@@ -166,6 +170,7 @@ public class CFGNode extends GraphNode {
     
     /**
      * Sets the kind of this node.
+     * This method is not intended to be invoked by clients.
      * @param kind the kind to be set
      */
     public void setKind(Kind kind) {
@@ -182,6 +187,7 @@ public class CFGNode extends GraphNode {
     
     /**
      * Sets the PDG node corresponding to this node.
+     * This method is not intended to be invoked by clients.
      * @param node the PDG node to be set
      */
     public void setPDGNode(PDGNode node) {
@@ -198,6 +204,7 @@ public class CFGNode extends GraphNode {
     
     /**
      * Sets a basic block enclosing this node.
+     * This method is not intended to be invoked by clients.
      * @param block the enclosing basic block
      */
     public void setBasicBlock(BasicBlock block) {
@@ -723,27 +730,6 @@ public class CFGNode extends GraphNode {
     }
     
     /**
-     * Creates a clone of this object.
-     * @return the created clone
-     */
-    @Override
-    public CFGNode clone() {
-        CFGNode cloneNode = new CFGNode(astNode, kind);
-        super.setClone(cloneNode);
-        setClone(cloneNode);
-        return cloneNode;
-    }
-    
-    /**
-     * Copies information on this node into a given clone.
-     * @param cloneNode the clone of this node
-     */
-    protected void setClone(CFGNode cloneNode) {
-        cloneNode.setPDGNode(pdgNode);
-        cloneNode.setBasicBlock(basicBlock);
-    }
-    
-    /**
      * Displays information on this node.
      */
     public void print() {
@@ -757,9 +743,9 @@ public class CFGNode extends GraphNode {
     @Override
     public String toString() {
         if (getKind() != null) {
-            return super.getIdString() + " " + getKind().toString();
+            return getIdString(id) + " " + getKind().toString();
         } else {
-            return super.getIdString();
+            return getIdString(id);
         }
     }
     

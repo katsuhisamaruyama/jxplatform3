@@ -23,7 +23,7 @@ public class ControlFlow extends GraphEdge {
     /**
      * The node that causes the loop-back when this is a loop-back edge.
      */
-    private CFGNode loopback = null;
+    protected CFGNode loopback = null;
     
     /**
      * The kind of this control flow edge.
@@ -37,7 +37,7 @@ public class ControlFlow extends GraphEdge {
         trueControlFlow,                 // Control flow outgoing to a true-branch
         falseControlFlow,                // Control flow outgoing to a false-branch
         fallThroughFlow,                 // Control flow representing a fall-through
-        methodCall,                      // Flow representing the call to a method
+        callFlow,                        // Flow representing the call to a method
         parameterFlow,                   // Flow representing the relationship between a class/method and its parameter
         exceptionCatchFlow,              // Flow representing the relationship between an exception occurrence and its catch
         undefined,
@@ -45,6 +45,7 @@ public class ControlFlow extends GraphEdge {
     
     /**
      * Creates a new object that represents a control flow edge.
+     * This method is not intended to be invoked by clients.
      * @param src the source node of this edge
      * @param dst the destination node of this edge
      */
@@ -54,6 +55,7 @@ public class ControlFlow extends GraphEdge {
     
     /**
      * Sets the kind of this control flow.
+     * This method is not intended to be invoked by clients.
      * @param kind the kind of this edge
      */
     public void setKind(Kind kind) {
@@ -70,6 +72,7 @@ public class ControlFlow extends GraphEdge {
     
     /**
      * Sets as this edge is a true control flow.
+     * This method is not intended to be invoked by clients.
      */
     public void setTrue() {
         kind = Kind.trueControlFlow;
@@ -85,6 +88,7 @@ public class ControlFlow extends GraphEdge {
     
     /**
      * Sets as this edge is a false control flow.
+     * This method is not intended to be invoked by clients.
      */
     public void setFalse() {
         kind = Kind.falseControlFlow;
@@ -100,6 +104,7 @@ public class ControlFlow extends GraphEdge {
     
     /**
      * Sets as this edge is a fall-through control flow.
+     * This method is not intended to be invoked by clients.
      */
     public void setFallThrough() {
         kind = Kind.fallThroughFlow;
@@ -115,21 +120,23 @@ public class ControlFlow extends GraphEdge {
     
     /**
      * Sets as this edge is a method call flow.
+     * This method is not intended to be invoked by clients.
      */
-    public void setMethodCall() {
-        kind = Kind.methodCall;
+    public void setCall() {
+        kind = Kind.callFlow;
     }
     
     /**
-     * Tests if this edge represents a method call flow.
-     * @return {@code true} if this is a method call edge, otherwise {@code false}
+     * Tests if this edge represents a call flow.
+     * @return {@code true} if this is a call edge, otherwise {@code false}
      */
-    public boolean isMethodCall() {
-        return kind == Kind.methodCall;
+    public boolean isCall() {
+        return kind == Kind.callFlow;
     }
     
     /**
      * Sets as this edge is a parameter flow.
+     * This method is not intended to be invoked by clients.
      */
     public void setParameter() {
         kind = Kind.parameterFlow;
@@ -145,6 +152,7 @@ public class ControlFlow extends GraphEdge {
     
     /**
      * Sets as this edge is an exception flow.
+     * This method is not intended to be invoked by clients.
      */
     public void setExceptionCatch() {
         kind = Kind.exceptionCatchFlow;
@@ -178,6 +186,7 @@ public class ControlFlow extends GraphEdge {
     
     /**
      * Sets a node that causes the loop-back.
+     * This method is not intended to be invoked by clients.
      * @param node the node for the loop-back edge
      */
     public void setLoopBack(CFGNode node) {
@@ -226,27 +235,6 @@ public class ControlFlow extends GraphEdge {
     }
     
     /**
-     * Creates a clone of this object.
-     * @return the created clone
-     */
-    @Override
-    public ControlFlow clone() {
-        ControlFlow cloneEdge = new ControlFlow(getSrcNode(), getDstNode());
-        super.setClone(cloneEdge);
-        setClone(cloneEdge);
-        return cloneEdge;
-    }
-    
-    /**
-     * Copies information on this edge into a given clone.
-     * @param cloneEdge the clone of this edge
-     */
-    protected void setClone(ControlFlow cloneEdge) {
-        cloneEdge.setKind(kind);
-        cloneEdge.setLoopBack(loopback);
-    }
-    
-    /**
      * Displays information on this control flow.
      */
     public void print() {
@@ -260,12 +248,12 @@ public class ControlFlow extends GraphEdge {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append(src.getId() + " -> " + dst.getId());
+        buf.append(String.valueOf(src.getId()) + " -> " + String.valueOf(dst.getId()));
         if (getKind() != null) {
             buf.append(" " + getKind().toString());
         }
         if (loopback != null) {
-            buf.append(" (L = " + getLoopBack().getId() + ")");
+            buf.append(" (LC = " + String.valueOf(getLoopBack().getId()) + ")");
         }
         return buf.toString();
     }

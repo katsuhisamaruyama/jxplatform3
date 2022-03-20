@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.cfg;
+package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGException;
@@ -18,7 +18,7 @@ import org.jtool.cfg.JSpecialVarReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.builder.srcmodel.ExceptionTypeCollector;
+import org.jtool.srcmodel.builder.ExceptionTypeCollector;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.ITypeBinding;
@@ -73,6 +73,8 @@ class CFGMethodBuilder {
                 entry = new CFGMethodEntry(jmethod, CFGNode.Kind.methodEntry);
             }
         }
+        
+        ExpressionVisitor.resetTemporaryVariableId();
         
         cfg.setEntryNode(entry);
         cfg.add(entry);

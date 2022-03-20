@@ -1,13 +1,13 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.cfg;
+package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CFG;
-import org.jtool.cfg.CFGClassEntry;
+import org.jtool.cfg.CCFGEntry;
 import org.jtool.cfg.CFGNode;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
@@ -34,16 +34,15 @@ class CCFGBuilder {
     }
     
     private static void build(CCFG ccfg, JavaClass jclass, boolean force) {
-        CFGClassEntry entry;
+        CCFGEntry entry;
         if (jclass.isEnum()) {
-            entry = new CFGClassEntry(jclass, CFGNode.Kind.enumEntry);
+            entry = new CCFGEntry(jclass, CFGNode.Kind.enumEntry);
         } else if (jclass.isInterface()) {
-            entry = new CFGClassEntry(jclass, CFGNode.Kind.interfaceEntry);
+            entry = new CCFGEntry(jclass, CFGNode.Kind.interfaceEntry);
         } else {
-            entry = new CFGClassEntry(jclass, CFGNode.Kind.classEntry);
+            entry = new CCFGEntry(jclass, CFGNode.Kind.classEntry);
         }
         ccfg.setEntryNode(entry);
-        ccfg.add(entry);
         
         CFGStore cfgStore = jclass.getJavaProject().getCFGStore();
         for (JavaMethod jmethod : jclass.getMethods()) {

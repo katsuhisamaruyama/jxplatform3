@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.srcmodel;
+package org.jtool.srcmodel.builder;
 
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
@@ -11,43 +11,38 @@ import org.jtool.srcmodel.JavaElementUtil;
 import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
+import org.eclipse.jdt.core.dom.CreationReference;
+import org.eclipse.jdt.core.dom.EnumDeclaration;
+import org.eclipse.jdt.core.dom.Expression;
+import org.eclipse.jdt.core.dom.ExpressionMethodReference;
 import org.eclipse.jdt.core.dom.IBinding;
-import org.eclipse.jdt.core.dom.IVariableBinding;
-import org.eclipse.jdt.core.dom.QualifiedName;
 import org.eclipse.jdt.core.dom.SimpleName;
 import org.eclipse.jdt.core.dom.SuperMethodReference;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.TypeMethodReference;
-import org.eclipse.jdt.core.dom.LabeledStatement;
+import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
+import org.eclipse.jdt.core.dom.IVariableBinding;
 import org.eclipse.jdt.core.dom.LambdaExpression;
-import org.eclipse.jdt.core.dom.BreakStatement;
-import org.eclipse.jdt.core.dom.ContinueStatement;
-import org.eclipse.jdt.core.dom.CreationReference;
-import org.eclipse.jdt.core.dom.EnumDeclaration;
-import org.eclipse.jdt.core.dom.ExpressionMethodReference;
 import java.util.Set;
 import java.util.HashSet;
 
 /**
- * Parses Java source code and stores information on variable access appearing in a method or field.
+ * Parses Java source code and stores information on field initializers appearing in a field.
  * 
  * @see org.eclipse.jdt.core.dom.Expression
  * 
- * Name:
- *   SimpleName
- *   QualifiedName
+ * VariableDeclarationFragment
  * 
  * @author Katsuhisa Maruyama
  */
-public class FieldAccessCollector extends ASTVisitor {
+public class FieldInitializerCollector extends ASTVisitor {
     
     private JavaProject jproject;
     
     private Set<JavaField> accessedFields = new HashSet<>();
-    
     private boolean bindingOk = true;
     
-    public FieldAccessCollector(JavaProject jproject) {
+    public FieldInitializerCollector(JavaProject jproject) {
         this.jproject = jproject;
     }
     
@@ -60,34 +55,24 @@ public class FieldAccessCollector extends ASTVisitor {
     }
     
     @Override
-    public boolean visit(SimpleName node) { 
-        addVariableAccess(node, node.resolveBinding());
-        return true;
-    }
-    
-    @Override
-    public boolean visit(QualifiedName node) {
-        addVariableAccess(node.getName(), node.resolveBinding());
-        return true;
-    }
-    
-    @Override
-    public boolean visit(LabeledStatement node) {
-        node.getBody().accept(this);
-        return true;
-    }
-    
-    @Override
-    public boolean visit(BreakStatement node) {
+    public boolean visit(VariableDeclarationFragment node) {
+        IVariableBinding binding = node.resolveBinding();
+        if (binding != null && binding.isField()) {
+            Expression initializer = node.getInitializer();
+            if (initializer != null) {
+                initializer.accept(this);
+            }
+        }
         return false;
     }
     
     @Override
-    public boolean visit(ContinueStatement node) {
+    public boolean visit(SimpleName node) {
+        addFieldAccess(node.resolveBinding());
         return false;
     }
     
-    private void addVariableAccess(SimpleName name, IBinding binding) {
+    private void addFieldAccess(IBinding binding) {
         if (binding != null) {
             if (binding.getKind() == IBinding.VARIABLE) {
                 IVariableBinding vbinding = (IVariableBinding)binding;

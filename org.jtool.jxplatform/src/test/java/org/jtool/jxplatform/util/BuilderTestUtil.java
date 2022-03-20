@@ -12,7 +12,7 @@ import java.io.File;
 
 public class BuilderTestUtil {
     
-    private final static String testTargetDir = new File(".").getAbsoluteFile().getParent() + "/test_target/";
+    public final static String testTargetDir = new File(".").getAbsoluteFile().getParent() + "/test_target/";
     
     public static String getTarget(String name) {
         return testTargetDir + name;

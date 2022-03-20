@@ -19,12 +19,13 @@ import org.eclipse.jdt.core.dom.CastExpression;
 public class CFGReceiver extends CFGStatement {
     
     /**
-     * The name of the receiver associated to this node.
+     * The name of an instance specified by this receiver node.
      */
     private String name = "";
     
     /**
      * Creates a new object that represents a receiver on a method call.
+     * This method is not intended to be invoked by clients.
      * @param node the AST node correspond to this node
      * @param kind the kind of this node
      */
@@ -33,29 +34,20 @@ public class CFGReceiver extends CFGStatement {
     }
     
     /**
-     * Sets the name of the receiver.
+     * Sets the name of an instance specified by this receiver node.
      * This method is not intended to be invoked by clients.
-     * @param name the name to be set
+     * @param name the instance name to be set
      */
     public void setName(String name) {
         this.name = name;
     }
     
     /**
-     * Returns the name of the receiver associated to this node.
-     * @return the receiver name
+     * Returns the name of an instance specified by this receiver node.
+     * @return the instance name of this receiver
      */
     public String getName() {
         return name;
-    }
-    
-    /**
-     * Returns the type of the receiver.
-     * @return the receiver type
-     */
-    public String getType() {
-        JReference use = getUseFirst();
-        return use != null ? use.getType() : "";
     }
     
     /**

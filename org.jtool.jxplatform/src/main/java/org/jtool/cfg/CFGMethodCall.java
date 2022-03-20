@@ -134,6 +134,14 @@ public class CFGMethodCall extends CFGStatement {
     }
     
     /**
+     * Returns the number of arguments on this method call.
+     * @return the number of the arguments
+     */
+    public int getArgumentSize() {
+        return jmethodCall.getArgumentSize();
+    }
+    
+    /**
      * Returns the approximated types of receiver associated to this node.
      * These types include classes declaring method that might be dynamically called.
      * In the case of a field access, the approximated types are not supported
@@ -162,6 +170,7 @@ public class CFGMethodCall extends CFGStatement {
     
     /**
      * Adds an actual-in node on this method call.
+     * This method is not intended to be invoked by clients.
      * @param node the actual-in node to be added
      */
     public void addActualIn(CFGParameter node) {
@@ -170,6 +179,7 @@ public class CFGMethodCall extends CFGStatement {
     
     /**
      * Sets actual-in nodes on this method call.
+     * This method is not intended to be invoked by clients.
      * @param nodes the collection of actual-in nodes to be set
      */
     public void setActualIns(List<CFGParameter> nodes) {
@@ -177,7 +187,8 @@ public class CFGMethodCall extends CFGStatement {
     }
     
     /**
-     * Sets  an actual-out node for the return value on this method call.
+     * Sets an actual-out node for the return value on this method call.
+     * This method is not intended to be invoked by clients.
      * @param node the actual-out node to be set
      */
     public void setActualOutForReturn(CFGParameter node) {
@@ -198,14 +209,6 @@ public class CFGMethodCall extends CFGStatement {
      */
     public CFGParameter getActualOutForReturn() {
         return actualOutForReturn;
-    }
-    
-    /**
-     * Returns the number of arguments on this method call.
-     * @return the number of the arguments
-     */
-    public int getArgumentSize() {
-        return actualIns.size();
     }
     
     /**
@@ -230,9 +233,6 @@ public class CFGMethodCall extends CFGStatement {
      */
     @Override
     public String toString() {
-        StringBuilder buf = new StringBuilder();
-        buf.append(super.toString());
-        buf.append(" TO = " + jmethodCall.getQualifiedName());
-        return buf.toString();
+        return super.toString() + " TO = " + jmethodCall.getQualifiedName();
     }
 }

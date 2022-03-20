@@ -26,6 +26,7 @@ public class CFGParameter extends CFGStatement {
     
     /**
      * Creates a new object that represents a parameter.
+     * This method is not intended to be invoked by clients.
      * @param node the AST node correspond to this node
      * @param kind the kind of this node
      * @param index the index number of the parameter list or the argument lists.
@@ -37,6 +38,7 @@ public class CFGParameter extends CFGStatement {
     
     /**
      * Sets the index number of the parameter list or the argument lists.
+     * This method is not intended to be invoked by clients.
      * @param index the index number to be set
      */
     public void setIndex(int index) {
@@ -53,6 +55,7 @@ public class CFGParameter extends CFGStatement {
     
     /**
      * The parent node that this node directly dangles on.
+     * This method is not intended to be invoked by clients.
      * @param node the parent node to be set
      */
     public void setParent(CFGNode node) {
@@ -69,17 +72,23 @@ public class CFGParameter extends CFGStatement {
     
     /**
      * Returns the variable defined when a method is called.
-     * @return the defined variable
+     * @return the defined variable, or {@code null} if there is no defined variable
      */
     public JReference getDefVariable() {
-        return getDefVariables().get(0);
+        if (getDefVariables().size() > 0) {
+            return getDefVariables().get(0);
+        }
+        return null;
     }
     
     /**
      * Returns the variable used when a method is called.
-     * @return the used variable
+     * @return the used variable, or {@code null} if there is no used variable
      */
     public JReference getUseVariable() {
-        return getUseVariables().get(0);
+        if (getUseVariables().size() > 0) {
+            return getUseVariables().get(0);
+        }
+        return null;
     }
 }

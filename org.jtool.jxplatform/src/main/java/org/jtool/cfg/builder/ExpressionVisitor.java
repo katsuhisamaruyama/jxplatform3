@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.cfg;
+package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodCall;
@@ -21,7 +21,7 @@ import org.jtool.cfg.JSpecialVarReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.builder.srcmodel.ExceptionTypeCollector;
+import org.jtool.srcmodel.builder.ExceptionTypeCollector;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaElementUtil;
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -635,30 +635,30 @@ public class ExpressionVisitor extends ASTVisitor {
             }
         }
         
-        JMethodReference jcall = new JMethodReference(node, node.getType(),
-                mbinding, node.arguments());
+        JMethodReference jcall = new JMethodReference(node, node.getType(), mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.methodCall, jcall);
         jcall.setReceiver(receiverNode);
         
         setActualNodes(callNode, node.arguments());
         setExceptionFlow(callNode, jcall);
         
-        replaceInstanceName(node, callNode, TEMP_INSTANCE_NAME);
+        replaceReceiverName(node, callNode, TEMP_INSTANCE_NAME);
         return false;
     }
     
-    private void replaceInstanceName(ASTNode node, CFGMethodCall callNode, final String TEMP_INSTANCE_NAME) {
-        String instanceName;
+    private void replaceReceiverName(ASTNode node, CFGMethodCall callNode, String replaced) {
+        String name;
         if (node.getParent().equals(entryNode.getASTNode()) &&
            (entryNode.isLocalDeclaration() || entryNode.isFieldDeclaration())) {
-            instanceName = entryNode.getDefVariables().get(0).getReferenceForm();
+            name = entryNode.getDefVariables().get(0).getReferenceForm();
         } else if (curNode.getDefVariables().size() > 0) {
-            instanceName = curNode.getDefVariables().get(0).getReferenceForm();
+            name = curNode.getDefVariables().get(0).getReferenceForm();
         } else {
-            instanceName = callNode.getActualOutForReturn().getDefVariable().getName();
+            name = callNode.getActualOutForReturn().getDefVariable().getName();
         }
         
-        callNode.getReceiver().setName(instanceName);
+        String receiverName = callNode.getReceiver().getName().replace(replaced, name);
+        callNode.getReceiver().setName(receiverName);
     }
     
     private void setActualNodes(CFGMethodCall callNode, List<Expression> arguments) {

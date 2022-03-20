@@ -13,7 +13,7 @@ import org.jtool.srcmodel.JavaProject;
 import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CallGraph;
-import org.jtool.jxplatform.builder.cfg.CallGraphBuilder;
+import org.jtool.cfg.builder.CallGraphBuilder;
 import org.jtool.jxplatform.project.ModelBuilderImpl;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDG;

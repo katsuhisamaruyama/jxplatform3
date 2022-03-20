@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.srcmodel;
+package org.jtool.srcmodel.builder;
 
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;

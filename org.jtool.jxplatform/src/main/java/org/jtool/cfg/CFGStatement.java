@@ -7,6 +7,7 @@ package org.jtool.cfg;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 
 /**
@@ -28,6 +29,7 @@ public class CFGStatement extends CFGNode {
     
     /**
      * Creates a new object that represents a statement.
+     * This method is not intended to be invoked by clients.
      * @param node the AST node corresponding to this node
      * @param kind the kind of this node
      */
@@ -260,11 +262,6 @@ public class CFGStatement extends CFGNode {
      * @return the string representing the information
      */
     protected String toStringForVariables(List<JReference> jvars) {
-        StringBuffer buf = new StringBuffer();
-        jvars.forEach(jvar -> {
-            buf.append(jvar.getReferenceForm());
-            buf.append(", ");
-        });
-        return buf.length() != 0 ? buf.substring(0, buf.length() - 2) : "";
+        return jvars.stream().map(e -> e.getReferenceForm()).collect(Collectors.joining(", "));
     }
 }

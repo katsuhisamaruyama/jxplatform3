@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -51,9 +51,9 @@ public class CFGMerge extends CFGNode {
     @Override
     public String toString() {
         if (getKind() != null) {
-            return super.getIdString()  + " merge-" + branch.getKind().toString() + "(" + branch.getId() + ")";
+            return getIdString(id)  + " merge-" + branch.getKind().toString() + "(" + branch.getId() + ")";
         } else {
-            return super.getIdString();
+            return getIdString(id);
         }
     }
 }

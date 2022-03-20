@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.cfg;
+package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGException;

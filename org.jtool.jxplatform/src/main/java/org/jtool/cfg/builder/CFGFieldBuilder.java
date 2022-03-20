@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder.cfg;
+package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGExit;
@@ -43,6 +43,9 @@ class CFGFieldBuilder {
         } else {
             entry = new CFGFieldEntry(jfield, CFGNode.Kind.fieldEntry);
         }
+        
+        ExpressionVisitor.resetTemporaryVariableId();
+        
         cfg.setEntryNode(entry);
         cfg.add(entry);
         
