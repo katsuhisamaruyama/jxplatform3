@@ -205,7 +205,7 @@ public abstract class GraphNode extends GraphElement {
      */
     public String toString() {
         StringBuilder buf = new StringBuilder(); 
-        buf.append("Node: " + getIdString() + "\n");
+        buf.append("Node: " + getIdString(getId()) + "\n");
         Set<GraphEdge> outgoing = getOutgoingEdges();
         buf.append("  Outgoing :");
         outgoing.forEach(edge -> buf.append("  " + edge.getDstNode().getId()));
@@ -213,24 +213,6 @@ public abstract class GraphNode extends GraphElement {
         Set<GraphEdge> incoming = getIncomingEdges();
         buf.append("  Incoming :");
         incoming.forEach(edge -> buf.append("  " + edge.getSrcNode().getId()));
-        return buf.toString();
-    }
-    
-    /**
-     * Obtains the printed identification number.
-     * @return the printed string of the identification number
-     */
-    public String getIdString() {
-        StringBuilder buf = new StringBuilder();
-        long id = getId();
-        if (id < 10) {
-            buf.append("   ");
-        } else if (id < 100) {
-            buf.append("  ");
-        } else if (id < 1000) {
-            buf.append(" ");
-        }
-        buf.append(String.valueOf(id));
         return buf.toString();
     }
     

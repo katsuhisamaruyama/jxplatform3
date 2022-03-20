@@ -16,6 +16,23 @@ import java.util.HashSet;
 public abstract class GraphElement {
     
     /**
+     * Obtains the printed identification number.
+     * @param id the identification number
+     * @return the printed string of the identification number
+     */
+    public String getIdString(long id) {
+        String idStr = String.valueOf(id);
+        if (id < 10) {
+            return "   " + idStr;
+        } else if (id < 100) {
+            return "  " + idStr;
+        } else if (id < 1000) {
+            return " " + idStr;
+        }
+        return idStr;
+    }
+    
+    /**
      * {@inheritDoc}
      */
     @Override

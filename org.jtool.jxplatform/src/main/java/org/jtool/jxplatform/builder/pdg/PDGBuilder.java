@@ -1,5 +1,5 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -11,6 +11,7 @@ import org.jtool.pdg.ClDG;
 import org.jtool.pdg.ClassMemberEdge;
 import org.jtool.pdg.DD;
 import org.jtool.pdg.Dependence;
+import org.jtool.pdg.DependenceGraph;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.PDGClassEntry;
 import org.jtool.pdg.PDGEntry;
@@ -53,22 +54,24 @@ public class PDGBuilder {
         return pdg;
     }
     
-    private static void createNodes(PDG pdg, CFG cfg) {
+    private static void createNodes(DependenceGraph dgraph, CFG cfg) {
         cfg.getNodes().stream()
-           .map(cfgnode -> createNode(pdg, cfgnode))
-           .filter(pdgnode -> pdgnode != null)
-           .forEach(pdgnode -> pdg.add(pdgnode));
+                      .map(cfgnode -> createNode(dgraph, cfgnode))
+                      .filter(pdgnode -> pdgnode != null)
+                      .forEach(pdgnode -> dgraph.add(pdgnode));
     }
     
-    private static PDGNode createNode(PDG pdg, CFGNode node) {
+    private static PDGNode createNode(DependenceGraph dgraph, CFGNode node) {
         if (node.isInterfaceEntry() || node.isClassEntry() || node.isEnumEntry()) {
             PDGClassEntry pdgnode = new PDGClassEntry((CFGClassEntry)node);
-            pdg.setEntryNode(pdgnode);
+            ClDG cldg = (ClDG)dgraph;
+            cldg.setEntryNode(pdgnode);
             return pdgnode;
             
         } else if (node.isMethodEntry() || node.isConstructorEntry() || node.isInitializerEntry() ||
                    node.isFieldEntry() || node.isEnumConstantEntry()) {
             PDGEntry pdgnode = new PDGEntry((CFGEntry)node);
+            PDG pdg = (PDG)dgraph;
             pdg.setEntryNode(pdgnode);
             return pdgnode;
             

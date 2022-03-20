@@ -1,11 +1,12 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.pdg;
 
-import org.jtool.cfg.CommonCFG;
+import org.jtool.cfg.CFG;
+import org.jtool.cfg.CCFG;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.QualifiedName;
 import java.util.Map;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
  * 
  * @author Katsuhisa Maruyama
  */
-public class SDG extends CommonPDG {
+public class SDG extends DependenceGraph {
     
     /**
      * The fully-qualified name of this SDG.
@@ -29,20 +30,12 @@ public class SDG extends CommonPDG {
     /**
      * The map between the fully-qualified names and ClDGs that have their corresponding names.
      */
-    protected Map<String, ClDG> cldgs = new HashMap<>();
+    private Map<String, ClDG> cldgs = new HashMap<>();
     
     /**
      * The map between the fully-qualified names and PDGs that have their corresponding names.
      */
-    protected Map<String, PDG> pdgs = new HashMap<>();
-    
-    /**
-     * Returns the entry node for this SDG.
-     */
-    @Override
-    public PDGEntry getEntryNode() {
-        return null;
-    }
+    private Map<String, PDG> pdgs = new HashMap<>();
     
     /**
      * Returns the identification number of this SDG.
@@ -58,7 +51,16 @@ public class SDG extends CommonPDG {
      * @return always {@code null} because there is in general no corresponding CFG
      */
     @Override
-    public CommonCFG getCFG() {
+    public CCFG getCCFG() {
+        return null;
+    }
+    
+    /**
+     * Returns the CFG corresponding to this SDG.
+     * @return always {@code null} because there is in general no corresponding CFG
+     */
+    @Override
+    public CFG getCFG() {
         return null;
     }
     
@@ -147,10 +149,9 @@ public class SDG extends CommonPDG {
      */
     @Override
     public Set<PDGNode> getNodes() {
-        return cldgs.values()
-                .stream()
-                .flatMap(pdg -> pdg.getNodes().stream())
-                .collect(Collectors.toSet());
+        return cldgs.values().stream()
+                             .flatMap(pdg -> pdg.getNodes().stream())
+                             .collect(Collectors.toSet());
     }
     
     /**
@@ -159,10 +160,9 @@ public class SDG extends CommonPDG {
      */
     @Override
     public Set<Dependence> getEdges() {
-        return cldgs.values()
-                .stream()
-                .flatMap(pdg -> pdg.getEdges().stream())
-                .collect(Collectors.toSet());
+        return cldgs.values().stream()
+                             .flatMap(pdg -> pdg.getEdges().stream())
+                             .collect(Collectors.toSet());
     }
     
     /**

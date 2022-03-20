@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -18,10 +18,11 @@ public class PDGEntry extends PDGNode {
     /**
      * The PDG associated with this entry node. 
      */
-    private CommonPDG pdg = null;
+    private PDG pdg = null;
     
     /**
      * Creates a new object that represents an entry.
+     * This method is not intended to be invoked by clients.
      * @param node the entry node for the CFG corresponding to the PDG that has this entry node.
      */
     public PDGEntry(CFGEntry node) {
@@ -37,10 +38,11 @@ public class PDGEntry extends PDGNode {
     }
     
     /**
-     * Associates a PDG with this entry node
+     * Associates a PDG with this entry node.
+     * This method is not intended to be invoked by clients.
      * @param pdg the PDG to be associated
      */
-    public void setPDG(CommonPDG pdg) {
+    public void setPDG(PDG pdg) {
         this.pdg = pdg;
     }
     
@@ -48,7 +50,7 @@ public class PDGEntry extends PDGNode {
      * Returns the PDG that has this entry node
      * @return the PDG
      */
-    public CommonPDG getPDG() {
+    public PDG getPDG() {
         return pdg;
     }
     

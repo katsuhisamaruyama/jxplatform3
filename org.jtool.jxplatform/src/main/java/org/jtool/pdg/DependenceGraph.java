@@ -1,76 +1,51 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.pdg;
 
 import org.jtool.graph.Graph;
-import org.jtool.cfg.CFGEntry;
-import org.jtool.cfg.CommonCFG;
+import org.jtool.cfg.CFG;
+import org.jtool.cfg.CCFG;
 import org.jtool.srcmodel.QualifiedName;
 
 /**
- * An object storing information on a program dependence graph (PDG).
+ * An object storing information on a dependence graph.
  * 
  * @author Katsuhisa Maruyama
  */
-public class CommonPDG extends Graph<PDGNode, Dependence> {
+public abstract class DependenceGraph extends Graph<PDGNode, Dependence> {
     
     /**
-     * The entry node of this graph.
-     */
-    protected PDGEntry entry;
-    
-    /**
-     * Sets the entry node for this graph.
-     * @param node the entry node to be set
-     */
-    public void setEntryNode(PDGEntry node) {
-        entry = node;
-        entry.setPDG(this);
-    }
-    
-    /**
-     * Returns the entry node for this graph
-     * @return the entry node
-     */
-    public PDGEntry getEntryNode() {
-        return entry;
-    }
-    
-    /**
-     * Returns the identification number of this graph.
+     * Returns the identification number of this PDG.
      * @return the identification number
      */
-    public long getId() {
-        return entry.getId();
-    }
+    public abstract long getId();
+    
+    /**
+     * Returns the fully-qualified name of this PDG.
+     * @return the fully-qualified name
+     */
+    public abstract QualifiedName getQualifiedName();
     
     /**
      * Returns the signature of this graph.
      * @return the graph signature
      */
-    public String getSignature() {
-        return entry.getSignature();
-    }
-    
-    /**
-     * Returns the fully-qualified name of this graph.
-     * @return the fully-qualified name
-     */
-    public QualifiedName getQualifiedName() {
-        return entry.getQualifiedName();
-    }
+    public abstract String getSignature();
     
     /**
      * Returns the CFG corresponding to this graph.
      * @return the corresponding CFG
      */
-    public CommonCFG getCFG() {
-        CFGEntry node = (CFGEntry)entry.getCFGNode();
-        return node.getCFG();
-    }
+    public abstract CFG getCFG();
+    
+    /**
+     * Returns the CFG corresponding to this graph.
+     * @return the corresponding CCFG
+     */
+    public abstract CCFG getCCFG();
     
     /**
      * Adds a node to this graph.
@@ -128,7 +103,7 @@ public class CommonPDG extends Graph<PDGNode, Dependence> {
      */
     @Override
     public boolean equals(Object obj) {
-        return (obj instanceof CommonPDG) ? equals((CommonPDG)obj) : false;
+        return (obj instanceof DependenceGraph) ? equals((DependenceGraph)obj) : false;
     }
     
     /**
@@ -136,7 +111,7 @@ public class CommonPDG extends Graph<PDGNode, Dependence> {
      * @param pdg the PDG to be checked
      * @return the {@code true} if the given PDG is equal to this PDG
      */
-    public boolean equals(CommonPDG pdg) {
+    public boolean equals(DependenceGraph pdg) {
         return pdg != null && (this == pdg || getQualifiedName().equals(pdg.getQualifiedName()));
     }
     

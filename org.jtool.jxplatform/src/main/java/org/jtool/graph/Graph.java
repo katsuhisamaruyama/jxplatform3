@@ -26,10 +26,9 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
     protected Set<E> edges = new HashSet<>();
     
     /**
-     * Creates a new, empty object.
+     * Creates a new, empty object for storing a graph information.
      */
     public Graph() {
-        super();
     }
     
     /**
@@ -142,7 +141,7 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
     }
     
     /**
-     * Obtains information on all the nodes enclosed in this graph.
+     * Obtains information on all nodes enclosed in this graph.
      * @return the string representing the information
      */
     protected String toStringForNodes() {
@@ -155,7 +154,7 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
     }
     
     /**
-     * Obtains information on all the edges enclosed in this graph.
+     * Obtains information on all edges enclosed in this graph.
      * @return the string representing the information
      */
     protected String toStringForEdges() {

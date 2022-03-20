@@ -5,7 +5,7 @@
 
 package org.jtool.slice;
 
-import org.jtool.pdg.CommonPDG;
+import org.jtool.pdg.DependenceGraph;
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
 import org.jtool.cfg.JReference;
@@ -23,7 +23,7 @@ public class SliceCriterion {
     /**
      * The PDG to be sliced.
      */
-    private CommonPDG pdg;
+    private DependenceGraph pdg;
     
     /**
      * The node a node for this slicing criterion.
@@ -41,7 +41,7 @@ public class SliceCriterion {
      * @param node a node for the slicing criterion
      * @param var a variables for the slicing criterion
      */
-    public SliceCriterion(CommonPDG pdg, PDGNode node, JReference var) {
+    public SliceCriterion(DependenceGraph pdg, PDGNode node, JReference var) {
         this.pdg = pdg;
         this.node = node;
         variables.add(var);
@@ -53,7 +53,7 @@ public class SliceCriterion {
      * @param node a node for this slicing criterion
      * @param vars the collection of variables for this slicing criterion
      */
-    public SliceCriterion(CommonPDG pdg, PDGNode node, Set<JReference> vars) {
+    public SliceCriterion(DependenceGraph pdg, PDGNode node, Set<JReference> vars) {
         this.pdg = pdg;
         this.node = node;
         vars.stream().filter(var -> var.isVariableAccess()).forEach(var -> variables.add(var));
@@ -63,7 +63,7 @@ public class SliceCriterion {
      * Returns the PDG to be sliced.
      * @return the PDG
      */
-    public CommonPDG getPDG() {
+    public DependenceGraph getPDG() {
         return pdg;
     }
     
@@ -91,7 +91,7 @@ public class SliceCriterion {
      * @param columnNumber the column number of the location where a variable of interest 
      * @return the slicing criterion
      */
-    public static SliceCriterion find(CommonPDG pdg, String code, int lineNumber, int columnNumber) {
+    public static SliceCriterion find(DependenceGraph pdg, String code, int lineNumber, int columnNumber) {
         String[] lines = code.split(System.getProperty("line.separator"));
         int position = 0;
         for (int line = 0; line < lineNumber - 1; line++) {
@@ -107,7 +107,7 @@ public class SliceCriterion {
      * @param node the AST node for a variable of interest on the source code for the PDG
      * @return the slicing criterion
      */
-    public static SliceCriterion find(CommonPDG pdg, ASTNode node) {
+    public static SliceCriterion find(DependenceGraph pdg, ASTNode node) {
         return find(pdg, node.getStartPosition());
     }
     
@@ -117,7 +117,7 @@ public class SliceCriterion {
      * @param position the position of a variable of interest on the source code for the PDG
      * @return the slicing criterion
      */
-    public static SliceCriterion find(CommonPDG pdg, int position) {
+    public static SliceCriterion find(DependenceGraph pdg, int position) {
         for (PDGNode node : pdg.getNodes()) {
             if (node.isStatement() && !node.getCFGNode().isActualOut()) {
                 PDGStatement stnode = (PDGStatement)node;

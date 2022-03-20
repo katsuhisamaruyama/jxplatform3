@@ -1,13 +1,14 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.pdg;
 
+import org.jtool.srcmodel.QualifiedName;
+import org.jtool.cfg.CFG;
 import org.jtool.cfg.CCFG;
-import org.jtool.cfg.CFGEntry;
-import org.jtool.cfg.CommonCFG;
+import org.jtool.cfg.CFGClassEntry;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
@@ -19,35 +20,89 @@ import java.util.stream.Collectors;
  * 
  * @author Katsuhisa Maruyama
  */
-public class ClDG extends CommonPDG {
+public class ClDG extends DependenceGraph {
+    
+    /**
+     * The entry node of this ClDG.
+     */
+    private PDGClassEntry entry;
     
     /**
      * The map between the fully-qualified names and PDGs that have their corresponding names.
      */
-    protected Map<String, PDG> pdgs = new HashMap<>();
+    private Map<String, PDG> pdgs = new HashMap<>();
+    
+    /**
+     * Sets the entry node for this ClDG.
+     * This method is not intended to be invoked by clients.
+     * @param node the entry node to be set
+     */
+    public void setEntryNode(PDGClassEntry node) {
+        entry = node;
+        entry.setClDG(this);
+    }
     
     /**
      * Returns the entry node for this ClDG.
      * @return the entry node
      */
-    @Override
     public PDGClassEntry getEntryNode() {
-        return (PDGClassEntry)entry;
+        return entry;
     }
     
     /**
-     * Returns the CCFG corresponding to this ClDG.
-     * @return the CCFG
+     * {@inheritDoc}
      */
     @Override
-    public CCFG getCFG() {
-        CFGEntry node = (CFGEntry)entry.getCFGNode();
-        CommonCFG cfg = node.getCFG();
-        return cfg instanceof CCFG ? (CCFG)cfg : null;
+    public long getId() {
+        return entry.getId();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public QualifiedName getQualifiedName() {
+        return entry.getQualifiedName();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getSignature() {
+        return entry.getQualifiedName().fqn();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public CCFG getCCFG() {
+        CFGClassEntry node = entry.getCFGClassEntry();
+        return node.getCCFG();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public CFG getCFG() {
+        return null;
+    }
+    
+    /**
+     * Tests if this graph represents a ClDG.
+     * @return always {@code true}
+     */
+    @Override
+    public boolean isClDG() {
+        return true;
     }
     
     /**
      * Adds a PDG to this ClDG.
+     * This method is not intended to be invoked by clients.
      * @param pdg the PDG to be added
      */
     public void add(PDG pdg) {
@@ -74,24 +129,13 @@ public class ClDG extends CommonPDG {
     }
     
     /**
-     * Tests if this graph represents a ClDG.
-     * @return always {@code true}
-     */
-    @Override
-    public boolean isClDG() {
-        return true;
-    }
-    
-    /**
      * Returns nodes contained in this ClDG.
      * @return the collection of the contained nodes
      */
-    @Override
     public Set<PDGNode> getNodes() {
-        Set<PDGNode> nodes = pdgs.values()
-                .stream()
-                .flatMap(pdg -> pdg.getNodes().stream())
-                .collect(Collectors.toSet());
+        Set<PDGNode> nodes = pdgs.values().stream()
+                                          .flatMap(pdg -> pdg.getNodes().stream())
+                                          .collect(Collectors.toSet());
         nodes.add(entry);
         return nodes;
     }
@@ -100,16 +144,20 @@ public class ClDG extends CommonPDG {
      * Returns dependence edges contained in this ClDG.
      * @return the collection of the contained edges
      */
-    @Override
     public Set<Dependence> getEdges() {
-        Set<Dependence> edges = pdgs.values()
-                .stream()
-                .flatMap(pdg -> pdg.getEdges().stream())
-                .collect(Collectors.toSet());
+        Set<Dependence> edges = pdgs.values().stream()
+                                             .flatMap(pdg -> pdg.getEdges().stream())
+                                             .collect(Collectors.toSet());
         edges.addAll(entry.getOutgoingDependeceEdges());
         return edges;
     }
     
+    /**
+     * Displays information on this graph.
+     */
+    public void print() {
+        System.out.println(toString());
+    }
     /**
      * {@inheritDoc}
      */

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -7,7 +7,7 @@ package org.jtool.slice;
 
 import org.jtool.pdg.CD;
 import org.jtool.pdg.ClDG;
-import org.jtool.pdg.CommonPDG;
+import org.jtool.pdg.DependenceGraph;
 import org.jtool.pdg.DD;
 import org.jtool.pdg.Dependence;
 import org.jtool.pdg.PDG;
@@ -18,7 +18,7 @@ import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGReceiver;
 import org.jtool.cfg.CFGStatement;
-import org.jtool.cfg.CommonCFG;
+import org.jtool.cfg.CFG;
 import org.jtool.cfg.JReference;
 import org.jtool.cfg.StopConditionOnReachablePath;
 import org.jtool.graph.GraphNode;
@@ -56,7 +56,7 @@ public class Slice {
     }
     
     private PDG getPDGForMethod() {
-        CommonPDG pdg = criterion.getPDG();
+        DependenceGraph pdg = criterion.getPDG();
         if (pdg.isPDG()) {
             return (PDG)pdg;
         } else if (pdg.isClDG()) {
@@ -75,7 +75,7 @@ public class Slice {
         return null;
     }
     
-    public CommonPDG getPDG() {
+    public DependenceGraph getPDG() {
         return criterion.getPDG();
     }
     
@@ -160,7 +160,7 @@ public class Slice {
             return pdgnodes;
         }
         
-        CommonCFG cfg = criterion.getPDG().getCFG();
+        CFG cfg = criterion.getPDG().getCFG();
         cfg.backwardReachableNodes(node.getCFGNode(), true, new StopConditionOnReachablePath() {
             
             @Override

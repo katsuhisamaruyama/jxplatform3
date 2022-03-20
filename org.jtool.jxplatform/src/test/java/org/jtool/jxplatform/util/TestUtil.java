@@ -6,6 +6,7 @@
 package org.jtool.jxplatform.util;
 
 import org.jtool.srcmodel.JavaElement;
+import org.jtool.cfg.JReference;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,11 +19,11 @@ public static <T> List<String> asSortedList(Set<T> set) {
         return set.stream().map(o -> o.toString()).sorted().collect(Collectors.toList());
     }
     
-public static <T> List<String> asSortedList(List<T> list) {
+    public static <T> List<String> asSortedList(List<T> list) {
         return list.stream().map(o -> o.toString()).sorted().collect(Collectors.toList());
     }
     
-public static <T> List<String> asSortedList(Stream<T> stream) {
+    public static <T> List<String> asSortedList(Stream<T> stream) {
         return stream.map(o -> o.toString()).sorted().collect(Collectors.toList());
     }
     
@@ -44,6 +45,10 @@ public static <T> List<String> asSortedList(Stream<T> stream) {
     
     public static String asStrOf(List<? extends JavaElement> list) {
         return list.stream().map(e -> e.getQualifiedName().fqn()).collect(Collectors.joining(";"));
+    }
+    
+    public static String asStrOfReference(List<? extends JReference> list) {
+        return list.stream().map(e -> e.getReferenceForm()).collect(Collectors.joining(";"));
     }
     
     public static String asStr(List<? extends Object> list) {
