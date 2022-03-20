@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -23,10 +23,11 @@ public abstract class CFGEntry extends CFGNode {
     /**
      * The CFG associated with this entry node. 
      */
-    private CommonCFG cfg = null;
+    private CFG cfg = null;
     
     /**
      * Creates a new object that represents an entry.
+     * This method is not intended to be invoked by clients.
      * @param node the ASt node corresponding to this node
      * @param kind the kind of this node
      * @param fqn the fully-qualified name of the CFG that has this entry node
@@ -37,10 +38,11 @@ public abstract class CFGEntry extends CFGNode {
     }
     
     /**
-     * Associates a CFG with this entry node
+     * Associates a CFG with this entry node.
+     * This method is not intended to be invoked by clients.
      * @param cfg the CFG to be associated
      */
-    public void setCFG(CommonCFG cfg) {
+    public void setCFG(CFG cfg) {
         this.cfg = cfg;
     }
     
@@ -48,7 +50,7 @@ public abstract class CFGEntry extends CFGNode {
      * Returns the CFG that has this entry node
      * @return the CFG
      */
-    public CommonCFG getCFG() {
+    public CFG getCFG() {
         return cfg;
     }
     

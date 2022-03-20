@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -27,6 +27,7 @@ public class CFGFieldEntry extends CFGEntry {
     
     /**
      * Creates a new object that represents an entry for a field.
+     * This method is not intended to be invoked by clients.
      * @param jfield the field associated with this entry node
      * @param kind the kind of this node
      */
@@ -45,6 +46,7 @@ public class CFGFieldEntry extends CFGEntry {
     
     /**
      * Sets the CFG node for the declaration of the field associated with this entry node.
+     * This method is not intended to be invoked by clients.
      * @param node the CFG node of the field declaration to be set
      */
     public void setDeclarationNode(CFGStatement node) {
@@ -71,7 +73,7 @@ public class CFGFieldEntry extends CFGEntry {
      * Returns variables used in the declaration of the field associated with this entry node.
      * @return the collection of the used references
      */
-    public List<JReference> getUsedFields() {
+    public List<JReference> getUseFields() {
         return declNode.getUseVariables();
     }
     

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2018-2020
+ *  Copyright 2022
  *  Software Science and Technology Lab.
  *  Department of Computer Science, Ritsumeikan University
  */
@@ -44,6 +44,7 @@ public class CFGMethodEntry extends CFGEntry {
     
     /**
      * Creates a new object that represents an entry for a method.
+     * This method is not intended to be invoked by clients.
      * @param jmethod the method associated with this entry node
      * @param kind the kind of this node
      */
@@ -62,6 +63,7 @@ public class CFGMethodEntry extends CFGEntry {
     
     /**
      * Adds a formal-in node to this method entry node.
+     * This method is not intended to be invoked by clients.
      * @param node the formal-in node to be added
      */
     public void addFormalIn(CFGParameter node) {
@@ -70,6 +72,7 @@ public class CFGMethodEntry extends CFGEntry {
     
     /**
      * Adds a formal-out node to this method entry node.
+     * This method is not intended to be invoked by clients.
      * @param node the formal-out node to be added
      */
     public void addFormalOut(CFGParameter node) {
@@ -78,6 +81,7 @@ public class CFGMethodEntry extends CFGEntry {
     
     /**
      * Sets formal-in nodes to this method entry node.
+     * This method is not intended to be invoked by clients.
      * @param nodes the collection of the formal-in nodes to be set
      */
     public void setFormalIns(List<CFGParameter> nodes) {
@@ -86,6 +90,7 @@ public class CFGMethodEntry extends CFGEntry {
     
     /**
      * Sets formal-out nodes to this method entry node.
+     * This method is not intended to be invoked by clients.
      * @param nodes the collection of the formal-out nodes to be set
      */
     public void setFormalOuts(List<CFGParameter> nodes) {
@@ -160,6 +165,7 @@ public class CFGMethodEntry extends CFGEntry {
     
     /**
      * Adds an exception node to this method entry.
+     * This method is not intended to be invoked by clients.
      * @param node the exception node to be added
      */
     public void addExceptionNode(CFGException node) {
@@ -180,9 +186,9 @@ public class CFGMethodEntry extends CFGEntry {
      * @return the found exception node, or {@code null} if no exception type is found
      */
     public CFGException getExceptionNode(String type) {
-        return exceptionNodes
-                .stream()
-                .filter(node -> node.getTypeName().equals(type)).findFirst().orElse(null);
+        return exceptionNodes.stream()
+                             .filter(node -> node.getTypeName().equals(type))
+                             .findFirst().orElse(null);
     }
     
     /**
