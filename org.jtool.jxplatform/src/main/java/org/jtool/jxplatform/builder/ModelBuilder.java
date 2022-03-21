@@ -102,6 +102,7 @@ public abstract class ModelBuilder {
      * @return the copy
      */
     public JavaFile copyJavaFile(JavaFile jfile) {
+        assert jfile != null;
         return impl.copyJavaFile(jfile);
     }
     
@@ -113,6 +114,7 @@ public abstract class ModelBuilder {
      * @return the created file
      */
     public JavaFile getUnregisteredJavaFile(String filepath, String code, JavaProject jproject) {
+        assert jproject != null;
         return impl.getUnregisteredJavaFile(filepath, code, jproject);
     }
     
@@ -125,6 +127,7 @@ public abstract class ModelBuilder {
      * @return the created file
      */
     public JavaFile getUnregisteredJavaFile(String filepath, String code, JavaProject jproject, String charset) {
+        assert jproject != null;
         return impl.getUnregisteredJavaFile(filepath, code, jproject, charset);
     }
     
@@ -135,6 +138,7 @@ public abstract class ModelBuilder {
      * @return the found CFG, or {@code null} if no CFG is found
      */
     public CFG findCFG(JavaProject jproject, String fqn) {
+        assert jproject != null;
         return jproject.getCFGStore().findCFG(fqn);
     }
     
@@ -145,6 +149,7 @@ public abstract class ModelBuilder {
      * @return the found CFG, or {@code null} if no CFG is found
      */
     public CCFG findCCFG(JavaProject jproject, String fqn) {
+        assert jproject != null;
         return jproject.getCFGStore().findCCFG(fqn);
     }
     
@@ -156,6 +161,7 @@ public abstract class ModelBuilder {
      * @return the created or found CFG, or {@code null} if no CFG is created or found
      */
     public CFG getCFG(JavaMethod jmethod, boolean force) {
+        assert jmethod != null;
         return jmethod.getJavaProject().getCFGStore().getCFG(jmethod, force);
     }
     
@@ -165,6 +171,7 @@ public abstract class ModelBuilder {
      * @return the created or found CFG, or {@code null} if no CFG is created or found
      */
     public CFG getCFG(JavaMethod jmethod) {
+        assert jmethod != null;
         return jmethod.getJavaProject().getCFGStore().getCFG(jmethod, false);
     }
     
@@ -176,6 +183,7 @@ public abstract class ModelBuilder {
      * @return the created or found CFG, or {@code null} if no CFG is created or found
      */
     public CFG getCFG(JavaField jfield, boolean force) {
+        assert jfield != null;
         return jfield.getJavaProject().getCFGStore().getCFG(jfield, force);
     }
     
@@ -185,6 +193,7 @@ public abstract class ModelBuilder {
      * @return the created or found CFG, or {@code null} if no CFG is created or found
      */
     public CFG getCFG(JavaField jfield) {
+        assert jfield != null;
         return jfield.getJavaProject().getCFGStore().getCFG(jfield, false);
     }
     
@@ -196,6 +205,7 @@ public abstract class ModelBuilder {
      * @return the created or found CCFG
      */
     public CCFG getCCFG(JavaClass jclass, boolean force) {
+        assert jclass != null;
         return jclass.getJavaProject().getCFGStore().getCCFG(jclass, force);
     }
     
@@ -205,6 +215,7 @@ public abstract class ModelBuilder {
      * @return the created or found CCFG
      */
     public CCFG getCCFG(JavaClass jclass) {
+        assert jclass != null;
         return jclass.getJavaProject().getCFGStore().getCCFG(jclass, false);
     }
     
@@ -214,6 +225,7 @@ public abstract class ModelBuilder {
      * @return the created call graph
      */
     public CallGraph getCallGraph(JavaProject jproject) {
+        assert jproject != null;
         return CallGraphBuilder.getCallGraph(jproject);
     }
     
@@ -223,6 +235,7 @@ public abstract class ModelBuilder {
      * @return the created call graph
      */
     public CallGraph getCallGraph(JavaClass jclass) {
+        assert jclass != null;
         return CallGraphBuilder.getCallGraph(jclass);
     }
     
@@ -232,6 +245,7 @@ public abstract class ModelBuilder {
      * @return the created call graph
      */
     public CallGraph getCallGraph(JavaMethod jmethod) {
+        assert jmethod != null;
         return CallGraphBuilder.getCallGraph(jmethod);
     }
     
@@ -242,6 +256,7 @@ public abstract class ModelBuilder {
      * @return the found PDG, or {@code null} if no PDG is found
      */
     public PDG findPDG(JavaProject jproject, String fqn) {
+        assert jproject != null;
         return jproject.getPDGStore().findPDG(fqn);
     }
     
@@ -252,6 +267,7 @@ public abstract class ModelBuilder {
      * @return the found ClDG, or {@code null} if no ClDG is found
      */
     public ClDG findClDG(JavaProject jproject, String fqn) {
+        assert jproject != null;
         return jproject.getPDGStore().findClDG(fqn);
     }
     
@@ -261,6 +277,7 @@ public abstract class ModelBuilder {
      * @return the most recently created SDG, or {@code null} if a SDG has not been created yet
      */
     public SDG findSDG(JavaProject jproject) {
+        assert jproject != null;
         return jproject.getPDGStore().findSDG();
     }
     
@@ -273,6 +290,8 @@ public abstract class ModelBuilder {
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDG(JavaProject jproject, CFG cfg, boolean force) {
+        assert jproject != null;
+        assert cfg != null;
         return jproject.getPDGStore().getPDG(cfg, force);
     }
     
@@ -283,6 +302,8 @@ public abstract class ModelBuilder {
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDG(JavaProject jproject, CFG cfg) {
+        assert jproject != null;
+        assert cfg != null;
         return jproject.getPDGStore().getPDG(cfg, false);
     }
     
@@ -294,6 +315,7 @@ public abstract class ModelBuilder {
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDG(JavaMethod jmethod, boolean force) {
+        assert jmethod != null;
         return jmethod.getJavaProject().getPDGStore().getPDG(jmethod, force);
     }
     
@@ -303,6 +325,7 @@ public abstract class ModelBuilder {
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDG(JavaMethod jmethod) {
+        assert jmethod != null;
         return jmethod.getJavaProject().getPDGStore().getPDG(jmethod, false);
     }
     
@@ -314,6 +337,7 @@ public abstract class ModelBuilder {
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDG(JavaField jfield, boolean force) {
+        assert jfield != null;
         return jfield.getJavaProject().getPDGStore().getPDG(jfield, force);
     }
     
@@ -323,6 +347,7 @@ public abstract class ModelBuilder {
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDG(JavaField jfield) {
+        assert jfield != null;
         return jfield.getJavaProject().getPDGStore().getPDG(jfield, false);
     }
     
@@ -334,6 +359,7 @@ public abstract class ModelBuilder {
      * @return the created or found PDG within its SDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDGWithinSDG(JavaMethod jmethod, boolean force) {
+        assert jmethod != null;
         return jmethod.getJavaProject().getPDGStore().getPDGWithinSDG(jmethod, force);
     }
     
@@ -343,6 +369,7 @@ public abstract class ModelBuilder {
      * @return the created or found PDG within its SDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDGWithinSDG(JavaMethod jmethod) {
+        assert jmethod != null;
         return jmethod.getJavaProject().getPDGStore().getPDGWithinSDG(jmethod, false);
     }
     
@@ -354,6 +381,7 @@ public abstract class ModelBuilder {
      * @return the created or found PDG within its SDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDGWithinSDG(JavaField jfield, boolean force) {
+        assert jfield != null;
         return jfield.getJavaProject().getPDGStore().getPDGWithinSDG(jfield, force);
     }
     
@@ -363,6 +391,7 @@ public abstract class ModelBuilder {
      * @return the created or found PDG within its SDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDGWithinSDG(JavaField jfield) {
+        assert jfield != null;
         return jfield.getJavaProject().getPDGStore().getPDGWithinSDG(jfield, false);
     }
     
@@ -375,6 +404,8 @@ public abstract class ModelBuilder {
      * @return the created or found ClDG, or {@code null} if no ClDG is created or found
      */
     public ClDG getClDG(JavaProject jproject, CCFG ccfg, boolean force) {
+        assert jproject != null;
+        assert ccfg != null;
         return jproject.getPDGStore().getClDG(ccfg, force);
     }
     
@@ -385,6 +416,8 @@ public abstract class ModelBuilder {
      * @return the created or found ClDG, or {@code null} if no ClDG is created or found
      */
     public ClDG getClDG(JavaProject jproject, CCFG ccfg) {
+        assert jproject != null;
+        assert ccfg != null;
         return jproject.getPDGStore().getClDG(ccfg, false);
     }
     
@@ -396,6 +429,7 @@ public abstract class ModelBuilder {
      * @return the created or found ClDG, or {@code null} if no ClDG is created or found
      */
     public ClDG getClDG(JavaClass jclass, boolean force) {
+        assert jclass != null;
         return jclass.getJavaProject().getPDGStore().getClDG(jclass, force);
     }
     
@@ -405,6 +439,7 @@ public abstract class ModelBuilder {
      * @return the created or found ClDG, or {@code null} if no ClDG is created or found
      */
     public ClDG getClDG(JavaClass jclass) {
+        assert jclass != null;
         return jclass.getJavaProject().getPDGStore().getClDG(jclass, false);
     }
     
@@ -416,6 +451,7 @@ public abstract class ModelBuilder {
      * @return the created or found ClDG within its SDG, or {@code null} if no ClDG is created or found
      */
     public ClDG getClDGWithinSDG(JavaClass jclass, boolean force) {
+        assert jclass != null;
         return jclass.getJavaProject().getPDGStore().getClDGWithinSDG(jclass, force);
     }
     
@@ -425,6 +461,7 @@ public abstract class ModelBuilder {
      * @return the created or found ClDG within its SDG, or {@code null} if no ClDG is created or found
      */
     public ClDG getClDGWithinSDG(JavaClass jclass) {
+        assert jclass != null;
         return jclass.getJavaProject().getPDGStore().getClDGWithinSDG(jclass, false);
     }
     
@@ -436,6 +473,7 @@ public abstract class ModelBuilder {
      * @return the created or found SDG
      */
     public SDG getSDG(JavaClass jclass, boolean force) {
+        assert jclass != null;
         return jclass.getJavaProject().getPDGStore().getSDG(jclass, force);
     }
     
@@ -445,6 +483,7 @@ public abstract class ModelBuilder {
      * @return the created or found SDG
      */
     public SDG getSDG(JavaClass jclass) {
+        assert jclass != null;
         return jclass.getJavaProject().getPDGStore().getSDG(jclass, false);
     }
     
@@ -484,6 +523,7 @@ public abstract class ModelBuilder {
      * @return the created or found SDG
      */
     public SDG getSDG(JavaProject jproject, boolean force) {
+        assert jproject != null;
         return jproject.getPDGStore().getSDG(force);
     }
     
@@ -493,6 +533,7 @@ public abstract class ModelBuilder {
      * @return the created or found SDG
      */
     public SDG getSDG(JavaProject jproject) {
+        assert jproject != null;
         return jproject.getPDGStore().getSDG(false);
     }
     
@@ -538,6 +579,7 @@ public abstract class ModelBuilder {
      * @return the collection of classes used by the class
      */
     public Set<JavaClass> getAllClassesForward(JavaClass jclass) {
+        assert jclass != null;
         return impl.getAllClassesForward(jclass);
     }
     
@@ -547,6 +589,7 @@ public abstract class ModelBuilder {
      * @return the collection of classes using the class
      */
     public Set<JavaClass> getAllClassesBackward(JavaClass jclass) {
+        assert jclass != null;
         return impl.getAllClassesBackward(jclass);
     }
     
@@ -556,6 +599,7 @@ public abstract class ModelBuilder {
      * @return the collection of methods called by the method
      */
     public Set<JavaMethod> getAllMethodsForward(JavaMethod jmethod) {
+        assert jmethod != null;
         return impl.getAllMethodsForward(jmethod);
     }
     
@@ -565,6 +609,7 @@ public abstract class ModelBuilder {
      * @return the collection of methods calling the method
      */
     public Set<JavaMethod> getAllMethodsBackward(JavaMethod jmethod) {
+        assert jmethod != null;
         return impl.getAllMethodsBackward(jmethod);
     }
 }
