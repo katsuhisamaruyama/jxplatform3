@@ -211,7 +211,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @return the found successor, or {@code null} if no successor is found
      */
     public CFGNode getTrueSuccessor(CFGNode node) {
-        ControlFlow flow = getFalseFlowFrom(node);
+        ControlFlow flow = getTrueFlowFrom(node);
         return (flow != null) ? flow.getDstNode() : null;
     }
     
