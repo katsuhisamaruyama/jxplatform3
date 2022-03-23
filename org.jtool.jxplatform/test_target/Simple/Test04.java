@@ -8,6 +8,8 @@ public class Test04 {
     
     public int doReturn(int in) {
        in++;
-       return in;
+       if (in > 0)
+           return in;
+       return 0;
     }
 }

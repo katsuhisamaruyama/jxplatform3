@@ -2,6 +2,7 @@ public class Test13 {
 
     public void m() {
         int a = 2;
+        doReturn(a);
         int out = doReturn(a);
         System.out.println(out);
     }

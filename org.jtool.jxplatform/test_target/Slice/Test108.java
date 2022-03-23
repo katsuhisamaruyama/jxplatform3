@@ -3,7 +3,7 @@ class Test108 {
     public void m() {
         int x = 10;
         int y = 0;
-        int z = 0;;
+        int z = 0;
         if (x > 10) {
             y++;
         } else {
