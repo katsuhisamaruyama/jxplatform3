@@ -759,22 +759,17 @@ public class StatementVisitor extends ASTVisitor {
         
         CFGException catchNode = null;
         Type type = node.getException().getType();
+        List<Type> types = new ArrayList<>();
         if (type.isUnionType()) {
             UnionType unionType = (UnionType)type;
-            for (Type t : (List<Type>)unionType.types()) {
-                catchNode = new CFGException(node.getException(),
-                        CFGNode.Kind.catchClause, t.resolveBinding().getTypeDeclaration());
-                tryNode.addCatchNode(catchNode);
-                
-                JReference def = new JLocalVarReference(node.getException().getName(), vbinding);
-                catchNode.setDefVariable(def);
-                
-                reconnect(catchNode);
-            }
-            
+            types.addAll(unionType.types());
         } else {
-            catchNode = new CFGException(node.getException(),
-                    CFGNode.Kind.catchClause, type.resolveBinding().getTypeDeclaration());
+            types.add(type);
+        }
+        
+        for (Type expceptionType : types) {
+            catchNode = new CFGException(node,
+                    CFGNode.Kind.catchClause, expceptionType.resolveBinding().getTypeDeclaration());
             tryNode.addCatchNode(catchNode);
             
             JReference def = new JLocalVarReference(node.getException().getName(), vbinding);

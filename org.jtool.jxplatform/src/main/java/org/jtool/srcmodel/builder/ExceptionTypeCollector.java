@@ -17,12 +17,16 @@ import org.eclipse.jdt.core.dom.SuperConstructorInvocation;
 import org.eclipse.jdt.core.dom.SuperMethodInvocation;
 import org.eclipse.jdt.core.dom.ThrowStatement;
 import org.eclipse.jdt.core.dom.TryStatement;
+import org.eclipse.jdt.core.dom.Type;
+import org.eclipse.jdt.core.dom.UnionType;
 import org.eclipse.jdt.core.dom.CatchClause;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.IMethodBinding;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Stack;
 import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 /**
  * Parses Java source code and stores information on possible exceptions when calling methods and constructors.
@@ -50,23 +54,20 @@ public class ExceptionTypeCollector {
     public Set<ITypeBinding> getExceptions(JavaMethod jmethod) {
         jproject = jmethod.getJavaProject();
         
-        Set<JavaMethod> methods = new HashSet<JavaMethod>();
-        collectExceptions(jmethod, methods);
+        collectExceptions(new CalledMethod(jmethod.getASTNode(), new HashSet<>()), new HashSet<>());
         return exceptionTypes;
     }
     
-    private void collectExceptions(JavaMethod jmethod, Set<JavaMethod> methods) {
-        if (methods.contains(jmethod)) {
+    private void collectExceptions(CalledMethod cmethod, Set<CalledMethod> cmethods) {
+        if (cmethods.contains(cmethod)) {
             return;
         }
+        cmethods.add(cmethod);
         
-        methods.add(jmethod);
-        
-        MethodCallVisitor visitor = new MethodCallVisitor();
-        jmethod.getASTNode().accept(visitor);
-        exceptionTypes.addAll(visitor.exceptionTypes);
-        for (JavaMethod jm : visitor.calledMethods) {
-            collectExceptions(jm, methods);
+        MethodCallVisitor visitor = new MethodCallVisitor(cmethod);
+        cmethod.getASTNode().accept(visitor);
+        for (CalledMethod cm : visitor.calledMethods) {
+            collectExceptions(cm, cmethods);
         }
     }
     
@@ -74,8 +75,15 @@ public class ExceptionTypeCollector {
         
         private static final String RUNTIME_EXCEPTION_NAME = "java.lang.RuntimeException";
         
-        private Set<JavaMethod> calledMethods = new HashSet<JavaMethod>();
-        private Set<ITypeBinding> exceptionTypes = new HashSet<ITypeBinding>();
+        private Set<String> caughtTypes;
+        
+        private Stack<TryStatement> tryNodes = new Stack<>();
+        
+        private Set<CalledMethod> calledMethods = new HashSet<>();
+        
+        MethodCallVisitor(CalledMethod cmethod) {
+            this.caughtTypes = cmethod.getCaughtTypes();
+        }
         
         @Override
         public boolean visit(MethodInvocation node) {
@@ -112,26 +120,67 @@ public class ExceptionTypeCollector {
                 return;
             }
             
-            JavaMethod cmethod = JavaElementUtil.findDeclaringMethod(mbinding, jproject);
-            if (cmethod != null && cmethod.getASTNode() != null) {
-                calledMethods.add(cmethod);
+            Set<String> allTypes = getExceptionTypes(caughtTypes, tryNodes);
+            JavaMethod jmethod = JavaElementUtil.findDeclaringMethod(mbinding, jproject);
+            if (jmethod != null && jmethod.getASTNode() != null) {
+                
+                
+                calledMethods.add(new CalledMethod(jmethod.getASTNode(), allTypes));
             }
+            
             for (ITypeBinding tbinding : mbinding.getExceptionTypes()) {
-                if (isUncheckedException(tbinding) && !existsCatchCause(node, tbinding)) {
+                if (isUncheckedException(tbinding) && !allTypes.contains(tbinding.getQualifiedName())) {
+                    
+                    System.err.println(tbinding.getQualifiedName());
+                    
                     exceptionTypes.add(tbinding);
                 }
             }
         }
         
         @Override
+        public boolean visit(TryStatement node) {
+            tryNodes.push(node);
+            return true;
+        }
+        
+        @Override
+        public void endVisit(TryStatement node) {
+            tryNodes.pop();
+        }
+        
+        @Override
         public boolean visit(ThrowStatement node) {
             ITypeBinding tbinding = node.getExpression().resolveTypeBinding();
             if (tbinding != null) {
-                if (isUncheckedException(tbinding) && !existsCatchCause(node, tbinding)) {
-                    exceptionTypes.add(tbinding);
+                if (isUncheckedException(tbinding)) {
+                    Set<String> allTypes = getExceptionTypes(caughtTypes, tryNodes);
+                    if (!allTypes.contains(tbinding.getQualifiedName())) {
+                        exceptionTypes.add(tbinding);
+                    }
                 }
             }
             return false;
+        }
+        
+        @SuppressWarnings("unchecked")
+        private Set<String> getExceptionTypes(Set<String> caughtTypes, Stack<TryStatement>tryNodes) {
+            Set <String> allTypes = new HashSet<>();
+            Stream<CatchClause> catchClasuseStream = tryNodes.stream().flatMap(n -> n.catchClauses().stream());
+            for (CatchClause node: catchClasuseStream.collect(Collectors.toSet())) {
+                Type type = node.getException().getType();
+                if (type.isUnionType()) {
+                    UnionType unionType = (UnionType)type;
+                    Stream<Type> typeStream = unionType.types().stream();
+                    Set <String> types = typeStream.map(t -> t.resolveBinding().getQualifiedName())
+                                                   .collect(Collectors.toSet());
+                    allTypes.addAll(types);
+                } else {
+                    allTypes.add(type.resolveBinding().getQualifiedName());
+                }
+            }
+            allTypes.addAll(caughtTypes);
+            return allTypes;
         }
         
         private boolean isUncheckedException(ITypeBinding tbinding) {
@@ -144,19 +193,39 @@ public class ExceptionTypeCollector {
             }
             return false;
         }
+    }
+    
+    private class CalledMethod {
         
-        @SuppressWarnings("unchecked")
-        private boolean existsCatchCause(ASTNode node, ITypeBinding tbinding) {
-            TryStatement tryNode = (TryStatement)JavaElementUtil.findAncestorNode(node, ASTNode.TRY_STATEMENT);
-            if (tryNode == null) {
-                return false;
-            }
-            
-            Stream<CatchClause> stream = (Stream<CatchClause>)tryNode.catchClauses().stream();
-            return stream.map(c -> c.getException().getType().resolveBinding())
-                         .filter(b -> b != null)
-                         .map(b -> b.getQualifiedName())
-                         .anyMatch(n -> n.equals(tbinding.getQualifiedName()));
+        private ASTNode methodNode;
+        private Set<String> caughtTypes;
+        
+        CalledMethod(ASTNode methodNode, Set<String> caughtTypes) {
+            this.methodNode = methodNode;
+            this.caughtTypes = caughtTypes;
+        }
+        
+        ASTNode getASTNode() {
+            return methodNode;
+        }
+        
+        Set<String> getCaughtTypes() {
+            return caughtTypes;
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+            return (obj instanceof CalledMethod) ? equals((CalledMethod)obj) : false;
+        }
+        
+        public boolean equals(CalledMethod cmethod) {
+            return cmethod != null &&
+                    (this == cmethod || cmethod.methodNode.equals(methodNode));
+        }
+        
+        @Override
+        public int hashCode() {
+            return methodNode.hashCode();
         }
     }
 }
