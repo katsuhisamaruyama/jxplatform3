@@ -35,7 +35,8 @@ import java.util.Stack;
 public class JavaASTVisitor extends ASTVisitor {
     
     protected JavaFile jfile;
-    private Stack<JavaClass> outerClasses = new Stack<JavaClass>();
+    
+    private Stack<JavaClass> outerClasses = new Stack<>();
     
     public JavaASTVisitor(JavaFile jfile) {
         this.jfile = jfile;

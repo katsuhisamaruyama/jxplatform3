@@ -65,7 +65,9 @@ public class StatementCollector extends ASTVisitor {
     private List<ASTNode> nodes = new ArrayList<>();
     
     private int numberOfNesting;
+    
     private int maxNumberOfNesting;
+    
     private int cyclomaticNumber;
     
     public StatementCollector() {

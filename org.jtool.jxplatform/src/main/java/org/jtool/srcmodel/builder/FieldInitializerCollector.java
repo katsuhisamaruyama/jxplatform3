@@ -40,6 +40,7 @@ public class FieldInitializerCollector extends ASTVisitor {
     private JavaProject jproject;
     
     private Set<JavaField> accessedFields = new HashSet<>();
+    
     private boolean bindingOk = true;
     
     public FieldInitializerCollector(JavaProject jproject) {

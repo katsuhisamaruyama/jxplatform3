@@ -45,6 +45,7 @@ public class MethodCallCollector extends ASTVisitor {
     private JavaProject jproject;
     
     private Set<JavaMethod> calledMethods = new HashSet<>();
+    
     private boolean bindingOk = true;
     
     public MethodCallCollector(JavaProject jproject) {
