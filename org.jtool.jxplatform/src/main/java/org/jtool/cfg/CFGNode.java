@@ -92,8 +92,8 @@ public class CFGNode extends GraphNode {
         forSt,                      // CFGStatement (ForStatement)
         ifSt,                       // CFGStatement (IfStatement)
         returnSt,                   // CFGStatement (ReturnStatement)
-        switchCaseSt,               // CFGStatement (SwitchCase)
-        switchDefaultSt,            // CFGStatement (SwitchCase)
+        switchCase,                 // CFGStatement (SwitchCase)
+        switchDefault,              // CFGStatement (SwitchCase)
         whileSt,                    // CFGStatement (WhileStatement)
         emptySt,                    // CFGStatement (EmptyStatement)
         
@@ -495,19 +495,19 @@ public class CFGNode extends GraphNode {
     }
     
     /**
-     * Tests if this is a switch-statement node for the case label.
+     * Tests if this is a switch-case node for the case label.
      * @return {@code true} if this is a switch-case-statement, otherwise {@code false}
      */
     public boolean isSwitchCase() {
-        return kind == Kind.switchCaseSt;
+        return kind == Kind.switchCase;
     }
     
     /**
-     * Tests if this is a switch-statement node for the default label.
+     * Tests if this is a switch-default-case node for the default label.
      * @return {@code true} if this is a switch-default-statement node, otherwise {@code false}
      */
     public boolean isSwitchDefault() {
-        return kind == Kind.switchDefaultSt;
+        return kind == Kind.switchDefault;
     }
     
     /**

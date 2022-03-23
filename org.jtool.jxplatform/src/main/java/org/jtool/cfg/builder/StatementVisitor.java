@@ -267,7 +267,7 @@ public class StatementVisitor extends ASTVisitor {
     @Override
     @SuppressWarnings("unchecked")
     public boolean visit(SwitchStatement node) {
-        SwitchNode switchNode = new SwitchNode(node, CFGNode.Kind.switchSt);
+        CFGStatement switchNode = new CFGStatement(node, CFGNode.Kind.switchSt);
         reconnect(switchNode);
         
         Expression condition = node.getExpression();
@@ -279,48 +279,21 @@ public class StatementVisitor extends ASTVisitor {
         caseEdge.setTrue();
         
         CFGNode exitNode = new CFGNode();
-        blockEntries.push(switchNode);
         blockExits.push(exitNode);
         
-        List<Statement> remaining = new ArrayList<>();
+        List<SwitchCaseLabel> caseLabels = new ArrayList<>();
+        SwitchCaseLabel caseLabel = null;
         for (Statement statement : (List<Statement>)node.statements()) {
-            remaining.add(statement);
-        }
-        for (Statement statement : (List<Statement>)node.statements()) {
-            remaining.remove(0);
-            
             if (statement instanceof SwitchCase) {
-                switchCase((SwitchCase)statement, switchNode, remaining);
+                caseLabel = new SwitchCaseLabel((SwitchCase)statement);
+                caseLabels.add(caseLabel);
+                continue;
             }
+            caseLabel.add(statement);
         }
-        if (switchNode.hasDefault()) {
-            CFGNode successor = switchNode.getSuccessorOfDefault();
-            List<GraphEdge> nextEdges = new ArrayList<>();
-            for (GraphEdge edge : nextNode.getIncomingEdges()) {
-                nextEdges.add(edge);
-            }
-            List<GraphEdge> incomingEdges = new ArrayList<>();
-            for (GraphEdge edge : switchNode.getDefaultStartNode().getIncomingEdges()) {
-                incomingEdges.add(edge);
-            }
-            List<GraphEdge> outgoingEdges = new ArrayList<>();
-            for (GraphEdge edge : successor.getIncomingEdges()) {
-                outgoingEdges.add(edge);
-            }
-            for (GraphEdge edge : nextEdges) {
-                ControlFlow flow = (ControlFlow)edge;
-                flow.setDstNode(switchNode.getDefaultStartNode());
-            }
-            for (GraphEdge edge : incomingEdges) {
-                ControlFlow flow = (ControlFlow)edge;
-                flow.setDstNode(successor);
-            }
-            for (GraphEdge edge : outgoingEdges) {
-                ControlFlow flow = (ControlFlow)edge;
-                if (!flow.isFalse()) {
-                    flow.setDstNode(nextNode);
-                } 
-            }
+        
+        for (SwitchCaseLabel label : caseLabels) {
+            switchCase(switchNode, label);
         }
         
         nextNode.addIncomingEdges(exitNode.getIncomingEdges());
@@ -330,7 +303,6 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow falseEdge = createFlow(switchNode, mergeNode);
         falseEdge.setFalse();
         
-        blockEntries.pop();
         blockExits.pop();
         
         ControlFlow edge = createFlow(mergeNode, nextNode);
@@ -338,43 +310,39 @@ public class StatementVisitor extends ASTVisitor {
         return false;
     }
     
-    @SuppressWarnings("deprecation")
-    private void switchCase(SwitchCase node, SwitchNode switchNode, List<Statement> remaining)  {
+    @SuppressWarnings("unchecked")
+    private void switchCase(CFGStatement switchNode, SwitchCaseLabel caseLabel) {
+        CFGNode curNode = null;
         CFGStatement caseNode;
-        if (!node.isDefault()) {
-            caseNode = new CFGStatement(node, CFGNode.Kind.switchCaseSt);
+        if (caseLabel.getNode().isDefault()) {
+            caseNode = new CFGStatement(caseLabel.getNode(), CFGNode.Kind.switchDefault);
             reconnect(caseNode);
             
-            ExpressionVisitor condVisitor = new ExpressionVisitor(this, cfg, caseNode);
-            Expression condition = node.getExpression();
-            condition.accept(condVisitor);
+            curNode = caseNode;
+        } else {
+            caseNode = new CFGStatement(caseLabel.getNode(), CFGNode.Kind.switchCase);
+            reconnect(caseNode);
+            
+            curNode = caseNode;
+            for (Expression condition : (List<Expression>)caseLabel.getNode().expressions()) {
+                ExpressionVisitor condVisitor = new ExpressionVisitor(this, cfg, caseNode);
+                condition.accept(condVisitor);
+                curNode = condVisitor.getExitNode();
+            }
             
             caseNode.addDefVariables(switchNode.getDefVariables());
             caseNode.addUseVariables(switchNode.getUseVariables());
-            CFGNode curNode = condVisitor.getExitNode();
-            
-            ControlFlow edge = createFlow(curNode, nextNode);
-            edge.setTrue();
-        } else {
-            caseNode = new CFGStatement(node, CFGNode.Kind.switchDefaultSt);
-            reconnect(caseNode);
-            
-            ControlFlow edge = createFlow(caseNode, nextNode);
-            edge.setTrue();
-            switchNode.setDefaultStartNode(caseNode);
         }
-        for (Statement statement : remaining) {
-            if (statement instanceof SwitchCase) {
-                break;
-            }
+        
+        ControlFlow trueEdge = createFlow(curNode, nextNode);
+        trueEdge.setTrue();
+        
+        for (Statement statement : caseLabel.statements()) {
             statement.accept(this); 
         }
         
-        ControlFlow edge = createFlow(caseNode, nextNode);
-        edge.setFalse();
-        if (node.isDefault()) {
-            switchNode.setDefaultEndNode(prevNode);
-        }
+        ControlFlow falseEdge = createFlow(caseNode, nextNode);
+        falseEdge.setFalse();
     }
     
     @Override
@@ -788,7 +756,6 @@ public class StatementVisitor extends ASTVisitor {
     
     private void visitFinallyBlock(TryNode tryNode, Block block, CFGMerge mergeNode) {
         CFGStatement finallyNode = new CFGStatement(block, CFGNode.Kind.finallyClause);
-        tryNode.setFinallyNode(finallyNode);
         
         reconnect(finallyNode);
         
@@ -934,53 +901,34 @@ public class StatementVisitor extends ASTVisitor {
             );
     }
     
-    class SwitchNode extends CFGStatement {
+    private class SwitchCaseLabel {
         
-        private CFGNode defaultStartNode = null;
-        private CFGNode defaultEndNode = null;
+        private SwitchCase node;
         
-        SwitchNode(ASTNode node, CFGNode.Kind kind) {
-            super(node, kind);
+        private List<Statement> statements = new ArrayList<>();
+        
+        SwitchCaseLabel(SwitchCase node) {
+            this.node = node;
         }
         
-        void setDefaultStartNode(CFGNode node) {
-            defaultStartNode = node;
+        SwitchCase getNode() {
+            return node;
         }
         
-        CFGNode getDefaultStartNode() {
-            return defaultStartNode;
+        void add(Statement statement) {
+            statements.add(statement);
         }
         
-        void setDefaultEndNode(CFGNode node) {
-            defaultEndNode = node;
-        }
-        
-        CFGNode getDefaultEndNode() {
-            return defaultEndNode;
-        }
-        
-        CFGNode getPredecessorOfDefault() {
-            return defaultStartNode.getIncomingEdges().stream()
-                    .filter(edge -> ((ControlFlow)edge).isFalse()).map(flow -> (CFGNode)flow.getSrcNode()).findFirst().orElse(null);
-        }
-        
-        CFGNode getSuccessorOfDefault() {
-            return defaultStartNode.getOutgoingEdges().stream()
-                    .filter(edge -> ((ControlFlow)edge).isFalse()).map(flow -> (CFGNode)flow.getDstNode()).findFirst().orElse(null);
-        }
-        
-        boolean hasDefault() {
-            return defaultStartNode != null;
+        List<Statement> statements() {
+            return statements;
         }
     }
     
-    class TryNode extends CFGStatement {
+    private class TryNode extends CFGStatement {
         
         private Set<ExceptionOccurrence> exceptionOccurrences = new HashSet<>();
         
         private List<CFGStatement> catchNodes = new ArrayList<>();
-        
-        private CFGStatement finallyNode;
         
         TryNode(ASTNode node, Kind kind) {
             super(node, kind);
@@ -998,22 +946,8 @@ public class StatementVisitor extends ASTVisitor {
             catchNodes.add(node);
         }
         
-        void setCatchNodes(List<CFGException> nodes) {
-            for (CFGException node : nodes) {
-                addCatchNode(node);
-            }
-        }
-        
         List<CFGStatement> getCatchNodes() {
             return catchNodes;
-        }
-        
-        void setFinallyNode(CFGStatement node) {
-            finallyNode = node;
-        }
-        
-        CFGStatement getFinallyNode() {
-            return finallyNode;
         }
         
         class ExceptionOccurrence {
@@ -1033,10 +967,6 @@ public class StatementVisitor extends ASTVisitor {
             
             ITypeBinding getType() {
               return type;
-            }
-            
-            String getTypeName() {
-                return type.getQualifiedName();
             }
             
             boolean isMethodCall() {

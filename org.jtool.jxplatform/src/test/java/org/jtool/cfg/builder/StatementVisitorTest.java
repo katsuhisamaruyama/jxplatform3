@@ -5,9 +5,6 @@
 
 package org.jtool.cfg.builder;
 
-import org.jtool.srcmodel.JavaClass;
-import org.jtool.srcmodel.JavaField;
-import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGNode;
@@ -16,14 +13,7 @@ import org.jtool.cfg.CFGException;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.CFGTestUtil;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import org.eclipse.jdt.core.dom.EmptyStatement;
 import org.eclipse.jdt.core.dom.ExpressionStatement;
 import org.eclipse.jdt.core.dom.VariableDeclarationStatement;
@@ -32,6 +22,7 @@ import org.eclipse.jdt.core.dom.ConstructorInvocation;
 import org.eclipse.jdt.core.dom.SuperConstructorInvocation;
 import org.eclipse.jdt.core.dom.IfStatement;
 import org.eclipse.jdt.core.dom.SwitchStatement;
+import org.eclipse.jdt.core.dom.SwitchCase;
 import org.eclipse.jdt.core.dom.WhileStatement;
 import org.eclipse.jdt.core.dom.DoStatement;
 import org.eclipse.jdt.core.dom.ForStatement;
@@ -45,21 +36,6 @@ import org.eclipse.jdt.core.dom.SynchronizedStatement;
 import org.eclipse.jdt.core.dom.ThrowStatement;
 import org.eclipse.jdt.core.dom.TryStatement;
 import org.eclipse.jdt.core.dom.CatchClause;
-import org.eclipse.jdt.core.dom.Type;
-
-import org.eclipse.jdt.core.dom.AnnotationTypeDeclaration;
-import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
-import org.eclipse.jdt.core.dom.EnumDeclaration;
-import org.eclipse.jdt.core.dom.IMethodBinding;
-import org.eclipse.jdt.core.dom.ITypeBinding;
-import org.eclipse.jdt.core.dom.IVariableBinding;
-import org.eclipse.jdt.core.dom.Initializer;
-import org.eclipse.jdt.core.dom.LambdaExpression;
-import org.eclipse.jdt.core.dom.MethodDeclaration;
-import org.eclipse.jdt.core.dom.Modifier;
-import org.eclipse.jdt.core.dom.TypeDeclaration;
-
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -74,19 +50,16 @@ import static org.junit.Assert.assertTrue;
 public class StatementVisitorTest {
     
     private static JavaProject SimpleProject;
-    //private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {
         SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-        //SliceProject = BuilderTestUtil.createProject("Slice", "", "");
         CFGTestUtil.writeCFGs(SimpleProject);
     }
     
     @AfterClass
     public static void tearDown() {
         SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-        //SliceProject.getModelBuilder().unbuild();
     }
     
     @Test
@@ -476,18 +449,310 @@ public class StatementVisitorTest {
     }
     
     @Test
-    public void testSwitchStatement() {
-        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( )");
+    public void testSwitchStatement1() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test03", "m( )");
         List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchStatement");
         CFGNode node = nodes.get(0);
         assert (node.getASTNode() instanceof SwitchStatement);
         
-        //cfg.getNodes().forEach(e -> System.err.println("NODE = " + e.getId() + " " + e.getASTNode().getClass().getName()));
-        //nodes.forEach(e -> System.err.println(e.getId() + " " + e.getKind().toString()));
+        assertTrue(node.getKind() == CFGNode.Kind.switchSt);
         
-        assertTrue(node.getKind() == CFGNode.Kind.whileSt);
-        assertEquals(1, node.getOutgoingEdges().size());
-        assertEquals("this(100);", node.getASTNode().toString().trim());
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 21);
+        
+        assertEquals("switch (a) {\n"
+                   + "case 0:  System.out.println(a);\n"
+                   + "b=a;\n"
+                   + "break;\n"
+                   + "case 1:System.out.println(a);\n"
+                   + "a++;\n"
+                   + "break;\n"
+                   + "case 2:System.out.println(a);\n"
+                   + "break;\n"
+                   + "}", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchStatement2() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test06", "m( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchStatement");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof SwitchStatement);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchSt);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 10);
+        
+        assertEquals("switch (a) {\n"
+                   + "case 0:  b++;\n"
+                   + "break;\n"
+                   + "case 1:b++;\n"
+                   + "break;\n"
+                   + "case 2:b++;\n"
+                   + "break;\n"
+                   + "}", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchStatement3() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test06", "m( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchStatement");
+        CFGNode node = nodes.get(1);
+        assert (node.getASTNode() instanceof SwitchStatement);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchSt);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 9);
+        
+        assertEquals("switch (b) {\n"
+                   + "case 0:  a++;\n"
+                   + "case 1:a++;\n"
+                   + "break;\n"
+                   + "case 2:a++;\n"
+                   + "break;\n"
+                   + "}", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchStatement4() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test37", "m1( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchStatement");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof SwitchStatement);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchSt);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 6);
+        
+        assertEquals("switch (x) {\n"
+                    + "case 1:  y=10;\n"
+                    + "break;\n"
+                    + "default:x=10;\n"
+                    + "}", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchStatement5() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test37", "m2( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchStatement");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof SwitchStatement);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchSt);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 7);
+        
+        assertEquals("switch (x) {\n"
+                   + "default:  x=10;\n"
+                   + "break;\n"
+                   + "case 1:y=10;\n"
+                   + "break;\n"
+                   + "}", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchStatement6() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test37", "m3( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchStatement");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof SwitchStatement);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchSt);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 6);
+        
+        assertEquals("switch (x) {\n"
+                   + "default:  x=10;\n"
+                   + "case 1:y=10;\n"
+                   + "break;\n"
+                   + "}", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchSwitchCaseLabel1() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test03", "m( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchCase");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof SwitchCase);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchCase);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 2);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 7);
+        
+        assertEquals("case 0:", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchCaseLabel2() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test03", "m( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchCase");
+        CFGNode node = nodes.get(1);
+        assert (node.getASTNode() instanceof SwitchCase);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchCase);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 2);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 7);
+        
+        assertEquals("case 1:", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testCaseLabel3() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test03", "m( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchCase");
+        CFGNode node = nodes.get(2);
+        assert (node.getASTNode() instanceof SwitchCase);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchCase);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 2);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 6);
+        
+        assertEquals("case 2:", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchCaseLabel4() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test37", "m1( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchCase");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof SwitchCase);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchCase);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 3);
+        
+        assertEquals("case 1:", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchCaseLabel5() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test37", "m1( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchCase");
+        CFGNode node = nodes.get(1);
+        assert (node.getASTNode() instanceof SwitchCase);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchDefault);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 2);
+        
+        assertEquals("default:", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchCaseLabel6() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test37", "m2( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchCase");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof SwitchCase);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchDefault);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 3);
+        
+        assertEquals("default:", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchCaseLabel7() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test37", "m2( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchCase");
+        CFGNode node = nodes.get(1);
+        assert (node.getASTNode() instanceof SwitchCase);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchCase);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 3);
+        
+        assertEquals("case 1:", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchCaseLabel8() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test37", "m3( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchCase");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof SwitchCase);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchDefault);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 2);
+        
+        assertEquals("default:", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchCaseLabel9() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test37", "m3( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SwitchCase");
+        CFGNode node = nodes.get(1);
+        assert (node.getASTNode() instanceof SwitchCase);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.switchCase);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 3);
+        
+        assertEquals("case 1:", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchBreak1() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test03", "m( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "BreakStatement");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof BreakStatement);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.breakSt);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 14);
+        assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() - 1);
+        
+        assertEquals("break;", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testSwitchBreak2() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test37", "m2( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "BreakStatement");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof BreakStatement);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.breakSt);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 4);
+        assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() - 1);
+        
+        assertEquals("break;", node.getASTNode().toString().trim());
     }
     
     @Test
@@ -929,8 +1194,6 @@ public class StatementVisitorTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test36", "m( )");
         List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "CatchClause");
         CFGException node = (CFGException)nodes.get(0);
-        
-        cfg.print();
         
         assert (node.getASTNode() instanceof CatchClause);
         

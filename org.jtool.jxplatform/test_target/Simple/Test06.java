@@ -16,10 +16,9 @@ public class Test06 {
         } else {
             switch(b) {
             case 0: a++;
-                break;
             case 1: a++;
                 break;
-                case 2: a++;
+            case 2: a++;
                 break;
             }
         }

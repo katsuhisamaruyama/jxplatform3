@@ -37,32 +37,51 @@ public class CFGTestUtil {
     
     public static CCFG createCCFG(JavaProject jproject, String cname) {
         JavaClass jclass = jproject.getClass(cname);
-        return jproject.getCFGStore().getCCFG(jclass, false);
+        return jproject.getModelBuilder().getCCFG(jclass, false);
     }
     
     public static CFG createCFG(JavaProject jproject, String cname, String member) {
         if (member.indexOf("(") != -1) {
             JavaMethod jmethod = jproject.getClass(cname).getMethod(member);
-            return jproject.getCFGStore().getCFG(jmethod, false);
+            return jproject.getModelBuilder().getCFG(jmethod, false);
         } else {
             JavaField jfield = jproject.getClass(cname).getField(member);
-            return jproject.getCFGStore().getCFG(jfield, false);
+            return jproject.getModelBuilder().getCFG(jfield, false);
         }
     }
     
     public static CFGNode getCFGNode(CFG cfg, int index) {
         return cfg.getNodes().stream()
-                .filter(n -> n.getId() == index + cfg.getEntryNode().getId()).findFirst().orElse(null);
+                .filter(n -> n.getId() == index + cfg.getEntryNode().getId())
+                .findFirst().orElse(null);
     }
     
-    public static List<CFGNode> getNode(CFG cfg, CFGNode.Kind kind) {
+    public static List<CFGNode> getNodes(CFG cfg, String kind) {
+        return CFGNode.sortCFGNodes(cfg.getNodes()).stream()
+            .filter(n -> !n.isMerge())
+            .filter(n -> n.getASTNode().getClass().getName().endsWith("." + kind))
+            .collect(Collectors.toList());
+    }
+    
+    public static List<CFGNode> getNodes(CFG cfg, CFGNode.Kind kind) {
         return CFGNode.sortCFGNodes(cfg.getNodes()).stream()
             .filter(n -> n.getKind() == kind).collect(Collectors.toList());
     }
     
+    public static List<ControlFlow> getEdges(CFG cfg, ControlFlow.Kind kind) {
+        return ControlFlow.sortControlFlowEdges(cfg.getEdges()).stream()
+            .filter(n -> n.getKind() == kind).collect(Collectors.toList());
+    }
+    
+    public static List<ControlFlow> getLCFlow(CFG cfg) {
+        return ControlFlow.sortControlFlowEdges(cfg.getEdges()).stream()
+            .filter(n -> n.getLoopBack() != null).collect(Collectors.toList());
+    }
+    
     public static void print(CFG cfg, CFGNode.Kind kind) {
-        List<CFGNode> nodes = getNode(cfg, kind);
-        nodes.forEach(e -> System.err.println(e.getId() + " " + e.getKind().toString() + " " + e.getClass().toString()));
+        List<CFGNode> nodes = getNodes(cfg, kind);
+        nodes.forEach(e -> System.err.println(e.getId() + " " +
+                e.getKind().toString() + " " + e.getClass().toString()));
     }
     
     public static List<JSpecialVarReference> getDefSpecialReference(CFG cfg) {
@@ -210,7 +229,7 @@ public class CFGTestUtil {
         } else if (node instanceof CFGMerge) {
             CFGMerge merge = (CFGMerge)node;
             if (node.getKind() != null) {
-                return " merge-" + merge.getBranch().getKind().toString() + "(" +
+                return " " + merge.getBranch().getKind().toString() + "(" +
                         String.valueOf(getId(cfg, merge.getBranch())) + ")";
             }
         }
