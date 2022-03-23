@@ -102,8 +102,9 @@ public class CFGNode extends GraphNode {
         synchronizedSt,             // CFGStatement (SynchronizedStatement)
         throwSt,                    // CFGStatement (ThrowStatement)
         trySt,                      // CFGStatement (TryStatement)
-        catchSt,                    // CFGStatement (CatchClause in TryStatement)
-        finallySt,                  // CFGStatement (Block in TryStatement)
+        catchClause,                // CFGStatement (CatchClause in TryStatement)
+        finallyClause,              // CFGStatement (Block in TryStatement)
+        throwsClause,               // CFGStatement (thrown exception Types in MethodDeclaration)
         
         formalIn,                   // CFGParameter
         formalOut,                  // CFGParameter
@@ -558,19 +559,27 @@ public class CFGNode extends GraphNode {
     }
     
     /**
-     * Tests if this is a catch-statement node.
-     * @return {@code true} if this is a catch-statement node, otherwise {@code false}
+     * Tests if this is a catch-clause node.
+     * @return {@code true} if this is a catch-clause node, otherwise {@code false}
      */
     public boolean isCatch() {
-        return kind == Kind.catchSt;
+        return kind == Kind.catchClause;
     }
     
     /**
-     * Tests if this is a finally-statement node.
-     * @return {@code true} if this is a finally-statement node, otherwise {@code false}
+     * Tests if this is a finally-clause node.
+     * @return {@code true} if this is a finally-clause node, otherwise {@code false}
      */
     public boolean isFinally() {
-        return kind == Kind.finallySt;
+        return kind == Kind.finallyClause;
+    }
+    
+    /**
+     * Tests if this is a throws-clause node.
+     * @return {@code true} if this is a throws-clause node, otherwise {@code false}
+     */
+    public boolean isThrows() {
+        return kind == Kind.throwsClause;
     }
     
     /**
