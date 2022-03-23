@@ -8,7 +8,7 @@ package org.jtool.pdg;
 import org.jtool.srcmodel.QualifiedName;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CCFG;
-import org.jtool.cfg.CFGClassEntry;
+import org.jtool.cfg.CCFGEntry;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
@@ -25,7 +25,7 @@ public class ClDG extends DependenceGraph {
     /**
      * The entry node of this ClDG.
      */
-    private PDGClassEntry entry;
+    private ClDGEntry entry;
     
     /**
      * The map between the fully-qualified names and PDGs that have their corresponding names.
@@ -37,7 +37,7 @@ public class ClDG extends DependenceGraph {
      * This method is not intended to be invoked by clients.
      * @param node the entry node to be set
      */
-    public void setEntryNode(PDGClassEntry node) {
+    public void setEntryNode(ClDGEntry node) {
         entry = node;
         entry.setClDG(this);
     }
@@ -46,7 +46,7 @@ public class ClDG extends DependenceGraph {
      * Returns the entry node for this ClDG.
      * @return the entry node
      */
-    public PDGClassEntry getEntryNode() {
+    public ClDGEntry getEntryNode() {
         return entry;
     }
     
@@ -79,7 +79,7 @@ public class ClDG extends DependenceGraph {
      */
     @Override
     public CCFG getCCFG() {
-        CFGClassEntry node = entry.getCFGClassEntry();
+        CCFGEntry node = entry.getCCFGEntry();
         return node.getCCFG();
     }
     
