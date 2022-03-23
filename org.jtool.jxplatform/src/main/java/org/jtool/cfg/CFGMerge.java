@@ -26,7 +26,7 @@ public class CFGMerge extends CFGNode {
      * @param branch the node for the branch that causes the merge
      */
     public CFGMerge(ASTNode node, CFGStatement branch) {
-        super(node, branch.getKind());
+        super(node, CFGNode.Kind.merge);
         this.branch = branch;
     }
     
@@ -53,7 +53,8 @@ public class CFGMerge extends CFGNode {
     @Override
     public String toString() {
         if (getKind() != null) {
-            return getIdString(id)  + " merge-" + branch.getKind().toString() + "(" + branch.getId() + ")";
+            return getIdString(id)  + " " + getKind().toString() + " " +
+                    branch.getKind().toString() + "(" + branch.getId() + ")";
         } else {
             return getIdString(id);
         }

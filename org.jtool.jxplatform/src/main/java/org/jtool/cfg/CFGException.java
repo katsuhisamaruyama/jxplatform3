@@ -9,7 +9,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 
 /**
- * A node for a <code>catch</code> clause or <code>throws</code> of method in a CFG.
+ * A node for a thrown or caught exception.
  * 
  * @author Katsuhisa Maruyama
  */
@@ -18,12 +18,7 @@ public class CFGException extends CFGStatement {
     /**
      * The type binding information on the type of the exception.
      */
-    private ITypeBinding type;
-    
-    /**
-     * The parent node ({@code {CFGMethodEntry} or {@code CFGMethodCall}) that this node directly dangles on.
-     */
-    private CFGNode parent;
+    private ITypeBinding tbinding;
     
     /**
      * Creates a new object that represents an exception.
@@ -32,17 +27,17 @@ public class CFGException extends CFGStatement {
      * @param kind the kind of this node
      * @param type type binding information on the type of the exception
      */
-    public CFGException(ASTNode node, CFGNode.Kind kind, ITypeBinding type) {
+    public CFGException(ASTNode node, CFGNode.Kind kind, ITypeBinding tbinding) {
         super(node, kind);
-        this.type = type;
+        this.tbinding = tbinding;
     }
     
     /**
      * Returns the type binding information on the type of the exception.
      * @return the type binding information
      */
-    public ITypeBinding getType() {
-        return type;
+    public ITypeBinding getTypeBinding() {
+        return tbinding;
     }
     
     /**
@@ -50,23 +45,6 @@ public class CFGException extends CFGStatement {
      * @return the type name
      */
     public String getTypeName() {
-        return type.getQualifiedName();
-    }
-    
-    /**
-     * The parent node that this node directly dangles on.
-     * This method is not intended to be invoked by clients.
-     * @param parent the parent node to be set
-     */
-    public void setParent(CFGNode parent) {
-        this.parent = parent;
-    }
-    
-    /**
-     * Returns the parent node that this node directly dangles on.
-     * @return the parent node
-     */
-    public CFGNode getParent() {
-        return parent;
+        return tbinding.getQualifiedName();
     }
 }

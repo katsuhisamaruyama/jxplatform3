@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -163,7 +163,9 @@ class CFGMethodBuilder {
         
         ExceptionTypeCollector collector = new ExceptionTypeCollector();
         for (ITypeBinding tbinding : collector.getExceptions(jmethod)) {
-            if (!alreadyIncluded(nodes, tbinding)) {
+            boolean included = nodes.stream()
+                                    .anyMatch(n -> n.getTypeName().equals(tbinding.getQualifiedName()));
+            if (!included) {
                 CFGException exceptionNode = createExceptionNode(entry, cfg, tbinding);
                 nodes.add(exceptionNode);
             }
@@ -172,19 +174,8 @@ class CFGMethodBuilder {
         return nodes;
     }
     
-    private static boolean alreadyIncluded(Set<CFGException> nodes, ITypeBinding tbinding) {
-        for (CFGException node : nodes) {
-            if (node.getTypeName().equals(tbinding.getQualifiedName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
     private static CFGException createExceptionNode(CFGMethodEntry entry, CFG cfg, ITypeBinding tbinding) {
-        CFGException exceptionNode = new CFGException(entry.getASTNode(), CFGNode.Kind.catchSt, tbinding);
-        exceptionNode.setParent(entry);
-        
+        CFGException exceptionNode = new CFGException(entry.getASTNode(), CFGNode.Kind.throwsClause, tbinding);
         entry.addExceptionNode(exceptionNode);
         cfg.add(exceptionNode);
         return exceptionNode;

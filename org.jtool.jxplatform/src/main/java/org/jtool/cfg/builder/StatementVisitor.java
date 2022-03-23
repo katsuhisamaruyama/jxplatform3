@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -49,6 +49,9 @@ import org.eclipse.jdt.core.dom.TryStatement;
 import org.eclipse.jdt.core.dom.CatchClause;
 import org.eclipse.jdt.core.dom.TypeDeclarationStatement;
 import org.eclipse.jdt.core.dom.WhileStatement;
+import org.eclipse.jdt.core.dom.Type;
+import org.eclipse.jdt.core.dom.UnionType;
+import org.eclipse.jdt.core.dom.Name;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.IMethodBinding;
 import org.eclipse.jdt.core.dom.IVariableBinding;
@@ -235,7 +238,6 @@ public class StatementVisitor extends ASTVisitor {
         ExpressionVisitor condVisitor = new ExpressionVisitor(this, cfg, ifNode);
         condition.accept(condVisitor);
         CFGNode curNode = condVisitor.getExitNode();
-        ifNode.setKind(CFGNode.Kind.ifSt);
         
         ControlFlow trueEdge = createFlow(curNode, nextNode);
         trueEdge.setTrue();
@@ -516,12 +518,12 @@ public class StatementVisitor extends ASTVisitor {
     
     @Override
     public boolean visit(EnhancedForStatement node) {
-        CFGStatement forNode = new CFGStatement(node, CFGNode.Kind.assignment);
+        CFGStatement forNode = new CFGStatement(node, CFGNode.Kind.forSt);
         reconnect(forNode);
         
-        SingleVariableDeclaration parameter = node.getParameter();
+        Name name = node.getParameter().getName();
         ExpressionVisitor paramVisitor = new ExpressionVisitor(this, cfg, forNode);
-        parameter.accept(paramVisitor);
+        name.accept(paramVisitor);
         Expression expression = node.getExpression();
         ExpressionVisitor exprVisitor = new ExpressionVisitor(this, cfg, forNode);
         expression.accept(exprVisitor);
@@ -626,7 +628,7 @@ public class StatementVisitor extends ASTVisitor {
     
     @Override
     public boolean visit(AssertStatement node) {
-        CFGStatement assertNode = new CFGStatement(node, CFGNode.Kind.assignment);
+        CFGStatement assertNode = new CFGStatement(node, CFGNode.Kind.assertSt);
         reconnect(assertNode);
         
         Expression expression = node.getExpression();
@@ -657,9 +659,6 @@ public class StatementVisitor extends ASTVisitor {
         labels.add(new Label(name, labelNode));
         Statement body = node.getBody();
         body.accept(this);
-        
-        ControlFlow jumpEdge = createFlow(labelNode, cfg.getExitNode());
-        jumpEdge.setTrue();
         return false;
     }
     
@@ -734,20 +733,74 @@ public class StatementVisitor extends ASTVisitor {
         CFGMerge mergeNode = new CFGMerge(node, tryNode);
         reconnect(mergeNode);
         
+        ControlFlow fallEdge = createFlow(tryNode, mergeNode);
+        fallEdge.setFallThrough();
+        
         for (CatchClause clause : (List<CatchClause>)node.catchClauses()) { 
             visitCatchClause(tryNode, clause, mergeNode);
-        }
-        Block finallyBlock = node.getFinally();
-        if (finallyBlock != null) {
-            visitFinallyBlock(tryNode, finallyBlock, mergeNode);
         }
         
         ControlFlow trueEdge = createFlow(mergeNode, nextNode);
         trueEdge.setTrue();
         
+        Block finallyBlock = node.getFinally();
+        if (finallyBlock != null) {
+            visitFinallyBlock(tryNode, finallyBlock, mergeNode);
+        }
+        
         catchClause(tryNode);
         
         return false;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void visitCatchClause(TryNode tryNode, CatchClause node, CFGMerge mergeNode) {
+        IVariableBinding vbinding = node.getException().resolveBinding();
+        
+        CFGException catchNode = null;
+        Type type = node.getException().getType();
+        if (type.isUnionType()) {
+            UnionType unionType = (UnionType)type;
+            for (Type t : (List<Type>)unionType.types()) {
+                catchNode = new CFGException(node.getException(),
+                        CFGNode.Kind.catchClause, t.resolveBinding().getTypeDeclaration());
+                tryNode.addCatchNode(catchNode);
+                
+                JReference def = new JLocalVarReference(node.getException().getName(), vbinding);
+                catchNode.setDefVariable(def);
+                
+                reconnect(catchNode);
+            }
+            
+        } else {
+            catchNode = new CFGException(node.getException(),
+                    CFGNode.Kind.catchClause, type.resolveBinding().getTypeDeclaration());
+            tryNode.addCatchNode(catchNode);
+            
+            JReference def = new JLocalVarReference(node.getException().getName(), vbinding);
+            catchNode.setDefVariable(def);
+            
+            reconnect(catchNode);
+        }
+        
+        ControlFlow trueEdge = createFlow(catchNode, nextNode);
+        trueEdge.setTrue();
+        
+        Statement body = node.getBody();
+        body.accept(this);
+        reconnect(mergeNode);
+    }
+    
+    private void visitFinallyBlock(TryNode tryNode, Block block, CFGMerge mergeNode) {
+        CFGStatement finallyNode = new CFGStatement(block, CFGNode.Kind.finallyClause);
+        tryNode.setFinallyNode(finallyNode);
+        
+        reconnect(finallyNode);
+        
+        ControlFlow edge = createFlow(finallyNode, nextNode);
+        edge.setTrue();
+        
+        block.accept(this);
     }
     
     private void catchClause(TryNode tryNode) {
@@ -832,41 +885,6 @@ public class StatementVisitor extends ASTVisitor {
         return nodes;
     }
     
-    private void visitCatchClause(TryNode tryNode, CatchClause node, CFGMerge mergeNode) {
-        IVariableBinding vbinding = node.getException().resolveBinding();
-        CFGException catchNode = new CFGException(node.getException(), CFGNode.Kind.catchSt, vbinding.getType().getTypeDeclaration());
-        catchNode.setParent(tryNode);
-        tryNode.addCatchNode(catchNode);
-        
-        JReference def = new JLocalVarReference(node.getException().getName(), vbinding);
-        catchNode.setDefVariable(def);
-        
-        reconnect(catchNode);
-        
-        ControlFlow trueEdge = createFlow(catchNode, nextNode);
-        trueEdge.setTrue();
-        
-        ControlFlow fallEdge = createFlow(catchNode, mergeNode);
-        fallEdge.setFallThrough();
-        cfg.add(fallEdge);
-        
-        Statement body = node.getBody();
-        body.accept(this);
-        reconnect(mergeNode);
-    }
-    
-    private void visitFinallyBlock(TryNode tryNode, Block block, CFGMerge mergeNode) {
-        CFGStatement finallyNode = new CFGStatement(block, CFGNode.Kind.finallySt);
-        reconnect(mergeNode, finallyNode);
-        tryNode.setFinallyNode(finallyNode);
-        
-        ControlFlow trueEdge = createFlow(finallyNode, nextNode);
-        trueEdge.setTrue();
-        
-        block.accept(this);
-        reconnect(mergeNode);
-    }
-    
     class Label {
         String name = "";
         CFGNode node;
@@ -920,4 +938,116 @@ public class StatementVisitor extends ASTVisitor {
                 node instanceof EnumConstantDeclaration
             );
     }
+    
+    class SwitchNode extends CFGStatement {
+        
+        private CFGNode defaultStartNode = null;
+        private CFGNode defaultEndNode = null;
+        
+        SwitchNode(ASTNode node, CFGNode.Kind kind) {
+            super(node, kind);
+        }
+        
+        void setDefaultStartNode(CFGNode node) {
+            defaultStartNode = node;
+        }
+        
+        CFGNode getDefaultStartNode() {
+            return defaultStartNode;
+        }
+        
+        void setDefaultEndNode(CFGNode node) {
+            defaultEndNode = node;
+        }
+        
+        CFGNode getDefaultEndNode() {
+            return defaultEndNode;
+        }
+        
+        CFGNode getPredecessorOfDefault() {
+            return defaultStartNode.getIncomingEdges().stream()
+                    .filter(edge -> ((ControlFlow)edge).isFalse()).map(flow -> (CFGNode)flow.getSrcNode()).findFirst().orElse(null);
+        }
+        
+        CFGNode getSuccessorOfDefault() {
+            return defaultStartNode.getOutgoingEdges().stream()
+                    .filter(edge -> ((ControlFlow)edge).isFalse()).map(flow -> (CFGNode)flow.getDstNode()).findFirst().orElse(null);
+        }
+        
+        boolean hasDefault() {
+            return defaultStartNode != null;
+        }
+    }
+    
+    class TryNode extends CFGStatement {
+        
+        private Set<ExceptionOccurrence> exceptionOccurrences = new HashSet<>();
+        
+        private List<CFGStatement> catchNodes = new ArrayList<>();
+        
+        private CFGStatement finallyNode;
+        
+        TryNode(ASTNode node, Kind kind) {
+            super(node, kind);
+        }
+        
+        void addExceptionOccurrence(CFGStatement node, ITypeBinding type, boolean methidCall) {
+            exceptionOccurrences.add(new ExceptionOccurrence(node, type, methidCall));
+        }
+        
+        Set<ExceptionOccurrence> getExceptionOccurrences() {
+            return exceptionOccurrences;
+        }
+        
+        void addCatchNode(CFGStatement node) {
+            catchNodes.add(node);
+        }
+        
+        void setCatchNodes(List<CFGException> nodes) {
+            for (CFGException node : nodes) {
+                addCatchNode(node);
+            }
+        }
+        
+        List<CFGStatement> getCatchNodes() {
+            return catchNodes;
+        }
+        
+        void setFinallyNode(CFGStatement node) {
+            finallyNode = node;
+        }
+        
+        CFGStatement getFinallyNode() {
+            return finallyNode;
+        }
+        
+        class ExceptionOccurrence {
+            private CFGStatement node;
+            private ITypeBinding type;
+            private boolean methodCall;
+            
+            ExceptionOccurrence(CFGStatement node, ITypeBinding type, boolean methodCall) {
+                this.node = node;
+                this.type = type;
+                this.methodCall = methodCall;
+            }
+            
+            CFGStatement getNode() {
+                return node;
+            }
+            
+            ITypeBinding getType() {
+              return type;
+            }
+            
+            String getTypeName() {
+                return type.getQualifiedName();
+            }
+            
+            boolean isMethodCall() {
+                return methodCall;
+            }
+        }
+    }
 }
+

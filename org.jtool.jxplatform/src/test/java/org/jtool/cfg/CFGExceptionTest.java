@@ -56,34 +56,4 @@ public class CFGExceptionTest {
         
         assertEquals("SubSubException", result);
     }
-    
-    @Test
-    public void testGetParentTest122() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test122", "n( int )");
-        CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        CFGException exception = node.getExceptionNodes().get(0);
-        CFGNode result = exception.getParent();
-        
-        assertEquals(node, result);
-    }
-    
-    @Test
-    public void testGetParentTest123_1() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test123", "n( int )");
-        CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        CFGException exception = node.getExceptionNodes().get(0);
-        CFGNode result = exception.getParent();
-        
-        assertEquals(node, result);
-    }
-    
-    @Test
-    public void testGetParentTest123_2() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test123", "n( int )");
-        CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        CFGException exception = node.getExceptionNodes().get(1);
-        CFGNode result = exception.getParent();
-        
-        assertEquals(node, result);
-    }
 }

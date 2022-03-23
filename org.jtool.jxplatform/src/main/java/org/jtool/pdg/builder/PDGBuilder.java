@@ -263,7 +263,7 @@ public class PDGBuilder {
             if (flow.isExceptionCatch()) {
                 CFGException catchNode = (CFGException)flow.getDstNode();
                 for (CFGException exceptionNode : callee.getExceptionNodes()) {
-                    if (getCatchTypes(exceptionNode.getType()).contains(catchNode.getTypeName())) {
+                    if (getCatchTypes(exceptionNode.getTypeBinding()).contains(catchNode.getTypeName())) {
                         CD edge = new CD(exceptionNode.getPDGNode(), catchNode.getPDGNode());
                         edge.setExceptionCatch();
                         pdg.add(edge);

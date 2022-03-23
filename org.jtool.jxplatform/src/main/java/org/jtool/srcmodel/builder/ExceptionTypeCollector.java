@@ -9,16 +9,20 @@ import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaElementUtil;
 import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ClassInstanceCreation;
 import org.eclipse.jdt.core.dom.ConstructorInvocation;
 import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.SuperConstructorInvocation;
 import org.eclipse.jdt.core.dom.SuperMethodInvocation;
 import org.eclipse.jdt.core.dom.ThrowStatement;
+import org.eclipse.jdt.core.dom.TryStatement;
+import org.eclipse.jdt.core.dom.CatchClause;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.IMethodBinding;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.stream.Stream;
 
 /**
  * Parses Java source code and stores information on possible exceptions when calling methods and constructors.
@@ -68,7 +72,6 @@ public class ExceptionTypeCollector {
     
     private class MethodCallVisitor extends ASTVisitor {
         
-        private static final String EXCEPTION_NAME = "java.lang.Exception";
         private static final String RUNTIME_EXCEPTION_NAME = "java.lang.RuntimeException";
         
         private Set<JavaMethod> calledMethods = new HashSet<JavaMethod>();
@@ -76,80 +79,84 @@ public class ExceptionTypeCollector {
         
         @Override
         public boolean visit(MethodInvocation node) {
-            if (node.resolveMethodBinding() != null) {
-                addMethodCall(node.resolveMethodBinding());
-            }
+            addMethodCall(node, node.resolveMethodBinding());
             return false;
         }
         
         @Override
         public boolean visit(SuperMethodInvocation node) {
-            if (node.resolveMethodBinding() != null) {
-                addMethodCall(node.resolveMethodBinding());
-            }
+            addMethodCall(node, node.resolveMethodBinding());
             return false;
         }
         
         @Override
         public boolean visit(ConstructorInvocation node) {
-            if (node.resolveConstructorBinding() != null) {
-                addMethodCall(node.resolveConstructorBinding());
-            }
+            addMethodCall(node, node.resolveConstructorBinding());
             return false;
         }
         
         @Override
         public boolean visit(SuperConstructorInvocation node) {
-            if (node.resolveConstructorBinding() != null) {
-                addMethodCall(node.resolveConstructorBinding());
-            }
+            addMethodCall(node, node.resolveConstructorBinding());
             return false;
         }
         
         @Override
         public boolean visit(ClassInstanceCreation node) {
-            if (node.resolveConstructorBinding() != null) {
-                addMethodCall(node.resolveConstructorBinding());
-            }
+            addMethodCall(node, node.resolveConstructorBinding());
             return false;
+        }
+        
+        private void addMethodCall(ASTNode node, IMethodBinding mbinding) {
+            if (mbinding == null || mbinding.isDefaultConstructor() || mbinding.isAnnotationMember()) {
+                return;
+            }
+            
+            JavaMethod cmethod = JavaElementUtil.findDeclaringMethod(mbinding, jproject);
+            if (cmethod != null && cmethod.getASTNode() != null) {
+                calledMethods.add(cmethod);
+            }
+            for (ITypeBinding tbinding : mbinding.getExceptionTypes()) {
+                if (isUncheckedException(tbinding) && !existsCatchCause(node, tbinding)) {
+                    exceptionTypes.add(tbinding);
+                }
+            }
         }
         
         @Override
         public boolean visit(ThrowStatement node) {
             ITypeBinding tbinding = node.getExpression().resolveTypeBinding();
             if (tbinding != null) {
-                exceptionTypes.add(tbinding);
+                if (isUncheckedException(tbinding) && !existsCatchCause(node, tbinding)) {
+                    exceptionTypes.add(tbinding);
+                }
             }
             return false;
-        }
-        
-        private void addMethodCall(IMethodBinding mbinding) {
-            if (mbinding != null) {
-                if (mbinding.isDefaultConstructor() || mbinding.isAnnotationMember()) {
-                    return;
-                }
-                
-                JavaMethod jmethod = JavaElementUtil.findDeclaringMethod(mbinding, jproject);
-                if (jmethod != null && jmethod.getASTNode() != null) {
-                    calledMethods.add(jmethod);
-                }
-                for (ITypeBinding tbinding : mbinding.getExceptionTypes()) {
-                    if (isUncheckedException(tbinding)) {
-                        exceptionTypes.add(tbinding);
-                    }
-                }
-            }
         }
         
         private boolean isUncheckedException(ITypeBinding tbinding) {
             while (tbinding != null) {
                 String type = tbinding.getQualifiedName();
-                if (type.equals(EXCEPTION_NAME) || type.equals(RUNTIME_EXCEPTION_NAME)) {
+                if (type.equals(RUNTIME_EXCEPTION_NAME)) {
                     return true;
                 }
                 tbinding = tbinding.getSuperclass();
             }
             return false;
+        }
+        
+        @SuppressWarnings("unchecked")
+        private boolean existsCatchCause(ASTNode node, ITypeBinding tbinding) {
+            TryStatement tryNode = (TryStatement)JavaElementUtil.findAncestorNode(node, ASTNode.TRY_STATEMENT);
+            if (tryNode == null) {
+                return false;
+            }
+            
+            Stream<CatchClause> stream = (Stream<CatchClause>)tryNode.catchClauses().stream();
+            return stream.map(c -> c.getException().getType().resolveBinding())
+                         .filter(b -> b != null)
+                         .map(b -> b.getQualifiedName())
+                         .anyMatch(n -> n.equals(tbinding.getQualifiedName()));
         }
     }
 }
