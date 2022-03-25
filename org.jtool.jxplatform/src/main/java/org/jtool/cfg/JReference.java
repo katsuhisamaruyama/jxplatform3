@@ -517,4 +517,19 @@ public abstract class JReference {
         }
         return null;
     }
+    
+    /**
+     * Returns the string representing type.
+     * @param tbinding the type binding
+     * @return the type string
+     */
+    protected String getType(ITypeBinding tbinding) {
+        String type = tbinding.getErasure().getQualifiedName();
+        if (isPrimitiveType && tbinding.isArray()) {
+            for (int dim = 0; dim < tbinding.getDimensions(); dim++) {
+                type = type + "[]";
+            }
+        }
+        return type;
+    }
 }

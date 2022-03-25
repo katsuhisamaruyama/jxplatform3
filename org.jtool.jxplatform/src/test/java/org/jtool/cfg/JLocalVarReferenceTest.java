@@ -431,6 +431,22 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetType6() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test107", "m( int[] )");
+        List<JLocalVarReference> result = CFGTestUtil.getDefLocalReference(cfg);
+        
+        assertEquals("int[]", result.get(0).getType());
+    }
+    
+    @Test
+    public void testGetType7() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test107", "m( int[] )");
+        List<JLocalVarReference> result = CFGTestUtil.getDefLocalReference(cfg);
+        
+        assertEquals("int[]", result.get(2).getType());
+    }
+    
+    @Test
     public void testIsPrimitiveType1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JLocalVarReference> result = CFGTestUtil.getUseLocalReference(cfg);

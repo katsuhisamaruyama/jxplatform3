@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -76,7 +76,7 @@ public class JFieldReference extends JReference {
         this.name = binding.getName();
         this.fqn = new QualifiedName(declaringClassName, binding.getName());
         this.referenceForm = fqn.fqn();
-        this.type = binding.getType().getErasure().getQualifiedName();
+        this.type = getType(binding.getType());
         this.isPrimitiveType = binding.getType().isPrimitive();
         this.modifiers = binding.getModifiers();
         if (tbinding != null) {

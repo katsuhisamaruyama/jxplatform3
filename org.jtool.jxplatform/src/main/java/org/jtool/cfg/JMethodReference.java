@@ -1,5 +1,5 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -131,7 +131,7 @@ public class JMethodReference extends JReference {
             this.type = declaringClassName;
         } else {
             this.name = binding.getName();
-            this.type = binding.getReturnType().getErasure().getQualifiedName();
+            this.type = getType(binding.getReturnType());
         }
         
         this.fqn = new QualifiedName(declaringClassName, signature);

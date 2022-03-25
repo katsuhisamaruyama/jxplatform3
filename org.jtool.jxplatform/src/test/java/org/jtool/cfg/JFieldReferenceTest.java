@@ -831,6 +831,22 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetType11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test107", "x");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("java.lang.String[][]", result.get(0).getType());
+    }
+    
+    @Test
+    public void testGetType12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test107", "y");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("java.lang.String[]", result.get(0).getType());
+    }
+    
+    @Test
     public void testIsPrimitiveType1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);

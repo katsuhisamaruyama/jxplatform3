@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -45,7 +45,7 @@ public class JLocalVarReference extends JReference {
         String qname = declaringMethodName + "!" + binding.getName() + "$" + String.valueOf(binding.getVariableId());
         this.fqn = new QualifiedName("", qname);
         this.referenceForm = binding.getName() + "$" + String.valueOf(binding.getVariableId());
-        this.type = binding.getType().getErasure().getQualifiedName();
+        this.type = getType(binding.getType());
         this.isPrimitiveType = binding.getType().isPrimitive();
         this.modifiers = binding.getModifiers();
         this.inProject = true;
