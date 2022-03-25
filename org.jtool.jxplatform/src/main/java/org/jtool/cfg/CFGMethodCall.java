@@ -241,6 +241,6 @@ public class CFGMethodCall extends CFGStatement {
      */
     @Override
     public String toString() {
-        return super.toString() + " TO = " + jmethodCall.getQualifiedName();
+        return super.toString() + " TO = " + getQualifiedName();
     }
 }
