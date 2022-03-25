@@ -160,13 +160,13 @@ class LocalAliasResolver {
         if (stNode.getDefVariables().size() != 1 || stNode.getUseVariables().size() != 1) {
             return null;
         }
-        JReference def = stNode.getDefVariables().get(0);
+        JReference def = stNode.getDefFirst();
         if (def.isPrimitiveType() || !def.isExposed()) {
             return null;
         }
         
-        JReference use = stNode.getUseVariables().get(0);
-        if (use.isMethodCall() || !use.isExposed()) {
+        JReference use = stNode.getUseFirst();
+        if (use.isPrimitiveType() || use.isMethodCall() || !use.isExposed()) {
             return null;
         }
         
