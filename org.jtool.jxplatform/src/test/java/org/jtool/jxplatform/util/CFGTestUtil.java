@@ -50,7 +50,7 @@ public class CFGTestUtil {
         }
     }
     
-    public static CFGNode getCFGNode(CFG cfg, int index) {
+    public static CFGNode getNode(CFG cfg, int index) {
         return cfg.getNodes().stream()
                 .filter(n -> n.getId() == index + cfg.getEntryNode().getId())
                 .findFirst().orElse(null);
