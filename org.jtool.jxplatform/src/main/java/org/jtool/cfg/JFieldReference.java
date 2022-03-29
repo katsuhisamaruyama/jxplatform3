@@ -46,9 +46,9 @@ public class JFieldReference extends JVariableReference {
     private ASTNode nameNode;
     
     /**
-     * A flag that indicates whether an element for this reference is analyzable.
+     * A flag that indicates whether an element for this reference is touchable.
      */
-    private boolean analyzable = true;
+    private boolean touchable = true;
     
     /**
      * A prefix reference located prior to this reference.
@@ -165,11 +165,11 @@ public class JFieldReference extends JVariableReference {
      * @param primitive {@code true} if the type of the referenced field is primitive, otherwise {@code false}
      * @param modifiers the modifier information on the referenced field
      * @param inProject {@code true} if the referenced field exists in the target project, otherwise {@code false}
-     * @param accessible {@code true} if this is a reference to an analyzable field, otherwise {@code false}
+     * @param accessible {@code true} if this is a reference to a touchable field, otherwise {@code false}
      */
     
     public JFieldReference(ASTNode node, String className, String name,
-            String referenceForm, String type, boolean primitive, int modifiers, boolean inProject, boolean analyzable) {
+            String referenceForm, String type, boolean primitive, int modifiers, boolean inProject, boolean touchable) {
         super(node);
         
         this.nameNode = node;
@@ -189,7 +189,7 @@ public class JFieldReference extends JVariableReference {
         this.isEnumConstant = false;
         this.isLocal = enclosingClassName.equals(declaringClassName);
         this.isSuper = node instanceof SuperFieldAccess;
-        this.analyzable = analyzable;
+        this.touchable = touchable;
     }
     
     /**
@@ -209,12 +209,12 @@ public class JFieldReference extends JVariableReference {
     }
     
     /**
-     * Tests if a field for this reference is analyzable.
-     * @return {@code true} if this is a reference to an analyzable field.
+     * Tests if a field for this reference is touchable.
+     * @return {@code true} if this is a reference to a touchable field.
      */
     @Override
-    public boolean isAnalyzable() {
-        return analyzable;
+    public boolean isTouchable() {
+        return touchable;
     }
     
     /**

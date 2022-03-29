@@ -93,7 +93,7 @@ public class JInvisibleReference extends JVariableReference {
      * @return {@code false} that indicate a reference to an exposed element.
      */
     @Override
-    public boolean isAnalyzable() {
+    public boolean isTouchable() {
         return false;
     }
     

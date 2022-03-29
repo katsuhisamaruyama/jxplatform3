@@ -288,7 +288,7 @@ public abstract class JReference {
      * Tests if an element for this reference is exposed.
      * @return default {@code true} that indicate a reference to an exposed element.
      */
-    public boolean isAnalyzable() {
+    public boolean isTouchable() {
         return true;
     }
     
