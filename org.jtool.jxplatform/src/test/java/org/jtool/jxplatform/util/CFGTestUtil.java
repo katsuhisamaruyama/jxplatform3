@@ -9,6 +9,7 @@ import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.graph.GraphElement;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CCFG;
 import org.jtool.cfg.ControlFlow;
@@ -181,9 +182,14 @@ public class CFGTestUtil {
     
     private static String toStringForEdges(CFG cfg) {
         StringBuilder buf = new StringBuilder();
+        buf.append(GraphElement.getIdString(0));
+        buf.append(": ");
+        buf.append(cfg.getEntryNode().getSignature());
+        buf.append("\n");
+        
         long index = 1;
         for (ControlFlow edge : ControlFlow.sortControlFlowEdges(cfg.getEdges())) {
-            buf.append(edge.getIdString(index));
+            buf.append(GraphElement.getIdString(index));
             buf.append(": ");
             buf.append(toString(cfg, edge));
             buf.append("\n");
@@ -194,9 +200,9 @@ public class CFGTestUtil {
     
     private static String toString(CFG cfg, CFGNode node) {
         if (node.getKind() != null) {
-            return node.getIdString(getId(cfg, node)) + " " + node.getKind().toString() + getDetails(cfg, node);
+            return GraphElement.getIdString(getId(cfg, node)) + " " + node.getKind().toString() + getDetails(cfg, node);
         } else {
-            return node.getIdString(getId(cfg, node));
+            return GraphElement.getIdString(getId(cfg, node));
         }
     }
     

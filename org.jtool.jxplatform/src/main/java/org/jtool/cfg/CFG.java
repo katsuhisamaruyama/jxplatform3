@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -577,9 +577,14 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     @Override
     protected String toStringForEdges() {
         StringBuilder buf = new StringBuilder();
+        buf.append(GraphElement.getIdString(0));
+        buf.append(": ");
+        buf.append(entry.getSignature());
+        buf.append("\n");
+        
         long index = 1;
         for (ControlFlow edge : ControlFlow.sortControlFlowEdges(getEdges())) {
-            buf.append(edge.getIdString(index));
+            buf.append(GraphElement.getIdString(index));
             buf.append(": ");
             buf.append(edge.toString());
             buf.append("\n");

@@ -1,11 +1,12 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.cfg;
 
 import org.jtool.graph.Graph;
+import org.jtool.graph.GraphElement;
 import java.util.Set;
 
 /**
@@ -109,7 +110,7 @@ public class CallGraph extends Graph<CFGNode, ControlFlow> {
         StringBuilder buf = new StringBuilder();
         int index = 1;
         for (ControlFlow edge : ControlFlow.sortControlFlowEdges(getEdges())) {
-            buf.append(String.valueOf(index));
+            buf.append(GraphElement.getIdString(index));
             buf.append(": ");
             buf.append(edge.toString());
             buf.append("\n");

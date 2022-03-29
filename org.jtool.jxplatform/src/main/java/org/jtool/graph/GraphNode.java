@@ -205,7 +205,7 @@ public abstract class GraphNode extends GraphElement {
      */
     public String toString() {
         StringBuilder buf = new StringBuilder(); 
-        buf.append("Node: " + getIdString(getId()) + "\n");
+        buf.append("Node: " + GraphElement.getIdString(getId()) + "\n");
         Set<GraphEdge> outgoing = getOutgoingEdges();
         buf.append("  Outgoing :");
         outgoing.forEach(edge -> buf.append("  " + edge.getDstNode().getId()));

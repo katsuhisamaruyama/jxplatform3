@@ -1,13 +1,13 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.cfg;
 
 import org.jtool.graph.GraphEdge;
-import org.jtool.graph.GraphElement;
 import org.jtool.graph.GraphNode;
+import org.jtool.graph.GraphElement;
 import org.jtool.pdg.PDGNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.Set;
@@ -752,9 +752,9 @@ public class CFGNode extends GraphNode {
     @Override
     public String toString() {
         if (getKind() != null) {
-            return getIdString(id) + " " + getKind().toString();
+            return GraphElement.getIdString(id) + " " + getKind().toString();
         } else {
-            return getIdString(id);
+            return GraphElement.getIdString(id);
         }
     }
     

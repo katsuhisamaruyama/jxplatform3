@@ -53,10 +53,9 @@ public class CFGMerge extends CFGNode {
     @Override
     public String toString() {
         if (getKind() != null) {
-            return getIdString(id)  + " " + getKind().toString() + " " +
-                    branch.getKind().toString() + "(" + branch.getId() + ")";
+            return super.toString() + " " + branch.getKind().toString() + "(" + branch.getId() + ")";
         } else {
-            return getIdString(id);
+            return super.toString();
         }
     }
 }
