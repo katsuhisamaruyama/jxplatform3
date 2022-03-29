@@ -298,7 +298,7 @@ public class ExpressionVisitor extends ASTVisitor {
         if (curNode.getUseVariables().size() > 0) {
             JReference ref = curNode.getUseLast();
             String referenceForm = ref.getReferenceForm();
-            if (referenceForm.startsWith(JMethodReturnReference.METHOD_RETURN_SYMBOL)) {
+            if (referenceForm.indexOf(JMethodReturnReference.METHOD_RETURN_SYMBOL) != -1) {
                 referenceForm = referenceForm + "." + node.getName().getIdentifier();
             } else if (referenceForm.startsWith("this")) {
                 referenceForm = referenceForm + "." + node.getName().getFullyQualifiedName();
@@ -542,7 +542,8 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setExplicitReceiver(receiver != null);
         receiverNode.setMethodCall(callNode);
         
-        String name = receiverNode.getName() + "." + node.getName().getIdentifier();
+        String name = receiverNode.getName() + "." +
+                JMethodReturnReference.METHOD_RETURN_SYMBOL + node.getName().getIdentifier();
         JMethodReturnReference def = setActualNodes(callNode, node.arguments(), name);
         if (def != null) {
             def.setPrefix(prefix);
@@ -576,7 +577,8 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setExplicitReceiver(true);
         receiverNode.setMethodCall(callNode);
         
-        String name = receiverNode.getName() + "." + node.getName().getIdentifier();
+        String name = receiverNode.getName() + "." +
+                JMethodReturnReference.METHOD_RETURN_SYMBOL + node.getName().getIdentifier();
         setActualNodes(callNode, node.arguments(), name);
         setExceptionFlow(callNode, jcall);
         return false;
@@ -697,7 +699,7 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setExplicitReceiver(receiver != null);
         receiverNode.setMethodCall(callNode);
         
-        name = receiverNode.getName() + "." + name;
+        name = receiverNode.getName() + "." + JMethodReturnReference.METHOD_RETURN_SYMBOL + name;
         JMethodReturnReference def = setActualNodes(callNode, node.arguments(), name);
         if (def != null) {
             def.setPrefix(prefix);
@@ -764,9 +766,6 @@ public class ExpressionVisitor extends ASTVisitor {
             return null;
         }
         
-        if (!name.startsWith(JMethodReturnReference.METHOD_RETURN_SYMBOL)) {
-            name = JMethodReturnReference.METHOD_RETURN_SYMBOL + name;
-        }
         String type = callNode.getReturnType();
         boolean primitive = callNode.isPrimitiveType();
         JMethodReturnReference def = new JMethodReturnReference(callNode.getASTNode(), name, type, primitive);
