@@ -298,7 +298,7 @@ public class ExpressionVisitor extends ASTVisitor {
         if (curNode.getUseVariables().size() > 0) {
             JReference ref = curNode.getUseLast();
             String referenceForm = ref.getReferenceForm();
-            if (referenceForm.startsWith("$")) {
+            if (referenceForm.startsWith(JMethodReturnReference.METHOD_RETURN_SYMBOL)) {
                 referenceForm = referenceForm + "." + node.getName().getIdentifier();
             } else if (referenceForm.startsWith("this")) {
                 referenceForm = referenceForm + "." + node.getName().getFullyQualifiedName();
@@ -668,7 +668,7 @@ public class ExpressionVisitor extends ASTVisitor {
         
         String name = node.resolveConstructorBinding().getName();
         if (declarationOrAssignmentNode.empty()) {
-            receiverNode.setName("$" + name);
+            receiverNode.setName(name);
         } else {
             CFGStatement stNode = declarationOrAssignmentNode.peek();
             receiverNode.setName(stNode.getDefFirst().getReferenceForm());
@@ -764,11 +764,12 @@ public class ExpressionVisitor extends ASTVisitor {
             return null;
         }
         
+        if (!name.startsWith(JMethodReturnReference.METHOD_RETURN_SYMBOL)) {
+            name = JMethodReturnReference.METHOD_RETURN_SYMBOL + name;
+        }
         String type = callNode.getReturnType();
         boolean primitive = callNode.isPrimitiveType();
-        JMethodReturnReference def = new JMethodReturnReference(callNode.getASTNode(),
-                "$" + name + "()", type, primitive);
-        
+        JMethodReturnReference def = new JMethodReturnReference(callNode.getASTNode(), name, type, primitive);
         actualOutNodeForReturn.addDefVariable(def);
         
         curNode.addUseVariable(actualOutNodeForReturn.getDefVariable());
