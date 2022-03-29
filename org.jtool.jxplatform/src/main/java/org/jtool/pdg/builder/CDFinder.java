@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -14,7 +14,7 @@ import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.StopConditionOnReachablePath;
 import java.util.Set;
 import java.util.HashSet;
@@ -124,10 +124,10 @@ public class CDFinder {
     }
     
     private static void findCDsOnDeclarations(PDG pdg, CFG cfg, CFGStatement cfgnode) {
-        Set<JReference> vars = new HashSet<>();
+        Set<JVariableReference> vars = new HashSet<>();
         vars.addAll(cfgnode.getDefVariables());
         vars.addAll(cfgnode.getUseVariables());
-        for (JReference jv : vars) {
+        for (JVariableReference jv : vars) {
             cfg.backwardReachableNodes(cfgnode, true, new StopConditionOnReachablePath() {
                 
                 @Override

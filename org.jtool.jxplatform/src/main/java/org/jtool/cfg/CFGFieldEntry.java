@@ -65,7 +65,7 @@ public class CFGFieldEntry extends CFGEntry {
      * Returns a variable corresponding to the field associated with this entry node.
      * @return the reference to this field
      */
-    public JReference getDefField() {
+    public JVariableReference getDefField() {
         return declNode.getDefFirst();
     }
     
@@ -73,7 +73,7 @@ public class CFGFieldEntry extends CFGEntry {
      * Returns variables used in the declaration of the field associated with this entry node.
      * @return the collection of the used references
      */
-    public List<JReference> getUseFields() {
+    public List<JVariableReference> getUseFields() {
         return declNode.getUseVariables();
     }
     

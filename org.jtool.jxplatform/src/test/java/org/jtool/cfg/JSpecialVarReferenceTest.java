@@ -33,7 +33,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingClassName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("Test103", result.get(0).getEnclosingClassName());
     }
@@ -41,7 +41,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingClassName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("Test103", result.get(1).getEnclosingClassName());
     }
@@ -49,7 +49,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingClassName3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("Test103", result.get(2).getEnclosingClassName());
     }
@@ -57,7 +57,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingClassName4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertEquals("Test103", result.get(0).getEnclosingClassName());
     }
@@ -65,7 +65,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingMethodName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )", result.get(0).getEnclosingMethodName());
     }
@@ -73,7 +73,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingMethodName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )", result.get(1).getEnclosingMethodName());
     }
@@ -81,7 +81,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingMethodName3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )", result.get(2).getEnclosingMethodName());
     }
@@ -89,7 +89,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingMethodName4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertEquals("setA( int )", result.get(0).getEnclosingMethodName());
     }
@@ -97,7 +97,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringClassName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("Test103", result.get(0).getDeclaringClassName());
     }
@@ -105,7 +105,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringClassName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("Test103", result.get(1).getDeclaringClassName());
     }
@@ -113,7 +113,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringClassName3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("Test103", result.get(2).getDeclaringClassName());
     }
@@ -121,7 +121,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringClassName4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertEquals("Test103", result.get(0).getDeclaringClassName());
     }
@@ -129,7 +129,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringMethodName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )", result.get(0).getDeclaringMethodName());
     }
@@ -137,7 +137,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringMethodName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )", result.get(1).getDeclaringMethodName());
     }
@@ -145,7 +145,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringMethodName3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )", result.get(2).getDeclaringMethodName());
     }
@@ -153,7 +153,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringMethodName4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertEquals("setA( int )", result.get(0).getDeclaringMethodName());
     }
@@ -161,7 +161,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("$100", result.get(0).getName());
     }
@@ -169,7 +169,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("this", result.get(1).getName());
     }
@@ -177,7 +177,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetName3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("$_", result.get(2).getName());
     }
@@ -185,7 +185,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetName4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertEquals("$101", result.get(0).getName());
     }
@@ -193,7 +193,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetSignature1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )!$100", result.get(0).getSignature());
     }
@@ -201,7 +201,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetSignature2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )!this", result.get(1).getSignature());
     }
@@ -209,7 +209,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetSignature3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )!$_", result.get(2).getSignature());
     }
@@ -217,7 +217,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetSignature4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertEquals("setA( int )!$101", result.get(0).getSignature());
     }
@@ -225,7 +225,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetQualifiedName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )!$100", result.get(0).getQualifiedName().fqn());
     }
@@ -233,7 +233,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetQualifiedName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )!this", result.get(1).getQualifiedName().fqn());
     }
@@ -241,7 +241,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetQualifiedName3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("setA( int )!$_", result.get(2).getQualifiedName().fqn());
     }
@@ -249,7 +249,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetQualifiedName4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertEquals("setA( int )!$101", result.get(0).getQualifiedName().fqn());
     }
@@ -257,7 +257,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReferenceForm1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("$100", result.get(0).getReferenceForm());
     }
@@ -265,7 +265,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReferenceForm2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("this", result.get(1).getReferenceForm());
     }
@@ -273,7 +273,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReferenceForm3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("$_", result.get(2).getReferenceForm());
     }
@@ -281,7 +281,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReferenceForm4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertEquals("$101", result.get(0).getReferenceForm());
     }
@@ -289,7 +289,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReceiverName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("", result.get(0).getReceiverName());
     }
@@ -297,7 +297,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReceiverName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("", result.get(1).getReceiverName());
     }
@@ -305,7 +305,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReceiverName3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("", result.get(2).getReceiverName());
     }
@@ -313,7 +313,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReceiverName4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertEquals("", result.get(0).getReceiverName());
     }
@@ -321,7 +321,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetType1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("int", result.get(0).getType());
     }
@@ -329,7 +329,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetType2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("Test103", result.get(1).getType());
     }
@@ -337,7 +337,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetType3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertEquals("void", result.get(2).getType());
     }
@@ -345,7 +345,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetType4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertEquals("void", result.get(0).getType());
     }
@@ -353,7 +353,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsPrimitiveType1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertTrue(result.get(0).isPrimitiveType());
     }
@@ -361,7 +361,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsPrimitiveType2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(1).isPrimitiveType());
     }
@@ -369,7 +369,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsPrimitiveType3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(2).isPrimitiveType());
     }
@@ -377,7 +377,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsPrimitiveType4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertFalse(result.get(0).isPrimitiveType());
     }
@@ -385,7 +385,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsFieldAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(0).isFieldAccess());
     }
@@ -393,7 +393,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsFieldAccess2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(1).isFieldAccess());
     }
@@ -401,7 +401,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsFieldAccess3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(2).isFieldAccess());
     }
@@ -409,7 +409,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsFieldAccess4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertFalse(result.get(0).isFieldAccess());
     }
@@ -417,7 +417,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsLocalAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(0).isLocalAccess());
     }
@@ -425,7 +425,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsLocalAccess2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(1).isLocalAccess());
     }
@@ -433,7 +433,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsLocalAccess3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(2).isLocalAccess());
     }
@@ -441,7 +441,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsLocalAccess4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertFalse(result.get(0).isLocalAccess());
     }
@@ -449,7 +449,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsVariableAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(0).isVariableAccess());
     }
@@ -457,7 +457,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsVariableAccess2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(1).isVariableAccess());
     }
@@ -465,7 +465,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsVariableAccess3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(2).isVariableAccess());
     }
@@ -473,7 +473,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsVariableAccess4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertFalse(result.get(0).isVariableAccess());
     }
@@ -481,7 +481,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsMethodCall1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(0).isMethodCall());
     }
@@ -489,7 +489,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsMethodCall2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(1).isMethodCall());
     }
@@ -497,7 +497,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsMethodCall3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
         assertFalse(result.get(2).isMethodCall());
     }
@@ -505,39 +505,39 @@ private static JavaProject SliceProject;
     @Test
     public void testIsMethodCall4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
         assertFalse(result.get(0).isMethodCall());
     }
     @Test
     public void testIsExposed1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
-        assertFalse(result.get(0).isExposed());
+        assertFalse(result.get(0).isAnalyzable());
     }
     
     @Test
     public void testIsExposed2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
-        assertFalse(result.get(1).isExposed());
+        assertFalse(result.get(1).isAnalyzable());
     }
     
     @Test
     public void testIsExposed3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getUseSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getUseSpecialReference(cfg);
         
-        assertFalse(result.get(2).isExposed());
+        assertFalse(result.get(2).isAnalyzable());
     }
     
     @Test
     public void testIsExposed4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JSpecialVarReference> result = CFGTestUtil.getDefSpecialReference(cfg);
+        List<JInvisibleReference> result = CFGTestUtil.getDefSpecialReference(cfg);
         
-        assertFalse(result.get(0).isExposed());
+        assertFalse(result.get(0).isAnalyzable());
     }
 }

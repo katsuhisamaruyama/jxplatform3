@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -8,7 +8,7 @@ package org.jtool.slice;
 import org.jtool.pdg.DependenceGraph;
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
 import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.Set;
 import java.util.HashSet;
@@ -33,7 +33,7 @@ public class SliceCriterion {
     /**
      * The collection of variables for this slicing criterion.
      */
-    private Set<JReference> variables = new HashSet<>();
+    private Set<JVariableReference> variables = new HashSet<>();
     
     /**
      * Creates a new object that represents a slicing criterion.
@@ -41,7 +41,7 @@ public class SliceCriterion {
      * @param node a node for the slicing criterion
      * @param var a variables for the slicing criterion
      */
-    public SliceCriterion(DependenceGraph pdg, PDGNode node, JReference var) {
+    public SliceCriterion(DependenceGraph pdg, PDGNode node, JVariableReference var) {
         this.pdg = pdg;
         this.node = node;
         variables.add(var);
@@ -53,7 +53,7 @@ public class SliceCriterion {
      * @param node a node for this slicing criterion
      * @param vars the collection of variables for this slicing criterion
      */
-    public SliceCriterion(DependenceGraph pdg, PDGNode node, Set<JReference> vars) {
+    public SliceCriterion(DependenceGraph pdg, PDGNode node, Set<JVariableReference> vars) {
         this.pdg = pdg;
         this.node = node;
         vars.stream().filter(var -> var.isVariableAccess()).forEach(var -> variables.add(var));
@@ -79,7 +79,7 @@ public class SliceCriterion {
      * Returns the variable for this slicing criterion.
      * @return the variable
      */
-    public Set<JReference> getVariables() {
+    public Set<JVariableReference> getVariables() {
         return variables;
     }
     
@@ -121,13 +121,13 @@ public class SliceCriterion {
         for (PDGNode node : pdg.getNodes()) {
             if (node.isStatement() && !node.getCFGNode().isActualOut()) {
                 PDGStatement stnode = (PDGStatement)node;
-                for (JReference def : stnode.getDefVariables()) {
-                    if (def.isExposed() && position == def.getStartPosition()) {
+                for (JVariableReference def : stnode.getDefVariables()) {
+                    if (def.isAnalyzable() && position == def.getStartPosition()) {
                         return new SliceCriterion(pdg, stnode, def);
                     }
                 }
-                for (JReference use : stnode.getUseVariables()) {
-                    if (use.isExposed() && position == use.getStartPosition()) {
+                for (JVariableReference use : stnode.getUseVariables()) {
+                    if (use.isAnalyzable() && position == use.getStartPosition()) {
                         return new SliceCriterion(pdg, stnode, use);
                     }
                 }
@@ -150,7 +150,7 @@ public class SliceCriterion {
         return buf.toString();
     }
     
-    private String getVariableNames(Set<JReference> vars) {
+    private String getVariableNames(Set<JVariableReference> vars) {
         if (vars.size() == 0) {
             return "Unspecified";
         }

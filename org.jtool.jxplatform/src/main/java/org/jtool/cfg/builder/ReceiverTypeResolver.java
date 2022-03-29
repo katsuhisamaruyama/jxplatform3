@@ -12,7 +12,7 @@ import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.JMethodReference;
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.StopConditionOnReachablePath;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
@@ -156,7 +156,7 @@ class ReceiverTypeResolver {
         }
         
         if (jcall.hasReceiver()) {
-            JReference jv = jcall.getReceiver().getUseVariables().get(0);
+            JVariableReference jv = jcall.getReceiver().getUseVariables().get(0);
             if (jv.isFieldAccess()) {
                 Set<JClass> fieldTypes = getFieldTypes(jv);
                 if (fieldTypes.size() > 0) {
@@ -175,7 +175,7 @@ class ReceiverTypeResolver {
         }
     }
     
-    private Set<JClass> getFieldTypes(JReference jv) {
+    private Set<JClass> getFieldTypes(JVariableReference jv) {
         Set<JClass> types = new HashSet<>();
         JavaClass jclass = bcStore.getJavaProject().getClass(jv.getDeclaringClassName());
         if (jclass == null || !jclass.isInProject()) {
@@ -294,8 +294,8 @@ class ReceiverTypeResolver {
         return types;
     }
     
-    private void collectReceiverTypes(CFGNode node, String signature, String upperType, JReference jv,
-            CFG cfg, Set<CFGNode> track, Set<JClass> types) {
+    private void collectReceiverTypes(CFGNode node, String signature, String upperType,
+            JVariableReference jv, CFG cfg, Set<CFGNode> track, Set<JClass> types) {
         if (track.contains(node)) {
             return;
         }
@@ -312,7 +312,7 @@ class ReceiverTypeResolver {
         }
     }
     
-    private Set<CFGStatement> getDefineNode(CFGNode node, JReference jv, CFG cfg) {
+    private Set<CFGStatement> getDefineNode(CFGNode node, JVariableReference jv, CFG cfg) {
         Set<CFGStatement> nodes = new HashSet<>();
         cfg.backwardReachableNodes(node, true, new StopConditionOnReachablePath() {
             
@@ -364,7 +364,7 @@ class ReceiverTypeResolver {
                                 continue;
                             }
                             if (actualIn.getUseVariables().size() > 0) {
-                                JReference jv = actualIn.getUseVariables().get(actualIn.getUseVariables().size() - 1);
+                                JVariableReference jv = actualIn.getUseLast();
                                 
                                 for (CFGStatement defnode : getDefineNode(actualIn, jv, cfg)) {
                                     collectReceiverTypes(defnode, signature, upperType, jv, cfg, track, types);
@@ -377,10 +377,10 @@ class ReceiverTypeResolver {
         }
     }
     
-    private void checkDataFlow(CFGStatement defnode, String signature, String upperType, JReference jv,
-            CFG cfg, Set<CFGNode> track, Set<JClass> types) {
+    private void checkDataFlow(CFGStatement defnode, String signature, String upperType,
+            JVariableReference jv, CFG cfg, Set<CFGNode> track, Set<JClass> types) {
         if (defnode.getUseVariables().size() > 0) {
-            JReference use = defnode.getUseVariables().get(defnode.getUseVariables().size() - 1);
+            JVariableReference use = defnode.getUseVariables().get(defnode.getUseVariables().size() - 1);
             if (use.isFieldAccess()) {
                 upperType = findUppermostType(upperType, jv.getType());
                 types.addAll(getAllPosssibleTypes(upperType, signature));
@@ -413,7 +413,7 @@ class ReceiverTypeResolver {
                 clazz = bcStore.getJClass(jc.getSuperClassName());
             }
         } else if (jcall.hasReceiver()) {
-            JReference jv = jcall.getReceiver().getUseVariables().get(0);
+            JVariableReference jv = jcall.getReceiver().getUseVariables().get(0);
             clazz = bcStore.getJClass(jv.getType());
         }
         if (clazz != null) {

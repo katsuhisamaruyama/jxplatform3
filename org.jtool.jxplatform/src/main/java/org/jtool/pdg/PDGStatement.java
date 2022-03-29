@@ -1,12 +1,12 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.pdg;
 
 import org.jtool.cfg.CFGStatement;
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
 import java.util.List;
 
 /**
@@ -36,7 +36,7 @@ public class PDGStatement extends PDGNode {
      * Returns variables defined in this node.
      * @return the collection of the defined variables
      */
-    public List<JReference> getDefVariables() {
+    public List<JVariableReference> getDefVariables() {
         return getCFGStatement().getDefVariables();
     }
     
@@ -44,7 +44,7 @@ public class PDGStatement extends PDGNode {
      * Returns variables used in this node.
      * @return the collection of the used variables
      */
-    public List<JReference> getUseVariables() {
+    public List<JVariableReference> getUseVariables() {
         return getCFGStatement().getUseVariables();
     }
     
@@ -53,7 +53,7 @@ public class PDGStatement extends PDGNode {
      * @param jv the variable to be checked
      * @return {@code true} if the variable is defined in this node, otherwise {@code false}
      */
-    public boolean definesVariable(JReference jv) {
+    public boolean definesVariable(JVariableReference jv) {
         return getCFGStatement().getDefVariables().contains(jv);
     }
     
@@ -62,7 +62,7 @@ public class PDGStatement extends PDGNode {
      * @param jv the variable to be checked
      * @return {@code true} if the variable is used in this node, otherwise {@code false}
      */
-    public boolean usesVariable(JReference jv) {
+    public boolean usesVariable(JVariableReference jv) {
         return getCFGStatement().getUseVariables().contains(jv);
     }
     

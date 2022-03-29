@@ -9,7 +9,7 @@ import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.JFieldReference;
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
@@ -45,7 +45,7 @@ class ReferenceResolver {
         for (CFGStatement stnode : cfg.getReturnNodes()) {
             if (stnode.getDefVariables().size() > 0) {
                 String type = stnode.getDefVariables().get(0).getType();
-                for (JReference jv : new ArrayList<>(stnode.getUseVariables())) {
+                for (JVariableReference jv : new ArrayList<>(stnode.getUseVariables())) {
                     if (!jv.isPrimitiveType() && !type.equals("java.lang.String")) {
                         findFieldsForReturn(stnode, jv, type);
                     }
@@ -81,7 +81,7 @@ class ReferenceResolver {
                     boolean inProject = bcStore.findInternalClass(def.getClassName()) != null;
                     
                     if (!method.isInProject() || method.isInProject() == inProject) {
-                        JReference fvar = createExternalFieldReference(callNode.getASTNode(),
+                        JVariableReference fvar = createExternalFieldReference(callNode.getASTNode(),
                                 def, receiverName, callNode.getApproximatedTypeNames(), inProject);
                         callNode.addDefVariable(fvar);
                     }
@@ -92,7 +92,7 @@ class ReferenceResolver {
                 }
                 
                 if (existExternalDefField && callNode.hasReceiver()) {
-                    List<JReference> fvars = callNode.getReceiver().getUseVariables();
+                    List<JVariableReference> fvars = callNode.getReceiver().getUseVariables();
                     callNode.addDefVariables(fvars);
                     callNode.getActualOutForReturn().addDefVariables(fvars);
                     callNode.getActualOutForReturn().addUseVariables(fvars);
@@ -103,7 +103,7 @@ class ReferenceResolver {
                     boolean inProject = bcStore.findInternalClass(use.getClassName()) != null;
                     
                     if (!method.isInProject() || method.isInProject() == inProject) {
-                        JReference fvar = createExternalFieldReference(callNode.getASTNode(),
+                        JVariableReference fvar = createExternalFieldReference(callNode.getASTNode(),
                                 use, receiverName, callNode.getApproximatedTypeNames(), inProject);
                         callNode.addUseVariable(fvar);
                     }
@@ -120,7 +120,7 @@ class ReferenceResolver {
         }
     }
     
-    private void findFieldsForReturn(CFGStatement stnode, JReference jv, String type) {
+    private void findFieldsForReturn(CFGStatement stnode, JVariableReference jv, String type) {
         JavaClass jclass = jproject.getClass(type);
         if (jclass == null) {
             jclass = jproject.getExternalClass(type);
@@ -129,7 +129,7 @@ class ReferenceResolver {
         if (jclass != null) {
             for (JavaField jfield : jclass.getFields()) {
                 String referenceForm = jv.getReferenceForm() + "." + jfield.getName();
-                JReference fvar = new JFieldReference(jv.getASTNode(),
+                JVariableReference fvar = new JFieldReference(jv.getASTNode(),
                         jfield.getClassName(), jfield.getName(), referenceForm,
                         jfield.getType(), jfield.isPrimitiveType(), jfield.getModifiers(),
                         jclass.isInProject(), false);
@@ -138,7 +138,7 @@ class ReferenceResolver {
         }
     }
     
-    private JReference createExternalFieldReference(ASTNode node, DefUseField var,
+    private JVariableReference createExternalFieldReference(ASTNode node, DefUseField var,
             String receiverName, Set<String> receiverTypes, boolean inProject) {
         String referenceForm = var.getReferenceForm();
         if (inProject) {

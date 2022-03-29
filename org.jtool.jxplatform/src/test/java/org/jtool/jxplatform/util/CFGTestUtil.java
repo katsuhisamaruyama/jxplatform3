@@ -23,7 +23,8 @@ import org.jtool.cfg.JReference;
 import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
-import org.jtool.cfg.JSpecialVarReference;
+import org.jtool.cfg.JVariableReference;
+import org.jtool.cfg.JInvisibleReference;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -84,14 +85,14 @@ public class CFGTestUtil {
                 e.getKind().toString() + " " + e.getClass().toString()));
     }
     
-    public static List<JSpecialVarReference> getDefSpecialReference(CFG cfg) {
+    public static List<JInvisibleReference> getDefSpecialReference(CFG cfg) {
         return getDefReference(cfg, "JSpecialVarReference")
-                .map(n -> (JSpecialVarReference)n).collect(Collectors.toList());
+                .map(n -> (JInvisibleReference)n).collect(Collectors.toList());
     }
     
-    public static List<JSpecialVarReference> getUseSpecialReference(CFG cfg) {
+    public static List<JInvisibleReference> getUseSpecialReference(CFG cfg) {
         return getUseReference(cfg, "JSpecialVarReference")
-                .map(n -> (JSpecialVarReference)n).collect(Collectors.toList());
+                .map(n -> (JInvisibleReference)n).collect(Collectors.toList());
     }
     
     public static List<JLocalVarReference> getDefLocalReference(CFG cfg) {
@@ -120,14 +121,14 @@ public class CFGTestUtil {
         return nstream.map(n -> n.getMethodCall()).collect(Collectors.toList());
     }
     
-    private static Stream<JReference> getDefReference(CFG cfg, String refType) {
+    private static Stream<JVariableReference> getDefReference(CFG cfg, String refType) {
         Stream<CFGStatement> nstream = CFGNode.sortCFGNodes(cfg.getNodes()).stream()
                 .filter(n -> n.isStatement()).map(n -> (CFGStatement)n);
         return nstream.flatMap(n -> n.getDefVariables().stream())
                 .filter(r -> r.getClass().getName().endsWith("." + refType));
     }
     
-    private static Stream<JReference> getUseReference(CFG cfg, String refType) {
+    private static Stream<JVariableReference> getUseReference(CFG cfg, String refType) {
         Stream<CFGStatement> nstream = CFGNode.sortCFGNodes(cfg.getNodes()).stream()
                 .filter(n -> n.isStatement()).map(n -> (CFGStatement)n);
         return nstream.flatMap(n -> n.getUseVariables().stream())

@@ -13,8 +13,8 @@ import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JLocalVarReference;
-import org.jtool.cfg.JReference;
-import org.jtool.cfg.JSpecialVarReference;
+import org.jtool.cfg.JVariableReference;
+import org.jtool.cfg.JInvisibleReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaMethod;
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -580,7 +580,7 @@ public class StatementVisitor extends ASTVisitor {
             CFGMethodEntry methodNode = (CFGMethodEntry)cfg.getEntryNode();
             String type = methodNode.getJavaMethod().getReturnType();
             boolean primitive = methodNode.getJavaMethod().isPrimitiveReturnType();
-            JReference jvar = new JSpecialVarReference(methodNode.getASTNode(), "$_", type, primitive);
+            JVariableReference jvar = new JInvisibleReference(methodNode.getASTNode(), "$_", type, primitive);
             returnNode.addDefVariable(jvar);
             
             curNode = exprVisitor.getExitNode();
@@ -740,7 +740,7 @@ public class StatementVisitor extends ASTVisitor {
                     CFGNode.Kind.catchClause, expceptionType.resolveBinding().getTypeDeclaration());
             tryNode.addCatchNode(catchNode);
             
-            JReference def = new JLocalVarReference(node.getException().getName(), vbinding);
+            JVariableReference def = new JLocalVarReference(node.getException().getName(), vbinding);
             catchNode.setDefVariable(def);
             
             reconnect(catchNode);

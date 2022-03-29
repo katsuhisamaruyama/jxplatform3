@@ -1,11 +1,11 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.pdg;
 
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
 import org.jtool.graph.GraphElement;
 
 /**
@@ -18,7 +18,7 @@ public class DD extends Dependence {
     /**
      * The variable related to this data dependence.
      */
-    protected JReference jvar;
+    protected JVariableReference jvar;
     
     /**
      * The loop-carried node for this data dependence.
@@ -40,7 +40,7 @@ public class DD extends Dependence {
      * @param dst destination node
      * @param jv the variable related to this data dependence
      */
-    public DD(PDGNode src, PDGNode dst, JReference jv) {
+    public DD(PDGNode src, PDGNode dst, JVariableReference jv) {
         super(src, dst);
         this.jvar = jv;
     }
@@ -49,7 +49,7 @@ public class DD extends Dependence {
      * Sets the variable related to this data dependence.
      * @param jv the variable to be set
      */
-    public void setVariable(JReference jv) {
+    public void setVariable(JVariableReference jv) {
         this.jvar = jv;
     }
     
@@ -58,7 +58,7 @@ public class DD extends Dependence {
      * The value of a variable defined in the source node reaches that used in the destination node.
      * @return the variable storing the passed value
      */
-    public JReference getVariable() {
+    public JVariableReference getVariable() {
         return jvar;
     }
     

@@ -15,7 +15,7 @@ import org.eclipse.jdt.core.dom.Modifier;
  * 
  * @author Katsuhisa Maruyama
  */
-public class JSpecialVarReference extends JReference {
+public class JInvisibleReference extends JVariableReference {
     
     /**
      * Creates a new object that represents a reference to a variable invisible on source code.
@@ -24,7 +24,7 @@ public class JSpecialVarReference extends JReference {
      * @param name the name of the referenced variable
      * @param tbinding the type binding information on the variable reference
      */
-    public JSpecialVarReference(ASTNode node, String name, ITypeBinding tbinding) {
+    public JInvisibleReference(ASTNode node, String name, ITypeBinding tbinding) {
         super(node);
         
         ITypeBinding binding = tbinding.getTypeDeclaration();
@@ -43,7 +43,7 @@ public class JSpecialVarReference extends JReference {
      * @param type the type of the referenced variable
      * @param primitive {@code true} if the type of the referenced variable is primitive, otherwise {@code false}
      */
-    public JSpecialVarReference(ASTNode node, String name, String type, boolean primitive) {
+    public JInvisibleReference(ASTNode node, String name, String type, boolean primitive) {
         super(node);
         
         this.type = type;
@@ -60,7 +60,7 @@ public class JSpecialVarReference extends JReference {
      * @param name the name of the referenced variable
      * @param primitive {@code true} if the type of the referenced variable is primitive, otherwise {@code false}
      */
-    public JSpecialVarReference(ASTNode node, String name, boolean primitive) {
+    public JInvisibleReference(ASTNode node, String name, boolean primitive) {
         super(node);
         
         ITypeBinding binding = findEnclosingClass(node).getTypeDeclaration();
@@ -93,7 +93,7 @@ public class JSpecialVarReference extends JReference {
      * @return {@code false} that indicate a reference to an exposed element.
      */
     @Override
-    public boolean isExposed() {
+    public boolean isAnalyzable() {
         return false;
     }
     

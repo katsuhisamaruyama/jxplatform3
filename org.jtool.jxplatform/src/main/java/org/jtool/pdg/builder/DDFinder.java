@@ -1,5 +1,5 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -14,7 +14,7 @@ import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
@@ -44,7 +44,7 @@ public class DDFinder {
                 findReachableNodes(cfg, anchor, reachableNodes);
                 reachableNodes.remove(anchor);
                 
-                for (JReference jvar : anchor.getDefVariables()) {
+                for (JVariableReference jvar : anchor.getDefVariables()) {
                     if (checkReachableNodes(reachableNodes, jvar)) {
                         findDDs(pdg, cfg, anchor, jvar);
                     }
@@ -72,7 +72,7 @@ public class DDFinder {
         }
     }
     
-    private static boolean checkReachableNodes(Set<CFGNode> nodes, JReference jvar) {
+    private static boolean checkReachableNodes(Set<CFGNode> nodes, JVariableReference jvar) {
         for (CFGNode node : nodes) {
             if (node.isStatement()) {
                 CFGStatement candidate = (CFGStatement)node;
@@ -84,7 +84,7 @@ public class DDFinder {
         return false;
     }
     
-    private static void findDDs(PDG pdg, CFG cfg, CFGStatement anchor, JReference jvar) {
+    private static void findDDs(PDG pdg, CFG cfg, CFGStatement anchor, JVariableReference jvar) {
         for (ControlFlow flow : anchor.getOutgoingFlows()) {
             if (!flow.isFallThrough()) {
                 Set<CFGNode> track = new HashSet<>();
@@ -94,7 +94,8 @@ public class DDFinder {
         }
     }
     
-    private static void findDD(PDG pdg, CFG cfg, CFGNode anchor, CFGNode startnode, JReference jvar, Set<CFGNode> track) {
+    private static void findDD(PDG pdg, CFG cfg, CFGNode anchor, CFGNode startnode,
+            JVariableReference jvar, Set<CFGNode> track) {
         Stack<CFGNode> nodeStack = new Stack<>();
         nodeStack.push(startnode);
         

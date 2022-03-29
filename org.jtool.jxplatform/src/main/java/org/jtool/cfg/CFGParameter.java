@@ -74,7 +74,7 @@ public class CFGParameter extends CFGStatement {
      * Returns the variable defined when a method is called.
      * @return the defined variable, or {@code null} if there is no defined variable
      */
-    public JReference getDefVariable() {
+    public JVariableReference getDefVariable() {
         if (getDefVariables().size() > 0) {
             return getDefVariables().get(0);
         }
@@ -85,7 +85,7 @@ public class CFGParameter extends CFGStatement {
      * Returns the variable used when a method is called.
      * @return the used variable, or {@code null} if there is no used variable
      */
-    public JReference getUseVariable() {
+    public JVariableReference getUseVariable() {
         if (getUseVariables().size() > 0) {
             return getUseVariables().get(0);
         }

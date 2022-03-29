@@ -1,5 +1,5 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -11,7 +11,7 @@ import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGNode;
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
 import java.util.Set;
 import java.util.Stack;
 import java.util.HashSet;
@@ -48,7 +48,7 @@ public class SummaryEdgeFinder {
                     
                     for (PDGStatement ain : ains) {
                         if (nodes.contains(ain)) {
-                            JReference jvar = ain.getDefVariables().get(0);
+                            JVariableReference jvar = ain.getDefVariables().get(0);
                             DD edge = new DD(ain, aoutForReturn, jvar);
                             edge.setSummary();
                             pdg.add(edge);

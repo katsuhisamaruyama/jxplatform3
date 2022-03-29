@@ -31,7 +31,7 @@ import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JFieldReference;
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.QualifiedName;
 import org.eclipse.jdt.core.dom.ITypeBinding;
@@ -113,7 +113,7 @@ public class PDGBuilder {
                 if (node.isStatement()) {
                     CFGStatement stNode = (CFGStatement)node;
                     
-                    for (JReference var : stNode.getDefVariables()) {
+                    for (JVariableReference var : stNode.getDefVariables()) {
                         if (var.isFieldAccess()) {
                             JFieldReference fvar = (JFieldReference)var;
                             
@@ -138,7 +138,7 @@ public class PDGBuilder {
                         }
                     }
                     
-                    for (JReference var : stNode.getUseVariables()) {
+                    for (JVariableReference var : stNode.getUseVariables()) {
                         if (var.isFieldAccess()) {
                             JFieldReference fvar = (JFieldReference)var;
                             
@@ -216,7 +216,7 @@ public class PDGBuilder {
                     formalIn = callee.getFormalIn(callee.getFormalIns().size() - 1);
                 }
                 
-                JReference jvar = formalIn.getUseVariables().get(0);
+                JVariableReference jvar = formalIn.getUseVariables().get(0);
                 DD edge = new DD(actualIn.getPDGNode(), formalIn.getPDGNode(), jvar);
                 edge.setParameterIn();
                 pdg.add(edge);
@@ -226,7 +226,7 @@ public class PDGBuilder {
                 CFGParameter actualIn = caller.getActualIn(ordinal);
                 CFGParameter formalIn = callee.getFormalIn(ordinal);
                 
-                JReference jvar = formalIn.getUseVariables().get(0);
+                JVariableReference jvar = formalIn.getUseVariables().get(0);
                 DD edge = new DD(actualIn.getPDGNode(), formalIn.getPDGNode(), jvar);
                 edge.setParameterIn();
                 pdg.add(edge);
@@ -236,7 +236,7 @@ public class PDGBuilder {
         CFGParameter actualOut = caller.getActualOutForReturn();
         CFGParameter formalOut = callee.getFormalOutForReturn();
         
-        JReference jvar = formalOut.getUseVariables().get(0);
+        JVariableReference jvar = formalOut.getUseVariables().get(0);
         DD edge = new DD(formalOut.getPDGNode(), actualOut.getPDGNode(), jvar);
         edge.setParameterOut();
         pdg.add(edge);
@@ -249,7 +249,7 @@ public class PDGBuilder {
                 CFGMethodCall callNode = (CFGMethodCall)cfgnode;
                 PDGNode aoutForReturn = callNode.getActualOutForReturn().getPDGNode();
                 for (CFGStatement ain : callNode.getActualIns()) {
-                    JReference jvar = ain.getDefVariables().get(0);
+                    JVariableReference jvar = ain.getDefVariables().get(0);
                     DD edge = new DD(ain.getPDGNode(), aoutForReturn, jvar);
                     edge.setSummary();
                     pdg.add(edge);

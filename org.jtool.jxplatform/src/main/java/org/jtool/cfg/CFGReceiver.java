@@ -24,6 +24,11 @@ public class CFGReceiver extends CFGStatement {
     private String name = "";
     
     /**
+     * A method call node having this receiver.
+     */
+    private CFGMethodCall methodCall = null;
+    
+    /**
      * Creates a new object that represents a receiver on a method call.
      * This method is not intended to be invoked by clients.
      * @param node the AST node correspond to this node
@@ -48,6 +53,22 @@ public class CFGReceiver extends CFGStatement {
      */
     public String getName() {
         return name;
+    }
+    
+    /**
+     * Sets a method call node having this receiver.
+     * @param methodCall the method call node
+     */
+    public void setMethodCall(CFGMethodCall methodCall) {
+        this.methodCall = methodCall;
+    }
+    
+    /**
+     * Returns a method call node having this receiver.
+     * @return the the method call node
+     */
+    public CFGMethodCall getMethodCall() {
+        return methodCall;
     }
     
     /**

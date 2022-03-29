@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -20,12 +20,12 @@ public class CFGStatement extends CFGNode {
     /**
      * The collection of variables defined in this node.
      */
-    private List<JReference> defs = new ArrayList<>();
+    private List<JVariableReference> defs = new ArrayList<>();
     
     /**
      * The collection of variables used in this node.
      */
-    private List<JReference> uses = new ArrayList<>();
+    private List<JVariableReference> uses = new ArrayList<>();
     
     /**
      * Creates a new object that represents a statement.
@@ -42,7 +42,7 @@ public class CFGStatement extends CFGNode {
      * This method is not intended to be invoked by clients.
      * @param jv the variable to be added
      */
-    public void addDefVariable(JReference jv) {
+    public void addDefVariable(JVariableReference jv) {
         if (jv != null && !defineVariable(jv)) {
             defs.add(jv);
         }
@@ -53,7 +53,7 @@ public class CFGStatement extends CFGNode {
      * This method is not intended to be invoked by clients.
      * @param jv the variable to be added
      */
-    public void addUseVariable(JReference jv) {
+    public void addUseVariable(JVariableReference jv) {
         if (jv != null && !useVariable(jv)) {
             uses.add(jv);
         }
@@ -64,7 +64,7 @@ public class CFGStatement extends CFGNode {
      * This method is not intended to be invoked by clients.
      * @param jvs the collection of the variables to be added
      */
-    public void addDefVariables(List<JReference> jvs) {
+    public void addDefVariables(List<JVariableReference> jvs) {
         jvs.forEach(jvar -> addDefVariable(jvar));
     }
     
@@ -73,7 +73,7 @@ public class CFGStatement extends CFGNode {
      * This method is not intended to be invoked by clients.
      * @param jvs the collection of the variables to be added
      */
-    public void addUseVariables(List<JReference> jvs) {
+    public void addUseVariables(List<JVariableReference> jvs) {
         jvs.forEach(jvar -> addUseVariable(jvar));
     }
     
@@ -118,7 +118,7 @@ public class CFGStatement extends CFGNode {
      * This method is not intended to be invoked by clients.
      * @param jvs the collection of the variables to be set
      */
-    public void setDefVariables(List<JReference> jvs) {
+    public void setDefVariables(List<JVariableReference> jvs) {
         defs = jvs;
     }
     
@@ -127,7 +127,7 @@ public class CFGStatement extends CFGNode {
      * This method is not intended to be invoked by clients.
      * @param jvs the collection of the variables to be set
      */
-    public void setUseVariables(List<JReference> jvs) {
+    public void setUseVariables(List<JVariableReference> jvs) {
         uses = jvs;
     }
     
@@ -136,7 +136,7 @@ public class CFGStatement extends CFGNode {
      * This method is not intended to be invoked by clients.
      * @param jv the variable to be set
      */
-    public void setDefVariable(JReference jv) {
+    public void setDefVariable(JVariableReference jv) {
         clearDefVariables();
         addDefVariable(jv);
     }
@@ -146,7 +146,7 @@ public class CFGStatement extends CFGNode {
      * This method is not intended to be invoked by clients.
      * @param jv the variable to be set
      */
-    public void setUseVariable(JReference jv) {
+    public void setUseVariable(JVariableReference jv) {
         clearUseVariables();
         addUseVariable(jv);
     }
@@ -155,7 +155,7 @@ public class CFGStatement extends CFGNode {
      * Returns variables defined in this node.
      * @return the collection of the defined variables
      */
-    public List<JReference> getDefVariables() {
+    public List<JVariableReference> getDefVariables() {
         return defs;
     }
     
@@ -163,7 +163,7 @@ public class CFGStatement extends CFGNode {
      * Returns variables used in this node.
      * @return the collection of the used variables
      */
-    public List<JReference> getUseVariables() {
+    public List<JVariableReference> getUseVariables() {
         return uses;
     }
     
@@ -172,7 +172,7 @@ public class CFGStatement extends CFGNode {
      * @param jv the variable to be checked
      * @return {@code true} if the variable is defined in this node, otherwise {@code false}
      */
-    public boolean defineVariable(JReference jv) {
+    public boolean defineVariable(JVariableReference jv) {
         return defs.stream().anyMatch(v -> v.equals(jv));
     }
     
@@ -181,7 +181,7 @@ public class CFGStatement extends CFGNode {
      * @param jv the variable to be checked
      * @return {@code true} if the variable is used in this node, otherwise {@code false}
      */
-    public boolean useVariable(JReference jv) {
+    public boolean useVariable(JVariableReference jv) {
         return uses.stream().anyMatch(v -> v.equals(jv));
     }
     
@@ -208,7 +208,7 @@ public class CFGStatement extends CFGNode {
      * @param name the name of the variable
      * @return the found variable, or {@code null} if no variable is found
      */
-    public JReference getDefVariable(String name) {
+    public JVariableReference getDefVariable(String name) {
         return defs.stream().filter(jv -> jv.getName().equals(name)).findFirst().orElse(null);
     }
     
@@ -217,7 +217,7 @@ public class CFGStatement extends CFGNode {
      * @param name the name of the variable
      * @return the found variable, or {@code null} if no variable is found
      */
-    public JReference getUseVariable(String name) {
+    public JVariableReference getUseVariable(String name) {
         return uses.stream().filter(jv -> jv.getName().equals(name)).findFirst().orElse(null);
     }
     
@@ -225,7 +225,7 @@ public class CFGStatement extends CFGNode {
      * Returns the first one from the collection of variables defined in this node.
      * @return the defined variable at the first position, or {@code null} if this node never defines any variable
      */
-    public JReference getDefFirst() {
+    public JVariableReference getDefFirst() {
         if (hasDefVariable()) {
             return defs.get(0);
         }
@@ -236,9 +236,31 @@ public class CFGStatement extends CFGNode {
      * Returns the first one from the collection of variables used in this node.
      * @return the used variable at the first position, or {@code null} if this node never uses any variable
      */
-    public JReference getUseFirst() {
+    public JVariableReference getUseFirst() {
         if (hasUseVariable()) {
             return uses.get(0);
+        }
+        return null;
+    }
+    
+    /**
+     * Returns the last one from the collection of variables defined in this node.
+     * @return the defined variable at the last position, or {@code null} if this node never defines any variable
+     */
+    public JVariableReference getDefLast() {
+        if (hasDefVariable()) {
+            return defs.get(defs.size() - 1);
+        }
+        return null;
+    }
+    
+    /**
+     * Returns the last one from the collection of variables used in this node.
+     * @return the used variable at the last position, or {@code null} if this node never uses any variable
+     */
+    public JVariableReference getUseLast() {
+        if (hasUseVariable()) {
+            return uses.get(uses.size() - 1);
         }
         return null;
     }
@@ -261,7 +283,7 @@ public class CFGStatement extends CFGNode {
      * @param jvars the set of variables
      * @return the string representing the information
      */
-    protected String toStringForVariables(List<JReference> jvars) {
+    protected String toStringForVariables(List<JVariableReference> jvars) {
         return jvars.stream().map(e -> e.getReferenceForm()).collect(Collectors.joining(", "));
     }
 }

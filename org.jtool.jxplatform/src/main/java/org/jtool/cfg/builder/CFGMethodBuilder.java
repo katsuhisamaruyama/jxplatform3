@@ -13,8 +13,8 @@ import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JLocalVarReference;
-import org.jtool.cfg.JReference;
-import org.jtool.cfg.JSpecialVarReference;
+import org.jtool.cfg.JVariableReference;
+import org.jtool.cfg.JInvisibleReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
@@ -74,8 +74,6 @@ class CFGMethodBuilder {
             }
         }
         
-        ExpressionVisitor.resetTemporaryVariableId();
-        
         cfg.setEntryNode(entry);
         cfg.add(entry);
         
@@ -124,12 +122,12 @@ class CFGMethodBuilder {
             cfg.add(exceptionExitEdge);
         }
         
-        LocalAliasResolver localAliasResolver = new LocalAliasResolver();
-        localAliasResolver.resolve(cfg);
-        
         if (toBeResolved) {
             resolveReferences(jmethod.getJavaProject(), cfg);
         }
+        
+        LocalAliasResolver localAliasResolver = new LocalAliasResolver();
+        localAliasResolver.resolve(cfg);
         
         return cfg;
     }
@@ -145,7 +143,6 @@ class CFGMethodBuilder {
             }
         }
     }
-    
     
     private static void replace(CFG cfg, CFGNode tmpNode, CFGNode node) {
         Set<GraphEdge> edges = new HashSet<>(tmpNode.getIncomingEdges());
@@ -190,13 +187,8 @@ class CFGMethodBuilder {
             entry.addFormalIn(formalInNode);
             cfg.add(formalInNode);
             
-            JReference def = new JLocalVarReference(param.getName(), param.resolveBinding());
+            JVariableReference def = new JLocalVarReference(param.getName(), param.resolveBinding());
             formalInNode.setDefVariable(def);
-            
-            JReference use = new JSpecialVarReference(param.getName(),
-                    "$" + String.valueOf(ExpressionVisitor.temporaryVariableId), def.getType(), def.isPrimitiveType());
-            ExpressionVisitor.temporaryVariableId++;
-            formalInNode.setUseVariable(use);
             
             ControlFlow edge = new ControlFlow(prevNode, formalInNode);
             edge.setTrue();
@@ -216,12 +208,7 @@ class CFGMethodBuilder {
         String returnType = entry.getJavaMethod().getReturnType();
         boolean isPrimitiveType = entry.getJavaMethod().isPrimitiveReturnType();
         
-        JReference def = new JSpecialVarReference(node,
-                "$" + String.valueOf(ExpressionVisitor.temporaryVariableId), returnType, isPrimitiveType);
-        ExpressionVisitor.temporaryVariableId++;
-        formalOutNode.addDefVariable(def);
-        
-        JReference use = new JSpecialVarReference(node, "$_", returnType, isPrimitiveType);
+        JVariableReference use = new JInvisibleReference(node, "$_", returnType, isPrimitiveType);
         formalOutNode.addUseVariable(use);
         
         return formalOutNode;

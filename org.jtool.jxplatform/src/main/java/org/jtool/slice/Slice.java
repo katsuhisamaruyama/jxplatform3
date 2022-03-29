@@ -19,7 +19,7 @@ import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGReceiver;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.CFG;
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.StopConditionOnReachablePath;
 import org.jtool.graph.GraphNode;
 import java.util.Set;
@@ -83,7 +83,7 @@ public class Slice {
         return criterion.getNode();
     }
     
-    public Set<JReference> getCriterionVariables() {
+    public Set<JVariableReference> getCriterionVariables() {
         return criterion.getVariables();
     }
     
@@ -91,7 +91,7 @@ public class Slice {
         return nodesInSlice;
     }
     
-    private void extract(PDGNode node, JReference jv) {
+    private void extract(PDGNode node, JVariableReference jv) {
         Set<PDGNode> startnodes = findStartNode(node, jv);
         
         for (PDGNode start : startnodes) {
@@ -140,7 +140,7 @@ public class Slice {
                 .collect(Collectors.toList());
     }
     
-    private Set<PDGNode> findStartNode(PDGNode node, JReference jv) {
+    private Set<PDGNode> findStartNode(PDGNode node, JVariableReference jv) {
         Set<PDGNode> pdgnodes = new HashSet<>();
         if (node.isStatement()) {
             PDGStatement pdgnode = (PDGStatement)node;
@@ -291,7 +291,7 @@ public class Slice {
         }
     }
     
-    private boolean checkFieldAccessForMethodCall(PDGNode node, PDGNode src, JReference jv) {
+    private boolean checkFieldAccessForMethodCall(PDGNode node, PDGNode src, JVariableReference jv) {
         for (DD edge : src.getOutgoingDDEdges()) {
             if (edge.isOutput() &&
                 jv.getQualifiedName().equals(edge.getVariable().getQualifiedName()) &&
@@ -305,7 +305,7 @@ public class Slice {
             if (!dst.equals(node) && !dst.equals(src)) {
                 CFGStatement srcSt = (CFGStatement)src.getCFGNode();
                 CFGStatement dstSt = (CFGStatement)dst.getCFGNode();
-                for (JReference def : srcSt.getDefVariables()) {
+                for (JVariableReference def : srcSt.getDefVariables()) {
                     if (def.isInProject() && dstSt.getUseVariables().contains(def)) {
                         if (nodesInSlice.contains(dst)) {
                             return true;
@@ -317,7 +317,7 @@ public class Slice {
         return false;
     }
     
-    private void addReachableMethodCalls(PDGNode node, JReference jv) {
+    private void addReachableMethodCalls(PDGNode node, JVariableReference jv) {
         for (PDGNode callNode : getReachableMethodCalls(node, jv)) {
             addReachableMethodCall(callNode);
         }
@@ -387,7 +387,7 @@ public class Slice {
         return null;
     }
     
-    private Set<PDGNode> getReachableMethodCalls(PDGNode node, JReference jv) {
+    private Set<PDGNode> getReachableMethodCalls(PDGNode node, JVariableReference jv) {
         Set<PDGNode> nodes = new HashSet<>();
         for (PDGNode callNode : collectMethodCalls(node)) {
             if (reachableMethodCall(callNode, jv)) {
@@ -397,7 +397,7 @@ public class Slice {
         return nodes;
     }
     
-    private boolean reachableMethodCall(PDGNode callNode, JReference jv) {
+    private boolean reachableMethodCall(PDGNode callNode, JVariableReference jv) {
         if (!reachableTo(callNode)) {
             return false;
         }
@@ -492,7 +492,7 @@ public class Slice {
         return buf.toString();
     }
     
-    private String getVariableNames(Set<JReference> jvs) {
+    private String getVariableNames(Set<JVariableReference> jvs) {
         StringBuilder buf = new StringBuilder();
         jvs.forEach(jv -> buf.append(" " + jv.getName() + "@" + jv.getASTNode().getStartPosition()));
         return buf.toString();

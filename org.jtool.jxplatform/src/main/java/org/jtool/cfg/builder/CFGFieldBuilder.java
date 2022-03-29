@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -12,7 +12,7 @@ import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JFieldReference;
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
 import org.eclipse.jdt.core.dom.Expression;
@@ -44,13 +44,11 @@ class CFGFieldBuilder {
             entry = new CFGFieldEntry(jfield, CFGNode.Kind.fieldEntry);
         }
         
-        ExpressionVisitor.resetTemporaryVariableId();
-        
         cfg.setEntryNode(entry);
         cfg.add(entry);
         
         CFGStatement declNode = new CFGStatement(jfield.getASTNode(), CFGNode.Kind.fieldDeclaration);
-        JReference jvar = new JFieldReference(jfield.getASTNode(), jfield.getASTNode(), jfield.getName(), vbinding);
+        JVariableReference jvar = new JFieldReference(jfield.getASTNode(), jfield.getASTNode(), jfield.getName(), vbinding);
         declNode.addDefVariable(jvar);
         declNode.addUseVariable(jvar);
         entry.setDeclarationNode(declNode);

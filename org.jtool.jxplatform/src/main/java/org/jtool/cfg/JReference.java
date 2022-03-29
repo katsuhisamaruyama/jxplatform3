@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -214,7 +214,7 @@ public abstract class JReference {
     
     /**
      * Tests if this is a reference to an element that has the public visibility.
-     * @return {@code true} if this is a reference having the public visibility, otherwise {@code false}
+     * @return {@code true} if this refers to an element having the public visibility, otherwise {@code false}
      */
     public boolean isPublic() {
         return Modifier.isPublic(modifiers);
@@ -222,7 +222,7 @@ public abstract class JReference {
     
     /**
      * Tests if this is a reference to an element that has the protected visibility.
-     * @return {@code true} if this is a reference having the protected visibility, otherwise {@code false}
+     * @return {@code true} if this refers to an element having the protected visibility, otherwise {@code false}
      */
     public boolean isProtected() {
         return Modifier.isProtected(modifiers);
@@ -230,7 +230,7 @@ public abstract class JReference {
     
     /**
      * Tests if this is a reference to an element that has the default visibility.
-     * @return {@code true} if this is a reference having the default visibility, otherwise {@code false}
+     * @return {@code true} if this refers to an element having the default visibility, otherwise {@code false}
      */
     public boolean isDefault() {
         return Modifier.isDefault(modifiers);
@@ -238,10 +238,18 @@ public abstract class JReference {
     
     /**
      * Tests if this is a reference to an element that has the private visibility.
-     * @return {@code true} if this is a reference having the private visibility, otherwise {@code false}
+     * @return {@code true} if this refers to an element having the private visibility, otherwise {@code false}
      */
     public boolean isPrivate() {
         return Modifier.isPrivate(modifiers);
+    }
+    
+    /**
+     * Tests if this is a reference to a final element.
+     * @return {@code true} if this refers a final element, otherwise {@code false}
+     */
+    public boolean isFinal() {
+        return Modifier.isFinal(modifiers);
     }
     
     /**
@@ -280,7 +288,7 @@ public abstract class JReference {
      * Tests if an element for this reference is exposed.
      * @return default {@code true} that indicate a reference to an exposed element.
      */
-    public boolean isExposed() {
+    public boolean isAnalyzable() {
         return true;
     }
     
@@ -472,7 +480,7 @@ public abstract class JReference {
      * @param sort the value representing the sort
      * @return the found node, or {@code null} if no node is found
      */
-    protected static ASTNode getEnclosingElement(ASTNode node, int sort) {
+    public static ASTNode getEnclosingElement(ASTNode node, int sort) {
         if (node.getNodeType() == sort) {
             return node;
         }

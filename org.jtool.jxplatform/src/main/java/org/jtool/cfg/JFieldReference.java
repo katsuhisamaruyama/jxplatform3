@@ -18,7 +18,7 @@ import org.eclipse.jdt.core.dom.ITypeBinding;
  * 
  * @author Katsuhisa Maruyama
  */
-public class JFieldReference extends JReference {
+public class JFieldReference extends JVariableReference {
     
     /**
      * A flag that indicates whether this is a reference to a field.
@@ -41,14 +41,19 @@ public class JFieldReference extends JReference {
     private boolean isSuper;
     
     /**
-     * The AST node corresponding to the name of this reference.
+     * An AST node corresponding to the name of this reference.
      */
     private ASTNode nameNode;
     
     /**
-     * A flag that indicates whether an element for this reference is exposed.
+     * A flag that indicates whether an element for this reference is analyzable.
      */
-    private boolean exposed = true;
+    private boolean analyzable = true;
+    
+    /**
+     * A prefix reference located prior to this reference.
+     */
+    private JVariableReference prefix = null;
     
     /**
      * Creates a new object that represents a reference to a field.
@@ -160,10 +165,11 @@ public class JFieldReference extends JReference {
      * @param primitive {@code true} if the type of the referenced field is primitive, otherwise {@code false}
      * @param modifiers the modifier information on the referenced field
      * @param inProject {@code true} if the referenced field exists in the target project, otherwise {@code false}
-     * @param accessible {@code true} if this is a reference to an exposed field, otherwise {@code false}
+     * @param accessible {@code true} if this is a reference to an analyzable field, otherwise {@code false}
      */
+    
     public JFieldReference(ASTNode node, String className, String name,
-            String referenceForm, String type, boolean primitive, int modifiers, boolean inProject, boolean exposed) {
+            String referenceForm, String type, boolean primitive, int modifiers, boolean inProject, boolean analyzable) {
         super(node);
         
         this.nameNode = node;
@@ -183,7 +189,7 @@ public class JFieldReference extends JReference {
         this.isEnumConstant = false;
         this.isLocal = enclosingClassName.equals(declaringClassName);
         this.isSuper = node instanceof SuperFieldAccess;
-        this.exposed = exposed;
+        this.analyzable = analyzable;
     }
     
     /**
@@ -203,12 +209,28 @@ public class JFieldReference extends JReference {
     }
     
     /**
-     * Tests if an element for this reference is exposed.
-     * @return {@code true} if this is a reference to an exposed element.
+     * Tests if a field for this reference is analyzable.
+     * @return {@code true} if this is a reference to an analyzable field.
      */
     @Override
-    public boolean isExposed() {
-        return exposed;
+    public boolean isAnalyzable() {
+        return analyzable;
+    }
+    
+    /**
+     * Returns a prefix reference located prior to this reference.
+     * @param prefix the prefix reference
+     */
+    public void setPrefix(JVariableReference prefix) {
+        this.prefix = prefix;
+    }
+    
+    /**
+     * Returns a prefix reference located prior to this reference.
+     * @return the prefix reference
+     */
+    public JVariableReference getPrefix() {
+        return prefix;
     }
     
     /**
@@ -248,7 +270,7 @@ public class JFieldReference extends JReference {
      * Tests if this is a reference a field within the same class.
      * @return {@code true} if this is a reference to a field within the same class, otherwise {@code false}
      */
-    public boolean isLocal() {
+    public boolean isThis() {
         return isLocal;
     }
     

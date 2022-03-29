@@ -14,7 +14,7 @@ import org.eclipse.jdt.core.dom.IVariableBinding;
  * 
  * @author Katsuhisa Maruyama
  */
-public class JLocalVarReference extends JReference {
+public class JLocalVarReference extends JVariableReference {
     
     /**
      * A flag that indicates whether this is a reference to a parameter.
