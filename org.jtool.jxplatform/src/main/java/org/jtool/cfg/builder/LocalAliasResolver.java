@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -13,17 +13,29 @@ import org.jtool.cfg.CFGReceiver;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.ControlFlow;
-import org.jtool.cfg.JReference;
-import org.jtool.cfg.JSpecialVarReference;
+import org.jtool.cfg.JVariableReference;
+import org.jtool.cfg.JFieldReference;
+import org.jtool.cfg.JInvisibleReference;
+import org.jtool.cfg.JMethodReturnReference;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Collection;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import org.eclipse.jdt.core.dom.Assignment;
+import org.eclipse.jdt.core.dom.Expression;
+import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
+import org.eclipse.jdt.core.dom.ArrayAccess;
+import org.eclipse.jdt.core.dom.FieldAccess;
+import org.eclipse.jdt.core.dom.Name;
+import org.eclipse.jdt.core.dom.ConditionalExpression;
+import org.eclipse.jdt.core.dom.MethodInvocation;
+import org.eclipse.jdt.core.dom.SuperMethodInvocation;
+import org.eclipse.jdt.core.dom.ClassInstanceCreation;
 
 /**
  * Resolves the alias relations in local variables in the method
@@ -33,193 +45,259 @@ import com.google.common.collect.Multimap;
  */
 class LocalAliasResolver {
     
-    private Multimap<String, JReference> aliasMap = HashMultimap.create();
-    
-    Collection<JReference> getAliasVariables(String name) {
-        return aliasMap.get(name);
-    }
+    private Multimap<CFGNode, Alias> aliasMap = HashMultimap.create();
     
     void resolve(CFG cfg) {
         if (!cfg.isMethod()) {
             return;
         }
         
+        collectAliasStaticFields(cfg);
+        
+        for (CFGNode node : cfg.getNodes()) {
+            List<Alias> aliases = null;
+            if (node.getASTNode() instanceof Assignment) {
+                Assignment assignment = (Assignment)node.getASTNode();
+                if (assignment.getOperator() == Assignment.Operator.ASSIGN) {
+                    aliases = getAliasRelations((CFGStatement)node, assignment.getRightHandSide());
+                }
+            } else if (node.getASTNode() instanceof VariableDeclarationFragment) {
+                VariableDeclarationFragment decl = (VariableDeclarationFragment)node.getASTNode();
+                aliases = getAliasRelations((CFGStatement)node, decl.getInitializer());
+            }
+            
+            if (aliases != null) {
+                aliases.forEach(a -> createAliasMap(node, a, new HashSet<>()));
+            }
+        }
+        
+        //cfg.getNodes().stream()
+        //              .filter(n -> n.isReceiver())
+        //              .forEach(n -> expandReceiverReference(cfg, (CFGReceiver)n));
+        
+        
+        
+        
+        
+        if (aliasMap.size() != 0) {
+            cfg.getNodes().stream()
+                          .filter(n -> n.isStatement() && !n.isFormal())
+                          .forEach(n -> addAliasVariables((CFGStatement)n));
+        }
+    }
+    
+    private void collectAliasStaticFields(CFG cfg) {
         CFGMethodEntry entry = (CFGMethodEntry)cfg.getEntryNode();
         JavaMethod jmethod = entry.getJavaMethod();
-        CFGStore cfgStore = jmethod.getJavaProject().getCFGStore();
         
-        Set<Alias> aliasesInFieldDeclarations = new HashSet<>();
         for (JavaField jfield : jmethod.getDeclaringClass().getFields()) {
-            CFG fcfg = cfgStore.getCFG(jfield, false);
-            for (CFGNode node : fcfg.getNodes()) {
-                Alias alias = getAliasRelationForStatement(node);
-                if (alias != null) {
-                    aliasesInFieldDeclarations.add(alias);
+            if (jfield.isField()) {
+                VariableDeclarationFragment decl = (VariableDeclarationFragment)jfield.getASTNode();
+                CFGStatement stNode = new CFGStatement(decl, CFGNode.Kind.fieldDeclaration);
+                ExpressionVisitor expressionVisitor = new ExpressionVisitor(new CFG(), stNode);
+                decl.accept(expressionVisitor);
+                
+                for (Alias alias : getAliasRelations(stNode, decl.getInitializer())) {
+                    for (CFGNode node : cfg.getNodes()) {
+                        if (node.isStatement() && !node.isFormal()) {
+                            registerAlias((CFGStatement)node, alias);
+                        }
+                    }
                 }
             }
         }
-        
-        for (CFGNode node : cfg.getNodes()) {
-            aliasesInFieldDeclarations.forEach(a -> walkForward(node, a));
-            Alias alias = getAliasRelationForStatement(node);
-            if (alias != null) {
-                aliasMap.put(alias.one.getReferenceForm(), alias.another);
-                aliasMap.put(alias.another.getReferenceForm(), alias.one);
-                walkForward(node, alias);
+    }
+    
+    private void registerAlias(CFGNode node, Alias newAlias) {
+        String name = newAlias.righthand.getReferenceForm();
+        for (Alias alias : new ArrayList<>(aliasMap.get(node))) {
+            if (alias.lefthand.getReferenceForm().equals(name)) {
+                aliasMap.put(node, new Alias(newAlias.lefthand, alias.righthand));
+            } else if (alias.righthand.getReferenceForm().equals(name)) {
+                aliasMap.put(node, new Alias(newAlias.lefthand, alias.lefthand));
             }
         }
+        aliasMap.put(node, newAlias);
+    }
+    
+    private void createAliasMap(CFGNode node, Alias alias, Set<CFGNode> track) {
+        track.add(node);
         
-        for (CFGNode node : cfg.getNodes()) {
-            if (node.isReceiver()) {
-                aliasRelationForReceiver(cfg, node);
+        for (ControlFlow edge : node.getOutgoingFlows()) {
+            CFGNode succ = edge.getDstNode();
+            if (succ.isStatement()) {
+                CFGStatement stNode = (CFGStatement)succ;
+                if (stNode.isActualOut()) {
+                    registerAlias((CFGStatement)succ, alias);
+                } else if (stNode.defineVariable(alias.lefthand) || stNode.defineVariable(alias.righthand)) {
+                    return;
+                } else {
+                    registerAlias((CFGStatement)succ, alias);
+                }
+            } 
+            if (!track.contains(succ)) {
+                createAliasMap(succ, alias, track);
             }
         }
     }
     
-    private void aliasRelationForReceiver(CFG cfg, CFGNode node) {
-        CFGReceiver receiverNode = (CFGReceiver)node;
-        JReference var = receiverNode.getUseFirst();
-        if (var != null && !var.isExposed()) {
-            String refForm = getReferenceForm(cfg, receiverNode, "");
-            if (refForm.length() == 0) {
-                return;
+    private List<Alias> getAliasRelations(CFGStatement node, Expression expr) {
+        List<Alias> aliases = new ArrayList<>();
+        
+        if (node.getDefVariables().size() != 1) {
+            return aliases;
+        }
+        
+        JVariableReference def = node.getDefFirst();
+        if (def.isPrimitiveType() || !def.isTouchable()) {
+            return aliases;
+        }
+        
+        for (JVariableReference use : findUseVariables(node, expr)) {
+            if (use.isPrimitiveType()) {
+                continue;
+            }
+            if (use.isFieldAccess() && ((JFieldReference)use).isEnumConstant()) {
+                continue;
             }
             
-            JReference v = new JSpecialVarReference(var.getASTNode(),
-                    refForm, var.getType(), var.isPrimitiveType());
-            receiverNode.addUseVariable(v);
+            aliases.add(new Alias(def, use));
+        }
+        return aliases;
+    }
+    
+    private List<JVariableReference> findUseVariables(CFGStatement node, Expression expr) {
+        List <JVariableReference> refs = new ArrayList<>();
+        
+        List<Expression> vars = new ArrayList<>();
+        if (expr instanceof ArrayAccess) {
+            vars.add(((ArrayAccess)expr).getArray());
+        } else if (expr instanceof FieldAccess ||
+                   expr instanceof Name) {
+            vars.add(expr);
+        } else if (expr instanceof MethodInvocation ||
+                   expr instanceof SuperMethodInvocation ||
+                   expr instanceof ClassInstanceCreation) {
+            vars.add(expr);
+        } else if (expr instanceof ConditionalExpression) {
+            vars.add(((ConditionalExpression)expr).getThenExpression());
+            vars.add(((ConditionalExpression)expr).getElseExpression());
+        } else {
+            return refs;
+        }
+        
+        for (Expression var : vars) {
+            node.getUseVariables().stream()
+                                  .filter(v -> v.getASTNode().equals(var))
+                                  .findFirst().ifPresent(r -> refs.add(r));
+        }
+        return refs;
+    }
+    
+    private void addAliasVariables(CFGStatement node) {
+        Collection<Alias> aliases = aliasMap.get(node);
+        for (JVariableReference var : new ArrayList<>(node.getUseVariables())) {
+            String name = var.getReferenceForm();
             
-            getNames(refForm)
-                .forEach(name -> aliasMap.get(name)
-                .forEach(alias -> {
-                    String aliasRefName = refForm.replace(name, alias.getReferenceForm());
-                    JReference avar = new JSpecialVarReference(alias.getASTNode(),
-                            aliasRefName, alias.getType(), alias.isPrimitiveType());
-                    receiverNode.addUseVariable(avar);
-                }));
+            for (Alias alias : aliases) {
+                String lname = alias.lefthand.getReferenceForm();
+                String rname = alias.righthand.getReferenceForm();
+                
+                String aliasName = getAliasName(name, lname, rname);
+                if (aliasName != null) {
+                    JVariableReference avar = new JInvisibleReference(alias.righthand.getASTNode(),
+                            aliasName, alias.righthand.getType(), alias.righthand.isPrimitiveType());
+                    node.addUseVariable(avar);
+                  
+                }
+                
+                aliasName = getAliasName(name, rname, lname);
+                if (aliasName != null) {
+                    JVariableReference avar = new JInvisibleReference(alias.lefthand.getASTNode(),
+                            aliasName, alias.lefthand.getType(), alias.lefthand.isPrimitiveType());
+                    node.addUseVariable(avar);
+                }
+            }
         }
     }
     
-    private String getReferenceForm(CFG cfg, CFGReceiver receiverNode, String ref) {
-        CFGMethodCall predCallNode = getPredecentMethodCall(cfg, receiverNode);
-        if (predCallNode != null) {
-            CFGReceiver predReceiverNode = predCallNode.getReceiver();
-            if (predReceiverNode != null) {
-                JReference predVar = predReceiverNode.getUseFirst();
-                if (predVar != null) {
-                    String preName = predVar.getReferenceForm() + "." + predCallNode.getSignature();
-                    if (predVar.isExposed()) {
-                        return preName;
-                    } else {
-                        return getReferenceForm(cfg, predReceiverNode, preName);
-                    }
+    private String getAliasName(String name, String name1, String name2) {
+        if (name.equals(name1)) {
+            return name.replace(name1, name2);
+        } else if (name.indexOf("." + name1 + ".") != -1) {
+            return name.replaceAll("." + name1 + ".", "." + name2 + ".");
+        } else if (name.startsWith(name1 + ".")) {
+            return name.replace(name1 + ".", name2 + ".");
+        } else if (name.endsWith("." + name1)) {
+            return name.replace("." + name1, "." + name2);
+        } else if (name.startsWith(JMethodReturnReference.METHOD_RETURN_SYMBOL + name1 + ".")) {
+            return name.replace(JMethodReturnReference.METHOD_RETURN_SYMBOL + name1 + ".",
+                    JMethodReturnReference.METHOD_RETURN_SYMBOL + name2 + ".");
+        }
+        return null;
+    }
+    
+    private void expandReceiverReference(CFG cfg, CFGReceiver node) {
+        if (node.getMethodCall().getASTNode() instanceof MethodInvocation) {
+            
+            System.err.println("CALL = " + node.toString());
+            
+            JVariableReference use = node.getUseFirst();
+            if (use != null && !use.isTouchable()) {
+                
+                System.err.println("USE = " + use.getReferenceForm());
+                
+                String form = getExpandedReceiverForm(cfg, node);
+                if (form.length() > 0) {
+                    JVariableReference var = new JInvisibleReference(node.getASTNode(),
+                            form, use.getType(), use.isPrimitiveType());
+                    node.addUseVariable(var);
+                }
+            }
+        }
+    }
+    
+    private String getExpandedReceiverForm(CFG cfg, CFGReceiver node) {
+        CFGReceiver predReceiver = getReceiverForPrefixMethodCall(cfg, node);
+        if (predReceiver != null) {
+            JVariableReference predUseVar = predReceiver.getUseFirst();
+            if (predUseVar != null) {
+                String refForm = predUseVar.getReferenceForm() + "." + predUseVar.getSignature();
+                if (predUseVar.isTouchable()) {
+                    return refForm;
+                } else {
+                    return getExpandedReceiverForm(cfg, predReceiver) + "." + refForm;
                 }
             }
         }
         return "";
     }
     
-    private CFGMethodCall getPredecentMethodCall(CFG cfg, CFGReceiver receiverNode) {
-        for (CFGNode node : cfg.getNodes()) {
-            if (node.isActualOut()) {
-                CFGParameter actualOutNode = (CFGParameter)node;
-                if (actualOutNode.getDefVariable().equals(receiverNode.getUseFirst())) {
-                    CFGMethodCall callNode = (CFGMethodCall)actualOutNode.getParent();
-                    if (!callNode.hasDefVariable()) {
-                        return callNode;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-    
-    private List<String> getNames(String name) {
-        List<String> names = new ArrayList<>();
-        int index = -1;
-        while (true) {
-            index = name.indexOf('.', index + 1);
-            if (index == -1) {
-                break;
-            }
-            names.add(name.substring(0, index));
-        }
-        return names;
-    }
-    
-    private Alias getAliasRelationForStatement(CFGNode node) {
-        if (!node.isStatement()) {
-            return null;
-        }
+    private CFGReceiver getReceiverForPrefixMethodCall(CFG cfg, CFGReceiver node) {
+        CFGMethodCall prefixMethodCall = cfg.getNodes().stream()
+                .filter(n -> n.isActualOut())
+                .map(n -> (CFGParameter)n)
+                .filter(n -> n.getDefVariable().equals(node.getUseFirst()))
+                .map(n -> (CFGMethodCall)n.getParent())
+                .filter(n -> !n.hasDefVariable())
+                .findFirst().orElse(null);
         
-        if (!node.isAssignment() && !node.isLocalDeclaration()) {
-            return null;
-        }
-        
-        CFGStatement stNode = (CFGStatement)node;
-        if (stNode.getDefVariables().size() != 1 || stNode.getUseVariables().size() != 1) {
-            return null;
-        }
-        JReference def = stNode.getDefFirst();
-        if (def.isPrimitiveType() || !def.isExposed()) {
-            return null;
-        }
-        
-        JReference use = stNode.getUseFirst();
-        if (use.isPrimitiveType() || use.isMethodCall() || !use.isExposed()) {
-            return null;
-        }
-        
-        return new Alias(def, use);
-    }
-    
-    private void walkForward(CFGNode node, Alias alias) {
-        Set<CFGNode> track = new HashSet<>();
-        track.add(node);
-        
-        for (ControlFlow flow : node.getOutgoingFlows()) {
-            CFGNode succ = flow.getDstNode();
-            if (!track.contains(succ)) {
-                walkForward(succ, alias.one, alias.another, track);
-            }
-        }
-        
-        for (ControlFlow flow : node.getOutgoingFlows()) {
-            CFGNode succ = flow.getDstNode();
-            if (!track.contains(succ)) {
-                walkForward(succ, alias.another, alias.one, track);
-            }
-        }
-    }
-    
-    private void walkForward(CFGNode node, JReference one, JReference another, Set<CFGNode> track) {
-        if (node.isStatement()) {
-            CFGStatement stNode = (CFGStatement)node;
-            if (stNode.defineVariable(one)) {
-                return;
-            } else if (stNode.useVariable(one)) {
-                stNode.addUseVariable(another);
-            }
-        }
-        
-        track.add(node);
-        
-        for (ControlFlow flow : node.getOutgoingFlows()) {
-            CFGNode succ = flow.getDstNode();
-            if (!track.contains(succ)) {
-                walkForward(succ, one, another, track);
-            }
-        }
+        return prefixMethodCall != null ? prefixMethodCall.getReceiver() : null;
     }
     
     private class Alias {
         
-        JReference one;
-        JReference another;
+        JVariableReference lefthand;
+        JVariableReference righthand;
         
-        Alias(JReference one, JReference another) {
-            this.one = one;
-            this.another = another;
+        Alias(JVariableReference lefthand, JVariableReference righthand) {
+            this.lefthand = lefthand;
+            this.righthand = righthand;
+        }
+        
+        @Override
+        public String toString() {
+            return lefthand.getReferenceForm() + " == " + righthand.getReferenceForm();
         }
     }
 }
