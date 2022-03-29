@@ -14,6 +14,8 @@ import org.eclipse.jdt.core.dom.ASTNode;
  */
 public class JMethodReturnReference extends JInvisibleReference {
     
+    public static final String METHOD_RETURN_SYMBOL = "!";
+    
     /**
      * A prefix reference located prior to this reference.
      */

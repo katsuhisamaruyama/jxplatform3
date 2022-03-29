@@ -9,9 +9,6 @@ import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodEntry;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
-import org.jtool.cfg.CFGReceiver;
-import org.jtool.cfg.CFGMethodCall;
-import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JFieldReference;
@@ -70,14 +67,6 @@ class LocalAliasResolver {
                 aliases.forEach(a -> createAliasMap(node, a, new HashSet<>()));
             }
         }
-        
-        //cfg.getNodes().stream()
-        //              .filter(n -> n.isReceiver())
-        //              .forEach(n -> expandReceiverReference(cfg, (CFGReceiver)n));
-        
-        
-        
-        
         
         if (aliasMap.size() != 0) {
             cfg.getNodes().stream()
@@ -235,54 +224,6 @@ class LocalAliasResolver {
                     JMethodReturnReference.METHOD_RETURN_SYMBOL + name2 + ".");
         }
         return null;
-    }
-    
-    private void expandReceiverReference(CFG cfg, CFGReceiver node) {
-        if (node.getMethodCall().getASTNode() instanceof MethodInvocation) {
-            
-            System.err.println("CALL = " + node.toString());
-            
-            JVariableReference use = node.getUseFirst();
-            if (use != null && !use.isTouchable()) {
-                
-                System.err.println("USE = " + use.getReferenceForm());
-                
-                String form = getExpandedReceiverForm(cfg, node);
-                if (form.length() > 0) {
-                    JVariableReference var = new JInvisibleReference(node.getASTNode(),
-                            form, use.getType(), use.isPrimitiveType());
-                    node.addUseVariable(var);
-                }
-            }
-        }
-    }
-    
-    private String getExpandedReceiverForm(CFG cfg, CFGReceiver node) {
-        CFGReceiver predReceiver = getReceiverForPrefixMethodCall(cfg, node);
-        if (predReceiver != null) {
-            JVariableReference predUseVar = predReceiver.getUseFirst();
-            if (predUseVar != null) {
-                String refForm = predUseVar.getReferenceForm() + "." + predUseVar.getSignature();
-                if (predUseVar.isTouchable()) {
-                    return refForm;
-                } else {
-                    return getExpandedReceiverForm(cfg, predReceiver) + "." + refForm;
-                }
-            }
-        }
-        return "";
-    }
-    
-    private CFGReceiver getReceiverForPrefixMethodCall(CFG cfg, CFGReceiver node) {
-        CFGMethodCall prefixMethodCall = cfg.getNodes().stream()
-                .filter(n -> n.isActualOut())
-                .map(n -> (CFGParameter)n)
-                .filter(n -> n.getDefVariable().equals(node.getUseFirst()))
-                .map(n -> (CFGMethodCall)n.getParent())
-                .filter(n -> !n.hasDefVariable())
-                .findFirst().orElse(null);
-        
-        return prefixMethodCall != null ? prefixMethodCall.getReceiver() : null;
     }
     
     private class Alias {
