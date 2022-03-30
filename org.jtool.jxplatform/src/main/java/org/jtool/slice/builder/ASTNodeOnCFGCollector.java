@@ -1,12 +1,11 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.slice.builder;
 
-import org.jtool.cfg.builder.ExpressionVisitor;
-import org.jtool.cfg.builder.StatementVisitor;
+import org.jtool.cfg.CFGNode;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
@@ -49,8 +48,6 @@ public class ASTNodeOnCFGCollector extends ASTVisitor {
     
     private boolean isCFGNode(ASTNode node) {
         return node instanceof BodyDeclaration ||
-               StatementVisitor.isCFGNode(node) ||
-               ExpressionVisitor.isCFGNode(node) ||
-               ExpressionVisitor.isCFGNodeOnLiteral(node);
+               CFGNode.isStatement(node) || CFGNode.isExpression(node) || CFGNode.isLiteral(node);
     }
 }

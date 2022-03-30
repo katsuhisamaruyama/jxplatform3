@@ -915,31 +915,4 @@ public class ExpressionVisitor extends ASTVisitor {
         }
         return null;
     }
-    
-    public static boolean isCFGNode(ASTNode node) {
-        return (
-                node instanceof Assignment ||
-                node instanceof ClassInstanceCreation ||
-                node instanceof MethodInvocation ||
-                node instanceof SuperMethodInvocation ||
-                node instanceof PostfixExpression ||
-                node instanceof PrefixExpression ||
-                node instanceof SingleVariableDeclaration ||
-                node instanceof VariableDeclarationFragment ||
-                node instanceof ConditionalExpression ||
-                node instanceof SwitchExpression
-            );
-    }
-    
-    public static boolean isCFGNodeOnLiteral(ASTNode node) {
-        return (
-                node instanceof BooleanLiteral ||
-                node instanceof CharacterLiteral ||
-                node instanceof NullLiteral ||
-                node instanceof NumberLiteral ||
-                node instanceof StringLiteral ||
-                node instanceof TypeLiteral ||
-                node instanceof Name
-            );
-    }
 }

@@ -870,37 +870,6 @@ public class StatementVisitor extends ASTVisitor {
         return null;
     }
     
-    public static boolean isCFGNode(ASTNode node) {
-        return (
-                node instanceof VariableDeclarationStatement ||
-                node instanceof VariableDeclarationExpression ||
-                node instanceof AssertStatement ||
-                node instanceof BreakStatement ||
-                node instanceof ContinueStatement ||
-                node instanceof DoStatement ||
-                node instanceof EmptyStatement ||
-                node instanceof ExpressionStatement ||
-                node instanceof ForStatement ||
-                node instanceof EnhancedForStatement ||
-                node instanceof IfStatement ||
-                node instanceof LabeledStatement ||
-                node instanceof IfStatement ||
-                node instanceof ReturnStatement ||
-                node instanceof SwitchCase ||
-                node instanceof SwitchStatement ||
-                node instanceof SingleVariableDeclaration ||
-                node instanceof SynchronizedStatement ||
-                node instanceof ThrowStatement ||
-                node instanceof TryStatement ||
-                node instanceof CatchClause ||
-                node instanceof TypeDeclarationStatement ||
-                node instanceof WhileStatement ||
-                node instanceof ConstructorInvocation ||
-                node instanceof SuperConstructorInvocation ||
-                node instanceof EnumConstantDeclaration
-            );
-    }
-    
     private class SwitchCaseLabel {
         
         private SwitchCase node;

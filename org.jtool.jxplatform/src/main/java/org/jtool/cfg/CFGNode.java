@@ -10,6 +10,48 @@ import org.jtool.graph.GraphNode;
 import org.jtool.graph.GraphElement;
 import org.jtool.pdg.PDGNode;
 import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.AssertStatement;
+import org.eclipse.jdt.core.dom.Assignment;
+import org.eclipse.jdt.core.dom.BooleanLiteral;
+import org.eclipse.jdt.core.dom.BreakStatement;
+import org.eclipse.jdt.core.dom.CatchClause;
+import org.eclipse.jdt.core.dom.CharacterLiteral;
+import org.eclipse.jdt.core.dom.ClassInstanceCreation;
+import org.eclipse.jdt.core.dom.ConditionalExpression;
+import org.eclipse.jdt.core.dom.ConstructorInvocation;
+import org.eclipse.jdt.core.dom.ContinueStatement;
+import org.eclipse.jdt.core.dom.DoStatement;
+import org.eclipse.jdt.core.dom.EmptyStatement;
+import org.eclipse.jdt.core.dom.EnhancedForStatement;
+import org.eclipse.jdt.core.dom.EnumConstantDeclaration;
+import org.eclipse.jdt.core.dom.ExpressionStatement;
+import org.eclipse.jdt.core.dom.ForStatement;
+import org.eclipse.jdt.core.dom.IfStatement;
+import org.eclipse.jdt.core.dom.LabeledStatement;
+import org.eclipse.jdt.core.dom.MethodInvocation;
+import org.eclipse.jdt.core.dom.Name;
+import org.eclipse.jdt.core.dom.NullLiteral;
+import org.eclipse.jdt.core.dom.NumberLiteral;
+import org.eclipse.jdt.core.dom.PostfixExpression;
+import org.eclipse.jdt.core.dom.PrefixExpression;
+import org.eclipse.jdt.core.dom.ReturnStatement;
+import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
+import org.eclipse.jdt.core.dom.StringLiteral;
+import org.eclipse.jdt.core.dom.SuperConstructorInvocation;
+import org.eclipse.jdt.core.dom.SuperMethodInvocation;
+import org.eclipse.jdt.core.dom.SwitchCase;
+import org.eclipse.jdt.core.dom.SwitchExpression;
+import org.eclipse.jdt.core.dom.SwitchStatement;
+import org.eclipse.jdt.core.dom.SynchronizedStatement;
+import org.eclipse.jdt.core.dom.ThrowStatement;
+import org.eclipse.jdt.core.dom.TryStatement;
+import org.eclipse.jdt.core.dom.TypeDeclarationStatement;
+import org.eclipse.jdt.core.dom.TypeLiteral;
+import org.eclipse.jdt.core.dom.VariableDeclarationExpression;
+import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
+import org.eclipse.jdt.core.dom.VariableDeclarationStatement;
+import org.eclipse.jdt.core.dom.WhileStatement;
+
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
@@ -790,5 +832,63 @@ public class CFGNode extends GraphNode {
             }
         });
         return nodes;
+    }
+    
+    public static boolean isStatement(ASTNode node) {
+        return (
+                node instanceof VariableDeclarationStatement ||
+                node instanceof VariableDeclarationExpression ||
+                node instanceof AssertStatement ||
+                node instanceof BreakStatement ||
+                node instanceof ContinueStatement ||
+                node instanceof DoStatement ||
+                node instanceof EmptyStatement ||
+                node instanceof ExpressionStatement ||
+                node instanceof ForStatement ||
+                node instanceof EnhancedForStatement ||
+                node instanceof IfStatement ||
+                node instanceof LabeledStatement ||
+                node instanceof IfStatement ||
+                node instanceof ReturnStatement ||
+                node instanceof SwitchCase ||
+                node instanceof SwitchStatement ||
+                node instanceof SingleVariableDeclaration ||
+                node instanceof SynchronizedStatement ||
+                node instanceof ThrowStatement ||
+                node instanceof TryStatement ||
+                node instanceof CatchClause ||
+                node instanceof TypeDeclarationStatement ||
+                node instanceof WhileStatement ||
+                node instanceof ConstructorInvocation ||
+                node instanceof SuperConstructorInvocation ||
+                node instanceof EnumConstantDeclaration
+            );
+    }
+    
+    public static boolean isExpression(ASTNode node) {
+        return (
+                node instanceof Assignment ||
+                node instanceof ClassInstanceCreation ||
+                node instanceof MethodInvocation ||
+                node instanceof SuperMethodInvocation ||
+                node instanceof PostfixExpression ||
+                node instanceof PrefixExpression ||
+                node instanceof SingleVariableDeclaration ||
+                node instanceof VariableDeclarationFragment ||
+                node instanceof ConditionalExpression ||
+                node instanceof SwitchExpression
+            );
+    }
+    
+    public static boolean isLiteral(ASTNode node) {
+        return (
+                node instanceof BooleanLiteral ||
+                node instanceof CharacterLiteral ||
+                node instanceof NullLiteral ||
+                node instanceof NumberLiteral ||
+                node instanceof StringLiteral ||
+                node instanceof TypeLiteral ||
+                node instanceof Name
+            );
     }
 }
