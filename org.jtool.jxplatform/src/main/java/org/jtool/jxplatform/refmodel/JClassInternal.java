@@ -43,7 +43,7 @@ class JClassInternal extends JClass {
     
     @Override
     protected void findSuperClassChain() {
-        if (jclass.isInterface() || jclass.isEnum()) {
+        if (jclass.isInterface()) {
             return;
         }
         JavaClass parent = jclass.getSuperClass();

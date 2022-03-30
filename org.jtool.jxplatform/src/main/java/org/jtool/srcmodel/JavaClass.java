@@ -875,7 +875,7 @@ public class JavaClass extends JavaElement {
      * @return {@code true} if a super class was successfully specified, otherwise {@code false}
      */
     private boolean findSuperClass() {
-        if (isClass()) {
+        if (!isInterface()) {
             if (binding.getSuperclass() != null) {
                 superClass = JavaElementUtil.findDeclaringClass(binding.getSuperclass(), jproject);
                 if (superClass == null) {
