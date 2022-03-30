@@ -22,4 +22,12 @@ public class JVariableReference extends JReference {
     protected JVariableReference(ASTNode node) {
         super(node);
     }
+    
+    /**
+     * Returns a prefix reference located prior to this reference.
+     * @return the prefix reference
+     */
+    public JVariableReference getPrefix() {
+        return null;
+    }
 }

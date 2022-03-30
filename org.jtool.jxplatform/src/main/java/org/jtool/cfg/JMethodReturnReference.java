@@ -14,6 +14,9 @@ import org.eclipse.jdt.core.dom.ASTNode;
  */
 public class JMethodReturnReference extends JInvisibleReference {
     
+    /**
+     * The symbol indicating that a reference represents a method return.
+     */
     public static final String METHOD_RETURN_SYMBOL = "!";
     
     /**
@@ -42,9 +45,9 @@ public class JMethodReturnReference extends JInvisibleReference {
     }
     
     /**
-     * Returns a prefix reference located prior to this reference.
-     * @return the prefix reference
+     * {@inheritDoc}
      */
+    @Override
     public JVariableReference getPrefix() {
         return prefix;
     }

@@ -266,8 +266,7 @@ public class CFGStatement extends CFGNode {
     }
     
     /**
-     * Obtains information on this statement node.
-     * @return the string representing the information
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

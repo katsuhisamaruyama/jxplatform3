@@ -156,8 +156,7 @@ public class JMethodReference extends JReference {
     }
     
     /**
-     * Returns the receiver name of the referenced element.
-     * @return the receiver name, or the empty string if the element does not have any receiver
+     * {@inheritDoc}
      */
     @Override
     public String getReceiverName() {
@@ -168,8 +167,7 @@ public class JMethodReference extends JReference {
     }
     
     /**
-     * Tests if this is a reference to a method.
-     * @return always {@code true} that indicates a method reference
+     * {@inheritDoc}
      */
     @Override
     public boolean isMethodCall() {
@@ -201,7 +199,7 @@ public class JMethodReference extends JReference {
     }
     
     /**
-     * Tests if this is a reference to a variable-arity method.
+     * Tests if this is a reference to a method having the variable arity.
      * @return {@code true} if this is a variable-arity method reference, otherwise {@code false}
      */
     public boolean isVarargs() {

@@ -209,8 +209,7 @@ public class JFieldReference extends JVariableReference {
     }
     
     /**
-     * Tests if a field for this reference is touchable.
-     * @return {@code true} if this is a reference to a touchable field.
+     * {@inheritDoc}
      */
     @Override
     public boolean isTouchable() {
@@ -226,16 +225,15 @@ public class JFieldReference extends JVariableReference {
     }
     
     /**
-     * Returns a prefix reference located prior to this reference.
-     * @return the prefix reference
+     * {@inheritDoc}
      */
+    @Override
     public JVariableReference getPrefix() {
         return prefix;
     }
     
     /**
-     * Tests if this is a reference to a field.
-     * @return always {@code true} that indicates a field reference
+     * {@inheritDoc}
      */
     @Override
     public boolean isFieldAccess() {
@@ -280,14 +278,6 @@ public class JFieldReference extends JVariableReference {
      */
     public boolean isSuper() {
         return isSuper;
-    }
-    
-    /**
-     * Tests if this is a reference to a final field.
-     * @return {@code true} if this is a final field reference, otherwise {@code false}
-     */
-    public boolean isFinal() {
-        return Modifier.isFinal(modifiers);
     }
     
     /**

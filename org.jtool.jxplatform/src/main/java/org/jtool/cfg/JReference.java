@@ -245,14 +245,6 @@ public abstract class JReference {
     }
     
     /**
-     * Tests if this is a reference to a final element.
-     * @return {@code true} if this refers a final element, otherwise {@code false}
-     */
-    public boolean isFinal() {
-        return Modifier.isFinal(modifiers);
-    }
-    
-    /**
      * Tests if this is a reference to an element inside the target project.
      * @return {@code true} if this is a reference to the inside element, otherwise {@code false}
      */
