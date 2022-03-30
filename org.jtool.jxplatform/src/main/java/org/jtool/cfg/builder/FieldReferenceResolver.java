@@ -27,12 +27,12 @@ import java.util.Set;
  * 
  * @author Katsuhisa Maruyama
  */
-class ReferenceResolver {
+class FieldReferenceResolver {
     
     private JavaProject jproject;
     private BytecodeClassStore bcStore;
     
-    ReferenceResolver(JavaProject jproject) {
+    FieldReferenceResolver(JavaProject jproject) {
         this.jproject = jproject;
         this.bcStore = jproject.getCFGStore().getBCStore();
     }

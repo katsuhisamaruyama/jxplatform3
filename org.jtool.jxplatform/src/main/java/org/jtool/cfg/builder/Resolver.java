@@ -19,7 +19,7 @@ class Resolver {
         ReceiverTypeResolver receiverTypeResolver = new ReceiverTypeResolver(jproject);
         receiverTypeResolver.findReceiverTypes(cfg);
         
-        ReferenceResolver referenceResolver = new ReferenceResolver(jproject);
+        FieldReferenceResolver referenceResolver = new FieldReferenceResolver(jproject);
         referenceResolver.findDefUseFields(cfg);
         
     }
