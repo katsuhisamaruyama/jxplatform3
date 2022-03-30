@@ -13,7 +13,6 @@ import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JInvisibleReference;
-import org.jtool.cfg.JMethodReturnReference;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
 import java.util.List;
@@ -118,7 +117,7 @@ class LocalAliasResolver {
                 CFGStatement stNode = (CFGStatement)succ;
                 if (stNode.isActualOut()) {
                     registerAlias((CFGStatement)succ, alias);
-                } else if (stNode.defineVariable(alias.lefthand) || stNode.defineVariable(alias.righthand)) {
+                } else if (define(stNode, alias.lefthand) || define(stNode, alias.righthand)) {
                     return;
                 } else {
                     registerAlias((CFGStatement)succ, alias);
@@ -128,6 +127,16 @@ class LocalAliasResolver {
                 createAliasMap(succ, alias, track);
             }
         }
+    }
+    
+    private boolean define(CFGStatement node, JVariableReference var) {
+        while (var != null) {
+            if (node.defineVariable(var)) {
+                return true;
+            }
+            var = var.getPrefix();
+        }
+        return false;
     }
     
     private List<Alias> getAliasRelations(CFGStatement node, Expression expr) {
@@ -149,7 +158,6 @@ class LocalAliasResolver {
             if (use.isFieldAccess() && ((JFieldReference)use).isEnumConstant()) {
                 continue;
             }
-            
             aliases.add(new Alias(def, use));
         }
         return aliases;
@@ -219,9 +227,6 @@ class LocalAliasResolver {
             return name.replace(name1 + ".", name2 + ".");
         } else if (name.endsWith("." + name1)) {
             return name.replace("." + name1, "." + name2);
-        } else if (name.startsWith(JMethodReturnReference.METHOD_RETURN_SYMBOL + name1 + ".")) {
-            return name.replace(JMethodReturnReference.METHOD_RETURN_SYMBOL + name1 + ".",
-                    JMethodReturnReference.METHOD_RETURN_SYMBOL + name2 + ".");
         }
         return null;
     }
