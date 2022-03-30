@@ -6,6 +6,7 @@
 package org.jtool.jxplatform.builder;
 
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.jxplatform.project.CommandLineOptions;
 import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
 import java.util.List;
 import java.util.ArrayList;
@@ -19,14 +20,44 @@ import java.io.IOException;
  */
 public class JavaModelBuilder {
     
+    /**
+     * The name of a target project.
+     */
     private String projectName;
+    
+    /**
+     * The path of a target project.
+     */
     private String projectPath;
+    
+    /**
+     * The file path of a directory that stores source files.
+     */
     private String srcpath;
+    
+    /**
+     * The file path of a directory that stores binary files.
+     */
     private String binpath;
+    
+    /**
+     * The sequence of file paths and/or jar files of a directory that stores class files.
+     */
     private String classpath;
+    
+    /**
+     * The name of a file recording logs.
+     */
     private String logfile = "";
+    
+    /**
+     * A flag that indicates whether the project environment is automatically checked.
+     */
     private String autoCheckEnv;
     
+    /**
+     * A builder that builds the source code model.
+     */
     private ModelBuilderBatch modelBuilder;
     
     /**
@@ -77,6 +108,12 @@ public class JavaModelBuilder {
         this(name, target, classpath, target, target);
     }
     
+    /**
+     * Obtains the file path from a specified option.
+     * @param target the top directory storing the target project
+     * @param option the specified option
+     * @return the obtained file path
+     */
     private String getPath(String target, String option) {
         if (option == null) {
             return target;
@@ -100,9 +137,9 @@ public class JavaModelBuilder {
      * Creates a command-line mode model builder.
      * @param name the name of the created model
      * @param target the directory storing the target project
-     * @param classpath the path where the needed class (or jar) files are located
-     * @param srcpath the path where the source files are located
-     * @param binpath the path where the binary files are located
+     * @param classpath the file path where the needed class (or jar) files are located
+     * @param srcpath the file path where the source files are located
+     * @param binpath the file path where the binary files are located
      */
     public JavaModelBuilder(String name, String target, String classpath, String srcpath, String binpath) {
         try {
@@ -118,6 +155,12 @@ public class JavaModelBuilder {
         }
     }
     
+    /**
+     * Obtains the project name based on the current directory where this is activated.
+     * @param target the top directory storing the target project
+     * @param cdir the current directory
+     * @return the obtained project name
+     */
     private String getProjectName(String target, String cdir) {
         String name = removeLastFileSeparator(target);
         if (name.startsWith(cdir)) {
@@ -130,6 +173,11 @@ public class JavaModelBuilder {
         return replaceFileSeparator(name);
     }
     
+    /**
+     * Returns the file path by removing a directory or file name located at the last position.
+     * @param path the original file path
+     * @return the resulting file path
+     */
     private String removeLastFileSeparator(String path) {
         if (path.charAt(path.length() - 1) == File.separatorChar) {
             return path.substring(0, path.length() - 1);
@@ -137,6 +185,11 @@ public class JavaModelBuilder {
         return path;
     }
     
+    /**
+     * Replaces file separator symbol different between OSs with the common symbol ".".
+     * @param path the original file path
+     * @return the resulting file path
+     */
     private String replaceFileSeparator(String path) {
         return path.replace(File.separatorChar, '.');
     }
@@ -174,6 +227,10 @@ public class JavaModelBuilder {
         }
     }
     
+    /**
+     * Launches this application with options
+     * @param args the specified options
+     */
     public static void main(String[] args) {
         JavaModelBuilder builder = new JavaModelBuilder(args);
         builder.build();

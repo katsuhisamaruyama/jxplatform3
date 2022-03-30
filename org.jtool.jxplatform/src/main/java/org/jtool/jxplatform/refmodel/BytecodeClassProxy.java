@@ -13,7 +13,6 @@ import java.util.Map;
  * 
  * @author Katsuhisa Maruyama
  */
-
 public class BytecodeClassProxy extends BytecodeClass {
     
     protected final static String ElementSeparator = ";";

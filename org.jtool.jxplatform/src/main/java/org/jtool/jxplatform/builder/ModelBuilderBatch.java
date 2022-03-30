@@ -14,7 +14,6 @@ import java.util.List;
  * 
  * @author Katsuhisa Maruyama
  */
-
 public class ModelBuilderBatch extends ModelBuilder {
     
     /**

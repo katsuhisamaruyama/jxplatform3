@@ -6,7 +6,7 @@
 package org.jtool.jxplatform.project;
 
 /**
- * A progress monitor.
+ * A progress monitor that displays information on the console (stdout).
  * 
  * @author Katsuhisa Maruyama
  */
