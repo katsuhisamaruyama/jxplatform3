@@ -86,6 +86,7 @@ public abstract class JavaVariable extends JavaElement {
      * Returns the project which this class exists in.
      * @return the project of this model element
      */
+    @Override
     public JavaProject getJavaProject() {
         return jfile.getJavaProject();
     }
@@ -94,6 +95,7 @@ public abstract class JavaVariable extends JavaElement {
      * Returns the file that declares this class.
      * @return the declaring file
      */
+    @Override
     public JavaFile getFile() {
         return jfile;
     }

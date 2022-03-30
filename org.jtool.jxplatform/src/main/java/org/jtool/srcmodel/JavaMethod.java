@@ -281,6 +281,7 @@ public class JavaMethod extends JavaElement {
      * Returns the project which this method exists in.
      * @return the project
      */
+    @Override
     public JavaProject getJavaProject() {
         return declaringClass.getJavaProject();
     }
@@ -289,6 +290,7 @@ public class JavaMethod extends JavaElement {
      * Returns the file that declares this method.
      * @return the declaring file
      */
+    @Override
     public JavaFile getFile() {
         return declaringClass.getFile();
     }

@@ -365,6 +365,7 @@ public class JavaClass extends JavaElement {
      * Returns the project which this class exists in.
      * @return the project
      */
+    @Override
     public JavaProject getJavaProject() {
         return jproject;
     }
@@ -373,6 +374,7 @@ public class JavaClass extends JavaElement {
      * Returns the file that declares this class.
      * @return the declaring file
      */
+    @Override
     public JavaFile getFile() {
         return jfile;
     }
