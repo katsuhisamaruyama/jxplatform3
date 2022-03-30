@@ -115,7 +115,7 @@ public class CFGStore {
             CFG cfg = cfgs.get(jmethod.getQualifiedName().fqn());
             if (cfg != null) {
                 if (!resolvedReferences.contains(cfg.getQualifiedName().fqn())) {
-                    CFGMethodBuilder.resolveReferences(jmethod.getJavaProject(), cfg);
+                    Resolver.resolveReferences(jmethod.getJavaProject(), cfg);
                     resolvedReferences.add(cfg.getQualifiedName().fqn());
                 }
                 return cfg;
@@ -135,7 +135,7 @@ public class CFGStore {
             CFG cfg = cfgs.get(jfield.getQualifiedName().fqn());
             if (cfg != null) {
                 if (!resolvedReferences.contains(cfg.getQualifiedName().fqn())) {
-                    CFGMethodBuilder.resolveReferences(jfield.getJavaProject(), cfg);
+                    Resolver.resolveReferences(jfield.getJavaProject(), cfg);
                     resolvedReferences.add(cfg.getQualifiedName().fqn());
                 }
                 return cfg;

@@ -123,11 +123,10 @@ class CFGMethodBuilder {
         }
         
         if (toBeResolved) {
-            resolveReferences(jmethod.getJavaProject(), cfg);
+            Resolver.resolveReferences(jmethod.getJavaProject(), cfg);
         }
         
-        LocalAliasResolver localAliasResolver = new LocalAliasResolver();
-        localAliasResolver.resolve(cfg);
+        Resolver.resolveLocalAlias(cfg);
         
         return cfg;
     }
@@ -212,13 +211,5 @@ class CFGMethodBuilder {
         formalOutNode.addUseVariable(use);
         
         return formalOutNode;
-    }
-    
-    static void resolveReferences(JavaProject jproject, CFG cfg) {
-        ReceiverTypeResolver receiverTypeResolver = new ReceiverTypeResolver(jproject);
-        receiverTypeResolver.findReceiverTypes(cfg);
-        
-        ReferenceResolver referenceResolver = new ReferenceResolver(jproject);
-        referenceResolver.findDefUseFields(cfg);
     }
 }

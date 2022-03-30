@@ -14,7 +14,6 @@ import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.srcmodel.JavaField;
-import org.jtool.srcmodel.JavaProject;
 import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 import org.eclipse.jdt.core.dom.EnumConstantDeclaration;
@@ -90,17 +89,9 @@ class CFGFieldBuilder {
         cfg.add(edge);
         
         if (toBeResolved) {
-            resolveReferences(jfield.getJavaProject(), cfg);
+            Resolver.resolveReferences(jfield.getJavaProject(), cfg);
         }
         
         return cfg;
-    }
-    
-    static void resolveReferences(JavaProject jproject, CFG cfg) {
-        ReceiverTypeResolver receiverTypeResolver = new ReceiverTypeResolver(jproject);
-        receiverTypeResolver.findReceiverTypes(cfg);
-        
-        ReferenceResolver referenceResolver = new ReferenceResolver(jproject);
-        referenceResolver.findDefUseFields(cfg);
     }
 }
