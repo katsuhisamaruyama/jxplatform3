@@ -1,10 +1,11 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.cfg;
 
+import java.util.List;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jdt.core.dom.TypeLiteral;
@@ -123,5 +124,14 @@ public class CFGReceiver extends CFGStatement {
             }
         }
         return null;
+    }
+    
+    /**
+     * Obtains primary variables used in this receiver node.
+     * @return the collection of the primary variables,
+     *         or the empty list if its corresponding method invocation has no receiver
+     */
+    public List<JVariableReference> findPrimaryUseVariables() {
+        return super.findPrimaryUseVariablesInReceiver();
     }
 }
