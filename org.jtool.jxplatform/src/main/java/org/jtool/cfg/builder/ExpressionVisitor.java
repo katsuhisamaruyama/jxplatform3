@@ -16,7 +16,7 @@ import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
-import org.jtool.cfg.JInvisibleReference;
+import org.jtool.cfg.JExpedientialReference;
 import org.jtool.cfg.JMethodReturnReference;
 import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JReference;
@@ -48,7 +48,6 @@ import org.eclipse.jdt.core.dom.ThisExpression;
 import org.eclipse.jdt.core.dom.QualifiedName;
 import org.eclipse.jdt.core.dom.VariableDeclaration;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
-import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jdt.core.dom.SwitchExpression;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 import org.eclipse.jdt.core.dom.ConstructorInvocation;
@@ -58,16 +57,13 @@ import org.eclipse.jdt.core.dom.IBinding;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.IMethodBinding;
 import org.eclipse.jdt.core.dom.IVariableBinding;
-import org.eclipse.jdt.core.dom.BooleanLiteral;
-import org.eclipse.jdt.core.dom.CharacterLiteral;
-import org.eclipse.jdt.core.dom.NullLiteral;
-import org.eclipse.jdt.core.dom.NumberLiteral;
-import org.eclipse.jdt.core.dom.TypeLiteral;
 import org.eclipse.jdt.core.dom.CreationReference;
 import org.eclipse.jdt.core.dom.ExpressionMethodReference;
 import org.eclipse.jdt.core.dom.SuperMethodReference;
 import org.eclipse.jdt.core.dom.TypeMethodReference;
 import org.eclipse.jdt.core.dom.Statement;
+import org.eclipse.jdt.core.dom.TypeLiteral;
+import org.eclipse.jdt.core.dom.StringLiteral;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
@@ -339,9 +335,9 @@ public class ExpressionVisitor extends ASTVisitor {
         Name qualifier = node.getQualifier();
         JVariableReference jvar;
         if (qualifier != null) {
-            jvar = new JInvisibleReference(node, "this", qualifier.resolveTypeBinding());
+            jvar = new JExpedientialReference(node, "this", qualifier.resolveTypeBinding());
         } else {
-            jvar = new JInvisibleReference(node, "this", false);
+            jvar = new JExpedientialReference(node, "this", false);
         }
         curNode.addUseVariable(jvar);
         return false;
@@ -583,7 +579,7 @@ public class ExpressionVisitor extends ASTVisitor {
         }
         
         JMethodReference jcall = new JMethodReference(node, node.getType(), mbinding, node.arguments());
-        CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.methodCall, jcall);
+        CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
         jcall.setReceiver(receiverNode);
         jcall.setExplicitReceiver(receiver != null);
         receiverNode.setMethodCall(callNode);
@@ -651,10 +647,6 @@ public class ExpressionVisitor extends ASTVisitor {
         
         insertBeforeCurrentNode(actualOutNodeForReturn);
         
-        if (declarationOrAssignmentNode.empty()) {
-            return null;
-        }
-        
         String type = callNode.getReturnType();
         boolean primitive = callNode.isPrimitiveType();
         JMethodReturnReference def = new JMethodReturnReference(callNode.getASTNode(), name, type, primitive);
@@ -716,149 +708,6 @@ public class ExpressionVisitor extends ASTVisitor {
         return false;
     }
     
-    /*
-     * This implementation is incomplete and has not tested.
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    public boolean visit(LambdaExpression node) {
-        ITypeBinding tbinding = node.resolveTypeBinding();
-        if (tbinding == null) {
-            return false;
-        }
-        
-        CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
-        
-        insertBeforeCurrentNode(lambdaNode);
-        
-        CFGStatement tmpNode = curNode;
-        curNode = lambdaNode;
-        analysisMode.push(AnalysisMode.USE);
-        node.getBody().accept(this);
-        analysisMode.pop();
-        curNode = tmpNode;
-        
-        Set<String> formals = new HashSet<>();
-        for (VariableDeclaration vardecl : (List<VariableDeclaration>)node.parameters()) {
-            formals.add(vardecl.getName().getIdentifier());
-        }
-        
-        for (JReference ref : new ArrayList<>(lambdaNode.getUseVariables())) {
-            if (ref.isLocalAccess()) {
-                JLocalVarReference var = (JLocalVarReference)ref;
-                if (formals.contains(var.getName())) {
-                    lambdaNode.getUseVariables().remove(ref);
-                }
-            }
-        }
-        
-        JVariableReference jv = new JInvisibleReference(node,
-                "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
-        lambdaNode.setDefVariable(jv);
-        curNode.setUseVariable(jv);
-        return false;
-    }
-    
-    /*
-     * This implementation is incomplete and has not tested.
-     */
-    @Override
-    public boolean visit(CreationReference node) {
-        return methodReference(node, node.resolveTypeBinding());
-    }
-    
-    /*
-     * This implementation is incomplete and has not tested.
-     */
-    @Override
-    public boolean visit(SuperMethodReference node) {
-        return methodReference(node, node.resolveTypeBinding());
-    }
-    
-    /*
-     * This implementation is incomplete and has not tested.
-     */
-    @Override
-    public boolean visit(TypeMethodReference node) {
-        return methodReference(node, node.resolveTypeBinding());
-    }
-    
-    private boolean methodReference(ASTNode node, ITypeBinding tbinding) {
-        if (tbinding == null) {
-            return false;
-        }
-        
-        CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
-        
-        insertBeforeCurrentNode(lambdaNode);
-        
-        JVariableReference jv = new JInvisibleReference(node,
-                "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
-        lambdaNode.setDefVariable(jv);
-        curNode.setUseVariable(jv);
-        return false;
-    }
-    
-    /*
-     * This implementation is incomplete and has not tested.
-     */
-    @Override
-    public boolean visit(ExpressionMethodReference node) {
-        ITypeBinding tbinding = node.resolveTypeBinding();
-        if (tbinding == null) {
-            return false;
-        }
-        
-        CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
-        
-        insertBeforeCurrentNode(lambdaNode);
-        
-        CFGStatement tmpNode = curNode;
-        curNode = lambdaNode;
-        analysisMode.push(AnalysisMode.USE);
-        node.getExpression().accept(this);
-        analysisMode.pop();
-        curNode = tmpNode;
-        
-        JVariableReference jv = new JInvisibleReference(node,
-                "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
-        lambdaNode.setDefVariable(jv);
-        curNode.setUseVariable(jv);
-        return false;
-    }
-    
-    /*
-     * Switch expression is not supported under Java SE 11.
-     * Thus, this method has not tested.
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    public boolean visit(SwitchExpression node) {
-        CFGStatement switchExpNode = new CFGStatement(node, CFGNode.Kind.switchExpression);
-        
-        insertBeforeCurrentNode(switchExpNode);
-        
-        CFGStatement tmpNode = curNode;
-        curNode = switchExpNode;
-        analysisMode.push(AnalysisMode.USE);
-        node.getExpression().accept(this);
-        for (Statement st : (List<Statement>)node.statements()) {
-            st.accept(this);
-        }
-        analysisMode.pop();
-        curNode = tmpNode;
-        
-        ITypeBinding tbinding = node.resolveTypeBinding();
-        String type = tbinding.getErasure().getQualifiedName();
-        if (!JavaElementUtil.isVoid(type)) {
-            JVariableReference def = new JInvisibleReference(node,
-                "$SWITCH_EXPRESSION", type, tbinding.isPrimitive());
-            switchExpNode.addDefVariable(def);
-            curNode.addUseVariable(def);
-        }
-        return false;
-    }
-    
     @Override
     public boolean visit(SimpleName node) {
         IVariableBinding vbinding = getVariableBinding(node);
@@ -914,5 +763,169 @@ public class ExpressionVisitor extends ASTVisitor {
             return (IVariableBinding)binding;
         }
         return null;
+    }
+    
+    @Override
+    public boolean visit(TypeLiteral node) {
+        setVariableForLiteral(node, node.resolveTypeBinding());
+        return false;
+    }
+    
+    @Override
+    public boolean visit(StringLiteral node) {
+        setVariableForLiteral(node, node.resolveTypeBinding());
+        return false;
+    }
+    
+    private void setVariableForLiteral(ASTNode node, ITypeBinding tbinding) {
+        JVariableReference jvar = new JExpedientialReference(node, "$" + tbinding.getQualifiedName(), tbinding);
+        if (analysisMode.peek() == AnalysisMode.DEF) {
+            curNode.addDefVariable(jvar);
+        } else {
+            curNode.addUseVariable(jvar);
+        }
+    }
+    
+    /*
+     * This implementation is incomplete and has not tested.
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean visit(LambdaExpression node) {
+        ITypeBinding tbinding = node.resolveTypeBinding();
+        if (tbinding == null) {
+            return false;
+        }
+        
+        CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
+        
+        insertBeforeCurrentNode(lambdaNode);
+        
+        CFGStatement tmpNode = curNode;
+        curNode = lambdaNode;
+        analysisMode.push(AnalysisMode.USE);
+        node.getBody().accept(this);
+        analysisMode.pop();
+        curNode = tmpNode;
+        
+        Set<String> formals = new HashSet<>();
+        for (VariableDeclaration vardecl : (List<VariableDeclaration>)node.parameters()) {
+            formals.add(vardecl.getName().getIdentifier());
+        }
+        
+        for (JReference ref : new ArrayList<>(lambdaNode.getUseVariables())) {
+            if (ref.isLocalAccess()) {
+                JLocalVarReference var = (JLocalVarReference)ref;
+                if (formals.contains(var.getName())) {
+                    lambdaNode.getUseVariables().remove(ref);
+                }
+            }
+        }
+        
+        JVariableReference jv = new JExpedientialReference(node,
+                "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
+        lambdaNode.setDefVariable(jv);
+        curNode.setUseVariable(jv);
+        return false;
+    }
+    
+    /*
+     * This implementation is incomplete and has not tested.
+     */
+    @Override
+    public boolean visit(CreationReference node) {
+        return methodReference(node, node.resolveTypeBinding());
+    }
+    
+    /*
+     * This implementation is incomplete and has not tested.
+     */
+    @Override
+    public boolean visit(SuperMethodReference node) {
+        return methodReference(node, node.resolveTypeBinding());
+    }
+    
+    /*
+     * This implementation is incomplete and has not tested.
+     */
+    @Override
+    public boolean visit(TypeMethodReference node) {
+        return methodReference(node, node.resolveTypeBinding());
+    }
+    
+    private boolean methodReference(ASTNode node, ITypeBinding tbinding) {
+        if (tbinding == null) {
+            return false;
+        }
+        
+        CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
+        
+        insertBeforeCurrentNode(lambdaNode);
+        
+        JVariableReference jv = new JExpedientialReference(node,
+                "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
+        lambdaNode.setDefVariable(jv);
+        curNode.setUseVariable(jv);
+        return false;
+    }
+    
+    /*
+     * This implementation is incomplete and has not tested.
+     */
+    @Override
+    public boolean visit(ExpressionMethodReference node) {
+        ITypeBinding tbinding = node.resolveTypeBinding();
+        if (tbinding == null) {
+            return false;
+        }
+        
+        CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
+        
+        insertBeforeCurrentNode(lambdaNode);
+        
+        CFGStatement tmpNode = curNode;
+        curNode = lambdaNode;
+        analysisMode.push(AnalysisMode.USE);
+        node.getExpression().accept(this);
+        analysisMode.pop();
+        curNode = tmpNode;
+        
+        JVariableReference jv = new JExpedientialReference(node,
+                "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
+        lambdaNode.setDefVariable(jv);
+        curNode.setUseVariable(jv);
+        return false;
+    }
+    
+    /*
+     * Switch expression is not supported under Java SE 11.
+     * Thus, this method has not tested.
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean visit(SwitchExpression node) {
+        CFGStatement switchExpNode = new CFGStatement(node, CFGNode.Kind.switchExpression);
+        
+        insertBeforeCurrentNode(switchExpNode);
+        
+        CFGStatement tmpNode = curNode;
+        curNode = switchExpNode;
+        analysisMode.push(AnalysisMode.USE);
+        node.getExpression().accept(this);
+        for (Statement st : (List<Statement>)node.statements()) {
+            st.accept(this);
+        }
+        analysisMode.pop();
+        curNode = tmpNode;
+        
+        ITypeBinding tbinding = node.resolveTypeBinding();
+        String type = tbinding.getErasure().getQualifiedName();
+        if (!JavaElementUtil.isVoid(type)) {
+            JVariableReference def = new JExpedientialReference(node,
+                "$SWITCH_EXPRESSION", type, tbinding.isPrimitive());
+            switchExpNode.addDefVariable(def);
+            curNode.addUseVariable(def);
+        }
+        return false;
     }
 }
