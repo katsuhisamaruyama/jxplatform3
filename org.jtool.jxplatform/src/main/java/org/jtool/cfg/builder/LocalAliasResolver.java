@@ -25,13 +25,6 @@ import com.google.common.collect.Multimap;
 import org.eclipse.jdt.core.dom.Assignment;
 import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
-import org.eclipse.jdt.core.dom.ArrayAccess;
-import org.eclipse.jdt.core.dom.FieldAccess;
-import org.eclipse.jdt.core.dom.Name;
-import org.eclipse.jdt.core.dom.ConditionalExpression;
-import org.eclipse.jdt.core.dom.MethodInvocation;
-import org.eclipse.jdt.core.dom.SuperMethodInvocation;
-import org.eclipse.jdt.core.dom.ClassInstanceCreation;
 
 /**
  * Resolves the alias relations in local variables in the method
@@ -151,7 +144,7 @@ class LocalAliasResolver {
             return aliases;
         }
         
-        for (JVariableReference use : findUseVariables(node, expr)) {
+        for (JVariableReference use : node.findPrimaryUseVariables(expr)) {
             if (use.isPrimitiveType()) {
                 continue;
             }
@@ -161,34 +154,6 @@ class LocalAliasResolver {
             aliases.add(new Alias(def, use));
         }
         return aliases;
-    }
-    
-    private List<JVariableReference> findUseVariables(CFGStatement node, Expression expr) {
-        List <JVariableReference> refs = new ArrayList<>();
-        
-        List<Expression> vars = new ArrayList<>();
-        if (expr instanceof ArrayAccess) {
-            vars.add(((ArrayAccess)expr).getArray());
-        } else if (expr instanceof FieldAccess ||
-                   expr instanceof Name) {
-            vars.add(expr);
-        } else if (expr instanceof MethodInvocation ||
-                   expr instanceof SuperMethodInvocation ||
-                   expr instanceof ClassInstanceCreation) {
-            vars.add(expr);
-        } else if (expr instanceof ConditionalExpression) {
-            vars.add(((ConditionalExpression)expr).getThenExpression());
-            vars.add(((ConditionalExpression)expr).getElseExpression());
-        } else {
-            return refs;
-        }
-        
-        for (Expression var : vars) {
-            node.getUseVariables().stream()
-                                  .filter(v -> v.getASTNode().equals(var))
-                                  .findFirst().ifPresent(r -> refs.add(r));
-        }
-        return refs;
     }
     
     private void addAliasVariables(CFGStatement node) {

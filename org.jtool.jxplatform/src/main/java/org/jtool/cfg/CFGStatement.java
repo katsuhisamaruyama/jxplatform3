@@ -6,6 +6,17 @@
 package org.jtool.cfg;
 
 import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.ArrayAccess;
+import org.eclipse.jdt.core.dom.Assignment;
+import org.eclipse.jdt.core.dom.ClassInstanceCreation;
+import org.eclipse.jdt.core.dom.ConditionalExpression;
+import org.eclipse.jdt.core.dom.Expression;
+import org.eclipse.jdt.core.dom.FieldAccess;
+import org.eclipse.jdt.core.dom.MethodInvocation;
+import org.eclipse.jdt.core.dom.Name;
+import org.eclipse.jdt.core.dom.SuperMethodInvocation;
+import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -263,6 +274,82 @@ public class CFGStatement extends CFGNode {
             return uses.get(uses.size() - 1);
         }
         return null;
+    }
+    
+    /**
+     * Obtains primary variables used in this declaration node.
+     * @return the collection of the primary variables,
+     *         or the empty list if primary variables are combined by any operator
+     */
+    public List<JVariableReference> findPrimaryUseVariablesInDeclaration() {
+        Expression expr = null;
+        if (astNode instanceof VariableDeclarationFragment) {
+            expr = ((VariableDeclarationFragment)astNode).getInitializer();
+        }
+        return findPrimaryUseVariables(expr);
+    }
+    
+    /**
+     * Obtains primary variables used in this assignment node.
+     * @return the collection of the primary variables,
+     *         or the empty list if primary variables are combined by any operator
+     */
+    public List<JVariableReference> findPrimaryUseVariablesInAssignment() {
+        Expression expr = null;
+        if (astNode instanceof Assignment) {
+            expr = ((Assignment)astNode).getRightHandSide();
+        }
+        return findPrimaryUseVariables(expr);
+    }
+    
+    /**
+     * Obtains primary variables used in this receiver node.
+     * @return the collection of the primary variables,
+     *         or the empty list if its corresponding method invocation has no receiver
+     */
+    public List<JVariableReference> findPrimaryUseVariablesInReceiver() {
+        Expression expr = null;
+        if (astNode.getParent() instanceof MethodInvocation) {
+            expr = ((MethodInvocation)astNode.getParent()).getExpression();
+        } else if (astNode.getParent() instanceof ClassInstanceCreation) {
+            expr = ((ClassInstanceCreation)astNode.getParent()).getExpression();
+        }
+        return findPrimaryUseVariables(expr);
+    }
+    
+    /**
+     * Obtains primary variables used in this node.
+     * @param expr the expression that contains used variables
+     * @return the collection of the primary variables
+     */
+    public List<JVariableReference> findPrimaryUseVariables(Expression expr) {
+        List <JVariableReference> vars = new ArrayList<>();
+        if (expr == null) {
+            return vars;
+        }
+        
+        List<Expression> exprs = new ArrayList<>();
+        if (expr instanceof ArrayAccess) {
+            exprs.add(((ArrayAccess)expr).getArray());
+        } else if (expr instanceof FieldAccess || expr instanceof Name) {
+            exprs.add(expr);
+        } else if (expr instanceof MethodInvocation ||
+                   expr instanceof SuperMethodInvocation ||
+                   expr instanceof ClassInstanceCreation) {
+            exprs.add(expr);
+        } else if (expr instanceof ConditionalExpression) {
+            exprs.add(((ConditionalExpression)expr).getThenExpression());
+            exprs.add(((ConditionalExpression)expr).getElseExpression());
+        } else {
+            return vars;
+        }
+        
+        for (Expression e : exprs) {
+            uses.stream()
+                .filter(v -> v.getASTNode().equals(e))
+                .findFirst().ifPresent(v -> vars.add(v));
+        }
+        return vars;
     }
     
     /**
