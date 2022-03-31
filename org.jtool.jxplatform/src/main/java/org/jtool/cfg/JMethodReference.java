@@ -44,9 +44,9 @@ public class JMethodReference extends JReference {
     private boolean isConstructor;
     
     /**
-     * A flag that indicates whether this is a reference to an enum.
+     * A flag that indicates whether this is a reference to an enum constant.
      */
-    private boolean isEnum;
+    private boolean isEnumConstant;
     
     /**
      * A flag that indicates whether this is a reference to a variable-arity method.
@@ -104,7 +104,7 @@ public class JMethodReference extends JReference {
         IMethodBinding binding = mbinding.getMethodDeclaration();
         this.isMethod = isMethod(binding);
         this.isConstructor = isConstructor(binding);
-        this.isEnum = binding.getDeclaringClass().isEnum();
+        this.isEnumConstant = binding.getDeclaringClass().isEnum();
         this.isVarargs = binding.isVarargs();
         
         this.enclosingClassName = findEnclosingClassName(node);
@@ -191,11 +191,11 @@ public class JMethodReference extends JReference {
     }
     
     /**
-     * Tests if this is a reference to an enum.
-     * @return {@code true} if this is a method reference, otherwise {@code false}
+     * Tests if this is a reference to an enum constant.
+     * @return {@code true} if this is a enum constant reference, otherwise {@code false}
      */
-    public boolean isEnum() {
-        return isEnum;
+    public boolean isEnumConstant() {
+        return isEnumConstant;
     }
     
     /**
