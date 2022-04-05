@@ -16,7 +16,7 @@ import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.Name;
 import org.eclipse.jdt.core.dom.SuperMethodInvocation;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
-
+import org.eclipse.jdt.core.dom.ReturnStatement;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -277,39 +277,18 @@ public class CFGStatement extends CFGNode {
     }
     
     /**
-     * Obtains primary variables used in this declaration node.
-     * @return the collection of the primary variables,
-     *         or the empty list if primary variables are combined by any operator
+     * Obtains primary variables used in this assignment node.
+     * @return the collection of the primary variables
      */
-    public List<JVariableReference> findPrimaryUseVariablesInDeclaration() {
+    public List<JVariableReference> findPrimaryUseVariables() {
         Expression expr = null;
         if (astNode instanceof VariableDeclarationFragment) {
             expr = ((VariableDeclarationFragment)astNode).getInitializer();
-        }
-        return findPrimaryUseVariables(expr);
-    }
-    
-    /**
-     * Obtains primary variables used in this assignment node.
-     * @return the collection of the primary variables,
-     *         or the empty list if primary variables are combined by any operator
-     */
-    public List<JVariableReference> findPrimaryUseVariablesInAssignment() {
-        Expression expr = null;
-        if (astNode instanceof Assignment) {
+        } else if (astNode instanceof Assignment) {
             expr = ((Assignment)astNode).getRightHandSide();
-        }
-        return findPrimaryUseVariables(expr);
-    }
-    
-    /**
-     * Obtains primary variables used in this receiver node.
-     * @return the collection of the primary variables,
-     *         or the empty list if its corresponding method invocation has no receiver
-     */
-    public List<JVariableReference> findPrimaryUseVariablesInReceiver() {
-        Expression expr = null;
-        if (astNode.getParent() instanceof MethodInvocation) {
+        } else if (astNode instanceof ReturnStatement) {
+            expr = ((ReturnStatement)astNode).getExpression();
+        } else if (astNode.getParent() instanceof MethodInvocation) {
             expr = ((MethodInvocation)astNode.getParent()).getExpression();
         } else if (astNode.getParent() instanceof ClassInstanceCreation) {
             expr = ((ClassInstanceCreation)astNode.getParent()).getExpression();
