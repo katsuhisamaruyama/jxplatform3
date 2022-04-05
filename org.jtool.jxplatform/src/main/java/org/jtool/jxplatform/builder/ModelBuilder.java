@@ -230,26 +230,6 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Obtains the call graph for methods within a class.
-     * @param jclass the class of interest
-     * @return the created call graph
-     */
-    public CallGraph getCallGraph(JavaClass jclass) {
-        assert jclass != null;
-        return CallGraphBuilder.getCallGraph(jclass);
-    }
-    
-    /**
-     * Obtains the call graph for method and fields related to a method.
-     * @param jmethod the method of interest
-     * @return the created call graph
-     */
-    public CallGraph getCallGraph(JavaMethod jmethod) {
-        assert jmethod != null;
-        return CallGraphBuilder.getCallGraph(jmethod);
-    }
-    
-    /**
      * Finds a PDG for a class member having a given fully-qualified name.
      * @param jproject the project containing the class element
      * @param fqn the fully-qualified name of the class member ({@code className#memeberName})

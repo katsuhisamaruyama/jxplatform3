@@ -5,16 +5,27 @@
 
 package org.jtool.cfg;
 
-import org.jtool.graph.Graph;
 import org.jtool.graph.GraphElement;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * An object storing information about a call graph.
  * 
  * @author Katsuhisa Maruyama
  */
-public class CallGraph extends Graph<CFGNode, ControlFlow> {
+public class CallGraph {
+    
+    /**
+     * The collection of nodes of this call graph.
+     */
+    protected Set<CFGEntry> nodes = new HashSet<>();
+    
+    /**
+     * The collection of edges of this call graph.
+     */
+    protected Set<ControlFlow> edges = new HashSet<>();
     
     /**
      * The name of this call graph.
@@ -38,29 +49,49 @@ public class CallGraph extends Graph<CFGNode, ControlFlow> {
     }
     
     /**
-     * Adds a control flow edge to this call graph.
-     * @param flow the control flow edge to be added
+     * Returns all nodes of this call graph.
+     * @return the collection of the nodes
      */
-    @Override
-    public void add(ControlFlow flow) {
-        if (!contains(flow.getSrcNode())) {
-            super.add(flow.getSrcNode());
-        }
-        if (!contains(flow.getDstNode())) {
-            super.add(flow.getDstNode());
-        }
-        if (!contains(flow)) {
-            super.add(flow);
-        }
+    public Set<CFGEntry> getNodes() {
+        return nodes;
+    }
+    
+    /**
+     * Returns all edges of this call graph.
+     * @return the collection of the edges
+     */
+    public Set<ControlFlow> getEdges() {
+        return edges;
     }
     
     /**
      * Appends a given call graph to this call graph.
+     * This method is not intended to be invoked by clients.
      * @param graph the call graph to be appended
      */
     public void append(CallGraph graph) {
-        if (graph != null) {
-            graph.getEdges().forEach(edge -> add(edge));
+        assert graph != null;
+        graph.getEdges().forEach(e -> setCall((CFGEntry)e.getSrcNode(), (CFGEntry)e.getDstNode()));
+    }
+    
+    /**
+     * Sets a call flow edge in this call graph.
+     * This method is not intended to be invoked by clients.
+     * @param caller a node for the caller site
+     * @param callee a node for the callee site
+     */
+    public void setCall(CFGEntry caller, CFGEntry callee) {
+        if (!nodes.contains(caller)) {
+            nodes.add(caller);
+        }
+        if (!nodes.contains(callee)) {
+            nodes.add(callee);
+        }
+        
+        ControlFlow edge = new ControlFlow(caller, callee);
+        edge.setCall();
+        if (!edges.contains(edge)) {
+            edges.add(edge);
         }
     }
     
@@ -69,8 +100,10 @@ public class CallGraph extends Graph<CFGNode, ControlFlow> {
      * @param src the node for the caller site 
      * @return the collection of callee sites
      */
-    public Set<CFGNode> getCalleeNodes(CFGNode src) {
-        return src.getSuccessors();
+    public Set<CFGEntry> getCalleeNodes(CFGEntry caller) {
+        return edges.stream()
+             .filter(e -> e.getSrcNode().equals(caller))
+             .map(e -> (CFGEntry)e.getDstNode()).collect(Collectors.toSet());
     }
     
     /**
@@ -78,8 +111,10 @@ public class CallGraph extends Graph<CFGNode, ControlFlow> {
      * @param dst the node for the callee site 
      * @return the collection of caller sites
      */
-    public Set<CFGNode> getCallerNodes(CFGNode dst) {
-        return dst.getPredecessors();
+    public Set<CFGEntry> getCallerNodes(CFGNode callee) {
+        return edges.stream()
+                .filter(e -> e.getDstNode().equals(callee))
+                .map(e -> (CFGEntry)e.getSrcNode()).collect(Collectors.toSet());
     }
     
     /**
@@ -103,10 +138,10 @@ public class CallGraph extends Graph<CFGNode, ControlFlow> {
     }
     
     /**
-     * {@inheritDoc}
+     * Obtains information on all edges enclosed in this call graph.
+     * @return the string representing the information
      */
-    @Override
-    protected String toStringForEdges() {
+    private String toStringForEdges() {
         StringBuilder buf = new StringBuilder();
         int index = 1;
         for (ControlFlow edge : ControlFlow.sortControlFlowEdges(getEdges())) {
