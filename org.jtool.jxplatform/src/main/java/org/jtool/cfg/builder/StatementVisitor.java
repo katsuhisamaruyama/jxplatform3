@@ -298,9 +298,6 @@ public class StatementVisitor extends ASTVisitor {
         CFGMerge mergeNode = new CFGMerge(node, switchNode);
         reconnect(mergeNode);
         
-        ControlFlow falseEdge = createFlow(switchNode, mergeNode);
-        falseEdge.setFalse();
-        
         blockExits.pop();
         
         ControlFlow edge = createFlow(mergeNode, nextNode);
