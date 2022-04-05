@@ -12,7 +12,7 @@ import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JFieldReference;
-import org.jtool.cfg.JInvisibleReference;
+import org.jtool.cfg.JExpedientialReference;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
 import java.util.List;
@@ -167,7 +167,7 @@ class LocalAliasResolver {
                 
                 String aliasName = getAliasName(name, lname, rname);
                 if (aliasName != null) {
-                    JVariableReference avar = new JInvisibleReference(alias.righthand.getASTNode(),
+                    JVariableReference avar = new JExpedientialReference(alias.righthand.getASTNode(),
                             aliasName, alias.righthand.getType(), alias.righthand.isPrimitiveType());
                     node.addUseVariable(avar);
                   
@@ -175,7 +175,7 @@ class LocalAliasResolver {
                 
                 aliasName = getAliasName(name, rname, lname);
                 if (aliasName != null) {
-                    JVariableReference avar = new JInvisibleReference(alias.lefthand.getASTNode(),
+                    JVariableReference avar = new JExpedientialReference(alias.lefthand.getASTNode(),
                             aliasName, alias.lefthand.getType(), alias.lefthand.isPrimitiveType());
                     node.addUseVariable(avar);
                 }

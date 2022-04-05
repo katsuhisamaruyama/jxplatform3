@@ -14,7 +14,7 @@ import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JLocalVarReference;
 import org.jtool.cfg.JVariableReference;
-import org.jtool.cfg.JInvisibleReference;
+import org.jtool.cfg.JExpedientialReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaMethod;
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -578,7 +578,7 @@ public class StatementVisitor extends ASTVisitor {
             CFGMethodEntry methodNode = (CFGMethodEntry)cfg.getEntryNode();
             String type = methodNode.getJavaMethod().getReturnType();
             boolean primitive = methodNode.getJavaMethod().isPrimitiveReturnType();
-            JVariableReference jvar = new JInvisibleReference(methodNode.getASTNode(), "$_", type, primitive);
+            JVariableReference jvar = new JExpedientialReference(methodNode.getASTNode(), "$_", type, primitive);
             returnNode.addDefVariable(jvar);
             
             curNode = exprVisitor.getExitNode();
@@ -682,7 +682,7 @@ public class StatementVisitor extends ASTVisitor {
         edge.setTrue();
         
         for (Expression resource : (List<Expression>)node.resources()) {
-            CFGStatement resourceNode = new CFGStatement(node, CFGNode.Kind.assignment);
+            CFGStatement resourceNode = new CFGStatement(resource, CFGNode.Kind.assignment);
             reconnect(resourceNode);
             
             ExpressionVisitor resourceVisitor = new ExpressionVisitor(this, cfg, resourceNode);

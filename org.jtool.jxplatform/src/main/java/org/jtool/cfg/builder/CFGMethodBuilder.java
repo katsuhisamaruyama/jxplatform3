@@ -14,10 +14,9 @@ import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JLocalVarReference;
 import org.jtool.cfg.JVariableReference;
-import org.jtool.cfg.JInvisibleReference;
+import org.jtool.cfg.JExpedientialReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaMethod;
-import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.builder.ExceptionTypeCollector;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Type;
@@ -207,7 +206,7 @@ class CFGMethodBuilder {
         String returnType = entry.getJavaMethod().getReturnType();
         boolean isPrimitiveType = entry.getJavaMethod().isPrimitiveReturnType();
         
-        JVariableReference use = new JInvisibleReference(node, "$_", returnType, isPrimitiveType);
+        JVariableReference use = new JExpedientialReference(node, "$_", returnType, isPrimitiveType);
         formalOutNode.addUseVariable(use);
         
         return formalOutNode;

@@ -12,7 +12,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
  * 
  * @author Katsuhisa Maruyama
  */
-public class JMethodReturnReference extends JInvisibleReference {
+public class JMethodReturnReference extends JExpedientialReference {
     
     /**
      * The symbol indicating that a reference represents a method return.
