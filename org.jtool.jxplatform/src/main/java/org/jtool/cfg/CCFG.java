@@ -59,7 +59,7 @@ public class CCFG {
      * @param fqn the fully-qualified name of the CFG to be retrieved
      * @return the found CFG, or {@code null} if no CFG is found
      */
-    public CFG getCCFG(String fqn) {
+    public CFG getCFG(String fqn) {
         return cfgs.get(fqn);
     }
     
