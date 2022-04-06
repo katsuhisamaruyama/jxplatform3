@@ -9,9 +9,10 @@ import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CallGraph;
-import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Builds a call graph that corresponds to a method, a class, or a project.
@@ -21,34 +22,28 @@ import org.jtool.srcmodel.JavaProject;
 public class CallGraphBuilder {
     
     public static CallGraph getCallGraph(JavaProject jproject) {
-        CallGraph callGraph = new CallGraph(jproject.getName());
-        jproject.getClasses().forEach(c -> callGraph.append(getCallGraph(c)));
-        return callGraph;
+        CallGraph graph = new CallGraph(jproject.getName());
+        Set<JavaMethod> methods = jproject.getClasses().stream().flatMap(c -> c.getMethods().stream())
+                                          .collect(Collectors.toSet());
+        methods.forEach(m -> jproject.getCFGStore().getCFG(m, false));
+        methods.forEach(m -> createCallGraph(m, graph));
+        return graph;
     }
     
-    private static CallGraph getCallGraph(JavaClass jclass) {
-        CallGraph callGraph = new CallGraph(jclass.getQualifiedName().fqn());
-        jclass.getMethods().forEach(m -> callGraph.append(getCallGraph(m)));
-        return callGraph;
-    }
-    
-    private static CallGraph getCallGraph(JavaMethod jmethod) {
+    private static void createCallGraph(JavaMethod jmethod, CallGraph graph) {
         CFGStore cfgStore = jmethod.getJavaProject().getCFGStore();
-        CallGraph callGraph = new CallGraph(jmethod.getQualifiedName().fqn());
         CFG cfg = cfgStore.findCFG(jmethod.getQualifiedName().fqn());
         if (cfg == null) {
-            return null;
+            return;
         }
         
-        for (CFGNode cfgnode : cfg.getNodes()) {
-            if (cfgnode.isMethodCall()) {
-                CFGMethodCall call = (CFGMethodCall)cfgnode;
-                CFG calledCFG = cfgStore.findCFG(call.getQualifiedName().fqn());
+        for (CFGNode node : cfg.getNodes()) {
+            if (node.isMethodCall()) {
+                CFG calledCFG = cfgStore.findCFG(((CFGMethodCall)node).getQualifiedName().fqn());
                 if (calledCFG != null) {
-                    callGraph.setCall(cfg.getEntryNode(), calledCFG.getEntryNode());
+                    graph.setCall(cfg.getEntryNode(), calledCFG.getEntryNode());
                 }
             }
         }
-        return callGraph;
     }
 }

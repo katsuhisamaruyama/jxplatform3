@@ -70,8 +70,9 @@ public class CallGraph {
      * @param graph the call graph to be appended
      */
     public void append(CallGraph graph) {
-        assert graph != null;
-        graph.getEdges().forEach(e -> setCall((CFGEntry)e.getSrcNode(), (CFGEntry)e.getDstNode()));
+       if (graph != null) {
+           graph.getEdges().forEach(e -> setCall((CFGEntry)e.getSrcNode(), (CFGEntry)e.getDstNode()));
+       }
     }
     
     /**
