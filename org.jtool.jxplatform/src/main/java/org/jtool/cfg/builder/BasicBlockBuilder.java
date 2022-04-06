@@ -16,31 +16,46 @@ import org.jtool.cfg.CFGNode;
  */
 public class BasicBlockBuilder {
     
-    public static void create(CFG cfg) {
-        CFGNode start = cfg.getEntryNode();
-        CFGNode first = start.getSuccessors().iterator().next();
-        for (CFGNode node : cfg.getNodes()) {
-            if (node.equals(first) || node.isJoin() || (node.isNextToBranch() && !node.equals(start))) {
-                BasicBlock block = new BasicBlock(node);
-                cfg.add(block);
-                block.add(node);
-            }
+    public static void create(CFG cfg, boolean force) {
+        if (force) {
+            cfg.clearBasicBlocks();
         }
+        
+        if (cfg.getBasicBlocks().size() > 0) {
+            return;
+        }
+        
+        collectLeaders(cfg, cfg.getEntryNode());
         
         for (BasicBlock block : cfg.getBasicBlocks()) {
             collectNodesInBlock(block, cfg);
         }
     }
     
+    private static void collectLeaders(CFG cfg, CFGNode start) {
+        CFGNode first = start.getSuccessors().iterator().next();
+        for (CFGNode node : cfg.getNodes()) {
+            if (node.equals(first) || (node.isJoin() && !node.isWhile()) ||
+                    (node.isNextToBranch() && !node.equals(start))) {
+                BasicBlock block = new BasicBlock(node);
+                cfg.add(block);
+                block.add(node);
+            }
+        }
+    }
+    
     private static void collectNodesInBlock(BasicBlock block, CFG cfg) {
         CFGNode node = getTrueSucc(block.getLeader());
         while (node != null && !node.isLeader() && !node.equals(cfg.getExitNode())) {
-            block.add(node);   
+            block.add(node);
             node = getTrueSucc(node);
         }
     }
     
     private static CFGNode getTrueSucc(CFGNode node) {
-        return node.getOutgoingFlows().stream().filter(edge -> edge.isTrue()).map(edge -> edge.getDstNode()).findFirst().orElse(null);
+        return node.getOutgoingFlows().stream()
+                                      .filter(e -> e.isTrue() && !e.isLoopBack())
+                                      .map(edge -> edge.getDstNode())
+                                      .findFirst().orElse(null);
     }
 }
