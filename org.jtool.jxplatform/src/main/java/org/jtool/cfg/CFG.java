@@ -103,7 +103,9 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param block the basic block to be added
      */
     public void add(BasicBlock block) {
-        basicBlocks.add(block);
+        if (!basicBlocks.contains(block)) {
+            basicBlocks.add(block);
+        }
     }
     
     /**
@@ -112,6 +114,13 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      */
     public List<BasicBlock> getBasicBlocks() {
         return basicBlocks;
+    }
+    
+    /**
+     * Clears basic blocks existing in this CFG.
+     */
+    public void clearBasicBlocks() {
+        basicBlocks.clear();
     }
     
     /**
