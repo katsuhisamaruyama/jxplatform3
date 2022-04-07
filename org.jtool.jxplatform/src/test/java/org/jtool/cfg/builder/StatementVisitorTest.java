@@ -54,12 +54,11 @@ public class StatementVisitorTest {
     @BeforeClass
     public static void setUp() {
         SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-        CFGTestUtil.writeCFGs(SimpleProject);
     }
     
     @AfterClass
     public static void tearDown() {
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
+        SimpleProject.getModelBuilder().unbuild();
     }
     
     @Test
@@ -173,7 +172,7 @@ public class StatementVisitorTest {
                    + "}\n"
                    + " else {\n"
                    + "  a++;\n"
-                   + "  a=b;\n"
+                   + "  a=-b;\n"
                    + "  System.out.println(a);\n"
                    + "}", node.getASTNode().toString().trim());
     }
@@ -457,9 +456,8 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.switchSt);
         
-        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(1, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
-        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 21);
         
         assertEquals("switch (a) {\n"
                    + "case 0:  System.out.println(a);\n"
@@ -482,9 +480,8 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.switchSt);
         
-        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(1, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
-        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 10);
         
         assertEquals("switch (a) {\n"
                    + "case 0:  b++;\n"
@@ -505,9 +502,8 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.switchSt);
         
-        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(1, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
-        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 9);
         
         assertEquals("switch (b) {\n"
                    + "case 0:  a++;\n"
@@ -527,9 +523,8 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.switchSt);
         
-        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(1, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
-        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 6);
         
         assertEquals("switch (x) {\n"
                     + "case 1:  y=10;\n"
@@ -547,9 +542,8 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.switchSt);
         
-        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(1, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
-        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 7);
         
         assertEquals("switch (x) {\n"
                    + "default:  x=10;\n"
@@ -568,9 +562,8 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.switchSt);
         
-        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(1, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
-        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 6);
         
         assertEquals("switch (x) {\n"
                    + "default:  x=10;\n"

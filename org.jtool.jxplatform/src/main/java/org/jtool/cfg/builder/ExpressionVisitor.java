@@ -594,6 +594,24 @@ public class ExpressionVisitor extends ASTVisitor {
         return false;
     }
     
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean visit(EnumConstantDeclaration node) {
+        IMethodBinding mbinding = node.resolveConstructorBinding();
+        if (mbinding == null) {
+            return false;
+        }
+        
+        JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
+        CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
+        
+        String name = mbinding.getName() + "." + JMethodReturnReference.METHOD_RETURN_SYMBOL +
+                node.getName().getFullyQualifiedName();;
+        setActualNodes(callNode, node.arguments(), name);
+        setExceptionFlow(callNode, jcall);
+        return false;
+    }
+    
     private JMethodReturnReference setActualNodes(CFGMethodCall callNode,
             List<Expression> arguments, String name) {
         boolean actual = callNode.getMethodCall().isInProject();
@@ -682,23 +700,6 @@ public class ExpressionVisitor extends ASTVisitor {
     }
     
     @Override
-    @SuppressWarnings("unchecked")
-    public boolean visit(EnumConstantDeclaration node) {
-        System.err.println("ENUM = " + cfg.getQualifiedName().fqn() + " " + node.toString());
-        IMethodBinding mbinding = node.resolveConstructorBinding();
-        if (mbinding == null) {
-            return false;
-        }
-        
-        JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
-        CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
-        
-        setActualNodes(callNode, node.arguments(), "");
-        setExceptionFlow(callNode, jcall);
-        return false;
-    }
-    
-    @Override
     public boolean visit(ConditionalExpression node) {
         analysisMode.push(AnalysisMode.USE);
         node.getExpression().accept(this);
@@ -766,19 +767,20 @@ public class ExpressionVisitor extends ASTVisitor {
     }
     
     @Override
-    public boolean visit(TypeLiteral node) {
-        setVariableForLiteral(node, node.resolveTypeBinding());
-        return false;
-    }
-    
-    @Override
     public boolean visit(StringLiteral node) {
         setVariableForLiteral(node, node.resolveTypeBinding());
         return false;
     }
     
+    @Override
+    public boolean visit(TypeLiteral node) {
+        setVariableForLiteral(node, node.resolveTypeBinding());
+        return false;
+    }
+    
     private void setVariableForLiteral(ASTNode node, ITypeBinding tbinding) {
-        JVariableReference jvar = new JExpedientialReference(node, "$" + tbinding.getQualifiedName(), tbinding);
+        JVariableReference jvar = new JExpedientialReference(node,
+                "$" + tbinding.getErasure().getQualifiedName(), tbinding);
         if (analysisMode.peek() == AnalysisMode.DEF) {
             curNode.addDefVariable(jvar);
         } else {
