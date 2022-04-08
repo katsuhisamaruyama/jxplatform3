@@ -6,6 +6,7 @@
 package org.jtool.srcmodel.builder;
 
 import org.jtool.srcmodel.JavaMethod;
+import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaElementUtil;
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -18,10 +19,12 @@ import org.eclipse.jdt.core.dom.SuperMethodInvocation;
 import org.eclipse.jdt.core.dom.ThrowStatement;
 import org.eclipse.jdt.core.dom.TryStatement;
 import org.eclipse.jdt.core.dom.Type;
+import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.UnionType;
 import org.eclipse.jdt.core.dom.CatchClause;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.IMethodBinding;
+import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Stack;
@@ -29,7 +32,8 @@ import java.util.stream.Stream;
 import java.util.stream.Collectors;
 
 /**
- * Parses Java source code and stores information on possible exceptions when calling methods and constructors.
+ * Parses Java source code and stores information on implicit (not explicitly caught) exceptions
+ * when calling methods and constructors.
  * 
  * @see org.eclipse.jdt.core.dom.Expression
  * 
@@ -42,13 +46,13 @@ import java.util.stream.Collectors;
  * 
  * @author Katsuhisa Maruyama
  */
-public class ExceptionTypeCollector {
+public class UncaughtExceptionTypeCollector {
     
     private JavaProject jproject;
     
     private Set<ITypeBinding> exceptionTypes = new HashSet<>();
     
-    public ExceptionTypeCollector() {
+    public UncaughtExceptionTypeCollector() {
     }
     
     public Set<ITypeBinding> getExceptions(JavaMethod jmethod) {
@@ -76,9 +80,7 @@ public class ExceptionTypeCollector {
         private static final String RUNTIME_EXCEPTION_NAME = "java.lang.RuntimeException";
         
         private Set<String> caughtTypes;
-        
         private Stack<TryStatement> tryNodes = new Stack<>();
-        
         private Set<CalledMethod> calledMethods = new HashSet<>();
         
         MethodCallVisitor(CalledMethod cmethod) {
@@ -120,44 +122,61 @@ public class ExceptionTypeCollector {
                 return;
             }
             
-            Set<String> allTypes = getExceptionTypes(caughtTypes, tryNodes);
+            Set<String> types = getExceptionTypes(caughtTypes, tryNodes);
             JavaMethod jmethod = JavaElementUtil.findDeclaringMethod(mbinding, jproject);
             if (jmethod != null && jmethod.getASTNode() != null) {
-                
-                
-                calledMethods.add(new CalledMethod(jmethod.getASTNode(), allTypes));
+                calledMethods.add(new CalledMethod(jmethod.getASTNode(), types));
             }
             
             for (ITypeBinding tbinding : mbinding.getExceptionTypes()) {
-                if (isUncheckedException(tbinding) && !allTypes.contains(tbinding.getQualifiedName())) {
-                    
-                    System.err.println(tbinding.getQualifiedName());
-                    
-                    exceptionTypes.add(tbinding);
+                if (!contains(types, tbinding)) {
+                    if (isUncheckedException(tbinding)) {
+                        exceptionTypes.add(tbinding);
+                    }
                 }
             }
         }
         
+        private boolean contains(Set<String> types, ITypeBinding tbinding) {
+            if (types.contains(tbinding.getQualifiedName())) {
+                return true;
+            }
+            
+            JavaClass jclass = jproject.getClass(tbinding.getQualifiedName());
+            if (jclass == null) {
+                return false;
+            }
+            
+            for (JavaClass jc : jclass.getAncestors()) {
+                if (types.contains(jc.getQualifiedName().fqn())) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        @SuppressWarnings("unchecked")
         @Override
         public boolean visit(TryStatement node) {
             tryNodes.push(node);
-            return true;
-        }
-        
-        @Override
-        public void endVisit(TryStatement node) {
+            ((List<Expression>)node.resources()).stream().forEach(n -> n.accept(this));
+            node.getBody().accept(this);
             tryNodes.pop();
+            
+            ((List<CatchClause>)node.catchClauses()).forEach(n -> n.accept(this));
+            if (node.getFinally() != null) {
+                node.getFinally().accept(this);
+            }
+            return false;
         }
         
         @Override
         public boolean visit(ThrowStatement node) {
             ITypeBinding tbinding = node.getExpression().resolveTypeBinding();
-            if (tbinding != null) {
-                if (isUncheckedException(tbinding)) {
-                    Set<String> allTypes = getExceptionTypes(caughtTypes, tryNodes);
-                    if (!allTypes.contains(tbinding.getQualifiedName())) {
-                        exceptionTypes.add(tbinding);
-                    }
+            if (tbinding != null && isUncheckedException(tbinding)) {
+                Set<String> types = getExceptionTypes(caughtTypes, tryNodes);
+                if (!contains(types, tbinding)) {
+                    exceptionTypes.add(tbinding);
                 }
             }
             return false;
@@ -172,7 +191,7 @@ public class ExceptionTypeCollector {
                 if (type.isUnionType()) {
                     UnionType unionType = (UnionType)type;
                     Stream<Type> typeStream = unionType.types().stream();
-                    Set <String> types = typeStream.map(t -> t.resolveBinding().getQualifiedName())
+                    Set<String> types = typeStream.map(t -> t.resolveBinding().getQualifiedName())
                                                    .collect(Collectors.toSet());
                     allTypes.addAll(types);
                 } else {

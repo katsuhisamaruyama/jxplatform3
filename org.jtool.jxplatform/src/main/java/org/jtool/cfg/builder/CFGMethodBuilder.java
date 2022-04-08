@@ -17,7 +17,7 @@ import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JExpedientialReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaMethod;
-import org.jtool.srcmodel.builder.ExceptionTypeCollector;
+import org.jtool.srcmodel.builder.UncaughtExceptionTypeCollector;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.ITypeBinding;
@@ -156,7 +156,7 @@ class CFGMethodBuilder {
             nodes.add(exceptionNode);
         }
         
-        ExceptionTypeCollector collector = new ExceptionTypeCollector();
+        UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
         for (ITypeBinding tbinding : collector.getExceptions(jmethod)) {
             boolean included = nodes.stream()
                                     .anyMatch(n -> n.getTypeName().equals(tbinding.getQualifiedName()));

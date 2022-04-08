@@ -23,7 +23,7 @@ import org.jtool.cfg.JReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.srcmodel.builder.ExceptionTypeCollector;
+import org.jtool.srcmodel.builder.UncaughtExceptionTypeCollector;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaElementUtil;
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -690,7 +690,7 @@ public class ExpressionVisitor extends ASTVisitor {
             if (jclass != null) {
                 JavaMethod jmethod = jclass.getMethod(jcall.getSignature());
                 if (jmethod != null && !jmethod.isSynthetic()) {
-                    ExceptionTypeCollector collector = new ExceptionTypeCollector();
+                    UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
                     for (ITypeBinding type : collector.getExceptions(jmethod)) {
                         statementVisitor.setExceptionFlowOnMethodCall(callNode, type);
                     }
