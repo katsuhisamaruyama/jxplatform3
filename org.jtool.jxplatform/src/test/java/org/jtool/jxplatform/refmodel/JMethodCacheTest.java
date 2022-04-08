@@ -55,132 +55,237 @@ public class JMethodCacheTest {
     }
     
     @Test
-    public void testInstanceOf() {
+    public void testInstanceOf1() {
         assertTrue(customerMethod instanceof JMethodCache);
-        
+    }
+    
+    @Test
+    public void testInstanceOf2() {
         assertTrue(addRentalMethod instanceof JMethodCache);
-        
+    }
+    
+    @Test
+    public void testInstanceOf3() {
         assertTrue(statementMethod instanceof JMethodCache);
-        
+    }
+    
+    @Test
+    public void testInstanceOf4() {
         assertTrue(indexOfMethod instanceof JMethodCache);
-        
+    }
+    
+    @Test
+    public void testInstanceOf5() {
         assertTrue(expectedMethod instanceof JMethodCache);
     }
     
     @Test
-    public void testGetQualifiedName() {
+    public void testGetQualifiedName1() {
         assertEquals("org.jtool.videostore.after.Customer#Customer( java.lang.String )",
                 customerMethod.getQualifiedName().fqn());
-        
+    }
+    
+    @Test
+    public void testGetQualifiedName2() {
         assertEquals("org.jtool.videostore.after.Customer#addRental( org.jtool.videostore.after.Rental )",
                 addRentalMethod.getQualifiedName().fqn());
-        
+    }
+    
+    @Test
+    public void testGetQualifiedName3() {
         assertEquals("org.jtool.videostore.after.Customer#statement( )",
                 statementMethod.getQualifiedName().fqn());
-        
+    }
+    
+    @Test
+    public void testGetQualifiedName4() {
         assertEquals("java.lang.String#indexOf( byte[] byte int java.lang.String int )",
                 indexOfMethod.getQualifiedName().fqn());
+    }
+    
+    @Test
+    public void testGetQualifiedName5() {
         assertEquals("org.junit.Test#expected( )",
                 expectedMethod.getQualifiedName().fqn());
     }
     
     @Test
-    public void testGetDeclaringClass() {
+    public void testGetDeclaringClass1() {
         assertEquals("org.jtool.videostore.after.Customer",
                 customerMethod.getDeclaringClass().getClassName());
-        
+    }
+    
+    @Test
+    public void testGetDeclaringClass2() {
         assertEquals("org.jtool.videostore.after.Customer",
                 addRentalMethod.getDeclaringClass().getClassName());
-        
+    }
+    
+    @Test
+    public void testGetDeclaringClass3() {
         assertEquals("org.jtool.videostore.after.Customer",
                 statementMethod.getDeclaringClass().getClassName());
-        
+    }
+    
+    @Test
+    public void testGetDeclaringClass4() {
         assertEquals("java.lang.String",
                 indexOfMethod.getDeclaringClass().getClassName());
-        
+    }
+    
+    @Test
+    public void testGetDeclaringClass5() {
         assertEquals("org.junit.Test",
                 expectedMethod.getDeclaringClass().getClassName());
     }
     
     @Test
-    public void testIsInProject() {
+    public void testIsInProject1() {
         assertTrue(customerMethod.isInProject());
-        
+    }
+    
+    @Test
+    public void testIsInProject2() {
         assertTrue(addRentalMethod.isInProject());
-        
+    }
+    
+    @Test
+    public void testIsInProject3() {
         assertTrue(statementMethod.isInProject());
-        
+    }
+    
+    @Test
+    public void testIsInProject4() {
         assertFalse(indexOfMethod.isInProject());
-        
+    }
+    
+    @Test
+    public void testIsInProject5() {
         assertFalse(expectedMethod.isInProject());
     }
     
     @Test
-    public void testGetDefFields() {
-        List<String> cresult = TestUtil.asSortedList(customerMethod.getDefFields().stream().map(o -> o.getQualifiedName()));
-        assertEquals(1, cresult.size());
-        assertEquals("org.jtool.videostore.after.Customer%name%this.name", cresult.get(0));
+    public void testGetDefFields1() {
+        List<String> result = TestUtil.asSortedList(customerMethod.getDefFields().stream().map(o -> o.getQualifiedName()));
         
-        assertEquals(0, addRentalMethod.getDefFields().size());
+        assertEquals(1, result.size());
+        assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(0));
+    }
+    
+    @Test
+    public void testGetDefFields2() {
+        List<String> result = TestUtil.asSortedList(addRentalMethod.getDefFields().stream()
+                .map(o -> o.getQualifiedName()));
         
+        assertEquals(2, result.size());
+        assertEquals("java.util.ArrayList%size%this.rentals.size", result.get(0));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(1));
+    }
+    
+    @Test
+    public void testGetDefFields3() {
         assertEquals(0, statementMethod.getDefFields().size());
-        
+    }
+    
+    @Test
+    public void testGetDefFields4() {
         assertEquals(0, indexOfMethod.getDefFields().size());
-        
+    }
+    
+    @Test
+    public void testGetDefFields5() {
         assertEquals(0, expectedMethod.getDefFields().size());
     }
     
     @Test
-    public void testGetUseFields() {
+    public void testGetUseFields1() {
         assertEquals(0, customerMethod.getUseFields().size());
+    }
+    
+    @Test
+    public void testGetUseFields2() {
+        List<String> result = TestUtil.asSortedList(addRentalMethod.getUseFields().stream()
+                .map(o -> o.getQualifiedName()));
         
-        List<String> aresult = TestUtil.asSortedList(addRentalMethod.getUseFields().stream().map(o -> o.getQualifiedName()));
-        assertEquals(1, aresult.size());
-        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", aresult.get(0));
+        assertEquals(3, result.size());
+        assertEquals("java.util.ArrayList%elementData%this.rentals.elementData", result.get(0));
+        assertEquals("java.util.ArrayList%size%this.rentals.size", result.get(1));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(2));
+    }
+    
+    @Test
+    public void testGetUseFields3() {
+        List<String> result = TestUtil.asSortedList(statementMethod.getUseFields().stream()
+                .map(o -> o.getQualifiedName()));
         
-        //List<String> sresult = TestUtil.asSortedList(statementMethod.getUseFields().stream().map(o -> o.getQualifiedName()));
-        //assertEquals(4, sresult.size());
-        //assertEquals("java.lang.String%COMPACT_STRINGS%java.lang.String.COMPACT_STRINGS", sresult.get(0));
-        //assertEquals("java.lang.String%COMPACT_STRINGS%this.COMPACT_STRINGS", sresult.get(1));
-        //assertEquals("org.jtool.videostore.after.Customer%name%this.name", sresult.get(2));
-        //assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", sresult.get(3));
+        assertEquals(4, result.size());
+        assertEquals("java.lang.String%COMPACT_STRINGS%java.lang.String.COMPACT_STRINGS", result.get(0));
+        assertEquals("java.lang.String%COMPACT_STRINGS%this.COMPACT_STRINGS", result.get(1));
+        assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(2));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(3));
+    }
+    
+    @Test
+    public void testGetUseFields4() {
+        List<String> result = TestUtil.asSortedList(indexOfMethod.getUseFields().stream()
+                .map(o -> o.getQualifiedName()));
         
-        List<String> iresult = TestUtil.asSortedList(indexOfMethod.getUseFields().stream().map(o -> o.getQualifiedName()));
-        assertEquals(3, iresult.size());
-        assertEquals("java.lang.String%COMPACT_STRINGS%java.lang.String.COMPACT_STRINGS", iresult.get(0));
-        assertEquals("java.lang.String%coder%java.lang.String.coder", iresult.get(1));
-        assertEquals("java.lang.String%value%java.lang.String.value", iresult.get(2));
-        
+        assertEquals(3, result.size());
+        assertEquals("java.lang.String%COMPACT_STRINGS%java.lang.String.COMPACT_STRINGS", result.get(0));
+        assertEquals("java.lang.String%coder%java.lang.String.coder", result.get(1));
+        assertEquals("java.lang.String%value%java.lang.String.value", result.get(2));
+    }
+    
+    @Test
+    public void testGetUseFields5() {
         assertEquals(0, expectedMethod.getUseFields().size());
     }
     
     @Test
-    public void testGetAccessedMethods() {
+    public void testGetAccessedMethods1() {
         assertEquals(0, customerMethod.getAccessedMethods().size());
+    }
+    
+    @Test
+    public void testGetAccessedMethods2() {
+        List<String> result = TestUtil.asSortedList(addRentalMethod.getAccessedMethods().stream()
+                .map(o -> o.getQualifiedName()));
         
-        List<String> aresult = TestUtil.asSortedList(addRentalMethod.getAccessedMethods().stream().map(o -> o.getQualifiedName()));
-        assertEquals(1, aresult.size());
-        assertEquals("java.util.List#add( java.lang.Object )", aresult.get(0));
+        assertEquals(1, result.size());
+        assertEquals("java.util.List#add( java.lang.Object )", result.get(0));
+    }
+    
+    @Test
+    public void testGetAccessedMethods3() {
+        List<String> result = TestUtil.asSortedList(statementMethod.getAccessedMethods().stream()
+                .map(o -> o.getQualifiedName()));
         
-        List<String> sresult = TestUtil.asSortedList(statementMethod.getAccessedMethods().stream().map(o -> o.getQualifiedName()));
-        assertEquals(8, sresult.size());
-        assertEquals("java.lang.String#valueOf( double )", sresult.get(0));
-        assertEquals("java.lang.String#valueOf( int )", sresult.get(1));
-        assertEquals("org.jtool.videostore.after.Customer#getName( )", sresult.get(2));
-        assertEquals("org.jtool.videostore.after.Customer#getTotalCharge( )", sresult.get(3));
-        assertEquals("org.jtool.videostore.after.Customer#getTotalFrequentRenterPoints( )", sresult.get(4));
-        assertEquals("org.jtool.videostore.after.Movie#getTitle( )", sresult.get(5));
-        assertEquals("org.jtool.videostore.after.Rental#getCharge( )", sresult.get(6));
-        assertEquals("org.jtool.videostore.after.Rental#getMovie( )", sresult.get(7));
+        assertEquals(8, result.size());
+        assertEquals("java.lang.String#valueOf( double )", result.get(0));
+        assertEquals("java.lang.String#valueOf( int )", result.get(1));
+        assertEquals("org.jtool.videostore.after.Customer#getName( )", result.get(2));
+        assertEquals("org.jtool.videostore.after.Customer#getTotalCharge( )", result.get(3));
+        assertEquals("org.jtool.videostore.after.Customer#getTotalFrequentRenterPoints( )", result.get(4));
+        assertEquals("org.jtool.videostore.after.Movie#getTitle( )", result.get(5));
+        assertEquals("org.jtool.videostore.after.Rental#getCharge( )", result.get(6));
+        assertEquals("org.jtool.videostore.after.Rental#getMovie( )", result.get(7));
+    }
+    
+    @Test
+    public void testGetAccessedMethods4() {
+        List<String> result = TestUtil.asSortedList(indexOfMethod.getAccessedMethods().stream()
+                .map(o -> o.getQualifiedName()));
         
-        List<String> iresult = TestUtil.asSortedList(indexOfMethod.getAccessedMethods().stream().map(o -> o.getQualifiedName()));
-        assertEquals(5, iresult.size());
-        assertEquals("java.lang.String#coder( )", iresult.get(0));
-        assertEquals("java.lang.String#length( )", iresult.get(1));
-        assertEquals("java.lang.StringLatin1#indexOf( byte[] int byte[] int int )", iresult.get(2));
-        assertEquals("java.lang.StringUTF16#indexOf( byte[] int byte[] int int )", iresult.get(3));
-        assertEquals("java.lang.StringUTF16#indexOfLatin1( byte[] int byte[] int int )", iresult.get(4));
-        
+        assertEquals(5, result.size());
+        assertEquals("java.lang.String#coder( )", result.get(0));
+        assertEquals("java.lang.String#length( )", result.get(1));
+        assertEquals("java.lang.StringLatin1#indexOf( byte[] int byte[] int int )", result.get(2));
+        assertEquals("java.lang.StringUTF16#indexOf( byte[] int byte[] int int )", result.get(3));
+        assertEquals("java.lang.StringUTF16#indexOfLatin1( byte[] int byte[] int int )", result.get(4));
+    }
+    
+    @Test
+    public void testGetAccessedMethods() {
         assertEquals(0, expectedMethod.getAccessedMethods().size());
     }
 }

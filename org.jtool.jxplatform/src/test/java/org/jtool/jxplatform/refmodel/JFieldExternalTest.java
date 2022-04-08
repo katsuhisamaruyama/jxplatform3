@@ -47,54 +47,82 @@ public class JFieldExternalTest {
     }
     
     @Test
-    public void testInstanceOf() {
+    public void testInstanceOf1() {
         assertTrue(valueField instanceof JFieldExternal);
-        
+    }
+    
+    @Test
+    public void testInstanceOf2() {
         assertTrue(sizeField instanceof JFieldExternal);
-        
+    }
+    
+    @Test
+    public void testInstanceOf3() {
         assertTrue(inField instanceof JFieldExternal);
-        
+    }
+    
+    @Test
+    public void testInstanceOf4() {
         assertTrue(runnersField instanceof JFieldExternal);
     }
     
     @Test
-    public void testGetQualifiedName() {
-        assertEquals("java.lang.String#value",
-                valueField.getQualifiedName().fqn());
-        
-        assertEquals("java.util.ArrayList#size",
-                sizeField.getQualifiedName().fqn());
-        
-        assertEquals("java.lang.System#in",
-                inField.getQualifiedName().fqn());
-        
-        assertEquals("org.junit.runners.Suite#runners",
-                runnersField.getQualifiedName().fqn());
+    public void testGetQualifiedName1() {
+        assertEquals("java.lang.String#value", valueField.getQualifiedName().fqn());
     }
     
     @Test
-    public void testGetDeclaringClass() {
-        assertEquals("java.lang.String",
-                valueField.getDeclaringClass().getClassName());
-        
-        assertEquals("java.util.ArrayList",
-                sizeField.getDeclaringClass().getClassName());
-        
-        assertEquals("java.lang.System",
-                inField.getDeclaringClass().getClassName());
-        
-        assertEquals("org.junit.runners.Suite",
-                runnersField.getDeclaringClass().getClassName());
+    public void testGetQualifiedName2() {
+        assertEquals("java.util.ArrayList#size", sizeField.getQualifiedName().fqn());
     }
     
     @Test
-    public void testIsInProject() {
+    public void testGetQualifiedName3() {
+        assertEquals("java.lang.System#in", inField.getQualifiedName().fqn());
+    }
+    
+    @Test
+    public void testGetQualifiedName4() {
+        assertEquals("org.junit.runners.Suite#runners", runnersField.getQualifiedName().fqn());
+    }
+    
+    @Test
+    public void testGetDeclaringClass1() {
+        assertEquals("java.lang.String", valueField.getDeclaringClass().getClassName());
+    }
+    
+    @Test
+    public void testGetDeclaringClass2() {
+        assertEquals("java.util.ArrayList", sizeField.getDeclaringClass().getClassName());
+    }
+    
+    @Test
+    public void testGetDeclaringClass3() {
+        assertEquals("java.lang.System", inField.getDeclaringClass().getClassName());
+    }
+    
+    @Test
+    public void testGetDeclaringClass4() {
+        assertEquals("org.junit.runners.Suite", runnersField.getDeclaringClass().getClassName());
+    }
+    
+    @Test
+    public void testIsInProject1() {
         assertFalse(valueField.isInProject());
-        
+    }
+    
+    @Test
+    public void testIsInProject2() {
         assertFalse(sizeField.isInProject());
-        
+    }
+    
+    @Test
+    public void testIsInProject3() {
         assertFalse(inField.isInProject());
-        
+    }
+    
+    @Test
+    public void testIsInProject4() {
         assertFalse(runnersField.isInProject());
     }
 }

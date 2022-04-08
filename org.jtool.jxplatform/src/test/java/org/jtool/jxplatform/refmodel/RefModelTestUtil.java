@@ -5,13 +5,13 @@
 
 package org.jtool.jxplatform.refmodel;
 
+import org.jtool.jxplatform.builder.ModelBuilderBatch;
 import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.srcmodel.JavaProject;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.apache.commons.io.FileUtils;
-import org.jtool.jxplatform.builder.ModelBuilderBatch;
 
 public class RefModelTestUtil {
     
