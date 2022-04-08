@@ -4,7 +4,6 @@ public class Test08 {
         int a = 5;
         int b = 3;
         int c = 0;
-
         int d = 3;
 
         while (c < 10) {

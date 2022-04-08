@@ -11,7 +11,7 @@ public class Test01 {
             System.out.println(a);
         } else { 
             a++;
-            a = b;
+            a = -b;
             System.out.println(a);
         }
         System.out.println(a);
