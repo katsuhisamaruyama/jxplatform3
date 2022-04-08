@@ -158,7 +158,7 @@ public class CFGFieldEntryTest {
     public void testUseFields101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "p");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
-        List<JReference> result = node.getUseFields();
+        List<JVariableReference> result = node.getUseFields();
         
         assertEquals("this.p", TestUtil.asStrOfReference(result));
     }
@@ -167,17 +167,18 @@ public class CFGFieldEntryTest {
     public void testUseFieldsA127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "A127", "y");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
-        List<JReference> result = node.getUseFields();
+        List<JVariableReference> result = node.getUseFields();
         
         assertEquals("this.y", TestUtil.asStrOfReference(result));
     }
     
+    // TODO
     @Test
     public void testUseFieldsS135() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S136", "map");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
-        List<JReference> result = node.getUseFields();
+        List<JVariableReference> result = node.getUseFields();
         
-        assertEquals("this.map;$100", TestUtil.asStrOfReference(result));
+        assertEquals("this.map;HashMap<String,String>.!HashMap<String,String>", TestUtil.asStrOfReference(result));
     }
 }

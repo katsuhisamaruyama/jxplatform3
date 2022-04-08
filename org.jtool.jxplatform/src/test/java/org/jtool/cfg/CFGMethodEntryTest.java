@@ -236,6 +236,6 @@ public class CFGMethodEntryTest {
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         List<CFGException> result = node.getExceptionNodes();
         
-        assertEquals("SubException;SubSubException", TestUtil.asStrOfCFGException(result));
+        assertEquals("SubException", TestUtil.asStrOfCFGException(result));
     }
 }

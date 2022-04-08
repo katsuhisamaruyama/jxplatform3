@@ -1075,13 +1075,14 @@ public class CFGMethodCallTest {
         assertEquals("S130", TestUtil.asSortedStrOfString(result));
     }
     
+    // TODO
     @Test
     public void testGetApproximatedTypeNamesTest131_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 3);
         Set<String> result = node.getApproximatedTypeNames();
         
-        assertEquals("java.util.AbstractMap;java.util.HashMap", TestUtil.asSortedStrOfString(result));
+        assertEquals("java.util.HashMap", TestUtil.asSortedStrOfString(result));
     }
     
     @Test
@@ -1090,7 +1091,7 @@ public class CFGMethodCallTest {
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
         Set<String> result = node.getApproximatedTypeNames();
         
-        assertEquals("java.util.AbstractMap;java.util.HashMap", TestUtil.asSortedStrOfString(result));
+        assertEquals("java.util.HashMap", TestUtil.asSortedStrOfString(result));
     }
     
     @Test
@@ -1315,7 +1316,7 @@ public class CFGMethodCallTest {
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 9);
         Set<String> result = node.getApproximatedTypeNames();
         
-        assertEquals("PriceCode", TestUtil.asSortedStrOfString(result));
+        assertEquals("java.lang.Enum", TestUtil.asSortedStrOfString(result));
     }
     
     @Test

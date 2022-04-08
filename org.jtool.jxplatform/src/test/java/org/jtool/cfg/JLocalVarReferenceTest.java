@@ -18,7 +18,7 @@ import static org.junit.Assert.assertFalse;
 
 public class JLocalVarReferenceTest {
     
-private static JavaProject SliceProject;
+    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {
@@ -651,7 +651,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JLocalVarReference> result = CFGTestUtil.getUseLocalReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test
@@ -659,7 +659,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JLocalVarReference> result = CFGTestUtil.getUseLocalReference(cfg);
         
-        assertTrue(result.get(1).isExposed());
+        assertTrue(result.get(1).isTouchable());
     }
     
     @Test
@@ -667,7 +667,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JLocalVarReference> result = CFGTestUtil.getDefLocalReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test
@@ -675,7 +675,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JLocalVarReference> result = CFGTestUtil.getDefLocalReference(cfg);
         
-        assertTrue(result.get(1).isExposed());
+        assertTrue(result.get(1).isTouchable());
     }
     
     @Test
@@ -683,7 +683,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "inc( int )");
         List<JLocalVarReference> result = CFGTestUtil.getDefLocalReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test

@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class CFGParameterTest {
     
@@ -35,7 +36,7 @@ public class CFGParameterTest {
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
         JReference result = node.getActualIns().get(0).getDefVariable();
         
-        assertEquals("$102", result.getReferenceForm());
+        assertNull(result);
     }
     
     @Test
@@ -44,7 +45,7 @@ public class CFGParameterTest {
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
         JReference result = node.getActualOutForReturn().getDefVariable();
         
-        assertEquals("$103", result.getReferenceForm());
+        assertEquals("this.!setA", result.getReferenceForm());
     }
     
     @Test
@@ -53,7 +54,7 @@ public class CFGParameterTest {
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
         JReference result = node.getActualIns().get(0).getDefVariable();
         
-        assertEquals("$100", result.getReferenceForm());
+        assertNull(result);
     }
     
     @Test
@@ -62,7 +63,7 @@ public class CFGParameterTest {
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
         JReference result = node.getActualIns().get(1).getDefVariable();
         
-        assertEquals("$101", result.getReferenceForm());
+        assertNull(result);
     }
     
     @Test
@@ -71,7 +72,7 @@ public class CFGParameterTest {
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
         JReference result = node.getActualOutForReturn().getDefVariable();
         
-        assertEquals("$102", result.getReferenceForm());
+        assertEquals("this.!m", result.getReferenceForm());
     }
     
     @Test
@@ -168,7 +169,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest103_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -177,7 +178,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest105_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test105", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 3);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -186,7 +187,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest106_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test106", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -195,7 +196,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest119_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -204,7 +205,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest119_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -213,7 +214,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest119_5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 17);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -222,7 +223,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest120_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 7);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("a$0;a$0.x", TestUtil.asStrOfReference(result));
     }
@@ -231,7 +232,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest120_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 7);
-        List<JReference> result = node.getActualIns().get(1).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(1).getUseVariables();
         
         assertEquals("a$0;a$0.y", TestUtil.asStrOfReference(result));
     }
@@ -240,7 +241,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest120_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 13);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("a$0;a$0.x", TestUtil.asStrOfReference(result));
     }
@@ -249,7 +250,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest120_4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 13);
-        List<JReference> result = node.getActualIns().get(1).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(1).getUseVariables();
         
         assertEquals("a$0;a$0.y", TestUtil.asStrOfReference(result));
     }
@@ -258,7 +259,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest120_5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 19);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("a$0;a$0.x", TestUtil.asStrOfReference(result));
     }
@@ -267,7 +268,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest120_6() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 19);
-        List<JReference> result = node.getActualIns().get(1).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(1).getUseVariables();
         
         assertEquals("a$0;a$0.y", TestUtil.asStrOfReference(result));
     }
@@ -276,7 +277,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest120_7() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 25);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("a$0;a$0.x", TestUtil.asStrOfReference(result));
     }
@@ -285,7 +286,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest120_8() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 25);
-        List<JReference> result = node.getActualIns().get(1).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(1).getUseVariables();
         
         assertEquals("a$0;a$0.y", TestUtil.asStrOfReference(result));
     }
@@ -294,7 +295,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest121_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test121", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("a$0", TestUtil.asStrOfReference(result));
     }
@@ -303,7 +304,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest121_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test121", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
-        List<JReference> result = node.getActualIns().get(1).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(1).getUseVariables();
         
         assertEquals("b$1", TestUtil.asStrOfReference(result));
     }
@@ -312,7 +313,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest124_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test124", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("p$0", TestUtil.asStrOfReference(result));
     }
@@ -321,7 +322,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest124_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test124", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 14);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("q$1", TestUtil.asStrOfReference(result));
     }
@@ -330,25 +331,26 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest125_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test125", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("p$0", TestUtil.asStrOfReference(result));
     }
     
+    // TODO
     @Test
     public void testGetUseVariablesTest125_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test125", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 9);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
-        assertEquals("$104", TestUtil.asStrOfReference(result));
+        assertEquals("this.!inc1", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest125_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test125", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 12);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("p$0", TestUtil.asStrOfReference(result));
     }
@@ -357,7 +359,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest126_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test126", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 9);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("p$1", TestUtil.asStrOfReference(result));
     }
@@ -366,7 +368,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest126_4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test126", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 20);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("p$1", TestUtil.asStrOfReference(result));
     }
@@ -375,7 +377,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest126_7() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test126", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 31);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -384,7 +386,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest128_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -393,7 +395,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest128_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 13);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -402,7 +404,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest128_4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 13);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -411,7 +413,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest128_5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 18);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("p$1", TestUtil.asStrOfReference(result));
     }
@@ -420,7 +422,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest130_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test130", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -429,7 +431,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest130_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test130", "n( int )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("x$0", TestUtil.asStrOfReference(result));
     }
@@ -438,115 +440,115 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest135_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest135_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(1).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest135_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 10);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest135_4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 10);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(1).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest135_5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 17);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest135_6() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 22);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest136_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test136", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest136_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test136", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(1).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest136_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test136", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 10);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest136_4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test136", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 10);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(1).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest136_5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test136", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 17);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest136_6() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test136", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 22);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("$java.lang.String", TestUtil.asStrOfReference(result));
     }
     
     @Test
     public void testGetUseVariablesTest140_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "S140( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 3);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -555,7 +557,7 @@ public class CFGParameterTest {
     public void testGetUseVariablesTest140_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "S140( int )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
-        List<JReference> result = node.getActualIns().get(0).getUseVariables();
+        List<JVariableReference> result = node.getActualIns().get(0).getUseVariables();
         
         assertEquals("x$0", TestUtil.asStrOfReference(result));
     }

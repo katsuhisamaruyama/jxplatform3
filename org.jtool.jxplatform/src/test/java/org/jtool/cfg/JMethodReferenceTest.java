@@ -677,7 +677,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertEquals("$InstanceName#A119( )", result.get(0).getReferenceForm());
+        assertEquals("a$0#A119( )", result.get(0).getReferenceForm());
     }
     
     @Test
@@ -1529,91 +1529,91 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsEnum1() {
+    public void testIsEnumConstant1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertFalse(result.get(0).isEnum());
+        assertFalse(result.get(0).isEnumConstant());
     }
     
     @Test
-    public void testIsEnum2() {
+    public void testIsEnumConstant2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertFalse(result.get(1).isEnum());
+        assertFalse(result.get(1).isEnumConstant());
     }
     
     @Test
-    public void testIsEnum3() {
+    public void testIsEnumConstant3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertFalse(result.get(2).isEnum());
+        assertFalse(result.get(2).isEnumConstant());
     }
     
     @Test
-    public void testIsEnum4() {
+    public void testIsEnumConstant4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertFalse(result.get(0).isEnum());
+        assertFalse(result.get(0).isEnumConstant());
     }
     
     @Test
-    public void testIsEnum5() {
+    public void testIsEnumConstant5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertFalse(result.get(1).isEnum());
+        assertFalse(result.get(1).isEnumConstant());
     }
     
     @Test
-    public void testIsEnum6() {
+    public void testIsEnumConstant6() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertFalse(result.get(2).isEnum());
+        assertFalse(result.get(2).isEnumConstant());
     }
     
     @Test
-    public void testIsEnum7() {
+    public void testIsEnumConstant7() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "S140( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertFalse(result.get(0).isEnum());
+        assertFalse(result.get(0).isEnumConstant());
     }
     
     @Test
-    public void testIsEnum8() {
+    public void testIsEnumConstant8() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "S140( int )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertFalse(result.get(0).isEnum());
+        assertFalse(result.get(0).isEnumConstant());
     }
     
     @Test
-    public void testIsEnum9() {
+    public void testIsEnumConstant9() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertFalse(result.get(0).isEnum());
+        assertFalse(result.get(0).isEnumConstant());
     }
     
     @Test
-    public void testIsEnum10() {
+    public void testIsEnumConstant10() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test139", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertTrue(result.get(0).isEnum());
+        assertTrue(result.get(0).isEnumConstant());
     }
     
     @Test
-    public void testIsEnum11() {
+    public void testIsEnumConstant11() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test139", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertFalse(result.get(1).isEnum());
+        assertFalse(result.get(1).isEnumConstant());
     }
     
     @Test
@@ -2197,7 +2197,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "S140( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertNull(result.get(0).getReceiver());
+        assertEquals("this", result.get(0).getReceiver().getName());
     }
     
     @Test
@@ -2205,7 +2205,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "S140( int )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertNull(result.get(0).getReceiver());
+        assertEquals("super", result.get(0).getReceiver().getName());
     }
     
     @Test
@@ -2312,12 +2312,13 @@ private static JavaProject SliceProject;
         assertEquals("PriceCode", TestUtil.asSortedStr(result.get(0).getApproximatedTypeNames()));
     }
     
+    // TODO
     @Test
     public void testGetApproximatedTypeNames11() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test139", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertEquals("PriceCode", TestUtil.asSortedStr(result.get(1).getApproximatedTypeNames()));
+        assertEquals("java.lang.Enum", TestUtil.asSortedStr(result.get(1).getApproximatedTypeNames()));
     }
     
     @Test

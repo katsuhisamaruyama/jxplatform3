@@ -1007,7 +1007,7 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsLocalAccess1() {
+    public void testIsThisAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
@@ -1251,7 +1251,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test
@@ -1259,7 +1259,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test
@@ -1267,7 +1267,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "getA( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test
@@ -1275,7 +1275,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test
@@ -1283,7 +1283,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test
@@ -1291,7 +1291,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertFalse(result.get(0).isExposed());
+        assertFalse(result.get(0).isTouchable());
     }
     
     @Test
@@ -1299,7 +1299,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test132", "n( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test
@@ -1307,7 +1307,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test139", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test
@@ -1315,7 +1315,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "PriceCode", "getPriceCode( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test
@@ -1323,7 +1323,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isExposed());
+        assertTrue(result.get(0).isTouchable());
     }
     
     @Test
@@ -1487,83 +1487,83 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsLocal1() {
+    public void testIsThis1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isLocal());
+        assertTrue(result.get(0).isThis());
     }
     
     @Test
-    public void testIsLocal2() {
+    public void testIsThis2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertTrue(result.get(0).isLocal());
+        assertTrue(result.get(0).isThis());
     }
     
     @Test
-    public void testIsLocal3() {
+    public void testIsThis3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "getA( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isLocal());
+        assertTrue(result.get(0).isThis());
     }
     
     @Test
-    public void testIsLocal4() {
+    public void testIsThis4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertTrue(result.get(0).isLocal());
+        assertTrue(result.get(0).isThis());
     }
     
     @Test
-    public void testIsLocal5() {
+    public void testIsThis5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isLocal());
+        assertTrue(result.get(0).isThis());
     }
     
     @Test
-    public void testIsLocal6() {
+    public void testIsThis6() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertFalse(result.get(0).isLocal());
+        assertFalse(result.get(0).isThis());
     }
     
     @Test
-    public void testIsLocal7() {
+    public void testIsThis7() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test132", "n( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertFalse(result.get(0).isLocal());
+        assertFalse(result.get(0).isThis());
     }
     
     @Test
-    public void testIsLocal8() {
+    public void testIsThis8() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test139", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertFalse(result.get(0).isLocal());
+        assertFalse(result.get(0).isThis());
     }
     
     @Test
-    public void testIsLocal9() {
+    public void testIsThis9() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "PriceCode", "getPriceCode( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isLocal());
+        assertTrue(result.get(0).isThis());
     }
     
     @Test
-    public void testIsLocal10() {
+    public void testIsThis10() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertFalse(result.get(0).isLocal());
+        assertFalse(result.get(0).isThis());
     }
     
     @Test

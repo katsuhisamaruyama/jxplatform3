@@ -37,6 +37,7 @@ public class CFGExceptionTest {
         assertEquals("java.lang.Exception", result);
     }
     
+    // TODO
     @Test
     public void testGetTypeNameTest123_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test123", "n( int )");
@@ -49,11 +50,21 @@ public class CFGExceptionTest {
     
     @Test
     public void testGetTypeNameTest123_2() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test123", "n( int )");
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test123", "n2( int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        CFGException exception = node.getExceptionNodes().get(1);
+        CFGException exception = node.getExceptionNodes().get(0);
         String result = exception.getTypeName();
         
-        assertEquals("SubSubException", result);
+        assertEquals("SubRuntimeException", result);
+    }
+    
+    @Test
+    public void testGetTypeNameTest123_3() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test123", "n3( int )");
+        CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
+        CFGException exception = node.getExceptionNodes().get(0);
+        String result = exception.getTypeName();
+        
+        assertEquals("SubRuntimeException", result);
     }
 }
