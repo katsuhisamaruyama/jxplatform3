@@ -46,10 +46,14 @@ public class BasicBlockBuilder {
     
     private static void collectNodesInBlock(BasicBlock block, CFG cfg) {
         CFGNode node = getTrueSucc(block.getLeader());
-        while (node != null && !node.isLeader() && !node.equals(cfg.getExitNode())) {
+        while (node != null && !isLeader(cfg, node) && !node.equals(cfg.getExitNode())) {
             block.add(node);
             node = getTrueSucc(node);
         }
+    }
+    
+    private static boolean isLeader(CFG cfg, final CFGNode node) {
+        return cfg.getBasicBlocks().stream().anyMatch(b -> node.equals(b.getLeader()));
     }
     
     private static CFGNode getTrueSucc(CFGNode node) {

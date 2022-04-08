@@ -58,7 +58,6 @@ public class BasicBlock {
     public void add(CFGNode node) {
         assert node != null;
         nodes.add(node);
-        node.setBasicBlock(this);
     }
     
     /**
