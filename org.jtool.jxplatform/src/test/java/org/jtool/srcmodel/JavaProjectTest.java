@@ -344,10 +344,11 @@ public class JavaProjectTest {
     public void testGetExternalClasses2() {
         List<JavaClass> result = VideoStoreProject.getExternalClasses();
         
-        assertEquals(9, result.size());
+        assertEquals(10, result.size());
         assertEquals("java.io.PrintStream;"
                    + "java.io.Serializable;"
                    + "java.lang.AssertionError;"
+                   + "java.lang.Enum;"
                    + "java.lang.Object;"
                    + "java.lang.String;"
                    + "java.lang.System;"

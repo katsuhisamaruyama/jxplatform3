@@ -315,7 +315,7 @@ public class JavaMethodTest {
     
     @Test
     public void testIsSynthetic1() {
-        JavaMethod jm = SimpleProject.getClass("A119").getMethod("A119( )");
+        JavaMethod jm = SimpleProject.getClass("Test01").getMethod("Test01( )");
         boolean result = jm.isSynthetic();
         
         assertTrue(result);
@@ -323,7 +323,7 @@ public class JavaMethodTest {
     
     @Test
     public void testIsSynthetic2() {
-        JavaMethod jm = TetrisProject.getClass("A126").getMethod("A126( )");
+        JavaMethod jm = TetrisProject.getClass("Block").getMethod("Block( int int )");
         boolean result = jm.isSynthetic();
         
         assertFalse(result);

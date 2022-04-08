@@ -112,8 +112,9 @@ public class JavaPackageTest {
         JavaPackage jp = VideoStoreProject.getPackage("java.lang");
         Set<JavaClass> result = jp.getClasses();
         
-        assertEquals(8, result.size());
+        assertEquals(9, result.size());
         assertEquals("java.lang.AssertionError;"
+                   + "java.lang.Enum;"
                    + "java.lang.Object;"
                    + "java.lang.String;"
                    + "java.lang.String.CaseInsensitiveComparator;"
