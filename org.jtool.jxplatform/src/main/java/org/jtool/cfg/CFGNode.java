@@ -83,11 +83,6 @@ public class CFGNode extends GraphNode {
     protected PDGNode pdgNode = null;
     
     /**
-     * The basic block that encloses this node.
-     */
-    protected BasicBlock basicBlock = null;
-    
-    /**
      * The number prepared for generating the identification number when creating a new CFG node.
      */
     private static long num = 1;
@@ -243,23 +238,6 @@ public class CFGNode extends GraphNode {
      */
     public PDGNode getPDGNode() {
         return pdgNode;
-    }
-    
-    /**
-     * Sets a basic block enclosing this node.
-     * This method is not intended to be invoked by clients.
-     * @param block the enclosing basic block
-     */
-    public void setBasicBlock(BasicBlock block) {
-        basicBlock = block;
-    }
-    
-    /**
-     * Returns the basic block enclosing this node.
-     * @return the enclosing basic block
-     */
-    public BasicBlock getBasicBlock() {
-        return basicBlock;
     }
     
     /**
@@ -581,7 +559,7 @@ public class CFGNode extends GraphNode {
      * @return {@code true} if this is a synchronized-statement node, otherwise {@code false}
      */
     public boolean isSynchronized() {
-        return kind == Kind.throwSt;
+        return kind == Kind.synchronizedSt;
     }
     
     /**
@@ -745,14 +723,6 @@ public class CFGNode extends GraphNode {
      */
     public boolean hasUseVariable() {
         return false;
-    }
-    
-    /**
-     * Tests if this mode is a leader of a basic block.
-     * @return {@code true} if this is a leader node, otherwise {@code false}
-     */
-    public boolean isLeader() {
-        return basicBlock != null && equals(basicBlock.getLeader());
     }
     
     /**

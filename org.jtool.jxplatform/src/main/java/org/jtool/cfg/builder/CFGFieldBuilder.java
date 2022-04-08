@@ -49,7 +49,6 @@ class CFGFieldBuilder {
         CFGStatement declNode = new CFGStatement(jfield.getASTNode(), CFGNode.Kind.fieldDeclaration);
         JVariableReference jvar = new JFieldReference(jfield.getASTNode(), jfield.getASTNode(), jfield.getName(), vbinding);
         declNode.addDefVariable(jvar);
-        declNode.addUseVariable(jvar);
         entry.setDeclarationNode(declNode);
         cfg.add(declNode);
         
@@ -60,12 +59,14 @@ class CFGFieldBuilder {
         CFGNode curNode = declNode;
         if (vbinding.isEnumConstant()) {
             EnumConstantDeclaration decl = (EnumConstantDeclaration)jfield.getASTNode();
-            if (decl.resolveConstructorBinding() != null) {
+            if (decl.arguments().size() > 0 && decl.resolveConstructorBinding() != null) {
                 ExpressionVisitor visitor = new ExpressionVisitor(cfg, declNode);
                 decl.accept(visitor);
                 curNode = visitor.getExitNode();
             }
         } else {
+            declNode.addUseVariable(jvar);
+            
             VariableDeclarationFragment decl = (VariableDeclarationFragment)jfield.getASTNode();
             Expression initializer = decl.getInitializer();
             if (initializer != null) {
