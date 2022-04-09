@@ -55,11 +55,13 @@ public class UncaughtExceptionTypeCollector {
     public UncaughtExceptionTypeCollector() {
     }
     
-    public Set<ITypeBinding> getExceptions(JavaMethod jmethod) {
+    public List<ITypeBinding> getExceptions(JavaMethod jmethod) {
         jproject = jmethod.getJavaProject();
         
         collectExceptions(new CalledMethod(jmethod.getASTNode(), new HashSet<>()), new HashSet<>());
-        return exceptionTypes;
+        return exceptionTypes.stream()
+                             .sorted((t1, t2) -> t1.getQualifiedName().compareTo(t2.getQualifiedName()))
+                             .collect(Collectors.toList());
     }
     
     private void collectExceptions(CalledMethod cmethod, Set<CalledMethod> cmethods) {

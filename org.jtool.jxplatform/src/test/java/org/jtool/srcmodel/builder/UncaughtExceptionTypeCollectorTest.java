@@ -10,7 +10,7 @@ import org.jtool.srcmodel.JavaMethod;
 import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import org.eclipse.jdt.core.dom.ITypeBinding;
-import java.util.Set;
+import java.util.List;
 import org.junit.Test;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
@@ -40,7 +40,7 @@ public class UncaughtExceptionTypeCollectorTest {
     public void testExceptionTypeCollector1() {
         JavaMethod jm = CSclassroomProject.getClass("Sample8").getMethod("main( java.lang.String[] )");
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
-        Set<ITypeBinding> result = collector.getExceptions(jm);
+        List<ITypeBinding> result = collector.getExceptions(jm);
         
         assertEquals(0, result.size());
     }
@@ -49,7 +49,7 @@ public class UncaughtExceptionTypeCollectorTest {
     public void testExceptionTypeCollector2() {
         JavaMethod jm = CSclassroomProject.getClass("Circle2").getMethod("Circle2( int )");
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
-        Set<ITypeBinding> result = collector.getExceptions(jm);
+        List<ITypeBinding> result = collector.getExceptions(jm);
         
         assertEquals(0, result.size());
     }
@@ -58,7 +58,7 @@ public class UncaughtExceptionTypeCollectorTest {
     public void testExceptionTypeCollector3() {
         JavaMethod jm = DrawToolProject.getClass("jp.ac.ritsumei.cs.draw.FigureMoved").getMethod("undo( )");
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
-        Set<ITypeBinding> result = collector.getExceptions(jm);
+        List<ITypeBinding> result = collector.getExceptions(jm);
         
         assertEquals(1, result.size());
         assertEquals("javax.swing.undo.CannotUndoException", TestUtil.asSortedStrOfTypeBinding(result));
@@ -68,7 +68,7 @@ public class UncaughtExceptionTypeCollectorTest {
     public void testExceptionTypeCollector4() {
         JavaMethod jm = SliceProject.getClass("Test122").getMethod("m( )");
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
-        Set<ITypeBinding> result = collector.getExceptions(jm);
+        List<ITypeBinding> result = collector.getExceptions(jm);
         
         assertEquals(0, result.size());
     }
@@ -77,7 +77,7 @@ public class UncaughtExceptionTypeCollectorTest {
     public void testExceptionTypeCollector5() {
         JavaMethod jm = SliceProject.getClass("Test122").getMethod("n( int )");
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
-        Set<ITypeBinding> result = collector.getExceptions(jm);
+        List<ITypeBinding> result = collector.getExceptions(jm);
         
         assertEquals(0, result.size());
     }
@@ -86,7 +86,7 @@ public class UncaughtExceptionTypeCollectorTest {
     public void testExceptionTypeCollector6() {
         JavaMethod jm = SliceProject.getClass("Test123").getMethod("m( )");
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
-        Set<ITypeBinding> result = collector.getExceptions(jm);
+        List<ITypeBinding> result = collector.getExceptions(jm);
         
         assertEquals(0, result.size());
     }
@@ -95,7 +95,7 @@ public class UncaughtExceptionTypeCollectorTest {
     public void testExceptionTypeCollector7() {
         JavaMethod jm = SliceProject.getClass("Test123").getMethod("n( int )");
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
-        Set<ITypeBinding> result = collector.getExceptions(jm);
+        List<ITypeBinding> result = collector.getExceptions(jm);
         
         assertEquals(0, result.size());
     }
@@ -104,7 +104,7 @@ public class UncaughtExceptionTypeCollectorTest {
     public void testExceptionTypeCollector8() {
         JavaMethod jm = SliceProject.getClass("Test123").getMethod("m2( )");
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
-        Set<ITypeBinding> result = collector.getExceptions(jm);
+        List<ITypeBinding> result = collector.getExceptions(jm);
         
         assertEquals(0, result.size());
     }
@@ -113,7 +113,7 @@ public class UncaughtExceptionTypeCollectorTest {
     public void testExceptionTypeCollector9() {
         JavaMethod jm = SliceProject.getClass("Test123").getMethod("n2( int )");
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
-        Set<ITypeBinding> result = collector.getExceptions(jm);
+        List<ITypeBinding> result = collector.getExceptions(jm);
         
         assertEquals(1, result.size());
         assertEquals("SubRuntimeException", TestUtil.asSortedStrOfTypeBinding(result));
@@ -123,7 +123,7 @@ public class UncaughtExceptionTypeCollectorTest {
     public void testExceptionTypeCollector10() {
         JavaMethod jm = SliceProject.getClass("Test123").getMethod("n3( int )");
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
-        Set<ITypeBinding> result = collector.getExceptions(jm);
+        List<ITypeBinding> result = collector.getExceptions(jm);
         
         assertEquals(1, result.size());
         assertEquals("SubRuntimeException", TestUtil.asSortedStrOfTypeBinding(result));

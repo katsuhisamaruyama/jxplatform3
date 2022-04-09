@@ -170,10 +170,14 @@ class CFGMethodBuilder {
     }
     
     private static CFGException createExceptionNode(CFGMethodEntry entry, CFG cfg, ITypeBinding tbinding) {
-        CFGException exceptionNode = new CFGException(entry.getASTNode(), CFGNode.Kind.throwsClause, tbinding);
-        entry.addExceptionNode(exceptionNode);
-        cfg.add(exceptionNode);
-        return exceptionNode;
+        CFGException node = new CFGException(entry.getASTNode(), CFGNode.Kind.throwsClause, tbinding);
+        entry.addExceptionNode(node);
+        cfg.add(node);
+        
+        JVariableReference jvar = new JExpedientialReference(entry.getASTNode(),
+                "$" + tbinding.getErasure().getQualifiedName(), tbinding);
+        node.setUseVariable(jvar);
+        return node;
     }
     
     private static CFGNode createFormalIn(List<VariableDeclaration> params,
