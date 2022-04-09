@@ -51,12 +51,9 @@ import org.eclipse.jdt.core.dom.VariableDeclarationExpression;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 import org.eclipse.jdt.core.dom.VariableDeclarationStatement;
 import org.eclipse.jdt.core.dom.WhileStatement;
-
 import java.util.Set;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -772,36 +769,24 @@ public class CFGNode extends GraphNode {
     
     /**
      * Sorts the list of CFG nodes
-     * @param co the list of the CFG nodes to be sorted
+     * @param nodes the collection of the CFG nodes to be sorted
      * @return the sorted list of the CFG nodes
      */
-    public static List<CFGNode> sortCFGNodes(Collection<? extends CFGNode> co) {
-        List<CFGNode> nodes = new ArrayList<>(co);
-        Collections.sort(nodes, new Comparator<>() {
-            
-            @Override
-            public int compare(CFGNode node1, CFGNode node2) {
-                return (node2.id == node1.id) ? 0 : (node1.id > node2.id) ? 1 : -1;
-            }
-        });
-        return nodes;
+    public static List<CFGNode> sortNodes(Collection<? extends CFGNode> nodes) {
+        return nodes.stream()
+                    .sorted(Comparator.comparingLong(CFGNode::getId))
+                    .collect(Collectors.toList());
     }
     
     /**
      * Sorts inversely the list of CFG nodes
-     * @param co the list of the CFG nodes to be sorted
+     * @param nodes the collection of the CFG nodes to be sorted
      * @return the sorted list of the CFG nodes
      */
-    public static List<CFGNode> sortCFGNodesInverse(Collection<? extends CFGNode> co) {
-        List<CFGNode> nodes = new ArrayList<>(co);
-        Collections.sort(nodes, new Comparator<>() {
-            
-            @Override
-            public int compare(CFGNode node1, CFGNode node2) {
-                return (node2.id == node1.id) ? 0 : (node1.id < node2.id) ? 1 : -1;
-            }
-        });
-        return nodes;
+    public static List<CFGNode> sortNodesInverse(Collection<? extends CFGNode> nodes) {
+        return nodes.stream()
+                    .sorted(Comparator.comparingLong(CFGNode::getId).reversed())
+                    .collect(Collectors.toList());
     }
     
     public static boolean isStatement(ASTNode node) {

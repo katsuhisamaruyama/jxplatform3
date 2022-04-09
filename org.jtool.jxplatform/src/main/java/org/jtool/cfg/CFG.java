@@ -523,7 +523,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      */
     public Set<CFGNode> postDominator(CFGNode anchor) {
         Set<CFGNode> postDominator = new HashSet<>();
-        for (CFGNode node : CFGNode.sortCFGNodesInverse(getNodes())) {
+        for (CFGNode node : CFGNode.sortNodesInverse(getNodes())) {
             if (!anchor.equals(node)) {
                 if (node.getOutgoingFlows().size() == 1) {
                     CFGNode succ = node.getOutgoingFlows().iterator().next().getDstNode();
@@ -594,7 +594,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     @Override
     protected String toStringForNodes() {
         StringBuilder buf = new StringBuilder();
-        CFGNode.sortCFGNodes(getNodes()).forEach(node -> {
+        CFGNode.sortNodes(getNodes()).forEach(node -> {
             buf.append(node.toString());
             buf.append("\n");
         });
@@ -613,7 +613,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
         buf.append("\n");
         
         long index = 1;
-        for (ControlFlow edge : ControlFlow.sortControlFlowEdges(getEdges())) {
+        for (ControlFlow edge : ControlFlow.sortEdges(getEdges())) {
             buf.append(GraphElement.getIdString(index));
             buf.append(": ");
             buf.append(edge.toString());

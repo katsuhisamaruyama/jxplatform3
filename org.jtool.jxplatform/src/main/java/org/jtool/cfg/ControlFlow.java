@@ -246,7 +246,7 @@ public class ControlFlow extends GraphEdge {
      * @param co the list of the control flow edges to be sorted
      * @return the sorted list of the control flow edges
      */
-    public static List<ControlFlow> sortControlFlowEdges(Collection<? extends ControlFlow> co) {
+    public static List<ControlFlow> sortEdges(Collection<? extends ControlFlow> co) {
         List<ControlFlow> edges = new ArrayList<>(co);
         Collections.sort(edges, new Comparator<>() {
             

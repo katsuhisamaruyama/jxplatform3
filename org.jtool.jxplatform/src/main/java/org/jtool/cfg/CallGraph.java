@@ -156,7 +156,7 @@ public class CallGraph {
     private String toStringForEdges() {
         StringBuilder buf = new StringBuilder();
         int index = 1;
-        for (ControlFlow edge : ControlFlow.sortControlFlowEdges(getEdges())) {
+        for (ControlFlow edge : ControlFlow.sortEdges(getEdges())) {
             buf.append(GraphElement.getIdString(index));
             buf.append(": ");
             buf.append(edge.toString());
