@@ -1,0 +1,60 @@
+----- ClDG (from here) -----
+Class Name = Test111
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { x$0 } U = {  }
+   2 localDeclaration D = { y$1 } U = {  }
+   3 localDeclaration D = { z$2 } U = {  }
+   4 switchSt D = {  } U = { x$0 }
+   5 switchCase D = {  } U = { x$0 }
+   6 assignment D = { y$1 } U = {  }
+   7 breakSt D = {  } U = {  }
+   8 switchCase D = {  } U = { x$0 }
+   9 assignment D = { z$2 } U = {  }
+  10 breakSt D = {  } U = {  }
+  12 localDeclaration D = { p$3 } U = { y$1 }
+  13 localDeclaration D = { q$4 } U = { z$2 }
+  15 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test111( ) ]
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 12 trueControlDependence
+   7: 0 -> 13 trueControlDependence
+   8: 0 -> 15 trueControlDependence
+   9: 1 -> 1 declarationDependence
+  10: 1 -> 4 loopIndependentDefUseDependence
+  11: 1 -> 4 declarationDependence
+  12: 1 -> 5 loopIndependentDefUseDependence
+  13: 1 -> 5 declarationDependence
+  14: 1 -> 8 loopIndependentDefUseDependence
+  15: 1 -> 8 declarationDependence
+  16: 2 -> 2 declarationDependence
+  17: 2 -> 6 outputDependence
+  18: 2 -> 6 declarationDependence
+  19: 2 -> 12 loopIndependentDefUseDependence
+  20: 2 -> 12 declarationDependence
+  21: 3 -> 3 declarationDependence
+  22: 3 -> 9 outputDependence
+  23: 3 -> 9 declarationDependence
+  24: 3 -> 13 loopIndependentDefUseDependence
+  25: 3 -> 13 declarationDependence
+  26: 5 -> 6 trueControlDependence
+  27: 5 -> 7 trueControlDependence
+  28: 5 -> 8 falseControlDependence
+  29: 6 -> 12 loopIndependentDefUseDependence
+  30: 7 -> 8 fallThroughControlDependence
+  31: 8 -> 9 trueControlDependence
+  32: 8 -> 10 trueControlDependence
+  33: 9 -> 13 loopIndependentDefUseDependence
+  34: 12 -> 12 declarationDependence
+  35: 13 -> 13 declarationDependence
+--
+   0: Test111( )
+--
+----- ClDG (to here) -----
+

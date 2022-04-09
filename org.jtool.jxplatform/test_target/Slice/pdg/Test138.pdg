@@ -1,0 +1,102 @@
+----- ClDG (from here) -----
+Class Name = Test138
+   0 constructorEntry [ Test138( ) ]
+--
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { s1$0 } U = { s1$0.!P138 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P138#P138( )
+   4 actualOut D = { s1$0.!P138 } U = {  }
+   5 localDeclaration D = { s2$1 } U = { s2$1.!P138 }
+   6 receiver D = {  } U = {  }
+   7 constructorCall D = {  } U = {  } TO = P138#P138( )
+   8 actualOut D = { s2$1.!P138 } U = {  }
+   9 localDeclaration D = { a$2 } U = { $java.lang.String }
+  10 assignment D = {  } U = { s1$0.!add }
+  11 receiver D = {  } U = { s1$0 }
+  12 methodCall D = { s1$0, s1$0.list } U = { s1$0, s1$0.list } TO = P138#add( java.lang.String )
+  13 actualIn D = {  } U = { a$2 }
+  14 actualOut D = { s1$0, s1$0.!add } U = { s1$0 }
+  15 assignment D = {  } U = { s1$0.!add }
+  16 receiver D = {  } U = { s1$0 }
+  17 methodCall D = { s1$0, s1$0.list } U = { s1$0, s1$0.list } TO = P138#add( java.lang.String )
+  18 actualIn D = {  } U = { $java.lang.String }
+  19 actualOut D = { s1$0, s1$0.!add } U = { s1$0 }
+  20 assignment D = {  } U = { s2$1.!add }
+  21 receiver D = {  } U = { s2$1 }
+  22 methodCall D = { s2$1, s2$1.list } U = { s2$1, s2$1.list } TO = P138#add( java.lang.String )
+  23 actualIn D = {  } U = { $java.lang.String }
+  24 actualOut D = { s2$1, s2$1.!add } U = { s2$1 }
+  25 localDeclaration D = { s3$3 } U = { s1$0 }
+  26 localDeclaration D = { s4$4 } U = { s2$1 }
+  28 formalOut D = {  } U = { $_ }
+--
+   0: Test138( )
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 5 trueControlDependence
+   4: 0 -> 6 trueControlDependence
+   5: 0 -> 9 trueControlDependence
+   6: 0 -> 10 trueControlDependence
+   7: 0 -> 11 trueControlDependence
+   8: 0 -> 15 trueControlDependence
+   9: 0 -> 16 trueControlDependence
+  10: 0 -> 20 trueControlDependence
+  11: 0 -> 21 trueControlDependence
+  12: 0 -> 25 trueControlDependence
+  13: 0 -> 26 trueControlDependence
+  14: 0 -> 28 trueControlDependence
+  15: 1 -> 1 declarationDependence
+  16: 1 -> 11 loopIndependentDefUseDependence
+  17: 1 -> 11 declarationDependence
+  18: 1 -> 12 loopIndependentDefUseDependence
+  19: 1 -> 12 declarationDependence
+  20: 1 -> 14 declarationDependence
+  21: 1 -> 16 declarationDependence
+  22: 1 -> 17 declarationDependence
+  23: 1 -> 19 declarationDependence
+  24: 1 -> 25 declarationDependence
+  25: 2 -> 3 trueControlDependence
+  26: 3 -> 4 trueControlDependence
+  27: 4 -> 1 loopIndependentDefUseDependence
+  28: 5 -> 5 declarationDependence
+  29: 5 -> 21 loopIndependentDefUseDependence
+  30: 5 -> 21 declarationDependence
+  31: 5 -> 22 loopIndependentDefUseDependence
+  32: 5 -> 22 declarationDependence
+  33: 5 -> 24 declarationDependence
+  34: 5 -> 26 declarationDependence
+  35: 6 -> 7 trueControlDependence
+  36: 7 -> 8 trueControlDependence
+  37: 8 -> 5 loopIndependentDefUseDependence
+  38: 9 -> 9 declarationDependence
+  39: 9 -> 13 loopIndependentDefUseDependence
+  40: 9 -> 13 declarationDependence
+  41: 11 -> 12 trueControlDependence
+  42: 12 -> 13 trueControlDependence
+  43: 12 -> 14 trueControlDependence
+  44: 12 -> 14 loopIndependentDefUseDependence
+  45: 12 -> 17 loopIndependentDefUseDependence
+  46: 14 -> 10 loopIndependentDefUseDependence
+  47: 14 -> 16 loopIndependentDefUseDependence
+  48: 14 -> 17 loopIndependentDefUseDependence
+  49: 14 -> 19 outputDependence
+  50: 16 -> 17 trueControlDependence
+  51: 17 -> 18 trueControlDependence
+  52: 17 -> 19 trueControlDependence
+  53: 17 -> 19 loopIndependentDefUseDependence
+  54: 19 -> 15 loopIndependentDefUseDependence
+  55: 19 -> 25 loopIndependentDefUseDependence
+  56: 21 -> 22 trueControlDependence
+  57: 22 -> 23 trueControlDependence
+  58: 22 -> 24 trueControlDependence
+  59: 22 -> 24 loopIndependentDefUseDependence
+  60: 24 -> 20 loopIndependentDefUseDependence
+  61: 24 -> 26 loopIndependentDefUseDependence
+  62: 25 -> 25 declarationDependence
+  63: 26 -> 26 declarationDependence
+--
+----- ClDG (to here) -----
+

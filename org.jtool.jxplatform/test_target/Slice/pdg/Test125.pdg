@@ -1,0 +1,94 @@
+----- ClDG (from here) -----
+Class Name = Test125
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { p$0 } U = {  }
+   2 localDeclaration D = { q$1 } U = { this.!inc1 }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = Test125#inc1( int )
+   5 actualIn D = {  } U = { p$0 }
+   6 actualOut D = { this.!inc1 } U = {  }
+   7 localDeclaration D = { r$2 } U = { this.!inc2 }
+   8 receiver D = {  } U = {  }
+   9 methodCall D = {  } U = {  } TO = Test125#inc2( int )
+  10 actualIn D = {  } U = { this.!inc1 }
+  11 receiver D = {  } U = {  }
+  12 methodCall D = {  } U = {  } TO = Test125#inc1( int )
+  13 actualIn D = {  } U = { p$0 }
+  14 actualOut D = { this.!inc1 } U = {  }
+  15 actualOut D = { this.!inc2 } U = {  }
+  17 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test125( ) ]
+--
+   0 methodEntry [ inc1( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 returnSt D = { $_ } U = { x$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ p ]
+   1 fieldDeclaration D = { this.p } U = { this.p }
+--
+   0 methodEntry [ inc2( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 returnSt D = { $_ } U = { x$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 7 trueControlDependence
+   5: 0 -> 8 trueControlDependence
+   6: 0 -> 11 trueControlDependence
+   7: 0 -> 17 trueControlDependence
+   8: 1 -> 1 declarationDependence
+   9: 1 -> 5 loopIndependentDefUseDependence
+  10: 1 -> 5 declarationDependence
+  11: 1 -> 13 loopIndependentDefUseDependence
+  12: 1 -> 13 declarationDependence
+  13: 2 -> 2 declarationDependence
+  14: 3 -> 4 trueControlDependence
+  15: 4 -> 5 trueControlDependence
+  16: 4 -> 6 trueControlDependence
+  17: 4 -> 18 call
+  18: 5 -> 19 parameterIn
+  19: 6 -> 2 loopIndependentDefUseDependence
+  20: 6 -> 14 outputDependence
+  21: 7 -> 7 declarationDependence
+  22: 8 -> 9 trueControlDependence
+  23: 9 -> 10 trueControlDependence
+  24: 9 -> 15 trueControlDependence
+  25: 9 -> 24 call
+  26: 10 -> 25 parameterIn
+  27: 11 -> 12 trueControlDependence
+  28: 12 -> 13 trueControlDependence
+  29: 12 -> 14 trueControlDependence
+  30: 12 -> 18 call
+  31: 13 -> 19 parameterIn
+  32: 14 -> 10 loopIndependentDefUseDependence
+  33: 15 -> 7 loopIndependentDefUseDependence
+  34: 22 -> 6 parameterOut
+  35: 22 -> 14 parameterOut
+  36: 28 -> 15 parameterOut
+--
+   0: Test125( )
+--
+   0: inc1( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence
+   5: 2 -> 4 loopIndependentDefUseDependence
+--
+   0: p
+   1: 0 -> 1 trueControlDependence
+--
+   0: inc2( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence
+   5: 2 -> 4 loopIndependentDefUseDependence
+--
+----- ClDG (to here) -----
+

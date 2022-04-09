@@ -1,0 +1,116 @@
+----- ClDG (from here) -----
+Class Name = Test119
+   0 methodEntry [ m( ) ]
+   1 assignment D = { this.p } U = {  }
+   2 localDeclaration D = { a$0 } U = { a$0.!A119 }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = A119#A119( )
+   5 actualOut D = { a$0.!A119 } U = {  }
+   6 assignment D = {  } U = { a$0.!setX }
+   7 receiver D = {  } U = { a$0 }
+   8 methodCall D = { a$0.x } U = {  } TO = A119#setX( int )
+   9 actualIn D = {  } U = {  }
+  10 actualOut D = { a$0.!setX } U = {  }
+  11 localDeclaration D = { b$1 } U = { a$0.!getX }
+  12 receiver D = {  } U = { a$0 }
+  13 methodCall D = {  } U = { a$0.x } TO = A119#getX( )
+  14 actualOut D = { a$0.!getX } U = {  }
+  15 assignment D = {  } U = { a$0.!setX }
+  16 receiver D = {  } U = { a$0 }
+  17 methodCall D = { a$0.x } U = {  } TO = A119#setX( int )
+  18 actualIn D = {  } U = {  }
+  19 actualOut D = { a$0.!setX } U = {  }
+  20 localDeclaration D = { c$2 } U = { a$0.!getX }
+  21 receiver D = {  } U = { a$0 }
+  22 methodCall D = {  } U = { a$0.x } TO = A119#getX( )
+  23 actualOut D = { a$0.!getX } U = {  }
+  24 localDeclaration D = { d$3 } U = { a$0, a$0.x, this.p }
+  25 localDeclaration D = { e$4 } U = { this.!getP }
+  26 receiver D = {  } U = {  }
+  27 methodCall D = {  } U = { this.p } TO = Test119#getP( )
+  28 actualOut D = { this.!getP } U = {  }
+  30 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ p ]
+   1 fieldDeclaration D = { this.p } U = { this.p }
+--
+   0 constructorEntry [ Test119( ) ]
+--
+   0 methodEntry [ getP( ) ]
+   1 returnSt D = { $_ } U = { this.p }
+   3 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 6 trueControlDependence
+   5: 0 -> 7 trueControlDependence
+   6: 0 -> 11 trueControlDependence
+   7: 0 -> 12 trueControlDependence
+   8: 0 -> 15 trueControlDependence
+   9: 0 -> 16 trueControlDependence
+  10: 0 -> 20 trueControlDependence
+  11: 0 -> 21 trueControlDependence
+  12: 0 -> 24 trueControlDependence
+  13: 0 -> 25 trueControlDependence
+  14: 0 -> 26 trueControlDependence
+  15: 0 -> 30 trueControlDependence
+  16: 1 -> 24 loopIndependentDefUseDependence
+  17: 1 -> 27 loopIndependentDefUseDependence
+  18: 2 -> 2 declarationDependence
+  19: 2 -> 7 loopIndependentDefUseDependence
+  20: 2 -> 7 declarationDependence
+  21: 2 -> 12 loopIndependentDefUseDependence
+  22: 2 -> 12 declarationDependence
+  23: 2 -> 16 loopIndependentDefUseDependence
+  24: 2 -> 16 declarationDependence
+  25: 2 -> 21 loopIndependentDefUseDependence
+  26: 2 -> 21 declarationDependence
+  27: 2 -> 24 loopIndependentDefUseDependence
+  28: 2 -> 24 declarationDependence
+  29: 3 -> 4 trueControlDependence
+  30: 4 -> 5 trueControlDependence
+  31: 5 -> 2 loopIndependentDefUseDependence
+  32: 7 -> 8 trueControlDependence
+  33: 8 -> 9 trueControlDependence
+  34: 8 -> 10 trueControlDependence
+  35: 8 -> 13 loopIndependentDefUseDependence
+  36: 8 -> 17 outputDependence
+  37: 10 -> 6 loopIndependentDefUseDependence
+  38: 10 -> 19 outputDependence
+  39: 11 -> 11 declarationDependence
+  40: 12 -> 13 trueControlDependence
+  41: 13 -> 14 trueControlDependence
+  42: 14 -> 11 loopIndependentDefUseDependence
+  43: 14 -> 23 outputDependence
+  44: 16 -> 17 trueControlDependence
+  45: 17 -> 18 trueControlDependence
+  46: 17 -> 19 trueControlDependence
+  47: 17 -> 22 loopIndependentDefUseDependence
+  48: 17 -> 24 loopIndependentDefUseDependence
+  49: 19 -> 15 loopIndependentDefUseDependence
+  50: 20 -> 20 declarationDependence
+  51: 21 -> 22 trueControlDependence
+  52: 22 -> 23 trueControlDependence
+  53: 23 -> 20 loopIndependentDefUseDependence
+  54: 24 -> 24 declarationDependence
+  55: 25 -> 25 declarationDependence
+  56: 26 -> 27 trueControlDependence
+  57: 27 -> 28 trueControlDependence
+  58: 27 -> 31 call
+  59: 28 -> 25 loopIndependentDefUseDependence
+  60: 34 -> 28 parameterOut
+--
+   0: p
+   1: 0 -> 1 trueControlDependence
+--
+   0: Test119( )
+--
+   0: getP( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence
+--
+----- ClDG (to here) -----
+

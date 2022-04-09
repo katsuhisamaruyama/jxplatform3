@@ -10,6 +10,9 @@ enum PriceCode {
     REGULAR(200),
     NEW_RELEASE(300);
 
-    PriceCode(int priceCode) {
+    private int priceCode;
+    
+    PriceCode(int code) {
+        priceCode = code;
     }
 }

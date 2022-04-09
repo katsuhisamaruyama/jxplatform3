@@ -1,0 +1,85 @@
+----- ClDG (from here) -----
+Class Name = A128
+   0 methodEntry [ getY( ) ]
+   1 returnSt D = { $_ } U = { this.y }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ setY( int ) ]
+   1 formalIn D = { y$0 } U = {  }
+   2 assignment D = { this.y } U = { this, y$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ z ]
+   1 fieldDeclaration D = { A128.z } U = { A128.z }
+--
+   0 constructorEntry [ A128( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ add( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 localDeclaration D = { ret$1 } U = { ret$1.!A128 }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = A128#A128( )
+   5 actualOut D = { ret$1.!A128 } U = {  }
+   6 assignment D = {  } U = { ret$1.!setY }
+   7 receiver D = {  } U = { ret$1 }
+   8 methodCall D = { ret$1.y } U = {  } TO = A128#setY( int )
+   9 actualIn D = {  } U = { this.y, x$0 }
+  10 actualOut D = { ret$1.!setY } U = {  }
+  11 returnSt D = { $_ } U = { ret$1, ret$1.y, ret$1.z }
+  13 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ y ]
+   1 fieldDeclaration D = { this.y } U = { this.y }
+--
+   0: getY( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence
+--
+   0: setY( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence
+--
+   0: z
+   1: 0 -> 1 trueControlDependence
+--
+   0: A128( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: add( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 6 trueControlDependence
+   5: 0 -> 7 trueControlDependence
+   6: 0 -> 11 trueControlDependence
+   7: 0 -> 13 trueControlDependence
+   8: 1 -> 9 loopIndependentDefUseDependence
+   9: 2 -> 2 declarationDependence
+  10: 2 -> 7 loopIndependentDefUseDependence
+  11: 2 -> 7 declarationDependence
+  12: 2 -> 11 loopIndependentDefUseDependence
+  13: 2 -> 11 declarationDependence
+  14: 3 -> 4 trueControlDependence
+  15: 4 -> 5 trueControlDependence
+  16: 4 -> 23 call
+  17: 5 -> 2 loopIndependentDefUseDependence
+  18: 7 -> 8 trueControlDependence
+  19: 8 -> 9 trueControlDependence
+  20: 8 -> 10 trueControlDependence
+  21: 8 -> 11 loopIndependentDefUseDependence
+  22: 8 -> 28 call
+  23: 9 -> 29 parameterIn
+  24: 10 -> 6 loopIndependentDefUseDependence
+  25: 11 -> 13 loopIndependentDefUseDependence
+  26: 25 -> 5 parameterOut
+  27: 32 -> 10 parameterOut
+--
+   0: y
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

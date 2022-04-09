@@ -1,0 +1,236 @@
+----- ClDG (from here) -----
+Class Name = Test133
+   0 fieldEntry [ x ]
+   1 fieldDeclaration D = { this.x } U = { Test133.!Test133, this.x }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = Test133#Test133( )
+   4 actualOut D = { Test133.!Test133 } U = {  }
+--
+   0 fieldEntry [ y ]
+   1 fieldDeclaration D = { this.y } U = { Test133.!Test133, this.y }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = Test133#Test133( )
+   4 actualOut D = { Test133.!Test133 } U = {  }
+--
+   0 constructorEntry [ Test133( ) ]
+--
+   0 methodEntry [ getX( ) ]
+   1 returnSt D = { $_ } U = { this.x, this.x.a, this.x.x, this.x.y }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ a ]
+   1 fieldDeclaration D = { this.a } U = { this.a }
+--
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { p1$0 } U = { this.a }
+   2 localDeclaration D = { p2$1 } U = { this.x, this.x.a }
+   3 localDeclaration D = { p3$2 } U = { this.x.!getA }
+   4 receiver D = {  } U = { this.x }
+   5 methodCall D = {  } U = { this.x.a } TO = Test133#getA( )
+   6 actualOut D = { this.x.!getA } U = {  }
+   7 localDeclaration D = { p4$3 } U = { this.!getX, this.!getX.a }
+   8 receiver D = {  } U = {  }
+   9 methodCall D = {  } U = { this.x, this.x.a, this.x.x, this.x.y } TO = Test133#getX( )
+  10 actualOut D = { this.!getX } U = {  }
+  11 localDeclaration D = { p5$4 } U = { this.!getX.!getA }
+  12 receiver D = {  } U = { this.!getX }
+  13 receiver D = {  } U = {  }
+  14 methodCall D = {  } U = { this.x, this.x.a, this.x.x, this.x.y } TO = Test133#getX( )
+  15 actualOut D = { this.!getX } U = {  }
+  16 methodCall D = {  } U = { this.!getX.a } TO = Test133#getA( )
+  17 actualOut D = { this.!getX.!getA } U = {  }
+  18 localDeclaration D = { p6$5 } U = { this.x.y.!getA }
+  19 receiver D = {  } U = { this.x, this.x.y }
+  20 methodCall D = {  } U = { this.x.y.a } TO = Test133#getA( )
+  21 actualOut D = { this.x.y.!getA } U = {  }
+  22 localDeclaration D = { p7$6 } U = { this.!getX.!getY, this.!getX.!getY.a }
+  23 receiver D = {  } U = { this.!getX }
+  24 receiver D = {  } U = {  }
+  25 methodCall D = {  } U = { this.x, this.x.a, this.x.x, this.x.y } TO = Test133#getX( )
+  26 actualOut D = { this.!getX } U = {  }
+  27 methodCall D = {  } U = { this.!getX.y, this.!getX.y.a, this.!getX.y.x, this.!getX.y.y } TO = Test133#getY( )
+  28 actualOut D = { this.!getX.!getY } U = {  }
+  29 localDeclaration D = { p8$7 } U = { this.!getX.!getY.!getA }
+  30 receiver D = {  } U = { this.!getX.!getY }
+  31 receiver D = {  } U = { this.!getX }
+  32 receiver D = {  } U = {  }
+  33 methodCall D = {  } U = { this.x, this.x.a, this.x.x, this.x.y } TO = Test133#getX( )
+  34 actualOut D = { this.!getX } U = {  }
+  35 methodCall D = {  } U = { this.!getX.y, this.!getX.y.a, this.!getX.y.x, this.!getX.y.y } TO = Test133#getY( )
+  36 actualOut D = { this.!getX.!getY } U = {  }
+  37 methodCall D = {  } U = { this.!getX.!getY.a } TO = Test133#getA( )
+  38 actualOut D = { this.!getX.!getY.!getA } U = {  }
+  39 localDeclaration D = { p9$8 } U = { this.!getX.y.!getA }
+  40 receiver D = {  } U = { this.!getX, this.!getX.y }
+  41 receiver D = {  } U = {  }
+  42 methodCall D = {  } U = { this.x, this.x.a, this.x.x, this.x.y } TO = Test133#getX( )
+  43 actualOut D = { this.!getX } U = {  }
+  44 methodCall D = {  } U = { this.!getX.y.a } TO = Test133#getA( )
+  45 actualOut D = { this.!getX.y.!getA } U = {  }
+  46 localDeclaration D = { p10$9 } U = { this.x.!getY.!getA }
+  47 receiver D = {  } U = { this.x.!getY }
+  48 receiver D = {  } U = { this.x }
+  49 methodCall D = {  } U = { this.x.y, this.x.y.a, this.x.y.x, this.x.y.y } TO = Test133#getY( )
+  50 actualOut D = { this.x.!getY } U = {  }
+  51 methodCall D = {  } U = { this.x.!getY.a } TO = Test133#getA( )
+  52 actualOut D = { this.x.!getY.!getA } U = {  }
+  54 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ getA( ) ]
+   1 returnSt D = { $_ } U = { this.a }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ getY( ) ]
+   1 returnSt D = { $_ } U = { this.y, this.y.a, this.y.x, this.y.y }
+   3 formalOut D = {  } U = { $_ }
+--
+   0: x
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 2 -> 3 trueControlDependence
+   4: 3 -> -70 call
+   5: 3 -> 4 trueControlDependence
+   6: 4 -> 1 loopIndependentDefUseDependence
+--
+   0: y
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 2 -> 3 trueControlDependence
+   4: 3 -> -89 call
+   5: 3 -> 4 trueControlDependence
+   6: 4 -> 1 loopIndependentDefUseDependence
+--
+   0: Test133( )
+--
+   0: getX( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence
+--
+   0: a
+   1: 0 -> 1 trueControlDependence
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 7 trueControlDependence
+   6: 0 -> 8 trueControlDependence
+   7: 0 -> 11 trueControlDependence
+   8: 0 -> 12 trueControlDependence
+   9: 0 -> 13 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 22 trueControlDependence
+  13: 0 -> 23 trueControlDependence
+  14: 0 -> 24 trueControlDependence
+  15: 0 -> 29 trueControlDependence
+  16: 0 -> 30 trueControlDependence
+  17: 0 -> 31 trueControlDependence
+  18: 0 -> 32 trueControlDependence
+  19: 0 -> 39 trueControlDependence
+  20: 0 -> 40 trueControlDependence
+  21: 0 -> 41 trueControlDependence
+  22: 0 -> 46 trueControlDependence
+  23: 0 -> 47 trueControlDependence
+  24: 0 -> 48 trueControlDependence
+  25: 0 -> 54 trueControlDependence
+  26: 1 -> 1 declarationDependence
+  27: 2 -> 2 declarationDependence
+  28: 3 -> 3 declarationDependence
+  29: 4 -> 5 trueControlDependence
+  30: 5 -> 6 trueControlDependence
+  31: 5 -> 93 call
+  32: 6 -> 3 loopIndependentDefUseDependence
+  33: 7 -> 7 declarationDependence
+  34: 8 -> 9 trueControlDependence
+  35: 9 -> 10 trueControlDependence
+  36: 9 -> 55 call
+  37: 10 -> 7 loopIndependentDefUseDependence
+  38: 10 -> 15 outputDependence
+  39: 11 -> 11 declarationDependence
+  40: 12 -> 16 trueControlDependence
+  41: 13 -> 14 trueControlDependence
+  42: 14 -> 15 trueControlDependence
+  43: 14 -> 55 call
+  44: 15 -> 12 loopIndependentDefUseDependence
+  45: 15 -> 26 outputDependence
+  46: 16 -> 17 trueControlDependence
+  47: 16 -> 93 call
+  48: 17 -> 11 loopIndependentDefUseDependence
+  49: 18 -> 18 declarationDependence
+  50: 19 -> 20 trueControlDependence
+  51: 20 -> 21 trueControlDependence
+  52: 20 -> 93 call
+  53: 21 -> 18 loopIndependentDefUseDependence
+  54: 22 -> 22 declarationDependence
+  55: 23 -> 27 trueControlDependence
+  56: 24 -> 25 trueControlDependence
+  57: 25 -> 26 trueControlDependence
+  58: 25 -> 55 call
+  59: 26 -> 23 loopIndependentDefUseDependence
+  60: 26 -> 34 outputDependence
+  61: 27 -> 28 trueControlDependence
+  62: 27 -> 74 call
+  63: 28 -> 22 loopIndependentDefUseDependence
+  64: 28 -> 36 outputDependence
+  65: 29 -> 29 declarationDependence
+  66: 30 -> 37 trueControlDependence
+  67: 31 -> 35 trueControlDependence
+  68: 32 -> 33 trueControlDependence
+  69: 33 -> 34 trueControlDependence
+  70: 33 -> 55 call
+  71: 34 -> 31 loopIndependentDefUseDependence
+  72: 34 -> 43 outputDependence
+  73: 35 -> 36 trueControlDependence
+  74: 35 -> 74 call
+  75: 36 -> 30 loopIndependentDefUseDependence
+  76: 37 -> 38 trueControlDependence
+  77: 37 -> 93 call
+  78: 38 -> 29 loopIndependentDefUseDependence
+  79: 39 -> 39 declarationDependence
+  80: 40 -> 44 trueControlDependence
+  81: 41 -> 42 trueControlDependence
+  82: 42 -> 43 trueControlDependence
+  83: 42 -> 55 call
+  84: 43 -> 40 loopIndependentDefUseDependence
+  85: 44 -> 45 trueControlDependence
+  86: 44 -> 93 call
+  87: 45 -> 39 loopIndependentDefUseDependence
+  88: 46 -> 46 declarationDependence
+  89: 47 -> 51 trueControlDependence
+  90: 48 -> 49 trueControlDependence
+  91: 49 -> 50 trueControlDependence
+  92: 49 -> 74 call
+  93: 50 -> 47 loopIndependentDefUseDependence
+  94: 51 -> 52 trueControlDependence
+  95: 51 -> 93 call
+  96: 52 -> 46 loopIndependentDefUseDependence
+  97: 58 -> 10 parameterOut
+  98: 58 -> 15 parameterOut
+  99: 58 -> 26 parameterOut
+ 100: 58 -> 34 parameterOut
+ 101: 58 -> 43 parameterOut
+ 102: 77 -> 28 parameterOut
+ 103: 77 -> 36 parameterOut
+ 104: 77 -> 50 parameterOut
+ 105: 96 -> 6 parameterOut
+ 106: 96 -> 17 parameterOut
+ 107: 96 -> 21 parameterOut
+ 108: 96 -> 38 parameterOut
+ 109: 96 -> 45 parameterOut
+ 110: 96 -> 52 parameterOut
+--
+   0: getA( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence
+--
+   0: getY( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence
+--
+----- ClDG (to here) -----
+

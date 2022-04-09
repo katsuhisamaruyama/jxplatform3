@@ -1,0 +1,56 @@
+----- ClDG (from here) -----
+Class Name = Rental
+   0 methodEntry [ getCharge( double ) ]
+   1 formalIn D = { discount$0 } U = {  }
+   2 localDeclaration D = { charge$1 } U = { this.!floor }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = { discount$0, this.days, this.price } TO = java.lang.Math#floor( double )
+   5 actualOut D = { this.!floor } U = {  }
+   6 returnSt D = { $_ } U = { charge$1 }
+   8 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ price ]
+   1 fieldDeclaration D = { this.price } U = { this.price }
+--
+   0 fieldEntry [ days ]
+   1 fieldDeclaration D = { this.days } U = { this.days }
+--
+   0 constructorEntry [ Rental( int int ) ]
+   1 formalIn D = { price$0 } U = {  }
+   2 formalIn D = { days$1 } U = {  }
+   3 assignment D = { this.price } U = { price$0, this }
+   4 assignment D = { this.days } U = { days$1, this }
+   6 formalOut D = {  } U = { $_ }
+--
+   0: getCharge( double )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 6 trueControlDependence
+   5: 0 -> 8 trueControlDependence
+   6: 1 -> 4 loopIndependentDefUseDependence
+   7: 2 -> 2 declarationDependence
+   8: 2 -> 6 loopIndependentDefUseDependence
+   9: 2 -> 6 declarationDependence
+  10: 3 -> 4 trueControlDependence
+  11: 4 -> 5 trueControlDependence
+  12: 5 -> 2 loopIndependentDefUseDependence
+  13: 6 -> 8 loopIndependentDefUseDependence
+--
+   0: price
+   1: 0 -> 1 trueControlDependence
+--
+   0: days
+   1: 0 -> 1 trueControlDependence
+--
+   0: Rental( int int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 1 -> 3 loopIndependentDefUseDependence
+   7: 2 -> 4 loopIndependentDefUseDependence
+--
+----- ClDG (to here) -----
+

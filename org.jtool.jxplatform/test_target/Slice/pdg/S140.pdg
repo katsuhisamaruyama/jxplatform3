@@ -1,0 +1,71 @@
+----- ClDG (from here) -----
+Class Name = S140
+   0 fieldEntry [ x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+--
+   0 constructorEntry [ S140( ) ]
+   1 assignment D = {  } U = {  }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { this.x } U = {  } TO = S140#S140( int )
+   4 actualIn D = {  } U = {  }
+   5 actualOut D = {  } U = {  }
+   7 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ S140( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = {  } U = {  }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = { super.x } U = {  } TO = Test140#Test140( int )
+   5 actualIn D = {  } U = { x$0 }
+   6 actualOut D = {  } U = {  }
+   7 assignment D = { this.x } U = { this, x$0 }
+   9 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { xx$0 } U = { super.x }
+   2 assignment D = {  } U = { super.!m }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = Test140#m( )
+   5 actualOut D = { super.!m } U = {  }
+   7 formalOut D = {  } U = { $_ }
+--
+   0: x
+   1: 0 -> 1 trueControlDependence
+--
+   0: S140( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 7 trueControlDependence
+   4: 2 -> 3 trueControlDependence
+   5: 3 -> 4 trueControlDependence
+   6: 3 -> 5 trueControlDependence
+   7: 3 -> 8 call
+   8: 4 -> 9 parameterIn
+   9: 5 -> 1 loopIndependentDefUseDependence
+  10: 17 -> 5 parameterOut
+--
+   0: S140( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 7 trueControlDependence
+   5: 0 -> 9 trueControlDependence
+   6: 1 -> 5 loopIndependentDefUseDependence
+   7: 1 -> 7 loopIndependentDefUseDependence
+   8: 3 -> 4 trueControlDependence
+   9: 4 -> 5 trueControlDependence
+  10: 4 -> 6 trueControlDependence
+  11: 6 -> 2 loopIndependentDefUseDependence
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 7 trueControlDependence
+   5: 1 -> 1 declarationDependence
+   6: 3 -> 4 trueControlDependence
+   7: 4 -> 5 trueControlDependence
+   8: 5 -> 2 loopIndependentDefUseDependence
+--
+----- ClDG (to here) -----
+

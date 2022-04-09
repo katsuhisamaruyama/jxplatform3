@@ -1,0 +1,227 @@
+----- ClDG (from here) -----
+Class Name = CustomerTest
+   0 methodEntry [ testStatement1( ) ]
+   1 localDeclaration D = { customer$0 } U = { customer$0.!Customer }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { customer$0.name } U = {  } TO = Customer#Customer( java.lang.String )
+   4 actualIn D = {  } U = { $java.lang.String }
+   5 actualOut D = { customer$0.!Customer } U = {  }
+   6 assignment D = {  } U = { customer$0.!setDiscount }
+   7 receiver D = {  } U = { customer$0 }
+   8 methodCall D = { customer$0.discount } U = {  } TO = Customer#setDiscount( double )
+   9 actualIn D = {  } U = {  }
+  10 actualOut D = { customer$0.!setDiscount } U = {  }
+  11 localDeclaration D = { order$1 } U = { order$1.!Order }
+  12 receiver D = {  } U = {  }
+  13 constructorCall D = {  } U = {  } TO = Order#Order( )
+  14 actualOut D = { order$1.!Order } U = {  }
+  15 localDeclaration D = { r1$2 } U = { r1$2.!Rental }
+  16 receiver D = {  } U = {  }
+  17 constructorCall D = { r1$2.days, r1$2.price } U = {  } TO = Rental#Rental( int int )
+  18 actualIn D = {  } U = {  }
+  19 actualIn D = {  } U = {  }
+  20 actualOut D = { r1$2.!Rental } U = {  }
+  21 assignment D = {  } U = { order$1.!addRental }
+  22 receiver D = {  } U = { order$1 }
+  23 methodCall D = { order$1, order$1.rentals } U = { order$1, order$1.rentals } TO = Order#addRental( Rental )
+  24 actualIn D = {  } U = { r1$2 }
+  25 actualOut D = { order$1, order$1.!addRental } U = { order$1 }
+  26 localDeclaration D = { message$3 } U = { customer$0.!statement }
+  27 receiver D = {  } U = { customer$0 }
+  28 methodCall D = { customer$0.discount } U = { customer$0.discount, customer$0.name } TO = Customer#statement( Order )
+  29 actualIn D = {  } U = { order$1 }
+  30 actualOut D = { customer$0.!statement } U = {  }
+  32 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ testStatement2( ) ]
+   1 localDeclaration D = { customer$0 } U = { customer$0.!Customer }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { customer$0.name } U = {  } TO = Customer#Customer( java.lang.String )
+   4 actualIn D = {  } U = { $java.lang.String }
+   5 actualOut D = { customer$0.!Customer } U = {  }
+   6 assignment D = {  } U = { customer$0.!setDiscount }
+   7 receiver D = {  } U = { customer$0 }
+   8 methodCall D = { customer$0.discount } U = {  } TO = Customer#setDiscount( double )
+   9 actualIn D = {  } U = {  }
+  10 actualOut D = { customer$0.!setDiscount } U = {  }
+  11 localDeclaration D = { order$1 } U = { order$1.!Order }
+  12 receiver D = {  } U = {  }
+  13 constructorCall D = {  } U = {  } TO = Order#Order( )
+  14 actualOut D = { order$1.!Order } U = {  }
+  15 localDeclaration D = { r1$2 } U = { r1$2.!Rental }
+  16 receiver D = {  } U = {  }
+  17 constructorCall D = { r1$2.days, r1$2.price } U = {  } TO = Rental#Rental( int int )
+  18 actualIn D = {  } U = {  }
+  19 actualIn D = {  } U = {  }
+  20 actualOut D = { r1$2.!Rental } U = {  }
+  21 localDeclaration D = { r2$3 } U = { r2$3.!Rental }
+  22 receiver D = {  } U = {  }
+  23 constructorCall D = { r2$3.days, r2$3.price } U = {  } TO = Rental#Rental( int int )
+  24 actualIn D = {  } U = {  }
+  25 actualIn D = {  } U = {  }
+  26 actualOut D = { r2$3.!Rental } U = {  }
+  27 assignment D = {  } U = { order$1.!addRental }
+  28 receiver D = {  } U = { order$1 }
+  29 methodCall D = { order$1, order$1.rentals } U = { order$1, order$1.rentals } TO = Order#addRental( Rental )
+  30 actualIn D = {  } U = { r1$2 }
+  31 actualOut D = { order$1, order$1.!addRental } U = { order$1 }
+  32 assignment D = {  } U = { order$1.!addRental }
+  33 receiver D = {  } U = { order$1 }
+  34 methodCall D = { order$1, order$1.rentals } U = { order$1, order$1.rentals } TO = Order#addRental( Rental )
+  35 actualIn D = {  } U = { r2$3 }
+  36 actualOut D = { order$1, order$1.!addRental } U = { order$1 }
+  37 localDeclaration D = { message$4 } U = { customer$0.!statement }
+  38 receiver D = {  } U = { customer$0 }
+  39 methodCall D = { customer$0.discount } U = { customer$0.discount, customer$0.name } TO = Customer#statement( Order )
+  40 actualIn D = {  } U = { order$1 }
+  41 actualOut D = { customer$0.!statement } U = {  }
+  43 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ CustomerTest( ) ]
+--
+   0: testStatement1( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 6 trueControlDependence
+   4: 0 -> 7 trueControlDependence
+   5: 0 -> 11 trueControlDependence
+   6: 0 -> 12 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 21 trueControlDependence
+  10: 0 -> 22 trueControlDependence
+  11: 0 -> 26 trueControlDependence
+  12: 0 -> 27 trueControlDependence
+  13: 0 -> 32 trueControlDependence
+  14: 1 -> 1 declarationDependence
+  15: 1 -> 7 loopIndependentDefUseDependence
+  16: 1 -> 7 declarationDependence
+  17: 1 -> 27 loopIndependentDefUseDependence
+  18: 1 -> 27 declarationDependence
+  19: 2 -> 3 trueControlDependence
+  20: 3 -> 4 trueControlDependence
+  21: 3 -> 5 trueControlDependence
+  22: 3 -> 28 loopIndependentDefUseDependence
+  23: 5 -> 1 loopIndependentDefUseDependence
+  24: 7 -> 8 trueControlDependence
+  25: 8 -> 9 trueControlDependence
+  26: 8 -> 10 trueControlDependence
+  27: 8 -> 28 loopIndependentDefUseDependence
+  28: 10 -> 6 loopIndependentDefUseDependence
+  29: 11 -> 11 declarationDependence
+  30: 11 -> 22 loopIndependentDefUseDependence
+  31: 11 -> 22 declarationDependence
+  32: 11 -> 23 loopIndependentDefUseDependence
+  33: 11 -> 23 declarationDependence
+  34: 11 -> 25 declarationDependence
+  35: 11 -> 29 declarationDependence
+  36: 12 -> 13 trueControlDependence
+  37: 13 -> 14 trueControlDependence
+  38: 14 -> 11 loopIndependentDefUseDependence
+  39: 15 -> 15 declarationDependence
+  40: 15 -> 24 loopIndependentDefUseDependence
+  41: 15 -> 24 declarationDependence
+  42: 16 -> 17 trueControlDependence
+  43: 17 -> 18 trueControlDependence
+  44: 17 -> 19 trueControlDependence
+  45: 17 -> 20 trueControlDependence
+  46: 20 -> 15 loopIndependentDefUseDependence
+  47: 22 -> 23 trueControlDependence
+  48: 23 -> 24 trueControlDependence
+  49: 23 -> 25 trueControlDependence
+  50: 23 -> 25 loopIndependentDefUseDependence
+  51: 25 -> 21 loopIndependentDefUseDependence
+  52: 25 -> 29 loopIndependentDefUseDependence
+  53: 26 -> 26 declarationDependence
+  54: 27 -> 28 trueControlDependence
+  55: 28 -> 29 trueControlDependence
+  56: 28 -> 30 trueControlDependence
+  57: 30 -> 26 loopIndependentDefUseDependence
+--
+   0: testStatement2( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 6 trueControlDependence
+   4: 0 -> 7 trueControlDependence
+   5: 0 -> 11 trueControlDependence
+   6: 0 -> 12 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 21 trueControlDependence
+  10: 0 -> 22 trueControlDependence
+  11: 0 -> 27 trueControlDependence
+  12: 0 -> 28 trueControlDependence
+  13: 0 -> 32 trueControlDependence
+  14: 0 -> 33 trueControlDependence
+  15: 0 -> 37 trueControlDependence
+  16: 0 -> 38 trueControlDependence
+  17: 0 -> 43 trueControlDependence
+  18: 1 -> 1 declarationDependence
+  19: 1 -> 7 loopIndependentDefUseDependence
+  20: 1 -> 7 declarationDependence
+  21: 1 -> 38 loopIndependentDefUseDependence
+  22: 1 -> 38 declarationDependence
+  23: 2 -> 3 trueControlDependence
+  24: 3 -> 4 trueControlDependence
+  25: 3 -> 5 trueControlDependence
+  26: 3 -> 39 loopIndependentDefUseDependence
+  27: 5 -> 1 loopIndependentDefUseDependence
+  28: 7 -> 8 trueControlDependence
+  29: 8 -> 9 trueControlDependence
+  30: 8 -> 10 trueControlDependence
+  31: 8 -> 39 loopIndependentDefUseDependence
+  32: 10 -> 6 loopIndependentDefUseDependence
+  33: 11 -> 11 declarationDependence
+  34: 11 -> 28 loopIndependentDefUseDependence
+  35: 11 -> 28 declarationDependence
+  36: 11 -> 29 loopIndependentDefUseDependence
+  37: 11 -> 29 declarationDependence
+  38: 11 -> 31 declarationDependence
+  39: 11 -> 33 declarationDependence
+  40: 11 -> 34 declarationDependence
+  41: 11 -> 36 declarationDependence
+  42: 11 -> 40 declarationDependence
+  43: 12 -> 13 trueControlDependence
+  44: 13 -> 14 trueControlDependence
+  45: 14 -> 11 loopIndependentDefUseDependence
+  46: 15 -> 15 declarationDependence
+  47: 15 -> 30 loopIndependentDefUseDependence
+  48: 15 -> 30 declarationDependence
+  49: 16 -> 17 trueControlDependence
+  50: 17 -> 18 trueControlDependence
+  51: 17 -> 19 trueControlDependence
+  52: 17 -> 20 trueControlDependence
+  53: 20 -> 15 loopIndependentDefUseDependence
+  54: 21 -> 21 declarationDependence
+  55: 21 -> 35 loopIndependentDefUseDependence
+  56: 21 -> 35 declarationDependence
+  57: 22 -> 23 trueControlDependence
+  58: 23 -> 24 trueControlDependence
+  59: 23 -> 25 trueControlDependence
+  60: 23 -> 26 trueControlDependence
+  61: 26 -> 21 loopIndependentDefUseDependence
+  62: 28 -> 29 trueControlDependence
+  63: 29 -> 30 trueControlDependence
+  64: 29 -> 31 trueControlDependence
+  65: 29 -> 31 loopIndependentDefUseDependence
+  66: 29 -> 34 loopIndependentDefUseDependence
+  67: 31 -> 27 loopIndependentDefUseDependence
+  68: 31 -> 33 loopIndependentDefUseDependence
+  69: 31 -> 34 loopIndependentDefUseDependence
+  70: 31 -> 36 outputDependence
+  71: 33 -> 34 trueControlDependence
+  72: 34 -> 35 trueControlDependence
+  73: 34 -> 36 trueControlDependence
+  74: 34 -> 36 loopIndependentDefUseDependence
+  75: 36 -> 32 loopIndependentDefUseDependence
+  76: 36 -> 40 loopIndependentDefUseDependence
+  77: 37 -> 37 declarationDependence
+  78: 38 -> 39 trueControlDependence
+  79: 39 -> 40 trueControlDependence
+  80: 39 -> 41 trueControlDependence
+  81: 41 -> 37 loopIndependentDefUseDependence
+--
+   0: CustomerTest( )
+--
+----- ClDG (to here) -----
+

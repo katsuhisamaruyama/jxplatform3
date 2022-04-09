@@ -1,0 +1,8 @@
+----- ClDG (from here) -----
+Class Name = SubSubException
+   0 constructorEntry [ SubSubException( ) ]
+--
+   0: SubSubException( )
+--
+----- ClDG (to here) -----
+

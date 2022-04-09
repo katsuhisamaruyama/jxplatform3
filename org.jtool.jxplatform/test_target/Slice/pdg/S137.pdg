@@ -1,0 +1,63 @@
+----- ClDG (from here) -----
+Class Name = S137
+   0 methodEntry [ add( java.lang.String ) ]
+   1 formalIn D = { elem$0 } U = {  }
+   2 assignment D = {  } U = { this.p.!add }
+   3 receiver D = {  } U = { this.p }
+   4 methodCall D = { this.p, this.p.list } U = { this.p, this.p.list } TO = P137#add( java.lang.String )
+   5 actualIn D = {  } U = { elem$0 }
+   6 actualOut D = { this.p, this.p.!add } U = { this.p }
+   8 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ p ]
+   1 fieldDeclaration D = { this.p } U = { P137.!P137, this.p }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P137#P137( )
+   4 actualOut D = { P137.!P137 } U = {  }
+--
+   0 constructorEntry [ S137( ) ]
+--
+   0 methodEntry [ get( int ) ]
+   1 formalIn D = { index$0 } U = {  }
+   2 returnSt D = { $_ } U = { this.p.!get }
+   3 receiver D = {  } U = { this.p }
+   4 methodCall D = {  } U = { this.p, this.p.list } TO = P137#get( int )
+   5 actualIn D = {  } U = { index$0 }
+   6 actualOut D = { this.p.!get } U = {  }
+   8 formalOut D = {  } U = { $_ }
+--
+   0: add( java.lang.String )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 8 trueControlDependence
+   5: 1 -> 5 loopIndependentDefUseDependence
+   6: 3 -> 4 trueControlDependence
+   7: 4 -> 5 trueControlDependence
+   8: 4 -> 6 trueControlDependence
+   9: 4 -> 6 loopIndependentDefUseDependence
+  10: 6 -> 2 loopIndependentDefUseDependence
+--
+   0: p
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 2 -> 3 trueControlDependence
+   4: 3 -> 4 trueControlDependence
+   5: 4 -> 1 loopIndependentDefUseDependence
+--
+   0: S137( )
+--
+   0: get( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 8 trueControlDependence
+   5: 1 -> 5 loopIndependentDefUseDependence
+   6: 2 -> 8 loopIndependentDefUseDependence
+   7: 3 -> 4 trueControlDependence
+   8: 4 -> 5 trueControlDependence
+   9: 4 -> 6 trueControlDependence
+  10: 6 -> 2 loopIndependentDefUseDependence
+--
+----- ClDG (to here) -----
+

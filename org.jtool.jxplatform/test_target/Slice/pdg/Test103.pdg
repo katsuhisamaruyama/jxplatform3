@@ -1,0 +1,158 @@
+----- ClDG (from here) -----
+Class Name = Test103
+   0 fieldEntry [ a ]
+   1 fieldDeclaration D = { this.a } U = { this.a }
+--
+   0 methodEntry [ m( ) ]
+   1 assignment D = { this.a } U = {  }
+   2 assignment D = { this.a } U = {  }
+   3 localDeclaration D = { p$0 } U = { this.a }
+   4 assignment D = {  } U = { this.!setA }
+   5 receiver D = {  } U = {  }
+   6 methodCall D = { this.a } U = {  } TO = Test103#setA( int )
+   7 actualIn D = {  } U = {  }
+   8 actualOut D = { this.!setA } U = {  }
+   9 assignment D = {  } U = { this.!setA }
+  10 receiver D = {  } U = {  }
+  11 methodCall D = { this.a } U = {  } TO = Test103#setA( int )
+  12 actualIn D = {  } U = {  }
+  13 actualOut D = { this.!setA } U = {  }
+  14 localDeclaration D = { q$1 } U = { this.a }
+  15 localDeclaration D = { r$2 } U = { this.!getA }
+  16 receiver D = {  } U = {  }
+  17 methodCall D = {  } U = { this.a } TO = Test103#getA( )
+  18 actualOut D = { this.!getA } U = {  }
+  19 localDeclaration D = { s$3 } U = { this.!getA }
+  20 receiver D = {  } U = {  }
+  21 methodCall D = {  } U = { this.a } TO = Test103#getA( )
+  22 actualOut D = { this.!getA } U = {  }
+  23 assignment D = {  } U = { this.!incA }
+  24 receiver D = {  } U = {  }
+  25 methodCall D = { this.a } U = { this.a } TO = Test103#incA( )
+  26 actualOut D = { this.!incA } U = {  }
+  27 assignment D = {  } U = { this.!incA }
+  28 receiver D = {  } U = {  }
+  29 methodCall D = { this.a } U = { this.a } TO = Test103#incA( )
+  30 actualOut D = { this.!incA } U = {  }
+  31 localDeclaration D = { t$4 } U = { this.!getA }
+  32 receiver D = {  } U = {  }
+  33 methodCall D = {  } U = { this.a } TO = Test103#getA( )
+  34 actualOut D = { this.!getA } U = {  }
+  36 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ getA( ) ]
+   1 returnSt D = { $_ } U = { this.a }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ incA( ) ]
+   1 assignment D = { this.a } U = { this.a }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ setA( int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 assignment D = { this.a } U = { a$0, this }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test103( ) ]
+--
+   0: a
+   1: 0 -> 1 trueControlDependence
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 9 trueControlDependence
+   7: 0 -> 10 trueControlDependence
+   8: 0 -> 14 trueControlDependence
+   9: 0 -> 15 trueControlDependence
+  10: 0 -> 16 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 20 trueControlDependence
+  13: 0 -> 23 trueControlDependence
+  14: 0 -> 24 trueControlDependence
+  15: 0 -> 27 trueControlDependence
+  16: 0 -> 28 trueControlDependence
+  17: 0 -> 31 trueControlDependence
+  18: 0 -> 32 trueControlDependence
+  19: 0 -> 36 trueControlDependence
+  20: 1 -> 2 outputDependence
+  21: 2 -> 3 loopIndependentDefUseDependence
+  22: 2 -> 6 outputDependence
+  23: 3 -> 3 declarationDependence
+  24: 5 -> 6 trueControlDependence
+  25: 6 -> 7 trueControlDependence
+  26: 6 -> 8 trueControlDependence
+  27: 6 -> 11 outputDependence
+  28: 6 -> 42 call
+  29: 7 -> 43 parameterIn
+  30: 8 -> 4 loopIndependentDefUseDependence
+  31: 8 -> 13 outputDependence
+  32: 10 -> 11 trueControlDependence
+  33: 11 -> 12 trueControlDependence
+  34: 11 -> 13 trueControlDependence
+  35: 11 -> 14 loopIndependentDefUseDependence
+  36: 11 -> 17 loopIndependentDefUseDependence
+  37: 11 -> 21 loopIndependentDefUseDependence
+  38: 11 -> 25 loopIndependentDefUseDependence
+  39: 11 -> 42 call
+  40: 12 -> 43 parameterIn
+  41: 13 -> 9 loopIndependentDefUseDependence
+  42: 14 -> 14 declarationDependence
+  43: 15 -> 15 declarationDependence
+  44: 16 -> 17 trueControlDependence
+  45: 17 -> 18 trueControlDependence
+  46: 17 -> 37 call
+  47: 18 -> 15 loopIndependentDefUseDependence
+  48: 18 -> 22 outputDependence
+  49: 19 -> 19 declarationDependence
+  50: 20 -> 21 trueControlDependence
+  51: 21 -> 22 trueControlDependence
+  52: 21 -> 37 call
+  53: 22 -> 19 loopIndependentDefUseDependence
+  54: 22 -> 34 outputDependence
+  55: 24 -> 25 trueControlDependence
+  56: 25 -> 26 trueControlDependence
+  57: 25 -> 29 loopIndependentDefUseDependence
+  58: 25 -> 48 call
+  59: 26 -> 23 loopIndependentDefUseDependence
+  60: 26 -> 30 outputDependence
+  61: 28 -> 29 trueControlDependence
+  62: 29 -> 30 trueControlDependence
+  63: 29 -> 33 loopIndependentDefUseDependence
+  64: 29 -> 48 call
+  65: 30 -> 27 loopIndependentDefUseDependence
+  66: 31 -> 31 declarationDependence
+  67: 32 -> 33 trueControlDependence
+  68: 33 -> 34 trueControlDependence
+  69: 33 -> 37 call
+  70: 34 -> 31 loopIndependentDefUseDependence
+  71: 40 -> 18 parameterOut
+  72: 40 -> 22 parameterOut
+  73: 40 -> 34 parameterOut
+  74: 46 -> 8 parameterOut
+  75: 46 -> 13 parameterOut
+  76: 51 -> 26 parameterOut
+  77: 51 -> 30 parameterOut
+--
+   0: getA( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence
+--
+   0: incA( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+--
+   0: setA( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence
+--
+   0: Test103( )
+--
+----- ClDG (to here) -----
+

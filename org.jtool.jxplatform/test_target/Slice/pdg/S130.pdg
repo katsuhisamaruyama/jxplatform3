@@ -1,0 +1,30 @@
+----- ClDG (from here) -----
+Class Name = S130
+   0 methodEntry [ getX( ) ]
+   1 returnSt D = { $_ } U = { this.x }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+--
+   0 constructorEntry [ S130( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = { this.x } U = { this, x$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0: getX( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence
+--
+   0: x
+   1: 0 -> 1 trueControlDependence
+--
+   0: S130( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence
+--
+----- ClDG (to here) -----
+

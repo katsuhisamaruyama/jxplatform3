@@ -1,0 +1,58 @@
+----- ClDG (from here) -----
+Class Name = Test117
+   0 constructorEntry [ Test117( ) ]
+--
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { x$0 } U = {  }
+   2 localDeclaration D = { y$1 } U = {  }
+   3 localDeclaration D = { i$2 } U = {  }
+   4 localDeclaration D = { j$3 } U = {  }
+   5 forSt D = {  } U = { i$2 }
+   6 assignment D = { y$1 } U = { y$1 }
+   7 assignment D = { i$2 } U = { i$2 }
+   8 assignment D = { x$0 } U = { x$0 }
+   9 localDeclaration D = { p$4 } U = { x$0 }
+  10 localDeclaration D = { q$5 } U = { y$1 }
+  12 formalOut D = {  } U = { $_ }
+--
+   0: Test117( )
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 9 trueControlDependence
+   7: 0 -> 10 trueControlDependence
+   8: 0 -> 12 trueControlDependence
+   9: 1 -> 1 declarationDependence
+  10: 1 -> 8 loopIndependentDefUseDependence
+  11: 1 -> 8 declarationDependence
+  12: 1 -> 9 loopIndependentDefUseDependence
+  13: 1 -> 9 declarationDependence
+  14: 2 -> 2 declarationDependence
+  15: 2 -> 6 loopIndependentDefUseDependence
+  16: 2 -> 6 declarationDependence
+  17: 2 -> 10 loopIndependentDefUseDependence
+  18: 2 -> 10 declarationDependence
+  19: 3 -> 3 declarationDependence
+  20: 3 -> 5 loopIndependentDefUseDependence
+  21: 3 -> 5 declarationDependence
+  22: 3 -> 7 loopIndependentDefUseDependence
+  23: 3 -> 7 declarationDependence
+  24: 4 -> 4 declarationDependence
+  25: 5 -> 6 trueControlDependence
+  26: 5 -> 7 trueControlDependence
+  27: 5 -> 8 trueControlDependence
+  28: 6 -> 6 loopIndependentDefUseDependence
+  29: 6 -> 10 loopIndependentDefUseDependence
+  30: 7 -> 5 loopCarriedDefUseDependence
+  31: 7 -> 7 loopIndependentDefUseDependence
+  32: 8 -> 8 loopIndependentDefUseDependence
+  33: 8 -> 9 loopIndependentDefUseDependence
+  34: 9 -> 9 declarationDependence
+  35: 10 -> 10 declarationDependence
+--
+----- ClDG (to here) -----
+

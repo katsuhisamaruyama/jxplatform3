@@ -1,0 +1,8 @@
+----- ClDG (from here) -----
+Class Name = SubRuntimeException
+   0 constructorEntry [ SubRuntimeException( ) ]
+--
+   0: SubRuntimeException( )
+--
+----- ClDG (to here) -----
+
