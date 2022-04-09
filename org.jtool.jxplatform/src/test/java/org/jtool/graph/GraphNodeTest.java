@@ -10,22 +10,6 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-class ConcreteGraphNode extends GraphNode {
-    
-    ConcreteGraphNode(long id) {
-        super(id);
-    }
-    
-    @Override
-    public String toString() {
-        return String.valueOf(id);
-    }
-    
-    public static String asSortedStr(Set<GraphNode> set) {
-        return set.stream().map(GraphNode::toString).sorted().collect(Collectors.joining(", "));
-    }
-}
-
 public class GraphNodeTest {
     
     private static ConcreteGraphNode createNode(long id) {
@@ -451,5 +435,21 @@ public class GraphNodeTest {
         Set<GraphNode> result = n6.getDstNodes();
         
         assertEquals("2", ConcreteGraphNode.asSortedStr(result));
+    }
+}
+
+class ConcreteGraphNode extends GraphNode {
+    
+    ConcreteGraphNode(long id) {
+        super(id);
+    }
+    
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
+    
+    public static String asSortedStr(Set<GraphNode> set) {
+        return set.stream().map(GraphNode::toString).sorted().collect(Collectors.joining(", "));
     }
 }

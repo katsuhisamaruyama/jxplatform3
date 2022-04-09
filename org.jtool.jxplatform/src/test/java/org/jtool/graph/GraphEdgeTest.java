@@ -10,22 +10,6 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-class ConcreteGraphEdge extends GraphEdge {
-    
-    ConcreteGraphEdge(GraphNode src, GraphNode dst) {
-        super(src, dst);
-    }
-    
-    @Override
-    public String toString() {
-        return String.valueOf(src.id + "/" + dst.id);
-    }
-    
-    public static String asSortedStr(Set<GraphEdge> set) {
-        return set.stream().map(GraphEdge::toString).sorted().collect(Collectors.joining(", "));
-    }
-}
-
 public class GraphEdgeTest {
     
     private static ConcreteGraphNode createNode(long id) {
@@ -82,5 +66,21 @@ public class GraphEdgeTest {
         GraphNode result = e12.getDstNode();
         
         assertEquals("4", result.toString());
+    }
+}
+
+class ConcreteGraphEdge extends GraphEdge {
+    
+    ConcreteGraphEdge(GraphNode src, GraphNode dst) {
+        super(src, dst);
+    }
+    
+    @Override
+    public String toString() {
+        return String.valueOf(src.id + "/" + dst.id);
+    }
+    
+    public static String asSortedStr(Set<GraphEdge> set) {
+        return set.stream().map(GraphEdge::toString).sorted().collect(Collectors.joining(", "));
     }
 }

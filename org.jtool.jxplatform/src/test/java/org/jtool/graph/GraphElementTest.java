@@ -13,35 +13,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-class ConcreteGraphElement extends GraphElement {
-    
-    int id = 0;
-    
-    ConcreteGraphElement(int id) {
-        this.id = id;
-    }
-    
-    @Override
-    public boolean equals(GraphElement elem) {
-        ConcreteGraphElement celem = (ConcreteGraphElement)elem;
-        return celem.id == id;
-    }
-    
-    @Override
-    public int hashCode() {
-        return id;
-    }
-    
-    @Override
-    public String toString() {
-        return String.valueOf(id);
-    }
-    
-    public static String asSortedStr(Set<ConcreteGraphElement> set) {
-        return set.stream().map(ConcreteGraphElement::toString).sorted().collect(Collectors.joining(", "));
-    }
-}
-
 public class GraphElementTest {
     
     private static Set<ConcreteGraphElement> create(int... args) {
@@ -410,5 +381,34 @@ public class GraphElementTest {
         boolean result = GraphElement.subset(s1, s2);
         
         assertFalse(result);
+    }
+}
+
+class ConcreteGraphElement extends GraphElement {
+    
+    int id = 0;
+    
+    ConcreteGraphElement(int id) {
+        this.id = id;
+    }
+    
+    @Override
+    public boolean equals(GraphElement elem) {
+        ConcreteGraphElement celem = (ConcreteGraphElement)elem;
+        return celem.id == id;
+    }
+    
+    @Override
+    public int hashCode() {
+        return id;
+    }
+    
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
+    
+    public static String asSortedStr(Set<ConcreteGraphElement> set) {
+        return set.stream().map(ConcreteGraphElement::toString).sorted().collect(Collectors.joining(", "));
     }
 }
