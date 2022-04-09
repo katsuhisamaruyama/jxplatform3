@@ -137,6 +137,18 @@ public class FieldReferenceResolverTest {
     }
     
     @Test
+    public void testFindFieldsForEnumConstant() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "PriceCode", "CHILDRENS");
+        CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 2);
+        assert node.isMethodCall();
+        List<JVariableReference> def_result = node.getDefVariables();
+        List<JVariableReference> use_result = node.getUseVariables();
+        
+        assertEquals("PriceCode.priceCode", TestUtil.asSortedStrOfReference(def_result));
+        assertEquals("", TestUtil.asSortedStrOfReference(use_result));
+    }
+    
+    @Test
     public void testFindFieldsForReturn1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test46", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 14);

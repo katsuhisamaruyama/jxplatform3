@@ -63,6 +63,10 @@ class FieldReferenceResolver {
         String receiverName = "";
         if (callNode.hasReceiver()) {
             receiverName = callNode.getReceiver().getName();
+        } else {
+            if (callNode.getMethodCall().isEnumConstant()) {
+                receiverName = callNode.getDeclaringClassName();
+            }
         }
         
         for (JClass type : callNode.getApproximatedTypes()) {
