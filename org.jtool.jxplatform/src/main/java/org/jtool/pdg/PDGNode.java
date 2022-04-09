@@ -9,9 +9,7 @@ import org.jtool.cfg.CFGNode;
 import org.jtool.graph.GraphNode;
 import java.util.Set;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -29,6 +27,7 @@ public class PDGNode extends GraphNode {
     
     /**
      * Creates a new object that represents a PDG node.
+     * This method is not intended to be invoked by clients.
      * @param node the CFG node corresponding to this node
      */
     protected PDGNode(CFGNode node) {
@@ -96,33 +95,11 @@ public class PDGNode extends GraphNode {
     }
     
     /**
-     * Obtains dependence edges outgoing from this node.
-     * @return the collection of the outgoing edges
-     */
-    public Set<Dependence> getOutgoingDependeceEdges() {
-        return getOutgoingEdges().stream()
-                                 .map(edge -> (Dependence)edge)
-                                 .collect(Collectors.toSet());
-    }
-    
-    /**
      * Obtains control dependence edges incoming to this node.
      * @return the collection of the incoming edges
      */
     public Set<CD> getIncomingCDEdges() {
         return getIncomingEdges().stream()
-                                 .map(edge -> (Dependence)edge)
-                                 .filter(edge -> edge.isCD())
-                                 .map(edge -> (CD)edge)
-                                 .collect(Collectors.toSet());
-    }
-    
-    /**
-     * Obtains control dependence edges outgoing from this node.
-     * @return the collection of the outgoing edges
-     */
-    public Set<CD> getOutgoingCDEdges() {
-        return getOutgoingEdges().stream()
                                  .map(edge -> (Dependence)edge)
                                  .filter(edge -> edge.isCD())
                                  .map(edge -> (CD)edge)
@@ -138,6 +115,28 @@ public class PDGNode extends GraphNode {
                                  .map(edge -> (Dependence)edge)
                                  .filter(edge -> edge.isDD())
                                  .map(edge -> (DD)edge)
+                                 .collect(Collectors.toSet());
+    }
+    
+    /**
+     * Obtains dependence edges outgoing from this node.
+     * @return the collection of the outgoing edges
+     */
+    public Set<Dependence> getOutgoingDependeceEdges() {
+        return getOutgoingEdges().stream()
+                                 .map(edge -> (Dependence)edge)
+                                 .collect(Collectors.toSet());
+    }
+    
+    /**
+     * Obtains control dependence edges outgoing from this node.
+     * @return the collection of the outgoing edges
+     */
+    public Set<CD> getOutgoingCDEdges() {
+        return getOutgoingEdges().stream()
+                                 .map(edge -> (Dependence)edge)
+                                 .filter(edge -> edge.isCD())
+                                 .map(edge -> (CD)edge)
                                  .collect(Collectors.toSet());
     }
     
@@ -158,7 +157,8 @@ public class PDGNode extends GraphNode {
      * @return {@code true} if this is a dominated node, otherwise {@code false}
      */
     public boolean isDominated() {
-        return !getIncomingCDEdges().isEmpty();
+        return getIncomingCDEdges().stream()
+                                   .anyMatch(cd -> cd.isTrue() || cd.isFalse() || cd.isFallThrough());
     }
     
     /**
@@ -220,18 +220,12 @@ public class PDGNode extends GraphNode {
     
     /**
      * Sorts the list of PDG nodes
-     * @param co the list of the PDG nodes to be sorted
+     * @param nodes the collection of the PDG nodes to be sorted
      * @return the sorted list of the PDG nodes
      */
-    public static List<PDGNode> sortPDGNodes(Collection<? extends PDGNode> co) {
-        List<PDGNode> nodes = new ArrayList<>(co);
-        Collections.sort(nodes, new Comparator<>() {
-            
-            @Override
-            public int compare(PDGNode node1, PDGNode node2) {
-                return (node2.id == node1.id) ? 0 : (node1.id > node2.id) ? 1 : -1;
-            }
-        });
-        return nodes;
+    public static List<PDGNode> sortNodes(Collection<? extends PDGNode> nodes) {
+        return nodes.stream()
+                    .sorted(Comparator.comparingLong(PDGNode::getId))
+                    .collect(Collectors.toList());
     }
 }
