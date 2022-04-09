@@ -216,7 +216,7 @@ public class PDGBuilder {
                     formalIn = callee.getFormalIn(callee.getFormalIns().size() - 1);
                 }
                 
-                JVariableReference jvar = formalIn.getUseVariables().get(0);
+                JVariableReference jvar = formalIn.getDefVariables().get(0);
                 DD edge = new DD(actualIn.getPDGNode(), formalIn.getPDGNode(), jvar);
                 edge.setParameterIn();
                 pdg.add(edge);
@@ -226,7 +226,7 @@ public class PDGBuilder {
                 CFGParameter actualIn = caller.getActualIn(ordinal);
                 CFGParameter formalIn = callee.getFormalIn(ordinal);
                 
-                JVariableReference jvar = formalIn.getUseVariables().get(0);
+                JVariableReference jvar = formalIn.getDefVariables().get(0);
                 DD edge = new DD(actualIn.getPDGNode(), formalIn.getPDGNode(), jvar);
                 edge.setParameterIn();
                 pdg.add(edge);
