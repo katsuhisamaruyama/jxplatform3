@@ -21,7 +21,6 @@ import java.util.HashSet;
 
 /**
  * Finds control dependences in a PDG.
- * All methods of this class are not intended to be directly called by clients.
  * 
  * @author Katsuhisa Maruyama
  */

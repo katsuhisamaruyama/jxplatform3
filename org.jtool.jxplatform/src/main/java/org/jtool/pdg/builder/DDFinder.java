@@ -24,7 +24,6 @@ import java.util.HashSet;
 /**
  * Finds data dependences of a PDG from its CFG.
  * This class does not guarantee a loop carried node to be correct if a given PDG contains no control dependence.
- * All methods of this class are not intended to be directly called by clients.
  * 
  * @author Katsuhisa Maruyama
  */
