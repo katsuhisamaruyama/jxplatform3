@@ -10,19 +10,17 @@ import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.pdg.PDG;
-import org.jtool.pdg.DependenceGraph;
 import org.jtool.pdg.ClDG;
-import org.jtool.pdg.PDG;
 import org.jtool.pdg.Dependence;
 import org.jtool.pdg.PDGNode;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.CFGMethodCall;
-import org.jtool.cfg.CCFGEntry;
-import org.jtool.cfg.CFGMethodEntry;
-import org.jtool.cfg.CFGFieldEntry;
-import org.jtool.cfg.CFGMerge;
+import org.jtool.cfg.CFG;
+import org.jtool.cfg.CFGEntry;
 import org.jtool.cfg.JReference;
+import org.jtool.cfg.JVariableReference;
+import org.jtool.graph.GraphElement;
 import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
@@ -33,6 +31,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -53,178 +52,226 @@ public class PDGTestUtil {
         }
     }
     
-    public static PDGNode getPDGNode(PDG pdg, int index) {
+    public static PDGNode getNode(PDG pdg, int index) {
         return pdg.getNodes().stream()
-                .filter(n -> n.getId() == index + pdg.getEntryNode().getId()).findFirst().orElse(null);
+                .filter(n -> n.getId() == index + pdg.getEntryNode().getId())
+                .findFirst().orElse(null);
     }
     
-    public static List<PDGNode> getNode(DependenceGraph dgraph, CFGNode.Kind kind) {
-        return PDGNode.sortPDGNodes(dgraph.getNodes()).stream()
+    public static List<PDGNode> getNodes(PDG pdg, String kind) {
+        return PDGNode.sortNodes(pdg.getNodes()).stream()
+            .filter(n -> !n.getCFGNode().isMerge())
+            .filter(n -> n.getCFGNode().getASTNode().getClass().getName().endsWith("." + kind))
+            .collect(Collectors.toList());
+    }
+    
+    public static List<PDGNode> getNodes(PDG pdg, CFGNode.Kind kind) {
+        return PDGNode.sortNodes(pdg.getNodes()).stream()
             .filter(n -> n.getCFGNode().getKind() == kind).collect(Collectors.toList());
     }
     
-    public static void print(DependenceGraph dgraph, CFGNode.Kind kind) {
-        List<PDGNode> nodes = getNode(dgraph, kind);
-        nodes.forEach(e -> System.err.println(e.getId() + " " + e.getCFGNode().getKind().toString() + " " + e.getClass().toString()));
+    public static List<Dependence> getEdges(PDG pdg, Dependence.Kind kind) {
+        return Dependence.sortEdges(pdg.getEdges()).stream()
+            .filter(n -> n.getKind() == kind).collect(Collectors.toList());
     }
     
-    /*
-    public static List<JSpecialVarReference> getDefSpecialReference(CFG cfg) {
-        return getDefReference(cfg, "JSpecialVarReference")
-                .map(n -> (JSpecialVarReference)n).collect(Collectors.toList());
+    public static List<String> getIdList(PDG pdg, Set<? extends PDGNode> set) {
+        return set.stream().map(e -> String.valueOf(e.getId() - pdg.getEntryNode().getId())).sorted()
+            .collect(Collectors.toList());
     }
     
-    public static List<JSpecialVarReference> getUseSpecialReference(CFG cfg) {
-        return getUseReference(cfg, "JSpecialVarReference")
-                .map(n -> (JSpecialVarReference)n).collect(Collectors.toList());
+    public static List<String> getIdList(PDG pdg, List<? extends PDGNode> list) {
+        return list.stream().map(e -> String.valueOf(e.getId() - pdg.getEntryNode().getId()))
+            .collect(Collectors.toList());
     }
     
-    public static List<JLocalVarReference> getDefLocalReference(CFG cfg) {
-        return getDefReference(cfg, "JLocalVarReference")
+    public static List<String> getIdListOfSrc(PDG pdg, Set<? extends Dependence> set) {
+        Set<PDGNode> srcs = set.stream().map(e -> (PDGNode)e.getSrcNode()).collect(Collectors.toSet());
+        return getIdList(pdg, srcs);
+    }
+    
+    public static List<String> getIdListOfSrc(PDG pdg, List<? extends Dependence> set) {
+        Set<PDGNode> srcs = set.stream().map(e -> (PDGNode)e.getSrcNode()).collect(Collectors.toSet());
+        return getIdList(pdg, srcs);
+    }
+    
+    public static List<String> getIdListOfDst(PDG pdg, Set<? extends Dependence> set) {
+        Set<PDGNode> srcs = set.stream().map(e -> (PDGNode)e.getDstNode()).collect(Collectors.toSet());
+        return getIdList(pdg, srcs);
+    }
+    
+    public static List<String> getIdListOfDst(PDG pdg, List<? extends Dependence> set) {
+        Set<PDGNode> srcs = set.stream().map(e -> (PDGNode)e.getDstNode()).collect(Collectors.toSet());
+        return getIdList(pdg, srcs);
+    }
+    
+    public static String asStrOfPDGNode(List<? extends CFGNode> set) {
+        return set.stream().map(e -> String.valueOf(e.getId())).collect(Collectors.joining(";"));
+    }
+    
+    public static String asSortedStrOfPDGEntry(Set<? extends CFGEntry> set) {
+        return set.stream().map(e -> e.getQualifiedName().fqn()).sorted().collect(Collectors.joining(";"));
+    }
+    
+    public static String asStrOfNode(PDG pdg, CFGNode node) {
+        return String.valueOf(node.getId() - pdg.getEntryNode().getId());
+    }
+    
+    public static String asStrOfEdge(PDG pdg, Dependence edge) {
+        long srcId = edge.getSrcNode().getId() - pdg.getEntryNode().getId();
+        long dstId = edge.getDstNode().getId() - pdg.getEntryNode().getId();
+        return String.valueOf(srcId) + "->" + String.valueOf(dstId);
+    }
+    
+    public static void print(PDG pdg, CFGNode.Kind kind) {
+        List<PDGNode> nodes = getNodes(pdg, kind);
+        nodes.forEach(e -> System.err.println(e.getId() + " " +
+                e.getCFGNode().getKind().toString() + " " + e.getClass().toString()));
+    }
+    
+    public static List<JExpedientialReference> getDefExpedientialReference(PDG pdg) {
+        return getDefReference(pdg, "JExpedientialReference")
+                .map(n -> (JExpedientialReference)n).collect(Collectors.toList());
+    }
+    
+    public static List<JExpedientialReference> getUseExpedientialReference(PDG pdg) {
+        return getUseReference(pdg, "JExpedientialReference")
+                .map(n -> (JExpedientialReference)n).collect(Collectors.toList());
+    }
+    
+    public static List<JLocalVarReference> getDefLocalReference(PDG pdg) {
+        return getDefReference(pdg, "JLocalVarReference")
                 .map(n -> (JLocalVarReference)n).collect(Collectors.toList());
     }
     
-    public static List<JLocalVarReference> getUseLocalReference(CFG cfg) {
-        return getUseReference(cfg, "JLocalVarReference")
+    public static List<JLocalVarReference> getUseLocalReference(PDG pdg) {
+        return getUseReference(pdg, "JLocalVarReference")
                 .map(n -> (JLocalVarReference)n).collect(Collectors.toList());
     }
     
-    public static List<JFieldReference> getDefFieldReference(CFG cfg) {
-        return getDefReference(cfg, "JFieldReference")
+    public static List<JFieldReference> getDefFieldReference(PDG pdg) {
+        return getDefReference(pdg, "JFieldReference")
                 .map(n -> (JFieldReference)n).collect(Collectors.toList());
     }
     
-    public static List<JFieldReference> getUseFieldReference(CFG cfg) {
-        return getUseReference(cfg, "JFieldReference")
+    public static List<JFieldReference> getUseFieldReference(PDG pdg) {
+        return getUseReference(pdg, "JFieldReference")
                 .map(n -> (JFieldReference)n).collect(Collectors.toList());
     }
     
-    public static List<JMethodReference> getMethodReference(CFG cfg) {
-        Stream<CFGMethodCall> nstream = CFGNode.sortCFGNodes(cfg.getNodes()).stream()
-                .filter(n -> n.isMethodCall()).map(n -> (CFGMethodCall)n);
+    public static List<JMethodReference> getMethodReference(PDG pdg) {
+        Stream<CFGMethodCall> nstream = PDGNode.sortNodes(pdg.getNodes()).stream()
+                .filter(n -> n.getCFGNode().isMethodCall()).map(n -> (CFGMethodCall)n.getCFGNode());
         return nstream.map(n -> n.getMethodCall()).collect(Collectors.toList());
     }
     
-    private static Stream<JReference> getDefReference(CFG cfg, String refType) {
-        Stream<CFGStatement> nstream = CFGNode.sortCFGNodes(cfg.getNodes()).stream()
-                .filter(n -> n.isStatement()).map(n -> (CFGStatement)n);
+    private static Stream<JVariableReference> getDefReference(PDG pdg, String refType) {
+        Stream<CFGStatement> nstream = PDGNode.sortNodes(pdg.getNodes()).stream()
+                .filter(n -> n.isStatement()).map(n -> (CFGStatement)n.getCFGNode());
         return nstream.flatMap(n -> n.getDefVariables().stream())
                 .filter(r -> r.getClass().getName().endsWith("." + refType));
     }
     
-    private static Stream<JReference> getUseReference(CFG cfg, String refType) {
-        Stream<CFGStatement> nstream = CFGNode.sortCFGNodes(cfg.getNodes()).stream()
-                .filter(n -> n.isStatement()).map(n -> (CFGStatement)n);
+    private static Stream<JVariableReference> getUseReference(PDG pdg, String refType) {
+        Stream<CFGStatement> nstream = PDGNode.sortNodes(pdg.getNodes()).stream()
+                .filter(n -> n.isStatement()).map(n -> (CFGStatement)n.getCFGNode());
         return nstream.flatMap(n -> n.getUseVariables().stream())
                 .filter(r -> r.getClass().getName().endsWith("." + refType));
     }
     
-    public static void printReference(CFG cfg, String refType) {
-        List<JReference> defs = getDefReference(cfg, refType).collect(Collectors.toList());
+    public static void printReference(PDG pdg, String refType) {
+        List<JReference> defs = getDefReference(pdg, refType).collect(Collectors.toList());
         defs.forEach(e -> System.err.println("DEF = " + e.toString()));
-        List<JReference> uses = getUseReference(cfg, refType).collect(Collectors.toList());
+        List<JReference> uses = getUseReference(pdg, refType).collect(Collectors.toList());
         uses.forEach(e -> System.err.println("USE = " + e.toString()));
-        List<JMethodReference> calls = getMethodReference(cfg);
+        List<JMethodReference> calls = getMethodReference(pdg);
         calls.forEach(e -> System.err.println("CALL = " + e.toString()));
     }
     
-    public static void writeCFGs(JavaProject jproject) {
-        for (JavaClass jclass : jproject.getClasses()) {
-            Path path = Paths.get(jproject.getPath(), "cfg", jclass.getQualifiedName().fqn() + ".cfg");
-            CCFG ccfg = jproject.getCFGStore().getCCFG(jclass, false);
-            writeCFG(path, getCCFGInfo(ccfg));
+    public static void writePDGs(JavaProject jproject) {
+        writePDGs(jproject, true);
+    }
+    
+    public static void writePDGs(JavaProject jproject, boolean force) {
+        Path pdgPath = Paths.get(jproject.getPath(), "pdg");
+        if (Files.exists(pdgPath) && !force) {
+            System.err.println("Already exists the directory: " + pdgPath);
+            return;
+        }
+        
+        System.out.println("Create PDG data in the directory: " + pdgPath);
+        try {
+            Files.createDirectories(pdgPath);
+            
+            for (JavaClass jclass : jproject.getClasses()) {
+                Path path = pdgPath.resolve(jclass.getQualifiedName().fqn() + ".pdg");
+                ClDG cldg = jproject.getPDGStore().getClDG(jclass, false);
+                writePDG(path, getClDGData(cldg));
+            }
+        } catch (IOException e) {
+            System.err.println("Cannot create the directory: " + pdgPath);
         }
     }
     
-    private static void writeCFG(Path path, String content) {
+    private static void writePDG(Path path, String content) {
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write(content);
             writer.newLine();
-        } catch (IOException e) { }
+        } catch (IOException e) {
+            System.err.println("Cannot write PDG data in the file: " + path);
+        }
     }
     
-    private static String getCCFGInfo(CCFG ccfg) {
+    public static String getClDGData(ClDG cldg) {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- CCFG (from here) -----\n");
-        buf.append("Class Name = " + ccfg.getQualifiedName());
+        buf.append("----- ClDG (from here) -----\n");
+        buf.append("Class Name = " + cldg.getQualifiedName());
         buf.append("\n");
-        ccfg.getCFGs().forEach(cfg -> buf.append(toStringForNodes(cfg) + "--\n"));
-        ccfg.getCFGs().forEach(cfg -> buf.append(toStringForEdges(cfg) + "--\n"));
-        buf.append("----- CCFG (to here) -----\n");
+        cldg.getPDGs().forEach(pdg -> buf.append(toStringForNodes(pdg) + "--\n"));
+        cldg.getPDGs().forEach(pdg -> buf.append(toStringForEdges(pdg) + "--\n"));
+        buf.append("----- ClDG (to here) -----\n");
         return buf.toString();
     }
     
-    private static String toStringForNodes(CFG cfg) {
+    static String toStringForNodes(PDG pdg) {
+        CFG cfg = pdg.getEntryNode().getCFGEntry().getCFG();
         StringBuilder buf = new StringBuilder();
-        CFGNode.sortCFGNodes(cfg.getNodes()).forEach(node -> {
-            buf.append(toString(cfg, node));
+        PDGNode.sortNodes(pdg.getNodes()).forEach(node -> {
+            buf.append(CFGTestUtil.toString(cfg, node.getCFGNode()));
             buf.append("\n");
         });
         return buf.toString();
     }
     
-    private static String toStringForEdges(CFG cfg) {
+    static String toStringForEdges(PDG pdg) {
         StringBuilder buf = new StringBuilder();
+        buf.append(GraphElement.getIdString(0));
+        buf.append(": ");
+        buf.append(pdg.getEntryNode().getSignature());
+        buf.append("\n");
+        
         long index = 1;
-        for (ControlFlow edge : ControlFlow.sortControlFlowEdges(cfg.getEdges())) {
-            buf.append(edge.getIdString(index));
+        for (Dependence edge : Dependence.sortEdges(pdg.getEdges())) {
+            buf.append(GraphElement.getIdString(index));
             buf.append(": ");
-            buf.append(toString(cfg, edge));
+            buf.append(toString(pdg, edge));
             buf.append("\n");
             index++;
         }
         return buf.toString();
     }
     
-    private static String toString(CFG cfg, CFGNode node) {
-        if (node.getKind() != null) {
-            return node.getIdString(getId(cfg, node)) + " " + node.getKind().toString() + getDetails(cfg, node);
-        } else {
-            return node.getIdString(getId(cfg, node));
-        }
-    }
-    
-    private static String toString(CFG cfg, ControlFlow edge) {
+    private static String toString(PDG pdg, Dependence edge) {
         StringBuilder buf = new StringBuilder();
-        buf.append(String.valueOf(getId(cfg, edge.getSrcNode())) + " -> " + String.valueOf(getId(cfg, edge.getDstNode())));
+        buf.append(String.valueOf(getId(pdg, edge.getSrcNode())) + " -> " +
+                   String.valueOf(getId(pdg, edge.getDstNode())));
         if (edge.getKind() != null) {
             buf.append(" " + edge.getKind().toString());
-        }
-        if (edge.getLoopBack() != null) {
-            buf.append(" (LC = " + String.valueOf(getId(cfg, edge.getLoopBack())) + ")");
         }
         return buf.toString();
     }
     
-    private static long getId(CFG cfg, CFGNode node) {
-        return node.getId() - cfg.getEntryNode().getId();
+    public static long getId(PDG pdg, PDGNode node) {
+        return node.getId() - pdg.getEntryNode().getId();
     }
-    
-    private static String getDetails(CFG cfg, CFGNode node) {
-        if (node instanceof CCFGEntry) {
-            return " [ " + ((CCFGEntry)node).getQualifiedName().getClassName() + " ]";
-        } else if (node instanceof CFGMethodEntry) {
-            return " [ " + ((CFGMethodEntry)node).getQualifiedName().getMemberSignature() + " ]";
-        } else if (node instanceof CFGFieldEntry) {
-            return " [ " + ((CFGFieldEntry)node).getQualifiedName().getMemberSignature() + " ]";
-        } else if (node instanceof CFGMethodCall) {
-            return getVars((CFGStatement)node) + " TO = " + ((CFGMethodCall)node).getQualifiedName();
-        } else if (node instanceof CFGStatement) {
-            return getVars((CFGStatement)node);
-        } else if (node instanceof CFGMerge) {
-            CFGMerge merge = (CFGMerge)node;
-            if (node.getKind() != null) {
-                return " merge-" + merge.getBranch().getKind().toString() + "(" +
-                        String.valueOf(getId(cfg, merge.getBranch())) + ")";
-            }
-        }
-        return "";
-    }
-    
-    private static String getVars(CFGStatement st) {
-        String defStr = st.getDefVariables().stream().map(e -> e.getReferenceForm()).collect(Collectors.joining(", "));
-        String useStr = st.getUseVariables().stream().map(e -> e.getReferenceForm()).collect(Collectors.joining(", "));
-        return " D = { " + defStr + " } U = { " + useStr + " }";
-    }
-    */
 }
