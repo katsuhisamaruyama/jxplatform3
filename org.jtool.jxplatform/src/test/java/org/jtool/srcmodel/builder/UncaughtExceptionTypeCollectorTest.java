@@ -8,7 +8,6 @@ package org.jtool.srcmodel.builder;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.jxplatform.util.BuilderTestUtil;
-import org.jtool.jxplatform.util.CFGTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import java.util.Set;
@@ -28,7 +27,6 @@ public class UncaughtExceptionTypeCollectorTest {
         CSclassroomProject = BuilderTestUtil.createProject("CS-classroom", "/lib/*", "/src");
         DrawToolProject = BuilderTestUtil.createProject("DrawTool", "", "/src");
         SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-        CFGTestUtil.writeCFGs(SliceProject);
     }
     
     @AfterClass
