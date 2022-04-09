@@ -6,12 +6,13 @@
 package org.jtool.pdg;
 
 import org.jtool.cfg.CCFG;
+import org.jtool.jxplatform.builder.ModelBuilderBatch;
+import org.jtool.jxplatform.builder.TimeInfo;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDG;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.srcplatform.modelbuilder.ModelBuilderBatch;
-import org.jtool.srcplatform.util.TimeInfo;
+
 import java.io.File;
 import java.util.List;
 import org.junit.Test;

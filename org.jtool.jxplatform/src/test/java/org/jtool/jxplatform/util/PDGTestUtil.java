@@ -26,7 +26,7 @@ import org.jtool.cfg.JReference;
 import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
-import org.jtool.cfg.JInvisibleReference;
+import org.jtool.cfg.JExpedientialReference;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
