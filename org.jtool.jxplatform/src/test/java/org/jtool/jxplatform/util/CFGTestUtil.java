@@ -64,24 +64,24 @@ public class CFGTestUtil {
     }
     
     public static List<CFGNode> getNodes(CFG cfg, String kind) {
-        return CFGNode.sortCFGNodes(cfg.getNodes()).stream()
+        return CFGNode.sortNodes(cfg.getNodes()).stream()
             .filter(n -> !n.isMerge())
             .filter(n -> n.getASTNode().getClass().getName().endsWith("." + kind))
             .collect(Collectors.toList());
     }
     
     public static List<CFGNode> getNodes(CFG cfg, CFGNode.Kind kind) {
-        return CFGNode.sortCFGNodes(cfg.getNodes()).stream()
+        return CFGNode.sortNodes(cfg.getNodes()).stream()
             .filter(n -> n.getKind() == kind).collect(Collectors.toList());
     }
     
     public static List<ControlFlow> getEdges(CFG cfg, ControlFlow.Kind kind) {
-        return ControlFlow.sortControlFlowEdges(cfg.getEdges()).stream()
+        return ControlFlow.sortEdges(cfg.getEdges()).stream()
             .filter(n -> n.getKind() == kind).collect(Collectors.toList());
     }
     
     public static List<ControlFlow> getLCFlow(CFG cfg) {
-        return ControlFlow.sortControlFlowEdges(cfg.getEdges()).stream()
+        return ControlFlow.sortEdges(cfg.getEdges()).stream()
             .filter(n -> n.getLoopBack() != null).collect(Collectors.toList());
     }
     
@@ -177,20 +177,20 @@ public class CFGTestUtil {
     }
     
     public static List<JMethodReference> getMethodReference(CFG cfg) {
-        Stream<CFGMethodCall> nstream = CFGNode.sortCFGNodes(cfg.getNodes()).stream()
+        Stream<CFGMethodCall> nstream = CFGNode.sortNodes(cfg.getNodes()).stream()
                 .filter(n -> n.isMethodCall()).map(n -> (CFGMethodCall)n);
         return nstream.map(n -> n.getMethodCall()).collect(Collectors.toList());
     }
     
     private static Stream<JVariableReference> getDefReference(CFG cfg, String refType) {
-        Stream<CFGStatement> nstream = CFGNode.sortCFGNodes(cfg.getNodes()).stream()
+        Stream<CFGStatement> nstream = CFGNode.sortNodes(cfg.getNodes()).stream()
                 .filter(n -> n.isStatement()).map(n -> (CFGStatement)n);
         return nstream.flatMap(n -> n.getDefVariables().stream())
                 .filter(r -> r.getClass().getName().endsWith("." + refType));
     }
     
     private static Stream<JVariableReference> getUseReference(CFG cfg, String refType) {
-        Stream<CFGStatement> nstream = CFGNode.sortCFGNodes(cfg.getNodes()).stream()
+        Stream<CFGStatement> nstream = CFGNode.sortNodes(cfg.getNodes()).stream()
                 .filter(n -> n.isStatement()).map(n -> (CFGStatement)n);
         return nstream.flatMap(n -> n.getUseVariables().stream())
                 .filter(r -> r.getClass().getName().endsWith("." + refType));
@@ -206,8 +206,12 @@ public class CFGTestUtil {
     }
     
     public static void writeCFGs(JavaProject jproject) {
+        writeCFGs(jproject, true);
+    }
+    
+    public static void writeCFGs(JavaProject jproject, boolean force) {
         Path cfgPath = Paths.get(jproject.getPath(), "cfg");
-        if (Files.exists(cfgPath)) {
+        if (Files.exists(cfgPath) && !force) {
             System.err.println("Already exists the directory: " + cfgPath);
             return;
         }
@@ -246,16 +250,16 @@ public class CFGTestUtil {
         return buf.toString();
     }
     
-    private static String toStringForNodes(CFG cfg) {
+    static String toStringForNodes(CFG cfg) {
         StringBuilder buf = new StringBuilder();
-        CFGNode.sortCFGNodes(cfg.getNodes()).forEach(node -> {
+        CFGNode.sortNodes(cfg.getNodes()).forEach(node -> {
             buf.append(toString(cfg, node));
             buf.append("\n");
         });
         return buf.toString();
     }
     
-    private static String toStringForEdges(CFG cfg) {
+    static String toStringForEdges(CFG cfg) {
         StringBuilder buf = new StringBuilder();
         buf.append(GraphElement.getIdString(0));
         buf.append(": ");
@@ -263,7 +267,7 @@ public class CFGTestUtil {
         buf.append("\n");
         
         long index = 1;
-        for (ControlFlow edge : ControlFlow.sortControlFlowEdges(cfg.getEdges())) {
+        for (ControlFlow edge : ControlFlow.sortEdges(cfg.getEdges())) {
             buf.append(GraphElement.getIdString(index));
             buf.append(": ");
             buf.append(toString(cfg, edge));
@@ -273,7 +277,7 @@ public class CFGTestUtil {
         return buf.toString();
     }
     
-    private static String toString(CFG cfg, CFGNode node) {
+    static String toString(CFG cfg, CFGNode node) {
         if (node.getKind() != null) {
             return GraphElement.getIdString(getId(cfg, node)) + " " + node.getKind().toString() + getDetails(cfg, node);
         } else {
@@ -281,7 +285,7 @@ public class CFGTestUtil {
         }
     }
     
-    private static String toString(CFG cfg, ControlFlow edge) {
+    static String toString(CFG cfg, ControlFlow edge) {
         StringBuilder buf = new StringBuilder();
         buf.append(String.valueOf(getId(cfg, edge.getSrcNode())) + " -> " + String.valueOf(getId(cfg, edge.getDstNode())));
         if (edge.getKind() != null) {
@@ -293,11 +297,11 @@ public class CFGTestUtil {
         return buf.toString();
     }
     
-    private static long getId(CFG cfg, CFGNode node) {
+    public static long getId(CFG cfg, CFGNode node) {
         return node.getId() - cfg.getEntryNode().getId();
     }
     
-    private static String getDetails(CFG cfg, CFGNode node) {
+    static String getDetails(CFG cfg, CFGNode node) {
         if (node instanceof CCFGEntry) {
             return " [ " + ((CCFGEntry)node).getQualifiedName().getClassName() + " ]";
         } else if (node instanceof CFGMethodEntry) {
@@ -318,7 +322,7 @@ public class CFGTestUtil {
         return "";
     }
     
-    private static String getVars(CFGStatement st) {
+    static String getVars(CFGStatement st) {
         String defStr = st.getDefVariables().stream().map(e -> e.getReferenceForm()).sorted().collect(Collectors.joining(", "));
         String useStr = st.getUseVariables().stream().map(e -> e.getReferenceForm()).sorted().collect(Collectors.joining(", "));
         return " D = { " + defStr + " } U = { " + useStr + " }";

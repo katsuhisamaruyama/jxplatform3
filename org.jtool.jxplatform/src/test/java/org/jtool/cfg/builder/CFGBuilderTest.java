@@ -101,11 +101,11 @@ public class CFGBuilderTest {
         JavaProject TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
         JavaProject VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
         
-        CFGTestUtil.writeCFGs(CSclassroomProject);
-        CFGTestUtil.writeCFGs(DrawToolProject);
-        CFGTestUtil.writeCFGs(SimpleProject);
-        CFGTestUtil.writeCFGs(SliceProject);
-        CFGTestUtil.writeCFGs(TetrisProject);
-        CFGTestUtil.writeCFGs(VideoStoreProject);
+        CFGTestUtil.writeCFGs(CSclassroomProject, false);
+        CFGTestUtil.writeCFGs(DrawToolProject, false);
+        CFGTestUtil.writeCFGs(SimpleProject, false);
+        CFGTestUtil.writeCFGs(SliceProject, false);
+        CFGTestUtil.writeCFGs(TetrisProject, false);
+        CFGTestUtil.writeCFGs(VideoStoreProject, false);
     }
 }
