@@ -226,6 +226,17 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     }
     
     /**
+     * Finds an exception catch flow edge outgoing from a given node.
+     * @param node the CFG node having the outgoing edge
+     * @return the found exception catch flow edge, or {@code null} if no edge is found
+     */
+    public ControlFlow getExceptionCatchFlowFrom(CFGNode node) {
+        return getEdges().stream()
+                         .filter(edge -> edge.getSrcNode().equals(node) && edge.isExceptionCatch())
+                         .findFirst().orElse(null);
+    }
+    
+    /**
      * Returns a successor node of a given CFG node with respect to the true control flow.
      * @param node the source node
      * @return the found successor, or {@code null} if no successor is found
@@ -252,6 +263,16 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      */
     public CFGNode getFallThroughSuccessor(CFGNode node) {
         ControlFlow flow = getFallThroughFlowFrom(node);
+        return (flow != null) ? flow.getDstNode() : null;
+    }
+    
+    /**
+     * Returns a successor node of a given CFG node with respect to the exception catch flow.
+     * @param node the source node
+     * @return the found successor, or {@code null} if no successor is found
+     */
+    public CFGNode getExceptionCatchSuccessor(CFGNode node) {
+        ControlFlow flow = getExceptionCatchFlowFrom(node);
         return (flow != null) ? flow.getDstNode() : null;
     }
     

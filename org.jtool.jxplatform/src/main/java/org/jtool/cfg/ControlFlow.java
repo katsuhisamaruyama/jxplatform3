@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -38,7 +38,6 @@ public class ControlFlow extends GraphEdge {
         falseControlFlow,                // Control flow outgoing to a false-branch
         fallThroughFlow,                 // Control flow representing a fall-through
         callFlow,                        // Flow representing the call to a method
-        parameterFlow,                   // Flow representing the relationship between a class/method and its parameter
         exceptionCatchFlow,              // Flow representing the relationship between an exception occurrence and its catch
         undefined,
     }
@@ -132,22 +131,6 @@ public class ControlFlow extends GraphEdge {
      */
     public boolean isCall() {
         return kind == Kind.callFlow;
-    }
-    
-    /**
-     * Sets as this edge is a parameter flow.
-     * This method is not intended to be invoked by clients.
-     */
-    public void setParameter() {
-        kind = Kind.parameterFlow;
-    }
-    
-    /**
-     * Tests if this edge represents a parameter flow.
-     * @return {@code true} if this is a parameter edge, otherwise {@code false}
-     */
-    public boolean isParameter() {
-        return kind == Kind.parameterFlow;
     }
     
     /**

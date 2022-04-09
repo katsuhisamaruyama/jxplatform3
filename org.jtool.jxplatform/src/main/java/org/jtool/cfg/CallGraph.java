@@ -103,8 +103,8 @@ public class CallGraph {
      */
     public Set<CFGEntry> getCalleeNodes(CFGEntry caller) {
         return edges.stream()
-             .filter(e -> e.getSrcNode().equals(caller))
-             .map(e -> (CFGEntry)e.getDstNode()).collect(Collectors.toSet());
+                    .filter(e -> e.getSrcNode().equals(caller))
+                    .map(e -> (CFGEntry)e.getDstNode()).collect(Collectors.toSet());
     }
     
     /**
@@ -114,8 +114,19 @@ public class CallGraph {
      */
     public Set<CFGEntry> getCallerNodes(CFGNode callee) {
         return edges.stream()
-                .filter(e -> e.getDstNode().equals(callee))
-                .map(e -> (CFGEntry)e.getSrcNode()).collect(Collectors.toSet());
+                    .filter(e -> e.getDstNode().equals(callee))
+                    .map(e -> (CFGEntry)e.getSrcNode()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Finds a call flow edge outgoing from a given node.
+     * @param node the CFG node having the outgoing edge
+     * @return the collection of the call flow edges
+     */
+    public Set<ControlFlow> getCallFlowsFrom(CFGNode node) {
+        return edges.stream()
+                    .filter(edge -> edge.getSrcNode().equals(node))
+                    .collect(Collectors.toSet());
     }
     
     /**

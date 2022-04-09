@@ -19,11 +19,6 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Tests a class that builds a CFG.
- * 
- * @author Katsuhisa Maruyama
- */
 public class ExpressionVisitorTest {
     
     private static JavaProject SimpleProject;

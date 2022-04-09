@@ -83,6 +83,30 @@ public class CCFG {
     }
     
     /**
+     * Tests if this CCFG is created from a class.
+     * @return {@code true} if this CCFG corresponds to a class, otherwise {@code false}
+     */
+    public boolean isClass() {
+        return entry.getJavaClass().isClass();
+    }
+    
+    /**
+     * Tests if this CCFG is created from an interface.
+     * @return {@code true} if this CCFG corresponds to an interface, otherwise {@code false}
+     */
+    public boolean isInterface() {
+        return entry.getJavaClass().isInterface();
+    }
+    
+    /**
+     * Tests if this CCFG is created from an enum class.
+     * @return {@code true} if this CCFG corresponds to an enum, otherwise {@code false}
+     */
+    public boolean isEnum() {
+        return entry.getJavaClass().isEnum();
+    }
+    
+    /**
      * {@inheritDoc}
      */
     @Override

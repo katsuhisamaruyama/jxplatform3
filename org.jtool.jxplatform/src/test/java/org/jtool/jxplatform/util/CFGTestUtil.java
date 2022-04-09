@@ -14,6 +14,8 @@ import org.jtool.cfg.CFG;
 import org.jtool.cfg.CCFG;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.CFGNode;
+import org.jtool.cfg.CFGEntry;
+import org.jtool.cfg.BasicBlock;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CCFGEntry;
@@ -25,15 +27,18 @@ import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
 import org.jtool.cfg.JVariableReference;
-import org.jtool.cfg.JInvisibleReference;
+import org.jtool.cfg.builder.BasicBlockBuilder;
+import org.jtool.cfg.JExpedientialReference;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.Comparator;
 
 public class CFGTestUtil {
     
@@ -80,20 +85,75 @@ public class CFGTestUtil {
             .filter(n -> n.getLoopBack() != null).collect(Collectors.toList());
     }
     
+    public static List<BasicBlock> getBasicBlocks(CFG cfg) {
+        BasicBlockBuilder.create(cfg, false);
+        return cfg.getBasicBlocks().stream()
+                .sorted(Comparator.comparingLong(BasicBlock::getId))
+                .collect(Collectors.toList());
+    }
+    
+    public static List<String> getIdList(CFG cfg, Set<? extends CFGNode> set) {
+        return set.stream().map(e -> String.valueOf(e.getId() - cfg.getEntryNode().getId())).sorted()
+            .collect(Collectors.toList());
+    }
+    
+    public static List<String> getIdList(CFG cfg, List<? extends CFGNode> list) {
+        return list.stream().map(e -> String.valueOf(e.getId() - cfg.getEntryNode().getId()))
+            .collect(Collectors.toList());
+    }
+    
+    public static List<String> getIdListOfSrc(CFG cfg, Set<? extends ControlFlow> set) {
+        Set<CFGNode> srcs = set.stream().map(e -> (CFGNode)e.getSrcNode()).collect(Collectors.toSet());
+        return getIdList(cfg, srcs);
+    }
+    
+    public static List<String> getIdListOfSrc(CFG cfg, List<? extends ControlFlow> set) {
+        Set<CFGNode> srcs = set.stream().map(e -> (CFGNode)e.getSrcNode()).collect(Collectors.toSet());
+        return getIdList(cfg, srcs);
+    }
+    
+    public static List<String> getIdListOfDst(CFG cfg, Set<? extends ControlFlow> set) {
+        Set<CFGNode> srcs = set.stream().map(e -> (CFGNode)e.getDstNode()).collect(Collectors.toSet());
+        return getIdList(cfg, srcs);
+    }
+    
+    public static List<String> getIdListOfDst(CFG cfg, List<? extends ControlFlow> set) {
+        Set<CFGNode> srcs = set.stream().map(e -> (CFGNode)e.getDstNode()).collect(Collectors.toSet());
+        return getIdList(cfg, srcs);
+    }
+    
+    public static String asStrOfCFGNode(List<? extends CFGNode> set) {
+        return set.stream().map(e -> String.valueOf(e.getId())).collect(Collectors.joining(";"));
+    }
+    
+    public static String asSortedStrOfCFGEntry(Set<? extends CFGEntry> set) {
+        return set.stream().map(e -> e.getQualifiedName().fqn()).sorted().collect(Collectors.joining(";"));
+    }
+    
+    public static String asStrOfNode(CFG cfg, CFGNode node) {
+        return String.valueOf(node.getId() - cfg.getEntryNode().getId());
+    }
+    
+    public static String asStrOfEdge(CFG cfg, ControlFlow edge) {
+        long srcId = edge.getSrcNode().getId() - cfg.getEntryNode().getId();
+        long dstId = edge.getDstNode().getId() - cfg.getEntryNode().getId();
+        return String.valueOf(srcId) + "->" + String.valueOf(dstId);
+    }
+    
     public static void print(CFG cfg, CFGNode.Kind kind) {
         List<CFGNode> nodes = getNodes(cfg, kind);
         nodes.forEach(e -> System.err.println(e.getId() + " " +
                 e.getKind().toString() + " " + e.getClass().toString()));
     }
     
-    public static List<JInvisibleReference> getDefSpecialReference(CFG cfg) {
-        return getDefReference(cfg, "JSpecialVarReference")
-                .map(n -> (JInvisibleReference)n).collect(Collectors.toList());
+    public static List<JExpedientialReference> getDefExpedientialReference(CFG cfg) {
+        return getDefReference(cfg, "JExpedientialReference")
+                .map(n -> (JExpedientialReference)n).collect(Collectors.toList());
     }
     
-    public static List<JInvisibleReference> getUseSpecialReference(CFG cfg) {
-        return getUseReference(cfg, "JSpecialVarReference")
-                .map(n -> (JInvisibleReference)n).collect(Collectors.toList());
+    public static List<JExpedientialReference> getUseExpedientialReference(CFG cfg) {
+        return getUseReference(cfg, "JExpedientialReference")
+                .map(n -> (JExpedientialReference)n).collect(Collectors.toList());
     }
     
     public static List<JLocalVarReference> getDefLocalReference(CFG cfg) {

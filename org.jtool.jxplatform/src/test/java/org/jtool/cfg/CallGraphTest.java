@@ -10,16 +10,13 @@ import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.CFGTestUtil;
 import org.jtool.cfg.builder.CallGraphBuilder;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.junit.Test;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-/**
- * Tests a class that builds a CFG.
- * 
- * @author Katsuhisa Maruyama
- */
 public class CallGraphTest {
     
     private static JavaProject SliceProject;
@@ -144,5 +141,77 @@ public class CallGraphTest {
         Set<CFGEntry> result = graph.getCallerNodes(cfg.getEntryNode());
         
         assertEquals("A126#add( int );Test126#m( )", CFGTestUtil.asSortedStrOfCFGEntry(result));
+    }
+    
+    @Test
+    public void testGetCallFlowsFrom1() {
+        CallGraph graph = CallGraphBuilder.getCallGraph(SliceProject);
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
+        Set<ControlFlow> result = graph.getCallFlowsFrom(cfg.getEntryNode());
+        
+        Set<CFGEntry> nodes = result.stream().map(e -> (CFGEntry)e.getDstNode()).collect(Collectors.toSet());
+        assertEquals("Test102#inc( int )", CFGTestUtil.asSortedStrOfCFGEntry(nodes));
+    }
+    
+    @Test
+    public void testGetCallFlowsFrom2() {
+        CallGraph graph = CallGraphBuilder.getCallGraph(SliceProject);
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "inc( int )");
+        Set<ControlFlow> result = graph.getCallFlowsFrom(cfg.getEntryNode());
+        
+        assertTrue(result.isEmpty());
+    }
+    
+    @Test
+    public void testGetCallFlowsFrom3() {
+        CallGraph graph = CallGraphBuilder.getCallGraph(SliceProject);
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
+        Set<ControlFlow> result = graph.getCallFlowsFrom(cfg.getEntryNode());
+        
+        Set<CFGEntry> nodes = result.stream().map(e -> (CFGEntry)e.getDstNode()).collect(Collectors.toSet());
+        assertEquals("Test103#getA( );Test103#incA( );Test103#setA( int )",
+                CFGTestUtil.asSortedStrOfCFGEntry(nodes));
+    }
+    
+    @Test
+    public void testGetCallFlowsFrom4() {
+        CallGraph graph = CallGraphBuilder.getCallGraph(SliceProject);
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
+        Set<ControlFlow> result = graph.getCallFlowsFrom(cfg.getEntryNode());
+        
+        Set<CFGEntry> nodes = result.stream().map(e -> (CFGEntry)e.getDstNode()).collect(Collectors.toSet());
+        assertEquals("A119#A119( );A119#getX( );A119#setX( int );Test119#getP( )",
+                CFGTestUtil.asSortedStrOfCFGEntry(nodes));
+    }
+    
+    @Test
+    public void testGetCallFlowsFrom5() {
+        CallGraph graph = CallGraphBuilder.getCallGraph(SliceProject);
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test126", "m( )");
+        Set<ControlFlow> result = graph.getCallFlowsFrom(cfg.getEntryNode());
+        
+        Set<CFGEntry> nodes = result.stream().map(e -> (CFGEntry)e.getDstNode()).collect(Collectors.toSet());
+        assertEquals("A126#A126( );A126#add( int );A126#getY( );A126#setY( int )",
+                CFGTestUtil.asSortedStrOfCFGEntry(nodes));
+    }
+    
+    @Test
+    public void testGetCallFlowsFrom6() {
+        CallGraph graph = CallGraphBuilder.getCallGraph(SliceProject);
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
+        Set<ControlFlow> result = graph.getCallFlowsFrom(cfg.getEntryNode());
+        
+        Set<CFGEntry> nodes = result.stream().map(e -> (CFGEntry)e.getDstNode()).collect(Collectors.toSet());
+        assertEquals("A128#A128( );A128#add( int );A128#getY( );A128#setY( int );Test128#n( int int )",
+                CFGTestUtil.asSortedStrOfCFGEntry(nodes));
+    }
+    
+    @Test
+    public void testGetCallFlowsFrom7() {
+        CallGraph graph = CallGraphBuilder.getCallGraph(SliceProject);
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "m( )");
+        Set<CFGEntry> result = graph.getCalleeNodes(cfg.getEntryNode());
+        
+        assertTrue(result.isEmpty());
     }
 }

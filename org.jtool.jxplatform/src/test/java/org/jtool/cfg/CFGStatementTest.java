@@ -22,7 +22,6 @@ public class CFGStatementTest {
     @BeforeClass
     public static void setUp() {
         SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-        CFGTestUtil.writeCFGs(SliceProject);
     }
     
     @AfterClass
