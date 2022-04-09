@@ -206,10 +206,23 @@ public class CFGTestUtil {
     }
     
     public static void writeCFGs(JavaProject jproject) {
-        for (JavaClass jclass : jproject.getClasses()) {
-            Path path = Paths.get(jproject.getPath(), "cfg", jclass.getQualifiedName().fqn() + ".cfg");
-            CCFG ccfg = jproject.getCFGStore().getCCFG(jclass, false);
-            writeCFG(path, getCCFGInfo(ccfg));
+        Path cfgPath = Paths.get(jproject.getPath(), "cfg");
+        if (Files.exists(cfgPath)) {
+            System.err.println("Already exists the directory: " + cfgPath);
+            return;
+        }
+        
+        System.out.println("Create CFG data in the directory: " + cfgPath);
+        try {
+            Files.createDirectories(cfgPath);
+            
+            for (JavaClass jclass : jproject.getClasses()) {
+                Path path = cfgPath.resolve(jclass.getQualifiedName().fqn() + ".cfg");
+                CCFG ccfg = jproject.getCFGStore().getCCFG(jclass, false);
+                writeCFG(path, getCCFGData(ccfg));
+            }
+        } catch (IOException e) {
+            System.err.println("Cannot create the directory: " + cfgPath);
         }
     }
     
@@ -217,10 +230,12 @@ public class CFGTestUtil {
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write(content);
             writer.newLine();
-        } catch (IOException e) { }
+        } catch (IOException e) {
+            System.err.println("Cannot write CFG data in the file: " + path);
+        }
     }
     
-    private static String getCCFGInfo(CCFG ccfg) {
+    public static String getCCFGData(CCFG ccfg) {
         StringBuilder buf = new StringBuilder();
         buf.append("----- CCFG (from here) -----\n");
         buf.append("Class Name = " + ccfg.getQualifiedName());
@@ -304,8 +319,8 @@ public class CFGTestUtil {
     }
     
     private static String getVars(CFGStatement st) {
-        String defStr = st.getDefVariables().stream().map(e -> e.getReferenceForm()).collect(Collectors.joining(", "));
-        String useStr = st.getUseVariables().stream().map(e -> e.getReferenceForm()).collect(Collectors.joining(", "));
+        String defStr = st.getDefVariables().stream().map(e -> e.getReferenceForm()).sorted().collect(Collectors.joining(", "));
+        String useStr = st.getUseVariables().stream().map(e -> e.getReferenceForm()).sorted().collect(Collectors.joining(", "));
         return " D = { " + defStr + " } U = { " + useStr + " }";
     }
 }
