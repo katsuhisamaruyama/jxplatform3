@@ -18,6 +18,7 @@ public class PDGStatement extends PDGNode {
     
     /**
      * Creates a new object that represents a statement.
+     * This method is not intended to be invoked by clients.
      * @param node the CFG node corresponding to this node
      */
     public PDGStatement(CFGStatement node) {
@@ -29,7 +30,7 @@ public class PDGStatement extends PDGNode {
      * @return the CFG node for the statement
      */
     public CFGStatement getCFGStatement() {
-        return (CFGStatement)getCFGNode();
+        return (CFGStatement)cfgnode;
     }
     
     /**

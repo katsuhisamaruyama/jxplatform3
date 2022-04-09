@@ -24,6 +24,7 @@ public class PDG extends DependenceGraph {
     
     /**
      * Sets the entry node for this PDG.
+     * This method is not intended to be invoked by clients.
      * @param node the entry node to be set
      */
     public void setEntryNode(PDGEntry node) {

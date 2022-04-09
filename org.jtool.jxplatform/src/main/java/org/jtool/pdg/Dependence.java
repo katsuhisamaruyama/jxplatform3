@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -54,6 +54,7 @@ public class Dependence extends GraphEdge {
     
     /**
      * Creates a new object that represents a dependence edge.
+     * This method is not intended to be invoked by clients.
      * @param src the source node
      * @param dst the destination node
      */
@@ -63,10 +64,19 @@ public class Dependence extends GraphEdge {
     
     /**
      * Sets the kind of this dependence edge.
+     * This method is not intended to be invoked by clients.
      * @param kind the kind of the dependence edge
      */
     public void setKind(Kind kind) {
         this.kind = kind;
+    }
+    
+    /**
+     * Returns the kind of this dependence edge.
+     * @return the kind of the edge
+     */
+    public Dependence.Kind getKind() {
+        return kind;
     }
     
     /**
@@ -300,7 +310,7 @@ public class Dependence extends GraphEdge {
      * @param co the list of the dependence edges to be sorted
      * @return the sorted list of the dependence edges
      */
-    public static List<Dependence> sortDependenceEdges(Collection<? extends Dependence> co) {
+    public static List<Dependence> sortEdges(Collection<? extends Dependence> co) {
         List<Dependence> edges = new ArrayList<>(co);
         Collections.sort(edges, new Comparator<>() {
             

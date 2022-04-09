@@ -127,6 +127,7 @@ public class CDFinder {
         Set<JVariableReference> vars = new HashSet<>();
         vars.addAll(cfgnode.getDefVariables());
         vars.addAll(cfgnode.getUseVariables());
+        
         for (JVariableReference jv : vars) {
             cfg.backwardReachableNodes(cfgnode, true, new StopConditionOnReachablePath() {
                 

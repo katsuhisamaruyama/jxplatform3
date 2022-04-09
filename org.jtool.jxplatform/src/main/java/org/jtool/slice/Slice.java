@@ -210,7 +210,7 @@ public class Slice {
             }
         }
         
-        for (Dependence edge : Dependence.sortDependenceEdges(node.getIncomingDependeceEdges())) {
+        for (Dependence edge : Dependence.sortEdges(node.getIncomingDependeceEdges())) {
             PDGNode src = edge.getSrcNode();
             
             if (edge.isCD() && !edge.isFallThrough()) {
