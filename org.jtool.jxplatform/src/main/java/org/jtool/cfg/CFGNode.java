@@ -89,18 +89,24 @@ public class CFGNode extends GraphNode {
      */
     public enum Kind {
         
+        /*
+         * The following nodes appear in a CCFG.
+         */
         classEntry,                 // CFGClassEntry (TypeDeclaration, AnonymousClassDeclaration)
         interfaceEntry,             // CFGClassEntry (TypeDeclaration, AnonymousClassDeclaration)
         enumEntry,                  // CFGClassEntry (EnumDeclaration)
+        classExit,                  // CFGExit
+        interfaceExit,              // CFGExit
+        enumExit,                   // CFGExit
+        
+        /*
+         * The following nodes appear in a CFG and CFGs within a CCFG.
+         */
         methodEntry,                // CFGMethodEntry (MethodDeclaration)
         constructorEntry,           // CFGMethodEntry (MethodDeclaration)
         initializerEntry,           // CFGInitializerEntry (Initializer)
         fieldEntry,                 // CFGFieldEntry (VariableDeclarationFragment/FieldDeclaration)
         enumConstantEntry,          // CFGFieldEntry (EnumConstantDeclaration)
-        
-        classExit,                  // CFGExit
-        interfaceExit,              // CFGExit
-        enumExit,                   // CFGExit
         methodExit,                 // CFGExit
         constructorExit,            // CFGExit
         initializerExit,            // CFGExit
