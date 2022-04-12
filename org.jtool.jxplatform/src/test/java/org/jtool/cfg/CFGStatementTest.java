@@ -1803,7 +1803,6 @@ public class CFGStatementTest {
         assertEquals("", TestUtil.asStrOfReference(result));
     }
     
-    // TODO
     @Test
     public void testGetUseVariablesTest130_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test130", "n( int )");
@@ -2591,14 +2590,11 @@ public class CFGStatementTest {
         assertEquals("this.x", TestUtil.asStrOfReference(result));
     }
     
-    
-    // Also should check Return
-    /*
     @Test
     public void testFindPrimaryUseVariablesInReceiverTest133_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test133", "m( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 8);
-        List<JVariableReference> result = node.findPrimaryUseVariablesInReceiver();
+        List<JVariableReference> result = node.findPrimaryUseVariables();
         
         assertEquals("", TestUtil.asStrOfReference(result));
     }
@@ -2607,7 +2603,7 @@ public class CFGStatementTest {
     public void testFindPrimaryUseVariablesInReceiverTest133_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test133", "m( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 12);
-        List<JVariableReference> result = node.findPrimaryUseVariablesInReceiver();
+        List<JVariableReference> result = node.findPrimaryUseVariables();
         
         assertEquals("this.!getX", TestUtil.asStrOfReference(result));
     }
@@ -2616,7 +2612,7 @@ public class CFGStatementTest {
     public void testFindPrimaryUseVariablesInReceiverTest133_4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test133", "m( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 19);
-        List<JVariableReference> result = node.findPrimaryUseVariablesInReceiver();
+        List<JVariableReference> result = node.findPrimaryUseVariables();
         
         assertEquals("this.x.y", TestUtil.asStrOfReference(result));
     }
@@ -2625,7 +2621,7 @@ public class CFGStatementTest {
     public void testFindPrimaryUseVariablesInReceiverTest133_5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test133", "m( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 23);
-        List<JVariableReference> result = node.findPrimaryUseVariablesInReceiver();
+        List<JVariableReference> result = node.findPrimaryUseVariables();
         
         assertEquals("this.!getX", TestUtil.asStrOfReference(result));
     }
@@ -2634,7 +2630,7 @@ public class CFGStatementTest {
     public void testFindPrimaryUseVariablesInReceiverTest133_6() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test133", "m( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 30);
-        List<JVariableReference> result = node.findPrimaryUseVariablesInReceiver();
+        List<JVariableReference> result = node.findPrimaryUseVariables();
         
         assertEquals("this.!getX.!getY", TestUtil.asStrOfReference(result));
     }
@@ -2643,7 +2639,7 @@ public class CFGStatementTest {
     public void testFindPrimaryUseVariablesInReceiverTest133_7() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test133", "m( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 31);
-        List<JVariableReference> result = node.findPrimaryUseVariablesInReceiver();
+        List<JVariableReference> result = node.findPrimaryUseVariables();
         
         assertEquals("this.!getX", TestUtil.asStrOfReference(result));
     }
@@ -2652,7 +2648,7 @@ public class CFGStatementTest {
     public void testFindPrimaryUseVariablesInReceiverTest133_8() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test133", "m( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 40);
-        List<JVariableReference> result = node.findPrimaryUseVariablesInReceiver();
+        List<JVariableReference> result = node.findPrimaryUseVariables();
         
         assertEquals("this.!getX.y", TestUtil.asStrOfReference(result));
     }
@@ -2661,7 +2657,7 @@ public class CFGStatementTest {
     public void testFindPrimaryUseVariablesInReceiverTest133_9() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test133", "m( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 47);
-        List<JVariableReference> result = node.findPrimaryUseVariablesInReceiver();
+        List<JVariableReference> result = node.findPrimaryUseVariables();
         
         assertEquals("this.x.!getY", TestUtil.asStrOfReference(result));
     }
@@ -2670,9 +2666,8 @@ public class CFGStatementTest {
     public void testFindPrimaryUseVariablesInReceiverTest133_10() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test133", "m( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 48);
-        List<JVariableReference> result = node.findPrimaryUseVariablesInReceiver();
+        List<JVariableReference> result = node.findPrimaryUseVariables();
         
         assertEquals("this.x", TestUtil.asStrOfReference(result));
     }
-    */
 }
