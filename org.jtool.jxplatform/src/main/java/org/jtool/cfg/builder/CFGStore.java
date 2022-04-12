@@ -113,41 +113,45 @@ public class CFGStore {
     public CFG getCFG(JavaMethod jmethod, boolean force) {
         if (!force) {
             CFG cfg = cfgs.get(jmethod.getQualifiedName().fqn());
-            if (cfg != null) {
-                if (!resolvedReferences.contains(cfg.getQualifiedName().fqn())) {
-                    Resolver.resolveReferences(jmethod.getJavaProject(), cfg);
-                    resolvedReferences.add(cfg.getQualifiedName().fqn());
-                }
-                return cfg;
+            if (cfg == null) {
+                cfg = CFGMethodBuilder.build(jmethod, true);
             }
+            
+            if (cfg != null && !resolvedReferences.contains(cfg.getQualifiedName().fqn())) {
+                Resolver.resolveReferences(jmethod.getJavaProject(), cfg);
+                resolvedReferences.add(cfg.getQualifiedName().fqn());
+            }
+            return cfg;
+        } else {
+            CFG cfg = CFGMethodBuilder.build(jmethod, true);
+            if (cfg != null) {
+                addCFG(cfg);
+                resolvedReferences.add(cfg.getQualifiedName().fqn());
+            }
+            return cfg;
         }
         
-        CFG cfg = CFGMethodBuilder.build(jmethod, true);
-        if (cfg != null) {
-            addCFG(cfg);
-            resolvedReferences.add(cfg.getQualifiedName().fqn());
-        }
-        return cfg;
     }
     
     public CFG getCFG(JavaField jfield, boolean force) {
         if (!force) {
             CFG cfg = cfgs.get(jfield.getQualifiedName().fqn());
-            if (cfg != null) {
-                if (!resolvedReferences.contains(cfg.getQualifiedName().fqn())) {
-                    Resolver.resolveReferences(jfield.getJavaProject(), cfg);
-                    resolvedReferences.add(cfg.getQualifiedName().fqn());
-                }
-                return cfg;
+            if (cfg == null) {
+                cfg = CFGFieldBuilder.build(jfield, true);
             }
+            if (cfg != null && !resolvedReferences.contains(cfg.getQualifiedName().fqn())) {
+                Resolver.resolveReferences(jfield.getJavaProject(), cfg);
+                resolvedReferences.add(cfg.getQualifiedName().fqn());
+            }
+            return cfg;
+        } else {
+            CFG cfg = CFGFieldBuilder.build(jfield, true);
+            if (cfg != null) {
+                addCFG(cfg);
+                resolvedReferences.add(cfg.getQualifiedName().fqn());
+            }
+            return cfg;
         }
-        
-        CFG cfg = CFGFieldBuilder.build(jfield, true);
-        if (cfg != null) {
-            addCFG(cfg);
-            resolvedReferences.add(cfg.getQualifiedName().fqn());
-        }
-        return cfg;
     }
     
     CFG getCFGWithoutResolvingMethodCalls(JavaMethod jmethod) {
