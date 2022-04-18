@@ -12,6 +12,12 @@ class Test119 {
         int e = getP() + 2;
     }
 
+    public void m2() {
+        A119 a = new A119();
+        a.x = 10;
+        a.y = 10;
+    }
+    
     private int getP() {
         return p;
     }

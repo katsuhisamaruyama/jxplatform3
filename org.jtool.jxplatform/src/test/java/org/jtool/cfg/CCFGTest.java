@@ -42,7 +42,7 @@ public class CCFGTest {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         Set<CFG> result = ccfg.getCFGs();
         
-        assertEquals(4, result.size());
+        assertEquals(5, result.size());
     }
     
     @Test

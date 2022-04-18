@@ -440,7 +440,7 @@ public class LocalAliasResolverTest {
         assert node.isMethodCall();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.q;a$0.q.r;a$0.q.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.q", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -540,7 +540,7 @@ public class LocalAliasResolverTest {
         assert node.isMethodCall();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.q;a$0.q.r;a$0.q.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.q", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -550,7 +550,7 @@ public class LocalAliasResolverTest {
         assert node.isMethodCall();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ.r;a$0.!getQ.r.r;a$0.!getQ.r.y;b$1.r;b$1.r.r;b$1.r.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getQ.r;b$1.r", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -580,7 +580,7 @@ public class LocalAliasResolverTest {
         assert node.isMethodCall();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.q;a$0.q.r;a$0.q.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.q", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -590,7 +590,7 @@ public class LocalAliasResolverTest {
         assert node.isMethodCall();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ.r;a$0.!getQ.r.r;a$0.!getQ.r.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getQ.r", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
