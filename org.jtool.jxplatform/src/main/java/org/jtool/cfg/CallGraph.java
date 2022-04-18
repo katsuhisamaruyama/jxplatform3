@@ -20,17 +20,17 @@ public class CallGraph {
     /**
      * The collection of nodes of this call graph.
      */
-    protected Set<CFGEntry> nodes = new HashSet<>();
+    private Set<CFGEntry> nodes = new HashSet<>();
     
     /**
      * The collection of edges of this call graph.
      */
-    protected Set<ControlFlow> edges = new HashSet<>();
+    private Set<ControlFlow> edges = new HashSet<>();
     
     /**
      * The name of this call graph.
      */
-    protected String name;
+    private String name;
     
     /**
      * Creates a call graph having a given name.
