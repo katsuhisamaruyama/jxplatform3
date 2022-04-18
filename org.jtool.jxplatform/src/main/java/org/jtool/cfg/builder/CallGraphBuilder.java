@@ -23,10 +23,11 @@ public class CallGraphBuilder {
     
     public static CallGraph getCallGraph(JavaProject jproject) {
         CallGraph graph = new CallGraph(jproject.getName());
-        Set<JavaMethod> methods = jproject.getClasses().stream().flatMap(c -> c.getMethods().stream())
+        Set<JavaMethod> methods = jproject.getClasses().stream()
+                                          .flatMap(jclass -> jclass.getMethods().stream())
                                           .collect(Collectors.toSet());
-        methods.forEach(m -> jproject.getCFGStore().getCFG(m, false));
-        methods.forEach(m -> createCallGraph(m, graph));
+        methods.forEach(jmethod -> jproject.getCFGStore().getCFG(jmethod, false));
+        methods.forEach(jmethod -> createCallGraph(jmethod, graph));
         return graph;
     }
     

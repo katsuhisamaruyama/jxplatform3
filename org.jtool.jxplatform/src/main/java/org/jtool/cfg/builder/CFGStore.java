@@ -75,11 +75,15 @@ public class CFGStore {
     }
     
     private void addCFG(CFG cfg) {
-        cfgs.put(cfg.getQualifiedName().fqn(), cfg);
+        if (cfg != null) {
+            cfgs.put(cfg.getQualifiedName().fqn(), cfg);
+        }
     }
     
     private void addCCFG(CCFG ccfg) {
-        ccfgs.put(ccfg.getQualifiedName().fqn(), ccfg);
+        if (ccfg != null) {
+            ccfgs.put(ccfg.getQualifiedName().fqn(), ccfg);
+        }
     }
     
     public CFG findCFG(String fqn) {
@@ -115,6 +119,7 @@ public class CFGStore {
             CFG cfg = cfgs.get(jmethod.getQualifiedName().fqn());
             if (cfg == null) {
                 cfg = CFGMethodBuilder.build(jmethod, true);
+                addCFG(cfg);
             }
             
             if (cfg != null && !resolvedReferences.contains(cfg.getQualifiedName().fqn())) {
@@ -130,7 +135,6 @@ public class CFGStore {
             }
             return cfg;
         }
-        
     }
     
     public CFG getCFG(JavaField jfield, boolean force) {
@@ -138,6 +142,7 @@ public class CFGStore {
             CFG cfg = cfgs.get(jfield.getQualifiedName().fqn());
             if (cfg == null) {
                 cfg = CFGFieldBuilder.build(jfield, true);
+                addCFG(cfg);
             }
             if (cfg != null && !resolvedReferences.contains(cfg.getQualifiedName().fqn())) {
                 Resolver.resolveReferences(jfield.getJavaProject(), cfg);
