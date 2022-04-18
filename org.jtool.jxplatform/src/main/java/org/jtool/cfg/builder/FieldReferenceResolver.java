@@ -21,6 +21,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Finds fields defined and/or used in invoked methods and accessed fields.
@@ -42,12 +43,17 @@ class FieldReferenceResolver {
             findFieldsForCalledMethod(callnode);
         }
         
+        Set<JVariableReference> defFields = cfg.getStatementNodes().stream()
+                .flatMap(node -> node.getDefVariables().stream())
+                .filter(jv -> jv.isFieldAccess())
+                .collect(Collectors.toSet());
+        
         for (CFGStatement stnode : cfg.getReturnNodes()) {
             if (stnode.getDefVariables().size() > 0) {
-                String type = stnode.getDefVariables().get(0).getType();
+                String type = stnode.getDefFirst().getType();
                 for (JVariableReference jv : new ArrayList<>(stnode.getUseVariables())) {
                     if (!jv.isPrimitiveType() && !type.equals("java.lang.String")) {
-                        findFieldsForReturn(stnode, jv, type);
+                        findFieldsForReturn(stnode, jv, type, defFields);
                     }
                 }
             }
@@ -124,7 +130,8 @@ class FieldReferenceResolver {
         }
     }
     
-    private void findFieldsForReturn(CFGStatement stnode, JVariableReference jv, String type) {
+    private void findFieldsForReturn(CFGStatement stnode, JVariableReference jv, String type,
+            Set<JVariableReference> defFields) {
         JavaClass jclass = jproject.getClass(type);
         if (jclass == null) {
             jclass = jproject.getExternalClass(type);
@@ -133,11 +140,13 @@ class FieldReferenceResolver {
         if (jclass != null) {
             for (JavaField jfield : jclass.getFields()) {
                 String referenceForm = jv.getReferenceForm() + "." + jfield.getName();
-                JVariableReference fvar = new JFieldReference(jv.getASTNode(),
-                        jfield.getClassName(), jfield.getName(), referenceForm,
-                        jfield.getType(), jfield.isPrimitiveType(), jfield.getModifiers(),
-                        jclass.isInProject(), false);
-                stnode.addUseVariable(fvar);
+                if (defFields.stream().anyMatch(v -> v.getReferenceForm().equals(referenceForm))) {
+                    JVariableReference fvar = new JFieldReference(jv.getASTNode(),
+                            jfield.getClassName(), jfield.getName(), referenceForm,
+                            jfield.getType(), jfield.isPrimitiveType(), jfield.getModifiers(),
+                            jclass.isInProject(), false);
+                    stnode.addUseVariable(fvar);
+                }
             }
         }
     }

@@ -296,6 +296,17 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     }
     
     /**
+     * Obtains CFG nodes for statements having defined and used variables.
+     * @return the collection of the statement nodes
+     */
+    public Set<CFGStatement> getStatementNodes() {
+        return getNodes().stream()
+                         .filter(node -> node.isStatement())
+                         .map(node -> (CFGStatement)node)
+                         .collect(Collectors.toSet());
+    }
+    
+    /**
      * Obtains CFG nodes for field accesses.
      * @return the collection of the field access nodes
      */
