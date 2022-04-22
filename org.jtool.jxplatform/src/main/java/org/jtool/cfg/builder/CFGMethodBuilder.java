@@ -81,7 +81,12 @@ class CFGMethodBuilder {
             cfg.setExitNode(exit);
             cfg.add(exit);
             
-            ControlFlow exitEdge = new ControlFlow(entry, exit);
+            CFGNode formalOut = createFormalOut(jmethod.getASTNode(), cfg, entry);
+            ControlFlow edge = new ControlFlow(entry, formalOut);
+            edge.setTrue();
+            cfg.add(edge);
+            
+            ControlFlow exitEdge = new ControlFlow(formalOut, exit);
             exitEdge.setTrue();
             cfg.add(exitEdge);
             return cfg;
@@ -92,14 +97,14 @@ class CFGMethodBuilder {
         
         Set<CFGException> exceptionNodes = createExceptionNodes(jmethod, entry, cfg);
         
-        CFGNode finalFormalInNode = createFormalIn(params, cfg, entry, entry);
+        CFGNode formalIn = createFormalIn(params, cfg, entry, entry);
         CFGNode nextNode = new CFGNode();
         
-        ControlFlow entryEdge = new ControlFlow(finalFormalInNode, nextNode);
-        entryEdge.setTrue();
-        cfg.add(entryEdge);
+        ControlFlow edge = new ControlFlow(formalIn, nextNode);
+        edge.setTrue();
+        cfg.add(edge);
         
-        StatementVisitor visitor = new StatementVisitor(cfg, finalFormalInNode, nextNode);
+        StatementVisitor visitor = new StatementVisitor(cfg, formalIn, nextNode);
         jmethod.getASTNode().accept(visitor);
         nextNode = visitor.getNextCFGNode();
         
@@ -107,11 +112,11 @@ class CFGMethodBuilder {
         cfg.setExitNode(exit);
         cfg.add(exit);
         
-        CFGNode formalOutNodeForReturn = createFormalOutForReturn(jmethod.getASTNode(), cfg, entry);
-        replace(cfg, nextNode, formalOutNodeForReturn);
-        replace(cfg, tmpExit, formalOutNodeForReturn);
+        CFGNode formalOut = createFormalOut(jmethod.getASTNode(), cfg, entry);
+        replace(cfg, nextNode, formalOut);
+        replace(cfg, tmpExit, formalOut);
         
-        ControlFlow exitEdge = new ControlFlow(formalOutNodeForReturn, exit);
+        ControlFlow exitEdge = new ControlFlow(formalOut, exit);
         exitEdge.setTrue();
         cfg.add(exitEdge);
         
@@ -184,35 +189,35 @@ class CFGMethodBuilder {
             CFG cfg, CFGMethodEntry entry, CFGNode prevNode) {
         for (int ordinal = 0; ordinal < params.size(); ordinal++) {
             VariableDeclaration param = params.get(ordinal);
-            CFGParameter formalInNode = new CFGParameter(param, CFGNode.Kind.formalIn, ordinal);
-            formalInNode.setParent(entry);
-            entry.addFormalIn(formalInNode);
-            cfg.add(formalInNode);
+            CFGParameter formalIn = new CFGParameter(param, CFGNode.Kind.formalIn, ordinal);
+            formalIn.setParent(entry);
+            entry.addFormalIn(formalIn);
+            cfg.add(formalIn);
             
             JVariableReference def = new JLocalVarReference(param.getName(), param.resolveBinding());
-            formalInNode.setDefVariable(def);
+            formalIn.setDefVariable(def);
             
-            ControlFlow edge = new ControlFlow(prevNode, formalInNode);
+            ControlFlow edge = new ControlFlow(prevNode, formalIn);
             edge.setTrue();
             cfg.add(edge);
             
-            prevNode = formalInNode;
+            prevNode = formalIn;
         }
         return prevNode;
     }
     
-    private static CFGNode createFormalOutForReturn(ASTNode node, CFG cfg, CFGMethodEntry entry) {
-        CFGParameter formalOutNode = new CFGParameter(node, CFGNode.Kind.formalOut, 0);
-        formalOutNode.setParent(entry);
-        entry.setFormalOutForReturn(formalOutNode);
-        cfg.add(formalOutNode);
+    private static CFGNode createFormalOut(ASTNode node, CFG cfg, CFGMethodEntry entry) {
+        CFGParameter formalOut = new CFGParameter(node, CFGNode.Kind.formalOut, 0);
+        formalOut.setParent(entry);
+        entry.setFormalOut(formalOut);
+        cfg.add(formalOut);
         
         String returnType = entry.getJavaMethod().getReturnType();
         boolean isPrimitiveType = entry.getJavaMethod().isPrimitiveReturnType();
         
         JVariableReference use = new JExpedientialReference(node, "$_", returnType, isPrimitiveType);
-        formalOutNode.addUseVariable(use);
+        formalOut.addUseVariable(use);
         
-        return formalOutNode;
+        return formalOut;
     }
 }

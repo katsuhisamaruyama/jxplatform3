@@ -32,7 +32,7 @@ public class JExpedientialReference extends JVariableReference {
         this.isPrimitiveType = binding.isPrimitive();
         this.modifiers = binding.getModifiers();
         
-        setProperties(node, name);
+        setProperties(node, name, type);
     }
     
     /**
@@ -50,7 +50,7 @@ public class JExpedientialReference extends JVariableReference {
         this.isPrimitiveType = primitive;
         this.modifiers = Modifier.NONE;
         
-        setProperties(node, name);
+        setProperties(node, name, type);
     }
     
     /**
@@ -68,17 +68,23 @@ public class JExpedientialReference extends JVariableReference {
         this.isPrimitiveType = primitive;
         this.modifiers = binding.getModifiers();
         
-        setProperties(node, name);
+        setProperties(node, name, type);
     }
     
     /**
      * Sets the properties of this variable reference.
      * @param node the AST node for this variable reference
      * @param name the name of this variable reference
+     * @param type the type of the referenced variable
      */
-    private void setProperties(ASTNode node, String name) {
-        this.enclosingClassName = findEnclosingClassName(node);
-        this.enclosingMethodName = findEnclosingMethodName(node);
+    private void setProperties(ASTNode node, String name, String type) {
+        if (node != null) {
+            this.enclosingClassName = findEnclosingClassName(node);
+            this.enclosingMethodName = findEnclosingMethodName(node);
+        } else {
+            this.enclosingClassName = type;
+            this.enclosingMethodName = type + "( )";
+        }
         this.declaringClassName = enclosingClassName;
         this.declaringMethodName = enclosingMethodName;
         

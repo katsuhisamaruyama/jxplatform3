@@ -6,12 +6,11 @@
 package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CFG;
+import org.jtool.cfg.CFGMethodEntry;
 import org.jtool.cfg.CFGMethodCall;
-import org.jtool.cfg.CFGStatement;
+import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JVariableReference;
-import org.jtool.srcmodel.JavaClass;
-import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.refmodel.BytecodeClassStore;
 import org.jtool.jxplatform.refmodel.DefUseField;
@@ -19,9 +18,7 @@ import org.jtool.jxplatform.refmodel.JClass;
 import org.jtool.jxplatform.refmodel.JMethod;
 import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Finds fields defined and/or used in invoked methods and accessed fields.
@@ -30,11 +27,9 @@ import java.util.stream.Collectors;
  */
 class FieldReferenceResolver {
     
-    private JavaProject jproject;
     private BytecodeClassStore bcStore;
     
     FieldReferenceResolver(JavaProject jproject) {
-        this.jproject = jproject;
         this.bcStore = jproject.getCFGStore().getBCStore();
     }
     
@@ -43,20 +38,12 @@ class FieldReferenceResolver {
             findFieldsForCalledMethod(callnode);
         }
         
-        Set<JVariableReference> defFields = cfg.getStatementNodes().stream()
+        if (cfg.isMethod()) {
+            CFGParameter fout = ((CFGMethodEntry)cfg.getEntryNode()).getFormalOut();
+            cfg.getStatementNodes().stream()
                 .flatMap(node -> node.getDefVariables().stream())
                 .filter(jv -> jv.isFieldAccess())
-                .collect(Collectors.toSet());
-        
-        for (CFGStatement stnode : cfg.getReturnNodes()) {
-            if (stnode.getDefVariables().size() > 0) {
-                String type = stnode.getDefFirst().getType();
-                for (JVariableReference jv : new ArrayList<>(stnode.getUseVariables())) {
-                    if (!jv.isPrimitiveType() && !type.equals("java.lang.String")) {
-                        findFieldsForReturn(stnode, jv, type, defFields);
-                    }
-                }
-            }
+                .forEach(jv -> fout.addUseVariable(jv));
         }
     }
     
@@ -94,6 +81,7 @@ class FieldReferenceResolver {
                         JVariableReference fvar = createExternalFieldReference(callNode.getASTNode(),
                                 def, receiverName, callNode.getApproximatedTypeNames(), inProject);
                         callNode.addDefVariable(fvar);
+                        callNode.getActualOut().addDefVariable(fvar);
                     }
                     
                     if (!inProject) {
@@ -104,8 +92,8 @@ class FieldReferenceResolver {
                 if (existExternalDefField && callNode.hasReceiver()) {
                     List<JVariableReference> fvars = callNode.getReceiver().getUseVariables();
                     callNode.addDefVariables(fvars);
-                    callNode.getActualOutForReturn().addDefVariables(fvars);
-                    callNode.getActualOutForReturn().addUseVariables(fvars);
+                    callNode.getActualOut().addDefVariables(fvars);
+                    callNode.getActualOut().addUseVariables(fvars);
                 }
                 
                 boolean existExternalUseField = false;
@@ -116,6 +104,7 @@ class FieldReferenceResolver {
                         JVariableReference fvar = createExternalFieldReference(callNode.getASTNode(),
                                 use, receiverName, callNode.getApproximatedTypeNames(), inProject);
                         callNode.addUseVariable(fvar);
+                        callNode.getActualOut().addUseVariable(fvar);
                     }
                     
                     if (!inProject) {
@@ -125,27 +114,6 @@ class FieldReferenceResolver {
                 
                 if (existExternalUseField && callNode.hasReceiver()) {
                     callNode.addUseVariables(callNode.getReceiver().getUseVariables());
-                }
-            }
-        }
-    }
-    
-    private void findFieldsForReturn(CFGStatement stnode, JVariableReference jv, String type,
-            Set<JVariableReference> defFields) {
-        JavaClass jclass = jproject.getClass(type);
-        if (jclass == null) {
-            jclass = jproject.getExternalClass(type);
-        }
-        
-        if (jclass != null) {
-            for (JavaField jfield : jclass.getFields()) {
-                String referenceForm = jv.getReferenceForm() + "." + jfield.getName();
-                if (defFields.stream().anyMatch(v -> v.getReferenceForm().equals(referenceForm))) {
-                    JVariableReference fvar = new JFieldReference(jv.getASTNode(),
-                            jfield.getClassName(), jfield.getName(), referenceForm,
-                            jfield.getType(), jfield.isPrimitiveType(), jfield.getModifiers(),
-                            jclass.isInProject(), false);
-                    stnode.addUseVariable(fvar);
                 }
             }
         }
