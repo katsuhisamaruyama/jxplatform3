@@ -5,15 +5,13 @@
 
 package org.jtool.slice;
 
+import org.jtool.pdg.PDG;
+import org.jtool.pdg.DependencyGraph;
 import org.jtool.pdg.CD;
-import org.jtool.pdg.ClDG;
-import org.jtool.pdg.DependenceGraph;
 import org.jtool.pdg.DD;
 import org.jtool.pdg.Dependence;
-import org.jtool.pdg.PDG;
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
-import org.jtool.pdg.SDG;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGReceiver;
@@ -36,11 +34,12 @@ public class Slice {
     
     protected SliceCriterion criterion;
     
-    private PDG pdgForTargetMethod;
-    private Set<PDGNode> nodesInSlice = new HashSet<>();
-    
+    private PDG pdg;
+    private DependencyGraph graph;
     private Set<CFGNode> nodesInTargetMethod;
     private Set<CFGNode> reachableNodesToCriterion;
+    
+    private Set<PDGNode> nodesInSlice = new HashSet<>();
     
     private Set<PDGNode> reachableMethodCalls = new HashSet<>();
     private Set<PDGNode> pendingNodes = new HashSet<>();
@@ -48,35 +47,16 @@ public class Slice {
     public Slice(SliceCriterion criterion) {
         this.criterion = criterion;
         
-        pdgForTargetMethod = getPDGForMethod();
-        nodesInTargetMethod = pdgForTargetMethod.getCFG().getNodes();
-        reachableNodesToCriterion = criterion.getPDG().getCFG().backwardReachableNodes(criterion.getNode().getCFGNode(), true);
-        
-        criterion.getVariables().forEach(var -> extract(criterion.getNode(), var));
-    }
-    
-    private PDG getPDGForMethod() {
-        DependenceGraph pdg = criterion.getPDG();
-        if (pdg.isPDG()) {
-            return (PDG)pdg;
-        } else if (pdg.isClDG()) {
-            for (PDG g : ((ClDG)pdg).getPDGs()) {
-                if (g.contains(criterion.getNode())) {
-                    return g;
-                }
-            }
-        } else {
-            for (PDG g : ((SDG)pdg).getPDGs()) {
-                if (g.contains(criterion.getNode())) {
-                    return g;
-                }
-            }
+        pdg = graph.getPDGs().stream()
+                   .filter(g -> g.getNodes().contains(criterion.getNode()))
+                   .findFirst().orElse(null);
+        if (pdg != null) {
+            graph = criterion.getDependencyGraph();
+            nodesInTargetMethod = pdg.getCFG().getNodes();
+            reachableNodesToCriterion = pdg.getCFG()
+                                       .backwardReachableNodes(criterion.getNode().getCFGNode(), true);
+            criterion.getVariables().forEach(var -> extract(criterion.getNode(), var));
         }
-        return null;
-    }
-    
-    public DependenceGraph getPDG() {
-        return criterion.getPDG();
     }
     
     public PDGNode getCriterionNode() {
@@ -85,6 +65,14 @@ public class Slice {
     
     public Set<JVariableReference> getCriterionVariables() {
         return criterion.getVariables();
+    }
+    
+    /**
+     * Returns a dependency graph containing the target PDG.
+     * @return the dependency graph
+     */
+    public DependencyGraph getDependencyGraph() {
+        return criterion.getDependencyGraph();
     }
     
     public Set<PDGNode> getNodes() {
@@ -135,7 +123,7 @@ public class Slice {
     }
     
     private List<CD> getIncomingNormalCD(PDGNode node) {
-        return node.getIncomingCDEdges().stream()
+        return graph.getIncomingCDEdges(node).stream()
                 .filter(edge -> edge.isTrue() || edge.isFalse())
                 .collect(Collectors.toList());
     }
@@ -150,7 +138,7 @@ public class Slice {
             }
         }
         
-        for (DD edge : node.getIncomingDDEdges()) {
+        for (DD edge : pdg.getIncomingDDEdges(node)) {
             if (edge.getVariable().equals(jv)) {
                 pdgnodes.add(edge.getSrcNode());
             }
@@ -160,7 +148,7 @@ public class Slice {
             return pdgnodes;
         }
         
-        CFG cfg = criterion.getPDG().getCFG();
+        CFG cfg = pdg.getCFG();
         cfg.backwardReachableNodes(node.getCFGNode(), true, new StopConditionOnReachablePath() {
             
             @Override
@@ -181,7 +169,7 @@ public class Slice {
     
     private void traverseBackward(PDGNode node) {
         if (nodesInSlice.contains(node)) {
-            for (DD edge : node.getIncomingDDEdges()) {
+            for (DD edge : graph.getIncomingDDEdges(node)) {
                 PDGNode src = edge.getSrcNode();
                 if (src.getCFGNode().isMethodCall() &&
                     reachableTo(src) &&
@@ -202,7 +190,7 @@ public class Slice {
             addReachableMethodCall(callNode);
             
         } else if (node.getCFGNode().isCatch()) {
-            for (Dependence edge : node.getIncomingDependeceEdges()) {
+            for (Dependence edge : graph.getIncomingDependenceEdges(node)) {
                 PDGNode src = edge.getSrcNode();
                 if (src.getCFGNode().isMethodCall()) {
                     addReachableMethodCall(src);
@@ -210,7 +198,7 @@ public class Slice {
             }
         }
         
-        for (Dependence edge : Dependence.sortEdges(node.getIncomingDependeceEdges())) {
+        for (Dependence edge : Dependence.sortEdges(graph.getIncomingDependenceEdges(node))) {
             PDGNode src = edge.getSrcNode();
             
             if (edge.isCD() && !edge.isFallThrough()) {
@@ -231,7 +219,7 @@ public class Slice {
                 
             } else if (edge.isCall()) {
                 if (reachableTo(src) && checkTraversable(src)) {
-                    for (Dependence edge2 : src.getOutgoingDependeceEdges()) {
+                    for (Dependence edge2 : graph.getOutgoingDependenceEdges(src)) {
                         if (edge2.isExceptionCatch()) {
                             traverseBackward(edge2.getDstNode());
                         }
@@ -292,7 +280,7 @@ public class Slice {
     }
     
     private boolean checkFieldAccessForMethodCall(PDGNode node, PDGNode src, JVariableReference jv) {
-        for (DD edge : src.getOutgoingDDEdges()) {
+        for (DD edge : graph.getOutgoingDDEdges(src)) {
             if (edge.isOutput() &&
                 jv.getQualifiedName().equals(edge.getVariable().getQualifiedName()) &&
                 reachableTo(getDominantNode(edge.getDstNode()))) {
@@ -300,7 +288,7 @@ public class Slice {
             }
         }
         
-        for (DD dd : node.getOutgoingDDEdges()) {
+        for (DD dd : graph.getOutgoingDDEdges(node)) {
             PDGNode dst = dd.getDstNode();
             if (!dst.equals(node) && !dst.equals(src)) {
                 CFGStatement srcSt = (CFGStatement)src.getCFGNode();
@@ -370,7 +358,7 @@ public class Slice {
     }
     
     private PDGNode getDominantNode(PDGNode node) {
-        for (CD edge : node.getIncomingCDEdges()) {
+        for (CD edge : graph.getIncomingCDEdges(node)) {
             if (edge.isTrue() || edge.isFalse()) {
                 return edge.getSrcNode();
             }
@@ -379,7 +367,7 @@ public class Slice {
     }
     
     private PDGNode getDominatedNode(PDGNode node) {
-        for (CD edge : node.getOutgoingCDEdges()) {
+        for (CD edge : graph.getOutgoingCDEdges(node)) {
             if (edge.isTrue() || edge.isFalse()) {
                 return edge.getDstNode();
             }
@@ -397,12 +385,12 @@ public class Slice {
         return nodes;
     }
     
-    private boolean reachableMethodCall(PDGNode callNode, JVariableReference jv) {
-        if (!reachableTo(callNode)) {
+    private boolean reachableMethodCall(PDGNode node, JVariableReference jv) {
+        if (!reachableTo(node)) {
             return false;
         }
         
-        for (DD edge : callNode.getOutgoingDDEdges()) {
+        for (DD edge : graph.getOutgoingDDEdges(node)) {
             if (edge.isOutput() &&
                 jv.getQualifiedName().equals(edge.getVariable().getQualifiedName()) &&
                 reachableTo(getDominantNode(edge.getDstNode()))) {
@@ -410,7 +398,7 @@ public class Slice {
             }
         }
         
-        CFGMethodCall call = (CFGMethodCall)callNode.getCFGNode();
+        CFGMethodCall call = (CFGMethodCall)node.getCFGNode();
         CFGReceiver receiverNode = call.getReceiver();
         if (receiverNode != null) {
             if (nodesInSlice.contains(receiverNode.getPDGNode())) {
@@ -446,7 +434,7 @@ public class Slice {
         } else {
             PDGNode entry = getMethodEntry(node);
             if (entry != null) {
-                for (Dependence edge : entry.getIncomingDependeceEdges()) {
+                for (Dependence edge : graph.getIncomingDependenceEdges(entry)) {
                     if (edge.isCall()) {
                         nodes.add(edge.getSrcNode());
                     }
@@ -474,9 +462,7 @@ public class Slice {
     public String toString() {
         StringBuilder buf = new StringBuilder();
         buf.append("----- Slice (from here) -----\n");
-        buf.append("Node = " + getCriterionNode().getId() +
-                   "; Variable = " + getVariableNames(getCriterionVariables()));
-        buf.append("\n");
+        buf.append(criterion.toString());
         buf.append(getNodeInfo());
         buf.append("----- Slice (to here) -----\n");
         return buf.toString();
@@ -489,12 +475,6 @@ public class Slice {
             buf.append(node.toString() + "@" + pdgnode.getCFGNode().getASTNode().getStartPosition());
             buf.append("\n");
         });
-        return buf.toString();
-    }
-    
-    private String getVariableNames(Set<JVariableReference> jvs) {
-        StringBuilder buf = new StringBuilder();
-        jvs.forEach(jv -> buf.append(" " + jv.getName() + "@" + jv.getASTNode().getStartPosition()));
         return buf.toString();
     }
 }
