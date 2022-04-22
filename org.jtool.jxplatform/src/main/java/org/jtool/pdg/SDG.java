@@ -74,6 +74,14 @@ public class SDG extends DependencyGraph {
      * {@inheritDoc}
      */
     @Override
+    public boolean isSDG() {
+        return true;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Set<PDG> getPDGs() {
         return new HashSet<>(pdgs.values());
     }
@@ -107,7 +115,7 @@ public class SDG extends DependencyGraph {
      * @return the collection of all the contained ClDGs
      */
     public Set<ClDG> getClDGs() {
-        return (Set<ClDG>)cldgs.values();
+        return new HashSet<>(cldgs.values());
     }
     
     /**
