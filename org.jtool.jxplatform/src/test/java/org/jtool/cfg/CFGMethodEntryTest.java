@@ -16,7 +16,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 public class CFGMethodEntryTest {
     
@@ -141,73 +140,37 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetFormalOutsTest101() {
+    public void testGetFormalOutTest101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "m( )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        List<CFGParameter> result = node.getFormalOuts();
-        
-        assertEquals("", TestUtil.asStrOfCFGParameter(result));
-    }
-    
-    @Test
-    public void testGetFormalOutsTest120() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m0( int int )");
-        CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        List<CFGParameter> result = node.getFormalOuts();
-        
-        assertEquals("", TestUtil.asStrOfCFGParameter(result));
-    }
-    
-    @Test
-    public void testGetFormalOutsTest127() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test127", "Test127( )");
-        CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        List<CFGParameter> result = node.getFormalOuts();
-        
-        assertEquals("", TestUtil.asStrOfCFGParameter(result));
-    }
-    
-    @Test
-    public void testGetFormalOutsA127() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "A127", "setY( int )");
-        CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        List<CFGParameter> result = node.getFormalOuts();
-        
-        assertEquals("", TestUtil.asStrOfCFGParameter(result));
-    }
-    
-    @Test
-    public void testGetFormalOutForReturnTest101() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "m( )");
-        CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        CFGParameter result = node.getFormalOutForReturn();
+        CFGParameter result = node.getFormalOut();
         
         assertEquals("$_", result.getUseVariable().getReferenceForm());
     }
     
     @Test
-    public void testGetFormalOutForReturnTest120() {
+    public void testGetFormalOutTest120() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m0( int int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        CFGParameter result = node.getFormalOutForReturn();
+        CFGParameter result = node.getFormalOut();
         
         assertEquals("$_", result.getUseVariable().getReferenceForm());
     }
     
     @Test
-    public void testGetFormalOutForReturnTest127() {
+    public void testGetFormalOutTest127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test127", "Test127( )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        CFGParameter result = node.getFormalOutForReturn();
+        CFGParameter result = node.getFormalOut();
         
-        assertNull(result);
+        assertEquals("$_", result.getUseVariable().getReferenceForm());
     }
     
     @Test
-    public void testGetFormalOutForReturnA127() {
+    public void testGetFormalOutA127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "A127", "setY( int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
-        CFGParameter result = node.getFormalOutForReturn();
+        CFGParameter result = node.getFormalOut();
         
         assertEquals("$_", result.getUseVariable().getReferenceForm());
     }

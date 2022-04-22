@@ -42,7 +42,7 @@ public class FieldReferenceResolverTest {
         List<JVariableReference> use_result = node.getUseVariables();
         
         assertEquals("p$0.value", TestUtil.asSortedStrOfReference(def_result));
-        assertEquals("", TestUtil.asSortedStrOfReference(use_result));
+        assertEquals("p$0.value", TestUtil.asSortedStrOfReference(use_result));
     }
     
     @Test
@@ -57,7 +57,6 @@ public class FieldReferenceResolverTest {
         assertEquals("p$0.value", TestUtil.asSortedStrOfReference(use_result));
     }
     
-    // TODO
     @Test
     public void testFindFieldsForCalledMethod3() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test46", "m2( )");
@@ -145,7 +144,7 @@ public class FieldReferenceResolverTest {
         List<JVariableReference> use_result = node.getUseVariables();
         
         assertEquals("PriceCode.priceCode", TestUtil.asSortedStrOfReference(def_result));
-        assertEquals("", TestUtil.asSortedStrOfReference(use_result));
+        assertEquals("PriceCode.priceCode", TestUtil.asSortedStrOfReference(use_result));
     }
     
     @Test
@@ -155,7 +154,7 @@ public class FieldReferenceResolverTest {
         assert node.isReturn();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("p$0;p$0.value", TestUtil.asSortedStrOfReference(result));
+        assertEquals("p$0", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -165,7 +164,7 @@ public class FieldReferenceResolverTest {
         assert node.isReturn();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("q$0;q$0.map", TestUtil.asSortedStrOfReference(result));
+        assertEquals("q$0", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test

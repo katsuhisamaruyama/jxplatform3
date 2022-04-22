@@ -43,7 +43,7 @@ public class CFGParameterTest {
     public void testGetDefVariable2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
-        JReference result = node.getActualOutForReturn().getDefVariable();
+        JReference result = node.getActualOut().getDefVariable();
         
         assertEquals("this.!setA", result.getReferenceForm());
     }
@@ -70,7 +70,7 @@ public class CFGParameterTest {
     public void testGetDefVariable5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test121", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
-        JReference result = node.getActualOutForReturn().getDefVariable();
+        JReference result = node.getActualOut().getDefVariable();
         
         assertEquals("this.!m", result.getReferenceForm());
     }
@@ -88,7 +88,7 @@ public class CFGParameterTest {
     public void testGetIndex2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
-        int result = node.getActualOutForReturn().getIndex();
+        int result = node.getActualOut().getIndex();
         
         assertEquals(0, result);
     }
@@ -115,7 +115,7 @@ public class CFGParameterTest {
     public void testGetIndex5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test121", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
-        int result = node.getActualOutForReturn().getIndex();
+        int result = node.getActualOut().getIndex();
         
         assertEquals(0, result);
     }
@@ -133,7 +133,7 @@ public class CFGParameterTest {
     public void testGetParent2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
-        CFGNode result = node.getActualOutForReturn().getParent();
+        CFGNode result = node.getActualOut().getParent();
         
         assertEquals(node, result);
     }
@@ -160,7 +160,7 @@ public class CFGParameterTest {
     public void testGetParent5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test121", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
-        CFGNode result = node.getActualOutForReturn().getParent();
+        CFGNode result = node.getActualOut().getParent();
         
         assertEquals(node, result);
     }
@@ -336,7 +336,6 @@ public class CFGParameterTest {
         assertEquals("p$0", TestUtil.asStrOfReference(result));
     }
     
-    // TODO
     @Test
     public void testGetUseVariablesTest125_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test125", "m( )");
