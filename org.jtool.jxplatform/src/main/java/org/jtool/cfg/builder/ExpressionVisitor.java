@@ -657,19 +657,19 @@ public class ExpressionVisitor extends ASTVisitor {
     }
     
     private JMethodReturnReference createActualOutForReturn(CFGMethodCall callNode, String name) {
-        CFGParameter actualOutNodeForReturn = new CFGParameter(callNode.getASTNode(),
+        CFGParameter actualOutNode = new CFGParameter(callNode.getASTNode(),
                 CFGNode.Kind.actualOut, 0);
-        actualOutNodeForReturn.setParent(callNode);
-        callNode.setActualOutForReturn(actualOutNodeForReturn);
+        actualOutNode.setParent(callNode);
+        callNode.setActualOut(actualOutNode);
         
-        insertBeforeCurrentNode(actualOutNodeForReturn);
+        insertBeforeCurrentNode(actualOutNode);
         
         String type = callNode.getReturnType();
         boolean primitive = callNode.isPrimitiveType();
         JMethodReturnReference def = new JMethodReturnReference(callNode.getASTNode(), name, type, primitive);
-        actualOutNodeForReturn.addDefVariable(def);
+        actualOutNode.addDefVariable(def);
         
-        curNode.addUseVariable(actualOutNodeForReturn.getDefVariable());
+        curNode.addUseVariable(actualOutNode.getDefVariable());
         return def;
     }
     

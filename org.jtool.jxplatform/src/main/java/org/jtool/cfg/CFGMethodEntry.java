@@ -28,14 +28,9 @@ public class CFGMethodEntry extends CFGEntry {
     private List<CFGParameter> formalIns = new ArrayList<>();
     
     /**
-     * The collection of formal-out nodes of the method associated with this entry node.
-     */
-    private List<CFGParameter> formalOuts = new ArrayList<>();
-    
-    /**
      * The formal-out node for the return value of the method associated with this entry node.
      */
-    private CFGParameter formalOutForReturn = null;
+    private CFGParameter formalOut = null;
     
     /**
      * The collection of the exception nodes corresponding to {@code throws}. 
@@ -71,15 +66,6 @@ public class CFGMethodEntry extends CFGEntry {
     }
     
     /**
-     * Adds a formal-out node to this method entry node.
-     * This method is not intended to be invoked by clients.
-     * @param node the formal-out node to be added
-     */
-    public void addFormalOut(CFGParameter node) {
-        formalOuts.add(node);
-    }
-    
-    /**
      * Sets formal-in nodes to this method entry node.
      * This method is not intended to be invoked by clients.
      * @param nodes the collection of the formal-in nodes to be set
@@ -89,20 +75,11 @@ public class CFGMethodEntry extends CFGEntry {
     }
     
     /**
-     * Sets formal-out nodes to this method entry node.
-     * This method is not intended to be invoked by clients.
-     * @param nodes the collection of the formal-out nodes to be set
-     */
-    public void setFormalOuts(List<CFGParameter> nodes) {
-        formalOuts.addAll(nodes);
-    }
-    
-    /**
      * Sets a formal-out node for the return value to this method entry node.
      * @param node the formal-out node to be set
      */
-    public void setFormalOutForReturn(CFGParameter node) {
-        formalOutForReturn = node;
+    public void setFormalOut(CFGParameter node) {
+        formalOut = node;
     }
     
     /**
@@ -111,14 +88,6 @@ public class CFGMethodEntry extends CFGEntry {
      */
     public List<CFGParameter> getFormalIns() {
         return formalIns;
-    }
-    
-    /**
-     * Returns formal-out nodes of the method associated to this entry node.
-     * @return the collection of the formal-out nodes
-     */
-    public List<CFGParameter> getFormalOuts() {
-        return formalOuts;
     }
     
     /**
@@ -139,20 +108,11 @@ public class CFGMethodEntry extends CFGEntry {
     }
     
     /**
-     * Returns an formal-out node of a parameter specified by the index.
-     * @param index the index number of the parameter to be retrieved
-     * @return the found formal-out node, or {@code null} if no parameter is found
-     */
-    public CFGParameter getFormalOut(int index) {
-        return (index < formalOuts.size())? formalOuts.get(index) : null;
-    }
-    
-    /**
      * Returns an formal-out node of a parameter for the return value.
      * @return the formal-out node for the return value
      */
-    public CFGParameter getFormalOutForReturn() {
-        return formalOutForReturn;
+    public CFGParameter getFormalOut() {
+        return formalOut;
     }
     
     /**

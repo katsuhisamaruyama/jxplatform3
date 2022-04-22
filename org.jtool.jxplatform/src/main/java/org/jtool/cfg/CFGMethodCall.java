@@ -25,14 +25,14 @@ public class CFGMethodCall extends CFGStatement {
     private JMethodReference jmethodCall;
     
     /**
-     * The collection of actual-in node in this method call.
+     * The collection of actual-in nodes on this method call.
      */
     private List<CFGParameter> actualIns = new ArrayList<>();
     
     /**
-     * The actual-out node for the return value on this method call.
+     * A actual-out node on this method call.
      */
-    private CFGParameter actualOutForReturn = null;
+    private CFGParameter actualOut = null;
     
     /**
      * Creates a new object that represents a method call.
@@ -195,12 +195,12 @@ public class CFGMethodCall extends CFGStatement {
     }
     
     /**
-     * Sets an actual-out node for the return value on this method call.
+     * Sets an actual-out node on this method call.
      * This method is not intended to be invoked by clients.
      * @param node the actual-out node to be set
      */
-    public void setActualOutForReturn(CFGParameter node) {
-        actualOutForReturn = node;
+    public void setActualOut(CFGParameter node) {
+        actualOut = node;
     }
     
     /**
@@ -212,11 +212,11 @@ public class CFGMethodCall extends CFGStatement {
     }
     
     /**
-     * Returns an actual-out node for the return value on this method call.
-     * @return the actual-out node for the return value
+     * Returns an actual-out node on this method call.
+     * @return the actual-out node
      */
-    public CFGParameter getActualOutForReturn() {
-        return actualOutForReturn;
+    public CFGParameter getActualOut() {
+        return actualOut;
     }
     
     /**
