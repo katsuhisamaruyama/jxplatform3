@@ -132,7 +132,7 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Finds the CFG for a class element having a given fully-qualified name.
+     * Finds a CFG for a class element having a given fully-qualified name.
      * @param jproject the project containing the class element
      * @param fqn the fully-qualified name of the class member ({@code className#memeberName})
      * @return the found CFG, or {@code null} if no CFG is found
@@ -143,7 +143,7 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Finds the CCFG for a class having a given fully-qualified name.
+     * Finds a CCFG for a class having a given fully-qualified name.
      * @param jproject the project containing the class
      * @param fqn the fully-qualified name for the class ({@code className})
      * @return the found CFG, or {@code null} if no CFG is found
@@ -154,7 +154,7 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Obtains the CFG for a given method.
+     * Obtains a CFG for a given method.
      * @param jmethod the method of interest
      * @param force {@code true} if the CFG will be forcibly recreated,
      *        or {@code false} if a CFG stored in the repository will be reused
@@ -166,7 +166,7 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Finds the CFG for a given method.
+     * Finds a CFG for a given method.
      * @param jmethod the method of interest
      * @return the created or found CFG, or {@code null} if no CFG is created or found
      */
@@ -176,7 +176,7 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Obtains the CFG for a given method.
+     * Obtains a CFG for a given method.
      * @param jfield the field of interest
      * @param force {@code true} if the CFG will be forcibly recreated,
      *        or {@code false} if a CFG stored in the repository will be reused
@@ -188,7 +188,7 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Obtains the CFG for a given field.
+     * Obtains a CFG for a given field.
      * @param jfield the field of interest
      * @return the created or found CFG, or {@code null} if no CFG is created or found
      */
@@ -198,7 +198,7 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Obtains the CCFG for a given class.
+     * Obtains a CCFG for a given class.
      * @param jclass the class of interest
      * @param force {@code true} if the CCFG will be forcibly recreated,
      *        or {@code false} if a CCFG stored in the repository will be reused
@@ -210,7 +210,7 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Obtains the CCFG for a given class.
+     * Obtains a CCFG for a given class.
      * @param jclass the class of interest
      * @return the created or found CCFG
      */
@@ -220,7 +220,7 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Obtains the call graph for methods within a project.
+     * Obtains a call graph for methods within a project.
      * @param jproject the target project
      * @return the created call graph
      */
@@ -241,7 +241,7 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Finds the ClDG for a class having a given fully-qualified name.
+     * Finds a ClDG for a class having a given fully-qualified name.
      * @param jproject the project containing the class
      * @param fqn the fully-qualified name for the class ({@code className})
      * @return the found ClDG, or {@code null} if no ClDG is found
@@ -252,251 +252,134 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Finds the SDG for a project.
-     * @param jproject the target project
-     * @return the most recently created SDG, or {@code null} if a SDG has not been created yet
-     */
-    public SDG findSDG(JavaProject jproject) {
-        assert jproject != null;
-        return jproject.getPDGStore().findSDG();
-    }
-    
-    /**
-     * Obtains the PDG for a given CFG.
+     * Obtains a PDG for a given CFG for a method or a field.
      * @param jproject the project containing the target CFG
      * @param cfg the target CFG
-     * @param force {@code true} if the PDG will be forcibly recreated,
+     * @param force {@code true} if the PDG will be forcibly re-created,
      *        or {@code false} if a PDG stored in the repository will be reused
+     * @param whole {@code true} if the PDG will be created with the whole information related to
+     *        calls to methods and accesses to fields of outside classes
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
-    public PDG getPDG(JavaProject jproject, CFG cfg, boolean force) {
+    public PDG getPDG(JavaProject jproject, CFG cfg, boolean force, boolean whole) {
         assert jproject != null;
         assert cfg != null;
-        return jproject.getPDGStore().getPDG(cfg, force);
+        return jproject.getPDGStore().getPDG(cfg, force, whole);
     }
     
     /**
-     * Obtains the PDG for a given CFG.
+     * Obtains a PDG for a given CFG for a method or a field from the cache,
+     * using the whole information related to calls to methods and accesses to fields of outside classes.
      * @param jproject the project containing the target CFG
      * @param cfg the target CFG
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDG(JavaProject jproject, CFG cfg) {
-        assert jproject != null;
-        assert cfg != null;
-        return jproject.getPDGStore().getPDG(cfg, false);
+        return getPDG(jproject, cfg, false, true);
     }
     
     /**
-     * Obtains the PDG for a given method.
+     * Obtains a PDG for a given method.
      * @param jmethod the method of interest
-     * @param force {@code true} if the PDG will be forcibly recreated,
+     * @param force {@code true} if the PDG will be forcibly re-created,
      *        or {@code false} if a PDG stored in the repository will be reused
+     * @param whole {@code true} if the PDG will be created with the whole information related to
+     *        calls to methods and accesses to fields of outside classes
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
-    public PDG getPDG(JavaMethod jmethod, boolean force) {
+    public PDG getPDG(JavaMethod jmethod, boolean force, boolean whole) {
         assert jmethod != null;
-        return jmethod.getJavaProject().getPDGStore().getPDG(jmethod, force);
+        return jmethod.getJavaProject().getPDGStore().getPDG(jmethod, force, whole);
     }
     
     /**
-     * Obtains the PDG for a given method.
+     * Obtains a PDG for a given method from the cache,
+     * using the whole information related to calls to methods and accesses to fields of outside classes.
      * @param jmethod the method of interest
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDG(JavaMethod jmethod) {
-        assert jmethod != null;
-        return jmethod.getJavaProject().getPDGStore().getPDG(jmethod, false);
+        return getPDG(jmethod, false, true);
     }
     
     /**
-     * Obtains the PDG for a given field.
+     * Obtains a PDG for a given field.
      * @param jfield the field of interest
-     * @param force {@code true} if the PDG will be forcibly recreated,
+     * @param force {@code true} if the PDG will be forcibly re-created,
      *        or {@code false} if a PDG stored in the repository will be reused
+     * @param whole {@code true} if the PDG will be created with the whole information related to
+     *        calls to methods and accesses to fields of outside classes
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
-    public PDG getPDG(JavaField jfield, boolean force) {
+    public PDG getPDG(JavaField jfield, boolean force, boolean whole) {
         assert jfield != null;
-        return jfield.getJavaProject().getPDGStore().getPDG(jfield, force);
+        return jfield.getJavaProject().getPDGStore().getPDG(jfield, force, whole);
     }
     
     /**
-     * Obtains the PDG for a given field.
+     * Obtains a PDG for a given field from the cache,
+     * using the whole information related to calls to methods and accesses to fields of outside classes.
      * @param jfield the field of interest
      * @return the created or found PDG, or {@code null} if no PDG is created or found
      */
     public PDG getPDG(JavaField jfield) {
-        assert jfield != null;
-        return jfield.getJavaProject().getPDGStore().getPDG(jfield, false);
+        return getPDG(jfield, false, true);
     }
     
     /**
-     * Obtains the PDG for a given method.
-     * @param jmethod the method of interest
-     * @param force {@code true} if the PDG will be forcibly recreated,
-     *        or {@code false} if a PDG stored in the repository will be reused
-     * @return the created or found PDG within its SDG, or {@code null} if no PDG is created or found
-     */
-    public PDG getPDGWithinSDG(JavaMethod jmethod, boolean force) {
-        assert jmethod != null;
-        return jmethod.getJavaProject().getPDGStore().getPDGWithinSDG(jmethod, force);
-    }
-    
-    /**
-     * Obtains the PDG for a given method.
-     * @param jmethod the method of interest
-     * @return the created or found PDG within its SDG, or {@code null} if no PDG is created or found
-     */
-    public PDG getPDGWithinSDG(JavaMethod jmethod) {
-        assert jmethod != null;
-        return jmethod.getJavaProject().getPDGStore().getPDGWithinSDG(jmethod, false);
-    }
-    
-    /**
-     * Obtains the PDG for a given field.
-     * @param jfield the field of interest
-     * @param force {@code true} if the PDG will be forcibly recreated,
-     *        or {@code false} if a PDG stored in the repository will be reused
-     * @return the created or found PDG within its SDG, or {@code null} if no PDG is created or found
-     */
-    public PDG getPDGWithinSDG(JavaField jfield, boolean force) {
-        assert jfield != null;
-        return jfield.getJavaProject().getPDGStore().getPDGWithinSDG(jfield, force);
-    }
-    
-    /**
-     * Obtains the PDG for a given field.
-     * @param jfield the field of interest
-     * @return the created or found PDG within its SDG, or {@code null} if no PDG is created or found
-     */
-    public PDG getPDGWithinSDG(JavaField jfield) {
-        assert jfield != null;
-        return jfield.getJavaProject().getPDGStore().getPDGWithinSDG(jfield, false);
-    }
-    
-    /**
-     * Obtains the ClDG for a given CCFG.
+     * Obtains a ClDG for a given CCFG for a class.
      * @param jproject the project containing the target CCFG
      * @param ccfg the target CCFG
      * @param force {@code true} if the ClDG will be forcibly recreated,
      *        or {@code false} if a ClDG stored in the repository will be reused
+     * @param whole {@code true} if the PDG will be created with the whole information related to
+     *        calls to methods and accesses to fields of outside classes
      * @return the created or found ClDG, or {@code null} if no ClDG is created or found
      */
-    public ClDG getClDG(JavaProject jproject, CCFG ccfg, boolean force) {
+    public ClDG getClDG(JavaProject jproject, CCFG ccfg, boolean force, boolean whole) {
         assert jproject != null;
         assert ccfg != null;
-        return jproject.getPDGStore().getClDG(ccfg, force);
+        return jproject.getPDGStore().getClDG(ccfg, force, whole);
     }
     
     /**
-     * Obtains the ClDG for a given CCFG.
+     * Obtains a ClDG for a given CCFG for a class from the cache,
+     * using the whole information related to calls to methods and accesses to fields of outside classes.
      * @param jproject the project containing the target CCFG
      * @param ccfg the target CCFG
      * @return the created or found ClDG, or {@code null} if no ClDG is created or found
      */
     public ClDG getClDG(JavaProject jproject, CCFG ccfg) {
-        assert jproject != null;
-        assert ccfg != null;
-        return jproject.getPDGStore().getClDG(ccfg, false);
+        return getClDG(jproject, ccfg, false, true);
     }
     
     /**
-     * Obtains the ClDG for a given class.
+     * Obtains a ClDG for a given class.
      * @param jclass the class of interest
      * @param force {@code true} if the PDG will be forcibly recreated,
      *        or {@code false} if a ClDG stored in the repository will be reused
+     * @param whole {@code true} if the PDG will be created with the whole information related to
+     *        calls to methods and accesses to fields of outside classes
      * @return the created or found ClDG, or {@code null} if no ClDG is created or found
      */
-    public ClDG getClDG(JavaClass jclass, boolean force) {
+    public ClDG getClDG(JavaClass jclass, boolean force, boolean whole) {
         assert jclass != null;
-        return jclass.getJavaProject().getPDGStore().getClDG(jclass, force);
+        return jclass.getJavaProject().getPDGStore().getClDG(jclass, force, whole);
     }
     
     /**
-     * Obtains the ClDG for a given class.
+     * Obtains a ClDG for a given class from the cache,
+     * using the whole information related to calls to methods and accesses to fields of outside classes.
      * @param jclass the class of interest
      * @return the created or found ClDG, or {@code null} if no ClDG is created or found
      */
     public ClDG getClDG(JavaClass jclass) {
-        assert jclass != null;
-        return jclass.getJavaProject().getPDGStore().getClDG(jclass, false);
+        return getClDG(jclass, false, true);
     }
     
     /**
-     * Obtains the ClDG for a given class.
-     * @param jclass the class of interest
-     * @param force {@code true} if the ClDG will be forcibly recreated,
-     *        or {@code false} if a ClDG stored in the repository will be reused
-     * @return the created or found ClDG within its SDG, or {@code null} if no ClDG is created or found
-     */
-    public ClDG getClDGWithinSDG(JavaClass jclass, boolean force) {
-        assert jclass != null;
-        return jclass.getJavaProject().getPDGStore().getClDGWithinSDG(jclass, force);
-    }
-    
-    /**
-     * Obtains the ClDG for a given class.
-     * @param jclass the class of interest
-     * @return the created or found ClDG within its SDG, or {@code null} if no ClDG is created or found
-     */
-    public ClDG getClDGWithinSDG(JavaClass jclass) {
-        assert jclass != null;
-        return jclass.getJavaProject().getPDGStore().getClDGWithinSDG(jclass, false);
-    }
-    
-    /**
-     * Obtains the SDG for classes related to a given class.
-     * @param jclass the class of interest
-     * @param force {@code true} if the SDG will be forcibly recreated,
-     *        or {@code false} if a SDG stored in the repository will be reused
-     * @return the created or found SDG
-     */
-    public SDG getSDG(JavaClass jclass, boolean force) {
-        assert jclass != null;
-        return jclass.getJavaProject().getPDGStore().getSDG(jclass, force);
-    }
-    
-    /**
-     * Obtains the SDG for classes related to a given class.
-     * @param jclass the class of interest
-     * @return the created or found SDG
-     */
-    public SDG getSDG(JavaClass jclass) {
-        assert jclass != null;
-        return jclass.getJavaProject().getPDGStore().getSDG(jclass, false);
-    }
-    
-    /**
-     * Obtains the SDG for classes related to given classes.
-     * @param classes the collection of the classes of interest
-     * @param force {@code true} if the SDG will be forcibly recreated,
-     *        or {@code false} if a SDG stored in the repository will be reused
-     * @return the created or found SDG
-     */
-    public SDG getSDG(Set<JavaClass> classes, boolean force) {
-        if (classes.size() > 0) {
-            JavaClass jclass = classes.iterator().next();
-            return jclass.getJavaProject().getPDGStore().getSDG(classes, force);
-        }
-        return new SDG();
-    }
-    
-    /**
-     * Obtains the SDG for classes related to given classes.
-     * @param classes the collection of the classes of interest
-     * @return the created or found SDG
-     */
-    public SDG getSDG(Set<JavaClass> classes) {
-        if (classes.size() > 0) {
-            JavaClass jclass = classes.iterator().next();
-            return jclass.getJavaProject().getPDGStore().getSDG(classes, false);
-        }
-        return new SDG();
-    }
-    
-    /**
-     * Obtains the SDG for classes within a project.
+     * Obtains an SDG for all classes in a project,
+     * using the whole information related to calls to methods and accesses to fields of outside classes.
      * @param jproject the target project
      * @param force {@code true} if the SDG will be forcibly recreated,
      *        or {@code false} if a SDG stored in the repository will be reused
@@ -508,41 +391,61 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Obtains the SDG for classes within a project.
+     * Obtains the SDG for all classes in a project from the cache,
+     * using the whole information related to calls to methods and accesses to fields of outside classes.
      * @param jproject the target project
      * @return the created or found SDG
      */
     public SDG getSDG(JavaProject jproject) {
-        assert jproject != null;
-        return jproject.getPDGStore().getSDG(false);
+        return getSDG(jproject, false);
     }
     
     /**
-     * Obtains the SDG for a given classes.
+     * Obtains an SDG for classes related to a given class.
+     * @param jclass the class of interest
+     * @param force {@code true} if the SDG will be forcibly recreated,
+     *        or {@code false} if a SDG stored in the repository will be reused
+     * @param whole {@code true} if the PDG will be created with the whole information related to
+     *        calls to methods and accesses to fields of outside classes
+     * @return the created or found SDG
+     */
+    public SDG getSDG(JavaClass jclass, boolean force, boolean whole) {
+        assert jclass != null;
+        return jclass.getJavaProject().getPDGStore().getSDG(jclass, force, whole);
+    }
+    
+    /**
+     * Obtains an SDG for classes related to a given class from the cache,
+     * using the whole information related to calls to methods and accesses to fields of outside classes.
+     * @param jclass the class of interest
+     * @return the created or found SDG
+     */
+    public SDG getSDG(JavaClass jclass) {
+        return getSDG(jclass, false, true);
+    }
+    
+    /**
+     * Obtains an SDG for classes related to given classes.
      * @param classes the collection of the classes of interest
      * @param force {@code true} if the SDG will be forcibly recreated,
      *        or {@code false} if a SDG stored in the repository will be reused
      * @return the created or found SDG
      */
-    public SDG getSDGForClasses(Set<JavaClass> classes, boolean force) {
+    public SDG getSDG(Set<JavaClass> classes, boolean force) {
         if (classes.size() > 0) {
             JavaClass jclass = classes.iterator().next();
-            return jclass.getJavaProject().getPDGStore().getSDGForClasses(classes, force);
+            return jclass.getJavaProject().getPDGStore().getSDG(classes, force, false);
         }
         return new SDG();
     }
     
     /**
-     * Obtains the SDG for a given classes.
+     * Obtains an SDG for classes related to given classes from the cache.
      * @param classes the collection of the classes of interest
      * @return the created or found SDG
      */
-    public SDG getSDGForClasses(Set<JavaClass> classes) {
-        if (classes.size() > 0) {
-            JavaClass jclass = classes.iterator().next();
-            return jclass.getJavaProject().getPDGStore().getSDGForClasses(classes, false);
-        }
-        return new SDG();
+    public SDG getSDG(Set<JavaClass> classes) {
+        return getSDG(classes, false);
     }
     
     /**
