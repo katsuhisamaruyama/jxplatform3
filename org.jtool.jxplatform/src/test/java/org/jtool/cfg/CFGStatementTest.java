@@ -620,7 +620,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 6);
         List<JVariableReference> result = node.getDefVariables();
         
-        assertEquals("S130.!S130", TestUtil.asStrOfReference(result));
+        assertEquals("S130.!S130;S130.x", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1062,7 +1062,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 7);
         List<JVariableReference> result = node.getDefVariables();
         
-        assertEquals("this.s1.!set2", TestUtil.asStrOfReference(result));
+        assertEquals("this.s1.!set2;this.s1.key;this.s1.value", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1368,7 +1368,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 6);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.a", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1395,7 +1395,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 18);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.a", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1548,7 +1548,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 8);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("a$0.x", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1683,7 +1683,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 22);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("a$0.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1764,7 +1764,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 20);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("a$0.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1782,7 +1782,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 22);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("a$0.!add.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1818,7 +1818,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 4);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("S130.x", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1836,7 +1836,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 6);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("S130.x", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1931,7 +1931,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 15);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.x", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1949,7 +1949,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 17);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.!getX.a", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1985,7 +1985,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 21);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.x.y.a", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2021,7 +2021,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 26);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.x", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2039,7 +2039,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 28);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.!getX.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2084,7 +2084,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 34);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.x", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2102,7 +2102,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 36);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.!getX.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2120,7 +2120,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 38);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.!getX.!getY.a", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2156,7 +2156,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 43);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.x", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2174,7 +2174,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 45);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.!getX.y.a", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2219,7 +2219,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 50);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.x.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2237,7 +2237,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 52);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.x.!getY.a", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2255,7 +2255,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 4);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.s1.key;this.s1.value", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2282,7 +2282,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 7);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.s1.key;this.s1.value", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2327,7 +2327,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 19);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.s1.key;this.s1.value", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2390,7 +2390,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 7);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.s1", TestUtil.asStrOfReference(result));
+        assertEquals("this.s1;this.s1.map", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2435,7 +2435,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 19);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.s1.map", TestUtil.asStrOfReference(result));
     }
     @Test
     public void testGetUseVariablesTest140_1() {
@@ -2452,7 +2452,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 3);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("this.x", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2461,7 +2461,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 4);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("super.x", TestUtil.asStrOfReference(result));
     }
     
     @Test

@@ -72,7 +72,7 @@ public class CallGraphTest {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test126", "m( )");
         Set<CFGEntry> result = callGraph.getCalleeNodes(cfg.getEntryNode());
         
-        assertEquals("A126#A126( );A126#add( int );A126#getY( );A126#setY( int )",
+        assertEquals("A126#A126( );A126#add( int );A126#add2( int );A126#getY( );A126#setY( int )",
                 CFGTestUtil.asSortedStrOfCFGEntry(result));
     }
     
@@ -176,7 +176,7 @@ public class CallGraphTest {
         Set<ControlFlow> result = callGraph.getCallFlowsFrom(cfg.getEntryNode());
         
         Set<CFGEntry> nodes = result.stream().map(e -> (CFGEntry)e.getDstNode()).collect(Collectors.toSet());
-        assertEquals("A126#A126( );A126#add( int );A126#getY( );A126#setY( int )",
+        assertEquals("A126#A126( );A126#add( int );A126#add2( int );A126#getY( );A126#setY( int )",
                 CFGTestUtil.asSortedStrOfCFGEntry(nodes));
     }
     
