@@ -85,71 +85,11 @@ public class PDGNode extends GraphNode {
     }
     
     /**
-     * Obtains dependence edges incoming to this node.
-     * @return the collection of the incoming edges
+     * Tests if this node indicates the entry for a method, a field, or a class.
+     * @return {@code true} if this is an entry node, otherwise {@code false}
      */
-    public Set<Dependence> getIncomingDependeceEdges() {
-        return getIncomingEdges().stream()
-                                 .map(edge -> (Dependence)edge)
-                                 .collect(Collectors.toSet());
-    }
-    
-    /**
-     * Obtains control dependence edges incoming to this node.
-     * @return the collection of the incoming edges
-     */
-    public Set<CD> getIncomingCDEdges() {
-        return getIncomingEdges().stream()
-                                 .map(edge -> (Dependence)edge)
-                                 .filter(edge -> edge.isCD())
-                                 .map(edge -> (CD)edge)
-                                 .collect(Collectors.toSet());
-    }
-    
-    /**
-     * Obtains data dependence edges incoming to this node.
-     * @return the collection of the incoming edges
-     */
-    public Set<DD> getIncomingDDEdges() {
-        return getIncomingEdges().stream()
-                                 .map(edge -> (Dependence)edge)
-                                 .filter(edge -> edge.isDD())
-                                 .map(edge -> (DD)edge)
-                                 .collect(Collectors.toSet());
-    }
-    
-    /**
-     * Obtains dependence edges outgoing from this node.
-     * @return the collection of the outgoing edges
-     */
-    public Set<Dependence> getOutgoingDependeceEdges() {
-        return getOutgoingEdges().stream()
-                                 .map(edge -> (Dependence)edge)
-                                 .collect(Collectors.toSet());
-    }
-    
-    /**
-     * Obtains control dependence edges outgoing from this node.
-     * @return the collection of the outgoing edges
-     */
-    public Set<CD> getOutgoingCDEdges() {
-        return getOutgoingEdges().stream()
-                                 .map(edge -> (Dependence)edge)
-                                 .filter(edge -> edge.isCD())
-                                 .map(edge -> (CD)edge)
-                                 .collect(Collectors.toSet());
-    }
-    
-    /**
-     * Obtains data dependence edges outgoing from this node.
-     * @return the collection of the outgoing edges
-     */
-    public Set<DD> getOutgoingDDEdges() {
-        return getOutgoingEdges().stream()
-                                 .map(edge -> (Dependence)edge)
-                                 .filter(edge -> edge.isDD())
-                                 .map(edge -> (DD)edge)
-                                 .collect(Collectors.toSet());
+    public boolean isEntry() {
+        return false;
     }
     
     /**
@@ -186,6 +126,19 @@ public class PDGNode extends GraphNode {
     }
     
     /**
+     * Obtains control dependence edges incoming to this node.
+     * This method is not intended to be invoked by clients.
+     * @return the collection of the incoming edges
+     */
+    private Set<CD> getIncomingCDEdges() {
+        return getIncomingEdges().stream()
+                                 .map(edge -> (Dependence)edge)
+                                 .filter(edge -> edge.isCD())
+                                 .map(edge -> (CD)edge)
+                                 .collect(Collectors.toSet());
+    }
+    
+    /**
      * Tests if a given PDG node is equal to this node.
      * @param node the node to be checked
      * @return the {@code true} if the given node is equal to this node
@@ -215,7 +168,7 @@ public class PDGNode extends GraphNode {
      */
     @Override
     public String toString() {
-        return getCFGNode().toString();
+        return cfgnode.toString();
     }
     
     /**

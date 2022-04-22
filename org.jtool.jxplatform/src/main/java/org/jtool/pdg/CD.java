@@ -43,17 +43,17 @@ public class CD extends Dependence {
     }
     
     /**
-     * Sets as a declaration dependence.
+     * Sets as a declaration edge.
      */
     public void setDeclaration() {
-        kind = Kind.declarationDependence;
+        kind = Kind.declaration;
     }
     
     /**
-     * Sets as an exception dependence.
+     * Sets as an exception catch edge.
      */
     public void setExceptionCatch() {
-        kind = Kind.exceptionCatchDependence;
+        kind = Kind.exceptionCatch;
     }
     
     /**
@@ -69,9 +69,9 @@ public class CD extends Dependence {
             buf.append(" F");
         } else if (kind == Kind.fallThroughControlDependence) {
             buf.append(" FALL");
-        } else if (kind == Kind.declarationDependence) {
+        } else if (kind == Kind.declaration) {
             buf.append(" DECL");
-        } else if (kind == Kind.exceptionCatchDependence) {
+        } else if (kind == Kind.exceptionCatch) {
             buf.append(" EXCP");
         }
         return buf.toString();

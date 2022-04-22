@@ -5,32 +5,32 @@
 
 package org.jtool.pdg;
 
+import org.jtool.srcmodel.JavaMethod;
+import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.QualifiedName;
-import org.jtool.cfg.CFG;
 import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CCFGEntry;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
 /**
- * An object storing information on a class dependence graph (ClDG).
+ * An object storing information on a class dependence graph (ClDG) for a class.
  * 
  * @author Katsuhisa Maruyama
  */
-public class ClDG extends DependenceGraph {
-    
-    /**
-     * The entry node of this ClDG.
-     */
-    private ClDGEntry entry;
+public class ClDG extends DependencyGraph {
     
     /**
      * The map between the fully-qualified names and PDGs that have their corresponding names.
      */
     private Map<String, PDG> pdgs = new HashMap<>();
+    
+    /**
+     * The entry node of this ClDG.
+     */
+    private ClDGEntry entry;
     
     /**
      * Sets the entry node for this ClDG.
@@ -87,17 +87,24 @@ public class ClDG extends DependenceGraph {
      * {@inheritDoc}
      */
     @Override
-    public CFG getCFG() {
-        return null;
+    public boolean isClDG() {
+        return true;
     }
     
     /**
-     * Tests if this graph represents a ClDG.
-     * @return always {@code true}
+     * {@inheritDoc}
      */
     @Override
-    public boolean isClDG() {
-        return true;
+    public Set<PDG> getPDGs() {
+        return new HashSet<>(pdgs.values());
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PDG findPDG(String fqn) {
+        return pdgs.get(fqn);
     }
     
     /**
@@ -108,68 +115,35 @@ public class ClDG extends DependenceGraph {
     public void add(PDG pdg) {
         if (!pdgs.values().contains(pdg)) {
             pdgs.put(pdg.getQualifiedName().fqn(), pdg);
+            addNodes(pdg.getNodes());
+            addEdges(pdg.getEdges());
+            pdg.getSpecificEdges().forEach(e -> add(e));
         }
     }
     
     /**
-     * Returns PDGs contained in this ClDG.
-     * @return the collection of the contained PDGs
-     */
-    public Set<PDG> getPDGs() {
-        return new HashSet<>(pdgs.values());
-    }
-    
-    /**
-     * Finds a PDG having a given name from PDGs contained in this ClDG.
-     * @param fqn the fully-qualified name of the PDG to be retrieved
+     * Finds a PDG corresponding to a given method from PDGs contained in this ClDG.
+     * @param jmethod the method for the PDG to be retrieved
      * @return the found PDG, or {@code null} if the corresponding PDG is not found
      */
-    public PDG getPDG(String fqn) {
-        return pdgs.get(fqn);
+    public PDG findPDG(JavaMethod jmethod) {
+        return pdgs.get(jmethod.getQualifiedName().fqn());
     }
     
     /**
-     * Returns nodes contained in this ClDG.
-     * @return the collection of the contained nodes
+     * Finds a PDG corresponding to a given field from PDGs contained in this ClDG.
+     * @param jmethod the field for the PDG to be retrieved
+     * @return the found PDG, or {@code null} if the corresponding PDG is not found
      */
-    public Set<PDGNode> getNodes() {
-        Set<PDGNode> nodes = pdgs.values().stream()
-                                          .flatMap(pdg -> pdg.getNodes().stream())
-                                          .collect(Collectors.toSet());
-        nodes.add(entry);
-        return nodes;
+    public PDG findPDG(JavaField jfield) {
+        return pdgs.get(jfield.getQualifiedName().fqn());
     }
     
-    /**
-     * Returns dependence edges contained in this ClDG.
-     * @return the collection of the contained edges
-     */
-    public Set<Dependence> getEdges() {
-        Set<Dependence> edges = pdgs.values().stream()
-                                             .flatMap(pdg -> pdg.getEdges().stream())
-                                             .collect(Collectors.toSet());
-        edges.addAll(entry.getOutgoingDependeceEdges());
-        return edges;
-    }
-    
-    /**
-     * Displays information on this graph.
-     */
-    public void print() {
-        System.out.println(toString());
-    }
     /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        StringBuilder buf = new StringBuilder();
-        buf.append("----- ClDG (from here) -----\n");
-        buf.append("Class Name = " + getQualifiedName());
-        buf.append("\n");
-        buf.append(toStringForNodes());
-        buf.append(toStringForEdges());
-        buf.append("----- ClDG (to here) -----\n");
-        return buf.toString();
+        return toString("ClDG");
     }
 }

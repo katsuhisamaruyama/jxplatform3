@@ -5,27 +5,22 @@
 
 package org.jtool.pdg;
 
-import org.jtool.cfg.CFG;
-import org.jtool.cfg.CCFG;
 import org.jtool.srcmodel.JavaClass;
+import org.jtool.srcmodel.JavaField;
+import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.QualifiedName;
+import org.jtool.jxplatform.builder.TimeInfo;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
 /**
  * An object storing information on a system dependence graph (SDG).
  * 
  * @author Katsuhisa Maruyama
  */
-public class SDG extends DependenceGraph {
-    
-    /**
-     * The fully-qualified name of this SDG.
-     */
-    private static final QualifiedName QName = new QualifiedName("SDG", "SDG");
+public class SDG extends DependencyGraph {
     
     /**
      * The map between the fully-qualified names and ClDGs that have their corresponding names.
@@ -38,65 +33,81 @@ public class SDG extends DependenceGraph {
     private Map<String, PDG> pdgs = new HashMap<>();
     
     /**
-     * Returns the identification number of this SDG.
-     * @return fixed value {@code -1}
+     * The qualified name of this SDG.
+     */
+    private QualifiedName qname;
+    
+    /**
+     * Creates a ClDG.
+     * This method is not intended to be invoked by clients.
+     * @param node the entry node of this ClDG
+     */
+    public SDG() {
+        qname = new QualifiedName("SDG", TimeInfo.getTimeAsISOString(TimeInfo.getCurrentTime()));
+    }
+    
+    /**
+     * {@inheritDoc}
      */
     @Override
     public long getId() {
-        return -1;
+        return 0;
     }
     
     /**
-     * Returns the CFG corresponding to this SDG.
-     * @return always {@code null} because there is in general no corresponding CFG
-     */
-    @Override
-    public CCFG getCCFG() {
-        return null;
-    }
-    
-    /**
-     * Returns the CFG corresponding to this SDG.
-     * @return always {@code null} because there is in general no corresponding CFG
-     */
-    @Override
-    public CFG getCFG() {
-        return null;
-    }
-    
-    /**
-     * Returns the signature of this SDG.
-     * @return the SDG signature, which is unique.
-     */
-    @Override
-    public String getSignature() {
-        return "SDG";
-    }
-    
-    /**
-     * Returns the fully-qualified name of this SDG.
-     * @return the SDG name, which is unique.
+     * {@inheritDoc}
      */
     @Override
     public QualifiedName getQualifiedName() {
-        return QName;
+        return qname;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getSignature() {
+        return qname.fqn();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Set<PDG> getPDGs() {
+        return new HashSet<>(pdgs.values());
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PDG findPDG(String fqn) {
+        return pdgs.get(fqn);
     }
     
     /**
      * Adds a ClDG to this SDG.
+     * This method is not intended to be invoked by clients.
      * @param cldg the ClDG to be added
      */
     public void add(ClDG cldg) {
-        cldgs.put(cldg.getQualifiedName().fqn(), cldg);
-        cldg.getPDGs().forEach(pdg -> pdgs.put(pdg.getQualifiedName().fqn(), pdg));
+        if (!cldgs.values().contains(cldg)) {
+            cldgs.put(cldg.getQualifiedName().fqn(), cldg);
+            addNodes(cldg.getNodes());
+            addEdges(cldg.getEdges());
+            cldg.getSpecificEdges().forEach(e -> add(e));
+            
+            cldg.getPDGs().forEach(pdg -> pdgs.put(pdg.getQualifiedName().fqn(), pdg));
+        }
     }
     
     /**
      * Returns ClDGs contained in this SDG.
-     * @return the collection of the contained ClDGs
+     * @return the collection of all the contained ClDGs
      */
     public Set<ClDG> getClDGs() {
-        return new HashSet<ClDG>(cldgs.values());
+        return (Set<ClDG>)cldgs.values();
     }
     
     /**
@@ -104,7 +115,7 @@ public class SDG extends DependenceGraph {
      * @param fqn the fully-qualified name of the ClDG to be retrieved
      * @return the found ClDG, or {@code null} if the corresponding ClDG is not found
      */
-    public ClDG getClDG(String fqn) {
+    public ClDG findClDG(String fqn) {
         return cldgs.get(fqn);
     }
     
@@ -113,72 +124,34 @@ public class SDG extends DependenceGraph {
      * @param jclass the class for the ClDG to be retrieved
      * @return the found ClDG, or {@code null} if the corresponding ClDG is not found
      */
-    public ClDG getClDG(JavaClass jclass) {
+    public ClDG findClDG(JavaClass jclass) {
         return cldgs.get(jclass.getQualifiedName().fqn());
     }
     
     /**
-     * Returns PDGs contained in this SDG.
-     * @return the collection of the contained PDGs
-     */
-    public Set<PDG> getPDGs() {
-        return new HashSet<PDG>(pdgs.values());
-    }
-    
-    /**
-     * Finds a PDG having a given name from PDGs contained in this SDG.
-     * @param fqn the fully-qualified name of the PDG to be retrieved
+     * Finds a PDG corresponding to a given method from PDGs contained in this ClDG.
+     * @param jmethod the method for the PDG to be retrieved
      * @return the found PDG, or {@code null} if the corresponding PDG is not found
      */
-    public PDG getPDG(String fqn) {
-        return pdgs.get(fqn);
+    public PDG findPDG(JavaMethod jmethod) {
+        return pdgs.get(jmethod.getQualifiedName().fqn());
     }
     
     /**
-     * Tests if this graph represents an SDG.
-     * @return always {@code true}
+     * Finds a PDG corresponding to a given field from PDGs contained in this ClDG.
+     * @param jmethod the field for the PDG to be retrieved
+     * @return the found PDG, or {@code null} if the corresponding PDG is not found
      */
-    @Override
-    public boolean isSDG() {
-        return true;
+    public PDG findPDG(JavaField jfield) {
+        return pdgs.get(jfield.getQualifiedName().fqn());
     }
     
     /**
-     * Returns nodes contained in this SDG.
-     * @return the collection of the contained nodes
-     */
-    @Override
-    public Set<PDGNode> getNodes() {
-        return cldgs.values().stream()
-                             .flatMap(pdg -> pdg.getNodes().stream())
-                             .collect(Collectors.toSet());
-    }
-    
-    /**
-     * Returns dependence edges contained in this SDG.
-     * @return the collection of the contained edges
-     */
-    @Override
-    public Set<Dependence> getEdges() {
-        return cldgs.values().stream()
-                             .flatMap(pdg -> pdg.getEdges().stream())
-                             .collect(Collectors.toSet());
-    }
-    
-    /**
-     * {@inheritDoc}
+     * Obtains information on this graph.
+     * @return the string representing the information on this PDG
      */
     @Override
     public String toString() {
-        StringBuilder buf = new StringBuilder();
-        buf.append("----- SDG (from here) -----\n");
-        buf.append(toStringForNodes());
-        buf.append(toStringForEdges());
-        
-        for (ClDG cldg : cldgs.values()) {
-            buf.append(cldg.toString());
-        }
-        buf.append("----- SDG (to here) -----\n");
-        return buf.toString();
+        return toString("SDG");
     }
 } 

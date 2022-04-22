@@ -50,6 +50,22 @@ public class PDGStatement extends PDGNode {
     }
     
     /**
+     * Returns the first one from the collection of variables defined in this node.
+     * @return the defined variable at the first position, or {@code null} if this node never defines any variable
+     */
+    public JVariableReference getDefFirst() {
+        return getCFGStatement().getDefFirst();
+    }
+    
+    /**
+     * Returns the first one from the collection of variables used in this node.
+     * @return the used variable at the first position, or {@code null} if this node never uses any variable
+     */
+    public JVariableReference getUseFirst() {
+        return getCFGStatement().getUseFirst();
+    }
+    
+    /**
      * Tests if this node defines a given variable.
      * @param jv the variable to be checked
      * @return {@code true} if the variable is defined in this node, otherwise {@code false}

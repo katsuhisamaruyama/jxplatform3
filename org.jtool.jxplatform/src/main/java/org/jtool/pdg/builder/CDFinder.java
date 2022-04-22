@@ -6,7 +6,6 @@
 package org.jtool.pdg.builder;
 
 import org.jtool.pdg.CD;
-import org.jtool.pdg.PDG;
 import org.jtool.pdg.PDGNode;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodCall;
@@ -20,32 +19,32 @@ import java.util.Set;
 import java.util.HashSet;
 
 /**
- * Finds control dependences in a PDG.
+ * Finds control dependences in a bare PDG.
  * 
  * @author Katsuhisa Maruyama
  */
 public class CDFinder {
     
-    public static void find(PDG pdg, CFG cfg) {
-        findCDs(pdg, cfg);
-        findCDsFromEntry(pdg, cfg);
-        addCDsFromEntry(pdg);
-        findCDsOnDeclarations(pdg, cfg);
+    public static void find(BarePDG bpdg , CFG cfg) {
+        findCDs(bpdg, cfg);
+        findCDsFromEntry(bpdg, cfg);
+        findCDsOnDeclarations(bpdg, cfg);
     }
     
-    private static void findCDs(PDG pdg, CFG cfg) {
+    private static void findCDs(BarePDG bpdg, CFG cfg) {
         for (CFGNode cfgnode : cfg.getNodes()) {
             if (cfgnode.isBranch()) {
-                findCDs(pdg, cfg, cfgnode);
+                findCDs(bpdg, cfg, cfgnode);
             }
             if (cfgnode.isMethodCall()) {
-                findCDsOnParameters(pdg, (CFGMethodCall)cfgnode);
+                findCDsOnParameters(bpdg, (CFGMethodCall)cfgnode);
             }
         }
     }
     
-    private static void findCDs(PDG pdg, CFG cfg, CFGNode branchNode) {
+    private static void findCDs(BarePDG bpdg, CFG cfg, CFGNode branchNode) {
         Set<CFGNode> postDominator = cfg.postDominator(branchNode);
+        
         for (ControlFlow branch : branchNode.getOutgoingFlows()) {
             CFGNode branchDstNode = branch.getDstNode();
             Set<CFGNode> postDominatorForBranch = cfg.postDominator(branchDstNode);
@@ -64,65 +63,63 @@ public class CDFinder {
                     } else if (branch.isExceptionCatch()) {
                         edge.setExceptionCatch();
                     }
-                    pdg.add(edge);
+                    bpdg.add(edge);
                 }
             }
         }
     }
     
-    private static void findCDsOnParameters(PDG pdg, CFGMethodCall callNode) {
+    private static void findCDsOnParameters(BarePDG bpdg, CFGMethodCall callNode) {
         for (CFGParameter cfgnode : callNode.getActualIns()) {
             CD edge = new CD(callNode.getPDGNode(), cfgnode.getPDGNode());
             edge.setTrue();
-            pdg.add(edge);
+            bpdg.add(edge);
         }
         
-        CFGParameter returnNode = callNode.getActualOutForReturn();
+        CFGParameter returnNode = callNode.getActualOut();
         if (returnNode != null) {
             CD edge = new CD(callNode.getPDGNode(), returnNode.getPDGNode());
             edge.setTrue();
-            pdg.add(edge);
+            bpdg.add(edge);
         }
         
         CFGNode receiverNode = callNode.getReceiver();
         if (receiverNode != null) {
             CD edge = new CD(receiverNode.getPDGNode(), callNode.getPDGNode());
             edge.setTrue();
-            pdg.add(edge);
+            bpdg.add(edge);
         }
     }
     
-    private static void findCDsFromEntry(PDG pdg, CFG cfg) {
+    private static void findCDsFromEntry(BarePDG bpdg, CFG cfg) {
         CFGNode entryNode = cfg.getEntryNode();
         Set<CFGNode> postDominator = cfg.postDominator(entryNode);
         for (CFGNode cfgnode : postDominator) {
             if ((cfgnode.isStatementNotParameter() && !cfgnode.isMethodCall()) || cfgnode.isFormal()) {
                 CD edge = new CD(entryNode.getPDGNode(), cfgnode.getPDGNode());
                 edge.setTrue();
-                pdg.add(edge);
+                bpdg.add(edge);
             }
         }
-    }
-    
-    private static void addCDsFromEntry(PDG pdg) {
-        for (PDGNode pdgnode : pdg.getNodes()) {
-            if (!pdgnode.equals(pdg.getEntryNode()) && pdgnode.getNumOfIncomingTrueFalseCDs() == 0) {
-                CD edge = new CD(pdg.getEntryNode(), pdgnode);
+        
+        for (PDGNode pdgnode : bpdg.getNodes()) {
+            if (!pdgnode.isEntry() && pdgnode.getNumOfIncomingTrueFalseCDs() == 0) {
+                CD edge = new CD(entryNode.getPDGNode(), pdgnode);
                 edge.setTrue();
-                pdg.add(edge);
+                bpdg.add(edge);
             }
         }
     }
     
-    private static void findCDsOnDeclarations(PDG pdg, CFG cfg) {
+    private static void findCDsOnDeclarations(BarePDG bpdg, CFG cfg) {
         for (CFGNode cfgnode : cfg.getNodes()) {
             if (cfgnode.isStatement()) {
-                findCDsOnDeclarations(pdg,cfg, (CFGStatement)cfgnode);
+                findCDsOnDeclarations(bpdg, cfg, (CFGStatement)cfgnode);
             }
         }
     }
     
-    private static void findCDsOnDeclarations(PDG pdg, CFG cfg, CFGStatement cfgnode) {
+    private static void findCDsOnDeclarations(BarePDG bpdg, CFG cfg, CFGStatement cfgnode) {
         Set<JVariableReference> vars = new HashSet<>();
         vars.addAll(cfgnode.getDefVariables());
         vars.addAll(cfgnode.getUseVariables());
@@ -135,9 +132,11 @@ public class CDFinder {
                     if (node.isLocalDeclaration()) {
                         CFGStatement decnode = (CFGStatement)node;
                         if (decnode.defineVariable(jv)) {
-                            CD edge = new CD(decnode.getPDGNode(), cfgnode.getPDGNode());
-                            edge.setDeclaration();
-                            pdg.add(edge);
+                            if (!decnode.equals(cfgnode)) {
+                                CD edge = new CD(decnode.getPDGNode(), cfgnode.getPDGNode());
+                                edge.setDeclaration();
+                                bpdg.add(edge);
+                            }
                             return true;
                         }
                     }

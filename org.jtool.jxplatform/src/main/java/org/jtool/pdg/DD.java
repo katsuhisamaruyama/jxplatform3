@@ -18,7 +18,7 @@ public class DD extends Dependence {
     /**
      * The variable related to this data dependence.
      */
-    protected JVariableReference jvar;
+    private JVariableReference jvar = null;
     
     /**
      * The loop-carried node for this data dependence.
@@ -164,6 +164,9 @@ public class DD extends Dependence {
      * @return the {@code true} if the given edge is equal to this edge
      */
     public boolean equals(DD edge) {
+        if (jvar == null) {
+            return edge != null && super.equals((Dependence)edge);
+        }
         return edge != null && (super.equals((Dependence)edge) && jvar.equals(edge.jvar));
     }
     
@@ -182,13 +185,15 @@ public class DD extends Dependence {
     public String toString() {
         StringBuilder buf = new StringBuilder();
         buf.append(super.toString());
-        buf.append(" [ ");
-        buf.append(jvar.getReferenceForm());
-        if (isLoopCarried()) {
-            buf.append(" LC = ");
-            buf.append(getLoopCarriedNode().getId());
+        if (jvar != null) {
+            buf.append(" [ ");
+            buf.append(jvar.getReferenceForm());
+            if (isLoopCarried()) {
+                buf.append(" LC = ");
+                buf.append(getLoopCarriedNode().getId());
+            }
+            buf.append(" ]");
         }
-        buf.append(" ]");
         if (kind == Kind.loopIndependentDefUseDependence) {
             buf.append(" LIDD");
         } else if (kind == Kind.loopCarriedDefUseDependence) {

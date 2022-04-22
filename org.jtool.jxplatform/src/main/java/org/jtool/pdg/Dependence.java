@@ -29,14 +29,12 @@ public class Dependence extends GraphEdge {
      * The kind of a dependence edge.
      */
     public enum Kind {
-        controlDependence,               // Control dependence in general
         trueControlDependence,           // Control dependence with respect to a true-branch flow
         falseControlDependence,          // Control dependence with respect to a false-branch flow
         fallThroughControlDependence,    // Control dependence with respect to a fall-through flow
-        declarationDependence,           // Control dependence with respect to a declaration-reference relationship
-        exceptionCatchDependence,        // Control dependence with respect to an exception-catch within a try statement
+        exceptionCatch,                  // Control dependence with respect to an exception-catch within a try statement
+        declaration,                     // Control dependence between declaration and its references
         
-        dataDependence,                  // Data dependence in general
         loopIndependentDefUseDependence, // Data dependence with respect to a loop-independent variable
         loopCarriedDefUseDependence,     // Data dependence with respect to a loop-carried variable
         defOrderDependence,              // Data dependence based on the order of definitions of variables
@@ -46,8 +44,8 @@ public class Dependence extends GraphEdge {
         fieldAccess,                     // Data dependence with respect to a field access
         summary,                         // Data dependence between actual-in and actual-out nodes
         
-        classMember,                     // Connection between a class and its members
-        call,                            // Connection between a caller and its callee
+        classMember,                     // Dependence between a class and its members
+        call,                            // Dependence between a caller and its callee
         
         undefined,
     }
@@ -58,7 +56,7 @@ public class Dependence extends GraphEdge {
      * @param src the source node
      * @param dst the destination node
      */
-    protected Dependence(PDGNode src, PDGNode dst) {
+    public Dependence(PDGNode src, PDGNode dst) {
         super(src, dst);
     }
     
@@ -80,6 +78,20 @@ public class Dependence extends GraphEdge {
     }
     
     /**
+     * Sets as a call edge.
+     */
+    public void setClassMember() {
+        kind = Kind.classMember;
+    }
+    
+    /**
+     * Sets as a call edge.
+     */
+    public void setCall() {
+        kind = Kind.call;
+    }
+    
+    /**
      * Tests if this edge represents a control dependence.
      * @return {@code true} if this is a control dependence edge, otherwise {@code false}
      */
@@ -87,8 +99,8 @@ public class Dependence extends GraphEdge {
         return kind == Kind.trueControlDependence ||
                kind == Kind.falseControlDependence ||
                kind == Kind.fallThroughControlDependence ||
-               kind == Kind.declarationDependence ||
-               kind == Kind.exceptionCatchDependence;
+               kind == Kind.declaration ||
+               kind == Kind.exceptionCatch;
     }
     
     /**
@@ -136,7 +148,7 @@ public class Dependence extends GraphEdge {
      * @return {@code true} if this is a declaration dependence edge, otherwise {@code false}
      */
     public boolean isDeclaration() {
-        return kind == Kind.declarationDependence;
+        return kind == Kind.declaration;
     }
     
     /**
@@ -145,7 +157,24 @@ public class Dependence extends GraphEdge {
      * @return {@code true} if this is an exception dependence edge, otherwise {@code false}
      */
     public boolean isExceptionCatch() {
-        return kind == Kind.exceptionCatchDependence;
+        return kind == Kind.exceptionCatch;
+    }
+    
+    /**
+     * Tests if this edge represents a class-member dependence.
+     * @return {@code true} if this is a class-member dependence edge, otherwise {@code false}
+     */
+    public boolean isClassMember() {
+        return kind == Kind.classMember;
+    }
+    
+    /**
+     * Tests if this edge represents a method call dependence.
+     * The caller is needed to execute a callee.
+     * @return {@code true} if this is a method call dependence edge, otherwise {@code false}
+     */
+    public boolean isCall() {
+        return kind == Kind.call;
     }
     
     /**
@@ -226,23 +255,6 @@ public class Dependence extends GraphEdge {
     }
     
     /**
-     * Tests if this edge represents a class-member dependence.
-     * @return {@code true} if this is a class-member dependence edge, otherwise {@code false}
-     */
-    public boolean isClassMember() {
-        return kind == Kind.classMember;
-    }
-    
-    /**
-     * Tests if this edge represents a method call dependence.
-     * The caller is needed to execute a callee.
-     * @return {@code true} if this is a method call dependence edge, otherwise {@code false}
-     */
-    public boolean isCall() {
-        return kind == Kind.call;
-    }
-    
-    /**
      * Returns the source node of this dependence edge.
      * @return the source node
      */
@@ -293,8 +305,7 @@ public class Dependence extends GraphEdge {
     }
     
     /**
-     * Obtains information on this dependence.
-     * @return the string representing the information
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
@@ -302,6 +313,11 @@ public class Dependence extends GraphEdge {
         buf.append(src.getId());
         buf.append(" -> ");
         buf.append(dst.getId());
+        if (kind == Kind.classMember) {
+            buf.append(" MEMBER");
+        } else if (kind == Kind.call) {
+            buf.append(" CALL");
+        }
         return buf.toString();
     }
     

@@ -95,7 +95,7 @@ public class PDGNodeTest {
     public void testGetIncomingDependeceEdges1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 5);
-        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, node.getIncomingDependeceEdges());
+        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, pdg.getIncomingDependenceEdges(node));
         
         assertEquals("2;4", TestUtil.asStr(result));
     }
@@ -104,7 +104,7 @@ public class PDGNodeTest {
     public void testGetIncomingDependeceEdges2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 6);
-        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, node.getIncomingDependeceEdges());
+        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, pdg.getIncomingDependenceEdges(node));
         
         assertEquals("1;3;4", TestUtil.asStr(result));
     }
@@ -113,34 +113,34 @@ public class PDGNodeTest {
     public void testGetIncomingCDEdges1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 2);
-        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, node.getIncomingCDEdges());
+        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, pdg.getIncomingCDEdges(node));
         
-        assertEquals("0;2", TestUtil.asStr(result));
+        assertEquals("0", TestUtil.asStr(result));
     }
     
     @Test
     public void testGetIncomingCDEdges2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
-        PDGNode node = PDGTestUtil.getNode(pdg, 5);
-        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, node.getIncomingCDEdges());
+        PDGNode node = PDGTestUtil.getNode(pdg, 3);
+        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, pdg.getIncomingCDEdges(node));
         
-        assertEquals("2;4", TestUtil.asStr(result));
+        assertEquals("0", TestUtil.asStr(result));
     }
     
     @Test
     public void testGetIncomingCDEdges3() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
-        PDGNode node = PDGTestUtil.getNode(pdg, 2);
-        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, node.getIncomingCDEdges());
+        PDGNode node = PDGTestUtil.getNode(pdg, 5);
+        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, pdg.getIncomingCDEdges(node));
         
-        assertEquals("0;2", TestUtil.asStr(result));
+        assertEquals("2;4", TestUtil.asStr(result));
     }
     
     @Test
     public void testGetIncomingCDEdges4() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 6);
-        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, node.getIncomingCDEdges());
+        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, pdg.getIncomingCDEdges(node));
         
         assertEquals("1;3;4", TestUtil.asStr(result));
     }
@@ -149,7 +149,7 @@ public class PDGNodeTest {
     public void testGetIncomingDDEdges1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 2);
-        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, node.getIncomingDDEdges());
+        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, pdg.getIncomingDDEdges(node));
         
         assertEquals("", TestUtil.asStr(result));
     }
@@ -158,7 +158,7 @@ public class PDGNodeTest {
     public void testGetIncomingDDEdges2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 4);
-        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, node.getIncomingDDEdges());
+        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, pdg.getIncomingDDEdges(node));
         
         assertEquals("1", TestUtil.asStr(result));
     }
@@ -167,7 +167,7 @@ public class PDGNodeTest {
     public void testGetIncomingDDEdges3() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 5);
-        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, node.getIncomingDDEdges());
+        List<String> result = PDGTestUtil.getIdListOfSrc(pdg, pdg.getIncomingDDEdges(node));
         
         assertEquals("2", TestUtil.asStr(result));
     }
@@ -176,16 +176,16 @@ public class PDGNodeTest {
     public void testGetOutgoingDependeceEdges1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 2);
-        List<String> result = PDGTestUtil.getIdListOfDst(pdg, node.getOutgoingDependeceEdges());
+        List<String> result = PDGTestUtil.getIdListOfDst(pdg, pdg.getOutgoingDependenceEdges(node));
         
-        assertEquals("2;5;8", TestUtil.asStr(result));
+        assertEquals("5;8", TestUtil.asStr(result));
     }
     
     @Test
     public void testGetOutgoingDependeceEdges2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 4);
-        List<String> result = PDGTestUtil.getIdListOfDst(pdg, node.getOutgoingDependeceEdges());
+        List<String> result = PDGTestUtil.getIdListOfDst(pdg, pdg.getOutgoingDependenceEdges(node));
         
         assertEquals("5;6", TestUtil.asStr(result));
     }
@@ -194,7 +194,7 @@ public class PDGNodeTest {
     public void testGetOutgoingCDEdges1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 0);
-        List<String> result = PDGTestUtil.getIdListOfDst(pdg, node.getOutgoingCDEdges());
+        List<String> result = PDGTestUtil.getIdListOfDst(pdg, pdg.getOutgoingCDEdges(node));
         
         assertEquals("1;11;2;3;4;8;9", TestUtil.asStr(result));
     }
@@ -203,7 +203,7 @@ public class PDGNodeTest {
     public void testGetOutgoingCDEdges2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 4);
-        List<String> result = PDGTestUtil.getIdListOfDst(pdg, node.getOutgoingCDEdges());
+        List<String> result = PDGTestUtil.getIdListOfDst(pdg, pdg.getOutgoingCDEdges(node));
         
         assertEquals("5;6", TestUtil.asStr(result));
     }
@@ -212,7 +212,7 @@ public class PDGNodeTest {
     public void testGetOutgoingDDEdges1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 1);
-        List<String> result = PDGTestUtil.getIdListOfDst(pdg, node.getOutgoingDDEdges());
+        List<String> result = PDGTestUtil.getIdListOfDst(pdg, pdg.getOutgoingDDEdges(node));
         
         assertEquals("4;6", TestUtil.asStr(result));
     }
@@ -221,7 +221,7 @@ public class PDGNodeTest {
     public void testGetOutgoingDDEdges2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 2);
-        List<String> result = PDGTestUtil.getIdListOfDst(pdg, node.getOutgoingDDEdges());
+        List<String> result = PDGTestUtil.getIdListOfDst(pdg, pdg.getOutgoingDDEdges(node));
         
         assertEquals("5;8", TestUtil.asStr(result));
     }
@@ -230,7 +230,7 @@ public class PDGNodeTest {
     public void testGetOutgoingDDEdges3() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 3);
-        List<String> result = PDGTestUtil.getIdListOfDst(pdg, node.getOutgoingDDEdges());
+        List<String> result = PDGTestUtil.getIdListOfDst(pdg, pdg.getOutgoingDDEdges(node));
         
         assertEquals("6;9", TestUtil.asStr(result));
     }
@@ -239,7 +239,7 @@ public class PDGNodeTest {
     public void testGetOutgoingDDEdges4() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         PDGNode node = PDGTestUtil.getNode(pdg, 9);
-        List<String> result = PDGTestUtil.getIdListOfDst(pdg, node.getOutgoingDDEdges());
+        List<String> result = PDGTestUtil.getIdListOfDst(pdg, pdg.getOutgoingDDEdges(node));
         
         assertEquals("", TestUtil.asStr(result));
     }

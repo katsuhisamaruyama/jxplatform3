@@ -9,7 +9,7 @@ import org.jtool.srcmodel.QualifiedName;
 import org.jtool.cfg.CCFGEntry;
 
 /**
- * The entry node for a ClDG for a class or an interface.
+ * The entry node for a ClDG.
  * 
  * @author Katsuhisa Maruyama
  */
@@ -38,14 +38,6 @@ public class ClDGEntry extends PDGNode {
     }
     
     /**
-     * Returns the fully-qualified name of the ClDG that has this entry node
-     * @return the fully-qualified name of the ClDG
-     */
-    public QualifiedName getQualifiedName() {
-        return getCCFGEntry().getQualifiedName();
-    }
-    
-    /**
      * Associates a ClDG with this entry node.
      * This method is not intended to be invoked by clients.
      * @param cldg the ClDG to be associated
@@ -60,5 +52,21 @@ public class ClDGEntry extends PDGNode {
      */
     public ClDG getClDG() {
         return cldg;
+    }
+    
+    /**
+     * Returns the fully-qualified name of the ClDG that has this entry node
+     * @return the fully-qualified name of the ClDG
+     */
+    public QualifiedName getQualifiedName() {
+        return getCCFGEntry().getQualifiedName();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isEntry() {
+        return true;
     }
 }

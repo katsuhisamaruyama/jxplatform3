@@ -9,8 +9,10 @@ import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.pdg.DependencyGraph;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.ClDG;
+import org.jtool.pdg.SDG;
 import org.jtool.pdg.Dependence;
 import org.jtool.pdg.PDGNode;
 import org.jtool.cfg.CFGNode;
@@ -37,25 +39,52 @@ import java.util.stream.Stream;
 
 public class PDGTestUtil {
     
-    public static ClDG createClDG(JavaProject jproject, String cname) {
-        JavaClass jclass = jproject.getClass(cname);
-        return jproject.getPDGStore().getClDG(jclass, false);
+    public static PDG createPDG(JavaProject jproject, String cname, String member) {
+        return createPDG(jproject, cname, member, true);
     }
     
-    public static PDG createPDG(JavaProject jproject, String cname, String member) {
+    public static PDG createPDG(JavaProject jproject, String cname, String member, boolean whole) {
         if (member.indexOf("(") != -1) {
             JavaMethod jmethod = jproject.getClass(cname).getMethod(member);
-            return jproject.getPDGStore().getPDG(jmethod, false);
+            return jproject.getPDGStore().getPDG(jmethod, false, whole);
         } else {
             JavaField jfield = jproject.getClass(cname).getField(member);
-            return jproject.getPDGStore().getPDG(jfield, false);
+            return jproject.getPDGStore().getPDG(jfield, false, whole);
         }
+    }
+    
+    public static ClDG createClDG(JavaProject jproject, String cname) {
+        return createClDG(jproject, cname, true);
+    }
+    
+    public static ClDG createClDG(JavaProject jproject, String cname, boolean whole) {
+        JavaClass jclass = jproject.getClass(cname);
+        return jproject.getPDGStore().getClDG(jclass, false, whole);
+    }
+    
+    public static SDG createSDG(JavaProject jproject, String cname) {
+        JavaClass jclass = jproject.getClass(cname);
+        return jproject.getPDGStore().getSDG(jclass, false);
+    }
+    
+    public static SDG createSDG(JavaProject jproject) {
+        return jproject.getPDGStore().getSDG(false);
     }
     
     public static PDGNode getNode(PDG pdg, int index) {
         return pdg.getNodes().stream()
-                .filter(n -> n.getId() == index + pdg.getEntryNode().getId())
-                .findFirst().orElse(null);
+                             .filter(n -> n.getId() == index + pdg.getEntryNode().getId())
+                             .findFirst().orElse(null);
+    }
+    
+    public static List<Dependence> getDependence(PDG pdg, int src, int dst) {
+        PDGNode srcNode = getNode(pdg, src);
+        PDGNode dstNode = getNode(pdg, dst);
+        return getDependence(pdg, srcNode, dstNode);
+    }
+    
+    public static List<Dependence> getDependence(DependencyGraph graph, PDGNode src, PDGNode dst) {
+        return Dependence.sortEdges(graph.getDependence(src, dst));
     }
     
     public static List<PDGNode> getNodes(PDG pdg, String kind) {
@@ -203,9 +232,10 @@ public class PDGTestUtil {
         try {
             Files.createDirectories(pdgPath);
             
+            SDG sdg = jproject.getPDGStore().getSDG(false);
             for (JavaClass jclass : jproject.getClasses()) {
                 Path path = pdgPath.resolve(jclass.getQualifiedName().fqn() + ".pdg");
-                ClDG cldg = jproject.getPDGStore().getClDG(jclass, false);
+                ClDG cldg = sdg.findClDG(jclass.getQualifiedName().fqn());
                 writePDG(path, getClDGData(cldg));
             }
         } catch (IOException e) {
