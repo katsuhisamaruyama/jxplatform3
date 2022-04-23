@@ -21,7 +21,6 @@ class Resolver {
         
         FieldReferenceResolver referenceResolver = new FieldReferenceResolver(jproject);
         referenceResolver.findDefUseFields(cfg);
-        
     }
     
     static void resolveLocalAlias(CFG cfg) {
