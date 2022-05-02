@@ -116,6 +116,11 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
     
     abstract protected void findDescendantClasses();
     
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof JClass) ? equals((JClass)obj) : false;
+    }
+    
     public boolean equals(JClass clazz) {
         return clazz != null && (this == clazz || getQualifiedName().equals(clazz.getQualifiedName()));
     }

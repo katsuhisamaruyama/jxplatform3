@@ -31,6 +31,11 @@ abstract public class JField extends JCommon {
         return declaringClass.isInProject();
     }
     
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof JField) ? equals((JField)obj) : false;
+    }
+    
     public boolean equals(JField field) {
         return field != null && (this == field || getQualifiedName().fqn().equals(field.getQualifiedName().fqn()));
     }

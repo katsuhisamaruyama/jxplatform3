@@ -35,7 +35,7 @@ class FieldReferenceResolver {
     
     void findDefUseFields(CFG cfg) {
         for (CFGMethodCall callnode : cfg.getMethodCallNodes()) {
-            findFieldsForCalledMethod(callnode);
+            findFieldsForCalledMethod(cfg, callnode);
         }
         
         if (cfg.isMethod()) {
@@ -47,7 +47,7 @@ class FieldReferenceResolver {
         }
     }
     
-    private void findFieldsForCalledMethod(CFGMethodCall callNode) {
+    private void findFieldsForCalledMethod(CFG cfg, CFGMethodCall callNode) {
         if (callNode.getApproximatedTypes() == null) {
             System.err.println("CALL = " + callNode.getMethodCall().getEnclosingClassName() + " " + callNode.getASTNode());
             return;
@@ -70,7 +70,7 @@ class FieldReferenceResolver {
             }
             
             JMethod method = type.getMethod(sig);
-            if (method != null) {
+            if (method != null && !method.getQualifiedName().equals(cfg.getQualifiedName())) {
                 method.findDefUseFields();
                 
                 boolean existExternalDefField = false;

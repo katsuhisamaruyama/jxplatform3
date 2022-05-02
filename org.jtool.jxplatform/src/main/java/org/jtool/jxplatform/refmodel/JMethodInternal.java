@@ -32,15 +32,15 @@ class JMethodInternal extends JMethod {
     
     @Override
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        if (visitedMethods.contains(this) || count >= maxNumberOfChainForSourcecode) {
+        if (visitedMethods.contains(this)) {
             return;
         }
         
         visitedMethods.add(this);
         
         collectDefUseFields();
-        collectAccessedMethods();
-        collectDefUseFields(this, visitedMethods, visitedFields, count + 1);
+        collectAccessedMethods(visitedMethods);
+        collectDefUseFields(this, visitedMethods, visitedFields, count);
     }
     
     private void collectDefUseFields() {
@@ -65,10 +65,10 @@ class JMethodInternal extends JMethod {
         }
     }
     
-    private void collectAccessedMethods() {
+    private void collectAccessedMethods(Set<JMethod> visitedMethods) {
         for (JavaMethod jm : jmethod.getCalledMethods()) {
             JMethod method = bcStore.getJMethod(jm.getClassName(), jm.getSignature());
-            if (method != null) {
+            if (method != null && !visitedMethods.contains(method)) {
                 accessedMethods.add(method);
             }
         }

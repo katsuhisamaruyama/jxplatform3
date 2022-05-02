@@ -224,7 +224,7 @@ class ReceiverTypeResolver {
             return null;
         }
         
-        return bcStore.getJavaProject().getCFGStore().getCFGWithoutResolvingMethodCalls(jfield);
+        return bcStore.getJavaProject().getCFGStore().getUnresolvedCFG(jfield);
     }
     
     private CFG getCFG(JMethodReference jcall) {
@@ -238,7 +238,7 @@ class ReceiverTypeResolver {
             return null;
         }
         
-        return bcStore.getJavaProject().getCFGStore().getCFGWithoutResolvingMethodCalls(jmethod);
+        return bcStore.getJavaProject().getCFGStore().getUnresolvedCFG(jmethod);
     }
     
     private void findReceiverTypes(CFGStatement node, String signature, CFG cfg,
@@ -376,7 +376,7 @@ class ReceiverTypeResolver {
         Set<JavaMethod> methods = jmethod.getCallingMethods();
         if (methods.size() > 0) {
             for (JavaMethod jm : jmethod.getCallingMethods()) {
-                CFG cfg = bcStore.getJavaProject().getCFGStore().getCFGWithoutResolvingMethodCalls(jm);
+                CFG cfg = bcStore.getJavaProject().getCFGStore().getUnresolvedCFG(jm);
                 if (cfg != null) {
                     for (CFGMethodCall node : cfg.getMethodCallNodes()) {
                         if (node.getSignature().equals(jmethod.getSignature())) {

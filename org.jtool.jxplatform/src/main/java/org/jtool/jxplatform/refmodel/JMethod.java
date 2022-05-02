@@ -55,7 +55,6 @@ abstract public class JMethod extends JCommon {
         if (isDefUseDecided) {
             return;
         }
-        isDefUseDecided = true;
         
         findDefUseFields(new HashSet<>(), new HashSet<>(), 0);
     }
@@ -64,6 +63,11 @@ abstract public class JMethod extends JCommon {
     }
     
     protected void collectDefUseFields(JMethod method, Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
+        if (accessedMethods.size() == 0) {
+            isDefUseDecided = true;
+            return;
+        }
+        
         for (JMethod m : accessedMethods) {
             m.findDefUseFields(visitedMethods, visitedFields, count);
             
@@ -74,6 +78,11 @@ abstract public class JMethod extends JCommon {
                 .filter(var -> !var.getReferenceForm().startsWith("this"))
                 .forEach(var -> method.useFields.add(var));
         }
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof JMethod) ? equals((JMethod)obj) : false;
     }
     
     public boolean equals(JMethod method) {

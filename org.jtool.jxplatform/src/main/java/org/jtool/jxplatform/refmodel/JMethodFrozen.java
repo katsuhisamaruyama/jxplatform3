@@ -26,14 +26,19 @@ class JMethodFrozen extends JMethod {
     
     @Override
     protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        if (visitedMethods.contains(this) || count >= maxNumberOfChainForBytecode) {
+        if (count >= maxNumberOfChainForBytecode) {
+            isDefUseDecided = true;
+            return;
+        }
+        
+        if (visitedMethods.contains(this)) {
             return;
         }
         
         visitedMethods.add(this);
         
         collectDefUseFields();
-        collectAccessedMethods();
+        collectAccessedMethods(visitedMethods);
         collectDefUseFields(this, visitedMethods, visitedFields, count + 1);
     }
     
@@ -42,7 +47,7 @@ class JMethodFrozen extends JMethod {
         useFields.addAll(updateClassName(bclass.getUseFields(getSignature())));
     }
     
-    private void collectAccessedMethods() {
+    private void collectAccessedMethods(Set<JMethod> visitedMethods) {
         Collection<QualifiedName> qnames = bclass.getCalledMethods(getSignature());
         if (qnames == null) {
             return;
@@ -50,7 +55,7 @@ class JMethodFrozen extends JMethod {
         
         for (QualifiedName qname : qnames) {
             JMethod method = bcStore.getJMethod(qname.getClassName(), qname.getMemberSignature());
-            if (method != null) {
+            if (method != null && !visitedMethods.contains(method)) {
                 accessedMethods.add(method);
             }
         }

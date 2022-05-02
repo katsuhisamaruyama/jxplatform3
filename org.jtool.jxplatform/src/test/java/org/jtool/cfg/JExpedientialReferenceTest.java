@@ -250,8 +250,6 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
         List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
-        System.err.println(result.get(0).getReferenceForm() + " " + result.size());
-        
         assertFalse(result.get(1).isVariableAccess());
     }
     

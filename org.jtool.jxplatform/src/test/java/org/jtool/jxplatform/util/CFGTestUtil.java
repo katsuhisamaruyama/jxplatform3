@@ -230,7 +230,7 @@ public class CFGTestUtil {
         }
     }
     
-    private static void writeCFG(Path path, String content) {
+    public static void writeCFG(Path path, String content) {
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write(content);
             writer.newLine();

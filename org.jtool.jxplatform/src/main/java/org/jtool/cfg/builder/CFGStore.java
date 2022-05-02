@@ -15,8 +15,6 @@ import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.refmodel.BytecodeClassStore;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.Collection;
 
 /**
@@ -32,9 +30,8 @@ public class CFGStore {
     private int analysisLevel;
     
     private Map<String, CFG> cfgs = new HashMap<>();
+    private Map<String, CFG> ucfgs = new HashMap<>();
     private Map<String, CCFG> ccfgs = new HashMap<>();
-    
-    private Set<String> resolvedReferences = new HashSet<>();
     
     public CFGStore() {
         CFGNode.resetId();
@@ -74,15 +71,22 @@ public class CFGStore {
         return ccfgs.values();
     }
     
-    private void addCFG(CFG cfg) {
+    private void addCFG(CFG cfg, boolean toBeResolved) {
         if (cfg != null) {
-            cfgs.put(cfg.getQualifiedName().fqn(), cfg);
+            if (toBeResolved) {
+                cfgs.put(cfg.getQualifiedName().fqn(), cfg);
+            } else {
+                ucfgs.put(cfg.getQualifiedName().fqn(), cfg);
+            }
         }
     }
     
-    private void addCCFG(CCFG ccfg) {
+    private void addCCFG(CCFG ccfg, boolean toBeResolved) {
         if (ccfg != null) {
-            ccfgs.put(ccfg.getQualifiedName().fqn(), ccfg);
+            if (toBeResolved) {
+                ccfgs.put(ccfg.getQualifiedName().fqn(), ccfg);
+            }
+            ccfg.getCFGs().forEach(cfg -> addCFG(cfg, toBeResolved));
         }
     }
     
@@ -103,85 +107,83 @@ public class CFGStore {
         }
         
         CCFG ccfg = CCFGBuilder.build(jclass, force);
-        addCCFG(ccfg);
-        
-        ccfg.getEntryNode().getMethods().forEach(cfg -> addCFG(cfg));
-        ccfg.getEntryNode().getFields().forEach(cfg -> addCFG(cfg));
-        ccfg.getEntryNode().getClasses().forEach(ccfg2 -> {
-            addCCFG(ccfg2);
-            ccfg2.getCFGs().forEach(cfg -> addCFG(cfg));
-        });
+        addCCFG(ccfg, true);
         return ccfg;
     }
     
     public CFG getCFG(JavaMethod jmethod, boolean force) {
         if (!force) {
             CFG cfg = cfgs.get(jmethod.getQualifiedName().fqn());
-            if (cfg == null) {
-                cfg = CFGMethodBuilder.build(jmethod, true);
-                addCFG(cfg);
+            if (cfg != null) {
+                return cfg;
             }
             
-            if (cfg != null && !resolvedReferences.contains(cfg.getQualifiedName().fqn())) {
+            CFG ucfg = ucfgs.get(jmethod.getQualifiedName().fqn());
+            if (ucfg != null) {
+                cfg = ucfg.clone();
                 Resolver.resolveReferences(jmethod.getJavaProject(), cfg);
-                resolvedReferences.add(cfg.getQualifiedName().fqn());
+                Resolver.resolveLocalAlias(cfg);
+                addCFG(cfg, true);
+                return cfg;
             }
-            return cfg;
-        } else {
-            CFG cfg = CFGMethodBuilder.build(jmethod, true);
-            if (cfg != null) {
-                addCFG(cfg);
-                resolvedReferences.add(cfg.getQualifiedName().fqn());
-            }
-            return cfg;
         }
+        
+        CFG cfg = CFGMethodBuilder.build(jmethod, true);
+        addCFG(cfg, true);
+        return cfg;
     }
     
     public CFG getCFG(JavaField jfield, boolean force) {
         if (!force) {
             CFG cfg = cfgs.get(jfield.getQualifiedName().fqn());
-            if (cfg == null) {
-                cfg = CFGFieldBuilder.build(jfield, true);
-                addCFG(cfg);
-            }
-            if (cfg != null && !resolvedReferences.contains(cfg.getQualifiedName().fqn())) {
-                Resolver.resolveReferences(jfield.getJavaProject(), cfg);
-                resolvedReferences.add(cfg.getQualifiedName().fqn());
-            }
-            return cfg;
-        } else {
-            CFG cfg = CFGFieldBuilder.build(jfield, true);
             if (cfg != null) {
-                addCFG(cfg);
-                resolvedReferences.add(cfg.getQualifiedName().fqn());
+                return cfg;
             }
-            return cfg;
+            
+            CFG ucfg = ucfgs.get(jfield.getQualifiedName().fqn());
+            if (ucfg != null) {
+                cfg = ucfg.clone();
+                Resolver.resolveReferences(jfield.getJavaProject(), cfg);
+                Resolver.resolveLocalAlias(cfg);
+                addCFG(cfg, true);
+                return cfg;
+            }
         }
+        
+        CFG cfg = CFGFieldBuilder.build(jfield, true);
+        addCFG(cfg, true);
+        return cfg;
     }
     
-    CFG getCFGWithoutResolvingMethodCalls(JavaMethod jmethod) {
+    CFG getUnresolvedCFG(JavaMethod jmethod) {
         CFG cfg = cfgs.get(jmethod.getQualifiedName().fqn());
         if (cfg != null) {
             return cfg;
         }
         
-        cfg = CFGMethodBuilder.build(jmethod, false);
+        cfg = ucfgs.get(jmethod.getQualifiedName().fqn());
         if (cfg != null) {
-            addCFG(cfg);
+            return cfg;
         }
+        
+        cfg = CFGMethodBuilder.build(jmethod, false);
+        addCFG(cfg, false);
         return cfg;
     }
     
-    CFG getCFGWithoutResolvingMethodCalls(JavaField jfield) {
+    CFG getUnresolvedCFG(JavaField jfield) {
         CFG cfg = cfgs.get(jfield.getQualifiedName().fqn());
         if (cfg != null) {
             return cfg;
         }
         
-        cfg = CFGFieldBuilder.build(jfield, false);
+        cfg = ucfgs.get(jfield.getQualifiedName().fqn());
         if (cfg != null) {
-            addCFG(cfg);
+            return cfg;
         }
+        
+        cfg = CFGFieldBuilder.build(jfield, false);
+        addCFG(cfg, false);
         return cfg;
     }
 }

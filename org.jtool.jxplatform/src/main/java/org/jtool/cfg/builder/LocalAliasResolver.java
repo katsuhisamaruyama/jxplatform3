@@ -62,8 +62,8 @@ class LocalAliasResolver {
         
         if (aliasMap.size() != 0) {
             cfg.getNodes().stream()
-                          .filter(n -> n.isStatement() && !n.isFormal())
-                          .forEach(n -> addAliasVariables((CFGStatement)n));
+                          .filter(node -> node.isStatement() && !node.isFormal())
+                          .forEach(node -> addAliasVariables((CFGStatement)node));
         }
     }
     
