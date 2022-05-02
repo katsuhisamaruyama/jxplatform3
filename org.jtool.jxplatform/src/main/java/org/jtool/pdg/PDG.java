@@ -30,6 +30,25 @@ public class PDG extends DependencyGraph {
     private PDGEntry entry;
     
     /**
+     * Creates a new, empty object for storing a PDG information.
+     * This method is not intended to be invoked by clients.
+     */
+    public PDG() {
+    }
+    
+    /**
+     * Creates and returns a copy of this PDG.
+     * @return the copy.
+     */
+    @Override
+    public PDG clone() {
+        PDG clone = new PDG();
+        clone.bpdg = bpdg;
+        clone.entry = entry;
+        return clone;
+    }
+    
+    /**
      * Sets a bare PDG for this PDG.
      * This method is not intended to be invoked by clients.
      * @param bpdg the bare PDG

@@ -33,17 +33,31 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     private CFGNode exit;
     
     /**
+     * The collection of basic blocks existing in this CFG.
+     */
+    private List<BasicBlock> basicBlocks = new ArrayList<>();
+    
+    /**
      * Creates a new, empty object for storing a CFG information.
      * This method is not intended to be invoked by clients.
      */
     public CFG() {
-        super();
     }
     
     /**
-     * The collection of basic blocks existing in this CFG.
+     * Creates and returns a copy of this CFG.
+     * @return the copy.
      */
-    private List<BasicBlock> basicBlocks = new ArrayList<>();
+    @Override
+    public CFG clone() {
+        CFG clone = new CFG();
+        clone.nodes = new HashSet<>(nodes);
+        clone.edges = new HashSet<>(edges);
+        clone.entry = entry;
+        clone.exit = exit;
+        clone.basicBlocks = new ArrayList<>(basicBlocks);
+        return clone;
+    }
     
     /**
      * Sets the entry node of this CFG.

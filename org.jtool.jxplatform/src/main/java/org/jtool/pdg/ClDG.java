@@ -33,6 +33,25 @@ public class ClDG extends DependencyGraph {
     private ClDGEntry entry;
     
     /**
+     * Creates a new, empty object for storing a ClDG information.
+     * This method is not intended to be invoked by clients.
+     */
+    public ClDG() {
+    }
+    
+    /**
+     * Creates and returns a copy of this ClDG.
+     * @return the copy.
+     */
+    @Override
+    public ClDG clone() {
+        ClDG clone = new ClDG();
+        clone.pdgs = new HashMap<>(pdgs);
+        clone.entry = entry;
+        return clone;
+    }
+    
+    /**
      * Sets the entry node for this ClDG.
      * This method is not intended to be invoked by clients.
      * @param node the entry node to be set

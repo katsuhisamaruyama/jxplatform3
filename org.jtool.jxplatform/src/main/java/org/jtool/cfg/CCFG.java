@@ -29,6 +29,25 @@ public class CCFG {
     private Map<String, CFG> cfgs = new HashMap<>();
     
     /**
+     * Creates a new, empty object for storing a CCFG information.
+     * This method is not intended to be invoked by clients.
+     */
+    public CCFG() {
+    }
+    
+    /**
+     * Creates and returns a copy of this CCFG.
+     * @return the copy.
+     */
+    @Override
+    public CCFG clone() {
+        CCFG clone = new CCFG();
+        clone.cfgs = new HashMap<>(cfgs);
+        clone.entry = entry;
+        return clone;
+    }
+    
+    /**
      * Sets the entry node of this CFG.
      * This method is not intended to be invoked by clients.
      * @param node the entry node of this CFG
