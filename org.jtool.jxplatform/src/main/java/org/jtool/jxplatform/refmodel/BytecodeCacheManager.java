@@ -49,7 +49,7 @@ public class BytecodeCacheManager {
     
     static final String FORMAT_VERSION = "0.1";
     
-    static final String BYTECODE_CACHE_DIR = ".srcplatform";
+    static final String BYTECODE_CACHE_DIR = ".jxplatform";
     static final String CACHE_FILE_EXTION = "cache";
     
     static final String GIT_IGNORE_FILE = ".gitignore";

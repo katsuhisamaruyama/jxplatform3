@@ -73,7 +73,7 @@ public abstract class ModelBuilder {
      * 
      * Note that a project cache is never automatically updated although the source code and byte-code
      * has been changed since the cache was created. If the update is needed, you should manually delete
-     * the cache file {@code #project.complete.cache} in the directory {@code .srcplatform}.
+     * the cache file {@code #project.complete.cache} in the directory {@code .jxplatform}.
      * 
      * @param bool {@code true} if the project cache is preferentially used, otherwise {@code false}
      */
