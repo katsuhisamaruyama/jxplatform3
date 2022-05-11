@@ -12,6 +12,7 @@ class Test126 {
         A126 a3 = new A126();
         a3.setY(3);
         int s = a3.getY();
+        A126 a4 = a.add2(p);
     }
 }
 
@@ -32,6 +33,12 @@ class A126 {
     public A126 add(int x) {
         A126 ret = new A126();
         ret.setY(y + x);
+        return ret;
+    }
+
+    public A126 add2(int x) {
+        A126 ret = new A126();
+        ret.y = y + x;
         return ret;
     }
 }
