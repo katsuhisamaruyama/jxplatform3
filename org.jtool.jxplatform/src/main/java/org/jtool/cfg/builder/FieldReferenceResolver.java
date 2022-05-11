@@ -74,7 +74,7 @@ class FieldReferenceResolver {
                 method.findDefUseFields();
                 
                 boolean existExternalDefField = false;
-                for (DefUseField def : method.getDefFields()) {
+                for (DefUseField def : method.getAllDefFields()) {
                     boolean inProject = bcStore.findInternalClass(def.getClassName()) != null;
                     
                     if (!method.isInProject() || method.isInProject() == inProject) {
@@ -97,7 +97,7 @@ class FieldReferenceResolver {
                 }
                 
                 boolean existExternalUseField = false;
-                for (DefUseField use : method.getUseFields()) {
+                for (DefUseField use : method.getAllUseFields()) {
                     boolean inProject = bcStore.findInternalClass(use.getClassName()) != null;
                     
                     if (!method.isInProject() || method.isInProject() == inProject) {

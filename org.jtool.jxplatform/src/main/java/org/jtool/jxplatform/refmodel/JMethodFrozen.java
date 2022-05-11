@@ -24,40 +24,26 @@ class JMethodFrozen extends JMethod {
         this.bclass = bclass;
     }
     
-    @Override
-    protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        if (count >= maxNumberOfChainForBytecode) {
-            isDefUseDecided = true;
-            return;
-        }
-        
-        if (visitedMethods.contains(this)) {
-            return;
-        }
-        
-        visitedMethods.add(this);
-        
-        collectDefUseFields();
-        collectAccessedMethods(visitedMethods);
-        collectDefUseFields(this, visitedMethods, visitedFields, count + 1);
-    }
-    
-    private void collectDefUseFields() {
+    protected void collectDefUseFields() {
         defFields.addAll(updateClassName(bclass.getDefFields(getSignature())));
         useFields.addAll(updateClassName(bclass.getUseFields(getSignature())));
     }
     
-    private void collectAccessedMethods(Set<JMethod> visitedMethods) {
+    protected void collectAccessedMethods() {
         Collection<QualifiedName> qnames = bclass.getCalledMethods(getSignature());
         if (qnames == null) {
             return;
         }
         
         for (QualifiedName qname : qnames) {
-            JMethod method = bcStore.getJMethod(qname.getClassName(), qname.getMemberSignature());
-            if (method != null && !visitedMethods.contains(method)) {
-                accessedMethods.add(method);
+            JMethod amethod = bcStore.getJMethod(qname.getClassName(), qname.getMemberSignature());
+            if (amethod != null && !amethod.equals(this)) {
+                accessedMethods.add(amethod);
             }
         }
+    }
+    
+    protected boolean stopTraverse(Set<JMethod> visitedMethods, int count) {
+        return count >= maxNumberOfChainForBytecode || visitedMethods.contains(this);
     }
 }

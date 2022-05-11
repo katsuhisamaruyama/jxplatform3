@@ -31,19 +31,7 @@ class JMethodInternal extends JMethod {
     }
     
     @Override
-    protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        if (visitedMethods.contains(this)) {
-            return;
-        }
-        
-        visitedMethods.add(this);
-        
-        collectDefUseFields();
-        collectAccessedMethods(visitedMethods);
-        collectDefUseFields(this, visitedMethods, visitedFields, count);
-    }
-    
-    private void collectDefUseFields() {
+    protected void collectDefUseFields() {
         CFG cfg = bcStore.getJavaProject().getCFGStore().getCFG(jmethod, false);
         if (cfg  == null) {
             return;
@@ -65,12 +53,19 @@ class JMethodInternal extends JMethod {
         }
     }
     
-    private void collectAccessedMethods(Set<JMethod> visitedMethods) {
+    @Override
+    protected void collectAccessedMethods() {
         for (JavaMethod jm : jmethod.getCalledMethods()) {
-            JMethod method = bcStore.getJMethod(jm.getClassName(), jm.getSignature());
-            if (method != null && !visitedMethods.contains(method)) {
-                accessedMethods.add(method);
+            JMethod amethod = bcStore.getJMethod(jm.getClassName(), jm.getSignature());
+            if (amethod != null && !amethod.equals(this)) {
+                accessedMethods.add(amethod);
             }
         }
+    }
+    
+    @Override
+    protected boolean stopTraverse(Set<JMethod> visitedMethods, int count) {
+        return (maxNumberOfChainForSourcecode > 0 && count >= maxNumberOfChainForSourcecode)
+                || visitedMethods.contains(this);
     }
 }

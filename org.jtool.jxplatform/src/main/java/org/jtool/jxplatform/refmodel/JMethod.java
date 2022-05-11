@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -18,11 +18,14 @@ abstract public class JMethod extends JCommon {
     
     protected JClass declaringClass;
     
-    protected boolean isDefUseDecided = false;
+    protected boolean isDefUseCollected = false;
     
     protected Set<DefUseField> defFields = new HashSet<>();
     protected Set<DefUseField> useFields = new HashSet<>();
     protected Set<JMethod> accessedMethods = new HashSet<>();
+    
+    protected Set<DefUseField> allDefFields = new HashSet<>();
+    protected Set<DefUseField> allUseFields = new HashSet<>();
     
     protected JMethod(QualifiedName qname, JClass declaringClass) {
         super(qname, declaringClass.bcStore);
@@ -51,32 +54,55 @@ abstract public class JMethod extends JCommon {
         return accessedMethods;
     }
     
+    public Set<DefUseField> getAllDefFields() {
+        return allDefFields;
+    }
+    
+    public Set<DefUseField> getAllUseFields() {
+        return allUseFields;
+    }
+    
     public void findDefUseFields() {
-        if (isDefUseDecided) {
-            return;
-        }
+        collectDefUseFieldsInThisMethod();
         
-        findDefUseFields(new HashSet<>(), new HashSet<>(), 0);
+        allDefFields.clear();
+        allUseFields.clear();
+        allDefFields.addAll(defFields);
+        allUseFields.addAll(useFields);
+        
+        collectDefUseFieldsInAccessedMethods(this, new HashSet<>(), 0);
     }
     
-    protected void findDefUseFields(Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
+    protected void collectDefUseFieldsInThisMethod() {
+        if (!isDefUseCollected) {
+            collectDefUseFields();
+            collectAccessedMethods();
+            isDefUseCollected = true;
+        }
     }
     
-    protected void collectDefUseFields(JMethod method, Set<JMethod> visitedMethods, Set<JField> visitedFields, int count) {
-        if (accessedMethods.size() == 0) {
-            isDefUseDecided = true;
-            return;
-        }
-        
-        for (JMethod m : accessedMethods) {
-            m.findDefUseFields(visitedMethods, visitedFields, count);
+    abstract protected void collectDefUseFields();
+    
+    abstract protected void collectAccessedMethods();
+    
+    abstract boolean stopTraverse(Set<JMethod> visitedMethods, int count);
+    
+    protected void collectDefUseFieldsInAccessedMethods(JMethod method, Set<JMethod> visitedMethods, int count) {
+        for (JMethod amethod : method.accessedMethods) {
             
-            m.getDefFields().stream()
-                .filter(var -> !var.getReferenceForm().startsWith("this"))
-                .forEach(var -> method.defFields.add(var));
-            m.getUseFields().stream()
-                .filter(var -> !var.getReferenceForm().startsWith("this"))
-                .forEach(var -> method.useFields.add(var));
+            if (!amethod.stopTraverse(visitedMethods, count + 1)) {
+                visitedMethods.add(amethod);
+                
+                amethod.collectDefUseFieldsInThisMethod();
+                amethod.defFields.stream()
+                       .filter(var -> !var.getReferenceForm().startsWith("this"))
+                       .forEach(var -> method.allDefFields.add(var));
+                amethod.useFields.stream()
+                       .filter(var -> !var.getReferenceForm().startsWith("this"))
+                       .forEach(var -> method.allUseFields.add(var));
+                
+                collectDefUseFieldsInAccessedMethods(amethod, visitedMethods, count + 1);
+            }
         }
     }
     
