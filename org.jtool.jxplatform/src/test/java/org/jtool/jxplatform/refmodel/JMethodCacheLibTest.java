@@ -200,7 +200,11 @@ public class JMethodCacheLibTest {
     
     @Test
     public void testGetUseFields1() {
-        assertEquals(0, customerMethod.getUseFields().size());
+        List<String> result = TestUtil.asSortedList(customerMethod.getUseFields().stream()
+                .map(o -> o.getQualifiedName()));
+        
+        assertEquals(1, result.size());
+        assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(0));
     }
     
     @Test
@@ -219,21 +223,19 @@ public class JMethodCacheLibTest {
         List<String> result = TestUtil.asSortedList(statementMethod.getUseFields().stream()
                 .map(o -> o.getQualifiedName()));
         
-        assertEquals(4, result.size());
-        assertEquals("java.lang.String%COMPACT_STRINGS%java.lang.String.COMPACT_STRINGS", result.get(0));
-        assertEquals("java.lang.String%COMPACT_STRINGS%this.COMPACT_STRINGS", result.get(1));
-        assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(2));
-        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(3));
+        assertEquals(3, result.size());
+        assertEquals("java.lang.String%COMPACT_STRINGS%this.COMPACT_STRINGS", result.get(0));
+        assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(1));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(2));
     }
     
     @Test
     public void testGetUseFields4() {
-        List<String> result = TestUtil.asSortedList(indexOfMethod.getUseFields().stream().map(o -> o.getQualifiedName()));
+        List<String> result = TestUtil.asSortedList(indexOfMethod.getUseFields().stream()
+                .map(o -> o.getQualifiedName()));
         
-        assertEquals(3, result.size());
-        assertEquals("java.lang.String%COMPACT_STRINGS%java.lang.String.COMPACT_STRINGS", result.get(0));
-        assertEquals("java.lang.String%coder%java.lang.String.coder", result.get(1));
-        assertEquals("java.lang.String%value%java.lang.String.value", result.get(2));
+        assertEquals(1, result.size());
+        assertEquals("java.lang.String%value%java.lang.String.value", result.get(0));
     }
     
     @Test

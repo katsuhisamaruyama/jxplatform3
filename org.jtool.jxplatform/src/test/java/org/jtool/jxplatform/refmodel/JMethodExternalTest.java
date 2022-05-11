@@ -180,19 +180,13 @@ public class JMethodExternalTest {
         List<String> result = TestUtil.asSortedList(addMethodInArrayList.getDefFields().stream()
                 .map(o -> o.getQualifiedName()));
         
-        assertEquals(2, result.size());
+        assertEquals(1, result.size());
         assertEquals("java.util.AbstractList%modCount%java.util.AbstractList.modCount", result.get(0));
-        assertEquals("java.util.ArrayList%size%java.util.ArrayList.size", result.get(1));
     }
     
     @Test
     public void testGetDefFields4() {
-        List<String> result = TestUtil.asSortedList(removeMethod.getDefFields().stream()
-                .map(o -> o.getQualifiedName()));
-        
-        assertEquals(2, result.size());
-        assertEquals("java.util.AbstractList%modCount%java.util.AbstractList.modCount", result.get(0));
-        assertEquals("java.util.ArrayList%size%java.util.ArrayList.size", result.get(1));
+        assertEquals(0, addMethodInList.getDefFields().size());
     }
     
     @Test
@@ -205,10 +199,8 @@ public class JMethodExternalTest {
         List<String> result = TestUtil.asSortedList(indexOfMethod.getUseFields().stream()
                 .map(o -> o.getQualifiedName()));
         
-        assertEquals(3, result.size());
-        assertEquals("java.lang.String%COMPACT_STRINGS%java.lang.String.COMPACT_STRINGS", result.get(0));
-        assertEquals("java.lang.String%coder%java.lang.String.coder", result.get(1));
-        assertEquals("java.lang.String%value%java.lang.String.value", result.get(2));
+        assertEquals(1, result.size());
+        assertEquals("java.lang.String%value%java.lang.String.value", result.get(0));
     }
     
     @Test
@@ -232,10 +224,9 @@ public class JMethodExternalTest {
         List<String> result = TestUtil.asSortedList(removeMethod.getUseFields().stream()
                 .map(o -> o.getQualifiedName()));
         
-        assertEquals(3, result.size());
-        assertEquals("java.util.AbstractList%modCount%java.util.AbstractList.modCount", result.get(0));
-        assertEquals("java.util.ArrayList%elementData%java.util.ArrayList.elementData", result.get(1));
-        assertEquals("java.util.ArrayList%size%java.util.ArrayList.size", result.get(2));
+        assertEquals(2, result.size());
+        assertEquals("java.util.ArrayList%elementData%java.util.ArrayList.elementData", result.get(0));
+        assertEquals("java.util.ArrayList%size%java.util.ArrayList.size", result.get(1));
     }
     
     @Test
