@@ -296,7 +296,7 @@ class ReceiverTypeResolver {
     
     private Set<CFGStatement> getDefineNodes(CFGNode node, JVariableReference jv, CFG cfg) {
         Set<CFGStatement> nodes = new HashSet<>();
-        cfg.backwardReachableNodes(node, true, new StopConditionOnReachablePath() {
+        cfg.backwardReachableNodes(node, true, true, new StopConditionOnReachablePath() {
             
             @Override
             public boolean isStop(CFGNode node) {

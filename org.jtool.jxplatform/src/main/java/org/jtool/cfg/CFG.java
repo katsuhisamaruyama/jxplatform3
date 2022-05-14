@@ -368,11 +368,12 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * Walks forward from a given node on this CFG and collects the traversed nodes.
      * @param startnode the starting node to be traversed
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
+     * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @param condition the condition that stops traversing
      * @return the collection of the forward-traversed nodes
      */
     public Set<CFGNode> forwardReachableNodes(CFGNode startnode,
-            boolean loopbackOk, StopConditionOnReachablePath condition) {
+            boolean loopbackOk, boolean fallthroughOk, StopConditionOnReachablePath condition) {
         Set<CFGNode> nodes = new HashSet<CFGNode>();
         if (startnode == null) {
             return nodes;
@@ -390,7 +391,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
             nodes.add(node);
             
             node.getOutgoingFlows().stream() 
-                .filter(flow -> loopbackOk || !flow.isLoopBack())
+                .filter(flow -> (loopbackOk || !flow.isLoopBack()) && (fallthroughOk || !flow.isFallThrough()))
                 .map(flow -> flow.getDstNode())
                 .forEach(succ -> nodeStack.push(succ));
         }
@@ -401,10 +402,11 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * Walks forward from a given node on this CFG and collects the traversed nodes.
      * @param startnode the starting node to be traversed
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
+     * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the forward-traversed nodes
      */
-    public Set<CFGNode> forwardReachableNodes(CFGNode startnode, boolean loopbackOk) {
-        return forwardReachableNodes(startnode, loopbackOk, node -> { return false; });
+    public Set<CFGNode> forwardReachableNodes(CFGNode startnode, boolean loopbackOk, boolean fallthroughOk) {
+        return forwardReachableNodes(startnode, loopbackOk, fallthroughOk, node -> { return false; });
     }
     
     /**
@@ -412,14 +414,16 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param from the source node
      * @param to the destination node
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
+     * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the forward-traversed nodes
      */
-    public Set<CFGNode> forwardReachableNodes(CFGNode from, CFGNode to, boolean loopbackOk) {
+    public Set<CFGNode> forwardReachableNodes(CFGNode from, CFGNode to,
+            boolean loopbackOk, boolean fallthroughOk) {
         Set<CFGNode> nodes;
         if (from.equals(to)) {
             nodes = new HashSet<CFGNode>();
         } else {
-            nodes = forwardReachableNodes(from, loopbackOk, node -> node.equals(to));
+            nodes = forwardReachableNodes(from, loopbackOk, fallthroughOk, node -> node.equals(to));
         }
         nodes.add(to);
         return nodes;
@@ -429,11 +433,12 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * Walks backward from a given node on this CFG and collects the traversed nodes.
      * @param startnode the starting node to be traversed
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
+     * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @param condition the condition that stops traversing
      * @return the collection of the backward-traversed nodes
      */
     public Set<CFGNode> backwardReachableNodes(CFGNode startnode,
-            boolean loopbackOk, StopConditionOnReachablePath condition) {
+            boolean loopbackOk, boolean fallthroughOk, StopConditionOnReachablePath condition) {
         Set<CFGNode> nodes = new HashSet<CFGNode>();
         if (startnode == null) {
             return nodes;
@@ -451,7 +456,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
             nodes.add(node);
             
             node.getIncomingFlows().stream()
-                .filter(flow -> loopbackOk || !flow.isLoopBack())
+                .filter(flow -> (loopbackOk || !flow.isLoopBack()) && (fallthroughOk || !flow.isFallThrough()))
                 .map(flow -> flow.getSrcNode())
                 .forEach(pred -> nodeStack.push(pred));
         }
@@ -462,10 +467,12 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * Walks backward from a given node on this CFG and collects the traversed nodes.
      * @param startnode the starting node to be traversed
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
+     * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
+     * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the backward-traversed nodes
      */
-    public Set<CFGNode> backwardReachableNodes(CFGNode from, boolean loopbackOk) {
-        return backwardReachableNodes(from, loopbackOk, node -> { return false; });
+    public Set<CFGNode> backwardReachableNodes(CFGNode startnode, boolean loopbackOk, boolean fallthroughOk) {
+        return backwardReachableNodes(startnode, loopbackOk, fallthroughOk, node -> { return false; });
     }
     
     /**
@@ -473,14 +480,16 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param from the source node
      * @param to the destination node
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
+     * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the backward-traversed nodes
      */
-    public Set<CFGNode> backwardReachableNodes(CFGNode from, CFGNode to, boolean loopbackOk) {
+    public Set<CFGNode> backwardReachableNodes(CFGNode from, CFGNode to,
+            boolean loopbackOk, boolean fallthroughOk) {
         Set<CFGNode> nodes;
         if (from.equals(to)) {
             nodes = new HashSet<CFGNode>();
         } else {
-            nodes = backwardReachableNodes(from, loopbackOk, node -> node.equals(to));
+            nodes = backwardReachableNodes(from, loopbackOk, fallthroughOk, node -> node.equals(to));
         }
         nodes.add(to);
         return nodes;
@@ -491,11 +500,12 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param from the source node
      * @param to the destination node
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
+     * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the traversed nodes
      */
-    public Set<CFGNode> reachableNodes(CFGNode from, CFGNode to, boolean loopbackOk) {
-        Set<CFGNode> fnodes = forwardReachableNodes(from, to, loopbackOk);
-        Set<CFGNode> bnodes = backwardReachableNodes(to, from, loopbackOk);
+    public Set<CFGNode> reachableNodes(CFGNode from, CFGNode to, boolean loopbackOk, boolean fallthroughOk) {
+        Set<CFGNode> fnodes = forwardReachableNodes(from, to, loopbackOk, fallthroughOk);
+        Set<CFGNode> bnodes = backwardReachableNodes(to, from, loopbackOk, fallthroughOk);
         Set<CFGNode> nodes = GraphElement.intersection(fnodes, bnodes);
         return nodes;
     }
@@ -507,12 +517,12 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @return the collection of the reachable nodes
      */
     public Set<CFGNode> constrainedReachableNodes(CFGNode from, CFGNode to) {
-        Set<CFGNode> bnodesf = backwardReachableNodes(to, from, true);
-        Set<CFGNode> fnodesf = forwardReachableNodes(from, getExitNode(), true);
+        Set<CFGNode> bnodesf = backwardReachableNodes(to, from, true, true);
+        Set<CFGNode> fnodesf = forwardReachableNodes(from, getExitNode(), true, true);
         Set<CFGNode> fCRP = GraphElement.intersection(bnodesf, fnodesf);
         
-        Set<CFGNode> fnodesb = forwardReachableNodes(from, to, true);
-        Set<CFGNode> bnodesb = backwardReachableNodes(to, getExitNode(), true);
+        Set<CFGNode> fnodesb = forwardReachableNodes(from, to, true, true);
+        Set<CFGNode> bnodesb = backwardReachableNodes(to, getExitNode(), true, true);
         Set<CFGNode> bCRP = GraphElement.intersection(fnodesb, bnodesb);
         
         Set<CFGNode> CRP = GraphElement.union(fCRP, bCRP);
@@ -538,7 +548,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
                     }
                 }
                 
-                Set<CFGNode> track = forwardReachableNodes(anchor, node, true);
+                Set<CFGNode> track = forwardReachableNodes(anchor, node, true, true);
                 if (track.contains(node) && !track.contains(getExitNode())) {
                     postDominator.add(node);
                 }
