@@ -130,7 +130,7 @@ public class PDGNode extends GraphNode {
      * This method is not intended to be invoked by clients.
      * @return the collection of the incoming edges
      */
-    private Set<CD> getIncomingCDEdges() {
+    public Set<CD> getIncomingCDEdges() {
         return getIncomingEdges().stream()
                                  .map(edge -> (Dependence)edge)
                                  .filter(edge -> edge.isCD())

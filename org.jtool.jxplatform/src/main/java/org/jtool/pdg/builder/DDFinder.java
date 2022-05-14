@@ -37,9 +37,7 @@ public class DDFinder {
         for (CFGNode cfgnode : cfg.getNodes()) {
             if (cfgnode.isStatement() && cfgnode.hasDefVariable()) {
                 CFGStatement anchor = (CFGStatement)cfgnode;
-                
-                Set<CFGNode> reachableNodes = new HashSet<>();
-                findReachableNodes(cfg, anchor, reachableNodes);
+                Set<CFGNode> reachableNodes = cfg.forwardReachableNodes(anchor, true, false);
                 reachableNodes.remove(anchor);
                 
                 for (JVariableReference jvar : anchor.getDefVariables()) {
@@ -48,25 +46,6 @@ public class DDFinder {
                     }
                 }
             }
-        }
-    }
-    
-    private static void findReachableNodes(CFG cfg, CFGNode startnode, Set<CFGNode> track) {
-        Stack<CFGNode> nodeStack = new Stack<>();
-        nodeStack.push(startnode);
-        
-        while (!nodeStack.isEmpty()) {
-            CFGNode node = nodeStack.pop();
-            
-            if (track.contains(node)) {
-                continue;
-            }
-            track.add(node);
-            
-            node.getOutgoingFlows().stream()
-                .filter(flow -> !flow.isFallThrough())
-                .map(flow -> flow.getDstNode())
-                .forEach(succ -> nodeStack.push(succ));
         }
     }
     
@@ -85,15 +64,14 @@ public class DDFinder {
     private static void findDDs(BarePDG bpdg, CFG cfg, CFGStatement anchor, JVariableReference jvar) {
         for (ControlFlow flow : anchor.getOutgoingFlows()) {
             if (!flow.isFallThrough()) {
-                Set<CFGNode> track = new HashSet<>();
                 CFGNode cfgnode = (CFGNode)flow.getDstNode();
-                findDD(bpdg, cfg, anchor, cfgnode, jvar, track);
+                findDD(bpdg, cfg, anchor, cfgnode, jvar);
             }
         }
     }
     
-    private static void findDD(BarePDG bpdg, CFG cfg, CFGNode anchor, CFGNode startnode,
-            JVariableReference jvar, Set<CFGNode> track) {
+    private static void findDD(BarePDG bpdg, CFG cfg, CFGNode anchor, CFGNode startnode, JVariableReference jvar) {
+        Set<CFGNode> track = new HashSet<>();
         Stack<CFGNode> nodeStack = new Stack<>();
         nodeStack.push(startnode);
         
@@ -120,7 +98,8 @@ public class DDFinder {
                     } else {
                         PDGNode lc = getLoopCarried(bpdg, cfg, anchor, candidate);
                         edge = new DD(anchor.getPDGNode(), candidate.getPDGNode(), jvar);
-                        if (lc != null && track.contains(lc.getCFGNode())) {
+                        
+                        if (lc != null) {
                             edge.setLCDD();
                             edge.setLoopCarriedNode(lc);
                         } else {
@@ -150,43 +129,56 @@ public class DDFinder {
         }
     }
     
-    private static PDGNode getLoopCarried(BarePDG bpdg, CFG cfg, CFGNode def, CFGNode use) {
+    private static PDGNode getLoopCarried(BarePDG bpdg, CFG cfg, CFGNode defnode, CFGNode usenode) {
+        Set<CFGNode> reachableNodes;
+        if (defnode.equals(usenode)) {
+            reachableNodes = new HashSet<>();
+            for (CFGNode succ : defnode.getSuccessors()) {
+                reachableNodes.addAll(cfg.reachableNodes(succ, usenode, true, false));
+            }
+        } else {
+            reachableNodes = cfg.reachableNodes(defnode, usenode, true, false);
+        }
+        
         Set<PDGNode> track = new HashSet<>();
-        
         track.clear();
-        List<PDGNode> deftrack = new ArrayList<PDGNode>();
-        findReachableNodes(bpdg, def.getPDGNode(), deftrack, track);
-        if (deftrack.isEmpty()) {
+        List<PDGNode> loopNodesForDef = new ArrayList<PDGNode>();
+        findLoopNodes(bpdg, defnode.getPDGNode(), loopNodesForDef, reachableNodes, track);
+        if (loopNodesForDef.isEmpty()) {
             return null;
         }
         
         track.clear();
-        List<PDGNode> usetrack = new ArrayList<PDGNode>();
-        findReachableNodes(bpdg, use.getPDGNode(), usetrack, track);
-        if (usetrack.isEmpty()) {
+        List<PDGNode> loopNodesForUse = new ArrayList<PDGNode>();
+        findLoopNodes(bpdg, usenode.getPDGNode(), loopNodesForUse, reachableNodes, track);
+        if (loopNodesForUse.isEmpty()) {
             return null;
         }
         
-        Set<CFGNode> reachanbleNodes = cfg.constrainedReachableNodes(def, use);
-        for (PDGNode pdgnode : deftrack) {
-            if (usetrack.contains(pdgnode) && reachanbleNodes.contains(pdgnode.getCFGNode())) {
-                return pdgnode;
+        for (PDGNode dlnode : loopNodesForDef) {
+            for (PDGNode ulnode : loopNodesForUse) {
+                if (dlnode.equals(ulnode)) {
+                    return dlnode;
+                }
             }
         }
         return null;
     }
     
-    private static void findReachableNodes(BarePDG bpdg, PDGNode node, List<PDGNode> nodes,
-            Set<PDGNode> track) {
-        track.add(node);
+    private static void findLoopNodes(BarePDG bpdg, PDGNode node, List<PDGNode> loopNodes,
+            Set<CFGNode> reachableNodes, Set<PDGNode> track) {
         if (node.isLoop()) {
-            nodes.add(node);
+            loopNodes.add(node);
         }
         
+        track.add(node);
+        
         for (CD edge : bpdg.getIncomingCDEdges(node)) {
-            PDGNode src = edge.getSrcNode();
-            if (!track.contains(src)) {
-                findReachableNodes(bpdg, src, nodes, track);
+            if (edge.isTrue() || edge.isFalse()) {
+                PDGNode src = edge.getSrcNode();
+                if (!track.contains(src) && reachableNodes.contains(src.getCFGNode())) {
+                    findLoopNodes(bpdg, src, loopNodes, reachableNodes, track);
+                }
             }
         }
     }

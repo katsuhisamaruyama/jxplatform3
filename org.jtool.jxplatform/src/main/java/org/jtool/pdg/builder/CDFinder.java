@@ -36,9 +36,6 @@ public class CDFinder {
             if (cfgnode.isBranch()) {
                 findCDs(bpdg, cfg, cfgnode);
             }
-            if (cfgnode.isMethodCall()) {
-                findCDsOnParameters(bpdg, (CFGMethodCall)cfgnode);
-            }
         }
     }
     
@@ -64,28 +61,32 @@ public class CDFinder {
                         edge.setExceptionCatch();
                     }
                     bpdg.add(edge);
+                    
+                    if (cfgnode.isMethodCall()) {
+                        findCDsOnParameters(bpdg, (CFGMethodCall)cfgnode, edge);
+                    }
                 }
             }
         }
     }
     
-    private static void findCDsOnParameters(BarePDG bpdg, CFGMethodCall callNode) {
+    private static void findCDsOnParameters(BarePDG bpdg, CFGMethodCall callNode, CD original) {
         for (CFGParameter cfgnode : callNode.getActualIns()) {
-            CD edge = new CD(callNode.getPDGNode(), cfgnode.getPDGNode());
+            CD edge = new CD(original.getSrcNode(), cfgnode.getPDGNode());
             edge.setTrue();
             bpdg.add(edge);
         }
         
         CFGParameter returnNode = callNode.getActualOut();
         if (returnNode != null) {
-            CD edge = new CD(callNode.getPDGNode(), returnNode.getPDGNode());
+            CD edge = new CD(original.getSrcNode(), returnNode.getPDGNode());
             edge.setTrue();
             bpdg.add(edge);
         }
         
         CFGNode receiverNode = callNode.getReceiver();
         if (receiverNode != null) {
-            CD edge = new CD(receiverNode.getPDGNode(), callNode.getPDGNode());
+            CD edge = new CD(original.getSrcNode(), receiverNode.getPDGNode());
             edge.setTrue();
             bpdg.add(edge);
         }
@@ -125,7 +126,7 @@ public class CDFinder {
         vars.addAll(cfgnode.getUseVariables());
         
         for (JVariableReference jv : vars) {
-            cfg.backwardReachableNodes(cfgnode, true, new StopConditionOnReachablePath() {
+            cfg.backwardReachableNodes(cfgnode, true, true, new StopConditionOnReachablePath() {
                 
                 @Override
                 public boolean isStop(CFGNode node) {
