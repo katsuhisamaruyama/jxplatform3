@@ -4,51 +4,63 @@ Class Name = Test131
    1 fieldDeclaration D = { this.map } U = { HashMap<String,String>.!HashMap<String,String>, this.map }
    2 receiver D = {  } U = {  }
    3 constructorCall D = { HashMap<String,String>.loadFactor } U = {  } TO = java.util.HashMap#HashMap( )
-   4 actualOut D = { HashMap<String,String>.!HashMap<String,String> } U = {  }
+   4 actualOut D = { HashMap<String,String>.!HashMap<String,String>, HashMap<String,String>.loadFactor } U = {  }
 --
    0 methodEntry [ m( ) ]
    1 assignment D = {  } U = { this.map.!put }
    2 receiver D = {  } U = { this.map }
    3 methodCall D = { this.map, this.map$Node.next, this.map$Node.value, this.map.modCount, this.map.size } U = { $java.lang.String, this.map, this.map$Node.hash, this.map$Node.key, this.map$Node.next, this.map$Node.value, this.map.modCount, this.map.size, this.map.table, this.map.threshold } TO = java.util.HashMap#put( java.lang.Object java.lang.Object )
-   4 actualOut D = { this.map, this.map.!put } U = { this.map }
+   4 actualOut D = { this.map, this.map$Node.next, this.map$Node.value, this.map.!put, this.map.modCount, this.map.size } U = { this.map, this.map$Node.hash, this.map$Node.key, this.map$Node.next, this.map$Node.value, this.map.modCount, this.map.size, this.map.table, this.map.threshold }
    5 localDeclaration D = { z$0 } U = {  }
    6 localDeclaration D = { x$1 } U = { this.map.!get }
    7 receiver D = {  } U = { this.map }
    8 methodCall D = {  } U = { $java.lang.String, this.map, this.map$Node.hash, this.map$Node.key, this.map$Node.next, this.map$Node.value, this.map.table } TO = java.util.HashMap#get( java.lang.Object )
-   9 actualOut D = { this.map.!get } U = {  }
-  11 formalOut D = {  } U = { $_ }
+   9 actualOut D = { this.map.!get } U = { this.map$Node.hash, this.map$Node.key, this.map$Node.next, this.map$Node.value, this.map.table }
+  11 formalOut D = {  } U = { $_, this.map, this.map$Node.next, this.map$Node.value, this.map.modCount, this.map.size }
 --
    0 constructorEntry [ Test131( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0: map
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 2 -> 3 trueControlDependence
-   4: 3 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 3 -> 4 outputDependence HashMap<String,String>.loadFactor
+   6: 4 -> 1 loopIndependentDefUseDependence HashMap<String,String>.!HashMap<String,String>
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 5 trueControlDependence
-   4: 0 -> 6 trueControlDependence
-   5: 0 -> 7 trueControlDependence
-   6: 0 -> 11 trueControlDependence
-   7: 2 -> 3 trueControlDependence
-   8: 3 -> 4 trueControlDependence
-   9: 3 -> 4 loopIndependentDefUseDependence
-  10: 3 -> 8 loopIndependentDefUseDependence
-  11: 3 -> 8 loopIndependentDefUseDependence
-  12: 4 -> 1 loopIndependentDefUseDependence
-  13: 4 -> 7 loopIndependentDefUseDependence
-  14: 4 -> 8 loopIndependentDefUseDependence
-  15: 5 -> 5 declarationDependence
-  16: 6 -> 6 declarationDependence
-  17: 7 -> 8 trueControlDependence
-  18: 8 -> 9 trueControlDependence
-  19: 9 -> 6 loopIndependentDefUseDependence
+   2: 0 -> 11 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 7 trueControlDependence
+   9: 0 -> 8 trueControlDependence
+  10: 0 -> 9 trueControlDependence
+  11: 3 -> 4 loopIndependentDefUseDependence this.map
+  12: 3 -> 4 loopIndependentDefUseDependence this.map$Node.next
+  13: 3 -> 4 loopIndependentDefUseDependence this.map$Node.value
+  14: 3 -> 4 loopIndependentDefUseDependence this.map.modCount
+  15: 3 -> 4 loopIndependentDefUseDependence this.map.size
+  16: 4 -> 1 loopIndependentDefUseDependence this.map.!put
+  17: 4 -> 11 loopIndependentDefUseDependence this.map
+  18: 4 -> 11 loopIndependentDefUseDependence this.map$Node.next
+  19: 4 -> 11 loopIndependentDefUseDependence this.map$Node.value
+  20: 4 -> 11 loopIndependentDefUseDependence this.map.modCount
+  21: 4 -> 11 loopIndependentDefUseDependence this.map.size
+  22: 4 -> 7 loopIndependentDefUseDependence this.map
+  23: 4 -> 8 loopIndependentDefUseDependence this.map
+  24: 4 -> 8 loopIndependentDefUseDependence this.map$Node.next
+  25: 4 -> 8 loopIndependentDefUseDependence this.map$Node.value
+  26: 4 -> 9 loopIndependentDefUseDependence this.map$Node.next
+  27: 4 -> 9 loopIndependentDefUseDependence this.map$Node.value
+  28: 9 -> 6 loopIndependentDefUseDependence this.map.!get
 --
    0: Test131( )
+   1: 0 -> 2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

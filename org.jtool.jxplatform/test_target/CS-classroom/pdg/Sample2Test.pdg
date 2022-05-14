@@ -1,0 +1,110 @@
+----- ClDG (from here) -----
+Class Name = Sample2Test
+   0 constructorEntry [ Sample2Test( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ test1( ) ]
+   1 localDeclaration D = { circle$0 } U = { circle$0.!Circle }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { circle$0.radius, circle$0.x, circle$0.y } U = { circle$0.radius, circle$0.x, circle$0.y } TO = Circle#Circle( int int int )
+   4 actualIn D = {  } U = {  }
+   5 actualIn D = {  } U = {  }
+   6 actualIn D = {  } U = {  }
+   7 actualOut D = { circle$0.!Circle, circle$0.radius, circle$0.x, circle$0.y } U = { circle$0.radius, circle$0.x, circle$0.y }
+   8 assignment D = {  } U = { this.!assertEquals }
+   9 receiver D = {  } U = {  }
+  10 methodCall D = {  } U = { circle$0.!getX } TO = org.junit.Assert#assertEquals( long long )
+  11 receiver D = {  } U = { circle$0 }
+  12 methodCall D = {  } U = { circle$0.x } TO = Circle#getX( )
+  13 actualOut D = { circle$0.!getX } U = { circle$0.x }
+  14 actualOut D = { this.!assertEquals } U = {  }
+  16 formalOut D = {  } U = { $_, circle$0.radius, circle$0.x, circle$0.y }
+--
+   0 methodEntry [ test2( ) ]
+   1 localDeclaration D = { circle$0 } U = { circle$0.!Circle }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { circle$0.radius, circle$0.x, circle$0.y } U = { circle$0.radius, circle$0.x, circle$0.y } TO = Circle#Circle( int int int )
+   4 actualIn D = {  } U = {  }
+   5 actualIn D = {  } U = {  }
+   6 actualIn D = {  } U = {  }
+   7 actualOut D = { circle$0.!Circle, circle$0.radius, circle$0.x, circle$0.y } U = { circle$0.radius, circle$0.x, circle$0.y }
+   8 assignment D = {  } U = { this.!assertEquals }
+   9 receiver D = {  } U = {  }
+  10 methodCall D = {  } U = { circle$0.!getY } TO = org.junit.Assert#assertEquals( long long )
+  11 receiver D = {  } U = { circle$0 }
+  12 methodCall D = {  } U = { circle$0.y } TO = Circle#getY( )
+  13 actualOut D = { circle$0.!getY } U = { circle$0.y }
+  14 actualOut D = { this.!assertEquals } U = {  }
+  16 formalOut D = {  } U = { $_, circle$0.radius, circle$0.x, circle$0.y }
+--
+   0: Sample2Test( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: test1( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 16 trueControlDependence
+   8: 0 -> 2 trueControlDependence
+   9: 0 -> 3 trueControlDependence
+  10: 0 -> 4 trueControlDependence
+  11: 0 -> 5 trueControlDependence
+  12: 0 -> 6 trueControlDependence
+  13: 0 -> 7 trueControlDependence
+  14: 0 -> 8 trueControlDependence
+  15: 0 -> 9 trueControlDependence
+  16: 1 -> 11 declaration
+  17: 1 -> 11 loopIndependentDefUseDependence circle$0
+  18: 13 -> 10 loopIndependentDefUseDependence circle$0.!getX
+  19: 14 -> 8 loopIndependentDefUseDependence this.!assertEquals
+  20: 3 -> 7 loopIndependentDefUseDependence circle$0.radius
+  21: 3 -> 7 loopIndependentDefUseDependence circle$0.x
+  22: 3 -> 7 loopIndependentDefUseDependence circle$0.y
+  23: 4 -> 7 summary
+  24: 5 -> 7 summary
+  25: 6 -> 7 summary
+  26: 7 -> 1 loopIndependentDefUseDependence circle$0.!Circle
+  27: 7 -> 12 loopIndependentDefUseDependence circle$0.x
+  28: 7 -> 13 loopIndependentDefUseDependence circle$0.x
+  29: 7 -> 16 loopIndependentDefUseDependence circle$0.radius
+  30: 7 -> 16 loopIndependentDefUseDependence circle$0.x
+  31: 7 -> 16 loopIndependentDefUseDependence circle$0.y
+--
+   0: test2( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 16 trueControlDependence
+   8: 0 -> 2 trueControlDependence
+   9: 0 -> 3 trueControlDependence
+  10: 0 -> 4 trueControlDependence
+  11: 0 -> 5 trueControlDependence
+  12: 0 -> 6 trueControlDependence
+  13: 0 -> 7 trueControlDependence
+  14: 0 -> 8 trueControlDependence
+  15: 0 -> 9 trueControlDependence
+  16: 1 -> 11 declaration
+  17: 1 -> 11 loopIndependentDefUseDependence circle$0
+  18: 13 -> 10 loopIndependentDefUseDependence circle$0.!getY
+  19: 14 -> 8 loopIndependentDefUseDependence this.!assertEquals
+  20: 3 -> 7 loopIndependentDefUseDependence circle$0.radius
+  21: 3 -> 7 loopIndependentDefUseDependence circle$0.x
+  22: 3 -> 7 loopIndependentDefUseDependence circle$0.y
+  23: 4 -> 7 summary
+  24: 5 -> 7 summary
+  25: 6 -> 7 summary
+  26: 7 -> 1 loopIndependentDefUseDependence circle$0.!Circle
+  27: 7 -> 12 loopIndependentDefUseDependence circle$0.y
+  28: 7 -> 13 loopIndependentDefUseDependence circle$0.y
+  29: 7 -> 16 loopIndependentDefUseDependence circle$0.radius
+  30: 7 -> 16 loopIndependentDefUseDependence circle$0.x
+  31: 7 -> 16 loopIndependentDefUseDependence circle$0.y
+--
+----- ClDG (to here) -----
+

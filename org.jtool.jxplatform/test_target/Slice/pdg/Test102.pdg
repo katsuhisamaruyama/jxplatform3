@@ -23,67 +23,62 @@ Class Name = Test102
   15 assignment D = {  } U = { System.out.!println }
   16 receiver D = {  } U = { System.out }
   17 methodCall D = { System.out, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out, z$2 } TO = java.io.PrintStream#println( int )
-  18 actualOut D = { System.out, System.out.!println } U = { System.out }
-  20 formalOut D = {  } U = { $_ }
+  18 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
+  20 formalOut D = {  } U = { $_, System.out, System.out.trouble }
 --
    0 constructorEntry [ Test102( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0: inc( int )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence
-   5: 2 -> 4 loopIndependentDefUseDependence
+   4: 1 -> 2 loopIndependentDefUseDependence n$0
+   5: 2 -> 4 loopIndependentDefUseDependence $_
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 6 trueControlDependence
-   4: 0 -> 7 trueControlDependence
-   5: 0 -> 8 trueControlDependence
-   6: 0 -> 12 trueControlDependence
-   7: 0 -> 13 trueControlDependence
-   8: 0 -> 14 trueControlDependence
-   9: 0 -> 15 trueControlDependence
-  10: 0 -> 16 trueControlDependence
-  11: 0 -> 20 trueControlDependence
-  12: 1 -> 1 declarationDependence
-  13: 1 -> 12 loopIndependentDefUseDependence
-  14: 1 -> 12 declarationDependence
-  15: 2 -> 3 trueControlDependence
-  16: 3 -> 4 trueControlDependence
-  17: 3 -> 5 trueControlDependence
-  18: 3 -> 21 call
-  19: 4 -> 22 parameterIn
-  20: 5 -> 1 loopIndependentDefUseDependence
-  21: 5 -> 11 outputDependence
-  22: 6 -> 6 declarationDependence
-  23: 6 -> 10 loopIndependentDefUseDependence
-  24: 6 -> 10 declarationDependence
-  25: 6 -> 13 loopIndependentDefUseDependence
-  26: 6 -> 13 declarationDependence
-  27: 7 -> 7 declarationDependence
-  28: 7 -> 14 loopIndependentDefUseDependence
-  29: 7 -> 14 declarationDependence
-  30: 7 -> 17 loopIndependentDefUseDependence
-  31: 7 -> 17 declarationDependence
-  32: 8 -> 9 trueControlDependence
-  33: 9 -> 10 trueControlDependence
-  34: 9 -> 11 trueControlDependence
-  35: 9 -> 21 call
-  36: 10 -> 22 parameterIn
-  37: 11 -> 7 loopIndependentDefUseDependence
-  38: 12 -> 12 declarationDependence
-  39: 13 -> 13 declarationDependence
-  40: 14 -> 14 declarationDependence
-  41: 16 -> 17 trueControlDependence
-  42: 17 -> 18 trueControlDependence
-  43: 17 -> 18 loopIndependentDefUseDependence
-  44: 18 -> 15 loopIndependentDefUseDependence
-  45: 25 -> 5 parameterOut
-  46: 25 -> 11 parameterOut
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 2 trueControlDependence
+  12: 0 -> 20 trueControlDependence
+  13: 0 -> 3 trueControlDependence
+  14: 0 -> 4 trueControlDependence
+  15: 0 -> 5 trueControlDependence
+  16: 0 -> 6 trueControlDependence
+  17: 0 -> 7 trueControlDependence
+  18: 0 -> 8 trueControlDependence
+  19: 0 -> 9 trueControlDependence
+  20: 1 -> 12 declaration
+  21: 1 -> 12 loopIndependentDefUseDependence x$0
+  22: 10 -> 11 summary
+  23: 11 -> 7 loopIndependentDefUseDependence this.!inc
+  24: 17 -> 18 loopIndependentDefUseDependence System.out
+  25: 17 -> 18 outputDependence System.out.trouble
+  26: 18 -> 15 loopIndependentDefUseDependence System.out.!println
+  27: 18 -> 20 loopIndependentDefUseDependence System.out
+  28: 18 -> 20 loopIndependentDefUseDependence System.out.trouble
+  29: 4 -> 5 summary
+  30: 5 -> 1 loopIndependentDefUseDependence this.!inc
+  31: 5 -> 11 outputDependence this.!inc
+  32: 6 -> 10 declaration
+  33: 6 -> 10 loopIndependentDefUseDependence y$1
+  34: 6 -> 13 declaration
+  35: 6 -> 13 loopIndependentDefUseDependence y$1
+  36: 7 -> 14 declaration
+  37: 7 -> 14 loopIndependentDefUseDependence z$2
+  38: 7 -> 17 declaration
+  39: 7 -> 17 loopIndependentDefUseDependence z$2
 --
    0: Test102( )
+   1: 0 -> 2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

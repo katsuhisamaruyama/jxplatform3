@@ -1,0 +1,67 @@
+----- ClDG (from here) -----
+Class Name = Test24
+   0 methodEntry [ x( ) ]
+   1 localDeclaration D = { p$0 } U = { p$0.!P24 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = Test24.P24#P24( )
+   4 actualOut D = { p$0.!P24 } U = {  }
+   5 assignment D = {  } U = { p$0.!m }
+   6 receiver D = {  } U = { p$0 }
+   7 methodCall D = {  } U = {  } TO = Test24.P24#m( )
+   8 actualOut D = { p$0.!m } U = {  }
+   9 localDeclaration D = { q$1 } U = { q$1.!Q24 }
+  10 receiver D = {  } U = {  }
+  11 constructorCall D = {  } U = {  } TO = Test24.Q24#Q24( )
+  12 actualOut D = { q$1.!Q24 } U = {  }
+  13 assignment D = {  } U = { q$1.!m }
+  14 receiver D = {  } U = { q$1 }
+  15 methodCall D = {  } U = {  } TO = Test24.P24#m( )
+  16 actualOut D = { q$1.!m } U = {  }
+  17 assignment D = {  } U = { q$1.!n }
+  18 receiver D = {  } U = { q$1 }
+  19 methodCall D = {  } U = {  } TO = Test24.Q24#n( )
+  20 actualOut D = { q$1.!n } U = {  }
+  22 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test24( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: x( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 22 trueControlDependence
+  15: 0 -> 3 trueControlDependence
+  16: 0 -> 4 trueControlDependence
+  17: 0 -> 5 trueControlDependence
+  18: 0 -> 6 trueControlDependence
+  19: 0 -> 7 trueControlDependence
+  20: 0 -> 8 trueControlDependence
+  21: 0 -> 9 trueControlDependence
+  22: 1 -> 6 declaration
+  23: 1 -> 6 loopIndependentDefUseDependence p$0
+  24: 12 -> 9 loopIndependentDefUseDependence q$1.!Q24
+  25: 16 -> 13 loopIndependentDefUseDependence q$1.!m
+  26: 20 -> 17 loopIndependentDefUseDependence q$1.!n
+  27: 4 -> 1 loopIndependentDefUseDependence p$0.!P24
+  28: 8 -> 5 loopIndependentDefUseDependence p$0.!m
+  29: 9 -> 14 declaration
+  30: 9 -> 14 loopIndependentDefUseDependence q$1
+  31: 9 -> 18 declaration
+  32: 9 -> 18 loopIndependentDefUseDependence q$1
+--
+   0: Test24( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

@@ -1,0 +1,88 @@
+----- ClDG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.FigureEdit
+   0 fieldEntry [ canvas ]
+   1 fieldDeclaration D = { this.canvas } U = { this.canvas }
+--
+   0 fieldEntry [ figure ]
+   1 fieldDeclaration D = { this.figure } U = { this.figure }
+--
+   0 methodEntry [ undo( ) ]
+   1 throwsClause D = {  } U = { $javax.swing.undo.CannotUndoException }
+   2 assignment D = {  } U = { super.!undo }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = { super.hasBeenDone } U = { super.alive, super.hasBeenDone } TO = javax.swing.undo.AbstractUndoableEdit#undo( )
+   5 actualOut D = { super.!undo, super.hasBeenDone } U = { super.alive, super.hasBeenDone }
+   7 formalOut D = {  } U = { $_, super.hasBeenDone }
+--
+   0 methodEntry [ redo( ) ]
+   1 throwsClause D = {  } U = { $javax.swing.undo.CannotUndoException }
+   2 throwsClause D = {  } U = { $javax.swing.undo.CannotRedoException }
+   3 assignment D = {  } U = { super.!redo }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = { super.hasBeenDone } U = { super.alive, super.hasBeenDone } TO = javax.swing.undo.AbstractUndoableEdit#redo( )
+   6 actualOut D = { super.!redo, super.hasBeenDone } U = { super.alive, super.hasBeenDone }
+   8 formalOut D = {  } U = { $_, super.hasBeenDone }
+--
+   0 constructorEntry [ FigureEdit( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ FigureEdit( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ) ]
+   1 formalIn D = { canvas$0 } U = {  }
+   2 formalIn D = { figure$1 } U = {  }
+   3 assignment D = { this.canvas } U = { canvas$0, this }
+   4 assignment D = { this.figure } U = { figure$1, this }
+   6 formalOut D = {  } U = { $_, this.canvas, this.figure }
+--
+   0 fieldEntry [ serialVersionUID ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureEdit.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.FigureEdit.serialVersionUID }
+--
+   0: canvas
+   1: 0 -> 1 trueControlDependence
+--
+   0: figure
+   1: 0 -> 1 trueControlDependence
+--
+   0: undo( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 0 -> 5 trueControlDependence
+   5: 0 -> 7 trueControlDependence
+   6: 4 -> 1 exceptionCatch
+   7: 4 -> 2 trueControlDependence
+   8: 4 -> 5 loopIndependentDefUseDependence super.hasBeenDone
+   9: 5 -> 2 loopIndependentDefUseDependence super.!undo
+  10: 5 -> 7 loopIndependentDefUseDependence super.hasBeenDone
+--
+   0: redo( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 0 -> 5 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 0 -> 8 trueControlDependence
+   7: 5 -> 2 exceptionCatch
+   8: 5 -> 3 trueControlDependence
+   9: 5 -> 6 loopIndependentDefUseDependence super.hasBeenDone
+  10: 6 -> 3 loopIndependentDefUseDependence super.!redo
+  11: 6 -> 8 loopIndependentDefUseDependence super.hasBeenDone
+--
+   0: FigureEdit( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: FigureEdit( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 1 -> 3 loopIndependentDefUseDependence canvas$0
+   7: 2 -> 4 loopIndependentDefUseDependence figure$1
+   8: 3 -> 6 loopIndependentDefUseDependence this.canvas
+   9: 4 -> 6 loopIndependentDefUseDependence this.figure
+--
+   0: serialVersionUID
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

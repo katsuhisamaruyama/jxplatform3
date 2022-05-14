@@ -1,0 +1,73 @@
+----- ClDG (from here) -----
+Class Name = Test16
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { a$0 } U = {  }
+   2 localDeclaration D = { i$1 } U = {  }
+   3 forSt D = {  } U = { i$1 }
+   4 ifSt D = {  } U = { i$1 }
+   5 assignment D = { a$0 } U = { a$0 }
+   6 whileSt D = {  } U = { a$0 }
+   7 assignment D = { a$0 } U = { a$0 }
+   8 breakSt D = {  } U = {  }
+  10 assignment D = { i$1 } U = { i$1 }
+  11 assignment D = {  } U = { System.out.!println }
+  12 receiver D = {  } U = { System.out }
+  13 methodCall D = { System.out, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, a$0, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( int )
+  14 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
+  16 formalOut D = {  } U = { $_, System.out, System.out.trouble }
+--
+   0 constructorEntry [ Test16( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 11 trueControlDependence
+   3: 0 -> 12 trueControlDependence
+   4: 0 -> 13 trueControlDependence
+   5: 0 -> 14 trueControlDependence
+   6: 0 -> 16 trueControlDependence
+   7: 0 -> 2 trueControlDependence
+   8: 0 -> 3 trueControlDependence
+   9: 1 -> 13 declaration
+  10: 1 -> 13 loopIndependentDefUseDependence a$0
+  11: 1 -> 5 declaration
+  12: 1 -> 5 loopIndependentDefUseDependence a$0
+  13: 1 -> 6 declaration
+  14: 1 -> 7 declaration
+  15: 10 -> 10 loopCarriedDefUseDependence i$1 3
+  16: 10 -> 3 loopIndependentDefUseDependence i$1
+  17: 10 -> 4 loopCarriedDefUseDependence i$1 3
+  18: 13 -> 14 loopIndependentDefUseDependence System.out
+  19: 13 -> 14 outputDependence System.out.trouble
+  20: 14 -> 11 loopIndependentDefUseDependence System.out.!println
+  21: 14 -> 16 loopIndependentDefUseDependence System.out
+  22: 14 -> 16 loopIndependentDefUseDependence System.out.trouble
+  23: 2 -> 10 declaration
+  24: 2 -> 10 loopIndependentDefUseDependence i$1
+  25: 2 -> 3 declaration
+  26: 2 -> 3 loopIndependentDefUseDependence i$1
+  27: 2 -> 4 declaration
+  28: 2 -> 4 loopIndependentDefUseDependence i$1
+  29: 3 -> 4 trueControlDependence
+  30: 4 -> 10 trueControlDependence
+  31: 4 -> 3 trueControlDependence
+  32: 4 -> 5 trueControlDependence
+  33: 4 -> 6 trueControlDependence
+  34: 4 -> 8 falseControlDependence
+  35: 5 -> 13 loopIndependentDefUseDependence a$0
+  36: 5 -> 5 loopCarriedDefUseDependence a$0 3
+  37: 5 -> 6 loopIndependentDefUseDependence a$0
+  38: 5 -> 7 loopIndependentDefUseDependence a$0
+  39: 6 -> 7 trueControlDependence
+  40: 7 -> 13 loopIndependentDefUseDependence a$0
+  41: 7 -> 5 loopCarriedDefUseDependence a$0 3
+  42: 7 -> 6 loopCarriedDefUseDependence a$0 6
+  43: 7 -> 7 loopCarriedDefUseDependence a$0 6
+  44: 8 -> 10 fallThroughControlDependence
+  45: 8 -> 3 fallThroughControlDependence
+--
+   0: Test16( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

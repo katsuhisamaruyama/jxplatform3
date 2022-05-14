@@ -1,0 +1,363 @@
+----- ClDG (from here) -----
+Class Name = Sample109FX
+   0 methodEntry [ start( javafx.stage.Stage ) ]
+   1 throwsClause D = {  } U = { $java.lang.Exception }
+   2 formalIn D = { stage$0 } U = {  }
+   3 assignment D = {  } U = { stage$0.!setTitle }
+   4 receiver D = {  } U = { stage$0 }
+   5 methodCall D = { stage$0, stage$0.title } U = { $java.lang.String, stage$0, stage$0.title } TO = javafx.stage.Stage#setTitle( java.lang.String )
+   6 actualOut D = { stage$0, stage$0.!setTitle, stage$0.title } U = { stage$0, stage$0.title }
+   7 assignment D = {  } U = { stage$0.!setWidth }
+   8 receiver D = {  } U = { stage$0 }
+   9 methodCall D = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0$TKBoundsConfigurator.windowWidth, stage$0.widthExplicit } U = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0.peerBoundsConfigurator, stage$0.width } TO = javafx.stage.Window#setWidth( double )
+  10 actualOut D = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0$TKBoundsConfigurator.windowWidth, stage$0.!setWidth, stage$0.widthExplicit } U = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0.peerBoundsConfigurator, stage$0.width }
+  11 assignment D = {  } U = { stage$0.!setHeight }
+  12 receiver D = {  } U = { stage$0 }
+  13 methodCall D = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0$TKBoundsConfigurator.windowHeight, stage$0.heightExplicit } U = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0.height, stage$0.peerBoundsConfigurator } TO = javafx.stage.Window#setHeight( double )
+  14 actualOut D = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0$TKBoundsConfigurator.windowHeight, stage$0.!setHeight, stage$0.heightExplicit } U = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0.height, stage$0.peerBoundsConfigurator }
+  15 localDeclaration D = { menuBar$1 } U = { menuBar$1.!MenuBar }
+  16 receiver D = {  } U = {  }
+  17 constructorCall D = { menuBar$1.menus } U = { java.lang.Boolean.FALSE, javafx.scene.AccessibleRole.MENU_BAR } TO = javafx.scene.control.MenuBar#MenuBar( )
+  18 actualOut D = { menuBar$1.!MenuBar, menuBar$1.menus } U = { java.lang.Boolean.FALSE, javafx.scene.AccessibleRole.MENU_BAR }
+  19 localDeclaration D = { fileMenu$2 } U = { fileMenu$2.!Menu }
+  20 receiver D = {  } U = {  }
+  21 constructorCall D = {  } U = { $java.lang.String } TO = javafx.scene.control.Menu#Menu( java.lang.String )
+  22 actualOut D = { fileMenu$2.!Menu } U = {  }
+  23 assignment D = {  } U = { menuBar$1.!getMenus.!addAll }
+  24 receiver D = {  } U = { menuBar$1.!getMenus }
+  25 receiver D = {  } U = { menuBar$1 }
+  26 methodCall D = {  } U = { menuBar$1, menuBar$1.menus } TO = javafx.scene.control.MenuBar#getMenus( )
+  27 actualOut D = { menuBar$1.!getMenus } U = { menuBar$1.menus }
+  28 methodCall D = {  } U = { fileMenu$2 } TO = javafx.collections.ObservableList#addAll( java.lang.Object[] )
+  29 actualOut D = { menuBar$1.!getMenus.!addAll } U = {  }
+  30 localDeclaration D = { openItem$3 } U = { openItem$3.!MenuItem }
+  31 receiver D = {  } U = {  }
+  32 constructorCall D = { openItem$3.eventHandlerManager, openItem$3.styleClass } U = { $java.lang.String, openItem$3.styleClass } TO = javafx.scene.control.MenuItem#MenuItem( java.lang.String )
+  33 actualOut D = { openItem$3.!MenuItem, openItem$3.eventHandlerManager, openItem$3.styleClass } U = { openItem$3.styleClass }
+  34 localDeclaration D = { saveItem$4 } U = { saveItem$4.!MenuItem }
+  35 receiver D = {  } U = {  }
+  36 constructorCall D = { saveItem$4.eventHandlerManager, saveItem$4.styleClass } U = { $java.lang.String, saveItem$4.styleClass } TO = javafx.scene.control.MenuItem#MenuItem( java.lang.String )
+  37 actualOut D = { saveItem$4.!MenuItem, saveItem$4.eventHandlerManager, saveItem$4.styleClass } U = { saveItem$4.styleClass }
+  38 localDeclaration D = { sp$5 } U = { sp$5.!SeparatorMenuItem }
+  39 receiver D = {  } U = {  }
+  40 constructorCall D = { javafx.scene.control.Separator.orientation } U = { java.lang.Boolean.FALSE, javafx.geometry.Orientation.HORIZONTAL, javafx.geometry.Orientation.VERTICAL, javafx.scene.control.MenuItem.styleClass, javafx.scene.control.Separator.HORIZONTAL_PSEUDOCLASS_STATE, javafx.scene.control.Separator.VERTICAL_PSEUDOCLASS_STATE } TO = javafx.scene.control.SeparatorMenuItem#SeparatorMenuItem( )
+  41 actualOut D = { javafx.scene.control.Separator.orientation, sp$5.!SeparatorMenuItem } U = { java.lang.Boolean.FALSE, javafx.geometry.Orientation.HORIZONTAL, javafx.geometry.Orientation.VERTICAL, javafx.scene.control.MenuItem.styleClass, javafx.scene.control.Separator.HORIZONTAL_PSEUDOCLASS_STATE, javafx.scene.control.Separator.VERTICAL_PSEUDOCLASS_STATE }
+  42 localDeclaration D = { exitItem$6 } U = { exitItem$6.!MenuItem }
+  43 receiver D = {  } U = {  }
+  44 constructorCall D = { exitItem$6.eventHandlerManager, exitItem$6.styleClass } U = { $java.lang.String, exitItem$6.styleClass } TO = javafx.scene.control.MenuItem#MenuItem( java.lang.String )
+  45 actualOut D = { exitItem$6.!MenuItem, exitItem$6.eventHandlerManager, exitItem$6.styleClass } U = { exitItem$6.styleClass }
+  46 assignment D = {  } U = { fileMenu$2.!getItems.!addAll }
+  47 receiver D = {  } U = { fileMenu$2.!getItems }
+  48 receiver D = {  } U = { fileMenu$2 }
+  49 methodCall D = {  } U = { fileMenu$2, fileMenu$2.items } TO = javafx.scene.control.Menu#getItems( )
+  50 actualOut D = { fileMenu$2.!getItems } U = { fileMenu$2.items }
+  51 methodCall D = {  } U = { exitItem$6, openItem$3, saveItem$4, sp$5 } TO = javafx.collections.ObservableList#addAll( java.lang.Object[] )
+  52 actualOut D = { fileMenu$2.!getItems.!addAll } U = {  }
+  53 assignment D = {  } U = { exitItem$6.!setOnAction }
+  54 receiver D = {  } U = { exitItem$6 }
+  55 methodCall D = { exitItem$6, exitItem$6.onAction } U = { $LAMBDA, exitItem$6, exitItem$6.onAction } TO = javafx.scene.control.MenuItem#setOnAction( javafx.event.EventHandler )
+  56 lambda D = { $LAMBDA } U = { this.!exit }
+  57 receiver D = {  } U = {  }
+  58 methodCall D = {  } U = { com.sun.thisImpl.platformExit } TO = javafx.application.Platform#exit( )
+  59 actualOut D = { this.!exit } U = { com.sun.thisImpl.platformExit }
+  60 actualOut D = { exitItem$6, exitItem$6.!setOnAction, exitItem$6.onAction } U = { exitItem$6, exitItem$6.onAction }
+  61 localDeclaration D = { menuArea$8 } U = { menuArea$8.!VBox }
+  62 receiver D = {  } U = {  }
+  63 constructorCall D = { menuArea$8.biasDirty, menuArea$8.performingLayout } U = {  } TO = javafx.scene.layout.VBox#VBox( )
+  64 actualOut D = { menuArea$8.!VBox, menuArea$8.biasDirty, menuArea$8.performingLayout } U = {  }
+  65 assignment D = {  } U = { menuArea$8.!getChildren.!addAll }
+  66 receiver D = {  } U = { menuArea$8.!getChildren }
+  67 receiver D = {  } U = { menuArea$8 }
+  68 methodCall D = {  } U = { javafx.scene.Parent.children, menuArea$8 } TO = javafx.scene.layout.Pane#getChildren( )
+  69 actualOut D = { menuArea$8.!getChildren } U = { javafx.scene.Parent.children }
+  70 methodCall D = {  } U = { menuBar$1 } TO = javafx.collections.ObservableList#addAll( java.lang.Object[] )
+  71 actualOut D = { menuArea$8.!getChildren.!addAll } U = {  }
+  72 localDeclaration D = { scene$9 } U = { scene$9.!Scene }
+  73 receiver D = {  } U = {  }
+  74 constructorCall D = { scene$9.acc, scene$9.antiAliasing, scene$9.depthBuffer, scene$9.dndGesture, scene$9.focusDirty, scene$9.focusOwner, scene$9.heightSetByUser, scene$9.keyHandler, scene$9.lights, scene$9.nextTouchEvent, scene$9.rotateGesture, scene$9.scenePulseListener, scene$9.scrollGesture, scene$9.sizeInitialized, scene$9.stylesheets, scene$9.swipeGesture, scene$9.testPulseListener, scene$9.tmpTargetWrapper, scene$9.touchEventSetId, scene$9.touchMap, scene$9.touchPointIndex, scene$9.touchPoints, scene$9.touchTargets, scene$9.traversalEngine, scene$9.userAgentStylesheet, scene$9.widthSetByUser, scene$9.zoomGesture } U = { javafx.application.ConditionalFeature.SCENE3D, javafx.scene.paint.Color.WHITE, menuArea$8, scene$9Antialiasing.DISABLED } TO = javafx.scene.Scene#Scene( javafx.scene.Parent )
+  75 actualOut D = { scene$9.!Scene, scene$9.acc, scene$9.antiAliasing, scene$9.depthBuffer, scene$9.dndGesture, scene$9.focusDirty, scene$9.focusOwner, scene$9.heightSetByUser, scene$9.keyHandler, scene$9.lights, scene$9.nextTouchEvent, scene$9.rotateGesture, scene$9.scenePulseListener, scene$9.scrollGesture, scene$9.sizeInitialized, scene$9.stylesheets, scene$9.swipeGesture, scene$9.testPulseListener, scene$9.tmpTargetWrapper, scene$9.touchEventSetId, scene$9.touchMap, scene$9.touchPointIndex, scene$9.touchPoints, scene$9.touchTargets, scene$9.traversalEngine, scene$9.userAgentStylesheet, scene$9.widthSetByUser, scene$9.zoomGesture } U = { javafx.application.ConditionalFeature.SCENE3D, javafx.scene.paint.Color.WHITE, scene$9Antialiasing.DISABLED }
+  76 assignment D = {  } U = { stage$0.!setScene }
+  77 receiver D = {  } U = { stage$0 }
+  78 methodCall D = { com.sun.javafx.tk.Toolkit.TOOLKIT, stage$0 } U = { com.sun.javafx.tk.Toolkit.TOOLKIT, com.sun.javafx.tk.Toolkit.tk, java.lang.System.err, javafx.stage.Window.scene, scene$9, stage$0 } TO = javafx.stage.Stage#setScene( javafx.scene.Scene )
+  79 actualOut D = { com.sun.javafx.tk.Toolkit.TOOLKIT, stage$0, stage$0.!setScene } U = { com.sun.javafx.tk.Toolkit.TOOLKIT, com.sun.javafx.tk.Toolkit.tk, java.lang.System.err, javafx.stage.Window.scene, stage$0 }
+  80 assignment D = {  } U = { stage$0.!show }
+  81 receiver D = {  } U = { stage$0 }
+  82 methodCall D = {  } U = {  } TO = javafx.stage.Stage#show( )
+  83 actualOut D = { stage$0.!show } U = {  }
+  85 formalOut D = {  } U = { $_, com.sun.javafx.tk.Toolkit.TOOLKIT, exitItem$6.eventHandlerManager, exitItem$6.onAction, exitItem$6.styleClass, javafx.beans.property.DoublePropertyBase.value, javafx.scene.control.Separator.orientation, menuArea$8.biasDirty, menuArea$8.performingLayout, menuBar$1.menus, openItem$3.eventHandlerManager, openItem$3.styleClass, saveItem$4.eventHandlerManager, saveItem$4.styleClass, scene$9.acc, scene$9.antiAliasing, scene$9.depthBuffer, scene$9.dndGesture, scene$9.focusDirty, scene$9.focusOwner, scene$9.heightSetByUser, scene$9.keyHandler, scene$9.lights, scene$9.nextTouchEvent, scene$9.rotateGesture, scene$9.scenePulseListener, scene$9.scrollGesture, scene$9.sizeInitialized, scene$9.stylesheets, scene$9.swipeGesture, scene$9.testPulseListener, scene$9.tmpTargetWrapper, scene$9.touchEventSetId, scene$9.touchMap, scene$9.touchPointIndex, scene$9.touchPoints, scene$9.touchTargets, scene$9.traversalEngine, scene$9.userAgentStylesheet, scene$9.widthSetByUser, scene$9.zoomGesture, stage$0$TKBoundsConfigurator.windowHeight, stage$0$TKBoundsConfigurator.windowWidth, stage$0.heightExplicit, stage$0.title, stage$0.widthExplicit }
+--
+   0 constructorEntry [ Sample109FX( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ main( java.lang.String[] ) ]
+   1 formalIn D = { args$0 } U = {  }
+   2 assignment D = {  } U = { this.!launch }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = { args$0, com.sun.javafx.application.LauncherImpl.savedPreloaderClass, java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, java.lang.Class.name, java.lang.StackTraceElement.declaringClass, java.lang.StackTraceElement.methodName, java.lang.String.value, java.lang.System.err, java.lang.Thread.EMPTY_STACK_TRACE, java.lang.Thread.contextClassLoader, sun.security.util.SecurityConstants.GET_CLASSLOADER_PERMISSION, sun.security.util.SecurityConstants.GET_STACK_TRACE_PERMISSION } TO = javafx.application.Application#launch( java.lang.String[] )
+   5 actualOut D = { this.!launch } U = { com.sun.javafx.application.LauncherImpl.savedPreloaderClass, java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, java.lang.Class.name, java.lang.StackTraceElement.declaringClass, java.lang.StackTraceElement.methodName, java.lang.String.value, java.lang.System.err, java.lang.Thread.EMPTY_STACK_TRACE, java.lang.Thread.contextClassLoader, sun.security.util.SecurityConstants.GET_CLASSLOADER_PERMISSION, sun.security.util.SecurityConstants.GET_STACK_TRACE_PERMISSION }
+   7 formalOut D = {  } U = { $_ }
+--
+   0: start( javafx.stage.Stage )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 25 trueControlDependence
+  19: 0 -> 26 trueControlDependence
+  20: 0 -> 27 trueControlDependence
+  21: 0 -> 28 trueControlDependence
+  22: 0 -> 29 trueControlDependence
+  23: 0 -> 3 trueControlDependence
+  24: 0 -> 30 trueControlDependence
+  25: 0 -> 31 trueControlDependence
+  26: 0 -> 32 trueControlDependence
+  27: 0 -> 33 trueControlDependence
+  28: 0 -> 34 trueControlDependence
+  29: 0 -> 35 trueControlDependence
+  30: 0 -> 36 trueControlDependence
+  31: 0 -> 37 trueControlDependence
+  32: 0 -> 38 trueControlDependence
+  33: 0 -> 39 trueControlDependence
+  34: 0 -> 4 trueControlDependence
+  35: 0 -> 40 trueControlDependence
+  36: 0 -> 41 trueControlDependence
+  37: 0 -> 42 trueControlDependence
+  38: 0 -> 43 trueControlDependence
+  39: 0 -> 44 trueControlDependence
+  40: 0 -> 45 trueControlDependence
+  41: 0 -> 46 trueControlDependence
+  42: 0 -> 47 trueControlDependence
+  43: 0 -> 48 trueControlDependence
+  44: 0 -> 49 trueControlDependence
+  45: 0 -> 5 trueControlDependence
+  46: 0 -> 50 trueControlDependence
+  47: 0 -> 51 trueControlDependence
+  48: 0 -> 52 trueControlDependence
+  49: 0 -> 53 trueControlDependence
+  50: 0 -> 54 trueControlDependence
+  51: 0 -> 55 trueControlDependence
+  52: 0 -> 56 trueControlDependence
+  53: 0 -> 57 trueControlDependence
+  54: 0 -> 58 trueControlDependence
+  55: 0 -> 59 trueControlDependence
+  56: 0 -> 6 trueControlDependence
+  57: 0 -> 60 trueControlDependence
+  58: 0 -> 61 trueControlDependence
+  59: 0 -> 62 trueControlDependence
+  60: 0 -> 63 trueControlDependence
+  61: 0 -> 64 trueControlDependence
+  62: 0 -> 65 trueControlDependence
+  63: 0 -> 66 trueControlDependence
+  64: 0 -> 67 trueControlDependence
+  65: 0 -> 68 trueControlDependence
+  66: 0 -> 69 trueControlDependence
+  67: 0 -> 7 trueControlDependence
+  68: 0 -> 70 trueControlDependence
+  69: 0 -> 71 trueControlDependence
+  70: 0 -> 72 trueControlDependence
+  71: 0 -> 73 trueControlDependence
+  72: 0 -> 74 trueControlDependence
+  73: 0 -> 75 trueControlDependence
+  74: 0 -> 76 trueControlDependence
+  75: 0 -> 77 trueControlDependence
+  76: 0 -> 78 trueControlDependence
+  77: 0 -> 79 trueControlDependence
+  78: 0 -> 8 trueControlDependence
+  79: 0 -> 80 trueControlDependence
+  80: 0 -> 81 trueControlDependence
+  81: 0 -> 82 trueControlDependence
+  82: 0 -> 83 trueControlDependence
+  83: 0 -> 85 trueControlDependence
+  84: 0 -> 9 trueControlDependence
+  85: 10 -> 12 loopIndependentDefUseDependence stage$0
+  86: 10 -> 13 loopIndependentDefUseDependence javafx.beans.property.DoublePropertyBase.value
+  87: 10 -> 13 loopIndependentDefUseDependence stage$0
+  88: 10 -> 7 loopIndependentDefUseDependence stage$0.!setWidth
+  89: 10 -> 85 loopIndependentDefUseDependence stage$0$TKBoundsConfigurator.windowWidth
+  90: 10 -> 85 loopIndependentDefUseDependence stage$0.widthExplicit
+  91: 13 -> 14 loopIndependentDefUseDependence javafx.beans.property.DoublePropertyBase.value
+  92: 13 -> 14 loopIndependentDefUseDependence stage$0
+  93: 13 -> 14 outputDependence stage$0$TKBoundsConfigurator.windowHeight
+  94: 13 -> 14 outputDependence stage$0.heightExplicit
+  95: 14 -> 11 loopIndependentDefUseDependence stage$0.!setHeight
+  96: 14 -> 77 loopIndependentDefUseDependence stage$0
+  97: 14 -> 78 loopIndependentDefUseDependence stage$0
+  98: 14 -> 85 loopIndependentDefUseDependence javafx.beans.property.DoublePropertyBase.value
+  99: 14 -> 85 loopIndependentDefUseDependence stage$0$TKBoundsConfigurator.windowHeight
+ 100: 14 -> 85 loopIndependentDefUseDependence stage$0.heightExplicit
+ 101: 15 -> 25 declaration
+ 102: 15 -> 25 loopIndependentDefUseDependence menuBar$1
+ 103: 15 -> 26 declaration
+ 104: 15 -> 26 loopIndependentDefUseDependence menuBar$1
+ 105: 15 -> 70 declaration
+ 106: 15 -> 70 loopIndependentDefUseDependence menuBar$1
+ 107: 17 -> 18 outputDependence menuBar$1.menus
+ 108: 18 -> 15 loopIndependentDefUseDependence menuBar$1.!MenuBar
+ 109: 18 -> 26 loopIndependentDefUseDependence menuBar$1.menus
+ 110: 18 -> 27 loopIndependentDefUseDependence menuBar$1.menus
+ 111: 18 -> 85 loopIndependentDefUseDependence menuBar$1.menus
+ 112: 19 -> 28 declaration
+ 113: 19 -> 28 loopIndependentDefUseDependence fileMenu$2
+ 114: 19 -> 48 declaration
+ 115: 19 -> 48 loopIndependentDefUseDependence fileMenu$2
+ 116: 19 -> 49 declaration
+ 117: 19 -> 49 loopIndependentDefUseDependence fileMenu$2
+ 118: 2 -> 4 loopIndependentDefUseDependence stage$0
+ 119: 2 -> 5 loopIndependentDefUseDependence stage$0
+ 120: 22 -> 19 loopIndependentDefUseDependence fileMenu$2.!Menu
+ 121: 27 -> 24 loopIndependentDefUseDependence menuBar$1.!getMenus
+ 122: 29 -> 23 loopIndependentDefUseDependence menuBar$1.!getMenus.!addAll
+ 123: 30 -> 51 declaration
+ 124: 30 -> 51 loopIndependentDefUseDependence openItem$3
+ 125: 32 -> 33 loopIndependentDefUseDependence openItem$3.styleClass
+ 126: 32 -> 33 outputDependence openItem$3.eventHandlerManager
+ 127: 33 -> 30 loopIndependentDefUseDependence openItem$3.!MenuItem
+ 128: 33 -> 85 loopIndependentDefUseDependence openItem$3.eventHandlerManager
+ 129: 33 -> 85 loopIndependentDefUseDependence openItem$3.styleClass
+ 130: 34 -> 51 declaration
+ 131: 34 -> 51 loopIndependentDefUseDependence saveItem$4
+ 132: 36 -> 37 loopIndependentDefUseDependence saveItem$4.styleClass
+ 133: 36 -> 37 outputDependence saveItem$4.eventHandlerManager
+ 134: 37 -> 34 loopIndependentDefUseDependence saveItem$4.!MenuItem
+ 135: 37 -> 85 loopIndependentDefUseDependence saveItem$4.eventHandlerManager
+ 136: 37 -> 85 loopIndependentDefUseDependence saveItem$4.styleClass
+ 137: 38 -> 51 declaration
+ 138: 38 -> 51 loopIndependentDefUseDependence sp$5
+ 139: 40 -> 41 outputDependence javafx.scene.control.Separator.orientation
+ 140: 41 -> 38 loopIndependentDefUseDependence sp$5.!SeparatorMenuItem
+ 141: 41 -> 85 loopIndependentDefUseDependence javafx.scene.control.Separator.orientation
+ 142: 42 -> 51 declaration
+ 143: 42 -> 51 loopIndependentDefUseDependence exitItem$6
+ 144: 42 -> 54 declaration
+ 145: 42 -> 54 loopIndependentDefUseDependence exitItem$6
+ 146: 42 -> 55 declaration
+ 147: 42 -> 55 loopIndependentDefUseDependence exitItem$6
+ 148: 42 -> 60 declaration
+ 149: 44 -> 45 loopIndependentDefUseDependence exitItem$6.styleClass
+ 150: 44 -> 45 outputDependence exitItem$6.eventHandlerManager
+ 151: 45 -> 42 loopIndependentDefUseDependence exitItem$6.!MenuItem
+ 152: 45 -> 85 loopIndependentDefUseDependence exitItem$6.eventHandlerManager
+ 153: 45 -> 85 loopIndependentDefUseDependence exitItem$6.styleClass
+ 154: 5 -> 6 loopIndependentDefUseDependence stage$0
+ 155: 5 -> 6 loopIndependentDefUseDependence stage$0.title
+ 156: 50 -> 47 loopIndependentDefUseDependence fileMenu$2.!getItems
+ 157: 52 -> 46 loopIndependentDefUseDependence fileMenu$2.!getItems.!addAll
+ 158: 55 -> 60 loopIndependentDefUseDependence exitItem$6
+ 159: 55 -> 60 loopIndependentDefUseDependence exitItem$6.onAction
+ 160: 56 -> 55 loopIndependentDefUseDependence $LAMBDA
+ 161: 59 -> 56 loopIndependentDefUseDependence this.!exit
+ 162: 6 -> 3 loopIndependentDefUseDependence stage$0.!setTitle
+ 163: 6 -> 8 loopIndependentDefUseDependence stage$0
+ 164: 6 -> 85 loopIndependentDefUseDependence stage$0.title
+ 165: 6 -> 9 loopIndependentDefUseDependence stage$0
+ 166: 60 -> 53 loopIndependentDefUseDependence exitItem$6.!setOnAction
+ 167: 60 -> 85 loopIndependentDefUseDependence exitItem$6.onAction
+ 168: 61 -> 67 declaration
+ 169: 61 -> 67 loopIndependentDefUseDependence menuArea$8
+ 170: 61 -> 68 declaration
+ 171: 61 -> 68 loopIndependentDefUseDependence menuArea$8
+ 172: 61 -> 74 declaration
+ 173: 61 -> 74 loopIndependentDefUseDependence menuArea$8
+ 174: 63 -> 64 outputDependence menuArea$8.biasDirty
+ 175: 63 -> 64 outputDependence menuArea$8.performingLayout
+ 176: 64 -> 61 loopIndependentDefUseDependence menuArea$8.!VBox
+ 177: 64 -> 85 loopIndependentDefUseDependence menuArea$8.biasDirty
+ 178: 64 -> 85 loopIndependentDefUseDependence menuArea$8.performingLayout
+ 179: 69 -> 66 loopIndependentDefUseDependence menuArea$8.!getChildren
+ 180: 71 -> 65 loopIndependentDefUseDependence menuArea$8.!getChildren.!addAll
+ 181: 72 -> 78 declaration
+ 182: 72 -> 78 loopIndependentDefUseDependence scene$9
+ 183: 74 -> 75 outputDependence scene$9.acc
+ 184: 74 -> 75 outputDependence scene$9.antiAliasing
+ 185: 74 -> 75 outputDependence scene$9.depthBuffer
+ 186: 74 -> 75 outputDependence scene$9.dndGesture
+ 187: 74 -> 75 outputDependence scene$9.focusDirty
+ 188: 74 -> 75 outputDependence scene$9.focusOwner
+ 189: 74 -> 75 outputDependence scene$9.heightSetByUser
+ 190: 74 -> 75 outputDependence scene$9.keyHandler
+ 191: 74 -> 75 outputDependence scene$9.lights
+ 192: 74 -> 75 outputDependence scene$9.nextTouchEvent
+ 193: 74 -> 75 outputDependence scene$9.rotateGesture
+ 194: 74 -> 75 outputDependence scene$9.scenePulseListener
+ 195: 74 -> 75 outputDependence scene$9.scrollGesture
+ 196: 74 -> 75 outputDependence scene$9.sizeInitialized
+ 197: 74 -> 75 outputDependence scene$9.stylesheets
+ 198: 74 -> 75 outputDependence scene$9.swipeGesture
+ 199: 74 -> 75 outputDependence scene$9.testPulseListener
+ 200: 74 -> 75 outputDependence scene$9.tmpTargetWrapper
+ 201: 74 -> 75 outputDependence scene$9.touchEventSetId
+ 202: 74 -> 75 outputDependence scene$9.touchMap
+ 203: 74 -> 75 outputDependence scene$9.touchPointIndex
+ 204: 74 -> 75 outputDependence scene$9.touchPoints
+ 205: 74 -> 75 outputDependence scene$9.touchTargets
+ 206: 74 -> 75 outputDependence scene$9.traversalEngine
+ 207: 74 -> 75 outputDependence scene$9.userAgentStylesheet
+ 208: 74 -> 75 outputDependence scene$9.widthSetByUser
+ 209: 74 -> 75 outputDependence scene$9.zoomGesture
+ 210: 75 -> 72 loopIndependentDefUseDependence scene$9.!Scene
+ 211: 75 -> 85 loopIndependentDefUseDependence scene$9.acc
+ 212: 75 -> 85 loopIndependentDefUseDependence scene$9.antiAliasing
+ 213: 75 -> 85 loopIndependentDefUseDependence scene$9.depthBuffer
+ 214: 75 -> 85 loopIndependentDefUseDependence scene$9.dndGesture
+ 215: 75 -> 85 loopIndependentDefUseDependence scene$9.focusDirty
+ 216: 75 -> 85 loopIndependentDefUseDependence scene$9.focusOwner
+ 217: 75 -> 85 loopIndependentDefUseDependence scene$9.heightSetByUser
+ 218: 75 -> 85 loopIndependentDefUseDependence scene$9.keyHandler
+ 219: 75 -> 85 loopIndependentDefUseDependence scene$9.lights
+ 220: 75 -> 85 loopIndependentDefUseDependence scene$9.nextTouchEvent
+ 221: 75 -> 85 loopIndependentDefUseDependence scene$9.rotateGesture
+ 222: 75 -> 85 loopIndependentDefUseDependence scene$9.scenePulseListener
+ 223: 75 -> 85 loopIndependentDefUseDependence scene$9.scrollGesture
+ 224: 75 -> 85 loopIndependentDefUseDependence scene$9.sizeInitialized
+ 225: 75 -> 85 loopIndependentDefUseDependence scene$9.stylesheets
+ 226: 75 -> 85 loopIndependentDefUseDependence scene$9.swipeGesture
+ 227: 75 -> 85 loopIndependentDefUseDependence scene$9.testPulseListener
+ 228: 75 -> 85 loopIndependentDefUseDependence scene$9.tmpTargetWrapper
+ 229: 75 -> 85 loopIndependentDefUseDependence scene$9.touchEventSetId
+ 230: 75 -> 85 loopIndependentDefUseDependence scene$9.touchMap
+ 231: 75 -> 85 loopIndependentDefUseDependence scene$9.touchPointIndex
+ 232: 75 -> 85 loopIndependentDefUseDependence scene$9.touchPoints
+ 233: 75 -> 85 loopIndependentDefUseDependence scene$9.touchTargets
+ 234: 75 -> 85 loopIndependentDefUseDependence scene$9.traversalEngine
+ 235: 75 -> 85 loopIndependentDefUseDependence scene$9.userAgentStylesheet
+ 236: 75 -> 85 loopIndependentDefUseDependence scene$9.widthSetByUser
+ 237: 75 -> 85 loopIndependentDefUseDependence scene$9.zoomGesture
+ 238: 78 -> 79 loopIndependentDefUseDependence com.sun.javafx.tk.Toolkit.TOOLKIT
+ 239: 78 -> 79 loopIndependentDefUseDependence stage$0
+ 240: 79 -> 76 loopIndependentDefUseDependence stage$0.!setScene
+ 241: 79 -> 81 loopIndependentDefUseDependence stage$0
+ 242: 79 -> 85 loopIndependentDefUseDependence com.sun.javafx.tk.Toolkit.TOOLKIT
+ 243: 83 -> 80 loopIndependentDefUseDependence stage$0.!show
+ 244: 9 -> 10 loopIndependentDefUseDependence javafx.beans.property.DoublePropertyBase.value
+ 245: 9 -> 10 loopIndependentDefUseDependence stage$0
+ 246: 9 -> 10 outputDependence stage$0$TKBoundsConfigurator.windowWidth
+ 247: 9 -> 10 outputDependence stage$0.widthExplicit
+--
+   0: Sample109FX( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: main( java.lang.String[] )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 7 trueControlDependence
+   7: 1 -> 4 loopIndependentDefUseDependence args$0
+   8: 5 -> 2 loopIndependentDefUseDependence this.!launch
+--
+----- ClDG (to here) -----
+

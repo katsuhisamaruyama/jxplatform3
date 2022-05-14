@@ -19,20 +19,20 @@ Class Name = Customer
    5 ifSt D = {  } U = { order$0.!getSize, this.discount }
    6 receiver D = {  } U = { order$0 }
    7 methodCall D = {  } U = { order$0, order$0.rentals } TO = Order#getSize( )
-   8 actualOut D = { order$0.!getSize } U = {  }
+   8 actualOut D = { order$0.!getSize } U = { order$0.rentals }
    9 assignment D = { this.discount } U = { this.discount }
   11 localDeclaration D = { amount$1 } U = { this.!getAmount }
   12 receiver D = {  } U = {  }
   13 methodCall D = {  } U = { this.discount } TO = Customer#getAmount( Order )
   14 actualIn D = {  } U = { order$0 }
-  15 actualOut D = { this.!getAmount } U = {  }
+  15 actualOut D = { this.!getAmount } U = { this.discount }
   16 returnSt D = { $_ } U = { $java.lang.String, amount$1, this.name }
-  18 formalOut D = {  } U = { $_ }
+  18 formalOut D = {  } U = { $_, this.discount }
 --
    0 methodEntry [ setDiscount( double ) ]
    1 formalIn D = { dis$0 } U = {  }
    2 assignment D = { this.discount } U = { dis$0, this }
-   4 formalOut D = {  } U = { $_ }
+   4 formalOut D = {  } U = { $_, this.discount }
 --
    0 fieldEntry [ discount ]
    1 fieldDeclaration D = { this.discount } U = { this.discount }
@@ -40,79 +40,79 @@ Class Name = Customer
    0 constructorEntry [ Customer( java.lang.String ) ]
    1 formalIn D = { name$0 } U = {  }
    2 assignment D = { this.name } U = { name$0, this }
-   4 formalOut D = {  } U = { $_ }
+   4 formalOut D = {  } U = { $_, this.name }
 --
    0 fieldEntry [ name ]
    1 fieldDeclaration D = { this.name } U = { $java.lang.String, this.name }
 --
    0: getAmount( Order )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 5 trueControlDependence
+   2: 0 -> 11 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
    5: 0 -> 9 trueControlDependence
-   6: 0 -> 11 trueControlDependence
-   7: 1 -> 3 loopIndependentDefUseDependence
-   8: 2 -> 2 declarationDependence
-   9: 2 -> 4 loopIndependentDefUseDependence
-  10: 2 -> 4 declarationDependence
-  11: 2 -> 9 loopIndependentDefUseDependence
-  12: 2 -> 9 declarationDependence
-  13: 3 -> 4 trueControlDependence
-  14: 3 -> 6 trueControlDependence
-  15: 4 -> 4 loopIndependentDefUseDependence
-  16: 4 -> 9 loopIndependentDefUseDependence
-  17: 5 -> 6 trueControlDependence
-  18: 6 -> 7 trueControlDependence
-  19: 6 -> 8 trueControlDependence
-  20: 8 -> 4 loopIndependentDefUseDependence
-  21: 8 -> 8 defOrderDependence
-  22: 9 -> 11 loopIndependentDefUseDependence
+   6: 1 -> 3 loopIndependentDefUseDependence order$0
+   7: 2 -> 4 declaration
+   8: 2 -> 4 loopIndependentDefUseDependence amount$1
+   9: 2 -> 9 declaration
+  10: 2 -> 9 loopIndependentDefUseDependence amount$1
+  11: 3 -> 4 trueControlDependence
+  12: 3 -> 5 trueControlDependence
+  13: 3 -> 6 trueControlDependence
+  14: 3 -> 7 trueControlDependence
+  15: 3 -> 8 trueControlDependence
+  16: 4 -> 4 loopCarriedDefUseDependence amount$1 3
+  17: 4 -> 9 loopIndependentDefUseDependence amount$1
+  18: 8 -> 4 loopIndependentDefUseDependence rental$2.!getCharge
+  19: 8 -> 8 defOrderDependence rental$2.!getCharge
+  20: 9 -> 11 loopIndependentDefUseDependence $_
 --
    0: statement( Order )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 6 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 18 trueControlDependence
-   6: 1 -> 2 loopIndependentDefUseDependence
-   7: 1 -> 6 loopIndependentDefUseDependence
-   8: 1 -> 7 loopIndependentDefUseDependence
-   9: 1 -> 14 loopIndependentDefUseDependence
-  10: 2 -> 3 trueControlDependence
-  11: 2 -> 5 falseControlDependence
-  12: 2 -> 7 falseControlDependence
-  13: 2 -> 11 falseControlDependence
+   2: 0 -> 18 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 1 -> 14 loopIndependentDefUseDependence order$0
+   5: 1 -> 2 loopIndependentDefUseDependence order$0
+   6: 1 -> 6 loopIndependentDefUseDependence order$0
+   7: 1 -> 7 loopIndependentDefUseDependence order$0
+   8: 11 -> 16 declaration
+   9: 11 -> 16 loopIndependentDefUseDependence amount$1
+  10: 15 -> 11 loopIndependentDefUseDependence this.!getAmount
+  11: 16 -> 18 loopIndependentDefUseDependence $_
+  12: 2 -> 11 falseControlDependence
+  13: 2 -> 12 trueControlDependence
   14: 2 -> 13 falseControlDependence
-  15: 2 -> 16 falseControlDependence
-  16: 3 -> 5 fallThroughControlDependence
-  17: 3 -> 7 fallThroughControlDependence
-  18: 3 -> 11 fallThroughControlDependence
-  19: 3 -> 13 fallThroughControlDependence
-  20: 3 -> 16 fallThroughControlDependence
-  21: 3 -> 18 loopIndependentDefUseDependence
-  22: 5 -> 9 trueControlDependence
-  23: 6 -> 7 trueControlDependence
-  24: 7 -> 8 trueControlDependence
-  25: 8 -> 5 loopIndependentDefUseDependence
-  26: 9 -> 13 loopIndependentDefUseDependence
-  27: 11 -> 11 declarationDependence
-  28: 11 -> 16 loopIndependentDefUseDependence
-  29: 11 -> 16 declarationDependence
-  30: 12 -> 13 trueControlDependence
-  31: 13 -> 14 trueControlDependence
-  32: 13 -> 15 trueControlDependence
-  33: 13 -> 113 call
-  34: 14 -> 114 parameterIn
-  35: 15 -> 11 loopIndependentDefUseDependence
-  36: 16 -> 18 loopIndependentDefUseDependence
-  37: 124 -> 15 parameterOut
+  15: 2 -> 14 trueControlDependence
+  16: 2 -> 15 trueControlDependence
+  17: 2 -> 16 falseControlDependence
+  18: 2 -> 3 trueControlDependence
+  19: 2 -> 5 falseControlDependence
+  20: 2 -> 6 trueControlDependence
+  21: 2 -> 7 falseControlDependence
+  22: 2 -> 8 trueControlDependence
+  23: 3 -> 11 fallThroughControlDependence
+  24: 3 -> 12 trueControlDependence
+  25: 3 -> 13 fallThroughControlDependence
+  26: 3 -> 14 trueControlDependence
+  27: 3 -> 15 trueControlDependence
+  28: 3 -> 16 fallThroughControlDependence
+  29: 3 -> 18 loopIndependentDefUseDependence $_
+  30: 3 -> 5 fallThroughControlDependence
+  31: 3 -> 6 trueControlDependence
+  32: 3 -> 7 fallThroughControlDependence
+  33: 3 -> 8 trueControlDependence
+  34: 5 -> 9 trueControlDependence
+  35: 8 -> 5 loopIndependentDefUseDependence order$0.!getSize
+  36: 9 -> 13 loopIndependentDefUseDependence this.discount
+  37: 9 -> 15 loopIndependentDefUseDependence this.discount
+  38: 9 -> 18 loopIndependentDefUseDependence this.discount
 --
    0: setDiscount( double )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence
+   4: 1 -> 2 loopIndependentDefUseDependence dis$0
+   5: 2 -> 4 loopIndependentDefUseDependence this.discount
 --
    0: discount
    1: 0 -> 1 trueControlDependence
@@ -121,7 +121,8 @@ Class Name = Customer
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence
+   4: 1 -> 2 loopIndependentDefUseDependence name$0
+   5: 2 -> 4 loopIndependentDefUseDependence this.name
 --
    0: name
    1: 0 -> 1 trueControlDependence

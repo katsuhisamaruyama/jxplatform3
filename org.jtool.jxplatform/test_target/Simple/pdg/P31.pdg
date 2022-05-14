@@ -1,0 +1,74 @@
+----- ClDG (from here) -----
+Class Name = P31
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { xx$0 } U = { super.x }
+   2 assignment D = {  } U = { super.!m }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = Test31#m( )
+   5 actualOut D = { super.!m } U = {  }
+   7 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ P31( ) ]
+   1 assignment D = {  } U = {  }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { this.x } U = { this.x } TO = P31#P31( int )
+   4 actualIn D = {  } U = {  }
+   5 actualOut D = { , this.x } U = { this.x }
+   7 formalOut D = {  } U = { $_, this.x }
+--
+   0 constructorEntry [ P31( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = {  } U = {  }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = { super.x } U = { super.x } TO = Test31#Test31( int )
+   5 actualIn D = {  } U = { x$0 }
+   6 actualOut D = { , super.x } U = { super.x }
+   7 assignment D = { this.x } U = { this, x$0 }
+   9 formalOut D = {  } U = { $_, super.x, this.x }
+--
+   0 fieldEntry [ x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 7 trueControlDependence
+   7: 5 -> 2 loopIndependentDefUseDependence super.!m
+--
+   0: P31( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 7 trueControlDependence
+   7: 3 -> 5 loopIndependentDefUseDependence this.x
+   8: 4 -> 5 summary
+   9: 5 -> 1 loopIndependentDefUseDependence 
+  10: 5 -> 7 loopIndependentDefUseDependence this.x
+--
+   0: P31( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 7 trueControlDependence
+   8: 0 -> 9 trueControlDependence
+   9: 1 -> 5 loopIndependentDefUseDependence x$0
+  10: 1 -> 7 loopIndependentDefUseDependence x$0
+  11: 4 -> 6 loopIndependentDefUseDependence super.x
+  12: 5 -> 6 summary
+  13: 6 -> 2 loopIndependentDefUseDependence 
+  14: 6 -> 9 loopIndependentDefUseDependence super.x
+  15: 7 -> 9 loopIndependentDefUseDependence this.x
+--
+   0: x
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

@@ -1,0 +1,173 @@
+----- ClDG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.FigureMoved
+   0 fieldEntry [ serialVersionUID ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureMoved.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.FigureMoved.serialVersionUID }
+--
+   0 fieldEntry [ undoFigure ]
+   1 fieldDeclaration D = { this.undoFigure } U = { this.undoFigure }
+--
+   0 constructorEntry [ FigureMoved( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ undo( ) ]
+   1 throwsClause D = {  } U = { $javax.swing.undo.CannotUndoException }
+   2 assignment D = {  } U = { super.!undo }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.FigureEdit#undo( )
+   5 actualOut D = { super.!undo } U = {  }
+   6 assignment D = {  } U = { this.figure.!replace }
+   7 receiver D = {  } U = { this.figure }
+   8 methodCall D = { this.figure.endX, this.figure.endY, this.figure.startX, this.figure.startY } U = { this.figure.endX, this.figure.endY, this.figure.startX, this.figure.startY } TO = jp.ac.ritsumei.cs.draw.Figure#replace( jp.ac.ritsumei.cs.draw.Figure )
+   9 actualIn D = {  } U = { this.undoFigure }
+  10 actualOut D = { this.figure.!replace, this.figure.endX, this.figure.endY, this.figure.startX, this.figure.startY } U = { this.figure.endX, this.figure.endY, this.figure.startX, this.figure.startY }
+  11 assignment D = {  } U = { this.canvas.!repaint }
+  12 receiver D = {  } U = { this.canvas }
+  13 methodCall D = {  } U = { this.canvas, this.canvas.height, this.canvas.parent, this.canvas.peer, this.canvas.width, this.canvas.x, this.canvas.y } TO = java.awt.Component#repaint( )
+  14 actualOut D = { this.canvas.!repaint } U = { this.canvas.height, this.canvas.parent, this.canvas.peer, this.canvas.width, this.canvas.x, this.canvas.y }
+  16 formalOut D = {  } U = { $_, this.figure.endX, this.figure.endY, this.figure.startX, this.figure.startY }
+--
+   0 fieldEntry [ redoFigure ]
+   1 fieldDeclaration D = { this.redoFigure } U = { this.redoFigure }
+--
+   0 constructorEntry [ FigureMoved( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure jp.ac.ritsumei.cs.draw.Figure ) ]
+   1 formalIn D = { canvas$0 } U = {  }
+   2 formalIn D = { figure$1 } U = {  }
+   3 formalIn D = { prevFigure$2 } U = {  }
+   4 assignment D = {  } U = {  }
+   5 receiver D = {  } U = {  }
+   6 constructorCall D = { super.canvas, super.figure } U = { super.canvas, super.figure } TO = jp.ac.ritsumei.cs.draw.FigureEdit#FigureEdit( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure )
+   7 actualIn D = {  } U = { canvas$0 }
+   8 actualIn D = {  } U = { figure$1 }
+   9 actualOut D = { , super.canvas, super.figure } U = { super.canvas, super.figure }
+  10 assignment D = { this.undoFigure } U = { prevFigure$2 }
+  11 assignment D = { this.redoFigure } U = { figure$1.!createClone }
+  12 receiver D = {  } U = { figure$1 }
+  13 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#createClone( )
+  14 actualOut D = { figure$1.!createClone } U = {  }
+  16 formalOut D = {  } U = { $_, super.canvas, super.figure, this.redoFigure, this.undoFigure }
+--
+   0 methodEntry [ redo( ) ]
+   1 throwsClause D = {  } U = { $javax.swing.undo.CannotUndoException }
+   2 throwsClause D = {  } U = { $javax.swing.undo.CannotRedoException }
+   3 assignment D = {  } U = { super.!redo }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.FigureEdit#redo( )
+   6 actualOut D = { super.!redo } U = {  }
+   7 assignment D = {  } U = { this.figure.!replace }
+   8 receiver D = {  } U = { this.figure }
+   9 methodCall D = { this.figure.endX, this.figure.endY, this.figure.startX, this.figure.startY } U = { this.figure.endX, this.figure.endY, this.figure.startX, this.figure.startY } TO = jp.ac.ritsumei.cs.draw.Figure#replace( jp.ac.ritsumei.cs.draw.Figure )
+  10 actualIn D = {  } U = { this.redoFigure }
+  11 actualOut D = { this.figure.!replace, this.figure.endX, this.figure.endY, this.figure.startX, this.figure.startY } U = { this.figure.endX, this.figure.endY, this.figure.startX, this.figure.startY }
+  12 assignment D = {  } U = { this.canvas.!repaint }
+  13 receiver D = {  } U = { this.canvas }
+  14 methodCall D = {  } U = { this.canvas, this.canvas.height, this.canvas.parent, this.canvas.peer, this.canvas.width, this.canvas.x, this.canvas.y } TO = java.awt.Component#repaint( )
+  15 actualOut D = { this.canvas.!repaint } U = { this.canvas.height, this.canvas.parent, this.canvas.peer, this.canvas.width, this.canvas.x, this.canvas.y }
+  17 formalOut D = {  } U = { $_, this.figure.endX, this.figure.endY, this.figure.startX, this.figure.startY }
+--
+   0: serialVersionUID
+   1: 0 -> 1 trueControlDependence
+--
+   0: undoFigure
+   1: 0 -> 1 trueControlDependence
+--
+   0: FigureMoved( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: undo( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 16 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 10 -> 16 loopIndependentDefUseDependence this.figure.endX
+   7: 10 -> 16 loopIndependentDefUseDependence this.figure.endY
+   8: 10 -> 16 loopIndependentDefUseDependence this.figure.startX
+   9: 10 -> 16 loopIndependentDefUseDependence this.figure.startY
+  10: 10 -> 6 loopIndependentDefUseDependence this.figure.!replace
+  11: 14 -> 11 loopIndependentDefUseDependence this.canvas.!repaint
+  12: 4 -> 1 exceptionCatch
+  13: 4 -> 10 trueControlDependence
+  14: 4 -> 11 trueControlDependence
+  15: 4 -> 12 trueControlDependence
+  16: 4 -> 13 trueControlDependence
+  17: 4 -> 14 trueControlDependence
+  18: 4 -> 2 trueControlDependence
+  19: 4 -> 6 trueControlDependence
+  20: 4 -> 7 trueControlDependence
+  21: 4 -> 8 trueControlDependence
+  22: 4 -> 9 trueControlDependence
+  23: 5 -> 2 loopIndependentDefUseDependence super.!undo
+  24: 8 -> 10 loopIndependentDefUseDependence this.figure.endX
+  25: 8 -> 10 loopIndependentDefUseDependence this.figure.endY
+  26: 8 -> 10 loopIndependentDefUseDependence this.figure.startX
+  27: 8 -> 10 loopIndependentDefUseDependence this.figure.startY
+  28: 9 -> 10 summary
+--
+   0: redoFigure
+   1: 0 -> 1 trueControlDependence
+--
+   0: FigureMoved( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure jp.ac.ritsumei.cs.draw.Figure )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 16 trueControlDependence
+   8: 0 -> 2 trueControlDependence
+   9: 0 -> 3 trueControlDependence
+  10: 0 -> 4 trueControlDependence
+  11: 0 -> 5 trueControlDependence
+  12: 0 -> 6 trueControlDependence
+  13: 0 -> 7 trueControlDependence
+  14: 0 -> 8 trueControlDependence
+  15: 0 -> 9 trueControlDependence
+  16: 1 -> 7 loopIndependentDefUseDependence canvas$0
+  17: 10 -> 16 loopIndependentDefUseDependence this.undoFigure
+  18: 11 -> 16 loopIndependentDefUseDependence this.redoFigure
+  19: 14 -> 11 loopIndependentDefUseDependence figure$1.!createClone
+  20: 2 -> 12 loopIndependentDefUseDependence figure$1
+  21: 2 -> 8 loopIndependentDefUseDependence figure$1
+  22: 3 -> 10 loopIndependentDefUseDependence prevFigure$2
+  23: 6 -> 9 loopIndependentDefUseDependence super.canvas
+  24: 6 -> 9 loopIndependentDefUseDependence super.figure
+  25: 7 -> 9 summary
+  26: 8 -> 9 summary
+  27: 9 -> 16 loopIndependentDefUseDependence super.canvas
+  28: 9 -> 16 loopIndependentDefUseDependence super.figure
+  29: 9 -> 4 loopIndependentDefUseDependence 
+--
+   0: redo( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 17 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 10 -> 11 summary
+   8: 11 -> 17 loopIndependentDefUseDependence this.figure.endX
+   9: 11 -> 17 loopIndependentDefUseDependence this.figure.endY
+  10: 11 -> 17 loopIndependentDefUseDependence this.figure.startX
+  11: 11 -> 17 loopIndependentDefUseDependence this.figure.startY
+  12: 11 -> 7 loopIndependentDefUseDependence this.figure.!replace
+  13: 15 -> 12 loopIndependentDefUseDependence this.canvas.!repaint
+  14: 5 -> 1 exceptionCatch
+  15: 5 -> 10 trueControlDependence
+  16: 5 -> 11 trueControlDependence
+  17: 5 -> 12 trueControlDependence
+  18: 5 -> 13 trueControlDependence
+  19: 5 -> 14 trueControlDependence
+  20: 5 -> 15 trueControlDependence
+  21: 5 -> 2 exceptionCatch
+  22: 5 -> 3 trueControlDependence
+  23: 5 -> 7 trueControlDependence
+  24: 5 -> 8 trueControlDependence
+  25: 5 -> 9 trueControlDependence
+  26: 6 -> 3 loopIndependentDefUseDependence super.!redo
+  27: 9 -> 11 loopIndependentDefUseDependence this.figure.endX
+  28: 9 -> 11 loopIndependentDefUseDependence this.figure.endY
+  29: 9 -> 11 loopIndependentDefUseDependence this.figure.startX
+  30: 9 -> 11 loopIndependentDefUseDependence this.figure.startY
+--
+----- ClDG (to here) -----
+

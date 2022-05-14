@@ -1,0 +1,90 @@
+----- ClDG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.AutoSave
+   0 fieldEntry [ SAVE_PERIOD ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.AutoSave.SAVE_PERIOD } U = { jp.ac.ritsumei.cs.draw.AutoSave.SAVE_PERIOD }
+--
+   0 fieldEntry [ tabbedCanvas ]
+   1 fieldDeclaration D = { this.tabbedCanvas } U = { this.tabbedCanvas }
+--
+   0 methodEntry [ terminate( ) ]
+   1 assignment D = { this.isRunning } U = {  }
+   3 formalOut D = {  } U = { $_, this.isRunning }
+--
+   0 fieldEntry [ isRunning ]
+   1 fieldDeclaration D = { this.isRunning } U = { this.isRunning }
+--
+   0 constructorEntry [ AutoSave( jp.ac.ritsumei.cs.draw.TabbedCanvas ) ]
+   1 formalIn D = { tabbedCanvas$0 } U = {  }
+   2 assignment D = { this.tabbedCanvas } U = { tabbedCanvas$0, this }
+   4 formalOut D = {  } U = { $_, this.tabbedCanvas }
+--
+   0 methodEntry [ run( ) ]
+   1 assignment D = { this.isRunning } U = {  }
+   2 whileSt D = {  } U = { this.isRunning }
+   3 trySt D = {  } U = {  }
+   4 assignment D = {  } U = { this.!sleep }
+   5 receiver D = {  } U = {  }
+   6 methodCall D = {  } U = { jp.ac.ritsumei.cs.draw.AutoSave.SAVE_PERIOD } TO = java.lang.Thread#sleep( long )
+   7 actualOut D = { this.!sleep } U = {  }
+   9 catchClause D = { e$0 } U = {  }
+  10 forSt D = {  } U = { canvas$1, this.tabbedCanvas.!getAllCanvases }
+  11 receiver D = {  } U = { this.tabbedCanvas }
+  12 methodCall D = {  } U = { this.tabbedCanvas.canvases } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#getAllCanvases( )
+  13 actualOut D = { this.tabbedCanvas.!getAllCanvases } U = { this.tabbedCanvas.canvases }
+  14 assignment D = {  } U = { canvas$1.!autoSave }
+  15 receiver D = {  } U = { canvas$1 }
+  16 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#autoSave( )
+  17 actualOut D = { canvas$1.!autoSave } U = {  }
+  19 formalOut D = {  } U = { $_, this.isRunning }
+--
+   0: SAVE_PERIOD
+   1: 0 -> 1 trueControlDependence
+--
+   0: tabbedCanvas
+   1: 0 -> 1 trueControlDependence
+--
+   0: terminate( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence this.isRunning
+--
+   0: isRunning
+   1: 0 -> 1 trueControlDependence
+--
+   0: AutoSave( jp.ac.ritsumei.cs.draw.TabbedCanvas )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence tabbedCanvas$0
+   5: 2 -> 4 loopIndependentDefUseDependence this.tabbedCanvas
+--
+   0: run( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 19 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 9 trueControlDependence
+   5: 1 -> 19 loopIndependentDefUseDependence this.isRunning
+   6: 1 -> 2 loopIndependentDefUseDependence this.isRunning
+   7: 10 -> 14 trueControlDependence
+   8: 10 -> 15 trueControlDependence
+   9: 10 -> 16 trueControlDependence
+  10: 10 -> 17 trueControlDependence
+  11: 13 -> 10 loopIndependentDefUseDependence this.tabbedCanvas.!getAllCanvases
+  12: 13 -> 13 defOrderDependence this.tabbedCanvas.!getAllCanvases
+  13: 17 -> 14 loopIndependentDefUseDependence canvas$1.!autoSave
+  14: 17 -> 17 defOrderDependence canvas$1.!autoSave
+  15: 2 -> 10 trueControlDependence
+  16: 2 -> 11 trueControlDependence
+  17: 2 -> 12 trueControlDependence
+  18: 2 -> 13 trueControlDependence
+  19: 2 -> 3 trueControlDependence
+  20: 3 -> 5 trueControlDependence
+  21: 3 -> 6 trueControlDependence
+  22: 3 -> 7 trueControlDependence
+  23: 6 -> 4 trueControlDependence
+  24: 6 -> 9 exceptionCatch
+  25: 7 -> 4 loopIndependentDefUseDependence this.!sleep
+  26: 7 -> 7 defOrderDependence this.!sleep
+--
+----- ClDG (to here) -----
+

@@ -1,0 +1,234 @@
+----- ClDG (from here) -----
+Class Name = Test43
+   0 constructorEntry [ Test43( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m2( ) ]
+   1 localDeclaration D = { a$0 } U = { a$0.!P43 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { a$0.x } U = { a$0.x } TO = P43#P43( int )
+   4 actualIn D = {  } U = {  }
+   5 actualOut D = { a$0.!P43, a$0.x } U = { a$0.x }
+   6 localDeclaration D = { b$1 } U = { a$0 }
+   7 localDeclaration D = { x1$2 } U = { a$0.!getX, b$1.!getX }
+   8 receiver D = {  } U = { a$0, b$1 }
+   9 methodCall D = {  } U = { a$0.x, b$1.x } TO = P43#getX( )
+  10 actualOut D = { a$0.!getX } U = { a$0.x, b$1.x }
+  11 localDeclaration D = { x2$3 } U = { a$0.!getX, b$1.!getX }
+  12 receiver D = {  } U = { a$0, b$1 }
+  13 methodCall D = {  } U = { a$0.x, b$1.x } TO = P43#getX( )
+  14 actualOut D = { b$1.!getX } U = { a$0.x, b$1.x }
+  15 localDeclaration D = { c$4 } U = { c$4.!P43 }
+  16 receiver D = {  } U = {  }
+  17 constructorCall D = { c$4.x } U = { c$4.x } TO = P43#P43( int )
+  18 actualIn D = {  } U = {  }
+  19 actualOut D = { c$4.!P43, c$4.x } U = { c$4.x }
+  20 assignment D = { b$1 } U = { c$4 }
+  21 localDeclaration D = { x3$5 } U = { a$0.!getX }
+  22 receiver D = {  } U = { a$0 }
+  23 methodCall D = {  } U = { a$0.x } TO = P43#getX( )
+  24 actualOut D = { a$0.!getX } U = { a$0.x }
+  26 formalOut D = {  } U = { $_, a$0.x, c$4.x }
+--
+   0 methodEntry [ m1( ) ]
+   1 localDeclaration D = { a$0 } U = { a$0.!P43 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { a$0.x } U = { a$0.x } TO = P43#P43( int )
+   4 actualIn D = {  } U = {  }
+   5 actualOut D = { a$0.!P43, a$0.x } U = { a$0.x }
+   6 localDeclaration D = { b$1 } U = { a$0 }
+   7 localDeclaration D = { c$2 } U = { a$0, b$1 }
+   8 localDeclaration D = { x1$3 } U = { a$0.!getX, b$1.!getX, c$2.!getX }
+   9 receiver D = {  } U = { a$0, b$1, c$2 }
+  10 methodCall D = {  } U = { a$0.x, b$1.x, c$2.x } TO = P43#getX( )
+  11 actualOut D = { a$0.!getX } U = { a$0.x, b$1.x, c$2.x }
+  12 localDeclaration D = { x2$4 } U = { a$0.!getX, b$1.!getX, c$2.!getX }
+  13 receiver D = {  } U = { a$0, b$1, c$2 }
+  14 methodCall D = {  } U = { a$0.x, b$1.x, c$2.x } TO = P43#getX( )
+  15 actualOut D = { b$1.!getX } U = { a$0.x, b$1.x, c$2.x }
+  16 localDeclaration D = { d$5 } U = { d$5.!P43 }
+  17 receiver D = {  } U = {  }
+  18 constructorCall D = { d$5.x } U = { d$5.x } TO = P43#P43( int )
+  19 actualIn D = {  } U = {  }
+  20 actualOut D = { d$5.!P43, d$5.x } U = { d$5.x }
+  21 assignment D = { a$0 } U = { d$5 }
+  22 localDeclaration D = { x3$6 } U = { a$0.!getX, d$5.!getX }
+  23 receiver D = {  } U = { a$0, d$5 }
+  24 methodCall D = {  } U = { a$0.x, d$5.x } TO = P43#getX( )
+  25 actualOut D = { a$0.!getX } U = { a$0.x, d$5.x }
+  26 localDeclaration D = { x4$7 } U = { b$1.!getX, c$2.!getX }
+  27 receiver D = {  } U = { b$1, c$2 }
+  28 methodCall D = {  } U = { b$1.x, c$2.x } TO = P43#getX( )
+  29 actualOut D = { b$1.!getX } U = { b$1.x, c$2.x }
+  30 localDeclaration D = { x5$8 } U = { a$0.!getX, d$5.!getX }
+  31 receiver D = {  } U = { a$0, d$5 }
+  32 methodCall D = {  } U = { a$0.x, d$5.x } TO = P43#getX( )
+  33 actualOut D = { d$5.!getX } U = { a$0.x, d$5.x }
+  35 formalOut D = {  } U = { $_, a$0.x, d$5.x }
+--
+   0: Test43( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: m2( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 26 trueControlDependence
+  19: 0 -> 3 trueControlDependence
+  20: 0 -> 4 trueControlDependence
+  21: 0 -> 5 trueControlDependence
+  22: 0 -> 6 trueControlDependence
+  23: 0 -> 7 trueControlDependence
+  24: 0 -> 8 trueControlDependence
+  25: 0 -> 9 trueControlDependence
+  26: 1 -> 12 declaration
+  27: 1 -> 12 loopIndependentDefUseDependence a$0
+  28: 1 -> 22 declaration
+  29: 1 -> 22 loopIndependentDefUseDependence a$0
+  30: 1 -> 6 declaration
+  31: 1 -> 6 loopIndependentDefUseDependence a$0
+  32: 1 -> 8 declaration
+  33: 1 -> 8 loopIndependentDefUseDependence a$0
+  34: 10 -> 11 loopIndependentDefUseDependence a$0.!getX
+  35: 10 -> 24 outputDependence a$0.!getX
+  36: 10 -> 7 loopIndependentDefUseDependence a$0.!getX
+  37: 14 -> 11 loopIndependentDefUseDependence b$1.!getX
+  38: 15 -> 20 declaration
+  39: 15 -> 20 loopIndependentDefUseDependence c$4
+  40: 17 -> 19 loopIndependentDefUseDependence c$4.x
+  41: 18 -> 19 summary
+  42: 19 -> 15 loopIndependentDefUseDependence c$4.!P43
+  43: 19 -> 26 loopIndependentDefUseDependence c$4.x
+  44: 24 -> 21 loopIndependentDefUseDependence a$0.!getX
+  45: 3 -> 5 loopIndependentDefUseDependence a$0.x
+  46: 4 -> 5 summary
+  47: 5 -> 1 loopIndependentDefUseDependence a$0.!P43
+  48: 5 -> 10 loopIndependentDefUseDependence a$0.x
+  49: 5 -> 13 loopIndependentDefUseDependence a$0.x
+  50: 5 -> 14 loopIndependentDefUseDependence a$0.x
+  51: 5 -> 23 loopIndependentDefUseDependence a$0.x
+  52: 5 -> 24 loopIndependentDefUseDependence a$0.x
+  53: 5 -> 26 loopIndependentDefUseDependence a$0.x
+  54: 5 -> 9 loopIndependentDefUseDependence a$0.x
+  55: 6 -> 12 declaration
+  56: 6 -> 12 loopIndependentDefUseDependence b$1
+  57: 6 -> 20 declaration
+  58: 6 -> 20 outputDependence b$1
+  59: 6 -> 8 declaration
+  60: 6 -> 8 loopIndependentDefUseDependence b$1
+--
+   0: m1( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 25 trueControlDependence
+  19: 0 -> 26 trueControlDependence
+  20: 0 -> 27 trueControlDependence
+  21: 0 -> 28 trueControlDependence
+  22: 0 -> 29 trueControlDependence
+  23: 0 -> 3 trueControlDependence
+  24: 0 -> 30 trueControlDependence
+  25: 0 -> 31 trueControlDependence
+  26: 0 -> 32 trueControlDependence
+  27: 0 -> 33 trueControlDependence
+  28: 0 -> 35 trueControlDependence
+  29: 0 -> 4 trueControlDependence
+  30: 0 -> 5 trueControlDependence
+  31: 0 -> 6 trueControlDependence
+  32: 0 -> 7 trueControlDependence
+  33: 0 -> 8 trueControlDependence
+  34: 0 -> 9 trueControlDependence
+  35: 1 -> 13 declaration
+  36: 1 -> 13 loopIndependentDefUseDependence a$0
+  37: 1 -> 21 declaration
+  38: 1 -> 21 outputDependence a$0
+  39: 1 -> 23 declaration
+  40: 1 -> 31 declaration
+  41: 1 -> 6 declaration
+  42: 1 -> 6 loopIndependentDefUseDependence a$0
+  43: 1 -> 7 declaration
+  44: 1 -> 7 loopIndependentDefUseDependence a$0
+  45: 1 -> 9 declaration
+  46: 1 -> 9 loopIndependentDefUseDependence a$0
+  47: 11 -> 12 loopIndependentDefUseDependence a$0.!getX
+  48: 11 -> 25 outputDependence a$0.!getX
+  49: 11 -> 8 loopIndependentDefUseDependence a$0.!getX
+  50: 15 -> 12 loopIndependentDefUseDependence b$1.!getX
+  51: 15 -> 29 outputDependence b$1.!getX
+  52: 16 -> 21 declaration
+  53: 16 -> 21 loopIndependentDefUseDependence d$5
+  54: 16 -> 23 declaration
+  55: 16 -> 23 loopIndependentDefUseDependence d$5
+  56: 16 -> 31 declaration
+  57: 16 -> 31 loopIndependentDefUseDependence d$5
+  58: 18 -> 20 loopIndependentDefUseDependence d$5.x
+  59: 19 -> 20 summary
+  60: 20 -> 16 loopIndependentDefUseDependence d$5.!P43
+  61: 20 -> 24 loopIndependentDefUseDependence d$5.x
+  62: 20 -> 25 loopIndependentDefUseDependence d$5.x
+  63: 20 -> 32 loopIndependentDefUseDependence d$5.x
+  64: 20 -> 33 loopIndependentDefUseDependence d$5.x
+  65: 20 -> 35 loopIndependentDefUseDependence d$5.x
+  66: 21 -> 23 loopIndependentDefUseDependence a$0
+  67: 21 -> 31 loopIndependentDefUseDependence a$0
+  68: 25 -> 22 loopIndependentDefUseDependence a$0.!getX
+  69: 25 -> 30 loopIndependentDefUseDependence a$0.!getX
+  70: 29 -> 26 loopIndependentDefUseDependence b$1.!getX
+  71: 3 -> 5 loopIndependentDefUseDependence a$0.x
+  72: 33 -> 30 loopIndependentDefUseDependence d$5.!getX
+  73: 4 -> 5 summary
+  74: 5 -> 1 loopIndependentDefUseDependence a$0.!P43
+  75: 5 -> 10 loopIndependentDefUseDependence a$0.x
+  76: 5 -> 11 loopIndependentDefUseDependence a$0.x
+  77: 5 -> 14 loopIndependentDefUseDependence a$0.x
+  78: 5 -> 15 loopIndependentDefUseDependence a$0.x
+  79: 5 -> 24 loopIndependentDefUseDependence a$0.x
+  80: 5 -> 25 loopIndependentDefUseDependence a$0.x
+  81: 5 -> 32 loopIndependentDefUseDependence a$0.x
+  82: 5 -> 33 loopIndependentDefUseDependence a$0.x
+  83: 5 -> 35 loopIndependentDefUseDependence a$0.x
+  84: 6 -> 13 declaration
+  85: 6 -> 13 loopIndependentDefUseDependence b$1
+  86: 6 -> 27 declaration
+  87: 6 -> 27 loopIndependentDefUseDependence b$1
+  88: 6 -> 7 declaration
+  89: 6 -> 7 loopIndependentDefUseDependence b$1
+  90: 6 -> 9 declaration
+  91: 6 -> 9 loopIndependentDefUseDependence b$1
+  92: 7 -> 13 declaration
+  93: 7 -> 13 loopIndependentDefUseDependence c$2
+  94: 7 -> 27 declaration
+  95: 7 -> 27 loopIndependentDefUseDependence c$2
+  96: 7 -> 9 declaration
+  97: 7 -> 9 loopIndependentDefUseDependence c$2
+--
+----- ClDG (to here) -----
+

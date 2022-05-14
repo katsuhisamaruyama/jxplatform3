@@ -9,50 +9,54 @@ Class Name = Test137
    6 receiver D = {  } U = { s1$0 }
    7 methodCall D = { s1$0, s1$0.list } U = { s1$0, s1$0.list } TO = P137#add( java.lang.String )
    8 actualIn D = {  } U = { $java.lang.String }
-   9 actualOut D = { s1$0, s1$0.!add } U = { s1$0 }
+   9 actualOut D = { s1$0, s1$0.!add, s1$0.list } U = { s1$0, s1$0.list }
   10 localDeclaration D = { s$1 } U = { s1$0.!get }
   11 receiver D = {  } U = { s1$0 }
   12 methodCall D = {  } U = { s1$0, s1$0.list } TO = P137#get( int )
   13 actualIn D = {  } U = {  }
-  14 actualOut D = { s1$0.!get } U = {  }
-  16 formalOut D = {  } U = { $_ }
+  14 actualOut D = { s1$0.!get } U = { s1$0.list }
+  16 formalOut D = {  } U = { $_, s1$0.list }
 --
    0 constructorEntry [ Test137( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 5 trueControlDependence
-   4: 0 -> 6 trueControlDependence
-   5: 0 -> 10 trueControlDependence
-   6: 0 -> 11 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
    7: 0 -> 16 trueControlDependence
-   8: 1 -> 1 declarationDependence
-   9: 1 -> 6 loopIndependentDefUseDependence
-  10: 1 -> 6 declarationDependence
-  11: 1 -> 7 loopIndependentDefUseDependence
-  12: 1 -> 7 declarationDependence
-  13: 1 -> 9 declarationDependence
-  14: 1 -> 11 declarationDependence
-  15: 1 -> 12 declarationDependence
-  16: 2 -> 3 trueControlDependence
-  17: 3 -> 4 trueControlDependence
-  18: 4 -> 1 loopIndependentDefUseDependence
-  19: 6 -> 7 trueControlDependence
-  20: 7 -> 8 trueControlDependence
-  21: 7 -> 9 trueControlDependence
-  22: 7 -> 9 loopIndependentDefUseDependence
-  23: 7 -> 12 loopIndependentDefUseDependence
-  24: 9 -> 5 loopIndependentDefUseDependence
-  25: 9 -> 11 loopIndependentDefUseDependence
-  26: 9 -> 12 loopIndependentDefUseDependence
-  27: 10 -> 10 declarationDependence
-  28: 11 -> 12 trueControlDependence
-  29: 12 -> 13 trueControlDependence
-  30: 12 -> 14 trueControlDependence
-  31: 14 -> 10 loopIndependentDefUseDependence
+   8: 0 -> 2 trueControlDependence
+   9: 0 -> 3 trueControlDependence
+  10: 0 -> 4 trueControlDependence
+  11: 0 -> 5 trueControlDependence
+  12: 0 -> 6 trueControlDependence
+  13: 0 -> 7 trueControlDependence
+  14: 0 -> 8 trueControlDependence
+  15: 0 -> 9 trueControlDependence
+  16: 1 -> 11 declaration
+  17: 1 -> 12 declaration
+  18: 1 -> 6 declaration
+  19: 1 -> 6 loopIndependentDefUseDependence s1$0
+  20: 1 -> 7 declaration
+  21: 1 -> 7 loopIndependentDefUseDependence s1$0
+  22: 1 -> 9 declaration
+  23: 14 -> 10 loopIndependentDefUseDependence s1$0.!get
+  24: 4 -> 1 loopIndependentDefUseDependence s1$0.!P137
+  25: 7 -> 9 loopIndependentDefUseDependence s1$0
+  26: 7 -> 9 loopIndependentDefUseDependence s1$0.list
+  27: 8 -> 9 summary
+  28: 9 -> 11 loopIndependentDefUseDependence s1$0
+  29: 9 -> 12 loopIndependentDefUseDependence s1$0
+  30: 9 -> 12 loopIndependentDefUseDependence s1$0.list
+  31: 9 -> 14 loopIndependentDefUseDependence s1$0.list
+  32: 9 -> 16 loopIndependentDefUseDependence s1$0.list
+  33: 9 -> 5 loopIndependentDefUseDependence s1$0.!add
 --
    0: Test137( )
+   1: 0 -> 2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

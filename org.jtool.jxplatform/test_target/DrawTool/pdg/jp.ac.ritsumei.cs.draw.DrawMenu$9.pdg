@@ -1,0 +1,73 @@
+----- ClDG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$9
+   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   1 formalIn D = { evt$16 } U = {  }
+   2 localDeclaration D = { canvas$17 } U = { this.tabbedCanvas.!getCurrentCanvas }
+   3 receiver D = {  } U = { this.tabbedCanvas }
+   4 methodCall D = {  } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#getCurrentCanvas( )
+   5 actualOut D = { this.tabbedCanvas.!getCurrentCanvas } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab }
+   6 assignment D = { this.clipboard } U = { canvas$17.!getGrabbedFigure, this.tabbedCanvas.!getCurrentCanvas.!getGrabbedFigure }
+   7 receiver D = {  } U = { canvas$17, this.tabbedCanvas.!getCurrentCanvas }
+   8 methodCall D = {  } U = { canvas$17.grabbedFigure, this.tabbedCanvas.!getCurrentCanvas.grabbedFigure } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#getGrabbedFigure( )
+   9 actualOut D = { canvas$17.!getGrabbedFigure } U = { canvas$17.grabbedFigure, this.tabbedCanvas.!getCurrentCanvas.grabbedFigure }
+  10 assignment D = {  } U = { this.!updateEditState }
+  11 receiver D = {  } U = {  }
+  12 methodCall D = {  } U = { canvas$17.!getGrabbedFigure, this.clipboard, this.copyAction, this.cutAction, this.deleteAction, this.pasteAction } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateEditState( boolean )
+  13 actualIn D = {  } U = {  }
+  14 actualOut D = { this.!updateEditState } U = { canvas$17.!getGrabbedFigure, this.clipboard, this.copyAction, this.cutAction, this.deleteAction, this.pasteAction }
+  15 assignment D = {  } U = { this.!updateUndoState }
+  16 receiver D = {  } U = {  }
+  17 methodCall D = {  } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoAction } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateUndoState( )
+  18 actualOut D = { this.!updateUndoState } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoAction }
+  19 assignment D = {  } U = { this.!updateRedoState }
+  20 receiver D = {  } U = {  }
+  21 methodCall D = {  } U = { this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateRedoState( )
+  22 actualOut D = { this.!updateRedoState } U = { this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab }
+  24 formalOut D = {  } U = { $_, this.clipboard }
+--
+   0 fieldEntry [ serialVersionUID ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.DrawMenu$9.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.DrawMenu$9.serialVersionUID }
+--
+   0: actionPerformed( java.awt.event.ActionEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 24 trueControlDependence
+  17: 0 -> 3 trueControlDependence
+  18: 0 -> 4 trueControlDependence
+  19: 0 -> 5 trueControlDependence
+  20: 0 -> 6 trueControlDependence
+  21: 0 -> 7 trueControlDependence
+  22: 0 -> 8 trueControlDependence
+  23: 0 -> 9 trueControlDependence
+  24: 14 -> 10 loopIndependentDefUseDependence this.!updateEditState
+  25: 18 -> 15 loopIndependentDefUseDependence this.!updateUndoState
+  26: 2 -> 7 declaration
+  27: 2 -> 7 loopIndependentDefUseDependence canvas$17
+  28: 22 -> 19 loopIndependentDefUseDependence this.!updateRedoState
+  29: 5 -> 2 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas
+  30: 5 -> 7 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas
+  31: 6 -> 12 loopIndependentDefUseDependence this.clipboard
+  32: 6 -> 14 loopIndependentDefUseDependence this.clipboard
+  33: 6 -> 24 loopIndependentDefUseDependence this.clipboard
+  34: 9 -> 12 loopIndependentDefUseDependence canvas$17.!getGrabbedFigure
+  35: 9 -> 14 loopIndependentDefUseDependence canvas$17.!getGrabbedFigure
+  36: 9 -> 6 loopIndependentDefUseDependence canvas$17.!getGrabbedFigure
+--
+   0: serialVersionUID
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

@@ -6,7 +6,7 @@ Class Name = Test140
    0 constructorEntry [ Test140( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 assignment D = { this.x } U = { this, x$0 }
-   4 formalOut D = {  } U = { $_ }
+   4 formalOut D = {  } U = { $_, this.x }
 --
    0 methodEntry [ m( ) ]
    1 assignment D = {  } U = { this.!m }
@@ -22,17 +22,16 @@ Class Name = Test140
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence
+   4: 1 -> 2 loopIndependentDefUseDependence x$0
+   5: 2 -> 4 loopIndependentDefUseDependence this.x
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 0 -> 6 trueControlDependence
-   4: 2 -> 3 trueControlDependence
-   5: 3 -> 0 call
-   6: 3 -> 4 trueControlDependence
-   7: 4 -> 1 loopIndependentDefUseDependence
-   8: 6 -> 4 parameterOut
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 4 -> 1 loopIndependentDefUseDependence this.!m
 --
 ----- ClDG (to here) -----
 

@@ -1,0 +1,198 @@
+----- ClDG (from here) -----
+Class Name = Sample19
+   0 constructorEntry [ Sample19( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ main( java.lang.String[] ) ]
+   1 throwsClause D = {  } U = { $java.awt.HeadlessException }
+   2 formalIn D = { args$0 } U = {  }
+   3 localDeclaration D = { frame$1 } U = { frame$1.!JFrame }
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = { frame$1.accessibleContext, frame$1.defaultCloseOperation, frame$1.rootPaneCheckingEnabled, java.awt.Frame.frameSerializedDataVersion, java.awt.Frame.mbManagement, java.awt.Frame.resizable, java.awt.Frame.state, java.awt.Frame.title, java.awt.Frame.undecorated } U = { $java.lang.String } TO = javax.swing.JFrame#JFrame( java.lang.String )
+   6 actualOut D = { frame$1.!JFrame, frame$1.accessibleContext, frame$1.defaultCloseOperation, frame$1.rootPaneCheckingEnabled, java.awt.Frame.frameSerializedDataVersion, java.awt.Frame.mbManagement, java.awt.Frame.resizable, java.awt.Frame.state, java.awt.Frame.title, java.awt.Frame.undecorated } U = {  }
+   7 localDeclaration D = { contentPane$2 } U = { frame$1.!getContentPane }
+   8 receiver D = {  } U = { frame$1 }
+   9 methodCall D = {  } U = { frame$1, frame$1.rootPane, javax.swing.JRootPane.contentPane } TO = javax.swing.JFrame#getContentPane( )
+  10 actualOut D = { frame$1.!getContentPane } U = { frame$1.rootPane, javax.swing.JRootPane.contentPane }
+  11 localDeclaration D = { dialog$3 } U = { dialog$3.!DialogA }
+  12 receiver D = {  } U = {  }
+  13 constructorCall D = {  } U = {  } TO = DialogA#DialogA( java.awt.Frame java.lang.String java.lang.String )
+  14 actualIn D = {  } U = { frame$1 }
+  15 actualIn D = {  } U = { $java.lang.String }
+  16 actualIn D = {  } U = { $java.lang.String }
+  17 actualOut D = { dialog$3.!DialogA } U = {  }
+  18 localDeclaration D = { button$4 } U = { button$4.!JButton }
+  19 receiver D = {  } U = {  }
+  20 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JButton#JButton( java.lang.String )
+  21 actualOut D = { button$4.!JButton } U = {  }
+  22 assignment D = {  } U = { contentPane$2.!add }
+  23 receiver D = {  } U = { contentPane$2, frame$1.!getContentPane }
+  24 methodCall D = { contentPane$2, java.awt.Component.parent } U = { button$4, contentPane$2, contentPane$2.component, contentPane$2.containerListener, contentPane$2.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer } TO = java.awt.Container#add( java.awt.Component )
+  25 actualOut D = { contentPane$2, contentPane$2.!add, java.awt.Component.parent } U = { contentPane$2, contentPane$2.component, contentPane$2.containerListener, contentPane$2.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer }
+  26 assignment D = {  } U = { button$4.!addActionListener }
+  27 receiver D = {  } U = { button$4 }
+  28 methodCall D = { button$4, javax.swing.event.EventListenerList.listenerList } U = { .!, button$4, javax.swing.JComponent.listenerList, javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.event.EventListenerList.listenerList } TO = javax.swing.AbstractButton#addActionListener( java.awt.event.ActionListener )
+  29 receiver D = {  } U = {  }
+  30 constructorCall D = {  } U = {  } TO = java.awt.event.ActionListener#ActionListener( )
+  31 actualOut D = { .! } U = {  }
+  32 actualOut D = { button$4, button$4.!addActionListener, javax.swing.event.EventListenerList.listenerList } U = { button$4, javax.swing.JComponent.listenerList, javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.event.EventListenerList.listenerList }
+  33 assignment D = {  } U = { frame$1.!setDefaultCloseOperation }
+  34 receiver D = {  } U = { frame$1 }
+  35 methodCall D = { frame$1, frame$1.defaultCloseOperation } U = { JFrame.EXIT_ON_CLOSE, frame$1, frame$1.defaultCloseOperation, java.awt.Component.changeSupport, java.lang.System.security } TO = javax.swing.JFrame#setDefaultCloseOperation( int )
+  36 actualOut D = { frame$1, frame$1.!setDefaultCloseOperation, frame$1.defaultCloseOperation } U = { frame$1, frame$1.defaultCloseOperation, java.awt.Component.changeSupport, java.lang.System.security }
+  37 assignment D = {  } U = { frame$1.!pack }
+  38 receiver D = {  } U = { frame$1 }
+  39 methodCall D = { frame$1, java.awt.Component.isPacked, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher } U = { frame$1, frame$1.allWindows, frame$1.beforeFirstShow, java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.x, java.awt.Component.y, java.awt.Container.component, java.awt.Dimension.height, java.awt.Dimension.width } TO = java.awt.Window#pack( )
+  40 actualOut D = { frame$1, frame$1.!pack, java.awt.Component.isPacked, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher } U = { frame$1, frame$1.allWindows, frame$1.beforeFirstShow, java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.x, java.awt.Component.y, java.awt.Container.component, java.awt.Dimension.height, java.awt.Dimension.width }
+  41 assignment D = {  } U = { frame$1.!setSize }
+  42 receiver D = {  } U = { frame$1 }
+  43 methodCall D = {  } U = {  } TO = java.awt.Window#setSize( int int )
+  44 actualOut D = { frame$1.!setSize } U = {  }
+  45 assignment D = {  } U = { frame$1.!setVisible }
+  46 receiver D = {  } U = { frame$1 }
+  47 methodCall D = {  } U = {  } TO = java.awt.Window#setVisible( boolean )
+  48 actualOut D = { frame$1.!setVisible } U = {  }
+  50 formalOut D = {  } U = { $_, frame$1.accessibleContext, frame$1.defaultCloseOperation, frame$1.rootPaneCheckingEnabled, java.awt.Component.isPacked, java.awt.Component.parent, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher, java.awt.Frame.frameSerializedDataVersion, java.awt.Frame.mbManagement, java.awt.Frame.resizable, java.awt.Frame.state, java.awt.Frame.title, java.awt.Frame.undecorated, javax.swing.event.EventListenerList.listenerList }
+--
+   0: Sample19( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: main( java.lang.String[] )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 0 -> 5 trueControlDependence
+   5: 0 -> 50 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 10 -> 23 loopIndependentDefUseDependence frame$1.!getContentPane
+   8: 10 -> 7 loopIndependentDefUseDependence frame$1.!getContentPane
+   9: 14 -> 17 summary
+  10: 15 -> 17 summary
+  11: 16 -> 17 summary
+  12: 17 -> 11 loopIndependentDefUseDependence dialog$3.!DialogA
+  13: 18 -> 24 declaration
+  14: 18 -> 24 loopIndependentDefUseDependence button$4
+  15: 18 -> 27 declaration
+  16: 18 -> 27 loopIndependentDefUseDependence button$4
+  17: 18 -> 28 declaration
+  18: 18 -> 28 loopIndependentDefUseDependence button$4
+  19: 18 -> 32 declaration
+  20: 21 -> 18 loopIndependentDefUseDependence button$4.!JButton
+  21: 24 -> 25 loopIndependentDefUseDependence contentPane$2
+  22: 24 -> 25 loopIndependentDefUseDependence java.awt.Component.parent
+  23: 25 -> 22 loopIndependentDefUseDependence contentPane$2.!add
+  24: 25 -> 39 loopIndependentDefUseDependence java.awt.Component.parent
+  25: 25 -> 40 loopIndependentDefUseDependence java.awt.Component.parent
+  26: 25 -> 50 loopIndependentDefUseDependence java.awt.Component.parent
+  27: 28 -> 32 loopIndependentDefUseDependence button$4
+  28: 28 -> 32 loopIndependentDefUseDependence javax.swing.event.EventListenerList.listenerList
+  29: 3 -> 14 declaration
+  30: 3 -> 14 loopIndependentDefUseDependence frame$1
+  31: 3 -> 34 declaration
+  32: 3 -> 34 loopIndependentDefUseDependence frame$1
+  33: 3 -> 35 declaration
+  34: 3 -> 35 loopIndependentDefUseDependence frame$1
+  35: 3 -> 36 declaration
+  36: 3 -> 38 declaration
+  37: 3 -> 39 declaration
+  38: 3 -> 40 declaration
+  39: 3 -> 42 declaration
+  40: 3 -> 46 declaration
+  41: 3 -> 8 declaration
+  42: 3 -> 8 loopIndependentDefUseDependence frame$1
+  43: 3 -> 9 declaration
+  44: 3 -> 9 loopIndependentDefUseDependence frame$1
+  45: 31 -> 28 loopIndependentDefUseDependence .!
+  46: 32 -> 26 loopIndependentDefUseDependence button$4.!addActionListener
+  47: 32 -> 50 loopIndependentDefUseDependence javax.swing.event.EventListenerList.listenerList
+  48: 35 -> 36 loopIndependentDefUseDependence frame$1
+  49: 35 -> 36 loopIndependentDefUseDependence frame$1.defaultCloseOperation
+  50: 36 -> 33 loopIndependentDefUseDependence frame$1.!setDefaultCloseOperation
+  51: 36 -> 38 loopIndependentDefUseDependence frame$1
+  52: 36 -> 39 loopIndependentDefUseDependence frame$1
+  53: 36 -> 50 loopIndependentDefUseDependence frame$1.defaultCloseOperation
+  54: 39 -> 40 loopIndependentDefUseDependence frame$1
+  55: 39 -> 40 loopIndependentDefUseDependence java.awt.Component.peer
+  56: 39 -> 40 outputDependence java.awt.Component.isPacked
+  57: 39 -> 40 outputDependence java.awt.Container.descendUnconditionallyWhenValidating
+  58: 39 -> 40 outputDependence java.awt.Container.dispatcher
+  59: 40 -> 37 loopIndependentDefUseDependence frame$1.!pack
+  60: 40 -> 42 loopIndependentDefUseDependence frame$1
+  61: 40 -> 46 loopIndependentDefUseDependence frame$1
+  62: 40 -> 50 loopIndependentDefUseDependence java.awt.Component.isPacked
+  63: 40 -> 50 loopIndependentDefUseDependence java.awt.Component.peer
+  64: 40 -> 50 loopIndependentDefUseDependence java.awt.Container.descendUnconditionallyWhenValidating
+  65: 40 -> 50 loopIndependentDefUseDependence java.awt.Container.dispatcher
+  66: 44 -> 41 loopIndependentDefUseDependence frame$1.!setSize
+  67: 48 -> 45 loopIndependentDefUseDependence frame$1.!setVisible
+  68: 5 -> 1 exceptionCatch
+  69: 5 -> 10 trueControlDependence
+  70: 5 -> 11 trueControlDependence
+  71: 5 -> 12 trueControlDependence
+  72: 5 -> 13 trueControlDependence
+  73: 5 -> 14 trueControlDependence
+  74: 5 -> 15 trueControlDependence
+  75: 5 -> 16 trueControlDependence
+  76: 5 -> 17 trueControlDependence
+  77: 5 -> 18 trueControlDependence
+  78: 5 -> 19 trueControlDependence
+  79: 5 -> 20 trueControlDependence
+  80: 5 -> 21 trueControlDependence
+  81: 5 -> 22 trueControlDependence
+  82: 5 -> 23 trueControlDependence
+  83: 5 -> 24 trueControlDependence
+  84: 5 -> 25 trueControlDependence
+  85: 5 -> 26 trueControlDependence
+  86: 5 -> 27 trueControlDependence
+  87: 5 -> 28 trueControlDependence
+  88: 5 -> 29 trueControlDependence
+  89: 5 -> 3 trueControlDependence
+  90: 5 -> 30 trueControlDependence
+  91: 5 -> 31 trueControlDependence
+  92: 5 -> 32 trueControlDependence
+  93: 5 -> 33 trueControlDependence
+  94: 5 -> 34 trueControlDependence
+  95: 5 -> 35 trueControlDependence
+  96: 5 -> 36 trueControlDependence
+  97: 5 -> 37 trueControlDependence
+  98: 5 -> 38 trueControlDependence
+  99: 5 -> 39 trueControlDependence
+ 100: 5 -> 40 trueControlDependence
+ 101: 5 -> 41 trueControlDependence
+ 102: 5 -> 42 trueControlDependence
+ 103: 5 -> 43 trueControlDependence
+ 104: 5 -> 44 trueControlDependence
+ 105: 5 -> 45 trueControlDependence
+ 106: 5 -> 46 trueControlDependence
+ 107: 5 -> 47 trueControlDependence
+ 108: 5 -> 48 trueControlDependence
+ 109: 5 -> 6 outputDependence frame$1.accessibleContext
+ 110: 5 -> 6 outputDependence frame$1.defaultCloseOperation
+ 111: 5 -> 6 outputDependence frame$1.rootPaneCheckingEnabled
+ 112: 5 -> 6 outputDependence java.awt.Frame.frameSerializedDataVersion
+ 113: 5 -> 6 outputDependence java.awt.Frame.mbManagement
+ 114: 5 -> 6 outputDependence java.awt.Frame.resizable
+ 115: 5 -> 6 outputDependence java.awt.Frame.state
+ 116: 5 -> 6 outputDependence java.awt.Frame.title
+ 117: 5 -> 6 outputDependence java.awt.Frame.undecorated
+ 118: 5 -> 7 trueControlDependence
+ 119: 5 -> 8 trueControlDependence
+ 120: 5 -> 9 trueControlDependence
+ 121: 6 -> 3 loopIndependentDefUseDependence frame$1.!JFrame
+ 122: 6 -> 35 loopIndependentDefUseDependence frame$1.defaultCloseOperation
+ 123: 6 -> 50 loopIndependentDefUseDependence frame$1.accessibleContext
+ 124: 6 -> 50 loopIndependentDefUseDependence frame$1.rootPaneCheckingEnabled
+ 125: 6 -> 50 loopIndependentDefUseDependence java.awt.Frame.frameSerializedDataVersion
+ 126: 6 -> 50 loopIndependentDefUseDependence java.awt.Frame.mbManagement
+ 127: 6 -> 50 loopIndependentDefUseDependence java.awt.Frame.resizable
+ 128: 6 -> 50 loopIndependentDefUseDependence java.awt.Frame.state
+ 129: 6 -> 50 loopIndependentDefUseDependence java.awt.Frame.title
+ 130: 6 -> 50 loopIndependentDefUseDependence java.awt.Frame.undecorated
+ 131: 7 -> 23 declaration
+ 132: 7 -> 23 loopIndependentDefUseDependence contentPane$2
+ 133: 7 -> 24 declaration
+ 134: 7 -> 24 loopIndependentDefUseDependence contentPane$2
+ 135: 7 -> 25 declaration
+--
+----- ClDG (to here) -----
+

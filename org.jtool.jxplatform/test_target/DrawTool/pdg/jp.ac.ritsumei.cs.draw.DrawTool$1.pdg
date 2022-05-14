@@ -1,0 +1,24 @@
+----- ClDG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.DrawTool$1
+   0 methodEntry [ windowClosing( java.awt.event.WindowEvent ) ]
+   1 throwsClause D = {  } U = { $java.awt.HeadlessException }
+   2 formalIn D = { evt$2 } U = {  }
+   3 assignment D = {  } U = { main$1.!closeWindow }
+   4 receiver D = {  } U = { main$1 }
+   5 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.DrawTool#closeWindow( )
+   6 actualOut D = { main$1.!closeWindow } U = {  }
+   8 formalOut D = {  } U = { $_ }
+--
+   0: windowClosing( java.awt.event.WindowEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 0 -> 5 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 0 -> 8 trueControlDependence
+   7: 5 -> 1 exceptionCatch
+   8: 5 -> 3 trueControlDependence
+   9: 6 -> 3 loopIndependentDefUseDependence main$1.!closeWindow
+--
+----- ClDG (to here) -----
+

@@ -8,109 +8,138 @@ Class Name = Test119
    5 actualOut D = { a$0.!A119 } U = {  }
    6 assignment D = {  } U = { a$0.!setX }
    7 receiver D = {  } U = { a$0 }
-   8 methodCall D = { a$0.x } U = {  } TO = A119#setX( int )
+   8 methodCall D = { a$0.x } U = { a$0.x } TO = A119#setX( int )
    9 actualIn D = {  } U = {  }
-  10 actualOut D = { a$0.!setX } U = {  }
+  10 actualOut D = { a$0.!setX, a$0.x } U = { a$0.x }
   11 localDeclaration D = { b$1 } U = { a$0.!getX }
   12 receiver D = {  } U = { a$0 }
   13 methodCall D = {  } U = { a$0.x } TO = A119#getX( )
-  14 actualOut D = { a$0.!getX } U = {  }
+  14 actualOut D = { a$0.!getX } U = { a$0.x }
   15 assignment D = {  } U = { a$0.!setX }
   16 receiver D = {  } U = { a$0 }
-  17 methodCall D = { a$0.x } U = {  } TO = A119#setX( int )
+  17 methodCall D = { a$0.x } U = { a$0.x } TO = A119#setX( int )
   18 actualIn D = {  } U = {  }
-  19 actualOut D = { a$0.!setX } U = {  }
+  19 actualOut D = { a$0.!setX, a$0.x } U = { a$0.x }
   20 localDeclaration D = { c$2 } U = { a$0.!getX }
   21 receiver D = {  } U = { a$0 }
   22 methodCall D = {  } U = { a$0.x } TO = A119#getX( )
-  23 actualOut D = { a$0.!getX } U = {  }
+  23 actualOut D = { a$0.!getX } U = { a$0.x }
   24 localDeclaration D = { d$3 } U = { a$0, a$0.x, this.p }
   25 localDeclaration D = { e$4 } U = { this.!getP }
   26 receiver D = {  } U = {  }
   27 methodCall D = {  } U = { this.p } TO = Test119#getP( )
-  28 actualOut D = { this.!getP } U = {  }
-  30 formalOut D = {  } U = { $_ }
+  28 actualOut D = { this.!getP } U = { this.p }
+  30 formalOut D = {  } U = { $_, a$0.x, this.p }
 --
    0 fieldEntry [ p ]
    1 fieldDeclaration D = { this.p } U = { this.p }
 --
    0 constructorEntry [ Test119( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ getP( ) ]
    1 returnSt D = { $_ } U = { this.p }
    3 formalOut D = {  } U = { $_ }
 --
+   0 methodEntry [ m2( ) ]
+   1 localDeclaration D = { a$0 } U = { a$0.!A119 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = A119#A119( )
+   4 actualOut D = { a$0.!A119 } U = {  }
+   5 assignment D = { a$0.x } U = { a$0 }
+   6 assignment D = { a$0.y } U = { a$0 }
+   8 formalOut D = {  } U = { $_, a$0.x, a$0.y }
+--
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 6 trueControlDependence
-   5: 0 -> 7 trueControlDependence
-   6: 0 -> 11 trueControlDependence
-   7: 0 -> 12 trueControlDependence
-   8: 0 -> 15 trueControlDependence
-   9: 0 -> 16 trueControlDependence
-  10: 0 -> 20 trueControlDependence
-  11: 0 -> 21 trueControlDependence
-  12: 0 -> 24 trueControlDependence
-  13: 0 -> 25 trueControlDependence
-  14: 0 -> 26 trueControlDependence
-  15: 0 -> 30 trueControlDependence
-  16: 1 -> 24 loopIndependentDefUseDependence
-  17: 1 -> 27 loopIndependentDefUseDependence
-  18: 2 -> 2 declarationDependence
-  19: 2 -> 7 loopIndependentDefUseDependence
-  20: 2 -> 7 declarationDependence
-  21: 2 -> 12 loopIndependentDefUseDependence
-  22: 2 -> 12 declarationDependence
-  23: 2 -> 16 loopIndependentDefUseDependence
-  24: 2 -> 16 declarationDependence
-  25: 2 -> 21 loopIndependentDefUseDependence
-  26: 2 -> 21 declarationDependence
-  27: 2 -> 24 loopIndependentDefUseDependence
-  28: 2 -> 24 declarationDependence
-  29: 3 -> 4 trueControlDependence
-  30: 4 -> 5 trueControlDependence
-  31: 5 -> 2 loopIndependentDefUseDependence
-  32: 7 -> 8 trueControlDependence
-  33: 8 -> 9 trueControlDependence
-  34: 8 -> 10 trueControlDependence
-  35: 8 -> 13 loopIndependentDefUseDependence
-  36: 8 -> 17 outputDependence
-  37: 10 -> 6 loopIndependentDefUseDependence
-  38: 10 -> 19 outputDependence
-  39: 11 -> 11 declarationDependence
-  40: 12 -> 13 trueControlDependence
-  41: 13 -> 14 trueControlDependence
-  42: 14 -> 11 loopIndependentDefUseDependence
-  43: 14 -> 23 outputDependence
-  44: 16 -> 17 trueControlDependence
-  45: 17 -> 18 trueControlDependence
-  46: 17 -> 19 trueControlDependence
-  47: 17 -> 22 loopIndependentDefUseDependence
-  48: 17 -> 24 loopIndependentDefUseDependence
-  49: 19 -> 15 loopIndependentDefUseDependence
-  50: 20 -> 20 declarationDependence
-  51: 21 -> 22 trueControlDependence
-  52: 22 -> 23 trueControlDependence
-  53: 23 -> 20 loopIndependentDefUseDependence
-  54: 24 -> 24 declarationDependence
-  55: 25 -> 25 declarationDependence
-  56: 26 -> 27 trueControlDependence
-  57: 27 -> 28 trueControlDependence
-  58: 27 -> 31 call
-  59: 28 -> 25 loopIndependentDefUseDependence
-  60: 34 -> 28 parameterOut
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 25 trueControlDependence
+  19: 0 -> 26 trueControlDependence
+  20: 0 -> 27 trueControlDependence
+  21: 0 -> 28 trueControlDependence
+  22: 0 -> 3 trueControlDependence
+  23: 0 -> 30 trueControlDependence
+  24: 0 -> 4 trueControlDependence
+  25: 0 -> 5 trueControlDependence
+  26: 0 -> 6 trueControlDependence
+  27: 0 -> 7 trueControlDependence
+  28: 0 -> 8 trueControlDependence
+  29: 0 -> 9 trueControlDependence
+  30: 1 -> 24 loopIndependentDefUseDependence this.p
+  31: 1 -> 27 loopIndependentDefUseDependence this.p
+  32: 1 -> 28 loopIndependentDefUseDependence this.p
+  33: 1 -> 30 loopIndependentDefUseDependence this.p
+  34: 10 -> 13 loopIndependentDefUseDependence a$0.x
+  35: 10 -> 14 loopIndependentDefUseDependence a$0.x
+  36: 10 -> 17 loopIndependentDefUseDependence a$0.x
+  37: 10 -> 19 outputDependence a$0.!setX
+  38: 10 -> 6 loopIndependentDefUseDependence a$0.!setX
+  39: 14 -> 11 loopIndependentDefUseDependence a$0.!getX
+  40: 14 -> 23 outputDependence a$0.!getX
+  41: 17 -> 19 loopIndependentDefUseDependence a$0.x
+  42: 18 -> 19 summary
+  43: 19 -> 15 loopIndependentDefUseDependence a$0.!setX
+  44: 19 -> 22 loopIndependentDefUseDependence a$0.x
+  45: 19 -> 23 loopIndependentDefUseDependence a$0.x
+  46: 19 -> 24 loopIndependentDefUseDependence a$0.x
+  47: 19 -> 30 loopIndependentDefUseDependence a$0.x
+  48: 2 -> 12 declaration
+  49: 2 -> 12 loopIndependentDefUseDependence a$0
+  50: 2 -> 16 declaration
+  51: 2 -> 16 loopIndependentDefUseDependence a$0
+  52: 2 -> 21 declaration
+  53: 2 -> 21 loopIndependentDefUseDependence a$0
+  54: 2 -> 24 declaration
+  55: 2 -> 24 loopIndependentDefUseDependence a$0
+  56: 2 -> 7 declaration
+  57: 2 -> 7 loopIndependentDefUseDependence a$0
+  58: 23 -> 20 loopIndependentDefUseDependence a$0.!getX
+  59: 28 -> 25 loopIndependentDefUseDependence this.!getP
+  60: 5 -> 2 loopIndependentDefUseDependence a$0.!A119
+  61: 8 -> 10 loopIndependentDefUseDependence a$0.x
+  62: 9 -> 10 summary
 --
    0: p
    1: 0 -> 1 trueControlDependence
 --
    0: Test119( )
+   1: 0 -> 2 trueControlDependence
 --
    0: getP( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence
+   3: 1 -> 3 loopIndependentDefUseDependence $_
+--
+   0: m2( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 8 trueControlDependence
+   8: 1 -> 5 declaration
+   9: 1 -> 5 loopIndependentDefUseDependence a$0
+  10: 1 -> 6 declaration
+  11: 1 -> 6 loopIndependentDefUseDependence a$0
+  12: 4 -> 1 loopIndependentDefUseDependence a$0.!A119
+  13: 5 -> 8 loopIndependentDefUseDependence a$0.x
+  14: 6 -> 8 loopIndependentDefUseDependence a$0.y
 --
 ----- ClDG (to here) -----
 

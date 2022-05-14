@@ -1,0 +1,53 @@
+----- ClDG (from here) -----
+Class Name = Sample8
+   0 methodEntry [ main( java.lang.String[] ) ]
+   1 formalIn D = { args$0 } U = {  }
+   2 trySt D = {  } U = {  }
+   3 localDeclaration D = { circle$1 } U = { circle$1.!Circle2 }
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = { circle$1.radius } U = { circle$1.radius } TO = Circle2#Circle2( int )
+   6 actualIn D = {  } U = {  }
+   7 actualOut D = { circle$1.!Circle2, circle$1.radius } U = { circle$1.radius }
+   9 catchClause D = { e$2 } U = {  }
+  10 assignment D = {  } U = { System.out.!println }
+  11 receiver D = {  } U = { System.out }
+  12 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( java.lang.String )
+  13 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
+  15 formalOut D = {  } U = { $_, System.out, System.out.trouble, circle$1.radius }
+--
+   0 constructorEntry [ Sample8( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: main( java.lang.String[] )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 12 trueControlDependence
+   4: 0 -> 15 trueControlDependence
+   5: 0 -> 2 trueControlDependence
+   6: 0 -> 9 trueControlDependence
+   7: 12 -> 13 loopIndependentDefUseDependence System.out
+   8: 12 -> 13 outputDependence System.out.trouble
+   9: 13 -> 10 loopIndependentDefUseDependence System.out.!println
+  10: 13 -> 15 loopIndependentDefUseDependence System.out
+  11: 13 -> 15 loopIndependentDefUseDependence System.out.trouble
+  12: 2 -> 4 trueControlDependence
+  13: 2 -> 5 trueControlDependence
+  14: 2 -> 6 trueControlDependence
+  15: 2 -> 7 trueControlDependence
+  16: 5 -> 10 exceptionCatch
+  17: 5 -> 11 trueControlDependence
+  18: 5 -> 12 exceptionCatch
+  19: 5 -> 13 trueControlDependence
+  20: 5 -> 15 loopIndependentDefUseDependence circle$1.radius
+  21: 5 -> 3 trueControlDependence
+  22: 5 -> 7 loopIndependentDefUseDependence circle$1.radius
+  23: 5 -> 9 exceptionCatch
+  24: 6 -> 7 summary
+  25: 7 -> 15 loopIndependentDefUseDependence circle$1.radius
+  26: 7 -> 3 loopIndependentDefUseDependence circle$1.!Circle2
+--
+   0: Sample8( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

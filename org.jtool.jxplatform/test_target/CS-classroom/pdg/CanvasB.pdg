@@ -1,0 +1,193 @@
+----- ClDG (from here) -----
+Class Name = CanvasB
+   0 fieldEntry [ RADIUS ]
+   1 fieldDeclaration D = { CanvasB.RADIUS } U = { CanvasB.RADIUS }
+--
+   0 fieldEntry [ y ]
+   1 fieldDeclaration D = { this.y } U = { this.y }
+--
+   0 constructorEntry [ CanvasB( ) ]
+   1 assignment D = {  } U = { this.!setBackground }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = { java.awt.Component.background } U = { Color.white, java.awt.Component.background, java.awt.Component.height, java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.width } TO = javax.swing.JComponent#setBackground( java.awt.Color )
+   4 actualOut D = { java.awt.Component.background, this.!setBackground } U = { java.awt.Component.background, java.awt.Component.height, java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.width }
+   5 assignment D = {  } U = { this.!setPreferredSize }
+   6 receiver D = {  } U = {  }
+   7 methodCall D = { java.awt.Component.prefSize, java.awt.Component.prefSizeSet } U = { Dimension.!Dimension, java.awt.Component.prefSize, java.awt.Component.prefSizeSet } TO = javax.swing.JComponent#setPreferredSize( java.awt.Dimension )
+   8 receiver D = {  } U = {  }
+   9 constructorCall D = { Dimension.height, Dimension.width } U = {  } TO = java.awt.Dimension#Dimension( int int )
+  10 actualOut D = { Dimension.!Dimension, Dimension.height, Dimension.width } U = {  }
+  11 actualOut D = { java.awt.Component.prefSize, java.awt.Component.prefSizeSet, this.!setPreferredSize } U = { java.awt.Component.prefSize, java.awt.Component.prefSizeSet }
+  12 assignment D = {  } U = { this.!addMouseListener }
+  13 receiver D = {  } U = {  }
+  14 methodCall D = { this.mouseListener, this.newEventsOnly } U = { java.awt.Container.dispatcher, this, this.mouseListener, this.parent, this.peer } TO = java.awt.Component#addMouseListener( java.awt.event.MouseListener )
+  15 actualOut D = { this.!addMouseListener, this.mouseListener, this.newEventsOnly } U = { java.awt.Container.dispatcher, this.mouseListener, this.parent, this.peer }
+  17 formalOut D = {  } U = { $_, Dimension.height, Dimension.width, java.awt.Component.background, java.awt.Component.prefSize, java.awt.Component.prefSizeSet, this.mouseListener, this.newEventsOnly }
+--
+   0 methodEntry [ mouseExited( java.awt.event.MouseEvent ) ]
+   1 formalIn D = { e$0 } U = {  }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ mouseReleased( java.awt.event.MouseEvent ) ]
+   1 formalIn D = { e$0 } U = {  }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ paintComponent( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 assignment D = {  } U = { super.!paintComponent }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = { g$0, super.ui } TO = javax.swing.JComponent#paintComponent( java.awt.Graphics )
+   5 actualOut D = { super.!paintComponent } U = { super.ui }
+   6 ifSt D = {  } U = { this.x }
+   7 assignment D = {  } U = { g$0.!setColor }
+   8 receiver D = {  } U = { g$0 }
+   9 methodCall D = {  } U = { Color.blue } TO = java.awt.Graphics#setColor( java.awt.Color )
+  10 actualOut D = { g$0.!setColor } U = {  }
+  11 assignment D = {  } U = { g$0.!drawOval }
+  12 receiver D = {  } U = { g$0 }
+  13 methodCall D = {  } U = { CanvasB.RADIUS, this.x, this.y } TO = java.awt.Graphics#drawOval( int int int int )
+  14 actualOut D = { g$0.!drawOval } U = {  }
+  17 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ mouseClicked( java.awt.event.MouseEvent ) ]
+   1 formalIn D = { e$0 } U = {  }
+   2 assignment D = { this.x } U = { e$0.!getX }
+   3 receiver D = {  } U = { e$0 }
+   4 methodCall D = {  } U = { e$0, e$0.x } TO = java.awt.event.MouseEvent#getX( )
+   5 actualOut D = { e$0.!getX } U = { e$0.x }
+   6 assignment D = { this.y } U = { e$0.!getY }
+   7 receiver D = {  } U = { e$0 }
+   8 methodCall D = {  } U = { e$0, e$0.y } TO = java.awt.event.MouseEvent#getY( )
+   9 actualOut D = { e$0.!getY } U = { e$0.y }
+  10 assignment D = {  } U = { this.!repaint }
+  11 receiver D = {  } U = {  }
+  12 methodCall D = {  } U = { this.height, this.parent, this.peer, this.width, this.x, this.y } TO = java.awt.Component#repaint( )
+  13 actualOut D = { this.!repaint } U = { this.height, this.parent, this.peer, this.width, this.x, this.y }
+  15 formalOut D = {  } U = { $_, this.x, this.y }
+--
+   0 methodEntry [ mouseEntered( java.awt.event.MouseEvent ) ]
+   1 formalIn D = { e$0 } U = {  }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ mousePressed( java.awt.event.MouseEvent ) ]
+   1 formalIn D = { e$0 } U = {  }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+--
+   0: RADIUS
+   1: 0 -> 1 trueControlDependence
+--
+   0: y
+   1: 0 -> 1 trueControlDependence
+--
+   0: CanvasB( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 17 trueControlDependence
+   9: 0 -> 2 trueControlDependence
+  10: 0 -> 3 trueControlDependence
+  11: 0 -> 4 trueControlDependence
+  12: 0 -> 5 trueControlDependence
+  13: 0 -> 6 trueControlDependence
+  14: 0 -> 7 trueControlDependence
+  15: 0 -> 8 trueControlDependence
+  16: 0 -> 9 trueControlDependence
+  17: 10 -> 17 loopIndependentDefUseDependence Dimension.height
+  18: 10 -> 17 loopIndependentDefUseDependence Dimension.width
+  19: 10 -> 7 loopIndependentDefUseDependence Dimension.!Dimension
+  20: 11 -> 17 loopIndependentDefUseDependence java.awt.Component.prefSize
+  21: 11 -> 17 loopIndependentDefUseDependence java.awt.Component.prefSizeSet
+  22: 11 -> 5 loopIndependentDefUseDependence this.!setPreferredSize
+  23: 14 -> 15 loopIndependentDefUseDependence this.mouseListener
+  24: 14 -> 15 outputDependence this.newEventsOnly
+  25: 15 -> 12 loopIndependentDefUseDependence this.!addMouseListener
+  26: 15 -> 17 loopIndependentDefUseDependence this.mouseListener
+  27: 15 -> 17 loopIndependentDefUseDependence this.newEventsOnly
+  28: 3 -> 4 loopIndependentDefUseDependence java.awt.Component.background
+  29: 4 -> 1 loopIndependentDefUseDependence this.!setBackground
+  30: 4 -> 17 loopIndependentDefUseDependence java.awt.Component.background
+  31: 7 -> 11 loopIndependentDefUseDependence java.awt.Component.prefSize
+  32: 7 -> 11 loopIndependentDefUseDependence java.awt.Component.prefSizeSet
+  33: 9 -> 10 outputDependence Dimension.height
+  34: 9 -> 10 outputDependence Dimension.width
+--
+   0: mouseExited( java.awt.event.MouseEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+--
+   0: mouseReleased( java.awt.event.MouseEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+--
+   0: paintComponent( java.awt.Graphics )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 17 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 1 -> 12 loopIndependentDefUseDependence g$0
+   9: 1 -> 4 loopIndependentDefUseDependence g$0
+  10: 1 -> 8 loopIndependentDefUseDependence g$0
+  11: 10 -> 7 loopIndependentDefUseDependence g$0.!setColor
+  12: 14 -> 11 loopIndependentDefUseDependence g$0.!drawOval
+  13: 5 -> 2 loopIndependentDefUseDependence super.!paintComponent
+  14: 6 -> 10 trueControlDependence
+  15: 6 -> 11 trueControlDependence
+  16: 6 -> 12 trueControlDependence
+  17: 6 -> 13 trueControlDependence
+  18: 6 -> 14 trueControlDependence
+  19: 6 -> 7 trueControlDependence
+  20: 6 -> 8 trueControlDependence
+  21: 6 -> 9 trueControlDependence
+--
+   0: mouseClicked( java.awt.event.MouseEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 15 trueControlDependence
+   7: 0 -> 2 trueControlDependence
+   8: 0 -> 3 trueControlDependence
+   9: 0 -> 4 trueControlDependence
+  10: 0 -> 5 trueControlDependence
+  11: 0 -> 6 trueControlDependence
+  12: 0 -> 7 trueControlDependence
+  13: 0 -> 8 trueControlDependence
+  14: 0 -> 9 trueControlDependence
+  15: 1 -> 3 loopIndependentDefUseDependence e$0
+  16: 1 -> 4 loopIndependentDefUseDependence e$0
+  17: 1 -> 7 loopIndependentDefUseDependence e$0
+  18: 1 -> 8 loopIndependentDefUseDependence e$0
+  19: 13 -> 10 loopIndependentDefUseDependence this.!repaint
+  20: 2 -> 12 loopIndependentDefUseDependence this.x
+  21: 2 -> 13 loopIndependentDefUseDependence this.x
+  22: 2 -> 15 loopIndependentDefUseDependence this.x
+  23: 5 -> 2 loopIndependentDefUseDependence e$0.!getX
+  24: 6 -> 12 loopIndependentDefUseDependence this.y
+  25: 6 -> 13 loopIndependentDefUseDependence this.y
+  26: 6 -> 15 loopIndependentDefUseDependence this.y
+  27: 9 -> 6 loopIndependentDefUseDependence e$0.!getY
+--
+   0: mouseEntered( java.awt.event.MouseEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+--
+   0: mousePressed( java.awt.event.MouseEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+--
+   0: x
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

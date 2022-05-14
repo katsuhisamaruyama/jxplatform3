@@ -1,0 +1,12 @@
+----- ClDG (from here) -----
+Class Name = Sample109FX$LAMBDA1
+   0 methodEntry [ handle( javafx.event.Event ) ]
+   1 formalIn D = { event$7 } U = {  }
+   3 formalOut D = {  } U = { $_ }
+--
+   0: handle( javafx.event.Event )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+--
+----- ClDG (to here) -----
+

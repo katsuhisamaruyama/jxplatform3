@@ -1,0 +1,80 @@
+----- ClDG (from here) -----
+Class Name = Sample20
+   0 constructorEntry [ Sample20( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ main( java.lang.String[] ) ]
+   1 formalIn D = { args$0 } U = {  }
+   2 localDeclaration D = { thread$1 } U = { thread$1.!ThreadA }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = ThreadA#ThreadA( )
+   5 actualOut D = { thread$1.!ThreadA } U = {  }
+   6 assignment D = {  } U = { thread$1.!start }
+   7 receiver D = {  } U = { thread$1 }
+   8 methodCall D = { thread$1, thread$1Group.nUnstartedThreads, thread$1Group.nthreads, thread$1Group.threads } U = { thread$1, thread$1.group, thread$1.threadStatus, thread$1Group.destroyed, thread$1Group.nUnstartedThreads, thread$1Group.nthreads, thread$1Group.threads } TO = java.lang.Thread#start( )
+   9 actualOut D = { thread$1, thread$1.!start, thread$1Group.nUnstartedThreads, thread$1Group.nthreads, thread$1Group.threads } U = { thread$1, thread$1.group, thread$1.threadStatus, thread$1Group.destroyed, thread$1Group.nUnstartedThreads, thread$1Group.nthreads, thread$1Group.threads }
+  10 localDeclaration D = { i$2 } U = {  }
+  11 forSt D = {  } U = { i$2 }
+  12 assignment D = {  } U = { System.out.!println }
+  13 receiver D = {  } U = { System.out }
+  14 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, i$2, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( java.lang.String )
+  15 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
+  16 assignment D = { i$2 } U = { i$2 }
+  18 formalOut D = {  } U = { $_, System.out, System.out.trouble, thread$1Group.nUnstartedThreads, thread$1Group.nthreads, thread$1Group.threads }
+--
+   0: Sample20( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: main( java.lang.String[] )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 18 trueControlDependence
+   5: 0 -> 2 trueControlDependence
+   6: 0 -> 3 trueControlDependence
+   7: 0 -> 4 trueControlDependence
+   8: 0 -> 5 trueControlDependence
+   9: 0 -> 6 trueControlDependence
+  10: 0 -> 7 trueControlDependence
+  11: 0 -> 8 trueControlDependence
+  12: 0 -> 9 trueControlDependence
+  13: 10 -> 11 declaration
+  14: 10 -> 11 loopIndependentDefUseDependence i$2
+  15: 10 -> 14 declaration
+  16: 10 -> 14 loopIndependentDefUseDependence i$2
+  17: 10 -> 16 declaration
+  18: 10 -> 16 loopIndependentDefUseDependence i$2
+  19: 11 -> 12 trueControlDependence
+  20: 11 -> 13 trueControlDependence
+  21: 11 -> 14 trueControlDependence
+  22: 11 -> 15 trueControlDependence
+  23: 11 -> 16 trueControlDependence
+  24: 14 -> 15 loopIndependentDefUseDependence System.out
+  25: 14 -> 15 outputDependence System.out.trouble
+  26: 15 -> 12 loopIndependentDefUseDependence System.out.!println
+  27: 15 -> 13 loopCarriedDefUseDependence System.out 11
+  28: 15 -> 14 loopCarriedDefUseDependence System.out 11
+  29: 15 -> 14 outputDependence System.out.trouble
+  30: 15 -> 15 defOrderDependence System.out.!println
+  31: 15 -> 18 loopIndependentDefUseDependence System.out
+  32: 15 -> 18 loopIndependentDefUseDependence System.out.trouble
+  33: 16 -> 11 loopCarriedDefUseDependence i$2 11
+  34: 16 -> 14 loopCarriedDefUseDependence i$2 11
+  35: 16 -> 16 loopCarriedDefUseDependence i$2 11
+  36: 2 -> 7 declaration
+  37: 2 -> 7 loopIndependentDefUseDependence thread$1
+  38: 2 -> 8 declaration
+  39: 2 -> 8 loopIndependentDefUseDependence thread$1
+  40: 2 -> 9 declaration
+  41: 5 -> 2 loopIndependentDefUseDependence thread$1.!ThreadA
+  42: 8 -> 9 loopIndependentDefUseDependence thread$1
+  43: 8 -> 9 loopIndependentDefUseDependence thread$1Group.nUnstartedThreads
+  44: 8 -> 9 loopIndependentDefUseDependence thread$1Group.nthreads
+  45: 8 -> 9 loopIndependentDefUseDependence thread$1Group.threads
+  46: 9 -> 18 loopIndependentDefUseDependence thread$1Group.nUnstartedThreads
+  47: 9 -> 18 loopIndependentDefUseDependence thread$1Group.nthreads
+  48: 9 -> 18 loopIndependentDefUseDependence thread$1Group.threads
+  49: 9 -> 6 loopIndependentDefUseDependence thread$1.!start
+--
+----- ClDG (to here) -----
+

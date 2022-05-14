@@ -1,0 +1,57 @@
+----- ClDG (from here) -----
+Class Name = org.jtool.videostore.after.NewReleasePrice
+   0 methodEntry [ getCharge( int ) ]
+   1 formalIn D = { daysRented$0 } U = {  }
+   2 returnSt D = { $_ } U = { daysRented$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ NewReleasePrice( org.jtool.videostore.after.Movie.PriceCode ) ]
+   1 formalIn D = { priceCode$0 } U = {  }
+   2 assignment D = {  } U = {  }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = { super.priceCode } U = { super.priceCode } TO = org.jtool.videostore.after.Price#Price( org.jtool.videostore.after.Movie.PriceCode )
+   5 actualIn D = {  } U = { priceCode$0 }
+   6 actualOut D = { , super.priceCode } U = { super.priceCode }
+   8 formalOut D = {  } U = { $_, super.priceCode }
+--
+   0 methodEntry [ getFrequentRenterPoints( int ) ]
+   1 formalIn D = { daysRented$0 } U = {  }
+   2 ifSt D = {  } U = { daysRented$0 }
+   3 returnSt D = { $_ } U = {  }
+   4 returnSt D = { $_ } U = {  }
+   7 formalOut D = {  } U = { $_ }
+--
+   0: getCharge( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence daysRented$0
+   5: 2 -> 4 loopIndependentDefUseDependence $_
+--
+   0: NewReleasePrice( org.jtool.videostore.after.Movie.PriceCode )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 8 trueControlDependence
+   8: 1 -> 5 loopIndependentDefUseDependence priceCode$0
+   9: 4 -> 6 loopIndependentDefUseDependence super.priceCode
+  10: 5 -> 6 summary
+  11: 6 -> 2 loopIndependentDefUseDependence 
+  12: 6 -> 8 loopIndependentDefUseDependence super.priceCode
+--
+   0: getFrequentRenterPoints( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 7 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence daysRented$0
+   5: 2 -> 3 trueControlDependence
+   6: 2 -> 4 falseControlDependence
+   7: 3 -> 4 fallThroughControlDependence
+   8: 3 -> 7 loopIndependentDefUseDependence $_
+   9: 4 -> 7 loopIndependentDefUseDependence $_
+--
+----- ClDG (to here) -----
+

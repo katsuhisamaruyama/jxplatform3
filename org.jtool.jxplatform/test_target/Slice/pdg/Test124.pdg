@@ -1,67 +1,70 @@
 ----- ClDG (from here) -----
 Class Name = Test124
    0 constructorEntry [ Test124( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { p$0 } U = {  }
    2 localDeclaration D = { q$1 } U = {  }
    3 localDeclaration D = { a$2 } U = { a$2.!A124 }
    4 receiver D = {  } U = {  }
-   5 constructorCall D = { a$2.x } U = {  } TO = A124#A124( int )
+   5 constructorCall D = { a$2.x } U = { a$2.x } TO = A124#A124( int )
    6 actualIn D = {  } U = { p$0 }
-   7 actualOut D = { a$2.!A124 } U = {  }
+   7 actualOut D = { a$2.!A124, a$2.x } U = { a$2.x }
    8 localDeclaration D = { b$3 } U = { a$2.!getX }
    9 receiver D = {  } U = { a$2 }
   10 methodCall D = {  } U = { a$2.x } TO = A124#getX( )
-  11 actualOut D = { a$2.!getX } U = {  }
+  11 actualOut D = { a$2.!getX } U = { a$2.x }
   12 localDeclaration D = { c$4 } U = { a$2.!inc }
   13 receiver D = {  } U = { a$2 }
   14 methodCall D = {  } U = { a$2.x } TO = A124#inc( int )
   15 actualIn D = {  } U = { q$1 }
-  16 actualOut D = { a$2.!inc } U = {  }
-  18 formalOut D = {  } U = { $_ }
+  16 actualOut D = { a$2.!inc } U = { a$2.x }
+  18 formalOut D = {  } U = { $_, a$2.x }
 --
    0 fieldEntry [ p ]
    1 fieldDeclaration D = { this.p } U = { this.p }
 --
    0: Test124( )
+   1: 0 -> 2 trueControlDependence
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 8 trueControlDependence
-   6: 0 -> 9 trueControlDependence
-   7: 0 -> 12 trueControlDependence
-   8: 0 -> 13 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
    9: 0 -> 18 trueControlDependence
-  10: 1 -> 1 declarationDependence
-  11: 1 -> 6 loopIndependentDefUseDependence
-  12: 1 -> 6 declarationDependence
-  13: 2 -> 2 declarationDependence
-  14: 2 -> 15 loopIndependentDefUseDependence
-  15: 2 -> 15 declarationDependence
-  16: 3 -> 3 declarationDependence
-  17: 3 -> 9 loopIndependentDefUseDependence
-  18: 3 -> 9 declarationDependence
-  19: 3 -> 13 loopIndependentDefUseDependence
-  20: 3 -> 13 declarationDependence
-  21: 4 -> 5 trueControlDependence
-  22: 5 -> 6 trueControlDependence
-  23: 5 -> 7 trueControlDependence
-  24: 5 -> 10 loopIndependentDefUseDependence
-  25: 5 -> 14 loopIndependentDefUseDependence
-  26: 7 -> 3 loopIndependentDefUseDependence
-  27: 8 -> 8 declarationDependence
-  28: 9 -> 10 trueControlDependence
-  29: 10 -> 11 trueControlDependence
-  30: 11 -> 8 loopIndependentDefUseDependence
-  31: 12 -> 12 declarationDependence
-  32: 13 -> 14 trueControlDependence
-  33: 14 -> 15 trueControlDependence
-  34: 14 -> 16 trueControlDependence
-  35: 16 -> 12 loopIndependentDefUseDependence
+  10: 0 -> 2 trueControlDependence
+  11: 0 -> 3 trueControlDependence
+  12: 0 -> 4 trueControlDependence
+  13: 0 -> 5 trueControlDependence
+  14: 0 -> 6 trueControlDependence
+  15: 0 -> 7 trueControlDependence
+  16: 0 -> 8 trueControlDependence
+  17: 0 -> 9 trueControlDependence
+  18: 1 -> 6 declaration
+  19: 1 -> 6 loopIndependentDefUseDependence p$0
+  20: 11 -> 8 loopIndependentDefUseDependence a$2.!getX
+  21: 15 -> 16 summary
+  22: 16 -> 12 loopIndependentDefUseDependence a$2.!inc
+  23: 2 -> 15 declaration
+  24: 2 -> 15 loopIndependentDefUseDependence q$1
+  25: 3 -> 13 declaration
+  26: 3 -> 13 loopIndependentDefUseDependence a$2
+  27: 3 -> 9 declaration
+  28: 3 -> 9 loopIndependentDefUseDependence a$2
+  29: 5 -> 7 loopIndependentDefUseDependence a$2.x
+  30: 6 -> 7 summary
+  31: 7 -> 10 loopIndependentDefUseDependence a$2.x
+  32: 7 -> 11 loopIndependentDefUseDependence a$2.x
+  33: 7 -> 14 loopIndependentDefUseDependence a$2.x
+  34: 7 -> 16 loopIndependentDefUseDependence a$2.x
+  35: 7 -> 18 loopIndependentDefUseDependence a$2.x
+  36: 7 -> 3 loopIndependentDefUseDependence a$2.!A124
 --
    0: p
    1: 0 -> 1 trueControlDependence

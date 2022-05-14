@@ -1,6 +1,7 @@
 ----- ClDG (from here) -----
 Class Name = Test135
    0 constructorEntry [ Test135( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ s2 ]
    1 fieldDeclaration D = { this.s2 } U = { S135.!S135, this.s2 }
@@ -18,85 +19,98 @@ Class Name = Test135
    1 localDeclaration D = { a$0 } U = {  }
    2 assignment D = {  } U = { this.s1.!set2 }
    3 receiver D = {  } U = { this.s1 }
-   4 methodCall D = { this.s1.key, this.s1.value } U = {  } TO = S135#set2( java.lang.String java.lang.String )
+   4 methodCall D = { this.s1.key, this.s1.value } U = { this.s1.key, this.s1.value } TO = S135#set2( java.lang.String java.lang.String )
    5 actualIn D = {  } U = { $java.lang.String }
    6 actualIn D = {  } U = { $java.lang.String }
-   7 actualOut D = { this.s1.!set2 } U = {  }
+   7 actualOut D = { this.s1.!set2, this.s1.key, this.s1.value } U = { this.s1.key, this.s1.value }
    8 assignment D = {  } U = { this.s2.!set2 }
    9 receiver D = {  } U = { this.s2 }
-  10 methodCall D = { this.s2.key, this.s2.value } U = {  } TO = S135#set2( java.lang.String java.lang.String )
+  10 methodCall D = { this.s2.key, this.s2.value } U = { this.s2.key, this.s2.value } TO = S135#set2( java.lang.String java.lang.String )
   11 actualIn D = {  } U = { $java.lang.String }
   12 actualIn D = {  } U = { $java.lang.String }
-  13 actualOut D = { this.s2.!set2 } U = {  }
+  13 actualOut D = { this.s2.!set2, this.s2.key, this.s2.value } U = { this.s2.key, this.s2.value }
   14 localDeclaration D = { b$1 } U = { a$0 }
   15 localDeclaration D = { v1$2 } U = { this.s1.!get2 }
   16 receiver D = {  } U = { this.s1 }
   17 methodCall D = {  } U = { this.s1, this.s1.key, this.s1.value } TO = S135#get2( java.lang.String )
   18 actualIn D = {  } U = { $java.lang.String }
-  19 actualOut D = { this.s1.!get2 } U = {  }
+  19 actualOut D = { this.s1.!get2 } U = { this.s1.key, this.s1.value }
   20 localDeclaration D = { v2$3 } U = { this.s2.!get2 }
   21 receiver D = {  } U = { this.s2 }
   22 methodCall D = {  } U = { this.s2, this.s2.key, this.s2.value } TO = S135#get2( java.lang.String )
   23 actualIn D = {  } U = { $java.lang.String }
-  24 actualOut D = { this.s2.!get2 } U = {  }
-  26 formalOut D = {  } U = { $_ }
+  24 actualOut D = { this.s2.!get2 } U = { this.s2.key, this.s2.value }
+  26 formalOut D = {  } U = { $_, this.s1.key, this.s1.value, this.s2.key, this.s2.value }
 --
    0: Test135( )
+   1: 0 -> 2 trueControlDependence
 --
    0: s2
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 2 -> 3 trueControlDependence
-   4: 3 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 4 -> 1 loopIndependentDefUseDependence S135.!S135
 --
    0: s1
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 2 -> 3 trueControlDependence
-   4: 3 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 4 -> 1 loopIndependentDefUseDependence S135.!S135
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 8 trueControlDependence
-   5: 0 -> 9 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
    6: 0 -> 14 trueControlDependence
    7: 0 -> 15 trueControlDependence
    8: 0 -> 16 trueControlDependence
-   9: 0 -> 20 trueControlDependence
-  10: 0 -> 21 trueControlDependence
-  11: 0 -> 26 trueControlDependence
-  12: 1 -> 1 declarationDependence
-  13: 1 -> 14 loopIndependentDefUseDependence
-  14: 1 -> 14 declarationDependence
-  15: 3 -> 4 trueControlDependence
-  16: 4 -> 5 trueControlDependence
-  17: 4 -> 6 trueControlDependence
-  18: 4 -> 7 trueControlDependence
-  19: 4 -> 17 loopIndependentDefUseDependence
-  20: 4 -> 17 loopIndependentDefUseDependence
-  21: 7 -> 2 loopIndependentDefUseDependence
-  22: 9 -> 10 trueControlDependence
-  23: 10 -> 11 trueControlDependence
-  24: 10 -> 12 trueControlDependence
-  25: 10 -> 13 trueControlDependence
-  26: 10 -> 22 loopIndependentDefUseDependence
-  27: 10 -> 22 loopIndependentDefUseDependence
-  28: 13 -> 8 loopIndependentDefUseDependence
-  29: 14 -> 14 declarationDependence
-  30: 15 -> 15 declarationDependence
-  31: 16 -> 17 trueControlDependence
-  32: 17 -> 18 trueControlDependence
-  33: 17 -> 19 trueControlDependence
-  34: 19 -> 15 loopIndependentDefUseDependence
-  35: 20 -> 20 declarationDependence
-  36: 21 -> 22 trueControlDependence
-  37: 22 -> 23 trueControlDependence
-  38: 22 -> 24 trueControlDependence
-  39: 24 -> 20 loopIndependentDefUseDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 26 trueControlDependence
+  19: 0 -> 3 trueControlDependence
+  20: 0 -> 4 trueControlDependence
+  21: 0 -> 5 trueControlDependence
+  22: 0 -> 6 trueControlDependence
+  23: 0 -> 7 trueControlDependence
+  24: 0 -> 8 trueControlDependence
+  25: 0 -> 9 trueControlDependence
+  26: 1 -> 14 declaration
+  27: 1 -> 14 loopIndependentDefUseDependence a$0
+  28: 10 -> 13 loopIndependentDefUseDependence this.s2.key
+  29: 10 -> 13 loopIndependentDefUseDependence this.s2.value
+  30: 11 -> 13 summary
+  31: 12 -> 13 summary
+  32: 13 -> 22 loopIndependentDefUseDependence this.s2.key
+  33: 13 -> 22 loopIndependentDefUseDependence this.s2.value
+  34: 13 -> 24 loopIndependentDefUseDependence this.s2.key
+  35: 13 -> 24 loopIndependentDefUseDependence this.s2.value
+  36: 13 -> 26 loopIndependentDefUseDependence this.s2.key
+  37: 13 -> 26 loopIndependentDefUseDependence this.s2.value
+  38: 13 -> 8 loopIndependentDefUseDependence this.s2.!set2
+  39: 19 -> 15 loopIndependentDefUseDependence this.s1.!get2
+  40: 24 -> 20 loopIndependentDefUseDependence this.s2.!get2
+  41: 4 -> 7 loopIndependentDefUseDependence this.s1.key
+  42: 4 -> 7 loopIndependentDefUseDependence this.s1.value
+  43: 5 -> 7 summary
+  44: 6 -> 7 summary
+  45: 7 -> 17 loopIndependentDefUseDependence this.s1.key
+  46: 7 -> 17 loopIndependentDefUseDependence this.s1.value
+  47: 7 -> 19 loopIndependentDefUseDependence this.s1.key
+  48: 7 -> 19 loopIndependentDefUseDependence this.s1.value
+  49: 7 -> 2 loopIndependentDefUseDependence this.s1.!set2
+  50: 7 -> 26 loopIndependentDefUseDependence this.s1.key
+  51: 7 -> 26 loopIndependentDefUseDependence this.s1.value
 --
 ----- ClDG (to here) -----
 

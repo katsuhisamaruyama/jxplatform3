@@ -1,15 +1,16 @@
 ----- ClDG (from here) -----
 Class Name = Test130
    0 constructorEntry [ Test130( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ n( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 returnSt D = { $_ } U = { S130.!S130 }
    3 receiver D = {  } U = {  }
-   4 constructorCall D = { S130.x } U = {  } TO = S130#S130( int )
+   4 constructorCall D = { S130.x } U = { S130.x } TO = S130#S130( int )
    5 actualIn D = {  } U = { x$0 }
-   6 actualOut D = { S130.!S130 } U = {  }
-   8 formalOut D = {  } U = { $_ }
+   6 actualOut D = { S130.!S130, S130.x } U = { S130.x }
+   8 formalOut D = {  } U = { $_, S130.x }
 --
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { p$0 } U = {  }
@@ -20,46 +21,45 @@ Class Name = Test130
    6 actualIn D = {  } U = {  }
    7 actualOut D = { this.!n } U = {  }
    8 methodCall D = {  } U = { this.!n.x } TO = S130#getX( )
-   9 actualOut D = { this.!n.!getX } U = {  }
+   9 actualOut D = { this.!n.!getX } U = { this.!n.x }
   10 localDeclaration D = { r$2 } U = { q$1 }
   12 formalOut D = {  } U = { $_ }
 --
    0: Test130( )
+   1: 0 -> 2 trueControlDependence
 --
    0: n( int )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 3 trueControlDependence
-   4: 0 -> 8 trueControlDependence
-   5: 1 -> 5 loopIndependentDefUseDependence
-   6: 2 -> 8 loopIndependentDefUseDependence
-   7: 3 -> 4 trueControlDependence
-   8: 4 -> 5 trueControlDependence
-   9: 4 -> 6 trueControlDependence
-  10: 6 -> 2 loopIndependentDefUseDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 8 trueControlDependence
+   8: 1 -> 5 loopIndependentDefUseDependence x$0
+   9: 2 -> 8 loopIndependentDefUseDependence $_
+  10: 4 -> 6 loopIndependentDefUseDependence S130.x
+  11: 5 -> 6 summary
+  12: 6 -> 2 loopIndependentDefUseDependence S130.!S130
+  13: 6 -> 8 loopIndependentDefUseDependence S130.x
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 10 trueControlDependence
-   6: 0 -> 12 trueControlDependence
-   7: 1 -> 1 declarationDependence
-   8: 2 -> 2 declarationDependence
-   9: 2 -> 10 loopIndependentDefUseDependence
-  10: 2 -> 10 declarationDependence
-  11: 3 -> 8 trueControlDependence
-  12: 4 -> 5 trueControlDependence
-  13: 5 -> 6 trueControlDependence
-  14: 5 -> 7 trueControlDependence
-  15: 5 -> 13 call
-  16: 6 -> 14 parameterIn
-  17: 7 -> 3 loopIndependentDefUseDependence
-  18: 8 -> 9 trueControlDependence
-  19: 9 -> 2 loopIndependentDefUseDependence
-  20: 10 -> 10 declarationDependence
-  21: 21 -> 7 parameterOut
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 12 trueControlDependence
+   4: 0 -> 2 trueControlDependence
+   5: 0 -> 3 trueControlDependence
+   6: 0 -> 4 trueControlDependence
+   7: 0 -> 5 trueControlDependence
+   8: 0 -> 6 trueControlDependence
+   9: 0 -> 7 trueControlDependence
+  10: 0 -> 8 trueControlDependence
+  11: 0 -> 9 trueControlDependence
+  12: 2 -> 10 declaration
+  13: 2 -> 10 loopIndependentDefUseDependence q$1
+  14: 6 -> 7 summary
+  15: 7 -> 3 loopIndependentDefUseDependence this.!n
+  16: 9 -> 2 loopIndependentDefUseDependence this.!n.!getX
 --
 ----- ClDG (to here) -----
 

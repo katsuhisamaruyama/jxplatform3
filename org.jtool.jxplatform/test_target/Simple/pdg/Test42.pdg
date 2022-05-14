@@ -1,0 +1,68 @@
+----- ClDG (from here) -----
+Class Name = Test42
+   0 methodEntry [ m1( ) ]
+   1 localDeclaration D = { x1$0 } U = { this.a, this.a.x, this.b, this.b.x }
+   2 localDeclaration D = { x2$1 } U = { this.a, this.a.x, this.b, this.b.x }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m2( ) ]
+   1 localDeclaration D = { x1$0 } U = { this.a.!getX, this.b.!getX }
+   2 receiver D = {  } U = { this.a, this.b }
+   3 methodCall D = {  } U = { this.a.x, this.b.x } TO = P42#getX( )
+   4 actualOut D = { this.a.!getX } U = { this.a.x, this.b.x }
+   5 localDeclaration D = { x2$1 } U = { this.a.!getX, this.b.!getX }
+   6 receiver D = {  } U = { this.a, this.b }
+   7 methodCall D = {  } U = { this.a.x, this.b.x } TO = P42#getX( )
+   8 actualOut D = { this.b.!getX } U = { this.a.x, this.b.x }
+  10 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test42( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ a ]
+   1 fieldDeclaration D = { this.a } U = { P42.!P42, this.a }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { P42.x } U = { P42.x } TO = P42#P42( int )
+   4 actualIn D = {  } U = {  }
+   5 actualOut D = { P42.!P42, P42.x } U = { P42.x }
+--
+   0 fieldEntry [ b ]
+   1 fieldDeclaration D = { this.b } U = { this.a, this.b }
+--
+   0: m1( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+--
+   0: m2( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 7 trueControlDependence
+   9: 0 -> 8 trueControlDependence
+  10: 4 -> 1 loopIndependentDefUseDependence this.a.!getX
+  11: 4 -> 5 loopIndependentDefUseDependence this.a.!getX
+  12: 8 -> 5 loopIndependentDefUseDependence this.b.!getX
+--
+   0: Test42( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: a
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 3 -> 5 loopIndependentDefUseDependence P42.x
+   7: 4 -> 5 summary
+   8: 5 -> 1 loopIndependentDefUseDependence P42.!P42
+--
+   0: b
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

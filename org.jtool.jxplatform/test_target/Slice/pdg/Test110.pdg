@@ -1,6 +1,7 @@
 ----- ClDG (from here) -----
 Class Name = Test110
    0 constructorEntry [ Test110( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { x$0 } U = {  }
@@ -12,6 +13,7 @@ Class Name = Test110
    8 formalOut D = {  } U = { $_ }
 --
    0: Test110( )
+   1: 0 -> 2 trueControlDependence
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
@@ -20,22 +22,18 @@ Class Name = Test110
    4: 0 -> 5 trueControlDependence
    5: 0 -> 6 trueControlDependence
    6: 0 -> 8 trueControlDependence
-   7: 1 -> 1 declarationDependence
-   8: 1 -> 3 loopIndependentDefUseDependence
-   9: 1 -> 3 declarationDependence
-  10: 1 -> 4 loopIndependentDefUseDependence
-  11: 1 -> 4 declarationDependence
-  12: 1 -> 5 loopIndependentDefUseDependence
-  13: 1 -> 5 declarationDependence
-  14: 2 -> 2 declarationDependence
-  15: 2 -> 6 loopIndependentDefUseDependence
-  16: 2 -> 6 declarationDependence
-  17: 3 -> 4 trueControlDependence
-  18: 4 -> 3 loopCarriedDefUseDependence
-  19: 4 -> 4 loopIndependentDefUseDependence
-  20: 4 -> 5 loopIndependentDefUseDependence
-  21: 5 -> 5 declarationDependence
-  22: 6 -> 6 declarationDependence
+   7: 1 -> 3 declaration
+   8: 1 -> 3 loopIndependentDefUseDependence x$0
+   9: 1 -> 4 declaration
+  10: 1 -> 4 loopIndependentDefUseDependence x$0
+  11: 1 -> 5 declaration
+  12: 1 -> 5 loopIndependentDefUseDependence x$0
+  13: 2 -> 6 declaration
+  14: 2 -> 6 loopIndependentDefUseDependence y$1
+  15: 3 -> 4 trueControlDependence
+  16: 4 -> 3 loopCarriedDefUseDependence x$0 3
+  17: 4 -> 4 loopCarriedDefUseDependence x$0 3
+  18: 4 -> 5 loopIndependentDefUseDependence x$0
 --
 ----- ClDG (to here) -----
 

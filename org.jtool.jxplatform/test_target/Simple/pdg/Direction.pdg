@@ -1,0 +1,38 @@
+----- ClDG (from here) -----
+Class Name = Direction
+   0 enumConstantEntry [ DOWN ]
+   1 fieldDeclaration D = { Direction.DOWN } U = {  }
+--
+   0 constructorEntry [ Direction( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ getName( ) ]
+   1 returnSt D = { $_ } U = { this.!name }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { this.name } TO = java.lang.Enum#name( )
+   4 actualOut D = { this.!name } U = { this.name }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 enumConstantEntry [ UP ]
+   1 fieldDeclaration D = { Direction.UP } U = {  }
+--
+   0: DOWN
+   1: 0 -> 1 trueControlDependence
+--
+   0: Direction( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: getName( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 1 -> 6 loopIndependentDefUseDependence $_
+   7: 4 -> 1 loopIndependentDefUseDependence this.!name
+--
+   0: UP
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

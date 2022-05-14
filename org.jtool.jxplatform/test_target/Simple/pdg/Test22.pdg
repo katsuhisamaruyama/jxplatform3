@@ -1,0 +1,43 @@
+----- ClDG (from here) -----
+Class Name = Test22
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { a$0 } U = {  }
+   2 assignment D = { a$0 } U = { a$0 }
+   3 doSt D = {  } U = { a$0 }
+   4 assignment D = {  } U = { System.out.!println }
+   5 receiver D = {  } U = { System.out }
+   6 methodCall D = { System.out, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, a$0, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( int )
+   7 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
+   9 formalOut D = {  } U = { $_, System.out, System.out.trouble }
+--
+   0 constructorEntry [ Test22( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 7 trueControlDependence
+   8: 0 -> 9 trueControlDependence
+   9: 1 -> 2 declaration
+  10: 1 -> 2 loopIndependentDefUseDependence a$0
+  11: 1 -> 3 declaration
+  12: 1 -> 6 declaration
+  13: 2 -> 2 loopCarriedDefUseDependence a$0 3
+  14: 2 -> 3 loopCarriedDefUseDependence a$0 3
+  15: 2 -> 6 loopIndependentDefUseDependence a$0
+  16: 3 -> 2 trueControlDependence
+  17: 6 -> 7 loopIndependentDefUseDependence System.out
+  18: 6 -> 7 outputDependence System.out.trouble
+  19: 7 -> 4 loopIndependentDefUseDependence System.out.!println
+  20: 7 -> 9 loopIndependentDefUseDependence System.out
+  21: 7 -> 9 loopIndependentDefUseDependence System.out.trouble
+--
+   0: Test22( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

@@ -1,6 +1,7 @@
 ----- ClDG (from here) -----
 Class Name = Test134
    0 constructorEntry [ Test134( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ getP( ) ]
    1 returnSt D = { $_ } U = { P134.!P134 }
@@ -78,20 +79,20 @@ Class Name = Test134
   18 localDeclaration D = { l1$3 } U = { l1$3.!ArrayList<String> }
   19 receiver D = {  } U = {  }
   20 constructorCall D = { java.util.AbstractList.modCount, l1$3.elementData } U = { l1$3.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
-  21 actualOut D = { l1$3.!ArrayList<String> } U = {  }
+  21 actualOut D = { java.util.AbstractList.modCount, l1$3.!ArrayList<String>, l1$3.elementData } U = { l1$3.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
   22 assignment D = {  } U = { l1$3.!add }
   23 receiver D = {  } U = { l1$3 }
   24 methodCall D = { java.util.AbstractList.modCount, l1$3, l1$3.size } U = { $java.lang.String, java.util.AbstractList.modCount, l1$3, l1$3.elementData, l1$3.size } TO = java.util.ArrayList#add( java.lang.Object )
-  25 actualOut D = { l1$3, l1$3.!add } U = { l1$3 }
+  25 actualOut D = { java.util.AbstractList.modCount, l1$3, l1$3.!add, l1$3.size } U = { java.util.AbstractList.modCount, l1$3, l1$3.elementData, l1$3.size }
   26 localDeclaration D = { l2$4 } U = { l2$4.!ArrayList<String> }
   27 receiver D = {  } U = {  }
   28 constructorCall D = { java.util.AbstractList.modCount, l2$4.elementData } U = { l2$4.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
-  29 actualOut D = { l2$4.!ArrayList<String> } U = {  }
+  29 actualOut D = { java.util.AbstractList.modCount, l2$4.!ArrayList<String>, l2$4.elementData } U = { l2$4.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
   30 assignment D = {  } U = { l2$4.!add }
   31 receiver D = {  } U = { l2$4 }
   32 methodCall D = { java.util.AbstractList.modCount, l2$4, l2$4.size } U = { $java.lang.String, java.util.AbstractList.modCount, l2$4, l2$4.elementData, l2$4.size } TO = java.util.List#add( java.lang.Object )
-  33 actualOut D = { l2$4, l2$4.!add } U = { l2$4 }
-  35 formalOut D = {  } U = { $_ }
+  33 actualOut D = { java.util.AbstractList.modCount, l2$4, l2$4.!add, l2$4.size } U = { java.util.AbstractList.modCount, l2$4, l2$4.elementData, l2$4.size }
+  35 formalOut D = {  } U = { $_, java.util.AbstractList.modCount, l1$3.elementData, l1$3.size, l2$4.elementData, l2$4.size }
 --
    0 methodEntry [ inc( int ) ]
    1 formalIn D = { a$0 } U = {  }
@@ -238,449 +239,425 @@ Class Name = Test134
    9 formalOut D = {  } U = { $_ }
 --
    0: Test134( )
+   1: 0 -> 2 trueControlDependence
 --
    0: getP( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 0 -> 6 trueControlDependence
-   4: 1 -> 6 loopIndependentDefUseDependence
-   5: 2 -> 3 trueControlDependence
-   6: 3 -> 4 trueControlDependence
-   7: 4 -> 1 loopIndependentDefUseDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 1 -> 6 loopIndependentDefUseDependence $_
+   7: 4 -> 1 loopIndependentDefUseDependence P134.!P134
 --
    0: a2( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 5 trueControlDependence
-   4: 0 -> 11 trueControlDependence
-   5: 2 -> 3 trueControlDependence
-   6: 3 -> 4 trueControlDependence
-   7: 3 -> 8 trueControlDependence
-   8: 3 -> 9 trueControlDependence
-   9: 3 -> 12 call
-  10: 4 -> 13 parameterIn
-  11: 5 -> 6 trueControlDependence
-  12: 6 -> 7 trueControlDependence
-  13: 7 -> 4 loopIndependentDefUseDependence
-  14: 8 -> 14 parameterIn
-  15: 9 -> 1 loopIndependentDefUseDependence
-  16: 21 -> 9 parameterOut
+   2: 0 -> 11 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 7 trueControlDependence
+   9: 0 -> 8 trueControlDependence
+  10: 0 -> 9 trueControlDependence
+  11: 7 -> 4 loopIndependentDefUseDependence Q134.!Q134
+  12: 9 -> 1 loopIndependentDefUseDependence this.!n2
 --
    0: a1( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 5 trueControlDependence
-   4: 0 -> 11 trueControlDependence
-   5: 2 -> 3 trueControlDependence
-   6: 3 -> 4 trueControlDependence
-   7: 3 -> 8 trueControlDependence
-   8: 3 -> 9 trueControlDependence
-   9: 3 -> 12 call
-  10: 4 -> 13 parameterIn
-  11: 5 -> 6 trueControlDependence
-  12: 6 -> 7 trueControlDependence
-  13: 7 -> 4 loopIndependentDefUseDependence
-  14: 8 -> 14 parameterIn
-  15: 9 -> 1 loopIndependentDefUseDependence
-  16: 21 -> 9 parameterOut
+   2: 0 -> 11 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 7 trueControlDependence
+   9: 0 -> 8 trueControlDependence
+  10: 0 -> 9 trueControlDependence
+  11: 7 -> 4 loopIndependentDefUseDependence P134.!P134
+  12: 9 -> 1 loopIndependentDefUseDependence this.!n1
 --
    0: getQ( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 0 -> 6 trueControlDependence
-   4: 1 -> 6 loopIndependentDefUseDependence
-   5: 2 -> 3 trueControlDependence
-   6: 3 -> 4 trueControlDependence
-   7: 4 -> 1 loopIndependentDefUseDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 1 -> 6 loopIndependentDefUseDependence $_
+   7: 4 -> 1 loopIndependentDefUseDependence Q134.!Q134
 --
    0: m3( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 6 trueControlDependence
-   5: 0 -> 7 trueControlDependence
-   6: 0 -> 11 trueControlDependence
-   7: 0 -> 12 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
    8: 0 -> 17 trueControlDependence
-   9: 1 -> 1 declarationDependence
-  10: 1 -> 9 loopIndependentDefUseDependence
-  11: 1 -> 9 declarationDependence
-  12: 1 -> 14 loopIndependentDefUseDependence
-  13: 1 -> 14 declarationDependence
-  14: 2 -> 2 declarationDependence
-  15: 2 -> 7 loopIndependentDefUseDependence
-  16: 2 -> 7 declarationDependence
-  17: 2 -> 12 loopIndependentDefUseDependence
-  18: 2 -> 12 declarationDependence
-  19: 3 -> 4 trueControlDependence
-  20: 4 -> 5 trueControlDependence
-  21: 5 -> 2 loopIndependentDefUseDependence
-  22: 6 -> 6 declarationDependence
-  23: 7 -> 8 trueControlDependence
-  24: 8 -> 9 trueControlDependence
-  25: 8 -> 10 trueControlDependence
-  26: 10 -> 6 loopIndependentDefUseDependence
-  27: 10 -> 15 outputDependence
-  28: 11 -> 11 declarationDependence
-  29: 12 -> 13 trueControlDependence
-  30: 13 -> 14 trueControlDependence
-  31: 13 -> 15 trueControlDependence
-  32: 15 -> 11 loopIndependentDefUseDependence
+   9: 0 -> 2 trueControlDependence
+  10: 0 -> 3 trueControlDependence
+  11: 0 -> 4 trueControlDependence
+  12: 0 -> 5 trueControlDependence
+  13: 0 -> 6 trueControlDependence
+  14: 0 -> 7 trueControlDependence
+  15: 0 -> 8 trueControlDependence
+  16: 0 -> 9 trueControlDependence
+  17: 1 -> 14 declaration
+  18: 1 -> 14 loopIndependentDefUseDependence x$0
+  19: 1 -> 9 declaration
+  20: 1 -> 9 loopIndependentDefUseDependence x$0
+  21: 10 -> 15 outputDependence p$1.!f
+  22: 10 -> 6 loopIndependentDefUseDependence p$1.!f
+  23: 14 -> 15 summary
+  24: 15 -> 11 loopIndependentDefUseDependence p$1.!f
+  25: 2 -> 12 declaration
+  26: 2 -> 12 loopIndependentDefUseDependence p$1
+  27: 2 -> 7 declaration
+  28: 2 -> 7 loopIndependentDefUseDependence p$1
+  29: 5 -> 2 loopIndependentDefUseDependence p$1.!R134
+  30: 9 -> 10 summary
 --
    0: m2( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 5 trueControlDependence
-   5: 0 -> 9 trueControlDependence
-   6: 0 -> 13 trueControlDependence
-   7: 0 -> 14 trueControlDependence
-   8: 0 -> 18 trueControlDependence
-   9: 0 -> 19 trueControlDependence
-  10: 0 -> 22 trueControlDependence
-  11: 0 -> 23 trueControlDependence
-  12: 0 -> 26 trueControlDependence
-  13: 0 -> 27 trueControlDependence
-  14: 0 -> 30 trueControlDependence
-  15: 0 -> 31 trueControlDependence
-  16: 0 -> 35 trueControlDependence
-  17: 1 -> 1 declarationDependence
-  18: 1 -> 3 loopIndependentDefUseDependence
-  19: 1 -> 3 declarationDependence
-  20: 1 -> 16 loopIndependentDefUseDependence
-  21: 1 -> 16 declarationDependence
-  22: 2 -> 2 declarationDependence
-  23: 2 -> 4 outputDependence
-  24: 2 -> 4 declarationDependence
-  25: 2 -> 8 outputDependence
-  26: 2 -> 8 declarationDependence
-  27: 2 -> 14 declarationDependence
-  28: 3 -> 4 trueControlDependence
-  29: 3 -> 6 trueControlDependence
-  30: 3 -> 8 falseControlDependence
-  31: 3 -> 10 falseControlDependence
-  32: 4 -> 14 loopIndependentDefUseDependence
-  33: 5 -> 6 trueControlDependence
-  34: 6 -> 7 trueControlDependence
-  35: 7 -> 4 loopIndependentDefUseDependence
-  36: 8 -> 14 loopIndependentDefUseDependence
-  37: 9 -> 10 trueControlDependence
-  38: 10 -> 11 trueControlDependence
-  39: 11 -> 8 loopIndependentDefUseDependence
-  40: 13 -> 13 declarationDependence
-  41: 14 -> 15 trueControlDependence
-  42: 15 -> 16 trueControlDependence
-  43: 15 -> 17 trueControlDependence
-  44: 17 -> 13 loopIndependentDefUseDependence
-  45: 18 -> 18 declarationDependence
-  46: 18 -> 23 loopIndependentDefUseDependence
-  47: 18 -> 23 declarationDependence
-  48: 18 -> 24 loopIndependentDefUseDependence
-  49: 18 -> 24 declarationDependence
-  50: 18 -> 25 declarationDependence
-  51: 19 -> 20 trueControlDependence
-  52: 20 -> 21 trueControlDependence
-  53: 20 -> 24 loopIndependentDefUseDependence
-  54: 20 -> 24 loopIndependentDefUseDependence
-  55: 21 -> 18 loopIndependentDefUseDependence
-  56: 23 -> 24 trueControlDependence
-  57: 24 -> 25 trueControlDependence
-  58: 24 -> 25 loopIndependentDefUseDependence
-  59: 24 -> 28 outputDependence
-  60: 25 -> 22 loopIndependentDefUseDependence
-  61: 26 -> 26 declarationDependence
-  62: 26 -> 31 loopIndependentDefUseDependence
-  63: 26 -> 31 declarationDependence
-  64: 26 -> 32 loopIndependentDefUseDependence
-  65: 26 -> 32 declarationDependence
-  66: 26 -> 33 declarationDependence
-  67: 27 -> 28 trueControlDependence
-  68: 28 -> 29 trueControlDependence
-  69: 28 -> 32 loopIndependentDefUseDependence
-  70: 28 -> 32 loopIndependentDefUseDependence
-  71: 29 -> 26 loopIndependentDefUseDependence
-  72: 31 -> 32 trueControlDependence
-  73: 32 -> 33 trueControlDependence
-  74: 32 -> 33 loopIndependentDefUseDependence
-  75: 33 -> 30 loopIndependentDefUseDependence
+   2: 0 -> 13 trueControlDependence
+   3: 0 -> 14 trueControlDependence
+   4: 0 -> 15 trueControlDependence
+   5: 0 -> 16 trueControlDependence
+   6: 0 -> 17 trueControlDependence
+   7: 0 -> 18 trueControlDependence
+   8: 0 -> 19 trueControlDependence
+   9: 0 -> 2 trueControlDependence
+  10: 0 -> 20 trueControlDependence
+  11: 0 -> 21 trueControlDependence
+  12: 0 -> 22 trueControlDependence
+  13: 0 -> 23 trueControlDependence
+  14: 0 -> 24 trueControlDependence
+  15: 0 -> 25 trueControlDependence
+  16: 0 -> 26 trueControlDependence
+  17: 0 -> 27 trueControlDependence
+  18: 0 -> 28 trueControlDependence
+  19: 0 -> 29 trueControlDependence
+  20: 0 -> 3 trueControlDependence
+  21: 0 -> 30 trueControlDependence
+  22: 0 -> 31 trueControlDependence
+  23: 0 -> 32 trueControlDependence
+  24: 0 -> 33 trueControlDependence
+  25: 0 -> 35 trueControlDependence
+  26: 1 -> 16 declaration
+  27: 1 -> 16 loopIndependentDefUseDependence x$0
+  28: 1 -> 3 declaration
+  29: 1 -> 3 loopIndependentDefUseDependence x$0
+  30: 11 -> 8 loopIndependentDefUseDependence p$1.!R134
+  31: 16 -> 17 summary
+  32: 17 -> 13 loopIndependentDefUseDependence p$1.!f
+  33: 18 -> 23 declaration
+  34: 18 -> 23 loopIndependentDefUseDependence l1$3
+  35: 18 -> 24 declaration
+  36: 18 -> 24 loopIndependentDefUseDependence l1$3
+  37: 18 -> 25 declaration
+  38: 2 -> 14 declaration
+  39: 2 -> 4 declaration
+  40: 2 -> 4 outputDependence p$1
+  41: 2 -> 8 declaration
+  42: 2 -> 8 outputDependence p$1
+  43: 20 -> 21 outputDependence java.util.AbstractList.modCount
+  44: 20 -> 21 outputDependence l1$3.elementData
+  45: 21 -> 18 loopIndependentDefUseDependence l1$3.!ArrayList<String>
+  46: 21 -> 24 loopIndependentDefUseDependence java.util.AbstractList.modCount
+  47: 21 -> 24 loopIndependentDefUseDependence l1$3.elementData
+  48: 21 -> 25 loopIndependentDefUseDependence l1$3.elementData
+  49: 21 -> 35 loopIndependentDefUseDependence l1$3.elementData
+  50: 24 -> 25 loopIndependentDefUseDependence java.util.AbstractList.modCount
+  51: 24 -> 25 loopIndependentDefUseDependence l1$3
+  52: 24 -> 25 loopIndependentDefUseDependence l1$3.size
+  53: 25 -> 22 loopIndependentDefUseDependence l1$3.!add
+  54: 25 -> 28 outputDependence java.util.AbstractList.modCount
+  55: 25 -> 35 loopIndependentDefUseDependence l1$3.size
+  56: 26 -> 31 declaration
+  57: 26 -> 31 loopIndependentDefUseDependence l2$4
+  58: 26 -> 32 declaration
+  59: 26 -> 32 loopIndependentDefUseDependence l2$4
+  60: 26 -> 33 declaration
+  61: 28 -> 29 outputDependence java.util.AbstractList.modCount
+  62: 28 -> 29 outputDependence l2$4.elementData
+  63: 29 -> 26 loopIndependentDefUseDependence l2$4.!ArrayList<String>
+  64: 29 -> 32 loopIndependentDefUseDependence java.util.AbstractList.modCount
+  65: 29 -> 32 loopIndependentDefUseDependence l2$4.elementData
+  66: 29 -> 33 loopIndependentDefUseDependence l2$4.elementData
+  67: 29 -> 35 loopIndependentDefUseDependence l2$4.elementData
+  68: 3 -> 10 falseControlDependence
+  69: 3 -> 11 trueControlDependence
+  70: 3 -> 4 trueControlDependence
+  71: 3 -> 5 trueControlDependence
+  72: 3 -> 6 trueControlDependence
+  73: 3 -> 7 trueControlDependence
+  74: 3 -> 8 falseControlDependence
+  75: 3 -> 9 trueControlDependence
+  76: 32 -> 33 loopIndependentDefUseDependence java.util.AbstractList.modCount
+  77: 32 -> 33 loopIndependentDefUseDependence l2$4
+  78: 32 -> 33 loopIndependentDefUseDependence l2$4.size
+  79: 33 -> 30 loopIndependentDefUseDependence l2$4.!add
+  80: 33 -> 35 loopIndependentDefUseDependence java.util.AbstractList.modCount
+  81: 33 -> 35 loopIndependentDefUseDependence l2$4.size
+  82: 4 -> 14 loopIndependentDefUseDependence p$1
+  83: 7 -> 4 loopIndependentDefUseDependence p$1.!Q134
+  84: 8 -> 14 loopIndependentDefUseDependence p$1
 --
    0: inc( int )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence
-   5: 2 -> 4 loopIndependentDefUseDependence
+   4: 1 -> 2 loopIndependentDefUseDependence a$0
+   5: 2 -> 4 loopIndependentDefUseDependence $_
 --
    0: getPQ( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 0 -> 6 trueControlDependence
-   4: 1 -> 6 loopIndependentDefUseDependence
-   5: 2 -> 3 trueControlDependence
-   6: 3 -> 4 trueControlDependence
-   7: 4 -> 1 loopIndependentDefUseDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 1 -> 6 loopIndependentDefUseDependence $_
+   7: 4 -> 1 loopIndependentDefUseDependence Q134.!Q134
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 7 trueControlDependence
-   5: 0 -> 8 trueControlDependence
-   6: 0 -> 12 trueControlDependence
-   7: 0 -> 13 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 21 trueControlDependence
-  11: 0 -> 22 trueControlDependence
-  12: 0 -> 25 trueControlDependence
-  13: 0 -> 26 trueControlDependence
-  14: 0 -> 30 trueControlDependence
-  15: 0 -> 31 trueControlDependence
-  16: 0 -> 34 trueControlDependence
-  17: 0 -> 35 trueControlDependence
-  18: 0 -> 39 trueControlDependence
-  19: 0 -> 40 trueControlDependence
-  20: 0 -> 41 trueControlDependence
-  21: 0 -> 45 trueControlDependence
-  22: 0 -> 46 trueControlDependence
-  23: 0 -> 47 trueControlDependence
-  24: 0 -> 51 trueControlDependence
-  25: 0 -> 52 trueControlDependence
-  26: 0 -> 55 trueControlDependence
-  27: 0 -> 56 trueControlDependence
-  28: 0 -> 60 trueControlDependence
-  29: 0 -> 61 trueControlDependence
-  30: 0 -> 64 trueControlDependence
-  31: 0 -> 65 trueControlDependence
-  32: 0 -> 69 trueControlDependence
-  33: 0 -> 70 trueControlDependence
-  34: 0 -> 73 trueControlDependence
-  35: 0 -> 74 trueControlDependence
-  36: 0 -> 78 trueControlDependence
-  37: 0 -> 79 trueControlDependence
-  38: 0 -> 82 trueControlDependence
-  39: 0 -> 83 trueControlDependence
-  40: 0 -> 87 trueControlDependence
-  41: 0 -> 88 trueControlDependence
-  42: 0 -> 91 trueControlDependence
-  43: 0 -> 92 trueControlDependence
-  44: 0 -> 96 trueControlDependence
-  45: 0 -> 97 trueControlDependence
-  46: 0 -> 100 trueControlDependence
-  47: 0 -> 101 trueControlDependence
-  48: 0 -> 106 trueControlDependence
-  49: 1 -> 1 declarationDependence
-  50: 1 -> 5 loopIndependentDefUseDependence
-  51: 1 -> 5 declarationDependence
-  52: 1 -> 10 loopIndependentDefUseDependence
-  53: 1 -> 10 declarationDependence
-  54: 1 -> 19 loopIndependentDefUseDependence
-  55: 1 -> 19 declarationDependence
-  56: 1 -> 28 loopIndependentDefUseDependence
-  57: 1 -> 28 declarationDependence
-  58: 1 -> 37 loopIndependentDefUseDependence
-  59: 1 -> 37 declarationDependence
-  60: 1 -> 43 loopIndependentDefUseDependence
-  61: 1 -> 43 declarationDependence
-  62: 1 -> 49 loopIndependentDefUseDependence
-  63: 1 -> 49 declarationDependence
-  64: 1 -> 58 loopIndependentDefUseDependence
-  65: 1 -> 58 declarationDependence
-  66: 1 -> 67 loopIndependentDefUseDependence
-  67: 1 -> 67 declarationDependence
-  68: 1 -> 76 loopIndependentDefUseDependence
-  69: 1 -> 76 declarationDependence
-  70: 1 -> 85 loopIndependentDefUseDependence
-  71: 1 -> 85 declarationDependence
-  72: 1 -> 94 loopIndependentDefUseDependence
-  73: 1 -> 94 declarationDependence
-  74: 1 -> 103 loopIndependentDefUseDependence
-  75: 1 -> 103 declarationDependence
-  76: 2 -> 2 declarationDependence
-  77: 3 -> 4 trueControlDependence
-  78: 4 -> 5 trueControlDependence
-  79: 4 -> 6 trueControlDependence
-  80: 4 -> 142 call
-  81: 5 -> 143 parameterIn
-  82: 6 -> 2 loopIndependentDefUseDependence
-  83: 7 -> 7 declarationDependence
-  84: 8 -> 9 trueControlDependence
-  85: 9 -> 10 trueControlDependence
-  86: 9 -> 11 trueControlDependence
-  87: 9 -> 147 call
-  88: 10 -> 148 parameterIn
-  89: 11 -> 7 loopIndependentDefUseDependence
-  90: 12 -> 12 declarationDependence
-  91: 12 -> 17 loopIndependentDefUseDependence
-  92: 12 -> 17 declarationDependence
-  93: 13 -> 14 trueControlDependence
-  94: 14 -> 15 trueControlDependence
-  95: 15 -> 12 loopIndependentDefUseDependence
-  96: 16 -> 16 declarationDependence
-  97: 17 -> 18 trueControlDependence
-  98: 18 -> 19 trueControlDependence
-  99: 18 -> 20 trueControlDependence
- 100: 20 -> 16 loopIndependentDefUseDependence
- 101: 21 -> 21 declarationDependence
- 102: 21 -> 26 loopIndependentDefUseDependence
- 103: 21 -> 26 declarationDependence
- 104: 21 -> 39 loopIndependentDefUseDependence
- 105: 21 -> 39 declarationDependence
- 106: 21 -> 41 loopIndependentDefUseDependence
- 107: 21 -> 41 declarationDependence
- 108: 22 -> 23 trueControlDependence
- 109: 23 -> 24 trueControlDependence
- 110: 24 -> 21 loopIndependentDefUseDependence
- 111: 25 -> 25 declarationDependence
- 112: 26 -> 27 trueControlDependence
- 113: 27 -> 28 trueControlDependence
- 114: 27 -> 29 trueControlDependence
- 115: 29 -> 25 loopIndependentDefUseDependence
- 116: 29 -> 40 loopIndependentDefUseDependence
- 117: 30 -> 30 declarationDependence
- 118: 30 -> 35 loopIndependentDefUseDependence
- 119: 30 -> 35 declarationDependence
- 120: 30 -> 45 loopIndependentDefUseDependence
- 121: 30 -> 45 declarationDependence
- 122: 30 -> 47 loopIndependentDefUseDependence
- 123: 30 -> 47 declarationDependence
- 124: 31 -> 32 trueControlDependence
- 125: 32 -> 33 trueControlDependence
- 126: 33 -> 30 loopIndependentDefUseDependence
- 127: 34 -> 34 declarationDependence
- 128: 35 -> 36 trueControlDependence
- 129: 36 -> 37 trueControlDependence
- 130: 36 -> 38 trueControlDependence
- 131: 38 -> 34 loopIndependentDefUseDependence
- 132: 38 -> 46 loopIndependentDefUseDependence
- 133: 39 -> 39 declarationDependence
- 134: 39 -> 41 loopIndependentDefUseDependence
- 135: 39 -> 41 declarationDependence
- 136: 40 -> 40 declarationDependence
- 137: 41 -> 42 trueControlDependence
- 138: 42 -> 43 trueControlDependence
- 139: 42 -> 44 trueControlDependence
- 140: 44 -> 40 loopIndependentDefUseDependence
- 141: 45 -> 45 declarationDependence
- 142: 45 -> 47 loopIndependentDefUseDependence
- 143: 45 -> 47 declarationDependence
- 144: 46 -> 46 declarationDependence
- 145: 47 -> 48 trueControlDependence
- 146: 48 -> 49 trueControlDependence
- 147: 48 -> 50 trueControlDependence
- 148: 50 -> 46 loopIndependentDefUseDependence
- 149: 51 -> 51 declarationDependence
- 150: 51 -> 56 loopIndependentDefUseDependence
- 151: 51 -> 56 declarationDependence
- 152: 52 -> 53 trueControlDependence
- 153: 53 -> 54 trueControlDependence
- 154: 54 -> 51 loopIndependentDefUseDependence
- 155: 55 -> 55 declarationDependence
- 156: 56 -> 57 trueControlDependence
- 157: 57 -> 58 trueControlDependence
- 158: 57 -> 59 trueControlDependence
- 159: 59 -> 55 loopIndependentDefUseDependence
- 160: 60 -> 60 declarationDependence
- 161: 60 -> 65 loopIndependentDefUseDependence
- 162: 60 -> 65 declarationDependence
- 163: 61 -> 62 trueControlDependence
- 164: 62 -> 63 trueControlDependence
- 165: 63 -> 60 loopIndependentDefUseDependence
- 166: 64 -> 64 declarationDependence
- 167: 65 -> 66 trueControlDependence
- 168: 66 -> 67 trueControlDependence
- 169: 66 -> 68 trueControlDependence
- 170: 68 -> 64 loopIndependentDefUseDependence
- 171: 69 -> 69 declarationDependence
- 172: 69 -> 74 loopIndependentDefUseDependence
- 173: 69 -> 74 declarationDependence
- 174: 70 -> 71 trueControlDependence
- 175: 71 -> 72 trueControlDependence
- 176: 72 -> 69 loopIndependentDefUseDependence
- 177: 73 -> 73 declarationDependence
- 178: 74 -> 75 trueControlDependence
- 179: 75 -> 76 trueControlDependence
- 180: 75 -> 77 trueControlDependence
- 181: 77 -> 73 loopIndependentDefUseDependence
- 182: 78 -> 78 declarationDependence
- 183: 78 -> 83 loopIndependentDefUseDependence
- 184: 78 -> 83 declarationDependence
- 185: 79 -> 80 trueControlDependence
- 186: 80 -> 81 trueControlDependence
- 187: 80 -> 121 call
- 188: 81 -> 78 loopIndependentDefUseDependence
- 189: 81 -> 83 loopIndependentDefUseDependence
- 190: 82 -> 82 declarationDependence
- 191: 83 -> 84 trueControlDependence
- 192: 84 -> 85 trueControlDependence
- 193: 84 -> 86 trueControlDependence
- 194: 86 -> 82 loopIndependentDefUseDependence
- 195: 87 -> 87 declarationDependence
- 196: 87 -> 92 loopIndependentDefUseDependence
- 197: 87 -> 92 declarationDependence
- 198: 88 -> 89 trueControlDependence
- 199: 89 -> 90 trueControlDependence
- 200: 89 -> 107 call
- 201: 90 -> 87 loopIndependentDefUseDependence
- 202: 90 -> 92 loopIndependentDefUseDependence
- 203: 91 -> 91 declarationDependence
- 204: 92 -> 93 trueControlDependence
- 205: 93 -> 94 trueControlDependence
- 206: 93 -> 95 trueControlDependence
- 207: 95 -> 91 loopIndependentDefUseDependence
- 208: 96 -> 96 declarationDependence
- 209: 96 -> 101 loopIndependentDefUseDependence
- 210: 96 -> 101 declarationDependence
- 211: 97 -> 98 trueControlDependence
- 212: 98 -> 99 trueControlDependence
- 213: 98 -> 114 call
- 214: 99 -> 96 loopIndependentDefUseDependence
- 215: 99 -> 101 loopIndependentDefUseDependence
- 216: 100 -> 100 declarationDependence
- 217: 101 -> 102 trueControlDependence
- 218: 102 -> 103 trueControlDependence
- 219: 102 -> 104 trueControlDependence
- 220: 104 -> 100 loopIndependentDefUseDependence
- 221: 113 -> 90 parameterOut
- 222: 120 -> 99 parameterOut
- 223: 127 -> 81 parameterOut
- 224: 146 -> 6 parameterOut
- 225: 151 -> 11 parameterOut
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 100 trueControlDependence
+   4: 0 -> 101 trueControlDependence
+   5: 0 -> 102 trueControlDependence
+   6: 0 -> 103 trueControlDependence
+   7: 0 -> 104 trueControlDependence
+   8: 0 -> 106 trueControlDependence
+   9: 0 -> 11 trueControlDependence
+  10: 0 -> 12 trueControlDependence
+  11: 0 -> 13 trueControlDependence
+  12: 0 -> 14 trueControlDependence
+  13: 0 -> 15 trueControlDependence
+  14: 0 -> 16 trueControlDependence
+  15: 0 -> 17 trueControlDependence
+  16: 0 -> 18 trueControlDependence
+  17: 0 -> 19 trueControlDependence
+  18: 0 -> 2 trueControlDependence
+  19: 0 -> 20 trueControlDependence
+  20: 0 -> 21 trueControlDependence
+  21: 0 -> 22 trueControlDependence
+  22: 0 -> 23 trueControlDependence
+  23: 0 -> 24 trueControlDependence
+  24: 0 -> 25 trueControlDependence
+  25: 0 -> 26 trueControlDependence
+  26: 0 -> 27 trueControlDependence
+  27: 0 -> 28 trueControlDependence
+  28: 0 -> 29 trueControlDependence
+  29: 0 -> 3 trueControlDependence
+  30: 0 -> 30 trueControlDependence
+  31: 0 -> 31 trueControlDependence
+  32: 0 -> 32 trueControlDependence
+  33: 0 -> 33 trueControlDependence
+  34: 0 -> 34 trueControlDependence
+  35: 0 -> 35 trueControlDependence
+  36: 0 -> 36 trueControlDependence
+  37: 0 -> 37 trueControlDependence
+  38: 0 -> 38 trueControlDependence
+  39: 0 -> 39 trueControlDependence
+  40: 0 -> 4 trueControlDependence
+  41: 0 -> 40 trueControlDependence
+  42: 0 -> 41 trueControlDependence
+  43: 0 -> 42 trueControlDependence
+  44: 0 -> 43 trueControlDependence
+  45: 0 -> 44 trueControlDependence
+  46: 0 -> 45 trueControlDependence
+  47: 0 -> 46 trueControlDependence
+  48: 0 -> 47 trueControlDependence
+  49: 0 -> 48 trueControlDependence
+  50: 0 -> 49 trueControlDependence
+  51: 0 -> 5 trueControlDependence
+  52: 0 -> 50 trueControlDependence
+  53: 0 -> 51 trueControlDependence
+  54: 0 -> 52 trueControlDependence
+  55: 0 -> 53 trueControlDependence
+  56: 0 -> 54 trueControlDependence
+  57: 0 -> 55 trueControlDependence
+  58: 0 -> 56 trueControlDependence
+  59: 0 -> 57 trueControlDependence
+  60: 0 -> 58 trueControlDependence
+  61: 0 -> 59 trueControlDependence
+  62: 0 -> 6 trueControlDependence
+  63: 0 -> 60 trueControlDependence
+  64: 0 -> 61 trueControlDependence
+  65: 0 -> 62 trueControlDependence
+  66: 0 -> 63 trueControlDependence
+  67: 0 -> 64 trueControlDependence
+  68: 0 -> 65 trueControlDependence
+  69: 0 -> 66 trueControlDependence
+  70: 0 -> 67 trueControlDependence
+  71: 0 -> 68 trueControlDependence
+  72: 0 -> 69 trueControlDependence
+  73: 0 -> 7 trueControlDependence
+  74: 0 -> 70 trueControlDependence
+  75: 0 -> 71 trueControlDependence
+  76: 0 -> 72 trueControlDependence
+  77: 0 -> 73 trueControlDependence
+  78: 0 -> 74 trueControlDependence
+  79: 0 -> 75 trueControlDependence
+  80: 0 -> 76 trueControlDependence
+  81: 0 -> 77 trueControlDependence
+  82: 0 -> 78 trueControlDependence
+  83: 0 -> 79 trueControlDependence
+  84: 0 -> 8 trueControlDependence
+  85: 0 -> 80 trueControlDependence
+  86: 0 -> 81 trueControlDependence
+  87: 0 -> 82 trueControlDependence
+  88: 0 -> 83 trueControlDependence
+  89: 0 -> 84 trueControlDependence
+  90: 0 -> 85 trueControlDependence
+  91: 0 -> 86 trueControlDependence
+  92: 0 -> 87 trueControlDependence
+  93: 0 -> 88 trueControlDependence
+  94: 0 -> 89 trueControlDependence
+  95: 0 -> 9 trueControlDependence
+  96: 0 -> 90 trueControlDependence
+  97: 0 -> 91 trueControlDependence
+  98: 0 -> 92 trueControlDependence
+  99: 0 -> 93 trueControlDependence
+ 100: 0 -> 94 trueControlDependence
+ 101: 0 -> 95 trueControlDependence
+ 102: 0 -> 96 trueControlDependence
+ 103: 0 -> 97 trueControlDependence
+ 104: 0 -> 98 trueControlDependence
+ 105: 0 -> 99 trueControlDependence
+ 106: 1 -> 10 declaration
+ 107: 1 -> 10 loopIndependentDefUseDependence x$0
+ 108: 1 -> 103 declaration
+ 109: 1 -> 103 loopIndependentDefUseDependence x$0
+ 110: 1 -> 19 declaration
+ 111: 1 -> 19 loopIndependentDefUseDependence x$0
+ 112: 1 -> 28 declaration
+ 113: 1 -> 28 loopIndependentDefUseDependence x$0
+ 114: 1 -> 37 declaration
+ 115: 1 -> 37 loopIndependentDefUseDependence x$0
+ 116: 1 -> 43 declaration
+ 117: 1 -> 43 loopIndependentDefUseDependence x$0
+ 118: 1 -> 49 declaration
+ 119: 1 -> 49 loopIndependentDefUseDependence x$0
+ 120: 1 -> 5 declaration
+ 121: 1 -> 5 loopIndependentDefUseDependence x$0
+ 122: 1 -> 58 declaration
+ 123: 1 -> 58 loopIndependentDefUseDependence x$0
+ 124: 1 -> 67 declaration
+ 125: 1 -> 67 loopIndependentDefUseDependence x$0
+ 126: 1 -> 76 declaration
+ 127: 1 -> 76 loopIndependentDefUseDependence x$0
+ 128: 1 -> 85 declaration
+ 129: 1 -> 85 loopIndependentDefUseDependence x$0
+ 130: 1 -> 94 declaration
+ 131: 1 -> 94 loopIndependentDefUseDependence x$0
+ 132: 10 -> 11 summary
+ 133: 103 -> 104 summary
+ 134: 104 -> 100 loopIndependentDefUseDependence p4$23.!f
+ 135: 11 -> 7 loopIndependentDefUseDependence this.!dec
+ 136: 12 -> 17 declaration
+ 137: 12 -> 17 loopIndependentDefUseDependence p$3
+ 138: 15 -> 12 loopIndependentDefUseDependence p$3.!P134
+ 139: 19 -> 20 summary
+ 140: 20 -> 16 loopIndependentDefUseDependence p$3.!f
+ 141: 21 -> 26 declaration
+ 142: 21 -> 26 loopIndependentDefUseDependence q1$5
+ 143: 21 -> 39 declaration
+ 144: 21 -> 39 loopIndependentDefUseDependence q1$5
+ 145: 21 -> 41 declaration
+ 146: 21 -> 41 loopIndependentDefUseDependence q1$5
+ 147: 24 -> 21 loopIndependentDefUseDependence q1$5.!Q134
+ 148: 28 -> 29 summary
+ 149: 29 -> 25 loopIndependentDefUseDependence q1$5.!f
+ 150: 29 -> 40 loopIndependentDefUseDependence q1$5.!f
+ 151: 30 -> 35 declaration
+ 152: 30 -> 35 loopIndependentDefUseDependence q2$7
+ 153: 30 -> 45 declaration
+ 154: 30 -> 45 loopIndependentDefUseDependence q2$7
+ 155: 30 -> 47 declaration
+ 156: 30 -> 47 loopIndependentDefUseDependence q2$7
+ 157: 33 -> 30 loopIndependentDefUseDependence q2$7.!Q134
+ 158: 37 -> 38 summary
+ 159: 38 -> 34 loopIndependentDefUseDependence q2$7.!f
+ 160: 38 -> 46 loopIndependentDefUseDependence q2$7.!f
+ 161: 39 -> 41 declaration
+ 162: 39 -> 41 loopIndependentDefUseDependence q3$9
+ 163: 43 -> 44 summary
+ 164: 44 -> 40 loopIndependentDefUseDependence q3$9.!f
+ 165: 45 -> 47 declaration
+ 166: 45 -> 47 loopIndependentDefUseDependence q4$11
+ 167: 49 -> 50 summary
+ 168: 5 -> 6 summary
+ 169: 50 -> 46 loopIndependentDefUseDependence q4$11.!f
+ 170: 51 -> 56 declaration
+ 171: 51 -> 56 loopIndependentDefUseDependence r1$13
+ 172: 54 -> 51 loopIndependentDefUseDependence r1$13.!R134
+ 173: 58 -> 59 summary
+ 174: 59 -> 55 loopIndependentDefUseDependence r1$13.!f
+ 175: 6 -> 2 loopIndependentDefUseDependence this.!inc
+ 176: 60 -> 65 declaration
+ 177: 60 -> 65 loopIndependentDefUseDependence r2$15
+ 178: 63 -> 60 loopIndependentDefUseDependence r2$15.!R134
+ 179: 67 -> 68 summary
+ 180: 68 -> 64 loopIndependentDefUseDependence r2$15.!f
+ 181: 69 -> 74 declaration
+ 182: 69 -> 74 loopIndependentDefUseDependence r3$17
+ 183: 72 -> 69 loopIndependentDefUseDependence r3$17.!R134
+ 184: 76 -> 77 summary
+ 185: 77 -> 73 loopIndependentDefUseDependence r3$17.!f
+ 186: 78 -> 83 declaration
+ 187: 78 -> 83 loopIndependentDefUseDependence p2$19
+ 188: 81 -> 78 loopIndependentDefUseDependence this.!getP
+ 189: 81 -> 83 loopIndependentDefUseDependence this.!getP
+ 190: 85 -> 86 summary
+ 191: 86 -> 82 loopIndependentDefUseDependence p2$19.!f
+ 192: 87 -> 92 declaration
+ 193: 87 -> 92 loopIndependentDefUseDependence p3$21
+ 194: 90 -> 87 loopIndependentDefUseDependence this.!getQ
+ 195: 90 -> 92 loopIndependentDefUseDependence this.!getQ
+ 196: 94 -> 95 summary
+ 197: 95 -> 91 loopIndependentDefUseDependence p3$21.!f
+ 198: 96 -> 101 declaration
+ 199: 96 -> 101 loopIndependentDefUseDependence p4$23
+ 200: 99 -> 101 loopIndependentDefUseDependence this.!getPQ
+ 201: 99 -> 96 loopIndependentDefUseDependence this.!getPQ
 --
    0: dec( int )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence
-   5: 2 -> 4 loopIndependentDefUseDependence
+   4: 1 -> 2 loopIndependentDefUseDependence a$0
+   5: 2 -> 4 loopIndependentDefUseDependence $_
 --
    0: n1( P134 int )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 3 trueControlDependence
    4: 0 -> 4 trueControlDependence
-   5: 0 -> 9 trueControlDependence
-   6: 1 -> 4 loopIndependentDefUseDependence
-   7: 2 -> 6 loopIndependentDefUseDependence
-   8: 3 -> 3 declarationDependence
-   9: 4 -> 5 trueControlDependence
-  10: 5 -> 6 trueControlDependence
-  11: 5 -> 7 trueControlDependence
-  12: 7 -> 3 loopIndependentDefUseDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 7 trueControlDependence
+   8: 0 -> 9 trueControlDependence
+   9: 1 -> 4 loopIndependentDefUseDependence p$0
+  10: 2 -> 6 loopIndependentDefUseDependence x$1
+  11: 6 -> 7 summary
+  12: 7 -> 3 loopIndependentDefUseDependence p$0.!f
 --
    0: n2( P134 int )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 3 trueControlDependence
    4: 0 -> 4 trueControlDependence
-   5: 0 -> 9 trueControlDependence
-   6: 1 -> 4 loopIndependentDefUseDependence
-   7: 2 -> 6 loopIndependentDefUseDependence
-   8: 3 -> 3 declarationDependence
-   9: 4 -> 5 trueControlDependence
-  10: 5 -> 6 trueControlDependence
-  11: 5 -> 7 trueControlDependence
-  12: 7 -> 3 loopIndependentDefUseDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 7 trueControlDependence
+   8: 0 -> 9 trueControlDependence
+   9: 1 -> 4 loopIndependentDefUseDependence p$0
+  10: 2 -> 6 loopIndependentDefUseDependence x$1
+  11: 6 -> 7 summary
+  12: 7 -> 3 loopIndependentDefUseDependence p$0.!f
 --
 ----- ClDG (to here) -----
 

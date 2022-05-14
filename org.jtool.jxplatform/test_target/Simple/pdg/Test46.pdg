@@ -1,0 +1,241 @@
+----- ClDG (from here) -----
+Class Name = Test46
+   0 constructorEntry [ Test46( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m1( ) ]
+   1 localDeclaration D = { p$0 } U = { p$0.!P46 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P46#P46( )
+   4 actualOut D = { p$0.!P46 } U = {  }
+   5 assignment D = {  } U = { p$0.!set }
+   6 receiver D = {  } U = { p$0 }
+   7 methodCall D = { p$0.value } U = { p$0.value } TO = P46#set( java.lang.String )
+   8 actualIn D = {  } U = { $java.lang.String }
+   9 actualOut D = { p$0.!set, p$0.value } U = { p$0.value }
+  10 localDeclaration D = { r$1 } U = { p$0.!get }
+  11 receiver D = {  } U = { p$0 }
+  12 methodCall D = {  } U = { p$0.value } TO = P46#get( )
+  13 actualOut D = { p$0.!get } U = { p$0.value }
+  14 returnSt D = { $_ } U = { p$0 }
+  16 formalOut D = {  } U = { $_, p$0.value }
+--
+   0 methodEntry [ m2( ) ]
+   1 localDeclaration D = { q$0 } U = { q$0.!Q46 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = Q46#Q46( )
+   4 actualOut D = { q$0.!Q46 } U = {  }
+   5 assignment D = {  } U = { q$0.!set }
+   6 receiver D = {  } U = { q$0 }
+   7 methodCall D = { q$0, q$0.map } U = { q$0, q$0.map } TO = Q46#set( java.lang.String java.lang.String )
+   8 actualIn D = {  } U = { $java.lang.String }
+   9 actualIn D = {  } U = { $java.lang.String }
+  10 actualOut D = { q$0, q$0.!set, q$0.map } U = { q$0, q$0.map }
+  11 localDeclaration D = { r$1 } U = { q$0.!get }
+  12 receiver D = {  } U = { q$0 }
+  13 methodCall D = {  } U = { q$0, q$0.map } TO = Q46#get( java.lang.String )
+  14 actualIn D = {  } U = { $java.lang.String }
+  15 actualOut D = { q$0.!get } U = { q$0.map }
+  16 returnSt D = { $_ } U = { q$0 }
+  18 formalOut D = {  } U = { $_, q$0.map }
+--
+   0 methodEntry [ m3( ) ]
+   1 localDeclaration D = { m$0 } U = { m$0.!HashMap<String,String> }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { m$0.loadFactor } U = {  } TO = java.util.HashMap#HashMap( )
+   4 actualOut D = { m$0.!HashMap<String,String>, m$0.loadFactor } U = {  }
+   5 assignment D = {  } U = { m$0.!put }
+   6 receiver D = {  } U = { m$0 }
+   7 methodCall D = { m$0, m$0$Node.next, m$0$Node.value, m$0.modCount, m$0.size } U = { $java.lang.String, m$0, m$0$Node.hash, m$0$Node.key, m$0$Node.next, m$0$Node.value, m$0.modCount, m$0.size, m$0.table, m$0.threshold } TO = java.util.Map#put( java.lang.Object java.lang.Object )
+   8 actualOut D = { m$0, m$0$Node.next, m$0$Node.value, m$0.!put, m$0.modCount, m$0.size } U = { m$0, m$0$Node.hash, m$0$Node.key, m$0$Node.next, m$0$Node.value, m$0.modCount, m$0.size, m$0.table, m$0.threshold }
+   9 localDeclaration D = { r1$1 } U = { m$0.!get }
+  10 receiver D = {  } U = { m$0 }
+  11 methodCall D = {  } U = { $java.lang.String, m$0, m$0$Node.hash, m$0$Node.key, m$0$Node.next, m$0$Node.value, m$0.table } TO = java.util.Map#get( java.lang.Object )
+  12 actualOut D = { m$0.!get } U = { m$0$Node.hash, m$0$Node.key, m$0$Node.next, m$0$Node.value, m$0.table }
+  13 returnSt D = { $_ } U = { m$0 }
+  15 formalOut D = {  } U = { $_, m$0$Node.next, m$0$Node.value, m$0.loadFactor, m$0.modCount, m$0.size }
+--
+   0 methodEntry [ m4( ) ]
+   1 localDeclaration D = { l$0 } U = { l$0.!ArrayList<String> }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { java.util.AbstractList.modCount, l$0.elementData } U = { l$0.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
+   4 actualOut D = { java.util.AbstractList.modCount, l$0.!ArrayList<String>, l$0.elementData } U = { l$0.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   5 assignment D = {  } U = { l$0.!add }
+   6 receiver D = {  } U = { l$0 }
+   7 methodCall D = { java.util.AbstractList.modCount, l$0, l$0.size } U = { $java.lang.String, java.util.AbstractList.modCount, l$0, l$0.elementData, l$0.size } TO = java.util.List#add( java.lang.Object )
+   8 actualOut D = { java.util.AbstractList.modCount, l$0, l$0.!add, l$0.size } U = { java.util.AbstractList.modCount, l$0, l$0.elementData, l$0.size }
+   9 localDeclaration D = { s1$1 } U = { l$0.!size }
+  10 receiver D = {  } U = { l$0 }
+  11 methodCall D = {  } U = { l$0, l$0.size } TO = java.util.List#size( )
+  12 actualOut D = { l$0.!size } U = { l$0.size }
+  13 returnSt D = { $_ } U = { l$0 }
+  15 formalOut D = {  } U = { $_, java.util.AbstractList.modCount, l$0.elementData, l$0.size }
+--
+   0: Test46( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: m1( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 16 trueControlDependence
+   8: 0 -> 2 trueControlDependence
+   9: 0 -> 3 trueControlDependence
+  10: 0 -> 4 trueControlDependence
+  11: 0 -> 5 trueControlDependence
+  12: 0 -> 6 trueControlDependence
+  13: 0 -> 7 trueControlDependence
+  14: 0 -> 8 trueControlDependence
+  15: 0 -> 9 trueControlDependence
+  16: 1 -> 11 declaration
+  17: 1 -> 11 loopIndependentDefUseDependence p$0
+  18: 1 -> 14 declaration
+  19: 1 -> 14 loopIndependentDefUseDependence p$0
+  20: 1 -> 6 declaration
+  21: 1 -> 6 loopIndependentDefUseDependence p$0
+  22: 13 -> 10 loopIndependentDefUseDependence p$0.!get
+  23: 14 -> 16 loopIndependentDefUseDependence $_
+  24: 4 -> 1 loopIndependentDefUseDependence p$0.!P46
+  25: 7 -> 9 loopIndependentDefUseDependence p$0.value
+  26: 8 -> 9 summary
+  27: 9 -> 12 loopIndependentDefUseDependence p$0.value
+  28: 9 -> 13 loopIndependentDefUseDependence p$0.value
+  29: 9 -> 16 loopIndependentDefUseDependence p$0.value
+  30: 9 -> 5 loopIndependentDefUseDependence p$0.!set
+--
+   0: m2( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 18 trueControlDependence
+  10: 0 -> 2 trueControlDependence
+  11: 0 -> 3 trueControlDependence
+  12: 0 -> 4 trueControlDependence
+  13: 0 -> 5 trueControlDependence
+  14: 0 -> 6 trueControlDependence
+  15: 0 -> 7 trueControlDependence
+  16: 0 -> 8 trueControlDependence
+  17: 0 -> 9 trueControlDependence
+  18: 1 -> 10 declaration
+  19: 1 -> 12 declaration
+  20: 1 -> 13 declaration
+  21: 1 -> 16 declaration
+  22: 1 -> 6 declaration
+  23: 1 -> 6 loopIndependentDefUseDependence q$0
+  24: 1 -> 7 declaration
+  25: 1 -> 7 loopIndependentDefUseDependence q$0
+  26: 10 -> 12 loopIndependentDefUseDependence q$0
+  27: 10 -> 13 loopIndependentDefUseDependence q$0
+  28: 10 -> 13 loopIndependentDefUseDependence q$0.map
+  29: 10 -> 15 loopIndependentDefUseDependence q$0.map
+  30: 10 -> 16 loopIndependentDefUseDependence q$0
+  31: 10 -> 18 loopIndependentDefUseDependence q$0.map
+  32: 10 -> 5 loopIndependentDefUseDependence q$0.!set
+  33: 15 -> 11 loopIndependentDefUseDependence q$0.!get
+  34: 16 -> 18 loopIndependentDefUseDependence $_
+  35: 4 -> 1 loopIndependentDefUseDependence q$0.!Q46
+  36: 7 -> 10 loopIndependentDefUseDependence q$0
+  37: 7 -> 10 loopIndependentDefUseDependence q$0.map
+  38: 8 -> 10 summary
+  39: 9 -> 10 summary
+--
+   0: m3( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 15 trueControlDependence
+   7: 0 -> 2 trueControlDependence
+   8: 0 -> 3 trueControlDependence
+   9: 0 -> 4 trueControlDependence
+  10: 0 -> 5 trueControlDependence
+  11: 0 -> 6 trueControlDependence
+  12: 0 -> 7 trueControlDependence
+  13: 0 -> 8 trueControlDependence
+  14: 0 -> 9 trueControlDependence
+  15: 1 -> 10 declaration
+  16: 1 -> 11 declaration
+  17: 1 -> 13 declaration
+  18: 1 -> 6 declaration
+  19: 1 -> 6 loopIndependentDefUseDependence m$0
+  20: 1 -> 7 declaration
+  21: 1 -> 7 loopIndependentDefUseDependence m$0
+  22: 1 -> 8 declaration
+  23: 12 -> 9 loopIndependentDefUseDependence m$0.!get
+  24: 13 -> 15 loopIndependentDefUseDependence $_
+  25: 3 -> 4 outputDependence m$0.loadFactor
+  26: 4 -> 1 loopIndependentDefUseDependence m$0.!HashMap<String,String>
+  27: 4 -> 15 loopIndependentDefUseDependence m$0.loadFactor
+  28: 7 -> 8 loopIndependentDefUseDependence m$0
+  29: 7 -> 8 loopIndependentDefUseDependence m$0$Node.next
+  30: 7 -> 8 loopIndependentDefUseDependence m$0$Node.value
+  31: 7 -> 8 loopIndependentDefUseDependence m$0.modCount
+  32: 7 -> 8 loopIndependentDefUseDependence m$0.size
+  33: 8 -> 10 loopIndependentDefUseDependence m$0
+  34: 8 -> 11 loopIndependentDefUseDependence m$0
+  35: 8 -> 11 loopIndependentDefUseDependence m$0$Node.next
+  36: 8 -> 11 loopIndependentDefUseDependence m$0$Node.value
+  37: 8 -> 12 loopIndependentDefUseDependence m$0$Node.next
+  38: 8 -> 12 loopIndependentDefUseDependence m$0$Node.value
+  39: 8 -> 13 loopIndependentDefUseDependence m$0
+  40: 8 -> 15 loopIndependentDefUseDependence m$0$Node.next
+  41: 8 -> 15 loopIndependentDefUseDependence m$0$Node.value
+  42: 8 -> 15 loopIndependentDefUseDependence m$0.modCount
+  43: 8 -> 15 loopIndependentDefUseDependence m$0.size
+  44: 8 -> 5 loopIndependentDefUseDependence m$0.!put
+--
+   0: m4( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 15 trueControlDependence
+   7: 0 -> 2 trueControlDependence
+   8: 0 -> 3 trueControlDependence
+   9: 0 -> 4 trueControlDependence
+  10: 0 -> 5 trueControlDependence
+  11: 0 -> 6 trueControlDependence
+  12: 0 -> 7 trueControlDependence
+  13: 0 -> 8 trueControlDependence
+  14: 0 -> 9 trueControlDependence
+  15: 1 -> 10 declaration
+  16: 1 -> 11 declaration
+  17: 1 -> 13 declaration
+  18: 1 -> 6 declaration
+  19: 1 -> 6 loopIndependentDefUseDependence l$0
+  20: 1 -> 7 declaration
+  21: 1 -> 7 loopIndependentDefUseDependence l$0
+  22: 1 -> 8 declaration
+  23: 12 -> 9 loopIndependentDefUseDependence l$0.!size
+  24: 13 -> 15 loopIndependentDefUseDependence $_
+  25: 3 -> 4 outputDependence java.util.AbstractList.modCount
+  26: 3 -> 4 outputDependence l$0.elementData
+  27: 4 -> 1 loopIndependentDefUseDependence l$0.!ArrayList<String>
+  28: 4 -> 15 loopIndependentDefUseDependence l$0.elementData
+  29: 4 -> 7 loopIndependentDefUseDependence java.util.AbstractList.modCount
+  30: 4 -> 7 loopIndependentDefUseDependence l$0.elementData
+  31: 4 -> 8 loopIndependentDefUseDependence l$0.elementData
+  32: 7 -> 8 loopIndependentDefUseDependence java.util.AbstractList.modCount
+  33: 7 -> 8 loopIndependentDefUseDependence l$0
+  34: 7 -> 8 loopIndependentDefUseDependence l$0.size
+  35: 8 -> 10 loopIndependentDefUseDependence l$0
+  36: 8 -> 11 loopIndependentDefUseDependence l$0
+  37: 8 -> 11 loopIndependentDefUseDependence l$0.size
+  38: 8 -> 12 loopIndependentDefUseDependence l$0.size
+  39: 8 -> 13 loopIndependentDefUseDependence l$0
+  40: 8 -> 15 loopIndependentDefUseDependence java.util.AbstractList.modCount
+  41: 8 -> 15 loopIndependentDefUseDependence l$0.size
+  42: 8 -> 5 loopIndependentDefUseDependence l$0.!add
+--
+----- ClDG (to here) -----
+

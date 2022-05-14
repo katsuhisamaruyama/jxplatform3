@@ -7,19 +7,20 @@ Class Name = Test105
    1 formalIn D = { a$0 } U = {  }
    2 assignment D = { this.a } U = { a$0, this }
    3 returnSt D = { $_ } U = { a$0 }
-   5 formalOut D = {  } U = { $_ }
+   5 formalOut D = {  } U = { $_, this.a }
 --
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { x$0 } U = { this.!setA }
    2 receiver D = {  } U = {  }
-   3 methodCall D = { this.a } U = {  } TO = Test105#setA( int )
+   3 methodCall D = { this.a } U = { this.a } TO = Test105#setA( int )
    4 actualIn D = {  } U = {  }
-   5 actualOut D = { this.!setA } U = {  }
+   5 actualOut D = { this.!setA, this.a } U = { this.a }
    6 localDeclaration D = { y$1 } U = { x$0 }
    7 localDeclaration D = { z$2 } U = { this.a }
-   9 formalOut D = {  } U = { $_ }
+   9 formalOut D = {  } U = { $_, this.a }
 --
    0 constructorEntry [ Test105( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0: a
    1: 0 -> 1 trueControlDependence
@@ -29,31 +30,30 @@ Class Name = Test105
    2: 0 -> 2 trueControlDependence
    3: 0 -> 3 trueControlDependence
    4: 0 -> 5 trueControlDependence
-   5: 1 -> 2 loopIndependentDefUseDependence
-   6: 1 -> 3 loopIndependentDefUseDependence
-   7: 3 -> 5 loopIndependentDefUseDependence
+   5: 1 -> 2 loopIndependentDefUseDependence a$0
+   6: 1 -> 3 loopIndependentDefUseDependence a$0
+   7: 2 -> 5 loopIndependentDefUseDependence this.a
+   8: 3 -> 5 loopIndependentDefUseDependence $_
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 0 -> 6 trueControlDependence
-   4: 0 -> 7 trueControlDependence
-   5: 0 -> 9 trueControlDependence
-   6: 1 -> 1 declarationDependence
-   7: 1 -> 6 loopIndependentDefUseDependence
-   8: 1 -> 6 declarationDependence
-   9: 2 -> 3 trueControlDependence
-  10: 3 -> 4 trueControlDependence
-  11: 3 -> 5 trueControlDependence
-  12: 3 -> 7 loopIndependentDefUseDependence
-  13: 3 -> 10 call
-  14: 4 -> 11 parameterIn
-  15: 5 -> 1 loopIndependentDefUseDependence
-  16: 6 -> 6 declarationDependence
-  17: 7 -> 7 declarationDependence
-  18: 15 -> 5 parameterOut
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 7 trueControlDependence
+   8: 0 -> 9 trueControlDependence
+   9: 1 -> 6 declaration
+  10: 1 -> 6 loopIndependentDefUseDependence x$0
+  11: 3 -> 5 loopIndependentDefUseDependence this.a
+  12: 4 -> 5 summary
+  13: 5 -> 1 loopIndependentDefUseDependence this.!setA
+  14: 5 -> 7 loopIndependentDefUseDependence this.a
+  15: 5 -> 9 loopIndependentDefUseDependence this.a
 --
    0: Test105( )
+   1: 0 -> 2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

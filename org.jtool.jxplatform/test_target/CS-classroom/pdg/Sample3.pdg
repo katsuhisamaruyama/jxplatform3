@@ -1,0 +1,216 @@
+----- ClDG (from here) -----
+Class Name = Sample3
+   0 methodEntry [ main( java.lang.String[] ) ]
+   1 formalIn D = { args$0 } U = {  }
+   2 localDeclaration D = { circle1$1 } U = { circle1$1.!Circle }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = { circle1$1.radius, circle1$1.x, circle1$1.y } U = { circle1$1.radius, circle1$1.x, circle1$1.y } TO = Circle#Circle( int int int )
+   5 actualIn D = {  } U = {  }
+   6 actualIn D = {  } U = {  }
+   7 actualIn D = {  } U = {  }
+   8 actualOut D = { circle1$1.!Circle, circle1$1.radius, circle1$1.x, circle1$1.y } U = { circle1$1.radius, circle1$1.x, circle1$1.y }
+   9 assignment D = {  } U = { System.out.!println }
+  10 receiver D = {  } U = { System.out }
+  11 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, circle1$1.!getRadius, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( java.lang.String )
+  12 receiver D = {  } U = { circle1$1 }
+  13 methodCall D = {  } U = { circle1$1.radius } TO = Circle#getRadius( )
+  14 actualOut D = { circle1$1.!getRadius } U = { circle1$1.radius }
+  15 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
+  16 assignment D = {  } U = { circle1$1.!print }
+  17 receiver D = {  } U = { circle1$1 }
+  18 methodCall D = {  } U = { circle1$1.radius, circle1$1.x, circle1$1.y } TO = Circle#print( )
+  19 actualOut D = { circle1$1.!print } U = { circle1$1.radius, circle1$1.x, circle1$1.y }
+  20 localDeclaration D = { circle2$2 } U = { circle2$2.!BoldCircle }
+  21 receiver D = {  } U = {  }
+  22 constructorCall D = { circle2$2.width } U = { circle2$2.width } TO = BoldCircle#BoldCircle( int int int int )
+  23 actualIn D = {  } U = {  }
+  24 actualIn D = {  } U = {  }
+  25 actualIn D = {  } U = {  }
+  26 actualIn D = {  } U = {  }
+  27 actualOut D = { circle2$2.!BoldCircle, circle2$2.width } U = { circle2$2.width }
+  28 assignment D = {  } U = { System.out.!println }
+  29 receiver D = {  } U = { System.out }
+  30 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, circle2$2.!getWidth, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( java.lang.String )
+  31 receiver D = {  } U = { circle2$2 }
+  32 methodCall D = {  } U = { circle2$2.width } TO = BoldCircle#getWidth( )
+  33 actualOut D = { circle2$2.!getWidth } U = { circle2$2.width }
+  34 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
+  35 assignment D = {  } U = { System.out.!println }
+  36 receiver D = {  } U = { System.out }
+  37 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, circle2$2.!getRadius, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( java.lang.String )
+  38 receiver D = {  } U = { circle2$2 }
+  39 methodCall D = {  } U = { circle2$2.radius, circle2$2.width } TO = BoldCircle#getRadius( )
+  40 actualOut D = { circle2$2.!getRadius } U = { circle2$2.radius, circle2$2.width }
+  41 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
+  42 assignment D = {  } U = { circle2$2.!setRadius }
+  43 receiver D = {  } U = { circle2$2 }
+  44 methodCall D = { circle2$2.radius } U = { circle2$2.radius } TO = Circle#setRadius( int )
+  45 actualIn D = {  } U = {  }
+  46 actualOut D = { circle2$2.!setRadius, circle2$2.radius } U = { circle2$2.radius }
+  47 assignment D = {  } U = { System.out.!println }
+  48 receiver D = {  } U = { System.out }
+  49 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, circle2$2.!getRadius, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( java.lang.String )
+  50 receiver D = {  } U = { circle2$2 }
+  51 methodCall D = {  } U = { circle2$2.radius, circle2$2.width } TO = BoldCircle#getRadius( )
+  52 actualOut D = { circle2$2.!getRadius } U = { circle2$2.radius, circle2$2.width }
+  53 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
+  54 assignment D = {  } U = { circle2$2.!print }
+  55 receiver D = {  } U = { circle2$2 }
+  56 methodCall D = {  } U = { circle2$2.radius, circle2$2.x, circle2$2.y } TO = Circle#print( )
+  57 actualOut D = { circle2$2.!print } U = { circle2$2.radius, circle2$2.x, circle2$2.y }
+  59 formalOut D = {  } U = { $_, System.out, System.out.trouble, circle1$1.radius, circle1$1.x, circle1$1.y, circle2$2.radius, circle2$2.width }
+--
+   0 constructorEntry [ Sample3( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: main( java.lang.String[] )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 25 trueControlDependence
+  19: 0 -> 26 trueControlDependence
+  20: 0 -> 27 trueControlDependence
+  21: 0 -> 28 trueControlDependence
+  22: 0 -> 29 trueControlDependence
+  23: 0 -> 3 trueControlDependence
+  24: 0 -> 30 trueControlDependence
+  25: 0 -> 31 trueControlDependence
+  26: 0 -> 32 trueControlDependence
+  27: 0 -> 33 trueControlDependence
+  28: 0 -> 34 trueControlDependence
+  29: 0 -> 35 trueControlDependence
+  30: 0 -> 36 trueControlDependence
+  31: 0 -> 37 trueControlDependence
+  32: 0 -> 38 trueControlDependence
+  33: 0 -> 39 trueControlDependence
+  34: 0 -> 4 trueControlDependence
+  35: 0 -> 40 trueControlDependence
+  36: 0 -> 41 trueControlDependence
+  37: 0 -> 42 trueControlDependence
+  38: 0 -> 43 trueControlDependence
+  39: 0 -> 44 trueControlDependence
+  40: 0 -> 45 trueControlDependence
+  41: 0 -> 46 trueControlDependence
+  42: 0 -> 47 trueControlDependence
+  43: 0 -> 48 trueControlDependence
+  44: 0 -> 49 trueControlDependence
+  45: 0 -> 5 trueControlDependence
+  46: 0 -> 50 trueControlDependence
+  47: 0 -> 51 trueControlDependence
+  48: 0 -> 52 trueControlDependence
+  49: 0 -> 53 trueControlDependence
+  50: 0 -> 54 trueControlDependence
+  51: 0 -> 55 trueControlDependence
+  52: 0 -> 56 trueControlDependence
+  53: 0 -> 57 trueControlDependence
+  54: 0 -> 59 trueControlDependence
+  55: 0 -> 6 trueControlDependence
+  56: 0 -> 7 trueControlDependence
+  57: 0 -> 8 trueControlDependence
+  58: 0 -> 9 trueControlDependence
+  59: 11 -> 15 loopIndependentDefUseDependence System.out
+  60: 11 -> 15 outputDependence System.out.trouble
+  61: 14 -> 11 loopIndependentDefUseDependence circle1$1.!getRadius
+  62: 15 -> 29 loopIndependentDefUseDependence System.out
+  63: 15 -> 30 loopIndependentDefUseDependence System.out
+  64: 15 -> 30 outputDependence System.out.trouble
+  65: 15 -> 34 outputDependence System.out.!println
+  66: 15 -> 9 loopIndependentDefUseDependence System.out.!println
+  67: 19 -> 16 loopIndependentDefUseDependence circle1$1.!print
+  68: 2 -> 12 declaration
+  69: 2 -> 12 loopIndependentDefUseDependence circle1$1
+  70: 2 -> 17 declaration
+  71: 2 -> 17 loopIndependentDefUseDependence circle1$1
+  72: 20 -> 31 declaration
+  73: 20 -> 31 loopIndependentDefUseDependence circle2$2
+  74: 20 -> 38 declaration
+  75: 20 -> 38 loopIndependentDefUseDependence circle2$2
+  76: 20 -> 43 declaration
+  77: 20 -> 43 loopIndependentDefUseDependence circle2$2
+  78: 20 -> 50 declaration
+  79: 20 -> 50 loopIndependentDefUseDependence circle2$2
+  80: 20 -> 55 declaration
+  81: 20 -> 55 loopIndependentDefUseDependence circle2$2
+  82: 22 -> 27 loopIndependentDefUseDependence circle2$2.width
+  83: 23 -> 27 summary
+  84: 24 -> 27 summary
+  85: 25 -> 27 summary
+  86: 26 -> 27 summary
+  87: 27 -> 20 loopIndependentDefUseDependence circle2$2.!BoldCircle
+  88: 27 -> 32 loopIndependentDefUseDependence circle2$2.width
+  89: 27 -> 33 loopIndependentDefUseDependence circle2$2.width
+  90: 27 -> 39 loopIndependentDefUseDependence circle2$2.width
+  91: 27 -> 40 loopIndependentDefUseDependence circle2$2.width
+  92: 27 -> 51 loopIndependentDefUseDependence circle2$2.width
+  93: 27 -> 52 loopIndependentDefUseDependence circle2$2.width
+  94: 27 -> 59 loopIndependentDefUseDependence circle2$2.width
+  95: 30 -> 34 loopIndependentDefUseDependence System.out
+  96: 30 -> 34 outputDependence System.out.trouble
+  97: 33 -> 30 loopIndependentDefUseDependence circle2$2.!getWidth
+  98: 34 -> 28 loopIndependentDefUseDependence System.out.!println
+  99: 34 -> 36 loopIndependentDefUseDependence System.out
+ 100: 34 -> 37 loopIndependentDefUseDependence System.out
+ 101: 34 -> 37 outputDependence System.out.trouble
+ 102: 34 -> 41 outputDependence System.out.!println
+ 103: 37 -> 41 loopIndependentDefUseDependence System.out
+ 104: 37 -> 41 outputDependence System.out.trouble
+ 105: 4 -> 8 loopIndependentDefUseDependence circle1$1.radius
+ 106: 4 -> 8 loopIndependentDefUseDependence circle1$1.x
+ 107: 4 -> 8 loopIndependentDefUseDependence circle1$1.y
+ 108: 40 -> 37 loopIndependentDefUseDependence circle2$2.!getRadius
+ 109: 40 -> 52 outputDependence circle2$2.!getRadius
+ 110: 41 -> 35 loopIndependentDefUseDependence System.out.!println
+ 111: 41 -> 48 loopIndependentDefUseDependence System.out
+ 112: 41 -> 49 loopIndependentDefUseDependence System.out
+ 113: 41 -> 49 outputDependence System.out.trouble
+ 114: 41 -> 53 outputDependence System.out.!println
+ 115: 44 -> 46 loopIndependentDefUseDependence circle2$2.radius
+ 116: 45 -> 46 summary
+ 117: 46 -> 42 loopIndependentDefUseDependence circle2$2.!setRadius
+ 118: 46 -> 51 loopIndependentDefUseDependence circle2$2.radius
+ 119: 46 -> 52 loopIndependentDefUseDependence circle2$2.radius
+ 120: 46 -> 56 loopIndependentDefUseDependence circle2$2.radius
+ 121: 46 -> 57 loopIndependentDefUseDependence circle2$2.radius
+ 122: 46 -> 59 loopIndependentDefUseDependence circle2$2.radius
+ 123: 49 -> 53 loopIndependentDefUseDependence System.out
+ 124: 49 -> 53 outputDependence System.out.trouble
+ 125: 5 -> 8 summary
+ 126: 52 -> 49 loopIndependentDefUseDependence circle2$2.!getRadius
+ 127: 53 -> 47 loopIndependentDefUseDependence System.out.!println
+ 128: 53 -> 59 loopIndependentDefUseDependence System.out
+ 129: 53 -> 59 loopIndependentDefUseDependence System.out.trouble
+ 130: 57 -> 54 loopIndependentDefUseDependence circle2$2.!print
+ 131: 6 -> 8 summary
+ 132: 7 -> 8 summary
+ 133: 8 -> 13 loopIndependentDefUseDependence circle1$1.radius
+ 134: 8 -> 14 loopIndependentDefUseDependence circle1$1.radius
+ 135: 8 -> 18 loopIndependentDefUseDependence circle1$1.radius
+ 136: 8 -> 18 loopIndependentDefUseDependence circle1$1.x
+ 137: 8 -> 18 loopIndependentDefUseDependence circle1$1.y
+ 138: 8 -> 19 loopIndependentDefUseDependence circle1$1.radius
+ 139: 8 -> 19 loopIndependentDefUseDependence circle1$1.x
+ 140: 8 -> 19 loopIndependentDefUseDependence circle1$1.y
+ 141: 8 -> 2 loopIndependentDefUseDependence circle1$1.!Circle
+ 142: 8 -> 59 loopIndependentDefUseDependence circle1$1.radius
+ 143: 8 -> 59 loopIndependentDefUseDependence circle1$1.x
+ 144: 8 -> 59 loopIndependentDefUseDependence circle1$1.y
+--
+   0: Sample3( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

@@ -1,11 +1,13 @@
 ----- ClDG (from here) -----
 Class Name = P132
    0 constructorEntry [ P132( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
    0: P132( )
+   1: 0 -> 2 trueControlDependence
 --
    0: x
    1: 0 -> 1 trueControlDependence

@@ -3,6 +3,16 @@ Class Name = A126
    0 constructorEntry [ A126( ) ]
    2 formalOut D = {  } U = { $_ }
 --
+   0 methodEntry [ add2( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 localDeclaration D = { ret$1 } U = { ret$1.!A126 }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = A126#A126( )
+   5 actualOut D = { ret$1.!A126 } U = {  }
+   6 assignment D = { ret$1.y } U = { ret$1, this.y, x$0 }
+   7 returnSt D = { $_ } U = { ret$1 }
+   9 formalOut D = {  } U = { $_, ret$1.y }
+--
    0 methodEntry [ getY( ) ]
    1 returnSt D = { $_ } U = { this.y }
    3 formalOut D = {  } U = { $_ }
@@ -15,16 +25,16 @@ Class Name = A126
    5 actualOut D = { ret$1.!A126 } U = {  }
    6 assignment D = {  } U = { ret$1.!setY }
    7 receiver D = {  } U = { ret$1 }
-   8 methodCall D = { ret$1.y } U = {  } TO = A126#setY( int )
+   8 methodCall D = { ret$1.y } U = { ret$1.y } TO = A126#setY( int )
    9 actualIn D = {  } U = { this.y, x$0 }
-  10 actualOut D = { ret$1.!setY } U = {  }
-  11 returnSt D = { $_ } U = { ret$1, ret$1.y }
-  13 formalOut D = {  } U = { $_ }
+  10 actualOut D = { ret$1.!setY, ret$1.y } U = { ret$1.y }
+  11 returnSt D = { $_ } U = { ret$1 }
+  13 formalOut D = {  } U = { $_, ret$1.y }
 --
    0 methodEntry [ setY( int ) ]
    1 formalIn D = { y$0 } U = {  }
    2 assignment D = { this.y } U = { this, y$0 }
-   4 formalOut D = {  } U = { $_ }
+   4 formalOut D = {  } U = { $_, this.y }
 --
    0 fieldEntry [ y ]
    1 fieldDeclaration D = { this.y } U = { this.y }
@@ -32,39 +42,60 @@ Class Name = A126
    0: A126( )
    1: 0 -> 2 trueControlDependence
 --
-   0: getY( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence
---
-   0: add( int )
+   0: add2( int )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 3 trueControlDependence
-   4: 0 -> 6 trueControlDependence
-   5: 0 -> 7 trueControlDependence
-   6: 0 -> 11 trueControlDependence
-   7: 0 -> 13 trueControlDependence
-   8: 1 -> 9 loopIndependentDefUseDependence
-   9: 2 -> 7 loopIndependentDefUseDependence
-  10: 2 -> 7 declaration
-  11: 2 -> 11 loopIndependentDefUseDependence
-  12: 2 -> 11 declaration
-  13: 3 -> 4 trueControlDependence
-  14: 4 -> 5 trueControlDependence
-  15: 5 -> 2 loopIndependentDefUseDependence
-  16: 7 -> 8 trueControlDependence
-  17: 8 -> 9 trueControlDependence
-  18: 8 -> 10 trueControlDependence
-  19: 8 -> 11 loopIndependentDefUseDependence
-  20: 10 -> 6 loopIndependentDefUseDependence
-  21: 11 -> 13 loopIndependentDefUseDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 7 trueControlDependence
+   8: 0 -> 9 trueControlDependence
+   9: 1 -> 6 loopIndependentDefUseDependence x$0
+  10: 2 -> 6 declaration
+  11: 2 -> 6 loopIndependentDefUseDependence ret$1
+  12: 2 -> 7 declaration
+  13: 2 -> 7 loopIndependentDefUseDependence ret$1
+  14: 5 -> 2 loopIndependentDefUseDependence ret$1.!A126
+  15: 6 -> 9 loopIndependentDefUseDependence ret$1.y
+  16: 7 -> 9 loopIndependentDefUseDependence $_
+--
+   0: getY( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence $_
+--
+   0: add( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 13 trueControlDependence
+   5: 0 -> 2 trueControlDependence
+   6: 0 -> 3 trueControlDependence
+   7: 0 -> 4 trueControlDependence
+   8: 0 -> 5 trueControlDependence
+   9: 0 -> 6 trueControlDependence
+  10: 0 -> 7 trueControlDependence
+  11: 0 -> 8 trueControlDependence
+  12: 0 -> 9 trueControlDependence
+  13: 1 -> 9 loopIndependentDefUseDependence x$0
+  14: 10 -> 13 loopIndependentDefUseDependence ret$1.y
+  15: 10 -> 6 loopIndependentDefUseDependence ret$1.!setY
+  16: 11 -> 13 loopIndependentDefUseDependence $_
+  17: 2 -> 11 declaration
+  18: 2 -> 11 loopIndependentDefUseDependence ret$1
+  19: 2 -> 7 declaration
+  20: 2 -> 7 loopIndependentDefUseDependence ret$1
+  21: 5 -> 2 loopIndependentDefUseDependence ret$1.!A126
+  22: 8 -> 10 loopIndependentDefUseDependence ret$1.y
+  23: 9 -> 10 summary
 --
    0: setY( int )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence
+   4: 1 -> 2 loopIndependentDefUseDependence y$0
+   5: 2 -> 4 loopIndependentDefUseDependence this.y
 --
    0: y
    1: 0 -> 1 trueControlDependence

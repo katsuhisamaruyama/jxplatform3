@@ -1,0 +1,30 @@
+----- ClDG (from here) -----
+Class Name = Test49
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { a$0 } U = {  }
+   2 localDeclaration D = { b$1 } U = {  }
+   3 localDeclaration D = { x$2 } U = {  }
+   4 localDeclaration D = { z$3 } U = { a$0, b$1, x$2 }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test49( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 1 -> 4 declaration
+   7: 1 -> 4 loopIndependentDefUseDependence a$0
+   8: 2 -> 4 declaration
+   9: 2 -> 4 loopIndependentDefUseDependence b$1
+  10: 3 -> 4 declaration
+  11: 3 -> 4 loopIndependentDefUseDependence x$2
+--
+   0: Test49( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

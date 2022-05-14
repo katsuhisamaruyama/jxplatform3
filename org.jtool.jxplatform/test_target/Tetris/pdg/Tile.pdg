@@ -1,0 +1,389 @@
+----- ClDG (from here) -----
+Class Name = Tile
+   0 methodEntry [ setPosX( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = { this.posX } U = { x$0 }
+   4 formalOut D = {  } U = { $_, this.posX }
+--
+   0 methodEntry [ setPosY( int ) ]
+   1 formalIn D = { y$0 } U = {  }
+   2 assignment D = { this.posY } U = { y$0 }
+   4 formalOut D = {  } U = { $_, this.posY }
+--
+   0 fieldEntry [ SIZE ]
+   1 fieldDeclaration D = { Tile.SIZE } U = { Tile.SIZE }
+--
+   0 methodEntry [ getPosX( ) ]
+   1 returnSt D = { $_ } U = { this.posX }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ getPosY( ) ]
+   1 returnSt D = { $_ } U = { this.posY }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ color ]
+   1 fieldDeclaration D = { this.color } U = { this.color }
+--
+   0 constructorEntry [ Tile( int int java.awt.Color ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 formalIn D = { y$1 } U = {  }
+   3 formalIn D = { c$2 } U = {  }
+   4 assignment D = { this.posX } U = { x$0 }
+   5 assignment D = { this.posY } U = { y$1 }
+   6 assignment D = { this.color } U = { c$2 }
+   8 formalOut D = {  } U = { $_, this.color, this.posX, this.posY }
+--
+   0 methodEntry [ paint( java.awt.Graphics int int ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 formalIn D = { offsetX$1 } U = {  }
+   3 formalIn D = { offsetY$2 } U = {  }
+   4 localDeclaration D = { left$3 } U = { Tile.SIZE, offsetX$1, this.posX }
+   5 localDeclaration D = { right$4 } U = { Tile.SIZE, offsetX$1, this.posX }
+   6 localDeclaration D = { top$5 } U = { Tile.SIZE, offsetY$2, this.posY }
+   7 localDeclaration D = { bottom$6 } U = { Tile.SIZE, offsetY$2, this.posY }
+   8 assignment D = {  } U = { g$0.!setColor }
+   9 receiver D = {  } U = { g$0 }
+  10 methodCall D = {  } U = { this.color } TO = java.awt.Graphics#setColor( java.awt.Color )
+  11 actualOut D = { g$0.!setColor } U = {  }
+  12 assignment D = {  } U = { g$0.!fillRect }
+  13 receiver D = {  } U = { g$0 }
+  14 methodCall D = {  } U = { Tile.BORDER, Tile.SIZE, left$3, top$5 } TO = java.awt.Graphics#fillRect( int int int int )
+  15 actualOut D = { g$0.!fillRect } U = {  }
+  16 assignment D = {  } U = { g$0.!setColor }
+  17 receiver D = {  } U = { g$0 }
+  18 methodCall D = {  } U = { Color.white } TO = java.awt.Graphics#setColor( java.awt.Color )
+  19 actualOut D = { g$0.!setColor } U = {  }
+  20 localDeclaration D = { i$7 } U = {  }
+  21 forSt D = {  } U = { Tile.BORDER, i$7 }
+  22 assignment D = {  } U = { g$0.!drawLine }
+  23 receiver D = {  } U = { g$0 }
+  24 methodCall D = {  } U = { i$7, left$3, right$4, top$5 } TO = java.awt.Graphics#drawLine( int int int int )
+  25 actualOut D = { g$0.!drawLine } U = {  }
+  26 assignment D = {  } U = { g$0.!drawLine }
+  27 receiver D = {  } U = { g$0 }
+  28 methodCall D = {  } U = { bottom$6, i$7, left$3, top$5 } TO = java.awt.Graphics#drawLine( int int int int )
+  29 actualOut D = { g$0.!drawLine } U = {  }
+  30 assignment D = { i$7 } U = { i$7 }
+  31 assignment D = {  } U = { g$0.!setColor }
+  32 receiver D = {  } U = { g$0 }
+  33 methodCall D = {  } U = { this.color } TO = java.awt.Graphics#setColor( java.awt.Color )
+  34 actualOut D = { g$0.!setColor } U = {  }
+  35 assignment D = {  } U = { g$0.!drawLine }
+  36 receiver D = {  } U = { g$0 }
+  37 methodCall D = {  } U = { Tile.BORDER, left$3, top$5 } TO = java.awt.Graphics#drawLine( int int int int )
+  38 actualOut D = { g$0.!drawLine } U = {  }
+  39 assignment D = {  } U = { g$0.!setColor }
+  40 receiver D = {  } U = { g$0 }
+  41 methodCall D = {  } U = { this.color.!darker } TO = java.awt.Graphics#setColor( java.awt.Color )
+  42 receiver D = {  } U = { this.color }
+  43 methodCall D = { this.color, this.color.cs, this.color.falpha, this.color.frgbvalue, this.color.fvalue, this.color.value } U = {  } TO = java.awt.Color#darker( )
+  44 actualOut D = { this.color, this.color.!darker, this.color.cs, this.color.falpha, this.color.frgbvalue, this.color.fvalue, this.color.value } U = { this.color }
+  45 actualOut D = { g$0.!setColor } U = {  }
+  46 localDeclaration D = { i$8 } U = {  }
+  47 forSt D = {  } U = { Tile.BORDER, i$8 }
+  48 assignment D = {  } U = { g$0.!drawLine }
+  49 receiver D = {  } U = { g$0 }
+  50 methodCall D = {  } U = { bottom$6, i$8, left$3, right$4 } TO = java.awt.Graphics#drawLine( int int int int )
+  51 actualOut D = { g$0.!drawLine } U = {  }
+  52 assignment D = {  } U = { g$0.!drawLine }
+  53 receiver D = {  } U = { g$0 }
+  54 methodCall D = {  } U = { bottom$6, i$8, right$4, top$5 } TO = java.awt.Graphics#drawLine( int int int int )
+  55 actualOut D = { g$0.!drawLine } U = {  }
+  56 assignment D = { i$8 } U = { i$8 }
+  57 assignment D = {  } U = { g$0.!setColor }
+  58 receiver D = {  } U = { g$0 }
+  59 methodCall D = {  } U = { Color.black } TO = java.awt.Graphics#setColor( java.awt.Color )
+  60 actualOut D = { g$0.!setColor } U = {  }
+  61 assignment D = {  } U = { g$0.!drawRect }
+  62 receiver D = {  } U = { g$0 }
+  63 methodCall D = {  } U = { Tile.SIZE, left$3, top$5 } TO = java.awt.Graphics#drawRect( int int int int )
+  64 actualOut D = { g$0.!drawRect } U = {  }
+  66 formalOut D = {  } U = { $_, this.color, this.color.cs, this.color.falpha, this.color.frgbvalue, this.color.fvalue, this.color.value }
+--
+   0 fieldEntry [ posX ]
+   1 fieldDeclaration D = { this.posX } U = { this.posX }
+--
+   0 fieldEntry [ posY ]
+   1 fieldDeclaration D = { this.posY } U = { this.posY }
+--
+   0 fieldEntry [ BORDER ]
+   1 fieldDeclaration D = { Tile.BORDER } U = { Tile.BORDER }
+--
+   0 methodEntry [ setPosXY( int int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 formalIn D = { y$1 } U = {  }
+   3 assignment D = { this.posX } U = { x$0 }
+   4 assignment D = { this.posY } U = { y$1 }
+   6 formalOut D = {  } U = { $_, this.posX, this.posY }
+--
+   0 methodEntry [ paint( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 assignment D = {  } U = { this.!paint }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = { this.color } U = { this.color, this.posX, this.posY } TO = Tile#paint( java.awt.Graphics int int )
+   5 actualIn D = {  } U = { g$0 }
+   6 actualIn D = {  } U = {  }
+   7 actualIn D = {  } U = {  }
+   8 actualOut D = { this.!paint, this.color } U = { this.color, this.posX, this.posY }
+  10 formalOut D = {  } U = { $_, this.color }
+--
+   0: setPosX( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence x$0
+   5: 2 -> 4 loopIndependentDefUseDependence this.posX
+--
+   0: setPosY( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence y$0
+   5: 2 -> 4 loopIndependentDefUseDependence this.posY
+--
+   0: SIZE
+   1: 0 -> 1 trueControlDependence
+--
+   0: getPosX( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence $_
+--
+   0: getPosY( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence $_
+--
+   0: color
+   1: 0 -> 1 trueControlDependence
+--
+   0: Tile( int int java.awt.Color )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 8 trueControlDependence
+   8: 1 -> 4 loopIndependentDefUseDependence x$0
+   9: 2 -> 5 loopIndependentDefUseDependence y$1
+  10: 3 -> 6 loopIndependentDefUseDependence c$2
+  11: 4 -> 8 loopIndependentDefUseDependence this.posX
+  12: 5 -> 8 loopIndependentDefUseDependence this.posY
+  13: 6 -> 8 loopIndependentDefUseDependence this.color
+--
+   0: paint( java.awt.Graphics int int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 3 trueControlDependence
+  16: 0 -> 31 trueControlDependence
+  17: 0 -> 32 trueControlDependence
+  18: 0 -> 33 trueControlDependence
+  19: 0 -> 34 trueControlDependence
+  20: 0 -> 35 trueControlDependence
+  21: 0 -> 36 trueControlDependence
+  22: 0 -> 37 trueControlDependence
+  23: 0 -> 38 trueControlDependence
+  24: 0 -> 39 trueControlDependence
+  25: 0 -> 4 trueControlDependence
+  26: 0 -> 40 trueControlDependence
+  27: 0 -> 41 trueControlDependence
+  28: 0 -> 42 trueControlDependence
+  29: 0 -> 43 trueControlDependence
+  30: 0 -> 44 trueControlDependence
+  31: 0 -> 45 trueControlDependence
+  32: 0 -> 46 trueControlDependence
+  33: 0 -> 47 trueControlDependence
+  34: 0 -> 5 trueControlDependence
+  35: 0 -> 57 trueControlDependence
+  36: 0 -> 58 trueControlDependence
+  37: 0 -> 59 trueControlDependence
+  38: 0 -> 6 trueControlDependence
+  39: 0 -> 60 trueControlDependence
+  40: 0 -> 61 trueControlDependence
+  41: 0 -> 62 trueControlDependence
+  42: 0 -> 63 trueControlDependence
+  43: 0 -> 64 trueControlDependence
+  44: 0 -> 66 trueControlDependence
+  45: 0 -> 7 trueControlDependence
+  46: 0 -> 8 trueControlDependence
+  47: 0 -> 9 trueControlDependence
+  48: 1 -> 13 loopIndependentDefUseDependence g$0
+  49: 1 -> 17 loopIndependentDefUseDependence g$0
+  50: 1 -> 23 loopIndependentDefUseDependence g$0
+  51: 1 -> 27 loopIndependentDefUseDependence g$0
+  52: 1 -> 32 loopIndependentDefUseDependence g$0
+  53: 1 -> 36 loopIndependentDefUseDependence g$0
+  54: 1 -> 40 loopIndependentDefUseDependence g$0
+  55: 1 -> 49 loopIndependentDefUseDependence g$0
+  56: 1 -> 53 loopIndependentDefUseDependence g$0
+  57: 1 -> 58 loopIndependentDefUseDependence g$0
+  58: 1 -> 62 loopIndependentDefUseDependence g$0
+  59: 1 -> 9 loopIndependentDefUseDependence g$0
+  60: 11 -> 19 outputDependence g$0.!setColor
+  61: 11 -> 8 loopIndependentDefUseDependence g$0.!setColor
+  62: 15 -> 12 loopIndependentDefUseDependence g$0.!fillRect
+  63: 19 -> 16 loopIndependentDefUseDependence g$0.!setColor
+  64: 19 -> 34 outputDependence g$0.!setColor
+  65: 2 -> 4 loopIndependentDefUseDependence offsetX$1
+  66: 2 -> 5 loopIndependentDefUseDependence offsetX$1
+  67: 20 -> 21 declaration
+  68: 20 -> 21 loopIndependentDefUseDependence i$7
+  69: 20 -> 24 declaration
+  70: 20 -> 24 loopIndependentDefUseDependence i$7
+  71: 20 -> 28 declaration
+  72: 20 -> 28 loopIndependentDefUseDependence i$7
+  73: 20 -> 30 declaration
+  74: 20 -> 30 loopIndependentDefUseDependence i$7
+  75: 21 -> 22 trueControlDependence
+  76: 21 -> 23 trueControlDependence
+  77: 21 -> 24 trueControlDependence
+  78: 21 -> 25 trueControlDependence
+  79: 21 -> 26 trueControlDependence
+  80: 21 -> 27 trueControlDependence
+  81: 21 -> 28 trueControlDependence
+  82: 21 -> 29 trueControlDependence
+  83: 21 -> 30 trueControlDependence
+  84: 25 -> 22 loopIndependentDefUseDependence g$0.!drawLine
+  85: 25 -> 29 outputDependence g$0.!drawLine
+  86: 29 -> 25 outputDependence g$0.!drawLine
+  87: 29 -> 26 loopIndependentDefUseDependence g$0.!drawLine
+  88: 29 -> 38 outputDependence g$0.!drawLine
+  89: 3 -> 6 loopIndependentDefUseDependence offsetY$2
+  90: 3 -> 7 loopIndependentDefUseDependence offsetY$2
+  91: 30 -> 21 loopCarriedDefUseDependence i$7 21
+  92: 30 -> 24 loopCarriedDefUseDependence i$7 21
+  93: 30 -> 28 loopCarriedDefUseDependence i$7 21
+  94: 30 -> 30 loopCarriedDefUseDependence i$7 21
+  95: 34 -> 31 loopIndependentDefUseDependence g$0.!setColor
+  96: 34 -> 45 outputDependence g$0.!setColor
+  97: 38 -> 35 loopIndependentDefUseDependence g$0.!drawLine
+  98: 38 -> 51 outputDependence g$0.!drawLine
+  99: 4 -> 14 declaration
+ 100: 4 -> 14 loopIndependentDefUseDependence left$3
+ 101: 4 -> 24 declaration
+ 102: 4 -> 24 loopIndependentDefUseDependence left$3
+ 103: 4 -> 28 declaration
+ 104: 4 -> 28 loopIndependentDefUseDependence left$3
+ 105: 4 -> 37 declaration
+ 106: 4 -> 37 loopIndependentDefUseDependence left$3
+ 107: 4 -> 50 declaration
+ 108: 4 -> 50 loopIndependentDefUseDependence left$3
+ 109: 4 -> 63 declaration
+ 110: 4 -> 63 loopIndependentDefUseDependence left$3
+ 111: 43 -> 44 loopIndependentDefUseDependence this.color
+ 112: 43 -> 44 outputDependence this.color.cs
+ 113: 43 -> 44 outputDependence this.color.falpha
+ 114: 43 -> 44 outputDependence this.color.frgbvalue
+ 115: 43 -> 44 outputDependence this.color.fvalue
+ 116: 43 -> 44 outputDependence this.color.value
+ 117: 44 -> 41 loopIndependentDefUseDependence this.color.!darker
+ 118: 44 -> 66 loopIndependentDefUseDependence this.color
+ 119: 44 -> 66 loopIndependentDefUseDependence this.color.cs
+ 120: 44 -> 66 loopIndependentDefUseDependence this.color.falpha
+ 121: 44 -> 66 loopIndependentDefUseDependence this.color.frgbvalue
+ 122: 44 -> 66 loopIndependentDefUseDependence this.color.fvalue
+ 123: 44 -> 66 loopIndependentDefUseDependence this.color.value
+ 124: 45 -> 39 loopIndependentDefUseDependence g$0.!setColor
+ 125: 45 -> 60 outputDependence g$0.!setColor
+ 126: 46 -> 47 declaration
+ 127: 46 -> 47 loopIndependentDefUseDependence i$8
+ 128: 46 -> 50 declaration
+ 129: 46 -> 50 loopIndependentDefUseDependence i$8
+ 130: 46 -> 54 declaration
+ 131: 46 -> 54 loopIndependentDefUseDependence i$8
+ 132: 46 -> 56 declaration
+ 133: 46 -> 56 loopIndependentDefUseDependence i$8
+ 134: 47 -> 48 trueControlDependence
+ 135: 47 -> 49 trueControlDependence
+ 136: 47 -> 50 trueControlDependence
+ 137: 47 -> 51 trueControlDependence
+ 138: 47 -> 52 trueControlDependence
+ 139: 47 -> 53 trueControlDependence
+ 140: 47 -> 54 trueControlDependence
+ 141: 47 -> 55 trueControlDependence
+ 142: 47 -> 56 trueControlDependence
+ 143: 5 -> 24 declaration
+ 144: 5 -> 24 loopIndependentDefUseDependence right$4
+ 145: 5 -> 50 declaration
+ 146: 5 -> 50 loopIndependentDefUseDependence right$4
+ 147: 5 -> 54 declaration
+ 148: 5 -> 54 loopIndependentDefUseDependence right$4
+ 149: 51 -> 48 loopIndependentDefUseDependence g$0.!drawLine
+ 150: 51 -> 55 outputDependence g$0.!drawLine
+ 151: 55 -> 51 outputDependence g$0.!drawLine
+ 152: 55 -> 52 loopIndependentDefUseDependence g$0.!drawLine
+ 153: 56 -> 47 loopCarriedDefUseDependence i$8 47
+ 154: 56 -> 50 loopCarriedDefUseDependence i$8 47
+ 155: 56 -> 54 loopCarriedDefUseDependence i$8 47
+ 156: 56 -> 56 loopCarriedDefUseDependence i$8 47
+ 157: 6 -> 14 declaration
+ 158: 6 -> 14 loopIndependentDefUseDependence top$5
+ 159: 6 -> 24 declaration
+ 160: 6 -> 24 loopIndependentDefUseDependence top$5
+ 161: 6 -> 28 declaration
+ 162: 6 -> 28 loopIndependentDefUseDependence top$5
+ 163: 6 -> 37 declaration
+ 164: 6 -> 37 loopIndependentDefUseDependence top$5
+ 165: 6 -> 54 declaration
+ 166: 6 -> 54 loopIndependentDefUseDependence top$5
+ 167: 6 -> 63 declaration
+ 168: 6 -> 63 loopIndependentDefUseDependence top$5
+ 169: 60 -> 57 loopIndependentDefUseDependence g$0.!setColor
+ 170: 64 -> 61 loopIndependentDefUseDependence g$0.!drawRect
+ 171: 7 -> 28 declaration
+ 172: 7 -> 28 loopIndependentDefUseDependence bottom$6
+ 173: 7 -> 50 declaration
+ 174: 7 -> 50 loopIndependentDefUseDependence bottom$6
+ 175: 7 -> 54 declaration
+ 176: 7 -> 54 loopIndependentDefUseDependence bottom$6
+--
+   0: posX
+   1: 0 -> 1 trueControlDependence
+--
+   0: posY
+   1: 0 -> 1 trueControlDependence
+--
+   0: BORDER
+   1: 0 -> 1 trueControlDependence
+--
+   0: setPosXY( int int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 1 -> 3 loopIndependentDefUseDependence x$0
+   7: 2 -> 4 loopIndependentDefUseDependence y$1
+   8: 3 -> 6 loopIndependentDefUseDependence this.posX
+   9: 4 -> 6 loopIndependentDefUseDependence this.posY
+--
+   0: paint( java.awt.Graphics )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 7 trueControlDependence
+   9: 0 -> 8 trueControlDependence
+  10: 1 -> 5 loopIndependentDefUseDependence g$0
+  11: 4 -> 8 loopIndependentDefUseDependence this.color
+  12: 8 -> 10 loopIndependentDefUseDependence this.color
+  13: 8 -> 2 loopIndependentDefUseDependence this.!paint
+--
+----- ClDG (to here) -----
+

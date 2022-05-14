@@ -1,0 +1,40 @@
+----- ClDG (from here) -----
+Class Name = Q44
+   0 methodEntry [ getY( ) ]
+   1 returnSt D = { $_ } U = { this.y }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ getR( ) ]
+   1 returnSt D = { $_ } U = { this.r }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Q44( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ y ]
+   1 fieldDeclaration D = { this.y } U = { this.y }
+--
+   0 fieldEntry [ r ]
+   1 fieldDeclaration D = { this.r } U = { this.r }
+--
+   0: getY( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence $_
+--
+   0: getR( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence $_
+--
+   0: Q44( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: y
+   1: 0 -> 1 trueControlDependence
+--
+   0: r
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

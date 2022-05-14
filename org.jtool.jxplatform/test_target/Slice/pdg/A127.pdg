@@ -3,7 +3,7 @@ Class Name = A127
    0 methodEntry [ setY( int ) ]
    1 formalIn D = { y$0 } U = {  }
    2 assignment D = { this.y } U = { this, y$0 }
-   4 formalOut D = {  } U = { $_ }
+   4 formalOut D = {  } U = { $_, this.y }
 --
    0 fieldEntry [ z ]
    1 fieldDeclaration D = { A127.z } U = { A127.z }
@@ -22,7 +22,8 @@ Class Name = A127
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence
+   4: 1 -> 2 loopIndependentDefUseDependence y$0
+   5: 2 -> 4 loopIndependentDefUseDependence this.y
 --
    0: z
    1: 0 -> 1 trueControlDependence
@@ -33,7 +34,7 @@ Class Name = A127
    0: getY( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence
+   3: 1 -> 3 loopIndependentDefUseDependence $_
 --
    0: y
    1: 0 -> 1 trueControlDependence

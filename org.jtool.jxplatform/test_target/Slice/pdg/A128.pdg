@@ -7,7 +7,7 @@ Class Name = A128
    0 methodEntry [ setY( int ) ]
    1 formalIn D = { y$0 } U = {  }
    2 assignment D = { this.y } U = { this, y$0 }
-   4 formalOut D = {  } U = { $_ }
+   4 formalOut D = {  } U = { $_, this.y }
 --
    0 fieldEntry [ z ]
    1 fieldDeclaration D = { A128.z } U = { A128.z }
@@ -23,11 +23,11 @@ Class Name = A128
    5 actualOut D = { ret$1.!A128 } U = {  }
    6 assignment D = {  } U = { ret$1.!setY }
    7 receiver D = {  } U = { ret$1 }
-   8 methodCall D = { ret$1.y } U = {  } TO = A128#setY( int )
+   8 methodCall D = { ret$1.y } U = { ret$1.y } TO = A128#setY( int )
    9 actualIn D = {  } U = { this.y, x$0 }
-  10 actualOut D = { ret$1.!setY } U = {  }
-  11 returnSt D = { $_ } U = { ret$1, ret$1.y, ret$1.z }
-  13 formalOut D = {  } U = { $_ }
+  10 actualOut D = { ret$1.!setY, ret$1.y } U = { ret$1.y }
+  11 returnSt D = { $_ } U = { ret$1 }
+  13 formalOut D = {  } U = { $_, ret$1.y }
 --
    0 fieldEntry [ y ]
    1 fieldDeclaration D = { this.y } U = { this.y }
@@ -35,13 +35,14 @@ Class Name = A128
    0: getY( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence
+   3: 1 -> 3 loopIndependentDefUseDependence $_
 --
    0: setY( int )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence
+   4: 1 -> 2 loopIndependentDefUseDependence y$0
+   5: 2 -> 4 loopIndependentDefUseDependence this.y
 --
    0: z
    1: 0 -> 1 trueControlDependence
@@ -51,32 +52,28 @@ Class Name = A128
 --
    0: add( int )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 6 trueControlDependence
-   5: 0 -> 7 trueControlDependence
-   6: 0 -> 11 trueControlDependence
-   7: 0 -> 13 trueControlDependence
-   8: 1 -> 9 loopIndependentDefUseDependence
-   9: 2 -> 2 declarationDependence
-  10: 2 -> 7 loopIndependentDefUseDependence
-  11: 2 -> 7 declarationDependence
-  12: 2 -> 11 loopIndependentDefUseDependence
-  13: 2 -> 11 declarationDependence
-  14: 3 -> 4 trueControlDependence
-  15: 4 -> 5 trueControlDependence
-  16: 4 -> 23 call
-  17: 5 -> 2 loopIndependentDefUseDependence
-  18: 7 -> 8 trueControlDependence
-  19: 8 -> 9 trueControlDependence
-  20: 8 -> 10 trueControlDependence
-  21: 8 -> 11 loopIndependentDefUseDependence
-  22: 8 -> 28 call
-  23: 9 -> 29 parameterIn
-  24: 10 -> 6 loopIndependentDefUseDependence
-  25: 11 -> 13 loopIndependentDefUseDependence
-  26: 25 -> 5 parameterOut
-  27: 32 -> 10 parameterOut
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 13 trueControlDependence
+   5: 0 -> 2 trueControlDependence
+   6: 0 -> 3 trueControlDependence
+   7: 0 -> 4 trueControlDependence
+   8: 0 -> 5 trueControlDependence
+   9: 0 -> 6 trueControlDependence
+  10: 0 -> 7 trueControlDependence
+  11: 0 -> 8 trueControlDependence
+  12: 0 -> 9 trueControlDependence
+  13: 1 -> 9 loopIndependentDefUseDependence x$0
+  14: 10 -> 13 loopIndependentDefUseDependence ret$1.y
+  15: 10 -> 6 loopIndependentDefUseDependence ret$1.!setY
+  16: 11 -> 13 loopIndependentDefUseDependence $_
+  17: 2 -> 11 declaration
+  18: 2 -> 11 loopIndependentDefUseDependence ret$1
+  19: 2 -> 7 declaration
+  20: 2 -> 7 loopIndependentDefUseDependence ret$1
+  21: 5 -> 2 loopIndependentDefUseDependence ret$1.!A128
+  22: 8 -> 10 loopIndependentDefUseDependence ret$1.y
+  23: 9 -> 10 summary
 --
    0: y
    1: 0 -> 1 trueControlDependence

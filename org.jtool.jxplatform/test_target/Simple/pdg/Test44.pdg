@@ -1,0 +1,255 @@
+----- ClDG (from here) -----
+Class Name = Test44
+   0 methodEntry [ m1( ) ]
+   1 localDeclaration D = { a$0 } U = { a$0.!P44 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P44#P44( )
+   4 actualOut D = { a$0.!P44 } U = {  }
+   5 localDeclaration D = { b$1 } U = { a$0, a$0.q }
+   6 localDeclaration D = { x1$2 } U = { a$0, a$0.q, a$0.q.y, b$1, b$1.y }
+   7 localDeclaration D = { x2$3 } U = { a$0.q.!getY, b$1.!getY }
+   8 receiver D = {  } U = { a$0, a$0.q, b$1 }
+   9 methodCall D = {  } U = { a$0.q.y, b$1.y } TO = Q44#getY( )
+  10 actualOut D = { a$0.q.!getY } U = { a$0.q.y, b$1.y }
+  11 localDeclaration D = { x3$4 } U = { a$0.q, a$0.q.y, b$1, b$1.y }
+  12 localDeclaration D = { x4$5 } U = { a$0.q.!getY, b$1.!getY }
+  13 receiver D = {  } U = { a$0.q, b$1 }
+  14 methodCall D = {  } U = { a$0.q.y, b$1.y } TO = Q44#getY( )
+  15 actualOut D = { b$1.!getY } U = { a$0.q.y, b$1.y }
+  17 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m2( ) ]
+   1 localDeclaration D = { a$0 } U = { a$0.!P44 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P44#P44( )
+   4 actualOut D = { a$0.!P44 } U = {  }
+   5 localDeclaration D = { b$1 } U = { a$0.!getQ }
+   6 receiver D = {  } U = { a$0 }
+   7 methodCall D = {  } U = { a$0.q } TO = P44#getQ( )
+   8 actualOut D = { a$0.!getQ } U = { a$0.q }
+   9 localDeclaration D = { x1$2 } U = { a$0.!getQ, a$0.!getQ.y, b$1, b$1.y }
+  10 receiver D = {  } U = { a$0 }
+  11 methodCall D = {  } U = { a$0.q } TO = P44#getQ( )
+  12 actualOut D = { a$0.!getQ } U = { a$0.q }
+  13 localDeclaration D = { x2$3 } U = { a$0.!getQ.!getY, b$1.!getY }
+  14 receiver D = {  } U = { a$0.!getQ, b$1 }
+  15 receiver D = {  } U = { a$0 }
+  16 methodCall D = {  } U = { a$0.q } TO = P44#getQ( )
+  17 actualOut D = { a$0.!getQ } U = { a$0.q }
+  18 methodCall D = {  } U = { a$0.!getQ.y, b$1.y } TO = Q44#getY( )
+  19 actualOut D = { a$0.!getQ.!getY } U = { a$0.!getQ.y, b$1.y }
+  20 localDeclaration D = { x3$4 } U = { a$0.!getQ, a$0.!getQ.y, b$1, b$1.y }
+  21 localDeclaration D = { x4$5 } U = { a$0.!getQ.!getY, b$1.!getY }
+  22 receiver D = {  } U = { a$0.!getQ, b$1 }
+  23 methodCall D = {  } U = { a$0.!getQ.y, b$1.y } TO = Q44#getY( )
+  24 actualOut D = { b$1.!getY } U = { a$0.!getQ.y, b$1.y }
+  26 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m3( ) ]
+   1 localDeclaration D = { a$0 } U = { a$0.!P44 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P44#P44( )
+   4 actualOut D = { a$0.!P44 } U = {  }
+   5 localDeclaration D = { b$1 } U = { a$0.!getQ }
+   6 receiver D = {  } U = { a$0 }
+   7 methodCall D = {  } U = { a$0.q } TO = P44#getQ( )
+   8 actualOut D = { a$0.!getQ } U = { a$0.q }
+   9 localDeclaration D = { x1$2 } U = { a$0.!getQ.!getR, a$0.!getQ.!getR.y, b$1.!getR, b$1.!getR.y }
+  10 receiver D = {  } U = { a$0.!getQ, b$1 }
+  11 receiver D = {  } U = { a$0 }
+  12 methodCall D = {  } U = { a$0.q } TO = P44#getQ( )
+  13 actualOut D = { a$0.!getQ } U = { a$0.q }
+  14 methodCall D = {  } U = { a$0.!getQ.r, b$1.r } TO = Q44#getR( )
+  15 actualOut D = { a$0.!getQ.!getR } U = { a$0.!getQ.r, b$1.r }
+  16 localDeclaration D = { x2$3 } U = { a$0.!getQ, a$0.!getQ.y, b$1, b$1.y }
+  18 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m4( ) ]
+   1 localDeclaration D = { a$0 } U = { a$0.!P44 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P44#P44( )
+   4 actualOut D = { a$0.!P44 } U = {  }
+   5 localDeclaration D = { b$1 } U = { a$0.!getQ.!getR }
+   6 receiver D = {  } U = { a$0.!getQ }
+   7 receiver D = {  } U = { a$0 }
+   8 methodCall D = {  } U = { a$0.q } TO = P44#getQ( )
+   9 actualOut D = { a$0.!getQ } U = { a$0.q }
+  10 methodCall D = {  } U = { a$0.!getQ.r } TO = Q44#getR( )
+  11 actualOut D = { a$0.!getQ.!getR } U = { a$0.!getQ.r }
+  12 localDeclaration D = { x1$2 } U = { a$0.!getQ.!getR, a$0.!getQ.!getR.y, b$1, b$1.y }
+  13 receiver D = {  } U = { a$0.!getQ }
+  14 receiver D = {  } U = { a$0 }
+  15 methodCall D = {  } U = { a$0.q } TO = P44#getQ( )
+  16 actualOut D = { a$0.!getQ } U = { a$0.q }
+  17 methodCall D = {  } U = { a$0.!getQ.r } TO = Q44#getR( )
+  18 actualOut D = { a$0.!getQ.!getR } U = { a$0.!getQ.r }
+  19 localDeclaration D = { x2$3 } U = { a$0.!getQ.!getR, a$0.!getQ.!getR.y, b$1, b$1.y }
+  21 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test44( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m1( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 17 trueControlDependence
+   9: 0 -> 2 trueControlDependence
+  10: 0 -> 3 trueControlDependence
+  11: 0 -> 4 trueControlDependence
+  12: 0 -> 5 trueControlDependence
+  13: 0 -> 6 trueControlDependence
+  14: 0 -> 7 trueControlDependence
+  15: 0 -> 8 trueControlDependence
+  16: 0 -> 9 trueControlDependence
+  17: 1 -> 5 declaration
+  18: 1 -> 5 loopIndependentDefUseDependence a$0
+  19: 1 -> 6 declaration
+  20: 1 -> 6 loopIndependentDefUseDependence a$0
+  21: 1 -> 8 declaration
+  22: 1 -> 8 loopIndependentDefUseDependence a$0
+  23: 10 -> 12 loopIndependentDefUseDependence a$0.q.!getY
+  24: 10 -> 7 loopIndependentDefUseDependence a$0.q.!getY
+  25: 15 -> 12 loopIndependentDefUseDependence b$1.!getY
+  26: 4 -> 1 loopIndependentDefUseDependence a$0.!P44
+  27: 5 -> 11 declaration
+  28: 5 -> 11 loopIndependentDefUseDependence b$1
+  29: 5 -> 13 declaration
+  30: 5 -> 13 loopIndependentDefUseDependence b$1
+  31: 5 -> 6 declaration
+  32: 5 -> 6 loopIndependentDefUseDependence b$1
+  33: 5 -> 8 declaration
+  34: 5 -> 8 loopIndependentDefUseDependence b$1
+--
+   0: m2( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 26 trueControlDependence
+  19: 0 -> 3 trueControlDependence
+  20: 0 -> 4 trueControlDependence
+  21: 0 -> 5 trueControlDependence
+  22: 0 -> 6 trueControlDependence
+  23: 0 -> 7 trueControlDependence
+  24: 0 -> 8 trueControlDependence
+  25: 0 -> 9 trueControlDependence
+  26: 1 -> 10 declaration
+  27: 1 -> 10 loopIndependentDefUseDependence a$0
+  28: 1 -> 15 declaration
+  29: 1 -> 15 loopIndependentDefUseDependence a$0
+  30: 1 -> 6 declaration
+  31: 1 -> 6 loopIndependentDefUseDependence a$0
+  32: 12 -> 17 outputDependence a$0.!getQ
+  33: 12 -> 9 loopIndependentDefUseDependence a$0.!getQ
+  34: 17 -> 14 loopIndependentDefUseDependence a$0.!getQ
+  35: 17 -> 20 loopIndependentDefUseDependence a$0.!getQ
+  36: 17 -> 22 loopIndependentDefUseDependence a$0.!getQ
+  37: 19 -> 13 loopIndependentDefUseDependence a$0.!getQ.!getY
+  38: 19 -> 21 loopIndependentDefUseDependence a$0.!getQ.!getY
+  39: 24 -> 21 loopIndependentDefUseDependence b$1.!getY
+  40: 4 -> 1 loopIndependentDefUseDependence a$0.!P44
+  41: 5 -> 14 declaration
+  42: 5 -> 14 loopIndependentDefUseDependence b$1
+  43: 5 -> 20 declaration
+  44: 5 -> 20 loopIndependentDefUseDependence b$1
+  45: 5 -> 22 declaration
+  46: 5 -> 22 loopIndependentDefUseDependence b$1
+  47: 5 -> 9 declaration
+  48: 5 -> 9 loopIndependentDefUseDependence b$1
+  49: 8 -> 12 outputDependence a$0.!getQ
+  50: 8 -> 5 loopIndependentDefUseDependence a$0.!getQ
+--
+   0: m3( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 18 trueControlDependence
+  10: 0 -> 2 trueControlDependence
+  11: 0 -> 3 trueControlDependence
+  12: 0 -> 4 trueControlDependence
+  13: 0 -> 5 trueControlDependence
+  14: 0 -> 6 trueControlDependence
+  15: 0 -> 7 trueControlDependence
+  16: 0 -> 8 trueControlDependence
+  17: 0 -> 9 trueControlDependence
+  18: 1 -> 11 declaration
+  19: 1 -> 11 loopIndependentDefUseDependence a$0
+  20: 1 -> 6 declaration
+  21: 1 -> 6 loopIndependentDefUseDependence a$0
+  22: 13 -> 10 loopIndependentDefUseDependence a$0.!getQ
+  23: 13 -> 16 loopIndependentDefUseDependence a$0.!getQ
+  24: 15 -> 9 loopIndependentDefUseDependence a$0.!getQ.!getR
+  25: 4 -> 1 loopIndependentDefUseDependence a$0.!P44
+  26: 5 -> 10 declaration
+  27: 5 -> 10 loopIndependentDefUseDependence b$1
+  28: 5 -> 16 declaration
+  29: 5 -> 16 loopIndependentDefUseDependence b$1
+  30: 8 -> 13 outputDependence a$0.!getQ
+  31: 8 -> 5 loopIndependentDefUseDependence a$0.!getQ
+--
+   0: m4( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 21 trueControlDependence
+  14: 0 -> 3 trueControlDependence
+  15: 0 -> 4 trueControlDependence
+  16: 0 -> 5 trueControlDependence
+  17: 0 -> 6 trueControlDependence
+  18: 0 -> 7 trueControlDependence
+  19: 0 -> 8 trueControlDependence
+  20: 0 -> 9 trueControlDependence
+  21: 1 -> 14 declaration
+  22: 1 -> 14 loopIndependentDefUseDependence a$0
+  23: 1 -> 7 declaration
+  24: 1 -> 7 loopIndependentDefUseDependence a$0
+  25: 11 -> 18 outputDependence a$0.!getQ.!getR
+  26: 11 -> 5 loopIndependentDefUseDependence a$0.!getQ.!getR
+  27: 16 -> 13 loopIndependentDefUseDependence a$0.!getQ
+  28: 18 -> 12 loopIndependentDefUseDependence a$0.!getQ.!getR
+  29: 18 -> 19 loopIndependentDefUseDependence a$0.!getQ.!getR
+  30: 4 -> 1 loopIndependentDefUseDependence a$0.!P44
+  31: 5 -> 12 declaration
+  32: 5 -> 12 loopIndependentDefUseDependence b$1
+  33: 5 -> 19 declaration
+  34: 5 -> 19 loopIndependentDefUseDependence b$1
+  35: 9 -> 16 outputDependence a$0.!getQ
+  36: 9 -> 6 loopIndependentDefUseDependence a$0.!getQ
+--
+   0: Test44( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

@@ -12,38 +12,35 @@ Class Name = Test108
   11 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Test108( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 8 trueControlDependence
-   6: 0 -> 9 trueControlDependence
-   7: 0 -> 11 trueControlDependence
-   8: 1 -> 1 declarationDependence
-   9: 1 -> 4 loopIndependentDefUseDependence
-  10: 1 -> 4 declarationDependence
-  11: 1 -> 6 loopIndependentDefUseDependence
-  12: 1 -> 6 declarationDependence
-  13: 2 -> 2 declarationDependence
-  14: 2 -> 5 loopIndependentDefUseDependence
-  15: 2 -> 5 declarationDependence
-  16: 2 -> 8 loopIndependentDefUseDependence
-  17: 2 -> 8 declarationDependence
-  18: 3 -> 3 declarationDependence
-  19: 3 -> 6 outputDependence
-  20: 3 -> 6 declarationDependence
-  21: 3 -> 9 loopIndependentDefUseDependence
-  22: 3 -> 9 declarationDependence
-  23: 4 -> 5 trueControlDependence
-  24: 4 -> 6 falseControlDependence
-  25: 5 -> 8 loopIndependentDefUseDependence
-  26: 6 -> 9 loopIndependentDefUseDependence
-  27: 8 -> 8 declarationDependence
-  28: 9 -> 9 declarationDependence
+   2: 0 -> 11 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 8 trueControlDependence
+   7: 0 -> 9 trueControlDependence
+   8: 1 -> 4 declaration
+   9: 1 -> 4 loopIndependentDefUseDependence x$0
+  10: 1 -> 6 declaration
+  11: 1 -> 6 loopIndependentDefUseDependence x$0
+  12: 2 -> 5 declaration
+  13: 2 -> 5 loopIndependentDefUseDependence y$1
+  14: 2 -> 8 declaration
+  15: 2 -> 8 loopIndependentDefUseDependence y$1
+  16: 3 -> 6 declaration
+  17: 3 -> 6 outputDependence z$2
+  18: 3 -> 9 declaration
+  19: 3 -> 9 loopIndependentDefUseDependence z$2
+  20: 4 -> 5 trueControlDependence
+  21: 4 -> 6 falseControlDependence
+  22: 5 -> 8 loopIndependentDefUseDependence y$1
+  23: 6 -> 9 loopIndependentDefUseDependence z$2
 --
    0: Test108( )
+   1: 0 -> 2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

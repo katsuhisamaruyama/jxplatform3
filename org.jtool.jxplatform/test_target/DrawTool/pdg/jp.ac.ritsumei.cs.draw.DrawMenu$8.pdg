@@ -1,0 +1,94 @@
+----- ClDG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$8
+   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   1 formalIn D = { evt$12 } U = {  }
+   2 localDeclaration D = { canvas$13 } U = { this.tabbedCanvas.!getCurrentCanvas }
+   3 receiver D = {  } U = { this.tabbedCanvas }
+   4 methodCall D = {  } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#getCurrentCanvas( )
+   5 actualOut D = { this.tabbedCanvas.!getCurrentCanvas } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab }
+   6 assignment D = { this.clipboard } U = { canvas$13.!getGrabbedFigure, this.tabbedCanvas.!getCurrentCanvas.!getGrabbedFigure }
+   7 receiver D = {  } U = { canvas$13, this.tabbedCanvas.!getCurrentCanvas }
+   8 methodCall D = {  } U = { canvas$13.grabbedFigure, this.tabbedCanvas.!getCurrentCanvas.grabbedFigure } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#getGrabbedFigure( )
+   9 actualOut D = { canvas$13.!getGrabbedFigure } U = { canvas$13.grabbedFigure, this.tabbedCanvas.!getCurrentCanvas.grabbedFigure }
+  10 assignment D = {  } U = { canvas$13.!deleteFigure, this.tabbedCanvas.!getCurrentCanvas.!deleteFigure }
+  11 receiver D = {  } U = { canvas$13, this.tabbedCanvas.!getCurrentCanvas }
+  12 methodCall D = { canvas$13.changed, canvas$13.currentFigure, canvas$13.grabbedFigure } U = { canvas$13, canvas$13.changed, canvas$13.currentFigure, canvas$13.figureManager, canvas$13.figureManager.figures, canvas$13.grabbedFigure, canvas$13.menu, canvas$13.menu.clipboard, canvas$13.menu.copyAction, canvas$13.menu.cutAction, canvas$13.menu.deleteAction, canvas$13.menu.pasteAction, canvas$13.menu.redoAction, canvas$13.menu.tabbedCanvas, canvas$13.menu.tabbedCanvas.canvases, canvas$13.menu.tabbedCanvas.selectedTab, canvas$13.menu.undoAction, canvas$13.support, this.tabbedCanvas.!getCurrentCanvas, this.tabbedCanvas.!getCurrentCanvas.changed, this.tabbedCanvas.!getCurrentCanvas.currentFigure, this.tabbedCanvas.!getCurrentCanvas.figureManager, this.tabbedCanvas.!getCurrentCanvas.figureManager.figures, this.tabbedCanvas.!getCurrentCanvas.grabbedFigure, this.tabbedCanvas.!getCurrentCanvas.menu, this.tabbedCanvas.!getCurrentCanvas.menu.clipboard, this.tabbedCanvas.!getCurrentCanvas.menu.copyAction, this.tabbedCanvas.!getCurrentCanvas.menu.cutAction, this.tabbedCanvas.!getCurrentCanvas.menu.deleteAction, this.tabbedCanvas.!getCurrentCanvas.menu.pasteAction, this.tabbedCanvas.!getCurrentCanvas.menu.redoAction, this.tabbedCanvas.!getCurrentCanvas.menu.tabbedCanvas, this.tabbedCanvas.!getCurrentCanvas.menu.tabbedCanvas.canvases, this.tabbedCanvas.!getCurrentCanvas.menu.tabbedCanvas.selectedTab, this.tabbedCanvas.!getCurrentCanvas.menu.undoAction, this.tabbedCanvas.!getCurrentCanvas.support } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#deleteFigure( )
+  13 actualOut D = { canvas$13.!deleteFigure, canvas$13.changed, canvas$13.currentFigure, canvas$13.grabbedFigure } U = { canvas$13.changed, canvas$13.currentFigure, canvas$13.figureManager, canvas$13.figureManager.figures, canvas$13.grabbedFigure, canvas$13.menu, canvas$13.menu.clipboard, canvas$13.menu.copyAction, canvas$13.menu.cutAction, canvas$13.menu.deleteAction, canvas$13.menu.pasteAction, canvas$13.menu.redoAction, canvas$13.menu.tabbedCanvas, canvas$13.menu.tabbedCanvas.canvases, canvas$13.menu.tabbedCanvas.selectedTab, canvas$13.menu.undoAction, canvas$13.support, this.tabbedCanvas.!getCurrentCanvas.changed, this.tabbedCanvas.!getCurrentCanvas.currentFigure, this.tabbedCanvas.!getCurrentCanvas.figureManager, this.tabbedCanvas.!getCurrentCanvas.figureManager.figures, this.tabbedCanvas.!getCurrentCanvas.grabbedFigure, this.tabbedCanvas.!getCurrentCanvas.menu, this.tabbedCanvas.!getCurrentCanvas.menu.clipboard, this.tabbedCanvas.!getCurrentCanvas.menu.copyAction, this.tabbedCanvas.!getCurrentCanvas.menu.cutAction, this.tabbedCanvas.!getCurrentCanvas.menu.deleteAction, this.tabbedCanvas.!getCurrentCanvas.menu.pasteAction, this.tabbedCanvas.!getCurrentCanvas.menu.redoAction, this.tabbedCanvas.!getCurrentCanvas.menu.tabbedCanvas, this.tabbedCanvas.!getCurrentCanvas.menu.tabbedCanvas.canvases, this.tabbedCanvas.!getCurrentCanvas.menu.tabbedCanvas.selectedTab, this.tabbedCanvas.!getCurrentCanvas.menu.undoAction, this.tabbedCanvas.!getCurrentCanvas.support }
+  14 assignment D = {  } U = { this.!updateEditState }
+  15 receiver D = {  } U = {  }
+  16 methodCall D = {  } U = { canvas$13.!getGrabbedFigure, this.clipboard, this.copyAction, this.cutAction, this.deleteAction, this.pasteAction } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateEditState( boolean )
+  17 actualIn D = {  } U = {  }
+  18 actualOut D = { this.!updateEditState } U = { canvas$13.!getGrabbedFigure, this.clipboard, this.copyAction, this.cutAction, this.deleteAction, this.pasteAction }
+  19 assignment D = {  } U = { this.!updateUndoState }
+  20 receiver D = {  } U = {  }
+  21 methodCall D = {  } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoAction } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateUndoState( )
+  22 actualOut D = { this.!updateUndoState } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoAction }
+  23 assignment D = {  } U = { this.!updateRedoState }
+  24 receiver D = {  } U = {  }
+  25 methodCall D = {  } U = { this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateRedoState( )
+  26 actualOut D = { this.!updateRedoState } U = { this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab }
+  28 formalOut D = {  } U = { $_, canvas$13.changed, canvas$13.currentFigure, canvas$13.grabbedFigure, this.clipboard }
+--
+   0 fieldEntry [ serialVersionUID ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.DrawMenu$8.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.DrawMenu$8.serialVersionUID }
+--
+   0: actionPerformed( java.awt.event.ActionEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 25 trueControlDependence
+  19: 0 -> 26 trueControlDependence
+  20: 0 -> 28 trueControlDependence
+  21: 0 -> 3 trueControlDependence
+  22: 0 -> 4 trueControlDependence
+  23: 0 -> 5 trueControlDependence
+  24: 0 -> 6 trueControlDependence
+  25: 0 -> 7 trueControlDependence
+  26: 0 -> 8 trueControlDependence
+  27: 0 -> 9 trueControlDependence
+  28: 12 -> 13 loopIndependentDefUseDependence canvas$13.changed
+  29: 12 -> 13 loopIndependentDefUseDependence canvas$13.currentFigure
+  30: 12 -> 13 loopIndependentDefUseDependence canvas$13.grabbedFigure
+  31: 13 -> 10 loopIndependentDefUseDependence canvas$13.!deleteFigure
+  32: 13 -> 28 loopIndependentDefUseDependence canvas$13.changed
+  33: 13 -> 28 loopIndependentDefUseDependence canvas$13.currentFigure
+  34: 13 -> 28 loopIndependentDefUseDependence canvas$13.grabbedFigure
+  35: 18 -> 14 loopIndependentDefUseDependence this.!updateEditState
+  36: 2 -> 11 declaration
+  37: 2 -> 11 loopIndependentDefUseDependence canvas$13
+  38: 2 -> 12 declaration
+  39: 2 -> 12 loopIndependentDefUseDependence canvas$13
+  40: 2 -> 7 declaration
+  41: 2 -> 7 loopIndependentDefUseDependence canvas$13
+  42: 22 -> 19 loopIndependentDefUseDependence this.!updateUndoState
+  43: 26 -> 23 loopIndependentDefUseDependence this.!updateRedoState
+  44: 5 -> 11 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas
+  45: 5 -> 12 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas
+  46: 5 -> 2 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas
+  47: 5 -> 7 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas
+  48: 6 -> 16 loopIndependentDefUseDependence this.clipboard
+  49: 6 -> 18 loopIndependentDefUseDependence this.clipboard
+  50: 6 -> 28 loopIndependentDefUseDependence this.clipboard
+  51: 9 -> 16 loopIndependentDefUseDependence canvas$13.!getGrabbedFigure
+  52: 9 -> 18 loopIndependentDefUseDependence canvas$13.!getGrabbedFigure
+  53: 9 -> 6 loopIndependentDefUseDependence canvas$13.!getGrabbedFigure
+--
+   0: serialVersionUID
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

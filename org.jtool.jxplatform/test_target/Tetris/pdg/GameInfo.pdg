@@ -1,0 +1,419 @@
+----- ClDG (from here) -----
+Class Name = GameInfo
+   0 methodEntry [ getSpeed( ) ]
+   1 localDeclaration D = { speed$0 } U = {  }
+   2 ifSt D = {  } U = { this.level }
+   3 assignment D = { speed$0 } U = { this.level }
+   4 assignment D = { speed$0 } U = {  }
+   6 returnSt D = { $_ } U = { speed$0 }
+   8 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ width ]
+   1 fieldDeclaration D = { this.width } U = { this.width }
+--
+   0 methodEntry [ addScore( int ) ]
+   1 formalIn D = { add$0 } U = {  }
+   2 assignment D = { this.score } U = { add$0, this.score }
+   4 formalOut D = {  } U = { $_, this.score }
+--
+   0 methodEntry [ init( ) ]
+   1 assignment D = { this.offImage } U = { this.!createImage }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { this.height, this.parent, this.peer, this.width } TO = java.awt.Component#createImage( int int )
+   4 actualOut D = { this.!createImage } U = { this.parent, this.peer }
+   5 assignment D = { this.offg } U = { this.!createImage.!getGraphics, this.offImage.!getGraphics }
+   6 receiver D = {  } U = { this.!createImage, this.offImage }
+   7 methodCall D = {  } U = {  } TO = java.awt.Image#getGraphics( )
+   8 actualOut D = { this.offImage.!getGraphics } U = {  }
+   9 assignment D = { this.font } U = { this.font.!Font }
+  10 receiver D = {  } U = {  }
+  11 constructorCall D = { this.font.createdFont, this.font.fontSerializedDataVersion, this.font.name, this.font.pointSize, this.font.size, this.font.style } U = { $java.lang.String, $java.lang.String.BOLD } TO = java.awt.Font#Font( java.lang.String int int )
+  12 actualOut D = { this.font.!Font, this.font.createdFont, this.font.fontSerializedDataVersion, this.font.name, this.font.pointSize, this.font.size, this.font.style } U = {  }
+  14 formalOut D = {  } U = { $_, this.font, this.font.createdFont, this.font.fontSerializedDataVersion, this.font.name, this.font.pointSize, this.font.size, this.font.style, this.offImage, this.offg }
+--
+   0 methodEntry [ addLines( int ) ]
+   1 formalIn D = { add$0 } U = {  }
+   2 assignment D = { this.lines } U = { add$0, this.lines }
+   3 assignment D = {  } U = { this.!addScore }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = { this.score } U = { this.score } TO = GameInfo#addScore( int )
+   6 actualIn D = {  } U = { add$0 }
+   7 actualOut D = { this.!addScore, this.score } U = { this.score }
+   8 ifSt D = {  } U = { this.level, this.lines }
+   9 assignment D = {  } U = { this.!addLevel }
+  10 receiver D = {  } U = {  }
+  11 methodCall D = { this.level } U = { this.level } TO = GameInfo#addLevel( int )
+  12 actualIn D = {  } U = {  }
+  13 actualOut D = { this.!addLevel, this.level } U = { this.level }
+  16 formalOut D = {  } U = { $_, this.level, this.lines, this.score }
+--
+   0 fieldEntry [ level ]
+   1 fieldDeclaration D = { this.level } U = { this.level }
+--
+   0 fieldEntry [ score ]
+   1 fieldDeclaration D = { this.score } U = { this.score }
+--
+   0 fieldEntry [ height ]
+   1 fieldDeclaration D = { this.height } U = { this.height }
+--
+   0 fieldEntry [ offg ]
+   1 fieldDeclaration D = { this.offg } U = { this.offg }
+--
+   0 fieldEntry [ rows ]
+   1 fieldDeclaration D = { GameInfo.rows } U = { GameInfo.rows, GameInfo.rows.ROWS }
+--
+   0 methodEntry [ update( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 assignment D = {  } U = { this.!paint }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = { this.offImage } TO = GameInfo#paint( java.awt.Graphics )
+   5 actualIn D = {  } U = { g$0 }
+   6 actualOut D = { this.!paint } U = { this.offImage }
+   8 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ font ]
+   1 fieldDeclaration D = { this.font } U = { this.font }
+--
+   0 methodEntry [ gameStart( ) ]
+   1 assignment D = { this.level } U = {  }
+   2 assignment D = { this.score } U = {  }
+   3 assignment D = { this.lines } U = {  }
+   5 formalOut D = {  } U = { $_, this.level, this.lines, this.score }
+--
+   0 methodEntry [ addLevel( int ) ]
+   1 formalIn D = { add$0 } U = {  }
+   2 assignment D = { this.level } U = { add$0, this.level }
+   4 formalOut D = {  } U = { $_, this.level }
+--
+   0 methodEntry [ paint( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 ifSt D = {  } U = { this.offImage }
+   3 assignment D = {  } U = { g$0.!drawImage }
+   4 receiver D = {  } U = { g$0 }
+   5 methodCall D = {  } U = { this, this.offImage } TO = java.awt.Graphics#drawImage( java.awt.Image int int java.awt.image.ImageObserver )
+   6 actualOut D = { g$0.!drawImage } U = {  }
+   9 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ offImage ]
+   1 fieldDeclaration D = { this.offImage } U = { this.offImage }
+--
+   0 methodEntry [ update( Block ) ]
+   1 formalIn D = { nextBlock$0 } U = {  }
+   2 assignment D = {  } U = { this.offg.!setColor }
+   3 receiver D = {  } U = { this.offg }
+   4 methodCall D = {  } U = { Color.gray } TO = java.awt.Graphics#setColor( java.awt.Color )
+   5 actualOut D = { this.offg.!setColor } U = {  }
+   6 assignment D = {  } U = { this.offg.!fillRect }
+   7 receiver D = {  } U = { this.offg }
+   8 methodCall D = {  } U = { this.height, this.width } TO = java.awt.Graphics#fillRect( int int int int )
+   9 actualOut D = { this.offg.!fillRect } U = {  }
+  10 assignment D = {  } U = { this.offg.!setFont }
+  11 receiver D = {  } U = { this.offg }
+  12 methodCall D = {  } U = { this.font } TO = java.awt.Graphics#setFont( java.awt.Font )
+  13 actualOut D = { this.offg.!setFont } U = {  }
+  14 assignment D = {  } U = { this.offg.!setColor }
+  15 receiver D = {  } U = { this.offg }
+  16 methodCall D = {  } U = { Color.black } TO = java.awt.Graphics#setColor( java.awt.Color )
+  17 actualOut D = { this.offg.!setColor } U = {  }
+  18 assignment D = {  } U = { this.offg.!fillRect }
+  19 receiver D = {  } U = { this.offg }
+  20 methodCall D = {  } U = { Tile.SIZE, Tile.SIZE.SIZE } TO = java.awt.Graphics#fillRect( int int int int )
+  21 actualOut D = { this.offg.!fillRect } U = {  }
+  22 assignment D = {  } U = { this.offg.!setColor }
+  23 receiver D = {  } U = { this.offg }
+  24 methodCall D = {  } U = { Color.white } TO = java.awt.Graphics#setColor( java.awt.Color )
+  25 actualOut D = { this.offg.!setColor } U = {  }
+  26 assignment D = {  } U = { this.offg.!drawString }
+  27 receiver D = {  } U = { this.offg }
+  28 methodCall D = {  } U = { $java.lang.String, $java.lang.String.SIZE } TO = java.awt.Graphics#drawString( java.lang.String int int )
+  29 actualOut D = { this.offg.!drawString } U = {  }
+  30 ifSt D = {  } U = { nextBlock$0 }
+  31 assignment D = {  } U = { nextBlock$0.!paintNext }
+  32 receiver D = {  } U = { nextBlock$0 }
+  33 methodCall D = { nextBlock$0.tiles } U = { nextBlock$0, nextBlock$0.offsetX, nextBlock$0.offsetY, nextBlock$0.tiles } TO = Block#paintNext( java.awt.Graphics )
+  34 actualIn D = {  } U = { this.offg }
+  35 actualOut D = { nextBlock$0.!paintNext, nextBlock$0.tiles } U = { nextBlock$0.offsetX, nextBlock$0.offsetY, nextBlock$0.tiles }
+  37 assignment D = {  } U = { this.offg.!setColor }
+  38 receiver D = {  } U = { this.offg }
+  39 methodCall D = {  } U = { Color.white } TO = java.awt.Graphics#setColor( java.awt.Color )
+  40 actualOut D = { this.offg.!setColor } U = {  }
+  41 assignment D = {  } U = { this.offg.!drawString }
+  42 receiver D = {  } U = { this.offg }
+  43 methodCall D = {  } U = { $java.lang.String, this.height, this.level } TO = java.awt.Graphics#drawString( java.lang.String int int )
+  44 actualOut D = { this.offg.!drawString } U = {  }
+  45 assignment D = {  } U = { this.offg.!drawString }
+  46 receiver D = {  } U = { this.offg }
+  47 methodCall D = {  } U = { $java.lang.String, this.height, this.lines } TO = java.awt.Graphics#drawString( java.lang.String int int )
+  48 actualOut D = { this.offg.!drawString } U = {  }
+  49 assignment D = {  } U = { this.offg.!drawString }
+  50 receiver D = {  } U = { this.offg }
+  51 methodCall D = {  } U = { $java.lang.String, this.height, this.score } TO = java.awt.Graphics#drawString( java.lang.String int int )
+  52 actualOut D = { this.offg.!drawString } U = {  }
+  53 assignment D = {  } U = { this.!repaint }
+  54 receiver D = {  } U = {  }
+  55 methodCall D = {  } U = { this.height, this.parent, this.peer, this.width, this.x, this.y } TO = java.awt.Component#repaint( )
+  56 actualOut D = { this.!repaint } U = { this.height, this.parent, this.peer, this.width, this.x, this.y }
+  58 formalOut D = {  } U = { $_, nextBlock$0.tiles }
+--
+   0 fieldEntry [ lines ]
+   1 fieldDeclaration D = { this.lines } U = { this.lines }
+--
+   0 constructorEntry [ GameInfo( ) ]
+   1 assignment D = { this.width } U = { Tile.SIZE }
+   2 assignment D = { this.height } U = { GameInfo.rows, Tile.SIZE }
+   3 assignment D = {  } U = { this.!setSize }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = {  } U = { this.height, this.width, this.x, this.y } TO = java.awt.Component#setSize( int int )
+   6 actualOut D = { this.!setSize } U = { this.x, this.y }
+   8 formalOut D = {  } U = { $_, this.height, this.width }
+--
+   0: getSpeed( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 6 trueControlDependence
+   4: 0 -> 8 trueControlDependence
+   5: 1 -> 3 declaration
+   6: 1 -> 3 outputDependence speed$0
+   7: 1 -> 4 declaration
+   8: 1 -> 4 outputDependence speed$0
+   9: 1 -> 6 declaration
+  10: 2 -> 3 trueControlDependence
+  11: 2 -> 4 falseControlDependence
+  12: 3 -> 6 loopIndependentDefUseDependence speed$0
+  13: 4 -> 6 loopIndependentDefUseDependence speed$0
+  14: 6 -> 8 loopIndependentDefUseDependence $_
+--
+   0: width
+   1: 0 -> 1 trueControlDependence
+--
+   0: addScore( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence add$0
+   5: 2 -> 4 loopIndependentDefUseDependence this.score
+--
+   0: init( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 14 trueControlDependence
+   6: 0 -> 2 trueControlDependence
+   7: 0 -> 3 trueControlDependence
+   8: 0 -> 4 trueControlDependence
+   9: 0 -> 5 trueControlDependence
+  10: 0 -> 6 trueControlDependence
+  11: 0 -> 7 trueControlDependence
+  12: 0 -> 8 trueControlDependence
+  13: 0 -> 9 trueControlDependence
+  14: 1 -> 14 loopIndependentDefUseDependence this.offImage
+  15: 1 -> 6 loopIndependentDefUseDependence this.offImage
+  16: 11 -> 12 outputDependence this.font.createdFont
+  17: 11 -> 12 outputDependence this.font.fontSerializedDataVersion
+  18: 11 -> 12 outputDependence this.font.name
+  19: 11 -> 12 outputDependence this.font.pointSize
+  20: 11 -> 12 outputDependence this.font.size
+  21: 11 -> 12 outputDependence this.font.style
+  22: 12 -> 14 loopIndependentDefUseDependence this.font.createdFont
+  23: 12 -> 14 loopIndependentDefUseDependence this.font.fontSerializedDataVersion
+  24: 12 -> 14 loopIndependentDefUseDependence this.font.name
+  25: 12 -> 14 loopIndependentDefUseDependence this.font.pointSize
+  26: 12 -> 14 loopIndependentDefUseDependence this.font.size
+  27: 12 -> 14 loopIndependentDefUseDependence this.font.style
+  28: 12 -> 9 loopIndependentDefUseDependence this.font.!Font
+  29: 4 -> 1 loopIndependentDefUseDependence this.!createImage
+  30: 4 -> 6 loopIndependentDefUseDependence this.!createImage
+  31: 5 -> 14 loopIndependentDefUseDependence this.offg
+  32: 8 -> 5 loopIndependentDefUseDependence this.offImage.!getGraphics
+  33: 9 -> 14 loopIndependentDefUseDependence this.font
+--
+   0: addLines( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 16 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 7 trueControlDependence
+   9: 0 -> 8 trueControlDependence
+  10: 1 -> 2 loopIndependentDefUseDependence add$0
+  11: 1 -> 6 loopIndependentDefUseDependence add$0
+  12: 11 -> 13 loopIndependentDefUseDependence this.level
+  13: 12 -> 13 summary
+  14: 13 -> 16 loopIndependentDefUseDependence this.level
+  15: 13 -> 9 loopIndependentDefUseDependence this.!addLevel
+  16: 2 -> 16 loopIndependentDefUseDependence this.lines
+  17: 2 -> 8 loopIndependentDefUseDependence this.lines
+  18: 5 -> 7 loopIndependentDefUseDependence this.score
+  19: 6 -> 7 summary
+  20: 7 -> 16 loopIndependentDefUseDependence this.score
+  21: 7 -> 3 loopIndependentDefUseDependence this.!addScore
+  22: 8 -> 10 trueControlDependence
+  23: 8 -> 11 trueControlDependence
+  24: 8 -> 12 trueControlDependence
+  25: 8 -> 13 trueControlDependence
+  26: 8 -> 9 trueControlDependence
+--
+   0: level
+   1: 0 -> 1 trueControlDependence
+--
+   0: score
+   1: 0 -> 1 trueControlDependence
+--
+   0: height
+   1: 0 -> 1 trueControlDependence
+--
+   0: offg
+   1: 0 -> 1 trueControlDependence
+--
+   0: rows
+   1: 0 -> 1 trueControlDependence
+--
+   0: update( java.awt.Graphics )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 8 trueControlDependence
+   8: 1 -> 5 loopIndependentDefUseDependence g$0
+   9: 6 -> 2 loopIndependentDefUseDependence this.!paint
+--
+   0: font
+   1: 0 -> 1 trueControlDependence
+--
+   0: gameStart( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 5 trueControlDependence
+   5: 1 -> 5 loopIndependentDefUseDependence this.level
+   6: 2 -> 5 loopIndependentDefUseDependence this.score
+   7: 3 -> 5 loopIndependentDefUseDependence this.lines
+--
+   0: addLevel( int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 1 -> 2 loopIndependentDefUseDependence add$0
+   5: 2 -> 4 loopIndependentDefUseDependence this.level
+--
+   0: paint( java.awt.Graphics )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 9 trueControlDependence
+   4: 1 -> 4 loopIndependentDefUseDependence g$0
+   5: 2 -> 3 trueControlDependence
+   6: 2 -> 4 trueControlDependence
+   7: 2 -> 5 trueControlDependence
+   8: 2 -> 6 trueControlDependence
+   9: 6 -> 3 loopIndependentDefUseDependence g$0.!drawImage
+--
+   0: offImage
+   1: 0 -> 1 trueControlDependence
+--
+   0: update( Block )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 25 trueControlDependence
+  19: 0 -> 26 trueControlDependence
+  20: 0 -> 27 trueControlDependence
+  21: 0 -> 28 trueControlDependence
+  22: 0 -> 29 trueControlDependence
+  23: 0 -> 3 trueControlDependence
+  24: 0 -> 30 trueControlDependence
+  25: 0 -> 37 trueControlDependence
+  26: 0 -> 38 trueControlDependence
+  27: 0 -> 39 trueControlDependence
+  28: 0 -> 4 trueControlDependence
+  29: 0 -> 40 trueControlDependence
+  30: 0 -> 41 trueControlDependence
+  31: 0 -> 42 trueControlDependence
+  32: 0 -> 43 trueControlDependence
+  33: 0 -> 44 trueControlDependence
+  34: 0 -> 45 trueControlDependence
+  35: 0 -> 46 trueControlDependence
+  36: 0 -> 47 trueControlDependence
+  37: 0 -> 48 trueControlDependence
+  38: 0 -> 49 trueControlDependence
+  39: 0 -> 5 trueControlDependence
+  40: 0 -> 50 trueControlDependence
+  41: 0 -> 51 trueControlDependence
+  42: 0 -> 52 trueControlDependence
+  43: 0 -> 53 trueControlDependence
+  44: 0 -> 54 trueControlDependence
+  45: 0 -> 55 trueControlDependence
+  46: 0 -> 56 trueControlDependence
+  47: 0 -> 58 trueControlDependence
+  48: 0 -> 6 trueControlDependence
+  49: 0 -> 7 trueControlDependence
+  50: 0 -> 8 trueControlDependence
+  51: 0 -> 9 trueControlDependence
+  52: 1 -> 30 loopIndependentDefUseDependence nextBlock$0
+  53: 1 -> 32 loopIndependentDefUseDependence nextBlock$0
+  54: 1 -> 33 loopIndependentDefUseDependence nextBlock$0
+  55: 13 -> 10 loopIndependentDefUseDependence this.offg.!setFont
+  56: 17 -> 14 loopIndependentDefUseDependence this.offg.!setColor
+  57: 17 -> 25 outputDependence this.offg.!setColor
+  58: 21 -> 18 loopIndependentDefUseDependence this.offg.!fillRect
+  59: 25 -> 22 loopIndependentDefUseDependence this.offg.!setColor
+  60: 25 -> 40 outputDependence this.offg.!setColor
+  61: 29 -> 26 loopIndependentDefUseDependence this.offg.!drawString
+  62: 29 -> 44 outputDependence this.offg.!drawString
+  63: 30 -> 31 trueControlDependence
+  64: 30 -> 32 trueControlDependence
+  65: 30 -> 33 trueControlDependence
+  66: 30 -> 34 trueControlDependence
+  67: 30 -> 35 trueControlDependence
+  68: 33 -> 35 loopIndependentDefUseDependence nextBlock$0.tiles
+  69: 35 -> 31 loopIndependentDefUseDependence nextBlock$0.!paintNext
+  70: 35 -> 58 loopIndependentDefUseDependence nextBlock$0.tiles
+  71: 40 -> 37 loopIndependentDefUseDependence this.offg.!setColor
+  72: 44 -> 41 loopIndependentDefUseDependence this.offg.!drawString
+  73: 44 -> 48 outputDependence this.offg.!drawString
+  74: 48 -> 45 loopIndependentDefUseDependence this.offg.!drawString
+  75: 48 -> 52 outputDependence this.offg.!drawString
+  76: 5 -> 17 outputDependence this.offg.!setColor
+  77: 5 -> 2 loopIndependentDefUseDependence this.offg.!setColor
+  78: 52 -> 49 loopIndependentDefUseDependence this.offg.!drawString
+  79: 56 -> 53 loopIndependentDefUseDependence this.!repaint
+  80: 9 -> 21 outputDependence this.offg.!fillRect
+  81: 9 -> 6 loopIndependentDefUseDependence this.offg.!fillRect
+--
+   0: lines
+   1: 0 -> 1 trueControlDependence
+--
+   0: GameInfo( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 8 trueControlDependence
+   8: 1 -> 5 loopIndependentDefUseDependence this.width
+   9: 1 -> 8 loopIndependentDefUseDependence this.width
+  10: 2 -> 5 loopIndependentDefUseDependence this.height
+  11: 2 -> 8 loopIndependentDefUseDependence this.height
+  12: 6 -> 3 loopIndependentDefUseDependence this.!setSize
+--
+----- ClDG (to here) -----
+

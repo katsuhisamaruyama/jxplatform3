@@ -1,0 +1,119 @@
+----- ClDG (from here) -----
+Class Name = RedBlock
+   0 constructorEntry [ RedBlock( int int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 formalIn D = { y$1 } U = {  }
+   3 assignment D = {  } U = {  }
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = { super.posX, super.posY } U = { super.posX, super.posY } TO = Block#Block( int int )
+   6 actualIn D = {  } U = { x$0 }
+   7 actualIn D = {  } U = { y$1 }
+   8 actualOut D = { , super.posX, super.posY } U = { super.posX, super.posY }
+   9 assignment D = {  } U = { this.!addTile }
+  10 receiver D = {  } U = {  }
+  11 methodCall D = {  } U = { this.posX, this.posY, this.tiles } TO = Block#addTile( int int java.awt.Color )
+  12 actualIn D = {  } U = {  }
+  13 actualIn D = {  } U = {  }
+  14 actualIn D = {  } U = { Color.red, RedBlock.color }
+  15 actualOut D = { this.!addTile } U = { this.posX, this.posY, this.tiles }
+  16 assignment D = {  } U = { this.!addTile }
+  17 receiver D = {  } U = {  }
+  18 methodCall D = {  } U = { this.posX, this.posY, this.tiles } TO = Block#addTile( int int java.awt.Color )
+  19 actualIn D = {  } U = {  }
+  20 actualIn D = {  } U = {  }
+  21 actualIn D = {  } U = { Color.red, RedBlock.color }
+  22 actualOut D = { this.!addTile } U = { this.posX, this.posY, this.tiles }
+  23 assignment D = {  } U = { this.!addTile }
+  24 receiver D = {  } U = {  }
+  25 methodCall D = {  } U = { this.posX, this.posY, this.tiles } TO = Block#addTile( int int java.awt.Color )
+  26 actualIn D = {  } U = {  }
+  27 actualIn D = {  } U = {  }
+  28 actualIn D = {  } U = { Color.red, RedBlock.color }
+  29 actualOut D = { this.!addTile } U = { this.posX, this.posY, this.tiles }
+  30 assignment D = {  } U = { this.!addTile }
+  31 receiver D = {  } U = {  }
+  32 methodCall D = {  } U = { this.posX, this.posY, this.tiles } TO = Block#addTile( int int java.awt.Color )
+  33 actualIn D = {  } U = {  }
+  34 actualIn D = {  } U = {  }
+  35 actualIn D = {  } U = { Color.red, RedBlock.color }
+  36 actualOut D = { this.!addTile } U = { this.posX, this.posY, this.tiles }
+  37 assignment D = { this.offsetX } U = { this.offsetX, this.offsetX.SIZE }
+  39 formalOut D = {  } U = { $_, super.posX, super.posY, this.offsetX }
+--
+   0 fieldEntry [ color ]
+   1 fieldDeclaration D = { RedBlock.color } U = { RedBlock.color, RedBlock.color.red }
+--
+   0: RedBlock( int int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 25 trueControlDependence
+  19: 0 -> 26 trueControlDependence
+  20: 0 -> 27 trueControlDependence
+  21: 0 -> 28 trueControlDependence
+  22: 0 -> 29 trueControlDependence
+  23: 0 -> 3 trueControlDependence
+  24: 0 -> 30 trueControlDependence
+  25: 0 -> 31 trueControlDependence
+  26: 0 -> 32 trueControlDependence
+  27: 0 -> 33 trueControlDependence
+  28: 0 -> 34 trueControlDependence
+  29: 0 -> 35 trueControlDependence
+  30: 0 -> 36 trueControlDependence
+  31: 0 -> 37 trueControlDependence
+  32: 0 -> 39 trueControlDependence
+  33: 0 -> 4 trueControlDependence
+  34: 0 -> 5 trueControlDependence
+  35: 0 -> 6 trueControlDependence
+  36: 0 -> 7 trueControlDependence
+  37: 0 -> 8 trueControlDependence
+  38: 0 -> 9 trueControlDependence
+  39: 1 -> 6 loopIndependentDefUseDependence x$0
+  40: 12 -> 15 summary
+  41: 13 -> 15 summary
+  42: 14 -> 15 summary
+  43: 15 -> 22 outputDependence this.!addTile
+  44: 15 -> 9 loopIndependentDefUseDependence this.!addTile
+  45: 19 -> 22 summary
+  46: 2 -> 7 loopIndependentDefUseDependence y$1
+  47: 20 -> 22 summary
+  48: 21 -> 22 summary
+  49: 22 -> 16 loopIndependentDefUseDependence this.!addTile
+  50: 22 -> 29 outputDependence this.!addTile
+  51: 26 -> 29 summary
+  52: 27 -> 29 summary
+  53: 28 -> 29 summary
+  54: 29 -> 23 loopIndependentDefUseDependence this.!addTile
+  55: 29 -> 36 outputDependence this.!addTile
+  56: 33 -> 36 summary
+  57: 34 -> 36 summary
+  58: 35 -> 36 summary
+  59: 36 -> 30 loopIndependentDefUseDependence this.!addTile
+  60: 37 -> 39 loopIndependentDefUseDependence this.offsetX
+  61: 5 -> 8 loopIndependentDefUseDependence super.posX
+  62: 5 -> 8 loopIndependentDefUseDependence super.posY
+  63: 6 -> 8 summary
+  64: 7 -> 8 summary
+  65: 8 -> 3 loopIndependentDefUseDependence 
+  66: 8 -> 39 loopIndependentDefUseDependence super.posX
+  67: 8 -> 39 loopIndependentDefUseDependence super.posY
+--
+   0: color
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

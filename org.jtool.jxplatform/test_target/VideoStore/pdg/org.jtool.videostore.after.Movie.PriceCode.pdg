@@ -1,0 +1,28 @@
+----- ClDG (from here) -----
+Class Name = org.jtool.videostore.after.Movie.PriceCode
+   0 enumConstantEntry [ CHILDRENS ]
+   1 fieldDeclaration D = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS } U = {  }
+--
+   0 constructorEntry [ PriceCode( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 enumConstantEntry [ REGULAR ]
+   1 fieldDeclaration D = { org.jtool.videostore.after.Movie.PriceCode.REGULAR } U = {  }
+--
+   0 enumConstantEntry [ NEW_RELEASE ]
+   1 fieldDeclaration D = { org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE } U = {  }
+--
+   0: CHILDRENS
+   1: 0 -> 1 trueControlDependence
+--
+   0: PriceCode( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: REGULAR
+   1: 0 -> 1 trueControlDependence
+--
+   0: NEW_RELEASE
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

@@ -1,0 +1,372 @@
+----- ClDG (from here) -----
+Class Name = Sample107FX
+   0 methodEntry [ start( javafx.stage.Stage ) ]
+   1 throwsClause D = {  } U = { $java.lang.Exception }
+   2 formalIn D = { stage$0 } U = {  }
+   3 assignment D = {  } U = { stage$0.!setTitle }
+   4 receiver D = {  } U = { stage$0 }
+   5 methodCall D = { stage$0, stage$0.title } U = { $java.lang.String, stage$0, stage$0.title } TO = javafx.stage.Stage#setTitle( java.lang.String )
+   6 actualOut D = { stage$0, stage$0.!setTitle, stage$0.title } U = { stage$0, stage$0.title }
+   7 assignment D = {  } U = { stage$0.!setWidth }
+   8 receiver D = {  } U = { stage$0 }
+   9 methodCall D = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0$TKBoundsConfigurator.windowWidth, stage$0.widthExplicit } U = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0.peerBoundsConfigurator, stage$0.width } TO = javafx.stage.Window#setWidth( double )
+  10 actualOut D = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0$TKBoundsConfigurator.windowWidth, stage$0.!setWidth, stage$0.widthExplicit } U = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0.peerBoundsConfigurator, stage$0.width }
+  11 assignment D = {  } U = { stage$0.!setHeight }
+  12 receiver D = {  } U = { stage$0 }
+  13 methodCall D = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0$TKBoundsConfigurator.windowHeight, stage$0.heightExplicit } U = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0.height, stage$0.peerBoundsConfigurator } TO = javafx.stage.Window#setHeight( double )
+  14 actualOut D = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0$TKBoundsConfigurator.windowHeight, stage$0.!setHeight, stage$0.heightExplicit } U = { javafx.beans.property.DoublePropertyBase.value, stage$0, stage$0.height, stage$0.peerBoundsConfigurator }
+  15 localDeclaration D = { canvas$1 } U = { canvas$1.!Pane }
+  16 receiver D = {  } U = {  }
+  17 constructorCall D = { javafx.scene.layout.Region._maxHeight, javafx.scene.layout.Region._maxWidth, javafx.scene.layout.Region._minHeight, javafx.scene.layout.Region._minWidth, javafx.scene.layout.Region._prefHeight, javafx.scene.layout.Region._prefWidth, javafx.scene.layout.Region._snapToPixel, javafx.scene.layout.Region.background, javafx.scene.layout.Region.border, javafx.scene.layout.Region.cacheShape, javafx.scene.layout.Region.centerShape, javafx.scene.layout.Region.imageChangeListener, javafx.scene.layout.Region.insets, javafx.scene.layout.Region.padding, javafx.scene.layout.Region.scaleShape, javafx.scene.layout.Region.shape, javafx.scene.layout.Region.snappedBottomInset, javafx.scene.layout.Region.snappedLeftInset, javafx.scene.layout.Region.snappedRightInset, javafx.scene.layout.Region.snappedTopInset } U = { javafx.geometry.Insets.EMPTY } TO = javafx.scene.layout.Pane#Pane( )
+  18 actualOut D = { canvas$1.!Pane, javafx.scene.layout.Region._maxHeight, javafx.scene.layout.Region._maxWidth, javafx.scene.layout.Region._minHeight, javafx.scene.layout.Region._minWidth, javafx.scene.layout.Region._prefHeight, javafx.scene.layout.Region._prefWidth, javafx.scene.layout.Region._snapToPixel, javafx.scene.layout.Region.background, javafx.scene.layout.Region.border, javafx.scene.layout.Region.cacheShape, javafx.scene.layout.Region.centerShape, javafx.scene.layout.Region.imageChangeListener, javafx.scene.layout.Region.insets, javafx.scene.layout.Region.padding, javafx.scene.layout.Region.scaleShape, javafx.scene.layout.Region.shape, javafx.scene.layout.Region.snappedBottomInset, javafx.scene.layout.Region.snappedLeftInset, javafx.scene.layout.Region.snappedRightInset, javafx.scene.layout.Region.snappedTopInset } U = { javafx.geometry.Insets.EMPTY }
+  19 assignment D = {  } U = { canvas$1.!setOnMousePressed }
+  20 receiver D = {  } U = { canvas$1 }
+  21 methodCall D = {  } U = { $LAMBDA } TO = javafx.scene.Node#setOnMousePressed( javafx.event.EventHandler )
+  22 lambda D = { $LAMBDA } U = { this.!mousePressed }
+  23 receiver D = {  } U = {  }
+  24 methodCall D = {  } U = {  } TO = Sample107FX#mousePressed( javafx.scene.input.MouseEvent javafx.scene.layout.Pane )
+  25 actualIn D = {  } U = { event$2 }
+  26 actualIn D = {  } U = { canvas$1 }
+  27 actualOut D = { this.!mousePressed } U = {  }
+  28 actualOut D = { canvas$1.!setOnMousePressed } U = {  }
+  29 localDeclaration D = { scene$3 } U = { scene$3.!Scene }
+  30 receiver D = {  } U = {  }
+  31 constructorCall D = { scene$3.acc, scene$3.antiAliasing, scene$3.depthBuffer, scene$3.dndGesture, scene$3.focusDirty, scene$3.focusOwner, scene$3.heightSetByUser, scene$3.keyHandler, scene$3.lights, scene$3.nextTouchEvent, scene$3.rotateGesture, scene$3.scenePulseListener, scene$3.scrollGesture, scene$3.sizeInitialized, scene$3.stylesheets, scene$3.swipeGesture, scene$3.testPulseListener, scene$3.tmpTargetWrapper, scene$3.touchEventSetId, scene$3.touchMap, scene$3.touchPointIndex, scene$3.touchPoints, scene$3.touchTargets, scene$3.traversalEngine, scene$3.userAgentStylesheet, scene$3.widthSetByUser, scene$3.zoomGesture } U = { canvas$1, javafx.application.ConditionalFeature.SCENE3D, javafx.scene.paint.Color.WHITE, scene$3Antialiasing.DISABLED } TO = javafx.scene.Scene#Scene( javafx.scene.Parent )
+  32 actualOut D = { scene$3.!Scene, scene$3.acc, scene$3.antiAliasing, scene$3.depthBuffer, scene$3.dndGesture, scene$3.focusDirty, scene$3.focusOwner, scene$3.heightSetByUser, scene$3.keyHandler, scene$3.lights, scene$3.nextTouchEvent, scene$3.rotateGesture, scene$3.scenePulseListener, scene$3.scrollGesture, scene$3.sizeInitialized, scene$3.stylesheets, scene$3.swipeGesture, scene$3.testPulseListener, scene$3.tmpTargetWrapper, scene$3.touchEventSetId, scene$3.touchMap, scene$3.touchPointIndex, scene$3.touchPoints, scene$3.touchTargets, scene$3.traversalEngine, scene$3.userAgentStylesheet, scene$3.widthSetByUser, scene$3.zoomGesture } U = { javafx.application.ConditionalFeature.SCENE3D, javafx.scene.paint.Color.WHITE, scene$3Antialiasing.DISABLED }
+  33 assignment D = {  } U = { stage$0.!setScene }
+  34 receiver D = {  } U = { stage$0 }
+  35 methodCall D = { com.sun.javafx.tk.Toolkit.TOOLKIT, stage$0 } U = { com.sun.javafx.tk.Toolkit.TOOLKIT, com.sun.javafx.tk.Toolkit.tk, java.lang.System.err, javafx.stage.Window.scene, scene$3, stage$0 } TO = javafx.stage.Stage#setScene( javafx.scene.Scene )
+  36 actualOut D = { com.sun.javafx.tk.Toolkit.TOOLKIT, stage$0, stage$0.!setScene } U = { com.sun.javafx.tk.Toolkit.TOOLKIT, com.sun.javafx.tk.Toolkit.tk, java.lang.System.err, javafx.stage.Window.scene, stage$0 }
+  37 assignment D = {  } U = { stage$0.!show }
+  38 receiver D = {  } U = { stage$0 }
+  39 methodCall D = {  } U = {  } TO = javafx.stage.Stage#show( )
+  40 actualOut D = { stage$0.!show } U = {  }
+  42 formalOut D = {  } U = { $_, com.sun.javafx.tk.Toolkit.TOOLKIT, javafx.beans.property.DoublePropertyBase.value, javafx.scene.layout.Region._maxHeight, javafx.scene.layout.Region._maxWidth, javafx.scene.layout.Region._minHeight, javafx.scene.layout.Region._minWidth, javafx.scene.layout.Region._prefHeight, javafx.scene.layout.Region._prefWidth, javafx.scene.layout.Region._snapToPixel, javafx.scene.layout.Region.background, javafx.scene.layout.Region.border, javafx.scene.layout.Region.cacheShape, javafx.scene.layout.Region.centerShape, javafx.scene.layout.Region.imageChangeListener, javafx.scene.layout.Region.insets, javafx.scene.layout.Region.padding, javafx.scene.layout.Region.scaleShape, javafx.scene.layout.Region.shape, javafx.scene.layout.Region.snappedBottomInset, javafx.scene.layout.Region.snappedLeftInset, javafx.scene.layout.Region.snappedRightInset, javafx.scene.layout.Region.snappedTopInset, scene$3.acc, scene$3.antiAliasing, scene$3.depthBuffer, scene$3.dndGesture, scene$3.focusDirty, scene$3.focusOwner, scene$3.heightSetByUser, scene$3.keyHandler, scene$3.lights, scene$3.nextTouchEvent, scene$3.rotateGesture, scene$3.scenePulseListener, scene$3.scrollGesture, scene$3.sizeInitialized, scene$3.stylesheets, scene$3.swipeGesture, scene$3.testPulseListener, scene$3.tmpTargetWrapper, scene$3.touchEventSetId, scene$3.touchMap, scene$3.touchPointIndex, scene$3.touchPoints, scene$3.touchTargets, scene$3.traversalEngine, scene$3.userAgentStylesheet, scene$3.widthSetByUser, scene$3.zoomGesture, stage$0$TKBoundsConfigurator.windowHeight, stage$0$TKBoundsConfigurator.windowWidth, stage$0.heightExplicit, stage$0.title, stage$0.widthExplicit }
+--
+   0 methodEntry [ main( java.lang.String[] ) ]
+   1 formalIn D = { args$0 } U = {  }
+   2 assignment D = {  } U = { this.!launch }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = { args$0, com.sun.javafx.application.LauncherImpl.savedPreloaderClass, java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, java.lang.Class.name, java.lang.StackTraceElement.declaringClass, java.lang.StackTraceElement.methodName, java.lang.String.value, java.lang.System.err, java.lang.Thread.EMPTY_STACK_TRACE, java.lang.Thread.contextClassLoader, sun.security.util.SecurityConstants.GET_CLASSLOADER_PERMISSION, sun.security.util.SecurityConstants.GET_STACK_TRACE_PERMISSION } TO = javafx.application.Application#launch( java.lang.String[] )
+   5 actualOut D = { this.!launch } U = { com.sun.javafx.application.LauncherImpl.savedPreloaderClass, java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, java.lang.Class.name, java.lang.StackTraceElement.declaringClass, java.lang.StackTraceElement.methodName, java.lang.String.value, java.lang.System.err, java.lang.Thread.EMPTY_STACK_TRACE, java.lang.Thread.contextClassLoader, sun.security.util.SecurityConstants.GET_CLASSLOADER_PERMISSION, sun.security.util.SecurityConstants.GET_STACK_TRACE_PERMISSION }
+   7 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ mousePressed( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ) ]
+   1 formalIn D = { event$0 } U = {  }
+   2 formalIn D = { canvas$1 } U = {  }
+   3 localDeclaration D = { x$2 } U = { event$0.!getX }
+   4 receiver D = {  } U = { event$0 }
+   5 methodCall D = {  } U = { event$0, event$0.x } TO = javafx.scene.input.MouseEvent#getX( )
+   6 actualOut D = { event$0.!getX } U = { event$0.x }
+   7 localDeclaration D = { y$3 } U = { event$0.!getY }
+   8 receiver D = {  } U = { event$0 }
+   9 methodCall D = {  } U = { event$0, event$0.y } TO = javafx.scene.input.MouseEvent#getY( )
+  10 actualOut D = { event$0.!getY } U = { event$0.y }
+  11 localDeclaration D = { circle$4 } U = { circle$4.!Circle }
+  12 receiver D = {  } U = {  }
+  13 constructorCall D = { circle$4$3.this$0, circle$4.radius, circle$4.shape, javafx.scene.shape.Shape.impl_mode, javafx.scene.shape.Shape.platformImageChangeListener, javafx.scene.shape.Shape.strokeAttributesDirty } U = { Sample107FX.RADIUS, circle$4.centerX, circle$4.centerY, circle$4.radius, com.sun.javafx.sg.prism.NGShape$Mode.FILL, x$2, y$3 } TO = javafx.scene.shape.Circle#Circle( double double double )
+  14 actualOut D = { circle$4$3.this$0, circle$4.!Circle, circle$4.radius, circle$4.shape, javafx.scene.shape.Shape.impl_mode, javafx.scene.shape.Shape.platformImageChangeListener, javafx.scene.shape.Shape.strokeAttributesDirty } U = { circle$4.centerX, circle$4.centerY, circle$4.radius, com.sun.javafx.sg.prism.NGShape$Mode.FILL }
+  15 assignment D = {  } U = { circle$4.!setStroke }
+  16 receiver D = {  } U = { circle$4 }
+  17 methodCall D = { circle$4, circle$4.stroke } U = { Color.BLUE, circle$4, circle$4.stroke } TO = javafx.scene.shape.Shape#setStroke( javafx.scene.paint.Paint )
+  18 actualOut D = { circle$4, circle$4.!setStroke, circle$4.stroke } U = { circle$4, circle$4.stroke }
+  19 assignment D = {  } U = { circle$4.!setFill }
+  20 receiver D = {  } U = { circle$4 }
+  21 methodCall D = { circle$4, circle$4.fill } U = { Color.WHITE, circle$4, circle$4.fill, javafx.scene.paint.Color.BLACK } TO = javafx.scene.shape.Shape#setFill( javafx.scene.paint.Paint )
+  22 actualOut D = { circle$4, circle$4.!setFill, circle$4.fill } U = { circle$4, circle$4.fill, javafx.scene.paint.Color.BLACK }
+  23 assignment D = {  } U = { canvas$1.!getChildren.!add }
+  24 receiver D = {  } U = { canvas$1.!getChildren }
+  25 receiver D = {  } U = { canvas$1 }
+  26 methodCall D = {  } U = { canvas$1, javafx.scene.Parent.children } TO = javafx.scene.layout.Pane#getChildren( )
+  27 actualOut D = { canvas$1.!getChildren } U = { javafx.scene.Parent.children }
+  28 methodCall D = {  } U = { circle$4 } TO = java.util.List#add( java.lang.Object )
+  29 actualOut D = { canvas$1.!getChildren.!add } U = {  }
+  31 formalOut D = {  } U = { $_, circle$4$3.this$0, circle$4.fill, circle$4.radius, circle$4.shape, circle$4.stroke, javafx.scene.shape.Shape.impl_mode, javafx.scene.shape.Shape.platformImageChangeListener, javafx.scene.shape.Shape.strokeAttributesDirty }
+--
+   0 fieldEntry [ RADIUS ]
+   1 fieldDeclaration D = { Sample107FX.RADIUS } U = { Sample107FX.RADIUS }
+--
+   0 constructorEntry [ Sample107FX( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: start( javafx.stage.Stage )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 25 trueControlDependence
+  19: 0 -> 26 trueControlDependence
+  20: 0 -> 27 trueControlDependence
+  21: 0 -> 28 trueControlDependence
+  22: 0 -> 29 trueControlDependence
+  23: 0 -> 3 trueControlDependence
+  24: 0 -> 30 trueControlDependence
+  25: 0 -> 31 trueControlDependence
+  26: 0 -> 32 trueControlDependence
+  27: 0 -> 33 trueControlDependence
+  28: 0 -> 34 trueControlDependence
+  29: 0 -> 35 trueControlDependence
+  30: 0 -> 36 trueControlDependence
+  31: 0 -> 37 trueControlDependence
+  32: 0 -> 38 trueControlDependence
+  33: 0 -> 39 trueControlDependence
+  34: 0 -> 4 trueControlDependence
+  35: 0 -> 40 trueControlDependence
+  36: 0 -> 42 trueControlDependence
+  37: 0 -> 5 trueControlDependence
+  38: 0 -> 6 trueControlDependence
+  39: 0 -> 7 trueControlDependence
+  40: 0 -> 8 trueControlDependence
+  41: 0 -> 9 trueControlDependence
+  42: 10 -> 12 loopIndependentDefUseDependence stage$0
+  43: 10 -> 13 loopIndependentDefUseDependence javafx.beans.property.DoublePropertyBase.value
+  44: 10 -> 13 loopIndependentDefUseDependence stage$0
+  45: 10 -> 42 loopIndependentDefUseDependence stage$0$TKBoundsConfigurator.windowWidth
+  46: 10 -> 42 loopIndependentDefUseDependence stage$0.widthExplicit
+  47: 10 -> 7 loopIndependentDefUseDependence stage$0.!setWidth
+  48: 13 -> 14 loopIndependentDefUseDependence javafx.beans.property.DoublePropertyBase.value
+  49: 13 -> 14 loopIndependentDefUseDependence stage$0
+  50: 13 -> 14 outputDependence stage$0$TKBoundsConfigurator.windowHeight
+  51: 13 -> 14 outputDependence stage$0.heightExplicit
+  52: 14 -> 11 loopIndependentDefUseDependence stage$0.!setHeight
+  53: 14 -> 34 loopIndependentDefUseDependence stage$0
+  54: 14 -> 35 loopIndependentDefUseDependence stage$0
+  55: 14 -> 42 loopIndependentDefUseDependence javafx.beans.property.DoublePropertyBase.value
+  56: 14 -> 42 loopIndependentDefUseDependence stage$0$TKBoundsConfigurator.windowHeight
+  57: 14 -> 42 loopIndependentDefUseDependence stage$0.heightExplicit
+  58: 15 -> 20 declaration
+  59: 15 -> 20 loopIndependentDefUseDependence canvas$1
+  60: 15 -> 26 declaration
+  61: 15 -> 26 loopIndependentDefUseDependence canvas$1
+  62: 15 -> 31 declaration
+  63: 15 -> 31 loopIndependentDefUseDependence canvas$1
+  64: 17 -> 18 outputDependence javafx.scene.layout.Region._maxHeight
+  65: 17 -> 18 outputDependence javafx.scene.layout.Region._maxWidth
+  66: 17 -> 18 outputDependence javafx.scene.layout.Region._minHeight
+  67: 17 -> 18 outputDependence javafx.scene.layout.Region._minWidth
+  68: 17 -> 18 outputDependence javafx.scene.layout.Region._prefHeight
+  69: 17 -> 18 outputDependence javafx.scene.layout.Region._prefWidth
+  70: 17 -> 18 outputDependence javafx.scene.layout.Region._snapToPixel
+  71: 17 -> 18 outputDependence javafx.scene.layout.Region.background
+  72: 17 -> 18 outputDependence javafx.scene.layout.Region.border
+  73: 17 -> 18 outputDependence javafx.scene.layout.Region.cacheShape
+  74: 17 -> 18 outputDependence javafx.scene.layout.Region.centerShape
+  75: 17 -> 18 outputDependence javafx.scene.layout.Region.imageChangeListener
+  76: 17 -> 18 outputDependence javafx.scene.layout.Region.insets
+  77: 17 -> 18 outputDependence javafx.scene.layout.Region.padding
+  78: 17 -> 18 outputDependence javafx.scene.layout.Region.scaleShape
+  79: 17 -> 18 outputDependence javafx.scene.layout.Region.shape
+  80: 17 -> 18 outputDependence javafx.scene.layout.Region.snappedBottomInset
+  81: 17 -> 18 outputDependence javafx.scene.layout.Region.snappedLeftInset
+  82: 17 -> 18 outputDependence javafx.scene.layout.Region.snappedRightInset
+  83: 17 -> 18 outputDependence javafx.scene.layout.Region.snappedTopInset
+  84: 18 -> 15 loopIndependentDefUseDependence canvas$1.!Pane
+  85: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region._maxHeight
+  86: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region._maxWidth
+  87: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region._minHeight
+  88: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region._minWidth
+  89: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region._prefHeight
+  90: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region._prefWidth
+  91: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region._snapToPixel
+  92: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.background
+  93: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.border
+  94: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.cacheShape
+  95: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.centerShape
+  96: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.imageChangeListener
+  97: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.insets
+  98: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.padding
+  99: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.scaleShape
+ 100: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.shape
+ 101: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.snappedBottomInset
+ 102: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.snappedLeftInset
+ 103: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.snappedRightInset
+ 104: 18 -> 42 loopIndependentDefUseDependence javafx.scene.layout.Region.snappedTopInset
+ 105: 2 -> 4 loopIndependentDefUseDependence stage$0
+ 106: 2 -> 5 loopIndependentDefUseDependence stage$0
+ 107: 22 -> 21 loopIndependentDefUseDependence $LAMBDA
+ 108: 27 -> 22 loopIndependentDefUseDependence this.!mousePressed
+ 109: 28 -> 19 loopIndependentDefUseDependence canvas$1.!setOnMousePressed
+ 110: 29 -> 35 declaration
+ 111: 29 -> 35 loopIndependentDefUseDependence scene$3
+ 112: 31 -> 32 outputDependence scene$3.acc
+ 113: 31 -> 32 outputDependence scene$3.antiAliasing
+ 114: 31 -> 32 outputDependence scene$3.depthBuffer
+ 115: 31 -> 32 outputDependence scene$3.dndGesture
+ 116: 31 -> 32 outputDependence scene$3.focusDirty
+ 117: 31 -> 32 outputDependence scene$3.focusOwner
+ 118: 31 -> 32 outputDependence scene$3.heightSetByUser
+ 119: 31 -> 32 outputDependence scene$3.keyHandler
+ 120: 31 -> 32 outputDependence scene$3.lights
+ 121: 31 -> 32 outputDependence scene$3.nextTouchEvent
+ 122: 31 -> 32 outputDependence scene$3.rotateGesture
+ 123: 31 -> 32 outputDependence scene$3.scenePulseListener
+ 124: 31 -> 32 outputDependence scene$3.scrollGesture
+ 125: 31 -> 32 outputDependence scene$3.sizeInitialized
+ 126: 31 -> 32 outputDependence scene$3.stylesheets
+ 127: 31 -> 32 outputDependence scene$3.swipeGesture
+ 128: 31 -> 32 outputDependence scene$3.testPulseListener
+ 129: 31 -> 32 outputDependence scene$3.tmpTargetWrapper
+ 130: 31 -> 32 outputDependence scene$3.touchEventSetId
+ 131: 31 -> 32 outputDependence scene$3.touchMap
+ 132: 31 -> 32 outputDependence scene$3.touchPointIndex
+ 133: 31 -> 32 outputDependence scene$3.touchPoints
+ 134: 31 -> 32 outputDependence scene$3.touchTargets
+ 135: 31 -> 32 outputDependence scene$3.traversalEngine
+ 136: 31 -> 32 outputDependence scene$3.userAgentStylesheet
+ 137: 31 -> 32 outputDependence scene$3.widthSetByUser
+ 138: 31 -> 32 outputDependence scene$3.zoomGesture
+ 139: 32 -> 29 loopIndependentDefUseDependence scene$3.!Scene
+ 140: 32 -> 42 loopIndependentDefUseDependence scene$3.acc
+ 141: 32 -> 42 loopIndependentDefUseDependence scene$3.antiAliasing
+ 142: 32 -> 42 loopIndependentDefUseDependence scene$3.depthBuffer
+ 143: 32 -> 42 loopIndependentDefUseDependence scene$3.dndGesture
+ 144: 32 -> 42 loopIndependentDefUseDependence scene$3.focusDirty
+ 145: 32 -> 42 loopIndependentDefUseDependence scene$3.focusOwner
+ 146: 32 -> 42 loopIndependentDefUseDependence scene$3.heightSetByUser
+ 147: 32 -> 42 loopIndependentDefUseDependence scene$3.keyHandler
+ 148: 32 -> 42 loopIndependentDefUseDependence scene$3.lights
+ 149: 32 -> 42 loopIndependentDefUseDependence scene$3.nextTouchEvent
+ 150: 32 -> 42 loopIndependentDefUseDependence scene$3.rotateGesture
+ 151: 32 -> 42 loopIndependentDefUseDependence scene$3.scenePulseListener
+ 152: 32 -> 42 loopIndependentDefUseDependence scene$3.scrollGesture
+ 153: 32 -> 42 loopIndependentDefUseDependence scene$3.sizeInitialized
+ 154: 32 -> 42 loopIndependentDefUseDependence scene$3.stylesheets
+ 155: 32 -> 42 loopIndependentDefUseDependence scene$3.swipeGesture
+ 156: 32 -> 42 loopIndependentDefUseDependence scene$3.testPulseListener
+ 157: 32 -> 42 loopIndependentDefUseDependence scene$3.tmpTargetWrapper
+ 158: 32 -> 42 loopIndependentDefUseDependence scene$3.touchEventSetId
+ 159: 32 -> 42 loopIndependentDefUseDependence scene$3.touchMap
+ 160: 32 -> 42 loopIndependentDefUseDependence scene$3.touchPointIndex
+ 161: 32 -> 42 loopIndependentDefUseDependence scene$3.touchPoints
+ 162: 32 -> 42 loopIndependentDefUseDependence scene$3.touchTargets
+ 163: 32 -> 42 loopIndependentDefUseDependence scene$3.traversalEngine
+ 164: 32 -> 42 loopIndependentDefUseDependence scene$3.userAgentStylesheet
+ 165: 32 -> 42 loopIndependentDefUseDependence scene$3.widthSetByUser
+ 166: 32 -> 42 loopIndependentDefUseDependence scene$3.zoomGesture
+ 167: 35 -> 36 loopIndependentDefUseDependence com.sun.javafx.tk.Toolkit.TOOLKIT
+ 168: 35 -> 36 loopIndependentDefUseDependence stage$0
+ 169: 36 -> 33 loopIndependentDefUseDependence stage$0.!setScene
+ 170: 36 -> 38 loopIndependentDefUseDependence stage$0
+ 171: 36 -> 42 loopIndependentDefUseDependence com.sun.javafx.tk.Toolkit.TOOLKIT
+ 172: 40 -> 37 loopIndependentDefUseDependence stage$0.!show
+ 173: 5 -> 6 loopIndependentDefUseDependence stage$0
+ 174: 5 -> 6 loopIndependentDefUseDependence stage$0.title
+ 175: 6 -> 3 loopIndependentDefUseDependence stage$0.!setTitle
+ 176: 6 -> 42 loopIndependentDefUseDependence stage$0.title
+ 177: 6 -> 8 loopIndependentDefUseDependence stage$0
+ 178: 6 -> 9 loopIndependentDefUseDependence stage$0
+ 179: 9 -> 10 loopIndependentDefUseDependence javafx.beans.property.DoublePropertyBase.value
+ 180: 9 -> 10 loopIndependentDefUseDependence stage$0
+ 181: 9 -> 10 outputDependence stage$0$TKBoundsConfigurator.windowWidth
+ 182: 9 -> 10 outputDependence stage$0.widthExplicit
+--
+   0: main( java.lang.String[] )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 7 trueControlDependence
+   7: 1 -> 4 loopIndependentDefUseDependence args$0
+   8: 5 -> 2 loopIndependentDefUseDependence this.!launch
+--
+   0: mousePressed( javafx.scene.input.MouseEvent javafx.scene.layout.Pane )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 25 trueControlDependence
+  19: 0 -> 26 trueControlDependence
+  20: 0 -> 27 trueControlDependence
+  21: 0 -> 28 trueControlDependence
+  22: 0 -> 29 trueControlDependence
+  23: 0 -> 3 trueControlDependence
+  24: 0 -> 31 trueControlDependence
+  25: 0 -> 4 trueControlDependence
+  26: 0 -> 5 trueControlDependence
+  27: 0 -> 6 trueControlDependence
+  28: 0 -> 7 trueControlDependence
+  29: 0 -> 8 trueControlDependence
+  30: 0 -> 9 trueControlDependence
+  31: 1 -> 4 loopIndependentDefUseDependence event$0
+  32: 1 -> 5 loopIndependentDefUseDependence event$0
+  33: 1 -> 8 loopIndependentDefUseDependence event$0
+  34: 1 -> 9 loopIndependentDefUseDependence event$0
+  35: 10 -> 7 loopIndependentDefUseDependence event$0.!getY
+  36: 11 -> 16 declaration
+  37: 11 -> 16 loopIndependentDefUseDependence circle$4
+  38: 11 -> 17 declaration
+  39: 11 -> 17 loopIndependentDefUseDependence circle$4
+  40: 11 -> 18 declaration
+  41: 11 -> 20 declaration
+  42: 11 -> 21 declaration
+  43: 11 -> 22 declaration
+  44: 11 -> 28 declaration
+  45: 13 -> 14 loopIndependentDefUseDependence circle$4.radius
+  46: 13 -> 14 outputDependence circle$4$3.this$0
+  47: 13 -> 14 outputDependence circle$4.shape
+  48: 13 -> 14 outputDependence javafx.scene.shape.Shape.impl_mode
+  49: 13 -> 14 outputDependence javafx.scene.shape.Shape.platformImageChangeListener
+  50: 13 -> 14 outputDependence javafx.scene.shape.Shape.strokeAttributesDirty
+  51: 14 -> 11 loopIndependentDefUseDependence circle$4.!Circle
+  52: 14 -> 31 loopIndependentDefUseDependence circle$4$3.this$0
+  53: 14 -> 31 loopIndependentDefUseDependence circle$4.radius
+  54: 14 -> 31 loopIndependentDefUseDependence circle$4.shape
+  55: 14 -> 31 loopIndependentDefUseDependence javafx.scene.shape.Shape.impl_mode
+  56: 14 -> 31 loopIndependentDefUseDependence javafx.scene.shape.Shape.platformImageChangeListener
+  57: 14 -> 31 loopIndependentDefUseDependence javafx.scene.shape.Shape.strokeAttributesDirty
+  58: 17 -> 18 loopIndependentDefUseDependence circle$4
+  59: 17 -> 18 loopIndependentDefUseDependence circle$4.stroke
+  60: 18 -> 15 loopIndependentDefUseDependence circle$4.!setStroke
+  61: 18 -> 20 loopIndependentDefUseDependence circle$4
+  62: 18 -> 21 loopIndependentDefUseDependence circle$4
+  63: 18 -> 31 loopIndependentDefUseDependence circle$4.stroke
+  64: 2 -> 25 loopIndependentDefUseDependence canvas$1
+  65: 2 -> 26 loopIndependentDefUseDependence canvas$1
+  66: 21 -> 22 loopIndependentDefUseDependence circle$4
+  67: 21 -> 22 loopIndependentDefUseDependence circle$4.fill
+  68: 22 -> 19 loopIndependentDefUseDependence circle$4.!setFill
+  69: 22 -> 28 loopIndependentDefUseDependence circle$4
+  70: 22 -> 31 loopIndependentDefUseDependence circle$4.fill
+  71: 27 -> 24 loopIndependentDefUseDependence canvas$1.!getChildren
+  72: 29 -> 23 loopIndependentDefUseDependence canvas$1.!getChildren.!add
+  73: 3 -> 13 declaration
+  74: 3 -> 13 loopIndependentDefUseDependence x$2
+  75: 6 -> 3 loopIndependentDefUseDependence event$0.!getX
+  76: 7 -> 13 declaration
+  77: 7 -> 13 loopIndependentDefUseDependence y$3
+--
+   0: RADIUS
+   1: 0 -> 1 trueControlDependence
+--
+   0: Sample107FX( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

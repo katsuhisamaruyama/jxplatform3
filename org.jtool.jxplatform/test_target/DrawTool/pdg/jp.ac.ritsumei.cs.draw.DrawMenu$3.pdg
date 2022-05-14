@@ -1,0 +1,47 @@
+----- ClDG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$3
+   0 fieldEntry [ serialVersionUID ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.DrawMenu$3.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.DrawMenu$3.serialVersionUID }
+--
+   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   1 throwsClause D = {  } U = { $java.awt.HeadlessException }
+   2 formalIn D = { evt$0 } U = {  }
+   3 ifSt D = {  } U = { this.!newFile }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = { this.directory, this.tabbedCanvas.selectedTab, this.tool } U = { this.directory, this.recentFiles, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.menu, this.tabbedCanvas.selectedTab, this.tabbedCanvas.selector, this.tool } TO = jp.ac.ritsumei.cs.draw.DrawMenu#newFile( )
+   6 actualOut D = { this.!newFile, this.directory, this.tabbedCanvas.selectedTab, this.tool } U = { this.directory, this.recentFiles, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.menu, this.tabbedCanvas.selectedTab, this.tabbedCanvas.selector, this.tool }
+   7 assignment D = {  } U = { this.!buildRecentFileMenu }
+   8 receiver D = {  } U = {  }
+   9 methodCall D = { this.fileListMenu } U = { this.fileListMenu, this.fileListener, this.recentFiles } TO = jp.ac.ritsumei.cs.draw.DrawMenu#buildRecentFileMenu( )
+  10 actualOut D = { this.!buildRecentFileMenu, this.fileListMenu } U = { this.fileListMenu, this.fileListener, this.recentFiles }
+  13 formalOut D = {  } U = { $_, this.directory, this.fileListMenu, this.tabbedCanvas.selectedTab, this.tool }
+--
+   0: serialVersionUID
+   1: 0 -> 1 trueControlDependence
+--
+   0: actionPerformed( java.awt.event.ActionEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 13 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 10 -> 13 loopIndependentDefUseDependence this.fileListMenu
+   8: 10 -> 7 loopIndependentDefUseDependence this.!buildRecentFileMenu
+   9: 3 -> 10 trueControlDependence
+  10: 3 -> 7 trueControlDependence
+  11: 3 -> 8 trueControlDependence
+  12: 3 -> 9 trueControlDependence
+  13: 5 -> 1 exceptionCatch
+  14: 5 -> 3 trueControlDependence
+  15: 5 -> 6 loopIndependentDefUseDependence this.directory
+  16: 5 -> 6 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+  17: 5 -> 6 loopIndependentDefUseDependence this.tool
+  18: 6 -> 13 loopIndependentDefUseDependence this.directory
+  19: 6 -> 13 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+  20: 6 -> 13 loopIndependentDefUseDependence this.tool
+  21: 6 -> 3 loopIndependentDefUseDependence this.!newFile
+  22: 9 -> 10 loopIndependentDefUseDependence this.fileListMenu
+--
+----- ClDG (to here) -----
+

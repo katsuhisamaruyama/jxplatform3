@@ -1,0 +1,101 @@
+----- ClDG (from here) -----
+Class Name = Sample22
+   0 methodEntry [ main( java.lang.String[] ) ]
+   1 formalIn D = { args$0 } U = {  }
+   2 localDeclaration D = { storage$1 } U = { storage$1.!Storage }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = Storage#Storage( )
+   5 actualOut D = { storage$1.!Storage } U = {  }
+   6 localDeclaration D = { producer$2 } U = { producer$2.!Producer }
+   7 receiver D = {  } U = {  }
+   8 constructorCall D = { producer$2.storage } U = { producer$2.storage } TO = Producer#Producer( Storage )
+   9 actualIn D = {  } U = { storage$1 }
+  10 actualOut D = { producer$2.!Producer, producer$2.storage } U = { producer$2.storage }
+  11 localDeclaration D = { consumer$3 } U = { consumer$3.!Consumer }
+  12 receiver D = {  } U = {  }
+  13 constructorCall D = { consumer$3.storage } U = { consumer$3.storage } TO = Consumer#Consumer( Storage )
+  14 actualIn D = {  } U = { storage$1 }
+  15 actualOut D = { consumer$3.!Consumer, consumer$3.storage } U = { consumer$3.storage }
+  16 assignment D = {  } U = { producer$2.!start }
+  17 receiver D = {  } U = { producer$2 }
+  18 methodCall D = { producer$2, producer$2Group.nUnstartedThreads, producer$2Group.nthreads, producer$2Group.threads } U = { producer$2, producer$2.group, producer$2.threadStatus, producer$2Group.destroyed, producer$2Group.nUnstartedThreads, producer$2Group.nthreads, producer$2Group.threads } TO = java.lang.Thread#start( )
+  19 actualOut D = { producer$2, producer$2.!start, producer$2Group.nUnstartedThreads, producer$2Group.nthreads, producer$2Group.threads } U = { producer$2, producer$2.group, producer$2.threadStatus, producer$2Group.destroyed, producer$2Group.nUnstartedThreads, producer$2Group.nthreads, producer$2Group.threads }
+  20 assignment D = {  } U = { consumer$3.!start }
+  21 receiver D = {  } U = { consumer$3 }
+  22 methodCall D = { consumer$3, consumer$3Group.nUnstartedThreads, consumer$3Group.nthreads, consumer$3Group.threads } U = { consumer$3, consumer$3.group, consumer$3.threadStatus, consumer$3Group.destroyed, consumer$3Group.nUnstartedThreads, consumer$3Group.nthreads, consumer$3Group.threads } TO = java.lang.Thread#start( )
+  23 actualOut D = { consumer$3, consumer$3.!start, consumer$3Group.nUnstartedThreads, consumer$3Group.nthreads, consumer$3Group.threads } U = { consumer$3, consumer$3.group, consumer$3.threadStatus, consumer$3Group.destroyed, consumer$3Group.nUnstartedThreads, consumer$3Group.nthreads, consumer$3Group.threads }
+  25 formalOut D = {  } U = { $_, consumer$3.storage, consumer$3Group.nUnstartedThreads, consumer$3Group.nthreads, consumer$3Group.threads, producer$2.storage, producer$2Group.nUnstartedThreads, producer$2Group.nthreads, producer$2Group.threads }
+--
+   0 constructorEntry [ Sample22( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: main( java.lang.String[] )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 25 trueControlDependence
+  18: 0 -> 3 trueControlDependence
+  19: 0 -> 4 trueControlDependence
+  20: 0 -> 5 trueControlDependence
+  21: 0 -> 6 trueControlDependence
+  22: 0 -> 7 trueControlDependence
+  23: 0 -> 8 trueControlDependence
+  24: 0 -> 9 trueControlDependence
+  25: 10 -> 25 loopIndependentDefUseDependence producer$2.storage
+  26: 10 -> 6 loopIndependentDefUseDependence producer$2.!Producer
+  27: 11 -> 21 declaration
+  28: 11 -> 21 loopIndependentDefUseDependence consumer$3
+  29: 11 -> 22 declaration
+  30: 11 -> 22 loopIndependentDefUseDependence consumer$3
+  31: 11 -> 23 declaration
+  32: 13 -> 15 loopIndependentDefUseDependence consumer$3.storage
+  33: 14 -> 15 summary
+  34: 15 -> 11 loopIndependentDefUseDependence consumer$3.!Consumer
+  35: 15 -> 25 loopIndependentDefUseDependence consumer$3.storage
+  36: 18 -> 19 loopIndependentDefUseDependence producer$2
+  37: 18 -> 19 loopIndependentDefUseDependence producer$2Group.nUnstartedThreads
+  38: 18 -> 19 loopIndependentDefUseDependence producer$2Group.nthreads
+  39: 18 -> 19 loopIndependentDefUseDependence producer$2Group.threads
+  40: 19 -> 16 loopIndependentDefUseDependence producer$2.!start
+  41: 19 -> 25 loopIndependentDefUseDependence producer$2Group.nUnstartedThreads
+  42: 19 -> 25 loopIndependentDefUseDependence producer$2Group.nthreads
+  43: 19 -> 25 loopIndependentDefUseDependence producer$2Group.threads
+  44: 2 -> 14 declaration
+  45: 2 -> 14 loopIndependentDefUseDependence storage$1
+  46: 2 -> 9 declaration
+  47: 2 -> 9 loopIndependentDefUseDependence storage$1
+  48: 22 -> 23 loopIndependentDefUseDependence consumer$3
+  49: 22 -> 23 loopIndependentDefUseDependence consumer$3Group.nUnstartedThreads
+  50: 22 -> 23 loopIndependentDefUseDependence consumer$3Group.nthreads
+  51: 22 -> 23 loopIndependentDefUseDependence consumer$3Group.threads
+  52: 23 -> 20 loopIndependentDefUseDependence consumer$3.!start
+  53: 23 -> 25 loopIndependentDefUseDependence consumer$3Group.nUnstartedThreads
+  54: 23 -> 25 loopIndependentDefUseDependence consumer$3Group.nthreads
+  55: 23 -> 25 loopIndependentDefUseDependence consumer$3Group.threads
+  56: 5 -> 2 loopIndependentDefUseDependence storage$1.!Storage
+  57: 6 -> 17 declaration
+  58: 6 -> 17 loopIndependentDefUseDependence producer$2
+  59: 6 -> 18 declaration
+  60: 6 -> 18 loopIndependentDefUseDependence producer$2
+  61: 6 -> 19 declaration
+  62: 8 -> 10 loopIndependentDefUseDependence producer$2.storage
+  63: 9 -> 10 summary
+--
+   0: Sample22( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

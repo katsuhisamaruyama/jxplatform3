@@ -1,0 +1,66 @@
+----- ClDG (from here) -----
+Class Name = Test18
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { a$0 } U = {  }
+   2 localDeclaration D = { i$1 } U = {  }
+   3 forSt D = {  } U = { i$1 }
+   4 localDeclaration D = { j$2 } U = {  }
+   5 forSt D = {  } U = { j$2 }
+   6 assignment D = { a$0 } U = { a$0 }
+   7 breakSt D = {  } U = {  }
+   8 assignment D = { j$2 } U = { j$2 }
+   9 ifSt D = {  } U = { a$0 }
+  10 assignment D = { a$0 } U = { a$0 }
+  11 breakSt D = {  } U = {  }
+  13 assignment D = { i$1 } U = { i$1 }
+  15 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test18( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 15 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 8 trueControlDependence
+   6: 1 -> 10 declaration
+   7: 1 -> 10 loopIndependentDefUseDependence a$0
+   8: 1 -> 6 declaration
+   9: 1 -> 6 loopIndependentDefUseDependence a$0
+  10: 1 -> 9 declaration
+  11: 1 -> 9 loopIndependentDefUseDependence a$0
+  12: 11 -> 13 fallThroughControlDependence
+  13: 11 -> 3 fallThroughControlDependence
+  14: 13 -> 13 loopCarriedDefUseDependence i$1 3
+  15: 13 -> 3 loopIndependentDefUseDependence i$1
+  16: 2 -> 13 declaration
+  17: 2 -> 13 loopIndependentDefUseDependence i$1
+  18: 2 -> 3 declaration
+  19: 2 -> 3 loopIndependentDefUseDependence i$1
+  20: 3 -> 4 trueControlDependence
+  21: 3 -> 5 trueControlDependence
+  22: 3 -> 9 trueControlDependence
+  23: 4 -> 4 defOrderDependence j$2
+  24: 4 -> 5 declaration
+  25: 4 -> 5 loopIndependentDefUseDependence j$2
+  26: 4 -> 8 declaration
+  27: 5 -> 6 trueControlDependence
+  28: 5 -> 7 trueControlDependence
+  29: 6 -> 10 loopCarriedDefUseDependence a$0 3
+  30: 6 -> 6 loopCarriedDefUseDependence a$0 5
+  31: 6 -> 9 loopIndependentDefUseDependence a$0
+  32: 7 -> 5 fallThroughControlDependence
+  33: 7 -> 8 fallThroughControlDependence
+  34: 8 -> 4 outputDependence j$2
+  35: 8 -> 5 loopIndependentDefUseDependence j$2
+  36: 9 -> 10 trueControlDependence
+  37: 9 -> 11 trueControlDependence
+  38: 9 -> 13 falseControlDependence
+  39: 9 -> 3 falseControlDependence
+--
+   0: Test18( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

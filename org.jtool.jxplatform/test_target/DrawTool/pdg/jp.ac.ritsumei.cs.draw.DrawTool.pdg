@@ -1,0 +1,576 @@
+----- ClDG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.DrawTool
+   0 fieldEntry [ selector ]
+   1 fieldDeclaration D = { this.selector } U = { this.selector }
+--
+   0 methodEntry [ main( java.lang.String[] ) ]
+   1 throwsClause D = {  } U = { $java.awt.HeadlessException }
+   2 formalIn D = { args$0 } U = {  }
+   3 assignment D = {  } U = { this.!setDefault }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = { this.defaultDisplayLocale, this.defaultFormatLocale, this.defaultLocale } U = { Locale.ENGLISH, this$1.$SwitchMap$java$util$Locale$Category, this$Category.DISPLAY, this$Category.FORMAT, this.$assertionsDisabled } TO = java.util.Locale#setDefault( java.util.Locale )
+   6 actualOut D = { this.!setDefault, this.defaultDisplayLocale, this.defaultFormatLocale, this.defaultLocale } U = { this$1.$SwitchMap$java$util$Locale$Category, this$Category.DISPLAY, this$Category.FORMAT, this.$assertionsDisabled }
+   7 localDeclaration D = { main$1 } U = { main$1.!DrawTool }
+   8 receiver D = {  } U = {  }
+   9 constructorCall D = { main$1.menu, main$1.menu.autoSave, main$1.menu.autoSave.tabbedCanvas, main$1.menu.clipboard, main$1.menu.copyAction, main$1.menu.cutAction, main$1.menu.deleteAction, main$1.menu.directory, main$1.menu.fileListMenu, main$1.menu.fileListener, main$1.menu.menuBar, main$1.menu.newAction, main$1.menu.openAction, main$1.menu.pasteAction, main$1.menu.recentFiles, main$1.menu.redoAction, main$1.menu.saveAction, main$1.menu.tabbedCanvas, main$1.menu.tool, main$1.menu.toolBar, main$1.menu.undoAction, main$1.menu.windowListener, main$1.selector, main$1.selector.colorCombo, main$1.selector.shapeCombo, main$1.selector.widthCombo, main$1.tabbedCanvas, main$1.tabbedCanvas.canvases, main$1.tabbedCanvas.menu, main$1.tabbedCanvas.selectedTab, main$1.tabbedCanvas.selector } U = { main$1.menu, main$1.menu.autoSave, main$1.menu.autoSave.tabbedCanvas, main$1.menu.clipboard, main$1.menu.copyAction, main$1.menu.cutAction, main$1.menu.deleteAction, main$1.menu.directory, main$1.menu.fileListMenu, main$1.menu.fileListener, main$1.menu.menuBar, main$1.menu.newAction, main$1.menu.openAction, main$1.menu.pasteAction, main$1.menu.recentFiles, main$1.menu.redoAction, main$1.menu.saveAction, main$1.menu.tabbedCanvas, main$1.menu.tool, main$1.menu.toolBar, main$1.menu.undoAction, main$1.menu.windowListener, main$1.selector, main$1.selector.colorCombo, main$1.selector.shapeCombo, main$1.selector.widthCombo, main$1.tabbedCanvas, main$1.tabbedCanvas.canvases, main$1.tabbedCanvas.menu, main$1.tabbedCanvas.selectedTab, main$1.tabbedCanvas.selector } TO = jp.ac.ritsumei.cs.draw.DrawTool#DrawTool( java.lang.String )
+  10 actualIn D = {  } U = { FigureManager.UNTITLED }
+  11 actualOut D = { main$1.!DrawTool, main$1.menu, main$1.menu.autoSave, main$1.menu.autoSave.tabbedCanvas, main$1.menu.clipboard, main$1.menu.copyAction, main$1.menu.cutAction, main$1.menu.deleteAction, main$1.menu.directory, main$1.menu.fileListMenu, main$1.menu.fileListener, main$1.menu.menuBar, main$1.menu.newAction, main$1.menu.openAction, main$1.menu.pasteAction, main$1.menu.recentFiles, main$1.menu.redoAction, main$1.menu.saveAction, main$1.menu.tabbedCanvas, main$1.menu.tool, main$1.menu.toolBar, main$1.menu.undoAction, main$1.menu.windowListener, main$1.selector, main$1.selector.colorCombo, main$1.selector.shapeCombo, main$1.selector.widthCombo, main$1.tabbedCanvas, main$1.tabbedCanvas.canvases, main$1.tabbedCanvas.menu, main$1.tabbedCanvas.selectedTab, main$1.tabbedCanvas.selector } U = { main$1.menu, main$1.menu.autoSave, main$1.menu.autoSave.tabbedCanvas, main$1.menu.clipboard, main$1.menu.copyAction, main$1.menu.cutAction, main$1.menu.deleteAction, main$1.menu.directory, main$1.menu.fileListMenu, main$1.menu.fileListener, main$1.menu.menuBar, main$1.menu.newAction, main$1.menu.openAction, main$1.menu.pasteAction, main$1.menu.recentFiles, main$1.menu.redoAction, main$1.menu.saveAction, main$1.menu.tabbedCanvas, main$1.menu.tool, main$1.menu.toolBar, main$1.menu.undoAction, main$1.menu.windowListener, main$1.selector, main$1.selector.colorCombo, main$1.selector.shapeCombo, main$1.selector.widthCombo, main$1.tabbedCanvas, main$1.tabbedCanvas.canvases, main$1.tabbedCanvas.menu, main$1.tabbedCanvas.selectedTab, main$1.tabbedCanvas.selector }
+  12 assignment D = {  } U = { main$1.!addWindowListener }
+  13 receiver D = {  } U = { main$1 }
+  14 methodCall D = { java.awt.Component.newEventsOnly, main$1, main$1.windowListener } U = { .!, main$1, main$1.windowListener } TO = java.awt.Window#addWindowListener( java.awt.event.WindowListener )
+  15 receiver D = {  } U = {  }
+  16 constructorCall D = {  } U = {  } TO = java.awt.event.WindowAdapter#WindowAdapter( )
+  17 actualOut D = { .! } U = {  }
+  18 actualOut D = { java.awt.Component.newEventsOnly, main$1, main$1.!addWindowListener, main$1.windowListener } U = { main$1, main$1.windowListener }
+  19 assignment D = {  } U = { main$1.!pack }
+  20 receiver D = {  } U = { main$1 }
+  21 methodCall D = { java.awt.Component.isPacked, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher, main$1 } U = { java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.x, java.awt.Component.y, java.awt.Container.component, java.awt.Dimension.height, java.awt.Dimension.width, main$1, main$1.allWindows, main$1.beforeFirstShow } TO = java.awt.Window#pack( )
+  22 actualOut D = { java.awt.Component.isPacked, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher, main$1, main$1.!pack } U = { java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.x, java.awt.Component.y, java.awt.Container.component, java.awt.Dimension.height, java.awt.Dimension.width, main$1, main$1.allWindows, main$1.beforeFirstShow }
+  23 assignment D = {  } U = { main$1.!validate }
+  24 receiver D = {  } U = { main$1 }
+  25 methodCall D = {  } U = { java.awt.Component.LOCK, java.awt.Component.peer, java.awt.Component.valid, main$1, main$1.component, main$1.descendUnconditionallyWhenValidating } TO = java.awt.Container#validate( )
+  26 actualOut D = { main$1.!validate } U = { java.awt.Component.LOCK, java.awt.Component.peer, java.awt.Component.valid, main$1.component, main$1.descendUnconditionallyWhenValidating }
+  27 assignment D = {  } U = { main$1.!setVisible }
+  28 receiver D = {  } U = { main$1 }
+  29 methodCall D = {  } U = {  } TO = java.awt.Window#setVisible( boolean )
+  30 actualOut D = { main$1.!setVisible } U = {  }
+  32 formalOut D = {  } U = { $_, java.awt.Component.isPacked, java.awt.Component.newEventsOnly, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher, main$1.menu, main$1.menu.autoSave, main$1.menu.autoSave.tabbedCanvas, main$1.menu.clipboard, main$1.menu.copyAction, main$1.menu.cutAction, main$1.menu.deleteAction, main$1.menu.directory, main$1.menu.fileListMenu, main$1.menu.fileListener, main$1.menu.menuBar, main$1.menu.newAction, main$1.menu.openAction, main$1.menu.pasteAction, main$1.menu.recentFiles, main$1.menu.redoAction, main$1.menu.saveAction, main$1.menu.tabbedCanvas, main$1.menu.tool, main$1.menu.toolBar, main$1.menu.undoAction, main$1.menu.windowListener, main$1.selector, main$1.selector.colorCombo, main$1.selector.shapeCombo, main$1.selector.widthCombo, main$1.tabbedCanvas, main$1.tabbedCanvas.canvases, main$1.tabbedCanvas.menu, main$1.tabbedCanvas.selectedTab, main$1.tabbedCanvas.selector, main$1.windowListener, this.defaultDisplayLocale, this.defaultFormatLocale, this.defaultLocale }
+--
+   0 methodEntry [ closeWindow( ) ]
+   1 throwsClause D = {  } U = { $java.awt.HeadlessException }
+   2 ifSt D = {  } U = { this.menu }
+   3 assignment D = {  } U = { this.menu.!closeFile }
+   4 receiver D = {  } U = { this.menu }
+   5 methodCall D = { this.menu.tabbedCanvas, this.menu.tabbedCanvas.selectedTab } U = { this.menu.tabbedCanvas, this.menu.tabbedCanvas.canvases, this.menu.tabbedCanvas.selectedTab, this.menu.tool } TO = jp.ac.ritsumei.cs.draw.DrawMenu#closeFile( )
+   6 actualOut D = { this.menu.!closeFile, this.menu.tabbedCanvas, this.menu.tabbedCanvas.selectedTab } U = { this.menu.tabbedCanvas, this.menu.tabbedCanvas.canvases, this.menu.tabbedCanvas.selectedTab, this.menu.tool }
+   9 formalOut D = {  } U = { $_, this.menu.tabbedCanvas, this.menu.tabbedCanvas.selectedTab }
+--
+   0 constructorEntry [ DrawTool( java.lang.String ) ]
+   1 throwsClause D = {  } U = { $java.awt.HeadlessException }
+   2 formalIn D = { title$0 } U = {  }
+   3 assignment D = {  } U = {  }
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = { java.awt.Frame.frameSerializedDataVersion, java.awt.Frame.mbManagement, java.awt.Frame.resizable, java.awt.Frame.state, java.awt.Frame.title, java.awt.Frame.undecorated, super.accessibleContext, super.defaultCloseOperation, super.rootPaneCheckingEnabled } U = { title$0 } TO = javax.swing.JFrame#JFrame( java.lang.String )
+   6 actualOut D = { , java.awt.Frame.frameSerializedDataVersion, java.awt.Frame.mbManagement, java.awt.Frame.resizable, java.awt.Frame.state, java.awt.Frame.title, java.awt.Frame.undecorated, super.accessibleContext, super.defaultCloseOperation, super.rootPaneCheckingEnabled } U = {  }
+   7 localDeclaration D = { contentPane$1 } U = { this.!getContentPane }
+   8 receiver D = {  } U = {  }
+   9 methodCall D = {  } U = { javax.swing.JRootPane.contentPane, this.rootPane } TO = javax.swing.JFrame#getContentPane( )
+  10 actualOut D = { this.!getContentPane } U = { javax.swing.JRootPane.contentPane, this.rootPane }
+  11 assignment D = {  } U = { contentPane$1.!setLayout }
+  12 receiver D = {  } U = { contentPane$1, this.!getContentPane }
+  13 methodCall D = { contentPane$1, contentPane$1.layoutMgr } U = { BorderLayout.!BorderLayout } TO = java.awt.Container#setLayout( java.awt.LayoutManager )
+  14 receiver D = {  } U = {  }
+  15 constructorCall D = { BorderLayout.hgap, BorderLayout.vgap } U = {  } TO = java.awt.BorderLayout#BorderLayout( )
+  16 actualOut D = { BorderLayout.!BorderLayout, BorderLayout.hgap, BorderLayout.vgap } U = {  }
+  17 actualOut D = { contentPane$1, contentPane$1.!setLayout, contentPane$1.layoutMgr } U = { contentPane$1 }
+  18 localDeclaration D = { panel$2 } U = { panel$2.!JPanel }
+  19 receiver D = {  } U = {  }
+  20 constructorCall D = {  } U = { java.lang.Boolean.TRUE, panel$2.!BorderLayout } TO = javax.swing.JPanel#JPanel( java.awt.LayoutManager )
+  21 receiver D = {  } U = {  }
+  22 constructorCall D = { panel$2.hgap, panel$2.vgap } U = {  } TO = java.awt.BorderLayout#BorderLayout( )
+  23 actualOut D = { panel$2.!BorderLayout, panel$2.hgap, panel$2.vgap } U = {  }
+  24 actualOut D = { panel$2.!JPanel } U = { java.lang.Boolean.TRUE }
+  25 assignment D = {  } U = { contentPane$1.!add }
+  26 receiver D = {  } U = { contentPane$1 }
+  27 methodCall D = { contentPane$1, java.awt.Component.parent } U = { contentPane$1, contentPane$1.component, contentPane$1.containerListener, contentPane$1.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, panel$2, panel$2.NORTH } TO = java.awt.Container#add( java.awt.Component java.lang.Object )
+  28 actualOut D = { contentPane$1, contentPane$1.!add, java.awt.Component.parent } U = { contentPane$1, contentPane$1.component, contentPane$1.containerListener, contentPane$1.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer }
+  29 assignment D = { this.selector } U = { this.selector.!FigureSelector }
+  30 receiver D = {  } U = {  }
+  31 constructorCall D = { this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo } U = { this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo } TO = jp.ac.ritsumei.cs.draw.FigureSelector#FigureSelector( )
+  32 actualOut D = { this.selector.!FigureSelector, this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo } U = { this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo }
+  33 assignment D = {  } U = { panel$2.!add }
+  34 receiver D = {  } U = { panel$2 }
+  35 methodCall D = { java.awt.Component.parent, panel$2 } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, panel$2, panel$2.component, panel$2.containerListener, panel$2.layoutMgr, this.selector, this.selector.EAST } TO = java.awt.Container#add( java.awt.Component java.lang.Object )
+  36 actualOut D = { java.awt.Component.parent, panel$2, panel$2.!add } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, panel$2, panel$2.component, panel$2.containerListener, panel$2.layoutMgr }
+  37 assignment D = { this.tabbedCanvas } U = { this.tabbedCanvas.!TabbedCanvas }
+  38 receiver D = {  } U = {  }
+  39 constructorCall D = { this.tabbedCanvas.canvases, this.tabbedCanvas.selector } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.selector } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector )
+  40 actualIn D = {  } U = { this.selector }
+  41 actualOut D = { this.tabbedCanvas.!TabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selector } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.selector }
+  42 assignment D = {  } U = { contentPane$1.!add }
+  43 receiver D = {  } U = { contentPane$1 }
+  44 methodCall D = { contentPane$1, java.awt.Component.parent } U = { contentPane$1, contentPane$1.component, contentPane$1.containerListener, contentPane$1.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.tabbedCanvas, this.tabbedCanvas.CENTER } TO = java.awt.Container#add( java.awt.Component java.lang.Object )
+  45 actualOut D = { contentPane$1, contentPane$1.!add, java.awt.Component.parent } U = { contentPane$1, contentPane$1.component, contentPane$1.containerListener, contentPane$1.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer }
+  46 assignment D = { this.menu } U = { this.menu.!DrawMenu }
+  47 receiver D = {  } U = {  }
+  48 constructorCall D = { this.menu.autoSave, this.menu.autoSave.tabbedCanvas, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener } U = { this.menu.autoSave, this.menu.autoSave.tabbedCanvas, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener } TO = jp.ac.ritsumei.cs.draw.DrawMenu#DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas )
+  49 actualIn D = {  } U = { this }
+  50 actualIn D = {  } U = { this.tabbedCanvas }
+  51 actualOut D = { this.menu.!DrawMenu, this.menu.autoSave, this.menu.autoSave.tabbedCanvas, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener } U = { this.menu.autoSave, this.menu.autoSave.tabbedCanvas, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener }
+  52 assignment D = {  } U = { this.!setJMenuBar }
+  53 receiver D = {  } U = {  }
+  54 methodCall D = { javax.swing.JRootPane.menuBar } U = { javax.swing.JLayeredPane.FRAME_CONTENT_LAYER, javax.swing.JRootPane.layeredPane, javax.swing.JRootPane.menuBar, this.menu.!getMenuBar, this.rootPane } TO = javax.swing.JFrame#setJMenuBar( javax.swing.JMenuBar )
+  55 receiver D = {  } U = { this.menu }
+  56 methodCall D = {  } U = { this.menu.menuBar } TO = jp.ac.ritsumei.cs.draw.DrawMenu#getMenuBar( )
+  57 actualOut D = { this.menu.!getMenuBar } U = { this.menu.menuBar }
+  58 actualOut D = { javax.swing.JRootPane.menuBar, this.!setJMenuBar } U = { javax.swing.JLayeredPane.FRAME_CONTENT_LAYER, javax.swing.JRootPane.layeredPane, javax.swing.JRootPane.menuBar, this.rootPane }
+  59 assignment D = {  } U = { panel$2.!add }
+  60 receiver D = {  } U = { panel$2 }
+  61 methodCall D = { java.awt.Component.parent, panel$2 } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, panel$2, panel$2.component, panel$2.containerListener, panel$2.layoutMgr, this.menu.!getToolBar, this.menu.!getToolBar.WEST } TO = java.awt.Container#add( java.awt.Component java.lang.Object )
+  62 receiver D = {  } U = { this.menu }
+  63 methodCall D = {  } U = { this.menu.toolBar } TO = jp.ac.ritsumei.cs.draw.DrawMenu#getToolBar( )
+  64 actualOut D = { this.menu.!getToolBar } U = { this.menu.toolBar }
+  65 actualOut D = { java.awt.Component.parent, panel$2, panel$2.!add } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, panel$2, panel$2.component, panel$2.containerListener, panel$2.layoutMgr }
+  66 assignment D = {  } U = { this.tabbedCanvas.!setDrawMenu }
+  67 receiver D = {  } U = { this.tabbedCanvas }
+  68 methodCall D = { this.tabbedCanvas.menu } U = { this.tabbedCanvas.menu } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#setDrawMenu( jp.ac.ritsumei.cs.draw.DrawMenu )
+  69 actualIn D = {  } U = { this.menu }
+  70 actualOut D = { this.tabbedCanvas.!setDrawMenu, this.tabbedCanvas.menu } U = { this.tabbedCanvas.menu }
+  71 assignment D = {  } U = { this.tabbedCanvas.!init }
+  72 receiver D = {  } U = { this.tabbedCanvas }
+  73 methodCall D = { this.tabbedCanvas.selectedTab } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.menu, this.tabbedCanvas.selectedTab, this.tabbedCanvas.selector } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#init( )
+  74 actualOut D = { this.tabbedCanvas.!init, this.tabbedCanvas.selectedTab } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.menu, this.tabbedCanvas.selectedTab, this.tabbedCanvas.selector }
+  76 formalOut D = {  } U = { $_, BorderLayout.hgap, BorderLayout.vgap, contentPane$1.layoutMgr, java.awt.Component.parent, java.awt.Frame.frameSerializedDataVersion, java.awt.Frame.mbManagement, java.awt.Frame.resizable, java.awt.Frame.state, java.awt.Frame.title, java.awt.Frame.undecorated, javax.swing.JRootPane.menuBar, panel$2.hgap, panel$2.vgap, super.accessibleContext, super.defaultCloseOperation, super.rootPaneCheckingEnabled, this.menu, this.menu.autoSave, this.menu.autoSave.tabbedCanvas, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener, this.selector, this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.menu, this.tabbedCanvas.selectedTab, this.tabbedCanvas.selector }
+--
+   0 fieldEntry [ menu ]
+   1 fieldDeclaration D = { this.menu } U = { this.menu }
+--
+   0 methodEntry [ terminate( ) ]
+   1 assignment D = {  } U = { this.!exit }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { java.lang.Runtime.currentRuntime } TO = java.lang.System#exit( int )
+   4 actualOut D = { this.!exit } U = { java.lang.Runtime.currentRuntime }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ serialVersionUID ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.DrawTool.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.DrawTool.serialVersionUID }
+--
+   0 fieldEntry [ tabbedCanvas ]
+   1 fieldDeclaration D = { this.tabbedCanvas } U = { this.tabbedCanvas }
+--
+   0: selector
+   1: 0 -> 1 trueControlDependence
+--
+   0: main( java.lang.String[] )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 2 trueControlDependence
+   5: 0 -> 3 trueControlDependence
+   6: 0 -> 32 trueControlDependence
+   7: 0 -> 4 trueControlDependence
+   8: 0 -> 5 trueControlDependence
+   9: 0 -> 6 trueControlDependence
+  10: 0 -> 8 trueControlDependence
+  11: 0 -> 9 trueControlDependence
+  12: 10 -> 11 summary
+  13: 11 -> 32 loopIndependentDefUseDependence main$1.menu
+  14: 11 -> 32 loopIndependentDefUseDependence main$1.menu.autoSave
+  15: 11 -> 32 loopIndependentDefUseDependence main$1.menu.autoSave.tabbedCanvas
+  16: 11 -> 32 loopIndependentDefUseDependence main$1.menu.clipboard
+  17: 11 -> 32 loopIndependentDefUseDependence main$1.menu.copyAction
+  18: 11 -> 32 loopIndependentDefUseDependence main$1.menu.cutAction
+  19: 11 -> 32 loopIndependentDefUseDependence main$1.menu.deleteAction
+  20: 11 -> 32 loopIndependentDefUseDependence main$1.menu.directory
+  21: 11 -> 32 loopIndependentDefUseDependence main$1.menu.fileListMenu
+  22: 11 -> 32 loopIndependentDefUseDependence main$1.menu.fileListener
+  23: 11 -> 32 loopIndependentDefUseDependence main$1.menu.menuBar
+  24: 11 -> 32 loopIndependentDefUseDependence main$1.menu.newAction
+  25: 11 -> 32 loopIndependentDefUseDependence main$1.menu.openAction
+  26: 11 -> 32 loopIndependentDefUseDependence main$1.menu.pasteAction
+  27: 11 -> 32 loopIndependentDefUseDependence main$1.menu.recentFiles
+  28: 11 -> 32 loopIndependentDefUseDependence main$1.menu.redoAction
+  29: 11 -> 32 loopIndependentDefUseDependence main$1.menu.saveAction
+  30: 11 -> 32 loopIndependentDefUseDependence main$1.menu.tabbedCanvas
+  31: 11 -> 32 loopIndependentDefUseDependence main$1.menu.tool
+  32: 11 -> 32 loopIndependentDefUseDependence main$1.menu.toolBar
+  33: 11 -> 32 loopIndependentDefUseDependence main$1.menu.undoAction
+  34: 11 -> 32 loopIndependentDefUseDependence main$1.menu.windowListener
+  35: 11 -> 32 loopIndependentDefUseDependence main$1.selector
+  36: 11 -> 32 loopIndependentDefUseDependence main$1.selector.colorCombo
+  37: 11 -> 32 loopIndependentDefUseDependence main$1.selector.shapeCombo
+  38: 11 -> 32 loopIndependentDefUseDependence main$1.selector.widthCombo
+  39: 11 -> 32 loopIndependentDefUseDependence main$1.tabbedCanvas
+  40: 11 -> 32 loopIndependentDefUseDependence main$1.tabbedCanvas.canvases
+  41: 11 -> 32 loopIndependentDefUseDependence main$1.tabbedCanvas.menu
+  42: 11 -> 32 loopIndependentDefUseDependence main$1.tabbedCanvas.selectedTab
+  43: 11 -> 32 loopIndependentDefUseDependence main$1.tabbedCanvas.selector
+  44: 11 -> 7 loopIndependentDefUseDependence main$1.!DrawTool
+  45: 14 -> 18 loopIndependentDefUseDependence main$1
+  46: 14 -> 18 loopIndependentDefUseDependence main$1.windowListener
+  47: 14 -> 18 outputDependence java.awt.Component.newEventsOnly
+  48: 17 -> 14 loopIndependentDefUseDependence .!
+  49: 18 -> 12 loopIndependentDefUseDependence main$1.!addWindowListener
+  50: 18 -> 20 loopIndependentDefUseDependence main$1
+  51: 18 -> 21 loopIndependentDefUseDependence main$1
+  52: 18 -> 32 loopIndependentDefUseDependence java.awt.Component.newEventsOnly
+  53: 18 -> 32 loopIndependentDefUseDependence main$1.windowListener
+  54: 21 -> 22 loopIndependentDefUseDependence java.awt.Component.peer
+  55: 21 -> 22 loopIndependentDefUseDependence main$1
+  56: 21 -> 22 outputDependence java.awt.Component.isPacked
+  57: 21 -> 22 outputDependence java.awt.Container.descendUnconditionallyWhenValidating
+  58: 21 -> 22 outputDependence java.awt.Container.dispatcher
+  59: 22 -> 19 loopIndependentDefUseDependence main$1.!pack
+  60: 22 -> 24 loopIndependentDefUseDependence main$1
+  61: 22 -> 25 loopIndependentDefUseDependence java.awt.Component.peer
+  62: 22 -> 25 loopIndependentDefUseDependence main$1
+  63: 22 -> 26 loopIndependentDefUseDependence java.awt.Component.peer
+  64: 22 -> 28 loopIndependentDefUseDependence main$1
+  65: 22 -> 32 loopIndependentDefUseDependence java.awt.Component.isPacked
+  66: 22 -> 32 loopIndependentDefUseDependence java.awt.Component.peer
+  67: 22 -> 32 loopIndependentDefUseDependence java.awt.Container.descendUnconditionallyWhenValidating
+  68: 22 -> 32 loopIndependentDefUseDependence java.awt.Container.dispatcher
+  69: 26 -> 23 loopIndependentDefUseDependence main$1.!validate
+  70: 30 -> 27 loopIndependentDefUseDependence main$1.!setVisible
+  71: 5 -> 6 outputDependence this.defaultDisplayLocale
+  72: 5 -> 6 outputDependence this.defaultFormatLocale
+  73: 5 -> 6 outputDependence this.defaultLocale
+  74: 6 -> 3 loopIndependentDefUseDependence this.!setDefault
+  75: 6 -> 32 loopIndependentDefUseDependence this.defaultDisplayLocale
+  76: 6 -> 32 loopIndependentDefUseDependence this.defaultFormatLocale
+  77: 6 -> 32 loopIndependentDefUseDependence this.defaultLocale
+  78: 7 -> 13 declaration
+  79: 7 -> 13 loopIndependentDefUseDependence main$1
+  80: 7 -> 14 declaration
+  81: 7 -> 14 loopIndependentDefUseDependence main$1
+  82: 7 -> 18 declaration
+  83: 7 -> 20 declaration
+  84: 7 -> 21 declaration
+  85: 7 -> 22 declaration
+  86: 7 -> 24 declaration
+  87: 7 -> 25 declaration
+  88: 7 -> 28 declaration
+  89: 9 -> 1 exceptionCatch
+  90: 9 -> 11 loopIndependentDefUseDependence main$1.menu
+  91: 9 -> 11 loopIndependentDefUseDependence main$1.menu.autoSave
+  92: 9 -> 11 loopIndependentDefUseDependence main$1.menu.autoSave.tabbedCanvas
+  93: 9 -> 11 loopIndependentDefUseDependence main$1.menu.clipboard
+  94: 9 -> 11 loopIndependentDefUseDependence main$1.menu.copyAction
+  95: 9 -> 11 loopIndependentDefUseDependence main$1.menu.cutAction
+  96: 9 -> 11 loopIndependentDefUseDependence main$1.menu.deleteAction
+  97: 9 -> 11 loopIndependentDefUseDependence main$1.menu.directory
+  98: 9 -> 11 loopIndependentDefUseDependence main$1.menu.fileListMenu
+  99: 9 -> 11 loopIndependentDefUseDependence main$1.menu.fileListener
+ 100: 9 -> 11 loopIndependentDefUseDependence main$1.menu.menuBar
+ 101: 9 -> 11 loopIndependentDefUseDependence main$1.menu.newAction
+ 102: 9 -> 11 loopIndependentDefUseDependence main$1.menu.openAction
+ 103: 9 -> 11 loopIndependentDefUseDependence main$1.menu.pasteAction
+ 104: 9 -> 11 loopIndependentDefUseDependence main$1.menu.recentFiles
+ 105: 9 -> 11 loopIndependentDefUseDependence main$1.menu.redoAction
+ 106: 9 -> 11 loopIndependentDefUseDependence main$1.menu.saveAction
+ 107: 9 -> 11 loopIndependentDefUseDependence main$1.menu.tabbedCanvas
+ 108: 9 -> 11 loopIndependentDefUseDependence main$1.menu.tool
+ 109: 9 -> 11 loopIndependentDefUseDependence main$1.menu.toolBar
+ 110: 9 -> 11 loopIndependentDefUseDependence main$1.menu.undoAction
+ 111: 9 -> 11 loopIndependentDefUseDependence main$1.menu.windowListener
+ 112: 9 -> 11 loopIndependentDefUseDependence main$1.selector
+ 113: 9 -> 11 loopIndependentDefUseDependence main$1.selector.colorCombo
+ 114: 9 -> 11 loopIndependentDefUseDependence main$1.selector.shapeCombo
+ 115: 9 -> 11 loopIndependentDefUseDependence main$1.selector.widthCombo
+ 116: 9 -> 11 loopIndependentDefUseDependence main$1.tabbedCanvas
+ 117: 9 -> 11 loopIndependentDefUseDependence main$1.tabbedCanvas.canvases
+ 118: 9 -> 11 loopIndependentDefUseDependence main$1.tabbedCanvas.menu
+ 119: 9 -> 11 loopIndependentDefUseDependence main$1.tabbedCanvas.selectedTab
+ 120: 9 -> 11 loopIndependentDefUseDependence main$1.tabbedCanvas.selector
+ 121: 9 -> 12 trueControlDependence
+ 122: 9 -> 13 trueControlDependence
+ 123: 9 -> 14 trueControlDependence
+ 124: 9 -> 15 trueControlDependence
+ 125: 9 -> 16 trueControlDependence
+ 126: 9 -> 17 trueControlDependence
+ 127: 9 -> 18 trueControlDependence
+ 128: 9 -> 19 trueControlDependence
+ 129: 9 -> 20 trueControlDependence
+ 130: 9 -> 21 trueControlDependence
+ 131: 9 -> 22 trueControlDependence
+ 132: 9 -> 23 trueControlDependence
+ 133: 9 -> 24 trueControlDependence
+ 134: 9 -> 25 trueControlDependence
+ 135: 9 -> 26 trueControlDependence
+ 136: 9 -> 27 trueControlDependence
+ 137: 9 -> 28 trueControlDependence
+ 138: 9 -> 29 trueControlDependence
+ 139: 9 -> 30 trueControlDependence
+ 140: 9 -> 7 trueControlDependence
+--
+   0: closeWindow( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 9 trueControlDependence
+   4: 2 -> 4 trueControlDependence
+   5: 2 -> 5 trueControlDependence
+   6: 2 -> 6 trueControlDependence
+   7: 5 -> 1 exceptionCatch
+   8: 5 -> 3 trueControlDependence
+   9: 5 -> 6 loopIndependentDefUseDependence this.menu.tabbedCanvas
+  10: 5 -> 6 loopIndependentDefUseDependence this.menu.tabbedCanvas.selectedTab
+  11: 6 -> 3 loopIndependentDefUseDependence this.menu.!closeFile
+  12: 6 -> 9 loopIndependentDefUseDependence this.menu.tabbedCanvas
+  13: 6 -> 9 loopIndependentDefUseDependence this.menu.tabbedCanvas.selectedTab
+--
+   0: DrawTool( java.lang.String )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 0 -> 5 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 0 -> 76 trueControlDependence
+   7: 10 -> 12 loopIndependentDefUseDependence this.!getContentPane
+   8: 10 -> 7 loopIndependentDefUseDependence this.!getContentPane
+   9: 13 -> 17 loopIndependentDefUseDependence contentPane$1
+  10: 13 -> 17 outputDependence contentPane$1.layoutMgr
+  11: 15 -> 16 outputDependence BorderLayout.hgap
+  12: 15 -> 16 outputDependence BorderLayout.vgap
+  13: 16 -> 13 loopIndependentDefUseDependence BorderLayout.!BorderLayout
+  14: 16 -> 76 loopIndependentDefUseDependence BorderLayout.hgap
+  15: 16 -> 76 loopIndependentDefUseDependence BorderLayout.vgap
+  16: 17 -> 11 loopIndependentDefUseDependence contentPane$1.!setLayout
+  17: 17 -> 26 loopIndependentDefUseDependence contentPane$1
+  18: 17 -> 27 loopIndependentDefUseDependence contentPane$1
+  19: 17 -> 27 loopIndependentDefUseDependence contentPane$1.layoutMgr
+  20: 17 -> 28 loopIndependentDefUseDependence contentPane$1.layoutMgr
+  21: 17 -> 44 loopIndependentDefUseDependence contentPane$1.layoutMgr
+  22: 17 -> 45 loopIndependentDefUseDependence contentPane$1.layoutMgr
+  23: 17 -> 76 loopIndependentDefUseDependence contentPane$1.layoutMgr
+  24: 18 -> 27 declaration
+  25: 18 -> 27 loopIndependentDefUseDependence panel$2
+  26: 18 -> 34 declaration
+  27: 18 -> 34 loopIndependentDefUseDependence panel$2
+  28: 18 -> 35 declaration
+  29: 18 -> 35 loopIndependentDefUseDependence panel$2
+  30: 18 -> 36 declaration
+  31: 18 -> 60 declaration
+  32: 18 -> 61 declaration
+  33: 18 -> 65 declaration
+  34: 2 -> 5 loopIndependentDefUseDependence title$0
+  35: 22 -> 23 outputDependence panel$2.hgap
+  36: 22 -> 23 outputDependence panel$2.vgap
+  37: 23 -> 20 loopIndependentDefUseDependence panel$2.!BorderLayout
+  38: 23 -> 76 loopIndependentDefUseDependence panel$2.hgap
+  39: 23 -> 76 loopIndependentDefUseDependence panel$2.vgap
+  40: 24 -> 18 loopIndependentDefUseDependence panel$2.!JPanel
+  41: 27 -> 28 loopIndependentDefUseDependence contentPane$1
+  42: 27 -> 28 loopIndependentDefUseDependence java.awt.Component.parent
+  43: 28 -> 25 loopIndependentDefUseDependence contentPane$1.!add
+  44: 28 -> 35 loopIndependentDefUseDependence java.awt.Component.parent
+  45: 28 -> 43 loopIndependentDefUseDependence contentPane$1
+  46: 28 -> 44 loopIndependentDefUseDependence contentPane$1
+  47: 28 -> 45 outputDependence contentPane$1.!add
+  48: 29 -> 35 loopIndependentDefUseDependence this.selector
+  49: 29 -> 40 loopIndependentDefUseDependence this.selector
+  50: 29 -> 76 loopIndependentDefUseDependence this.selector
+  51: 31 -> 32 loopIndependentDefUseDependence this.selector.colorCombo
+  52: 31 -> 32 loopIndependentDefUseDependence this.selector.shapeCombo
+  53: 31 -> 32 loopIndependentDefUseDependence this.selector.widthCombo
+  54: 32 -> 29 loopIndependentDefUseDependence this.selector.!FigureSelector
+  55: 32 -> 76 loopIndependentDefUseDependence this.selector.colorCombo
+  56: 32 -> 76 loopIndependentDefUseDependence this.selector.shapeCombo
+  57: 32 -> 76 loopIndependentDefUseDependence this.selector.widthCombo
+  58: 35 -> 36 loopIndependentDefUseDependence java.awt.Component.parent
+  59: 35 -> 36 loopIndependentDefUseDependence panel$2
+  60: 36 -> 33 loopIndependentDefUseDependence panel$2.!add
+  61: 36 -> 44 loopIndependentDefUseDependence java.awt.Component.parent
+  62: 36 -> 60 loopIndependentDefUseDependence panel$2
+  63: 36 -> 61 loopIndependentDefUseDependence panel$2
+  64: 36 -> 65 outputDependence panel$2.!add
+  65: 37 -> 44 loopIndependentDefUseDependence this.tabbedCanvas
+  66: 37 -> 50 loopIndependentDefUseDependence this.tabbedCanvas
+  67: 37 -> 67 loopIndependentDefUseDependence this.tabbedCanvas
+  68: 37 -> 72 loopIndependentDefUseDependence this.tabbedCanvas
+  69: 37 -> 73 loopIndependentDefUseDependence this.tabbedCanvas
+  70: 37 -> 76 loopIndependentDefUseDependence this.tabbedCanvas
+  71: 39 -> 41 loopIndependentDefUseDependence this.tabbedCanvas.canvases
+  72: 39 -> 41 loopIndependentDefUseDependence this.tabbedCanvas.selector
+  73: 40 -> 41 summary
+  74: 41 -> 37 loopIndependentDefUseDependence this.tabbedCanvas.!TabbedCanvas
+  75: 41 -> 73 loopIndependentDefUseDependence this.tabbedCanvas.canvases
+  76: 41 -> 73 loopIndependentDefUseDependence this.tabbedCanvas.selector
+  77: 41 -> 74 loopIndependentDefUseDependence this.tabbedCanvas.canvases
+  78: 41 -> 74 loopIndependentDefUseDependence this.tabbedCanvas.selector
+  79: 41 -> 76 loopIndependentDefUseDependence this.tabbedCanvas.canvases
+  80: 41 -> 76 loopIndependentDefUseDependence this.tabbedCanvas.selector
+  81: 44 -> 45 loopIndependentDefUseDependence contentPane$1
+  82: 44 -> 45 loopIndependentDefUseDependence java.awt.Component.parent
+  83: 45 -> 42 loopIndependentDefUseDependence contentPane$1.!add
+  84: 45 -> 61 loopIndependentDefUseDependence java.awt.Component.parent
+  85: 46 -> 55 loopIndependentDefUseDependence this.menu
+  86: 46 -> 62 loopIndependentDefUseDependence this.menu
+  87: 46 -> 69 loopIndependentDefUseDependence this.menu
+  88: 46 -> 76 loopIndependentDefUseDependence this.menu
+  89: 48 -> 51 loopIndependentDefUseDependence this.menu.autoSave
+  90: 48 -> 51 loopIndependentDefUseDependence this.menu.autoSave.tabbedCanvas
+  91: 48 -> 51 loopIndependentDefUseDependence this.menu.clipboard
+  92: 48 -> 51 loopIndependentDefUseDependence this.menu.copyAction
+  93: 48 -> 51 loopIndependentDefUseDependence this.menu.cutAction
+  94: 48 -> 51 loopIndependentDefUseDependence this.menu.deleteAction
+  95: 48 -> 51 loopIndependentDefUseDependence this.menu.directory
+  96: 48 -> 51 loopIndependentDefUseDependence this.menu.fileListMenu
+  97: 48 -> 51 loopIndependentDefUseDependence this.menu.fileListener
+  98: 48 -> 51 loopIndependentDefUseDependence this.menu.menuBar
+  99: 48 -> 51 loopIndependentDefUseDependence this.menu.newAction
+ 100: 48 -> 51 loopIndependentDefUseDependence this.menu.openAction
+ 101: 48 -> 51 loopIndependentDefUseDependence this.menu.pasteAction
+ 102: 48 -> 51 loopIndependentDefUseDependence this.menu.recentFiles
+ 103: 48 -> 51 loopIndependentDefUseDependence this.menu.redoAction
+ 104: 48 -> 51 loopIndependentDefUseDependence this.menu.saveAction
+ 105: 48 -> 51 loopIndependentDefUseDependence this.menu.tabbedCanvas
+ 106: 48 -> 51 loopIndependentDefUseDependence this.menu.tool
+ 107: 48 -> 51 loopIndependentDefUseDependence this.menu.toolBar
+ 108: 48 -> 51 loopIndependentDefUseDependence this.menu.undoAction
+ 109: 48 -> 51 loopIndependentDefUseDependence this.menu.windowListener
+ 110: 49 -> 51 summary
+ 111: 5 -> 1 exceptionCatch
+ 112: 5 -> 10 trueControlDependence
+ 113: 5 -> 11 trueControlDependence
+ 114: 5 -> 12 trueControlDependence
+ 115: 5 -> 13 trueControlDependence
+ 116: 5 -> 14 trueControlDependence
+ 117: 5 -> 15 trueControlDependence
+ 118: 5 -> 16 trueControlDependence
+ 119: 5 -> 17 trueControlDependence
+ 120: 5 -> 18 trueControlDependence
+ 121: 5 -> 19 trueControlDependence
+ 122: 5 -> 20 trueControlDependence
+ 123: 5 -> 21 trueControlDependence
+ 124: 5 -> 22 trueControlDependence
+ 125: 5 -> 23 trueControlDependence
+ 126: 5 -> 24 trueControlDependence
+ 127: 5 -> 25 trueControlDependence
+ 128: 5 -> 26 trueControlDependence
+ 129: 5 -> 27 trueControlDependence
+ 130: 5 -> 28 trueControlDependence
+ 131: 5 -> 29 trueControlDependence
+ 132: 5 -> 3 trueControlDependence
+ 133: 5 -> 30 trueControlDependence
+ 134: 5 -> 31 trueControlDependence
+ 135: 5 -> 32 trueControlDependence
+ 136: 5 -> 33 trueControlDependence
+ 137: 5 -> 34 trueControlDependence
+ 138: 5 -> 35 trueControlDependence
+ 139: 5 -> 36 trueControlDependence
+ 140: 5 -> 37 trueControlDependence
+ 141: 5 -> 38 trueControlDependence
+ 142: 5 -> 39 trueControlDependence
+ 143: 5 -> 40 trueControlDependence
+ 144: 5 -> 41 trueControlDependence
+ 145: 5 -> 42 trueControlDependence
+ 146: 5 -> 43 trueControlDependence
+ 147: 5 -> 44 trueControlDependence
+ 148: 5 -> 45 trueControlDependence
+ 149: 5 -> 46 trueControlDependence
+ 150: 5 -> 47 trueControlDependence
+ 151: 5 -> 48 trueControlDependence
+ 152: 5 -> 49 trueControlDependence
+ 153: 5 -> 50 trueControlDependence
+ 154: 5 -> 51 trueControlDependence
+ 155: 5 -> 52 trueControlDependence
+ 156: 5 -> 53 trueControlDependence
+ 157: 5 -> 54 trueControlDependence
+ 158: 5 -> 55 trueControlDependence
+ 159: 5 -> 56 trueControlDependence
+ 160: 5 -> 57 trueControlDependence
+ 161: 5 -> 58 trueControlDependence
+ 162: 5 -> 59 trueControlDependence
+ 163: 5 -> 6 outputDependence java.awt.Frame.frameSerializedDataVersion
+ 164: 5 -> 6 outputDependence java.awt.Frame.mbManagement
+ 165: 5 -> 6 outputDependence java.awt.Frame.resizable
+ 166: 5 -> 6 outputDependence java.awt.Frame.state
+ 167: 5 -> 6 outputDependence java.awt.Frame.title
+ 168: 5 -> 6 outputDependence java.awt.Frame.undecorated
+ 169: 5 -> 6 outputDependence super.accessibleContext
+ 170: 5 -> 6 outputDependence super.defaultCloseOperation
+ 171: 5 -> 6 outputDependence super.rootPaneCheckingEnabled
+ 172: 5 -> 60 trueControlDependence
+ 173: 5 -> 61 trueControlDependence
+ 174: 5 -> 62 trueControlDependence
+ 175: 5 -> 63 trueControlDependence
+ 176: 5 -> 64 trueControlDependence
+ 177: 5 -> 65 trueControlDependence
+ 178: 5 -> 66 trueControlDependence
+ 179: 5 -> 67 trueControlDependence
+ 180: 5 -> 68 trueControlDependence
+ 181: 5 -> 69 trueControlDependence
+ 182: 5 -> 7 trueControlDependence
+ 183: 5 -> 70 trueControlDependence
+ 184: 5 -> 71 trueControlDependence
+ 185: 5 -> 72 trueControlDependence
+ 186: 5 -> 73 trueControlDependence
+ 187: 5 -> 74 trueControlDependence
+ 188: 5 -> 8 trueControlDependence
+ 189: 5 -> 9 trueControlDependence
+ 190: 50 -> 51 summary
+ 191: 51 -> 46 loopIndependentDefUseDependence this.menu.!DrawMenu
+ 192: 51 -> 56 loopIndependentDefUseDependence this.menu.menuBar
+ 193: 51 -> 57 loopIndependentDefUseDependence this.menu.menuBar
+ 194: 51 -> 63 loopIndependentDefUseDependence this.menu.toolBar
+ 195: 51 -> 64 loopIndependentDefUseDependence this.menu.toolBar
+ 196: 51 -> 76 loopIndependentDefUseDependence this.menu.autoSave
+ 197: 51 -> 76 loopIndependentDefUseDependence this.menu.autoSave.tabbedCanvas
+ 198: 51 -> 76 loopIndependentDefUseDependence this.menu.clipboard
+ 199: 51 -> 76 loopIndependentDefUseDependence this.menu.copyAction
+ 200: 51 -> 76 loopIndependentDefUseDependence this.menu.cutAction
+ 201: 51 -> 76 loopIndependentDefUseDependence this.menu.deleteAction
+ 202: 51 -> 76 loopIndependentDefUseDependence this.menu.directory
+ 203: 51 -> 76 loopIndependentDefUseDependence this.menu.fileListMenu
+ 204: 51 -> 76 loopIndependentDefUseDependence this.menu.fileListener
+ 205: 51 -> 76 loopIndependentDefUseDependence this.menu.menuBar
+ 206: 51 -> 76 loopIndependentDefUseDependence this.menu.newAction
+ 207: 51 -> 76 loopIndependentDefUseDependence this.menu.openAction
+ 208: 51 -> 76 loopIndependentDefUseDependence this.menu.pasteAction
+ 209: 51 -> 76 loopIndependentDefUseDependence this.menu.recentFiles
+ 210: 51 -> 76 loopIndependentDefUseDependence this.menu.redoAction
+ 211: 51 -> 76 loopIndependentDefUseDependence this.menu.saveAction
+ 212: 51 -> 76 loopIndependentDefUseDependence this.menu.tabbedCanvas
+ 213: 51 -> 76 loopIndependentDefUseDependence this.menu.tool
+ 214: 51 -> 76 loopIndependentDefUseDependence this.menu.toolBar
+ 215: 51 -> 76 loopIndependentDefUseDependence this.menu.undoAction
+ 216: 51 -> 76 loopIndependentDefUseDependence this.menu.windowListener
+ 217: 54 -> 58 loopIndependentDefUseDependence javax.swing.JRootPane.menuBar
+ 218: 57 -> 54 loopIndependentDefUseDependence this.menu.!getMenuBar
+ 219: 58 -> 52 loopIndependentDefUseDependence this.!setJMenuBar
+ 220: 58 -> 76 loopIndependentDefUseDependence javax.swing.JRootPane.menuBar
+ 221: 6 -> 3 loopIndependentDefUseDependence 
+ 222: 6 -> 76 loopIndependentDefUseDependence java.awt.Frame.frameSerializedDataVersion
+ 223: 6 -> 76 loopIndependentDefUseDependence java.awt.Frame.mbManagement
+ 224: 6 -> 76 loopIndependentDefUseDependence java.awt.Frame.resizable
+ 225: 6 -> 76 loopIndependentDefUseDependence java.awt.Frame.state
+ 226: 6 -> 76 loopIndependentDefUseDependence java.awt.Frame.title
+ 227: 6 -> 76 loopIndependentDefUseDependence java.awt.Frame.undecorated
+ 228: 6 -> 76 loopIndependentDefUseDependence super.accessibleContext
+ 229: 6 -> 76 loopIndependentDefUseDependence super.defaultCloseOperation
+ 230: 6 -> 76 loopIndependentDefUseDependence super.rootPaneCheckingEnabled
+ 231: 61 -> 65 loopIndependentDefUseDependence java.awt.Component.parent
+ 232: 61 -> 65 loopIndependentDefUseDependence panel$2
+ 233: 64 -> 61 loopIndependentDefUseDependence this.menu.!getToolBar
+ 234: 65 -> 59 loopIndependentDefUseDependence panel$2.!add
+ 235: 65 -> 76 loopIndependentDefUseDependence java.awt.Component.parent
+ 236: 68 -> 70 loopIndependentDefUseDependence this.tabbedCanvas.menu
+ 237: 69 -> 70 summary
+ 238: 7 -> 12 declaration
+ 239: 7 -> 12 loopIndependentDefUseDependence contentPane$1
+ 240: 7 -> 13 declaration
+ 241: 7 -> 13 outputDependence contentPane$1
+ 242: 7 -> 17 declaration
+ 243: 7 -> 26 declaration
+ 244: 7 -> 27 declaration
+ 245: 7 -> 28 declaration
+ 246: 7 -> 43 declaration
+ 247: 7 -> 44 declaration
+ 248: 7 -> 45 declaration
+ 249: 70 -> 66 loopIndependentDefUseDependence this.tabbedCanvas.!setDrawMenu
+ 250: 70 -> 73 loopIndependentDefUseDependence this.tabbedCanvas.menu
+ 251: 70 -> 74 loopIndependentDefUseDependence this.tabbedCanvas.menu
+ 252: 70 -> 76 loopIndependentDefUseDependence this.tabbedCanvas.menu
+ 253: 73 -> 74 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+ 254: 74 -> 71 loopIndependentDefUseDependence this.tabbedCanvas.!init
+ 255: 74 -> 76 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+--
+   0: menu
+   1: 0 -> 1 trueControlDependence
+--
+   0: terminate( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 4 -> 1 loopIndependentDefUseDependence this.!exit
+--
+   0: serialVersionUID
+   1: 0 -> 1 trueControlDependence
+--
+   0: tabbedCanvas
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

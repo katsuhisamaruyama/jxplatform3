@@ -1,0 +1,44 @@
+----- ClDG (from here) -----
+Class Name = PanelB$1
+   0 fieldEntry [ flag ]
+   1 fieldDeclaration D = { this.flag } U = { this.flag }
+--
+   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   1 formalIn D = { e$2 } U = {  }
+   2 ifSt D = {  } U = { this.flag }
+   3 assignment D = {  } U = { label$0.!setText }
+   4 receiver D = {  } U = { label$0 }
+   5 methodCall D = {  } U = { $java.lang.String } TO = javax.swing.JLabel#setText( java.lang.String )
+   6 actualOut D = { label$0.!setText } U = {  }
+   7 assignment D = { this.flag } U = {  }
+   8 assignment D = {  } U = { label$0.!setText }
+   9 receiver D = {  } U = { label$0 }
+  10 methodCall D = {  } U = { $java.lang.String } TO = javax.swing.JLabel#setText( java.lang.String )
+  11 actualOut D = { label$0.!setText } U = {  }
+  12 assignment D = { this.flag } U = {  }
+  15 formalOut D = {  } U = { $_, this.flag }
+--
+   0: flag
+   1: 0 -> 1 trueControlDependence
+--
+   0: actionPerformed( java.awt.event.ActionEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 15 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 11 -> 8 loopIndependentDefUseDependence label$0.!setText
+   5: 12 -> 15 loopIndependentDefUseDependence this.flag
+   6: 2 -> 10 falseControlDependence
+   7: 2 -> 11 trueControlDependence
+   8: 2 -> 12 falseControlDependence
+   9: 2 -> 3 trueControlDependence
+  10: 2 -> 4 trueControlDependence
+  11: 2 -> 5 trueControlDependence
+  12: 2 -> 6 trueControlDependence
+  13: 2 -> 7 trueControlDependence
+  14: 2 -> 8 falseControlDependence
+  15: 2 -> 9 trueControlDependence
+  16: 6 -> 3 loopIndependentDefUseDependence label$0.!setText
+  17: 7 -> 15 loopIndependentDefUseDependence this.flag
+--
+----- ClDG (to here) -----
+

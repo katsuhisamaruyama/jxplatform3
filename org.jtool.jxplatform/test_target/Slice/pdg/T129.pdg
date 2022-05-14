@@ -14,10 +14,11 @@ Class Name = T129
    5 methodCall D = { this.p, this.p.map } U = { this.p, this.p.map } TO = P129#set1( java.lang.String java.lang.String )
    6 actualIn D = {  } U = { key$0 }
    7 actualIn D = {  } U = { value$1 }
-   8 actualOut D = { this.p, this.p.!set1 } U = { this.p }
-  10 formalOut D = {  } U = { $_ }
+   8 actualOut D = { this.p, this.p.!set1, this.p.map } U = { this.p, this.p.map }
+  10 formalOut D = {  } U = { $_, this.p, this.p.map }
 --
    0 constructorEntry [ T129( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ get1( java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
@@ -25,44 +26,50 @@ Class Name = T129
    3 receiver D = {  } U = { this.p }
    4 methodCall D = {  } U = { this.p, this.p.map } TO = P129#get1( java.lang.String )
    5 actualIn D = {  } U = { key$0 }
-   6 actualOut D = { this.p.!get1 } U = {  }
+   6 actualOut D = { this.p.!get1 } U = { this.p.map }
    8 formalOut D = {  } U = { $_ }
 --
    0: p
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 2 -> 3 trueControlDependence
-   4: 3 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 4 -> 1 loopIndependentDefUseDependence P129.!P129
 --
    0: set1( java.lang.String java.lang.String )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 10 trueControlDependence
-   6: 1 -> 6 loopIndependentDefUseDependence
-   7: 2 -> 7 loopIndependentDefUseDependence
-   8: 4 -> 5 trueControlDependence
-   9: 5 -> 6 trueControlDependence
-  10: 5 -> 7 trueControlDependence
-  11: 5 -> 8 trueControlDependence
-  12: 5 -> 8 loopIndependentDefUseDependence
-  13: 8 -> 3 loopIndependentDefUseDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 7 trueControlDependence
+   9: 0 -> 8 trueControlDependence
+  10: 1 -> 6 loopIndependentDefUseDependence key$0
+  11: 2 -> 7 loopIndependentDefUseDependence value$1
+  12: 5 -> 8 loopIndependentDefUseDependence this.p
+  13: 5 -> 8 loopIndependentDefUseDependence this.p.map
+  14: 6 -> 8 summary
+  15: 7 -> 8 summary
+  16: 8 -> 10 loopIndependentDefUseDependence this.p
+  17: 8 -> 10 loopIndependentDefUseDependence this.p.map
+  18: 8 -> 3 loopIndependentDefUseDependence this.p.!set1
 --
    0: T129( )
+   1: 0 -> 2 trueControlDependence
 --
    0: get1( java.lang.String )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 3 trueControlDependence
-   4: 0 -> 8 trueControlDependence
-   5: 1 -> 5 loopIndependentDefUseDependence
-   6: 2 -> 8 loopIndependentDefUseDependence
-   7: 3 -> 4 trueControlDependence
-   8: 4 -> 5 trueControlDependence
-   9: 4 -> 6 trueControlDependence
-  10: 6 -> 2 loopIndependentDefUseDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 8 trueControlDependence
+   8: 1 -> 5 loopIndependentDefUseDependence key$0
+   9: 2 -> 8 loopIndependentDefUseDependence $_
+  10: 6 -> 2 loopIndependentDefUseDependence this.p.!get1
 --
 ----- ClDG (to here) -----
 

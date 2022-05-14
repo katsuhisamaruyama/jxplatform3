@@ -4,37 +4,46 @@ Class Name = P138
    1 fieldDeclaration D = { this.list } U = { ArrayList<String>.!ArrayList<String>, this.list }
    2 receiver D = {  } U = {  }
    3 constructorCall D = { ArrayList<String>.elementData, java.util.AbstractList.modCount } U = { ArrayList<String>.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
-   4 actualOut D = { ArrayList<String>.!ArrayList<String> } U = {  }
+   4 actualOut D = { ArrayList<String>.!ArrayList<String>, ArrayList<String>.elementData, java.util.AbstractList.modCount } U = { ArrayList<String>.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
 --
    0 constructorEntry [ P138( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ add( java.lang.String ) ]
    1 formalIn D = { elem$0 } U = {  }
    2 assignment D = {  } U = { this.list.!add }
    3 receiver D = {  } U = { this.list }
    4 methodCall D = { java.util.AbstractList.modCount, this.list, this.list.size } U = { elem$0, java.util.AbstractList.modCount, this.list, this.list.elementData, this.list.size } TO = java.util.List#add( java.lang.Object )
-   5 actualOut D = { this.list, this.list.!add } U = { this.list }
-   7 formalOut D = {  } U = { $_ }
+   5 actualOut D = { java.util.AbstractList.modCount, this.list, this.list.!add, this.list.size } U = { java.util.AbstractList.modCount, this.list, this.list.elementData, this.list.size }
+   7 formalOut D = {  } U = { $_, java.util.AbstractList.modCount, this.list, this.list.size }
 --
    0: list
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 2 -> 3 trueControlDependence
-   4: 3 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 3 -> 4 outputDependence ArrayList<String>.elementData
+   6: 3 -> 4 outputDependence java.util.AbstractList.modCount
+   7: 4 -> 1 loopIndependentDefUseDependence ArrayList<String>.!ArrayList<String>
 --
    0: P138( )
+   1: 0 -> 2 trueControlDependence
 --
    0: add( java.lang.String )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 3 trueControlDependence
-   4: 0 -> 7 trueControlDependence
-   5: 1 -> 4 loopIndependentDefUseDependence
-   6: 3 -> 4 trueControlDependence
-   7: 4 -> 5 trueControlDependence
-   8: 4 -> 5 loopIndependentDefUseDependence
-   9: 5 -> 2 loopIndependentDefUseDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 7 trueControlDependence
+   7: 1 -> 4 loopIndependentDefUseDependence elem$0
+   8: 4 -> 5 loopIndependentDefUseDependence java.util.AbstractList.modCount
+   9: 4 -> 5 loopIndependentDefUseDependence this.list
+  10: 4 -> 5 loopIndependentDefUseDependence this.list.size
+  11: 5 -> 2 loopIndependentDefUseDependence this.list.!add
+  12: 5 -> 7 loopIndependentDefUseDependence java.util.AbstractList.modCount
+  13: 5 -> 7 loopIndependentDefUseDependence this.list
+  14: 5 -> 7 loopIndependentDefUseDependence this.list.size
 --
 ----- ClDG (to here) -----
 

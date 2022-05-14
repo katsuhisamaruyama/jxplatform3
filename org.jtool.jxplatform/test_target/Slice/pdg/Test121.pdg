@@ -1,6 +1,7 @@
 ----- ClDG (from here) -----
 Class Name = Test121
    0 constructorEntry [ Test121( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m( int int ) ]
    1 formalIn D = { x$0 } U = {  }
@@ -22,6 +23,7 @@ Class Name = Test121
   10 formalOut D = {  } U = { $_ }
 --
    0: Test121( )
+   1: 0 -> 2 trueControlDependence
 --
    0: m( int int )
    1: 0 -> 1 trueControlDependence
@@ -30,36 +32,28 @@ Class Name = Test121
    4: 0 -> 4 trueControlDependence
    5: 0 -> 5 trueControlDependence
    6: 0 -> 7 trueControlDependence
-   7: 1 -> 3 loopIndependentDefUseDependence
-   8: 2 -> 4 loopIndependentDefUseDependence
-   9: 3 -> 3 declarationDependence
-  10: 4 -> 4 declarationDependence
-  11: 4 -> 5 loopIndependentDefUseDependence
-  12: 4 -> 5 declarationDependence
-  13: 5 -> 7 loopIndependentDefUseDependence
+   7: 1 -> 3 loopIndependentDefUseDependence x$0
+   8: 2 -> 4 loopIndependentDefUseDependence y$1
+   9: 4 -> 5 declaration
+  10: 4 -> 5 loopIndependentDefUseDependence q$3
+  11: 5 -> 7 loopIndependentDefUseDependence $_
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 10 trueControlDependence
-   6: 1 -> 1 declarationDependence
-   7: 1 -> 6 loopIndependentDefUseDependence
-   8: 1 -> 6 declarationDependence
-   9: 2 -> 2 declarationDependence
-  10: 2 -> 7 loopIndependentDefUseDependence
-  11: 2 -> 7 declarationDependence
-  12: 3 -> 3 declarationDependence
-  13: 4 -> 5 trueControlDependence
-  14: 5 -> 6 trueControlDependence
-  15: 5 -> 7 trueControlDependence
-  16: 5 -> 8 trueControlDependence
-  17: 5 -> 11 call
-  18: 6 -> 12 parameterIn
-  19: 7 -> 13 parameterIn
-  20: 8 -> 3 loopIndependentDefUseDependence
-  21: 18 -> 8 parameterOut
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 7 trueControlDependence
+   9: 0 -> 8 trueControlDependence
+  10: 1 -> 6 declaration
+  11: 1 -> 6 loopIndependentDefUseDependence a$0
+  12: 2 -> 7 declaration
+  13: 2 -> 7 loopIndependentDefUseDependence b$1
+  14: 7 -> 8 summary
+  15: 8 -> 3 loopIndependentDefUseDependence this.!m
 --
 ----- ClDG (to here) -----
 

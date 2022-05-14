@@ -1,0 +1,150 @@
+----- ClDG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.FigureDeleted
+   0 constructorEntry [ FigureDeleted( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ undo( ) ]
+   1 throwsClause D = {  } U = { $javax.swing.undo.CannotUndoException }
+   2 assignment D = {  } U = { super.!undo }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.FigureEdit#undo( )
+   5 actualOut D = { super.!undo } U = {  }
+   6 localDeclaration D = { fmanager$0 } U = { this.canvas.!getFigureManager }
+   7 receiver D = {  } U = { this.canvas }
+   8 methodCall D = {  } U = { this.canvas.figureManager } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#getFigureManager( )
+   9 actualOut D = { this.canvas.!getFigureManager } U = { this.canvas.figureManager }
+  10 assignment D = {  } U = { fmanager$0.!add, this.canvas.!getFigureManager.!add }
+  11 receiver D = {  } U = { fmanager$0, this.canvas.!getFigureManager }
+  12 methodCall D = {  } U = { fmanager$0.figures, this.canvas.!getFigureManager.figures } TO = jp.ac.ritsumei.cs.draw.FigureManager#add( jp.ac.ritsumei.cs.draw.Figure )
+  13 actualIn D = {  } U = { this.figure }
+  14 actualOut D = { fmanager$0.!add } U = { fmanager$0.figures, this.canvas.!getFigureManager.figures }
+  15 assignment D = {  } U = { this.canvas.!repaint }
+  16 receiver D = {  } U = { this.canvas }
+  17 methodCall D = {  } U = { this.canvas, this.canvas.height, this.canvas.parent, this.canvas.peer, this.canvas.width, this.canvas.x, this.canvas.y } TO = java.awt.Component#repaint( )
+  18 actualOut D = { this.canvas.!repaint } U = { this.canvas.height, this.canvas.parent, this.canvas.peer, this.canvas.width, this.canvas.x, this.canvas.y }
+  20 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ redo( ) ]
+   1 throwsClause D = {  } U = { $javax.swing.undo.CannotUndoException }
+   2 throwsClause D = {  } U = { $javax.swing.undo.CannotRedoException }
+   3 assignment D = {  } U = { super.!redo }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.FigureEdit#redo( )
+   6 actualOut D = { super.!redo } U = {  }
+   7 localDeclaration D = { fmanager$0 } U = { this.canvas.!getFigureManager }
+   8 receiver D = {  } U = { this.canvas }
+   9 methodCall D = {  } U = { this.canvas.figureManager } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#getFigureManager( )
+  10 actualOut D = { this.canvas.!getFigureManager } U = { this.canvas.figureManager }
+  11 assignment D = {  } U = { fmanager$0.!remove, this.canvas.!getFigureManager.!remove }
+  12 receiver D = {  } U = { fmanager$0, this.canvas.!getFigureManager }
+  13 methodCall D = {  } U = { fmanager$0.figures, this.canvas.!getFigureManager.figures } TO = jp.ac.ritsumei.cs.draw.FigureManager#remove( jp.ac.ritsumei.cs.draw.Figure )
+  14 actualIn D = {  } U = { this.figure }
+  15 actualOut D = { fmanager$0.!remove } U = { fmanager$0.figures, this.canvas.!getFigureManager.figures }
+  16 assignment D = {  } U = { this.canvas.!repaint }
+  17 receiver D = {  } U = { this.canvas }
+  18 methodCall D = {  } U = { this.canvas, this.canvas.height, this.canvas.parent, this.canvas.peer, this.canvas.width, this.canvas.x, this.canvas.y } TO = java.awt.Component#repaint( )
+  19 actualOut D = { this.canvas.!repaint } U = { this.canvas.height, this.canvas.parent, this.canvas.peer, this.canvas.width, this.canvas.x, this.canvas.y }
+  21 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ FigureDeleted( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ) ]
+   1 formalIn D = { canvas$0 } U = {  }
+   2 formalIn D = { figure$1 } U = {  }
+   3 assignment D = {  } U = {  }
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = { super.canvas, super.figure } U = { super.canvas, super.figure } TO = jp.ac.ritsumei.cs.draw.FigureEdit#FigureEdit( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure )
+   6 actualIn D = {  } U = { canvas$0 }
+   7 actualIn D = {  } U = { figure$1 }
+   8 actualOut D = { , super.canvas, super.figure } U = { super.canvas, super.figure }
+  10 formalOut D = {  } U = { $_, super.canvas, super.figure }
+--
+   0 fieldEntry [ serialVersionUID ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureDeleted.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.FigureDeleted.serialVersionUID }
+--
+   0: FigureDeleted( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: undo( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 20 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 14 -> 10 loopIndependentDefUseDependence fmanager$0.!add
+   7: 18 -> 15 loopIndependentDefUseDependence this.canvas.!repaint
+   8: 4 -> 1 exceptionCatch
+   9: 4 -> 10 trueControlDependence
+  10: 4 -> 11 trueControlDependence
+  11: 4 -> 12 trueControlDependence
+  12: 4 -> 13 trueControlDependence
+  13: 4 -> 14 trueControlDependence
+  14: 4 -> 15 trueControlDependence
+  15: 4 -> 16 trueControlDependence
+  16: 4 -> 17 trueControlDependence
+  17: 4 -> 18 trueControlDependence
+  18: 4 -> 2 trueControlDependence
+  19: 4 -> 6 trueControlDependence
+  20: 4 -> 7 trueControlDependence
+  21: 4 -> 8 trueControlDependence
+  22: 4 -> 9 trueControlDependence
+  23: 5 -> 2 loopIndependentDefUseDependence super.!undo
+  24: 6 -> 11 declaration
+  25: 6 -> 11 loopIndependentDefUseDependence fmanager$0
+  26: 9 -> 11 loopIndependentDefUseDependence this.canvas.!getFigureManager
+  27: 9 -> 6 loopIndependentDefUseDependence this.canvas.!getFigureManager
+--
+   0: redo( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 21 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 10 -> 12 loopIndependentDefUseDependence this.canvas.!getFigureManager
+   8: 10 -> 7 loopIndependentDefUseDependence this.canvas.!getFigureManager
+   9: 15 -> 11 loopIndependentDefUseDependence fmanager$0.!remove
+  10: 19 -> 16 loopIndependentDefUseDependence this.canvas.!repaint
+  11: 5 -> 1 exceptionCatch
+  12: 5 -> 10 trueControlDependence
+  13: 5 -> 11 trueControlDependence
+  14: 5 -> 12 trueControlDependence
+  15: 5 -> 13 trueControlDependence
+  16: 5 -> 14 trueControlDependence
+  17: 5 -> 15 trueControlDependence
+  18: 5 -> 16 trueControlDependence
+  19: 5 -> 17 trueControlDependence
+  20: 5 -> 18 trueControlDependence
+  21: 5 -> 19 trueControlDependence
+  22: 5 -> 2 exceptionCatch
+  23: 5 -> 3 trueControlDependence
+  24: 5 -> 7 trueControlDependence
+  25: 5 -> 8 trueControlDependence
+  26: 5 -> 9 trueControlDependence
+  27: 6 -> 3 loopIndependentDefUseDependence super.!redo
+  28: 7 -> 12 declaration
+  29: 7 -> 12 loopIndependentDefUseDependence fmanager$0
+--
+   0: FigureDeleted( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 7 trueControlDependence
+   9: 0 -> 8 trueControlDependence
+  10: 1 -> 6 loopIndependentDefUseDependence canvas$0
+  11: 2 -> 7 loopIndependentDefUseDependence figure$1
+  12: 5 -> 8 loopIndependentDefUseDependence super.canvas
+  13: 5 -> 8 loopIndependentDefUseDependence super.figure
+  14: 6 -> 8 summary
+  15: 7 -> 8 summary
+  16: 8 -> 10 loopIndependentDefUseDependence super.canvas
+  17: 8 -> 10 loopIndependentDefUseDependence super.figure
+  18: 8 -> 3 loopIndependentDefUseDependence 
+--
+   0: serialVersionUID
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+

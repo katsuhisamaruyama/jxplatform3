@@ -1,0 +1,77 @@
+----- ClDG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$13
+   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   1 throwsClause D = {  } U = { $java.awt.HeadlessException }
+   2 formalIn D = { evt$7 } U = {  }
+   3 localDeclaration D = { canvas$8 } U = { this.tabbedCanvas.!getCurrentCanvas }
+   4 receiver D = {  } U = { this.tabbedCanvas }
+   5 methodCall D = {  } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#getCurrentCanvas( )
+   6 actualOut D = { this.tabbedCanvas.!getCurrentCanvas } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab }
+   7 ifSt D = {  } U = { this.!saveAsFile }
+   8 receiver D = {  } U = {  }
+   9 methodCall D = { this.directory, this.tabbedCanvas, this.tool } U = { this.directory, this.recentFiles, this.tabbedCanvas, this.tabbedCanvas.selectedTab, this.tool } TO = jp.ac.ritsumei.cs.draw.DrawMenu#saveAsFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
+  10 actualIn D = {  } U = { canvas$8, this.tabbedCanvas.!getCurrentCanvas }
+  11 actualOut D = { this.!saveAsFile, this.directory, this.tabbedCanvas, this.tool } U = { this.directory, this.recentFiles, this.tabbedCanvas, this.tabbedCanvas.selectedTab, this.tool }
+  12 assignment D = {  } U = { this.!buildRecentFileMenu }
+  13 receiver D = {  } U = {  }
+  14 methodCall D = { this.fileListMenu } U = { this.fileListMenu, this.fileListener, this.recentFiles } TO = jp.ac.ritsumei.cs.draw.DrawMenu#buildRecentFileMenu( )
+  15 actualOut D = { this.!buildRecentFileMenu, this.fileListMenu } U = { this.fileListMenu, this.fileListener, this.recentFiles }
+  16 assignment D = {  } U = { this.!updateUndoState }
+  17 receiver D = {  } U = {  }
+  18 methodCall D = {  } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoAction } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateUndoState( )
+  19 actualOut D = { this.!updateUndoState } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoAction }
+  20 assignment D = {  } U = { this.!updateRedoState }
+  21 receiver D = {  } U = {  }
+  22 methodCall D = {  } U = { this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateRedoState( )
+  23 actualOut D = { this.!updateRedoState } U = { this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab }
+  26 formalOut D = {  } U = { $_, this.directory, this.fileListMenu, this.tabbedCanvas, this.tool }
+--
+   0: actionPerformed( java.awt.event.ActionEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 2 trueControlDependence
+   5: 0 -> 26 trueControlDependence
+   6: 0 -> 3 trueControlDependence
+   7: 0 -> 4 trueControlDependence
+   8: 0 -> 5 trueControlDependence
+   9: 0 -> 6 trueControlDependence
+  10: 0 -> 8 trueControlDependence
+  11: 0 -> 9 trueControlDependence
+  12: 11 -> 18 loopIndependentDefUseDependence this.tabbedCanvas
+  13: 11 -> 19 loopIndependentDefUseDependence this.tabbedCanvas
+  14: 11 -> 22 loopIndependentDefUseDependence this.tabbedCanvas
+  15: 11 -> 23 loopIndependentDefUseDependence this.tabbedCanvas
+  16: 11 -> 26 loopIndependentDefUseDependence this.directory
+  17: 11 -> 26 loopIndependentDefUseDependence this.tabbedCanvas
+  18: 11 -> 26 loopIndependentDefUseDependence this.tool
+  19: 11 -> 7 loopIndependentDefUseDependence this.!saveAsFile
+  20: 14 -> 15 loopIndependentDefUseDependence this.fileListMenu
+  21: 15 -> 12 loopIndependentDefUseDependence this.!buildRecentFileMenu
+  22: 15 -> 26 loopIndependentDefUseDependence this.fileListMenu
+  23: 19 -> 16 loopIndependentDefUseDependence this.!updateUndoState
+  24: 23 -> 20 loopIndependentDefUseDependence this.!updateRedoState
+  25: 3 -> 10 declaration
+  26: 3 -> 10 loopIndependentDefUseDependence canvas$8
+  27: 6 -> 10 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas
+  28: 6 -> 3 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas
+  29: 7 -> 12 trueControlDependence
+  30: 7 -> 13 trueControlDependence
+  31: 7 -> 14 trueControlDependence
+  32: 7 -> 15 trueControlDependence
+  33: 7 -> 16 trueControlDependence
+  34: 7 -> 17 trueControlDependence
+  35: 7 -> 18 trueControlDependence
+  36: 7 -> 19 trueControlDependence
+  37: 7 -> 20 trueControlDependence
+  38: 7 -> 21 trueControlDependence
+  39: 7 -> 22 trueControlDependence
+  40: 7 -> 23 trueControlDependence
+  41: 9 -> 1 exceptionCatch
+  42: 9 -> 11 loopIndependentDefUseDependence this.directory
+  43: 9 -> 11 loopIndependentDefUseDependence this.tabbedCanvas
+  44: 9 -> 11 loopIndependentDefUseDependence this.tool
+  45: 9 -> 7 trueControlDependence
+--
+----- ClDG (to here) -----
+

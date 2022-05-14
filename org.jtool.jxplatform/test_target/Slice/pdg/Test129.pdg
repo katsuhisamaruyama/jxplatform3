@@ -7,6 +7,7 @@ Class Name = Test129
    4 actualOut D = { S129.!S129 } U = {  }
 --
    0 constructorEntry [ Test129( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ s2 ]
    1 fieldDeclaration D = { this.s2 } U = { S129.!S129, this.s2 }
@@ -19,39 +20,39 @@ Class Name = Test129
    2 assignment D = {  } U = { this.s1.!getP.!set1 }
    3 receiver D = {  } U = { this.s1.!getP }
    4 receiver D = {  } U = { this.s1 }
-   5 methodCall D = {  } U = { this.s1.p, this.s1.p.key, this.s1.p.map, this.s1.p.value } TO = S129#getP( )
-   6 actualOut D = { this.s1.!getP } U = {  }
+   5 methodCall D = {  } U = { this.s1.p } TO = S129#getP( )
+   6 actualOut D = { this.s1.!getP } U = { this.s1.p }
    7 methodCall D = { this.s1.!getP, this.s1.!getP.map } U = { this.s1.!getP, this.s1.!getP.map } TO = P129#set1( java.lang.String java.lang.String )
    8 actualIn D = {  } U = { $java.lang.String }
    9 actualIn D = {  } U = { $java.lang.String }
-  10 actualOut D = { this.s1.!getP, this.s1.!getP.!set1 } U = { this.s1.!getP }
+  10 actualOut D = { this.s1.!getP, this.s1.!getP.!set1, this.s1.!getP.map } U = { this.s1.!getP, this.s1.!getP.map }
   11 assignment D = {  } U = { this.s2.!getP.!set2 }
   12 receiver D = {  } U = { this.s2.!getP }
   13 receiver D = {  } U = { this.s2 }
-  14 methodCall D = {  } U = { this.s2.p, this.s2.p.key, this.s2.p.map, this.s2.p.value } TO = S129#getP( )
-  15 actualOut D = { this.s2.!getP } U = {  }
-  16 methodCall D = { this.s2.!getP.key, this.s2.!getP.value } U = {  } TO = P129#set2( java.lang.String java.lang.String )
+  14 methodCall D = {  } U = { this.s2.p } TO = S129#getP( )
+  15 actualOut D = { this.s2.!getP } U = { this.s2.p }
+  16 methodCall D = { this.s2.!getP.key, this.s2.!getP.value } U = { this.s2.!getP.key, this.s2.!getP.value } TO = P129#set2( java.lang.String java.lang.String )
   17 actualIn D = {  } U = { $java.lang.String }
   18 actualIn D = {  } U = { $java.lang.String }
-  19 actualOut D = { this.s2.!getP.!set2 } U = {  }
+  19 actualOut D = { this.s2.!getP.!set2, this.s2.!getP.key, this.s2.!getP.value } U = { this.s2.!getP.key, this.s2.!getP.value }
   20 localDeclaration D = { b$1 } U = { a$0 }
   21 localDeclaration D = { v1$2 } U = { this.s1.!getP.!get1 }
   22 receiver D = {  } U = { this.s1.!getP }
   23 receiver D = {  } U = { this.s1 }
-  24 methodCall D = {  } U = { this.s1.p, this.s1.p.key, this.s1.p.map, this.s1.p.value } TO = S129#getP( )
-  25 actualOut D = { this.s1.!getP } U = {  }
+  24 methodCall D = {  } U = { this.s1.p } TO = S129#getP( )
+  25 actualOut D = { this.s1.!getP } U = { this.s1.p }
   26 methodCall D = {  } U = { this.s1.!getP, this.s1.!getP.map } TO = P129#get1( java.lang.String )
   27 actualIn D = {  } U = { $java.lang.String }
-  28 actualOut D = { this.s1.!getP.!get1 } U = {  }
+  28 actualOut D = { this.s1.!getP.!get1 } U = { this.s1.!getP.map }
   29 localDeclaration D = { s3$3 } U = { this.s2 }
   30 localDeclaration D = { v2$4 } U = { s3$3.!getP.!get2, this.s2.!getP.!get2 }
   31 receiver D = {  } U = { s3$3.!getP, this.s2.!getP }
   32 receiver D = {  } U = { s3$3, this.s2 }
-  33 methodCall D = {  } U = { s3$3.p, s3$3.p.key, s3$3.p.map, s3$3.p.value, this.s2.p, this.s2.p.key, this.s2.p.map, this.s2.p.value } TO = S129#getP( )
-  34 actualOut D = { s3$3.!getP } U = {  }
+  33 methodCall D = {  } U = { s3$3.p, this.s2.p } TO = S129#getP( )
+  34 actualOut D = { s3$3.!getP } U = { s3$3.p, this.s2.p }
   35 methodCall D = {  } U = { s3$3.!getP, s3$3.!getP.key, s3$3.!getP.value, this.s2.!getP, this.s2.!getP.key, this.s2.!getP.value } TO = P129#get2( java.lang.String )
   36 actualIn D = {  } U = { $java.lang.String }
-  37 actualOut D = { s3$3.!getP.!get2 } U = {  }
+  37 actualOut D = { s3$3.!getP.!get2 } U = { s3$3.!getP.key, s3$3.!getP.value, this.s2.!getP.key, this.s2.!getP.value }
   38 localDeclaration D = { t$5 } U = { t$5.!T129 }
   39 receiver D = {  } U = {  }
   40 constructorCall D = {  } U = {  } TO = T129#T129( )
@@ -61,12 +62,12 @@ Class Name = Test129
   44 methodCall D = { t$5.p, t$5.p.map } U = { t$5.p, t$5.p.map } TO = T129#set1( java.lang.String java.lang.String )
   45 actualIn D = {  } U = { $java.lang.String }
   46 actualIn D = {  } U = { $java.lang.String }
-  47 actualOut D = { t$5.!set1 } U = {  }
+  47 actualOut D = { t$5.!set1, t$5.p, t$5.p.map } U = { t$5.p, t$5.p.map }
   48 localDeclaration D = { v3$6 } U = { t$5.!get1 }
   49 receiver D = {  } U = { t$5 }
   50 methodCall D = {  } U = { t$5.p, t$5.p.map } TO = T129#get1( java.lang.String )
   51 actualIn D = {  } U = { $java.lang.String }
-  52 actualOut D = { t$5.!get1 } U = {  }
+  52 actualOut D = { t$5.!get1 } U = { t$5.p, t$5.p.map }
   53 localDeclaration D = { u$7 } U = { u$7.!U129 }
   54 receiver D = {  } U = {  }
   55 constructorCall D = {  } U = {  } TO = U129#U129( )
@@ -76,148 +77,169 @@ Class Name = Test129
   59 methodCall D = { u$7.t.p, u$7.t.p.map } U = { u$7.t, u$7.t.p, u$7.t.p.map } TO = U129#set1( java.lang.String java.lang.String )
   60 actualIn D = {  } U = { $java.lang.String }
   61 actualIn D = {  } U = { $java.lang.String }
-  62 actualOut D = { u$7.!set1 } U = {  }
+  62 actualOut D = { u$7.!set1, u$7.t.p, u$7.t.p.map } U = { u$7.t, u$7.t.p, u$7.t.p.map }
   63 localDeclaration D = { v4$8 } U = { u$7.!get1 }
   64 receiver D = {  } U = { u$7 }
   65 methodCall D = {  } U = { u$7.t, u$7.t.p, u$7.t.p.map } TO = U129#get1( java.lang.String )
   66 actualIn D = {  } U = { $java.lang.String }
-  67 actualOut D = { u$7.!get1 } U = {  }
-  69 formalOut D = {  } U = { $_ }
+  67 actualOut D = { u$7.!get1 } U = { u$7.t, u$7.t.p, u$7.t.p.map }
+  69 formalOut D = {  } U = { $_, t$5.p, t$5.p.map, this.s1.!getP.map, this.s2.!getP.key, this.s2.!getP.value, u$7.t.p, u$7.t.p.map }
 --
    0: s1
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 2 -> 3 trueControlDependence
-   4: 3 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 4 -> 1 loopIndependentDefUseDependence S129.!S129
 --
    0: Test129( )
+   1: 0 -> 2 trueControlDependence
 --
    0: s2
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 2 -> 3 trueControlDependence
-   4: 3 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 4 -> 1 loopIndependentDefUseDependence S129.!S129
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 11 trueControlDependence
-   6: 0 -> 12 trueControlDependence
-   7: 0 -> 13 trueControlDependence
-   8: 0 -> 20 trueControlDependence
-   9: 0 -> 21 trueControlDependence
-  10: 0 -> 22 trueControlDependence
-  11: 0 -> 23 trueControlDependence
-  12: 0 -> 29 trueControlDependence
-  13: 0 -> 30 trueControlDependence
-  14: 0 -> 31 trueControlDependence
-  15: 0 -> 32 trueControlDependence
-  16: 0 -> 38 trueControlDependence
-  17: 0 -> 39 trueControlDependence
-  18: 0 -> 42 trueControlDependence
-  19: 0 -> 43 trueControlDependence
-  20: 0 -> 48 trueControlDependence
-  21: 0 -> 49 trueControlDependence
-  22: 0 -> 53 trueControlDependence
-  23: 0 -> 54 trueControlDependence
-  24: 0 -> 57 trueControlDependence
-  25: 0 -> 58 trueControlDependence
-  26: 0 -> 63 trueControlDependence
-  27: 0 -> 64 trueControlDependence
-  28: 0 -> 69 trueControlDependence
-  29: 1 -> 1 declarationDependence
-  30: 1 -> 20 loopIndependentDefUseDependence
-  31: 1 -> 20 declarationDependence
-  32: 3 -> 7 trueControlDependence
-  33: 4 -> 5 trueControlDependence
-  34: 5 -> 6 trueControlDependence
-  35: 6 -> 3 loopIndependentDefUseDependence
-  36: 6 -> 7 loopIndependentDefUseDependence
-  37: 7 -> 8 trueControlDependence
-  38: 7 -> 9 trueControlDependence
-  39: 7 -> 10 trueControlDependence
-  40: 7 -> 10 loopIndependentDefUseDependence
-  41: 7 -> 26 loopIndependentDefUseDependence
-  42: 10 -> 2 loopIndependentDefUseDependence
-  43: 10 -> 25 outputDependence
-  44: 12 -> 16 trueControlDependence
-  45: 13 -> 14 trueControlDependence
-  46: 14 -> 15 trueControlDependence
-  47: 15 -> 12 loopIndependentDefUseDependence
-  48: 15 -> 31 loopIndependentDefUseDependence
-  49: 15 -> 35 loopIndependentDefUseDependence
-  50: 16 -> 17 trueControlDependence
-  51: 16 -> 18 trueControlDependence
-  52: 16 -> 19 trueControlDependence
-  53: 16 -> 35 loopIndependentDefUseDependence
-  54: 16 -> 35 loopIndependentDefUseDependence
-  55: 19 -> 11 loopIndependentDefUseDependence
-  56: 20 -> 20 declarationDependence
-  57: 21 -> 21 declarationDependence
-  58: 22 -> 26 trueControlDependence
-  59: 23 -> 24 trueControlDependence
-  60: 24 -> 25 trueControlDependence
-  61: 25 -> 22 loopIndependentDefUseDependence
-  62: 25 -> 26 loopIndependentDefUseDependence
-  63: 26 -> 27 trueControlDependence
-  64: 26 -> 28 trueControlDependence
-  65: 28 -> 21 loopIndependentDefUseDependence
-  66: 29 -> 29 declarationDependence
-  67: 29 -> 32 loopIndependentDefUseDependence
-  68: 29 -> 32 declarationDependence
-  69: 30 -> 30 declarationDependence
-  70: 31 -> 35 trueControlDependence
-  71: 32 -> 33 trueControlDependence
-  72: 33 -> 34 trueControlDependence
-  73: 34 -> 31 loopIndependentDefUseDependence
-  74: 34 -> 35 loopIndependentDefUseDependence
-  75: 35 -> 36 trueControlDependence
-  76: 35 -> 37 trueControlDependence
-  77: 37 -> 30 loopIndependentDefUseDependence
-  78: 38 -> 38 declarationDependence
-  79: 38 -> 43 loopIndependentDefUseDependence
-  80: 38 -> 43 declarationDependence
-  81: 38 -> 49 loopIndependentDefUseDependence
-  82: 38 -> 49 declarationDependence
-  83: 39 -> 40 trueControlDependence
-  84: 40 -> 41 trueControlDependence
-  85: 41 -> 38 loopIndependentDefUseDependence
-  86: 43 -> 44 trueControlDependence
-  87: 44 -> 45 trueControlDependence
-  88: 44 -> 46 trueControlDependence
-  89: 44 -> 47 trueControlDependence
-  90: 44 -> 50 loopIndependentDefUseDependence
-  91: 44 -> 50 loopIndependentDefUseDependence
-  92: 47 -> 42 loopIndependentDefUseDependence
-  93: 48 -> 48 declarationDependence
-  94: 49 -> 50 trueControlDependence
-  95: 50 -> 51 trueControlDependence
-  96: 50 -> 52 trueControlDependence
-  97: 52 -> 48 loopIndependentDefUseDependence
-  98: 53 -> 53 declarationDependence
-  99: 53 -> 58 loopIndependentDefUseDependence
- 100: 53 -> 58 declarationDependence
- 101: 53 -> 64 loopIndependentDefUseDependence
- 102: 53 -> 64 declarationDependence
- 103: 54 -> 55 trueControlDependence
- 104: 55 -> 56 trueControlDependence
- 105: 56 -> 53 loopIndependentDefUseDependence
- 106: 58 -> 59 trueControlDependence
- 107: 59 -> 60 trueControlDependence
- 108: 59 -> 61 trueControlDependence
- 109: 59 -> 62 trueControlDependence
- 110: 59 -> 65 loopIndependentDefUseDependence
- 111: 59 -> 65 loopIndependentDefUseDependence
- 112: 62 -> 57 loopIndependentDefUseDependence
- 113: 63 -> 63 declarationDependence
- 114: 64 -> 65 trueControlDependence
- 115: 65 -> 66 trueControlDependence
- 116: 65 -> 67 trueControlDependence
- 117: 67 -> 63 loopIndependentDefUseDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 25 trueControlDependence
+  19: 0 -> 26 trueControlDependence
+  20: 0 -> 27 trueControlDependence
+  21: 0 -> 28 trueControlDependence
+  22: 0 -> 29 trueControlDependence
+  23: 0 -> 3 trueControlDependence
+  24: 0 -> 30 trueControlDependence
+  25: 0 -> 31 trueControlDependence
+  26: 0 -> 32 trueControlDependence
+  27: 0 -> 33 trueControlDependence
+  28: 0 -> 34 trueControlDependence
+  29: 0 -> 35 trueControlDependence
+  30: 0 -> 36 trueControlDependence
+  31: 0 -> 37 trueControlDependence
+  32: 0 -> 38 trueControlDependence
+  33: 0 -> 39 trueControlDependence
+  34: 0 -> 4 trueControlDependence
+  35: 0 -> 40 trueControlDependence
+  36: 0 -> 41 trueControlDependence
+  37: 0 -> 42 trueControlDependence
+  38: 0 -> 43 trueControlDependence
+  39: 0 -> 44 trueControlDependence
+  40: 0 -> 45 trueControlDependence
+  41: 0 -> 46 trueControlDependence
+  42: 0 -> 47 trueControlDependence
+  43: 0 -> 48 trueControlDependence
+  44: 0 -> 49 trueControlDependence
+  45: 0 -> 5 trueControlDependence
+  46: 0 -> 50 trueControlDependence
+  47: 0 -> 51 trueControlDependence
+  48: 0 -> 52 trueControlDependence
+  49: 0 -> 53 trueControlDependence
+  50: 0 -> 54 trueControlDependence
+  51: 0 -> 55 trueControlDependence
+  52: 0 -> 56 trueControlDependence
+  53: 0 -> 57 trueControlDependence
+  54: 0 -> 58 trueControlDependence
+  55: 0 -> 59 trueControlDependence
+  56: 0 -> 6 trueControlDependence
+  57: 0 -> 60 trueControlDependence
+  58: 0 -> 61 trueControlDependence
+  59: 0 -> 62 trueControlDependence
+  60: 0 -> 63 trueControlDependence
+  61: 0 -> 64 trueControlDependence
+  62: 0 -> 65 trueControlDependence
+  63: 0 -> 66 trueControlDependence
+  64: 0 -> 67 trueControlDependence
+  65: 0 -> 69 trueControlDependence
+  66: 0 -> 7 trueControlDependence
+  67: 0 -> 8 trueControlDependence
+  68: 0 -> 9 trueControlDependence
+  69: 1 -> 20 declaration
+  70: 1 -> 20 loopIndependentDefUseDependence a$0
+  71: 10 -> 2 loopIndependentDefUseDependence this.s1.!getP.!set1
+  72: 10 -> 25 defOrderDependence this.s1.!getP
+  73: 10 -> 26 loopIndependentDefUseDependence this.s1.!getP.map
+  74: 10 -> 28 loopIndependentDefUseDependence this.s1.!getP.map
+  75: 10 -> 69 loopIndependentDefUseDependence this.s1.!getP.map
+  76: 15 -> 12 loopIndependentDefUseDependence this.s2.!getP
+  77: 15 -> 31 loopIndependentDefUseDependence this.s2.!getP
+  78: 15 -> 35 loopIndependentDefUseDependence this.s2.!getP
+  79: 16 -> 19 loopIndependentDefUseDependence this.s2.!getP.key
+  80: 16 -> 19 loopIndependentDefUseDependence this.s2.!getP.value
+  81: 17 -> 19 summary
+  82: 18 -> 19 summary
+  83: 19 -> 11 loopIndependentDefUseDependence this.s2.!getP.!set2
+  84: 19 -> 35 loopIndependentDefUseDependence this.s2.!getP.key
+  85: 19 -> 35 loopIndependentDefUseDependence this.s2.!getP.value
+  86: 19 -> 37 loopIndependentDefUseDependence this.s2.!getP.key
+  87: 19 -> 37 loopIndependentDefUseDependence this.s2.!getP.value
+  88: 19 -> 69 loopIndependentDefUseDependence this.s2.!getP.key
+  89: 19 -> 69 loopIndependentDefUseDependence this.s2.!getP.value
+  90: 25 -> 22 loopIndependentDefUseDependence this.s1.!getP
+  91: 25 -> 26 loopIndependentDefUseDependence this.s1.!getP
+  92: 28 -> 21 loopIndependentDefUseDependence this.s1.!getP.!get1
+  93: 29 -> 32 declaration
+  94: 29 -> 32 loopIndependentDefUseDependence s3$3
+  95: 34 -> 31 loopIndependentDefUseDependence s3$3.!getP
+  96: 34 -> 35 loopIndependentDefUseDependence s3$3.!getP
+  97: 37 -> 30 loopIndependentDefUseDependence s3$3.!getP.!get2
+  98: 38 -> 43 declaration
+  99: 38 -> 43 loopIndependentDefUseDependence t$5
+ 100: 38 -> 49 declaration
+ 101: 38 -> 49 loopIndependentDefUseDependence t$5
+ 102: 41 -> 38 loopIndependentDefUseDependence t$5.!T129
+ 103: 44 -> 47 loopIndependentDefUseDependence t$5.p
+ 104: 44 -> 47 loopIndependentDefUseDependence t$5.p.map
+ 105: 45 -> 47 summary
+ 106: 46 -> 47 summary
+ 107: 47 -> 42 loopIndependentDefUseDependence t$5.!set1
+ 108: 47 -> 50 loopIndependentDefUseDependence t$5.p
+ 109: 47 -> 50 loopIndependentDefUseDependence t$5.p.map
+ 110: 47 -> 52 loopIndependentDefUseDependence t$5.p
+ 111: 47 -> 52 loopIndependentDefUseDependence t$5.p.map
+ 112: 47 -> 69 loopIndependentDefUseDependence t$5.p
+ 113: 47 -> 69 loopIndependentDefUseDependence t$5.p.map
+ 114: 52 -> 48 loopIndependentDefUseDependence t$5.!get1
+ 115: 53 -> 58 declaration
+ 116: 53 -> 58 loopIndependentDefUseDependence u$7
+ 117: 53 -> 64 declaration
+ 118: 53 -> 64 loopIndependentDefUseDependence u$7
+ 119: 56 -> 53 loopIndependentDefUseDependence u$7.!U129
+ 120: 59 -> 62 loopIndependentDefUseDependence u$7.t.p
+ 121: 59 -> 62 loopIndependentDefUseDependence u$7.t.p.map
+ 122: 6 -> 3 loopIndependentDefUseDependence this.s1.!getP
+ 123: 6 -> 7 loopIndependentDefUseDependence this.s1.!getP
+ 124: 60 -> 62 summary
+ 125: 61 -> 62 summary
+ 126: 62 -> 57 loopIndependentDefUseDependence u$7.!set1
+ 127: 62 -> 65 loopIndependentDefUseDependence u$7.t.p
+ 128: 62 -> 65 loopIndependentDefUseDependence u$7.t.p.map
+ 129: 62 -> 67 loopIndependentDefUseDependence u$7.t.p
+ 130: 62 -> 67 loopIndependentDefUseDependence u$7.t.p.map
+ 131: 62 -> 69 loopIndependentDefUseDependence u$7.t.p
+ 132: 62 -> 69 loopIndependentDefUseDependence u$7.t.p.map
+ 133: 67 -> 63 loopIndependentDefUseDependence u$7.!get1
+ 134: 7 -> 10 loopIndependentDefUseDependence this.s1.!getP
+ 135: 7 -> 10 loopIndependentDefUseDependence this.s1.!getP.map
+ 136: 8 -> 10 summary
+ 137: 9 -> 10 summary
 --
 ----- ClDG (to here) -----
 

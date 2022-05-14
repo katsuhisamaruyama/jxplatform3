@@ -1,0 +1,86 @@
+----- ClDG (from here) -----
+Class Name = Test33
+   0 constructorEntry [ Test33( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m( ) ]
+   1 trySt D = {  } U = {  }
+   2 localDeclaration D = { in$2 } U = { in$2.!FileInputStream }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = { in$2.altFinalizer, in$2.closeLock, in$2.fd, in$2.path, java.io.File.path, java.io.File.prefixLength, java.io.File.status } U = { $java.lang.String, in$2.altFinalizer, in$2.fd, java.io.File.fs, java.io.File.path } TO = java.io.FileInputStream#FileInputStream( java.lang.String )
+   5 actualOut D = { in$2.!FileInputStream, in$2.altFinalizer, in$2.closeLock, in$2.fd, in$2.path, java.io.File.path, java.io.File.prefixLength, java.io.File.status } U = { in$2.altFinalizer, in$2.fd, java.io.File.fs, java.io.File.path }
+   6 localDeclaration D = { c$3 } U = {  }
+   7 whileSt D = { c$3 } U = { in$2.!read }
+   8 receiver D = {  } U = { in$2 }
+   9 methodCall D = {  } U = {  } TO = java.io.FileInputStream#read( )
+  10 actualOut D = { in$2.!read } U = {  }
+  11 emptySt D = {  } U = {  }
+  13 catchClause D = { e$4 } U = {  }
+  14 assignment D = {  } U = { e$4.!printStackTrace }
+  15 receiver D = {  } U = { e$4 }
+  16 methodCall D = {  } U = { e$4, java.lang.System.err } TO = java.lang.Throwable#printStackTrace( )
+  17 actualOut D = { e$4.!printStackTrace } U = { java.lang.System.err }
+  19 formalOut D = {  } U = { $_, in$2.altFinalizer, in$2.closeLock, in$2.fd, in$2.path, java.io.File.path, java.io.File.prefixLength, java.io.File.status }
+--
+   0: Test33( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 13 trueControlDependence
+   3: 0 -> 14 trueControlDependence
+   4: 0 -> 16 trueControlDependence
+   5: 0 -> 19 trueControlDependence
+   6: 1 -> 3 trueControlDependence
+   7: 1 -> 4 trueControlDependence
+   8: 1 -> 5 trueControlDependence
+   9: 10 -> 7 loopIndependentDefUseDependence in$2.!read
+  10: 13 -> 15 loopIndependentDefUseDependence e$4
+  11: 13 -> 16 loopIndependentDefUseDependence e$4
+  12: 17 -> 14 loopIndependentDefUseDependence e$4.!printStackTrace
+  13: 2 -> 8 declaration
+  14: 2 -> 8 loopIndependentDefUseDependence in$2
+  15: 4 -> 10 trueControlDependence
+  16: 4 -> 13 exceptionCatch
+  17: 4 -> 14 exceptionCatch
+  18: 4 -> 15 trueControlDependence
+  19: 4 -> 16 exceptionCatch
+  20: 4 -> 17 trueControlDependence
+  21: 4 -> 19 loopIndependentDefUseDependence in$2.altFinalizer
+  22: 4 -> 19 loopIndependentDefUseDependence in$2.closeLock
+  23: 4 -> 19 loopIndependentDefUseDependence in$2.fd
+  24: 4 -> 19 loopIndependentDefUseDependence in$2.path
+  25: 4 -> 19 loopIndependentDefUseDependence java.io.File.path
+  26: 4 -> 19 loopIndependentDefUseDependence java.io.File.prefixLength
+  27: 4 -> 19 loopIndependentDefUseDependence java.io.File.status
+  28: 4 -> 2 trueControlDependence
+  29: 4 -> 5 defOrderDependence in$2.closeLock
+  30: 4 -> 5 defOrderDependence in$2.path
+  31: 4 -> 5 defOrderDependence java.io.File.prefixLength
+  32: 4 -> 5 defOrderDependence java.io.File.status
+  33: 4 -> 5 loopIndependentDefUseDependence in$2.altFinalizer
+  34: 4 -> 5 loopIndependentDefUseDependence in$2.fd
+  35: 4 -> 5 loopIndependentDefUseDependence java.io.File.path
+  36: 4 -> 6 trueControlDependence
+  37: 4 -> 8 trueControlDependence
+  38: 4 -> 9 trueControlDependence
+  39: 5 -> 19 loopIndependentDefUseDependence in$2.altFinalizer
+  40: 5 -> 19 loopIndependentDefUseDependence in$2.closeLock
+  41: 5 -> 19 loopIndependentDefUseDependence in$2.fd
+  42: 5 -> 19 loopIndependentDefUseDependence in$2.path
+  43: 5 -> 19 loopIndependentDefUseDependence java.io.File.path
+  44: 5 -> 19 loopIndependentDefUseDependence java.io.File.prefixLength
+  45: 5 -> 19 loopIndependentDefUseDependence java.io.File.status
+  46: 5 -> 2 loopIndependentDefUseDependence in$2.!FileInputStream
+  47: 6 -> 7 declaration
+  48: 6 -> 7 outputDependence c$3
+  49: 7 -> 11 trueControlDependence
+  50: 9 -> 13 exceptionCatch
+  51: 9 -> 14 exceptionCatch
+  52: 9 -> 15 trueControlDependence
+  53: 9 -> 16 exceptionCatch
+  54: 9 -> 17 trueControlDependence
+  55: 9 -> 7 trueControlDependence
+--
+----- ClDG (to here) -----
+

@@ -1,0 +1,28 @@
+----- ClDG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$12
+   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   1 throwsClause D = {  } U = { $java.awt.HeadlessException }
+   2 formalIn D = { evt$4 } U = {  }
+   3 assignment D = {  } U = { this.!closeFile }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = { this.tabbedCanvas, this.tabbedCanvas.selectedTab } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.tool } TO = jp.ac.ritsumei.cs.draw.DrawMenu#closeFile( )
+   6 actualOut D = { this.!closeFile, this.tabbedCanvas, this.tabbedCanvas.selectedTab } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.tool }
+   8 formalOut D = {  } U = { $_, this.tabbedCanvas, this.tabbedCanvas.selectedTab }
+--
+   0: actionPerformed( java.awt.event.ActionEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 4 trueControlDependence
+   4: 0 -> 5 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 0 -> 8 trueControlDependence
+   7: 5 -> 1 exceptionCatch
+   8: 5 -> 3 trueControlDependence
+   9: 5 -> 6 loopIndependentDefUseDependence this.tabbedCanvas
+  10: 5 -> 6 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+  11: 6 -> 3 loopIndependentDefUseDependence this.!closeFile
+  12: 6 -> 8 loopIndependentDefUseDependence this.tabbedCanvas
+  13: 6 -> 8 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+--
+----- ClDG (to here) -----
+

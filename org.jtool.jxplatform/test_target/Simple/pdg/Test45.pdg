@@ -1,0 +1,104 @@
+----- ClDG (from here) -----
+Class Name = Test45
+   0 methodEntry [ m1( ) ]
+   1 localDeclaration D = { a$0 } U = { a$0.!P45 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P45#P45( )
+   4 actualOut D = { a$0.!P45 } U = {  }
+   5 localDeclaration D = { b$1 } U = { a$0, a$0.q }
+   6 localDeclaration D = { x1$2 } U = { a$0, a$0.q, a$0.q.y, b$1, b$1.y }
+   7 localDeclaration D = { c$3 } U = { c$3.!Q45 }
+   8 receiver D = {  } U = {  }
+   9 constructorCall D = {  } U = {  } TO = Q45#Q45( )
+  10 actualOut D = { c$3.!Q45 } U = {  }
+  11 assignment D = { a$0.q } U = { a$0, c$3 }
+  12 localDeclaration D = { x2$4 } U = { a$0, a$0.q, a$0.q.y, c$3, c$3.y }
+  14 formalOut D = {  } U = { $_, a$0.q }
+--
+   0 methodEntry [ m2( ) ]
+   1 localDeclaration D = { a$0 } U = { a$0.!P45 }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P45#P45( )
+   4 actualOut D = { a$0.!P45 } U = {  }
+   5 localDeclaration D = { b$1 } U = { a$0, a$0.q }
+   6 localDeclaration D = { x1$2 } U = { a$0, a$0.q, a$0.q.y, b$1, b$1.y }
+   7 localDeclaration D = { c$3 } U = { c$3.!P45 }
+   8 receiver D = {  } U = {  }
+   9 constructorCall D = {  } U = {  } TO = P45#P45( )
+  10 actualOut D = { c$3.!P45 } U = {  }
+  11 assignment D = { a$0 } U = { c$3 }
+  12 localDeclaration D = { x2$4 } U = { a$0, a$0.q, a$0.q.y, c$3, c$3.q, c$3.q.y }
+  14 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test45( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m1( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 14 trueControlDependence
+   6: 0 -> 2 trueControlDependence
+   7: 0 -> 3 trueControlDependence
+   8: 0 -> 4 trueControlDependence
+   9: 0 -> 5 trueControlDependence
+  10: 0 -> 6 trueControlDependence
+  11: 0 -> 7 trueControlDependence
+  12: 0 -> 8 trueControlDependence
+  13: 0 -> 9 trueControlDependence
+  14: 1 -> 11 declaration
+  15: 1 -> 11 loopIndependentDefUseDependence a$0
+  16: 1 -> 12 declaration
+  17: 1 -> 12 loopIndependentDefUseDependence a$0
+  18: 1 -> 5 declaration
+  19: 1 -> 5 loopIndependentDefUseDependence a$0
+  20: 1 -> 6 declaration
+  21: 1 -> 6 loopIndependentDefUseDependence a$0
+  22: 10 -> 7 loopIndependentDefUseDependence c$3.!Q45
+  23: 11 -> 12 loopIndependentDefUseDependence a$0.q
+  24: 11 -> 14 loopIndependentDefUseDependence a$0.q
+  25: 4 -> 1 loopIndependentDefUseDependence a$0.!P45
+  26: 5 -> 6 declaration
+  27: 5 -> 6 loopIndependentDefUseDependence b$1
+  28: 7 -> 11 declaration
+  29: 7 -> 11 loopIndependentDefUseDependence c$3
+  30: 7 -> 12 declaration
+  31: 7 -> 12 loopIndependentDefUseDependence c$3
+--
+   0: m2( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 14 trueControlDependence
+   6: 0 -> 2 trueControlDependence
+   7: 0 -> 3 trueControlDependence
+   8: 0 -> 4 trueControlDependence
+   9: 0 -> 5 trueControlDependence
+  10: 0 -> 6 trueControlDependence
+  11: 0 -> 7 trueControlDependence
+  12: 0 -> 8 trueControlDependence
+  13: 0 -> 9 trueControlDependence
+  14: 1 -> 11 declaration
+  15: 1 -> 11 outputDependence a$0
+  16: 1 -> 12 declaration
+  17: 1 -> 5 declaration
+  18: 1 -> 5 loopIndependentDefUseDependence a$0
+  19: 1 -> 6 declaration
+  20: 1 -> 6 loopIndependentDefUseDependence a$0
+  21: 10 -> 7 loopIndependentDefUseDependence c$3.!P45
+  22: 11 -> 12 loopIndependentDefUseDependence a$0
+  23: 4 -> 1 loopIndependentDefUseDependence a$0.!P45
+  24: 5 -> 6 declaration
+  25: 5 -> 6 loopIndependentDefUseDependence b$1
+  26: 7 -> 11 declaration
+  27: 7 -> 11 loopIndependentDefUseDependence c$3
+  28: 7 -> 12 declaration
+  29: 7 -> 12 loopIndependentDefUseDependence c$3
+--
+   0: Test45( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

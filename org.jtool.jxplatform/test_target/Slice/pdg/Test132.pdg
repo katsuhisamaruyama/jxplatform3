@@ -13,40 +13,38 @@ Class Name = Test132
    3 constructorCall D = {  } U = {  } TO = P132#P132( )
    4 actualOut D = { p$0.!P132 } U = {  }
    5 assignment D = { p$0.x } U = { p$0 }
-   6 returnSt D = { $_ } U = { p$0, p$0.x }
-   8 formalOut D = {  } U = { $_ }
+   6 returnSt D = { $_ } U = { p$0 }
+   8 formalOut D = {  } U = { $_, p$0.x }
 --
    0 constructorEntry [ Test132( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 0 -> 6 trueControlDependence
-   4: 1 -> 1 declarationDependence
-   5: 2 -> 3 trueControlDependence
-   6: 3 -> 4 trueControlDependence
-   7: 3 -> 7 call
-   8: 4 -> 1 loopIndependentDefUseDependence
-   9: 15 -> 4 parameterOut
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 4 -> 1 loopIndependentDefUseDependence this.!n
 --
    0: n( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 0 -> 5 trueControlDependence
-   4: 0 -> 6 trueControlDependence
-   5: 0 -> 8 trueControlDependence
-   6: 1 -> 1 declarationDependence
-   7: 1 -> 5 loopIndependentDefUseDependence
-   8: 1 -> 5 declarationDependence
-   9: 1 -> 6 loopIndependentDefUseDependence
-  10: 1 -> 6 declarationDependence
-  11: 2 -> 3 trueControlDependence
-  12: 3 -> 4 trueControlDependence
-  13: 4 -> 1 loopIndependentDefUseDependence
-  14: 5 -> 6 loopIndependentDefUseDependence
-  15: 6 -> 8 loopIndependentDefUseDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 8 trueControlDependence
+   8: 1 -> 5 declaration
+   9: 1 -> 5 loopIndependentDefUseDependence p$0
+  10: 1 -> 6 declaration
+  11: 1 -> 6 loopIndependentDefUseDependence p$0
+  12: 4 -> 1 loopIndependentDefUseDependence p$0.!P132
+  13: 5 -> 8 loopIndependentDefUseDependence p$0.x
+  14: 6 -> 8 loopIndependentDefUseDependence $_
 --
    0: Test132( )
+   1: 0 -> 2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

@@ -1,0 +1,48 @@
+----- ClDG (from here) -----
+Class Name = ThreadA
+   0 constructorEntry [ ThreadA( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ run( ) ]
+   1 localDeclaration D = { i$0 } U = {  }
+   2 forSt D = {  } U = { i$0 }
+   3 assignment D = {  } U = { System.out.!println }
+   4 receiver D = {  } U = { System.out }
+   5 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, i$0, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( java.lang.String )
+   6 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
+   7 assignment D = { i$0 } U = { i$0 }
+   9 formalOut D = {  } U = { $_, System.out, System.out.trouble }
+--
+   0: ThreadA( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: run( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 9 trueControlDependence
+   4: 1 -> 2 declaration
+   5: 1 -> 2 loopIndependentDefUseDependence i$0
+   6: 1 -> 5 declaration
+   7: 1 -> 5 loopIndependentDefUseDependence i$0
+   8: 1 -> 7 declaration
+   9: 1 -> 7 loopIndependentDefUseDependence i$0
+  10: 2 -> 3 trueControlDependence
+  11: 2 -> 4 trueControlDependence
+  12: 2 -> 5 trueControlDependence
+  13: 2 -> 6 trueControlDependence
+  14: 2 -> 7 trueControlDependence
+  15: 5 -> 6 loopIndependentDefUseDependence System.out
+  16: 5 -> 6 outputDependence System.out.trouble
+  17: 6 -> 3 loopIndependentDefUseDependence System.out.!println
+  18: 6 -> 4 loopCarriedDefUseDependence System.out 2
+  19: 6 -> 5 loopCarriedDefUseDependence System.out 2
+  20: 6 -> 5 outputDependence System.out.trouble
+  21: 6 -> 6 defOrderDependence System.out.!println
+  22: 6 -> 9 loopIndependentDefUseDependence System.out
+  23: 6 -> 9 loopIndependentDefUseDependence System.out.trouble
+  24: 7 -> 2 loopCarriedDefUseDependence i$0 2
+  25: 7 -> 5 loopCarriedDefUseDependence i$0 2
+  26: 7 -> 7 loopCarriedDefUseDependence i$0 2
+--
+----- ClDG (to here) -----
+

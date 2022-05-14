@@ -1,0 +1,18 @@
+----- ClDG (from here) -----
+Class Name = Test41
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { c1$0 } U = { PriceCode.CHILDRENS }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test41( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+--
+   0: Test41( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

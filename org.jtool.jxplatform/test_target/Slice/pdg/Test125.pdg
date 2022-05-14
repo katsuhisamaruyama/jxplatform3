@@ -19,6 +19,7 @@ Class Name = Test125
   17 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Test125( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ inc1( int ) ]
    1 formalIn D = { x$0 } U = {  }
@@ -35,50 +36,42 @@ Class Name = Test125
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 7 trueControlDependence
-   5: 0 -> 8 trueControlDependence
-   6: 0 -> 11 trueControlDependence
-   7: 0 -> 17 trueControlDependence
-   8: 1 -> 1 declarationDependence
-   9: 1 -> 5 loopIndependentDefUseDependence
-  10: 1 -> 5 declarationDependence
-  11: 1 -> 13 loopIndependentDefUseDependence
-  12: 1 -> 13 declarationDependence
-  13: 2 -> 2 declarationDependence
-  14: 3 -> 4 trueControlDependence
-  15: 4 -> 5 trueControlDependence
-  16: 4 -> 6 trueControlDependence
-  17: 4 -> 18 call
-  18: 5 -> 19 parameterIn
-  19: 6 -> 2 loopIndependentDefUseDependence
-  20: 6 -> 14 outputDependence
-  21: 7 -> 7 declarationDependence
-  22: 8 -> 9 trueControlDependence
-  23: 9 -> 10 trueControlDependence
-  24: 9 -> 15 trueControlDependence
-  25: 9 -> 24 call
-  26: 10 -> 25 parameterIn
-  27: 11 -> 12 trueControlDependence
-  28: 12 -> 13 trueControlDependence
-  29: 12 -> 14 trueControlDependence
-  30: 12 -> 18 call
-  31: 13 -> 19 parameterIn
-  32: 14 -> 10 loopIndependentDefUseDependence
-  33: 15 -> 7 loopIndependentDefUseDependence
-  34: 22 -> 6 parameterOut
-  35: 22 -> 14 parameterOut
-  36: 28 -> 15 parameterOut
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 17 trueControlDependence
+   9: 0 -> 2 trueControlDependence
+  10: 0 -> 3 trueControlDependence
+  11: 0 -> 4 trueControlDependence
+  12: 0 -> 5 trueControlDependence
+  13: 0 -> 6 trueControlDependence
+  14: 0 -> 7 trueControlDependence
+  15: 0 -> 8 trueControlDependence
+  16: 0 -> 9 trueControlDependence
+  17: 1 -> 13 declaration
+  18: 1 -> 13 loopIndependentDefUseDependence p$0
+  19: 1 -> 5 declaration
+  20: 1 -> 5 loopIndependentDefUseDependence p$0
+  21: 10 -> 15 summary
+  22: 13 -> 14 summary
+  23: 14 -> 10 loopIndependentDefUseDependence this.!inc1
+  24: 15 -> 7 loopIndependentDefUseDependence this.!inc2
+  25: 5 -> 6 summary
+  26: 6 -> 14 outputDependence this.!inc1
+  27: 6 -> 2 loopIndependentDefUseDependence this.!inc1
 --
    0: Test125( )
+   1: 0 -> 2 trueControlDependence
 --
    0: inc1( int )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence
-   5: 2 -> 4 loopIndependentDefUseDependence
+   4: 1 -> 2 loopIndependentDefUseDependence x$0
+   5: 2 -> 4 loopIndependentDefUseDependence $_
 --
    0: p
    1: 0 -> 1 trueControlDependence
@@ -87,8 +80,8 @@ Class Name = Test125
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence
-   5: 2 -> 4 loopIndependentDefUseDependence
+   4: 1 -> 2 loopIndependentDefUseDependence x$0
+   5: 2 -> 4 loopIndependentDefUseDependence $_
 --
 ----- ClDG (to here) -----
 

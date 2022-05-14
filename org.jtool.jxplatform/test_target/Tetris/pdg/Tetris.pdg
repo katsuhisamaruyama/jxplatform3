@@ -1,0 +1,974 @@
+----- ClDG (from here) -----
+Class Name = Tetris
+   0 fieldEntry [ timer ]
+   1 fieldDeclaration D = { this.timer } U = { this.timer }
+--
+   0 methodEntry [ stopTimer( ) ]
+   1 assignment D = { this.timer } U = {  }
+   3 formalOut D = {  } U = { $_, this.timer }
+--
+   0 constructorEntry [ Tetris( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ init( ) ]
+   1 assignment D = { this.info } U = { this.info.!GameInfo }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = { this.info.height, this.info.width } U = { this.info.height, this.info.width } TO = GameInfo#GameInfo( )
+   4 actualOut D = { this.info.!GameInfo, this.info.height, this.info.width } U = { this.info.height, this.info.width }
+   5 assignment D = { this.pit } U = { this.pit.!Pit }
+   6 receiver D = {  } U = {  }
+   7 constructorCall D = { this.pit.box, this.pit.height, this.pit.info, this.pit.rnd, this.pit.width } U = { this.pit.box, this.pit.height, this.pit.info, this.pit.rnd, this.pit.width } TO = Pit#Pit( GameInfo )
+   8 actualIn D = {  } U = { this.info }
+   9 actualOut D = { this.pit.!Pit, this.pit.box, this.pit.height, this.pit.info, this.pit.rnd, this.pit.width } U = { this.pit.box, this.pit.height, this.pit.info, this.pit.rnd, this.pit.width }
+  10 localDeclaration D = { cp$0 } U = { this.!getContentPane }
+  11 receiver D = {  } U = {  }
+  12 methodCall D = {  } U = { javax.swing.JRootPane.contentPane, this.rootPane } TO = javax.swing.JFrame#getContentPane( )
+  13 actualOut D = { this.!getContentPane } U = { javax.swing.JRootPane.contentPane, this.rootPane }
+  14 assignment D = {  } U = { cp$0.!setLayout }
+  15 receiver D = {  } U = { cp$0, this.!getContentPane }
+  16 methodCall D = { cp$0, cp$0.layoutMgr } U = { FlowLayout.!FlowLayout } TO = java.awt.Container#setLayout( java.awt.LayoutManager )
+  17 receiver D = {  } U = {  }
+  18 constructorCall D = { FlowLayout.hgap, FlowLayout.serialVersionOnStream, FlowLayout.vgap } U = { FlowLayout.CENTER } TO = java.awt.FlowLayout#FlowLayout( int )
+  19 actualOut D = { FlowLayout.!FlowLayout, FlowLayout.hgap, FlowLayout.serialVersionOnStream, FlowLayout.vgap } U = {  }
+  20 actualOut D = { cp$0, cp$0.!setLayout, cp$0.layoutMgr } U = { cp$0 }
+  21 assignment D = {  } U = { cp$0.!add }
+  22 receiver D = {  } U = { cp$0 }
+  23 methodCall D = { cp$0, java.awt.Component.parent } U = { cp$0, cp$0.component, cp$0.containerListener, cp$0.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.pit } TO = java.awt.Container#add( java.awt.Component )
+  24 actualOut D = { cp$0, cp$0.!add, java.awt.Component.parent } U = { cp$0, cp$0.component, cp$0.containerListener, cp$0.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer }
+  25 assignment D = {  } U = { cp$0.!add }
+  26 receiver D = {  } U = { cp$0 }
+  27 methodCall D = { cp$0, java.awt.Component.parent } U = { cp$0, cp$0.component, cp$0.containerListener, cp$0.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.info } TO = java.awt.Container#add( java.awt.Component )
+  28 actualOut D = { cp$0, cp$0.!add, java.awt.Component.parent } U = { cp$0, cp$0.component, cp$0.containerListener, cp$0.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer }
+  29 assignment D = {  } U = { this.!pack }
+  30 receiver D = {  } U = {  }
+  31 methodCall D = { java.awt.Component.isPacked, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher } U = { java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.x, java.awt.Component.y, java.awt.Container.component, java.awt.Dimension.height, java.awt.Dimension.width, this.allWindows, this.beforeFirstShow } TO = java.awt.Window#pack( )
+  32 actualOut D = { java.awt.Component.isPacked, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher, this.!pack } U = { java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.x, java.awt.Component.y, java.awt.Container.component, java.awt.Dimension.height, java.awt.Dimension.width, this.allWindows, this.beforeFirstShow }
+  33 assignment D = {  } U = { this.!setVisible }
+  34 receiver D = {  } U = {  }
+  35 methodCall D = {  } U = {  } TO = java.awt.Window#setVisible( boolean )
+  36 actualOut D = { this.!setVisible } U = {  }
+  37 assignment D = {  } U = { this.pit.!init }
+  38 receiver D = {  } U = { this.pit }
+  39 methodCall D = { this.pit, this.pit.font, this.pit.offImage, this.pit.offg } U = { this.pit, this.pit.font, this.pit.height, this.pit.offImage, this.pit.offg, this.pit.width } TO = Pit#init( )
+  40 actualOut D = { this.pit, this.pit.!init, this.pit.font, this.pit.offImage, this.pit.offg } U = { this.pit, this.pit.font, this.pit.height, this.pit.offImage, this.pit.offg, this.pit.width }
+  41 assignment D = {  } U = { this.info.!init }
+  42 receiver D = {  } U = { this.info }
+  43 methodCall D = { this.info, this.info.font, this.info.offImage, this.info.offg } U = { this.info, this.info.font, this.info.height, this.info.offImage, this.info.offg, this.info.width } TO = GameInfo#init( )
+  44 actualOut D = { this.info, this.info.!init, this.info.font, this.info.offImage, this.info.offg } U = { this.info, this.info.font, this.info.height, this.info.offImage, this.info.offg, this.info.width }
+  45 assignment D = {  } U = { this.pit.!placeNextBlock }
+  46 receiver D = {  } U = { this.pit }
+  47 methodCall D = { this.pit.currentBlock, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit } U = { this.pit, this.pit.currentBlock, this.pit.currentBlock.pit, this.pit.currentBlock.pit.box, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit, this.pit.rnd } TO = Pit#placeNextBlock( )
+  48 actualOut D = { this.pit.!placeNextBlock, this.pit.currentBlock, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit } U = { this.pit.currentBlock, this.pit.currentBlock.pit, this.pit.currentBlock.pit.box, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit, this.pit.rnd }
+  49 assignment D = {  } U = { this.info.!update }
+  50 receiver D = {  } U = { this.info }
+  51 methodCall D = {  } U = { this.info, this.info.font, this.info.height, this.info.level, this.info.lines, this.info.offg, this.info.score, this.info.width } TO = GameInfo#update( Block )
+  52 actualIn D = {  } U = { this.pit.!getNextBlock }
+  53 receiver D = {  } U = { this.pit }
+  54 methodCall D = {  } U = { this.pit.nextBlock } TO = Pit#getNextBlock( )
+  55 actualOut D = { this.pit.!getNextBlock } U = { this.pit.nextBlock }
+  56 actualOut D = { this.info.!update } U = { this.info.font, this.info.height, this.info.level, this.info.lines, this.info.offg, this.info.score, this.info.width }
+  57 assignment D = {  } U = { this.pit.!addKeyListener }
+  58 receiver D = {  } U = { this.pit }
+  59 methodCall D = { this.pit, this.pit.keyListener, this.pit.newEventsOnly } U = { java.awt.Container.dispatcher, this, this.pit, this.pit.keyListener, this.pit.parent, this.pit.peer } TO = java.awt.Component#addKeyListener( java.awt.event.KeyListener )
+  60 actualOut D = { this.pit, this.pit.!addKeyListener, this.pit.keyListener, this.pit.newEventsOnly } U = { java.awt.Container.dispatcher, this.pit, this.pit.keyListener, this.pit.parent, this.pit.peer }
+  61 assignment D = {  } U = { this.info.!addKeyListener }
+  62 receiver D = {  } U = { this.info }
+  63 methodCall D = { this.info, this.info.keyListener, this.info.newEventsOnly } U = { java.awt.Container.dispatcher, this, this.info, this.info.keyListener, this.info.parent, this.info.peer } TO = java.awt.Component#addKeyListener( java.awt.event.KeyListener )
+  64 actualOut D = { this.info, this.info.!addKeyListener, this.info.keyListener, this.info.newEventsOnly } U = { java.awt.Container.dispatcher, this.info, this.info.keyListener, this.info.parent, this.info.peer }
+  65 assignment D = {  } U = { this.!requestFocus }
+  66 receiver D = {  } U = {  }
+  67 methodCall D = {  } U = { java.awt.event.FocusEvent$Cause.UNKNOWN } TO = java.awt.Component#requestFocus( )
+  68 actualOut D = { this.!requestFocus } U = { java.awt.event.FocusEvent$Cause.UNKNOWN }
+  70 formalOut D = {  } U = { $_, FlowLayout.hgap, FlowLayout.serialVersionOnStream, FlowLayout.vgap, cp$0.layoutMgr, java.awt.Component.isPacked, java.awt.Component.parent, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher, this.info, this.info.font, this.info.height, this.info.keyListener, this.info.newEventsOnly, this.info.offImage, this.info.offg, this.info.width, this.pit, this.pit.box, this.pit.currentBlock, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.font, this.pit.height, this.pit.info, this.pit.keyListener, this.pit.newEventsOnly, this.pit.nextBlock, this.pit.nextBlock.pit, this.pit.offImage, this.pit.offg, this.pit.rnd, this.pit.width }
+--
+   0 methodEntry [ keyTyped( java.awt.event.KeyEvent ) ]
+   1 formalIn D = { e$0 } U = {  }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ main( java.lang.String[] ) ]
+   1 formalIn D = { argv$0 } U = {  }
+   2 localDeclaration D = { tetris$1 } U = { tetris$1.!Tetris }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = Tetris#Tetris( )
+   5 actualOut D = { tetris$1.!Tetris } U = {  }
+   6 assignment D = {  } U = { tetris$1.!init }
+   7 receiver D = {  } U = { tetris$1 }
+   8 methodCall D = { tetris$1, tetris$1.info, tetris$1.info.font, tetris$1.info.height, tetris$1.info.offImage, tetris$1.info.offg, tetris$1.info.width, tetris$1.pit, tetris$1.pit.box, tetris$1.pit.currentBlock, tetris$1.pit.currentBlock.posX, tetris$1.pit.currentBlock.posY, tetris$1.pit.currentBlock.tiles, tetris$1.pit.font, tetris$1.pit.height, tetris$1.pit.info, tetris$1.pit.nextBlock, tetris$1.pit.nextBlock.pit, tetris$1.pit.offImage, tetris$1.pit.offg, tetris$1.pit.rnd, tetris$1.pit.width } U = { tetris$1, tetris$1.info, tetris$1.info.font, tetris$1.info.height, tetris$1.info.level, tetris$1.info.lines, tetris$1.info.offImage, tetris$1.info.offg, tetris$1.info.score, tetris$1.info.width, tetris$1.pit, tetris$1.pit.box, tetris$1.pit.currentBlock, tetris$1.pit.currentBlock.pit, tetris$1.pit.currentBlock.pit.box, tetris$1.pit.currentBlock.posX, tetris$1.pit.currentBlock.posY, tetris$1.pit.currentBlock.tiles, tetris$1.pit.font, tetris$1.pit.height, tetris$1.pit.info, tetris$1.pit.nextBlock, tetris$1.pit.nextBlock.pit, tetris$1.pit.offImage, tetris$1.pit.offg, tetris$1.pit.rnd, tetris$1.pit.width } TO = Tetris#init( )
+   9 actualOut D = { tetris$1, tetris$1.!init, tetris$1.info, tetris$1.info.font, tetris$1.info.height, tetris$1.info.offImage, tetris$1.info.offg, tetris$1.info.width, tetris$1.pit, tetris$1.pit.box, tetris$1.pit.currentBlock, tetris$1.pit.currentBlock.posX, tetris$1.pit.currentBlock.posY, tetris$1.pit.currentBlock.tiles, tetris$1.pit.font, tetris$1.pit.height, tetris$1.pit.info, tetris$1.pit.nextBlock, tetris$1.pit.nextBlock.pit, tetris$1.pit.offImage, tetris$1.pit.offg, tetris$1.pit.rnd, tetris$1.pit.width } U = { tetris$1, tetris$1.info, tetris$1.info.font, tetris$1.info.height, tetris$1.info.level, tetris$1.info.lines, tetris$1.info.offImage, tetris$1.info.offg, tetris$1.info.score, tetris$1.info.width, tetris$1.pit, tetris$1.pit.box, tetris$1.pit.currentBlock, tetris$1.pit.currentBlock.pit, tetris$1.pit.currentBlock.pit.box, tetris$1.pit.currentBlock.posX, tetris$1.pit.currentBlock.posY, tetris$1.pit.currentBlock.tiles, tetris$1.pit.font, tetris$1.pit.height, tetris$1.pit.info, tetris$1.pit.nextBlock, tetris$1.pit.nextBlock.pit, tetris$1.pit.offImage, tetris$1.pit.offg, tetris$1.pit.rnd, tetris$1.pit.width }
+  11 formalOut D = {  } U = { $_, tetris$1.info, tetris$1.info.font, tetris$1.info.height, tetris$1.info.offImage, tetris$1.info.offg, tetris$1.info.width, tetris$1.pit, tetris$1.pit.box, tetris$1.pit.currentBlock, tetris$1.pit.currentBlock.posX, tetris$1.pit.currentBlock.posY, tetris$1.pit.currentBlock.tiles, tetris$1.pit.font, tetris$1.pit.height, tetris$1.pit.info, tetris$1.pit.nextBlock, tetris$1.pit.nextBlock.pit, tetris$1.pit.offImage, tetris$1.pit.offg, tetris$1.pit.rnd, tetris$1.pit.width }
+--
+   0 fieldEntry [ COLUMNS ]
+   1 fieldDeclaration D = { Tetris.COLUMNS } U = { Tetris.COLUMNS }
+--
+   0 fieldEntry [ ROWS ]
+   1 fieldDeclaration D = { Tetris.ROWS } U = { Tetris.ROWS }
+--
+   0 methodEntry [ keyReleased( java.awt.event.KeyEvent ) ]
+   1 formalIn D = { e$0 } U = {  }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ pit ]
+   1 fieldDeclaration D = { this.pit } U = { this.pit }
+--
+   0 methodEntry [ createTimer( ) ]
+   1 ifSt D = {  } U = { this.timer }
+   2 assignment D = {  } U = { this.!stopTimer }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = { this.timer } U = { this.timer } TO = Tetris#stopTimer( )
+   5 actualOut D = { this.!stopTimer, this.timer } U = { this.timer }
+   7 assignment D = { this.timer } U = { this.timer.!Thread }
+   8 receiver D = {  } U = {  }
+   9 constructorCall D = { this.timer.threadInitNumber } U = { java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, this, this.timer.threadInitNumber } TO = java.lang.Thread#Thread( java.lang.Runnable )
+  10 actualOut D = { this.timer.!Thread, this.timer.threadInitNumber } U = { java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, this.timer.threadInitNumber }
+  12 formalOut D = {  } U = { $_, this.timer, this.timer.threadInitNumber }
+--
+   0 fieldEntry [ info ]
+   1 fieldDeclaration D = { this.info } U = { this.info }
+--
+   0 methodEntry [ keyPressed( java.awt.event.KeyEvent ) ]
+   1 formalIn D = { e$0 } U = {  }
+   2 localDeclaration D = { keyCode$1 } U = { e$0.!getKeyCode }
+   3 receiver D = {  } U = { e$0 }
+   4 methodCall D = {  } U = { e$0, e$0.keyCode } TO = java.awt.event.KeyEvent#getKeyCode( )
+   5 actualOut D = { e$0.!getKeyCode } U = { e$0.keyCode }
+   6 ifSt D = {  } U = { keyCode$1, keyCode$1.VK_S }
+   7 assignment D = {  } U = { this.!createTimer }
+   8 receiver D = {  } U = {  }
+   9 methodCall D = { this.timer } U = { this.timer } TO = Tetris#createTimer( )
+  10 actualOut D = { this.!createTimer, this.timer } U = { this.timer }
+  11 assignment D = {  } U = { this.pit.!gameStart }
+  12 receiver D = {  } U = { this.pit }
+  13 methodCall D = { this.pit.box } U = { this.pit.box } TO = Pit#gameStart( )
+  14 actualOut D = { this.pit.!gameStart, this.pit.box } U = { this.pit.box }
+  15 assignment D = {  } U = { this.info.!gameStart }
+  16 receiver D = {  } U = { this.info }
+  17 methodCall D = { this.info.level, this.info.lines, this.info.score } U = { this.info.level, this.info.lines, this.info.score } TO = GameInfo#gameStart( )
+  18 actualOut D = { this.info.!gameStart, this.info.level, this.info.lines, this.info.score } U = { this.info.level, this.info.lines, this.info.score }
+  19 assignment D = {  } U = { this.pit.!placeNextBlock }
+  20 receiver D = {  } U = { this.pit }
+  21 methodCall D = { this.pit.currentBlock, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit } U = { this.pit, this.pit.currentBlock, this.pit.currentBlock.pit, this.pit.currentBlock.pit.box, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit, this.pit.rnd } TO = Pit#placeNextBlock( )
+  22 actualOut D = { this.pit.!placeNextBlock, this.pit.currentBlock, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit } U = { this.pit.currentBlock, this.pit.currentBlock.pit, this.pit.currentBlock.pit.box, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit, this.pit.rnd }
+  23 assignment D = {  } U = { this.pit.!update }
+  24 receiver D = {  } U = { this.pit }
+  25 methodCall D = { this.pit.currentBlock.tiles } U = { this.pit, this.pit.box, this.pit.currentBlock, this.pit.currentBlock.tiles, this.pit.height, this.pit.offg, this.pit.width } TO = Pit#update( )
+  26 actualOut D = { this.pit.!update, this.pit.currentBlock.tiles } U = { this.pit.box, this.pit.currentBlock, this.pit.currentBlock.tiles, this.pit.height, this.pit.offg, this.pit.width }
+  27 assignment D = {  } U = { this.info.!update }
+  28 receiver D = {  } U = { this.info }
+  29 methodCall D = {  } U = { this.info, this.info.font, this.info.height, this.info.level, this.info.lines, this.info.offg, this.info.score, this.info.width } TO = GameInfo#update( Block )
+  30 actualIn D = {  } U = { this.pit.!getNextBlock }
+  31 receiver D = {  } U = { this.pit }
+  32 methodCall D = {  } U = { this.pit.nextBlock } TO = Pit#getNextBlock( )
+  33 actualOut D = { this.pit.!getNextBlock } U = { this.pit.nextBlock }
+  34 actualOut D = { this.info.!update } U = { this.info.font, this.info.height, this.info.level, this.info.lines, this.info.offg, this.info.score, this.info.width }
+  35 assignment D = {  } U = { this.!startTimer }
+  36 receiver D = {  } U = {  }
+  37 methodCall D = { this.timer } U = { this.timer } TO = Tetris#startTimer( )
+  38 actualOut D = { this.!startTimer, this.timer } U = { this.timer }
+  39 ifSt D = {  } U = { keyCode$1, keyCode$1.VK_Q }
+  40 assignment D = {  } U = { this.!exit }
+  41 receiver D = {  } U = {  }
+  42 methodCall D = {  } U = { java.lang.Runtime.currentRuntime } TO = java.lang.System#exit( int )
+  43 actualOut D = { this.!exit } U = { java.lang.Runtime.currentRuntime }
+  46 ifSt D = {  } U = { this.timer }
+  47 localDeclaration D = { block$2 } U = { this.pit.!getCurrentBlock }
+  48 receiver D = {  } U = { this.pit }
+  49 methodCall D = {  } U = { this.pit.currentBlock } TO = Pit#getCurrentBlock( )
+  50 actualOut D = { this.pit.!getCurrentBlock } U = { this.pit.currentBlock }
+  51 switchSt D = {  } U = { keyCode$1 }
+  52 switchCase D = {  } U = { KeyEvent.VK_B, keyCode$1 }
+  53 assignment D = {  } U = { block$2.!moveLeft, this.pit.!getCurrentBlock.!moveLeft }
+  54 receiver D = {  } U = { block$2, this.pit.!getCurrentBlock }
+  55 methodCall D = { block$2.posX, block$2.tiles } U = { block$2.pit, block$2.pit.box, block$2.posX, block$2.tiles, this.pit.!getCurrentBlock.pit, this.pit.!getCurrentBlock.pit.box, this.pit.!getCurrentBlock.posX, this.pit.!getCurrentBlock.tiles } TO = Block#moveLeft( )
+  56 actualOut D = { block$2.!moveLeft, block$2.posX, block$2.tiles } U = { block$2.pit, block$2.pit.box, block$2.posX, block$2.tiles, this.pit.!getCurrentBlock.pit, this.pit.!getCurrentBlock.pit.box, this.pit.!getCurrentBlock.posX, this.pit.!getCurrentBlock.tiles }
+  57 breakSt D = {  } U = {  }
+  58 switchCase D = {  } U = { KeyEvent.VK_M, keyCode$1 }
+  59 assignment D = {  } U = { block$2.!moveRight, this.pit.!getCurrentBlock.!moveRight }
+  60 receiver D = {  } U = { block$2, this.pit.!getCurrentBlock }
+  61 methodCall D = { block$2.posX, block$2.tiles } U = { block$2.pit, block$2.pit.box, block$2.posX, block$2.tiles, this.pit.!getCurrentBlock.pit, this.pit.!getCurrentBlock.pit.box, this.pit.!getCurrentBlock.posX, this.pit.!getCurrentBlock.tiles } TO = Block#moveRight( )
+  62 actualOut D = { block$2.!moveRight, block$2.posX, block$2.tiles } U = { block$2.pit, block$2.pit.box, block$2.posX, block$2.tiles, this.pit.!getCurrentBlock.pit, this.pit.!getCurrentBlock.pit.box, this.pit.!getCurrentBlock.posX, this.pit.!getCurrentBlock.tiles }
+  63 breakSt D = {  } U = {  }
+  64 switchCase D = {  } U = { KeyEvent.VK_N, keyCode$1 }
+  65 assignment D = {  } U = { block$2.!rotate, this.pit.!getCurrentBlock.!rotate }
+  66 receiver D = {  } U = { block$2, this.pit.!getCurrentBlock }
+  67 methodCall D = { block$2.tiles } U = { block$2.pit, block$2.pit.box, block$2.posX, block$2.posY, block$2.tiles, this.pit.!getCurrentBlock.pit, this.pit.!getCurrentBlock.pit.box, this.pit.!getCurrentBlock.posX, this.pit.!getCurrentBlock.posY, this.pit.!getCurrentBlock.tiles } TO = Block#rotate( )
+  68 actualOut D = { block$2.!rotate, block$2.tiles } U = { block$2.pit, block$2.pit.box, block$2.posX, block$2.posY, block$2.tiles, this.pit.!getCurrentBlock.pit, this.pit.!getCurrentBlock.pit.box, this.pit.!getCurrentBlock.posX, this.pit.!getCurrentBlock.posY, this.pit.!getCurrentBlock.tiles }
+  69 breakSt D = {  } U = {  }
+  70 switchCase D = {  } U = { KeyEvent.VK_Z, keyCode$1 }
+  71 assignment D = {  } U = { block$2.!drop, this.pit.!getCurrentBlock.!drop }
+  72 receiver D = {  } U = { block$2, this.pit.!getCurrentBlock }
+  73 methodCall D = { block$2.posY, block$2.tiles } U = { block$2.pit, block$2.pit.box, block$2.posY, block$2.tiles, this.pit.!getCurrentBlock.pit, this.pit.!getCurrentBlock.pit.box, this.pit.!getCurrentBlock.posY, this.pit.!getCurrentBlock.tiles } TO = Block#drop( )
+  74 actualOut D = { block$2.!drop, block$2.posY, block$2.tiles } U = { block$2.pit, block$2.pit.box, block$2.posY, block$2.tiles, this.pit.!getCurrentBlock.pit, this.pit.!getCurrentBlock.pit.box, this.pit.!getCurrentBlock.posY, this.pit.!getCurrentBlock.tiles }
+  75 breakSt D = {  } U = {  }
+  77 assignment D = {  } U = { this.pit.!update }
+  78 receiver D = {  } U = { this.pit }
+  79 methodCall D = { this.pit.currentBlock.tiles } U = { this.pit, this.pit.box, this.pit.currentBlock, this.pit.currentBlock.tiles, this.pit.height, this.pit.offg, this.pit.width } TO = Pit#update( )
+  80 actualOut D = { this.pit.!update, this.pit.currentBlock.tiles } U = { this.pit.box, this.pit.currentBlock, this.pit.currentBlock.tiles, this.pit.height, this.pit.offg, this.pit.width }
+  83 formalOut D = {  } U = { $_, block$2.posX, block$2.posY, block$2.tiles, this.info.level, this.info.lines, this.info.score, this.pit.box, this.pit.currentBlock, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit, this.timer }
+--
+   0 methodEntry [ startTimer( ) ]
+   1 assignment D = {  } U = { this.timer.!start }
+   2 receiver D = {  } U = { this.timer }
+   3 methodCall D = { this.timer, this.timerGroup.nUnstartedThreads, this.timerGroup.nthreads, this.timerGroup.threads } U = { this.timer, this.timer.group, this.timer.threadStatus, this.timerGroup.destroyed, this.timerGroup.nUnstartedThreads, this.timerGroup.nthreads, this.timerGroup.threads } TO = java.lang.Thread#start( )
+   4 actualOut D = { this.timer, this.timer.!start, this.timerGroup.nUnstartedThreads, this.timerGroup.nthreads, this.timerGroup.threads } U = { this.timer, this.timer.group, this.timer.threadStatus, this.timerGroup.destroyed, this.timerGroup.nUnstartedThreads, this.timerGroup.nthreads, this.timerGroup.threads }
+   6 formalOut D = {  } U = { $_, this.timer, this.timerGroup.nUnstartedThreads, this.timerGroup.nthreads, this.timerGroup.threads }
+--
+   0 methodEntry [ run( ) ]
+   1 localDeclaration D = { isGameOver$0 } U = {  }
+   2 localDeclaration D = { thisThread$1 } U = { this.!currentThread }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = java.lang.Thread#currentThread( )
+   5 actualOut D = { this.!currentThread } U = {  }
+   6 whileSt D = {  } U = { this.!currentThread, this.timer, thisThread$1 }
+   7 trySt D = {  } U = {  }
+   8 assignment D = {  } U = { this.!sleep }
+   9 receiver D = {  } U = {  }
+  10 methodCall D = {  } U = { this.info.!getSpeed } TO = java.lang.Thread#sleep( long )
+  11 receiver D = {  } U = { this.info }
+  12 methodCall D = {  } U = { this.info.level } TO = GameInfo#getSpeed( )
+  13 actualOut D = { this.info.!getSpeed } U = { this.info.level }
+  14 actualOut D = { this.!sleep } U = {  }
+  16 catchClause D = { e$2 } U = {  }
+  17 localDeclaration D = { block$3 } U = { this.pit.!getCurrentBlock }
+  18 receiver D = {  } U = { this.pit }
+  19 methodCall D = {  } U = { this.pit.currentBlock } TO = Pit#getCurrentBlock( )
+  20 actualOut D = { this.pit.!getCurrentBlock } U = { this.pit.currentBlock }
+  21 ifSt D = {  } U = { block$3.!fall, this.pit.!getCurrentBlock.!fall }
+  22 receiver D = {  } U = { block$3, this.pit.!getCurrentBlock }
+  23 methodCall D = { block$3.pit.box, block$3.posY, block$3.tiles } U = { block$3.pit, block$3.pit.box, block$3.posY, block$3.tiles, this.pit.!getCurrentBlock.pit, this.pit.!getCurrentBlock.pit.box, this.pit.!getCurrentBlock.posY, this.pit.!getCurrentBlock.tiles } TO = Block#fall( )
+  24 actualOut D = { block$3.!fall, block$3.pit.box, block$3.posY, block$3.tiles } U = { block$3.pit, block$3.pit.box, block$3.posY, block$3.tiles, this.pit.!getCurrentBlock.pit, this.pit.!getCurrentBlock.pit.box, this.pit.!getCurrentBlock.posY, this.pit.!getCurrentBlock.tiles }
+  25 assignment D = { block$3 } U = {  }
+  26 assignment D = {  } U = { this.pit.!checkLines }
+  27 receiver D = {  } U = { this.pit }
+  28 methodCall D = { this.pit.box, this.pit.currentBlock.tiles, this.pit.info.level, this.pit.info.lines, this.pit.info.score } U = { this.pit.box, this.pit.currentBlock, this.pit.currentBlock.tiles, this.pit.height, this.pit.info, this.pit.info.level, this.pit.info.lines, this.pit.info.score, this.pit.offg, this.pit.width } TO = Pit#checkLines( )
+  29 actualOut D = { this.pit.!checkLines, this.pit.box, this.pit.currentBlock.tiles, this.pit.info.level, this.pit.info.lines, this.pit.info.score } U = { this.pit.box, this.pit.currentBlock, this.pit.currentBlock.tiles, this.pit.height, this.pit.info, this.pit.info.level, this.pit.info.lines, this.pit.info.score, this.pit.offg, this.pit.width }
+  30 assignment D = { isGameOver$0 } U = { this.pit.!placeNextBlock }
+  31 receiver D = {  } U = { this.pit }
+  32 methodCall D = { this.pit.currentBlock, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit } U = { this.pit, this.pit.currentBlock, this.pit.currentBlock.pit, this.pit.currentBlock.pit.box, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit, this.pit.rnd } TO = Pit#placeNextBlock( )
+  33 actualOut D = { this.pit.!placeNextBlock, this.pit.currentBlock, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit } U = { this.pit.currentBlock, this.pit.currentBlock.pit, this.pit.currentBlock.pit.box, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.nextBlock, this.pit.nextBlock.pit, this.pit.rnd }
+  34 assignment D = {  } U = { this.info.!update }
+  35 receiver D = {  } U = { this.info }
+  36 methodCall D = {  } U = { this.info, this.info.font, this.info.height, this.info.level, this.info.lines, this.info.offg, this.info.score, this.info.width } TO = GameInfo#update( Block )
+  37 actualIn D = {  } U = { this.pit.!getNextBlock }
+  38 receiver D = {  } U = { this.pit }
+  39 methodCall D = {  } U = { this.pit.nextBlock } TO = Pit#getNextBlock( )
+  40 actualOut D = { this.pit.!getNextBlock } U = { this.pit.nextBlock }
+  41 actualOut D = { this.info.!update } U = { this.info.font, this.info.height, this.info.level, this.info.lines, this.info.offg, this.info.score, this.info.width }
+  43 assignment D = {  } U = { this.pit.!update }
+  44 receiver D = {  } U = { this.pit }
+  45 methodCall D = { this.pit.currentBlock.tiles } U = { this.pit, this.pit.box, this.pit.currentBlock, this.pit.currentBlock.tiles, this.pit.height, this.pit.offg, this.pit.width } TO = Pit#update( )
+  46 actualOut D = { this.pit.!update, this.pit.currentBlock.tiles } U = { this.pit.box, this.pit.currentBlock, this.pit.currentBlock.tiles, this.pit.height, this.pit.offg, this.pit.width }
+  47 ifSt D = {  } U = { isGameOver$0 }
+  48 assignment D = {  } U = { this.pit.!gameOver }
+  49 receiver D = {  } U = { this.pit }
+  50 methodCall D = {  } U = { this.pit, this.pit.font, this.pit.offg, this.pit.width } TO = Pit#gameOver( )
+  51 actualOut D = { this.pit.!gameOver } U = { this.pit.font, this.pit.offg, this.pit.width }
+  52 assignment D = {  } U = { this.!stopTimer }
+  53 receiver D = {  } U = {  }
+  54 methodCall D = { this.timer } U = { this.timer } TO = Tetris#stopTimer( )
+  55 actualOut D = { this.!stopTimer, this.timer } U = { this.timer }
+  58 formalOut D = {  } U = { $_, block$3.pit.box, block$3.posY, block$3.tiles, this.pit.box, this.pit.currentBlock, this.pit.currentBlock.posX, this.pit.currentBlock.posY, this.pit.currentBlock.tiles, this.pit.info.level, this.pit.info.lines, this.pit.info.score, this.pit.nextBlock, this.pit.nextBlock.pit, this.timer }
+--
+   0: timer
+   1: 0 -> 1 trueControlDependence
+--
+   0: stopTimer( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+   3: 1 -> 3 loopIndependentDefUseDependence this.timer
+--
+   0: Tetris( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: init( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 16 trueControlDependence
+   9: 0 -> 17 trueControlDependence
+  10: 0 -> 18 trueControlDependence
+  11: 0 -> 19 trueControlDependence
+  12: 0 -> 2 trueControlDependence
+  13: 0 -> 20 trueControlDependence
+  14: 0 -> 21 trueControlDependence
+  15: 0 -> 22 trueControlDependence
+  16: 0 -> 23 trueControlDependence
+  17: 0 -> 24 trueControlDependence
+  18: 0 -> 25 trueControlDependence
+  19: 0 -> 26 trueControlDependence
+  20: 0 -> 27 trueControlDependence
+  21: 0 -> 28 trueControlDependence
+  22: 0 -> 29 trueControlDependence
+  23: 0 -> 3 trueControlDependence
+  24: 0 -> 30 trueControlDependence
+  25: 0 -> 31 trueControlDependence
+  26: 0 -> 32 trueControlDependence
+  27: 0 -> 33 trueControlDependence
+  28: 0 -> 34 trueControlDependence
+  29: 0 -> 35 trueControlDependence
+  30: 0 -> 36 trueControlDependence
+  31: 0 -> 37 trueControlDependence
+  32: 0 -> 38 trueControlDependence
+  33: 0 -> 39 trueControlDependence
+  34: 0 -> 4 trueControlDependence
+  35: 0 -> 40 trueControlDependence
+  36: 0 -> 41 trueControlDependence
+  37: 0 -> 42 trueControlDependence
+  38: 0 -> 43 trueControlDependence
+  39: 0 -> 44 trueControlDependence
+  40: 0 -> 45 trueControlDependence
+  41: 0 -> 46 trueControlDependence
+  42: 0 -> 47 trueControlDependence
+  43: 0 -> 48 trueControlDependence
+  44: 0 -> 49 trueControlDependence
+  45: 0 -> 5 trueControlDependence
+  46: 0 -> 50 trueControlDependence
+  47: 0 -> 51 trueControlDependence
+  48: 0 -> 52 trueControlDependence
+  49: 0 -> 53 trueControlDependence
+  50: 0 -> 54 trueControlDependence
+  51: 0 -> 55 trueControlDependence
+  52: 0 -> 56 trueControlDependence
+  53: 0 -> 57 trueControlDependence
+  54: 0 -> 58 trueControlDependence
+  55: 0 -> 59 trueControlDependence
+  56: 0 -> 6 trueControlDependence
+  57: 0 -> 60 trueControlDependence
+  58: 0 -> 61 trueControlDependence
+  59: 0 -> 62 trueControlDependence
+  60: 0 -> 63 trueControlDependence
+  61: 0 -> 64 trueControlDependence
+  62: 0 -> 65 trueControlDependence
+  63: 0 -> 66 trueControlDependence
+  64: 0 -> 67 trueControlDependence
+  65: 0 -> 68 trueControlDependence
+  66: 0 -> 7 trueControlDependence
+  67: 0 -> 70 trueControlDependence
+  68: 0 -> 8 trueControlDependence
+  69: 0 -> 9 trueControlDependence
+  70: 1 -> 27 loopIndependentDefUseDependence this.info
+  71: 1 -> 42 loopIndependentDefUseDependence this.info
+  72: 1 -> 43 loopIndependentDefUseDependence this.info
+  73: 1 -> 8 loopIndependentDefUseDependence this.info
+  74: 10 -> 15 declaration
+  75: 10 -> 15 loopIndependentDefUseDependence cp$0
+  76: 10 -> 16 declaration
+  77: 10 -> 16 outputDependence cp$0
+  78: 10 -> 20 declaration
+  79: 10 -> 22 declaration
+  80: 10 -> 23 declaration
+  81: 10 -> 24 declaration
+  82: 10 -> 26 declaration
+  83: 10 -> 27 declaration
+  84: 10 -> 28 declaration
+  85: 13 -> 10 loopIndependentDefUseDependence this.!getContentPane
+  86: 13 -> 15 loopIndependentDefUseDependence this.!getContentPane
+  87: 16 -> 20 loopIndependentDefUseDependence cp$0
+  88: 16 -> 20 outputDependence cp$0.layoutMgr
+  89: 18 -> 19 outputDependence FlowLayout.hgap
+  90: 18 -> 19 outputDependence FlowLayout.serialVersionOnStream
+  91: 18 -> 19 outputDependence FlowLayout.vgap
+  92: 19 -> 16 loopIndependentDefUseDependence FlowLayout.!FlowLayout
+  93: 19 -> 70 loopIndependentDefUseDependence FlowLayout.hgap
+  94: 19 -> 70 loopIndependentDefUseDependence FlowLayout.serialVersionOnStream
+  95: 19 -> 70 loopIndependentDefUseDependence FlowLayout.vgap
+  96: 20 -> 14 loopIndependentDefUseDependence cp$0.!setLayout
+  97: 20 -> 22 loopIndependentDefUseDependence cp$0
+  98: 20 -> 23 loopIndependentDefUseDependence cp$0
+  99: 20 -> 23 loopIndependentDefUseDependence cp$0.layoutMgr
+ 100: 20 -> 24 loopIndependentDefUseDependence cp$0.layoutMgr
+ 101: 20 -> 27 loopIndependentDefUseDependence cp$0.layoutMgr
+ 102: 20 -> 28 loopIndependentDefUseDependence cp$0.layoutMgr
+ 103: 20 -> 70 loopIndependentDefUseDependence cp$0.layoutMgr
+ 104: 23 -> 24 loopIndependentDefUseDependence cp$0
+ 105: 23 -> 24 loopIndependentDefUseDependence java.awt.Component.parent
+ 106: 24 -> 21 loopIndependentDefUseDependence cp$0.!add
+ 107: 24 -> 26 loopIndependentDefUseDependence cp$0
+ 108: 24 -> 27 loopIndependentDefUseDependence cp$0
+ 109: 24 -> 27 loopIndependentDefUseDependence java.awt.Component.parent
+ 110: 24 -> 28 outputDependence cp$0.!add
+ 111: 27 -> 28 loopIndependentDefUseDependence cp$0
+ 112: 27 -> 28 loopIndependentDefUseDependence java.awt.Component.parent
+ 113: 28 -> 25 loopIndependentDefUseDependence cp$0.!add
+ 114: 28 -> 31 loopIndependentDefUseDependence java.awt.Component.parent
+ 115: 28 -> 32 loopIndependentDefUseDependence java.awt.Component.parent
+ 116: 28 -> 70 loopIndependentDefUseDependence java.awt.Component.parent
+ 117: 3 -> 4 loopIndependentDefUseDependence this.info.height
+ 118: 3 -> 4 loopIndependentDefUseDependence this.info.width
+ 119: 31 -> 32 loopIndependentDefUseDependence java.awt.Component.peer
+ 120: 31 -> 32 outputDependence java.awt.Component.isPacked
+ 121: 31 -> 32 outputDependence java.awt.Container.descendUnconditionallyWhenValidating
+ 122: 31 -> 32 outputDependence java.awt.Container.dispatcher
+ 123: 32 -> 29 loopIndependentDefUseDependence this.!pack
+ 124: 32 -> 59 loopIndependentDefUseDependence java.awt.Container.dispatcher
+ 125: 32 -> 60 loopIndependentDefUseDependence java.awt.Container.dispatcher
+ 126: 32 -> 63 loopIndependentDefUseDependence java.awt.Container.dispatcher
+ 127: 32 -> 64 loopIndependentDefUseDependence java.awt.Container.dispatcher
+ 128: 32 -> 70 loopIndependentDefUseDependence java.awt.Component.isPacked
+ 129: 32 -> 70 loopIndependentDefUseDependence java.awt.Component.peer
+ 130: 32 -> 70 loopIndependentDefUseDependence java.awt.Container.descendUnconditionallyWhenValidating
+ 131: 32 -> 70 loopIndependentDefUseDependence java.awt.Container.dispatcher
+ 132: 36 -> 33 loopIndependentDefUseDependence this.!setVisible
+ 133: 39 -> 40 loopIndependentDefUseDependence this.pit
+ 134: 39 -> 40 loopIndependentDefUseDependence this.pit.font
+ 135: 39 -> 40 loopIndependentDefUseDependence this.pit.offImage
+ 136: 39 -> 40 loopIndependentDefUseDependence this.pit.offg
+ 137: 4 -> 1 loopIndependentDefUseDependence this.info.!GameInfo
+ 138: 4 -> 43 loopIndependentDefUseDependence this.info.height
+ 139: 4 -> 43 loopIndependentDefUseDependence this.info.width
+ 140: 4 -> 44 loopIndependentDefUseDependence this.info.height
+ 141: 4 -> 44 loopIndependentDefUseDependence this.info.width
+ 142: 4 -> 51 loopIndependentDefUseDependence this.info.height
+ 143: 4 -> 51 loopIndependentDefUseDependence this.info.width
+ 144: 4 -> 56 loopIndependentDefUseDependence this.info.height
+ 145: 4 -> 56 loopIndependentDefUseDependence this.info.width
+ 146: 4 -> 70 loopIndependentDefUseDependence this.info.height
+ 147: 4 -> 70 loopIndependentDefUseDependence this.info.width
+ 148: 40 -> 37 loopIndependentDefUseDependence this.pit.!init
+ 149: 40 -> 46 loopIndependentDefUseDependence this.pit
+ 150: 40 -> 47 loopIndependentDefUseDependence this.pit
+ 151: 40 -> 53 loopIndependentDefUseDependence this.pit
+ 152: 40 -> 58 loopIndependentDefUseDependence this.pit
+ 153: 40 -> 59 loopIndependentDefUseDependence this.pit
+ 154: 40 -> 70 loopIndependentDefUseDependence this.pit.font
+ 155: 40 -> 70 loopIndependentDefUseDependence this.pit.offImage
+ 156: 40 -> 70 loopIndependentDefUseDependence this.pit.offg
+ 157: 43 -> 44 loopIndependentDefUseDependence this.info
+ 158: 43 -> 44 loopIndependentDefUseDependence this.info.font
+ 159: 43 -> 44 loopIndependentDefUseDependence this.info.offImage
+ 160: 43 -> 44 loopIndependentDefUseDependence this.info.offg
+ 161: 44 -> 41 loopIndependentDefUseDependence this.info.!init
+ 162: 44 -> 50 loopIndependentDefUseDependence this.info
+ 163: 44 -> 51 loopIndependentDefUseDependence this.info
+ 164: 44 -> 51 loopIndependentDefUseDependence this.info.font
+ 165: 44 -> 51 loopIndependentDefUseDependence this.info.offg
+ 166: 44 -> 56 loopIndependentDefUseDependence this.info.font
+ 167: 44 -> 56 loopIndependentDefUseDependence this.info.offg
+ 168: 44 -> 62 loopIndependentDefUseDependence this.info
+ 169: 44 -> 63 loopIndependentDefUseDependence this.info
+ 170: 44 -> 70 loopIndependentDefUseDependence this.info.font
+ 171: 44 -> 70 loopIndependentDefUseDependence this.info.offImage
+ 172: 44 -> 70 loopIndependentDefUseDependence this.info.offg
+ 173: 47 -> 48 loopIndependentDefUseDependence this.pit.currentBlock
+ 174: 47 -> 48 loopIndependentDefUseDependence this.pit.currentBlock.posX
+ 175: 47 -> 48 loopIndependentDefUseDependence this.pit.currentBlock.posY
+ 176: 47 -> 48 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+ 177: 47 -> 48 loopIndependentDefUseDependence this.pit.nextBlock
+ 178: 47 -> 48 loopIndependentDefUseDependence this.pit.nextBlock.pit
+ 179: 48 -> 45 loopIndependentDefUseDependence this.pit.!placeNextBlock
+ 180: 48 -> 54 loopIndependentDefUseDependence this.pit.nextBlock
+ 181: 48 -> 55 loopIndependentDefUseDependence this.pit.nextBlock
+ 182: 48 -> 70 loopIndependentDefUseDependence this.pit.currentBlock
+ 183: 48 -> 70 loopIndependentDefUseDependence this.pit.currentBlock.posX
+ 184: 48 -> 70 loopIndependentDefUseDependence this.pit.currentBlock.posY
+ 185: 48 -> 70 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+ 186: 48 -> 70 loopIndependentDefUseDependence this.pit.nextBlock
+ 187: 48 -> 70 loopIndependentDefUseDependence this.pit.nextBlock.pit
+ 188: 5 -> 23 loopIndependentDefUseDependence this.pit
+ 189: 5 -> 38 loopIndependentDefUseDependence this.pit
+ 190: 5 -> 39 loopIndependentDefUseDependence this.pit
+ 191: 52 -> 56 summary
+ 192: 55 -> 52 loopIndependentDefUseDependence this.pit.!getNextBlock
+ 193: 56 -> 49 loopIndependentDefUseDependence this.info.!update
+ 194: 59 -> 60 loopIndependentDefUseDependence this.pit
+ 195: 59 -> 60 loopIndependentDefUseDependence this.pit.keyListener
+ 196: 59 -> 60 outputDependence this.pit.newEventsOnly
+ 197: 60 -> 57 loopIndependentDefUseDependence this.pit.!addKeyListener
+ 198: 60 -> 70 loopIndependentDefUseDependence this.pit
+ 199: 60 -> 70 loopIndependentDefUseDependence this.pit.keyListener
+ 200: 60 -> 70 loopIndependentDefUseDependence this.pit.newEventsOnly
+ 201: 63 -> 64 loopIndependentDefUseDependence this.info
+ 202: 63 -> 64 loopIndependentDefUseDependence this.info.keyListener
+ 203: 63 -> 64 outputDependence this.info.newEventsOnly
+ 204: 64 -> 61 loopIndependentDefUseDependence this.info.!addKeyListener
+ 205: 64 -> 70 loopIndependentDefUseDependence this.info
+ 206: 64 -> 70 loopIndependentDefUseDependence this.info.keyListener
+ 207: 64 -> 70 loopIndependentDefUseDependence this.info.newEventsOnly
+ 208: 68 -> 65 loopIndependentDefUseDependence this.!requestFocus
+ 209: 7 -> 9 loopIndependentDefUseDependence this.pit.box
+ 210: 7 -> 9 loopIndependentDefUseDependence this.pit.height
+ 211: 7 -> 9 loopIndependentDefUseDependence this.pit.info
+ 212: 7 -> 9 loopIndependentDefUseDependence this.pit.rnd
+ 213: 7 -> 9 loopIndependentDefUseDependence this.pit.width
+ 214: 8 -> 9 summary
+ 215: 9 -> 39 loopIndependentDefUseDependence this.pit.height
+ 216: 9 -> 39 loopIndependentDefUseDependence this.pit.width
+ 217: 9 -> 40 loopIndependentDefUseDependence this.pit.height
+ 218: 9 -> 40 loopIndependentDefUseDependence this.pit.width
+ 219: 9 -> 47 loopIndependentDefUseDependence this.pit.rnd
+ 220: 9 -> 48 loopIndependentDefUseDependence this.pit.rnd
+ 221: 9 -> 5 loopIndependentDefUseDependence this.pit.!Pit
+ 222: 9 -> 70 loopIndependentDefUseDependence this.pit.box
+ 223: 9 -> 70 loopIndependentDefUseDependence this.pit.height
+ 224: 9 -> 70 loopIndependentDefUseDependence this.pit.info
+ 225: 9 -> 70 loopIndependentDefUseDependence this.pit.rnd
+ 226: 9 -> 70 loopIndependentDefUseDependence this.pit.width
+--
+   0: keyTyped( java.awt.event.KeyEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+--
+   0: main( java.lang.String[] )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 11 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 7 trueControlDependence
+   9: 0 -> 8 trueControlDependence
+  10: 0 -> 9 trueControlDependence
+  11: 2 -> 7 declaration
+  12: 2 -> 7 loopIndependentDefUseDependence tetris$1
+  13: 2 -> 8 declaration
+  14: 2 -> 8 loopIndependentDefUseDependence tetris$1
+  15: 2 -> 9 declaration
+  16: 5 -> 2 loopIndependentDefUseDependence tetris$1.!Tetris
+  17: 8 -> 9 loopIndependentDefUseDependence tetris$1
+  18: 8 -> 9 loopIndependentDefUseDependence tetris$1.info
+  19: 8 -> 9 loopIndependentDefUseDependence tetris$1.info.font
+  20: 8 -> 9 loopIndependentDefUseDependence tetris$1.info.height
+  21: 8 -> 9 loopIndependentDefUseDependence tetris$1.info.offImage
+  22: 8 -> 9 loopIndependentDefUseDependence tetris$1.info.offg
+  23: 8 -> 9 loopIndependentDefUseDependence tetris$1.info.width
+  24: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit
+  25: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.box
+  26: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.currentBlock
+  27: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.currentBlock.posX
+  28: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.currentBlock.posY
+  29: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.currentBlock.tiles
+  30: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.font
+  31: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.height
+  32: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.info
+  33: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.nextBlock
+  34: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.nextBlock.pit
+  35: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.offImage
+  36: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.offg
+  37: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.rnd
+  38: 8 -> 9 loopIndependentDefUseDependence tetris$1.pit.width
+  39: 9 -> 11 loopIndependentDefUseDependence tetris$1.info
+  40: 9 -> 11 loopIndependentDefUseDependence tetris$1.info.font
+  41: 9 -> 11 loopIndependentDefUseDependence tetris$1.info.height
+  42: 9 -> 11 loopIndependentDefUseDependence tetris$1.info.offImage
+  43: 9 -> 11 loopIndependentDefUseDependence tetris$1.info.offg
+  44: 9 -> 11 loopIndependentDefUseDependence tetris$1.info.width
+  45: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit
+  46: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.box
+  47: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.currentBlock
+  48: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.currentBlock.posX
+  49: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.currentBlock.posY
+  50: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.currentBlock.tiles
+  51: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.font
+  52: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.height
+  53: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.info
+  54: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.nextBlock
+  55: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.nextBlock.pit
+  56: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.offImage
+  57: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.offg
+  58: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.rnd
+  59: 9 -> 11 loopIndependentDefUseDependence tetris$1.pit.width
+  60: 9 -> 6 loopIndependentDefUseDependence tetris$1.!init
+--
+   0: COLUMNS
+   1: 0 -> 1 trueControlDependence
+--
+   0: ROWS
+   1: 0 -> 1 trueControlDependence
+--
+   0: keyReleased( java.awt.event.KeyEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 3 trueControlDependence
+--
+   0: pit
+   1: 0 -> 1 trueControlDependence
+--
+   0: createTimer( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 12 trueControlDependence
+   4: 0 -> 7 trueControlDependence
+   5: 0 -> 8 trueControlDependence
+   6: 0 -> 9 trueControlDependence
+   7: 1 -> 2 trueControlDependence
+   8: 1 -> 3 trueControlDependence
+   9: 1 -> 4 trueControlDependence
+  10: 1 -> 5 trueControlDependence
+  11: 10 -> 12 loopIndependentDefUseDependence this.timer.threadInitNumber
+  12: 10 -> 7 loopIndependentDefUseDependence this.timer.!Thread
+  13: 4 -> 5 loopIndependentDefUseDependence this.timer
+  14: 5 -> 2 loopIndependentDefUseDependence this.!stopTimer
+  15: 5 -> 7 outputDependence this.timer
+  16: 7 -> 12 loopIndependentDefUseDependence this.timer
+  17: 9 -> 10 loopIndependentDefUseDependence this.timer.threadInitNumber
+--
+   0: info
+   1: 0 -> 1 trueControlDependence
+--
+   0: keyPressed( java.awt.event.KeyEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 46 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 83 trueControlDependence
+   9: 1 -> 3 loopIndependentDefUseDependence e$0
+  10: 1 -> 4 loopIndependentDefUseDependence e$0
+  11: 10 -> 37 loopIndependentDefUseDependence this.timer
+  12: 10 -> 7 loopIndependentDefUseDependence this.!createTimer
+  13: 13 -> 14 loopIndependentDefUseDependence this.pit.box
+  14: 14 -> 11 loopIndependentDefUseDependence this.pit.!gameStart
+  15: 14 -> 25 loopIndependentDefUseDependence this.pit.box
+  16: 14 -> 26 loopIndependentDefUseDependence this.pit.box
+  17: 14 -> 79 loopIndependentDefUseDependence this.pit.box
+  18: 14 -> 80 loopIndependentDefUseDependence this.pit.box
+  19: 14 -> 83 loopIndependentDefUseDependence this.pit.box
+  20: 17 -> 18 loopIndependentDefUseDependence this.info.level
+  21: 17 -> 18 loopIndependentDefUseDependence this.info.lines
+  22: 17 -> 18 loopIndependentDefUseDependence this.info.score
+  23: 18 -> 15 loopIndependentDefUseDependence this.info.!gameStart
+  24: 18 -> 29 loopIndependentDefUseDependence this.info.level
+  25: 18 -> 29 loopIndependentDefUseDependence this.info.lines
+  26: 18 -> 29 loopIndependentDefUseDependence this.info.score
+  27: 18 -> 34 loopIndependentDefUseDependence this.info.level
+  28: 18 -> 34 loopIndependentDefUseDependence this.info.lines
+  29: 18 -> 34 loopIndependentDefUseDependence this.info.score
+  30: 18 -> 83 loopIndependentDefUseDependence this.info.level
+  31: 18 -> 83 loopIndependentDefUseDependence this.info.lines
+  32: 18 -> 83 loopIndependentDefUseDependence this.info.score
+  33: 2 -> 39 declaration
+  34: 2 -> 39 loopIndependentDefUseDependence keyCode$1
+  35: 2 -> 51 declaration
+  36: 2 -> 51 loopIndependentDefUseDependence keyCode$1
+  37: 2 -> 52 declaration
+  38: 2 -> 52 loopIndependentDefUseDependence keyCode$1
+  39: 2 -> 58 declaration
+  40: 2 -> 58 loopIndependentDefUseDependence keyCode$1
+  41: 2 -> 6 declaration
+  42: 2 -> 6 loopIndependentDefUseDependence keyCode$1
+  43: 2 -> 64 declaration
+  44: 2 -> 64 loopIndependentDefUseDependence keyCode$1
+  45: 2 -> 70 declaration
+  46: 2 -> 70 loopIndependentDefUseDependence keyCode$1
+  47: 21 -> 22 loopIndependentDefUseDependence this.pit.currentBlock
+  48: 21 -> 22 loopIndependentDefUseDependence this.pit.currentBlock.posX
+  49: 21 -> 22 loopIndependentDefUseDependence this.pit.currentBlock.posY
+  50: 21 -> 22 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+  51: 21 -> 22 loopIndependentDefUseDependence this.pit.nextBlock
+  52: 21 -> 22 loopIndependentDefUseDependence this.pit.nextBlock.pit
+  53: 22 -> 19 loopIndependentDefUseDependence this.pit.!placeNextBlock
+  54: 22 -> 25 loopIndependentDefUseDependence this.pit.currentBlock
+  55: 22 -> 25 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+  56: 22 -> 26 loopIndependentDefUseDependence this.pit.currentBlock
+  57: 22 -> 32 loopIndependentDefUseDependence this.pit.nextBlock
+  58: 22 -> 33 loopIndependentDefUseDependence this.pit.nextBlock
+  59: 22 -> 49 loopIndependentDefUseDependence this.pit.currentBlock
+  60: 22 -> 50 loopIndependentDefUseDependence this.pit.currentBlock
+  61: 22 -> 79 loopIndependentDefUseDependence this.pit.currentBlock
+  62: 22 -> 80 loopIndependentDefUseDependence this.pit.currentBlock
+  63: 22 -> 83 loopIndependentDefUseDependence this.pit.currentBlock
+  64: 22 -> 83 loopIndependentDefUseDependence this.pit.currentBlock.posX
+  65: 22 -> 83 loopIndependentDefUseDependence this.pit.currentBlock.posY
+  66: 22 -> 83 loopIndependentDefUseDependence this.pit.nextBlock
+  67: 22 -> 83 loopIndependentDefUseDependence this.pit.nextBlock.pit
+  68: 25 -> 26 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+  69: 26 -> 23 loopIndependentDefUseDependence this.pit.!update
+  70: 26 -> 79 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+  71: 26 -> 80 outputDependence this.pit.!update
+  72: 26 -> 83 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+  73: 30 -> 34 summary
+  74: 33 -> 30 loopIndependentDefUseDependence this.pit.!getNextBlock
+  75: 34 -> 27 loopIndependentDefUseDependence this.info.!update
+  76: 37 -> 38 loopIndependentDefUseDependence this.timer
+  77: 38 -> 35 loopIndependentDefUseDependence this.!startTimer
+  78: 38 -> 46 loopIndependentDefUseDependence this.timer
+  79: 38 -> 83 loopIndependentDefUseDependence this.timer
+  80: 39 -> 40 trueControlDependence
+  81: 39 -> 41 trueControlDependence
+  82: 39 -> 42 trueControlDependence
+  83: 39 -> 43 trueControlDependence
+  84: 43 -> 40 loopIndependentDefUseDependence this.!exit
+  85: 46 -> 47 trueControlDependence
+  86: 46 -> 48 trueControlDependence
+  87: 46 -> 49 trueControlDependence
+  88: 46 -> 50 trueControlDependence
+  89: 46 -> 51 trueControlDependence
+  90: 46 -> 52 trueControlDependence
+  91: 46 -> 77 trueControlDependence
+  92: 46 -> 78 trueControlDependence
+  93: 46 -> 79 trueControlDependence
+  94: 46 -> 80 trueControlDependence
+  95: 47 -> 54 declaration
+  96: 47 -> 54 loopIndependentDefUseDependence block$2
+  97: 47 -> 60 declaration
+  98: 47 -> 60 loopIndependentDefUseDependence block$2
+  99: 47 -> 66 declaration
+ 100: 47 -> 66 loopIndependentDefUseDependence block$2
+ 101: 47 -> 72 declaration
+ 102: 47 -> 72 loopIndependentDefUseDependence block$2
+ 103: 5 -> 2 loopIndependentDefUseDependence e$0.!getKeyCode
+ 104: 50 -> 47 loopIndependentDefUseDependence this.pit.!getCurrentBlock
+ 105: 50 -> 54 loopIndependentDefUseDependence this.pit.!getCurrentBlock
+ 106: 50 -> 60 loopIndependentDefUseDependence this.pit.!getCurrentBlock
+ 107: 50 -> 66 loopIndependentDefUseDependence this.pit.!getCurrentBlock
+ 108: 50 -> 72 loopIndependentDefUseDependence this.pit.!getCurrentBlock
+ 109: 52 -> 53 trueControlDependence
+ 110: 52 -> 54 trueControlDependence
+ 111: 52 -> 55 trueControlDependence
+ 112: 52 -> 56 trueControlDependence
+ 113: 52 -> 57 trueControlDependence
+ 114: 52 -> 58 falseControlDependence
+ 115: 55 -> 56 loopIndependentDefUseDependence block$2.posX
+ 116: 55 -> 56 loopIndependentDefUseDependence block$2.tiles
+ 117: 56 -> 53 loopIndependentDefUseDependence block$2.!moveLeft
+ 118: 56 -> 83 loopIndependentDefUseDependence block$2.posX
+ 119: 56 -> 83 loopIndependentDefUseDependence block$2.tiles
+ 120: 57 -> 58 fallThroughControlDependence
+ 121: 58 -> 59 trueControlDependence
+ 122: 58 -> 60 trueControlDependence
+ 123: 58 -> 61 trueControlDependence
+ 124: 58 -> 62 trueControlDependence
+ 125: 58 -> 63 trueControlDependence
+ 126: 58 -> 64 falseControlDependence
+ 127: 6 -> 10 trueControlDependence
+ 128: 6 -> 11 trueControlDependence
+ 129: 6 -> 12 trueControlDependence
+ 130: 6 -> 13 trueControlDependence
+ 131: 6 -> 14 trueControlDependence
+ 132: 6 -> 15 trueControlDependence
+ 133: 6 -> 16 trueControlDependence
+ 134: 6 -> 17 trueControlDependence
+ 135: 6 -> 18 trueControlDependence
+ 136: 6 -> 19 trueControlDependence
+ 137: 6 -> 20 trueControlDependence
+ 138: 6 -> 21 trueControlDependence
+ 139: 6 -> 22 trueControlDependence
+ 140: 6 -> 23 trueControlDependence
+ 141: 6 -> 24 trueControlDependence
+ 142: 6 -> 25 trueControlDependence
+ 143: 6 -> 26 trueControlDependence
+ 144: 6 -> 27 trueControlDependence
+ 145: 6 -> 28 trueControlDependence
+ 146: 6 -> 29 trueControlDependence
+ 147: 6 -> 30 trueControlDependence
+ 148: 6 -> 31 trueControlDependence
+ 149: 6 -> 32 trueControlDependence
+ 150: 6 -> 33 trueControlDependence
+ 151: 6 -> 34 trueControlDependence
+ 152: 6 -> 35 trueControlDependence
+ 153: 6 -> 36 trueControlDependence
+ 154: 6 -> 37 trueControlDependence
+ 155: 6 -> 38 trueControlDependence
+ 156: 6 -> 39 falseControlDependence
+ 157: 6 -> 7 trueControlDependence
+ 158: 6 -> 8 trueControlDependence
+ 159: 6 -> 9 trueControlDependence
+ 160: 61 -> 62 loopIndependentDefUseDependence block$2.posX
+ 161: 61 -> 62 loopIndependentDefUseDependence block$2.tiles
+ 162: 62 -> 59 loopIndependentDefUseDependence block$2.!moveRight
+ 163: 62 -> 83 loopIndependentDefUseDependence block$2.posX
+ 164: 62 -> 83 loopIndependentDefUseDependence block$2.tiles
+ 165: 63 -> 64 fallThroughControlDependence
+ 166: 64 -> 65 trueControlDependence
+ 167: 64 -> 66 trueControlDependence
+ 168: 64 -> 67 trueControlDependence
+ 169: 64 -> 68 trueControlDependence
+ 170: 64 -> 69 trueControlDependence
+ 171: 64 -> 70 falseControlDependence
+ 172: 67 -> 68 loopIndependentDefUseDependence block$2.tiles
+ 173: 68 -> 65 loopIndependentDefUseDependence block$2.!rotate
+ 174: 68 -> 83 loopIndependentDefUseDependence block$2.tiles
+ 175: 69 -> 70 fallThroughControlDependence
+ 176: 70 -> 71 trueControlDependence
+ 177: 70 -> 72 trueControlDependence
+ 178: 70 -> 73 trueControlDependence
+ 179: 70 -> 74 trueControlDependence
+ 180: 70 -> 75 trueControlDependence
+ 181: 73 -> 74 loopIndependentDefUseDependence block$2.posY
+ 182: 73 -> 74 loopIndependentDefUseDependence block$2.tiles
+ 183: 74 -> 71 loopIndependentDefUseDependence block$2.!drop
+ 184: 74 -> 83 loopIndependentDefUseDependence block$2.posY
+ 185: 74 -> 83 loopIndependentDefUseDependence block$2.tiles
+ 186: 79 -> 80 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+ 187: 80 -> 77 loopIndependentDefUseDependence this.pit.!update
+ 188: 80 -> 83 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+ 189: 9 -> 10 loopIndependentDefUseDependence this.timer
+--
+   0: startTimer( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 6 trueControlDependence
+   6: 3 -> 4 loopIndependentDefUseDependence this.timer
+   7: 3 -> 4 loopIndependentDefUseDependence this.timerGroup.nUnstartedThreads
+   8: 3 -> 4 loopIndependentDefUseDependence this.timerGroup.nthreads
+   9: 3 -> 4 loopIndependentDefUseDependence this.timerGroup.threads
+  10: 4 -> 1 loopIndependentDefUseDependence this.timer.!start
+  11: 4 -> 6 loopIndependentDefUseDependence this.timer
+  12: 4 -> 6 loopIndependentDefUseDependence this.timerGroup.nUnstartedThreads
+  13: 4 -> 6 loopIndependentDefUseDependence this.timerGroup.nthreads
+  14: 4 -> 6 loopIndependentDefUseDependence this.timerGroup.threads
+--
+   0: run( )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 16 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 58 trueControlDependence
+   8: 0 -> 6 trueControlDependence
+   9: 1 -> 30 declaration
+  10: 1 -> 30 outputDependence isGameOver$0
+  11: 1 -> 47 declaration
+  12: 1 -> 47 loopIndependentDefUseDependence isGameOver$0
+  13: 10 -> 16 exceptionCatch
+  14: 10 -> 8 trueControlDependence
+  15: 13 -> 10 loopIndependentDefUseDependence this.info.!getSpeed
+  16: 13 -> 13 defOrderDependence this.info.!getSpeed
+  17: 14 -> 14 defOrderDependence this.!sleep
+  18: 14 -> 8 loopIndependentDefUseDependence this.!sleep
+  19: 17 -> 17 defOrderDependence block$3
+  20: 17 -> 22 declaration
+  21: 17 -> 22 loopIndependentDefUseDependence block$3
+  22: 17 -> 25 declaration
+  23: 17 -> 25 outputDependence block$3
+  24: 2 -> 6 declaration
+  25: 2 -> 6 loopIndependentDefUseDependence thisThread$1
+  26: 20 -> 17 loopIndependentDefUseDependence this.pit.!getCurrentBlock
+  27: 20 -> 20 defOrderDependence this.pit.!getCurrentBlock
+  28: 20 -> 22 loopIndependentDefUseDependence this.pit.!getCurrentBlock
+  29: 21 -> 25 trueControlDependence
+  30: 21 -> 26 trueControlDependence
+  31: 21 -> 27 trueControlDependence
+  32: 21 -> 28 trueControlDependence
+  33: 21 -> 29 trueControlDependence
+  34: 21 -> 30 trueControlDependence
+  35: 21 -> 31 trueControlDependence
+  36: 21 -> 32 trueControlDependence
+  37: 21 -> 33 trueControlDependence
+  38: 21 -> 34 trueControlDependence
+  39: 21 -> 35 trueControlDependence
+  40: 21 -> 36 trueControlDependence
+  41: 21 -> 37 trueControlDependence
+  42: 21 -> 38 trueControlDependence
+  43: 21 -> 39 trueControlDependence
+  44: 21 -> 40 trueControlDependence
+  45: 21 -> 41 trueControlDependence
+  46: 23 -> 24 loopIndependentDefUseDependence block$3.pit.box
+  47: 23 -> 24 loopIndependentDefUseDependence block$3.posY
+  48: 23 -> 24 loopIndependentDefUseDependence block$3.tiles
+  49: 24 -> 21 loopIndependentDefUseDependence block$3.!fall
+  50: 24 -> 23 loopCarriedDefUseDependence block$3.pit.box 6
+  51: 24 -> 23 loopCarriedDefUseDependence block$3.posY 6
+  52: 24 -> 23 loopCarriedDefUseDependence block$3.tiles 6
+  53: 24 -> 24 defOrderDependence block$3.!fall
+  54: 24 -> 58 loopIndependentDefUseDependence block$3.pit.box
+  55: 24 -> 58 loopIndependentDefUseDependence block$3.posY
+  56: 24 -> 58 loopIndependentDefUseDependence block$3.tiles
+  57: 25 -> 17 outputDependence block$3
+  58: 28 -> 29 loopIndependentDefUseDependence this.pit.box
+  59: 28 -> 29 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+  60: 28 -> 29 loopIndependentDefUseDependence this.pit.info.level
+  61: 28 -> 29 loopIndependentDefUseDependence this.pit.info.lines
+  62: 28 -> 29 loopIndependentDefUseDependence this.pit.info.score
+  63: 29 -> 26 loopIndependentDefUseDependence this.pit.!checkLines
+  64: 29 -> 28 loopCarriedDefUseDependence this.pit.box 6
+  65: 29 -> 28 loopCarriedDefUseDependence this.pit.info.level 6
+  66: 29 -> 28 loopCarriedDefUseDependence this.pit.info.lines 6
+  67: 29 -> 28 loopCarriedDefUseDependence this.pit.info.score 6
+  68: 29 -> 29 defOrderDependence this.pit.!checkLines
+  69: 29 -> 32 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+  70: 29 -> 45 loopIndependentDefUseDependence this.pit.box
+  71: 29 -> 46 loopIndependentDefUseDependence this.pit.box
+  72: 29 -> 58 loopIndependentDefUseDependence this.pit.box
+  73: 29 -> 58 loopIndependentDefUseDependence this.pit.info.level
+  74: 29 -> 58 loopIndependentDefUseDependence this.pit.info.lines
+  75: 29 -> 58 loopIndependentDefUseDependence this.pit.info.score
+  76: 30 -> 30 defOrderDependence isGameOver$0
+  77: 30 -> 47 loopIndependentDefUseDependence isGameOver$0
+  78: 32 -> 33 loopIndependentDefUseDependence this.pit.currentBlock
+  79: 32 -> 33 loopIndependentDefUseDependence this.pit.currentBlock.posX
+  80: 32 -> 33 loopIndependentDefUseDependence this.pit.currentBlock.posY
+  81: 32 -> 33 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+  82: 32 -> 33 loopIndependentDefUseDependence this.pit.nextBlock
+  83: 32 -> 33 loopIndependentDefUseDependence this.pit.nextBlock.pit
+  84: 33 -> 19 loopIndependentDefUseDependence this.pit.currentBlock
+  85: 33 -> 20 loopIndependentDefUseDependence this.pit.currentBlock
+  86: 33 -> 28 loopCarriedDefUseDependence this.pit.currentBlock 6
+  87: 33 -> 29 loopCarriedDefUseDependence this.pit.currentBlock 6
+  88: 33 -> 30 loopIndependentDefUseDependence this.pit.!placeNextBlock
+  89: 33 -> 32 loopCarriedDefUseDependence this.pit.currentBlock 6
+  90: 33 -> 32 loopCarriedDefUseDependence this.pit.currentBlock.posX 6
+  91: 33 -> 32 loopCarriedDefUseDependence this.pit.currentBlock.posY 6
+  92: 33 -> 32 loopCarriedDefUseDependence this.pit.nextBlock 6
+  93: 33 -> 32 loopCarriedDefUseDependence this.pit.nextBlock.pit 6
+  94: 33 -> 33 defOrderDependence this.pit.!placeNextBlock
+  95: 33 -> 39 loopIndependentDefUseDependence this.pit.nextBlock
+  96: 33 -> 40 loopIndependentDefUseDependence this.pit.nextBlock
+  97: 33 -> 45 loopIndependentDefUseDependence this.pit.currentBlock
+  98: 33 -> 45 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+  99: 33 -> 46 loopIndependentDefUseDependence this.pit.currentBlock
+ 100: 33 -> 58 loopIndependentDefUseDependence this.pit.currentBlock
+ 101: 33 -> 58 loopIndependentDefUseDependence this.pit.currentBlock.posX
+ 102: 33 -> 58 loopIndependentDefUseDependence this.pit.currentBlock.posY
+ 103: 33 -> 58 loopIndependentDefUseDependence this.pit.nextBlock
+ 104: 33 -> 58 loopIndependentDefUseDependence this.pit.nextBlock.pit
+ 105: 37 -> 41 summary
+ 106: 40 -> 37 loopIndependentDefUseDependence this.pit.!getNextBlock
+ 107: 40 -> 40 defOrderDependence this.pit.!getNextBlock
+ 108: 41 -> 34 loopIndependentDefUseDependence this.info.!update
+ 109: 41 -> 41 defOrderDependence this.info.!update
+ 110: 45 -> 46 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+ 111: 46 -> 28 loopCarriedDefUseDependence this.pit.currentBlock.tiles 6
+ 112: 46 -> 43 loopIndependentDefUseDependence this.pit.!update
+ 113: 46 -> 45 loopCarriedDefUseDependence this.pit.currentBlock.tiles 6
+ 114: 46 -> 46 defOrderDependence this.pit.!update
+ 115: 46 -> 58 loopIndependentDefUseDependence this.pit.currentBlock.tiles
+ 116: 47 -> 48 trueControlDependence
+ 117: 47 -> 49 trueControlDependence
+ 118: 47 -> 50 trueControlDependence
+ 119: 47 -> 51 trueControlDependence
+ 120: 47 -> 52 trueControlDependence
+ 121: 47 -> 53 trueControlDependence
+ 122: 47 -> 54 trueControlDependence
+ 123: 47 -> 55 trueControlDependence
+ 124: 5 -> 2 loopIndependentDefUseDependence this.!currentThread
+ 125: 5 -> 6 loopIndependentDefUseDependence this.!currentThread
+ 126: 51 -> 48 loopIndependentDefUseDependence this.pit.!gameOver
+ 127: 51 -> 51 defOrderDependence this.pit.!gameOver
+ 128: 54 -> 55 loopIndependentDefUseDependence this.timer
+ 129: 55 -> 52 loopIndependentDefUseDependence this.!stopTimer
+ 130: 55 -> 54 loopCarriedDefUseDependence this.timer 6
+ 131: 55 -> 55 defOrderDependence this.!stopTimer
+ 132: 55 -> 58 loopIndependentDefUseDependence this.timer
+ 133: 55 -> 6 loopIndependentDefUseDependence this.timer
+ 134: 6 -> 17 trueControlDependence
+ 135: 6 -> 18 trueControlDependence
+ 136: 6 -> 19 trueControlDependence
+ 137: 6 -> 20 trueControlDependence
+ 138: 6 -> 21 trueControlDependence
+ 139: 6 -> 22 trueControlDependence
+ 140: 6 -> 23 trueControlDependence
+ 141: 6 -> 24 trueControlDependence
+ 142: 6 -> 43 trueControlDependence
+ 143: 6 -> 44 trueControlDependence
+ 144: 6 -> 45 trueControlDependence
+ 145: 6 -> 46 trueControlDependence
+ 146: 6 -> 47 trueControlDependence
+ 147: 6 -> 7 trueControlDependence
+ 148: 7 -> 10 trueControlDependence
+ 149: 7 -> 11 trueControlDependence
+ 150: 7 -> 12 trueControlDependence
+ 151: 7 -> 13 trueControlDependence
+ 152: 7 -> 14 trueControlDependence
+ 153: 7 -> 9 trueControlDependence
+--
+----- ClDG (to here) -----
+

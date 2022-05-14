@@ -1,0 +1,21 @@
+----- ClDG (from here) -----
+Class Name = Sample18$1
+   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   1 formalIn D = { e$8 } U = {  }
+   2 assignment D = {  } U = { this.!exit }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = { java.lang.Runtime.currentRuntime } TO = java.lang.System#exit( int )
+   5 actualOut D = { this.!exit } U = { java.lang.Runtime.currentRuntime }
+   7 formalOut D = {  } U = { $_ }
+--
+   0: actionPerformed( java.awt.event.ActionEvent )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 7 trueControlDependence
+   7: 5 -> 2 loopIndependentDefUseDependence this.!exit
+--
+----- ClDG (to here) -----
+

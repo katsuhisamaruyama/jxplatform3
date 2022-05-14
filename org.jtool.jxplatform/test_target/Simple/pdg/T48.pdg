@@ -1,0 +1,22 @@
+----- ClDG (from here) -----
+Class Name = T48
+   0 methodEntry [ m1( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ T48( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m3( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m1( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: T48( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: m3( )
+   1: 0 -> 2 trueControlDependence
+--
+----- ClDG (to here) -----
+

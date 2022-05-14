@@ -1,6 +1,7 @@
 ----- ClDG (from here) -----
 Class Name = Test117
    0 constructorEntry [ Test117( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { x$0 } U = {  }
@@ -16,43 +17,38 @@ Class Name = Test117
   12 formalOut D = {  } U = { $_ }
 --
    0: Test117( )
+   1: 0 -> 2 trueControlDependence
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 9 trueControlDependence
-   7: 0 -> 10 trueControlDependence
-   8: 0 -> 12 trueControlDependence
-   9: 1 -> 1 declarationDependence
-  10: 1 -> 8 loopIndependentDefUseDependence
-  11: 1 -> 8 declarationDependence
-  12: 1 -> 9 loopIndependentDefUseDependence
-  13: 1 -> 9 declarationDependence
-  14: 2 -> 2 declarationDependence
-  15: 2 -> 6 loopIndependentDefUseDependence
-  16: 2 -> 6 declarationDependence
-  17: 2 -> 10 loopIndependentDefUseDependence
-  18: 2 -> 10 declarationDependence
-  19: 3 -> 3 declarationDependence
-  20: 3 -> 5 loopIndependentDefUseDependence
-  21: 3 -> 5 declarationDependence
-  22: 3 -> 7 loopIndependentDefUseDependence
-  23: 3 -> 7 declarationDependence
-  24: 4 -> 4 declarationDependence
-  25: 5 -> 6 trueControlDependence
-  26: 5 -> 7 trueControlDependence
-  27: 5 -> 8 trueControlDependence
-  28: 6 -> 6 loopIndependentDefUseDependence
-  29: 6 -> 10 loopIndependentDefUseDependence
-  30: 7 -> 5 loopCarriedDefUseDependence
-  31: 7 -> 7 loopIndependentDefUseDependence
-  32: 8 -> 8 loopIndependentDefUseDependence
-  33: 8 -> 9 loopIndependentDefUseDependence
-  34: 9 -> 9 declarationDependence
-  35: 10 -> 10 declarationDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 12 trueControlDependence
+   4: 0 -> 2 trueControlDependence
+   5: 0 -> 3 trueControlDependence
+   6: 0 -> 4 trueControlDependence
+   7: 0 -> 5 trueControlDependence
+   8: 0 -> 9 trueControlDependence
+   9: 1 -> 8 declaration
+  10: 1 -> 8 loopIndependentDefUseDependence x$0
+  11: 1 -> 9 declaration
+  12: 1 -> 9 loopIndependentDefUseDependence x$0
+  13: 2 -> 10 declaration
+  14: 2 -> 10 loopIndependentDefUseDependence y$1
+  15: 2 -> 6 declaration
+  16: 2 -> 6 loopIndependentDefUseDependence y$1
+  17: 3 -> 5 declaration
+  18: 3 -> 5 loopIndependentDefUseDependence i$2
+  19: 3 -> 7 declaration
+  20: 3 -> 7 loopIndependentDefUseDependence i$2
+  21: 5 -> 6 trueControlDependence
+  22: 5 -> 7 trueControlDependence
+  23: 5 -> 8 trueControlDependence
+  24: 6 -> 10 loopIndependentDefUseDependence y$1
+  25: 6 -> 6 loopCarriedDefUseDependence y$1 5
+  26: 7 -> 5 loopCarriedDefUseDependence i$2 5
+  27: 7 -> 7 loopCarriedDefUseDependence i$2 5
+  28: 8 -> 8 loopCarriedDefUseDependence x$0 5
+  29: 8 -> 9 loopIndependentDefUseDependence x$0
 --
 ----- ClDG (to here) -----
 

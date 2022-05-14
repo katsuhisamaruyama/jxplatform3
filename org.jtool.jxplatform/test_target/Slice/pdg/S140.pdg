@@ -6,20 +6,20 @@ Class Name = S140
    0 constructorEntry [ S140( ) ]
    1 assignment D = {  } U = {  }
    2 receiver D = {  } U = {  }
-   3 constructorCall D = { this.x } U = {  } TO = S140#S140( int )
+   3 constructorCall D = { this.x } U = { this.x } TO = S140#S140( int )
    4 actualIn D = {  } U = {  }
-   5 actualOut D = {  } U = {  }
-   7 formalOut D = {  } U = { $_ }
+   5 actualOut D = { , this.x } U = { this.x }
+   7 formalOut D = {  } U = { $_, this.x }
 --
    0 constructorEntry [ S140( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 assignment D = {  } U = {  }
    3 receiver D = {  } U = {  }
-   4 constructorCall D = { super.x } U = {  } TO = Test140#Test140( int )
+   4 constructorCall D = { super.x } U = { super.x } TO = Test140#Test140( int )
    5 actualIn D = {  } U = { x$0 }
-   6 actualOut D = {  } U = {  }
+   6 actualOut D = { , super.x } U = { super.x }
    7 assignment D = { this.x } U = { this, x$0 }
-   9 formalOut D = {  } U = { $_ }
+   9 formalOut D = {  } U = { $_, super.x, this.x }
 --
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { xx$0 } U = { super.x }
@@ -35,37 +35,40 @@ Class Name = S140
    0: S140( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
-   3: 0 -> 7 trueControlDependence
-   4: 2 -> 3 trueControlDependence
-   5: 3 -> 4 trueControlDependence
-   6: 3 -> 5 trueControlDependence
-   7: 3 -> 8 call
-   8: 4 -> 9 parameterIn
-   9: 5 -> 1 loopIndependentDefUseDependence
-  10: 17 -> 5 parameterOut
+   3: 0 -> 3 trueControlDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 7 trueControlDependence
+   7: 3 -> 5 loopIndependentDefUseDependence this.x
+   8: 4 -> 5 summary
+   9: 5 -> 1 loopIndependentDefUseDependence 
+  10: 5 -> 7 loopIndependentDefUseDependence this.x
 --
    0: S140( int )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 3 trueControlDependence
-   4: 0 -> 7 trueControlDependence
-   5: 0 -> 9 trueControlDependence
-   6: 1 -> 5 loopIndependentDefUseDependence
-   7: 1 -> 7 loopIndependentDefUseDependence
-   8: 3 -> 4 trueControlDependence
-   9: 4 -> 5 trueControlDependence
-  10: 4 -> 6 trueControlDependence
-  11: 6 -> 2 loopIndependentDefUseDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 6 trueControlDependence
+   7: 0 -> 7 trueControlDependence
+   8: 0 -> 9 trueControlDependence
+   9: 1 -> 5 loopIndependentDefUseDependence x$0
+  10: 1 -> 7 loopIndependentDefUseDependence x$0
+  11: 4 -> 6 loopIndependentDefUseDependence super.x
+  12: 5 -> 6 summary
+  13: 6 -> 2 loopIndependentDefUseDependence 
+  14: 6 -> 9 loopIndependentDefUseDependence super.x
+  15: 7 -> 9 loopIndependentDefUseDependence this.x
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
    2: 0 -> 2 trueControlDependence
    3: 0 -> 3 trueControlDependence
-   4: 0 -> 7 trueControlDependence
-   5: 1 -> 1 declarationDependence
-   6: 3 -> 4 trueControlDependence
-   7: 4 -> 5 trueControlDependence
-   8: 5 -> 2 loopIndependentDefUseDependence
+   4: 0 -> 4 trueControlDependence
+   5: 0 -> 5 trueControlDependence
+   6: 0 -> 7 trueControlDependence
+   7: 5 -> 2 loopIndependentDefUseDependence super.!m
 --
 ----- ClDG (to here) -----
 

@@ -1,0 +1,64 @@
+----- ClDG (from here) -----
+Class Name = Shape
+   0 fieldEntry [ y1 ]
+   1 fieldDeclaration D = { this.y1 } U = { this.y1 }
+--
+   0 fieldEntry [ x1 ]
+   1 fieldDeclaration D = { this.x1 } U = { this.x1 }
+--
+   0 fieldEntry [ y2 ]
+   1 fieldDeclaration D = { this.y2 } U = { this.y2 }
+--
+   0 fieldEntry [ x2 ]
+   1 fieldDeclaration D = { this.x2 } U = { this.x2 }
+--
+   0 methodEntry [ draw( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Shape( int int int int ) ]
+   1 formalIn D = { x1$0 } U = {  }
+   2 formalIn D = { y1$1 } U = {  }
+   3 formalIn D = { x2$2 } U = {  }
+   4 formalIn D = { y2$3 } U = {  }
+   5 assignment D = { this.x1 } U = { this, x1$0 }
+   6 assignment D = { this.y1 } U = { this, y1$1 }
+   7 assignment D = { this.x2 } U = { this, x2$2 }
+   8 assignment D = { this.y2 } U = { this, y2$3 }
+  10 formalOut D = {  } U = { $_, this.x1, this.x2, this.y1, this.y2 }
+--
+   0: y1
+   1: 0 -> 1 trueControlDependence
+--
+   0: x1
+   1: 0 -> 1 trueControlDependence
+--
+   0: y2
+   1: 0 -> 1 trueControlDependence
+--
+   0: x2
+   1: 0 -> 1 trueControlDependence
+--
+   0: draw( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: Shape( int int int int )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 2 trueControlDependence
+   4: 0 -> 3 trueControlDependence
+   5: 0 -> 4 trueControlDependence
+   6: 0 -> 5 trueControlDependence
+   7: 0 -> 6 trueControlDependence
+   8: 0 -> 7 trueControlDependence
+   9: 0 -> 8 trueControlDependence
+  10: 1 -> 5 loopIndependentDefUseDependence x1$0
+  11: 2 -> 6 loopIndependentDefUseDependence y1$1
+  12: 3 -> 7 loopIndependentDefUseDependence x2$2
+  13: 4 -> 8 loopIndependentDefUseDependence y2$3
+  14: 5 -> 10 loopIndependentDefUseDependence this.x1
+  15: 6 -> 10 loopIndependentDefUseDependence this.y1
+  16: 7 -> 10 loopIndependentDefUseDependence this.x2
+  17: 8 -> 10 loopIndependentDefUseDependence this.y2
+--
+----- ClDG (to here) -----
+

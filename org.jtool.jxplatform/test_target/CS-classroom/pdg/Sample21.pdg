@@ -1,0 +1,93 @@
+----- ClDG (from here) -----
+Class Name = Sample21
+   0 constructorEntry [ Sample21( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ main( java.lang.String[] ) ]
+   1 formalIn D = { args$0 } U = {  }
+   2 localDeclaration D = { th$1 } U = { th$1.!ThreadB }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = ThreadB#ThreadB( )
+   5 actualOut D = { th$1.!ThreadB } U = {  }
+   6 localDeclaration D = { thread$2 } U = { thread$2.!Thread }
+   7 receiver D = {  } U = {  }
+   8 constructorCall D = { thread$2.threadInitNumber } U = { java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, th$1, thread$2.threadInitNumber } TO = java.lang.Thread#Thread( java.lang.Runnable )
+   9 actualOut D = { thread$2.!Thread, thread$2.threadInitNumber } U = { java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, thread$2.threadInitNumber }
+  10 assignment D = {  } U = { thread$2.!start }
+  11 receiver D = {  } U = { thread$2 }
+  12 methodCall D = { thread$2, thread$2Group.nUnstartedThreads, thread$2Group.nthreads, thread$2Group.threads } U = { thread$2, thread$2.group, thread$2.threadStatus, thread$2Group.destroyed, thread$2Group.nUnstartedThreads, thread$2Group.nthreads, thread$2Group.threads } TO = java.lang.Thread#start( )
+  13 actualOut D = { thread$2, thread$2.!start, thread$2Group.nUnstartedThreads, thread$2Group.nthreads, thread$2Group.threads } U = { thread$2, thread$2.group, thread$2.threadStatus, thread$2Group.destroyed, thread$2Group.nUnstartedThreads, thread$2Group.nthreads, thread$2Group.threads }
+  14 localDeclaration D = { i$3 } U = {  }
+  15 forSt D = {  } U = { i$3 }
+  16 assignment D = {  } U = { System.out.!println }
+  17 receiver D = {  } U = { System.out }
+  18 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, i$3, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( java.lang.String )
+  19 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
+  20 assignment D = { i$3 } U = { i$3 }
+  22 formalOut D = {  } U = { $_, System.out, System.out.trouble, thread$2.threadInitNumber, thread$2Group.nUnstartedThreads, thread$2Group.nthreads, thread$2Group.threads }
+--
+   0: Sample21( )
+   1: 0 -> 2 trueControlDependence
+--
+   0: main( java.lang.String[] )
+   1: 0 -> 1 trueControlDependence
+   2: 0 -> 10 trueControlDependence
+   3: 0 -> 11 trueControlDependence
+   4: 0 -> 12 trueControlDependence
+   5: 0 -> 13 trueControlDependence
+   6: 0 -> 14 trueControlDependence
+   7: 0 -> 15 trueControlDependence
+   8: 0 -> 2 trueControlDependence
+   9: 0 -> 22 trueControlDependence
+  10: 0 -> 3 trueControlDependence
+  11: 0 -> 4 trueControlDependence
+  12: 0 -> 5 trueControlDependence
+  13: 0 -> 6 trueControlDependence
+  14: 0 -> 7 trueControlDependence
+  15: 0 -> 8 trueControlDependence
+  16: 0 -> 9 trueControlDependence
+  17: 12 -> 13 loopIndependentDefUseDependence thread$2
+  18: 12 -> 13 loopIndependentDefUseDependence thread$2Group.nUnstartedThreads
+  19: 12 -> 13 loopIndependentDefUseDependence thread$2Group.nthreads
+  20: 12 -> 13 loopIndependentDefUseDependence thread$2Group.threads
+  21: 13 -> 10 loopIndependentDefUseDependence thread$2.!start
+  22: 13 -> 22 loopIndependentDefUseDependence thread$2Group.nUnstartedThreads
+  23: 13 -> 22 loopIndependentDefUseDependence thread$2Group.nthreads
+  24: 13 -> 22 loopIndependentDefUseDependence thread$2Group.threads
+  25: 14 -> 15 declaration
+  26: 14 -> 15 loopIndependentDefUseDependence i$3
+  27: 14 -> 18 declaration
+  28: 14 -> 18 loopIndependentDefUseDependence i$3
+  29: 14 -> 20 declaration
+  30: 14 -> 20 loopIndependentDefUseDependence i$3
+  31: 15 -> 16 trueControlDependence
+  32: 15 -> 17 trueControlDependence
+  33: 15 -> 18 trueControlDependence
+  34: 15 -> 19 trueControlDependence
+  35: 15 -> 20 trueControlDependence
+  36: 18 -> 19 loopIndependentDefUseDependence System.out
+  37: 18 -> 19 outputDependence System.out.trouble
+  38: 19 -> 16 loopIndependentDefUseDependence System.out.!println
+  39: 19 -> 17 loopCarriedDefUseDependence System.out 15
+  40: 19 -> 18 loopCarriedDefUseDependence System.out 15
+  41: 19 -> 18 outputDependence System.out.trouble
+  42: 19 -> 19 defOrderDependence System.out.!println
+  43: 19 -> 22 loopIndependentDefUseDependence System.out
+  44: 19 -> 22 loopIndependentDefUseDependence System.out.trouble
+  45: 2 -> 8 declaration
+  46: 2 -> 8 loopIndependentDefUseDependence th$1
+  47: 20 -> 15 loopCarriedDefUseDependence i$3 15
+  48: 20 -> 18 loopCarriedDefUseDependence i$3 15
+  49: 20 -> 20 loopCarriedDefUseDependence i$3 15
+  50: 5 -> 2 loopIndependentDefUseDependence th$1.!ThreadB
+  51: 6 -> 11 declaration
+  52: 6 -> 11 loopIndependentDefUseDependence thread$2
+  53: 6 -> 12 declaration
+  54: 6 -> 12 loopIndependentDefUseDependence thread$2
+  55: 6 -> 13 declaration
+  56: 8 -> 9 loopIndependentDefUseDependence thread$2.threadInitNumber
+  57: 9 -> 22 loopIndependentDefUseDependence thread$2.threadInitNumber
+  58: 9 -> 6 loopIndependentDefUseDependence thread$2.!Thread
+--
+----- ClDG (to here) -----
+

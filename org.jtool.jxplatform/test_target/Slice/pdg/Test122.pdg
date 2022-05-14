@@ -7,11 +7,12 @@ Class Name = Test122
    4 throwSt D = {  } U = { Exception.!Exception }
    5 receiver D = {  } U = {  }
    6 constructorCall D = { java.lang.Throwable.cause, java.lang.Throwable.stackTrace, java.lang.Throwable.suppressedExceptions } U = { java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Throwable.UNASSIGNED_STACK } TO = java.lang.Exception#Exception( )
-   7 actualOut D = { Exception.!Exception } U = {  }
+   7 actualOut D = { Exception.!Exception, java.lang.Throwable.cause, java.lang.Throwable.stackTrace, java.lang.Throwable.suppressedExceptions } U = { java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Throwable.UNASSIGNED_STACK }
    9 returnSt D = { $_ } U = { x$0 }
-  11 formalOut D = {  } U = { $_ }
+  11 formalOut D = {  } U = { $_, java.lang.Throwable.cause, java.lang.Throwable.stackTrace, java.lang.Throwable.suppressedExceptions }
 --
    0 constructorEntry [ Test122( ) ]
+   2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
@@ -32,71 +33,63 @@ Class Name = Test122
   18 formalOut D = {  } U = { $_ }
 --
    0: n( int )
-   1: 0 -> 2 trueControlDependence
-   2: 0 -> 3 trueControlDependence
-   3: 0 -> 5 trueControlDependence
-   4: 0 -> 11 trueControlDependence
-   5: 2 -> 3 loopIndependentDefUseDependence
-   6: 2 -> 9 loopIndependentDefUseDependence
-   7: 3 -> 4 trueControlDependence
+   1: 0 -> 11 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 2 -> 3 loopIndependentDefUseDependence x$0
+   5: 2 -> 9 loopIndependentDefUseDependence x$0
+   6: 3 -> 4 trueControlDependence
+   7: 3 -> 5 trueControlDependence
    8: 3 -> 6 trueControlDependence
-   9: 3 -> 9 falseControlDependence
-  10: 4 -> 1 trueControlDependence
-  11: 4 -> 9 fallThroughControlDependence
-  12: 5 -> 6 trueControlDependence
-  13: 6 -> 7 trueControlDependence
-  14: 7 -> 4 loopIndependentDefUseDependence
-  15: 9 -> 11 loopIndependentDefUseDependence
+   9: 3 -> 7 trueControlDependence
+  10: 3 -> 9 falseControlDependence
+  11: 4 -> 1 trueControlDependence
+  12: 4 -> 9 fallThroughControlDependence
+  13: 6 -> 7 outputDependence java.lang.Throwable.cause
+  14: 6 -> 7 outputDependence java.lang.Throwable.stackTrace
+  15: 6 -> 7 outputDependence java.lang.Throwable.suppressedExceptions
+  16: 7 -> 4 loopIndependentDefUseDependence Exception.!Exception
+  17: 9 -> 11 loopIndependentDefUseDependence $_
 --
    0: Test122( )
+   1: 0 -> 2 trueControlDependence
 --
    0: m( )
    1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 6 trueControlDependence
-   5: 0 -> 12 trueControlDependence
-   6: 0 -> 13 trueControlDependence
-   7: 0 -> 14 trueControlDependence
-   8: 0 -> 15 trueControlDependence
-   9: 0 -> 16 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 1 -> 1 declarationDependence
-  12: 1 -> 4 loopIndependentDefUseDependence
-  13: 1 -> 4 declarationDependence
-  14: 1 -> 8 loopIndependentDefUseDependence
-  15: 1 -> 8 declarationDependence
-  16: 2 -> 2 declarationDependence
-  17: 2 -> 5 outputDependence
-  18: 2 -> 5 declarationDependence
-  19: 2 -> 10 declarationDependence
-  20: 2 -> 15 loopIndependentDefUseDependence
-  21: 2 -> 15 declarationDependence
-  22: 2 -> 16 loopIndependentDefUseDependence
-  23: 2 -> 16 declarationDependence
-  24: 3 -> 4 trueControlDependence
-  25: 3 -> 7 trueControlDependence
-  26: 4 -> 4 declarationDependence
-  27: 5 -> 10 loopIndependentDefUseDependence
-  28: 5 -> 15 loopIndependentDefUseDependence
-  29: 5 -> 16 loopIndependentDefUseDependence
-  30: 6 -> 7 trueControlDependence
-  31: 7 -> 5 trueControlDependence
-  32: 7 -> 8 trueControlDependence
-  33: 7 -> 9 trueControlDependence
-  34: 7 -> 10 trueControlDependence
-  35: 7 -> 12 exceptionCatchDependence
-  36: 7 -> 13 exceptionCatchDependence
-  37: 7 -> 19 call
-  38: 8 -> 21 parameterIn
-  39: 9 -> 5 loopIndependentDefUseDependence
-  40: 10 -> 10 declarationDependence
-  41: 12 -> 13 loopIndependentDefUseDependence
-  42: 13 -> 13 declarationDependence
-  43: 15 -> 15 declarationDependence
-  44: 16 -> 16 declarationDependence
-  45: 20 -> 12 exceptionCatchDependence
-  46: 30 -> 9 parameterOut
+   2: 0 -> 12 trueControlDependence
+   3: 0 -> 13 trueControlDependence
+   4: 0 -> 14 trueControlDependence
+   5: 0 -> 15 trueControlDependence
+   6: 0 -> 16 trueControlDependence
+   7: 0 -> 18 trueControlDependence
+   8: 0 -> 2 trueControlDependence
+   9: 0 -> 3 trueControlDependence
+  10: 1 -> 4 declaration
+  11: 1 -> 4 loopIndependentDefUseDependence a$0
+  12: 1 -> 8 declaration
+  13: 1 -> 8 loopIndependentDefUseDependence a$0
+  14: 12 -> 13 loopIndependentDefUseDependence e$6
+  15: 2 -> 10 declaration
+  16: 2 -> 15 declaration
+  17: 2 -> 15 loopIndependentDefUseDependence b$1
+  18: 2 -> 16 declaration
+  19: 2 -> 16 loopIndependentDefUseDependence b$1
+  20: 2 -> 5 declaration
+  21: 2 -> 5 outputDependence b$1
+  22: 3 -> 4 trueControlDependence
+  23: 3 -> 6 trueControlDependence
+  24: 3 -> 7 trueControlDependence
+  25: 3 -> 8 trueControlDependence
+  26: 3 -> 9 trueControlDependence
+  27: 5 -> 10 loopIndependentDefUseDependence b$1
+  28: 5 -> 15 loopIndependentDefUseDependence b$1
+  29: 5 -> 16 loopIndependentDefUseDependence b$1
+  30: 7 -> 10 trueControlDependence
+  31: 7 -> 12 exceptionCatch
+  32: 7 -> 13 exceptionCatch
+  33: 7 -> 5 trueControlDependence
+  34: 8 -> 9 summary
+  35: 9 -> 5 loopIndependentDefUseDependence this.!n
 --
 ----- ClDG (to here) -----
 

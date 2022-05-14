@@ -1,0 +1,37 @@
+----- ClDG (from here) -----
+Class Name = Circle2
+   0 constructorEntry [ Circle2( int ) ]
+   1 throwsClause D = {  } U = { $ZeroRadiusException }
+   2 formalIn D = { r$0 } U = {  }
+   3 ifSt D = {  } U = { r$0 }
+   4 throwSt D = {  } U = { ZeroRadiusException.!ZeroRadiusException }
+   5 receiver D = {  } U = {  }
+   6 constructorCall D = {  } U = {  } TO = ZeroRadiusException#ZeroRadiusException( )
+   7 actualOut D = { ZeroRadiusException.!ZeroRadiusException } U = {  }
+   9 assignment D = { this.radius } U = { r$0 }
+  11 formalOut D = {  } U = { $_, this.radius }
+--
+   0 fieldEntry [ radius ]
+   1 fieldDeclaration D = { this.radius } U = { this.radius }
+--
+   0: Circle2( int )
+   1: 0 -> 11 trueControlDependence
+   2: 0 -> 2 trueControlDependence
+   3: 0 -> 3 trueControlDependence
+   4: 2 -> 3 loopIndependentDefUseDependence r$0
+   5: 2 -> 9 loopIndependentDefUseDependence r$0
+   6: 3 -> 4 trueControlDependence
+   7: 3 -> 5 trueControlDependence
+   8: 3 -> 6 trueControlDependence
+   9: 3 -> 7 trueControlDependence
+  10: 3 -> 9 falseControlDependence
+  11: 4 -> 1 trueControlDependence
+  12: 4 -> 9 fallThroughControlDependence
+  13: 7 -> 4 loopIndependentDefUseDependence ZeroRadiusException.!ZeroRadiusException
+  14: 9 -> 11 loopIndependentDefUseDependence this.radius
+--
+   0: radius
+   1: 0 -> 1 trueControlDependence
+--
+----- ClDG (to here) -----
+
