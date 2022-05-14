@@ -365,93 +365,125 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     }
     
     /**
-     * Calculates nodes traversed forward from a given node on this CFG.
-     * @param from the source node
+     * Walks forward from a given node on this CFG and collects the traversed nodes.
+     * @param startnode the starting node to be traversed
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
      * @param condition the condition that stops traversing
-     * @return the collection of the traversed nodes
+     * @return the collection of the forward-traversed nodes
      */
-    public Set<CFGNode> forwardReachableNodes(CFGNode from, boolean loopbackOk, StopConditionOnReachablePath condition) {
-        Set<CFGNode> track = new HashSet<>();
-        if (from != null) {
-            walkForward(from, condition, loopbackOk, track);
+    public Set<CFGNode> forwardReachableNodes(CFGNode startnode,
+            boolean loopbackOk, StopConditionOnReachablePath condition) {
+        Set<CFGNode> nodes = new HashSet<CFGNode>();
+        if (startnode == null) {
+            return nodes;
         }
-        return track;
+        
+        Stack<CFGNode> nodeStack = new Stack<>();
+        nodeStack.push(startnode);
+        
+        while (!nodeStack.isEmpty()) {
+            CFGNode node = nodeStack.pop();
+            
+            if (condition.isStop(node) || nodes.contains(node)) {
+                continue;
+            }
+            nodes.add(node);
+            
+            node.getOutgoingFlows().stream() 
+                .filter(flow -> loopbackOk || !flow.isLoopBack())
+                .map(flow -> flow.getDstNode())
+                .forEach(succ -> nodeStack.push(succ));
+        }
+        return nodes;
     }
     
     /**
-     * Calculates nodes traversed backward from a given node on this CFG.
+     * Walks forward from a given node on this CFG and collects the traversed nodes.
+     * @param startnode the starting node to be traversed
+     * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
+     * @return the collection of the forward-traversed nodes
+     */
+    public Set<CFGNode> forwardReachableNodes(CFGNode startnode, boolean loopbackOk) {
+        return forwardReachableNodes(startnode, loopbackOk, node -> { return false; });
+    }
+    
+    /**
+     * Walks forward between two nodes on this CFG and collects the traversed nodes.
      * @param from the source node
+     * @param to the destination node
+     * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
+     * @return the collection of the forward-traversed nodes
+     */
+    public Set<CFGNode> forwardReachableNodes(CFGNode from, CFGNode to, boolean loopbackOk) {
+        Set<CFGNode> nodes;
+        if (from.equals(to)) {
+            nodes = new HashSet<CFGNode>();
+        } else {
+            nodes = forwardReachableNodes(from, loopbackOk, node -> node.equals(to));
+        }
+        nodes.add(to);
+        return nodes;
+    }
+    
+    /**
+     * Walks backward from a given node on this CFG and collects the traversed nodes.
+     * @param startnode the starting node to be traversed
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
      * @param condition the condition that stops traversing
-     * @return the collection of the traversed nodes
+     * @return the collection of the backward-traversed nodes
      */
-    public Set<CFGNode> backwardReachableNodes(CFGNode from, boolean loopbackOk, StopConditionOnReachablePath condition) {
-        Set<CFGNode> track = new HashSet<>();
-        if (from != null) {
-            walkBackward(from, condition, loopbackOk, track);
+    public Set<CFGNode> backwardReachableNodes(CFGNode startnode,
+            boolean loopbackOk, StopConditionOnReachablePath condition) {
+        Set<CFGNode> nodes = new HashSet<CFGNode>();
+        if (startnode == null) {
+            return nodes;
         }
-        return track;
+        
+        Stack<CFGNode> nodeStack = new Stack<>();
+        nodeStack.push(startnode);
+        
+        while (!nodeStack.isEmpty()) {
+            CFGNode node = nodeStack.pop();
+            
+            if (condition.isStop(node) || nodes.contains(node)) {
+                continue;
+            }
+            nodes.add(node);
+            
+            node.getIncomingFlows().stream()
+                .filter(flow -> loopbackOk || !flow.isLoopBack())
+                .map(flow -> flow.getSrcNode())
+                .forEach(pred -> nodeStack.push(pred));
+        }
+        return nodes;
     }
     
     /**
-     * Calculates nodes traversed forward from a given node on this CFG with no condition.
-     * @param from the source node
+     * Walks backward from a given node on this CFG and collects the traversed nodes.
+     * @param startnode the starting node to be traversed
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
-     * @return the collection of the traversed nodes
-     */
-    public Set<CFGNode> forwardReachableNodes(CFGNode from, boolean loopbackOk) {
-        return forwardReachableNodes(from, loopbackOk, node -> { return false; });
-    }
-    
-    /**
-     * Calculates nodes traversed backward from a given node on this CFG with no condition.
-     * @param from the source node
-     * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
-     * @return the collection of the traversed nodes
+     * @return the collection of the backward-traversed nodes
      */
     public Set<CFGNode> backwardReachableNodes(CFGNode from, boolean loopbackOk) {
         return backwardReachableNodes(from, loopbackOk, node -> { return false; });
     }
     
     /**
-     * Calculates nodes traversed forward between two nodes on this CFG.
+     * Walks backward between two nodes on this CFG and collects the traversed nodes.
      * @param from the source node
      * @param to the destination node
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
-     * @return the collection of the traversed nodes
-     */
-    public Set<CFGNode> forwardReachableNodes(CFGNode from, CFGNode to, boolean loopbackOk) {
-        Set<CFGNode> track = new HashSet<CFGNode>();
-        if (from.equals(to)) {
-            track.add(from);
-            return track;
-        }
-        
-        Set<CFGNode> ftrack = forwardReachableNodes(from, loopbackOk, node -> node.equals(to));
-        track.addAll(ftrack);
-        track.add(to);
-        return track;
-    }
-    
-    /**
-     * Calculates nodes traversed backward between two nodes on this CFG.
-     * @param from the source node
-     * @param to the destination node
-     * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
-     * @return the collection of the traversed nodes
+     * @return the collection of the backward-traversed nodes
      */
     public Set<CFGNode> backwardReachableNodes(CFGNode from, CFGNode to, boolean loopbackOk) {
-        Set<CFGNode> track = new HashSet<>();
+        Set<CFGNode> nodes;
         if (from.equals(to)) {
-            track.add(from);
-            return track;
+            nodes = new HashSet<CFGNode>();
+        } else {
+            nodes = backwardReachableNodes(from, loopbackOk, node -> node.equals(to));
         }
-        
-        Set<CFGNode> btrack = backwardReachableNodes(from, loopbackOk, node -> node.equals(to));
-        track.addAll(btrack);
-        track.add(to);
-        return track;
+        nodes.add(to);
+        return nodes;
     }
     
     /**
@@ -462,10 +494,10 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @return the collection of the traversed nodes
      */
     public Set<CFGNode> reachableNodes(CFGNode from, CFGNode to, boolean loopbackOk) {
-        Set<CFGNode> ftrack = forwardReachableNodes(from, to, loopbackOk);
-        Set<CFGNode> btrack = backwardReachableNodes(to, from, loopbackOk);
-        Set<CFGNode> track = GraphElement.intersection(ftrack, btrack);
-        return track;
+        Set<CFGNode> fnodes = forwardReachableNodes(from, to, loopbackOk);
+        Set<CFGNode> bnodes = backwardReachableNodes(to, from, loopbackOk);
+        Set<CFGNode> nodes = GraphElement.intersection(fnodes, bnodes);
+        return nodes;
     }
     
     /**
@@ -475,68 +507,16 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @return the collection of the reachable nodes
      */
     public Set<CFGNode> constrainedReachableNodes(CFGNode from, CFGNode to) {
-        Set<CFGNode> btrackf = backwardReachableNodes(to, from, true);
-        Set<CFGNode> ftrackf = forwardReachableNodes(from, getExitNode(), true);
-        Set<CFGNode> fCRP = GraphElement.intersection(btrackf, ftrackf);
+        Set<CFGNode> bnodesf = backwardReachableNodes(to, from, true);
+        Set<CFGNode> fnodesf = forwardReachableNodes(from, getExitNode(), true);
+        Set<CFGNode> fCRP = GraphElement.intersection(bnodesf, fnodesf);
         
-        Set<CFGNode> ftrackb = forwardReachableNodes(from, to, true);
-        Set<CFGNode> btrackb = backwardReachableNodes(to, getExitNode(), true);
-        Set<CFGNode> bCRP = GraphElement.intersection(ftrackb, btrackb);
+        Set<CFGNode> fnodesb = forwardReachableNodes(from, to, true);
+        Set<CFGNode> bnodesb = backwardReachableNodes(to, getExitNode(), true);
+        Set<CFGNode> bCRP = GraphElement.intersection(fnodesb, bnodesb);
         
         Set<CFGNode> CRP = GraphElement.union(fCRP, bCRP);
         return CRP;
-    }
-    
-    /**
-     * Walks forward and collects the traversed nodes.
-     * @param startnode the starting node to be traversed
-     * @param condition the condition that stops traversing
-     * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
-     * @param track the collection of already traversed nodes
-     */
-    private void walkForward(CFGNode startnode, StopConditionOnReachablePath condition, boolean loopbackOk, Set<CFGNode> track) {
-        Stack<CFGNode> nodeStack = new Stack<>();
-        nodeStack.push(startnode);
-        
-        while (!nodeStack.isEmpty()) {
-            CFGNode node = nodeStack.pop();
-            
-            if (condition.isStop(node) || track.contains(node)) {
-                continue;
-            }
-            track.add(node);
-            
-            node.getOutgoingFlows().stream() 
-                .filter(flow -> loopbackOk || !flow.isLoopBack())
-                .map(flow -> flow.getDstNode())
-                .forEach(succ -> nodeStack.push(succ));
-        }
-    }
-    
-    /**
-     * Walks backward and collects the traversed nodes.
-     * @param startnode the starting node to be traversed
-     * @param condition the condition that stops traversing
-     * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
-     * @param track the collection of already traversed nodes
-     */
-    private void walkBackward(CFGNode startnode, StopConditionOnReachablePath condition, boolean loopbackOk, Set<CFGNode> track) {
-        Stack<CFGNode> nodeStack = new Stack<>();
-        nodeStack.push(startnode);
-        
-        while (!nodeStack.isEmpty()) {
-            CFGNode node = nodeStack.pop();
-            
-            if (condition.isStop(node) || track.contains(node)) {
-                continue;
-            }
-            track.add(node);
-            
-            node.getIncomingFlows().stream()
-                .filter(flow -> loopbackOk || !flow.isLoopBack())
-                .map(flow -> flow.getSrcNode())
-                .forEach(pred -> nodeStack.push(pred));
-        }
     }
     
     /**
