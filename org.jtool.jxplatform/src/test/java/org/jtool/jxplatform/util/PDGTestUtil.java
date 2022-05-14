@@ -14,6 +14,7 @@ import org.jtool.pdg.PDG;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.SDG;
 import org.jtool.pdg.Dependence;
+import org.jtool.pdg.DD;
 import org.jtool.pdg.PDGNode;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
@@ -243,7 +244,7 @@ public class PDGTestUtil {
         }
     }
     
-    private static void writePDG(Path path, String content) {
+    public static void writePDG(Path path, String content) {
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write(content);
             writer.newLine();
@@ -280,11 +281,13 @@ public class PDGTestUtil {
         buf.append(pdg.getEntryNode().getSignature());
         buf.append("\n");
         
+        List<String> edgesInfo = Dependence.sortEdges(pdg.getEdges()).stream()
+                .map(edge -> toString(pdg, edge)).sorted().collect(Collectors.toList());
         long index = 1;
-        for (Dependence edge : Dependence.sortEdges(pdg.getEdges())) {
+        for (String edgeInfo : edgesInfo) {
             buf.append(GraphElement.getIdString(index));
             buf.append(": ");
-            buf.append(toString(pdg, edge));
+            buf.append(edgeInfo);
             buf.append("\n");
             index++;
         }
@@ -297,6 +300,15 @@ public class PDGTestUtil {
                    String.valueOf(getId(pdg, edge.getDstNode())));
         if (edge.getKind() != null) {
             buf.append(" " + edge.getKind().toString());
+        }
+        if (edge.isDD()) {
+            DD dd = (DD)edge;
+            if (dd.getVariable() != null) {
+                buf.append(" " + dd.getVariable().getReferenceForm());
+            }
+            if (dd.isLoopCarried()) {
+                buf.append(" " + String.valueOf(getId(pdg, dd.getLoopCarriedNode())));
+            }
         }
         return buf.toString();
     }
