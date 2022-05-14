@@ -1049,8 +1049,9 @@ public class JavaClass extends JavaElement {
         if (superClassName != null && superClassName.equals(jclass.getClassName())) {
             return true;
         }
-        return superInterfaceNames.stream()
-                .anyMatch(n -> n.equals(jclass.getClassName()));
+        
+        return superInterfaceNames != null &&
+               superInterfaceNames.stream().anyMatch(n -> n.equals(jclass.getClassName()));
     }
     
     /**
