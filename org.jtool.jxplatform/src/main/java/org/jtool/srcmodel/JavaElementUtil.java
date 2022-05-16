@@ -7,7 +7,7 @@ package org.jtool.srcmodel;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
-import org.jtool.jxplatform.project.Logger;
+import org.jtool.jxplatform.builder.Logger;
 import org.eclipse.jdt.core.dom.EnumDeclaration;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Initializer;

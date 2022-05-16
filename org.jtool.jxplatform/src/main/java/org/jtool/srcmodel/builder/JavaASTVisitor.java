@@ -11,7 +11,7 @@ import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaPackage;
-import org.jtool.jxplatform.project.Logger;
+import org.jtool.jxplatform.builder.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.PackageDeclaration;
 import org.eclipse.jdt.core.dom.ImportDeclaration;

@@ -5,7 +5,7 @@
 
 package org.jtool.srcmodel;
 
-import org.jtool.jxplatform.project.Logger;
+import org.jtool.jxplatform.builder.Logger;
 import org.jtool.srcmodel.builder.FieldAccessCollector;
 import org.jtool.srcmodel.builder.LambdaCollector;
 import org.jtool.srcmodel.builder.LocalDeclarationCollector;

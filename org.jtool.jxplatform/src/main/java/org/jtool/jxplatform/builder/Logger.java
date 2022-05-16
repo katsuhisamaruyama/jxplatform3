@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.project;
+package org.jtool.jxplatform.builder;
 
 import java.util.List;
 import java.util.ArrayList;

@@ -11,6 +11,7 @@ import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.builder.JavaASTVisitor;
 import org.jtool.srcmodel.builder.ProjectStore;
+import org.jtool.jxplatform.builder.Logger;
 import org.jtool.jxplatform.builder.ModelBuilder;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.compiler.IProblem;

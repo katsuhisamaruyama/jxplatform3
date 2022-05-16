@@ -8,7 +8,7 @@ package org.jtool.srcmodel.builder;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaElementUtil;
-import org.jtool.jxplatform.project.Logger;
+import org.jtool.jxplatform.builder.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 import org.eclipse.jdt.core.dom.CreationReference;
