@@ -6,9 +6,7 @@
 package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CFG;
-import org.jtool.cfg.CFGMethodEntry;
 import org.jtool.cfg.CFGMethodCall;
-import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.srcmodel.JavaProject;
@@ -36,14 +34,6 @@ class FieldReferenceResolver {
     void findDefUseFields(CFG cfg) {
         for (CFGMethodCall callnode : cfg.getMethodCallNodes()) {
             findFieldsForCalledMethod(cfg, callnode);
-        }
-        
-        if (cfg.isMethod()) {
-            CFGParameter fout = ((CFGMethodEntry)cfg.getEntryNode()).getFormalOut();
-            cfg.getStatementNodes().stream()
-                .flatMap(node -> node.getDefVariables().stream())
-                .filter(jv -> jv.isFieldAccess())
-                .forEach(jv -> fout.addUseVariable(jv));
         }
     }
     
@@ -81,7 +71,6 @@ class FieldReferenceResolver {
                         JVariableReference fvar = createExternalFieldReference(callNode.getASTNode(),
                                 def, receiverName, callNode.getApproximatedTypeNames(), inProject);
                         callNode.addDefVariable(fvar);
-                        callNode.getActualOut().addDefVariable(fvar);
                     }
                     
                     if (!inProject) {
@@ -92,8 +81,7 @@ class FieldReferenceResolver {
                 if (existExternalDefField && callNode.hasReceiver()) {
                     List<JVariableReference> fvars = callNode.getReceiver().getUseVariables();
                     callNode.addDefVariables(fvars);
-                    callNode.getActualOut().addDefVariables(fvars);
-                    callNode.getActualOut().addUseVariables(fvars);
+                    callNode.addUseVariables(fvars);
                 }
                 
                 boolean existExternalUseField = false;
@@ -104,7 +92,6 @@ class FieldReferenceResolver {
                         JVariableReference fvar = createExternalFieldReference(callNode.getASTNode(),
                                 use, receiverName, callNode.getApproximatedTypeNames(), inProject);
                         callNode.addUseVariable(fvar);
-                        callNode.getActualOut().addUseVariable(fvar);
                     }
                     
                     if (!inProject) {
