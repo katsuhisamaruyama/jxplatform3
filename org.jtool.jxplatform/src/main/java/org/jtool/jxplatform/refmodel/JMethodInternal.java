@@ -38,8 +38,11 @@ class JMethodInternal extends JMethod {
         }
         
         for (CFGNode node : cfg.getNodes()) {
-            if (node.isStatementNotParameter()) {
+            if (node.isStatement()) {
                 CFGStatement stNode = (CFGStatement)node;
+                if (stNode.isFormal()) {
+                    continue;
+                }
                 
                 stNode.getDefVariables()
                     .stream()
