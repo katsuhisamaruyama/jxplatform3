@@ -46,11 +46,11 @@ class JMethodInternal extends JMethod {
                 
                 stNode.getDefVariables()
                     .stream()
-                    .filter(var -> var.isFieldAccess() && var.getReferenceForm().startsWith("this"))
+                    .filter(var -> var.isFieldAccess() && var.getReferenceForm().startsWith("this."))
                     .forEach(var -> defFields.add(updateClassName(new DefUseField(var))));
                 stNode.getUseVariables()
                     .stream()
-                    .filter(var -> var.isFieldAccess() && var.getReferenceForm().startsWith("this"))
+                    .filter(var -> var.isFieldAccess() && var.getReferenceForm().startsWith("this."))
                     .forEach(var -> useFields.add(updateClassName(new DefUseField(var))));
             }
         }

@@ -11,6 +11,7 @@ import org.jtool.cfg.CFGExit;
 import org.jtool.cfg.CFGMethodEntry;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGParameter;
+import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JLocalVarReference;
 import org.jtool.cfg.JVariableReference;
@@ -29,6 +30,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 /**
  * Builds a CFG that corresponds to a method.
@@ -131,6 +133,8 @@ class CFGMethodBuilder {
             Resolver.resolveLocalAlias(cfg);
         }
         
+        addUseVariablesForReturn(cfg);
+        
         return cfg;
     }
     
@@ -218,5 +222,30 @@ class CFGMethodBuilder {
         formalOut.addUseVariable(use);
         
         return formalOut;
+    }
+    
+    private static void addUseVariablesForReturn(CFG cfg) {
+        List<CFGStatement> returnNodes = cfg.getStatementNodes().stream()
+                                            .filter(node -> node.isReturn())
+                                            .collect(Collectors.toList());
+        for (CFGStatement returnNode : returnNodes) {
+            Set<JVariableReference> defs = cfg.backwardReachableNodes(returnNode, true, false).stream()
+                                              .filter(node -> node.isStatement())
+                                              .flatMap(node -> ((CFGStatement)node).getDefVariables().stream())
+                                              .filter(def -> def.isFieldAccess())
+                                              .collect(Collectors.toSet());
+            
+            Set<JVariableReference> uses = returnNode.getUseVariables().stream()
+                                                     .filter(var -> !var.isPrimitiveType())
+                                                     .collect(Collectors.toSet());
+            
+            for (JVariableReference use : uses) {
+                for (JVariableReference def : defs) {
+                    if (def.getReferenceForm().startsWith(use.getReferenceForm() + ".")) {
+                        returnNode.addUseVariable(def);
+                    }
+                }
+            }
+        }
     }
 }

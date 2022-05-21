@@ -8,9 +8,7 @@ package org.jtool.pdg.builder;
 import org.jtool.pdg.CD;
 import org.jtool.pdg.PDGNode;
 import org.jtool.cfg.CFG;
-import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGNode;
-import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
@@ -48,7 +46,7 @@ public class CDFinder {
             postDominatorForBranch.add(branchDstNode);
             
             for (CFGNode cfgnode : postDominatorForBranch) {
-                if (cfgnode.isStatementNotParameter() && !cfgnode.isReceiver() &&
+                if (cfgnode.isStatement() && 
                   !branchNode.equals(cfgnode) && !postDominator.contains(cfgnode)) {
                     CD edge = new CD(branchNode.getPDGNode(), cfgnode.getPDGNode());
                     if (branch.isTrue()) {
@@ -61,34 +59,8 @@ public class CDFinder {
                         edge.setExceptionCatch();
                     }
                     bpdg.add(edge);
-                    
-                    if (cfgnode.isMethodCall()) {
-                        findCDsOnParameters(bpdg, (CFGMethodCall)cfgnode, edge);
-                    }
                 }
             }
-        }
-    }
-    
-    private static void findCDsOnParameters(BarePDG bpdg, CFGMethodCall callNode, CD original) {
-        for (CFGParameter cfgnode : callNode.getActualIns()) {
-            CD edge = new CD(original.getSrcNode(), cfgnode.getPDGNode());
-            edge.setTrue();
-            bpdg.add(edge);
-        }
-        
-        CFGParameter returnNode = callNode.getActualOut();
-        if (returnNode != null) {
-            CD edge = new CD(original.getSrcNode(), returnNode.getPDGNode());
-            edge.setTrue();
-            bpdg.add(edge);
-        }
-        
-        CFGNode receiverNode = callNode.getReceiver();
-        if (receiverNode != null) {
-            CD edge = new CD(original.getSrcNode(), receiverNode.getPDGNode());
-            edge.setTrue();
-            bpdg.add(edge);
         }
     }
     
@@ -104,7 +76,7 @@ public class CDFinder {
         }
         
         for (PDGNode pdgnode : bpdg.getNodes()) {
-            if (!pdgnode.isEntry() && pdgnode.getNumOfIncomingTrueFalseCDs() == 0) {
+            if (!pdgnode.isEntry() && pdgnode.getIncomingCDEdges().size() == 0) {
                 CD edge = new CD(entryNode.getPDGNode(), pdgnode);
                 edge.setTrue();
                 bpdg.add(edge);

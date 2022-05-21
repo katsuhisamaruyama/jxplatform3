@@ -322,7 +322,7 @@ public class Dependence extends GraphEdge {
     }
     
     /**
-     * Sorts the list of dependence edges
+     * Sorts the list of dependence edges.
      * @param co the list of the dependence edges to be sorted
      * @return the sorted list of the dependence edges
      */
@@ -345,4 +345,16 @@ public class Dependence extends GraphEdge {
         });
         return edges;
     }
+    
+    /**
+     * Sorts the list of dependence edges in reverse order.
+     * @param co the list of the dependence edges to be sorted
+     * @return the sorted list of the dependence edges
+     */
+    public static List<Dependence> sortEdgesReverse(Collection<? extends Dependence> co) {
+        List<Dependence> edges = sortEdges(co);
+        Collections.reverse(edges);
+        return edges;
+    }
+    
 }

@@ -32,6 +32,9 @@ public class ASTNodeOnCFGCollector extends ASTVisitor {
     }
     
     public ASTNode get(ASTNode node) {
+        if (node == null) {
+            return null;
+        }
         return nodeMap.get(key(node));
     }
     

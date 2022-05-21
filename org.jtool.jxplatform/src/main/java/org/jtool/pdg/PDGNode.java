@@ -118,14 +118,6 @@ public class PDGNode extends GraphNode {
     }
     
     /**
-     * Returns the number of dependence edges incoming to this node.
-     * @return the number of the incoming edges
-     */
-    public int getNumOfIncomingTrueFalseCDs() {
-        return (int)getIncomingCDEdges().stream().filter(cd -> cd.isTrue() || cd.isFalse()).count();
-    }
-    
-    /**
      * Obtains control dependence edges incoming to this node.
      * This method is not intended to be invoked by clients.
      * @return the collection of the incoming edges

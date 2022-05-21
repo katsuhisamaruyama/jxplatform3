@@ -585,7 +585,7 @@ public class CFGNode extends GraphNode {
      * Tests if this is a catch-clause node.
      * @return {@code true} if this is a catch-clause node, otherwise {@code false}
      */
-    public boolean isCatch() {
+    public boolean isCatchClause() {
         return kind == Kind.catchClause;
     }
     
@@ -593,7 +593,7 @@ public class CFGNode extends GraphNode {
      * Tests if this is a finally-clause node.
      * @return {@code true} if this is a finally-clause node, otherwise {@code false}
      */
-    public boolean isFinally() {
+    public boolean isFinallyClause() {
         return kind == Kind.finallyClause;
     }
     
@@ -601,7 +601,7 @@ public class CFGNode extends GraphNode {
      * Tests if this is a throws-clause node.
      * @return {@code true} if this is a throws-clause node, otherwise {@code false}
      */
-    public boolean isThrows() {
+    public boolean isThrowClause() {
         return kind == Kind.throwsClause;
     }
     

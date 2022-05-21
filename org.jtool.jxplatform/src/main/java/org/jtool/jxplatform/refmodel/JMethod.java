@@ -87,19 +87,31 @@ abstract public class JMethod extends JCommon {
     
     abstract boolean stopTraverse(Set<JMethod> visitedMethods, int count);
     
-    protected void collectDefUseFieldsInAccessedMethods(JMethod method, Set<JMethod> visitedMethods, int count) {
+    protected void collectDefUseFieldsInAccessedMethods(JMethod method,
+            Set<JMethod> visitedMethods, int count) {
         for (JMethod amethod : method.accessedMethods) {
-            
             if (!amethod.stopTraverse(visitedMethods, count + 1)) {
                 visitedMethods.add(amethod);
                 
                 amethod.collectDefUseFieldsInThisMethod();
-                amethod.defFields.stream()
-                       .filter(var -> !var.getReferenceForm().startsWith("this"))
-                       .forEach(var -> method.allDefFields.add(var));
-                amethod.useFields.stream()
-                       .filter(var -> !var.getReferenceForm().startsWith("this"))
-                       .forEach(var -> method.allUseFields.add(var));
+                
+                for (DefUseField var : amethod.defFields) {
+                    if (var.getReferenceForm().startsWith("this.")) {
+                        String referenceForm = var.getReferenceForm().replace("this", "this." + var.getClassName());
+                        DefUseField def = new DefUseField(var.getClassName(), var.getName(), referenceForm,
+                                var.getType(), var.isPrimitive(), var.getModifier());
+                        method.allDefFields.add(def);
+                    }
+                }
+                
+                for (DefUseField var : amethod.useFields) {
+                    if (var.getReferenceForm().startsWith("this.")) {
+                        String referenceForm = var.getReferenceForm().replace("this", "this." + var.getClassName());
+                        DefUseField use = new DefUseField(var.getClassName(), var.getName(), referenceForm,
+                                var.getType(), var.isPrimitive(), var.getModifier());
+                        method.allUseFields.add(use);
+                    }
+                }
                 
                 collectDefUseFieldsInAccessedMethods(amethod, visitedMethods, count + 1);
             }

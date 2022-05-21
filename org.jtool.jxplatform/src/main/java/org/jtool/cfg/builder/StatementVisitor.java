@@ -273,6 +273,11 @@ public class StatementVisitor extends ASTVisitor {
         condition.accept(condVisitor);
         CFGNode curNode = condVisitor.getExitNode();
         
+        ITypeBinding tbinding = condition.resolveTypeBinding();
+        JVariableReference jvar = new JExpedientialReference(node,
+                "$Sw", tbinding.getQualifiedName(), tbinding.isPrimitive());
+        switchNode.addDefVariable(jvar);
+        
         ControlFlow caseEdge = createFlow(curNode, nextNode);
         caseEdge.setTrue();
         
@@ -325,8 +330,7 @@ public class StatementVisitor extends ASTVisitor {
                 curNode = condVisitor.getExitNode();
             }
             
-            caseNode.addDefVariables(switchNode.getDefVariables());
-            caseNode.addUseVariables(switchNode.getUseVariables());
+            caseNode.addUseVariables(switchNode.getDefVariables());
         }
         
         ControlFlow trueEdge = createFlow(curNode, nextNode);
@@ -696,9 +700,6 @@ public class StatementVisitor extends ASTVisitor {
         CFGMerge mergeNode = new CFGMerge(node, tryNode);
         reconnect(mergeNode);
         
-        ControlFlow fallEdge = createFlow(tryNode, mergeNode);
-        fallEdge.setFallThrough();
-        
         for (CatchClause clause : (List<CatchClause>)node.catchClauses()) { 
             visitCatchClause(tryNode, clause, mergeNode);
         }
@@ -744,8 +745,10 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow trueEdge = createFlow(catchNode, nextNode);
         trueEdge.setTrue();
         
-        Statement body = node.getBody();
-        body.accept(this);
+        ControlFlow fallEdge = createFlow(catchNode, mergeNode);
+        fallEdge.setFallThrough();
+        
+        node.getBody().accept(this);
         reconnect(mergeNode);
     }
     
@@ -756,6 +759,9 @@ public class StatementVisitor extends ASTVisitor {
         
         ControlFlow edge = createFlow(finallyNode, nextNode);
         edge.setTrue();
+        
+        ControlFlow fallEdge = createFlow(finallyNode, mergeNode);
+        fallEdge.setFallThrough();
         
         block.accept(this);
     }

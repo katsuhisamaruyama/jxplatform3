@@ -283,10 +283,6 @@ public class PDGBuilder {
         Set<PDGStatement> formalIns = entry.getFormalIns().stream()
                                            .map(node -> (PDGStatement)node.getPDGNode())
                                            .collect(Collectors.toSet());
-        if (entry.getFormalOut() == null) {
-            System.err.println("PDG = ");
-            pdg.print();
-        }
         
         PDGStatement formalOut = (PDGStatement)entry.getFormalOut().getPDGNode();
         

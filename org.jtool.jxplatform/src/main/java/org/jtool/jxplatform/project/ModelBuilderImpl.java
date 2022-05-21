@@ -34,7 +34,7 @@ public abstract class ModelBuilderImpl {
     protected boolean analyzeBytecode = false;
     protected boolean useProjectCache = false;
     
-    protected int sourcecodeAnalysisChain = 2;
+    protected int sourcecodeAnalysisChain = 5;
     protected int bytecodeAnalysisChain = 2;
     
     protected Logger logger;
