@@ -82,6 +82,6 @@ public class CFGFieldEntry extends CFGEntry {
      */
     @Override
     public String toString() {
-        return super.toString() + " [ " + fqn.getMemberSignature() + " ]";
+        return super.toString() + " [ " + fqn + " ]";
     }
 }
