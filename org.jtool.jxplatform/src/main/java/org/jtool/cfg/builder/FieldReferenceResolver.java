@@ -14,9 +14,7 @@ import org.jtool.jxplatform.refmodel.BytecodeClassStore;
 import org.jtool.jxplatform.refmodel.DefUseField;
 import org.jtool.jxplatform.refmodel.JClass;
 import org.jtool.jxplatform.refmodel.JMethod;
-import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Finds fields defined and/or used in invoked methods and accessed fields.
@@ -54,47 +52,42 @@ class FieldReferenceResolver {
         
         for (JClass type : callNode.getApproximatedTypes()) {
             String sig = callNode.getSignature();
-            
             if (callNode.isConstructorCall()) {
                 sig = type.getSimpleName() + sig.substring(sig.lastIndexOf('('));
             }
             
             JMethod method = type.getMethod(sig);
             if (method != null && !method.getQualifiedName().equals(cfg.getQualifiedName())) {
-                method.findDefUseFields();
+                method.findDefUseFields(receiverName);
                 
                 boolean existExternalDefField = false;
                 for (DefUseField def : method.getAllDefFields()) {
-                    boolean inProject = bcStore.findInternalClass(def.getClassName()) != null;
-                    
-                    if (!method.isInProject() || method.isInProject() == inProject) {
-                        JVariableReference fvar = createExternalFieldReference(callNode.getASTNode(),
-                                def, receiverName, callNode.getApproximatedTypeNames(), inProject);
-                        callNode.addDefVariable(fvar);
-                    }
-                    
-                    if (!inProject) {
+                    boolean isInProject = bcStore.findInternalClass(def.getClassName()) != null;
+                    JVariableReference var = new JFieldReference(callNode.getASTNode(),
+                            def.getClassName(), def.getName(), def.getReferenceForm(),
+                            def.getType(), def.isPrimitive(), def.getModifiers(), isInProject, false);
+                    callNode.addDefVariable(var);
+                            
+                    if (!isInProject) {
                         existExternalDefField = true;
                     }
                 }
                 
                 if (existExternalDefField && callNode.hasReceiver()) {
-                    List<JVariableReference> fvars = callNode.getReceiver().getUseVariables();
-                    callNode.addDefVariables(fvars);
-                    callNode.addUseVariables(fvars);
+                    List<JVariableReference> vars = callNode.getReceiver().getUseVariables();
+                    callNode.addDefVariables(vars);
+                    callNode.addUseVariables(vars);
                 }
                 
                 boolean existExternalUseField = false;
                 for (DefUseField use : method.getAllUseFields()) {
-                    boolean inProject = bcStore.findInternalClass(use.getClassName()) != null;
-                    
-                    if (!method.isInProject() || method.isInProject() == inProject) {
-                        JVariableReference fvar = createExternalFieldReference(callNode.getASTNode(),
-                                use, receiverName, callNode.getApproximatedTypeNames(), inProject);
-                        callNode.addUseVariable(fvar);
-                    }
-                    
-                    if (!inProject) {
+                    boolean isInProject = bcStore.findInternalClass(use.getClassName()) != null;
+                    JVariableReference fvar = new JFieldReference(callNode.getASTNode(),
+                            use.getClassName(), use.getName(), use.getReferenceForm(),
+                            use.getType(), use.isPrimitive(), use.getModifiers(), isInProject, false);
+                    callNode.addUseVariable(fvar);
+                            
+                    if (!isInProject) {
                         existExternalUseField = true;
                     }
                 }
@@ -104,21 +97,5 @@ class FieldReferenceResolver {
                 }
             }
         }
-    }
-    
-    private JVariableReference createExternalFieldReference(ASTNode node, DefUseField var,
-            String receiverName, Set<String> receiverTypes, boolean inProject) {
-        String referenceForm = var.getReferenceForm();
-        if (inProject) {
-            if (referenceForm.startsWith("this")) {
-                referenceForm = referenceForm.replace("this", receiverName);
-            }
-        } else {
-            for (String receiverType : receiverTypes) {
-                referenceForm = referenceForm.replace(receiverType, receiverName);
-            }
-        }
-        return new JFieldReference(node, var.getClassName(), var.getName(), referenceForm,
-                var.getType(), var.isPrimitive(), var.getModifier(), inProject, false);
     }
 }

@@ -427,7 +427,7 @@ public class ExpressionVisitor extends ASTVisitor {
         receiverNode.setMethodCall(callNode);
         
         String name = receiverNode.getName() + "." +
-                JMethodReturnReference.METHOD_RETURN_SYMBOL + node.getName().getIdentifier();
+                JMethodReturnReference.METHOD_RETURN_SYMBOL + jcall.getSignature();
         JMethodReturnReference def = setActualNodes(callNode, node.arguments(), name);
         if (def != null) {
             def.setPrefix(prefix);

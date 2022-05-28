@@ -1,11 +1,12 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.jxplatform.refmodel;
 
 import org.jtool.cfg.JReference;
+import org.eclipse.jdt.core.dom.Modifier;
 
 /**
  * A class that represents a field defined or used.
@@ -21,7 +22,7 @@ public class DefUseField {
     private String referenceForm;
     private String type;
     private boolean isPrimitive;
-    private int modifier;
+    private int modifiers;
     
     public DefUseField(JReference var) {
         this(var.getDeclaringClassName(), var.getName(), var.getReferenceForm(),
@@ -29,13 +30,13 @@ public class DefUseField {
     }
     
     public DefUseField(String className, String name, String referenceForm, String type,
-            boolean isPrimitive, int modifier) {
+            boolean isPrimitive, int modifiers) {
         this.className = className;
         this.name = name;
         this.referenceForm = referenceForm;
         this.type = type;
         this.isPrimitive = isPrimitive;
-        this.modifier = modifier;
+        this.modifiers = modifiers;
     }
     
     static DefUseField create(String str) {
@@ -74,8 +75,12 @@ public class DefUseField {
         return isPrimitive;
     }
     
-    public int getModifier() {
-        return modifier;
+    public int getModifiers() {
+        return modifiers;
+    }
+    
+    public boolean isStatic() {
+        return Modifier.isStatic(modifiers);
     }
     
     boolean equals(DefUseField field) {
@@ -94,7 +99,7 @@ public class DefUseField {
     
     public String toStr() {
         return getQualifiedName() + FieldPropertySeparator + type + FieldPropertySeparator +
-                String.valueOf(isPrimitive) + FieldPropertySeparator + String.valueOf(modifier);
+                String.valueOf(isPrimitive) + FieldPropertySeparator + String.valueOf(modifiers);
     }
     
     @Override

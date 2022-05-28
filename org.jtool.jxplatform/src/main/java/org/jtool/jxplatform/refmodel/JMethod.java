@@ -62,61 +62,25 @@ abstract public class JMethod extends JCommon {
         return allUseFields;
     }
     
-    public void findDefUseFields() {
+    public void findDefUseFields(String receiverName) {
         collectDefUseFieldsInThisMethod();
         
         allDefFields.clear();
         allUseFields.clear();
-        allDefFields.addAll(defFields);
-        allUseFields.addAll(useFields);
+        collectDefUseFieldsInAccessedMethods(this, this, receiverName);
         
-        collectDefUseFieldsInAccessedMethods(this, new HashSet<>(), 0);
+        collectDefUseFieldsInAccessedMethods(this, receiverName, new HashSet<>(), 0);
     }
     
-    protected void collectDefUseFieldsInThisMethod() {
-        if (!isDefUseCollected) {
-            collectDefUseFields();
-            collectAccessedMethods();
-            isDefUseCollected = true;
-        }
-    }
+    abstract protected void collectDefUseFieldsInThisMethod();
     
-    abstract protected void collectDefUseFields();
+    abstract protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
+            JMethod accessedMethod, String receiverName);
     
-    abstract protected void collectAccessedMethods();
+    abstract protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
+            String prefix, Set<JMethod> visitedMethods, int count);
     
     abstract boolean stopTraverse(Set<JMethod> visitedMethods, int count);
-    
-    protected void collectDefUseFieldsInAccessedMethods(JMethod method,
-            Set<JMethod> visitedMethods, int count) {
-        for (JMethod amethod : method.accessedMethods) {
-            if (!amethod.stopTraverse(visitedMethods, count + 1)) {
-                visitedMethods.add(amethod);
-                
-                amethod.collectDefUseFieldsInThisMethod();
-                
-                for (DefUseField var : amethod.defFields) {
-                    if (var.getReferenceForm().startsWith("this.")) {
-                        String referenceForm = var.getReferenceForm().replace("this", "this." + var.getClassName());
-                        DefUseField def = new DefUseField(var.getClassName(), var.getName(), referenceForm,
-                                var.getType(), var.isPrimitive(), var.getModifier());
-                        method.allDefFields.add(def);
-                    }
-                }
-                
-                for (DefUseField var : amethod.useFields) {
-                    if (var.getReferenceForm().startsWith("this.")) {
-                        String referenceForm = var.getReferenceForm().replace("this", "this." + var.getClassName());
-                        DefUseField use = new DefUseField(var.getClassName(), var.getName(), referenceForm,
-                                var.getType(), var.isPrimitive(), var.getModifier());
-                        method.allUseFields.add(use);
-                    }
-                }
-                
-                collectDefUseFieldsInAccessedMethods(amethod, visitedMethods, count + 1);
-            }
-        }
-    }
     
     @Override
     public boolean equals(Object obj) {
@@ -124,6 +88,7 @@ abstract public class JMethod extends JCommon {
     }
     
     public boolean equals(JMethod method) {
-        return method != null && (this == method || getQualifiedName().fqn().equals(method.getQualifiedName().fqn()));
+        return method != null &&
+               (this == method || getQualifiedName().fqn().equals(method.getQualifiedName().fqn()));
     }
 }

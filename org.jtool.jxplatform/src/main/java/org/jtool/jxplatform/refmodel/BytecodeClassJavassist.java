@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -19,6 +19,7 @@ import javassist.expr.ExprEditor;
 import javassist.expr.FieldAccess;
 import javassist.expr.MethodCall;
 import javassist.expr.NewExpr;
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 public class BytecodeClassJavassist extends BytecodeClass {
     
     private CtClass ctClass;
+    private BytecodeClassStore bcStore;
     
     BytecodeClassJavassist(CtClass ctClass, String cacheName, BytecodeClassStore bcStore) {
         super(cacheName, bcStore);
@@ -112,24 +114,36 @@ public class BytecodeClassJavassist extends BytecodeClass {
                 @Override
                 public void edit(MethodCall cm) throws CannotCompileException {
                     try {
-                        QualifiedName qname = methodQualifiedName(cm.getMethod());
-                        if (!calledMethodsCache.containsEntry(thisSignature, qname)) {
-                            calledMethodsCache.put(thisSignature, qname);
-                            exist = true;
+                        for (QualifiedName qname : createMethodQualifiedNames(cm)) {
+                            if (!calledMethodsCache.containsEntry(thisSignature, qname)) {
+                                calledMethodsCache.put(thisSignature, qname);
+                                exist = true;
+                            }
                         }
                     } catch (NotFoundException e) { /* empty */ }
                 }
                 
-                private QualifiedName methodQualifiedName(CtMethod cm) throws NotFoundException {
-                    String className = bcStore.getCanonicalClassName(cm.getDeclaringClass());
-                    String signature = bcStore.getMethodSignature(cm);
-                    return new QualifiedName(className, signature);
+                private List<QualifiedName> createMethodQualifiedNames(MethodCall cm) throws NotFoundException {
+                    List<QualifiedName> qnames = new ArrayList<>();
+                    String className = bcStore.getCanonicalClassName(cm.getMethod().getDeclaringClass());
+                    String signature = bcStore.getMethodSignature(cm.getMethod());
+                    if (className != null && signature != null) {
+                        qnames.add(new QualifiedName(className, signature));
+                        
+                        JClass clazz = bcStore.getJClass(className);
+                        for (JClass c : clazz.getDescendantClasses()) {
+                            if (c.getMethod(signature) != null) {
+                                qnames.add(new QualifiedName(c.getClassName(), signature));
+                            }
+                        }
+                    }
+                    return qnames;
                 }
                 
                 @Override
                 public void edit(ConstructorCall cm) throws CannotCompileException {
                     try {
-                        QualifiedName qname = constructorQualifiedName(cm.getConstructor());
+                        QualifiedName qname = createConstructorQualifiedName(cm.getConstructor());
                         if (!calledMethodsCache.containsEntry(thisSignature, qname)) {
                             calledMethodsCache.put(thisSignature, qname);
                             exist = true;
@@ -140,7 +154,7 @@ public class BytecodeClassJavassist extends BytecodeClass {
                 @Override
                 public void edit(NewExpr cm) throws CannotCompileException {
                     try {
-                        QualifiedName qname = constructorQualifiedName(cm.getConstructor());
+                        QualifiedName qname = createConstructorQualifiedName(cm.getConstructor());
                         if (!calledMethodsCache.containsEntry(thisSignature, qname)) {
                             calledMethodsCache.put(thisSignature, qname);
                             exist = true;
@@ -148,7 +162,7 @@ public class BytecodeClassJavassist extends BytecodeClass {
                     } catch (NotFoundException e) { /* empty */ }
                 }
                 
-                private QualifiedName constructorQualifiedName(CtConstructor cc) throws NotFoundException {
+                private QualifiedName createConstructorQualifiedName(CtConstructor cc) throws NotFoundException {
                     String className = bcStore.getCanonicalClassName(cc.getDeclaringClass());
                     String signature = bcStore.getConstructorSignature(cc);
                     return new QualifiedName(className, signature);

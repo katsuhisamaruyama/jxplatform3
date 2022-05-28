@@ -33,7 +33,7 @@ public class JFieldReference extends JVariableReference {
     /**
      * A flag that indicates whether this is a reference a field within the class itself.
      */
-    private boolean isLocal;
+    private boolean isThis;
     
     /**
      * A flag that indicates whether this is a reference to a field within the parent class.
@@ -91,7 +91,7 @@ public class JFieldReference extends JVariableReference {
         }
         this.isField = isField(binding);
         this.isEnumConstant = isEnumConstant(binding);
-        this.isLocal = enclosingClassName.equals(declaringClassName);
+        this.isThis = enclosingClassName.equals(declaringClassName);
         this.isSuper = node instanceof SuperFieldAccess;
     }
     
@@ -150,7 +150,7 @@ public class JFieldReference extends JVariableReference {
         
         this.isField = false;
         this.isEnumConstant = false;
-        this.isLocal = enclosingClassName.equals(declaringClassName);
+        this.isThis = enclosingClassName.equals(declaringClassName);
         this.isSuper = false;
     }
     
@@ -165,7 +165,7 @@ public class JFieldReference extends JVariableReference {
      * @param primitive {@code true} if the type of the referenced field is primitive, otherwise {@code false}
      * @param modifiers the modifier information on the referenced field
      * @param inProject {@code true} if the referenced field exists in the target project, otherwise {@code false}
-     * @param accessible {@code true} if this is a reference to a touchable field, otherwise {@code false}
+     * @param touchable {@code true} if this is a reference to a touchable field, otherwise {@code false}
      */
     
     public JFieldReference(ASTNode node, String className, String name,
@@ -187,7 +187,7 @@ public class JFieldReference extends JVariableReference {
         this.inProject = inProject;
         this.isField = true;
         this.isEnumConstant = false;
-        this.isLocal = enclosingClassName.equals(declaringClassName);
+        this.isThis = enclosingClassName.equals(declaringClassName);
         this.isSuper = node instanceof SuperFieldAccess;
         this.touchable = touchable;
     }
@@ -269,7 +269,7 @@ public class JFieldReference extends JVariableReference {
      * @return {@code true} if this is a reference to a field within the same class, otherwise {@code false}
      */
     public boolean isThis() {
-        return isLocal;
+        return isThis;
     }
     
     /**
