@@ -277,19 +277,27 @@ public abstract class JReference {
     }
     
     /**
-     * Tests if an element for this reference is exposed.
-     * @return default {@code true} that indicate a reference to an exposed element.
-     */
-    public boolean isTouchable() {
-        return true;
-    }
-    
-    /**
      * Tests if this is a reference to a method.
      * @return always {@code false} that means that this is not a method reference
      */
     public boolean isMethodCall() {
         return false;
+    }
+    
+    /**
+     * Tests if this is a reference to a variable that stores the return value.
+     * @return {@code true} if this is a reference to a variable that stores the return value, otherwise {@code false}
+     */
+    public boolean isJMethodReturnReference() {
+        return false;
+    }
+    
+    /**
+     * Tests if an element for this reference is exposed.
+     * @return default {@code true} that indicate a reference to an exposed element.
+     */
+    public boolean isTouchable() {
+        return true;
     }
     
     /**

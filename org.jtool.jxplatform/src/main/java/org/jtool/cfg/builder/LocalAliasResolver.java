@@ -90,6 +90,10 @@ class LocalAliasResolver {
     }
     
     private void registerAlias(CFGNode node, Alias newAlias) {
+        if (newAlias.righthand.isJMethodReturnReference()) {
+            return;
+        }
+        
         String name = newAlias.righthand.getReferenceForm();
         for (Alias alias : new ArrayList<>(aliasMap.get(node))) {
             if (alias.lefthand.getReferenceForm().equals(name)) {
@@ -109,11 +113,11 @@ class LocalAliasResolver {
             if (succ.isStatement()) {
                 CFGStatement stNode = (CFGStatement)succ;
                 if (stNode.isActualOut()) {
-                    registerAlias((CFGStatement)succ, alias);
+                    registerAlias(stNode, alias);
                 } else if (define(stNode, alias.lefthand) || define(stNode, alias.righthand)) {
                     return;
                 } else {
-                    registerAlias((CFGStatement)succ, alias);
+                    registerAlias(stNode, alias);
                 }
             } 
             if (!track.contains(succ)) {

@@ -8,14 +8,14 @@ package org.jtool.cfg;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 /**
- * A class that represents a reference to a variable invisible on source code.
+ * A class that represents a reference to a variable that stores the return value.
  * 
  * @author Katsuhisa Maruyama
  */
 public class JMethodReturnReference extends JExpedientialReference {
     
     /**
-     * The symbol indicating that a reference represents a method return.
+     * The symbol indicating that a reference represents a variable that stores the return value.
      */
     public static final String METHOD_RETURN_SYMBOL = "!";
     
@@ -25,7 +25,7 @@ public class JMethodReturnReference extends JExpedientialReference {
     private JVariableReference prefix = null;
     
     /**
-     * Creates a new object that represents a reference to a variable invisible on source code.
+     * Creates a new object that represents a reference to a variable that stores the return value.
      * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this variable reference
      * @param name the name of the referenced variable
@@ -50,5 +50,13 @@ public class JMethodReturnReference extends JExpedientialReference {
     @Override
     public JVariableReference getPrefix() {
         return prefix;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isJMethodReturnReference() {
+        return true;
     }
 }
