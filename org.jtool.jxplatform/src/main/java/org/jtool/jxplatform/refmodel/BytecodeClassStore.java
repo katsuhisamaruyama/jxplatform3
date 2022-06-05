@@ -19,6 +19,7 @@ import javassist.Modifier;
 import javassist.NotFoundException;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
@@ -284,23 +285,6 @@ public class BytecodeClassStore {
         }
     }
     
-    public void loadBytecode(BytecodeName byteCodeName) {
-        try {
-            CtClass ctClass = classPool.get(byteCodeName.className);
-            
-            // javassist does not support multi-release JARs
-            if (!ctClass.getName().startsWith("META-INF.")) {
-                
-                if (ctClass.isInterface() || ctClass.getModifiers() != Modifier.PRIVATE) {
-                    BytecodeClassJavassist clazz = new BytecodeClassJavassist(ctClass, byteCodeName.cacheName, this);
-                    clazz.collectInfo();
-                    
-                    bytecodeClassMap.put(getCanonicalClassName(ctClass), clazz);
-                }
-            }
-        } catch (Exception e) { /* empty */ }
-    }
-    
     void registerBytecode(BytecodeClassProxy clazz) {
         bytecodeClassMap.put(clazz.getName(), clazz);
     }
@@ -434,23 +418,49 @@ public class BytecodeClassStore {
     }
     
     void loadBytecode() {
+        Logger logger = jproject.getModelBuilderImpl().getLogger();
+        ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
+        
+        buildBytecodeClass(logger, pm);
+        setClassHierarchy();
+        collectBytecodeClassInfo(logger, pm);
+        
+        writeBytecodeCache();
+    }
+    
+    private void buildBytecodeClass(Logger logger, ConsoleProgressMonitor pm) {
         Set<BytecodeName> names = getBytecodeNamesToBeLoaded();
         if (names.size() > 0) {
-            Logger logger = jproject.getModelBuilderImpl().getLogger();
-            
             logger.printMessage("** Ready to build java models of " + names.size() + " bytecode-classes");
-            ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
-            
             pm.begin(names.size());
             for (BytecodeName bytecodeName : names) {
-                loadBytecode(bytecodeName);
+                try {
+                    CtClass ctClass = classPool.get(bytecodeName.className);
+                    
+                    // javassist does not support multi-release JARs
+                    if (!ctClass.getName().startsWith("META-INF.")) {
+                        
+                        if (ctClass.isInterface() || ctClass.getModifiers() != Modifier.PRIVATE) {
+                            BytecodeClassJavassist bclass = new BytecodeClassJavassist(ctClass, bytecodeName.cacheName, this);
+                            bytecodeClassMap.put(getCanonicalClassName(ctClass), bclass);
+                        }
+                    }
+                } catch (Exception e) { /* empty */ }
                 pm.work(1);
             }
             pm.done();
         }
-        
-        setClassHierarchy();
-        writeBytecodeCache();
+    }
+    
+    private void collectBytecodeClassInfo(Logger logger, ConsoleProgressMonitor pm) {
+        Collection<BytecodeClass> bclasses = bytecodeClassMap.values();
+        logger.printMessage("** Ready to collect information on java models of " + bclasses.size() + " bytecode-classes");
+        pm.begin(bclasses.size());
+        for (BytecodeClass bclass : bclasses) {
+            bclass.collectInfo();
+            pm.work(1);
+        }
+        pm.done();
     }
     
     public JClass findInternalClass(String className) {

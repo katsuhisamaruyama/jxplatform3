@@ -31,7 +31,6 @@ import java.util.ArrayList;
 public class BytecodeClassJavassist extends BytecodeClass {
     
     private CtClass ctClass;
-    private BytecodeClassStore bcStore;
     
     BytecodeClassJavassist(CtClass ctClass, String cacheName, BytecodeClassStore bcStore) {
         super(cacheName, bcStore);
@@ -108,7 +107,8 @@ public class BytecodeClassJavassist extends BytecodeClass {
                     return new DefUseField(cf.getClassName(),
                             cf.getFieldName(), cf.getClassName() + "." + cf.getFieldName(),
                             cf.getField().getType().getName(),
-                            cf.getField().getType().isPrimitive(), cf.getField().getModifiers());
+                            cf.getField().getType().isPrimitive(),
+                            cf.getField().getModifiers());
                 }
                 
                 @Override
@@ -128,12 +128,13 @@ public class BytecodeClassJavassist extends BytecodeClass {
                     String className = bcStore.getCanonicalClassName(cm.getMethod().getDeclaringClass());
                     String signature = bcStore.getMethodSignature(cm.getMethod());
                     if (className != null && signature != null) {
-                        qnames.add(new QualifiedName(className, signature));
-                        
                         JClass clazz = bcStore.getJClass(className);
-                        for (JClass c : clazz.getDescendantClasses()) {
-                            if (c.getMethod(signature) != null) {
-                                qnames.add(new QualifiedName(c.getClassName(), signature));
+                        if (clazz != null) {
+                            qnames.add(new QualifiedName(className, signature));
+                            for (JClass c : clazz.getDescendantClasses()) {
+                                if (c.getMethod(signature) != null) {
+                                    qnames.add(new QualifiedName(c.getClassName(), signature));
+                                }
                             }
                         }
                     }

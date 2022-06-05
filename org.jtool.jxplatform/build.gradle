@@ -54,7 +54,7 @@ dependencies {
     implementation group: 'org.gradle', name: 'gradle-tooling-api', version: '7.4'
     implementation group: 'net.lingala.zip4j', name: 'zip4j', version: '2.9.1'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
-    implementation group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
+    implementation group: 'org.javassist', name: 'javassist', version: '3.29.0-GA'
     implementation group: 'com.google.guava', name: 'guava', version: '29.0-jre'
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
     testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.+'
