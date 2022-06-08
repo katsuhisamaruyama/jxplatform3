@@ -7,6 +7,7 @@ package org.jtool.jxplatform.refmodel;
 
 import org.jtool.srcmodel.QualifiedName;
 import java.util.Set;
+import java.util.Collection;
 import java.util.HashSet;
 
 /**
@@ -26,6 +27,8 @@ abstract public class JMethod extends JCommon {
     
     protected Set<DefUseField> allDefFields = new HashSet<>();
     protected Set<DefUseField> allUseFields = new HashSet<>();
+    
+    static final String OUTSIDE_FIELD_SYMBOL = "!";
     
     protected JMethod(QualifiedName qname, JClass declaringClass) {
         super(qname, declaringClass.bcStore);
@@ -81,6 +84,19 @@ abstract public class JMethod extends JCommon {
             String prefix, Set<JMethod> visitedMethods, int count);
     
     abstract boolean stopTraverse(Set<JMethod> visitedMethods, int count);
+    
+    protected DefUseField updateClassName(DefUseField var) {
+        JField field = bcStore.getJField(var.getClassName(), var.getName());
+        if (field != null) {
+            var.updateClassName(field.getClassName());
+        }
+        return var;
+    }
+    
+    protected Collection<DefUseField> updateClassName(Collection<DefUseField> vars) {
+        vars.forEach(var -> updateClassName(var));
+        return vars;
+    }
     
     @Override
     public boolean equals(Object obj) {

@@ -6,11 +6,11 @@
 package org.jtool.jxplatform.refmodel;
 
 import org.jtool.srcmodel.JavaMethod;
-import org.jtool.srcmodel.QualifiedName;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.CFGMethodCall;
+import org.jtool.cfg.JFieldReference;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
@@ -58,11 +58,11 @@ class JMethodInternal extends JMethod {
                 stNode.getDefVariables()
                     .stream()
                     .filter(var -> var.isFieldAccess())
-                    .forEach(var -> defFields.add(updateClassName(new DefUseField(var))));
+                    .forEach(var -> defFields.add(updateClassName(new DefUseField((JFieldReference)var))));
                 stNode.getUseVariables()
                     .stream()
                     .filter(var -> var.isFieldAccess())
-                    .forEach(var -> useFields.add(updateClassName(new DefUseField(var))));
+                    .forEach(var -> useFields.add(updateClassName(new DefUseField((JFieldReference)var))));
             }
         }
     }
@@ -91,12 +91,18 @@ class JMethodInternal extends JMethod {
     }
     
     protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
-            JMethod accessedMethod, String receiverName) {
+            JMethod accessedMethod, String prefix) {
         for (DefUseField var : accessedMethod.defFields) {
-            if (var.getReferenceForm().startsWith("this.")) {
-                String referenceForm = var.getReferenceForm().replace("this", receiverName);
-                DefUseField def = new DefUseField(var.getClassName(), var.getName(), referenceForm,
-                        var.getType(), var.isPrimitive(), var.getModifiers());
+            if (var.getReferenceForm().startsWith("this.") && var.isInThis()) {
+                String referenceForm;
+                if (prefix.length() == 0) {
+                    referenceForm = var.getReferenceForm();
+                } else {
+                    referenceForm = var.getReferenceForm().replace("this", prefix);
+                }
+                
+                DefUseField def = new DefUseField(var);
+                def.updateReferenceForm(referenceForm);
                 originMethod.allDefFields.add(def);
             } else if (var.isStatic()) {
                 originMethod.allDefFields.add(var);
@@ -104,10 +110,16 @@ class JMethodInternal extends JMethod {
         }
         
         for (DefUseField var : accessedMethod.useFields) {
-            if (var.getReferenceForm().startsWith("this.")) {
-                String referenceForm = var.getReferenceForm().replace("this", receiverName);
-                DefUseField use = new DefUseField(var.getClassName(), var.getName(), referenceForm,
-                        var.getType(), var.isPrimitive(), var.getModifiers());
+            if (var.getReferenceForm().startsWith("this.") && var.isInThis()) {
+                String referenceForm;
+                if (prefix.length() == 0) {
+                    referenceForm = var.getReferenceForm();
+                } else {
+                    referenceForm = var.getReferenceForm().replace("this.", prefix + ".");
+                }
+                
+                DefUseField use = new DefUseField(var);
+                use.updateReferenceForm(referenceForm);
                 originMethod.allUseFields.add(use);
             } else if (var.isStatic()) {
                 originMethod.allUseFields.add(var);
@@ -123,16 +135,20 @@ class JMethodInternal extends JMethod {
                 visitedMethods.add(amethod);
                 
                 amethod.collectDefUseFieldsInThisMethod();
-                String newPrefix = prefix + "." + 
-                        getSignature() + QualifiedName.QualifiedNameSeparator + cmethod.receiverName;
-                collectDefUseFieldsInAccessedMethods(originMethod, amethod, newPrefix);
                 
-                if (this.isInProject() && !amethod.isInProject()) {
-                    amethod.collectDefUseFieldsInAccessedMethods(originMethod,
-                            newPrefix, visitedMethods, 0);
-                } else {
-                    amethod.collectDefUseFieldsInAccessedMethods(originMethod,
-                            newPrefix, visitedMethods, count + 1);
+                String newPrefix;
+                if (cmethod.receiverName.startsWith("this.")) {
+                    newPrefix = cmethod.receiverName.replace("this.", prefix + ".");
+                    
+                    collectDefUseFieldsInAccessedMethods(originMethod, amethod, newPrefix);
+                    
+                    if (this.isInProject() && !amethod.isInProject()) {
+                        amethod.collectDefUseFieldsInAccessedMethods(originMethod,
+                                newPrefix, visitedMethods, 0);
+                    } else {
+                        amethod.collectDefUseFieldsInAccessedMethods(originMethod,
+                                newPrefix, visitedMethods, count + 1);
+                    }
                 }
             }
         }

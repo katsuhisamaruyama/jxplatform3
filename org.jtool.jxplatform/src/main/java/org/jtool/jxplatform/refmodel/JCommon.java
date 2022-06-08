@@ -6,7 +6,6 @@
 package org.jtool.jxplatform.refmodel;
 
 import org.jtool.srcmodel.QualifiedName;
-import java.util.Collection;
 
 /**
  * An element common to classes, methods, and fields with concise information.
@@ -40,19 +39,6 @@ abstract class JCommon {
     }
     
     abstract public boolean isInProject();
-    
-    protected DefUseField updateClassName(DefUseField var) {
-        JField field = bcStore.getJField(var.getClassName(), var.getName());
-        if (field != null) {
-            var.updateClassName(field.getClassName());
-        }
-        return var;
-    }
-    
-    protected Collection<DefUseField> updateClassName(Collection<DefUseField> vars) {
-        vars.forEach(var -> updateClassName(var));
-        return vars;
-    }
     
     @Override
     public String toString() {

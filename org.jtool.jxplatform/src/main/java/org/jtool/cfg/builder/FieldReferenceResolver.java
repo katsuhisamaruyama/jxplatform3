@@ -14,7 +14,6 @@ import org.jtool.jxplatform.refmodel.BytecodeClassStore;
 import org.jtool.jxplatform.refmodel.DefUseField;
 import org.jtool.jxplatform.refmodel.JClass;
 import org.jtool.jxplatform.refmodel.JMethod;
-import java.util.List;
 
 /**
  * Finds fields defined and/or used in invoked methods and accessed fields.
@@ -30,8 +29,8 @@ class FieldReferenceResolver {
     }
     
     void findDefUseFields(CFG cfg) {
-        for (CFGMethodCall callnode : cfg.getMethodCallNodes()) {
-            findFieldsForCalledMethod(cfg, callnode);
+        for (CFGMethodCall callNode : cfg.getMethodCallNodes()) {
+            findFieldsForCalledMethod(cfg, callNode);
         }
     }
     
@@ -60,40 +59,20 @@ class FieldReferenceResolver {
             if (method != null && !method.getQualifiedName().equals(cfg.getQualifiedName())) {
                 method.findDefUseFields(receiverName);
                 
-                boolean existExternalDefField = false;
                 for (DefUseField def : method.getAllDefFields()) {
                     boolean isInProject = bcStore.findInternalClass(def.getClassName()) != null;
                     JVariableReference var = new JFieldReference(callNode.getASTNode(),
                             def.getClassName(), def.getName(), def.getReferenceForm(),
                             def.getType(), def.isPrimitive(), def.getModifiers(), isInProject, false);
                     callNode.addDefVariable(var);
-                            
-                    if (!isInProject) {
-                        existExternalDefField = true;
-                    }
                 }
                 
-                if (existExternalDefField && callNode.hasReceiver()) {
-                    List<JVariableReference> vars = callNode.getReceiver().getUseVariables();
-                    callNode.addDefVariables(vars);
-                    callNode.addUseVariables(vars);
-                }
-                
-                boolean existExternalUseField = false;
                 for (DefUseField use : method.getAllUseFields()) {
                     boolean isInProject = bcStore.findInternalClass(use.getClassName()) != null;
                     JVariableReference fvar = new JFieldReference(callNode.getASTNode(),
                             use.getClassName(), use.getName(), use.getReferenceForm(),
                             use.getType(), use.isPrimitive(), use.getModifiers(), isInProject, false);
                     callNode.addUseVariable(fvar);
-                            
-                    if (!isInProject) {
-                        existExternalUseField = true;
-                    }
-                }
-                
-                if (existExternalUseField && callNode.hasReceiver()) {
-                    callNode.addUseVariables(callNode.getReceiver().getUseVariables());
                 }
             }
         }

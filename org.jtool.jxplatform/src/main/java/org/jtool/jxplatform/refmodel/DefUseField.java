@@ -5,7 +5,7 @@
 
 package org.jtool.jxplatform.refmodel;
 
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JFieldReference;
 import org.eclipse.jdt.core.dom.Modifier;
 
 /**
@@ -23,25 +23,33 @@ public class DefUseField {
     private String type;
     private boolean isPrimitive;
     private int modifiers;
+    private boolean isInThis;
     
-    public DefUseField(JReference var) {
+    public DefUseField(JFieldReference var) {
         this(var.getDeclaringClassName(), var.getName(), var.getReferenceForm(),
-                var.getType(), var.isPrimitiveType(), var.getModifiers());
+                var.getType(), var.isPrimitiveType(), var.getModifiers(), var.isThis());
+    }
+    
+    public DefUseField(DefUseField var) {
+        this(var.getClassName(), var.getName(), var.getReferenceForm(),
+                var.getType(), var.isPrimitive(), var.getModifiers(), var.isInThis());
     }
     
     public DefUseField(String className, String name, String referenceForm, String type,
-            boolean isPrimitive, int modifiers) {
+            boolean isPrimitive, int modifiers, boolean isInThis) {
         this.className = className;
         this.name = name;
         this.referenceForm = referenceForm;
         this.type = type;
         this.isPrimitive = isPrimitive;
         this.modifiers = modifiers;
+        this.isInThis = isInThis;
     }
     
     static DefUseField create(String str) {
         String[] s = str.split(FieldPropertySeparator);
-        return new DefUseField(s[0], s[1], s[2], s[3], Boolean.parseBoolean(s[4]), Integer.parseInt(s[5]));
+        return new DefUseField(s[0], s[1], s[2], s[3],
+                Boolean.parseBoolean(s[4]), Integer.parseInt(s[5]), Boolean.parseBoolean(s[6]));
     }
     
     public String getQualifiedName() {
@@ -63,6 +71,10 @@ public class DefUseField {
         return name;
     }
     
+    public void updateReferenceForm(String newReferenceForm) {
+        referenceForm = newReferenceForm;
+    }
+    
     public String getReferenceForm() {
         return referenceForm;
     }
@@ -77,6 +89,10 @@ public class DefUseField {
     
     public int getModifiers() {
         return modifiers;
+    }
+    
+    public boolean isInThis() {
+        return isInThis;
     }
     
     public boolean isStatic() {
@@ -98,8 +114,11 @@ public class DefUseField {
     }
     
     public String toStr() {
-        return getQualifiedName() + FieldPropertySeparator + type + FieldPropertySeparator +
-                String.valueOf(isPrimitive) + FieldPropertySeparator + String.valueOf(modifiers);
+        return getQualifiedName() +
+                FieldPropertySeparator + type +
+                FieldPropertySeparator + String.valueOf(isPrimitive) +
+                FieldPropertySeparator + String.valueOf(modifiers) +
+                FieldPropertySeparator + String.valueOf(isInThis);
     }
     
     @Override

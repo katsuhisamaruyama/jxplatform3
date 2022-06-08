@@ -33,8 +33,16 @@ class JMethodFrozen extends JMethod {
     }
     
     private void collectDefUseFields() {
-        defFields.addAll(updateClassName(bclass.getDefFields(getSignature())));
-        useFields.addAll(updateClassName(bclass.getUseFields(getSignature())));
+        bclass.getDefFields(getSignature()).stream()
+            .forEach(var -> {
+                var.updateReferenceForm(OUTSIDE_FIELD_SYMBOL + var.getReferenceForm());
+                defFields.add(updateClassName(var));
+            });
+        bclass.getUseFields(getSignature()).stream()
+            .forEach(var -> {
+                var.updateReferenceForm(OUTSIDE_FIELD_SYMBOL + var.getReferenceForm());
+                useFields.add(updateClassName(var));
+            });
     }
     
     private void collectAccessedMethods() {
@@ -52,39 +60,39 @@ class JMethodFrozen extends JMethod {
     }
     
     protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
-            JMethod accessedMethod, String receiverName) {
+            JMethod accessedMethod, String prefix) {
         for (DefUseField var : accessedMethod.defFields) {
-            DefUseField def;
-            if (var.isStatic()) {
-                def = var;
-            } else {
+            if (var.isInThis()) {
                 String referenceForm;
-                if (receiverName.length() == 0) {
+                if (prefix.length() == 0) {
                     referenceForm = var.getReferenceForm();
                 } else {
-                    referenceForm = receiverName + "." + var.getReferenceForm();
+                    referenceForm = prefix + "." + var.getReferenceForm();
                 }
-                def = new DefUseField(var.getClassName(), var.getName(), referenceForm,
-                                      var.getType(), var.isPrimitive(), var.getModifiers());
+                
+                DefUseField def = new DefUseField(var);
+                def.updateReferenceForm(referenceForm);
+                originMethod.allDefFields.add(def);
+            } else if (var.isStatic()) {
+                originMethod.allDefFields.add(var);
             }
-            originMethod.allDefFields.add(def);
         }
         
         for (DefUseField var : accessedMethod.useFields) {
-            DefUseField use;
-            if (var.isStatic()) {
-                use = var;
-            } else {
+            if (var.isInThis()) {
                 String referenceForm;
-                if (receiverName.length() == 0) {
+                if (prefix.length() == 0) {
                     referenceForm = var.getReferenceForm();
                 } else {
-                    referenceForm = receiverName + "." + var.getReferenceForm();
+                    referenceForm = prefix + "." + var.getReferenceForm();
                 }
-                use = new DefUseField(var.getClassName(), var.getName(), referenceForm,
-                                      var.getType(), var.isPrimitive(), var.getModifiers());
+                
+                DefUseField use = new DefUseField(var);
+                use.updateReferenceForm(referenceForm);
+                originMethod.allUseFields.add(use);
+            } else if (var.isStatic()) {
+                originMethod.allUseFields.add(var);
             }
-            originMethod.allUseFields.add(use);
         }
     }
     
@@ -95,9 +103,9 @@ class JMethodFrozen extends JMethod {
                 visitedMethods.add(amethod);
                 
                 amethod.collectDefUseFieldsInThisMethod();
-                collectDefUseFieldsInAccessedMethods(originMethod, amethod, "");
+                collectDefUseFieldsInAccessedMethods(originMethod, amethod, prefix);
                 
-                amethod.collectDefUseFieldsInAccessedMethods(originMethod, "", visitedMethods, count + 1);
+                amethod.collectDefUseFieldsInAccessedMethods(originMethod, prefix, visitedMethods, count + 1);
             }
         }
     }
