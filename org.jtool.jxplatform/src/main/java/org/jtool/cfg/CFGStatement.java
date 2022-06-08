@@ -31,12 +31,12 @@ public class CFGStatement extends CFGNode {
     /**
      * The collection of variables defined in this node.
      */
-    private List<JVariableReference> defs = new ArrayList<>();
+    protected List<JVariableReference> defs = new ArrayList<>();
     
     /**
      * The collection of variables used in this node.
      */
-    private List<JVariableReference> uses = new ArrayList<>();
+    protected List<JVariableReference> uses = new ArrayList<>();
     
     /**
      * Creates a new object that represents a statement.
@@ -49,7 +49,7 @@ public class CFGStatement extends CFGNode {
     }
     
     /**
-     * Adds a variable to the collection of variables defined this node.
+     * Adds a variable to the collection of variables defined in this node.
      * This method is not intended to be invoked by clients.
      * @param jv the variable to be added
      */
@@ -60,7 +60,7 @@ public class CFGStatement extends CFGNode {
     }
     
     /**
-     * Adds a variable to the collection of variables used this node.
+     * Adds a variable to the collection of variables used in this node.
      * This method is not intended to be invoked by clients.
      * @param jv the variable to be added
      */
@@ -71,25 +71,25 @@ public class CFGStatement extends CFGNode {
     }
     
     /**
-     * Adds variables to the collection of variables defined this node.
+     * Adds variables to the collection of variables defined in this node.
      * This method is not intended to be invoked by clients.
      * @param jvs the collection of the variables to be added
      */
     public void addDefVariables(List<JVariableReference> jvs) {
-        jvs.forEach(jvar -> addDefVariable(jvar));
+        jvs.forEach(jv -> addDefVariable(jv));
     }
     
     /**
-     * Adds variables to the collection of variables used this node.
+     * Adds variables to the collection of variables used in this node.
      * This method is not intended to be invoked by clients.
      * @param jvs the collection of the variables to be added
      */
     public void addUseVariables(List<JVariableReference> jvs) {
-        jvs.forEach(jvar -> addUseVariable(jvar));
+        jvs.forEach(jv -> addUseVariable(jv));
     }
     
     /**
-     * Removes a variable from the collection of variables defined this node.
+     * Removes a variable from the collection of variables defined in this node.
      * This method is not intended to be invoked by clients.
      * @param jv the collection of the variables to be removed
      * @return {@code true} if the removal is successfully done, otherwise {@code false}
@@ -99,7 +99,7 @@ public class CFGStatement extends CFGNode {
     }
     
     /**
-     * Removes a variable from the collection of variables used this node.
+     * Removes a variable from the collection of variables used in this node.
      * This method is not intended to be invoked by clients.
      * @param jv the collection of the variables to be removed
      * @return {@code true} if the removal is successfully done, otherwise {@code false}
@@ -109,7 +109,7 @@ public class CFGStatement extends CFGNode {
     }
     
     /**
-     * Clears the collection of variables defined this node.
+     * Clears the collection of variables defined in this node.
      * This method is not intended to be invoked by clients.
      */
     public void clearDefVariables() {
@@ -117,7 +117,7 @@ public class CFGStatement extends CFGNode {
     }
     
     /**
-     * Clears the collection of variables defined this node.
+     * Clears the collection of variables defined in this node.
      * This method is not intended to be invoked by clients.
      */
     public void clearUseVariables() {
@@ -184,7 +184,7 @@ public class CFGStatement extends CFGNode {
      * @return {@code true} if the variable is defined in this node, otherwise {@code false}
      */
     public boolean defineVariable(JVariableReference jv) {
-        return defs.stream().anyMatch(v -> v.equals(jv));
+        return defs.contains(jv);
     }
     
     /**
@@ -193,7 +193,7 @@ public class CFGStatement extends CFGNode {
      * @return {@code true} if the variable is used in this node, otherwise {@code false}
      */
     public boolean useVariable(JVariableReference jv) {
-        return uses.stream().anyMatch(v -> v.equals(jv));
+        return uses.contains(jv);
     }
     
     /**
