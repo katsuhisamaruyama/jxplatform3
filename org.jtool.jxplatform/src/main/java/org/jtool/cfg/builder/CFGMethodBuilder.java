@@ -129,8 +129,8 @@ class CFGMethodBuilder {
         }
         
         if (toBeResolved) {
-            Resolver.resolveLocalAlias(cfg);
             Resolver.resolveReferences(jmethod.getJavaProject(), cfg);
+            Resolver.resolveLocalAlias(cfg);
         }
         
         addUseVariablesForReturn(cfg);
