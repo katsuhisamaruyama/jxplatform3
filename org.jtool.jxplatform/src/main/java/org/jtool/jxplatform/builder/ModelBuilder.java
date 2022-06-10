@@ -66,30 +66,6 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Sets whether the project cache is used.
-     * 
-     * The use of a project cache can skip analysis of source code and byte-code within the project,
-     * and thus largely reduce the analysis time.
-     * 
-     * Note that a project cache is never automatically updated although the source code and byte-code
-     * has been changed since the cache was created. If the update is needed, you should manually delete
-     * the cache file {@code #project.complete.cache} in the directory {@code .jxplatform}.
-     * 
-     * @param bool {@code true} if the project cache is preferentially used, otherwise {@code false}
-     */
-    public void useProjectCache(boolean bool) {
-        impl.useProjectCache(bool);
-    }
-    
-    /**
-     * Tests if the project cache is used.
-     * @return {@code true} if the project cache is used, otherwise {@code false}
-     */
-    public boolean useProjectCache() {
-        return impl.useProjectCache();
-    }
-    
-    /**
      * Disposes the created models.
      */
     public void unbuild() {

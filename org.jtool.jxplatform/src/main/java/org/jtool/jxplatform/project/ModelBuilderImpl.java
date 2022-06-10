@@ -32,7 +32,6 @@ public abstract class ModelBuilderImpl {
     protected ModelBuilder modelBuilder;
     
     protected boolean analyzeBytecode = false;
-    protected boolean useProjectCache = false;
     
     protected int sourcecodeAnalysisChain = 5;
     protected int bytecodeAnalysisChain = 2;
@@ -66,14 +65,6 @@ public abstract class ModelBuilderImpl {
     
     public boolean analyzeBytecode() {
         return analyzeBytecode;
-    }
-    
-    public void useProjectCache(boolean bool) {
-        useProjectCache = bool;
-    }
-    
-    public boolean useProjectCache() {
-        return useProjectCache;
     }
     
     public void setSourcecodeAnalysisChain(int bytecodeAnalysisChain) {

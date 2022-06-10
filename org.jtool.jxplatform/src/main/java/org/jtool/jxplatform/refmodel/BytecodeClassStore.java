@@ -46,7 +46,6 @@ public class BytecodeClassStore {
     
     static final String BOOT_VERSION_FILENAME = "#boot.module.version";
     static final String BOOT_CACHE_FILENAME = "#boot.module";
-    static final String PROJECT_CACHE_FILENAME = "#project.complete";
     static final String NO_CACHE_LABEL = "#";
     
     private static final String BootModuleVersion = System.getProperty("java.vm.version");
@@ -77,69 +76,18 @@ public class BytecodeClassStore {
         JCommon.maxNumberOfChainForSourcecode = builderImpl.getSourcecodeAnalysisChain();
         JCommon.maxNumberOfChainForBytecode = builderImpl.getBytecodeAnalysisChain();
         
-        if (builderImpl.useProjectCache()) {
-            builderImpl.analyzeBytecode(true);
-            boolean result = loadProjectCache();
-            if (result) {
-                analysisLevel = 3;
-            } else {
-                analysisLevel = 1;
-            }
+        if (builderImpl.analyzeBytecode()) {
+            analysisLevel = 1;
         } else {
-            if (builderImpl.analyzeBytecode()) {
-                analysisLevel = 1;
-            } else {
-                analysisLevel = 0;
-            }
+            analysisLevel = 0;
         }
     }
     
     public void destroy() {
-        writeProjectCache();
     }
     
     public boolean analyzingBytecode() {
         return jproject.getModelBuilderImpl().analyzeBytecode();
-    }
-    
-    private boolean loadProjectCache() {
-        boolean readProjectCacheOk = BytecodeCacheManager.readCache(jproject, PROJECT_CACHE_FILENAME);
-        if (!readProjectCacheOk) {
-            return false;
-        }
-        
-        boolean readBootCacheOk = readBootCache();
-        if (!readBootCacheOk) {
-            return false;
-        }
-        
-        boolean readLibCaheOk = BytecodeCacheManager.getCacheFiles(jproject).stream()
-            .allMatch(n -> BytecodeCacheManager.readCache(jproject, n));
-        if (!readLibCaheOk) {
-            return false;
-        }
-        
-        bytecodeClassMap.values().forEach(bclass -> bclass.findClassHierarchy());
-        bytecodeClassMap.values().forEach(bclass -> bclass.setClassHierarchy());
-        
-        for (BytecodeClass bclass : bytecodeClassMap.values()) {
-            JClass clazz = bclass.createCacheClass(this);
-            if (clazz.isInProject()) {
-                internalClassMap.put(clazz.getQualifiedName().fqn(), clazz);
-            } else {
-                externalClassMap.put(clazz.getQualifiedName().fqn(), clazz);
-            }
-        }
-        return true;
-    }
-    
-    public void writeProjectCache() {
-        if (jproject.getModelBuilderImpl().useProjectCache()) {
-            jproject.getClasses().stream().forEach(jc -> jproject.getCFGStore().getCCFG(jc, false));
-            List<JClass> classes = new ArrayList<>();
-            classes.addAll(internalClassMap.values());
-            BytecodeCacheManager.writeCache(jproject, classes, PROJECT_CACHE_FILENAME);
-        }
     }
     
     public Set<BytecodeName> getBytecodeNamesToBeLoaded() {
