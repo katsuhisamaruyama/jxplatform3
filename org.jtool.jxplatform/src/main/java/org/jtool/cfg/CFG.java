@@ -52,7 +52,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     public CFG clone() {
         CFG clone = new CFG();
         clone.nodes = new HashSet<>(nodes);
-        clone.edges = new HashSet<>(edges);
+        clone.edges = new ArrayList<>(edges);
         clone.entry = entry;
         clone.exit = exit;
         clone.basicBlocks = new ArrayList<>(basicBlocks);

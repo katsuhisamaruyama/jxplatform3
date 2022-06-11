@@ -784,19 +784,27 @@ public class CFGNodeTest {
     }
     
     @Test
-    public void testIsCatch() {
+    public void testIsCatchClause() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test122", "m( )");
         CFGNode node = CFGTestUtil.getNode(cfg, 12);
         
-        assertTrue(node.isCatch());
+        assertTrue(node.isCatchClause());
     }
     
     @Test
-    public void testIsFinally() {
+    public void testIsFinallyClause() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test122", "m( )");
         CFGNode node = CFGTestUtil.getNode(cfg, 14);
         
-        assertTrue(node.isFinally());
+        assertTrue(node.isFinallyClause());
+    }
+    
+    @Test
+    public void testIsThrowClause() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test122", "m( )");
+        CFGNode node = CFGTestUtil.getNode(cfg, 25);
+        
+        assertTrue(node.isThrowClause());
     }
     
     @Test
@@ -805,9 +813,6 @@ public class CFGNodeTest {
         CFGNode node = CFGTestUtil.getNode(cfg, 2);
         
         assertTrue(node.isParameter());
-        
-        //boolean isParameter()
-        //assertFalse(result);
     }
     
     @Test

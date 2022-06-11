@@ -8,6 +8,7 @@ package org.jtool.pdg;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.PDGTestUtil;
+import java.util.List;
 import java.util.Set;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -457,7 +458,7 @@ public class PDGTest {
     public void testGetEdges103_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test103");
         PDG pdg = cldg.findPDG("Test103#m( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(66, result.size());
     }
@@ -466,7 +467,7 @@ public class PDGTest {
     public void testGetEdges103_2() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test103");
         PDG pdg = cldg.findPDG("Test103#setA( int )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -475,7 +476,7 @@ public class PDGTest {
     public void testGetEdges103_3() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test103");
         PDG pdg = cldg.findPDG("Test103#getA( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(3, result.size());
     }
@@ -484,7 +485,7 @@ public class PDGTest {
     public void testGetEdges103_4() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test103");
         PDG pdg = cldg.findPDG("Test103#incA( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(3, result.size());
     }
@@ -493,7 +494,7 @@ public class PDGTest {
     public void testGetEdges103_5() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test103");
         PDG pdg = cldg.findPDG("Test103#Test103( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -502,7 +503,7 @@ public class PDGTest {
     public void testGetEdges103_6() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test103");
         PDG pdg = cldg.findPDG("Test103#a");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -511,7 +512,7 @@ public class PDGTest {
     public void testGetEdgesTest119_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test119");
         PDG pdg = cldg.findPDG("Test119#m( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(62, result.size());
     }
@@ -520,7 +521,7 @@ public class PDGTest {
     public void testGetEdgesTest119_2() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test119");
         PDG pdg = cldg.findPDG("Test119#getP( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(3, result.size());
     }
@@ -529,7 +530,7 @@ public class PDGTest {
     public void testGetEdgesTest119_3() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test119");
         PDG pdg = cldg.findPDG("Test119#Test119( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -538,7 +539,7 @@ public class PDGTest {
     public void testGetEdgesTest119_4() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test119");
         PDG pdg = cldg.findPDG("Test119#p");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -547,7 +548,7 @@ public class PDGTest {
     public void testGetEdgesA119_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "A119");
         PDG pdg = cldg.findPDG("A119#x");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -556,7 +557,7 @@ public class PDGTest {
     public void testGetEdgesA119_2() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "A119");
         PDG pdg = cldg.findPDG("A119#y");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -565,7 +566,7 @@ public class PDGTest {
     public void testGetEdgesTest129_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test129");
         PDG pdg = cldg.findPDG("Test129#m( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(137, result.size());
     }
@@ -574,7 +575,7 @@ public class PDGTest {
     public void testGetEdgesTest129_2() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test129");
         PDG pdg = cldg.findPDG("Test129#s1");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -583,7 +584,7 @@ public class PDGTest {
     public void testGetEdgesTest129_3() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test129");
         PDG pdg = cldg.findPDG("Test129#s2");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -592,7 +593,7 @@ public class PDGTest {
     public void testGetEdgesP129_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "P129");
         PDG pdg = cldg.findPDG("P129#get1( java.lang.String )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(9, result.size());
     }
@@ -601,7 +602,7 @@ public class PDGTest {
     public void testGetEdgesP129_2() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "P129");
         PDG pdg = cldg.findPDG("P129#set1( java.lang.String java.lang.String )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(20, result.size());
     }
@@ -610,7 +611,7 @@ public class PDGTest {
     public void testGetEdgesP129_3() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "P129");
         PDG pdg = cldg.findPDG("P129#map");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(6, result.size());
     }
@@ -619,7 +620,7 @@ public class PDGTest {
     public void testGetEdgesP129_4() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "P129");
         PDG pdg = cldg.findPDG("P129#key");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -628,7 +629,7 @@ public class PDGTest {
     public void testGetEdgesP129_5() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "P129");
         PDG pdg = cldg.findPDG("P129#value");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -637,7 +638,7 @@ public class PDGTest {
     public void testGetEdgesQ134_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Q134");
         PDG pdg = cldg.findPDG("Q134#f( int )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -646,7 +647,7 @@ public class PDGTest {
     public void testGetEdgesR134_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "R134");
         PDG pdg = cldg.findPDG("R134#f( int )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -655,7 +656,7 @@ public class PDGTest {
     public void testGetEdgesI134_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "I134");
         PDG pdg = cldg.findPDG("I134#f( int )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -664,7 +665,7 @@ public class PDGTest {
     public void testGetEdgesTest139_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test139");
         PDG pdg = cldg.findPDG("Test139#m( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(13, result.size());
     }
@@ -673,7 +674,7 @@ public class PDGTest {
     public void testGetEdgesPriceCode_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         PDG pdg = cldg.findPDG("PriceCode#PriceCode( int )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -682,7 +683,7 @@ public class PDGTest {
     public void testGetEdgesPriceCode_2() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         PDG pdg = cldg.findPDG("PriceCode#getPriceCode( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(3, result.size());
     }
@@ -691,7 +692,7 @@ public class PDGTest {
     public void testGetEdgesPriceCode_3() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         PDG pdg = cldg.findPDG("PriceCode#priceCode");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -700,7 +701,7 @@ public class PDGTest {
     public void testGetEdgesPriceCode_4() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         PDG pdg = cldg.findPDG("PriceCode#CHILDRENS");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(7, result.size());
     }
@@ -709,7 +710,7 @@ public class PDGTest {
     public void testGetEdgesPriceCode_5() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         PDG pdg = cldg.findPDG("PriceCode#REGULAR");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(7, result.size());
     }
@@ -718,7 +719,7 @@ public class PDGTest {
     public void testGetEdgesPriceCode_6() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         PDG pdg = cldg.findPDG("PriceCode#NEW_RELEASE");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(7, result.size());
     }
@@ -727,7 +728,7 @@ public class PDGTest {
     public void testGetEdgesCustomer_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Customer");
         PDG pdg = cldg.findPDG("Customer#Customer( java.lang.String )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -736,7 +737,7 @@ public class PDGTest {
     public void testGetEdgesCustomer_2() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Customer");
         PDG pdg = cldg.findPDG("Customer#statement( Order )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(35, result.size());
     }
@@ -745,7 +746,7 @@ public class PDGTest {
     public void testGetEdgesCustomer_3() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Customer");
         PDG pdg = cldg.findPDG("Customer#getAmount( Order )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(21, result.size());
     }
@@ -754,7 +755,7 @@ public class PDGTest {
     public void testGetEdgesCustomer_4() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Customer");
         PDG pdg = cldg.findPDG("Customer#setDiscount( double )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -763,7 +764,7 @@ public class PDGTest {
     public void testGetEdgesCustomer_5() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Customer");
         PDG pdg = cldg.findPDG("Customer#name");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -772,7 +773,7 @@ public class PDGTest {
     public void testGetEdgesCustomer_6() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Customer");
         PDG pdg = cldg.findPDG("Customer#discount");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -781,7 +782,7 @@ public class PDGTest {
     public void testGetEdgesCustomerTest_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "CustomerTest");
         PDG pdg = cldg.findPDG("CustomerTest#CustomerTest( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -790,7 +791,7 @@ public class PDGTest {
     public void testGetEdgesCustomerTest_2() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "CustomerTest");
         PDG pdg = cldg.findPDG("CustomerTest#testStatement1( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(70, result.size());
     }
@@ -799,7 +800,7 @@ public class PDGTest {
     public void testGetEdgesCustomerTest_3() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "CustomerTest");
         PDG pdg = cldg.findPDG("CustomerTest#testStatement2( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(101, result.size());
     }
@@ -808,7 +809,7 @@ public class PDGTest {
     public void testGetEdgesOrder_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Order");
         PDG pdg = cldg.findPDG("Order#Order( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -817,7 +818,7 @@ public class PDGTest {
     public void testGetEdgesOrder_2() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Order");
         PDG pdg = cldg.findPDG("Order#addRental( Rental )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(14, result.size());
     }
@@ -826,7 +827,7 @@ public class PDGTest {
     public void testGetEdgesOrder_3() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Order");
         PDG pdg = cldg.findPDG("Order#getSize( )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(7, result.size());
     }
@@ -835,7 +836,7 @@ public class PDGTest {
     public void testGetEdgesOrder_4() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Order");
         PDG pdg = cldg.findPDG("Order#rentals");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(7, result.size());
     }
@@ -844,7 +845,7 @@ public class PDGTest {
     public void testGetEdgesRental_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Rental");
         PDG pdg = cldg.findPDG("Rental#Rental( int int )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(9, result.size());
     }
@@ -853,7 +854,7 @@ public class PDGTest {
     public void testGetEdgesRental_2() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Rental");
         PDG pdg = cldg.findPDG("Rental#getCharge( double )");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(12, result.size());
     }
@@ -862,7 +863,7 @@ public class PDGTest {
     public void testGetEdgesRental_3() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Rental");
         PDG pdg = cldg.findPDG("Rental#price");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }
@@ -871,7 +872,7 @@ public class PDGTest {
     public void testGetEdgesRental_4() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Rental");
         PDG pdg = cldg.findPDG("Rental#days");
-        Set<Dependence> result = pdg.getEdges();
+        List<Dependence> result = pdg.getEdges();
         
         assertEquals(1, result.size());
     }

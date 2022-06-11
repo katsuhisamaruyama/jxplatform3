@@ -5,7 +5,7 @@
 
 package org.jtool.graph;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -80,7 +80,7 @@ class ConcreteGraphEdge extends GraphEdge {
         return String.valueOf(src.id + "/" + dst.id);
     }
     
-    public static String asSortedStr(Set<GraphEdge> set) {
-        return set.stream().map(GraphEdge::toString).sorted().collect(Collectors.joining(", "));
+    public static String asSortedStr(List<GraphEdge> edges) {
+        return edges.stream().map(GraphEdge::toString).sorted().collect(Collectors.joining(", "));
     }
 }

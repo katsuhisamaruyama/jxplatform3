@@ -28,12 +28,12 @@ public abstract class GraphNode extends GraphElement {
     /**
      * The collection of edges incoming to this node. 
      */
-    protected Set<GraphEdge> incomingEdges = new HashSet<>();
+    protected List<GraphEdge> incomingEdges = new ArrayList<>();
     
     /**
      * The collection of edges outgoing from this node. 
      */
-    protected Set<GraphEdge> outgoingEdges = new HashSet<>();
+    protected List<GraphEdge> outgoingEdges = new ArrayList<>();
     
     /**
      * The collection of source nodes of this node. 
@@ -103,7 +103,7 @@ public abstract class GraphNode extends GraphElement {
      * Adds edges incoming to this node.
      * @param edges the collection of the incoming edges to be added
      */
-    public void addIncomingEdges(Set<GraphEdge> edges) {
+    public void addIncomingEdges(List<GraphEdge> edges) {
         edges.forEach(edge -> addIncomingEdge(edge));
     }
     
@@ -111,7 +111,7 @@ public abstract class GraphNode extends GraphElement {
      * Adds edges outgoing to this node.
      * @param edges the collection of the outgoing edges to be added
      */
-    public void addOutgoingEdges(Set<GraphEdge> edges) {
+    public void addOutgoingEdges(List<GraphEdge> edges) {
         edges.forEach(edge -> addOutgoingEdge(edge));
     }
     
@@ -120,12 +120,17 @@ public abstract class GraphNode extends GraphElement {
      * @param edge the incoming edge to be removed
      */
     public void removeIncomingEdge(GraphEdge edge) {
-        incomingEdges.remove(edge);
-        
         GraphNode src = edge.getSrcNode();
-        srcNodes.remove(src);
+        
+        incomingEdges.remove(edge);
+        if (!incomingEdges.stream().anyMatch(e -> e.getSrcNode().equals(src))) {
+            srcNodes.remove(src);
+        }
+        
         src.outgoingEdges.remove(edge);
-        src.dstNodes.remove(this);
+        if (!src.outgoingEdges.stream().anyMatch(e -> e.getDstNode().equals(this))) {
+            src.dstNodes.remove(this);
+        }
     }
     
     /**
@@ -133,20 +138,23 @@ public abstract class GraphNode extends GraphElement {
      * @param edge the outgoing edge to be removed
      */
     public void removeOutgoingEdge(GraphEdge edge) {
-        outgoingEdges.remove(edge);
-        
         GraphNode dst = edge.getDstNode();
-        dstNodes.remove(dst);
-        srcNodes.remove(dst);
+        
+        outgoingEdges.remove(edge);
+        if (!outgoingEdges.stream().anyMatch(e -> e.getDstNode().equals(dst))) {
+            dstNodes.remove(dst);
+        }
         dst.incomingEdges.remove(edge);
-        dst.srcNodes.remove(this);
+        if (!incomingEdges.stream().anyMatch(e -> e.getSrcNode().equals(this))) {
+            dst.srcNodes.remove(this);
+        }
     }
     
     /**
      * Returns edges incoming to this node.
      * @return the collection of the incoming edges
      */
-    public Set<GraphEdge> getIncomingEdges() {
+    public List<GraphEdge> getIncomingEdges() {
         return incomingEdges;
     }
     
@@ -154,7 +162,7 @@ public abstract class GraphNode extends GraphElement {
      * Returns edges outgoing from this node.
      * @return the collection of the outgoing edges
      */
-    public Set<GraphEdge> getOutgoingEdges() {
+    public List<GraphEdge> getOutgoingEdges() {
         return outgoingEdges;
     }
     
@@ -206,11 +214,11 @@ public abstract class GraphNode extends GraphElement {
     public String toString() {
         StringBuilder buf = new StringBuilder(); 
         buf.append("Node: " + GraphElement.getIdString(getId()) + "\n");
-        Set<GraphEdge> outgoing = getOutgoingEdges();
+        List<GraphEdge> outgoing = getOutgoingEdges();
         buf.append("  Outgoing :");
         outgoing.forEach(edge -> buf.append("  " + edge.getDstNode().getId()));
         buf.append("\n");
-        Set<GraphEdge> incoming = getIncomingEdges();
+        List<GraphEdge> incoming = getIncomingEdges();
         buf.append("  Incoming :");
         incoming.forEach(edge -> buf.append("  " + edge.getSrcNode().getId()));
         return buf.toString();

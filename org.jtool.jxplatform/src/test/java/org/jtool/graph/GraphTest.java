@@ -7,6 +7,8 @@ package org.jtool.graph;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -50,13 +52,13 @@ public class GraphTest {
         ConcreteGraphEdge e12 = createEdge(n1, n2);
         ConcreteGraphEdge e13 = createEdge(n1, n3);
         
-        Set<GraphEdge> edges = new HashSet<>();
+        List<GraphEdge> edges = new ArrayList<>();
         edges.add(e12);
         edges.add(e13);
         
         Graph<GraphNode, GraphEdge> g = createGraph();
         g.edges = edges;
-        Set<GraphEdge> result = g.getEdges();
+        List<GraphEdge> result = g.getEdges();
         
         assertEquals("1/2, 1/3", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -84,7 +86,7 @@ public class GraphTest {
         ConcreteGraphEdge e12 = createEdge(n1, n2);
         ConcreteGraphEdge e13 = createEdge(n1, n3);
         
-        Set<GraphEdge> edges = new HashSet<>();
+        List<GraphEdge> edges = new ArrayList<>();
         edges.add(e12);
         edges.add(e13);
         
@@ -162,7 +164,7 @@ public class GraphTest {
         g.add(e13);
         g.add(e13a);
         
-        assertEquals("1/2, 1/3", ConcreteGraphEdge.asSortedStr(g.getEdges()));
+        assertEquals("1/2, 1/3, 1/3", ConcreteGraphEdge.asSortedStr(g.getEdges()));
     }
     
     @Test
@@ -178,7 +180,7 @@ public class GraphTest {
         g.add(e13);
         g.add(e13);
         
-        assertEquals("1/2, 1/3", ConcreteGraphEdge.asSortedStr(g.getEdges()));
+        assertEquals("1/2, 1/3, 1/3", ConcreteGraphEdge.asSortedStr(g.getEdges()));
     }
     
     @Test

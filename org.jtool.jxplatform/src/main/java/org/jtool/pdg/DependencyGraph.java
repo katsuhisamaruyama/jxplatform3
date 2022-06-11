@@ -9,9 +9,10 @@ import org.jtool.cfg.CFG;
 import org.jtool.cfg.CCFG;
 import org.jtool.graph.GraphNode;
 import org.jtool.srcmodel.QualifiedName;
+import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -29,12 +30,12 @@ public abstract class DependencyGraph {
     /**
      * All edges that are included in this dependency graph.
      */
-    protected Set<Dependence> allEdges = new HashSet<>();
+    protected List<Dependence> allEdges = new ArrayList<>();
     
     /**
      * Specific (not all) edges that are included in this dependency graph.
      */
-    protected Set<Dependence> specificEdges = new HashSet<>();
+    protected List<Dependence> specificEdges = new ArrayList<>();
     
     /**
      * Creates a dependency graph.
@@ -96,7 +97,7 @@ public abstract class DependencyGraph {
      * This method is not intended to be invoked by clients.
      * @param nodes the collection of edges to be added
      */
-    public void addEdges(Set<Dependence> edges) {
+    public void addEdges(List<Dependence> edges) {
         allEdges.addAll(edges);
     }
     
@@ -115,7 +116,7 @@ public abstract class DependencyGraph {
      * This method is not intended to be invoked by clients.
      * @return the collection of the specific edges
      */
-    Set<Dependence> getSpecificEdges() {
+    List<Dependence> getSpecificEdges() {
         return specificEdges;
     }
     
@@ -171,7 +172,7 @@ public abstract class DependencyGraph {
      * Returns all edges of this dependency graph.
      * @return the collection of the edges
      */
-    public Set<Dependence> getEdges() {
+    public List<Dependence> getEdges() {
         return allEdges;
     }
     

@@ -8,6 +8,7 @@ package org.jtool.pdg;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.PDGTestUtil;
+import java.util.List;
 import java.util.Set;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -96,7 +97,7 @@ public class SDGTest {
     @Test
     public void testGetEdges1() {
         SDG sdg = PDGTestUtil.createSDG(CSclassroomProject);
-        Set<Dependence> result = sdg.getEdges();
+        List<Dependence> result = sdg.getEdges();
         
         assertEquals(8262, result.size());
     }
@@ -104,7 +105,7 @@ public class SDGTest {
     @Test
     public void testGetEdges2() {
         SDG sdg = PDGTestUtil.createSDG(DrawToolProject);
-        Set<Dependence> result = sdg.getEdges();
+        List<Dependence> result = sdg.getEdges();
         
         assertEquals(15100, result.size());
     }
@@ -112,7 +113,7 @@ public class SDGTest {
     @Test
     public void testGetEdges3() {
         SDG sdg = PDGTestUtil.createSDG(SimpleProject);
-        Set<Dependence> result = sdg.getEdges();
+        List<Dependence> result = sdg.getEdges();
         
         assertEquals(4537, result.size());
     }
@@ -120,7 +121,7 @@ public class SDGTest {
     @Test
     public void testGetEdges4() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject);
-        Set<Dependence> result = sdg.getEdges();
+        List<Dependence> result = sdg.getEdges();
         
         assertEquals(4544, result.size());
     }
@@ -128,7 +129,7 @@ public class SDGTest {
     @Test
     public void testGetEdges5() {
         SDG sdg = PDGTestUtil.createSDG(TetrisProject);
-        Set<Dependence> result = sdg.getEdges();
+        List<Dependence> result = sdg.getEdges();
         
         assertEquals(5481, result.size());
     }
@@ -136,7 +137,7 @@ public class SDGTest {
     @Test
     public void testGetEdges6() {
         SDG sdg = PDGTestUtil.createSDG(VideoStoreProject);
-        Set<Dependence> result = sdg.getEdges();
+        List<Dependence> result = sdg.getEdges();
         
         assertEquals(5885, result.size());
     }
@@ -144,7 +145,7 @@ public class SDGTest {
     @Test
     public void testGetSpecificEdges1() {
         SDG sdg = PDGTestUtil.createSDG(CSclassroomProject);
-        Set<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getSpecificEdges();
         
         assertEquals(973, result.size());
     }
@@ -152,7 +153,7 @@ public class SDGTest {
     @Test
     public void testGetSpecificEdges2() {
         SDG sdg = PDGTestUtil.createSDG(DrawToolProject);
-        Set<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getSpecificEdges();
         
         assertEquals(5095, result.size());
     }
@@ -160,7 +161,7 @@ public class SDGTest {
     @Test
     public void testGetSpecificEdges3() {
         SDG sdg = PDGTestUtil.createSDG(SimpleProject);
-        Set<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getSpecificEdges();
         
         assertEquals(858, result.size());
     }
@@ -168,7 +169,7 @@ public class SDGTest {
     @Test
     public void testGetSpecificEdges4() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject);
-        Set<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getSpecificEdges();
         
         assertEquals(1575, result.size());
     }
@@ -176,7 +177,7 @@ public class SDGTest {
     @Test
     public void testGetSpecificEdges5() {
         SDG sdg = PDGTestUtil.createSDG(TetrisProject);
-        Set<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getSpecificEdges();
         
         assertEquals(2415, result.size());
     }
@@ -184,7 +185,7 @@ public class SDGTest {
     @Test
     public void testGetSpecificEdges6() {
         SDG sdg = PDGTestUtil.createSDG(VideoStoreProject);
-        Set<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getSpecificEdges();
         
         assertEquals(2580, result.size());
     }

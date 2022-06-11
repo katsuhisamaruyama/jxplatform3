@@ -8,6 +8,7 @@ package org.jtool.cfg;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.CFGTestUtil;
+import java.util.List;
 import java.util.Set;
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -456,7 +457,7 @@ public class CFGTest {
     public void testGetEdges103_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#m( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(36, result.size());
     }
@@ -465,7 +466,7 @@ public class CFGTest {
     public void testGetEdges103_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#setA( int )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(4, result.size());
     }
@@ -474,7 +475,7 @@ public class CFGTest {
     public void testGetEdges103_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#getA( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(4, result.size());
     }
@@ -483,7 +484,7 @@ public class CFGTest {
     public void testGetEdges103_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#incA( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(3, result.size());
     }
@@ -492,7 +493,7 @@ public class CFGTest {
     public void testGetEdges103_5() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#Test103( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -501,7 +502,7 @@ public class CFGTest {
     public void testGetEdges103_6() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#a");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -510,7 +511,7 @@ public class CFGTest {
     public void testGetEdgesTest119_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#m( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(30, result.size());
     }
@@ -519,7 +520,7 @@ public class CFGTest {
     public void testGetEdgesTest119_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#getP( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(4, result.size());
     }
@@ -528,7 +529,7 @@ public class CFGTest {
     public void testGetEdgesTest119_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#Test119( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -537,7 +538,7 @@ public class CFGTest {
     public void testGetEdgesTest119_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#p");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -546,7 +547,7 @@ public class CFGTest {
     public void testGetEdgesA119_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A119");
         CFG cfg = ccfg.getCFG("A119#x");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -555,7 +556,7 @@ public class CFGTest {
     public void testGetEdgesA119_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A119");
         CFG cfg = ccfg.getCFG("A119#y");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -564,7 +565,7 @@ public class CFGTest {
     public void testGetEdgesTest129_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test129");
         CFG cfg = ccfg.getCFG("Test129#m( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(69, result.size());
     }
@@ -573,7 +574,7 @@ public class CFGTest {
     public void testGetEdgesTest129_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test129");
         CFG cfg = ccfg.getCFG("Test129#s1");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -582,7 +583,7 @@ public class CFGTest {
     public void testGetEdgesTest129_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test129");
         CFG cfg = ccfg.getCFG("Test129#s2");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -591,7 +592,7 @@ public class CFGTest {
     public void testGetEdgesP129_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#get1( java.lang.String )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(8, result.size());
     }
@@ -600,7 +601,7 @@ public class CFGTest {
     public void testGetEdgesP129_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#set1( java.lang.String java.lang.String )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(8, result.size());
     }
@@ -609,7 +610,7 @@ public class CFGTest {
     public void testGetEdgesP129_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#map");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -618,7 +619,7 @@ public class CFGTest {
     public void testGetEdgesP129_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#key");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -627,7 +628,7 @@ public class CFGTest {
     public void testGetEdgesP129_5() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#value");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -636,7 +637,7 @@ public class CFGTest {
     public void testGetEdgesQ134_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Q134");
         CFG cfg = ccfg.getCFG("Q134#f( int )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -645,7 +646,7 @@ public class CFGTest {
     public void testGetEdgesR134_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "R134");
         CFG cfg = ccfg.getCFG("R134#f( int )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -654,7 +655,7 @@ public class CFGTest {
     public void testGetEdgesI134_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "I134");
         CFG cfg = ccfg.getCFG("I134#f( int )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(3, result.size());
     }
@@ -663,7 +664,7 @@ public class CFGTest {
     public void testGetEdgesTest139_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test139");
         CFG cfg = ccfg.getCFG("Test139#m( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(12, result.size());
     }
@@ -672,7 +673,7 @@ public class CFGTest {
     public void testGetEdgesPriceCode_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#PriceCode( int )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(4, result.size());
     }
@@ -681,7 +682,7 @@ public class CFGTest {
     public void testGetEdgesPriceCode_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#getPriceCode( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(4, result.size());
     }
@@ -690,7 +691,7 @@ public class CFGTest {
     public void testGetEdgesPriceCode_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#priceCode");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -699,7 +700,7 @@ public class CFGTest {
     public void testGetEdgesPriceCode_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#CHILDRENS");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -708,7 +709,7 @@ public class CFGTest {
     public void testGetEdgesPriceCode_5() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#REGULAR");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -717,7 +718,7 @@ public class CFGTest {
     public void testGetEdgesPriceCode_6() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#NEW_RELEASE");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -726,7 +727,7 @@ public class CFGTest {
     public void testGetEdgesCustomer_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#Customer( java.lang.String )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(4, result.size());
     }
@@ -735,7 +736,7 @@ public class CFGTest {
     public void testGetEdgesCustomer_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#statement( Order )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(22, result.size());
     }
@@ -744,7 +745,7 @@ public class CFGTest {
     public void testGetEdgesCustomer_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#getAmount( Order )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(13, result.size());
     }
@@ -753,7 +754,7 @@ public class CFGTest {
     public void testGetEdgesCustomer_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#setDiscount( double )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(4, result.size());
     }
@@ -762,7 +763,7 @@ public class CFGTest {
     public void testGetEdgesCustomer_5() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#name");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -771,7 +772,7 @@ public class CFGTest {
     public void testGetEdgesCustomer_6() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#discount");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -780,7 +781,7 @@ public class CFGTest {
     public void testGetEdgesCustomerTest_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "CustomerTest");
         CFG cfg = ccfg.getCFG("CustomerTest#CustomerTest( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -789,7 +790,7 @@ public class CFGTest {
     public void testGetEdgesCustomerTest_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "CustomerTest");
         CFG cfg = ccfg.getCFG("CustomerTest#testStatement1( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(32, result.size());
     }
@@ -798,7 +799,7 @@ public class CFGTest {
     public void testGetEdgesCustomerTest_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "CustomerTest");
         CFG cfg = ccfg.getCFG("CustomerTest#testStatement2( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(43, result.size());
     }
@@ -807,7 +808,7 @@ public class CFGTest {
     public void testGetEdgesOrder_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#Order( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -816,7 +817,7 @@ public class CFGTest {
     public void testGetEdgesOrder_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#addRental( Rental )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(7, result.size());
     }
@@ -825,7 +826,7 @@ public class CFGTest {
     public void testGetEdgesOrder_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#getSize( )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(7, result.size());
     }
@@ -834,7 +835,7 @@ public class CFGTest {
     public void testGetEdgesOrder_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#rentals");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(5, result.size());
     }
@@ -843,7 +844,7 @@ public class CFGTest {
     public void testGetEdgesRental_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#Rental( int int )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(6, result.size());
     }
@@ -852,7 +853,7 @@ public class CFGTest {
     public void testGetEdgesRental_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#getCharge( double )");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(9, result.size());
     }
@@ -861,7 +862,7 @@ public class CFGTest {
     public void testGetEdgesRental_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#price");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }
@@ -870,7 +871,7 @@ public class CFGTest {
     public void testGetEdgesRental_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#days");
-        Set<ControlFlow> result = cfg.getEdges();
+        List<ControlFlow> result = cfg.getEdges();
         
         assertEquals(2, result.size());
     }

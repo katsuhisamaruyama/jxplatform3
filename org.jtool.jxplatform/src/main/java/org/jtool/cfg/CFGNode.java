@@ -279,7 +279,7 @@ public class CFGNode extends GraphNode {
      * Obtains control flow edges incoming to this node.
      * @return the collection of the incoming edges
      */
-    public Set<ControlFlow> getIncomingFlows() {
+    public List<ControlFlow> getIncomingFlows() {
         return convertEdges(getIncomingEdges());
     }
     
@@ -287,8 +287,46 @@ public class CFGNode extends GraphNode {
      * Obtains control flow edges outgoing from this node.
      * @return the collection of the outgoing edges
      */
-    public Set<ControlFlow> getOutgoingFlows() {
+    public List<ControlFlow> getOutgoingFlows() {
         return convertEdges(getOutgoingEdges());
+    }
+    
+    /**
+     * Obtains true control flow edges incoming to this node.
+     * @return the collection of the incoming true edges
+     */
+    public List<ControlFlow> getIncomingTrueFlows() {
+        return getIncomingFlows().stream()
+                                 .filter(edge -> edge.isTrue()).collect(Collectors.toList());
+    }
+    
+    /**
+     * Obtains true control flow edges incoming to this node.
+     * @return the collection of the incoming false edges
+     */
+    public List<ControlFlow> getIncomingFalseFlows() {
+        return getIncomingFlows().stream()
+                                 .filter(edge -> edge.isFalse()).collect(Collectors.toList());
+    }
+    
+    /**
+     * Obtains true control flow edges outgoing from this node.
+     * @return the outgoing true edge
+     */
+    public ControlFlow getOutgoingTrueFlow() {
+        return getOutgoingFlows().stream()
+                                 .filter(edge -> edge.isTrue())
+                                 .findFirst().orElse(null);
+    }
+    
+    /**
+     * Obtains true control flow edges outgoing from this node.
+     * @return the outgoing false edge
+     */
+    public ControlFlow getOutgoingFalseFlow() {
+        return getOutgoingFlows().stream()
+                                 .filter(edge -> edge.isFalse())
+                                 .findFirst().orElse(null);
     }
     
     /**
@@ -305,8 +343,8 @@ public class CFGNode extends GraphNode {
      * @param nodes the collection of {@code GraphEdge} objects
      * @return the collection of {@code ControlFlow} objects
      */
-    private Set<ControlFlow> convertEdges(Set<GraphEdge> edges) {
-        return edges.stream().map(edge -> (ControlFlow)edge).collect(Collectors.toSet());
+    private List<ControlFlow> convertEdges(List<GraphEdge> edges) {
+        return edges.stream().map(edge -> (ControlFlow)edge).collect(Collectors.toList());
     }
     
     /**

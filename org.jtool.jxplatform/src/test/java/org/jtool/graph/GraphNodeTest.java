@@ -6,6 +6,7 @@
 package org.jtool.graph;
 
 import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -25,7 +26,7 @@ public class GraphNodeTest {
         ConcreteGraphNode n1 = createNode(1);
         ConcreteGraphNode n2 = createNode(2);
         createEdge(n1, n2);
-        Set<GraphEdge> result = n1.getIncomingEdges();
+        List<GraphEdge> result = n1.getIncomingEdges();
         
         assertEquals("", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -36,7 +37,7 @@ public class GraphNodeTest {
         ConcreteGraphNode n2 = createNode(2);
         
         createEdge(n1, n2);
-        Set<GraphEdge> result = n2.getIncomingEdges();
+        List<GraphEdge> result = n2.getIncomingEdges();
         
         assertEquals("1/2", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -56,7 +57,7 @@ public class GraphNodeTest {
         createEdge(n2, n5);
         createEdge(n3, n6);
         createEdge(n6, n2);
-        Set<GraphEdge> result = n2.getIncomingEdges();
+        List<GraphEdge> result = n2.getIncomingEdges();
         
         assertEquals("1/2, 6/2", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -76,7 +77,7 @@ public class GraphNodeTest {
         createEdge(n2, n5);
         createEdge(n3, n6);
         createEdge(n6, n2);
-        Set<GraphEdge> result = n3.getIncomingEdges();
+        List<GraphEdge> result = n3.getIncomingEdges();
         
         assertEquals("1/3", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -96,7 +97,7 @@ public class GraphNodeTest {
         createEdge(n2, n5);
         createEdge(n3, n6);
         createEdge(n6, n2);
-        Set<GraphEdge> result = n6.getIncomingEdges();
+        List<GraphEdge> result = n6.getIncomingEdges();
         
         assertEquals("3/6", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -119,7 +120,7 @@ public class GraphNodeTest {
         
         n2.removeIncomingEdge(e62);
         
-        Set<GraphEdge> result = n2.getIncomingEdges();
+        List<GraphEdge> result = n2.getIncomingEdges();
         
         assertEquals("1/2", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -142,7 +143,7 @@ public class GraphNodeTest {
         
         n6.removeOutgoingEdge(e62);
         
-        Set<GraphEdge> result = n2.getIncomingEdges();
+        List<GraphEdge> result = n2.getIncomingEdges();
         
         assertEquals("1/2", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -152,7 +153,7 @@ public class GraphNodeTest {
         ConcreteGraphNode n1 = createNode(1);
         ConcreteGraphNode n2 = createNode(2);
         createEdge(n1, n2);
-        Set<GraphEdge> result = n1.getOutgoingEdges();
+        List<GraphEdge> result = n1.getOutgoingEdges();
         
         assertEquals("1/2", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -162,7 +163,7 @@ public class GraphNodeTest {
         ConcreteGraphNode n1 = createNode(1);
         ConcreteGraphNode n2 = createNode(2);
         createEdge(n1, n2);
-        Set<GraphEdge> result = n2.getOutgoingEdges();
+        List<GraphEdge> result = n2.getOutgoingEdges();
         
         assertEquals("", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -182,7 +183,7 @@ public class GraphNodeTest {
         createEdge(n2, n5);
         createEdge(n3, n6);
         createEdge(n6, n2);
-        Set<GraphEdge> result = n2.getOutgoingEdges();
+        List<GraphEdge> result = n2.getOutgoingEdges();
         
         assertEquals("2/4, 2/5", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -201,7 +202,7 @@ public class GraphNodeTest {
         createEdge(n2, n5);
         createEdge(n3, n6);
         createEdge(n6, n2);
-        Set<GraphEdge> result = n3.getOutgoingEdges();
+        List<GraphEdge> result = n3.getOutgoingEdges();
         
         assertEquals("3/6", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -220,7 +221,7 @@ public class GraphNodeTest {
         createEdge(n2, n5);
         createEdge(n3, n6);
         createEdge(n6, n2);
-        Set<GraphEdge> result = n6.getOutgoingEdges();
+        List<GraphEdge> result = n6.getOutgoingEdges();
         
         assertEquals("6/2", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -243,7 +244,7 @@ public class GraphNodeTest {
         
         n2.removeOutgoingEdge(e24);
         
-        Set<GraphEdge> result = n2.getOutgoingEdges();
+        List<GraphEdge> result = n2.getOutgoingEdges();
         
         assertEquals("2/5", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -266,7 +267,7 @@ public class GraphNodeTest {
         
         n4.removeIncomingEdge(e24);
         
-        Set<GraphEdge> result = n2.getOutgoingEdges();
+        List<GraphEdge> result = n2.getOutgoingEdges();
         
         assertEquals("2/5", ConcreteGraphEdge.asSortedStr(result));
     }
@@ -449,7 +450,7 @@ class ConcreteGraphNode extends GraphNode {
         return String.valueOf(id);
     }
     
-    public static String asSortedStr(Set<GraphNode> set) {
-        return set.stream().map(GraphNode::toString).sorted().collect(Collectors.joining(", "));
+    public static String asSortedStr(Set<GraphNode> nodes) {
+        return nodes.stream().map(GraphNode::toString).sorted().collect(Collectors.joining(", "));
     }
 }

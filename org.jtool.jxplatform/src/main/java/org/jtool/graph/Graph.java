@@ -7,6 +7,8 @@ package org.jtool.graph;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A graph object having nodes and edges.
@@ -23,7 +25,7 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
     /**
      * Edges of this graph.
      */
-    protected Set<E> edges = new HashSet<>();
+    protected List<E> edges = new ArrayList<>();
     
     /**
      * Creates a new, empty object for storing a graph information.
@@ -51,24 +53,24 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
      * Returns all edges of this graph.
      * @return the collection of the edges
      */
-    public Set<E> getEdges() {
+    public List<E> getEdges() {
         return edges;
     }
     
     /**
      * Adds nodes of this graph.
-     * @param set a collection of nodes to be added
+     * @param nodes a collection of nodes to be added
      */
-    public void addNodes(Set<N> set) {
-        nodes = set;
+    public void addNodes(Set<N> nodes) {
+        this.nodes = nodes;
     }
     
     /**
      * Sets edges of this graph.
-     * @param set a collection of edges to be added
+     * @param edges a collection of edges to be added
      */
-    public void addEdges(Set<E> set) {
-        edges = set;
+    public void addEdges(List<E> edges) {
+        this.edges = edges;
     }
     
     /**
