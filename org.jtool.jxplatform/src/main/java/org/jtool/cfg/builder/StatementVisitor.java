@@ -709,7 +709,7 @@ public class StatementVisitor extends ASTVisitor {
         
         Block finallyBlock = node.getFinally();
         if (finallyBlock != null) {
-            visitFinallyBlock(tryNode, finallyBlock, mergeNode);
+            visitFinallyBlock(tryNode, finallyBlock);
         }
         
         catchClause(tryNode);
@@ -752,7 +752,7 @@ public class StatementVisitor extends ASTVisitor {
         reconnect(mergeNode);
     }
     
-    private void visitFinallyBlock(TryNode tryNode, Block block, CFGMerge mergeNode) {
+    private void visitFinallyBlock(TryNode tryNode, Block block) {
         CFGStatement finallyNode = new CFGStatement(block, CFGNode.Kind.finallyClause);
         
         reconnect(finallyNode);
@@ -760,10 +760,10 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow edge = createFlow(finallyNode, nextNode);
         edge.setTrue();
         
-        ControlFlow fallEdge = createFlow(finallyNode, mergeNode);
-        fallEdge.setFallThrough();
-        
         block.accept(this);
+        
+        ControlFlow fallEdge = createFlow(finallyNode, nextNode);
+        fallEdge.setFallThrough();
     }
     
     private void catchClause(TryNode tryNode) {
