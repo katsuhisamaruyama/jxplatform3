@@ -59,8 +59,7 @@ class JMethodInternal extends JMethod {
                         defFields.add(updateClassName(var));
                     });
                 
-                stNode.getUseVariables()
-                    .stream()
+                stNode.getUseVariables().stream()
                     .filter(var -> var.isFieldAccess())
                     .forEach(fv -> {
                         DefUseField var = new DefUseField((JFieldReference)fv, stNode);

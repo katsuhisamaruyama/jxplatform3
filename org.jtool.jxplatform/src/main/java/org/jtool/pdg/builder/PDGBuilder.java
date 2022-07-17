@@ -28,8 +28,10 @@ import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JFieldReference;
+import org.jtool.cfg.JComplementaryFieldReference;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.srcmodel.QualifiedName;
+import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 import java.util.HashMap;
@@ -202,42 +204,35 @@ public class PDGBuilder {
             for (CFGNode node : cfg.getNodes()) {
                 if (node.isStatement()) {
                     CFGStatement stNode = (CFGStatement)node;
-                    
-                    for (JVariableReference var : stNode.getDefVariables()) {
-                        if (var.isFieldAccess()) {
-                            connectDefFieldAccesses(fieldEntries, graph, cfg, node, (JFieldReference)var);
-                        }
-                    }
-                    
-                    for (JVariableReference var : stNode.getUseVariables()) {
-                        if (var.isFieldAccess()) {
-                            connectUseFieldAccesses(fieldEntries, graph, node, (JFieldReference)var);
-                        }
-                    }
+                    stNode.getDefVariables().stream()
+                        .filter(var -> var.isFieldAccess())
+                        .forEach(var -> connectDefFieldAccesses(graph, node, (JFieldReference)var));
+                    stNode.getUseVariables().stream()
+                        .filter(var -> var.isFieldAccess())
+                        .forEach(var -> connectUseFieldAccesses(fieldEntries, graph, node, (JFieldReference)var));
                 }
             }
         }
     }
     
-    private static void connectDefFieldAccesses(Set<CFGFieldEntry> fieldEntries,
-            DependencyGraph graph, CFG cfg, CFGNode node, JFieldReference fvar) {
-        for (CFGFieldEntry fieldEntry : fieldEntries) {
-            if (fieldEntry.getQualifiedName().equals(fvar.getQualifiedName())) {
-                DD edge = new DD(node.getPDGNode(), fieldEntry.getDeclarationNode().getPDGNode(), fvar);
-                edge.setFieldAccess();
-                graph.add(edge);
-                
-                if (cfg.isMethod()) {
-                    CFGMethodEntry cfgEntry = (CFGMethodEntry)cfg.getEntryNode();
-                    if (cfgEntry.isConstructorEntry()) {
-                        CFGParameter fout = cfgEntry.getFormalOut();
-                        DD instanceCreationEdge = new DD(fieldEntry.getDeclarationNode().getPDGNode(),
-                                fout.getPDGNode(), fvar);
-                        instanceCreationEdge.setFieldAccess();
-                        graph.add(instanceCreationEdge);
-                    }
-                }
-            }
+    private static void connectDefFieldAccesses(DependencyGraph graph, CFGNode node, JFieldReference fvar) {
+        if (fvar.isComplementary()) {
+            JComplementaryFieldReference cvar = (JComplementaryFieldReference)fvar;
+            cvar.getHoldingNodes().forEach(n -> {
+                addComplementaryFieldAccessEdge(graph, n.getPDGNode(), node.getPDGNode());
+            });
+        }
+    }
+    
+    private static void addComplementaryFieldAccessEdge(DependencyGraph graph, PDGNode src, PDGNode dst) {
+        List<Dependence> edges = graph.getDependence(src, dst);
+        DD edge = (DD)edges.stream()
+                           .filter(e -> e.isComplementaryFieldAccess())
+                           .findFirst().orElse(null);
+        if (edge == null) {
+            edge = new DD(src, dst);
+            edge.setComplementaryFieldAccess();
+            graph.add(edge);
         }
     }
     
