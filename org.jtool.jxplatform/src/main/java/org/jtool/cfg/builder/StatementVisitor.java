@@ -14,7 +14,7 @@ import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JLocalVarReference;
 import org.jtool.cfg.JVariableReference;
-import org.jtool.cfg.JExpedientialReference;
+import org.jtool.cfg.JExpedientReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaMethod;
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -92,6 +92,8 @@ import java.util.Stack;
  *   @author Katsuhisa Maruyama
  */
 public class StatementVisitor extends ASTVisitor {
+    
+    public static final String RETURN_VALUE_SYMBOL = "$_";
     
     protected CFG cfg;
     protected CFGNode prevNode;
@@ -274,7 +276,7 @@ public class StatementVisitor extends ASTVisitor {
         CFGNode curNode = condVisitor.getExitNode();
         
         ITypeBinding tbinding = condition.resolveTypeBinding();
-        JVariableReference jvar = new JExpedientialReference(node,
+        JVariableReference jvar = new JExpedientReference(node,
                 "$Sw", tbinding.getQualifiedName(), tbinding.isPrimitive());
         switchNode.addDefVariable(jvar);
         
@@ -573,14 +575,15 @@ public class StatementVisitor extends ASTVisitor {
         CFGNode curNode = returnNode;
         Expression expression = node.getExpression();
         if (expression != null) {
-            ExpressionVisitor exprVisitor = new ExpressionVisitor(this, cfg, returnNode);
-            expression.accept(exprVisitor);
-            
             CFGMethodEntry methodNode = (CFGMethodEntry)cfg.getEntryNode();
             String type = methodNode.getJavaMethod().getReturnType();
             boolean primitive = methodNode.getJavaMethod().isPrimitiveReturnType();
-            JVariableReference jvar = new JExpedientialReference(methodNode.getASTNode(), "$_", type, primitive);
+            JVariableReference jvar = new JExpedientReference(methodNode.getASTNode(),
+                    RETURN_VALUE_SYMBOL, type, primitive);
             returnNode.addDefVariable(jvar);
+            
+            ExpressionVisitor exprVisitor = new ExpressionVisitor(this, cfg, returnNode);
+            expression.accept(exprVisitor);
             
             curNode = exprVisitor.getExitNode();
         }

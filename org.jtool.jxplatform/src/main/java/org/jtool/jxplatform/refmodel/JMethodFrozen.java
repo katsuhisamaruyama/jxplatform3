@@ -5,7 +5,9 @@
 
 package org.jtool.jxplatform.refmodel;
 
+import org.jtool.cfg.CFGMethodCall;
 import org.jtool.srcmodel.QualifiedName;
+import java.util.List;
 import java.util.Set;
 import java.util.Collection;
 
@@ -24,6 +26,7 @@ class JMethodFrozen extends JMethod {
         this.bclass = bclass;
     }
     
+    @Override
     protected void collectDefUseFieldsInThisMethod() {
         if (!isDefUseCollected) {
             collectDefUseFields();
@@ -59,57 +62,60 @@ class JMethodFrozen extends JMethod {
         }
     }
     
+    @Override
     protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
-            JMethod accessedMethod, String prefix) {
-        for (DefUseField var : accessedMethod.defFields) {
-            if (var.isInThis()) {
-                String referenceForm;
-                if (prefix.length() == 0) {
-                    referenceForm = var.getReferenceForm();
-                } else {
-                    referenceForm = prefix + "." + var.getReferenceForm();
-                }
-                
+            String prefix, String returnValue, List<CFGMethodCall> callChain) {
+        for (DefUseField var : defFields) {
+            if (!var.isComplementary()) {
                 DefUseField def = new DefUseField(var);
-                def.updateReferenceForm(referenceForm);
+                def.updateReferenceForm(getReferenceForm(var, prefix));
+                def.addHoldingNodes(callChain);
+                
                 originMethod.allDefFields.add(def);
-            } else if (var.isStatic()) {
-                originMethod.allDefFields.add(var);
             }
         }
         
-        for (DefUseField var : accessedMethod.useFields) {
-            if (var.isInThis()) {
-                String referenceForm;
-                if (prefix.length() == 0) {
-                    referenceForm = var.getReferenceForm();
-                } else {
-                    referenceForm = prefix + "." + var.getReferenceForm();
-                }
-                
+        for (DefUseField var : useFields) {
+            if (!var.isComplementary()) {
                 DefUseField use = new DefUseField(var);
-                use.updateReferenceForm(referenceForm);
+                use.updateReferenceForm(getReferenceForm(var, prefix));
+                use.addHoldingNodes(callChain);
+                
                 originMethod.allUseFields.add(use);
-            } else if (var.isStatic()) {
-                originMethod.allUseFields.add(var);
             }
         }
     }
     
-    protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
-            String prefix, Set<JMethod> visitedMethods, int count) {
+    private String getReferenceForm(DefUseField var, String prefix) {
+        if (var.isThis()) {
+            if (prefix.length() == 0) {
+                return var.getReferenceForm();
+            } else {
+                return prefix + "." + var.getReferenceForm();
+            }
+        } else {
+            return var.getReferenceForm();
+        }
+    }
+    
+    @Override
+    protected void traverseAccessedMethods(JMethod originMethod,
+            String prefix, String returnValue, List<CFGMethodCall> callChain,
+            Set<JMethod> visitedMethods, int count) {
         for (JMethod amethod : accessedMethods) {
             if (!amethod.stopTraverse(visitedMethods, count + 1)) {
                 visitedMethods.add(amethod);
                 
                 amethod.collectDefUseFieldsInThisMethod();
-                collectDefUseFieldsInAccessedMethods(originMethod, amethod, prefix);
                 
-                amethod.collectDefUseFieldsInAccessedMethods(originMethod, prefix, visitedMethods, count + 1);
+                amethod.collectDefUseFieldsInAccessedMethods(originMethod, prefix, returnValue, callChain);
+                
+                amethod.traverseAccessedMethods(originMethod, prefix, returnValue, callChain, visitedMethods, count + 1);
             }
         }
     }
     
+    @Override
     protected boolean stopTraverse(Set<JMethod> visitedMethods, int count) {
         return count >= maxNumberOfChainForBytecode || visitedMethods.contains(this);
     }

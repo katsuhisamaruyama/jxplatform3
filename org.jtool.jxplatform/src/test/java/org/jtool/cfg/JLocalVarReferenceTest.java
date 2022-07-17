@@ -651,7 +651,7 @@ public class JLocalVarReferenceTest {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JLocalVarReference> result = CFGTestUtil.getUseLocalReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test
@@ -659,7 +659,7 @@ public class JLocalVarReferenceTest {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JLocalVarReference> result = CFGTestUtil.getUseLocalReference(cfg);
         
-        assertTrue(result.get(1).isTouchable());
+        assertTrue(result.get(1).isAvailable());
     }
     
     @Test
@@ -667,7 +667,7 @@ public class JLocalVarReferenceTest {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JLocalVarReference> result = CFGTestUtil.getDefLocalReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test
@@ -675,7 +675,7 @@ public class JLocalVarReferenceTest {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JLocalVarReference> result = CFGTestUtil.getDefLocalReference(cfg);
         
-        assertTrue(result.get(1).isTouchable());
+        assertTrue(result.get(1).isAvailable());
     }
     
     @Test
@@ -683,7 +683,7 @@ public class JLocalVarReferenceTest {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "inc( int )");
         List<JLocalVarReference> result = CFGTestUtil.getDefLocalReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test

@@ -11,20 +11,20 @@ import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.Modifier;
 
 /**
- * A class that represents a reference to a variable invisible on source code.
+ * A class that represents an expedient reference to a variable invisible on source code.
  * 
  * @author Katsuhisa Maruyama
  */
-public class JExpedientialReference extends JVariableReference {
+public class JExpedientReference extends JVariableReference {
     
     /**
-     * Creates a new object that represents a reference to a variable invisible on source code.
+     * Creates a new object that represents an expedient reference to a variable invisible on source code.
      * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this variable reference
      * @param name the name of the referenced variable
      * @param tbinding the type binding information on the variable reference
      */
-    public JExpedientialReference(ASTNode node, String name, ITypeBinding tbinding) {
+    public JExpedientReference(ASTNode node, String name, ITypeBinding tbinding) {
         super(node);
         
         ITypeBinding binding = tbinding.getTypeDeclaration();
@@ -43,7 +43,7 @@ public class JExpedientialReference extends JVariableReference {
      * @param type the type of the referenced variable
      * @param primitive {@code true} if the type of the referenced variable is primitive, otherwise {@code false}
      */
-    public JExpedientialReference(ASTNode node, String name, String type, boolean primitive) {
+    public JExpedientReference(ASTNode node, String name, String type, boolean primitive) {
         super(node);
         
         this.type = type;
@@ -60,7 +60,7 @@ public class JExpedientialReference extends JVariableReference {
      * @param name the name of the referenced variable
      * @param primitive {@code true} if the type of the referenced variable is primitive, otherwise {@code false}
      */
-    public JExpedientialReference(ASTNode node, String name, boolean primitive) {
+    public JExpedientReference(ASTNode node, String name, boolean primitive) {
         super(node);
         
         ITypeBinding binding = findEnclosingClass(node).getTypeDeclaration();
@@ -95,11 +95,10 @@ public class JExpedientialReference extends JVariableReference {
     }
     
     /**
-     * Tests if an element for this reference is exposed.
-     * @return {@code false} that indicate a reference to an exposed element.
+     * {@inheritDoc}
      */
     @Override
-    public boolean isTouchable() {
+    public boolean isAvailable() {
         return false;
     }
     

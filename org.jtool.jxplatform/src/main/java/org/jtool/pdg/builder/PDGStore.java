@@ -140,6 +140,8 @@ public class PDGStore {
     }
     
     public SDG getSDG(JavaClass jclass, boolean force, boolean whole) {
+        assert jclass != null;
+        
         if (whole) {
             return getSDG(getEfferentClasses(jclass), force, true);
         } else {
@@ -200,6 +202,8 @@ public class PDGStore {
     }
     
     private void collectEfferentClasses(JavaClass jclass, Set<JavaClass> classes) {
+        assert jclass != null;
+        
         if (classes.contains(jclass)) {
             return;
         }
@@ -212,6 +216,8 @@ public class PDGStore {
     }
     
     private Set<JavaClass> collectDescendantClassesInProject(JavaClass jclass) {
+        assert jclass != null;
+        
         return jclass.getDescendants().stream()
                      .filter(descendant -> descendant.isInProject())
                      .collect(Collectors.toSet());

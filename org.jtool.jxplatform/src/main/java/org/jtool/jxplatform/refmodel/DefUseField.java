@@ -6,7 +6,11 @@
 package org.jtool.jxplatform.refmodel;
 
 import org.jtool.cfg.JFieldReference;
+import org.jtool.cfg.CFGStatement;
+import org.jtool.cfg.CFGMethodCall;
 import org.eclipse.jdt.core.dom.Modifier;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A class that represents a field defined or used.
@@ -23,33 +27,44 @@ public class DefUseField {
     private String type;
     private boolean isPrimitive;
     private int modifiers;
-    private boolean isInThis;
+    private boolean inProject;
+    private boolean isThis;
+    private boolean isComplementary;
+    private List<CFGStatement> holdingNodes = new ArrayList<>();
     
-    public DefUseField(JFieldReference var) {
-        this(var.getDeclaringClassName(), var.getName(), var.getReferenceForm(),
-                var.getType(), var.isPrimitiveType(), var.getModifiers(), var.isThis());
+    public DefUseField(JFieldReference fvar, CFGStatement node) {
+        this(fvar.getDeclaringClassName(), fvar.getName(), fvar.getReferenceForm(),
+                fvar.getType(), fvar.isPrimitiveType(), fvar.getModifiers(),
+                fvar.isInProject(), fvar.isThis(), fvar.isComplementary());
+        if (node != null) {
+            holdingNodes.add(node);
+        }
     }
     
     public DefUseField(DefUseField var) {
-        this(var.getClassName(), var.getName(), var.getReferenceForm(),
-                var.getType(), var.isPrimitive(), var.getModifiers(), var.isInThis());
+        this(var.className, var.name, var.referenceForm,
+                var.type, var.isPrimitive, var.modifiers, var.inProject, var.isThis(), var.isComplementary);
+        var.getHoldingNodes().forEach(node -> holdingNodes.add(node));
     }
     
     public DefUseField(String className, String name, String referenceForm, String type,
-            boolean isPrimitive, int modifiers, boolean isInThis) {
+            boolean isPrimitive, int modifiers, boolean inProject, boolean isThis, boolean isComplementary) {
         this.className = className;
         this.name = name;
         this.referenceForm = referenceForm;
         this.type = type;
         this.isPrimitive = isPrimitive;
         this.modifiers = modifiers;
-        this.isInThis = isInThis;
+        this.inProject = inProject;
+        this.isThis = isThis;
+        this.isComplementary = isComplementary;
     }
     
     static DefUseField create(String str) {
         String[] s = str.split(FieldPropertySeparator);
         return new DefUseField(s[0], s[1], s[2], s[3],
-                Boolean.parseBoolean(s[4]), Integer.parseInt(s[5]), Boolean.parseBoolean(s[6]));
+                Boolean.parseBoolean(s[4]), Integer.parseInt(s[5]),
+                Boolean.parseBoolean(s[6]), Boolean.parseBoolean(s[7]), Boolean.parseBoolean(s[8]));
     }
     
     public String getQualifiedName() {
@@ -91,8 +106,24 @@ public class DefUseField {
         return modifiers;
     }
     
-    public boolean isInThis() {
-        return isInThis;
+    public boolean isInProject() {
+        return inProject;
+    }
+    
+    public boolean isThis() {
+        return isThis;
+    }
+    
+    public boolean isComplementary() {
+        return isComplementary;
+    }
+    
+    public void addHoldingNodes(List<CFGMethodCall> nodes) {
+        holdingNodes.addAll(nodes);
+    }
+    
+    public List<CFGStatement> getHoldingNodes() {
+        return holdingNodes;
     }
     
     public boolean isStatic() {
@@ -118,7 +149,9 @@ public class DefUseField {
                 FieldPropertySeparator + type +
                 FieldPropertySeparator + String.valueOf(isPrimitive) +
                 FieldPropertySeparator + String.valueOf(modifiers) +
-                FieldPropertySeparator + String.valueOf(isInThis);
+                FieldPropertySeparator + String.valueOf(inProject) +
+                FieldPropertySeparator + String.valueOf(isThis) +
+                FieldPropertySeparator + String.valueOf(isComplementary);
     }
     
     @Override

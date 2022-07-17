@@ -46,9 +46,9 @@ public class JFieldReference extends JVariableReference {
     private ASTNode nameNode;
     
     /**
-     * A flag that indicates whether an element for this reference is touchable.
+     * A flag that indicates whether if this is a reference to an available field.
      */
-    private boolean touchable = true;
+    private boolean available = true;
     
     /**
      * A prefix reference located prior to this reference.
@@ -165,11 +165,10 @@ public class JFieldReference extends JVariableReference {
      * @param primitive {@code true} if the type of the referenced field is primitive, otherwise {@code false}
      * @param modifiers the modifier information on the referenced field
      * @param inProject {@code true} if the referenced field exists in the target project, otherwise {@code false}
-     * @param touchable {@code true} if this is a reference to a touchable field, otherwise {@code false}
+     * @param available {@code true} if this is a reference to an available field, otherwise {@code false}
      */
-    
-    public JFieldReference(ASTNode node, String className, String name,
-            String referenceForm, String type, boolean primitive, int modifiers, boolean inProject, boolean touchable) {
+    public JFieldReference(ASTNode node, String className, String name, String referenceForm,
+            String type, boolean primitive, int modifiers, boolean inProject, boolean available) {
         super(node);
         
         this.nameNode = node;
@@ -189,7 +188,7 @@ public class JFieldReference extends JVariableReference {
         this.isEnumConstant = false;
         this.isThis = enclosingClassName.equals(declaringClassName);
         this.isSuper = node instanceof SuperFieldAccess;
-        this.touchable = touchable;
+        this.available = available;
     }
     
     /**
@@ -212,8 +211,16 @@ public class JFieldReference extends JVariableReference {
      * {@inheritDoc}
      */
     @Override
-    public boolean isTouchable() {
-        return touchable;
+    public boolean isAvailable() {
+        return available;
+    }
+    
+    /**
+     * Tests if this is a complementary reference to a field.
+     * @return {@code true} if this is a complementary field reference, otherwise {@code false}
+     */
+    public boolean isComplementary() {
+        return false;
     }
     
     /**

@@ -35,6 +35,11 @@ public class CFGMethodCall extends CFGStatement {
     private CFGParameter actualOut = null;
     
     /**
+     * The name of a variable that stores the return value.
+     */
+    private String returnValueName = null;
+    
+    /**
      * Creates a new object that represents a method call.
      * @param node the AST node corresponding to this node
      * @param kind the kind of this node
@@ -234,6 +239,22 @@ public class CFGMethodCall extends CFGStatement {
      */
     public boolean hasParameters() {
         return actualIns.size() != 0;
+    }
+    
+    /**
+     * Sets the name of a variable that stores the return value.
+     * @param returnValueName the variable name
+     */
+    public void setReturnValueName(String returnValueName) {
+        this.returnValueName = returnValueName;
+    }
+    
+    /**
+     * Returns the name of a variable that stores the return value.
+     * @return the variable name
+     */
+    public String getReturnValueName() {
+        return returnValueName;
     }
     
     /**

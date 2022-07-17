@@ -6,7 +6,6 @@
 package org.jtool.slice;
 
 import org.jtool.pdg.DependencyGraph;
-import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
 import org.jtool.cfg.JVariableReference;
@@ -45,7 +44,9 @@ public class SliceCriterion {
     public SliceCriterion(DependencyGraph graph, PDGNode node, JVariableReference var) {
         this.graph = graph;
         this.node = node;
-        variables.add(var);
+        if (var.isVariableAccess()) {
+            variables.add(var);
+        }
     }
     
     /**
@@ -86,13 +87,13 @@ public class SliceCriterion {
     
     /**
      * Finds the slicing criterion on a given PDG at a given position at its source code.
-     * @param cldg a ClDG to be sliced
+     * @param graph a dependency graph to be sliced
      * @param code the contents of the source code for the target PDG
      * @param lineNumber the line number of the location where the target variable of interest
      * @param columnNumber the column number of the location where the target variable of interest
      * @return the slicing criterion
      */
-    public static SliceCriterion find(ClDG cldg, 
+    public static SliceCriterion find(DependencyGraph graph, 
             String code, int lineNumber, int columnNumber) {
         String[] lines = code.split(System.getProperty("line.separator"));
         int position = 0;
@@ -100,38 +101,50 @@ public class SliceCriterion {
             position = position + lines[line].length() + 1;
         }
         position = position + columnNumber;
-        return find(cldg, position);
+        return find(graph, position);
     }
     
     /**
-     * Finds the slicing criterion on a given PDG at a given position at its source code.
-     * @param cldg a ClDG to be sliced
+     * Finds the slicing criterion on a given ClDG at a given position at its source code.
+     * @param graph a dependency graph to be sliced
      * @param node the AST node for a variable of interest on the source code
      * @return the slicing criterion
      */
-    public static SliceCriterion find(ClDG cldg, ASTNode node) {
-        return find(cldg, node.getStartPosition());
+    public static SliceCriterion find(DependencyGraph graph, ASTNode node) {
+        return find(graph, node.getStartPosition());
     }
     
     /**
-     * Finds the slicing criterion on a given PDG at a given position at its source code.
-     * @param cldg a ClDG to be sliced
+     * Finds the slicing criterion on a given ClDG at a given position at its source code.
+     * @param graph a dependency graph to be sliced
      * @param position the position of the target variable of interest on the source code
      * @param graph a dependency graph containing the sliced PDG
      * @return the slicing criterion
      */
-    public static SliceCriterion find(ClDG cldg, int position) {
-        for (PDGNode node : cldg.getNodes()) {
-            if (node.isStatement() && !node.getCFGNode().isActualOut()) {
+    public static SliceCriterion find(DependencyGraph graph, int position) {
+        for (PDGNode node : graph.getNodes()) {
+            if (node.getCFGNode().isActualOut()) {
+                continue;
+            }
+            
+            if (node.isStatement()) {
                 PDGStatement stnode = (PDGStatement)node;
-                for (JVariableReference def : stnode.getDefVariables()) {
-                    if (def.isTouchable() && position == def.getStartPosition()) {
-                        return new SliceCriterion(cldg, stnode, def);
+                if (node.getCFGNode().isMethodCall() &&
+                    position == node.getCFGNode().getASTNode().getStartPosition()) {
+                    Set<JVariableReference> vars = new HashSet<>();
+                    vars.addAll(stnode.getDefVariables());
+                    vars.addAll(stnode.getUseVariables());
+                    return new SliceCriterion(graph, stnode, vars);
+                } else {
+                    for (JVariableReference def : stnode.getDefVariables()) {
+                        if (def.isAvailable() && position == def.getStartPosition()) {
+                            return new SliceCriterion(graph, stnode, def);
+                        }
                     }
-                }
-                for (JVariableReference use : stnode.getUseVariables()) {
-                    if (use.isTouchable() && position == use.getStartPosition()) {
-                        return new SliceCriterion(cldg, stnode, use);
+                    for (JVariableReference use : stnode.getUseVariables()) {
+                        if (use.isAvailable() && position == use.getStartPosition()) {
+                            return new SliceCriterion(graph, stnode, use);
+                        }
                     }
                 }
             }

@@ -6,11 +6,12 @@
 package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CFG;
+import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.CFGMethodCall;
-import org.jtool.cfg.JFieldReference;
+import org.jtool.cfg.CFGNode;
+import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.JVariableReference;
-import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.refmodel.BytecodeClassStore;
+import org.jtool.cfg.JComplementaryFieldReference;
 import org.jtool.jxplatform.refmodel.DefUseField;
 import org.jtool.jxplatform.refmodel.JClass;
 import org.jtool.jxplatform.refmodel.JMethod;
@@ -22,10 +23,7 @@ import org.jtool.jxplatform.refmodel.JMethod;
  */
 class FieldReferenceResolver {
     
-    private BytecodeClassStore bcStore;
-    
-    FieldReferenceResolver(JavaProject jproject) {
-        this.bcStore = jproject.getCFGStore().getBCStore();
+    FieldReferenceResolver() {
     }
     
     void findDefUseFields(CFG cfg) {
@@ -57,24 +55,58 @@ class FieldReferenceResolver {
             
             JMethod method = type.getMethod(sig);
             if (method != null && !method.getQualifiedName().equals(cfg.getQualifiedName())) {
-                method.findDefUseFields(receiverName);
+                method.findDefUseFields(callNode, receiverName);
                 
-                for (DefUseField def : method.getAllDefFields()) {
-                    boolean isInProject = bcStore.findInternalClass(def.getClassName()) != null;
-                    JVariableReference var = new JFieldReference(callNode.getASTNode(),
-                            def.getClassName(), def.getName(), def.getReferenceForm(),
-                            def.getType(), def.isPrimitive(), def.getModifiers(), isInProject, false);
-                    callNode.addDefVariable(var);
-                }
-                
-                for (DefUseField use : method.getAllUseFields()) {
-                    boolean isInProject = bcStore.findInternalClass(use.getClassName()) != null;
-                    JVariableReference fvar = new JFieldReference(callNode.getASTNode(),
-                            use.getClassName(), use.getName(), use.getReferenceForm(),
-                            use.getType(), use.isPrimitive(), use.getModifiers(), isInProject, false);
-                    callNode.addUseVariable(fvar);
-                }
+                insertDefVariables(callNode, method, cfg);
+                insertUseVariables(callNode, method);
             }
+        }
+    }
+    
+    private void insertDefVariables(CFGMethodCall callNode, JMethod method, CFG cfg) {
+        ControlFlow removeFlow = callNode.getOutgoingTrueFlow();
+        if (removeFlow != null) {
+            cfg.remove(removeFlow);
+        }
+        
+        CFGNode curNode = callNode;
+        int index = 1;
+        for (DefUseField def : method.getAllDefFields()) {
+            JVariableReference var = new JComplementaryFieldReference(callNode.getASTNode(),
+                    def.getClassName(), def.getName(), def.getReferenceForm(),
+                    def.getType(), def.isPrimitive(), def.getModifiers(), def.isInProject(),
+                    def.getHoldingNodes());
+            
+            if (def.isInProject()) {
+                CFGParameter actualOutNode =
+                        new CFGParameter(callNode.getASTNode(), CFGNode.Kind.actualOut, index);
+                actualOutNode.setParent(callNode);
+                actualOutNode.addDefVariable(var);
+                cfg.add(actualOutNode);
+                
+                ControlFlow flow = new ControlFlow(curNode, actualOutNode);
+                flow.setTrue();
+                cfg.add(flow);
+                
+                curNode = actualOutNode;
+                index++;
+            } else {
+                callNode.getActualOut().addDefVariable(var);
+            }
+        }
+        
+        ControlFlow flow = new ControlFlow(curNode, callNode.getActualOut());
+        flow.setTrue();
+        cfg.add(flow);
+    }
+    
+    private void insertUseVariables(CFGMethodCall callNode, JMethod method) {
+        for (DefUseField use : method.getAllUseFields()) {
+            JVariableReference fvar = new JComplementaryFieldReference(callNode.getASTNode(),
+                    use.getClassName(), use.getName(), use.getReferenceForm(),
+                    use.getType(), use.isPrimitive(), use.getModifiers(), use.isInProject(),
+                    use.getHoldingNodes());
+            callNode.addUseVariable(fvar);
         }
     }
 }

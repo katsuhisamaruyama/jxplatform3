@@ -108,7 +108,7 @@ public class BytecodeClassJavassist extends BytecodeClass {
                             cf.getFieldName(), cf.getClassName() + "." + cf.getFieldName(),
                             cf.getField().getType().getName(),
                             cf.getField().getType().isPrimitive(),
-                            cf.getField().getModifiers(), true);
+                            cf.getField().getModifiers(), false, true, false);
                 }
                 
                 @Override

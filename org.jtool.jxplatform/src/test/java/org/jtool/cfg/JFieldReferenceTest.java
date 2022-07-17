@@ -1251,7 +1251,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test
@@ -1259,7 +1259,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test
@@ -1267,7 +1267,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "getA( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test
@@ -1275,7 +1275,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test
@@ -1283,7 +1283,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test
@@ -1291,7 +1291,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertFalse(result.get(0).isTouchable());
+        assertFalse(result.get(0).isAvailable());
     }
     
     @Test
@@ -1299,7 +1299,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test132", "n( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test
@@ -1307,7 +1307,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test139", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test
@@ -1315,7 +1315,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "PriceCode", "getPriceCode( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test
@@ -1323,7 +1323,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
-        assertTrue(result.get(0).isTouchable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test

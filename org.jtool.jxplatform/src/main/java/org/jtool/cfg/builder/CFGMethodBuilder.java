@@ -15,7 +15,7 @@ import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JLocalVarReference;
 import org.jtool.cfg.JVariableReference;
-import org.jtool.cfg.JExpedientialReference;
+import org.jtool.cfg.JExpedientReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.builder.UncaughtExceptionTypeCollector;
@@ -182,7 +182,7 @@ class CFGMethodBuilder {
         entry.addExceptionNode(node);
         cfg.add(node);
         
-        JVariableReference jvar = new JExpedientialReference(entry.getASTNode(),
+        JVariableReference jvar = new JExpedientReference(entry.getASTNode(),
                 "$" + tbinding.getErasure().getQualifiedName(), tbinding);
         node.setUseVariable(jvar);
         return node;
@@ -218,7 +218,7 @@ class CFGMethodBuilder {
         String returnType = entry.getJavaMethod().getReturnType();
         boolean isPrimitiveType = entry.getJavaMethod().isPrimitiveReturnType();
         
-        JVariableReference use = new JExpedientialReference(node, "$_", returnType, isPrimitiveType);
+        JVariableReference use = new JExpedientReference(node, "$_", returnType, isPrimitiveType);
         formalOut.addUseVariable(use);
         
         return formalOut;

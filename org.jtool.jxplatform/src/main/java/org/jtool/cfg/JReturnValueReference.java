@@ -12,7 +12,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
  * 
  * @author Katsuhisa Maruyama
  */
-public class JMethodReturnReference extends JExpedientialReference {
+public class JReturnValueReference extends JExpedientReference {
     
     /**
      * The symbol indicating that a reference represents a variable that stores the return value.
@@ -32,7 +32,7 @@ public class JMethodReturnReference extends JExpedientialReference {
      * @param type the type of the referenced variable
      * @param primitive {@code true} if the type of the referenced variable is primitive, otherwise {@code false}
      */
-    public JMethodReturnReference(ASTNode node, String name, String type, boolean primitive) {
+    public JReturnValueReference(ASTNode node, String name, String type, boolean primitive) {
         super(node, name, type, primitive);
     }
     
@@ -56,7 +56,7 @@ public class JMethodReturnReference extends JExpedientialReference {
      * {@inheritDoc}
      */
     @Override
-    public boolean isJMethodReturnReference() {
+    public boolean isReturnValueReference() {
         return true;
     }
 }

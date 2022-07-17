@@ -16,8 +16,8 @@ import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
-import org.jtool.cfg.JExpedientialReference;
-import org.jtool.cfg.JMethodReturnReference;
+import org.jtool.cfg.JExpedientReference;
+import org.jtool.cfg.JReturnValueReference;
 import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JReference;
 import org.jtool.graph.GraphEdge;
@@ -291,7 +291,7 @@ public class ExpressionVisitor extends ASTVisitor {
         if (curNode.getUseVariables().size() > 0) {
             JVariableReference use = curNode.getUseLast();
             String referenceForm = use.getReferenceForm();
-            if (referenceForm.indexOf(JMethodReturnReference.METHOD_RETURN_SYMBOL) != -1) {
+            if (referenceForm.indexOf(JReturnValueReference.METHOD_RETURN_SYMBOL) != -1) {
                 referenceForm = referenceForm + "." + node.getName().getIdentifier();
             } else if (referenceForm.startsWith("this")) {
                 referenceForm = referenceForm + "." + node.getName().getFullyQualifiedName();
@@ -334,9 +334,9 @@ public class ExpressionVisitor extends ASTVisitor {
         Name qualifier = node.getQualifier();
         JVariableReference jvar;
         if (qualifier != null) {
-            jvar = new JExpedientialReference(node, "this", qualifier.resolveTypeBinding());
+            jvar = new JExpedientReference(node, "this", qualifier.resolveTypeBinding());
         } else {
-            jvar = new JExpedientialReference(node, "this", false);
+            jvar = new JExpedientReference(node, "this", false);
         }
         curNode.addUseVariable(jvar);
         return false;
@@ -427,10 +427,18 @@ public class ExpressionVisitor extends ASTVisitor {
         receiverNode.setMethodCall(callNode);
         
         String name = receiverNode.getName() + "." +
-                JMethodReturnReference.METHOD_RETURN_SYMBOL + jcall.getSignature();
-        JMethodReturnReference def = setActualNodes(callNode, node.arguments(), name);
-        if (def != null) {
-            def.setPrefix(prefix);
+                JReturnValueReference.METHOD_RETURN_SYMBOL + jcall.getSignature();
+        JReturnValueReference def = setActualNodes(callNode, node.arguments(), name);
+        def.setPrefix(prefix);
+        
+        if (declarationOrAssignmentNode.empty()) {
+            if (entryNode.isReturn()) {
+                callNode.setReturnValueName(StatementVisitor.RETURN_VALUE_SYMBOL);
+            } else {
+                callNode.setReturnValueName(def.getReferenceForm());
+            }
+        } else {
+            callNode.setReturnValueName(def.getReferenceForm());
         }
         
         setExceptionFlow(callNode, jcall);
@@ -462,7 +470,7 @@ public class ExpressionVisitor extends ASTVisitor {
         receiverNode.setMethodCall(callNode);
         
         String name = receiverNode.getName() + "." +
-                JMethodReturnReference.METHOD_RETURN_SYMBOL + node.getName().getIdentifier();
+                JReturnValueReference.METHOD_RETURN_SYMBOL + node.getName().getIdentifier();
         setActualNodes(callNode, node.arguments(), name);
         setExceptionFlow(callNode, jcall);
         return false;
@@ -551,14 +559,8 @@ public class ExpressionVisitor extends ASTVisitor {
         } else {
             receiverNode = new CFGReceiver(node, CFGNode.Kind.receiver);
         }
-        
-        String name = node.resolveConstructorBinding().getName();
-        if (declarationOrAssignmentNode.empty()) {
-            receiverNode.setName(name);
-        } else {
-            CFGStatement stNode = declarationOrAssignmentNode.peek();
-            receiverNode.setName(stNode.getDefFirst().getReferenceForm());
-        }
+        String className = node.resolveConstructorBinding().getDeclaringClass().getQualifiedName();
+        receiverNode.setName(className);
         
         insertBeforeCurrentNode(receiverNode);
         
@@ -583,10 +585,18 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setExplicitReceiver(receiver != null);
         receiverNode.setMethodCall(callNode);
         
-        name = receiverNode.getName() + "." + JMethodReturnReference.METHOD_RETURN_SYMBOL + name;
-        JMethodReturnReference def = setActualNodes(callNode, node.arguments(), name);
-        if (def != null) {
-            def.setPrefix(prefix);
+        String name = receiverNode.getName() + "." + JReturnValueReference.METHOD_RETURN_SYMBOL + className;
+        JReturnValueReference def = setActualNodes(callNode, node.arguments(), name);
+        def.setPrefix(prefix);
+        
+        if (declarationOrAssignmentNode.empty()) {
+            if (entryNode.isReturn()) {
+                callNode.setReturnValueName(StatementVisitor.RETURN_VALUE_SYMBOL);
+            } else {
+                callNode.setReturnValueName(def.getReferenceForm());
+            }
+        } else {
+            callNode.setReturnValueName(def.getReferenceForm());
         }
         
         setExceptionFlow(callNode, jcall);
@@ -604,14 +614,14 @@ public class ExpressionVisitor extends ASTVisitor {
         JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
         
-        String name = mbinding.getName() + "." + JMethodReturnReference.METHOD_RETURN_SYMBOL +
+        String name = mbinding.getName() + "." + JReturnValueReference.METHOD_RETURN_SYMBOL +
                 node.getName().getFullyQualifiedName();;
         setActualNodes(callNode, node.arguments(), name);
         setExceptionFlow(callNode, jcall);
         return false;
     }
     
-    private JMethodReturnReference setActualNodes(CFGMethodCall callNode,
+    private JReturnValueReference setActualNodes(CFGMethodCall callNode,
             List<Expression> arguments, String name) {
         boolean actual = callNode.getMethodCall().isInProject();
         if (actual) {
@@ -656,7 +666,7 @@ public class ExpressionVisitor extends ASTVisitor {
         curNode = tmpNode;
     }
     
-    private JMethodReturnReference createActualOutForReturn(CFGMethodCall callNode, String name) {
+    private JReturnValueReference createActualOutForReturn(CFGMethodCall callNode, String name) {
         CFGParameter actualOutNode = new CFGParameter(callNode.getASTNode(),
                 CFGNode.Kind.actualOut, 0);
         actualOutNode.setParent(callNode);
@@ -666,7 +676,7 @@ public class ExpressionVisitor extends ASTVisitor {
         
         String type = callNode.getReturnType();
         boolean primitive = callNode.isPrimitiveType();
-        JMethodReturnReference def = new JMethodReturnReference(callNode.getASTNode(), name, type, primitive);
+        JReturnValueReference def = new JReturnValueReference(callNode.getASTNode(), name, type, primitive);
         actualOutNode.addDefVariable(def);
         
         curNode.addUseVariable(actualOutNode.getDefVariable());
@@ -778,7 +788,7 @@ public class ExpressionVisitor extends ASTVisitor {
     }
     
     private void setVariableForLiteral(ASTNode node, ITypeBinding tbinding) {
-        JVariableReference jvar = new JExpedientialReference(node,
+        JVariableReference jvar = new JExpedientReference(node,
                 "$" + tbinding.getErasure().getQualifiedName(), tbinding);
         if (analysisMode.peek() == AnalysisMode.DEF) {
             curNode.addDefVariable(jvar);
@@ -823,7 +833,7 @@ public class ExpressionVisitor extends ASTVisitor {
             }
         }
         
-        JVariableReference jv = new JExpedientialReference(node,
+        JVariableReference jv = new JExpedientReference(node,
                 "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
         lambdaNode.setDefVariable(jv);
         curNode.setUseVariable(jv);
@@ -863,7 +873,7 @@ public class ExpressionVisitor extends ASTVisitor {
         
         insertBeforeCurrentNode(lambdaNode);
         
-        JVariableReference jv = new JExpedientialReference(node,
+        JVariableReference jv = new JExpedientReference(node,
                 "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
         lambdaNode.setDefVariable(jv);
         curNode.setUseVariable(jv);
@@ -891,7 +901,7 @@ public class ExpressionVisitor extends ASTVisitor {
         analysisMode.pop();
         curNode = tmpNode;
         
-        JVariableReference jv = new JExpedientialReference(node,
+        JVariableReference jv = new JExpedientReference(node,
                 "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
         lambdaNode.setDefVariable(jv);
         curNode.setUseVariable(jv);
@@ -922,7 +932,7 @@ public class ExpressionVisitor extends ASTVisitor {
         ITypeBinding tbinding = node.resolveTypeBinding();
         String type = tbinding.getErasure().getQualifiedName();
         if (!JavaElementUtil.isVoid(type)) {
-            JVariableReference def = new JExpedientialReference(node,
+            JVariableReference def = new JExpedientReference(node,
                 "$SWITCH_EXPRESSION", type, tbinding.isPrimitive());
             switchExpNode.addDefVariable(def);
             curNode.addUseVariable(def);

@@ -15,7 +15,7 @@ import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-public class JExpedientialReferenceTest {
+public class JExpedientReferenceTest {
     
 private static JavaProject SliceProject;
     
@@ -32,7 +32,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingClassName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("Test103", result.get(0).getEnclosingClassName());
     }
@@ -40,7 +40,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingClassName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("Test103", result.get(1).getEnclosingClassName());
     }
@@ -48,7 +48,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingMethodName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("setA( int )", result.get(0).getEnclosingMethodName());
     }
@@ -56,7 +56,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingMethodName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("setA( int )", result.get(1).getEnclosingMethodName());
     }
@@ -64,7 +64,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringClassName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("Test103", result.get(0).getDeclaringClassName());
     }
@@ -72,7 +72,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringClassName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("Test103", result.get(1).getDeclaringClassName());
     }
@@ -80,7 +80,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringMethodName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("setA( int )", result.get(0).getDeclaringMethodName());
     }
@@ -88,7 +88,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringMethodName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("setA( int )", result.get(1).getDeclaringMethodName());
     }
@@ -96,7 +96,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("this", result.get(0).getName());
     }
@@ -104,7 +104,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("$_", result.get(1).getName());
     }
@@ -112,7 +112,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetSignature1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("setA( int )!this", result.get(0).getSignature());
     }
@@ -120,7 +120,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetSignature2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("setA( int )!$_", result.get(1).getSignature());
     }
@@ -128,7 +128,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetQualifiedName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("setA( int )!this", result.get(0).getQualifiedName().fqn());
     }
@@ -136,7 +136,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetQualifiedName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("setA( int )!$_", result.get(1).getQualifiedName().fqn());
     }
@@ -144,7 +144,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReferenceForm1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("this", result.get(0).getReferenceForm());
     }
@@ -152,7 +152,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReferenceForm2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("$_", result.get(1).getReferenceForm());
     }
@@ -160,7 +160,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReceiverName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("", result.get(0).getReceiverName());
     }
@@ -168,7 +168,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReceiverName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("", result.get(1).getReceiverName());
     }
@@ -176,7 +176,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetType1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("Test103", result.get(0).getType());
     }
@@ -184,7 +184,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetType2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertEquals("void", result.get(1).getType());
     }
@@ -192,7 +192,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsPrimitiveType1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertFalse(result.get(0).isPrimitiveType());
     }
@@ -200,7 +200,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsPrimitiveType2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertFalse(result.get(1).isPrimitiveType());
     }
@@ -208,7 +208,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsFieldAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertFalse(result.get(0).isFieldAccess());
     }
@@ -216,7 +216,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsFieldAccess2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertFalse(result.get(1).isFieldAccess());
     }
@@ -224,7 +224,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsLocalAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertFalse(result.get(0).isLocalAccess());
     }
@@ -232,7 +232,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsLocalAccess2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertFalse(result.get(1).isLocalAccess());
     }
@@ -240,7 +240,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsVariableAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertFalse(result.get(0).isVariableAccess());
     }
@@ -248,7 +248,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsVariableAccess2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertFalse(result.get(1).isVariableAccess());
     }
@@ -256,7 +256,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsMethodCall1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertFalse(result.get(0).isMethodCall());
     }
@@ -264,7 +264,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsMethodCall2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
         assertFalse(result.get(1).isMethodCall());
     }
@@ -272,16 +272,16 @@ private static JavaProject SliceProject;
     @Test
     public void testIsExposed1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
-        assertFalse(result.get(0).isTouchable());
+        assertFalse(result.get(0).isAvailable());
     }
     
     @Test
     public void testIsExposed2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
-        List<JExpedientialReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
+        List<JExpedientReference> result = CFGTestUtil.getUseExpedientialReference(cfg);
         
-        assertFalse(result.get(1).isTouchable());
+        assertFalse(result.get(1).isAvailable());
     }
 }

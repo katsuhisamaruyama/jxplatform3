@@ -254,7 +254,7 @@ public abstract class JReference {
     
     /**
      * Tests if this is a reference to a field.
-     * @return default {@code false} that means that this is not a field reference
+     * @return {@code true} if this is a field reference, otherwise {@code false}
      */
     public boolean isFieldAccess() {
         return false;
@@ -262,7 +262,7 @@ public abstract class JReference {
     
     /**
      * Tests if this is a reference to a local variable.
-     * @return default {@code false} that means that this is not a local variable reference
+     * @return {@code true} if this is a local variable reference, otherwise {@code false}
      */
     public boolean isLocalAccess() {
         return false;
@@ -270,7 +270,7 @@ public abstract class JReference {
     
     /**
      * Tests if this is a reference to a variable.
-     * @return {@code true} if this is a reference to a variable, otherwise {@code false}
+     * @return {@code true} if this is a variable reference, otherwise {@code false}
      */
     public boolean isVariableAccess() {
         return isFieldAccess() || isLocalAccess();
@@ -278,25 +278,25 @@ public abstract class JReference {
     
     /**
      * Tests if this is a reference to a method.
-     * @return always {@code false} that means that this is not a method reference
+     * @return {@code true} if this is a method reference, otherwise {@code false}
      */
     public boolean isMethodCall() {
         return false;
     }
     
     /**
-     * Tests if this is a reference to a variable that stores the return value.
-     * @return {@code true} if this is a reference to a variable that stores the return value, otherwise {@code false}
+     * Tests if this is a reference to the return value.
+     * @return {@code true} if this is a return value reference, otherwise {@code false}
      */
-    public boolean isJMethodReturnReference() {
+    public boolean isReturnValueReference() {
         return false;
     }
     
     /**
-     * Tests if an element for this reference is exposed.
-     * @return default {@code true} that indicate a reference to an exposed element.
+     * Tests if this reference is available.
+     * @return {@code true} if this is a reference to an available element, otherwise {@code false}
      */
-    public boolean isTouchable() {
+    public boolean isAvailable() {
         return true;
     }
     

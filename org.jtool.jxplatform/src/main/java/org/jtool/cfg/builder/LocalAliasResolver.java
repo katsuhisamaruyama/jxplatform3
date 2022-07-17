@@ -12,7 +12,7 @@ import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JFieldReference;
-import org.jtool.cfg.JExpedientialReference;
+import org.jtool.cfg.JExpedientReference;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
 import java.util.List;
@@ -90,10 +90,6 @@ class LocalAliasResolver {
     }
     
     private void registerAlias(CFGNode node, Alias newAlias) {
-        if (newAlias.righthand.isJMethodReturnReference()) {
-            return;
-        }
-        
         String name = newAlias.righthand.getReferenceForm();
         for (Alias alias : new ArrayList<>(aliasMap.get(node))) {
             if (alias.lefthand.getReferenceForm().equals(name)) {
@@ -144,7 +140,7 @@ class LocalAliasResolver {
         }
         
         JVariableReference def = node.getDefFirst();
-        if (def.isPrimitiveType() || !def.isTouchable()) {
+        if (def.isPrimitiveType() || !def.isAvailable()) {
             return aliases;
         }
         
@@ -155,6 +151,7 @@ class LocalAliasResolver {
             if (use.isFieldAccess() && ((JFieldReference)use).isEnumConstant()) {
                 continue;
             }
+            
             aliases.add(new Alias(def, use));
         }
         return aliases;
@@ -171,7 +168,7 @@ class LocalAliasResolver {
                 
                 String aliasName = getAliasName(name, lname, rname);
                 if (aliasName != null) {
-                    JVariableReference avar = new JExpedientialReference(alias.righthand.getASTNode(),
+                    JVariableReference avar = new JExpedientReference(alias.righthand.getASTNode(),
                             aliasName, alias.righthand.getType(), alias.righthand.isPrimitiveType());
                     node.addUseVariable(avar);
                   
@@ -179,7 +176,7 @@ class LocalAliasResolver {
                 
                 aliasName = getAliasName(name, rname, lname);
                 if (aliasName != null) {
-                    JVariableReference avar = new JExpedientialReference(alias.lefthand.getASTNode(),
+                    JVariableReference avar = new JExpedientReference(alias.lefthand.getASTNode(),
                             aliasName, alias.lefthand.getType(), alias.lefthand.isPrimitiveType());
                     node.addUseVariable(avar);
                 }

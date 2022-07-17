@@ -31,10 +31,7 @@ class JMethodInternal extends JMethod {
         this.jmethod = jmethod;
     }
     
-    public JavaMethod getJavaMethod() {
-        return jmethod;
-    }
-    
+    @Override
     protected void collectDefUseFieldsInThisMethod() {
         if (!isDefUseCollected) {
             collectDefUseFields();
@@ -55,16 +52,100 @@ class JMethodInternal extends JMethod {
                     continue;
                 }
                 
-                stNode.getDefVariables()
-                    .stream()
+                stNode.getDefVariables().stream() 
                     .filter(var -> var.isFieldAccess())
-                    .forEach(var -> defFields.add(updateClassName(new DefUseField((JFieldReference)var))));
+                    .forEach(fv -> {
+                        DefUseField var = new DefUseField((JFieldReference)fv, stNode);
+                        defFields.add(updateClassName(var));
+                    });
+                
                 stNode.getUseVariables()
                     .stream()
                     .filter(var -> var.isFieldAccess())
-                    .forEach(var -> useFields.add(updateClassName(new DefUseField((JFieldReference)var))));
+                    .forEach(fv -> {
+                        DefUseField var = new DefUseField((JFieldReference)fv, stNode);
+                        useFields.add(updateClassName(var));
+                    });
             }
         }
+    }
+    
+    @Override
+    protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
+            String prefix, String returnValue, List<CFGMethodCall> callChain) {
+        for (DefUseField var : defFields) {
+            if (!var.isComplementary()) {
+                DefUseField def = new DefUseField(var);
+                def.updateReferenceForm(getReferenceForm(var, prefix, returnValue));
+                def.addHoldingNodes(callChain);
+                
+                originMethod.allDefFields.add(def);
+            }
+        }
+        
+        for (DefUseField var : useFields) {
+            if (!var.isComplementary()) {
+                DefUseField use = new DefUseField(var);
+                use.updateReferenceForm(getReferenceForm(var, prefix, returnValue));
+                use.addHoldingNodes(callChain);
+                
+                originMethod.allUseFields.add(use);
+            }
+        }
+    }
+    
+    private String getReferenceForm(DefUseField var, String prefix, String returnValue) {
+        if (jmethod.isConstructor()) {
+            if (var.getReferenceForm().startsWith("this.") && var.isThis()) {
+                return var.getReferenceForm().replace("this.", returnValue + ".");
+            }
+        } else {
+            if (var.getReferenceForm().startsWith("this.") && var.isThis()) {
+                if (prefix.length() == 0) {
+                    return var.getReferenceForm();
+                } else {
+                    return var.getReferenceForm().replace("this.", prefix + ".");
+                }
+            }
+        }
+        return var.getReferenceForm();
+    }
+    
+    @Override
+    protected void traverseAccessedMethods(JMethod originMethod,
+            String prefix, String returnValue, List<CFGMethodCall> callChain,
+            Set<JMethod> visitedMethods, int count) {
+        for (CalledMethod cmethod : getCalledMethods()) {
+            JMethod amethod = cmethod.method;
+            if (!amethod.isInProject() || !amethod.stopTraverse(visitedMethods, count + 1)) {
+                visitedMethods.add(amethod);
+                
+                amethod.collectDefUseFieldsInThisMethod();
+                
+                String receiverName = cmethod.node.getReceiver().getName();
+                String newPrefix;
+                if (receiverName.startsWith("this")) {
+                    newPrefix = receiverName.replace("this.", prefix + ".");
+                } else {
+                    newPrefix = prefix + "." + receiverName;
+                }
+                
+                List<CFGMethodCall> newCallChain = new ArrayList<>(callChain);
+                newCallChain.add(cmethod.node);
+                
+                amethod.collectDefUseFieldsInAccessedMethods(originMethod, newPrefix, returnValue, newCallChain);
+                
+                int nextCount = amethod.isInProject() ? count + 1 : 0;
+                amethod.traverseAccessedMethods(originMethod, newPrefix, returnValue, newCallChain,
+                        visitedMethods, nextCount);
+            }
+        }
+    }
+    
+    @Override
+    protected boolean stopTraverse(Set<JMethod> visitedMethods, int count) {
+        return (maxNumberOfChainForSourcecode > 0 && count >= maxNumberOfChainForSourcecode)
+                || visitedMethods.contains(this);
     }
     
     private List<CalledMethod> getCalledMethods() {
@@ -82,7 +163,7 @@ class JMethodInternal extends JMethod {
                 
                 JMethod method = type.getMethod(sig);
                 if (method != null && !method.equals(this)) {
-                    CalledMethod amethod = new CalledMethod(method, callNode.getReceiver().getName());
+                    CalledMethod amethod = new CalledMethod(method, callNode);
                     calledMethods.add(amethod);
                 }
             }
@@ -90,83 +171,13 @@ class JMethodInternal extends JMethod {
         return calledMethods;
     }
     
-    protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
-            JMethod accessedMethod, String prefix) {
-        for (DefUseField var : accessedMethod.defFields) {
-            if (var.getReferenceForm().startsWith("this.") && var.isInThis()) {
-                String referenceForm;
-                if (prefix.length() == 0) {
-                    referenceForm = var.getReferenceForm();
-                } else {
-                    referenceForm = var.getReferenceForm().replace("this", prefix);
-                }
-                
-                DefUseField def = new DefUseField(var);
-                def.updateReferenceForm(referenceForm);
-                originMethod.allDefFields.add(def);
-            } else if (var.isStatic()) {
-                originMethod.allDefFields.add(var);
-            }
-        }
-        
-        for (DefUseField var : accessedMethod.useFields) {
-            if (var.getReferenceForm().startsWith("this.") && var.isInThis()) {
-                String referenceForm;
-                if (prefix.length() == 0) {
-                    referenceForm = var.getReferenceForm();
-                } else {
-                    referenceForm = var.getReferenceForm().replace("this.", prefix + ".");
-                }
-                
-                DefUseField use = new DefUseField(var);
-                use.updateReferenceForm(referenceForm);
-                originMethod.allUseFields.add(use);
-            } else if (var.isStatic()) {
-                originMethod.allUseFields.add(var);
-            }
-        }
-    }
-    
-    protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
-            String prefix, Set<JMethod> visitedMethods, int count) {
-        for (CalledMethod cmethod : getCalledMethods()) {
-            JMethod amethod = cmethod.method;
-            if (!amethod.stopTraverse(visitedMethods, count + 1)) {
-                visitedMethods.add(amethod);
-                
-                amethod.collectDefUseFieldsInThisMethod();
-                
-                String newPrefix;
-                if (cmethod.receiverName.startsWith("this.")) {
-                    newPrefix = cmethod.receiverName.replace("this.", prefix + ".");
-                    
-                    collectDefUseFieldsInAccessedMethods(originMethod, amethod, newPrefix);
-                    
-                    if (this.isInProject() && !amethod.isInProject()) {
-                        amethod.collectDefUseFieldsInAccessedMethods(originMethod,
-                                newPrefix, visitedMethods, 0);
-                    } else {
-                        amethod.collectDefUseFieldsInAccessedMethods(originMethod,
-                                newPrefix, visitedMethods, count + 1);
-                    }
-                }
-            }
-        }
-    }
-    
-    @Override
-    protected boolean stopTraverse(Set<JMethod> visitedMethods, int count) {
-        return (maxNumberOfChainForSourcecode > 0 && count >= maxNumberOfChainForSourcecode)
-                || visitedMethods.contains(this);
-    }
-    
     private class CalledMethod {
         JMethod method;
-        String receiverName;
+        CFGMethodCall node;
         
-        CalledMethod(JMethod method, String receiverName) {
+        CalledMethod(JMethod method, CFGMethodCall node) {
             this.method = method;
-            this.receiverName = receiverName;
+            this.node = node;
         }
     }
 }

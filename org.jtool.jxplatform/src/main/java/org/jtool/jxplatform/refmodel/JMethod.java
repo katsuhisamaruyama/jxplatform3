@@ -5,10 +5,13 @@
 
 package org.jtool.jxplatform.refmodel;
 
+import org.jtool.cfg.CFGMethodCall;
 import org.jtool.srcmodel.QualifiedName;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Collection;
 
 /**
  * Concise information on a method.
@@ -65,23 +68,29 @@ abstract public class JMethod extends JCommon {
         return allUseFields;
     }
     
-    public void findDefUseFields(String receiverName) {
+    public void findDefUseFields(CFGMethodCall callNode, String prefix) {
         collectDefUseFieldsInThisMethod();
         
         allDefFields.clear();
         allUseFields.clear();
-        collectDefUseFieldsInAccessedMethods(this, this, receiverName);
         
-        collectDefUseFieldsInAccessedMethods(this, receiverName, new HashSet<>(), 0);
+        String returnValue = callNode.getReturnValueName();
+        List<CFGMethodCall> callChain = new ArrayList<>();
+        Set<JMethod> visitedMethods = new HashSet<>();
+        
+        collectDefUseFieldsInAccessedMethods(this, prefix, returnValue, callChain);
+        
+        traverseAccessedMethods(this, prefix, returnValue, callChain, visitedMethods, 0);
     }
     
     abstract protected void collectDefUseFieldsInThisMethod();
     
     abstract protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
-            JMethod accessedMethod, String receiverName);
+            String prefix, String returnValue, List<CFGMethodCall> callChain);
     
-    abstract protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
-            String prefix, Set<JMethod> visitedMethods, int count);
+    abstract protected void traverseAccessedMethods(JMethod originMethod,
+            String prefix, String returnValue, List<CFGMethodCall> callChain,
+            Set<JMethod> visitedMethods, int count);
     
     abstract boolean stopTraverse(Set<JMethod> visitedMethods, int count);
     

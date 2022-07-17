@@ -144,6 +144,13 @@ public class DD extends Dependence {
     }
     
     /**
+     * Sets as a complementary field access dependence.
+     */
+    public void setComplementaryFieldAccess() {
+        kind = Kind.complementaryFieldAccess;
+    }
+    
+    /**
      * Sets as a summary data dependence.
      */
     public void setSummary() {
@@ -208,6 +215,8 @@ public class DD extends Dependence {
             buf.append(" POUT");
         } else if (kind == Kind.fieldAccess) {
             buf.append(" FACC");
+        } else if (kind == Kind.complementaryFieldAccess) {
+            buf.append(" CFACC");
         } else if (kind == Kind.summary) {
             buf.append(" SUMM");
         }
