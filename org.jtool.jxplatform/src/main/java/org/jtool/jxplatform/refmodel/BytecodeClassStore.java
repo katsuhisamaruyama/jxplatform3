@@ -402,7 +402,8 @@ public class BytecodeClassStore {
     
     private void collectBytecodeClassInfo(Logger logger, ConsoleProgressMonitor pm) {
         Collection<BytecodeClass> bclasses = bytecodeClassMap.values();
-        logger.printMessage("** Ready to collect information on java models of " + bclasses.size() + " bytecode-classes");
+        logger.printMessage("** Ready to collect information on java models of " +
+                                bclasses.size() + " non-private bytecode-classes");
         pm.begin(bclasses.size());
         for (BytecodeClass bclass : bclasses) {
             bclass.collectInfo();
