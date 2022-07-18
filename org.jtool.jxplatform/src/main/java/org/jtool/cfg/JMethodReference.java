@@ -129,14 +129,15 @@ public class JMethodReference extends JReference {
             }
             
             this.type = declaringClassName;
+            this.isPrimitiveType = false;
         } else {
             this.name = binding.getName();
             this.type = getType(binding.getReturnType());
+            this.isPrimitiveType = binding.getReturnType().isPrimitive();
         }
         
         this.fqn = new QualifiedName(declaringClassName, signature);
         this.referenceForm = signature;
-        this.isPrimitiveType = binding.getReturnType().isPrimitive();
         this.modifiers = binding.getModifiers();
         this.inProject = binding.getDeclaringClass().isFromSource();
         for (ITypeBinding tbinding : mbinding.getExceptionTypes()) {
