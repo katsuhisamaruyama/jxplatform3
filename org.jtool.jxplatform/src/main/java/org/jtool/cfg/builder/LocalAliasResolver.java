@@ -41,7 +41,7 @@ class LocalAliasResolver {
             return;
         }
         
-        collectAliasStaticFields(cfg);
+        collectAliasForFields(cfg);
         
         for (CFGNode node : cfg.getNodes()) {
             List<Alias> aliases = null;
@@ -67,7 +67,7 @@ class LocalAliasResolver {
         }
     }
     
-    private void collectAliasStaticFields(CFG cfg) {
+    private void collectAliasForFields(CFG cfg) {
         CFGMethodEntry entry = (CFGMethodEntry)cfg.getEntryNode();
         JavaMethod jmethod = entry.getJavaMethod();
         
@@ -89,16 +89,16 @@ class LocalAliasResolver {
         }
     }
     
-    private void registerAlias(CFGNode node, Alias newAlias) {
-        String name = newAlias.righthand.getReferenceForm();
-        for (Alias alias : new ArrayList<>(aliasMap.get(node))) {
-            if (alias.lefthand.getReferenceForm().equals(name)) {
-                aliasMap.put(node, new Alias(newAlias.lefthand, alias.righthand));
-            } else if (alias.righthand.getReferenceForm().equals(name)) {
-                aliasMap.put(node, new Alias(newAlias.lefthand, alias.lefthand));
+    private void registerAlias(CFGNode node, Alias alias) {
+        String name = alias.righthand.getReferenceForm();
+        for (Alias as : new ArrayList<>(aliasMap.get(node))) {
+            if (as.lefthand.getReferenceForm().equals(name)) {
+                aliasMap.put(node, new Alias(alias.lefthand, as.righthand));
+            } else if (alias.bidirectional && as.righthand.getReferenceForm().equals(name)) {
+                aliasMap.put(node, new Alias(alias.lefthand, as.lefthand));
             }
         }
-        aliasMap.put(node, newAlias);
+        aliasMap.put(node, alias);
     }
     
     private void createAliasMap(CFGNode node, Alias alias, Set<CFGNode> track) {
@@ -174,11 +174,13 @@ class LocalAliasResolver {
                   
                 }
                 
-                aliasName = getAliasName(name, rname, lname);
-                if (aliasName != null) {
-                    JVariableReference avar = new JExpedientReference(alias.lefthand.getASTNode(),
-                            aliasName, alias.lefthand.getType(), alias.lefthand.isPrimitiveType());
-                    node.addUseVariable(avar);
+                if (alias.bidirectional) {
+                    aliasName = getAliasName(name, rname, lname);
+                    if (aliasName != null) {
+                        JVariableReference avar = new JExpedientReference(alias.lefthand.getASTNode(),
+                                aliasName, alias.lefthand.getType(), alias.lefthand.isPrimitiveType());
+                        node.addUseVariable(avar);
+                    }
                 }
             }
         }
@@ -201,10 +203,12 @@ class LocalAliasResolver {
         
         JVariableReference lefthand;
         JVariableReference righthand;
+        boolean bidirectional;
         
         Alias(JVariableReference lefthand, JVariableReference righthand) {
             this.lefthand = lefthand;
             this.righthand = righthand;
+            this.bidirectional = !righthand.isReturnValueReference();
         }
         
         @Override
