@@ -114,9 +114,9 @@ public class CFGStore {
                 return cfg;
             }
             
-            CFG ucfg = ucfgs.get(jmethod.getQualifiedName().fqn());
-            if (ucfg != null) {
-                cfg = ucfg.clone();
+            cfg = ucfgs.get(jmethod.getQualifiedName().fqn());
+            if (cfg != null) {
+                ucfgs.remove(cfg.getQualifiedName().fqn());
                 Resolver.resolveReferences(jmethod.getJavaProject(), cfg);
                 Resolver.resolveLocalAlias(cfg);
                 addCFG(cfg, true);
@@ -136,9 +136,9 @@ public class CFGStore {
                 return cfg;
             }
             
-            CFG ucfg = ucfgs.get(jfield.getQualifiedName().fqn());
-            if (ucfg != null) {
-                cfg = ucfg.clone();
+            cfg = ucfgs.get(jfield.getQualifiedName().fqn());
+            if (cfg != null) {
+                ucfgs.remove(cfg.getQualifiedName().fqn());
                 Resolver.resolveReferences(jfield.getJavaProject(), cfg);
                 Resolver.resolveLocalAlias(cfg);
                 addCFG(cfg, true);
