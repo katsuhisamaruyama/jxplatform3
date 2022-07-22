@@ -13,7 +13,6 @@ class Test138 {
         List<String> l1 = s1.getList();
         List<String> l3 = s3.getList();
         List<String> l2 = s2.getList();
-        List<String> l4 = s1.getList2();
     }
 }
 
@@ -26,9 +25,6 @@ class P138 {
 
     public List<String> getList() {
         return list;
-    }
-
-    public List<String> getList2() {
-        return new ArrayList<>(list);
+        //return new ArrayList<>(list);
     }
 }
