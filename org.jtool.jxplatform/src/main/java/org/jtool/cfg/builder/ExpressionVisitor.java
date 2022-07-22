@@ -576,7 +576,8 @@ public class ExpressionVisitor extends ASTVisitor {
         } else {
             receiverNode = new CFGReceiver(node, CFGNode.Kind.receiver);
         }
-        String className = node.resolveConstructorBinding().getDeclaringClass().getQualifiedName();
+        String className = node.resolveConstructorBinding()
+                .getDeclaringClass().getErasure().getQualifiedName();
         receiverNode.setName(className);
         
         insertBeforeCurrentNode(receiverNode);
