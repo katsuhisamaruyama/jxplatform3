@@ -548,7 +548,11 @@ public abstract class JReference {
     protected String getType(ITypeBinding tbinding) {
         assert tbinding != null;
         
-        String type = tbinding.getErasure().getQualifiedName();
+        if (tbinding.isParameterizedType()) {
+            tbinding = tbinding.getErasure();
+        }
+        
+        String type = tbinding.getQualifiedName();
         if (isPrimitiveType && tbinding.isArray()) {
             for (int dim = 0; dim < tbinding.getDimensions(); dim++) {
                 type = type + "[]";

@@ -128,11 +128,11 @@ public class JMethodReference extends JReference {
                 signature = className + "(" + getParameterString(binding) + ")";
             }
             
-            this.type = declaringClassName;
+            this.type = getType(mbinding.getDeclaringClass());
             this.isPrimitiveType = false;
         } else {
             this.name = binding.getName();
-            this.type = getType(binding.getReturnType());
+            this.type = getType(mbinding.getReturnType());
             this.isPrimitiveType = binding.getReturnType().isPrimitive();
         }
         
