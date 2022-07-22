@@ -293,6 +293,14 @@ public abstract class JReference {
     }
     
     /**
+     * Tests if this is a complementary reference to a field.
+     * @return {@code true} if this is a complementary field reference, otherwise {@code false}
+     */
+    public boolean isComplementary() {
+        return false;
+    }
+    
+    /**
      * Tests if this reference is available.
      * @return {@code true} if this is a reference to an available element, otherwise {@code false}
      */

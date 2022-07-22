@@ -216,14 +216,6 @@ public class JFieldReference extends JVariableReference {
     }
     
     /**
-     * Tests if this is a complementary reference to a field.
-     * @return {@code true} if this is a complementary field reference, otherwise {@code false}
-     */
-    public boolean isComplementary() {
-        return false;
-    }
-    
-    /**
      * Returns a prefix reference located prior to this reference.
      * @param prefix the prefix reference
      */

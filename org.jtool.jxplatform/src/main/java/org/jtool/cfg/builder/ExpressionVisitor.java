@@ -426,19 +426,14 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setExplicitReceiver(receiver != null);
         receiverNode.setMethodCall(callNode);
         
-        String name = receiverNode.getName() + "." +
-                JReturnValueReference.METHOD_RETURN_SYMBOL + jcall.getSignature();
-        JReturnValueReference def = setActualNodes(callNode, node.arguments(), name);
-        def.setPrefix(prefix);
+        createActualIn(callNode, node.arguments());
+        JReturnValueReference ret = createActualOutForReturn(callNode, receiverNode.getName());
+        ret.setPrefix(prefix);
         
-        if (declarationOrAssignmentNode.empty()) {
-            if (entryNode.isReturn()) {
-                callNode.setReturnValueName(StatementVisitor.RETURN_VALUE_SYMBOL);
-            } else {
-                callNode.setReturnValueName(def.getReferenceForm());
-            }
+        if (declarationOrAssignmentNode.empty() && entryNode.isReturn()) {
+            callNode.setReturnValueName(StatementVisitor.RETURN_VALUE_SYMBOL);
         } else {
-            callNode.setReturnValueName(def.getReferenceForm());
+            callNode.setReturnValueName(ret.getReferenceForm());
         }
         
         setExceptionFlow(callNode, jcall);
@@ -469,9 +464,16 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setExplicitReceiver(true);
         receiverNode.setMethodCall(callNode);
         
-        String name = receiverNode.getName() + "." +
-                JReturnValueReference.METHOD_RETURN_SYMBOL + node.getName().getIdentifier();
-        setActualNodes(callNode, node.arguments(), name);
+        createActualIn(callNode, node.arguments());
+        JReturnValueReference ret = createActualOutForReturn(callNode, receiverNode.getName());
+        ret.setPrefix(null);
+        
+        if (declarationOrAssignmentNode.empty() && entryNode.isReturn()) {
+            callNode.setReturnValueName(StatementVisitor.RETURN_VALUE_SYMBOL);
+        } else {
+            callNode.setReturnValueName(ret.getReferenceForm());
+        }
+        
         setExceptionFlow(callNode, jcall);
         return false;
     }
@@ -495,7 +497,11 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setExplicitReceiver(false);
         receiverNode.setMethodCall(callNode);
         
-        setActualNodes(callNode, node.arguments(), "");
+        createActualIn(callNode, node.arguments());
+        JReturnValueReference ret = createActualOutForReturn(callNode, receiverNode.getName());
+        ret.setPrefix(null);
+        callNode.setReturnValueName(ret.getReferenceForm());
+        
         setExceptionFlow(callNode, jcall);
         return false;
     }
@@ -539,7 +545,11 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setExplicitReceiver(receiver != null);
         receiverNode.setMethodCall(callNode);
         
-        setActualNodes(callNode, node.arguments(), "");
+        createActualIn(callNode, node.arguments());
+        JReturnValueReference ret = createActualOutForReturn(callNode, receiverNode.getName());
+        ret.setPrefix(null);
+        callNode.setReturnValueName(ret.getReferenceForm());
+        
         setExceptionFlow(callNode, jcall);
         return false;
     }
@@ -585,19 +595,14 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setExplicitReceiver(receiver != null);
         receiverNode.setMethodCall(callNode);
         
-        String name = receiverNode.getName() + "." +
-                JReturnValueReference.METHOD_RETURN_SYMBOL + jcall.getSignature();
-        JReturnValueReference def = setActualNodes(callNode, node.arguments(), name);
-        def.setPrefix(prefix);
+        createActualIn(callNode, node.arguments());
+        JReturnValueReference ret = createActualOutForReturn(callNode, receiverNode.getName());
+        ret.setPrefix(prefix);
         
-        if (declarationOrAssignmentNode.empty()) {
-            if (entryNode.isReturn()) {
-                callNode.setReturnValueName(StatementVisitor.RETURN_VALUE_SYMBOL);
-            } else {
-                callNode.setReturnValueName(def.getReferenceForm());
-            }
+        if (declarationOrAssignmentNode.empty() && entryNode.isReturn()) {
+            callNode.setReturnValueName(StatementVisitor.RETURN_VALUE_SYMBOL);
         } else {
-            callNode.setReturnValueName(def.getReferenceForm());
+            callNode.setReturnValueName(ret.getReferenceForm());
         }
         
         setExceptionFlow(callNode, jcall);
@@ -615,15 +620,21 @@ public class ExpressionVisitor extends ASTVisitor {
         JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
         
-        String name = mbinding.getName() + "." + JReturnValueReference.METHOD_RETURN_SYMBOL +
-                node.getName().getFullyQualifiedName();;
-        setActualNodes(callNode, node.arguments(), name);
+        createActualIn(callNode, node.arguments());
+        JReturnValueReference ret = createActualOutForReturn(callNode, mbinding.getName());
+        ret.setPrefix(null);
+        
+        if (declarationOrAssignmentNode.empty() && entryNode.isReturn()) {
+            callNode.setReturnValueName(StatementVisitor.RETURN_VALUE_SYMBOL);
+        } else {
+            callNode.setReturnValueName(ret.getReferenceForm());
+        }
+        
         setExceptionFlow(callNode, jcall);
         return false;
     }
     
-    private JReturnValueReference setActualNodes(CFGMethodCall callNode,
-            List<Expression> arguments, String name) {
+    private void createActualIn(CFGMethodCall callNode, List<Expression> arguments) {
         boolean actual = callNode.getMethodCall().isInProject();
         if (actual) {
             createActualIns(callNode, arguments);
@@ -632,7 +643,6 @@ public class ExpressionVisitor extends ASTVisitor {
             insertBeforeCurrentNode(callNode);
             mergeActualIn(callNode, arguments);
         }
-        return createActualOutForReturn(callNode, name);
     }
     
     private void createActualIns(CFGMethodCall callNode, List<Expression> arguments) {
@@ -667,14 +677,14 @@ public class ExpressionVisitor extends ASTVisitor {
         curNode = tmpNode;
     }
     
-    private JReturnValueReference createActualOutForReturn(CFGMethodCall callNode, String name) {
-        CFGParameter actualOutNode = new CFGParameter(callNode.getASTNode(),
-                CFGNode.Kind.actualOut, 0);
+    private JReturnValueReference createActualOutForReturn(CFGMethodCall callNode, String receiverName) {
+        CFGParameter actualOutNode = new CFGParameter(callNode.getASTNode(), CFGNode.Kind.actualOut, 0);
         actualOutNode.setParent(callNode);
         callNode.setActualOut(actualOutNode);
         
         insertBeforeCurrentNode(actualOutNode);
         
+        String name = receiverName + "." + JReturnValueReference.METHOD_RETURN_SYMBOL + callNode.getSignature();
         String type = callNode.getReturnType();
         boolean primitive = callNode.isPrimitiveType();
         JReturnValueReference def = new JReturnValueReference(callNode.getASTNode(), name, type, primitive);

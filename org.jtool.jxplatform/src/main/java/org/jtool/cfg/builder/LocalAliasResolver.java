@@ -6,9 +6,11 @@
 package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CFG;
+import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGMethodEntry;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
+import org.jtool.cfg.CFGReceiver;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JFieldReference;
@@ -170,16 +172,21 @@ class LocalAliasResolver {
                 if (aliasName != null) {
                     JVariableReference avar = new JExpedientReference(alias.righthand.getASTNode(),
                             aliasName, alias.righthand.getType(), alias.righthand.isPrimitiveType());
-                    node.addUseVariable(avar);
-                  
+                    if (!isReturnReference(avar)) {
+                        node.addUseVariable(avar);
+                    }
                 }
                 
                 if (alias.bidirectional) {
-                    aliasName = getAliasName(name, rname, lname);
-                    if (aliasName != null) {
-                        JVariableReference avar = new JExpedientReference(alias.lefthand.getASTNode(),
-                                aliasName, alias.lefthand.getType(), alias.lefthand.isPrimitiveType());
-                        node.addUseVariable(avar);
+                    if (node.isReceiver() && hasDefInCall((CFGReceiver)node)) {
+                        aliasName = getAliasName(name, rname, lname);
+                        if (aliasName != null) {
+                            JVariableReference avar = new JExpedientReference(alias.lefthand.getASTNode(),
+                                    aliasName, alias.lefthand.getType(), alias.lefthand.isPrimitiveType());
+                            if (!isReturnReference(avar)) {
+                                node.addUseVariable(avar);
+                            }
+                        }
                     }
                 }
             }
@@ -197,6 +204,15 @@ class LocalAliasResolver {
             return name.replace("." + name1, "." + name2);
         }
         return null;
+    }
+    
+    private boolean isReturnReference(JVariableReference var) {
+        return var.getReferenceForm().endsWith(")");
+    }
+    
+    private boolean hasDefInCall(CFGReceiver node) {
+        CFGMethodCall callNode = node.getMethodCall();
+        return callNode.getActualOut().getDefVariables().size() > 1;
     }
     
     private class Alias {

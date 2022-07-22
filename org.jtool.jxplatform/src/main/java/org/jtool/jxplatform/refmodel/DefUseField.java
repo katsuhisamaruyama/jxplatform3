@@ -31,11 +31,12 @@ public class DefUseField {
     private boolean isThis;
     private boolean isComplementary;
     private List<CFGStatement> holdingNodes = new ArrayList<>();
+    private boolean isReturnValue;
     
     public DefUseField(JFieldReference fvar, CFGStatement node) {
         this(fvar.getDeclaringClassName(), fvar.getName(), fvar.getReferenceForm(),
                 fvar.getType(), fvar.isPrimitiveType(), fvar.getModifiers(),
-                fvar.isInProject(), fvar.isThis(), fvar.isComplementary());
+                fvar.isInProject(), fvar.isThis(), fvar.isComplementary(), fvar.isReturnValueReference());
         if (node != null) {
             holdingNodes.add(node);
         }
@@ -43,12 +44,14 @@ public class DefUseField {
     
     public DefUseField(DefUseField var) {
         this(var.className, var.name, var.referenceForm,
-                var.type, var.isPrimitive, var.modifiers, var.inProject, var.isThis(), var.isComplementary);
+                var.type, var.isPrimitive, var.modifiers, var.inProject, var.isThis(),
+                var.isComplementary, var.isReturnValue);
         var.getHoldingNodes().forEach(node -> holdingNodes.add(node));
     }
     
     public DefUseField(String className, String name, String referenceForm, String type,
-            boolean isPrimitive, int modifiers, boolean inProject, boolean isThis, boolean isComplementary) {
+            boolean isPrimitive, int modifiers, boolean inProject, boolean isThis,
+            boolean isComplementary, boolean isReturnValue) {
         this.className = className;
         this.name = name;
         this.referenceForm = referenceForm;
@@ -58,13 +61,15 @@ public class DefUseField {
         this.inProject = inProject;
         this.isThis = isThis;
         this.isComplementary = isComplementary;
+        this.isReturnValue = isReturnValue;
     }
     
     static DefUseField create(String str) {
         String[] s = str.split(FieldPropertySeparator);
         return new DefUseField(s[0], s[1], s[2], s[3],
                 Boolean.parseBoolean(s[4]), Integer.parseInt(s[5]),
-                Boolean.parseBoolean(s[6]), Boolean.parseBoolean(s[7]), Boolean.parseBoolean(s[8]));
+                Boolean.parseBoolean(s[6]), Boolean.parseBoolean(s[7]),
+                Boolean.parseBoolean(s[8]), Boolean.parseBoolean(s[9]));
     }
     
     public String getQualifiedName() {
@@ -118,6 +123,10 @@ public class DefUseField {
         return isComplementary;
     }
     
+    public boolean isReturnValue() {
+        return isReturnValue;
+    }
+    
     public void addHoldingNodes(List<CFGMethodCall> nodes) {
         holdingNodes.addAll(nodes);
     }
@@ -151,7 +160,8 @@ public class DefUseField {
                 FieldPropertySeparator + String.valueOf(modifiers) +
                 FieldPropertySeparator + String.valueOf(inProject) +
                 FieldPropertySeparator + String.valueOf(isThis) +
-                FieldPropertySeparator + String.valueOf(isComplementary);
+                FieldPropertySeparator + String.valueOf(isComplementary) +
+                FieldPropertySeparator + String.valueOf(isReturnValue);
     }
     
     @Override

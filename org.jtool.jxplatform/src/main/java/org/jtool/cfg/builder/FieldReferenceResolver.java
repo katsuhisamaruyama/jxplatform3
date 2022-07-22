@@ -78,18 +78,19 @@ class FieldReferenceResolver {
                     def.getHoldingNodes());
             
             if (def.isInProject()) {
-                CFGParameter actualOutNode =
+                CFGParameter actualOut =
                         new CFGParameter(callNode.getASTNode(), CFGNode.Kind.actualOut, index);
-                actualOutNode.setParent(callNode);
-                actualOutNode.addDefVariable(var);
-                cfg.add(actualOutNode);
+                actualOut.setParent(callNode);
+                actualOut.addDefVariable(var);
+                cfg.add(actualOut);
                 
-                ControlFlow flow = new ControlFlow(curNode, actualOutNode);
+                ControlFlow flow = new ControlFlow(curNode, actualOut);
                 flow.setTrue();
                 cfg.add(flow);
                 
-                curNode = actualOutNode;
+                curNode = actualOut;
                 index++;
+                
             } else {
                 callNode.getActualOut().addDefVariable(var);
             }
@@ -102,11 +103,12 @@ class FieldReferenceResolver {
     
     private void insertUseVariables(CFGMethodCall callNode, JMethod method) {
         for (DefUseField use : method.getAllUseFields()) {
-            JVariableReference fvar = new JComplementaryFieldReference(callNode.getASTNode(),
+            JVariableReference var = new JComplementaryFieldReference(callNode.getASTNode(),
                     use.getClassName(), use.getName(), use.getReferenceForm(),
                     use.getType(), use.isPrimitive(), use.getModifiers(), use.isInProject(),
                     use.getHoldingNodes());
-            callNode.addUseVariable(fvar);
+            callNode.addUseVariable(var);
+            callNode.getActualOut().addUseVariable(var);
         }
     }
 }

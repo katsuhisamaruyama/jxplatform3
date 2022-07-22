@@ -47,22 +47,22 @@ class JMethodInternal extends JMethod {
         
         for (CFGNode node : cfg.getNodes()) {
             if (node.isStatement()) {
-                CFGStatement stNode = (CFGStatement)node;
-                if (stNode.isFormal()) {
+                CFGStatement cfgnode = (CFGStatement)node;
+                if (cfgnode.isFormal()) {
                     continue;
                 }
                 
-                stNode.getDefVariables().stream() 
+                cfgnode.getDefVariables().stream() 
                     .filter(var -> var.isFieldAccess())
                     .forEach(fv -> {
-                        DefUseField var = new DefUseField((JFieldReference)fv, stNode);
+                        DefUseField var = new DefUseField((JFieldReference)fv, cfgnode);
                         defFields.add(updateClassName(var));
                     });
                 
-                stNode.getUseVariables().stream()
+                cfgnode.getUseVariables().stream()
                     .filter(var -> var.isFieldAccess())
                     .forEach(fv -> {
-                        DefUseField var = new DefUseField((JFieldReference)fv, stNode);
+                        DefUseField var = new DefUseField((JFieldReference)fv, cfgnode);
                         useFields.add(updateClassName(var));
                     });
             }
