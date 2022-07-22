@@ -344,7 +344,14 @@ public class ExpressionVisitor extends ASTVisitor {
     
     @Override
     public boolean visit(SingleVariableDeclaration node) {
-        variableDeclaration(node);
+        if (curNode.isEnhancedFor()) {
+            SimpleName name = node.getName();
+            analysisMode.push(AnalysisMode.DEF);
+            name.accept(this);
+            analysisMode.pop();
+        } else {
+            variableDeclaration(node);
+        }
         return false;
     }
     

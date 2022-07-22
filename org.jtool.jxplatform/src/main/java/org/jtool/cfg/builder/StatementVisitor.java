@@ -22,6 +22,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.VariableDeclarationStatement;
 import org.eclipse.jdt.core.dom.VariableDeclarationExpression;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
+import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.Statement;
@@ -49,7 +50,6 @@ import org.eclipse.jdt.core.dom.TypeDeclarationStatement;
 import org.eclipse.jdt.core.dom.WhileStatement;
 import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.UnionType;
-import org.eclipse.jdt.core.dom.Name;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.IMethodBinding;
 import org.eclipse.jdt.core.dom.IVariableBinding;
@@ -487,12 +487,12 @@ public class StatementVisitor extends ASTVisitor {
     
     @Override
     public boolean visit(EnhancedForStatement node) {
-        CFGStatement forNode = new CFGStatement(node, CFGNode.Kind.forSt);
+        CFGStatement forNode = new CFGStatement(node, CFGNode.Kind.enhancedForSt);
         reconnect(forNode);
         
-        Name name = node.getParameter().getName();
+        SingleVariableDeclaration param = node.getParameter();
         ExpressionVisitor paramVisitor = new ExpressionVisitor(this, cfg, forNode);
-        name.accept(paramVisitor);
+        param.accept(paramVisitor);
         Expression expression = node.getExpression();
         ExpressionVisitor exprVisitor = new ExpressionVisitor(this, cfg, forNode);
         expression.accept(exprVisitor);

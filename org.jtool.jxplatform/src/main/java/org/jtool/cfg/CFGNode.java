@@ -130,6 +130,7 @@ public class CFGNode extends GraphNode {
         continueSt,                 // CFGStatement (ContinueStatement)
         doSt,                       // CFGStatement (DoStatement)
         forSt,                      // CFGStatement (ForStatement)
+        enhancedForSt,              // CFGStatement (EnhancedForStatement)
         ifSt,                       // CFGStatement (IfStatement)
         returnSt,                   // CFGStatement (ReturnStatement)
         switchCase,                 // CFGStatement (SwitchCase)
@@ -537,6 +538,14 @@ public class CFGNode extends GraphNode {
      */
     public boolean isFor() {
         return kind == Kind.forSt;
+    }
+    
+    /**
+     * Tests if this is an enhanced for-statement node.
+     * @return {@code true} if this is an enhanced for-statement node, otherwise {@code false}
+     */
+    public boolean isEnhancedFor() {
+        return kind == Kind.enhancedForSt;
     }
     
     /**
