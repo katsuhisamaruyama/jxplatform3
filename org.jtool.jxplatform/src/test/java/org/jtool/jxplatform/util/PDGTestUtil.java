@@ -16,18 +16,18 @@ import org.jtool.pdg.SDG;
 import org.jtool.pdg.Dependence;
 import org.jtool.pdg.DD;
 import org.jtool.pdg.PDGNode;
+import org.jtool.pdg.PDGEntry;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFG;
-import org.jtool.cfg.CFGEntry;
 import org.jtool.cfg.JReference;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.graph.GraphElement;
 import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
-import org.jtool.cfg.JExpedientialReference;
+import org.jtool.cfg.JExpedientReference;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -68,8 +68,17 @@ public class PDGTestUtil {
         return jproject.getPDGStore().getSDG(jclass, false);
     }
     
+    public static SDG createSDG(JavaProject jproject, String cname, boolean whole) {
+        JavaClass jclass = jproject.getClass(cname);
+        return jproject.getPDGStore().getSDG(jclass, false, whole);
+    }
+    
     public static SDG createSDG(JavaProject jproject) {
         return jproject.getPDGStore().getSDG(false);
+    }
+    
+    public static SDG createSDG(JavaProject jproject, Set<JavaClass> classes) {
+        return jproject.getPDGStore().getSDG(classes, false, false);
     }
     
     public static PDGNode getNode(PDG pdg, int index) {
@@ -135,16 +144,25 @@ public class PDGTestUtil {
         return getIdList(pdg, srcs);
     }
     
-    public static String asStrOfPDGNode(List<? extends CFGNode> set) {
+    public static String asStrOfPDGNode(List<? extends PDGNode> set) {
         return set.stream().map(e -> String.valueOf(e.getId())).collect(Collectors.joining(";"));
     }
     
-    public static String asSortedStrOfPDGEntry(Set<? extends CFGEntry> set) {
+    public static String asSortedStrOfPDGEntry(Set<? extends PDGEntry> set) {
         return set.stream().map(e -> e.getQualifiedName().fqn()).sorted().collect(Collectors.joining(";"));
     }
     
-    public static String asStrOfNode(PDG pdg, CFGNode node) {
+    public static String asStrOfNode(PDG pdg, PDGNode node) {
         return String.valueOf(node.getId() - pdg.getEntryNode().getId());
+    }
+    
+    public static String asStrOfNode(ClDG cldg, PDGNode node) {
+        for (PDG pdg : cldg.getPDGs()) {
+            if (pdg.getNodes().contains(node)) {
+                return String.valueOf(node.getId() - pdg.getEntryNode().getId());
+            }
+        }
+        return "";
     }
     
     public static String asStrOfEdge(PDG pdg, Dependence edge) {
@@ -159,14 +177,14 @@ public class PDGTestUtil {
                 e.getCFGNode().getKind().toString() + " " + e.getClass().toString()));
     }
     
-    public static List<JExpedientialReference> getDefExpedientialReference(PDG pdg) {
+    public static List<JExpedientReference> getDefExpedientialReference(PDG pdg) {
         return getDefReference(pdg, "JExpedientialReference")
-                .map(n -> (JExpedientialReference)n).collect(Collectors.toList());
+                .map(n -> (JExpedientReference)n).collect(Collectors.toList());
     }
     
-    public static List<JExpedientialReference> getUseExpedientialReference(PDG pdg) {
+    public static List<JExpedientReference> getUseExpedientialReference(PDG pdg) {
         return getUseReference(pdg, "JExpedientialReference")
-                .map(n -> (JExpedientialReference)n).collect(Collectors.toList());
+                .map(n -> (JExpedientReference)n).collect(Collectors.toList());
     }
     
     public static List<JLocalVarReference> getDefLocalReference(PDG pdg) {

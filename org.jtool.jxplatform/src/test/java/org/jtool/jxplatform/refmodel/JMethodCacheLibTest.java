@@ -34,19 +34,19 @@ public class JMethodCacheLibTest {
         
         JClass customerClass = bcStore.getJClass("org.jtool.videostore.after.Customer");
         customerMethod = customerClass.getMethod("Customer( java.lang.String )");
-        customerMethod.findDefUseFields();
+        customerMethod.findDefUseFields(null, "");
         addRentalMethod = customerClass.getMethod("addRental( org.jtool.videostore.after.Rental )");
-        addRentalMethod.findDefUseFields();
+        addRentalMethod.findDefUseFields(null, "");
         statementMethod = customerClass.getMethod("statement( )");
-        statementMethod.findDefUseFields();
+        statementMethod.findDefUseFields(null, "");
         
         JClass stringClass = bcStore.getJClass("java.lang.String");
         indexOfMethod = stringClass.getMethod("indexOf( byte[] byte int java.lang.String int )");
-        indexOfMethod.findDefUseFields();
+        indexOfMethod.findDefUseFields(null, "");
         
         JClass testClass = bcStore.getJClass("org.junit.Test");
         expectedMethod = testClass.getMethod("expected( )");
-        expectedMethod.findDefUseFields();
+        expectedMethod.findDefUseFields(null, "");
     }
     
     @AfterClass

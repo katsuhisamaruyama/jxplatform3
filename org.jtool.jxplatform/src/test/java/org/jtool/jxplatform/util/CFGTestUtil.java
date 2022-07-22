@@ -28,7 +28,7 @@ import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.builder.BasicBlockBuilder;
-import org.jtool.cfg.JExpedientialReference;
+import org.jtool.cfg.JExpedientReference;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -146,14 +146,14 @@ public class CFGTestUtil {
                 e.getKind().toString() + " " + e.getClass().toString()));
     }
     
-    public static List<JExpedientialReference> getDefExpedientialReference(CFG cfg) {
+    public static List<JExpedientReference> getDefExpedientialReference(CFG cfg) {
         return getDefReference(cfg, "JExpedientialReference")
-                .map(n -> (JExpedientialReference)n).collect(Collectors.toList());
+                .map(n -> (JExpedientReference)n).collect(Collectors.toList());
     }
     
-    public static List<JExpedientialReference> getUseExpedientialReference(CFG cfg) {
+    public static List<JExpedientReference> getUseExpedientialReference(CFG cfg) {
         return getUseReference(cfg, "JExpedientialReference")
-                .map(n -> (JExpedientialReference)n).collect(Collectors.toList());
+                .map(n -> (JExpedientReference)n).collect(Collectors.toList());
     }
     
     public static List<JLocalVarReference> getDefLocalReference(CFG cfg) {

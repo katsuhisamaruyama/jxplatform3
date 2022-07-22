@@ -56,25 +56,10 @@ public class RefModelTestUtil {
         return project;
     }
     
-    public static JavaProject createProjectFromCache(String name, String lib, String src) {
-        String target = BuilderTestUtil.getTarget(name);
-        
-        removeCache(target);
-        createCache(name, lib, src);
-        
-        ModelBuilderBatch builder = new ModelBuilderBatch(true, true);
-        JavaProject project = builder.build(name, target, target + lib, target + src, target);
-        
-        BytecodeClassStore bcStore = project.getCFGStore().getBCStore();
-        bcStore.loadBytecode();
-        
-        return project;
-    }
-    
     public static void createCache(String name, String lib, String src) {
         String target = BuilderTestUtil.getTarget(name);
         
-        ModelBuilderBatch builder = new ModelBuilderBatch(true, true);
+        ModelBuilderBatch builder = new ModelBuilderBatch(true);
         //builder.setLogVisible(false);
         JavaProject project = builder.build(target, target, target + lib, target + src, target);
         

@@ -33,21 +33,21 @@ public class JMethodExternalTest {
         
         JClass stringClass = bcStore.getJClass("java.lang.String");
         indexOfMethod = stringClass.getMethod("indexOf( byte[] byte int java.lang.String int )");
-        indexOfMethod.findDefUseFields();
+        indexOfMethod.findDefUseFields(null, "");
         
         JClass listClass = bcStore.getJClass("java.util.List");
         addMethodInList = listClass.getMethod("add( java.lang.Object )");
-        addMethodInList.findDefUseFields();
+        addMethodInList.findDefUseFields(null, "");
         
         JClass arrayListClass = bcStore.getJClass("java.util.ArrayList");
         addMethodInArrayList = arrayListClass.getMethod("add( java.lang.Object )");
-        addMethodInArrayList.findDefUseFields();
+        addMethodInArrayList.findDefUseFields(null, "");
         removeMethod = arrayListClass.getMethod("remove( java.lang.Object )");
-        removeMethod.findDefUseFields();
+        removeMethod.findDefUseFields(null, "");
         
         JClass testClass = bcStore.getJClass("org.junit.Test");
         expectedMethod = testClass.getMethod("expected( )");
-        expectedMethod.findDefUseFields();
+        expectedMethod.findDefUseFields(null, "");
     }
     
     @AfterClass

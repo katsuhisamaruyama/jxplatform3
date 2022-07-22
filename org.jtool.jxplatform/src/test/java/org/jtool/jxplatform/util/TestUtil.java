@@ -60,6 +60,10 @@ public static <T> List<String> asSortedList(Set<T> set) {
         return list.stream().map(e -> e.getReferenceForm()).sorted().collect(Collectors.joining(";"));
     }
     
+    public static String asSortedStrOfReference(Set<? extends JReference> set) {
+        return set.stream().map(e -> e.getReferenceForm()).sorted().collect(Collectors.joining(";"));
+    }
+    
     public static String asStr(List<? extends Object> list) {
         return list.stream().map(Object::toString).collect(Collectors.joining(";"));
     }

@@ -34,23 +34,23 @@ public class JMethodInternalTest {
         
         JClass customerClass = bcStore.getJClass("org.jtool.videostore.after.Customer");
         customerMethod = customerClass.getMethod("Customer( java.lang.String )");
-        customerMethod.findDefUseFields();
+        customerMethod.findDefUseFields(null, "");
         addRentalMethod = customerClass.getMethod("addRental( org.jtool.videostore.after.Rental )");
-        addRentalMethod.findDefUseFields();
+        addRentalMethod.findDefUseFields(null, "");
         statementMethod = customerClass.getMethod("statement( )");
-        statementMethod.findDefUseFields();
+        statementMethod.findDefUseFields(null, "");
         
         JClass priceClass = bcStore.getJClass("org.jtool.videostore.after.Price");
         getChargeMethodPrice = priceClass.getMethod("getCharge( int )");
-        getChargeMethodPrice.findDefUseFields();
+        getChargeMethodPrice.findDefUseFields(null, "");
         getFrequentRenterPointsMethodPrice = priceClass.getMethod("getFrequentRenterPoints( int )");
-        getFrequentRenterPointsMethodPrice.findDefUseFields();
+        getFrequentRenterPointsMethodPrice.findDefUseFields(null, "");
         
         JClass newReleasePriceClass = bcStore.getJClass("org.jtool.videostore.after.NewReleasePrice");
         getChargeMethodNewReleasePrice = newReleasePriceClass.getMethod("getCharge( int )");
-        getChargeMethodNewReleasePrice.findDefUseFields();
+        getChargeMethodNewReleasePrice.findDefUseFields(null, "");
         getFrequentRenterPointsMethodNewReleasePrice = newReleasePriceClass.getMethod("getFrequentRenterPoints( int )");
-        getFrequentRenterPointsMethodNewReleasePrice.findDefUseFields();
+        getFrequentRenterPointsMethodNewReleasePrice.findDefUseFields(null, "");
     }
     
     @AfterClass
