@@ -10,7 +10,9 @@ class Test138 {
         s1.add("B");
         s2.add("C");
         P138 s3 = s1;
-        P138 s4 = s2;
+        List<String> l1 = s1.getList();
+        List<String> l3 = s3.getList();
+        List<String> l2 = s2.getList();
     }
 }
 
@@ -19,5 +21,10 @@ class P138 {
     
     public void add(String elem) {
         list.add(elem);
+    }
+
+    public List<String> getList() {
+        return list;
+        //return new ArrayList<>(list);
     }
 }

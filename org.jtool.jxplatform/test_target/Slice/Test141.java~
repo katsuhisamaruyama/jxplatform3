@@ -58,8 +58,8 @@ class U129 {
 
 class P129 {
     private Map<String, String> map = new HashMap<>();
-    private String key;
     private String value;
+    private String key;
     
     public void set1(String key, String value) {
         map.put(key, value);

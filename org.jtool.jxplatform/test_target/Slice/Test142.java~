@@ -2,8 +2,10 @@ import java.util.Map;
 import java.util.HashMap;
 
 class Test129 {
-    private S129 s1 = new S129();
-    private S129 s2 = new S129();
+
+        private Map<String, String> map = new HashMap<>();
+private P129 p1 = new P129();
+    private P129 p2 = new P129();
 
     public void m() {
         int a = 0;
@@ -24,42 +26,9 @@ class Test129 {
     }
 }
 
-class S129 {
-    private P129 p = new P129();
-
-    public P129 getP() {
-        return p;
-    }
-}
-
-class T129 {
-    private P129 p = new P129();
-
-    public void set1(String key, String value) {
-        p.set1(key, value);
-    }
-
-    public String get1(String key) {
-        return p.get1(key);
-    }
-}
-
-class U129 {
-    private T129 t = new T129();
-    
-    public void set1(String key, String value) {
-        t.set1(key, value);
-    }
-
-    public String get1(String key) {
-        return t.get1(key);
-    }
-}
-
 class P129 {
-    private Map<String, String> map = new HashMap<>();
-    private String key;
     private String value;
+    private String key;
     
     public void set1(String key, String value) {
         map.put(key, value);

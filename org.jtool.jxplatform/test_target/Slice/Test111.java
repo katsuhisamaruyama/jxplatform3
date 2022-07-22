@@ -5,12 +5,12 @@ class Test111 {
         int y = 0;
         int z = 0;
         switch (x) {
-        case 1:
-            y = 10;
-            break;
-        case 2:
-            z = 20;
-            break;
+            case 1:
+                y = 10;
+                break;
+            case 2:
+                z = 20;
+                break;
         }
         int p = y;
         int q = z;

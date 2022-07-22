@@ -4,8 +4,11 @@ class Test128 {
     public void m() {
         A128 a = new A128();
         int p = 0;
-        a.setY(2);
-        int r = n(0, a.add(p).getY());
+        int q = 2;
+        a.setY(q);
+        int r = a.getY();
+        int s = a.add(p).getY();
+        int t = n(0, a.add(p).getY());
     }
 
     public int n(int x, int y) {
