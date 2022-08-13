@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
@@ -84,9 +85,14 @@ public class JMethodReference extends JReference {
     private boolean hasExplicitReceiver = false;
     
     /**
-     * The collection of the approximated types of receiver associated to this node.
+     * The collection of the approximated types of a receiver associated to this node.
      */
     private Set<JClass> approximatedTypes;
+    
+    /**
+     * The collection of type parameter names.
+     */
+    private List<String> typeParameters;
     
     /**
      * Creates a new object that represents a reference to a method or a constructor.
@@ -130,10 +136,14 @@ public class JMethodReference extends JReference {
             
             this.type = getType(mbinding.getDeclaringClass());
             this.isPrimitiveType = false;
+            this.typeParameters = Arrays.asList(mbinding.getDeclaringClass().getTypeArguments()).stream()
+                    .map(tb -> tb.getQualifiedName()).collect(Collectors.toList());
         } else {
             this.name = binding.getName();
             this.type = getType(mbinding.getReturnType());
             this.isPrimitiveType = binding.getReturnType().isPrimitive();
+            this.typeParameters = Arrays.asList(mbinding.getReturnType().getTypeArguments()).stream()
+                    .map(tb -> tb.getQualifiedName()).collect(Collectors.toList());
         }
         
         this.fqn = new QualifiedName(declaringClassName, signature);
@@ -410,6 +420,14 @@ public class JMethodReference extends JReference {
      */
     public Set<String> getApproximatedTypeNames() {
         return approximatedTypes.stream().map(c -> c.getClassName()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Returns type parameter names.
+     * @return the collection of the type parameter names
+     */
+    public List<String> getTypeParameters() {
+        return typeParameters;
     }
     
     /**

@@ -174,6 +174,14 @@ public class CFGMethodCall extends CFGStatement {
     }
     
     /**
+     * Returns type parameter names.
+     * @return the collection of the type parameter names
+     */
+    public List<String> getTypeParameters() {
+        return jmethodCall.getTypeParameters();
+    }
+    
+    /**
      * Tests if the called method exists inside the target project.
      * @return {@code true} if this is a call to the inside method, otherwise {@code false}
      */
