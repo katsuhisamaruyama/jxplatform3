@@ -7,8 +7,8 @@ package org.jtool.slice;
 
 import org.jtool.pdg.DependencyGraph;
 import org.jtool.pdg.PDGNode;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * An object storing information about a closure created by traversing only control dependence edges.
@@ -23,13 +23,13 @@ public class CDClosure {
      * @param anchor the starting node
      * @return the collection of PDG nodes contained in the closure
      */
-    public static List<PDGNode> getForwardCDClosure(DependencyGraph graph, PDGNode anchor) {
-        List<PDGNode> nodes = new ArrayList<>();
+    public static Set<PDGNode> getForwardCDClosure(DependencyGraph graph, PDGNode anchor) {
+        Set<PDGNode> nodes = new HashSet<>();
         traverseForwardCD(graph, anchor, nodes);
         return nodes;
     }
     
-    private static void traverseForwardCD(DependencyGraph graph, PDGNode node, List<PDGNode> nodes) {
+    private static void traverseForwardCD(DependencyGraph graph, PDGNode node, Set<PDGNode> nodes) {
         if (nodes.contains(node)) {
             return;
         }
@@ -47,13 +47,13 @@ public class CDClosure {
      * @param anchor the starting node
      * @return the collection of PDG nodes contained in the closure
      */
-    public static List<PDGNode> getBackwardCDClosure(DependencyGraph graph, PDGNode anchor) {
-        List<PDGNode> nodes = new ArrayList<>();
+    public static Set<PDGNode> getBackwardCDClosure(DependencyGraph graph, PDGNode anchor) {
+        Set<PDGNode> nodes = new HashSet<>();
         traverseBackwardCD(graph, anchor, nodes);
         return nodes;
     }
     
-    private static void traverseBackwardCD(DependencyGraph graph, PDGNode node, List<PDGNode> nodes) {
+    private static void traverseBackwardCD(DependencyGraph graph, PDGNode node, Set<PDGNode> nodes) {
         if (nodes.contains(node)) {
             return;
         }

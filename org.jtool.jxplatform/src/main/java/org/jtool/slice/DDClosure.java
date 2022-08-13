@@ -9,8 +9,8 @@ import org.jtool.pdg.DependencyGraph;
 import org.jtool.pdg.DD;
 import org.jtool.pdg.PDGNode;
 import org.jtool.cfg.JReference;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * An object storing information about a closure created by traversing only data dependence edges.
@@ -26,8 +26,8 @@ public class DDClosure {
      * @param jv a variable of interest appearing in the starting node
      * @return the collection of PDG nodes contained in the closure
      */
-    public static List<PDGNode> getForwardCDClosure(DependencyGraph graph, PDGNode anchor, JReference jv) {
-        List<PDGNode> nodes = new ArrayList<>();
+    public static Set<PDGNode> getForwardDDClosure(DependencyGraph graph, PDGNode anchor, JReference jv) {
+        Set<PDGNode> nodes = new HashSet<>();
         for (DD edge : graph.getOutgoingDDEdges(anchor)) {
             if (edge.getVariable().equals(jv)) {
                 PDGNode next = edge.getSrcNode();
@@ -37,7 +37,7 @@ public class DDClosure {
         return nodes;
     }
     
-    private static void traverseForwardDD(DependencyGraph graph, PDGNode node, List<PDGNode> nodes) {
+    private static void traverseForwardDD(DependencyGraph graph, PDGNode node, Set<PDGNode> nodes) {
         if (nodes.contains(node)) {
             return;
         }
@@ -56,8 +56,8 @@ public class DDClosure {
      * @param jv a variable of interest appearing in the starting node
      * @return the collection of PDG nodes contained in the closure
      */
-    public static List<PDGNode> getBackwardCDClosure(DependencyGraph graph, PDGNode anchor, JReference jv) {
-        List<PDGNode> nodes = new ArrayList<>();
+    public static Set<PDGNode> getBackwardDDClosure(DependencyGraph graph, PDGNode anchor, JReference jv) {
+        Set<PDGNode> nodes = new HashSet<>();
         for (DD edge : graph.getIncomingDDEdges(anchor)) {
             if (edge.getVariable().equals(jv)) {
                 PDGNode next = edge.getSrcNode();
@@ -67,7 +67,7 @@ public class DDClosure {
         return nodes;
     }
     
-    private static void traverseBackwardDD(DependencyGraph graph, PDGNode node, List<PDGNode> nodes) {
+    private static void traverseBackwardDD(DependencyGraph graph, PDGNode node, Set<PDGNode> nodes) {
         if (nodes.contains(node)) {
             return;
         }
