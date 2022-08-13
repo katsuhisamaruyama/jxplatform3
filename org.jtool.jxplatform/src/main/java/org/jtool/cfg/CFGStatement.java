@@ -234,45 +234,49 @@ public class CFGStatement extends CFGNode {
     }
     
     /**
-     * Returns the first one from the collection of variables defined in this node.
+     * Returns the first one from the collection of available variables defined in this node.
      * @return the defined variable at the first position, or {@code null} if this node never defines any variable
      */
     public JVariableReference getDefFirst() {
-        if (hasDefVariable()) {
-            return defs.get(0);
+        List<JVariableReference> vars = defs.stream().filter(var -> var.isAvailable()).collect(Collectors.toList());
+        if (vars.size() > 0) {
+            return vars.get(0);
         }
         return null;
     }
     
     /**
-     * Returns the first one from the collection of variables used in this node.
+     * Returns the first one from the collection of available variables used in this node.
      * @return the used variable at the first position, or {@code null} if this node never uses any variable
      */
     public JVariableReference getUseFirst() {
-        if (hasUseVariable()) {
-            return uses.get(0);
+        List<JVariableReference> vars = uses.stream().filter(var -> var.isAvailable()).collect(Collectors.toList());
+        if (vars.size() > 0) {
+            return vars.get(0);
         }
         return null;
     }
     
     /**
-     * Returns the last one from the collection of variables defined in this node.
+     * Returns the last one from the collection of available variables defined in this node.
      * @return the defined variable at the last position, or {@code null} if this node never defines any variable
      */
     public JVariableReference getDefLast() {
-        if (hasDefVariable()) {
-            return defs.get(defs.size() - 1);
+        List<JVariableReference> vars = defs.stream().filter(var -> var.isAvailable()).collect(Collectors.toList());
+        if (vars.size() > 0) {
+            return vars.get(vars.size() - 1);
         }
         return null;
     }
     
     /**
-     * Returns the last one from the collection of variables used in this node.
+     * Returns the last one from the collection of available variables used in this node.
      * @return the used variable at the last position, or {@code null} if this node never uses any variable
      */
     public JVariableReference getUseLast() {
-        if (hasUseVariable()) {
-            return uses.get(uses.size() - 1);
+        List<JVariableReference> vars = uses.stream().filter(var -> var.isAvailable()).collect(Collectors.toList());
+        if (vars.size() > 0) {
+            return vars.get(vars.size() - 1);
         }
         return null;
     }
