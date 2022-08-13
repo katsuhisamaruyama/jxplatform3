@@ -8,6 +8,7 @@ package org.jtool.cfg.builder;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGMethodEntry;
+import org.jtool.cfg.CFGFieldEntry;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.CFGReceiver;
@@ -21,10 +22,11 @@ import org.jtool.cfg.JReturnValueReference;
 import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JReference;
 import org.jtool.graph.GraphEdge;
-import org.jtool.srcmodel.JavaMethod;
-import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.builder.UncaughtExceptionTypeCollector;
+import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaClass;
+import org.jtool.srcmodel.JavaMethod;
+import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaElementUtil;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.ASTNode;
@@ -126,6 +128,7 @@ import java.util.Stack;
 public class ExpressionVisitor extends ASTVisitor {
     
     protected CFG cfg;
+    protected JavaProject jproject;
     protected CFGStatement curNode;
     protected CFGStatement entryNode;
     
@@ -145,7 +148,11 @@ public class ExpressionVisitor extends ASTVisitor {
     protected ExpressionVisitor(StatementVisitor visitor, CFG cfg, CFGStatement node) {
         this.statementVisitor = visitor;
         this.cfg = cfg;
-        
+        if (cfg.isMethod()) {
+            this.jproject = ((CFGMethodEntry)cfg.getEntryNode()).getJavaMethod().getJavaProject();
+        } else if (cfg.isField()) {
+            this.jproject = ((CFGFieldEntry)cfg.getEntryNode()).getJavaField().getJavaProject();
+        }
         curNode = node;
         entryNode = node;
         analysisMode.push(AnalysisMode.USE);
@@ -655,23 +662,20 @@ public class ExpressionVisitor extends ASTVisitor {
     
     private void createActualIns(CFGMethodCall callNode, List<Expression> arguments) {
         for (int ordinal = 0; ordinal < arguments.size(); ordinal++) {
-            createActualIn(callNode, arguments.get(ordinal), ordinal);
+            Expression arg = arguments.get(ordinal);
+            CFGParameter actualInNode = new CFGParameter(arg, CFGNode.Kind.actualIn, ordinal);
+            actualInNode.setParent(callNode);
+            callNode.addActualIn(actualInNode);
+            
+            insertBeforeCurrentNode(actualInNode);
+            
+            CFGStatement tmpNode = curNode;
+            curNode = actualInNode;
+            analysisMode.push(AnalysisMode.USE);
+            arg.accept(this);
+            analysisMode.pop();
+            curNode = tmpNode;
         }
-    }
-    
-    private void createActualIn(CFGMethodCall callNode, Expression node, int ordinal) {
-        CFGParameter actualInNode = new CFGParameter(node, CFGNode.Kind.actualIn, ordinal);
-        actualInNode.setParent(callNode);
-        callNode.addActualIn(actualInNode);
-        
-        insertBeforeCurrentNode(actualInNode);
-        
-        CFGStatement tmpNode = curNode;
-        curNode = actualInNode;
-        analysisMode.push(AnalysisMode.USE);
-        node.accept(this);
-        analysisMode.pop();
-        curNode = tmpNode;
     }
     
     private void mergeActualIn(CFGMethodCall callNode, List<Expression> arguments) {
@@ -712,8 +716,6 @@ public class ExpressionVisitor extends ASTVisitor {
                 statementVisitor.setExceptionFlowOnMethodCall(callNode, type);
             }
             
-            CFGMethodEntry entry = (CFGMethodEntry)cfg.getEntryNode();
-            JavaProject jproject = entry.getJavaMethod().getJavaProject();
             JavaClass jclass = jproject.getClass(jcall.getDeclaringClassName());
             if (jclass != null) {
                 JavaMethod jmethod = jclass.getMethod(jcall.getSignature());
@@ -752,6 +754,9 @@ public class ExpressionVisitor extends ASTVisitor {
                 curNode.addDefVariable(var);
             } else {
                 curNode.addUseVariable(var);
+                if (!var.isPrimitiveType()) {
+                    collectFields(curNode, var);
+                }
             }
         }
         return false;
@@ -781,9 +786,22 @@ public class ExpressionVisitor extends ASTVisitor {
                 curNode.addDefVariable(fvar);
             } else {
                 curNode.addUseVariable(fvar);
+                collectFields(curNode, fvar);
             }
         }
         return false;
+    }
+    
+    private void collectFields(CFGStatement node, JVariableReference var) {
+        JavaClass jc = jproject.getClass(var.getType());
+        if (jc != null) {
+            for (JavaField jf : jc.getFields() ) {
+                JVariableReference jv =  new JFieldReference(var.getASTNode(),
+                        jf.getClassName(), jf.getName(), var.getReferenceForm() + "." + jf.getName(),
+                        jf.getType(), jf.isPrimitiveType(), jf.getModifiers(), jf.isInProject(), false);
+                node.addUseVariable(jv);
+            }
+        }
     }
     
     private IVariableBinding getVariableBinding(Name node) {
