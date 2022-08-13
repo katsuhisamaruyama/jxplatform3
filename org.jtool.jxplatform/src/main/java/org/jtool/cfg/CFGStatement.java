@@ -17,6 +17,7 @@ import org.eclipse.jdt.core.dom.Name;
 import org.eclipse.jdt.core.dom.SuperMethodInvocation;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 import org.eclipse.jdt.core.dom.ReturnStatement;
+import org.eclipse.jdt.core.dom.EnhancedForStatement;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -288,6 +289,8 @@ public class CFGStatement extends CFGNode {
             expr = ((Assignment)astNode).getRightHandSide();
         } else if (astNode instanceof ReturnStatement) {
             expr = ((ReturnStatement)astNode).getExpression();
+        } else if (astNode instanceof EnhancedForStatement) {
+            expr = ((EnhancedForStatement)astNode).getExpression();
         } else if (astNode.getParent() instanceof MethodInvocation) {
             expr = ((MethodInvocation)astNode.getParent()).getExpression();
         } else if (astNode.getParent() instanceof ClassInstanceCreation) {
