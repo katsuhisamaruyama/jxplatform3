@@ -128,7 +128,7 @@ public abstract class ModelBuilderImpl {
     }
     
     protected ASTParser getParser() {
-        ASTParser parser = ASTParser.newParser(AST.JLS17);
+        ASTParser parser = ASTParser.newParser(AST.JLS18);
         Map<String, String> options = JavaCore.getOptions();
         options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
         options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
