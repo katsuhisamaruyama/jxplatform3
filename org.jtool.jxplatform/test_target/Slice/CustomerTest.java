@@ -7,8 +7,9 @@ public class CustomerTest {
         Order order = new Order();
         Rental r1 = new Rental(200, 2);
         order.addRental(r1);
-
+        
         String message = customer.statement(order);
+        Order order2 = order;
     }
 
     public void testStatement2() {
