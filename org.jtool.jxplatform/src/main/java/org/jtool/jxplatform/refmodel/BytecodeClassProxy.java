@@ -65,6 +65,11 @@ public class BytecodeClassProxy extends BytecodeClass {
     protected void collectInfo() {
         super.collectInfo();
         
+        methods.addAll(defFieldsMap.keySet());
+        methods.addAll(useFieldsMap.keySet());
+        methods.addAll(calledMethodsMap.keySet());
+        methods.addAll(notSpecialMethods);
+        
         bcStore.registerBytecode(this);
     }
 }

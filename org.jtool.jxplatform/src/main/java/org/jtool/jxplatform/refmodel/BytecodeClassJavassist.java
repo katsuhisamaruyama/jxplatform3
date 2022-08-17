@@ -42,6 +42,18 @@ public class BytecodeClassJavassist extends BytecodeClass {
         isInterface = ctClass.isInterface();
         isInProject = false;
         
+        for (CtField cf : ctClass.getDeclaredFields()) {
+            fields.add(cf.getName());
+        }
+        
+        for (CtMethod cm : ctClass.getDeclaredMethods()) {
+            methods.add(bcStore.getMethodSignature(cm));
+        }
+        
+        for (CtConstructor cc : ctClass.getDeclaredConstructors()) {
+            methods.add(bcStore.getConstructorSignature(cc));
+        }
+        
         try {
             if (!ctClass.isInterface() && !ctClass.isEnum()) {
                 CtClass sclass = ctClass.getSuperclass();
@@ -67,10 +79,6 @@ public class BytecodeClassJavassist extends BytecodeClass {
         
         for (CtConstructor cc : ctClass.getDeclaredConstructors()) {
             parseMethod(cc, bcStore.getConstructorSignature(cc));
-        }
-        
-        for (CtField cf : ctClass.getDeclaredFields()) {
-            fields.add(cf.getName());
         }
         
         super.collectInfo();
@@ -127,18 +135,23 @@ public class BytecodeClassJavassist extends BytecodeClass {
                     List<QualifiedName> qnames = new ArrayList<>();
                     String className = bcStore.getCanonicalClassName(cm.getMethod().getDeclaringClass());
                     String signature = bcStore.getMethodSignature(cm.getMethod());
+                    QualifiedName qname = new QualifiedName(className, signature);
+                    
                     if (className != null && signature != null) {
                         JClass clazz = bcStore.getJClass(className);
-                        if (clazz != null) {
-                            qnames.add(new QualifiedName(className, signature));
-                            for (JClass c : clazz.getDescendantClasses()) {
-                                if (c.getMethod(signature) != null) {
-                                    qnames.add(new QualifiedName(c.getClassName(), signature));
-                                }
-                            }
+                        if (clazz != null && clazz.getMethod(signature) != null) {
+                            qnames.add(qname);
+                            
+                            //Comment out since it takes much time to check invocations to all descendants
+                            //for (JClass c : clazz.getDescendantClasses()) {
+                            //    if (c.getMethod(signature) != null) {
+                            //        qnames.add(new QualifiedName(c.getClassName(), signature));
+                            //    }
+                            //}
                         }
+                        return qnames;
                     }
-                    return qnames;
+                    throw new NotFoundException(qname.fqn());
                 }
                 
                 @Override
@@ -166,7 +179,15 @@ public class BytecodeClassJavassist extends BytecodeClass {
                 private QualifiedName createConstructorQualifiedName(CtConstructor cc) throws NotFoundException {
                     String className = bcStore.getCanonicalClassName(cc.getDeclaringClass());
                     String signature = bcStore.getConstructorSignature(cc);
-                    return new QualifiedName(className, signature);
+                    QualifiedName qname = new QualifiedName(className, signature);
+                    
+                    if (className != null && signature != null) {
+                        JClass clazz = bcStore.getJClass(className);
+                        if (clazz != null && clazz.getMethod(signature) != null) {
+                            return qname;
+                        }
+                    }
+                    throw new NotFoundException(qname.fqn());
                 }
             });
         } catch (CannotCompileException e) { /* empty */ }

@@ -71,11 +71,6 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         defFieldsMap = defFieldsCache.asMap();
         useFieldsMap = useFieldsCache.asMap();
         calledMethodsMap = calledMethodsCache.asMap();
-        
-        methods.addAll(defFieldsMap.keySet());
-        methods.addAll(useFieldsMap.keySet());
-        methods.addAll(calledMethodsMap.keySet());
-        methods.addAll(notSpecialMethods);
     }
     
     JClass createCacheClass(BytecodeClassStore bcStore) {
