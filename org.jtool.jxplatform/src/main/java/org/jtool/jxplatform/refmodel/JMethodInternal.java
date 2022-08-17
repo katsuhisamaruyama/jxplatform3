@@ -162,6 +162,8 @@ class JMethodInternal extends JMethod {
                 
                 JMethod method = type.getMethod(sig);
                 if (method != null && !method.equals(this)) {
+                    accessedMethods.add(method);
+                    
                     CalledMethod amethod = new CalledMethod(method, callNode);
                     calledMethods.add(amethod);
                 }
