@@ -142,6 +142,8 @@ public class ExpressionVisitor extends ASTVisitor {
         DEF, USE,
     }
     
+    private Stack<Expression> receivers = new Stack<>();
+    
     protected ExpressionVisitor(CFG cfg, CFGStatement node) {
         this(null, cfg, node);
     }
@@ -291,25 +293,18 @@ public class ExpressionVisitor extends ASTVisitor {
             return false;
         }
         
-        CFGStatement receiverNode = new CFGStatement(node, CFGNode.Kind.dummy);
         Expression receiver = node.getExpression();
-        CFGStatement tmpNode = curNode;
-        curNode = receiverNode;
-        analysisMode.push(AnalysisMode.USE);
-        receiver.accept(this);
-        analysisMode.pop();
-        curNode = tmpNode;
+        visitReceiver(receiver, curNode);
         
-        String referenceForm = node.getName().getFullyQualifiedName();
-        JVariableReference prefix = getReceiverVariable(receiverNode);
-        if (prefix != null) {
-            referenceForm = prefix.getReferenceForm();
-            if (referenceForm.indexOf(JReturnValueReference.METHOD_RETURN_SYMBOL) != -1) {
-                referenceForm = referenceForm + "." + node.getName().getIdentifier();
-                curNode.addUseVariables(receiverNode.getUseVariables());
-            } else if (referenceForm.equals("this")) {
-                referenceForm = referenceForm + "." + node.getName().getFullyQualifiedName();
-            }
+        JVariableReference prefix = curNode.getUseLast();
+        String referenceForm = prefix.getReferenceForm();
+        if (referenceForm.indexOf(JReturnValueReference.METHOD_RETURN_SYMBOL) != -1) {
+            referenceForm = referenceForm + "." + node.getName().getIdentifier();
+        } else if (referenceForm.equals("this")) {
+            referenceForm = referenceForm + "." + node.getName().getIdentifier();
+            curNode.removeUseVariable(prefix);
+        } else {
+            referenceForm = node.getName().getFullyQualifiedName();
         }
         
         JFieldReference jvar = new JFieldReference(node, node.getName(), vbinding);
@@ -427,14 +422,9 @@ public class ExpressionVisitor extends ASTVisitor {
         
         JVariableReference prefix = null;
         if (receiver != null) {
-            CFGStatement tmpNode = curNode;
-            curNode = receiverNode;
-            analysisMode.push(AnalysisMode.USE);
-            receiver.accept(this);
-            analysisMode.pop();
-            curNode = tmpNode;
+            visitReceiver(receiver, receiverNode);
             
-            prefix = getReceiverVariable(receiverNode);
+            prefix = receiverNode.getUseLast();
             if (prefix != null) {
                 receiverNode.setName(prefix.getReferenceForm());
             }
@@ -546,14 +536,9 @@ public class ExpressionVisitor extends ASTVisitor {
         insertBeforeCurrentNode(receiverNode);
         
         if (receiver != null) {
-            CFGStatement tmpNode = curNode;
-            curNode = receiverNode;
-            analysisMode.push(AnalysisMode.USE);
-            receiver.accept(this);
-            analysisMode.pop();
-            curNode = tmpNode;
+            visitReceiver(receiver, receiverNode);
             
-            JVariableReference prefix = getReceiverVariable(receiverNode);
+            JVariableReference prefix = receiverNode.getUseLast();
             if (prefix != null) {
                 receiverNode.setName(prefix.getReferenceForm() + "." + "super");
             }
@@ -597,14 +582,9 @@ public class ExpressionVisitor extends ASTVisitor {
         
         JVariableReference prefix = null;
         if (receiver != null) {
-            CFGStatement tmpNode = curNode;
-            curNode = receiverNode;
-            analysisMode.push(AnalysisMode.USE);
-            receiver.accept(this);
-            analysisMode.pop();
-            curNode = tmpNode;
+            visitReceiver(receiver, receiverNode);
             
-            prefix = getReceiverVariable(receiverNode);
+            prefix = receiverNode.getUseLast();
             if (prefix != null) {
                 receiverNode.setName(prefix.getReferenceForm() + "." + receiverNode.getName());
             }
@@ -655,10 +635,15 @@ public class ExpressionVisitor extends ASTVisitor {
         return false;
     }
     
-    private JVariableReference getReceiverVariable(CFGStatement cfgNode) {
-        List<JVariableReference> vars = cfgNode.getUseVariables().stream().filter(v -> v.isAvailable()).collect(Collectors.toList());
-        cfgNode.setUseVariables(vars);
-        return cfgNode.getUseLast();
+    private void visitReceiver(Expression receiver, CFGStatement receiverNode) {
+        CFGStatement tmpNode = curNode;
+        curNode = receiverNode;
+        analysisMode.push(AnalysisMode.USE);
+        receivers.push(receiver);
+        receiver.accept(this);
+        receivers.pop();
+        analysisMode.pop();
+        curNode = tmpNode;
     }
     
     private void createActualIn(CFGMethodCall callNode, List<Expression> arguments) {
@@ -765,9 +750,10 @@ public class ExpressionVisitor extends ASTVisitor {
             if (analysisMode.peek() == AnalysisMode.DEF) {
                 curNode.addDefVariable(var);
             } else {
+                curNode.removeUseVariable(var);
                 curNode.addUseVariable(var);
-                if (!var.isPrimitiveType()) {
-                    collectFields(curNode, var);
+                if (!var.isPrimitiveType() && receivers.empty()) {
+                    curNode.addUseVariables(getDanglingFields(var));
                 }
             }
         }
@@ -783,36 +769,46 @@ public class ExpressionVisitor extends ASTVisitor {
             node.getQualifier().accept(this);
             analysisMode.pop();
             
-            JVariableReference prefix = getReceiverVariable(curNode);
-            JFieldReference fvar;
+            List<JVariableReference> vars = curNode.getUseVariables().stream()
+                    .filter(v -> v.isAvailable()).collect(Collectors.toList());
+            JVariableReference prefix = vars.size() > 0 ? vars.get(vars.size() - 1) : null;
+            
+            JFieldReference var;
             if (prefix != null) {
                 String name = prefix.getReferenceForm() + "." + node.getName().getIdentifier();
-                fvar = new JFieldReference(node, node.getName(), name, vbinding);
-                fvar.setPrefix(prefix);
+                var = new JFieldReference(node, node.getName(), name, vbinding);
+                var.setPrefix(prefix);
             } else {
-                fvar = new JFieldReference(node, node.getName(), node.getFullyQualifiedName(), vbinding);
+                var = new JFieldReference(node, node.getName(), node.getFullyQualifiedName(), vbinding);
             }
             
             if (analysisMode.peek() == AnalysisMode.DEF) {
-                curNode.addDefVariable(fvar);
+                curNode.addDefVariable(var);
             } else {
-                curNode.addUseVariable(fvar);
-                collectFields(curNode, fvar);
+                curNode.removeUseVariable(var);
+                curNode.addUseVariable(var);
+                if (!var.isPrimitiveType() && receivers.empty()) {
+                    curNode.addUseVariables(getDanglingFields(var));
+                }
             }
         }
         return false;
     }
     
-    private void collectFields(CFGStatement node, JVariableReference var) {
+    private List<JVariableReference> getDanglingFields(JVariableReference var) {
+        List<JVariableReference> vars = new ArrayList<>();
         JavaClass jc = jproject.getClass(var.getType());
         if (jc != null && !jc.isEnum()) {
             for (JavaField jf : jc.getFields() ) {
-                JVariableReference jv =  new JFieldReference(var.getASTNode(),
-                        jf.getClassName(), jf.getName(), var.getReferenceForm() + "." + jf.getName(),
-                        jf.getType(), jf.isPrimitiveType(), jf.getModifiers(), jf.isInProject(), false);
-                node.addUseVariable(jv);
+                if (!jf.isStatic()) {
+                    JVariableReference jv =  new JFieldReference(var.getASTNode(),
+                            jf.getClassName(), jf.getName(), var.getReferenceForm() + "." + jf.getName(),
+                            jf.getType(), jf.isPrimitiveType(), jf.getModifiers(), jf.isInProject(), false);
+                    vars.add(jv);
+                }
             }
         }
+        return vars;
     }
     
     private IVariableBinding getVariableBinding(Name node) {
