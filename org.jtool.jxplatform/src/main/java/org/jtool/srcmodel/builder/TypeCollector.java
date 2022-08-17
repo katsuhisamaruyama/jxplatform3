@@ -84,8 +84,11 @@ public class TypeCollector extends ASTVisitor {
     
     private boolean bindingOk = true;
     
+    private Logger logger;
+    
     public TypeCollector(JavaClass jclass) {
         this.jproject = jclass.getJavaProject();
+        logger = jproject.getModelBuilderImpl().getLogger();
     }
     
     public Set<JavaClass> getTypes() {
@@ -104,9 +107,14 @@ public class TypeCollector extends ASTVisitor {
     @Override
     public boolean visit(SimpleType node) {
         ITypeBinding tbinding = node.resolveBinding();
-        if (tbinding != null) {
+        if (tbinding != null && !tbinding.isTypeVariable()) {
             JavaClass jc = JavaElementUtil.findDeclaringClass(tbinding, jproject);
-            types.add(jc);
+            if (jc != null) {
+                types.add(jc);
+            } else {
+                bindingOk = false;
+                logger.printUnresolvedError(tbinding.getQualifiedName());
+            }
         }
         return false;
     }
@@ -151,8 +159,6 @@ public class TypeCollector extends ASTVisitor {
     }
     
     private void collectUsedClasses(JavaClass jc, ITypeBinding tbinding) {
-        Logger logger = jproject.getModelBuilderImpl().getLogger();
-        
         if (tbinding.isRawType()) {
             JavaClass jc2 = JavaElementUtil.findDeclaringClass(tbinding, jproject);
             if (jc2 != null) {
