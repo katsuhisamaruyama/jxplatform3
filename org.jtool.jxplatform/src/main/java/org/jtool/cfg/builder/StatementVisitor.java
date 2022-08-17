@@ -196,9 +196,6 @@ public class StatementVisitor extends ASTVisitor {
             reconnect(declNode);
             
             ExpressionVisitor exprVisitor = new ExpressionVisitor(this, jproject, cfg, declNode);
-            
-            System.err.println("DECL = " + declNode);
-            
             frag.accept(exprVisitor);
             CFGNode curNode = exprVisitor.getExitNode();
             
