@@ -54,24 +54,6 @@ public class JExpedientReference extends JVariableReference {
     }
     
     /**
-     * Creates a new object that represents a reference to a variable invisible on source code.
-     * This constructor is not intended to be invoked by clients.
-     * @param node the AST node for this variable reference
-     * @param name the name of the referenced variable
-     * @param primitive {@code true} if the type of the referenced variable is primitive, otherwise {@code false}
-     */
-    public JExpedientReference(ASTNode node, String name, boolean primitive) {
-        super(node);
-        
-        ITypeBinding binding = findEnclosingClass(node).getTypeDeclaration();
-        this.type = binding.getQualifiedName();
-        this.isPrimitiveType = primitive;
-        this.modifiers = binding.getModifiers();
-        
-        setProperties(node, name, type);
-    }
-    
-    /**
      * Sets the properties of this variable reference.
      * @param node the AST node for this variable reference
      * @param name the name of this variable reference
@@ -89,7 +71,7 @@ public class JExpedientReference extends JVariableReference {
         this.declaringMethodName = enclosingMethodName;
         
         this.name = name;
-        this.fqn = new QualifiedName("", declaringMethodName + "!" + name);
+        this.fqn = new QualifiedName(declaringClassName, declaringMethodName + "!" + name);
         this.referenceForm = name;
         this.inProject = true;
     }

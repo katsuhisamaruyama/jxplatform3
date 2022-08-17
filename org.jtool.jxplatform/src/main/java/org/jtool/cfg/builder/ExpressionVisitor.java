@@ -71,6 +71,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 /**
  * Creates a CFG nodes and edges by visiting AST nodes within an expression.
@@ -290,31 +291,35 @@ public class ExpressionVisitor extends ASTVisitor {
             return false;
         }
         
+        CFGStatement receiverNode = new CFGStatement(node, CFGNode.Kind.dummy);
         Expression receiver = node.getExpression();
+        CFGStatement tmpNode = curNode;
+        curNode = receiverNode;
         analysisMode.push(AnalysisMode.USE);
         receiver.accept(this);
         analysisMode.pop();
+        curNode = tmpNode;
         
-        if (curNode.getUseVariables().size() > 0) {
-            JVariableReference use = curNode.getUseLast();
-            String referenceForm = use.getReferenceForm();
+        String referenceForm = node.getName().getFullyQualifiedName();
+        JVariableReference prefix = getReceiverVariable(receiverNode);
+        if (prefix != null) {
+            referenceForm = prefix.getReferenceForm();
             if (referenceForm.indexOf(JReturnValueReference.METHOD_RETURN_SYMBOL) != -1) {
                 referenceForm = referenceForm + "." + node.getName().getIdentifier();
-            } else if (referenceForm.startsWith("this")) {
+                curNode.addUseVariables(receiverNode.getUseVariables());
+            } else if (referenceForm.equals("this")) {
                 referenceForm = referenceForm + "." + node.getName().getFullyQualifiedName();
-            } else {
-                referenceForm = node.getName().getFullyQualifiedName();
             }
-            
-            JFieldReference facc = new JFieldReference(node, node.getName(), vbinding);
-            facc.changeReferenceForm(referenceForm);
-            facc.setPrefix(use);
-            
-            if (analysisMode.peek() == AnalysisMode.DEF) {
-                curNode.addDefVariable(facc);
-            } else {
-                curNode.addUseVariable(facc);
-            }
+        }
+        
+        JFieldReference jvar = new JFieldReference(node, node.getName(), vbinding);
+        jvar.changeReferenceForm(referenceForm);
+        jvar.setPrefix(prefix);
+        
+        if (analysisMode.peek() == AnalysisMode.DEF) {
+            curNode.addDefVariable(jvar);
+        } else {
+            curNode.addUseVariable(jvar);
         }
         return false;
     }
@@ -327,11 +332,11 @@ public class ExpressionVisitor extends ASTVisitor {
             referenceName = qualifier.getFullyQualifiedName() + "." + referenceName;
         }
         
-        JFieldReference jfacc = new JFieldReference(node, node.getName(), referenceName, node.resolveFieldBinding());
+        JFieldReference jvar = new JFieldReference(node, node.getName(), referenceName, node.resolveFieldBinding());
         if (analysisMode.peek() == AnalysisMode.DEF) {
-            curNode.addDefVariable(jfacc);
+            curNode.addDefVariable(jvar);
         } else {
-            curNode.addUseVariable(jfacc);
+            curNode.addUseVariable(jvar);
         }
         return false;
     }
@@ -339,12 +344,13 @@ public class ExpressionVisitor extends ASTVisitor {
     @Override
     public boolean visit(ThisExpression node) {
         Name qualifier = node.getQualifier();
-        JVariableReference jvar;
+        String className;
         if (qualifier != null) {
-            jvar = new JExpedientReference(node, "this", qualifier.resolveTypeBinding());
+            className = qualifier.resolveTypeBinding().getTypeDeclaration().getQualifiedName();
         } else {
-            jvar = new JExpedientReference(node, "this", false);
+            className = node.resolveTypeBinding().getTypeDeclaration().getQualifiedName();
         }
+        JVariableReference jvar = new JFieldReference(node, className, "this", "this");
         curNode.addUseVariable(jvar);
         return false;
     }
@@ -428,8 +434,8 @@ public class ExpressionVisitor extends ASTVisitor {
             analysisMode.pop();
             curNode = tmpNode;
             
-            if (receiverNode.getUseVariables().size() > 0) {
-                prefix = receiverNode.getUseLast();
+            prefix = getReceiverVariable(receiverNode);
+            if (prefix != null) {
                 receiverNode.setName(prefix.getReferenceForm());
             }
         }
@@ -547,8 +553,8 @@ public class ExpressionVisitor extends ASTVisitor {
             analysisMode.pop();
             curNode = tmpNode;
             
-            if (receiverNode.getUseVariables().size() > 0) {
-                JVariableReference prefix = receiverNode.getUseLast();
+            JVariableReference prefix = getReceiverVariable(receiverNode);
+            if (prefix != null) {
                 receiverNode.setName(prefix.getReferenceForm() + "." + "super");
             }
         }
@@ -598,8 +604,8 @@ public class ExpressionVisitor extends ASTVisitor {
             analysisMode.pop();
             curNode = tmpNode;
             
-            if (receiverNode.getUseVariables().size() > 0) {
-                prefix = receiverNode.getUseLast();
+            prefix = getReceiverVariable(receiverNode);
+            if (prefix != null) {
                 receiverNode.setName(prefix.getReferenceForm() + "." + receiverNode.getName());
             }
         }
@@ -647,6 +653,12 @@ public class ExpressionVisitor extends ASTVisitor {
         
         setExceptionFlow(callNode, jcall);
         return false;
+    }
+    
+    private JVariableReference getReceiverVariable(CFGStatement cfgNode) {
+        List<JVariableReference> vars = cfgNode.getUseVariables().stream().filter(v -> v.isAvailable()).collect(Collectors.toList());
+        cfgNode.setUseVariables(vars);
+        return cfgNode.getUseLast();
     }
     
     private void createActualIn(CFGMethodCall callNode, List<Expression> arguments) {
@@ -771,13 +783,12 @@ public class ExpressionVisitor extends ASTVisitor {
             node.getQualifier().accept(this);
             analysisMode.pop();
             
-            JVariableReference var = curNode.getUseVariables().size() > 0 ? curNode.getUseLast() : null;
-            
+            JVariableReference prefix = getReceiverVariable(curNode);
             JFieldReference fvar;
-            if (var != null) {
-                String name = var.getReferenceForm() + "." + node.getName().getIdentifier();
+            if (prefix != null) {
+                String name = prefix.getReferenceForm() + "." + node.getName().getIdentifier();
                 fvar = new JFieldReference(node, node.getName(), name, vbinding);
-                fvar.setPrefix(var);
+                fvar.setPrefix(prefix);
             } else {
                 fvar = new JFieldReference(node, node.getName(), node.getFullyQualifiedName(), vbinding);
             }
@@ -794,7 +805,7 @@ public class ExpressionVisitor extends ASTVisitor {
     
     private void collectFields(CFGStatement node, JVariableReference var) {
         JavaClass jc = jproject.getClass(var.getType());
-        if (jc != null) {
+        if (jc != null && !jc.isEnum()) {
             for (JavaField jf : jc.getFields() ) {
                 JVariableReference jv =  new JFieldReference(var.getASTNode(),
                         jf.getClassName(), jf.getName(), var.getReferenceForm() + "." + jf.getName(),

@@ -192,6 +192,18 @@ public class JFieldReference extends JVariableReference {
     }
     
     /**
+     * Creates a new object that represents a reference to a field.
+     * This constructor is not intended to be invoked by clients.
+     * @param node the AST node corresponding to this reference
+     * @param className the name of a class declaring the referenced field
+     * @param name the name of the referenced field
+     * @param referenceForm the form of this reference
+     */
+    public JFieldReference(ASTNode node, String className, String name, String referenceForm) {
+        this(node, className, name, referenceForm, className, false, Modifier.NONE, true, true);
+    }
+    
+    /**
      * Returns the AST node corresponding to the name of this reference.
      * @return the AST node of the name part
      */

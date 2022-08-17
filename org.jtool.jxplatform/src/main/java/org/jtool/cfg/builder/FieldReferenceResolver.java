@@ -34,7 +34,6 @@ class FieldReferenceResolver {
     
     private void findFieldsForCalledMethod(CFG cfg, CFGMethodCall callNode) {
         if (callNode.getApproximatedTypes() == null) {
-            System.err.println("CALL = " + callNode.getMethodCall().getEnclosingClassName() + " " + callNode.getASTNode());
             return;
         }
         
