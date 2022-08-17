@@ -1,3 +1,4 @@
+
 class Test42 {
 
     private P42 a = new P42(1);
