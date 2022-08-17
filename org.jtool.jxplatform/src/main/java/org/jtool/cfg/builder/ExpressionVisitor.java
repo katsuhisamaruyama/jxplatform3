@@ -7,8 +7,6 @@ package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodCall;
-import org.jtool.cfg.CFGMethodEntry;
-import org.jtool.cfg.CFGFieldEntry;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.CFGReceiver;
@@ -144,18 +142,15 @@ public class ExpressionVisitor extends ASTVisitor {
     
     private Stack<Expression> receivers = new Stack<>();
     
-    protected ExpressionVisitor(CFG cfg, CFGStatement node) {
-        this(null, cfg, node);
+    protected ExpressionVisitor(JavaProject jproject, CFG cfg, CFGStatement node) {
+        this(null, jproject, cfg, node);
     }
     
-    protected ExpressionVisitor(StatementVisitor visitor, CFG cfg, CFGStatement node) {
+    protected ExpressionVisitor(StatementVisitor visitor, JavaProject jproject, CFG cfg, CFGStatement node) {
         this.statementVisitor = visitor;
+        this.jproject = jproject;
         this.cfg = cfg;
-        if (cfg.isMethod()) {
-            this.jproject = ((CFGMethodEntry)cfg.getEntryNode()).getJavaMethod().getJavaProject();
-        } else if (cfg.isField()) {
-            this.jproject = ((CFGFieldEntry)cfg.getEntryNode()).getJavaField().getJavaProject();
-        }
+        
         curNode = node;
         entryNode = node;
         analysisMode.push(AnalysisMode.USE);

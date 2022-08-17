@@ -118,7 +118,7 @@ public class CFGStore {
             if (cfg != null) {
                 ucfgs.remove(cfg.getQualifiedName().fqn());
                 Resolver.resolveReferences(jmethod.getJavaProject(), cfg);
-                Resolver.resolveLocalAlias(cfg);
+                Resolver.resolveLocalAlias(jmethod.getJavaProject(), cfg);
                 addCFG(cfg, true);
                 return cfg;
             }
@@ -140,7 +140,7 @@ public class CFGStore {
             if (cfg != null) {
                 ucfgs.remove(cfg.getQualifiedName().fqn());
                 Resolver.resolveReferences(jfield.getJavaProject(), cfg);
-                Resolver.resolveLocalAlias(cfg);
+                Resolver.resolveLocalAlias(jfield.getJavaProject(), cfg);
                 addCFG(cfg, true);
                 return cfg;
             }

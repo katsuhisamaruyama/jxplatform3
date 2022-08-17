@@ -23,8 +23,8 @@ class Resolver {
         referenceResolver.findDefUseFields(cfg);
     }
     
-    static void resolveLocalAlias(CFG cfg) {
-        LocalAliasResolver localAliasResolver = new LocalAliasResolver();
+    static void resolveLocalAlias(JavaProject jproject, CFG cfg) {
+        LocalAliasResolver localAliasResolver = new LocalAliasResolver(jproject);
         localAliasResolver.resolve(cfg);
     }
 }

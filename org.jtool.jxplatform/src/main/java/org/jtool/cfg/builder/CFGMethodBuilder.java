@@ -106,7 +106,7 @@ class CFGMethodBuilder {
         edge.setTrue();
         cfg.add(edge);
         
-        StatementVisitor visitor = new StatementVisitor(cfg, formalIn, nextNode);
+        StatementVisitor visitor = new StatementVisitor(jmethod.getJavaProject(), cfg, formalIn, nextNode);
         jmethod.getASTNode().accept(visitor);
         nextNode = visitor.getNextCFGNode();
         
@@ -130,7 +130,7 @@ class CFGMethodBuilder {
         
         if (toBeResolved) {
             Resolver.resolveReferences(jmethod.getJavaProject(), cfg);
-            Resolver.resolveLocalAlias(cfg);
+            Resolver.resolveLocalAlias(jmethod.getJavaProject(), cfg);
         }
         
         addUseVariablesForReturn(cfg);
