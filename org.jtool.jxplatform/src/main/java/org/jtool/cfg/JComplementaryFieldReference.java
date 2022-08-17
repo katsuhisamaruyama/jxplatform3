@@ -34,9 +34,8 @@ public class JComplementaryFieldReference extends JFieldReference {
      * @param inProject {@code true} if the referenced field exists in the target project, otherwise {@code false}
      * @param holdingNodes CFG nodes that hold this complementary field reference
      */
-    public JComplementaryFieldReference(ASTNode node, String className, String name,
-            String referenceForm, String type, boolean primitive, int modifiers, boolean inProject,
-            List<CFGStatement> holdingNodes) {
+    public JComplementaryFieldReference(ASTNode node, String className, String name, String referenceForm,
+            String type, boolean primitive, int modifiers, boolean inProject, List<CFGStatement> holdingNodes) {
         super(node, className, name, referenceForm, type, primitive, modifiers, inProject, false);
         this.holdingNodes = holdingNodes;
     }
@@ -55,13 +54,5 @@ public class JComplementaryFieldReference extends JFieldReference {
     @Override
     public boolean isComplementary() {
         return true;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isAvailable() {
-        return false;
     }
 }
