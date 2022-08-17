@@ -561,4 +561,15 @@ public class ReceiverTypeResolverTest {
         
         assertEquals("S48", TestUtil.asSortedStr(result));
     }
+    
+    @Test
+    public void testgetApproximatedTypeNamesForEnhancedFor1() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test50", "m( )");
+        
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
+        assert node.isMethodCall();
+        Set<String> result = node.getApproximatedTypeNames();
+        
+        assertEquals("java.lang.String", TestUtil.asSortedStr(result));
+    }
 }

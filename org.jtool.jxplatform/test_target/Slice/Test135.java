@@ -1,5 +1,3 @@
-
-
 class Test135 {
     private S135 s1 = new S135();
     private S135 s2 = new S135();
@@ -11,12 +9,13 @@ class Test135 {
         int b = a + 1;
         String v1 = s1.get2("A");
         String v2 = s2.get2("B");
+        s1.value = "CCCC";
     }
 }
 
 class S135 {
-    private String value;
-    private String key;
+    String value;
+    String key;
     
     public void set2(String key, String value) {
         this.key = key;
