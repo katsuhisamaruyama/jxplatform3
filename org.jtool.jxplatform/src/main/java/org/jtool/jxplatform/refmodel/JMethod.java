@@ -68,13 +68,12 @@ abstract public class JMethod extends JCommon {
         return allUseFields;
     }
     
-    public void findDefUseFields(CFGMethodCall callNode, String prefix) {
+    public void findDefUseFields(String returnValue, String prefix) {
         collectDefUseFieldsInThisMethod();
         
         allDefFields.clear();
         allUseFields.clear();
         
-        String returnValue = callNode.getReturnValueName();
         List<CFGMethodCall> callChain = new ArrayList<>();
         Set<JMethod> visitedMethods = new HashSet<>();
         

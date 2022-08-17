@@ -54,7 +54,7 @@ class FieldReferenceResolver {
             
             JMethod method = type.getMethod(sig);
             if (method != null && !method.getQualifiedName().equals(cfg.getQualifiedName())) {
-                method.findDefUseFields(callNode, receiverName);
+                method.findDefUseFields(callNode.getReturnValueName(), receiverName);
                 
                 insertDefVariables(callNode, method, cfg);
                 insertUseVariables(callNode, method);
