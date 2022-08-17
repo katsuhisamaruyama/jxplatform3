@@ -34,19 +34,19 @@ public class JMethodCacheLibTest {
         
         JClass customerClass = bcStore.getJClass("org.jtool.videostore.after.Customer");
         customerMethod = customerClass.getMethod("Customer( java.lang.String )");
-        customerMethod.findDefUseFields(null, "");
+        customerMethod.findDefUseFields("customer$0.!Customer( java.lang.String )", "");
         addRentalMethod = customerClass.getMethod("addRental( org.jtool.videostore.after.Rental )");
-        addRentalMethod.findDefUseFields(null, "");
+        addRentalMethod.findDefUseFields("order$0.!addRental( org.jtool.videostore.after.Rental )", "");
         statementMethod = customerClass.getMethod("statement( )");
-        statementMethod.findDefUseFields(null, "");
+        statementMethod.findDefUseFields("customer$0.!statement( )", "");
         
         JClass stringClass = bcStore.getJClass("java.lang.String");
         indexOfMethod = stringClass.getMethod("indexOf( byte[] byte int java.lang.String int )");
-        indexOfMethod.findDefUseFields(null, "");
+        indexOfMethod.findDefUseFields("s$0.!indexOf( byte[] byte int java.lang.String int )", "");
         
         JClass testClass = bcStore.getJClass("org.junit.Test");
         expectedMethod = testClass.getMethod("expected( )");
-        expectedMethod.findDefUseFields(null, "");
+        expectedMethod.findDefUseFields("t$0.!expected( )", "");
     }
     
     @AfterClass
@@ -179,8 +179,8 @@ public class JMethodCacheLibTest {
                 .map(o -> o.getQualifiedName()));
         
         assertEquals(2, result.size());
-        assertEquals("java.util.ArrayList%size%this.rentals.size", result.get(0));
-        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(1));
+        assertEquals("java.util.AbstractList%modCount%this.rentals.!java.util.ArrayList.modCount", result.get(0));
+        assertEquals("java.util.ArrayList%size%this.rentals.!java.util.ArrayList.size", result.get(1));
     }
     
     @Test
@@ -200,11 +200,7 @@ public class JMethodCacheLibTest {
     
     @Test
     public void testGetUseFields1() {
-        List<String> result = TestUtil.asSortedList(customerMethod.getUseFields().stream()
-                .map(o -> o.getQualifiedName()));
-        
-        assertEquals(1, result.size());
-        assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(0));
+        assertEquals(0, customerMethod.getUseFields().size());
     }
     
     @Test
@@ -212,10 +208,13 @@ public class JMethodCacheLibTest {
         List<String> result = TestUtil.asSortedList(addRentalMethod.getUseFields().stream()
                 .map(o -> o.getQualifiedName()));
         
-        assertEquals(3, result.size());
-        assertEquals("java.util.ArrayList%elementData%this.rentals.elementData", result.get(0));
-        assertEquals("java.util.ArrayList%size%this.rentals.size", result.get(1));
-        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(2));
+        assertEquals(6, result.size());
+        assertEquals("java.util.AbstractList%modCount%this.rentals.!java.util.ArrayList.modCount", result.get(0));
+        assertEquals("java.util.ArrayList%elementData%this.rentals.!java.util.ArrayList.elementData", result.get(1));
+        assertEquals("java.util.ArrayList%size%this.rentals.!java.util.ArrayList.size", result.get(2));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(3));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%rental$0.daysRented", result.get(4));
+        assertEquals("org.jtool.videostore.after.Rental%movie%rental$0.movie", result.get(5));
     }
     
     @Test
@@ -223,10 +222,19 @@ public class JMethodCacheLibTest {
         List<String> result = TestUtil.asSortedList(statementMethod.getUseFields().stream()
                 .map(o -> o.getQualifiedName()));
         
-        assertEquals(3, result.size());
-        assertEquals("java.lang.String%COMPACT_STRINGS%this.COMPACT_STRINGS", result.get(0));
+        assertEquals(12, result.size());
+        assertEquals("java.lang.String%COMPACT_STRINGS%this.!java.lang.String.COMPACT_STRINGS", result.get(0));
         assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(1));
         assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(2));
+        assertEquals("org.jtool.videostore.after.Movie%price%each$1.movie.price", result.get(3));
+        assertEquals("org.jtool.videostore.after.Movie%price%this.each$1.movie.price", result.get(4));
+        assertEquals("org.jtool.videostore.after.Movie%price%this.movie.price", result.get(5));
+        assertEquals("org.jtool.videostore.after.Movie%title%each$1.!getMovie( ).title", result.get(6));
+        assertEquals("org.jtool.videostore.after.Movie%title%this.movie.title", result.get(7));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%each$1.daysRented", result.get(8));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%this.each$1.daysRented", result.get(9));
+        assertEquals("org.jtool.videostore.after.Rental%movie%each$1.movie", result.get(10));
+        assertEquals("org.jtool.videostore.after.Rental%movie%this.each$1.movie", result.get(11));
     }
     
     @Test
@@ -235,7 +243,7 @@ public class JMethodCacheLibTest {
                 .map(o -> o.getQualifiedName()));
         
         assertEquals(1, result.size());
-        assertEquals("java.lang.String%value%java.lang.String.value", result.get(0));
+        assertEquals("java.lang.String%value%!java.lang.String.value", result.get(0));
     }
     
     @Test
@@ -254,7 +262,7 @@ public class JMethodCacheLibTest {
                 .map(o -> o.getQualifiedName()));
         
         assertEquals(1, result.size());
-        assertEquals("java.util.List#add( java.lang.Object )", result.get(0));
+        assertEquals("java.util.ArrayList#add( java.lang.Object )", result.get(0));
     }
     
     @Test

@@ -34,23 +34,23 @@ public class JMethodInternalTest {
         
         JClass customerClass = bcStore.getJClass("org.jtool.videostore.after.Customer");
         customerMethod = customerClass.getMethod("Customer( java.lang.String )");
-        customerMethod.findDefUseFields(null, "");
+        customerMethod.findDefUseFields("customer$0.!Customer( java.lang.String )", "");
         addRentalMethod = customerClass.getMethod("addRental( org.jtool.videostore.after.Rental )");
-        addRentalMethod.findDefUseFields(null, "");
+        addRentalMethod.findDefUseFields("order$0.!addRental( org.jtool.videostore.after.Rental )", "");
         statementMethod = customerClass.getMethod("statement( )");
-        statementMethod.findDefUseFields(null, "");
+        statementMethod.findDefUseFields("customer$0.!statement( )", "");
         
         JClass priceClass = bcStore.getJClass("org.jtool.videostore.after.Price");
         getChargeMethodPrice = priceClass.getMethod("getCharge( int )");
-        getChargeMethodPrice.findDefUseFields(null, "");
+        getChargeMethodPrice.findDefUseFields("price$0.!getCharge( int )", "");
         getFrequentRenterPointsMethodPrice = priceClass.getMethod("getFrequentRenterPoints( int )");
-        getFrequentRenterPointsMethodPrice.findDefUseFields(null, "");
+        getFrequentRenterPointsMethodPrice.findDefUseFields("price$0.!getFrequentRenterPoints( int )", "");
         
         JClass newReleasePriceClass = bcStore.getJClass("org.jtool.videostore.after.NewReleasePrice");
         getChargeMethodNewReleasePrice = newReleasePriceClass.getMethod("getCharge( int )");
-        getChargeMethodNewReleasePrice.findDefUseFields(null, "");
+        getChargeMethodNewReleasePrice.findDefUseFields("movie$0.!getCharge( int )", "");
         getFrequentRenterPointsMethodNewReleasePrice = newReleasePriceClass.getMethod("getFrequentRenterPoints( int )");
-        getFrequentRenterPointsMethodNewReleasePrice.findDefUseFields(null, "");
+        getFrequentRenterPointsMethodNewReleasePrice.findDefUseFields("movie$0.!getFrequentRenterPoints( int )", "");
     }
     
     @AfterClass
@@ -227,8 +227,8 @@ public class JMethodInternalTest {
                 .map(o -> o.getQualifiedName()));
         
         assertEquals(2, result.size());
-        assertEquals("java.util.ArrayList%size%this.rentals.size", result.get(0));
-        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(1));
+        assertEquals("java.util.AbstractList%modCount%this.rentals.!java.util.ArrayList.modCount", result.get(0));
+        assertEquals("java.util.ArrayList%size%this.rentals.!java.util.ArrayList.size", result.get(1));
     }
     
     @Test
@@ -258,11 +258,7 @@ public class JMethodInternalTest {
     
     @Test
     public void testGetUseFields1() {
-        List<String> result = TestUtil.asSortedList(customerMethod.getUseFields().stream()
-                .map(o -> o.getQualifiedName()));
-        
-        assertEquals(1, result.size());
-        assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(0));
+        assertEquals(0, customerMethod.getUseFields().size());
     }
     
     @Test
@@ -270,10 +266,13 @@ public class JMethodInternalTest {
         List<String> result = TestUtil.asSortedList(addRentalMethod.getUseFields().stream()
                 .map(o -> o.getQualifiedName()));
         
-        assertEquals(3, result.size());
-        assertEquals("java.util.ArrayList%elementData%this.rentals.elementData", result.get(0));
-        assertEquals("java.util.ArrayList%size%this.rentals.size", result.get(1));
-        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(2));
+        assertEquals(6, result.size());
+        assertEquals("java.util.AbstractList%modCount%this.rentals.!java.util.ArrayList.modCount", result.get(0));
+        assertEquals("java.util.ArrayList%elementData%this.rentals.!java.util.ArrayList.elementData", result.get(1));
+        assertEquals("java.util.ArrayList%size%this.rentals.!java.util.ArrayList.size", result.get(2));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(3));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%rental$0.daysRented", result.get(4));
+        assertEquals("org.jtool.videostore.after.Rental%movie%rental$0.movie", result.get(5));
     }
     
     @Test
@@ -281,10 +280,19 @@ public class JMethodInternalTest {
         List<String> result = TestUtil.asSortedList(statementMethod.getUseFields().stream()
                 .map(o -> o.getQualifiedName()));
         
-        assertEquals(3, result.size());
-        assertEquals("java.lang.String%COMPACT_STRINGS%this.COMPACT_STRINGS", result.get(0));
+        assertEquals(12, result.size());
+        assertEquals("java.lang.String%COMPACT_STRINGS%this.!java.lang.String.COMPACT_STRINGS", result.get(0));
         assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(1));
         assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(2));
+        assertEquals("org.jtool.videostore.after.Movie%price%each$1.movie.price", result.get(3));
+        assertEquals("org.jtool.videostore.after.Movie%price%this.each$1.movie.price", result.get(4));
+        assertEquals("org.jtool.videostore.after.Movie%price%this.movie.price", result.get(5));
+        assertEquals("org.jtool.videostore.after.Movie%title%each$1.!getMovie( ).title", result.get(6));
+        assertEquals("org.jtool.videostore.after.Movie%title%this.movie.title", result.get(7));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%each$1.daysRented", result.get(8));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%this.each$1.daysRented", result.get(9));
+        assertEquals("org.jtool.videostore.after.Rental%movie%each$1.movie", result.get(10));
+        assertEquals("org.jtool.videostore.after.Rental%movie%this.each$1.movie", result.get(11));
     }
     
     @Test
@@ -318,7 +326,7 @@ public class JMethodInternalTest {
                 .map(o -> o.getQualifiedName()));
         
         assertEquals(1, result.size());
-        assertEquals("java.util.List#add( java.lang.Object )", result.get(0));
+        assertEquals("java.util.ArrayList#add( java.lang.Object )", result.get(0));
     }
     
     @Test

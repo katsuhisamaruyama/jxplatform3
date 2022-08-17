@@ -33,21 +33,21 @@ public class JMethodExternalTest {
         
         JClass stringClass = bcStore.getJClass("java.lang.String");
         indexOfMethod = stringClass.getMethod("indexOf( byte[] byte int java.lang.String int )");
-        indexOfMethod.findDefUseFields(null, "");
+        indexOfMethod.findDefUseFields("s$0.!indexOf( byte[] byte int java.lang.String int )", "");
         
         JClass listClass = bcStore.getJClass("java.util.List");
         addMethodInList = listClass.getMethod("add( java.lang.Object )");
-        addMethodInList.findDefUseFields(null, "");
+        addMethodInList.findDefUseFields("l$0.!add( java.lang.Object )", "");
         
         JClass arrayListClass = bcStore.getJClass("java.util.ArrayList");
         addMethodInArrayList = arrayListClass.getMethod("add( java.lang.Object )");
-        addMethodInArrayList.findDefUseFields(null, "");
+        addMethodInArrayList.findDefUseFields("a$0.!add( java.lang.Object )", "");
         removeMethod = arrayListClass.getMethod("remove( java.lang.Object )");
-        removeMethod.findDefUseFields(null, "");
+        removeMethod.findDefUseFields("a$0.!remove( java.lang.Object )", "");
         
         JClass testClass = bcStore.getJClass("org.junit.Test");
         expectedMethod = testClass.getMethod("expected( )");
-        expectedMethod.findDefUseFields(null, "");
+        expectedMethod.findDefUseFields("t$0.!expected( )", "");
     }
     
     @AfterClass
@@ -181,7 +181,7 @@ public class JMethodExternalTest {
                 .map(o -> o.getQualifiedName()));
         
         assertEquals(1, result.size());
-        assertEquals("java.util.AbstractList%modCount%java.util.AbstractList.modCount", result.get(0));
+        assertEquals("java.util.AbstractList%modCount%!java.util.ArrayList.modCount", result.get(0));
     }
     
     @Test
@@ -200,7 +200,7 @@ public class JMethodExternalTest {
                 .map(o -> o.getQualifiedName()));
         
         assertEquals(1, result.size());
-        assertEquals("java.lang.String%value%java.lang.String.value", result.get(0));
+        assertEquals("java.lang.String%value%!java.lang.String.value", result.get(0));
     }
     
     @Test
@@ -214,9 +214,9 @@ public class JMethodExternalTest {
                 .map(o -> o.getQualifiedName()));
         
         assertEquals(3, result.size());
-        assertEquals("java.util.AbstractList%modCount%java.util.AbstractList.modCount", result.get(0));
-        assertEquals("java.util.ArrayList%elementData%java.util.ArrayList.elementData", result.get(1));
-        assertEquals("java.util.ArrayList%size%java.util.ArrayList.size", result.get(2));
+        assertEquals("java.util.AbstractList%modCount%!java.util.ArrayList.modCount", result.get(0));
+        assertEquals("java.util.ArrayList%elementData%!java.util.ArrayList.elementData", result.get(1));
+        assertEquals("java.util.ArrayList%size%!java.util.ArrayList.size", result.get(2));
     }
     
     @Test
@@ -225,8 +225,8 @@ public class JMethodExternalTest {
                 .map(o -> o.getQualifiedName()));
         
         assertEquals(2, result.size());
-        assertEquals("java.util.ArrayList%elementData%java.util.ArrayList.elementData", result.get(0));
-        assertEquals("java.util.ArrayList%size%java.util.ArrayList.size", result.get(1));
+        assertEquals("java.util.ArrayList%elementData%!java.util.ArrayList.elementData", result.get(0));
+        assertEquals("java.util.ArrayList%size%!java.util.ArrayList.size", result.get(1));
     }
     
     @Test
