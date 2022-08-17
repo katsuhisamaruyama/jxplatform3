@@ -21,8 +21,8 @@ public class ModelBuilderBatchTest {
         ModelBuilderBatch builder = new ModelBuilderBatch(false);
         JavaProject project = builder.build(name, target, target);
         
-        assertEquals(26, project.getFiles().size());
-        assertEquals(30, project.getClasses().size());
+        assertEquals(49, project.getFiles().size());
+        assertEquals(74, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -36,8 +36,8 @@ public class ModelBuilderBatchTest {
         builder.setLogVisible(false);
         JavaProject project = builder.build(name, target, target, target, target);
         
-        assertEquals(26, project.getFiles().size());
-        assertEquals(30, project.getClasses().size());
+        assertEquals(49, project.getFiles().size());
+        assertEquals(74, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -51,8 +51,8 @@ public class ModelBuilderBatchTest {
         ModelBuilderBatch builder = new ModelBuilderBatch(false);
         JavaProject project = builder.build(name, target, path, path, path);
         
-        assertEquals(26, project.getFiles().size());
-        assertEquals(30, project.getClasses().size());
+        assertEquals(49, project.getFiles().size());
+        assertEquals(74, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -66,8 +66,8 @@ public class ModelBuilderBatchTest {
         ModelBuilderBatch builder = new ModelBuilderBatch(false);
         JavaProject project = builder.build(target, target, classpath, target, target);
         
-        assertEquals(16, project.getFiles().size());
-        assertEquals(18, project.getClasses().size());
+        assertEquals(17, project.getFiles().size());
+        assertEquals(19, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -95,7 +95,7 @@ public class ModelBuilderBatchTest {
         JavaProject project = builder.build(target, target, target, target, target);
         
         assertEquals(10, project.getFiles().size());
-        assertEquals(15, project.getClasses().size());
+        assertEquals(13, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -151,8 +151,8 @@ public class ModelBuilderBatchTest {
         ModelBuilderBatch builder = new ModelBuilderBatch(true);
         JavaProject project = builder.build(target, target, target, target, target);
         
-        assertEquals(43, project.getFiles().size());
-        assertEquals(66, project.getClasses().size());
+        assertEquals(51, project.getFiles().size());
+        assertEquals(82, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -166,8 +166,8 @@ public class ModelBuilderBatchTest {
         List<JavaProject> projects = builder.build(name, target);
         
         assertEquals(1, projects.size());
-        assertEquals(26, projects.get(0).getFiles().size());
-        assertEquals(30, projects.get(0).getClasses().size());
+        assertEquals(49, projects.get(0).getFiles().size());
+        assertEquals(74, projects.get(0).getClasses().size());
         
         builder.unbuild();
     }
@@ -182,7 +182,7 @@ public class ModelBuilderBatchTest {
         
         assertEquals(1, projects.size());
         assertEquals(1267, projects.get(0).getFiles().size());
-        assertEquals(2200, projects.get(0).getClasses().size());
+        assertEquals(2068, projects.get(0).getClasses().size());
         
         builder.unbuild();
     }
@@ -197,13 +197,13 @@ public class ModelBuilderBatchTest {
         
         assertEquals(4, projects.size());
         assertEquals(603, projects.get(0).getFiles().size());
-        assertEquals(2068, projects.get(0).getClasses().size());
+        assertEquals(2006, projects.get(0).getClasses().size());
         assertEquals(4, projects.get(1).getFiles().size());
         assertEquals(4, projects.get(1).getClasses().size());
         assertEquals(320, projects.get(2).getFiles().size());
-        assertEquals(1071, projects.get(2).getClasses().size());
+        assertEquals(1015, projects.get(2).getClasses().size());
         assertEquals(489, projects.get(3).getFiles().size());
-        assertEquals(3372, projects.get(3).getClasses().size());
+        assertEquals(3251, projects.get(3).getClasses().size());
         
         builder.unbuild();
     }
@@ -218,7 +218,7 @@ public class ModelBuilderBatchTest {
         
         assertEquals(1, projects.size());
         assertEquals(828, projects.get(0).getFiles().size());
-        assertEquals(1895, projects.get(0).getClasses().size());
+        assertEquals(1865, projects.get(0).getClasses().size());
         
         builder.unbuild();
     }
