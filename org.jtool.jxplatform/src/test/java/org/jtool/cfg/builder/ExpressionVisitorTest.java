@@ -127,7 +127,6 @@ public class ExpressionVisitorTest {
         assertEquals("f=e", uses.get(0).getASTNode().getParent().toString().trim());
     }
     
-    
     @Test
     public void testVariableDeclaration5() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test38", "x");
@@ -205,10 +204,10 @@ public class ExpressionVisitorTest {
         List<JVariableReference> defs = node.getDefVariables();
         List<JVariableReference> uses = node.getUseVariables();
         
-        assertEquals("in$0", defs.get(0).getReferenceForm());
+        assertEquals("in$0", defs.get(1).getReferenceForm());
         assertEquals("in$0", uses.get(0).getReferenceForm());
         
-        assertEquals("++in", defs.get(0).getASTNode().getParent().toString().trim());
+        assertEquals("++in", defs.get(1).getASTNode().getParent().toString().trim());
         assertEquals("++in", uses.get(0).getASTNode().getParent().toString().trim());
     }
     
@@ -271,19 +270,19 @@ public class ExpressionVisitorTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 5);
         List<JVariableReference> uses = node.getUseVariables();
         
-        assertEquals("c$2", uses.get(0).getReferenceForm());
-        assertEquals("a$0", uses.get(1).getReferenceForm());
-        assertEquals("b$1", uses.get(2).getReferenceForm());
+        assertEquals("a$0", uses.get(0).getReferenceForm());
+        assertEquals("b$1", uses.get(1).getReferenceForm());
+        assertEquals("c$2", uses.get(2).getReferenceForm());
         
-        assertEquals("c", uses.get(0).getASTNode().toString().trim());
-        assertEquals("a", uses.get(1).getASTNode().toString().trim());
-        assertEquals("b", uses.get(2).getASTNode().toString().trim());
+        assertEquals("a", uses.get(0).getASTNode().toString().trim());
+        assertEquals("b", uses.get(1).getASTNode().toString().trim());
+        assertEquals("c", uses.get(2).getASTNode().toString().trim());
     }
     
     @Test
     public void testFieldAccess() {
-        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( int )");
-        CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 7);
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( int int )");
+        CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 8);
         List<JVariableReference> defs = node.getDefVariables();
         
         assertEquals("this.x", defs.get(0).getReferenceForm());
@@ -304,8 +303,8 @@ public class ExpressionVisitorTest {
     
     @Test
     public void testThisExpression1() {
-        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( int )");
-        CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 7);
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "n( )");
+        CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 1);
         List<JVariableReference> uses = node.getUseVariables();
         
         assertEquals("this", uses.get(0).getReferenceForm());
@@ -332,7 +331,6 @@ public class ExpressionVisitorTest {
         assertEquals("java.io.PrintStream#println( int )", node.getQualifiedName().fqn());
         
         assertEquals("System.out.println(a)", node.getASTNode().toString().trim());
-        
     }
     
     @Test
@@ -343,7 +341,6 @@ public class ExpressionVisitorTest {
         assertEquals("Test13#doReturn( int )", node.getQualifiedName().fqn());
         
         assertEquals("doReturn(a)", node.getASTNode().toString().trim());
-        
     }
     
     @Test
@@ -368,8 +365,8 @@ public class ExpressionVisitorTest {
     
     @Test
     public void testSuperConstructorInvocation() {
-        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( int )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( int int )");
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
         
         assertEquals("Test31#Test31( int )", node.getQualifiedName().fqn());
         
@@ -436,7 +433,7 @@ public class ExpressionVisitorTest {
         List<JVariableReference> uses = node.getUseVariables();
         
         assertEquals("PriceCode.REGULAR", defs.get(0).getReferenceForm());
-        assertEquals("PriceCode.!REGULAR", uses.get(0).getReferenceForm());
+        assertEquals("PriceCode.!PriceCode( int )", uses.get(0).getReferenceForm());
         
         assertEquals("REGULAR(200)", node.getASTNode().toString().trim());
     }
@@ -508,9 +505,9 @@ public class ExpressionVisitorTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 6);
         List<JVariableReference> uses = node.getUseVariables();
         
-        assertEquals("a$0.q.y", uses.get(2).getReferenceForm());
+        assertEquals("a$0.q.y", uses.get(3).getReferenceForm());
         
-        assertEquals("a.q.y", uses.get(2).getASTNode().toString().trim());
+        assertEquals("a.q.y", uses.get(3).getASTNode().toString().trim());
     }
     
     @Test

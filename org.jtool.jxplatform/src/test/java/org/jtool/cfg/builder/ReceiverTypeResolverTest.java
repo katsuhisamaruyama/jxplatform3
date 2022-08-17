@@ -154,8 +154,9 @@ public class ReceiverTypeResolverTest {
     
     @Test
     public void testgetApproximatedTypeNamesForSuperConstructorInvocation() {
-        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( int )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( int int )");
+        
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
         assert node.isConstructorCall();
         Set<String> result = node.getApproximatedTypeNames();
         

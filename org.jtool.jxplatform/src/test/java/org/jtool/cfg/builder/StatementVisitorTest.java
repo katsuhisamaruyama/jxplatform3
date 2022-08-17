@@ -126,14 +126,14 @@ public class StatementVisitorTest {
         assertTrue(node.getKind() == CFGNode.Kind.constructorCall);
         
         assertEquals(1, node.getSuccessors().size());
-        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 2);
+        assertEquals(node.getId(), cfg.getTrueSuccessor(cfg.getTrueSuccessor(node)).getId() - 2);
         
         assertEquals("this(100);", node.getASTNode().toString().trim());
     }
     
     @Test
     public void testSuperConstructorInvocation() {
-        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( int )");
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( int int )");
         List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "SuperConstructorInvocation");
         CFGNode node = nodes.get(2);
         assert (node.getASTNode() instanceof SuperConstructorInvocation);
@@ -141,7 +141,7 @@ public class StatementVisitorTest {
         assertTrue(node.getKind() == CFGNode.Kind.constructorCall);
         
         assertEquals(1, node.getSuccessors().size());
-        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 2);
+        assertEquals(node.getId(), cfg.getTrueSuccessor(cfg.getTrueSuccessor(node)).getId() - 2);
         
         assertEquals("super(x);", node.getASTNode().toString().trim());
     }
@@ -837,13 +837,13 @@ public class StatementVisitorTest {
     }
     
     @Test
-    public void testEnhancedForStatement() {
+    public void testEnhancedForStatement1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test27", "n( )");
         List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "EnhancedForStatement");
         CFGNode node = nodes.get(0);
         assert (node.getASTNode() instanceof EnhancedForStatement);
         
-        assertTrue(node.getKind() == CFGNode.Kind.forSt);
+        assertTrue(node.getKind() == CFGNode.Kind.enhancedForSt);
         
         assertEquals(2, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
@@ -853,6 +853,26 @@ public class StatementVisitorTest {
         
         assertEquals("for (Integer num : numbers) {\n"
                    + "  sum+=num;\n"
+                   + "}", node.getASTNode().toString().trim());
+    }
+    
+    @Test
+    public void testEnhancedForStatement2() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test50", "m( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "EnhancedForStatement");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof EnhancedForStatement);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.enhancedForSt);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 2);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 6);
+        List<ControlFlow> lc = CFGTestUtil.getLCFlow(cfg);
+        assertEquals(node.getId(), lc.get(0).getLoopBack().getId());
+        
+        assertEquals("for (String str : strings) {\n"
+                   + "  int len=str.length();\n"
                    + "}", node.getASTNode().toString().trim());
     }
     
@@ -1074,9 +1094,8 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.trySt);
         
-        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(1, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 2);
-        assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() - 6);
         
         assertEquals("try {\n"
                    + "  b=n(a);\n"
@@ -1098,9 +1117,8 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.trySt);
         
-        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(1, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 2);
-        assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() - 11);
         
         assertEquals("try (FileInputStream in=new FileInputStream(\"a.txt\")){\n"
                    + "  int c;\n"
@@ -1120,9 +1138,8 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.trySt);
         
-        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(1, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 2);
-        assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() - 6);
         
         assertEquals("try {\n"
                    + "  b=n(a);\n"
@@ -1145,8 +1162,9 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.catchClause);
         
-        assertEquals(1, node.getOutgoingEdges().size());
+        assertEquals(2, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() + 1);
         
         ControlFlow edge = cfg.getFlow(cfg.getNode(node.getId() - 4), node);
         assertTrue(edge.isExceptionCatch());
@@ -1166,8 +1184,9 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.catchClause);
         
-        assertEquals(1, node.getOutgoingEdges().size());
+        assertEquals(2, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 2);
+        assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() + 1);
         
         ControlFlow edge = cfg.getFlow(cfg.getNode(node.getId() - 9), node);
         assertTrue(edge.isExceptionCatch());
@@ -1187,8 +1206,9 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.catchClause);
         
-        assertEquals(1, node.getOutgoingEdges().size());
+        assertEquals(2, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
+        assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() + 1);
         
         ControlFlow edge = cfg.getFlow(cfg.getNode(node.getId() - 4), node);
         assertTrue(edge.isExceptionCatch());
