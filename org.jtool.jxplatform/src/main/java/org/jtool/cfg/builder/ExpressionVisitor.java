@@ -694,7 +694,7 @@ public class ExpressionVisitor extends ASTVisitor {
         JReturnValueReference def = new JReturnValueReference(callNode.getASTNode(), name, type, primitive);
         actualOutNode.addDefVariable(def);
         
-        curNode.addUseVariable(actualOutNode.getDefVariable());
+        curNode.addUseVariable(def);
         return def;
     }
     
