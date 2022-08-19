@@ -6,17 +6,32 @@
 package org.jtool.cfg.builder;
 
 import org.jtool.cfg.CFG;
-import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGMethodEntry;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
+import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGReceiver;
-import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JExpedientReference;
+import org.jtool.cfg.ControlFlow;
+import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
+import org.jtool.srcmodel.JavaProject;
+import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.AssertStatement;
+import org.eclipse.jdt.core.dom.Assignment;
+import org.eclipse.jdt.core.dom.DoStatement;
+import org.eclipse.jdt.core.dom.EnhancedForStatement;
+import org.eclipse.jdt.core.dom.ForStatement;
+import org.eclipse.jdt.core.dom.IfStatement;
+import org.eclipse.jdt.core.dom.ReturnStatement;
+import org.eclipse.jdt.core.dom.SwitchStatement;
+import org.eclipse.jdt.core.dom.ThrowStatement;
+import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
+import org.eclipse.jdt.core.dom.WhileStatement;
+import org.eclipse.jdt.core.dom.Expression;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
@@ -24,9 +39,6 @@ import java.util.HashSet;
 import java.util.Collection;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import org.eclipse.jdt.core.dom.Assignment;
-import org.eclipse.jdt.core.dom.Expression;
-import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
 /**
  * Resolves the alias relations in local variables in the method
@@ -38,57 +50,81 @@ class LocalAliasResolver {
     
     private Multimap<CFGNode, Alias> aliasMap = HashMultimap.create();
     
+    private JavaProject jproject;
+    
+    LocalAliasResolver(JavaProject jproject) {
+        this.jproject = jproject;
+    }
+    
     void resolve(CFG cfg) {
         if (!cfg.isMethod()) {
             return;
         }
         
-        collectAliasForFields(cfg);
-        
-        for (CFGNode node : cfg.getNodes()) {
-            List<Alias> aliases = null;
-            if (node.getASTNode() instanceof Assignment) {
-                Assignment assignment = (Assignment)node.getASTNode();
-                if (assignment.getOperator() == Assignment.Operator.ASSIGN) {
-                    aliases = getAliasRelations((CFGStatement)node, assignment.getRightHandSide());
-                }
-            } else if (node.getASTNode() instanceof VariableDeclarationFragment) {
-                VariableDeclarationFragment decl = (VariableDeclarationFragment)node.getASTNode();
-                aliases = getAliasRelations((CFGStatement)node, decl.getInitializer());
-            }
-            
-            if (aliases != null) {
-                aliases.forEach(a -> createAliasMap(node, a, new HashSet<>()));
-            }
-        }
+        collectAliasesByFieldDeclations(cfg);
+        collectAliases(cfg);
         
         if (aliasMap.size() != 0) {
-            cfg.getNodes().stream()
-                          .filter(node -> node.isStatement() && !node.isFormal())
-                          .forEach(node -> addAliasVariables((CFGStatement)node));
+            cfg.getNodes().stream().filter(node -> node.isStatement() && !node.isFormal())
+                    .forEach(node -> addAliasVariables((CFGStatement)node));
         }
     }
     
-    private void collectAliasForFields(CFG cfg) {
+    private void collectAliasesByFieldDeclations(CFG cfg) {
         CFGMethodEntry entry = (CFGMethodEntry)cfg.getEntryNode();
         JavaMethod jmethod = entry.getJavaMethod();
         
         for (JavaField jfield : jmethod.getDeclaringClass().getFields()) {
-            if (jfield.isField()) {
-                VariableDeclarationFragment decl = (VariableDeclarationFragment)jfield.getASTNode();
-                CFGStatement stNode = new CFGStatement(decl, CFGNode.Kind.fieldDeclaration);
-                ExpressionVisitor expressionVisitor = new ExpressionVisitor(new CFG(), stNode);
-                decl.accept(expressionVisitor);
+            if (jfield.isField() && jfield.isFinal()) {
+                VariableDeclarationFragment decllaration = (VariableDeclarationFragment)jfield.getASTNode();
+                CFGStatement tmpNode = new CFGStatement(decllaration, CFGNode.Kind.dummy);
+                ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, new CFG(), tmpNode);
+                decllaration.accept(expressionVisitor);
                 
-                for (Alias alias : getAliasRelations(stNode, decl.getInitializer())) {
-                    for (CFGNode node : cfg.getNodes()) {
-                        if (node.isStatement() && !node.isFormal()) {
-                            registerAlias((CFGStatement)node, alias);
-                        }
-                    }
+                Alias alias = getAliasRelation(tmpNode, decllaration.getInitializer());
+                if (alias != null && isFinalField(alias.righthand)) {
+                    cfg.getNodes().stream()
+                            .filter(node -> node.isStatement() && !node.isFormal())
+                            .forEach(node -> registerAlias((CFGStatement)node, alias));
                 }
             }
         }
+    }
+    
+    private boolean isFinalField(JVariableReference var) {
+        if (var.isFieldAccess()) {
+            JavaClass jclass = jproject.getClass(var.getQualifiedName().getClassName());
+            JavaField jfield = jclass.getField(var.getQualifiedName().getMemberSignature());
+            if (jfield.isFinal()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private Alias getAliasRelation(CFGStatement node, Expression expr) {
+        List<JVariableReference> defs = node.getDefVariables();
+        if (defs.size() != 1) {
+            return null;
+        }
+        JVariableReference def = defs.get(0);
+        if (def.isPrimitiveType() || !def.isAvailable()) {
+            return null;
+        }
+        
+        List<JVariableReference> uses = node.findPrimaryUseVariables(expr);
+        if (uses.size() != 1) {
+            return null;
+        }
+        JVariableReference use = uses.get(0);
+        if (use.isPrimitiveType() || (!use.isAvailable() && !use.isReturnValueReference())) {
+            return null;
+        }
+        if (use.isFieldAccess() && ((JFieldReference)use).isEnumConstant()) {
+            return null;
+        }
+        
+        return new Alias(def, use);
     }
     
     private void registerAlias(CFGNode node, Alias alias) {
@@ -101,6 +137,109 @@ class LocalAliasResolver {
             }
         }
         aliasMap.put(node, alias);
+    }
+    
+    private void collectAliases(CFG cfg) {
+        for (CFGNode node : cfg.getNodes()) {
+            List<Alias> aliases = new ArrayList<>();
+            collectAliases(node, aliases);
+            aliases.forEach(a -> createAliasMap(node, a, new HashSet<>()));
+        }
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void collectAliases(CFGNode node, List<Alias> aliases) {
+        List<Expression> exprs = new ArrayList<>();
+        if (node.isAssignment()) {
+            collectAliasesInAssignment(node.getASTNode(), node, aliases);
+            return;
+        } else if (node.isLocalDeclaration()) {
+            collectAliasesInDeclaration(node.getASTNode(), node, aliases);
+            return;
+        }
+        
+        if (node.isAssert()) {
+            exprs.add(((AssertStatement)node.getASTNode()).getExpression());
+        } else if (node.isDo()) {
+            exprs.add(((DoStatement)node.getASTNode()).getExpression());
+        } else if (node.isFor()) {
+            exprs.addAll(((ForStatement)node.getASTNode()).initializers());
+            exprs.add(((ForStatement)node.getASTNode()).getExpression());
+            exprs.addAll(((ForStatement)node.getASTNode()).updaters());
+        } else if (node.isEnhancedFor()) {
+            exprs.add(((EnhancedForStatement)node.getASTNode()).getExpression());
+        } else if (node.isIf()) {
+            exprs.add(((IfStatement)node.getASTNode()).getExpression());
+        } else if (node.isReturn()) {
+            exprs.add(((ReturnStatement)node.getASTNode()).getExpression());
+        } else if (node.isSwitch()) {
+            exprs.add(((SwitchStatement)node.getASTNode()).getExpression());
+        } else if (node.isWhile()) {
+            exprs.add(((WhileStatement)node.getASTNode()).getExpression());
+        } else if (node.isThrow()) {
+            exprs.add(((ThrowStatement)node.getASTNode()).getExpression());
+        }
+        
+        for (Expression expr : exprs) {
+            if (expr != null) {
+                CFGStatement tmpNode = new CFGStatement(expr, CFGNode.Kind.dummy);
+                ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, new CFG(), tmpNode);
+                expr.accept(expressionVisitor);
+                
+                collectAliasesInAssignment(expr, tmpNode, aliases);
+            }
+        }
+    }
+    
+    private void collectAliasesInAssignment(ASTNode astNode, CFGNode node, List<Alias> aliases) {
+        if (astNode instanceof Assignment) {
+            Assignment assignment = (Assignment)astNode;
+            if (assignment.getOperator() == Assignment.Operator.ASSIGN) {
+                if (assignment.getRightHandSide() instanceof Assignment) {
+                    Assignment righthand = (Assignment)assignment.getRightHandSide();
+                    Alias alias = getAliasRelation((CFGStatement)node, righthand.getLeftHandSide());
+                    if (alias != null) {
+                        aliases.add(alias);
+                    }
+                    
+                    CFGStatement tmpNode = new CFGStatement(righthand, CFGNode.Kind.dummy);
+                    ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, new CFG(), tmpNode);
+                    righthand.accept(expressionVisitor);
+                    
+                    collectAliasesInAssignment(righthand, tmpNode, aliases);
+                    
+                } else {
+                    Alias alias = getAliasRelation((CFGStatement)node, assignment.getRightHandSide());
+                    if (alias != null) {
+                        aliases.add(alias);
+                    }
+                }
+            }
+        }
+    }
+    
+    private void collectAliasesInDeclaration(ASTNode astNode, CFGNode node, List<Alias> aliases) {
+        if (astNode instanceof VariableDeclarationFragment) {
+            VariableDeclarationFragment declaration = (VariableDeclarationFragment)astNode;
+            if (declaration.getInitializer() instanceof Assignment) {
+                Assignment initializer = (Assignment)declaration.getInitializer();
+                Alias alias = getAliasRelation((CFGStatement)node, initializer.getLeftHandSide());
+                if (alias != null) {
+                    aliases.add(alias);
+                }
+                
+                CFGStatement tmpNode = new CFGStatement(initializer, CFGNode.Kind.dummy);
+                ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, new CFG(), tmpNode);
+                initializer.accept(expressionVisitor);
+                
+                collectAliasesInAssignment(initializer, tmpNode, aliases);
+            } else {
+                Alias alias = getAliasRelation((CFGStatement)node, declaration.getInitializer());
+                if (alias != null) {
+                    aliases.add(alias);
+                }
+            }
+        }
     }
     
     private void createAliasMap(CFGNode node, Alias alias, Set<CFGNode> track) {
@@ -134,33 +273,9 @@ class LocalAliasResolver {
         return false;
     }
     
-    private List<Alias> getAliasRelations(CFGStatement node, Expression expr) {
-        List<Alias> aliases = new ArrayList<>();
-        
-        if (node.getDefVariables().size() != 1) {
-            return aliases;
-        }
-        
-        JVariableReference def = node.getDefFirst();
-        if (def.isPrimitiveType() || !def.isAvailable()) {
-            return aliases;
-        }
-        
-        for (JVariableReference use : node.findPrimaryUseVariables(expr)) {
-            if (use.isPrimitiveType()) {
-                continue;
-            }
-            if (use.isFieldAccess() && ((JFieldReference)use).isEnumConstant()) {
-                continue;
-            }
-            
-            aliases.add(new Alias(def, use));
-        }
-        return aliases;
-    }
-    
     private void addAliasVariables(CFGStatement node) {
         Collection<Alias> aliases = aliasMap.get(node);
+        
         for (JVariableReference var : new ArrayList<>(node.getUseVariables())) {
             String name = var.getReferenceForm();
             
@@ -168,22 +283,24 @@ class LocalAliasResolver {
                 String lname = alias.lefthand.getReferenceForm();
                 String rname = alias.righthand.getReferenceForm();
                 
-                String aliasName = getAliasName(name, lname, rname);
-                if (aliasName != null) {
-                    JVariableReference avar = new JExpedientReference(alias.righthand.getASTNode(),
-                            aliasName, alias.righthand.getType(), alias.righthand.isPrimitiveType());
-                    if (!isReturnReference(avar)) {
-                        node.addUseVariable(avar);
+                if (!node.isReceiver() || (node.isReceiver() && hasDefInCall((CFGReceiver)node))) {
+                    String aliasName = getAliasName(name, lname, rname);
+                    if (aliasName != null) {
+                        JVariableReference avar = new JExpedientReference(alias.righthand.getASTNode(),
+                                aliasName, alias.righthand.getType(), alias.righthand.isPrimitiveType());
+                        if (!avar.getReferenceForm().endsWith(")")) {
+                            node.addUseVariable(avar);
+                        }
                     }
                 }
                 
                 if (alias.bidirectional) {
-                    if (node.isReceiver() && hasDefInCall((CFGReceiver)node)) {
-                        aliasName = getAliasName(name, rname, lname);
+                    if (!node.isReceiver() || (node.isReceiver() && hasDefInCall((CFGReceiver)node))) {
+                        String aliasName = getAliasName(name, rname, lname);
                         if (aliasName != null) {
                             JVariableReference avar = new JExpedientReference(alias.lefthand.getASTNode(),
                                     aliasName, alias.lefthand.getType(), alias.lefthand.isPrimitiveType());
-                            if (!isReturnReference(avar)) {
+                            if (!avar.getReferenceForm().endsWith(")")) {
                                 node.addUseVariable(avar);
                             }
                         }
@@ -204,10 +321,6 @@ class LocalAliasResolver {
             return name.replace("." + name1, "." + name2);
         }
         return null;
-    }
-    
-    private boolean isReturnReference(JVariableReference var) {
-        return var.getReferenceForm().endsWith(")");
     }
     
     private boolean hasDefInCall(CFGReceiver node) {
