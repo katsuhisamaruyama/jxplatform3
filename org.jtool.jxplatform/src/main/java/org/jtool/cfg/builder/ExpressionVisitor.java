@@ -205,7 +205,9 @@ public class ExpressionVisitor extends ASTVisitor {
     
     @Override
     public boolean visit(Assignment node) {
-        curNode.setASTNode(node);
+        if (curNode.isAssignment()) {
+            curNode.setASTNode(node);
+        }
         declarationOrAssignmentNode.push(curNode);
         
         Expression lefthand = node.getLeftHandSide();
@@ -782,9 +784,6 @@ public class ExpressionVisitor extends ASTVisitor {
             } else {
                 curNode.removeUseVariable(var);
                 curNode.addUseVariable(var);
-                if (!var.isPrimitiveType() && receivers.empty()) {
-                    curNode.addUseVariables(getDanglingFields(var));
-                }
             }
         }
         return false;
