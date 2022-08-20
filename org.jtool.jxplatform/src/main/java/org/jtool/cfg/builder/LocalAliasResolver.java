@@ -13,7 +13,7 @@ import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGReceiver;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JFieldReference;
-import org.jtool.cfg.JExpedientReference;
+import org.jtool.cfg.JAliasReference;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
@@ -286,8 +286,7 @@ class LocalAliasResolver {
                 if (!node.isReceiver() || (node.isReceiver() && hasDefInCall((CFGReceiver)node))) {
                     String aliasName = getAliasName(name, lname, rname);
                     if (aliasName != null) {
-                        JVariableReference avar = new JExpedientReference(alias.righthand.getASTNode(),
-                                aliasName, alias.righthand.getType(), alias.righthand.isPrimitiveType());
+                        JVariableReference avar = new JAliasReference(alias.righthand, aliasName, var);
                         if (!avar.getReferenceForm().endsWith(")")) {
                             node.addUseVariable(avar);
                         }
@@ -298,8 +297,7 @@ class LocalAliasResolver {
                     if (!node.isReceiver() || (node.isReceiver() && hasDefInCall((CFGReceiver)node))) {
                         String aliasName = getAliasName(name, rname, lname);
                         if (aliasName != null) {
-                            JVariableReference avar = new JExpedientReference(alias.lefthand.getASTNode(),
-                                    aliasName, alias.lefthand.getType(), alias.lefthand.isPrimitiveType());
+                            JVariableReference avar = new JAliasReference(alias.lefthand, aliasName, var);
                             if (!avar.getReferenceForm().endsWith(")")) {
                                 node.addUseVariable(avar);
                             }

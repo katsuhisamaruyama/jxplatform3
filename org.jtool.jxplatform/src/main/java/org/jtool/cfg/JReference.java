@@ -301,6 +301,14 @@ public abstract class JReference {
     }
     
     /**
+     * Tests if this is a reference to an alias variable.
+     * @return {@code true} if this is an alias reference, otherwise {@code false}
+     */
+    public boolean isAliasReference() {
+        return false;
+    }
+    
+    /**
      * Tests if this reference is available.
      * @return {@code true} if this is a reference to an available element, otherwise {@code false}
      */
