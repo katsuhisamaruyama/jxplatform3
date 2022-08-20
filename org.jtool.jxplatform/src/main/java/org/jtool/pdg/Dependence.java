@@ -42,7 +42,7 @@ public class Dependence extends GraphEdge {
         parameterIn,                     // Data dependence with respect to incoming parameter passing
         parameterOut,                    // Data dependence with respect to outgoing parameter passing
         fieldAccess,                     // Data dependence with respect to a field access
-        complementaryFieldAccess,        // Data dependence with respect to complementary field accesses
+        uncoveredFieldAccess,            // Data dependence with respect to an uncovered field accesses
         summary,                         // Data dependence between actual-in and actual-out nodes
         
         classMember,                     // Dependence between a class and its members
@@ -116,7 +116,7 @@ public class Dependence extends GraphEdge {
                kind == Kind.parameterIn ||
                kind == Kind.parameterOut ||
                kind == Kind.fieldAccess ||
-               kind == Kind.complementaryFieldAccess ||
+               kind == Kind.uncoveredFieldAccess ||
                kind == Kind.summary;
     }
     
@@ -257,11 +257,11 @@ public class Dependence extends GraphEdge {
     }
     
     /**
-     * Tests if this edge represents a complementary field access dependence.
-     * @return {@code true} if this is a complementary field access dependence edge, otherwise {@code false}
+     * Tests if this edge represents an uncovered field access dependence.
+     * @return {@code true} if this is an uncovered field access dependence edge, otherwise {@code false}
      */
-    public boolean isComplementaryFieldAccess() {
-        return kind == Kind.complementaryFieldAccess;
+    public boolean isUncoveredFieldAccess() {
+        return kind == Kind.uncoveredFieldAccess;
     }
     
     /**

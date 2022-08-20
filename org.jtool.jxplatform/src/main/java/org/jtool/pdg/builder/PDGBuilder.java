@@ -28,7 +28,7 @@ import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JFieldReference;
-import org.jtool.cfg.JComplementaryFieldReference;
+import org.jtool.cfg.JUncoveredFieldReference;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.srcmodel.QualifiedName;
 import java.util.List;
@@ -216,22 +216,22 @@ public class PDGBuilder {
     }
     
     private static void connectDefFieldAccesses(DependencyGraph graph, CFGNode node, JFieldReference fvar) {
-        if (fvar.isComplementary()) {
-            JComplementaryFieldReference cvar = (JComplementaryFieldReference)fvar;
+        if (fvar.isUncoveredFieldReference()) {
+            JUncoveredFieldReference cvar = (JUncoveredFieldReference)fvar;
             cvar.getHoldingNodes().forEach(n -> {
-                addComplementaryFieldAccessEdge(graph, n.getPDGNode(), node.getPDGNode());
+                addUncoveredFieldAccessEdge(graph, n.getPDGNode(), node.getPDGNode());
             });
         }
     }
     
-    private static void addComplementaryFieldAccessEdge(DependencyGraph graph, PDGNode src, PDGNode dst) {
+    private static void addUncoveredFieldAccessEdge(DependencyGraph graph, PDGNode src, PDGNode dst) {
         List<Dependence> edges = graph.getDependence(src, dst);
         DD edge = (DD)edges.stream()
-                           .filter(e -> e.isComplementaryFieldAccess())
+                           .filter(e -> e.isUncoveredFieldAccess())
                            .findFirst().orElse(null);
         if (edge == null) {
             edge = new DD(src, dst);
-            edge.setComplementaryFieldAccess();
+            edge.setUncoveredFieldAccess();
             graph.add(edge);
         }
     }

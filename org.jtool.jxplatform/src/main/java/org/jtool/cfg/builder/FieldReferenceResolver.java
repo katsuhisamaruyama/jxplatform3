@@ -11,7 +11,7 @@ import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.JVariableReference;
-import org.jtool.cfg.JComplementaryFieldReference;
+import org.jtool.cfg.JUncoveredFieldReference;
 import org.jtool.jxplatform.refmodel.DefUseField;
 import org.jtool.jxplatform.refmodel.JClass;
 import org.jtool.jxplatform.refmodel.JMethod;
@@ -71,7 +71,7 @@ class FieldReferenceResolver {
         CFGNode curNode = callNode;
         int index = 1;
         for (DefUseField def : method.getAllDefFields()) {
-            JVariableReference var = new JComplementaryFieldReference(callNode.getASTNode(),
+            JVariableReference var = new JUncoveredFieldReference(callNode.getASTNode(),
                     def.getClassName(), def.getName(), def.getReferenceForm(),
                     def.getType(), def.isPrimitive(), def.getModifiers(), def.isInProject(),
                     def.getHoldingNodes());
@@ -102,7 +102,7 @@ class FieldReferenceResolver {
     
     private void insertUseVariables(CFGMethodCall callNode, JMethod method) {
         for (DefUseField use : method.getAllUseFields()) {
-            JVariableReference var = new JComplementaryFieldReference(callNode.getASTNode(),
+            JVariableReference var = new JUncoveredFieldReference(callNode.getASTNode(),
                     use.getClassName(), use.getName(), use.getReferenceForm(),
                     use.getType(), use.isPrimitive(), use.getModifiers(), use.isInProject(),
                     use.getHoldingNodes());

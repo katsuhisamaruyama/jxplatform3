@@ -66,7 +66,7 @@ class JMethodFrozen extends JMethod {
     protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
             String prefix, String returnValue, List<CFGMethodCall> callChain) {
         for (DefUseField var : defFields) {
-            if (!var.isComplementary()) {
+            if (!var.isUncovered()) {
                 DefUseField def = new DefUseField(var);
                 def.updateReferenceForm(getReferenceForm(var, prefix));
                 def.addHoldingNodes(callChain);
@@ -76,7 +76,7 @@ class JMethodFrozen extends JMethod {
         }
         
         for (DefUseField var : useFields) {
-            if (!var.isComplementary()) {
+            if (!var.isUncovered()) {
                 DefUseField use = new DefUseField(var);
                 use.updateReferenceForm(getReferenceForm(var, prefix));
                 use.addHoldingNodes(callChain);

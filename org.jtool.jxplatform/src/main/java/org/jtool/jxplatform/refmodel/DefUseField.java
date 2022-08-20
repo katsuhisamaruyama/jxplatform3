@@ -29,14 +29,14 @@ public class DefUseField {
     private int modifiers;
     private boolean inProject;
     private boolean isThis;
-    private boolean isComplementary;
+    private boolean isUncovered;
     private List<CFGStatement> holdingNodes = new ArrayList<>();
     private boolean isReturnValue;
     
     public DefUseField(JFieldReference fvar, CFGStatement node) {
         this(fvar.getDeclaringClassName(), fvar.getName(), fvar.getReferenceForm(),
                 fvar.getType(), fvar.isPrimitiveType(), fvar.getModifiers(),
-                fvar.isInProject(), fvar.isThis(), fvar.isComplementary(), fvar.isReturnValueReference());
+                fvar.isInProject(), fvar.isThis(), fvar.isUncoveredFieldReference(), fvar.isReturnValueReference());
         if (node != null) {
             holdingNodes.add(node);
         }
@@ -45,13 +45,13 @@ public class DefUseField {
     public DefUseField(DefUseField var) {
         this(var.className, var.name, var.referenceForm,
                 var.type, var.isPrimitive, var.modifiers, var.inProject, var.isThis(),
-                var.isComplementary, var.isReturnValue);
+                var.isUncovered, var.isReturnValue);
         var.getHoldingNodes().forEach(node -> holdingNodes.add(node));
     }
     
     public DefUseField(String className, String name, String referenceForm, String type,
             boolean isPrimitive, int modifiers, boolean inProject, boolean isThis,
-            boolean isComplementary, boolean isReturnValue) {
+            boolean isUncovered, boolean isReturnValue) {
         this.className = className;
         this.name = name;
         this.referenceForm = referenceForm;
@@ -60,7 +60,7 @@ public class DefUseField {
         this.modifiers = modifiers;
         this.inProject = inProject;
         this.isThis = isThis;
-        this.isComplementary = isComplementary;
+        this.isUncovered = isUncovered;
         this.isReturnValue = isReturnValue;
     }
     
@@ -119,8 +119,8 @@ public class DefUseField {
         return isThis;
     }
     
-    public boolean isComplementary() {
-        return isComplementary;
+    public boolean isUncovered() {
+        return isUncovered;
     }
     
     public boolean isReturnValue() {
@@ -160,7 +160,7 @@ public class DefUseField {
                 FieldPropertySeparator + String.valueOf(modifiers) +
                 FieldPropertySeparator + String.valueOf(inProject) +
                 FieldPropertySeparator + String.valueOf(isThis) +
-                FieldPropertySeparator + String.valueOf(isComplementary) +
+                FieldPropertySeparator + String.valueOf(isUncovered) +
                 FieldPropertySeparator + String.valueOf(isReturnValue);
     }
     

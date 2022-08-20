@@ -293,10 +293,10 @@ public abstract class JReference {
     }
     
     /**
-     * Tests if this is a complementary reference to a field.
-     * @return {@code true} if this is a complementary field reference, otherwise {@code false}
+     * Tests if this is a reference to a field, which is uncovered in a called method.
+     * @return {@code true} if this is an uncovered field reference, otherwise {@code false}
      */
-    public boolean isComplementary() {
+    public boolean isUncoveredFieldReference() {
         return false;
     }
     

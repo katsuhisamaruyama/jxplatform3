@@ -144,10 +144,10 @@ public class DD extends Dependence {
     }
     
     /**
-     * Sets as a complementary field access dependence.
+     * Sets as an uncovered field access dependence.
      */
-    public void setComplementaryFieldAccess() {
-        kind = Kind.complementaryFieldAccess;
+    public void setUncoveredFieldAccess() {
+        kind = Kind.uncoveredFieldAccess;
     }
     
     /**
@@ -215,7 +215,7 @@ public class DD extends Dependence {
             buf.append(" POUT");
         } else if (kind == Kind.fieldAccess) {
             buf.append(" FACC");
-        } else if (kind == Kind.complementaryFieldAccess) {
+        } else if (kind == Kind.uncoveredFieldAccess) {
             buf.append(" CFACC");
         } else if (kind == Kind.summary) {
             buf.append(" SUMM");

@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * An class that represents a complementary reference to a field.
+ * An class that represents a reference to a field, which is uncovered in a called method.
  * 
  * @author Katsuhisa Maruyama
  */
-public class JComplementaryFieldReference extends JFieldReference {
+public class JUncoveredFieldReference extends JFieldReference {
     
     /**
-     * CFG nodes that hold this complementary field reference.
+     * CFG nodes that hold this uncovered field reference.
      */
     private List<CFGStatement> holdingNodes = new ArrayList<>();
     
@@ -32,16 +32,16 @@ public class JComplementaryFieldReference extends JFieldReference {
      * @param primitive {@code true} if the type of the referenced field is primitive, otherwise {@code false}
      * @param modifiers the modifier information on the referenced field
      * @param inProject {@code true} if the referenced field exists in the target project, otherwise {@code false}
-     * @param holdingNodes CFG nodes that hold this complementary field reference
+     * @param holdingNodes CFG nodes that hold this uncovered field reference
      */
-    public JComplementaryFieldReference(ASTNode node, String className, String name, String referenceForm,
+    public JUncoveredFieldReference(ASTNode node, String className, String name, String referenceForm,
             String type, boolean primitive, int modifiers, boolean inProject, List<CFGStatement> holdingNodes) {
         super(node, className, name, referenceForm, type, primitive, modifiers, inProject, false);
         this.holdingNodes = holdingNodes;
     }
     
     /**
-     * Returns the CFG nodes that hold this complementary field reference.
+     * Returns the CFG nodes that hold this uncovered field reference.
      * @return the collection of the nodes
      */
     public List<CFGStatement> getHoldingNodes() {
@@ -52,7 +52,7 @@ public class JComplementaryFieldReference extends JFieldReference {
      * {@inheritDoc}
      */
     @Override
-    public boolean isComplementary() {
+    public boolean isUncoveredFieldReference() {
         return true;
     }
 }

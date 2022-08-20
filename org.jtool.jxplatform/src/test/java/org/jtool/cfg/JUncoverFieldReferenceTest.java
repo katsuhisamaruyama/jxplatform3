@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-public class JComplementaryFieldReferenceTest {
+public class JUncoverFieldReferenceTest {
     
 private static JavaProject SliceProject;
     
@@ -33,7 +33,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingClassName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertEquals("Test103", result.get(0).getEnclosingClassName());
     }
@@ -41,7 +41,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingClassName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertEquals("Test103", result.get(0).getEnclosingClassName());
     }
@@ -49,7 +49,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingMethodName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertEquals("m( )", result.get(0).getEnclosingMethodName());
     }
@@ -57,7 +57,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetEnclosingMethodName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertEquals("m( )", result.get(0).getEnclosingMethodName());
     }
@@ -65,7 +65,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringClassName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertEquals("Test103", result.get(0).getDeclaringClassName());
     }
@@ -73,7 +73,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringClassName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertEquals("Test103", result.get(0).getDeclaringClassName());
     }
@@ -81,7 +81,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringMethodName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertEquals("", result.get(0).getDeclaringMethodName());
     }
@@ -89,7 +89,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetDeclaringMethodName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertEquals("", result.get(0).getDeclaringMethodName());
     }
@@ -97,7 +97,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertEquals("a", result.get(0).getName());
     }
@@ -105,7 +105,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertEquals("a", result.get(0).getName());
     }
@@ -113,7 +113,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetSignature1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertEquals("a", result.get(0).getSignature());
     }
@@ -121,7 +121,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetSignature2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertEquals("a", result.get(0).getSignature());
     }
@@ -129,7 +129,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetQualifiedName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertEquals("Test103#a", result.get(0).getQualifiedName().fqn());
     }
@@ -137,7 +137,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetQualifiedName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertEquals("Test103#a", result.get(0).getQualifiedName().fqn());
     }
@@ -145,7 +145,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReferenceForm1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertEquals("this.a", result.get(0).getReferenceForm());
     }
@@ -153,7 +153,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReferenceForm2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertEquals("this.a", result.get(0).getReferenceForm());
     }
@@ -161,7 +161,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReceiverName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertEquals("this", result.get(0).getReceiverName());
     }
@@ -169,7 +169,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetReceiverName2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertEquals("this", result.get(0).getReceiverName());
     }
@@ -177,7 +177,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetType1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertEquals("int", result.get(0).getType());
     }
@@ -185,7 +185,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetType2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertEquals("int", result.get(0).getType());
     }
@@ -193,7 +193,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsPrimitiveType1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertTrue(result.get(0).isPrimitiveType());
     }
@@ -201,7 +201,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsPrimitiveType2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertTrue(result.get(0).isPrimitiveType());
     }
@@ -209,7 +209,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsFieldAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertTrue(result.get(0).isFieldAccess());
     }
@@ -217,7 +217,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsFieldAccess2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertTrue(result.get(0).isFieldAccess());
     }
@@ -225,7 +225,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsLocalAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertFalse(result.get(0).isLocalAccess());
     }
@@ -233,7 +233,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsLocalAccess2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertFalse(result.get(0).isLocalAccess());
     }
@@ -241,7 +241,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsVariableAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertTrue(result.get(0).isVariableAccess());
     }
@@ -249,7 +249,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsVariableAccess2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertTrue(result.get(0).isVariableAccess());
     }
@@ -257,7 +257,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsMethodCall1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertFalse(result.get(0).isMethodCall());
     }
@@ -265,7 +265,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsMethodCall2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertFalse(result.get(0).isMethodCall());
     }
@@ -273,7 +273,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsAvailable1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertFalse(result.get(0).isAvailable());
     }
@@ -281,7 +281,7 @@ private static JavaProject SliceProject;
     @Test
     public void testIsAvailable2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertFalse(result.get(0).isAvailable());
     }
@@ -289,7 +289,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetHoldingNodes1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getDefComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
         assertEquals("this.a", result.get(0).getHoldingNodes().get(0).getDefFirst().getReferenceForm());
     }
@@ -297,7 +297,7 @@ private static JavaProject SliceProject;
     @Test
     public void testGetHoldingNodes2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
-        List<JComplementaryFieldReference> result = CFGTestUtil.getUseComplementaryFieldReference(cfg);
+        List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
         assertEquals("this.a", result.get(0).getHoldingNodes().get(0).getUseFirst().getReferenceForm());
     }
