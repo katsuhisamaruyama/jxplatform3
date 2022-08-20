@@ -38,6 +38,7 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test42", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 1);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
         assertEquals("this.a;this.a.x;this.b;this.b.x", TestUtil.asSortedStrOfReference(result));
@@ -48,6 +49,7 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test42", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 2);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
         assertEquals("this.a;this.a.x;this.b;this.b.x", TestUtil.asSortedStrOfReference(result));
@@ -58,9 +60,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test42", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 1);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.a.!getX;this.b.!getX", TestUtil.asSortedStrOfReference(result));
+        assertEquals("this.a.!getX( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -68,9 +71,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test42", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 2);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.a;this.b", TestUtil.asSortedStrOfReference(result));
+        assertEquals("this.a", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -78,6 +82,7 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test42", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 3);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
         assertEquals("this.a.x;this.b.x", TestUtil.asSortedStrOfReference(result));
@@ -86,28 +91,52 @@ public class LocalAliasResolverTest {
     @Test
     public void testResolveFieldAlias6() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test42", "m2( )");
-        CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 5);
-        assert node.isLocalDeclaration();
+        CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 4);
+        assert node.isActualOut();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.a.!getX;this.b.!getX", TestUtil.asSortedStrOfReference(result));
+        assertEquals("this.a.x;this.b.x", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
     public void testResolveFieldAlias7() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test42", "m2( )");
-        CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 6);
-        assert node.isReceiver();
+        CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 5);
+        assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.a;this.b", TestUtil.asSortedStrOfReference(result));
+        assertEquals("this.b.!getX( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
     public void testResolveFieldAlias8() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test42", "m2( )");
+        CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 6);
+        assert node.isReceiver();
+        
+        List<JVariableReference> result = node.getUseVariables();
+        
+        assertEquals("this.b", TestUtil.asSortedStrOfReference(result));
+    }
+    
+    @Test
+    public void testResolveFieldAlias9() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test42", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 7);
         assert node.isMethodCall();
+        List<JVariableReference> result = node.getUseVariables();
+        
+        assertEquals("this.a.x;this.b.x", TestUtil.asSortedStrOfReference(result));
+    }
+    
+    @Test
+    public void testResolveFieldAlias10() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test42", "m2( )");
+        CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 8);
+        assert node.isActualOut();
+        
         List<JVariableReference> result = node.getUseVariables();
         
         assertEquals("this.a.x;this.b.x", TestUtil.asSortedStrOfReference(result));
@@ -118,9 +147,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 8);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getX;b$1.!getX;c$2.!getX", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getX( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -128,9 +158,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 9);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;b$1;c$2", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -138,9 +169,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 10);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.x;b$1.x;c$2.x", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P43.!P43( int ).x;a$0.x;b$1.x;c$2.x", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -148,9 +180,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 12);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getX;b$1.!getX;c$2.!getX", TestUtil.asSortedStrOfReference(result));
+        assertEquals("b$1.!getX( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -158,9 +191,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 13);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;b$1;c$2", TestUtil.asSortedStrOfReference(result));
+        assertEquals("b$1", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -168,9 +202,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 14);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.x;b$1.x;c$2.x", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P43.!P43( int ).x;a$0.x;b$1.x;c$2.x", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -178,9 +213,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 22);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getX;d$5.!getX", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getX( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -188,9 +224,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 23);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;d$5", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -198,9 +235,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 24);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.x;d$5.x", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P43.!P43( int ).x;a$0.x;d$5.x", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -208,9 +246,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 26);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("b$1.!getX;c$2.!getX", TestUtil.asSortedStrOfReference(result));
+        assertEquals("b$1.!getX( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -218,9 +257,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 27);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("b$1;c$2", TestUtil.asSortedStrOfReference(result));
+        assertEquals("b$1", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -228,6 +268,7 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 28);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
         assertEquals("b$1.x;c$2.x", TestUtil.asSortedStrOfReference(result));
@@ -238,9 +279,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 30);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getX;d$5.!getX", TestUtil.asSortedStrOfReference(result));
+        assertEquals("d$5.!getX( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -248,9 +290,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 31);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;d$5", TestUtil.asSortedStrOfReference(result));
+        assertEquals("d$5", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -258,9 +301,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 32);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.x;d$5.x", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P43.!P43( int ).x;a$0.x;d$5.x", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -268,9 +312,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 7);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getX;b$1.!getX", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getX( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -278,9 +323,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 8);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;b$1", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -288,9 +334,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 9);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.x;b$1.x", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P43.!P43( int ).x;a$0.x;b$1.x", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -298,9 +345,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 11);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getX;b$1.!getX", TestUtil.asSortedStrOfReference(result));
+        assertEquals("b$1.!getX( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -308,9 +356,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 12);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;b$1", TestUtil.asSortedStrOfReference(result));
+        assertEquals("b$1", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -318,6 +367,7 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 13);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
         assertEquals("a$0.x;b$1.x", TestUtil.asSortedStrOfReference(result));
@@ -328,9 +378,10 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 21);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getX", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getX( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -338,6 +389,7 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 22);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
         assertEquals("a$0", TestUtil.asSortedStrOfReference(result));
@@ -348,259 +400,301 @@ public class LocalAliasResolverTest {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test43", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 23);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.x", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P43.!P43( int ).x;a$0.x", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingFieldAccess1() {
+    public void testResolveAliasWithFieldAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 6);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;a$0.q;a$0.q.y;b$1;b$1.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P44.!P44( ).q;P44.!P44( ).q.y;a$0;a$0.q;a$0.q.y;b$1;b$1.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingFieldAccess2() {
+    public void testResolveAliasWithFieldAccess2() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 7);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.q.!getY;b$1.!getY", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.q.!getY( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingFieldAccess3() {
+    public void testResolveAliasWithFieldAccess3() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 11);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.q;a$0.q.y;b$1;b$1.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.q;a$0.q.r;a$0.q.y;b$1;b$1.r;b$1.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingFieldAccess4() {
+    public void testResolveAliasWithFieldAccess4() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 12);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.q.!getY;b$1.!getY", TestUtil.asSortedStrOfReference(result));
+        assertEquals("b$1.!getY( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingFieldAccess5() {
+    public void testResolveAliasWithFieldAccess5() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 13);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.q;b$1", TestUtil.asSortedStrOfReference(result));
+        assertEquals("b$1", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingFieldAccess6() {
+    public void testResolveAliasWithFieldAccess6() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m1( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 14);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
         assertEquals("a$0.q.y;b$1.y", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCall1() {
+    public void testResolveAliasWithMethodCall1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 9);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ;a$0.!getQ.y;b$1;b$1.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P44.!P44( ).!getQ( ).y;a$0.!getQ( );a$0.!getQ( ).y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCall2() {
+    public void testResolveAliasWithMethodCall2() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 10);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
         assertEquals("a$0", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCall3() {
+    public void testResolveAliasWithMethodCall3() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 11);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.q", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P44.!P44( ).q;a$0.q;this.q.r;this.q.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCall4() {
+    public void testResolveAliasWithMethodCall4() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 13);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ.!getY;b$1.!getY", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getQ( ).!getY( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCall5() {
+    public void testResolveAliasWithMethodCall5() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 14);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ;b$1", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getQ( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCall6() {
+    public void testResolveAliasWithMethodCall6() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 18);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ.y;b$1.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P44.!P44( ).!getQ( ).y;a$0.!getQ( ).y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCall7() {
+    public void testResolveAliasWithMethodCall7() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 20);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ;a$0.!getQ.y;b$1;b$1.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getQ( ).r;a$0.!getQ( ).y;b$1;b$1.r;b$1.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCall8() {
+    public void testResolveAliasWithMethodCall8() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 21);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ.!getY;b$1.!getY", TestUtil.asSortedStrOfReference(result));
+        assertEquals("b$1.!getY( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCall9() {
+    public void testResolveAliasWithMethodCall9() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 22);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ;b$1", TestUtil.asSortedStrOfReference(result));
+        assertEquals("b$1", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCall10() {
+    public void testResolveAliasWithMethodCall10() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m2( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 23);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ.y;b$1.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getQ( ).y;b$1.y", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCallChain1() {
+    public void testResolveAliasWithMethodCallChain1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m3( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 9);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ.!getR;a$0.!getQ.!getR.y;b$1.!getR;b$1.!getR.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P44.!P44( ).!getQ( ).!getR( ).y;a$0.!getQ( ).!getR( );a$0.!getQ( ).!getR( ).y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCallChain2() {
+    public void testResolveAliasWithMethodCallChain2() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m3( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 10);
         assert node.isReceiver();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ;b$1", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getQ( )", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCallChain3() {
+    public void testResolveAliasWithMethodCallChain3() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m3( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 12);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.q", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P44.!P44( ).q;a$0.q;this.q.r;this.q.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCallChain4() {
+    public void testResolveAliasWithMethodCallChain4() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m3( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 14);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ.r;b$1.r", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P44.!P44( ).!getQ( ).r;P44.!P44( ).!getQ( ).r.r;"
+                + "P44.!P44( ).!getQ( ).r.y;a$0.!getQ( ).r;"
+                + "a$0.!getQ( ).r.r;a$0.!getQ( ).r.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCallChain5() {
+    public void testResolveAliasWithMethodCallChain5() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m3( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 16);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ;a$0.!getQ.y;b$1;b$1.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getQ( ).r;a$0.!getQ( ).y;b$1;b$1.r;b$1.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCallChain6() {
+    public void testResolveAliasWithMethodCallChain6() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m4( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 12);
         assert node.isLocalDeclaration();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ.!getR;a$0.!getQ.!getR.y;b$1;b$1.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P44.!P44( ).!getQ( ).!getR( ).y;"
+                + "a$0.!getQ( ).!getR( );a$0.!getQ( ).!getR( ).y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCallChain7() {
+    public void testResolveAliasWithMethodCallChain7() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m4( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 15);
         assert node.isMethodCall();
+        
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.q", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P44.!P44( ).q;a$0.q;this.q.r;this.q.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCallChain8() {
+    public void testResolveAliasWithMethodCallChain8() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m4( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 17);
         assert node.isMethodCall();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ.r", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P44.!P44( ).!getQ( ).r;P44.!P44( ).!getQ( ).r.r;P44.!P44( ).!getQ( ).r.y;"
+                + "a$0.!getQ( ).r;a$0.!getQ( ).r.r;a$0.!getQ( ).r.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
-    public void testResolveAliasIncludingMethodCallChain9() {
+    public void testResolveAliasWithMethodCallChain9() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test44", "m4( )");
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 19);
         assert node.isLocalDeclaration();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.!getQ.!getR;a$0.!getQ.!getR.y;b$1;b$1.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0.!getQ( ).!getR( ).r;a$0.!getQ( ).!getR( ).y;b$1;b$1.r;b$1.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -610,7 +704,8 @@ public class LocalAliasResolverTest {
         assert node.isLocalDeclaration();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;a$0.q;a$0.q.y;b$1;b$1.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P45.!P45( ).q;P45.!P45( ).q.y;a$0;a$0.q;a$0.q.y;b$1;b$1.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -620,7 +715,8 @@ public class LocalAliasResolverTest {
         assert node.isLocalDeclaration();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;a$0.q;a$0.q.y;c$3;c$3.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P45.!P45( ).q;P45.!P45( ).q.y;Q45.!Q45( ).y;a$0;a$0.q;a$0.q.y;c$3;c$3.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -630,7 +726,8 @@ public class LocalAliasResolverTest {
         assert node.isLocalDeclaration();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;a$0.q;a$0.q.y;b$1;b$1.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P45.!P45( ).q;P45.!P45( ).q.y;a$0;a$0.q;a$0.q.y;b$1;b$1.y",
+                TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -640,6 +737,7 @@ public class LocalAliasResolverTest {
         assert node.isLocalDeclaration();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;a$0.q;a$0.q.y;c$3;c$3.q;c$3.q.y", TestUtil.asSortedStrOfReference(result));
+        assertEquals("a$0;a$0.q;a$0.q.y;c$3;c$3.q;c$3.q.y",
+                TestUtil.asSortedStrOfReference(result));
     }
 }

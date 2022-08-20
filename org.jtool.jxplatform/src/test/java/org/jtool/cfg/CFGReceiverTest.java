@@ -45,7 +45,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("a$0", result);
+        assertEquals("A119", result);
     }
     
     @Test
@@ -105,7 +105,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("a$2", result);
+        assertEquals("A124", result);
     }
     
     @Test
@@ -135,7 +135,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("a$0", result);
+        assertEquals("A126", result);
     }
     
     @Test
@@ -176,7 +176,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("a$0.!add", result);
+        assertEquals("a$0.!add( int )", result);
     }
     
     @Test
@@ -186,7 +186,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("a3$5", result);
+        assertEquals("A126", result);
     }
     
     @Test
@@ -216,13 +216,13 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("a$0", result);
+        assertEquals("A128", result);
     }
     
     @Test
     public void testGetNameTest128_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 9);
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
@@ -232,17 +232,17 @@ public class CFGReceiverTest {
     @Test
     public void testGetNameTest128_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 13);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 14);
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("this", result);
+        assertEquals("a$0", result);
     }
     
     @Test
     public void testGetNameTest128_4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 18);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 19);
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
@@ -252,11 +252,11 @@ public class CFGReceiverTest {
     @Test
     public void testGetNameTest128_5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 21);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 22);
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("a$0.!add", result);
+        assertEquals("a$0.!add( int )", result);
     }
     
     @Test
@@ -346,7 +346,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("this.!getX", result);
+        assertEquals("this.!getX( )", result);
     }
     
     @Test
@@ -376,7 +376,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("this.!getX", result);
+        assertEquals("this.!getX( )", result);
     }
     
     @Test
@@ -396,7 +396,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("this.!getX", result);
+        assertEquals("this.!getX( )", result);
     }
     
     @Test
@@ -406,7 +406,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("this.!getX.!getY", result);
+        assertEquals("this.!getX( ).!getY( )", result);
     }
     
     @Test
@@ -426,7 +426,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("this.!getX.y", result);
+        assertEquals("this.!getX( ).y", result);
     }
     
     @Test
@@ -446,7 +446,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("this.x.!getY", result);
+        assertEquals("this.x.!getY( )", result);
     }
     
     @Test
@@ -456,7 +456,7 @@ public class CFGReceiverTest {
         CFGReceiver rec = node.getReceiver();
         String result = rec.getName();
         
-        assertEquals("p$1", result);
+        assertEquals("R134", result);
     }
     
     @Test

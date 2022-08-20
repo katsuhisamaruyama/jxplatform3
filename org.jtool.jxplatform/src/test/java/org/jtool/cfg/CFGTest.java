@@ -36,7 +36,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("Test103#m( )");
         Set<CFGNode> result = cfg.getNodes();
         
-        assertEquals(37, result.size());
+        assertEquals(41, result.size());
     }
     
     @Test
@@ -90,7 +90,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("Test119#m( )");
         Set<CFGNode> result = cfg.getNodes();
         
-        assertEquals(31, result.size());
+        assertEquals(33, result.size());
     }
     
     @Test
@@ -144,7 +144,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("Test129#m( )");
         Set<CFGNode> result = cfg.getNodes();
         
-        assertEquals(70, result.size());
+        assertEquals(72, result.size());
     }
     
     @Test
@@ -279,7 +279,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("PriceCode#CHILDRENS");
         Set<CFGNode> result = cfg.getNodes();
         
-        assertEquals(6, result.size());
+        assertEquals(7, result.size());
     }
     
     @Test
@@ -288,7 +288,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("PriceCode#REGULAR");
         Set<CFGNode> result = cfg.getNodes();
         
-        assertEquals(6, result.size());
+        assertEquals(7, result.size());
     }
     
     @Test
@@ -297,7 +297,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("PriceCode#NEW_RELEASE");
         Set<CFGNode> result = cfg.getNodes();
         
-        assertEquals(6, result.size());
+        assertEquals(7, result.size());
     }
     
     @Test
@@ -369,7 +369,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("CustomerTest#testStatement1( )");
         Set<CFGNode> result = cfg.getNodes();
         
-        assertEquals(33, result.size());
+        assertEquals(39, result.size());
     }
     
     @Test
@@ -378,7 +378,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("CustomerTest#testStatement2( )");
         Set<CFGNode> result = cfg.getNodes();
         
-        assertEquals(44, result.size());
+        assertEquals(51, result.size());
     }
     
     @Test
@@ -459,7 +459,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("Test103#m( )");
         List<ControlFlow> result = cfg.getEdges();
         
-        assertEquals(36, result.size());
+        assertEquals(40, result.size());
     }
     
     @Test
@@ -513,7 +513,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("Test119#m( )");
         List<ControlFlow> result = cfg.getEdges();
         
-        assertEquals(30, result.size());
+        assertEquals(32, result.size());
     }
     
     @Test
@@ -567,7 +567,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("Test129#m( )");
         List<ControlFlow> result = cfg.getEdges();
         
-        assertEquals(69, result.size());
+        assertEquals(71, result.size());
     }
     
     @Test
@@ -702,7 +702,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("PriceCode#CHILDRENS");
         List<ControlFlow> result = cfg.getEdges();
         
-        assertEquals(5, result.size());
+        assertEquals(6, result.size());
     }
     
     @Test
@@ -711,7 +711,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("PriceCode#REGULAR");
         List<ControlFlow> result = cfg.getEdges();
         
-        assertEquals(5, result.size());
+        assertEquals(6, result.size());
     }
     
     @Test
@@ -720,7 +720,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("PriceCode#NEW_RELEASE");
         List<ControlFlow> result = cfg.getEdges();
         
-        assertEquals(5, result.size());
+        assertEquals(6, result.size());
     }
     
     @Test
@@ -792,7 +792,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("CustomerTest#testStatement1( )");
         List<ControlFlow> result = cfg.getEdges();
         
-        assertEquals(32, result.size());
+        assertEquals(38, result.size());
     }
     
     @Test
@@ -801,7 +801,7 @@ public class CFGTest {
         CFG cfg = ccfg.getCFG("CustomerTest#testStatement2( )");
         List<ControlFlow> result = cfg.getEdges();
         
-        assertEquals(43, result.size());
+        assertEquals(50, result.size());
     }
     
     @Test

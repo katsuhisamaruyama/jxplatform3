@@ -121,6 +121,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetEnclosingClassName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("Test131", result.get(0).getEnclosingClassName());
+    }
+    
+    @Test
     public void testGetEnclosingMethodName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -206,6 +214,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertEquals("m( )", result.get(1).getEnclosingMethodName());
+    }
+    
+    @Test
+    public void testGetEnclosingMethodName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", result.get(0).getEnclosingMethodName());
     }
     
     @Test
@@ -297,6 +313,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetDeclaringClassName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("java.util.HashMap", result.get(0).getDeclaringClassName());
+    }
+    
+    @Test
     public void testGetDeclaringMethodName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -382,6 +406,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertEquals("", result.get(1).getDeclaringMethodName());
+    }
+    
+    @Test
+    public void testGetDeclaringMethodName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", result.get(0).getDeclaringMethodName());
     }
     
     @Test
@@ -473,6 +505,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("HashMap", result.get(0).getName());
+    }
+    
+    @Test
     public void testGetSignature1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -558,6 +598,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertEquals("name( )", result.get(1).getSignature());
+    }
+    
+    @Test
+    public void testGetSignature12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("HashMap( )", result.get(0).getSignature());
     }
     
     @Test
@@ -649,6 +697,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetQualifiedName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("java.util.HashMap#HashMap( )", result.get(0).getQualifiedName().fqn());
+    }
+    
+    @Test
     public void testGetReferenceForm1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -677,7 +733,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertEquals("a$0#A119( )", result.get(0).getReferenceForm());
+        assertEquals("A119#A119( )", result.get(0).getReferenceForm());
     }
     
     @Test
@@ -737,6 +793,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetReferenceForm12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("java.util.HashMap#HashMap( )", result.get(0).getReferenceForm());
+    }
+    
+    @Test
     public void testGetReceiverName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -765,7 +829,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertEquals("a$0", result.get(0).getReceiverName());
+        assertEquals("A119", result.get(0).getReceiverName());
     }
     
     @Test
@@ -822,6 +886,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertEquals("PriceCode.REGULAR", result.get(1).getReceiverName());
+    }
+    
+    @Test
+    public void testGetReceiverName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("java.util.HashMap", result.get(0).getReceiverName());
     }
     
     @Test
@@ -913,6 +985,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetType12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("java.util.HashMap", result.get(0).getType());
+    }
+    
+    @Test
     public void testIsPrimitiveType1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -941,7 +1021,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertTrue(result.get(0).isPrimitiveType());
+        assertFalse(result.get(0).isPrimitiveType());
     }
     
     @Test
@@ -965,7 +1045,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "S140( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertTrue(result.get(0).isPrimitiveType());
+        assertFalse(result.get(0).isPrimitiveType());
     }
     
     @Test
@@ -973,7 +1053,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "S140( int )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertTrue(result.get(0).isPrimitiveType());
+        assertFalse(result.get(0).isPrimitiveType());
     }
     
     @Test
@@ -998,6 +1078,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertFalse(result.get(1).isPrimitiveType());
+    }
+    
+    @Test
+    public void testIsPrimitiveType12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertFalse(result.get(0).isPrimitiveType());
     }
     
     @Test
@@ -1089,6 +1177,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testIsFieldAccess12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertFalse(result.get(0).isFieldAccess());
+    }
+    
+    @Test
     public void testIsLocalAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -1174,6 +1270,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertFalse(result.get(1).isLocalAccess());
+    }
+    
+    @Test
+    public void testIsLocalAccess12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertFalse(result.get(0).isLocalAccess());
     }
     
     @Test
@@ -1265,6 +1369,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testIsVariableAccess12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertFalse(result.get(0).isVariableAccess());
+    }
+    
+    @Test
     public void testIsMethodCall1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -1350,6 +1462,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertTrue(result.get(1).isMethodCall());
+    }
+    
+    @Test
+    public void testIsMethodCall12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertTrue(result.get(0).isMethodCall());
     }
     
     @Test
@@ -1441,6 +1561,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testIsMethod12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertFalse(result.get(0).isMethod());
+    }
+    
+    @Test
     public void testIsConstructor1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -1526,6 +1654,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertFalse(result.get(1).isConstructor());
+    }
+    
+    @Test
+    public void testIsConstructor12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertTrue(result.get(0).isConstructor());
     }
     
     @Test
@@ -1617,6 +1753,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testIsEnumConstant12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertFalse(result.get(0).isEnumConstant());
+    }
+    
+    @Test
     public void testIsSuper1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -1702,6 +1846,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertFalse(result.get(1).isSuper());
+    }
+    
+    @Test
+    public void testIsSuper12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertFalse(result.get(0).isSuper());
     }
     
     @Test
@@ -1793,6 +1945,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testIsLocal12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertFalse(result.get(0).isLocal());
+    }
+    
+    @Test
     public void testArguments1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -1878,6 +2038,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertEquals("", TestUtil.asStr(result.get(1).getArguments()));
+    }
+    
+    @Test
+    public void testGetArguments12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asStr(result.get(0).getArguments()));
     }
     
     @Test
@@ -1969,6 +2137,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetArgumentSize12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals(0, result.get(0).getArgumentSize());
+    }
+    
+    @Test
     public void testArgument1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -2054,6 +2230,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertNull(result.get(1).getArgument(0));
+    }
+    
+    @Test
+    public void testArgument12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertNull(result.get(0).getArgument(0));
     }
     
     @Test
@@ -2145,6 +2329,14 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testHasExplicitReceiver12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertFalse(result.get(0).hasExplicitReceiver());
+    }
+    
+    @Test
     public void testGetReceiver1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
@@ -2173,7 +2365,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
-        assertEquals("a$0", result.get(0).getReceiver().getName());
+        assertEquals("A119", result.get(0).getReceiver().getName());
     }
     
     @Test
@@ -2230,6 +2422,14 @@ private static JavaProject SliceProject;
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertEquals("PriceCode.REGULAR", result.get(1).getReceiver().getName());
+    }
+    
+    @Test
+    public void testGetReceiver12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("java.util.HashMap", result.get(0).getReceiver().getName());
     }
     
     @Test
@@ -2312,13 +2512,132 @@ private static JavaProject SliceProject;
         assertEquals("PriceCode", TestUtil.asSortedStr(result.get(0).getApproximatedTypeNames()));
     }
     
-    // TODO
     @Test
     public void testGetApproximatedTypeNames11() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test139", "m( )");
         List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
         
         assertEquals("java.lang.Enum", TestUtil.asSortedStr(result.get(1).getApproximatedTypeNames()));
+    }
+    
+    @Test
+    public void testGetApproximatedTypeNames12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("java.util.HashMap", TestUtil.asSortedStr(result.get(0).getApproximatedTypeNames()));
+    }
+    
+    @Test
+    public void testGetTypeParameters1() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asSortedStr(result.get(0).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters2() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asSortedStr(result.get(1).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters3() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test102", "m( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asSortedStr(result.get(2).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters4() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asSortedStr(result.get(0).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters5() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asSortedStr(result.get(1).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters6() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asSortedStr(result.get(2).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters7() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "S140( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asSortedStr(result.get(0).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetgetTypeParameters8() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "S140( int )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asSortedStr(result.get(0).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters9() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "m( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asSortedStr(result.get(0).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters10() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test139", "m( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asSortedStr(result.get(0).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test139", "m( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("", TestUtil.asSortedStr(result.get(1).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("java.lang.String;java.lang.String", TestUtil.asSortedStr(result.get(0).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test138", "m( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("java.lang.String", TestUtil.asSortedStr(result.get(5).getTypeParameters()));
+    }
+    
+    @Test
+    public void testGetTypeParameters14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test138", "m( )");
+        List<JMethodReference> result = CFGTestUtil.getMethodReference(cfg);
+        
+        assertEquals("java.lang.String", TestUtil.asSortedStr(result.get(8).getTypeParameters()));
     }
     
     @Test

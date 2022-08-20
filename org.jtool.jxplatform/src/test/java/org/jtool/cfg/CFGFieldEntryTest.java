@@ -179,6 +179,6 @@ public class CFGFieldEntryTest {
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         List<JVariableReference> result = node.getUseFields();
         
-        assertEquals("this.map;HashMap<String,String>.!HashMap<String,String>", TestUtil.asStrOfReference(result));
+        assertEquals("this.map;java.util.HashMap.!HashMap( )", TestUtil.asStrOfReference(result));
     }
 }

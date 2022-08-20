@@ -12,6 +12,8 @@ import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.CFGTestUtil;
+import org.jtool.jxplatform.util.TestUtil;
+
 import java.util.List;
 import org.junit.Test;
 import org.junit.AfterClass;
@@ -494,7 +496,7 @@ public class ExpressionVisitorTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 5);
         List<JVariableReference> uses = node.getUseVariables();
         
-        assertEquals("a$0.q", uses.get(1).getReferenceForm());
+        assertEquals("P44.!P44( ).q;a$0;a$0.q", TestUtil.asSortedStrOfReference(uses));
         
         assertEquals("a.q", uses.get(1).getASTNode().toString().trim());
     }
@@ -505,9 +507,9 @@ public class ExpressionVisitorTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 6);
         List<JVariableReference> uses = node.getUseVariables();
         
-        assertEquals("a$0.q.y", uses.get(3).getReferenceForm());
+        assertEquals("P44.!P44( ).q;P44.!P44( ).q.y;a$0;a$0.q;a$0.q.y;b$1;b$1.y", TestUtil.asSortedStrOfReference(uses));
         
-        assertEquals("a.q.y", uses.get(3).getASTNode().toString().trim());
+        assertEquals("a.q.y", uses.get(2).getASTNode().toString().trim());
     }
     
     @Test

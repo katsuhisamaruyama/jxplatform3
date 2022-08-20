@@ -367,7 +367,7 @@ public class CFGMethodCallTest {
     @Test
     public void testGetArgumentSizeTest128_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 9);
         List<CFGParameter> result = node.getActualIns();
         
         assertEquals(1, result.size());
@@ -376,16 +376,16 @@ public class CFGMethodCallTest {
     @Test
     public void testGetArgumentSizeTest128_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 13);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 14);
         List<CFGParameter> result = node.getActualIns();
         
-        assertEquals(2, result.size());
+        assertEquals(0, result.size());
     }
     
     @Test
     public void testGetArgumentSizeTest128_4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 18);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 19);
         List<CFGParameter> result = node.getActualIns();
         
         assertEquals(1, result.size());
@@ -394,7 +394,7 @@ public class CFGMethodCallTest {
     @Test
     public void testGetArgumentSizeTest128_5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 21);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 22);
         List<CFGParameter> result = node.getActualIns();
         
         assertEquals(0, result.size());
@@ -1024,7 +1024,7 @@ public class CFGMethodCallTest {
     @Test
     public void testGetApproximatedTypeNamesTest128_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 9);
         Set<String> result = node.getApproximatedTypeNames();
         
         assertEquals("A128", TestUtil.asSortedStrOfString(result));
@@ -1033,16 +1033,16 @@ public class CFGMethodCallTest {
     @Test
     public void testGetApproximatedTypeNamesTest128_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 13);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 14);
         Set<String> result = node.getApproximatedTypeNames();
         
-        assertEquals("Test128", TestUtil.asSortedStrOfString(result));
+        assertEquals("A128", TestUtil.asSortedStrOfString(result));
     }
     
     @Test
     public void testGetApproximatedTypeNamesTest128_4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 18);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 19);
         Set<String> result = node.getApproximatedTypeNames();
         
         assertEquals("A128", TestUtil.asSortedStrOfString(result));
@@ -1051,7 +1051,7 @@ public class CFGMethodCallTest {
     @Test
     public void testGetApproximatedTypeNamesTest128_5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test128", "m( )");
-        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 21);
+        CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 22);
         Set<String> result = node.getApproximatedTypeNames();
         
         assertEquals("A128", TestUtil.asSortedStrOfString(result));

@@ -111,6 +111,38 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetEnclosingClassName11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("Test131", result.get(0).getEnclosingClassName());
+    }
+    
+    @Test
+    public void testGetEnclosingClassName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("Test131", result.get(0).getEnclosingClassName());
+    }
+    
+    @Test
+    public void testGetEnclosingClassName13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("Test135", result.get(0).getEnclosingClassName());
+    }
+    
+    @Test
+    public void testGetEnclosingClassName14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("Test135", result.get(0).getEnclosingClassName());
+    }
+    
+    @Test
     public void testGetEnclosingMethodName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
@@ -188,6 +220,38 @@ private static JavaProject SliceProject;
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
         assertEquals("m( )", result.get(0).getEnclosingMethodName());
+    }
+    
+    @Test
+    public void testGetEnclosingMethodName11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("", result.get(0).getEnclosingMethodName());
+    }
+    
+    @Test
+    public void testGetEnclosingMethodName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("", result.get(0).getEnclosingMethodName());
+    }
+    
+    @Test
+    public void testGetEnclosingMethodName13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("", result.get(0).getEnclosingMethodName());
+    }
+    
+    @Test
+    public void testGetEnclosingMethodName14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("", result.get(0).getEnclosingMethodName());
     }
     
     @Test
@@ -271,6 +335,38 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetDeclaringClassName11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("Test131", result.get(0).getDeclaringClassName());
+    }
+    
+    @Test
+    public void testGetDeclaringClassName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("Test131", result.get(0).getDeclaringClassName());
+    }
+    
+    @Test
+    public void testGetDeclaringClassName13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("Test135", result.get(0).getDeclaringClassName());
+    }
+    
+    @Test
+    public void testGetDeclaringClassName14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("Test135", result.get(0).getDeclaringClassName());
+    }
+    
+    @Test
     public void testGetDeclaringMethodName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
@@ -351,6 +447,38 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testGetDeclaringMethodName11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("", result.get(0).getDeclaringMethodName());
+    }
+    
+    @Test
+    public void testGetDeclaringMethodName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("", result.get(0).getDeclaringMethodName());
+    }
+    
+    @Test
+    public void testGetDeclaringMethodName13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("", result.get(0).getDeclaringMethodName());
+    }
+    
+    @Test
+    public void testGetDeclaringMethodName14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("", result.get(0).getDeclaringMethodName());
+    }
+    
+    @Test
     public void testGetName1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
@@ -395,7 +523,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertEquals("key", result.get(0).getName());
+        assertEquals("value", result.get(0).getName());
     }
     
     @Test
@@ -428,6 +556,38 @@ private static JavaProject SliceProject;
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
         assertEquals("x", result.get(0).getName());
+    }
+    
+    @Test
+    public void testGetName11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("map", result.get(0).getName());
+    }
+    
+    @Test
+    public void testGetName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("map", result.get(0).getName());
+    }
+    
+    @Test
+    public void testGetName13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("s1", result.get(0).getName());
+    }
+    
+    @Test
+    public void testGetName14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("s1", result.get(0).getName());
     }
     
     @Test
@@ -475,7 +635,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertEquals("key", result.get(0).getSignature());
+        assertEquals("value", result.get(0).getSignature());
     }
     
     @Test
@@ -508,6 +668,38 @@ private static JavaProject SliceProject;
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
         assertEquals("x", result.get(0).getSignature());
+    }
+    
+    @Test
+    public void testGetSignature11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("map", result.get(0).getSignature());
+    }
+    
+    @Test
+    public void testGetSignature12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("map", result.get(0).getSignature());
+    }
+    
+    @Test
+    public void testGetSignature13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("s1", result.get(0).getSignature());
+    }
+    
+    @Test
+    public void testGetSignature14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("s1", result.get(0).getSignature());
     }
     
     @Test
@@ -555,7 +747,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertEquals("S135#key", result.get(0).getQualifiedName().fqn());
+        assertEquals("S135#value", result.get(0).getQualifiedName().fqn());
     }
     
     @Test
@@ -588,6 +780,38 @@ private static JavaProject SliceProject;
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
         assertEquals("Test140#x", result.get(0).getQualifiedName().fqn());
+    }
+    
+    @Test
+    public void testGetQualifiedName11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("Test131#map", result.get(0).getQualifiedName().fqn());
+    }
+    
+    @Test
+    public void testGetQualifiedName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("Test131#map", result.get(0).getQualifiedName().fqn());
+    }
+    
+    @Test
+    public void testGetQualifiedName13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("Test135#s1", result.get(0).getQualifiedName().fqn());
+    }
+    
+    @Test
+    public void testGetQualifiedName14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("Test135#s1", result.get(0).getQualifiedName().fqn());
     }
     
     @Test
@@ -635,7 +859,7 @@ private static JavaProject SliceProject;
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertEquals("this.s1.key", result.get(0).getReferenceForm());
+        assertEquals("this.s1.value", result.get(0).getReferenceForm());
     }
     
     @Test
@@ -668,6 +892,38 @@ private static JavaProject SliceProject;
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
         assertEquals("super.x", result.get(0).getReferenceForm());
+    }
+    
+    @Test
+    public void testGetReferenceForm11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("this.map", result.get(0).getReferenceForm());
+    }
+    
+    @Test
+    public void testGetReferenceForm12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("this.map", result.get(0).getReferenceForm());
+    }
+    
+    @Test
+    public void testGetReferenceForm13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("this.s1", result.get(0).getReferenceForm());
+    }
+    
+    @Test
+    public void testGetReferenceForm14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("this.s1", result.get(0).getReferenceForm());
     }
     
     @Test
@@ -748,6 +1004,38 @@ private static JavaProject SliceProject;
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
         assertEquals("super", result.get(0).getReceiverName());
+    }
+    
+    @Test
+    public void testGetReceiverName11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("this", result.get(0).getReceiverName());
+    }
+    
+    @Test
+    public void testGetReceiverName12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("this", result.get(0).getReceiverName());
+    }
+    
+    @Test
+    public void testGetReceiverName13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("this", result.get(0).getReceiverName());
+    }
+    
+    @Test
+    public void testGetReceiverName14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("this", result.get(0).getReceiverName());
     }
     
     @Test
@@ -832,6 +1120,38 @@ private static JavaProject SliceProject;
     
     @Test
     public void testGetType11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("java.util.HashMap", result.get(0).getType());
+    }
+    
+    @Test
+    public void testGetType12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("java.util.HashMap", result.get(0).getType());
+    }
+    
+    @Test
+    public void testGetType13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertEquals("S135", result.get(0).getType());
+    }
+    
+    @Test
+    public void testGetType14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertEquals("S135", result.get(0).getType());
+    }
+    
+    @Test
+    public void testGetType15() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test107", "x");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
@@ -839,7 +1159,7 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testGetType12() {
+    public void testGetType16() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test107", "y");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
@@ -927,6 +1247,38 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testIsPrimitiveType11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertFalse(result.get(0).isPrimitiveType());
+    }
+    
+    @Test
+    public void testIsPrimitiveType12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertFalse(result.get(0).isPrimitiveType());
+    }
+    
+    @Test
+    public void testIsPrimitiveType13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertFalse(result.get(0).isPrimitiveType());
+    }
+    
+    @Test
+    public void testIsPrimitiveType14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertFalse(result.get(0).isPrimitiveType());
+    }
+    
+    @Test
     public void testIsFieldAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
@@ -1001,6 +1353,38 @@ private static JavaProject SliceProject;
     @Test
     public void testIsFieldAccess10() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "m( )");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertTrue(result.get(0).isFieldAccess());
+    }
+    
+    @Test
+    public void testIsFieldAccess11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertTrue(result.get(0).isFieldAccess());
+    }
+    
+    @Test
+    public void testIsFieldAccess12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertTrue(result.get(0).isFieldAccess());
+    }
+    
+    @Test
+    public void testIsFieldAccess13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertTrue(result.get(0).isFieldAccess());
+    }
+    
+    @Test
+    public void testIsFieldAccess14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
         assertTrue(result.get(0).isFieldAccess());
@@ -1087,6 +1471,38 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testIsLocalAccess11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertFalse(result.get(0).isLocalAccess());
+    }
+    
+    @Test
+    public void testIsLocalAccess12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertFalse(result.get(0).isLocalAccess());
+    }
+    
+    @Test
+    public void testIsLocalAccess13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertFalse(result.get(0).isLocalAccess());
+    }
+    
+    @Test
+    public void testIsLocalAccess14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertFalse(result.get(0).isLocalAccess());
+    }
+    
+    @Test
     public void testIsVariableAccess1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
@@ -1161,6 +1577,38 @@ private static JavaProject SliceProject;
     @Test
     public void testIsVariableAccess10() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "m( )");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertTrue(result.get(0).isVariableAccess());
+    }
+    
+    @Test
+    public void testIsVariableAccess11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertTrue(result.get(0).isVariableAccess());
+    }
+    
+    @Test
+    public void testIsVariableAccess12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertTrue(result.get(0).isVariableAccess());
+    }
+    
+    @Test
+    public void testIsVariableAccess13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertTrue(result.get(0).isVariableAccess());
+    }
+    
+    @Test
+    public void testIsVariableAccess14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
         assertTrue(result.get(0).isVariableAccess());
@@ -1247,7 +1695,39 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsExposed1() {
+    public void testIsMethodCall11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertFalse(result.get(0).isMethodCall());
+    }
+    
+    @Test
+    public void testIsMethodCall12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertFalse(result.get(0).isMethodCall());
+    }
+    
+    @Test
+    public void testIsMethodCall13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertFalse(result.get(0).isMethodCall());
+    }
+    
+    @Test
+    public void testIsMethodCall14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertFalse(result.get(0).isMethodCall());
+    }
+    
+    @Test
+    public void testIsAvailable1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
@@ -1255,7 +1735,7 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsExposed2() {
+    public void testIsAvailable2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
@@ -1263,7 +1743,7 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsExposed3() {
+    public void testIsAvailable3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "getA( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
@@ -1271,7 +1751,7 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsExposed4() {
+    public void testIsAvailable4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "setA( int )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
@@ -1279,7 +1759,7 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsExposed5() {
+    public void testIsAvailable5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
@@ -1287,15 +1767,15 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsExposed6() {
+    public void testIsAvailable6() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "m( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
-        assertFalse(result.get(0).isAvailable());
+        assertTrue(result.get(0).isAvailable());
     }
     
     @Test
-    public void testIsExposed7() {
+    public void testIsAvailable7() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test132", "n( )");
         List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
@@ -1303,7 +1783,7 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsExposed8() {
+    public void testIsAvailable8() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test139", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
@@ -1311,7 +1791,7 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsExposed9() {
+    public void testIsAvailable9() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "PriceCode", "getPriceCode( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
@@ -1319,9 +1799,50 @@ private static JavaProject SliceProject;
     }
     
     @Test
-    public void testIsExposed10() {
+    public void testIsAvailable10() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertTrue(result.get(0).isAvailable());
+    }
+    
+    @Test
+    public void testIsAvailable11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertTrue(result.get(0).isAvailable());
+    }
+    
+    @Test
+    public void testIsAvailable12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertTrue(result.get(0).isAvailable());
+    }
+    
+    @Test
+    public void testIsAvailable13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertTrue(result.get(0).isAvailable());
+    }
+    
+    @Test
+    public void testIsAvailable14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertTrue(result.get(0).isAvailable());
+    }
+    
+    
+    @Test
+    public void testIsAvailable15() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test140", "Test140( int )");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
         
         assertTrue(result.get(0).isAvailable());
     }
@@ -1401,6 +1922,38 @@ private static JavaProject SliceProject;
     @Test
     public void testIsField10() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S140", "m( )");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertTrue(result.get(0).isField());
+    }
+    
+    @Test
+    public void testIsField11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertTrue(result.get(0).isField());
+    }
+    
+    @Test
+    public void testIsField12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertTrue(result.get(0).isField());
+    }
+    
+    @Test
+    public void testIsField13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertTrue(result.get(0).isField());
+    }
+    
+    @Test
+    public void testIsField14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
         assertTrue(result.get(0).isField());
@@ -1487,6 +2040,38 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testIsEnumConstant11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertFalse(result.get(0).isEnumConstant());
+    }
+    
+    @Test
+    public void testIsEnumConstant12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertFalse(result.get(0).isEnumConstant());
+    }
+    
+    @Test
+    public void testIsEnumConstant13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertFalse(result.get(0).isEnumConstant());
+    }
+    
+    @Test
+    public void testIsEnumConstant14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertFalse(result.get(0).isEnumConstant());
+    }
+    
+    @Test
     public void testIsThis1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
@@ -1567,6 +2152,38 @@ private static JavaProject SliceProject;
     }
     
     @Test
+    public void testIsThis11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertTrue(result.get(0).isThis());
+    }
+    
+    @Test
+    public void testIsThis12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertTrue(result.get(0).isThis());
+    }
+    
+    @Test
+    public void testIsThis13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertTrue(result.get(0).isThis());
+    }
+    
+    @Test
+    public void testIsThis14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertTrue(result.get(0).isThis());
+    }
+    
+    @Test
     public void testIsSuper1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
@@ -1644,5 +2261,37 @@ private static JavaProject SliceProject;
         List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
         
         assertTrue(result.get(0).isSuper());
+    }
+    
+    @Test
+    public void testIsSuper11() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertFalse(result.get(0).isSuper());
+    }
+    
+    @Test
+    public void testIsSuper12() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "map");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertFalse(result.get(0).isSuper());
+    }
+    
+    @Test
+    public void testIsSuper13() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getDefFieldReference(cfg);
+        
+        assertFalse(result.get(0).isSuper());
+    }
+    
+    @Test
+    public void testIsSuper14() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test135", "s1");
+        List<JFieldReference> result = CFGTestUtil.getUseFieldReference(cfg);
+        
+        assertFalse(result.get(0).isSuper());
     }
 }

@@ -296,14 +296,6 @@ public class CFGNodeTest {
     }
     
     @Test
-    public void testIsBranch6() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test122", "m( )");
-        CFGNode node = CFGTestUtil.getNode(cfg, 3);
-        
-        assertTrue(node.isBranch());
-    }
-    
-    @Test
     public void testIsLoop1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test108", "m( )");
         CFGNode node = CFGTestUtil.getNode(cfg, 3);
@@ -801,8 +793,8 @@ public class CFGNodeTest {
     
     @Test
     public void testIsThrowClause() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test122", "m( )");
-        CFGNode node = CFGTestUtil.getNode(cfg, 25);
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test122", "n( int )");
+        CFGNode node = CFGTestUtil.getNode(cfg, 1);
         
         assertTrue(node.isThrowClause());
     }
