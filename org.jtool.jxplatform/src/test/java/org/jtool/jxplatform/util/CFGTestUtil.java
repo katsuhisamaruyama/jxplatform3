@@ -28,7 +28,10 @@ import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.builder.BasicBlockBuilder;
-import org.jtool.cfg.JExpedientReference;
+import org.jtool.cfg.JVersatileReference;
+import org.jtool.cfg.JUncoveredFieldReference;
+import org.jtool.cfg.JAliasReference;
+import org.jtool.cfg.JReturnValueReference;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -146,14 +149,44 @@ public class CFGTestUtil {
                 e.getKind().toString() + " " + e.getClass().toString()));
     }
     
-    public static List<JExpedientReference> getDefExpedientialReference(CFG cfg) {
-        return getDefReference(cfg, "JExpedientialReference")
-                .map(n -> (JExpedientReference)n).collect(Collectors.toList());
+    public static List<JVersatileReference> getDefVersatileReference(CFG cfg) {
+        return getDefReference(cfg, "JVersatileReference")
+                .map(n -> (JVersatileReference)n).collect(Collectors.toList());
     }
     
-    public static List<JExpedientReference> getUseExpedientialReference(CFG cfg) {
-        return getUseReference(cfg, "JExpedientialReference")
-                .map(n -> (JExpedientReference)n).collect(Collectors.toList());
+    public static List<JVersatileReference> getUseVersatileReference(CFG cfg) {
+        return getUseReference(cfg, "JVersatileReference")
+                .map(n -> (JVersatileReference)n).collect(Collectors.toList());
+    }
+    
+    public static List<JUncoveredFieldReference> getDefUncoveredFieldReference(CFG cfg) {
+        return getDefReference(cfg, "JUncoveredFieldReference")
+                .map(n -> (JUncoveredFieldReference)n).collect(Collectors.toList());
+    }
+    
+    public static List<JUncoveredFieldReference> getUseUncoveredFieldReference(CFG cfg) {
+        return getUseReference(cfg, "JUncoveredFieldReference")
+                .map(n -> (JUncoveredFieldReference)n).collect(Collectors.toList());
+    }
+    
+    public static List<JAliasReference> getDefAliasReference(CFG cfg) {
+        return getDefReference(cfg, "JAliasReference")
+                .map(n -> (JAliasReference)n).collect(Collectors.toList());
+    }
+    
+    public static List<JAliasReference> getUseAliasReference(CFG cfg) {
+        return getUseReference(cfg, "JAliasReference")
+                .map(n -> (JAliasReference)n).collect(Collectors.toList());
+    }
+    
+    public static List<JReturnValueReference> getDefReturnValueReference(CFG cfg) {
+        return getDefReference(cfg, "JReturnValueReference")
+                .map(n -> (JReturnValueReference)n).collect(Collectors.toList());
+    }
+    
+    public static List<JReturnValueReference> getUseReturnValueReference(CFG cfg) {
+        return getUseReference(cfg, "JReturnValueReference")
+                .map(n -> (JReturnValueReference)n).collect(Collectors.toList());
     }
     
     public static List<JLocalVarReference> getDefLocalReference(CFG cfg) {
@@ -177,22 +210,22 @@ public class CFGTestUtil {
     }
     
     public static List<JMethodReference> getMethodReference(CFG cfg) {
-        Stream<CFGMethodCall> nstream = CFGNode.sortNodes(cfg.getNodes()).stream()
-                .filter(n -> n.isMethodCall()).map(n -> (CFGMethodCall)n);
-        return nstream.map(n -> n.getMethodCall()).collect(Collectors.toList());
+        return CFGNode.sortNodes(cfg.getNodes()).stream()
+                .filter(n -> n.isMethodCall()).map(n -> (CFGMethodCall)n)
+                .map(n -> n.getMethodCall()).collect(Collectors.toList());
     }
     
     private static Stream<JVariableReference> getDefReference(CFG cfg, String refType) {
-        Stream<CFGStatement> nstream = CFGNode.sortNodes(cfg.getNodes()).stream()
-                .filter(n -> n.isStatement()).map(n -> (CFGStatement)n);
-        return nstream.flatMap(n -> n.getDefVariables().stream())
+        return CFGNode.sortNodes(cfg.getNodes()).stream()
+                .filter(n -> n instanceof CFGStatement).map(n -> (CFGStatement)n)
+                .flatMap(n -> n.getDefVariables().stream())
                 .filter(r -> r.getClass().getName().endsWith("." + refType));
     }
     
     private static Stream<JVariableReference> getUseReference(CFG cfg, String refType) {
-        Stream<CFGStatement> nstream = CFGNode.sortNodes(cfg.getNodes()).stream()
-                .filter(n -> n.isStatement()).map(n -> (CFGStatement)n);
-        return nstream.flatMap(n -> n.getUseVariables().stream())
+        return CFGNode.sortNodes(cfg.getNodes()).stream()
+                .filter(n -> n instanceof CFGStatement).map(n -> (CFGStatement)n)
+                .flatMap(n -> n.getUseVariables().stream())
                 .filter(r -> r.getClass().getName().endsWith("." + refType));
     }
     

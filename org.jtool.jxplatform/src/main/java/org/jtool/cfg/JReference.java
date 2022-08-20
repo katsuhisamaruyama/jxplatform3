@@ -309,6 +309,22 @@ public abstract class JReference {
     }
     
     /**
+     * Tests if this is a reference to one of various kind of program elements. 
+     * @return {@code true} if this is a versatile reference, otherwise {@code false}
+     */
+    public boolean isVersatileReference() {
+        return false;
+    }
+    
+    /**
+     * Tests if this is a reference to an unsupported program element.
+     * @return {@code true} if this is an unsupported reference, otherwise {@code false}
+     */
+    public boolean isUnsupportedReference() {
+        return false;
+    }
+    
+    /**
      * Tests if this reference is available.
      * @return {@code true} if this is a reference to an available element, otherwise {@code false}
      */

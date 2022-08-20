@@ -6,13 +6,14 @@
 package org.jtool.cfg;
 
 import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.Modifier;
 
 /**
  * A class that represents a reference to a variable that stores the return value.
  * 
  * @author Katsuhisa Maruyama
  */
-public class JReturnValueReference extends JExpedientReference {
+public class JReturnValueReference extends JVariableReference {
     
     /**
      * The symbol indicating that a reference represents a variable that stores the return value.
@@ -33,7 +34,12 @@ public class JReturnValueReference extends JExpedientReference {
      * @param primitive {@code true} if the type of the referenced variable is primitive, otherwise {@code false}
      */
     public JReturnValueReference(ASTNode node, String name, String type, boolean primitive) {
-        super(node, name, type, primitive);
+        super(node);
+        
+        this.isPrimitiveType = primitive;
+        this.modifiers = Modifier.NONE;
+        
+        setProperties(node, name, type);
     }
     
     /**
@@ -58,5 +64,13 @@ public class JReturnValueReference extends JExpedientReference {
     @Override
     public boolean isReturnValueReference() {
         return true;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isAvailable() {
+        return false;
     }
 }

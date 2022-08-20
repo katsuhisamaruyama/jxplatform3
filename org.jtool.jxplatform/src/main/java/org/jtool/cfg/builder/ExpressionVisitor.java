@@ -12,13 +12,14 @@ import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.CFGReceiver;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
+import org.jtool.cfg.JReference;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
-import org.jtool.cfg.JExpedientReference;
+import org.jtool.cfg.JVersatileReference;
 import org.jtool.cfg.JReturnValueReference;
 import org.jtool.cfg.JMethodReference;
-import org.jtool.cfg.JReference;
+import org.jtool.cfg.JUnsupportedReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.builder.UncaughtExceptionTypeCollector;
 import org.jtool.srcmodel.JavaProject;
@@ -826,7 +827,7 @@ public class ExpressionVisitor extends ASTVisitor {
     }
     
     private void setVariableForLiteral(ASTNode node, ITypeBinding tbinding) {
-        JVariableReference jvar = new JExpedientReference(node,
+        JVariableReference jvar = new JVersatileReference(node,
                 "$" + tbinding.getErasure().getQualifiedName(), tbinding);
         if (analysisMode.peek() == AnalysisMode.DEF) {
             curNode.addDefVariable(jvar);
@@ -871,7 +872,7 @@ public class ExpressionVisitor extends ASTVisitor {
             }
         }
         
-        JVariableReference jv = new JExpedientReference(node,
+        JVariableReference jv = new JUnsupportedReference(node,
                 "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
         lambdaNode.setDefVariable(jv);
         curNode.setUseVariable(jv);
@@ -911,7 +912,7 @@ public class ExpressionVisitor extends ASTVisitor {
         
         insertBeforeCurrentNode(lambdaNode);
         
-        JVariableReference jv = new JExpedientReference(node,
+        JVariableReference jv = new JUnsupportedReference(node,
                 "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
         lambdaNode.setDefVariable(jv);
         curNode.setUseVariable(jv);
@@ -939,7 +940,7 @@ public class ExpressionVisitor extends ASTVisitor {
         analysisMode.pop();
         curNode = tmpNode;
         
-        JVariableReference jv = new JExpedientReference(node,
+        JVariableReference jv = new JUnsupportedReference(node,
                 "$LAMBDA", tbinding.getErasure().getQualifiedName(), tbinding.isPrimitive());
         lambdaNode.setDefVariable(jv);
         curNode.setUseVariable(jv);
@@ -970,8 +971,8 @@ public class ExpressionVisitor extends ASTVisitor {
         ITypeBinding tbinding = node.resolveTypeBinding();
         String type = tbinding.getErasure().getQualifiedName();
         if (!JavaElementUtil.isVoid(type)) {
-            JVariableReference def = new JExpedientReference(node,
-                "$SWITCH_EXPRESSION", type, tbinding.isPrimitive());
+            JVariableReference def = new JUnsupportedReference(node,
+                    "$SWITCH_EXPRESSION", type, tbinding.isPrimitive());
             switchExpNode.addDefVariable(def);
             curNode.addUseVariable(def);
         }

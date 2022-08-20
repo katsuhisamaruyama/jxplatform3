@@ -14,7 +14,7 @@ import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JLocalVarReference;
 import org.jtool.cfg.JVariableReference;
-import org.jtool.cfg.JExpedientReference;
+import org.jtool.cfg.JVersatileReference;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaMethod;
@@ -279,8 +279,8 @@ public class StatementVisitor extends ASTVisitor {
         CFGNode curNode = condVisitor.getExitNode();
         
         ITypeBinding tbinding = condition.resolveTypeBinding();
-        JVariableReference jvar = new JExpedientReference(node,
-                "$Sw", tbinding.getQualifiedName(), tbinding.isPrimitive());
+        JVariableReference jvar = new JVersatileReference(node,
+                "$SwitchDef", tbinding.getQualifiedName(), tbinding.isPrimitive());
         switchNode.addDefVariable(jvar);
         
         ControlFlow caseEdge = createFlow(curNode, nextNode);
@@ -581,8 +581,8 @@ public class StatementVisitor extends ASTVisitor {
             CFGMethodEntry methodNode = (CFGMethodEntry)cfg.getEntryNode();
             String type = methodNode.getJavaMethod().getReturnType();
             boolean primitive = methodNode.getJavaMethod().isPrimitiveReturnType();
-            JVariableReference jvar = new JExpedientReference(methodNode.getASTNode(),
-                    RETURN_VALUE_SYMBOL, type, primitive);
+            JVariableReference jvar = new JVersatileReference(methodNode.getASTNode(),
+                    StatementVisitor.RETURN_VALUE_SYMBOL, type, primitive);
             returnNode.addDefVariable(jvar);
             
             ExpressionVisitor exprVisitor = new ExpressionVisitor(this, jproject, cfg, returnNode);
