@@ -27,7 +27,7 @@ import org.jtool.graph.GraphElement;
 import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
-import org.jtool.cfg.JExpedientReference;
+import org.jtool.cfg.JVersatileReference;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -177,14 +177,14 @@ public class PDGTestUtil {
                 e.getCFGNode().getKind().toString() + " " + e.getClass().toString()));
     }
     
-    public static List<JExpedientReference> getDefExpedientialReference(PDG pdg) {
+    public static List<JVersatileReference> getDefExpedientialReference(PDG pdg) {
         return getDefReference(pdg, "JExpedientialReference")
-                .map(n -> (JExpedientReference)n).collect(Collectors.toList());
+                .map(n -> (JVersatileReference)n).collect(Collectors.toList());
     }
     
-    public static List<JExpedientReference> getUseExpedientialReference(PDG pdg) {
+    public static List<JVersatileReference> getUseExpedientialReference(PDG pdg) {
         return getUseReference(pdg, "JExpedientialReference")
-                .map(n -> (JExpedientReference)n).collect(Collectors.toList());
+                .map(n -> (JVersatileReference)n).collect(Collectors.toList());
     }
     
     public static List<JLocalVarReference> getDefLocalReference(PDG pdg) {
