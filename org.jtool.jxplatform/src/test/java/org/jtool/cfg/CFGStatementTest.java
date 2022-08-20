@@ -1667,7 +1667,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 20);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("ret$1.y;a$0.y;A126.!A126( ).y", TestUtil.asStrOfReference(result));
+        assertEquals("a$0.y;ret$1.y;A126.!A126( ).y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1685,7 +1685,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 22);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("ret$1.y;a$0.y;A126.!A126( ).y", TestUtil.asStrOfReference(result));
+        assertEquals("a$0.y;ret$1.y;A126.!A126( ).y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1847,14 +1847,14 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 3);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("$java.lang.String;this.map.!java.util.HashMap.size;"
-                + "this.map.!java.util.HashMap.modCount;"
-                + "this.map.!java.util.HashMap.threshold;"
-                + "this.map.!java.util.HashMap$Node.hash;"
-                + "this.map.!java.util.HashMap$Node.value;"
+        assertEquals("$java.lang.String;this.map.!java.util.HashMap$Node.hash;"
                 + "this.map.!java.util.HashMap$Node.key;"
                 + "this.map.!java.util.HashMap$Node.next;"
-                + "this.map.!java.util.HashMap.table",
+                + "this.map.!java.util.HashMap$Node.value;"
+                + "this.map.!java.util.HashMap.modCount;"
+                + "this.map.!java.util.HashMap.size;"
+                + "this.map.!java.util.HashMap.table;"
+                + "this.map.!java.util.HashMap.threshold",
                 TestUtil.asStrOfReference(result));
     }
     
@@ -1864,10 +1864,11 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 8);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("$java.lang.String;this.map.!java.util.HashMap$Node.value;"
+        assertEquals("$java.lang.String;"
                 + "this.map.!java.util.HashMap$Node.hash;"
                 + "this.map.!java.util.HashMap$Node.key;"
                 + "this.map.!java.util.HashMap$Node.next;"
+                + "this.map.!java.util.HashMap$Node.value;"
                 + "this.map.!java.util.HashMap.table",
                 TestUtil.asStrOfReference(result));
     }
@@ -1905,7 +1906,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 9);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.x.a;this.x.x;this.x.y;this.x", TestUtil.asStrOfReference(result));
+        assertEquals("this.x.a;this.x;this.x.x;this.x.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1932,7 +1933,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 14);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.x.a;this.x.x;this.x.y;this.x", TestUtil.asStrOfReference(result));
+        assertEquals("this.x.a;this.x;this.x.x;this.x.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -1941,7 +1942,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 15);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.x.a;this.x.x;this.x.y;this.x", TestUtil.asStrOfReference(result));
+        assertEquals("this.x.a;this.x;this.x.x;this.x.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2023,7 +2024,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 25);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.x.a;this.x.x;this.x.y;this.x",
+        assertEquals("this.x.a;this.x;this.x.x;this.x.y",
                 TestUtil.asStrOfReference(result));
     }
     
@@ -2033,7 +2034,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 26);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.x.a;this.x.x;this.x.y;this.x",
+        assertEquals("this.x.a;this.x;this.x.x;this.x.y",
                 TestUtil.asStrOfReference(result));
     }
     
@@ -2090,7 +2091,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 33);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.x.a;this.x.x;this.x.y;this.x", TestUtil.asStrOfReference(result));
+        assertEquals("this.x.a;this.x;this.x.x;this.x.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2099,8 +2100,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 34);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.x.a;this.x.x;this.x.y;this.x",
-                TestUtil.asStrOfReference(result));
+        assertEquals("this.x.a;this.x;this.x.x;this.x.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2165,8 +2165,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 42);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.x.a;this.x.x;this.x.y;this.x",
-                TestUtil.asStrOfReference(result));
+        assertEquals("this.x.a;this.x;this.x.x;this.x.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2175,8 +2174,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 43);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.x.a;this.x.x;this.x.y;this.x",
-                TestUtil.asStrOfReference(result));
+        assertEquals("this.x.a;this.x;this.x.x;this.x.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2230,8 +2228,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 49);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.x.y.x;this.x.y.y;this.x.y;this.x.y.a",
-                TestUtil.asStrOfReference(result));
+        assertEquals("this.x.y.a;this.x.y.x;this.x.y;this.x.y.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2240,8 +2237,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 50);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.x.y.x;this.x.y.y;this.x.y;this.x.y.a",
-                TestUtil.asStrOfReference(result));
+        assertEquals("this.x.y.a;this.x.y.x;this.x.y;this.x.y.y", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2331,10 +2327,11 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 17);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.s1.value;this.s1.key$0.!java.lang.String.COMPACT_STRINGS;"
+        assertEquals("this.s1.key;"
+                + "this.s1.value;"
+                + "this.s1.key$0.!java.lang.String.COMPACT_STRINGS;"
                 + "this.s1.key$0.!java.lang.String.coder;"
-                + "this.s1.key$0.!java.lang.String.value;"
-                + "this.s1.key",
+                + "this.s1.key$0.!java.lang.String.value",
                 TestUtil.asStrOfReference(result));
     }
     
@@ -2353,11 +2350,11 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 19);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.s1.value;"
+        assertEquals("this.s1.key;"
+                + "this.s1.value;"
                 + "this.s1.key$0.!java.lang.String.COMPACT_STRINGS;"
                 + "this.s1.key$0.!java.lang.String.coder;"
-                + "this.s1.key$0.!java.lang.String.value;"
-                + "this.s1.key",
+                + "this.s1.key$0.!java.lang.String.value",
                 TestUtil.asStrOfReference(result));
     }
     
@@ -2394,15 +2391,15 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 4);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.s1.map.!java.util.HashMap.table;"
-                + "this.s1.map;"
-                + "this.s1.map.!java.util.HashMap$Node.value;"
+        assertEquals("this.s1.map;"
                 + "this.s1.map.!java.util.HashMap$Node.hash;"
-                + "this.s1.map.!java.util.HashMap.size;"
-                + "this.s1.map.!java.util.HashMap.modCount;"
+                + "this.s1.map.!java.util.HashMap$Node.key;"
                 + "this.s1.map.!java.util.HashMap$Node.next;"
-                + "this.s1.map.!java.util.HashMap.threshold;"
-                + "this.s1.map.!java.util.HashMap$Node.key",
+                + "this.s1.map.!java.util.HashMap$Node.value;"
+                + "this.s1.map.!java.util.HashMap.modCount;"
+                + "this.s1.map.!java.util.HashMap.size;"
+                + "this.s1.map.!java.util.HashMap.table;"
+                + "this.s1.map.!java.util.HashMap.threshold",
                 TestUtil.asStrOfReference(result));
     }
     
@@ -2430,15 +2427,15 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 7);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.s1.map.!java.util.HashMap.table;"
-                + "this.s1.map;"
-                + "this.s1.map.!java.util.HashMap$Node.value;"
+        assertEquals("this.s1.map;"
                 + "this.s1.map.!java.util.HashMap$Node.hash;"
-                + "this.s1.map.!java.util.HashMap.size;"
-                + "this.s1.map.!java.util.HashMap.modCount;"
+                + "this.s1.map.!java.util.HashMap$Node.key;"
                 + "this.s1.map.!java.util.HashMap$Node.next;"
-                + "this.s1.map.!java.util.HashMap.threshold;"
-                + "this.s1.map.!java.util.HashMap$Node.key",
+                + "this.s1.map.!java.util.HashMap$Node.value;"
+                + "this.s1.map.!java.util.HashMap.modCount;"
+                + "this.s1.map.!java.util.HashMap.size;"
+                + "this.s1.map.!java.util.HashMap.table;"
+                + "this.s1.map.!java.util.HashMap.threshold",
                 TestUtil.asStrOfReference(result));
     }
     
@@ -2466,12 +2463,12 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 17);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.s1.map.!java.util.HashMap.table;"
-                + "this.s1.map;"
-                + "this.s1.map.!java.util.HashMap$Node.value;"
+        assertEquals("this.s1.map;"
                 + "this.s1.map.!java.util.HashMap$Node.hash;"
+                + "this.s1.map.!java.util.HashMap$Node.key;"
                 + "this.s1.map.!java.util.HashMap$Node.next;"
-                + "this.s1.map.!java.util.HashMap$Node.key",
+                + "this.s1.map.!java.util.HashMap$Node.value;"
+                + "this.s1.map.!java.util.HashMap.table",
                 TestUtil.asStrOfReference(result));
     }
     
@@ -2490,12 +2487,12 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 19);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.s1.map.!java.util.HashMap.table;"
-                + "this.s1.map;"
-                + "this.s1.map.!java.util.HashMap$Node.value;"
+        assertEquals("this.s1.map;"
                 + "this.s1.map.!java.util.HashMap$Node.hash;"
+                + "this.s1.map.!java.util.HashMap$Node.key;"
                 + "this.s1.map.!java.util.HashMap$Node.next;"
-                + "this.s1.map.!java.util.HashMap$Node.key",
+                + "this.s1.map.!java.util.HashMap$Node.value;"
+                + "this.s1.map.!java.util.HashMap.table",
                 TestUtil.asStrOfReference(result));
     }
     @Test
