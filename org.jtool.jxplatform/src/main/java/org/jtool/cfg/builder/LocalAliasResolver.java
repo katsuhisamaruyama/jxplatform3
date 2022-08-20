@@ -93,10 +93,13 @@ class LocalAliasResolver {
     
     private boolean isFinalField(JVariableReference var) {
         if (var.isFieldAccess()) {
-            JavaClass jclass = jproject.getClass(var.getQualifiedName().getClassName());
-            JavaField jfield = jclass.getField(var.getQualifiedName().getMemberSignature());
-            if (jfield.isFinal()) {
-                return true;
+            String className = var.getQualifiedName().getClassName();
+            JavaClass jclass = jproject.getClass(className);
+            if (jclass != null) {
+                JavaField jfield = jclass.getField(var.getQualifiedName().getMemberSignature());
+                if (jfield.isFinal()) {
+                    return true;
+                }
             }
         }
         return false;
