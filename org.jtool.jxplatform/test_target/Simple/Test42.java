@@ -1,8 +1,8 @@
 
 class Test42 {
 
-    private P42 a = new P42(1);
-    private P42 b = a;
+    private final P42 a = new P42(1);
+    private final P42 b = a;
 
     void m1() { 
         int x1 = a.x;

@@ -1494,7 +1494,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 5);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("$Sw", TestUtil.asStrOfReference(result));
+        assertEquals("$SwitchDef", TestUtil.asStrOfReference(result));
     }
     
     @Test
