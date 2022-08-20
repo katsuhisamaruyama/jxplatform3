@@ -795,7 +795,7 @@ public class ExpressionVisitor extends ASTVisitor {
         if (jc != null && !jc.isEnum()) {
             for (JavaField jf : jc.getFields() ) {
                 if (!jf.isStatic()) {
-                    JVariableReference jv =  new JFieldReference(var.getASTNode(),
+                    JFieldReference jv =  new JFieldReference(var.getASTNode(),
                             jf.getClassName(), jf.getName(), var.getReferenceForm() + "." + jf.getName(),
                             jf.getType(), jf.isPrimitiveType(), jf.getModifiers(), jf.isInProject(), false);
                     vars.add(jv);
