@@ -24,8 +24,8 @@ abstract public class JMethod extends JCommon {
     
     protected boolean isDefUseCollected = false;
     
-    protected Set<DefUseField> defFields = new HashSet<>();
-    protected Set<DefUseField> useFields = new HashSet<>();
+    protected List<DefUseField> defFields = new ArrayList<>();
+    protected List<DefUseField> useFields = new ArrayList<>();
     protected Set<JMethod> accessedMethods = new HashSet<>();
     
     protected Set<DefUseField> allDefFields = new HashSet<>();
@@ -48,11 +48,11 @@ abstract public class JMethod extends JCommon {
         return declaringClass.isInProject();
     }
     
-    public Set<DefUseField> getDefFields() {
+    public List<DefUseField> getDefFields() {
         return defFields;
     }
     
-    public Set<DefUseField> getUseFields() {
+    public List<DefUseField> getUseFields() {
         return useFields;
     }
     

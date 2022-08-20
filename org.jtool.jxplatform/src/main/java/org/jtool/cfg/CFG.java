@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Stack;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 /**
@@ -302,33 +303,36 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * Obtains CFG nodes for method calls.
      * @return the collection of the method call nodes
      */
-    public Set<CFGMethodCall> getMethodCallNodes() {
+    public List<CFGMethodCall> getMethodCallNodes() {
         return getNodes().stream()
                          .filter(node -> node.isMethodCall())
                          .map(node -> (CFGMethodCall)node)
-                         .collect(Collectors.toSet());
+                         .sorted(Comparator.comparing(CFGNode::getId))
+                         .collect(Collectors.toList());
     }
     
     /**
      * Obtains CFG nodes for statements having defined and used variables.
      * @return the collection of the statement nodes
      */
-    public Set<CFGStatement> getStatementNodes() {
+    public List<CFGStatement> getStatementNodes() {
         return getNodes().stream()
                          .filter(node -> node.isStatement())
                          .map(node -> (CFGStatement)node)
-                         .collect(Collectors.toSet());
+                         .sorted(Comparator.comparing(CFGNode::getId))
+                         .collect(Collectors.toList());
     }
     
     /**
      * Obtains CFG nodes for field accesses.
      * @return the collection of the field access nodes
      */
-    public Set<CFGStatement> getFieldAccessNodes() {
+    public List<CFGStatement> getFieldAccessNodes() {
         return getNodes().stream()
                          .filter(node -> hasFieldAccess(node))
                          .map(node -> (CFGStatement)node)
-                         .collect(Collectors.toSet());
+                         .sorted(Comparator.comparing(CFGNode::getId))
+                         .collect(Collectors.toList());
     }
     
     /**

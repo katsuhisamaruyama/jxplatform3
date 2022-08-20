@@ -15,6 +15,9 @@ import org.jtool.cfg.JUncoveredFieldReference;
 import org.jtool.jxplatform.refmodel.DefUseField;
 import org.jtool.jxplatform.refmodel.JClass;
 import org.jtool.jxplatform.refmodel.JMethod;
+import java.util.List;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 /**
  * Finds fields defined and/or used in invoked methods and accessed fields.
@@ -70,7 +73,11 @@ class FieldReferenceResolver {
         
         CFGNode curNode = callNode;
         int index = 1;
-        for (DefUseField def : method.getAllDefFields()) {
+        List<DefUseField> sortedDefs = method.getAllDefFields().stream()
+                .sorted(Comparator.comparing(DefUseField::getQualifiedName))
+                .collect(Collectors.toList());
+        
+        for (DefUseField def : sortedDefs) {
             JVariableReference var = new JUncoveredFieldReference(callNode.getASTNode(),
                     def.getClassName(), def.getName(), def.getReferenceForm(),
                     def.getType(), def.isPrimitive(), def.getModifiers(), def.isInProject(),
@@ -101,11 +108,16 @@ class FieldReferenceResolver {
     }
     
     private void insertUseVariables(CFGMethodCall callNode, JMethod method) {
-        for (DefUseField use : method.getAllUseFields()) {
+        List<DefUseField> sortedUses = method.getAllUseFields().stream()
+                .sorted(Comparator.comparing(DefUseField::getQualifiedName))
+                .collect(Collectors.toList());
+        
+        for (DefUseField use : sortedUses) {
             JVariableReference var = new JUncoveredFieldReference(callNode.getASTNode(),
                     use.getClassName(), use.getName(), use.getReferenceForm(),
                     use.getType(), use.isPrimitive(), use.getModifiers(), use.isInProject(),
                     use.getHoldingNodes());
+            
             callNode.addUseVariable(var);
             callNode.getActualOut().addUseVariable(var);
         }
