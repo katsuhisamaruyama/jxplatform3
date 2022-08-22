@@ -1184,4 +1184,35 @@ public class JavaClass extends JavaElement {
         }
         afferentClasses.add(jclass);
     }
+    
+    /**
+     * Obtains classes that are obsolete at the same time when this class is updated.
+     * @return the collection of the obsolete classes
+     */
+    public Set<JavaClass> getObsoleteClasses() {
+        Set<JavaClass> allClasses = new HashSet<>();
+        collectObsoleteClasses(this, allClasses);
+        return allClasses;
+    }
+    
+    /**
+     * Collects classes that are obsolete at the same time when a target class is updated.
+     * @param jclass the target class
+     * @param classes the collection of the obsolete classes
+     */
+    private void collectObsoleteClasses(JavaClass jclass, Set<JavaClass> classes) {
+        assert jclass != null;
+        
+        if (classes.contains(jclass)) {
+            return;
+        }
+        classes.add(jclass);
+        jclass.getDescendants().stream()
+                .filter(descendant -> descendant.isInProject())
+                .forEach(descendant -> classes.add(descendant));
+        
+        for (JavaClass jc : jclass.getAfferentClassesInProject()) {
+            collectObsoleteClasses(jc, classes);
+        }
+    }
 }

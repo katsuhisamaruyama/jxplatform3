@@ -1509,4 +1509,89 @@ public class JavaClassTest {
                    + "org.jtool.videostore.before.Customer",
             TestUtil.asSortedStrOf(result));
     }
+    
+    @Test
+    public void testGetObsoleteClasses1() {
+        JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Customer");
+        Set<JavaClass> result = jc.getObsoleteClasses();
+        
+        assertEquals(3, result.size());
+        assertEquals("org.jtool.videostore.after.Customer;"
+                   + "org.jtool.videostore.after.CustomerTest;"
+                   + "org.jtool.videostore.use.CustomerUse",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
+    public void testGetObsoleteClasses2() {
+        JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Rental");
+        Set<JavaClass> result = jc.getObsoleteClasses();
+        
+        assertEquals(5, result.size());
+        assertEquals("org.jtool.videostore.after.Customer;"
+                   + "org.jtool.videostore.after.CustomerTest;"
+                   + "org.jtool.videostore.after.Rental;"
+                   + "org.jtool.videostore.after.RentalTest;"
+                   + "org.jtool.videostore.use.CustomerUse",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
+    public void testGetObsoleteClasses3() {
+        JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Movie");
+        Set<JavaClass> result = jc.getObsoleteClasses();
+        
+        assertEquals(7, result.size());
+        assertEquals("org.jtool.videostore.after.Customer;"
+                   + "org.jtool.videostore.after.CustomerTest;"
+                   + "org.jtool.videostore.after.Movie;"
+                   + "org.jtool.videostore.after.MovieTest;"
+                   + "org.jtool.videostore.after.Rental;"
+                   + "org.jtool.videostore.after.RentalTest;"
+                   + "org.jtool.videostore.use.CustomerUse",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
+    public void testGetObsoleteClasses4() {
+        JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.after.Price");
+        Set<JavaClass> result = jc.getObsoleteClasses();
+        
+        assertEquals(11, result.size());
+        assertEquals("org.jtool.videostore.after.ChildrensPrice;"
+                   + "org.jtool.videostore.after.Customer;"
+                   + "org.jtool.videostore.after.CustomerTest;"
+                   + "org.jtool.videostore.after.Movie;"
+                   + "org.jtool.videostore.after.MovieTest;"
+                   + "org.jtool.videostore.after.NewReleasePrice;"
+                   + "org.jtool.videostore.after.Price;"
+                   + "org.jtool.videostore.after.RegularPrice;"
+                   + "org.jtool.videostore.after.Rental;"
+                   + "org.jtool.videostore.after.RentalTest;"
+                   + "org.jtool.videostore.use.CustomerUse",
+            TestUtil.asSortedStrOf(result));
+    }
+    
+    @Test
+    public void testGetObsoleteClasses5() {
+        JavaClass jc = VideoStoreProject.getClass("org.jtool.videostore.use.CustomerUse");
+        Set<JavaClass> result = jc.getObsoleteClasses();
+        
+        assertEquals(1, result.size());
+    }
+    
+    @Test
+    public void testGetObsoleteClasses6() {
+        JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
+        Set<JavaClass> result = jc.getObsoleteClasses();
+        
+        assertEquals(6, result.size());
+        assertEquals("java.util.ArrayList;"
+                   + "org.jtool.videostore.after.Customer;"
+                   + "org.jtool.videostore.after.CustomerTest;"
+                   + "org.jtool.videostore.before.Customer;"
+                   + "org.jtool.videostore.before.CustomerTest;"
+                   + "org.jtool.videostore.use.CustomerUse",
+            TestUtil.asSortedStrOf(result));
+    }
 }
