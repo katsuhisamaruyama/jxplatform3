@@ -20,7 +20,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
 /**
  * An object that stores information on PDGs in the project.
@@ -84,7 +83,7 @@ public class PDGStore {
             }
         }
         
-        ClDG cldg = getClDG(jclass.getQualifiedName().fqn(), jclass, true, whole);
+        ClDG cldg = getClDG(jclass.getQualifiedName().fqn(), jclass, force, whole);
         if (cldg == null) {
             return null;
         }
@@ -109,6 +108,7 @@ public class PDGStore {
                 return cldg;
             }
         } else {
+            cldgMap.remove(jclass.getQualifiedName().fqn());
             jclass.getMethods().forEach(jmethod -> bpdgMap.remove(jmethod.getQualifiedName().fqn()));
             jclass.getFields().forEach(jfield -> bpdgMap.remove(jfield.getQualifiedName().fqn()));
         }
@@ -119,7 +119,7 @@ public class PDGStore {
         }
         
         if (whole) {
-            SDG sdg = getSDG(getEfferentClasses(jclass), true, true);
+            SDG sdg = getSDG(getColleagues(jclass), true, true);
             ClDG cldg = sdg.findClDG(fqn);
             if (cldg != null) {
                 cldgMap.put(cldg.getQualifiedName().fqn(), cldg);
@@ -139,20 +139,20 @@ public class PDGStore {
         return getSDG(classes, force, true);
     }
     
+    public SDG getSDG(JavaClass jclass, boolean force) {
+        return getSDG(jclass, force, true);
+    }
+    
     public SDG getSDG(JavaClass jclass, boolean force, boolean whole) {
         assert jclass != null;
         
         if (whole) {
-            return getSDG(getEfferentClasses(jclass), force, true);
+            return getSDG(getColleagues(jclass), force, true);
         } else {
             Set<JavaClass> classes = new HashSet<>();
             classes.add(jclass);
             return getSDG(classes, force, false);
         }
-    }
-    
-    public SDG getSDG(JavaClass jclass, boolean force) {
-        return getSDG(jclass, force, true);
     }
     
     public SDG getSDG(Set<JavaClass> classes, boolean force, boolean whole) {
@@ -164,6 +164,7 @@ public class PDGStore {
                     sdg.add(cldg);
                     continue;
                 } else {
+                    cldgMap.remove(jclass.getQualifiedName().fqn());
                     jclass.getMethods().forEach(jmethod -> bpdgMap.remove(jmethod.getQualifiedName().fqn()));
                     jclass.getFields().forEach(jfield -> bpdgMap.remove(jfield.getQualifiedName().fqn()));
                 }
@@ -187,39 +188,33 @@ public class PDGStore {
         return sdg;
     }
     
-    Set<JavaClass> getEfferentClasses(JavaClass jclass) {
+    Set<JavaClass> getColleagues(JavaClass jclass) {
         Set<JavaClass> allClasses = new HashSet<>();
-        collectEfferentClasses(jclass, allClasses);
+        collectColleagues(jclass, allClasses);
         return allClasses;
     }
     
-    Set<JavaClass> getEfferentClasses(Set<JavaClass> classes) {
+    Set<JavaClass> getColleague(Set<JavaClass> classes) {
         Set<JavaClass> allClasses = new HashSet<>();
         for (JavaClass jclass : classes) {
-            collectEfferentClasses(jclass, allClasses);
+            collectColleagues(jclass, allClasses);
         }
         return allClasses;
     }
     
-    private void collectEfferentClasses(JavaClass jclass, Set<JavaClass> classes) {
+    private void collectColleagues(JavaClass jclass, Set<JavaClass> classes) {
         assert jclass != null;
         
         if (classes.contains(jclass)) {
             return;
         }
         classes.add(jclass);
-        classes.addAll(collectDescendantClassesInProject(jclass));
+        jclass.getDescendants().stream()
+                .filter(descendant -> descendant.isInProject())
+                .forEach(descendant -> classes.add(descendant));
         
         for (JavaClass jc : jclass.getEfferentClassesInProject()) {
-            collectEfferentClasses(jc, classes);
+            collectColleagues(jc, classes);
         }
-    }
-    
-    private Set<JavaClass> collectDescendantClassesInProject(JavaClass jclass) {
-        assert jclass != null;
-        
-        return jclass.getDescendants().stream()
-                     .filter(descendant -> descendant.isInProject())
-                     .collect(Collectors.toSet());
     }
 }

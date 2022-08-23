@@ -86,6 +86,21 @@ public class BytecodeClassStore {
     public void destroy() {
     }
     
+    public void update() {
+        if (analysisLevel == 3) {
+            internalClassMap.clear();
+            externalClassMap.clear();
+            
+            Logger logger = jproject.getModelBuilderImpl().getLogger();
+            ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
+            
+            setClassHierarchy();
+            collectBytecodeClassInfo(logger, pm);
+            
+            writeBytecodeCache();
+        }
+    }
+    
     public boolean analyzingBytecode() {
         return jproject.getModelBuilderImpl().analyzeBytecode();
     }

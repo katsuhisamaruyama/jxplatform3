@@ -94,12 +94,27 @@ public class CFGStore {
         return ccfgs.get(fqn);
     }
     
+    private void removeCFGs(JavaClass jclass) {
+        jclass.getObsoleteClasses().forEach(jc -> {
+            ccfgs.remove(jclass.getQualifiedName().fqn());
+            jc.getMethods().forEach(jmethod -> {
+                cfgs.remove(jmethod.getQualifiedName().fqn());
+                ucfgs.remove(jmethod.getQualifiedName().fqn());
+            });
+        });
+    }
+    
     public CCFG getCCFG(JavaClass jclass, boolean force) {
         if (!force) {
             CCFG ccfg = ccfgs.get(jclass.getQualifiedName().fqn());
             if (ccfg != null) {
                 return ccfg;
             }
+        }
+        
+        if (force) {
+            bcStore.update();
+            removeCFGs(jclass);
         }
         
         CCFG ccfg = CCFGBuilder.build(jclass, force);
@@ -124,6 +139,11 @@ public class CFGStore {
             }
         }
         
+        if (force) {
+            bcStore.update();
+            removeCFGs(jmethod.getDeclaringClass());
+        }
+        
         CFG cfg = CFGMethodBuilder.build(jmethod, true);
         addCFG(cfg, true);
         return cfg;
@@ -144,6 +164,11 @@ public class CFGStore {
                 addCFG(cfg, true);
                 return cfg;
             }
+        }
+        
+        if (force) {
+            bcStore.update();
+            removeCFGs(jfield.getDeclaringClass());
         }
         
         CFG cfg = CFGFieldBuilder.build(jfield, true);
