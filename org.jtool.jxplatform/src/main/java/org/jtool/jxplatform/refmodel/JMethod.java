@@ -28,8 +28,8 @@ abstract public class JMethod extends JCommon {
     protected List<DefUseField> useFields = new ArrayList<>();
     protected Set<JMethod> accessedMethods = new HashSet<>();
     
-    protected Set<DefUseField> allDefFields = new HashSet<>();
-    protected Set<DefUseField> allUseFields = new HashSet<>();
+    protected List<DefUseField> allDefFields = new ArrayList<>();
+    protected List<DefUseField> allUseFields = new ArrayList<>();
     
     static final String OUTSIDE_FIELD_SYMBOL = "!";
     
@@ -60,11 +60,11 @@ abstract public class JMethod extends JCommon {
         return accessedMethods;
     }
     
-    public Set<DefUseField> getAllDefFields() {
+    public List<DefUseField> getAllDefFields() {
         return allDefFields;
     }
     
-    public Set<DefUseField> getAllUseFields() {
+    public List<DefUseField> getAllUseFields() {
         return allUseFields;
     }
     

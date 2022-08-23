@@ -52,23 +52,19 @@ class JMethodInternal extends JMethod {
                     continue;
                 }
                 
-                cfgnode.getDefVariables().stream() 
-                    .filter(var -> var.isFieldAccess())
-                    .forEach(fv -> {
-                        DefUseField var = new DefUseField((JFieldReference)fv, cfgnode);
-                        if (!defFields.contains(var)) {
+                cfgnode.getDefVariables().stream()
+                        .filter(var -> var.isFieldAccess())
+                        .map(var -> new DefUseField((JFieldReference)var, cfgnode))
+                        .forEach(var -> {
                             defFields.add(updateClassName(var));
-                        }
-                    });
+                        });
                 
                 cfgnode.getUseVariables().stream()
-                    .filter(var -> var.isFieldAccess())
-                    .forEach(fv -> {
-                        DefUseField var = new DefUseField((JFieldReference)fv, cfgnode);
-                        if (!useFields.contains(var)) {
+                        .filter(var -> var.isFieldAccess())
+                        .map(var -> new DefUseField((JFieldReference)var, cfgnode))
+                        .forEach(var -> {
                             useFields.add(updateClassName(var));
-                        }
-                    });
+                        });
             }
         }
     }

@@ -81,8 +81,8 @@ public class CFGBuilderTest {
                 if (!match) {
                     System.err.println("Incorrect CFG: " + ccfg.getQualifiedName().fqn());
                     result = false;
-                    //Path path0 = cfgPath.resolve(jclass.getQualifiedName().fqn() + ".cfg0");
-                    //CFGTestUtil.writeCFG(path0, actual);
+                    Path path0 = cfgPath.resolve(jclass.getQualifiedName().fqn() + ".cfg0");
+                    CFGTestUtil.writeCFG(path0, actual);
                 }
             } catch (IOException e) {
                 System.err.println("Cannot find CFG data: " + ccfg.getQualifiedName().fqn());

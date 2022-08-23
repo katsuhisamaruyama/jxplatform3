@@ -208,13 +208,16 @@ public class JMethodCacheLibTest {
         List<String> result = TestUtil.asSortedList(addRentalMethod.getUseFields().stream()
                 .map(o -> o.getQualifiedName()));
         
-        assertEquals(6, result.size());
+        assertEquals(9, result.size());
         assertEquals("java.util.AbstractList%modCount%this.rentals.!java.util.ArrayList.modCount", result.get(0));
-        assertEquals("java.util.ArrayList%elementData%this.rentals.!java.util.ArrayList.elementData", result.get(1));
-        assertEquals("java.util.ArrayList%size%this.rentals.!java.util.ArrayList.size", result.get(2));
-        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(3));
-        assertEquals("org.jtool.videostore.after.Rental%daysRented%rental$0.daysRented", result.get(4));
-        assertEquals("org.jtool.videostore.after.Rental%movie%rental$0.movie", result.get(5));
+        assertEquals("java.util.AbstractList%modCount%this.rentals.!java.util.ArrayList.modCount", result.get(1));
+        assertEquals("java.util.ArrayList%elementData%this.rentals.!java.util.ArrayList.elementData", result.get(2));
+        assertEquals("java.util.ArrayList%elementData%this.rentals.!java.util.ArrayList.elementData", result.get(3));
+        assertEquals("java.util.ArrayList%size%this.rentals.!java.util.ArrayList.size", result.get(4));
+        assertEquals("java.util.ArrayList%size%this.rentals.!java.util.ArrayList.size", result.get(5));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(6));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%rental$0.daysRented", result.get(7));
+        assertEquals("org.jtool.videostore.after.Rental%movie%rental$0.movie", result.get(8));
     }
     
     @Test
@@ -222,19 +225,42 @@ public class JMethodCacheLibTest {
         List<String> result = TestUtil.asSortedList(statementMethod.getUseFields().stream()
                 .map(o -> o.getQualifiedName()));
         
-        assertEquals(12, result.size());
+        assertEquals(35, result.size());
         assertEquals("java.lang.String%COMPACT_STRINGS%this.!java.lang.String.COMPACT_STRINGS", result.get(0));
-        assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(1));
-        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(2));
-        assertEquals("org.jtool.videostore.after.Movie%price%each$1.movie.price", result.get(3));
-        assertEquals("org.jtool.videostore.after.Movie%price%this.each$1.movie.price", result.get(4));
-        assertEquals("org.jtool.videostore.after.Movie%price%this.movie.price", result.get(5));
-        assertEquals("org.jtool.videostore.after.Movie%title%each$1.!getMovie( ).title", result.get(6));
-        assertEquals("org.jtool.videostore.after.Movie%title%this.movie.title", result.get(7));
-        assertEquals("org.jtool.videostore.after.Rental%daysRented%each$1.daysRented", result.get(8));
-        assertEquals("org.jtool.videostore.after.Rental%daysRented%this.each$1.daysRented", result.get(9));
-        assertEquals("org.jtool.videostore.after.Rental%movie%each$1.movie", result.get(10));
-        assertEquals("org.jtool.videostore.after.Rental%movie%this.each$1.movie", result.get(11));
+        assertEquals("java.lang.String%COMPACT_STRINGS%this.!java.lang.String.COMPACT_STRINGS", result.get(1));
+        assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(2));
+        assertEquals("org.jtool.videostore.after.Customer%name%this.name", result.get(3));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(4));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(5));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(6));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(7));
+        assertEquals("org.jtool.videostore.after.Customer%rentals%this.rentals", result.get(8));
+        assertEquals("org.jtool.videostore.after.Movie%price%each$1.movie.price", result.get(9));
+        assertEquals("org.jtool.videostore.after.Movie%price%each$1.movie.price", result.get(10));
+        assertEquals("org.jtool.videostore.after.Movie%price%this.each$1.movie.price", result.get(11));
+        assertEquals("org.jtool.videostore.after.Movie%price%this.each$1.movie.price", result.get(12));
+        assertEquals("org.jtool.videostore.after.Movie%price%this.each$1.movie.price", result.get(13));
+        assertEquals("org.jtool.videostore.after.Movie%price%this.each$1.movie.price", result.get(14));
+        assertEquals("org.jtool.videostore.after.Movie%price%this.movie.price", result.get(15));
+        assertEquals("org.jtool.videostore.after.Movie%price%this.movie.price", result.get(16));
+        assertEquals("org.jtool.videostore.after.Movie%title%each$1.!getMovie( ).title", result.get(17));
+        assertEquals("org.jtool.videostore.after.Movie%title%each$1.!getMovie( ).title", result.get(18));
+        assertEquals("org.jtool.videostore.after.Movie%title%this.movie.title", result.get(19));
+        assertEquals("org.jtool.videostore.after.Movie%title%this.movie.title", result.get(20));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%each$1.daysRented", result.get(21));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%each$1.daysRented", result.get(22));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%this.each$1.daysRented", result.get(23));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%this.each$1.daysRented", result.get(24));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%this.each$1.daysRented", result.get(25));
+        assertEquals("org.jtool.videostore.after.Rental%daysRented%this.each$1.daysRented", result.get(26));
+        assertEquals("org.jtool.videostore.after.Rental%movie%each$1.movie", result.get(27));
+        assertEquals("org.jtool.videostore.after.Rental%movie%each$1.movie", result.get(28));
+        assertEquals("org.jtool.videostore.after.Rental%movie%each$1.movie", result.get(29));
+        assertEquals("org.jtool.videostore.after.Rental%movie%each$1.movie", result.get(30));
+        assertEquals("org.jtool.videostore.after.Rental%movie%this.each$1.movie", result.get(31));
+        assertEquals("org.jtool.videostore.after.Rental%movie%this.each$1.movie", result.get(32));
+        assertEquals("org.jtool.videostore.after.Rental%movie%this.each$1.movie", result.get(33));
+        assertEquals("org.jtool.videostore.after.Rental%movie%this.each$1.movie", result.get(34));
     }
     
     @Test
