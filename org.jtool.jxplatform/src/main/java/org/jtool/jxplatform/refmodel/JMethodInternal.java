@@ -56,14 +56,18 @@ class JMethodInternal extends JMethod {
                     .filter(var -> var.isFieldAccess())
                     .forEach(fv -> {
                         DefUseField var = new DefUseField((JFieldReference)fv, cfgnode);
-                        defFields.add(updateClassName(var));
+                        if (!defFields.contains(var)) {
+                            defFields.add(updateClassName(var));
+                        }
                     });
                 
                 cfgnode.getUseVariables().stream()
                     .filter(var -> var.isFieldAccess())
                     .forEach(fv -> {
                         DefUseField var = new DefUseField((JFieldReference)fv, cfgnode);
-                        useFields.add(updateClassName(var));
+                        if (!useFields.contains(var)) {
+                            useFields.add(updateClassName(var));
+                        }
                     });
             }
         }

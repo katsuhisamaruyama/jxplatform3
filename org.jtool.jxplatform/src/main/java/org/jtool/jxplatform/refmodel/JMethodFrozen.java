@@ -39,12 +39,16 @@ class JMethodFrozen extends JMethod {
         bclass.getDefFields(getSignature()).stream()
             .forEach(var -> {
                 var.updateReferenceForm(OUTSIDE_FIELD_SYMBOL + var.getReferenceForm());
-                defFields.add(updateClassName(var));
+                if (!defFields.contains(var)) {
+                    defFields.add(updateClassName(var));
+                }
             });
         bclass.getUseFields(getSignature()).stream()
             .forEach(var -> {
                 var.updateReferenceForm(OUTSIDE_FIELD_SYMBOL + var.getReferenceForm());
-                useFields.add(updateClassName(var));
+                if (!useFields.contains(var)) {
+                    useFields.add(updateClassName(var));
+                }
             });
     }
     
