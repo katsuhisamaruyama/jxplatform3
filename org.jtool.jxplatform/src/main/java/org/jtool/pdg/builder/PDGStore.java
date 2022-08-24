@@ -119,7 +119,7 @@ public class PDGStore {
         }
         
         if (whole) {
-            SDG sdg = getSDG(getColleagues(jclass), true, true);
+            SDG sdg = getSDG(getColleagues(jclass), force, true);
             ClDG cldg = sdg.findClDG(fqn);
             if (cldg != null) {
                 cldgMap.put(cldg.getQualifiedName().fqn(), cldg);
