@@ -15,6 +15,7 @@ import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JLocalVarReference;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JVersatileReference;
+import org.jtool.cfg.CFGTry;
 import org.jtool.graph.GraphEdge;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaMethod;
@@ -58,6 +59,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Stack;
 
 /**
@@ -106,7 +109,8 @@ public class StatementVisitor extends ASTVisitor {
     
     private Set<Label> labels = new HashSet<>();
     
-    private Stack<TryNode> tryNodeStack = new Stack<>();
+    private Stack<CFGTry> tryNodeStack = new Stack<>();
+    private Map<CFGTry, Set<ExceptionOccurrence>> exceptionOccurrences = new HashMap<>();
     
     protected StatementVisitor(JavaProject jproject, CFG cfg, CFGNode prevNode, CFGNode nextNode) {
          this.jproject = jproject;
@@ -680,7 +684,9 @@ public class StatementVisitor extends ASTVisitor {
     @Override
     @SuppressWarnings("unchecked")
     public boolean visit(TryStatement node) {
-        TryNode tryNode = new TryNode(node, CFGNode.Kind.trySt);
+        CFGTry tryNode = new CFGTry(node);
+        exceptionOccurrences.put(tryNode, new HashSet<ExceptionOccurrence>());
+        
         reconnect(tryNode);
         
         tryNodeStack.push(tryNode);
@@ -724,7 +730,7 @@ public class StatementVisitor extends ASTVisitor {
     }
     
     @SuppressWarnings("unchecked")
-    private void visitCatchClause(TryNode tryNode, CatchClause node, CFGMerge mergeNode) {
+    private void visitCatchClause(CFGTry tryNode, CatchClause node, CFGMerge mergeNode) {
         IVariableBinding vbinding = node.getException().resolveBinding();
         
         CFGException catchNode = null;
@@ -758,8 +764,9 @@ public class StatementVisitor extends ASTVisitor {
         reconnect(mergeNode);
     }
     
-    private void visitFinallyBlock(TryNode tryNode, Block block) {
+    private void visitFinallyBlock(CFGTry tryNode, Block block) {
         CFGStatement finallyNode = new CFGStatement(block, CFGNode.Kind.finallyClause);
+        tryNode.setFinallyNode(finallyNode);
         
         reconnect(finallyNode);
         
@@ -772,9 +779,8 @@ public class StatementVisitor extends ASTVisitor {
         fallEdge.setFallThrough();
     }
     
-    private void catchClause(TryNode tryNode) {
-        Set<TryNode.ExceptionOccurrence> occurrences = new HashSet<>(tryNode.getExceptionOccurrences());
-        for (TryNode.ExceptionOccurrence occurence : occurrences) {
+    private void catchClause(CFGTry tryNode) {
+        for (ExceptionOccurrence occurence : new HashSet<>(exceptionOccurrences.get(tryNode))) {
             for (CFGException catchNode : getCatchNodes(occurence.getType(), tryNode.getCatchNodes())) {
                 ControlFlow exceptionEdge = createFlow(occurence.getNode(), catchNode);
                 if (occurence.isMethodCall()) {
@@ -782,17 +788,19 @@ public class StatementVisitor extends ASTVisitor {
                 } else {
                     exceptionEdge.setTrue();
                 }
-                tryNode.getExceptionOccurrences().remove(occurence);
+                exceptionOccurrences.get(tryNode).remove(occurence);
             }
         }
         
         tryNodeStack.pop();
         if (tryNodeStack.size() > 0) {
-            for (TryNode.ExceptionOccurrence occurence : tryNode.getExceptionOccurrences()) {
-                tryNodeStack.peek().addExceptionOccurrence(occurence.getNode(), occurence.getType(), occurence.isMethodCall());
+            for (ExceptionOccurrence occurence : exceptionOccurrences.get(tryNode)) {
+                Set<ExceptionOccurrence> occurrences = exceptionOccurrences.get(tryNodeStack.peek());
+                occurrences.add(
+                        new ExceptionOccurrence(occurence.getNode(), occurence.getType(), occurence.isMethodCall()));
             }
         } else {
-            for (TryNode.ExceptionOccurrence occurence : tryNode.getExceptionOccurrences()) {
+            for (ExceptionOccurrence occurence : exceptionOccurrences.get(tryNode)) {
                 setExceptionFlowOnMethod(occurence.getNode(), occurence.getType(), occurence.isMethodCall());
             }
         }
@@ -813,7 +821,8 @@ public class StatementVisitor extends ASTVisitor {
         }
         
         if (tryNodeStack.size() > 0) {
-            tryNodeStack.peek().addExceptionOccurrence(node, tbinding.getTypeDeclaration(), methodCall);
+            Set<ExceptionOccurrence> occurrences = exceptionOccurrences.get(tryNodeStack.peek());
+            occurrences.add(new ExceptionOccurrence(node, tbinding.getTypeDeclaration(), methodCall));
         } else {
             setExceptionFlowOnMethod(node, tbinding.getTypeDeclaration(), methodCall);
         }
@@ -900,54 +909,30 @@ public class StatementVisitor extends ASTVisitor {
         }
     }
     
-    private class TryNode extends CFGStatement {
+    class ExceptionOccurrence {
         
-        private Set<ExceptionOccurrence> exceptionOccurrences = new HashSet<>();
+        private CFGStatement node;
         
-        private List<CFGStatement> catchNodes = new ArrayList<>();
+        private ITypeBinding type;
         
-        TryNode(ASTNode node, Kind kind) {
-            super(node, kind);
+        private boolean methodCall;
+        
+        ExceptionOccurrence(CFGStatement node, ITypeBinding type, boolean methodCall) {
+            this.node = node;
+            this.type = type;
+            this.methodCall = methodCall;
         }
         
-        void addExceptionOccurrence(CFGStatement node, ITypeBinding type, boolean methidCall) {
-            exceptionOccurrences.add(new ExceptionOccurrence(node, type, methidCall));
+        CFGStatement getNode() {
+            return node;
         }
         
-        Set<ExceptionOccurrence> getExceptionOccurrences() {
-            return exceptionOccurrences;
+        ITypeBinding getType() {
+          return type;
         }
         
-        void addCatchNode(CFGStatement node) {
-            catchNodes.add(node);
-        }
-        
-        List<CFGStatement> getCatchNodes() {
-            return catchNodes;
-        }
-        
-        class ExceptionOccurrence {
-            private CFGStatement node;
-            private ITypeBinding type;
-            private boolean methodCall;
-            
-            ExceptionOccurrence(CFGStatement node, ITypeBinding type, boolean methodCall) {
-                this.node = node;
-                this.type = type;
-                this.methodCall = methodCall;
-            }
-            
-            CFGStatement getNode() {
-                return node;
-            }
-            
-            ITypeBinding getType() {
-              return type;
-            }
-            
-            boolean isMethodCall() {
-                return methodCall;
-            }
+        boolean isMethodCall() {
+            return methodCall;
         }
     }
 }
