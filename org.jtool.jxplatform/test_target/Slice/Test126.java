@@ -13,6 +13,7 @@ class Test126 {
         a3.setY(3);
         int s = a3.getY();
         A126 a4 = a.add2(p);
+        int t = a2.y;
     }
 }
 
