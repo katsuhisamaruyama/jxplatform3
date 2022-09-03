@@ -82,8 +82,8 @@ public class PDGBuilderTest {
                 if (!match) {
                     System.err.println("Incorrect PDG: " + cldg.getQualifiedName().fqn());
                     result = false;
-                    //Path path0 = pdgPath.resolve(jclass.getQualifiedName().fqn() + ".pdg0");
-                    //PDGTestUtil.writePDG(path0, actual);
+                    Path path0 = pdgPath.resolve(jclass.getQualifiedName().fqn() + ".pdg0");
+                    PDGTestUtil.writePDG(path0, actual);
                 }
             } catch (IOException e) {
                 System.err.println("Cannot find PDG data: " + cldg.getQualifiedName().fqn());

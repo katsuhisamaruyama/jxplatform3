@@ -293,6 +293,7 @@ public class PDGTestUtil {
     }
     
     static String toStringForEdges(PDG pdg) {
+        CFG cfg = pdg.getEntryNode().getCFGEntry().getCFG();
         StringBuilder buf = new StringBuilder();
         buf.append(GraphElement.getIdString(0));
         buf.append(": ");
@@ -300,7 +301,7 @@ public class PDGTestUtil {
         buf.append("\n");
         
         List<String> edgesInfo = Dependence.sortEdges(pdg.getEdges()).stream()
-                .map(edge -> toString(pdg, edge)).sorted().collect(Collectors.toList());
+                .map(edge -> toString(cfg, edge)).sorted().collect(Collectors.toList());
         long index = 1;
         for (String edgeInfo : edgesInfo) {
             buf.append(GraphElement.getIdString(index));
@@ -312,10 +313,11 @@ public class PDGTestUtil {
         return buf.toString();
     }
     
-    private static String toString(PDG pdg, Dependence edge) {
+    private static String toString(CFG cfg, Dependence edge) {
         StringBuilder buf = new StringBuilder();
-        buf.append(String.valueOf(getId(pdg, edge.getSrcNode())) + " -> " +
-                   String.valueOf(getId(pdg, edge.getDstNode())));
+        buf.append(CFGTestUtil.getIdString(cfg, edge.getSrcNode().getCFGNode())
+                   + " -> " + 
+                   CFGTestUtil.getIdString(cfg, edge.getDstNode().getCFGNode()));
         if (edge.getKind() != null) {
             buf.append(" " + edge.getKind().toString());
         }
@@ -325,13 +327,9 @@ public class PDGTestUtil {
                 buf.append(" " + dd.getVariable().getReferenceForm());
             }
             if (dd.isLoopCarried()) {
-                buf.append(" " + String.valueOf(getId(pdg, dd.getLoopCarriedNode())));
+                buf.append(" (LC = " + CFGTestUtil.getIdString(cfg, dd.getLoopCarriedNode().getCFGNode()) + ")");
             }
         }
         return buf.toString();
-    }
-    
-    public static long getId(PDG pdg, PDGNode node) {
-        return node.getId() - pdg.getEntryNode().getId();
     }
 }
