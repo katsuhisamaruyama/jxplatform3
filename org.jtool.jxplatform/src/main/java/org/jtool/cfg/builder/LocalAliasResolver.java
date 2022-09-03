@@ -143,7 +143,7 @@ class LocalAliasResolver {
     }
     
     private void collectAliases(CFG cfg) {
-        for (CFGNode node : cfg.getNodes()) {
+        for (CFGNode node : CFGNode.sortNodes(cfg.getNodes())) {
             List<Alias> aliases = new ArrayList<>();
             collectAliases(node, aliases);
             aliases.forEach(a -> createAliasMap(node, a, new HashSet<>()));
