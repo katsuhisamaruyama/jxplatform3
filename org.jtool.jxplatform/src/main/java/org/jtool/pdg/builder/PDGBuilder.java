@@ -7,7 +7,6 @@ package org.jtool.pdg.builder;
 
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.ClDG;
-import org.jtool.pdg.SDG;
 import org.jtool.pdg.DependencyGraph;
 import org.jtool.pdg.Dependence;
 import org.jtool.pdg.CD;
@@ -278,7 +277,6 @@ public class PDGBuilder {
         Set<PDGStatement> formalIns = entry.getFormalIns().stream()
                                            .map(node -> (PDGStatement)node.getPDGNode())
                                            .collect(Collectors.toSet());
-        
         PDGStatement formalOut = (PDGStatement)entry.getFormalOut().getPDGNode();
         
         Set<PDGStatement> nodes = new HashSet<>();
@@ -293,14 +291,7 @@ public class PDGBuilder {
             if (ain != null) {
                 DD edge = new DD(ain, actualOut);
                 edge.setSummary();
-                pdg.add(edge);
                 graph.add(edge);
-                
-                if (graph.isSDG()) {
-                    SDG sdg = (SDG)graph;
-                    ClDG cldg = sdg.findClDG(pdg.getQualifiedName().getClassName());
-                    cldg.add(edge);
-                }
             }
         }
     }
