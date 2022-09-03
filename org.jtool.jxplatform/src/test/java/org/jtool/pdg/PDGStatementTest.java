@@ -72,7 +72,7 @@ private static JavaProject SliceProject;
         PDGStatement node = (PDGStatement)PDGTestUtil.getNode(pdg, 5);
         List<JVariableReference> result = node.getDefVariables();
         
-        assertEquals("this.!inc", TestUtil.asStrOfReference(result));
+        assertEquals("this.!inc( int )", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -144,7 +144,7 @@ private static JavaProject SliceProject;
         PDGStatement node = (PDGStatement)PDGTestUtil.getNode(pdg, 1);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("this.!inc", TestUtil.asStrOfReference(result));
+        assertEquals("this.!inc( int )", TestUtil.asStrOfReference(result));
     }
     
     @Test

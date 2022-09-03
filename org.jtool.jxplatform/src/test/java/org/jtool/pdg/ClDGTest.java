@@ -36,7 +36,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test103");
         Set<PDGNode> result = cldg.getNodes();
         
-        assertEquals(51, result.size());
+        assertEquals(55, result.size());
     }
     
     @Test
@@ -44,7 +44,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test119");
         Set<PDGNode> result = cldg.getNodes();
         
-        assertEquals(46, result.size());
+        assertEquals(48, result.size());
     }
     
     @Test
@@ -60,7 +60,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test129");
         Set<PDGNode> result = cldg.getNodes();
         
-        assertEquals(82, result.size());
+        assertEquals(84, result.size());
     }
     
     @Test
@@ -108,7 +108,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         Set<PDGNode> result = cldg.getNodes();
         
-        assertEquals(25, result.size());
+        assertEquals(28, result.size());
     }
     
     @Test
@@ -124,7 +124,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "CustomerTest");
         Set<PDGNode> result = cldg.getNodes();
         
-        assertEquals(78, result.size());
+        assertEquals(91, result.size());
     }
     
     @Test
@@ -148,7 +148,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test103");
         List<Dependence> result = cldg.getEdges();
         
-        assertEquals(85, result.size());
+        assertEquals(84, result.size());
     }
     
     @Test
@@ -156,7 +156,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test119");
         List<Dependence> result = cldg.getEdges();
         
-        assertEquals(86, result.size());
+        assertEquals(81, result.size());
     }
     
     @Test
@@ -164,7 +164,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "A119");
         List<Dependence> result = cldg.getEdges();
         
-        assertEquals(16, result.size());
+        assertEquals(15, result.size());
     }
     
     @Test
@@ -172,7 +172,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test129");
         List<Dependence> result = cldg.getEdges();
         
-        assertEquals(152, result.size());
+        assertEquals(128, result.size());
     }
     
     @Test
@@ -180,7 +180,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "P129");
         List<Dependence> result = cldg.getEdges();
         
-        assertEquals(69, result.size());
+        assertEquals(55, result.size());
     }
     
     @Test
@@ -220,7 +220,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         List<Dependence> result = cldg.getEdges();
         
-        assertEquals(36, result.size());
+        assertEquals(32, result.size());
     }
     
     @Test
@@ -236,7 +236,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "CustomerTest");
         List<Dependence> result = cldg.getEdges();
         
-        assertEquals(175, result.size());
+        assertEquals(154, result.size());
     }
     
     @Test
@@ -244,7 +244,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Order");
         List<Dependence> result = cldg.getEdges();
         
-        assertEquals(33, result.size());
+        assertEquals(25, result.size());
     }
     
     @Test
@@ -252,7 +252,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Rental");
         List<Dependence> result = cldg.getEdges();
         
-        assertEquals(27, result.size());
+        assertEquals(25, result.size());
     }
     
     @Test
@@ -260,7 +260,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test103");
         List<Dependence> result = cldg.getSpecificEdges();
         
-        assertEquals(8, result.size());
+        assertEquals(6, result.size());
     }
     
     @Test
@@ -268,7 +268,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test119");
         List<Dependence> result = cldg.getSpecificEdges();
         
-        assertEquals(7, result.size());
+        assertEquals(5, result.size());
     }
     
     @Test
@@ -284,7 +284,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test129");
         List<Dependence> result = cldg.getSpecificEdges();
         
-        assertEquals(12, result.size());
+        assertEquals(4, result.size());
     }
     
     @Test
@@ -332,7 +332,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         List<Dependence> result = cldg.getSpecificEdges();
         
-        assertEquals(9, result.size());
+        assertEquals(6, result.size());
     }
     
     @Test
@@ -348,7 +348,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "CustomerTest");
         List<Dependence> result = cldg.getSpecificEdges();
         
-        assertEquals(16, result.size());
+        assertEquals(3, result.size());
     }
     
     @Test

@@ -40,14 +40,6 @@ public class DependenceTest {
     }
     
     @Test
-    public void testIsCDTest103_2() {
-        PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test103", "m( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 11, 12);
-        
-        assertTrue(result.get(0).isCD());
-    }
-    
-    @Test
     public void testIsCDTest103_3() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test103", "setA( int )");
         List<Dependence> result = PDGTestUtil.getDependence(pdg, 0, 1);
@@ -154,7 +146,7 @@ public class DependenceTest {
     @Test
     public void testIsCDTest122_1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 3, 4);
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 3, 12);
         
         assertTrue(result.get(0).isCD());
     }
@@ -162,7 +154,7 @@ public class DependenceTest {
     @Test
     public void testIsCDTest122_2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 3, 7);
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 3, 14);
         
         assertTrue(result.get(0).isCD());
     }
@@ -179,14 +171,6 @@ public class DependenceTest {
     public void testIsCDTest122_4() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
         List<Dependence> result = PDGTestUtil.getDependence(pdg, 7, 12);
-        
-        assertTrue(result.get(0).isCD());
-    }
-    
-    @Test
-    public void testIsCDTest122_5() {
-        PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 7, 13);
         
         assertTrue(result.get(0).isCD());
     }
@@ -226,9 +210,9 @@ public class DependenceTest {
     @Test
     public void testIsDDTest103_2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test103", "m( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 11, 13);
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 13, 9);
         
-        assertTrue(result.get(1).isDD());
+        assertTrue(result.get(0).isDD());
     }
     
     @Test
@@ -461,17 +445,6 @@ public class DependenceTest {
     public void testIsDDTest124_1() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test124");
         PDG pdg = sdg.findPDG("Test124#m( )");
-        PDGNode src = PDGTestUtil.getNode(pdg, 6);
-        PDGNode dst = PDGTestUtil.getNode(pdg, 7);
-        List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
-        
-        assertTrue(result.get(0).isDD());
-    }
-    
-    @Test
-    public void testIsDDTest124_2() {
-        SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test124");
-        PDG pdg = sdg.findPDG("Test124#m( )");
         PDGNode src = PDGTestUtil.getNode(pdg, 15);
         PDGNode dst = PDGTestUtil.getNode(pdg, 16);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
@@ -483,8 +456,8 @@ public class DependenceTest {
     public void testIsDDTest126_1() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
         PDG pdg = sdg.findPDG("Test126#m( )");
-        PDGNode src = PDGTestUtil.getNode(pdg, 10);
-        PDGNode dst = PDGTestUtil.getNode(pdg, 11);
+        PDGNode src = PDGTestUtil.getNode(pdg, 41);
+        PDGNode dst = PDGTestUtil.getNode(pdg, 42);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
         
         assertTrue(result.get(0).isDD());
@@ -493,9 +466,10 @@ public class DependenceTest {
     @Test
     public void testIsDDTest126_2() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
-        PDG pdg = sdg.findPDG("Test126#m( )");
-        PDGNode src = PDGTestUtil.getNode(pdg, 21);
-        PDGNode dst = PDGTestUtil.getNode(pdg, 22);
+        PDG pdg1 = sdg.findPDG("A126#add( int )");
+        PDG pdg2 = sdg.findPDG("A126#setY( int )");
+        PDGNode src = PDGTestUtil.getNode(pdg2, 2);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 14);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
         
         assertTrue(result.get(0).isDD());
@@ -504,9 +478,10 @@ public class DependenceTest {
     @Test
     public void testIsDDTest126_3() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
-        PDG pdg = sdg.findPDG("Test126#m( )");
-        PDGNode src = PDGTestUtil.getNode(pdg, 32);
-        PDGNode dst = PDGTestUtil.getNode(pdg, 33);
+        PDG pdg1 = sdg.findPDG("Test126#m( )");
+        PDG pdg2 = sdg.findPDG("A126#setY( int )");
+        PDGNode src = PDGTestUtil.getNode(pdg2, 2);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 46);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
         
         assertTrue(result.get(0).isDD());
@@ -515,9 +490,22 @@ public class DependenceTest {
     @Test
     public void testIsDDTest126_4() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
-        PDG pdg = sdg.findPDG("Test126#m( )");
-        PDGNode src = PDGTestUtil.getNode(pdg, 41);
-        PDGNode dst = PDGTestUtil.getNode(pdg, 42);
+        PDG pdg1 = sdg.findPDG("Test126#m( )");
+        PDG pdg2 = sdg.findPDG("A126#setY( int )");
+        PDGNode src = PDGTestUtil.getNode(pdg2, 2);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 47);
+        List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
+        
+        assertTrue(result.get(0).isDD());
+    }
+    
+    @Test
+    public void testIsDDTest126_5() {
+        SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
+        PDG pdg1 = sdg.findPDG("Test126#m( )");
+        PDG pdg2 = sdg.findPDG("A126#setY( int )");
+        PDGNode src = PDGTestUtil.getNode(pdg2, 2);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 48);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
         
         assertTrue(result.get(0).isDD());

@@ -42,7 +42,7 @@ public class DDTest {
     @Test
     public void testIsLIDD2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test103", "m( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 13, 14);
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 13, 9);
         
         assertTrue(result.get(0).isLIDD());
     }
@@ -234,8 +234,8 @@ public class DDTest {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test103");
         PDG pdg1 = sdg.findPDG("Test103#m( )");
         PDG pdg2 = sdg.findPDG("Test103#a");
-        PDGNode src = PDGTestUtil.getNode(pdg1, 1);
-        PDGNode dst = PDGTestUtil.getNode(pdg2, 1);
+        PDGNode src = PDGTestUtil.getNode(pdg2, 1);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 14);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
         
         assertTrue(result.get(0).isFieldAccess());
@@ -256,10 +256,10 @@ public class DDTest {
     @Test
     public void testIsFieldAccess3() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test124");
-        PDG pdg1 = sdg.findPDG("A124#A124( int )");
+        PDG pdg1 = sdg.findPDG("A124#inc( int )");
         PDG pdg2 = sdg.findPDG("A124#x");
         PDGNode src = PDGTestUtil.getNode(pdg2, 1);
-        PDGNode dst = PDGTestUtil.getNode(pdg1, 4);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 2);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
         
         assertTrue(result.get(0).isFieldAccess());
@@ -270,8 +270,8 @@ public class DDTest {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
         PDG pdg1 = sdg.findPDG("Test126#m( )");
         PDG pdg2 = sdg.findPDG("A126#y");
-        PDGNode src = PDGTestUtil.getNode(pdg1, 6);
-        PDGNode dst = PDGTestUtil.getNode(pdg2, 1);
+        PDGNode src = PDGTestUtil.getNode(pdg2, 1);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 43);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
         
         assertTrue(result.get(0).isFieldAccess());
@@ -280,10 +280,10 @@ public class DDTest {
     @Test
     public void testIsFieldAccess5() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
-        PDG pdg1 = sdg.findPDG("A126#setY( int )");
+        PDG pdg1 = sdg.findPDG("A126#getY( )");
         PDG pdg2 = sdg.findPDG("A126#y");
-        PDGNode src = PDGTestUtil.getNode(pdg1, 2);
-        PDGNode dst = PDGTestUtil.getNode(pdg2, 1);
+        PDGNode src = PDGTestUtil.getNode(pdg2, 1);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 1);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
         
         assertTrue(result.get(0).isFieldAccess());
@@ -294,8 +294,8 @@ public class DDTest {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test127");
         PDG pdg1 = sdg.findPDG("Test127#m( )");
         PDG pdg2 = sdg.findPDG("A127#z");
-        PDGNode src = PDGTestUtil.getNode(pdg1, 10);
-        PDGNode dst = PDGTestUtil.getNode(pdg2, 1);
+        PDGNode src = PDGTestUtil.getNode(pdg2, 1);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 15);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
         
         assertTrue(result.get(0).isFieldAccess());
@@ -315,6 +315,18 @@ public class DDTest {
     
     @Test
     public void testIsFieldAccess8() {
+        SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test132");
+        PDG pdg1 = sdg.findPDG("Test132#m( )");
+        PDG pdg2 = sdg.findPDG("P132#x");
+        PDGNode src = PDGTestUtil.getNode(pdg2, 1);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 1);
+        List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
+        
+        assertTrue(result.get(0).isFieldAccess());
+    }
+    
+    @Test
+    public void testIsFieldAccess9() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test139");
         PDG pdg1 = sdg.findPDG("Test139#m( )");
         PDG pdg2 = sdg.findPDG("PriceCode#CHILDRENS");
@@ -323,6 +335,54 @@ public class DDTest {
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
         
         assertTrue(result.get(0).isFieldAccess());
+    }
+    
+    @Test
+    public void testIsUncoveredFieldAccess1() {
+        SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
+        PDG pdg1 = sdg.findPDG("A126#add( int )");
+        PDG pdg2 = sdg.findPDG("A126#setY( int )");
+        PDGNode src = PDGTestUtil.getNode(pdg2, 2);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 14);
+        List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
+        
+        assertTrue(result.get(0).isUncoveredFieldAccess());
+    }
+    
+    @Test
+    public void testIsUncoveredFieldAccess2() {
+        SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
+        PDG pdg1 = sdg.findPDG("Test126#m( )");
+        PDG pdg2 = sdg.findPDG("A126#setY( int )");
+        PDGNode src = PDGTestUtil.getNode(pdg2, 2);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 46);
+        List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
+        
+        assertTrue(result.get(0).isUncoveredFieldAccess());
+    }
+    
+    @Test
+    public void testIsUncoveredFieldAccess3() {
+        SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
+        PDG pdg1 = sdg.findPDG("Test126#m( )");
+        PDG pdg2 = sdg.findPDG("A126#setY( int )");
+        PDGNode src = PDGTestUtil.getNode(pdg2, 2);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 47);
+        List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
+        
+        assertTrue(result.get(0).isUncoveredFieldAccess());
+    }
+    
+    @Test
+    public void testIsUncoveredFieldAccess4() {
+        SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
+        PDG pdg1 = sdg.findPDG("Test126#m( )");
+        PDG pdg2 = sdg.findPDG("A126#setY( int )");
+        PDGNode src = PDGTestUtil.getNode(pdg2, 2);
+        PDGNode dst = PDGTestUtil.getNode(pdg1, 48);
+        List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
+        
+        assertTrue(result.get(0).isUncoveredFieldAccess());
     }
     
     @Test
@@ -483,59 +543,17 @@ public class DDTest {
     public void testIsSummary15() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test124");
         PDG pdg = sdg.findPDG("Test124#m( )");
-        PDGNode src = PDGTestUtil.getNode(pdg, 6);
-        PDGNode dst = PDGTestUtil.getNode(pdg, 7);
+        PDGNode src = PDGTestUtil.getNode(pdg, 15);
+        PDGNode dst = PDGTestUtil.getNode(pdg, 16);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
+        
+        sdg.print();
         
         assertTrue(result.get(0).isSummary());
     }
     
     @Test
     public void testIsSummary16() {
-        SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test124");
-        PDG pdg = sdg.findPDG("Test124#m( )");
-        PDGNode src = PDGTestUtil.getNode(pdg, 15);
-        PDGNode dst = PDGTestUtil.getNode(pdg, 16);
-        List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
-        
-        assertTrue(result.get(0).isSummary());
-    }
-    
-    @Test
-    public void testIsSummary17() {
-        SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
-        PDG pdg = sdg.findPDG("Test126#m( )");
-        PDGNode src = PDGTestUtil.getNode(pdg, 10);
-        PDGNode dst = PDGTestUtil.getNode(pdg, 11);
-        List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
-        
-        assertTrue(result.get(0).isSummary());
-    }
-    
-    @Test
-    public void testIsSummary18() {
-        SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
-        PDG pdg = sdg.findPDG("Test126#m( )");
-        PDGNode src = PDGTestUtil.getNode(pdg, 21);
-        PDGNode dst = PDGTestUtil.getNode(pdg, 22);
-        List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
-        
-        assertTrue(result.get(0).isSummary());
-    }
-    
-    @Test
-    public void testIsSummary19() {
-        SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
-        PDG pdg = sdg.findPDG("Test126#m( )");
-        PDGNode src = PDGTestUtil.getNode(pdg, 32);
-        PDGNode dst = PDGTestUtil.getNode(pdg, 33);
-        List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
-        
-        assertTrue(result.get(0).isSummary());
-    }
-    
-    @Test
-    public void testIsSummary20() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject, "Test126");
         PDG pdg = sdg.findPDG("Test126#m( )");
         PDGNode src = PDGTestUtil.getNode(pdg, 41);

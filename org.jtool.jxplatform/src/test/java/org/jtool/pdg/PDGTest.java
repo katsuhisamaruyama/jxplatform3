@@ -37,7 +37,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Test103#m( )");
         Set<PDGNode> result = pdg.getNodes();
         
-        assertEquals(36, result.size());
+        assertEquals(40, result.size());
     }
     
     @Test
@@ -91,7 +91,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Test119#m( )");
         Set<PDGNode> result = pdg.getNodes();
         
-        assertEquals(30, result.size());
+        assertEquals(32, result.size());
     }
     
     @Test
@@ -145,7 +145,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Test129#m( )");
         Set<PDGNode> result = pdg.getNodes();
         
-        assertEquals(69, result.size());
+        assertEquals(71, result.size());
     }
     
     @Test
@@ -280,7 +280,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("PriceCode#CHILDRENS");
         Set<PDGNode> result = pdg.getNodes();
         
-        assertEquals(5, result.size());
+        assertEquals(6, result.size());
     }
     
     @Test
@@ -289,7 +289,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("PriceCode#REGULAR");
         Set<PDGNode> result = pdg.getNodes();
         
-        assertEquals(5, result.size());
+        assertEquals(6, result.size());
     }
     
     @Test
@@ -298,7 +298,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("PriceCode#NEW_RELEASE");
         Set<PDGNode> result = pdg.getNodes();
         
-        assertEquals(5, result.size());
+        assertEquals(6, result.size());
     }
     
     @Test
@@ -370,7 +370,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("CustomerTest#testStatement1( )");
         Set<PDGNode> result = pdg.getNodes();
         
-        assertEquals(32, result.size());
+        assertEquals(38, result.size());
     }
     
     @Test
@@ -379,7 +379,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("CustomerTest#testStatement2( )");
         Set<PDGNode> result = pdg.getNodes();
         
-        assertEquals(43, result.size());
+        assertEquals(50, result.size());
     }
     
     @Test
@@ -460,7 +460,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Test103#m( )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(66, result.size());
+        assertEquals(67, result.size());
     }
     
     @Test
@@ -469,7 +469,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Test103#setA( int )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(5, result.size());
+        assertEquals(4, result.size());
     }
     
     @Test
@@ -487,7 +487,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Test103#incA( )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(3, result.size());
+        assertEquals(2, result.size());
     }
     
     @Test
@@ -514,7 +514,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Test119#m( )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(62, result.size());
+        assertEquals(58, result.size());
     }
     
     @Test
@@ -568,7 +568,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Test129#m( )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(137, result.size());
+        assertEquals(113, result.size());
     }
     
     @Test
@@ -604,7 +604,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("P129#set1( java.lang.String java.lang.String )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(20, result.size());
+        assertEquals(10, result.size());
     }
     
     @Test
@@ -613,7 +613,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("P129#map");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(6, result.size());
+        assertEquals(5, result.size());
     }
     
     @Test
@@ -676,7 +676,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("PriceCode#PriceCode( int )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(5, result.size());
+        assertEquals(4, result.size());
     }
     
     @Test
@@ -703,7 +703,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("PriceCode#CHILDRENS");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(7, result.size());
+        assertEquals(6, result.size());
     }
     
     @Test
@@ -712,7 +712,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("PriceCode#REGULAR");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(7, result.size());
+        assertEquals(6, result.size());
     }
     
     @Test
@@ -721,7 +721,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("PriceCode#NEW_RELEASE");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(7, result.size());
+        assertEquals(6, result.size());
     }
     
     @Test
@@ -730,7 +730,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Customer#Customer( java.lang.String )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(5, result.size());
+        assertEquals(4, result.size());
     }
     
     @Test
@@ -739,7 +739,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Customer#statement( Order )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(35, result.size());
+        assertEquals(36, result.size());
     }
     
     @Test
@@ -748,7 +748,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Customer#getAmount( Order )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(21, result.size());
+        assertEquals(22, result.size());
     }
     
     @Test
@@ -757,7 +757,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Customer#setDiscount( double )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(5, result.size());
+        assertEquals(4, result.size());
     }
     
     @Test
@@ -793,7 +793,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("CustomerTest#testStatement1( )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(70, result.size());
+        assertEquals(62, result.size());
     }
     
     @Test
@@ -802,7 +802,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("CustomerTest#testStatement2( )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(101, result.size());
+        assertEquals(88, result.size());
     }
     
     @Test
@@ -820,7 +820,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Order#addRental( Rental )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(14, result.size());
+        assertEquals(8, result.size());
     }
     
     @Test
@@ -838,7 +838,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Order#rentals");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(7, result.size());
+        assertEquals(5, result.size());
     }
     
     @Test
@@ -847,7 +847,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Rental#Rental( int int )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(9, result.size());
+        assertEquals(7, result.size());
     }
     
     @Test
