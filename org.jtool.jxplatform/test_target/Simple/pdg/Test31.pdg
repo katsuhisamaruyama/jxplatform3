@@ -1,37 +1,42 @@
 ----- ClDG (from here) -----
 Class Name = Test31
    0 methodEntry [ m( ) ]
-   1 assignment D = {  } U = { this.!m }
+   1 assignment D = {  } U = { this.!m( ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test31#m( )
-   4 actualOut D = { this.!m } U = {  }
+   4 actualOut D = { this.!m( ) } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Test31( int ) ]
    1 formalIn D = { x$0 } U = {  }
-   2 assignment D = { this.x } U = { this, x$0 }
-   4 formalOut D = {  } U = { $_, this.x }
+   2 assignment D = { this.x } U = { x$0 }
+   4 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
+   0 constructorEntry [ Test31( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 6 trueControlDependence
-   6: 4 -> 1 loopIndependentDefUseDependence this.!m
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence this.!m( )
 --
    0: Test31( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence x$0
-   5: 2 -> 4 loopIndependentDefUseDependence this.x
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence x$0
 --
    0: x
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
+--
+   0: Test31( )
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

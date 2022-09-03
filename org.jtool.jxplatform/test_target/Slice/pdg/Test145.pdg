@@ -1,0 +1,100 @@
+----- ClDG (from here) -----
+Class Name = Test145
+   0 fieldEntry [ list ]
+   1 fieldDeclaration D = { this.list } U = { java.util.ArrayList.!ArrayList( ), this.list }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
+* actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+--
+   0 methodEntry [ m( ) ]
+   1 assignment D = {  } U = { this.list.!add( java.lang.Object ) }
+   2 receiver D = {  } U = { this.list }
+   3 methodCall D = {  } U = { T145.!T145( int ), this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size } TO = java.util.List#add( java.lang.Object )
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = {  } U = {  } TO = T145#T145( int )
+   6 actualIn D = {  } U = {  }
+   7 actualOut D = { T145.!T145( int ) } U = {  }
+* actualOut D = { this.list.!add( java.lang.Object ), this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size } U = { this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size }
+   9 localDeclaration D = { t$0 } U = { this.list.!get( int ) }
+  10 receiver D = {  } U = { this.list }
+  11 methodCall D = {  } U = { this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.size } TO = java.util.List#get( int )
+  12 actualOut D = { this.list.!get( int ) } U = { this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.size }
+  13 localDeclaration D = { a$1 } U = { t$0.!getA( ) }
+  14 receiver D = {  } U = { t$0 }
+  15 methodCall D = {  } U = { t$0.a, this.list.!get( int ).a } TO = T145#getA( )
+  16 actualOut D = { t$0.!getA( ) } U = { t$0.a, this.list.!get( int ).a }
+  17 localDeclaration D = { h$2 } U = { t$0.!hashCode( ) }
+  18 receiver D = {  } U = { t$0 }
+  19 methodCall D = {  } U = {  } TO = T145#hashCode( )
+  20 actualOut D = { t$0.!hashCode( ) } U = {  }
+  21 localDeclaration D = { l$3 } U = { this.!getList( ) }
+  22 receiver D = {  } U = {  }
+  23 methodCall D = {  } U = { this.list } TO = Test145#getList( )
+  24 actualOut D = { this.!getList( ) } U = { this.list }
+  26 formalOut D = {  } U = { $_ }
+* actualOut D = { T145.!T145( int ).a } U = {  }
+--
+   0 methodEntry [ getList( ) ]
+   1 returnSt D = { $_ } U = { this.list }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test145( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: list
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 -> * trueControlDependence
+   5: * ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    9 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    0 ->   12 trueControlDependence
+  12:    0 ->   13 trueControlDependence
+  13:    0 ->   14 trueControlDependence
+  14:    0 ->   15 trueControlDependence
+  15:    0 ->   16 trueControlDependence
+  16:    0 ->   17 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    0 ->   19 trueControlDependence
+  19:    0 ->   20 trueControlDependence
+  20:    0 ->   21 trueControlDependence
+  21:    0 ->   22 trueControlDependence
+  22:    0 ->   23 trueControlDependence
+  23:    0 ->   24 trueControlDependence
+  24:    0 ->   26 trueControlDependence
+  25:    0 -> * trueControlDependence
+  26:    0 -> * trueControlDependence
+  27:    7 ->    3 loopIndependentDefUseDependence T145.!T145( int )
+  28:    9 ->   14 declaration
+  29:    9 ->   14 loopIndependentDefUseDependence t$0
+  30:    9 ->   18 declaration
+  31:    9 ->   18 loopIndependentDefUseDependence t$0
+  32:   12 ->    9 loopIndependentDefUseDependence this.list.!get( int )
+  33:   16 ->   13 loopIndependentDefUseDependence t$0.!getA( )
+  34:   20 ->   17 loopIndependentDefUseDependence t$0.!hashCode( )
+  35:   24 ->   21 loopIndependentDefUseDependence this.!getList( )
+  36: * ->    1 loopIndependentDefUseDependence this.list.!add( java.lang.Object )
+  37: * ->   11 loopIndependentDefUseDependence this.list.!java.util.ArrayList.size
+  38: * ->   12 loopIndependentDefUseDependence this.list.!java.util.ArrayList.size
+--
+   0: getList( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: Test145( )
+   1:    0 ->    2 trueControlDependence
+--
+----- ClDG (to here) -----
+

@@ -2,845 +2,821 @@
 Class Name = Test48
    0 methodEntry [ m10( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
-   2 assignment D = {  } U = { s$0.!m1 }
+   2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
    4 methodCall D = {  } U = {  } TO = S48#m1( )
-   5 actualOut D = { s$0.!m1 } U = {  }
+   5 actualOut D = { s$0.!m1( ) } U = {  }
    7 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m11( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
-   2 assignment D = {  } U = { s$0.!m1 }
+   2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
    4 methodCall D = {  } U = {  } TO = S48#m1( )
-   5 actualOut D = { s$0.!m1 } U = {  }
+   5 actualOut D = { s$0.!m1( ) } U = {  }
    7 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m7( ) ]
-   1 localDeclaration D = { t$0 } U = { t$0.!T48 }
+   1 localDeclaration D = { t$0 } U = { T48.!T48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = T48#T48( )
-   4 actualOut D = { t$0.!T48 } U = {  }
-   5 assignment D = {  } U = { t$0.!m1 }
+   4 actualOut D = { T48.!T48( ) } U = {  }
+   5 assignment D = {  } U = { t$0.!m1( ) }
    6 receiver D = {  } U = { t$0 }
    7 methodCall D = {  } U = {  } TO = T48#m1( )
-   8 actualOut D = { t$0.!m1 } U = {  }
-   9 assignment D = {  } U = { t$0.!m2 }
+   8 actualOut D = { t$0.!m1( ) } U = {  }
+   9 assignment D = {  } U = { t$0.!m2( ) }
   10 receiver D = {  } U = { t$0 }
   11 methodCall D = {  } U = {  } TO = S48#m2( )
-  12 actualOut D = { t$0.!m2 } U = {  }
-  13 assignment D = {  } U = { t$0.!m3 }
+  12 actualOut D = { t$0.!m2( ) } U = {  }
+  13 assignment D = {  } U = { t$0.!m3( ) }
   14 receiver D = {  } U = { t$0 }
   15 methodCall D = {  } U = {  } TO = T48#m3( )
-  16 actualOut D = { t$0.!m3 } U = {  }
-  17 assignment D = {  } U = { t$0.!toString }
+  16 actualOut D = { t$0.!m3( ) } U = {  }
+  17 assignment D = {  } U = { t$0.!toString( ) }
   18 receiver D = {  } U = { t$0 }
-  19 methodCall D = {  } U = { java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, java.lang.Class.name, t$0 } TO = java.lang.Object#toString( )
-  20 actualOut D = { t$0.!toString } U = { java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, java.lang.Class.name }
+  19 methodCall D = {  } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value } TO = java.lang.Object#toString( )
+  20 actualOut D = { t$0.!toString( ) } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value }
   22 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m12( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
-   2 assignment D = {  } U = { s$0.!m1 }
+   2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
    4 methodCall D = {  } U = {  } TO = S48#m1( )
-   5 actualOut D = { s$0.!m1 } U = {  }
+   5 actualOut D = { s$0.!m1( ) } U = {  }
    7 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m15( ) ]
    1 localDeclaration D = { str$0 } U = { $java.lang.String }
-   2 assignment D = {  } U = { str$0.!substring.!length }
-   3 receiver D = {  } U = { str$0.!substring }
+   2 assignment D = {  } U = { str$0.!substring( int ).!length( ) }
+   3 receiver D = {  } U = { str$0.!substring( int ) }
    4 receiver D = {  } U = { str$0 }
-   5 methodCall D = {  } U = { str$0, str$0.COMPACT_STRINGS, str$0.coder, str$0.value } TO = java.lang.String#substring( int )
-   6 actualOut D = { str$0.!substring } U = { str$0.COMPACT_STRINGS, str$0.coder, str$0.value }
-   7 methodCall D = {  } U = { str$0.!substring, str$0.!substring.COMPACT_STRINGS, str$0.!substring.coder, str$0.!substring.value } TO = java.lang.String#length( )
-   8 actualOut D = { str$0.!substring.!length } U = { str$0.!substring.COMPACT_STRINGS, str$0.!substring.coder, str$0.!substring.value }
+   5 methodCall D = {  } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value } TO = java.lang.String#substring( int )
+   6 actualOut D = { str$0.!substring( int ) } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value }
+   7 methodCall D = {  } U = { str$0.!substring( int ).!java.lang.String.COMPACT_STRINGS, str$0.!substring( int ).!java.lang.String.coder, str$0.!substring( int ).!java.lang.String.value } TO = java.lang.String#length( )
+   8 actualOut D = { str$0.!substring( int ).!length( ) } U = { str$0.!substring( int ).!java.lang.String.COMPACT_STRINGS, str$0.!substring( int ).!java.lang.String.coder, str$0.!substring( int ).!java.lang.String.value }
    9 trySt D = {  } U = {  }
-  10 assignment D = {  } U = { str$0.!substring.!wait }
-  11 receiver D = {  } U = { str$0.!substring }
+  10 assignment D = {  } U = { str$0.!substring( int ).!wait( ) }
+  11 receiver D = {  } U = { str$0.!substring( int ) }
   12 receiver D = {  } U = { str$0 }
-  13 methodCall D = {  } U = { str$0, str$0.COMPACT_STRINGS, str$0.coder, str$0.value } TO = java.lang.String#substring( int )
-  14 actualOut D = { str$0.!substring } U = { str$0.COMPACT_STRINGS, str$0.coder, str$0.value }
+  13 methodCall D = {  } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value } TO = java.lang.String#substring( int )
+  14 actualOut D = { str$0.!substring( int ) } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value }
   15 methodCall D = {  } U = {  } TO = java.lang.Object#wait( )
-  16 actualOut D = { str$0.!substring.!wait } U = {  }
+  16 actualOut D = { str$0.!substring( int ).!wait( ) } U = {  }
   18 catchClause D = { e$1 } U = {  }
   20 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ n10( ) ]
-   1 localDeclaration D = { s$0 } U = { s$0.!S48 }
+   1 localDeclaration D = { s$0 } U = { S48.!S48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = S48#S48( )
-   4 actualOut D = { s$0.!S48 } U = {  }
-   5 assignment D = {  } U = { this.!m10 }
+   4 actualOut D = { S48.!S48( ) } U = {  }
+   5 assignment D = {  } U = { this.!m10( S48 ) }
    6 receiver D = {  } U = {  }
    7 methodCall D = {  } U = {  } TO = Test48#m10( S48 )
    8 actualIn D = {  } U = { s$0 }
-   9 actualOut D = { this.!m10 } U = {  }
+   9 actualOut D = { this.!m10( S48 ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m6( ) ]
-   1 localDeclaration D = { s$0 } U = { s$0.!S48 }
+   1 localDeclaration D = { s$0 } U = { S48.!S48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = S48#S48( )
-   4 actualOut D = { s$0.!S48 } U = {  }
-   5 assignment D = {  } U = { s$0.!m1 }
+   4 actualOut D = { S48.!S48( ) } U = {  }
+   5 assignment D = {  } U = { s$0.!m1( ) }
    6 receiver D = {  } U = { s$0 }
    7 methodCall D = {  } U = {  } TO = S48#m1( )
-   8 actualOut D = { s$0.!m1 } U = {  }
-   9 assignment D = {  } U = { s$0.!m2 }
+   8 actualOut D = { s$0.!m1( ) } U = {  }
+   9 assignment D = {  } U = { s$0.!m2( ) }
   10 receiver D = {  } U = { s$0 }
   11 methodCall D = {  } U = {  } TO = S48#m2( )
-  12 actualOut D = { s$0.!m2 } U = {  }
-  13 assignment D = {  } U = { s$0.!toString }
+  12 actualOut D = { s$0.!m2( ) } U = {  }
+  13 assignment D = {  } U = { s$0.!toString( ) }
   14 receiver D = {  } U = { s$0 }
-  15 methodCall D = {  } U = { java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, java.lang.Class.name, s$0 } TO = java.lang.Object#toString( )
-  16 actualOut D = { s$0.!toString } U = { java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, java.lang.Class.name }
+  15 methodCall D = {  } U = { S48.!S48( ).!java.lang.Class.name, S48.!S48( ).!java.lang.StringBuilder.count, S48.!S48( ).!java.lang.StringBuilder.value, s$0.!java.lang.Class.name, s$0.!java.lang.StringBuilder.count, s$0.!java.lang.StringBuilder.value } TO = java.lang.Object#toString( )
+  16 actualOut D = { s$0.!toString( ) } U = { S48.!S48( ).!java.lang.Class.name, S48.!S48( ).!java.lang.StringBuilder.count, S48.!S48( ).!java.lang.StringBuilder.value, s$0.!java.lang.Class.name, s$0.!java.lang.StringBuilder.count, s$0.!java.lang.StringBuilder.value }
   18 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m8( ) ]
-   1 localDeclaration D = { t$0 } U = { t$0.!T48 }
+   1 localDeclaration D = { t$0 } U = { T48.!T48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = T48#T48( )
-   4 actualOut D = { t$0.!T48 } U = {  }
-   5 assignment D = {  } U = { t$0.!m1 }
+   4 actualOut D = { T48.!T48( ) } U = {  }
+   5 assignment D = {  } U = { t$0.!m1( ) }
    6 receiver D = {  } U = { t$0 }
    7 methodCall D = {  } U = {  } TO = S48#m1( )
-   8 actualOut D = { t$0.!m1 } U = {  }
-   9 assignment D = {  } U = { t$0.!m2 }
+   8 actualOut D = { t$0.!m1( ) } U = {  }
+   9 assignment D = {  } U = { t$0.!m2( ) }
   10 receiver D = {  } U = { t$0 }
   11 methodCall D = {  } U = {  } TO = S48#m2( )
-  12 actualOut D = { t$0.!m2 } U = {  }
-  13 assignment D = {  } U = { t$0.!toString }
+  12 actualOut D = { t$0.!m2( ) } U = {  }
+  13 assignment D = {  } U = { t$0.!toString( ) }
   14 receiver D = {  } U = { t$0 }
-  15 methodCall D = {  } U = { java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, java.lang.Class.name, t$0 } TO = java.lang.Object#toString( )
-  16 actualOut D = { t$0.!toString } U = { java.lang.AbstractStringBuilder.count, java.lang.AbstractStringBuilder.value, java.lang.Class.name }
+  15 methodCall D = {  } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value } TO = java.lang.Object#toString( )
+  16 actualOut D = { t$0.!toString( ) } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value }
   18 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m14( ) ]
-   1 localDeclaration D = { p$0 } U = { p$0.!P48 }
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
-   4 actualOut D = { p$0.!P48 } U = {  }
-   5 localDeclaration D = { l$1 } U = { p$0.!getArrayList }
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 localDeclaration D = { l$1 } U = { p$0.!getArrayList( ) }
    6 receiver D = {  } U = { p$0 }
-   7 methodCall D = { p$0 } U = { p$0 } TO = P48#getArrayList( )
-   8 actualOut D = { p$0, p$0.!getArrayList } U = { p$0 }
-   9 assignment D = {  } U = { l$1.!size, p$0.!getArrayList.!size }
-  10 receiver D = {  } U = { l$1, p$0.!getArrayList }
-  11 methodCall D = {  } U = { l$1, l$1.size, p$0.!getArrayList, p$0.!getArrayList.size } TO = java.util.ArrayList#size( )
-  12 actualOut D = { l$1.!size } U = { l$1.size, p$0.!getArrayList.size }
+   7 methodCall D = {  } U = { P48.!P48( ).java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA, p$0.java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = P48#getArrayList( )
+* actualOut D = { p$0.!getArrayList( ), p$0.java.util.ArrayList.!java.util.AbstractList.modCount, p$0.java.util.ArrayList.!java.util.ArrayList.elementData } U = { P48.!P48( ).java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA, p$0.java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   9 assignment D = {  } U = { l$1.!size( ) }
+  10 receiver D = {  } U = { l$1 }
+  11 methodCall D = {  } U = { l$1.!java.util.ArrayList.size, p$0.!getArrayList( ).!java.util.ArrayList.size } TO = java.util.ArrayList#size( )
+  12 actualOut D = { l$1.!size( ) } U = { l$1.!java.util.ArrayList.size, p$0.!getArrayList( ).!java.util.ArrayList.size }
   14 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m4( ) ]
-   1 localDeclaration D = { p$0 } U = { p$0.!P48 }
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
-   4 actualOut D = { p$0.!P48 } U = {  }
-   5 assignment D = {  } U = { p$0.!getT.!m1 }
-   6 receiver D = {  } U = { p$0.!getT }
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 assignment D = {  } U = { p$0.!getT( ).!m1( ) }
+   6 receiver D = {  } U = { p$0.!getT( ) }
    7 receiver D = {  } U = { p$0 }
-   8 methodCall D = {  } U = { p$0.t } TO = P48#getT( )
-   9 actualOut D = { p$0.!getT } U = { p$0.t }
+   8 methodCall D = {  } U = { P48.!P48( ).t, p$0.t } TO = P48#getT( )
+   9 actualOut D = { p$0.!getT( ) } U = { P48.!P48( ).t, p$0.t }
   10 methodCall D = {  } U = {  } TO = T48#m1( )
-  11 actualOut D = { p$0.!getT.!m1 } U = {  }
-  12 assignment D = {  } U = { p$0.!getT.!m2 }
-  13 receiver D = {  } U = { p$0.!getT }
+  11 actualOut D = { p$0.!getT( ).!m1( ) } U = {  }
+  12 assignment D = {  } U = { p$0.!getT( ).!m2( ) }
+  13 receiver D = {  } U = { p$0.!getT( ) }
   14 receiver D = {  } U = { p$0 }
-  15 methodCall D = {  } U = { p$0.t } TO = P48#getT( )
-  16 actualOut D = { p$0.!getT } U = { p$0.t }
+  15 methodCall D = {  } U = { P48.!P48( ).t, p$0.t } TO = P48#getT( )
+  16 actualOut D = { p$0.!getT( ) } U = { P48.!P48( ).t, p$0.t }
   17 methodCall D = {  } U = {  } TO = S48#m2( )
-  18 actualOut D = { p$0.!getT.!m2 } U = {  }
-  19 assignment D = {  } U = { p$0.!getT.!m3 }
-  20 receiver D = {  } U = { p$0.!getT }
+  18 actualOut D = { p$0.!getT( ).!m2( ) } U = {  }
+  19 assignment D = {  } U = { p$0.!getT( ).!m3( ) }
+  20 receiver D = {  } U = { p$0.!getT( ) }
   21 receiver D = {  } U = { p$0 }
-  22 methodCall D = {  } U = { p$0.t } TO = P48#getT( )
-  23 actualOut D = { p$0.!getT } U = { p$0.t }
+  22 methodCall D = {  } U = { P48.!P48( ).t, p$0.t } TO = P48#getT( )
+  23 actualOut D = { p$0.!getT( ) } U = { P48.!P48( ).t, p$0.t }
   24 methodCall D = {  } U = {  } TO = T48#m3( )
-  25 actualOut D = { p$0.!getT.!m3 } U = {  }
+  25 actualOut D = { p$0.!getT( ).!m3( ) } U = {  }
   27 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m5( ) ]
-   1 localDeclaration D = { p$0 } U = { p$0.!P48 }
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
-   4 actualOut D = { p$0.!P48 } U = {  }
-   5 localDeclaration D = { s$1 } U = { p$0.!getS }
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 localDeclaration D = { s$1 } U = { p$0.!getS( ) }
    6 receiver D = {  } U = { p$0 }
-   7 methodCall D = {  } U = { p$0.s } TO = P48#getS( )
-   8 actualOut D = { p$0.!getS } U = { p$0.s }
-   9 assignment D = {  } U = { p$0.!getS.!m1, s$1.!m1 }
-  10 receiver D = {  } U = { p$0.!getS, s$1 }
+   7 methodCall D = {  } U = { P48.!P48( ).s, p$0.s } TO = P48#getS( )
+   8 actualOut D = { p$0.!getS( ) } U = { P48.!P48( ).s, p$0.s }
+   9 assignment D = {  } U = { s$1.!m1( ) }
+  10 receiver D = {  } U = { s$1 }
   11 methodCall D = {  } U = {  } TO = S48#m1( )
-  12 actualOut D = { s$1.!m1 } U = {  }
-  13 assignment D = {  } U = { p$0.!getS.!m2, s$1.!m2 }
-  14 receiver D = {  } U = { p$0.!getS, s$1 }
+  12 actualOut D = { s$1.!m1( ) } U = {  }
+  13 assignment D = {  } U = { s$1.!m2( ) }
+  14 receiver D = {  } U = { s$1 }
   15 methodCall D = {  } U = {  } TO = S48#m2( )
-  16 actualOut D = { s$1.!m2 } U = {  }
+  16 actualOut D = { s$1.!m2( ) } U = {  }
   18 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ l11( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
-   2 assignment D = {  } U = { this.!n11 }
+   2 assignment D = {  } U = { this.!n11( S48 ) }
    3 receiver D = {  } U = {  }
    4 methodCall D = {  } U = {  } TO = Test48#n11( S48 )
-   5 actualIn D = {  } U = { S48.!S48 }
+   5 actualIn D = {  } U = { S48.!S48( ) }
    6 receiver D = {  } U = {  }
    7 constructorCall D = {  } U = {  } TO = S48#S48( )
-   8 actualOut D = { S48.!S48 } U = {  }
-   9 actualOut D = { this.!n11 } U = {  }
+   8 actualOut D = { S48.!S48( ) } U = {  }
+   9 actualOut D = { this.!n11( S48 ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m3( ) ]
-   1 localDeclaration D = { p$0 } U = { p$0.!P48 }
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
-   4 actualOut D = { p$0.!P48 } U = {  }
-   5 assignment D = {  } U = { p$0.!getS.!m1 }
-   6 receiver D = {  } U = { p$0.!getS }
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 assignment D = {  } U = { p$0.!getS( ).!m1( ) }
+   6 receiver D = {  } U = { p$0.!getS( ) }
    7 receiver D = {  } U = { p$0 }
-   8 methodCall D = {  } U = { p$0.s } TO = P48#getS( )
-   9 actualOut D = { p$0.!getS } U = { p$0.s }
+   8 methodCall D = {  } U = { P48.!P48( ).s, p$0.s } TO = P48#getS( )
+   9 actualOut D = { p$0.!getS( ) } U = { P48.!P48( ).s, p$0.s }
   10 methodCall D = {  } U = {  } TO = S48#m1( )
-  11 actualOut D = { p$0.!getS.!m1 } U = {  }
-  12 assignment D = {  } U = { p$0.!getSS.!m1 }
-  13 receiver D = {  } U = { p$0.!getSS }
+  11 actualOut D = { p$0.!getS( ).!m1( ) } U = {  }
+  12 assignment D = {  } U = { p$0.!getSS( ).!m1( ) }
+  13 receiver D = {  } U = { p$0.!getSS( ) }
   14 receiver D = {  } U = { p$0 }
-  15 methodCall D = {  } U = { p$0.ss } TO = P48#getSS( )
-  16 actualOut D = { p$0.!getSS } U = { p$0.ss }
+  15 methodCall D = {  } U = { P48.!P48( ).ss, p$0.ss } TO = P48#getSS( )
+  16 actualOut D = { p$0.!getSS( ) } U = { P48.!P48( ).ss, p$0.ss }
   17 methodCall D = {  } U = {  } TO = S48#m1( )
-  18 actualOut D = { p$0.!getSS.!m1 } U = {  }
-  19 assignment D = {  } U = { p$0.!getStr.!length }
-  20 receiver D = {  } U = { p$0.!getStr }
+  18 actualOut D = { p$0.!getSS( ).!m1( ) } U = {  }
+  19 assignment D = {  } U = { p$0.!getStr( ).!length( ) }
+  20 receiver D = {  } U = { p$0.!getStr( ) }
   21 receiver D = {  } U = { p$0 }
-  22 methodCall D = {  } U = { p$0.str } TO = P48#getStr( )
-  23 actualOut D = { p$0.!getStr } U = { p$0.str }
-  24 methodCall D = {  } U = { p$0.!getStr, p$0.!getStr.COMPACT_STRINGS, p$0.!getStr.coder, p$0.!getStr.value } TO = java.lang.String#length( )
-  25 actualOut D = { p$0.!getStr.!length } U = { p$0.!getStr.COMPACT_STRINGS, p$0.!getStr.coder, p$0.!getStr.value }
+  22 methodCall D = {  } U = { P48.!P48( ).str, p$0.str } TO = P48#getStr( )
+  23 actualOut D = { p$0.!getStr( ) } U = { P48.!P48( ).str, p$0.str }
+  24 methodCall D = {  } U = { P48.!P48( ).!getStr( ).!java.lang.String.COMPACT_STRINGS, P48.!P48( ).!getStr( ).!java.lang.String.coder, P48.!P48( ).!getStr( ).!java.lang.String.value, p$0.!getStr( ).!java.lang.String.COMPACT_STRINGS, p$0.!getStr( ).!java.lang.String.coder, p$0.!getStr( ).!java.lang.String.value } TO = java.lang.String#length( )
+  25 actualOut D = { p$0.!getStr( ).!length( ) } U = { P48.!P48( ).!getStr( ).!java.lang.String.COMPACT_STRINGS, P48.!P48( ).!getStr( ).!java.lang.String.coder, P48.!P48( ).!getStr( ).!java.lang.String.value, p$0.!getStr( ).!java.lang.String.COMPACT_STRINGS, p$0.!getStr( ).!java.lang.String.coder, p$0.!getStr( ).!java.lang.String.value }
   27 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m1( ) ]
-   1 localDeclaration D = { p$0 } U = { p$0.!P48 }
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
-   4 actualOut D = { p$0.!P48 } U = {  }
-   5 assignment D = {  } U = { p$0.s.!m1 }
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 assignment D = {  } U = { p$0.s.!m1( ) }
    6 receiver D = {  } U = { p$0, p$0.s }
    7 methodCall D = {  } U = {  } TO = S48#m1( )
-   8 actualOut D = { p$0.s.!m1 } U = {  }
-   9 assignment D = {  } U = { p$0.ss.!m1 }
+   8 actualOut D = { p$0.s.!m1( ) } U = {  }
+   9 assignment D = {  } U = { p$0.ss.!m1( ) }
   10 receiver D = {  } U = { p$0, p$0.ss }
   11 methodCall D = {  } U = {  } TO = S48#m1( )
-  12 actualOut D = { p$0.ss.!m1 } U = {  }
-  13 assignment D = {  } U = { p$0.str.!length }
+  12 actualOut D = { p$0.ss.!m1( ) } U = {  }
+  13 assignment D = {  } U = { p$0.str.!length( ) }
   14 receiver D = {  } U = { p$0, p$0.str }
-  15 methodCall D = {  } U = { p$0, p$0.str, p$0.str.COMPACT_STRINGS, p$0.str.coder, p$0.str.value } TO = java.lang.String#length( )
-  16 actualOut D = { p$0.str.!length } U = { p$0.str.COMPACT_STRINGS, p$0.str.coder, p$0.str.value }
+  15 methodCall D = {  } U = { P48.!P48( ).str.!java.lang.String.COMPACT_STRINGS, P48.!P48( ).str.!java.lang.String.coder, P48.!P48( ).str.!java.lang.String.value, p$0.str.!java.lang.String.COMPACT_STRINGS, p$0.str.!java.lang.String.coder, p$0.str.!java.lang.String.value } TO = java.lang.String#length( )
+  16 actualOut D = { p$0.str.!length( ) } U = { P48.!P48( ).str.!java.lang.String.COMPACT_STRINGS, P48.!P48( ).str.!java.lang.String.coder, P48.!P48( ).str.!java.lang.String.value, p$0.str.!java.lang.String.COMPACT_STRINGS, p$0.str.!java.lang.String.coder, p$0.str.!java.lang.String.value }
   18 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m2( ) ]
-   1 localDeclaration D = { p$0 } U = { p$0.!P48 }
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
-   4 actualOut D = { p$0.!P48 } U = {  }
-   5 assignment D = {  } U = { p$0.t.!m1 }
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 assignment D = {  } U = { p$0.t.!m1( ) }
    6 receiver D = {  } U = { p$0, p$0.t }
    7 methodCall D = {  } U = {  } TO = T48#m1( )
-   8 actualOut D = { p$0.t.!m1 } U = {  }
-   9 assignment D = {  } U = { p$0.t.!m2 }
+   8 actualOut D = { p$0.t.!m1( ) } U = {  }
+   9 assignment D = {  } U = { p$0.t.!m2( ) }
   10 receiver D = {  } U = { p$0, p$0.t }
   11 methodCall D = {  } U = {  } TO = S48#m2( )
-  12 actualOut D = { p$0.t.!m2 } U = {  }
-  13 assignment D = {  } U = { p$0.t.!m3 }
+  12 actualOut D = { p$0.t.!m2( ) } U = {  }
+  13 assignment D = {  } U = { p$0.t.!m3( ) }
   14 receiver D = {  } U = { p$0, p$0.t }
   15 methodCall D = {  } U = {  } TO = T48#m3( )
-  16 actualOut D = { p$0.t.!m3 } U = {  }
+  16 actualOut D = { p$0.t.!m3( ) } U = {  }
   17 trySt D = {  } U = {  }
-  18 assignment D = {  } U = { p$0.str.!wait }
+  18 assignment D = {  } U = { p$0.str.!wait( ) }
   19 receiver D = {  } U = { p$0, p$0.str }
   20 methodCall D = {  } U = {  } TO = java.lang.Object#wait( )
-  21 actualOut D = { p$0.str.!wait } U = {  }
+  21 actualOut D = { p$0.str.!wait( ) } U = {  }
   23 catchClause D = { e$1 } U = {  }
   25 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ n11( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
-   2 assignment D = {  } U = { this.!m11 }
+   2 assignment D = {  } U = { this.!m11( S48 ) }
    3 receiver D = {  } U = {  }
    4 methodCall D = {  } U = {  } TO = Test48#m11( S48 )
    5 actualIn D = {  } U = { s$0 }
-   6 actualOut D = { this.!m11 } U = {  }
+   6 actualOut D = { this.!m11( S48 ) } U = {  }
    8 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m16( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
-   2 assignment D = {  } U = { s$0.!m1 }
+   2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
    4 methodCall D = {  } U = {  } TO = S48#m1( )
-   5 actualOut D = { s$0.!m1 } U = {  }
-   6 assignment D = {  } U = { s$0.!m2 }
+   5 actualOut D = { s$0.!m1( ) } U = {  }
+   6 assignment D = {  } U = { s$0.!m2( ) }
    7 receiver D = {  } U = { s$0 }
    8 methodCall D = {  } U = {  } TO = S48#m2( )
-   9 actualOut D = { s$0.!m2 } U = {  }
+   9 actualOut D = { s$0.!m2( ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m9( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
-   2 assignment D = {  } U = { s$0.!m1 }
+   2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
    4 methodCall D = {  } U = {  } TO = S48#m1( )
-   5 actualOut D = { s$0.!m1 } U = {  }
+   5 actualOut D = { s$0.!m1( ) } U = {  }
    7 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m13( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
-   2 assignment D = {  } U = { s$0.!m1 }
+   2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
    4 methodCall D = {  } U = {  } TO = S48#m1( )
-   5 actualOut D = { s$0.!m1 } U = {  }
-   6 assignment D = {  } U = { s$0.!m2 }
+   5 actualOut D = { s$0.!m1( ) } U = {  }
+   6 assignment D = {  } U = { s$0.!m2( ) }
    7 receiver D = {  } U = { s$0 }
    8 methodCall D = {  } U = {  } TO = S48#m2( )
-   9 actualOut D = { s$0.!m2 } U = {  }
+   9 actualOut D = { s$0.!m2( ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ n13( ) ]
-   1 assignment D = {  } U = { this.!m13 }
+   1 assignment D = {  } U = { this.!m13( S48 ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test48#m13( S48 )
-   4 actualIn D = {  } U = { T48.!T48 }
+   4 actualIn D = {  } U = { T48.!T48( ) }
    5 receiver D = {  } U = {  }
    6 constructorCall D = {  } U = {  } TO = T48#T48( )
-   7 actualOut D = { T48.!T48 } U = {  }
-   8 actualOut D = { this.!m13 } U = {  }
+   7 actualOut D = { T48.!T48( ) } U = {  }
+   8 actualOut D = { this.!m13( S48 ) } U = {  }
   10 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Test48( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ n9( ) ]
-   1 assignment D = {  } U = { this.!m9 }
+   1 assignment D = {  } U = { this.!m9( S48 ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test48#m9( S48 )
-   4 actualIn D = {  } U = { S48.!S48 }
+   4 actualIn D = {  } U = { S48.!S48( ) }
    5 receiver D = {  } U = {  }
    6 constructorCall D = {  } U = {  } TO = S48#S48( )
-   7 actualOut D = { S48.!S48 } U = {  }
-   8 actualOut D = { this.!m9 } U = {  }
+   7 actualOut D = { S48.!S48( ) } U = {  }
+   8 actualOut D = { this.!m9( S48 ) } U = {  }
   10 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ n12( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
-   2 assignment D = {  } U = { this.!m12 }
+   2 assignment D = {  } U = { this.!m12( S48 ) }
    3 receiver D = {  } U = {  }
    4 methodCall D = {  } U = {  } TO = Test48#m12( S48 )
    5 actualIn D = {  } U = { s$0 }
-   6 actualOut D = { this.!m12 } U = {  }
+   6 actualOut D = { this.!m12( S48 ) } U = {  }
    8 formalOut D = {  } U = { $_ }
 --
    0: m10( S48 )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 7 trueControlDependence
-   7: 1 -> 3 loopIndependentDefUseDependence s$0
-   8: 5 -> 2 loopIndependentDefUseDependence s$0.!m1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    1 ->    3 loopIndependentDefUseDependence s$0
+   8:    5 ->    2 loopIndependentDefUseDependence s$0.!m1( )
 --
    0: m11( S48 )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 7 trueControlDependence
-   7: 1 -> 3 loopIndependentDefUseDependence s$0
-   8: 5 -> 2 loopIndependentDefUseDependence s$0.!m1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    1 ->    3 loopIndependentDefUseDependence s$0
+   8:    5 ->    2 loopIndependentDefUseDependence s$0.!m1( )
 --
    0: m7( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 22 trueControlDependence
-  15: 0 -> 3 trueControlDependence
-  16: 0 -> 4 trueControlDependence
-  17: 0 -> 5 trueControlDependence
-  18: 0 -> 6 trueControlDependence
-  19: 0 -> 7 trueControlDependence
-  20: 0 -> 8 trueControlDependence
-  21: 0 -> 9 trueControlDependence
-  22: 1 -> 10 declaration
-  23: 1 -> 10 loopIndependentDefUseDependence t$0
-  24: 1 -> 14 declaration
-  25: 1 -> 14 loopIndependentDefUseDependence t$0
-  26: 1 -> 18 declaration
-  27: 1 -> 18 loopIndependentDefUseDependence t$0
-  28: 1 -> 19 declaration
-  29: 1 -> 19 loopIndependentDefUseDependence t$0
-  30: 1 -> 6 declaration
-  31: 1 -> 6 loopIndependentDefUseDependence t$0
-  32: 12 -> 9 loopIndependentDefUseDependence t$0.!m2
-  33: 16 -> 13 loopIndependentDefUseDependence t$0.!m3
-  34: 20 -> 17 loopIndependentDefUseDependence t$0.!toString
-  35: 4 -> 1 loopIndependentDefUseDependence t$0.!T48
-  36: 8 -> 5 loopIndependentDefUseDependence t$0.!m1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   22 trueControlDependence
+  22:    1 ->    6 declaration
+  23:    1 ->    6 loopIndependentDefUseDependence t$0
+  24:    1 ->   10 declaration
+  25:    1 ->   10 loopIndependentDefUseDependence t$0
+  26:    1 ->   14 declaration
+  27:    1 ->   14 loopIndependentDefUseDependence t$0
+  28:    1 ->   18 declaration
+  29:    1 ->   18 loopIndependentDefUseDependence t$0
+  30:    4 ->    1 loopIndependentDefUseDependence T48.!T48( )
+  31:    8 ->    5 loopIndependentDefUseDependence t$0.!m1( )
+  32:   12 ->    9 loopIndependentDefUseDependence t$0.!m2( )
+  33:   16 ->   13 loopIndependentDefUseDependence t$0.!m3( )
+  34:   20 ->   17 loopIndependentDefUseDependence t$0.!toString( )
 --
    0: m12( S48 )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 7 trueControlDependence
-   7: 1 -> 3 loopIndependentDefUseDependence s$0
-   8: 5 -> 2 loopIndependentDefUseDependence s$0.!m1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    1 ->    3 loopIndependentDefUseDependence s$0
+   8:    5 ->    2 loopIndependentDefUseDependence s$0.!m1( )
 --
    0: m15( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 18 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 20 trueControlDependence
-   5: 0 -> 3 trueControlDependence
-   6: 0 -> 4 trueControlDependence
-   7: 0 -> 5 trueControlDependence
-   8: 0 -> 6 trueControlDependence
-   9: 0 -> 7 trueControlDependence
-  10: 0 -> 8 trueControlDependence
-  11: 0 -> 9 trueControlDependence
-  12: 1 -> 12 declaration
-  13: 1 -> 12 loopIndependentDefUseDependence str$0
-  14: 1 -> 13 declaration
-  15: 1 -> 13 loopIndependentDefUseDependence str$0
-  16: 1 -> 4 declaration
-  17: 1 -> 4 loopIndependentDefUseDependence str$0
-  18: 1 -> 5 declaration
-  19: 1 -> 5 loopIndependentDefUseDependence str$0
-  20: 14 -> 11 loopIndependentDefUseDependence str$0.!substring
-  21: 15 -> 10 trueControlDependence
-  22: 15 -> 18 exceptionCatch
-  23: 16 -> 10 loopIndependentDefUseDependence str$0.!substring.!wait
-  24: 6 -> 14 outputDependence str$0.!substring
-  25: 6 -> 3 loopIndependentDefUseDependence str$0.!substring
-  26: 6 -> 7 loopIndependentDefUseDependence str$0.!substring
-  27: 8 -> 2 loopIndependentDefUseDependence str$0.!substring.!length
-  28: 9 -> 11 trueControlDependence
-  29: 9 -> 12 trueControlDependence
-  30: 9 -> 13 trueControlDependence
-  31: 9 -> 14 trueControlDependence
-  32: 9 -> 15 trueControlDependence
-  33: 9 -> 16 trueControlDependence
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    0 ->   12 trueControlDependence
+  12:    0 ->   13 trueControlDependence
+  13:    0 ->   14 trueControlDependence
+  14:    0 ->   15 trueControlDependence
+  15:    0 ->   20 trueControlDependence
+  16:    1 ->    4 declaration
+  17:    1 ->    4 loopIndependentDefUseDependence str$0
+  18:    1 ->   12 declaration
+  19:    1 ->   12 loopIndependentDefUseDependence str$0
+  20:    6 ->    3 loopIndependentDefUseDependence str$0.!substring( int )
+  21:    6 ->   14 outputDependence str$0.!substring( int )
+  22:    8 ->    2 loopIndependentDefUseDependence str$0.!substring( int ).!length( )
+  23:    9 ->   18 trueControlDependence
+  24:   14 ->   11 loopIndependentDefUseDependence str$0.!substring( int )
+  25:   15 ->   10 trueControlDependence
+  26:   15 ->   16 trueControlDependence
+  27:   15 ->   18 exceptionCatch
+  28:   16 ->   10 loopIndependentDefUseDependence str$0.!substring( int ).!wait( )
 --
    0: n10( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 11 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 0 -> 9 trueControlDependence
-  11: 1 -> 8 declaration
-  12: 1 -> 8 loopIndependentDefUseDependence s$0
-  13: 4 -> 1 loopIndependentDefUseDependence s$0.!S48
-  14: 9 -> 5 loopIndependentDefUseDependence this.!m10
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    1 ->    8 declaration
+  12:    1 ->    8 loopIndependentDefUseDependence s$0
+  13:    4 ->    1 loopIndependentDefUseDependence S48.!S48( )
+  14:    9 ->    5 loopIndependentDefUseDependence this.!m10( S48 )
 --
    0: m6( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 18 trueControlDependence
-  10: 0 -> 2 trueControlDependence
-  11: 0 -> 3 trueControlDependence
-  12: 0 -> 4 trueControlDependence
-  13: 0 -> 5 trueControlDependence
-  14: 0 -> 6 trueControlDependence
-  15: 0 -> 7 trueControlDependence
-  16: 0 -> 8 trueControlDependence
-  17: 0 -> 9 trueControlDependence
-  18: 1 -> 10 declaration
-  19: 1 -> 10 loopIndependentDefUseDependence s$0
-  20: 1 -> 14 declaration
-  21: 1 -> 14 loopIndependentDefUseDependence s$0
-  22: 1 -> 15 declaration
-  23: 1 -> 15 loopIndependentDefUseDependence s$0
-  24: 1 -> 6 declaration
-  25: 1 -> 6 loopIndependentDefUseDependence s$0
-  26: 12 -> 9 loopIndependentDefUseDependence s$0.!m2
-  27: 16 -> 13 loopIndependentDefUseDependence s$0.!toString
-  28: 4 -> 1 loopIndependentDefUseDependence s$0.!S48
-  29: 8 -> 5 loopIndependentDefUseDependence s$0.!m1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    1 ->    6 declaration
+  19:    1 ->    6 loopIndependentDefUseDependence s$0
+  20:    1 ->   10 declaration
+  21:    1 ->   10 loopIndependentDefUseDependence s$0
+  22:    1 ->   14 declaration
+  23:    1 ->   14 loopIndependentDefUseDependence s$0
+  24:    4 ->    1 loopIndependentDefUseDependence S48.!S48( )
+  25:    8 ->    5 loopIndependentDefUseDependence s$0.!m1( )
+  26:   12 ->    9 loopIndependentDefUseDependence s$0.!m2( )
+  27:   16 ->   13 loopIndependentDefUseDependence s$0.!toString( )
 --
    0: m8( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 18 trueControlDependence
-  10: 0 -> 2 trueControlDependence
-  11: 0 -> 3 trueControlDependence
-  12: 0 -> 4 trueControlDependence
-  13: 0 -> 5 trueControlDependence
-  14: 0 -> 6 trueControlDependence
-  15: 0 -> 7 trueControlDependence
-  16: 0 -> 8 trueControlDependence
-  17: 0 -> 9 trueControlDependence
-  18: 1 -> 10 declaration
-  19: 1 -> 10 loopIndependentDefUseDependence t$0
-  20: 1 -> 14 declaration
-  21: 1 -> 14 loopIndependentDefUseDependence t$0
-  22: 1 -> 15 declaration
-  23: 1 -> 15 loopIndependentDefUseDependence t$0
-  24: 1 -> 6 declaration
-  25: 1 -> 6 loopIndependentDefUseDependence t$0
-  26: 12 -> 9 loopIndependentDefUseDependence t$0.!m2
-  27: 16 -> 13 loopIndependentDefUseDependence t$0.!toString
-  28: 4 -> 1 loopIndependentDefUseDependence t$0.!T48
-  29: 8 -> 5 loopIndependentDefUseDependence t$0.!m1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    1 ->    6 declaration
+  19:    1 ->    6 loopIndependentDefUseDependence t$0
+  20:    1 ->   10 declaration
+  21:    1 ->   10 loopIndependentDefUseDependence t$0
+  22:    1 ->   14 declaration
+  23:    1 ->   14 loopIndependentDefUseDependence t$0
+  24:    4 ->    1 loopIndependentDefUseDependence T48.!T48( )
+  25:    8 ->    5 loopIndependentDefUseDependence t$0.!m1( )
+  26:   12 ->    9 loopIndependentDefUseDependence t$0.!m2( )
+  27:   16 ->   13 loopIndependentDefUseDependence t$0.!toString( )
 --
    0: m14( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 14 trueControlDependence
-   6: 0 -> 2 trueControlDependence
-   7: 0 -> 3 trueControlDependence
-   8: 0 -> 4 trueControlDependence
-   9: 0 -> 5 trueControlDependence
-  10: 0 -> 6 trueControlDependence
-  11: 0 -> 7 trueControlDependence
-  12: 0 -> 8 trueControlDependence
-  13: 0 -> 9 trueControlDependence
-  14: 1 -> 6 declaration
-  15: 1 -> 6 loopIndependentDefUseDependence p$0
-  16: 1 -> 7 declaration
-  17: 1 -> 7 loopIndependentDefUseDependence p$0
-  18: 1 -> 8 declaration
-  19: 12 -> 9 loopIndependentDefUseDependence l$1.!size
-  20: 4 -> 1 loopIndependentDefUseDependence p$0.!P48
-  21: 5 -> 10 declaration
-  22: 5 -> 10 loopIndependentDefUseDependence l$1
-  23: 5 -> 11 declaration
-  24: 5 -> 11 loopIndependentDefUseDependence l$1
-  25: 7 -> 8 loopIndependentDefUseDependence p$0
-  26: 8 -> 10 loopIndependentDefUseDependence p$0.!getArrayList
-  27: 8 -> 11 loopIndependentDefUseDependence p$0.!getArrayList
-  28: 8 -> 5 loopIndependentDefUseDependence p$0.!getArrayList
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    9 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    0 ->   12 trueControlDependence
+  12:    0 ->   14 trueControlDependence
+  13:    0 -> * trueControlDependence
+  14:    1 ->    6 declaration
+  15:    1 ->    6 loopIndependentDefUseDependence p$0
+  16:    4 ->    1 loopIndependentDefUseDependence P48.!P48( )
+  17:    5 ->   10 declaration
+  18:    5 ->   10 loopIndependentDefUseDependence l$1
+  19:   12 ->    9 loopIndependentDefUseDependence l$1.!size( )
+  20: * ->    5 loopIndependentDefUseDependence p$0.!getArrayList( )
 --
    0: m4( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 27 trueControlDependence
-  20: 0 -> 3 trueControlDependence
-  21: 0 -> 4 trueControlDependence
-  22: 0 -> 5 trueControlDependence
-  23: 0 -> 6 trueControlDependence
-  24: 0 -> 7 trueControlDependence
-  25: 0 -> 8 trueControlDependence
-  26: 0 -> 9 trueControlDependence
-  27: 1 -> 14 declaration
-  28: 1 -> 14 loopIndependentDefUseDependence p$0
-  29: 1 -> 21 declaration
-  30: 1 -> 21 loopIndependentDefUseDependence p$0
-  31: 1 -> 7 declaration
-  32: 1 -> 7 loopIndependentDefUseDependence p$0
-  33: 11 -> 5 loopIndependentDefUseDependence p$0.!getT.!m1
-  34: 16 -> 13 loopIndependentDefUseDependence p$0.!getT
-  35: 16 -> 23 outputDependence p$0.!getT
-  36: 18 -> 12 loopIndependentDefUseDependence p$0.!getT.!m2
-  37: 23 -> 20 loopIndependentDefUseDependence p$0.!getT
-  38: 25 -> 19 loopIndependentDefUseDependence p$0.!getT.!m3
-  39: 4 -> 1 loopIndependentDefUseDependence p$0.!P48
-  40: 9 -> 16 outputDependence p$0.!getT
-  41: 9 -> 6 loopIndependentDefUseDependence p$0.!getT
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   27 trueControlDependence
+  27:    1 ->    7 declaration
+  28:    1 ->    7 loopIndependentDefUseDependence p$0
+  29:    1 ->   14 declaration
+  30:    1 ->   14 loopIndependentDefUseDependence p$0
+  31:    1 ->   21 declaration
+  32:    1 ->   21 loopIndependentDefUseDependence p$0
+  33:    4 ->    1 loopIndependentDefUseDependence P48.!P48( )
+  34:    9 ->    6 loopIndependentDefUseDependence p$0.!getT( )
+  35:    9 ->   16 outputDependence p$0.!getT( )
+  36:   11 ->    5 loopIndependentDefUseDependence p$0.!getT( ).!m1( )
+  37:   16 ->   13 loopIndependentDefUseDependence p$0.!getT( )
+  38:   16 ->   23 outputDependence p$0.!getT( )
+  39:   18 ->   12 loopIndependentDefUseDependence p$0.!getT( ).!m2( )
+  40:   23 ->   20 loopIndependentDefUseDependence p$0.!getT( )
+  41:   25 ->   19 loopIndependentDefUseDependence p$0.!getT( ).!m3( )
 --
    0: m5( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 18 trueControlDependence
-  10: 0 -> 2 trueControlDependence
-  11: 0 -> 3 trueControlDependence
-  12: 0 -> 4 trueControlDependence
-  13: 0 -> 5 trueControlDependence
-  14: 0 -> 6 trueControlDependence
-  15: 0 -> 7 trueControlDependence
-  16: 0 -> 8 trueControlDependence
-  17: 0 -> 9 trueControlDependence
-  18: 1 -> 6 declaration
-  19: 1 -> 6 loopIndependentDefUseDependence p$0
-  20: 12 -> 9 loopIndependentDefUseDependence s$1.!m1
-  21: 16 -> 13 loopIndependentDefUseDependence s$1.!m2
-  22: 4 -> 1 loopIndependentDefUseDependence p$0.!P48
-  23: 5 -> 10 declaration
-  24: 5 -> 10 loopIndependentDefUseDependence s$1
-  25: 5 -> 14 declaration
-  26: 5 -> 14 loopIndependentDefUseDependence s$1
-  27: 8 -> 10 loopIndependentDefUseDependence p$0.!getS
-  28: 8 -> 14 loopIndependentDefUseDependence p$0.!getS
-  29: 8 -> 5 loopIndependentDefUseDependence p$0.!getS
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    1 ->    6 declaration
+  19:    1 ->    6 loopIndependentDefUseDependence p$0
+  20:    4 ->    1 loopIndependentDefUseDependence P48.!P48( )
+  21:    5 ->   10 declaration
+  22:    5 ->   10 loopIndependentDefUseDependence s$1
+  23:    5 ->   14 declaration
+  24:    5 ->   14 loopIndependentDefUseDependence s$1
+  25:    8 ->    5 loopIndependentDefUseDependence p$0.!getS( )
+  26:   12 ->    9 loopIndependentDefUseDependence s$1.!m1( )
+  27:   16 ->   13 loopIndependentDefUseDependence s$1.!m2( )
 --
    0: l11( S48 )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 11 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 0 -> 9 trueControlDependence
-  11: 8 -> 5 loopIndependentDefUseDependence S48.!S48
-  12: 9 -> 2 loopIndependentDefUseDependence this.!n11
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    8 ->    5 loopIndependentDefUseDependence S48.!S48( )
+  12:    9 ->    2 loopIndependentDefUseDependence this.!n11( S48 )
 --
    0: m3( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 27 trueControlDependence
-  20: 0 -> 3 trueControlDependence
-  21: 0 -> 4 trueControlDependence
-  22: 0 -> 5 trueControlDependence
-  23: 0 -> 6 trueControlDependence
-  24: 0 -> 7 trueControlDependence
-  25: 0 -> 8 trueControlDependence
-  26: 0 -> 9 trueControlDependence
-  27: 1 -> 14 declaration
-  28: 1 -> 14 loopIndependentDefUseDependence p$0
-  29: 1 -> 21 declaration
-  30: 1 -> 21 loopIndependentDefUseDependence p$0
-  31: 1 -> 7 declaration
-  32: 1 -> 7 loopIndependentDefUseDependence p$0
-  33: 11 -> 5 loopIndependentDefUseDependence p$0.!getS.!m1
-  34: 16 -> 13 loopIndependentDefUseDependence p$0.!getSS
-  35: 18 -> 12 loopIndependentDefUseDependence p$0.!getSS.!m1
-  36: 23 -> 20 loopIndependentDefUseDependence p$0.!getStr
-  37: 23 -> 24 loopIndependentDefUseDependence p$0.!getStr
-  38: 25 -> 19 loopIndependentDefUseDependence p$0.!getStr.!length
-  39: 4 -> 1 loopIndependentDefUseDependence p$0.!P48
-  40: 9 -> 6 loopIndependentDefUseDependence p$0.!getS
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   27 trueControlDependence
+  27:    1 ->    7 declaration
+  28:    1 ->    7 loopIndependentDefUseDependence p$0
+  29:    1 ->   14 declaration
+  30:    1 ->   14 loopIndependentDefUseDependence p$0
+  31:    1 ->   21 declaration
+  32:    1 ->   21 loopIndependentDefUseDependence p$0
+  33:    4 ->    1 loopIndependentDefUseDependence P48.!P48( )
+  34:    9 ->    6 loopIndependentDefUseDependence p$0.!getS( )
+  35:   11 ->    5 loopIndependentDefUseDependence p$0.!getS( ).!m1( )
+  36:   16 ->   13 loopIndependentDefUseDependence p$0.!getSS( )
+  37:   18 ->   12 loopIndependentDefUseDependence p$0.!getSS( ).!m1( )
+  38:   23 ->   20 loopIndependentDefUseDependence p$0.!getStr( )
+  39:   25 ->   19 loopIndependentDefUseDependence p$0.!getStr( ).!length( )
 --
    0: m1( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 18 trueControlDependence
-  10: 0 -> 2 trueControlDependence
-  11: 0 -> 3 trueControlDependence
-  12: 0 -> 4 trueControlDependence
-  13: 0 -> 5 trueControlDependence
-  14: 0 -> 6 trueControlDependence
-  15: 0 -> 7 trueControlDependence
-  16: 0 -> 8 trueControlDependence
-  17: 0 -> 9 trueControlDependence
-  18: 1 -> 10 declaration
-  19: 1 -> 10 loopIndependentDefUseDependence p$0
-  20: 1 -> 14 declaration
-  21: 1 -> 14 loopIndependentDefUseDependence p$0
-  22: 1 -> 15 declaration
-  23: 1 -> 15 loopIndependentDefUseDependence p$0
-  24: 1 -> 6 declaration
-  25: 1 -> 6 loopIndependentDefUseDependence p$0
-  26: 12 -> 9 loopIndependentDefUseDependence p$0.ss.!m1
-  27: 16 -> 13 loopIndependentDefUseDependence p$0.str.!length
-  28: 4 -> 1 loopIndependentDefUseDependence p$0.!P48
-  29: 8 -> 5 loopIndependentDefUseDependence p$0.s.!m1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    1 ->    6 declaration
+  19:    1 ->    6 loopIndependentDefUseDependence p$0
+  20:    1 ->   10 declaration
+  21:    1 ->   10 loopIndependentDefUseDependence p$0
+  22:    1 ->   14 declaration
+  23:    1 ->   14 loopIndependentDefUseDependence p$0
+  24:    4 ->    1 loopIndependentDefUseDependence P48.!P48( )
+  25:    8 ->    5 loopIndependentDefUseDependence p$0.s.!m1( )
+  26:   12 ->    9 loopIndependentDefUseDependence p$0.ss.!m1( )
+  27:   16 ->   13 loopIndependentDefUseDependence p$0.str.!length( )
 --
    0: m2( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 2 trueControlDependence
-  11: 0 -> 23 trueControlDependence
-  12: 0 -> 25 trueControlDependence
-  13: 0 -> 3 trueControlDependence
-  14: 0 -> 4 trueControlDependence
-  15: 0 -> 5 trueControlDependence
-  16: 0 -> 6 trueControlDependence
-  17: 0 -> 7 trueControlDependence
-  18: 0 -> 8 trueControlDependence
-  19: 0 -> 9 trueControlDependence
-  20: 1 -> 10 declaration
-  21: 1 -> 10 loopIndependentDefUseDependence p$0
-  22: 1 -> 14 declaration
-  23: 1 -> 14 loopIndependentDefUseDependence p$0
-  24: 1 -> 19 declaration
-  25: 1 -> 19 loopIndependentDefUseDependence p$0
-  26: 1 -> 6 declaration
-  27: 1 -> 6 loopIndependentDefUseDependence p$0
-  28: 12 -> 9 loopIndependentDefUseDependence p$0.t.!m2
-  29: 16 -> 13 loopIndependentDefUseDependence p$0.t.!m3
-  30: 17 -> 19 trueControlDependence
-  31: 17 -> 20 trueControlDependence
-  32: 17 -> 21 trueControlDependence
-  33: 20 -> 18 trueControlDependence
-  34: 20 -> 23 exceptionCatch
-  35: 21 -> 18 loopIndependentDefUseDependence p$0.str.!wait
-  36: 4 -> 1 loopIndependentDefUseDependence p$0.!P48
-  37: 8 -> 5 loopIndependentDefUseDependence p$0.t.!m1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   19 trueControlDependence
+  19:    0 ->   20 trueControlDependence
+  20:    0 ->   25 trueControlDependence
+  21:    1 ->    6 declaration
+  22:    1 ->    6 loopIndependentDefUseDependence p$0
+  23:    1 ->   10 declaration
+  24:    1 ->   10 loopIndependentDefUseDependence p$0
+  25:    1 ->   14 declaration
+  26:    1 ->   14 loopIndependentDefUseDependence p$0
+  27:    1 ->   19 declaration
+  28:    1 ->   19 loopIndependentDefUseDependence p$0
+  29:    4 ->    1 loopIndependentDefUseDependence P48.!P48( )
+  30:    8 ->    5 loopIndependentDefUseDependence p$0.t.!m1( )
+  31:   12 ->    9 loopIndependentDefUseDependence p$0.t.!m2( )
+  32:   16 ->   13 loopIndependentDefUseDependence p$0.t.!m3( )
+  33:   17 ->   23 trueControlDependence
+  34:   20 ->   18 trueControlDependence
+  35:   20 ->   21 trueControlDependence
+  36:   20 ->   23 exceptionCatch
+  37:   21 ->   18 loopIndependentDefUseDependence p$0.str.!wait( )
 --
    0: n11( S48 )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 8 trueControlDependence
-   8: 1 -> 5 loopIndependentDefUseDependence s$0
-   9: 6 -> 2 loopIndependentDefUseDependence this.!m11
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    1 ->    5 loopIndependentDefUseDependence s$0
+   9:    6 ->    2 loopIndependentDefUseDependence this.!m11( S48 )
 --
    0: m16( S48 )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 11 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 0 -> 9 trueControlDependence
-  11: 1 -> 3 loopIndependentDefUseDependence s$0
-  12: 1 -> 7 loopIndependentDefUseDependence s$0
-  13: 5 -> 2 loopIndependentDefUseDependence s$0.!m1
-  14: 9 -> 6 loopIndependentDefUseDependence s$0.!m2
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    1 ->    3 loopIndependentDefUseDependence s$0
+  12:    1 ->    7 loopIndependentDefUseDependence s$0
+  13:    5 ->    2 loopIndependentDefUseDependence s$0.!m1( )
+  14:    9 ->    6 loopIndependentDefUseDependence s$0.!m2( )
 --
    0: m9( S48 )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 7 trueControlDependence
-   7: 1 -> 3 loopIndependentDefUseDependence s$0
-   8: 5 -> 2 loopIndependentDefUseDependence s$0.!m1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    1 ->    3 loopIndependentDefUseDependence s$0
+   8:    5 ->    2 loopIndependentDefUseDependence s$0.!m1( )
 --
    0: m13( S48 )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 11 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 0 -> 9 trueControlDependence
-  11: 1 -> 3 loopIndependentDefUseDependence s$0
-  12: 1 -> 7 loopIndependentDefUseDependence s$0
-  13: 5 -> 2 loopIndependentDefUseDependence s$0.!m1
-  14: 9 -> 6 loopIndependentDefUseDependence s$0.!m2
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    1 ->    3 loopIndependentDefUseDependence s$0
+  12:    1 ->    7 loopIndependentDefUseDependence s$0
+  13:    5 ->    2 loopIndependentDefUseDependence s$0.!m1( )
+  14:    9 ->    6 loopIndependentDefUseDependence s$0.!m2( )
 --
    0: n13( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 7 -> 4 loopIndependentDefUseDependence T48.!T48
-  11: 8 -> 1 loopIndependentDefUseDependence this.!m13
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    7 ->    4 loopIndependentDefUseDependence T48.!T48( )
+  11:    8 ->    1 loopIndependentDefUseDependence this.!m13( S48 )
 --
    0: Test48( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: n9( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 7 -> 4 loopIndependentDefUseDependence S48.!S48
-  11: 8 -> 1 loopIndependentDefUseDependence this.!m9
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    7 ->    4 loopIndependentDefUseDependence S48.!S48( )
+  11:    8 ->    1 loopIndependentDefUseDependence this.!m9( S48 )
 --
    0: n12( S48 )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 8 trueControlDependence
-   8: 1 -> 5 loopIndependentDefUseDependence s$0
-   9: 6 -> 2 loopIndependentDefUseDependence this.!m12
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    1 ->    5 loopIndependentDefUseDependence s$0
+   9:    6 ->    2 loopIndependentDefUseDependence this.!m12( S48 )
 --
 ----- ClDG (to here) -----
 

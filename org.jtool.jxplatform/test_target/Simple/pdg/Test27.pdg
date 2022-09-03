@@ -2,25 +2,25 @@
 Class Name = Test27
    0 methodEntry [ n( ) ]
    1 localDeclaration D = { sum$0 } U = {  }
-   2 localDeclaration D = { numbers$1 } U = { numbers$1.!ArrayList<Integer> }
+   2 localDeclaration D = { numbers$1 } U = { java.util.ArrayList.!ArrayList( ) }
    3 receiver D = {  } U = {  }
-   4 constructorCall D = { java.util.AbstractList.modCount, numbers$1.elementData } U = { numbers$1.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
-   5 actualOut D = { java.util.AbstractList.modCount, numbers$1.!ArrayList<Integer>, numbers$1.elementData } U = { numbers$1.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
-   6 forSt D = {  } U = { num$2, numbers$1 }
+   4 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
+* actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   6 enhancedForSt D = { num$2 } U = { numbers$1 }
    7 assignment D = { sum$0 } U = { num$2, sum$0 }
-   9 formalOut D = {  } U = { $_, java.util.AbstractList.modCount, numbers$1.elementData }
+   9 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ x ]
-   1 fieldDeclaration D = { this.x } U = { this.!init, this.x }
+   1 fieldDeclaration D = { this.x } U = { this.!init( ), this.x }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test27#init( )
-   4 actualOut D = { this.!init } U = {  }
+   4 actualOut D = { this.!init( ) } U = {  }
 --
    0 fieldEntry [ list ]
-   1 fieldDeclaration D = { this.list } U = { MockArrayList.!MockArrayList, this.list }
+   1 fieldDeclaration D = { this.list } U = { MockArrayList.!MockArrayList( ), this.list }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = MockArrayList#MockArrayList( )
-   4 actualOut D = { MockArrayList.!MockArrayList } U = {  }
+   4 actualOut D = { MockArrayList.!MockArrayList( ) } U = {  }
 --
    0 methodEntry [ init( ) ]
    1 returnSt D = { $_ } U = {  }
@@ -30,45 +30,43 @@ Class Name = Test27
    2 formalOut D = {  } U = { $_ }
 --
    0: n( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 9 trueControlDependence
-   8: 1 -> 7 declaration
-   9: 1 -> 7 loopIndependentDefUseDependence sum$0
-  10: 2 -> 6 declaration
-  11: 2 -> 6 loopIndependentDefUseDependence numbers$1
-  12: 4 -> 5 outputDependence java.util.AbstractList.modCount
-  13: 4 -> 5 outputDependence numbers$1.elementData
-  14: 5 -> 2 loopIndependentDefUseDependence numbers$1.!ArrayList<Integer>
-  15: 5 -> 9 loopIndependentDefUseDependence java.util.AbstractList.modCount
-  16: 5 -> 9 loopIndependentDefUseDependence numbers$1.elementData
-  17: 6 -> 7 trueControlDependence
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    0 ->    9 trueControlDependence
+   7:    0 -> * trueControlDependence
+   8:    1 ->    7 declaration
+   9:    1 ->    7 loopIndependentDefUseDependence sum$0
+  10:    2 ->    6 declaration
+  11:    2 ->    6 loopIndependentDefUseDependence numbers$1
+  12:    6 ->    6 defOrderDependence num$2
+  13:    6 ->    7 loopIndependentDefUseDependence num$2
+  14:    6 ->    7 trueControlDependence
+  15: * ->    2 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
 --
    0: x
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence this.!init
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence this.!init( )
 --
    0: list
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence MockArrayList.!MockArrayList
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence MockArrayList.!MockArrayList( )
 --
    0: init( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
 --
    0: Test27( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

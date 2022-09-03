@@ -10,13 +10,13 @@ Class Name = S48
    2 formalOut D = {  } U = { $_ }
 --
    0: m1( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: m2( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: S48( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

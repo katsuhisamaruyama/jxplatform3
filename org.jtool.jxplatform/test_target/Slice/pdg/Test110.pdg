@@ -13,27 +13,27 @@ Class Name = Test110
    8 formalOut D = {  } U = { $_ }
 --
    0: Test110( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 5 trueControlDependence
-   5: 0 -> 6 trueControlDependence
-   6: 0 -> 8 trueControlDependence
-   7: 1 -> 3 declaration
-   8: 1 -> 3 loopIndependentDefUseDependence x$0
-   9: 1 -> 4 declaration
-  10: 1 -> 4 loopIndependentDefUseDependence x$0
-  11: 1 -> 5 declaration
-  12: 1 -> 5 loopIndependentDefUseDependence x$0
-  13: 2 -> 6 declaration
-  14: 2 -> 6 loopIndependentDefUseDependence y$1
-  15: 3 -> 4 trueControlDependence
-  16: 4 -> 3 loopCarriedDefUseDependence x$0 3
-  17: 4 -> 4 loopCarriedDefUseDependence x$0 3
-  18: 4 -> 5 loopIndependentDefUseDependence x$0
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    5 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    0 ->    8 trueControlDependence
+   7:    1 ->    3 declaration
+   8:    1 ->    3 loopIndependentDefUseDependence x$0
+   9:    1 ->    4 declaration
+  10:    1 ->    4 loopIndependentDefUseDependence x$0
+  11:    1 ->    5 declaration
+  12:    1 ->    5 loopIndependentDefUseDependence x$0
+  13:    2 ->    6 declaration
+  14:    2 ->    6 loopIndependentDefUseDependence y$1
+  15:    3 ->    4 trueControlDependence
+  16:    4 ->    3 loopCarriedDefUseDependence x$0 (LC =    3)
+  17:    4 ->    4 loopCarriedDefUseDependence x$0 (LC =    3)
+  18:    4 ->    5 loopIndependentDefUseDependence x$0
 --
 ----- ClDG (to here) -----
 

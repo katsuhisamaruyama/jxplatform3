@@ -1,262 +1,254 @@
 ----- ClDG (from here) -----
 Class Name = CustomerTest
    0 methodEntry [ testStatement1( ) ]
-   1 localDeclaration D = { customer$0 } U = { customer$0.!Customer }
+   1 localDeclaration D = { customer$0 } U = { Customer.!Customer( java.lang.String ) }
    2 receiver D = {  } U = {  }
-   3 constructorCall D = { customer$0.name } U = { customer$0.name } TO = Customer#Customer( java.lang.String )
+   3 constructorCall D = {  } U = {  } TO = Customer#Customer( java.lang.String )
    4 actualIn D = {  } U = { $java.lang.String }
-   5 actualOut D = { customer$0.!Customer, customer$0.name } U = { customer$0.name }
-   6 assignment D = {  } U = { customer$0.!setDiscount }
+   5 actualOut D = { Customer.!Customer( java.lang.String ) } U = {  }
+   6 assignment D = {  } U = { customer$0.!setDiscount( double ) }
    7 receiver D = {  } U = { customer$0 }
-   8 methodCall D = { customer$0.discount } U = { customer$0.discount } TO = Customer#setDiscount( double )
+   8 methodCall D = {  } U = {  } TO = Customer#setDiscount( double )
    9 actualIn D = {  } U = {  }
-  10 actualOut D = { customer$0.!setDiscount, customer$0.discount } U = { customer$0.discount }
-  11 localDeclaration D = { order$1 } U = { order$1.!Order }
+  10 actualOut D = { customer$0.!setDiscount( double ) } U = {  }
+  11 localDeclaration D = { order$1 } U = { Order.!Order( ) }
   12 receiver D = {  } U = {  }
   13 constructorCall D = {  } U = {  } TO = Order#Order( )
-  14 actualOut D = { order$1.!Order } U = {  }
-  15 localDeclaration D = { r1$2 } U = { r1$2.!Rental }
+  14 actualOut D = { Order.!Order( ) } U = {  }
+  15 localDeclaration D = { r1$2 } U = { Rental.!Rental( int int ) }
   16 receiver D = {  } U = {  }
-  17 constructorCall D = { r1$2.days, r1$2.price } U = { r1$2.days, r1$2.price } TO = Rental#Rental( int int )
+  17 constructorCall D = {  } U = {  } TO = Rental#Rental( int int )
   18 actualIn D = {  } U = {  }
   19 actualIn D = {  } U = {  }
-  20 actualOut D = { r1$2.!Rental, r1$2.days, r1$2.price } U = { r1$2.days, r1$2.price }
-  21 assignment D = {  } U = { order$1.!addRental }
+  20 actualOut D = { Rental.!Rental( int int ) } U = {  }
+  21 assignment D = {  } U = { order$1.!addRental( Rental ) }
   22 receiver D = {  } U = { order$1 }
-  23 methodCall D = { order$1, order$1.rentals } U = { order$1, order$1.rentals } TO = Order#addRental( Rental )
-  24 actualIn D = {  } U = { r1$2 }
-  25 actualOut D = { order$1, order$1.!addRental, order$1.rentals } U = { order$1, order$1.rentals }
-  26 localDeclaration D = { message$3 } U = { customer$0.!statement }
+  23 methodCall D = {  } U = { Order.!Order( ).rentals, Order.!Order( ).rentals.!java.util.ArrayList.elementData, Order.!Order( ).rentals.!java.util.ArrayList.modCount, Order.!Order( ).rentals.!java.util.ArrayList.size, order$1.rentals, order$1.rentals.!java.util.ArrayList.elementData, order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size, rental$0.days, rental$0.price } TO = Order#addRental( Rental )
+  24 actualIn D = {  } U = { Rental.!Rental( int int ).days, Rental.!Rental( int int ).price, r1$2, r1$2.days, r1$2.price }
+* actualOut D = { order$1.!addRental( Rental ), order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size } U = { Order.!Order( ).rentals, Order.!Order( ).rentals.!java.util.ArrayList.elementData, Order.!Order( ).rentals.!java.util.ArrayList.modCount, Order.!Order( ).rentals.!java.util.ArrayList.size, order$1.rentals, order$1.rentals.!java.util.ArrayList.elementData, order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size, rental$0.days, rental$0.price }
+  26 localDeclaration D = { message$3 } U = { customer$0.!statement( Order ) }
   27 receiver D = {  } U = { customer$0 }
-  28 methodCall D = { customer$0.discount } U = { customer$0.discount, customer$0.name } TO = Customer#statement( Order )
-  29 actualIn D = {  } U = { order$1 }
-  30 actualOut D = { customer$0.!statement, customer$0.discount } U = { customer$0.discount, customer$0.name }
-  32 formalOut D = {  } U = { $_, customer$0.discount, customer$0.name, order$1.rentals, r1$2.days, r1$2.price }
+  28 methodCall D = {  } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, customer$0.discount, customer$0.name, order$0.rentals, this.discount, this.rental$2.days, this.rental$2.price } TO = Customer#statement( Order )
+  29 actualIn D = {  } U = { Order.!Order( ).rentals, order$1, order$1.rentals }
+  30 actualOut D = { customer$0.!statement( Order ) } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, customer$0.discount, customer$0.name, order$0.rentals, this.discount, this.rental$2.days, this.rental$2.price }
+  31 localDeclaration D = { order2$4 } U = { Order.!Order( ).rentals, order$1, order$1.rentals }
+  33 formalOut D = {  } U = { $_ }
+* actualOut D = { Customer.!Customer( java.lang.String ).name } U = {  }
+* actualOut D = { customer$0.discount } U = {  }
+* actualOut D = { Rental.!Rental( int int ).days } U = {  }
+* actualOut D = { Rental.!Rental( int int ).price } U = {  }
+* actualOut D = { customer$0.discount } U = {  }
 --
    0 methodEntry [ testStatement2( ) ]
-   1 localDeclaration D = { customer$0 } U = { customer$0.!Customer }
+   1 localDeclaration D = { customer$0 } U = { Customer.!Customer( java.lang.String ) }
    2 receiver D = {  } U = {  }
-   3 constructorCall D = { customer$0.name } U = { customer$0.name } TO = Customer#Customer( java.lang.String )
+   3 constructorCall D = {  } U = {  } TO = Customer#Customer( java.lang.String )
    4 actualIn D = {  } U = { $java.lang.String }
-   5 actualOut D = { customer$0.!Customer, customer$0.name } U = { customer$0.name }
-   6 assignment D = {  } U = { customer$0.!setDiscount }
+   5 actualOut D = { Customer.!Customer( java.lang.String ) } U = {  }
+   6 assignment D = {  } U = { customer$0.!setDiscount( double ) }
    7 receiver D = {  } U = { customer$0 }
-   8 methodCall D = { customer$0.discount } U = { customer$0.discount } TO = Customer#setDiscount( double )
+   8 methodCall D = {  } U = {  } TO = Customer#setDiscount( double )
    9 actualIn D = {  } U = {  }
-  10 actualOut D = { customer$0.!setDiscount, customer$0.discount } U = { customer$0.discount }
-  11 localDeclaration D = { order$1 } U = { order$1.!Order }
+  10 actualOut D = { customer$0.!setDiscount( double ) } U = {  }
+  11 localDeclaration D = { order$1 } U = { Order.!Order( ) }
   12 receiver D = {  } U = {  }
   13 constructorCall D = {  } U = {  } TO = Order#Order( )
-  14 actualOut D = { order$1.!Order } U = {  }
-  15 localDeclaration D = { r1$2 } U = { r1$2.!Rental }
+  14 actualOut D = { Order.!Order( ) } U = {  }
+  15 localDeclaration D = { r1$2 } U = { Rental.!Rental( int int ) }
   16 receiver D = {  } U = {  }
-  17 constructorCall D = { r1$2.days, r1$2.price } U = { r1$2.days, r1$2.price } TO = Rental#Rental( int int )
+  17 constructorCall D = {  } U = {  } TO = Rental#Rental( int int )
   18 actualIn D = {  } U = {  }
   19 actualIn D = {  } U = {  }
-  20 actualOut D = { r1$2.!Rental, r1$2.days, r1$2.price } U = { r1$2.days, r1$2.price }
-  21 localDeclaration D = { r2$3 } U = { r2$3.!Rental }
+  20 actualOut D = { Rental.!Rental( int int ) } U = {  }
+  21 localDeclaration D = { r2$3 } U = { Rental.!Rental( int int ) }
   22 receiver D = {  } U = {  }
-  23 constructorCall D = { r2$3.days, r2$3.price } U = { r2$3.days, r2$3.price } TO = Rental#Rental( int int )
+  23 constructorCall D = {  } U = {  } TO = Rental#Rental( int int )
   24 actualIn D = {  } U = {  }
   25 actualIn D = {  } U = {  }
-  26 actualOut D = { r2$3.!Rental, r2$3.days, r2$3.price } U = { r2$3.days, r2$3.price }
-  27 assignment D = {  } U = { order$1.!addRental }
+  26 actualOut D = { Rental.!Rental( int int ) } U = {  }
+  27 assignment D = {  } U = { order$1.!addRental( Rental ) }
   28 receiver D = {  } U = { order$1 }
-  29 methodCall D = { order$1, order$1.rentals } U = { order$1, order$1.rentals } TO = Order#addRental( Rental )
-  30 actualIn D = {  } U = { r1$2 }
-  31 actualOut D = { order$1, order$1.!addRental, order$1.rentals } U = { order$1, order$1.rentals }
-  32 assignment D = {  } U = { order$1.!addRental }
+  29 methodCall D = {  } U = { Order.!Order( ).rentals, Order.!Order( ).rentals.!java.util.ArrayList.elementData, Order.!Order( ).rentals.!java.util.ArrayList.modCount, Order.!Order( ).rentals.!java.util.ArrayList.size, order$1.rentals, order$1.rentals.!java.util.ArrayList.elementData, order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size, rental$0.days, rental$0.price } TO = Order#addRental( Rental )
+  30 actualIn D = {  } U = { Rental.!Rental( int int ).days, Rental.!Rental( int int ).price, r1$2, r1$2.days, r1$2.price }
+* actualOut D = { order$1.!addRental( Rental ), order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size } U = { Order.!Order( ).rentals, Order.!Order( ).rentals.!java.util.ArrayList.elementData, Order.!Order( ).rentals.!java.util.ArrayList.modCount, Order.!Order( ).rentals.!java.util.ArrayList.size, order$1.rentals, order$1.rentals.!java.util.ArrayList.elementData, order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size, rental$0.days, rental$0.price }
+  32 assignment D = {  } U = { order$1.!addRental( Rental ) }
   33 receiver D = {  } U = { order$1 }
-  34 methodCall D = { order$1, order$1.rentals } U = { order$1, order$1.rentals } TO = Order#addRental( Rental )
-  35 actualIn D = {  } U = { r2$3 }
-  36 actualOut D = { order$1, order$1.!addRental, order$1.rentals } U = { order$1, order$1.rentals }
-  37 localDeclaration D = { message$4 } U = { customer$0.!statement }
+  34 methodCall D = {  } U = { Order.!Order( ).rentals, Order.!Order( ).rentals.!java.util.ArrayList.elementData, Order.!Order( ).rentals.!java.util.ArrayList.modCount, Order.!Order( ).rentals.!java.util.ArrayList.size, order$1.rentals, order$1.rentals.!java.util.ArrayList.elementData, order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size, rental$0.days, rental$0.price } TO = Order#addRental( Rental )
+  35 actualIn D = {  } U = { Rental.!Rental( int int ).days, Rental.!Rental( int int ).price, r2$3, r2$3.days, r2$3.price }
+* actualOut D = { order$1.!addRental( Rental ), order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size } U = { Order.!Order( ).rentals, Order.!Order( ).rentals.!java.util.ArrayList.elementData, Order.!Order( ).rentals.!java.util.ArrayList.modCount, Order.!Order( ).rentals.!java.util.ArrayList.size, order$1.rentals, order$1.rentals.!java.util.ArrayList.elementData, order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size, rental$0.days, rental$0.price }
+  37 localDeclaration D = { message$4 } U = { customer$0.!statement( Order ) }
   38 receiver D = {  } U = { customer$0 }
-  39 methodCall D = { customer$0.discount } U = { customer$0.discount, customer$0.name } TO = Customer#statement( Order )
-  40 actualIn D = {  } U = { order$1 }
-  41 actualOut D = { customer$0.!statement, customer$0.discount } U = { customer$0.discount, customer$0.name }
-  43 formalOut D = {  } U = { $_, customer$0.discount, customer$0.name, order$1.rentals, r1$2.days, r1$2.price, r2$3.days, r2$3.price }
+  39 methodCall D = {  } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, customer$0.discount, customer$0.name, order$0.rentals, this.discount, this.rental$2.days, this.rental$2.price } TO = Customer#statement( Order )
+  40 actualIn D = {  } U = { Order.!Order( ).rentals, order$1, order$1.rentals }
+  41 actualOut D = { customer$0.!statement( Order ) } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, customer$0.discount, customer$0.name, order$0.rentals, this.discount, this.rental$2.days, this.rental$2.price }
+  43 formalOut D = {  } U = { $_ }
+* actualOut D = { Customer.!Customer( java.lang.String ).name } U = {  }
+* actualOut D = { customer$0.discount } U = {  }
+* actualOut D = { Rental.!Rental( int int ).days } U = {  }
+* actualOut D = { Rental.!Rental( int int ).price } U = {  }
+* actualOut D = { Rental.!Rental( int int ).days } U = {  }
+* actualOut D = { Rental.!Rental( int int ).price } U = {  }
+* actualOut D = { customer$0.discount } U = {  }
 --
    0 constructorEntry [ CustomerTest( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: testStatement1( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 26 trueControlDependence
-  20: 0 -> 27 trueControlDependence
-  21: 0 -> 28 trueControlDependence
-  22: 0 -> 29 trueControlDependence
-  23: 0 -> 3 trueControlDependence
-  24: 0 -> 30 trueControlDependence
-  25: 0 -> 32 trueControlDependence
-  26: 0 -> 4 trueControlDependence
-  27: 0 -> 5 trueControlDependence
-  28: 0 -> 6 trueControlDependence
-  29: 0 -> 7 trueControlDependence
-  30: 0 -> 8 trueControlDependence
-  31: 0 -> 9 trueControlDependence
-  32: 1 -> 27 declaration
-  33: 1 -> 27 loopIndependentDefUseDependence customer$0
-  34: 1 -> 7 declaration
-  35: 1 -> 7 loopIndependentDefUseDependence customer$0
-  36: 10 -> 28 loopIndependentDefUseDependence customer$0.discount
-  37: 10 -> 6 loopIndependentDefUseDependence customer$0.!setDiscount
-  38: 11 -> 22 declaration
-  39: 11 -> 22 loopIndependentDefUseDependence order$1
-  40: 11 -> 23 declaration
-  41: 11 -> 23 loopIndependentDefUseDependence order$1
-  42: 11 -> 25 declaration
-  43: 11 -> 29 declaration
-  44: 14 -> 11 loopIndependentDefUseDependence order$1.!Order
-  45: 15 -> 24 declaration
-  46: 15 -> 24 loopIndependentDefUseDependence r1$2
-  47: 17 -> 20 loopIndependentDefUseDependence r1$2.days
-  48: 17 -> 20 loopIndependentDefUseDependence r1$2.price
-  49: 18 -> 20 summary
-  50: 19 -> 20 summary
-  51: 20 -> 15 loopIndependentDefUseDependence r1$2.!Rental
-  52: 20 -> 32 loopIndependentDefUseDependence r1$2.days
-  53: 20 -> 32 loopIndependentDefUseDependence r1$2.price
-  54: 23 -> 25 loopIndependentDefUseDependence order$1
-  55: 23 -> 25 loopIndependentDefUseDependence order$1.rentals
-  56: 24 -> 25 summary
-  57: 25 -> 21 loopIndependentDefUseDependence order$1.!addRental
-  58: 25 -> 29 loopIndependentDefUseDependence order$1
-  59: 25 -> 32 loopIndependentDefUseDependence order$1.rentals
-  60: 28 -> 30 loopIndependentDefUseDependence customer$0.discount
-  61: 3 -> 5 loopIndependentDefUseDependence customer$0.name
-  62: 30 -> 26 loopIndependentDefUseDependence customer$0.!statement
-  63: 30 -> 32 loopIndependentDefUseDependence customer$0.discount
-  64: 4 -> 5 summary
-  65: 5 -> 1 loopIndependentDefUseDependence customer$0.!Customer
-  66: 5 -> 28 loopIndependentDefUseDependence customer$0.name
-  67: 5 -> 30 loopIndependentDefUseDependence customer$0.name
-  68: 5 -> 32 loopIndependentDefUseDependence customer$0.name
-  69: 8 -> 10 loopIndependentDefUseDependence customer$0.discount
-  70: 9 -> 10 summary
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   26 trueControlDependence
+  26:    0 ->   27 trueControlDependence
+  27:    0 ->   28 trueControlDependence
+  28:    0 ->   29 trueControlDependence
+  29:    0 ->   30 trueControlDependence
+  30:    0 ->   31 trueControlDependence
+  31:    0 ->   33 trueControlDependence
+  32:    0 -> * trueControlDependence
+  33:    0 -> * trueControlDependence
+  34:    0 -> * trueControlDependence
+  35:    0 -> * trueControlDependence
+  36:    0 -> * trueControlDependence
+  37:    0 -> * trueControlDependence
+  38:    1 ->    7 declaration
+  39:    1 ->    7 loopIndependentDefUseDependence customer$0
+  40:    1 ->   27 declaration
+  41:    1 ->   27 loopIndependentDefUseDependence customer$0
+  42:    5 ->    1 loopIndependentDefUseDependence Customer.!Customer( java.lang.String )
+  43:   10 ->    6 loopIndependentDefUseDependence customer$0.!setDiscount( double )
+  44:   11 ->   22 declaration
+  45:   11 ->   22 loopIndependentDefUseDependence order$1
+  46:   11 ->   29 declaration
+  47:   11 ->   29 loopIndependentDefUseDependence order$1
+  48:   11 ->   31 declaration
+  49:   11 ->   31 loopIndependentDefUseDependence order$1
+  50:   14 ->   11 loopIndependentDefUseDependence Order.!Order( )
+  51:   15 ->   24 declaration
+  52:   15 ->   24 loopIndependentDefUseDependence r1$2
+  53:   20 ->   15 loopIndependentDefUseDependence Rental.!Rental( int int )
+  54:   30 ->   26 loopIndependentDefUseDependence customer$0.!statement( Order )
+  55: * ->   21 loopIndependentDefUseDependence order$1.!addRental( Rental )
+  56: * ->   24 loopIndependentDefUseDependence Rental.!Rental( int int ).days
+  57: * ->   24 loopIndependentDefUseDependence Rental.!Rental( int int ).price
+  58: * ->   28 loopIndependentDefUseDependence Customer.!Customer( java.lang.String ).name
+  59: * ->   28 loopIndependentDefUseDependence customer$0.discount
+  60: * ->   30 loopIndependentDefUseDependence Customer.!Customer( java.lang.String ).name
+  61: * ->   30 loopIndependentDefUseDependence customer$0.discount
+  62: * -> * outputDependence customer$0.discount
 --
    0: testStatement2( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 26 trueControlDependence
-  20: 0 -> 27 trueControlDependence
-  21: 0 -> 28 trueControlDependence
-  22: 0 -> 29 trueControlDependence
-  23: 0 -> 3 trueControlDependence
-  24: 0 -> 30 trueControlDependence
-  25: 0 -> 31 trueControlDependence
-  26: 0 -> 32 trueControlDependence
-  27: 0 -> 33 trueControlDependence
-  28: 0 -> 34 trueControlDependence
-  29: 0 -> 35 trueControlDependence
-  30: 0 -> 36 trueControlDependence
-  31: 0 -> 37 trueControlDependence
-  32: 0 -> 38 trueControlDependence
-  33: 0 -> 39 trueControlDependence
-  34: 0 -> 4 trueControlDependence
-  35: 0 -> 40 trueControlDependence
-  36: 0 -> 41 trueControlDependence
-  37: 0 -> 43 trueControlDependence
-  38: 0 -> 5 trueControlDependence
-  39: 0 -> 6 trueControlDependence
-  40: 0 -> 7 trueControlDependence
-  41: 0 -> 8 trueControlDependence
-  42: 0 -> 9 trueControlDependence
-  43: 1 -> 38 declaration
-  44: 1 -> 38 loopIndependentDefUseDependence customer$0
-  45: 1 -> 7 declaration
-  46: 1 -> 7 loopIndependentDefUseDependence customer$0
-  47: 10 -> 39 loopIndependentDefUseDependence customer$0.discount
-  48: 10 -> 6 loopIndependentDefUseDependence customer$0.!setDiscount
-  49: 11 -> 28 declaration
-  50: 11 -> 28 loopIndependentDefUseDependence order$1
-  51: 11 -> 29 declaration
-  52: 11 -> 29 loopIndependentDefUseDependence order$1
-  53: 11 -> 31 declaration
-  54: 11 -> 33 declaration
-  55: 11 -> 34 declaration
-  56: 11 -> 36 declaration
-  57: 11 -> 40 declaration
-  58: 14 -> 11 loopIndependentDefUseDependence order$1.!Order
-  59: 15 -> 30 declaration
-  60: 15 -> 30 loopIndependentDefUseDependence r1$2
-  61: 17 -> 20 loopIndependentDefUseDependence r1$2.days
-  62: 17 -> 20 loopIndependentDefUseDependence r1$2.price
-  63: 18 -> 20 summary
-  64: 19 -> 20 summary
-  65: 20 -> 15 loopIndependentDefUseDependence r1$2.!Rental
-  66: 20 -> 43 loopIndependentDefUseDependence r1$2.days
-  67: 20 -> 43 loopIndependentDefUseDependence r1$2.price
-  68: 21 -> 35 declaration
-  69: 21 -> 35 loopIndependentDefUseDependence r2$3
-  70: 23 -> 26 loopIndependentDefUseDependence r2$3.days
-  71: 23 -> 26 loopIndependentDefUseDependence r2$3.price
-  72: 24 -> 26 summary
-  73: 25 -> 26 summary
-  74: 26 -> 21 loopIndependentDefUseDependence r2$3.!Rental
-  75: 26 -> 43 loopIndependentDefUseDependence r2$3.days
-  76: 26 -> 43 loopIndependentDefUseDependence r2$3.price
-  77: 29 -> 31 loopIndependentDefUseDependence order$1
-  78: 29 -> 31 loopIndependentDefUseDependence order$1.rentals
-  79: 3 -> 5 loopIndependentDefUseDependence customer$0.name
-  80: 30 -> 31 summary
-  81: 31 -> 27 loopIndependentDefUseDependence order$1.!addRental
-  82: 31 -> 33 loopIndependentDefUseDependence order$1
-  83: 31 -> 34 loopIndependentDefUseDependence order$1
-  84: 31 -> 34 loopIndependentDefUseDependence order$1.rentals
-  85: 31 -> 36 outputDependence order$1.!addRental
-  86: 34 -> 36 loopIndependentDefUseDependence order$1
-  87: 34 -> 36 loopIndependentDefUseDependence order$1.rentals
-  88: 35 -> 36 summary
-  89: 36 -> 32 loopIndependentDefUseDependence order$1.!addRental
-  90: 36 -> 40 loopIndependentDefUseDependence order$1
-  91: 36 -> 43 loopIndependentDefUseDependence order$1.rentals
-  92: 39 -> 41 loopIndependentDefUseDependence customer$0.discount
-  93: 4 -> 5 summary
-  94: 41 -> 37 loopIndependentDefUseDependence customer$0.!statement
-  95: 41 -> 43 loopIndependentDefUseDependence customer$0.discount
-  96: 5 -> 1 loopIndependentDefUseDependence customer$0.!Customer
-  97: 5 -> 39 loopIndependentDefUseDependence customer$0.name
-  98: 5 -> 41 loopIndependentDefUseDependence customer$0.name
-  99: 5 -> 43 loopIndependentDefUseDependence customer$0.name
- 100: 8 -> 10 loopIndependentDefUseDependence customer$0.discount
- 101: 9 -> 10 summary
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   27 trueControlDependence
+  28:    0 ->   28 trueControlDependence
+  29:    0 ->   29 trueControlDependence
+  30:    0 ->   30 trueControlDependence
+  31:    0 ->   32 trueControlDependence
+  32:    0 ->   33 trueControlDependence
+  33:    0 ->   34 trueControlDependence
+  34:    0 ->   35 trueControlDependence
+  35:    0 ->   37 trueControlDependence
+  36:    0 ->   38 trueControlDependence
+  37:    0 ->   39 trueControlDependence
+  38:    0 ->   40 trueControlDependence
+  39:    0 ->   41 trueControlDependence
+  40:    0 ->   43 trueControlDependence
+  41:    0 -> * trueControlDependence
+  42:    0 -> * trueControlDependence
+  43:    0 -> * trueControlDependence
+  44:    0 -> * trueControlDependence
+  45:    0 -> * trueControlDependence
+  46:    0 -> * trueControlDependence
+  47:    0 -> * trueControlDependence
+  48:    0 -> * trueControlDependence
+  49:    0 -> * trueControlDependence
+  50:    1 ->    7 declaration
+  51:    1 ->    7 loopIndependentDefUseDependence customer$0
+  52:    1 ->   38 declaration
+  53:    1 ->   38 loopIndependentDefUseDependence customer$0
+  54:    5 ->    1 loopIndependentDefUseDependence Customer.!Customer( java.lang.String )
+  55:   10 ->    6 loopIndependentDefUseDependence customer$0.!setDiscount( double )
+  56:   11 ->   28 declaration
+  57:   11 ->   28 loopIndependentDefUseDependence order$1
+  58:   11 ->   33 declaration
+  59:   11 ->   33 loopIndependentDefUseDependence order$1
+  60:   11 ->   40 declaration
+  61:   11 ->   40 loopIndependentDefUseDependence order$1
+  62:   14 ->   11 loopIndependentDefUseDependence Order.!Order( )
+  63:   15 ->   30 declaration
+  64:   15 ->   30 loopIndependentDefUseDependence r1$2
+  65:   20 ->   15 loopIndependentDefUseDependence Rental.!Rental( int int )
+  66:   20 ->   26 outputDependence Rental.!Rental( int int )
+  67:   21 ->   35 declaration
+  68:   21 ->   35 loopIndependentDefUseDependence r2$3
+  69:   26 ->   21 loopIndependentDefUseDependence Rental.!Rental( int int )
+  70:   41 ->   37 loopIndependentDefUseDependence customer$0.!statement( Order )
+  71: * ->   27 loopIndependentDefUseDependence order$1.!addRental( Rental )
+  72: * ->   30 loopIndependentDefUseDependence Rental.!Rental( int int ).days
+  73: * ->   30 loopIndependentDefUseDependence Rental.!Rental( int int ).price
+  74: * ->   32 loopIndependentDefUseDependence order$1.!addRental( Rental )
+  75: * ->   34 loopIndependentDefUseDependence order$1.rentals.!java.util.ArrayList.modCount
+  76: * ->   34 loopIndependentDefUseDependence order$1.rentals.!java.util.ArrayList.size
+  77: * ->   35 loopIndependentDefUseDependence Rental.!Rental( int int ).days
+  78: * ->   35 loopIndependentDefUseDependence Rental.!Rental( int int ).price
+  79: * ->   39 loopIndependentDefUseDependence Customer.!Customer( java.lang.String ).name
+  80: * ->   39 loopIndependentDefUseDependence customer$0.discount
+  81: * ->   41 loopIndependentDefUseDependence Customer.!Customer( java.lang.String ).name
+  82: * ->   41 loopIndependentDefUseDependence customer$0.discount
+  83: * -> * loopIndependentDefUseDependence order$1.rentals.!java.util.ArrayList.modCount
+  84: * -> * loopIndependentDefUseDependence order$1.rentals.!java.util.ArrayList.size
+  85: * -> * outputDependence Rental.!Rental( int int ).days
+  86: * -> * outputDependence Rental.!Rental( int int ).price
+  87: * -> * outputDependence customer$0.discount
+  88: * -> * outputDependence order$1.!addRental( Rental )
 --
    0: CustomerTest( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

@@ -5,61 +5,63 @@ Class Name = Test130
 --
    0 methodEntry [ n( int ) ]
    1 formalIn D = { x$0 } U = {  }
-   2 returnSt D = { $_ } U = { S130.!S130 }
+   2 returnSt D = { $_ } U = { S130.!S130( int ) }
    3 receiver D = {  } U = {  }
-   4 constructorCall D = { S130.x } U = { S130.x } TO = S130#S130( int )
+   4 constructorCall D = {  } U = {  } TO = S130#S130( int )
    5 actualIn D = {  } U = { x$0 }
-   6 actualOut D = { S130.!S130, S130.x } U = { S130.x }
-   8 formalOut D = {  } U = { $_, S130.x }
+   6 actualOut D = { S130.!S130( int ) } U = {  }
+   8 formalOut D = {  } U = { $_ }
+* actualOut D = { $_.x } U = {  }
 --
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { p$0 } U = {  }
-   2 localDeclaration D = { q$1 } U = { this.!n.!getX }
-   3 receiver D = {  } U = { this.!n }
+   2 localDeclaration D = { q$1 } U = { this.!n( int ).!getX( ) }
+   3 receiver D = {  } U = { this.!n( int ) }
    4 receiver D = {  } U = {  }
    5 methodCall D = {  } U = {  } TO = Test130#n( int )
    6 actualIn D = {  } U = {  }
-   7 actualOut D = { this.!n } U = {  }
-   8 methodCall D = {  } U = { this.!n.x } TO = S130#getX( )
-   9 actualOut D = { this.!n.!getX } U = { this.!n.x }
+   7 actualOut D = { this.!n( int ) } U = {  }
+   8 methodCall D = {  } U = { this.!n( int ).x } TO = S130#getX( )
+   9 actualOut D = { this.!n( int ).!getX( ) } U = { this.!n( int ).x }
   10 localDeclaration D = { r$2 } U = { q$1 }
   12 formalOut D = {  } U = { $_ }
+* actualOut D = { this.!n( int ).x } U = {  }
 --
    0: Test130( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: n( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 8 trueControlDependence
-   8: 1 -> 5 loopIndependentDefUseDependence x$0
-   9: 2 -> 8 loopIndependentDefUseDependence $_
-  10: 4 -> 6 loopIndependentDefUseDependence S130.x
-  11: 5 -> 6 summary
-  12: 6 -> 2 loopIndependentDefUseDependence S130.!S130
-  13: 6 -> 8 loopIndependentDefUseDependence S130.x
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    0 -> * trueControlDependence
+   9:    1 ->    5 loopIndependentDefUseDependence x$0
+  10:    2 ->    8 loopIndependentDefUseDependence $_
+  11:    6 ->    2 loopIndependentDefUseDependence S130.!S130( int )
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 12 trueControlDependence
-   4: 0 -> 2 trueControlDependence
-   5: 0 -> 3 trueControlDependence
-   6: 0 -> 4 trueControlDependence
-   7: 0 -> 5 trueControlDependence
-   8: 0 -> 6 trueControlDependence
-   9: 0 -> 7 trueControlDependence
-  10: 0 -> 8 trueControlDependence
-  11: 0 -> 9 trueControlDependence
-  12: 2 -> 10 declaration
-  13: 2 -> 10 loopIndependentDefUseDependence q$1
-  14: 6 -> 7 summary
-  15: 7 -> 3 loopIndependentDefUseDependence this.!n
-  16: 9 -> 2 loopIndependentDefUseDependence this.!n.!getX
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   12 trueControlDependence
+  12:    0 -> * trueControlDependence
+  13:    2 ->   10 declaration
+  14:    2 ->   10 loopIndependentDefUseDependence q$1
+  15:    7 ->    3 loopIndependentDefUseDependence this.!n( int )
+  16:    9 ->    2 loopIndependentDefUseDependence this.!n( int ).!getX( )
+  17: * ->    8 loopIndependentDefUseDependence this.!n( int ).x
+  18: * ->    9 loopIndependentDefUseDependence this.!n( int ).x
 --
 ----- ClDG (to here) -----
 

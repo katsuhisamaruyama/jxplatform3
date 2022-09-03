@@ -1,10 +1,10 @@
 ----- ClDG (from here) -----
 Class Name = U129
    0 fieldEntry [ t ]
-   1 fieldDeclaration D = { this.t } U = { T129.!T129, this.t }
+   1 fieldDeclaration D = { this.t } U = { T129.!T129( ), this.t }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = T129#T129( )
-   4 actualOut D = { T129.!T129 } U = {  }
+   4 actualOut D = { T129.!T129( ) } U = {  }
 --
    0 constructorEntry [ U129( ) ]
    2 formalOut D = {  } U = { $_ }
@@ -12,64 +12,58 @@ Class Name = U129
    0 methodEntry [ set1( java.lang.String java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 formalIn D = { value$1 } U = {  }
-   3 assignment D = {  } U = { this.t.!set1 }
+   3 assignment D = {  } U = { this.t.!set1( java.lang.String java.lang.String ) }
    4 receiver D = {  } U = { this.t }
-   5 methodCall D = { this.t.p, this.t.p.map } U = { this.t.p, this.t.p.map } TO = T129#set1( java.lang.String java.lang.String )
+   5 methodCall D = {  } U = { this.t.p, this.t.p.map, this.t.p.map.!java.util.HashMap$Node.hash, this.t.p.map.!java.util.HashMap$Node.key, this.t.p.map.!java.util.HashMap$Node.next, this.t.p.map.!java.util.HashMap$Node.value, this.t.p.map.!java.util.HashMap.modCount, this.t.p.map.!java.util.HashMap.size, this.t.p.map.!java.util.HashMap.table, this.t.p.map.!java.util.HashMap.threshold } TO = T129#set1( java.lang.String java.lang.String )
    6 actualIn D = {  } U = { key$0 }
    7 actualIn D = {  } U = { value$1 }
-   8 actualOut D = { this.t.!set1, this.t.p, this.t.p.map } U = { this.t.p, this.t.p.map }
-  10 formalOut D = {  } U = { $_, this.t.p, this.t.p.map }
+* actualOut D = { this.t.!set1( java.lang.String java.lang.String ), this.t.p.map.!java.util.HashMap$Node.next, this.t.p.map.!java.util.HashMap$Node.value, this.t.p.map.!java.util.HashMap.modCount, this.t.p.map.!java.util.HashMap.size } U = { this.t.p, this.t.p.map, this.t.p.map.!java.util.HashMap$Node.hash, this.t.p.map.!java.util.HashMap$Node.key, this.t.p.map.!java.util.HashMap$Node.next, this.t.p.map.!java.util.HashMap$Node.value, this.t.p.map.!java.util.HashMap.modCount, this.t.p.map.!java.util.HashMap.size, this.t.p.map.!java.util.HashMap.table, this.t.p.map.!java.util.HashMap.threshold }
+  10 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ get1( java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
-   2 returnSt D = { $_ } U = { this.t.!get1 }
+   2 returnSt D = { $_ } U = { this.t.!get1( java.lang.String ) }
    3 receiver D = {  } U = { this.t }
-   4 methodCall D = {  } U = { this.t.p, this.t.p.map } TO = T129#get1( java.lang.String )
+   4 methodCall D = {  } U = { this.t.p, this.t.p.map, this.t.p.map.!java.util.HashMap$Node.hash, this.t.p.map.!java.util.HashMap$Node.key, this.t.p.map.!java.util.HashMap$Node.next, this.t.p.map.!java.util.HashMap$Node.value, this.t.p.map.!java.util.HashMap.table } TO = T129#get1( java.lang.String )
    5 actualIn D = {  } U = { key$0 }
-   6 actualOut D = { this.t.!get1 } U = { this.t.p, this.t.p.map }
+   6 actualOut D = { this.t.!get1( java.lang.String ) } U = { this.t.p, this.t.p.map, this.t.p.map.!java.util.HashMap$Node.hash, this.t.p.map.!java.util.HashMap$Node.key, this.t.p.map.!java.util.HashMap$Node.next, this.t.p.map.!java.util.HashMap$Node.value, this.t.p.map.!java.util.HashMap.table }
    8 formalOut D = {  } U = { $_ }
 --
    0: t
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence T129.!T129
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence T129.!T129( )
 --
    0: U129( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: set1( java.lang.String java.lang.String )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 1 -> 6 loopIndependentDefUseDependence key$0
-  11: 2 -> 7 loopIndependentDefUseDependence value$1
-  12: 5 -> 8 loopIndependentDefUseDependence this.t.p
-  13: 5 -> 8 loopIndependentDefUseDependence this.t.p.map
-  14: 6 -> 8 summary
-  15: 7 -> 8 summary
-  16: 8 -> 10 loopIndependentDefUseDependence this.t.p
-  17: 8 -> 10 loopIndependentDefUseDependence this.t.p.map
-  18: 8 -> 3 loopIndependentDefUseDependence this.t.!set1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->   10 trueControlDependence
+   9:    0 -> * trueControlDependence
+  10:    1 ->    6 loopIndependentDefUseDependence key$0
+  11:    2 ->    7 loopIndependentDefUseDependence value$1
+  12: * ->    3 loopIndependentDefUseDependence this.t.!set1( java.lang.String java.lang.String )
 --
    0: get1( java.lang.String )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 8 trueControlDependence
-   8: 1 -> 5 loopIndependentDefUseDependence key$0
-   9: 2 -> 8 loopIndependentDefUseDependence $_
-  10: 6 -> 2 loopIndependentDefUseDependence this.t.!get1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    1 ->    5 loopIndependentDefUseDependence key$0
+   9:    2 ->    8 loopIndependentDefUseDependence $_
+  10:    6 ->    2 loopIndependentDefUseDependence this.t.!get1( java.lang.String )
 --
 ----- ClDG (to here) -----
 

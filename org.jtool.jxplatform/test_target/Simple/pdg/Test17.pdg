@@ -5,24 +5,24 @@ Class Name = Test17
    2 localDeclaration D = { b$1 } U = {  }
    3 whileSt D = {  } U = { b$1 }
    4 ifSt D = {  } U = { a$0 }
-   5 switchSt D = {  } U = { a$0 }
-   6 switchCase D = {  } U = { a$0 }
+   5 switchSt D = { $SwitchDef } U = { a$0 }
+   6 switchCase D = {  } U = { $SwitchDef }
    7 assignment D = { a$0 } U = { a$0 }
    8 breakSt D = {  } U = {  }
-   9 switchCase D = {  } U = { a$0 }
+   9 switchCase D = {  } U = { $SwitchDef }
   10 assignment D = { a$0 } U = { a$0 }
   11 breakSt D = {  } U = {  }
-  12 switchCase D = {  } U = { a$0 }
+  12 switchCase D = {  } U = { $SwitchDef }
   13 assignment D = { a$0 } U = { a$0 }
   14 breakSt D = {  } U = {  }
-  16 switchSt D = {  } U = { b$1 }
-  17 switchCase D = {  } U = { b$1 }
+  16 switchSt D = { $SwitchDef } U = { b$1 }
+  17 switchCase D = {  } U = { $SwitchDef }
   18 assignment D = { b$1 } U = { b$1 }
   19 breakSt D = {  } U = {  }
-  20 switchCase D = {  } U = { b$1 }
+  20 switchCase D = {  } U = { $SwitchDef }
   21 assignment D = { b$1 } U = { b$1 }
   22 breakSt D = {  } U = {  }
-  23 switchCase D = {  } U = { b$1 }
+  23 switchCase D = {  } U = { $SwitchDef }
   24 assignment D = { b$1 } U = { b$1 }
   25 breakSt D = {  } U = {  }
   29 formalOut D = {  } U = { $_ }
@@ -31,118 +31,98 @@ Class Name = Test17
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 29 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 1 -> 10 declaration
-   6: 1 -> 10 loopIndependentDefUseDependence a$0
-   7: 1 -> 12 declaration
-   8: 1 -> 12 loopIndependentDefUseDependence a$0
-   9: 1 -> 13 declaration
-  10: 1 -> 13 loopIndependentDefUseDependence a$0
-  11: 1 -> 4 declaration
-  12: 1 -> 4 loopIndependentDefUseDependence a$0
-  13: 1 -> 5 declaration
-  14: 1 -> 5 loopIndependentDefUseDependence a$0
-  15: 1 -> 6 declaration
-  16: 1 -> 6 loopIndependentDefUseDependence a$0
-  17: 1 -> 7 declaration
-  18: 1 -> 7 loopIndependentDefUseDependence a$0
-  19: 1 -> 9 declaration
-  20: 1 -> 9 loopIndependentDefUseDependence a$0
-  21: 10 -> 10 loopCarriedDefUseDependence a$0 3
-  22: 10 -> 12 loopCarriedDefUseDependence a$0 3
-  23: 10 -> 13 loopCarriedDefUseDependence a$0 3
-  24: 10 -> 4 loopIndependentDefUseDependence a$0
-  25: 10 -> 5 loopIndependentDefUseDependence a$0
-  26: 10 -> 6 loopIndependentDefUseDependence a$0
-  27: 10 -> 7 loopCarriedDefUseDependence a$0 3
-  28: 10 -> 9 loopCarriedDefUseDependence a$0 3
-  29: 11 -> 12 fallThroughControlDependence
-  30: 12 -> 13 trueControlDependence
-  31: 12 -> 14 trueControlDependence
-  32: 13 -> 10 loopCarriedDefUseDependence a$0 3
-  33: 13 -> 12 loopCarriedDefUseDependence a$0 3
-  34: 13 -> 13 loopCarriedDefUseDependence a$0 3
-  35: 13 -> 4 loopIndependentDefUseDependence a$0
-  36: 13 -> 5 loopIndependentDefUseDependence a$0
-  37: 13 -> 6 loopIndependentDefUseDependence a$0
-  38: 13 -> 7 loopCarriedDefUseDependence a$0 3
-  39: 13 -> 9 loopIndependentDefUseDependence a$0
-  40: 17 -> 18 trueControlDependence
-  41: 17 -> 19 trueControlDependence
-  42: 17 -> 20 falseControlDependence
-  43: 18 -> 16 loopIndependentDefUseDependence b$1
-  44: 18 -> 17 loopCarriedDefUseDependence b$1 3
-  45: 18 -> 18 loopCarriedDefUseDependence b$1 3
-  46: 18 -> 20 loopCarriedDefUseDependence b$1 3
-  47: 18 -> 21 loopCarriedDefUseDependence b$1 3
-  48: 18 -> 23 loopCarriedDefUseDependence b$1 3
-  49: 18 -> 24 loopCarriedDefUseDependence b$1 3
-  50: 18 -> 3 loopIndependentDefUseDependence b$1
-  51: 19 -> 20 fallThroughControlDependence
-  52: 2 -> 16 declaration
-  53: 2 -> 16 loopIndependentDefUseDependence b$1
-  54: 2 -> 17 declaration
-  55: 2 -> 17 loopIndependentDefUseDependence b$1
-  56: 2 -> 18 declaration
-  57: 2 -> 18 loopIndependentDefUseDependence b$1
-  58: 2 -> 20 declaration
-  59: 2 -> 20 loopIndependentDefUseDependence b$1
-  60: 2 -> 21 declaration
-  61: 2 -> 21 loopIndependentDefUseDependence b$1
-  62: 2 -> 23 declaration
-  63: 2 -> 23 loopIndependentDefUseDependence b$1
-  64: 2 -> 24 declaration
-  65: 2 -> 24 loopIndependentDefUseDependence b$1
-  66: 2 -> 3 declaration
-  67: 2 -> 3 loopIndependentDefUseDependence b$1
-  68: 20 -> 21 trueControlDependence
-  69: 20 -> 22 trueControlDependence
-  70: 20 -> 23 falseControlDependence
-  71: 21 -> 16 loopIndependentDefUseDependence b$1
-  72: 21 -> 17 loopIndependentDefUseDependence b$1
-  73: 21 -> 18 loopCarriedDefUseDependence b$1 3
-  74: 21 -> 20 loopCarriedDefUseDependence b$1 3
-  75: 21 -> 21 loopCarriedDefUseDependence b$1 3
-  76: 21 -> 23 loopCarriedDefUseDependence b$1 3
-  77: 21 -> 24 loopCarriedDefUseDependence b$1 3
-  78: 21 -> 3 loopIndependentDefUseDependence b$1
-  79: 22 -> 23 fallThroughControlDependence
-  80: 23 -> 24 trueControlDependence
-  81: 23 -> 25 trueControlDependence
-  82: 24 -> 16 loopIndependentDefUseDependence b$1
-  83: 24 -> 17 loopIndependentDefUseDependence b$1
-  84: 24 -> 18 loopCarriedDefUseDependence b$1 3
-  85: 24 -> 20 loopIndependentDefUseDependence b$1
-  86: 24 -> 21 loopCarriedDefUseDependence b$1 3
-  87: 24 -> 23 loopCarriedDefUseDependence b$1 3
-  88: 24 -> 24 loopCarriedDefUseDependence b$1 3
-  89: 24 -> 3 loopIndependentDefUseDependence b$1
-  90: 3 -> 4 trueControlDependence
-  91: 4 -> 16 falseControlDependence
-  92: 4 -> 17 falseControlDependence
-  93: 4 -> 5 trueControlDependence
-  94: 4 -> 6 trueControlDependence
-  95: 6 -> 7 trueControlDependence
-  96: 6 -> 8 trueControlDependence
-  97: 6 -> 9 falseControlDependence
-  98: 7 -> 10 loopCarriedDefUseDependence a$0 3
-  99: 7 -> 12 loopCarriedDefUseDependence a$0 3
- 100: 7 -> 13 loopCarriedDefUseDependence a$0 3
- 101: 7 -> 4 loopIndependentDefUseDependence a$0
- 102: 7 -> 5 loopIndependentDefUseDependence a$0
- 103: 7 -> 6 loopCarriedDefUseDependence a$0 3
- 104: 7 -> 7 loopCarriedDefUseDependence a$0 3
- 105: 7 -> 9 loopCarriedDefUseDependence a$0 3
- 106: 8 -> 9 fallThroughControlDependence
- 107: 9 -> 10 trueControlDependence
- 108: 9 -> 11 trueControlDependence
- 109: 9 -> 12 falseControlDependence
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->   29 trueControlDependence
+   5:    1 ->    4 declaration
+   6:    1 ->    4 loopIndependentDefUseDependence a$0
+   7:    1 ->    5 declaration
+   8:    1 ->    5 loopIndependentDefUseDependence a$0
+   9:    1 ->    7 declaration
+  10:    1 ->    7 loopIndependentDefUseDependence a$0
+  11:    1 ->   10 declaration
+  12:    1 ->   10 loopIndependentDefUseDependence a$0
+  13:    1 ->   13 declaration
+  14:    1 ->   13 loopIndependentDefUseDependence a$0
+  15:    2 ->    3 declaration
+  16:    2 ->    3 loopIndependentDefUseDependence b$1
+  17:    2 ->   16 declaration
+  18:    2 ->   16 loopIndependentDefUseDependence b$1
+  19:    2 ->   18 declaration
+  20:    2 ->   18 loopIndependentDefUseDependence b$1
+  21:    2 ->   21 declaration
+  22:    2 ->   21 loopIndependentDefUseDependence b$1
+  23:    2 ->   24 declaration
+  24:    2 ->   24 loopIndependentDefUseDependence b$1
+  25:    3 ->    4 trueControlDependence
+  26:    4 ->    5 trueControlDependence
+  27:    4 ->    6 trueControlDependence
+  28:    4 ->   16 falseControlDependence
+  29:    4 ->   17 falseControlDependence
+  30:    5 ->    5 defOrderDependence $SwitchDef
+  31:    5 ->    6 loopIndependentDefUseDependence $SwitchDef
+  32:    5 ->    9 loopIndependentDefUseDependence $SwitchDef
+  33:    5 ->   12 loopIndependentDefUseDependence $SwitchDef
+  34:    5 ->   16 outputDependence $SwitchDef
+  35:    6 ->    7 trueControlDependence
+  36:    6 ->    8 trueControlDependence
+  37:    6 ->    9 falseControlDependence
+  38:    7 ->    4 loopIndependentDefUseDependence a$0
+  39:    7 ->    5 loopIndependentDefUseDependence a$0
+  40:    7 ->    7 loopCarriedDefUseDependence a$0 (LC =    3)
+  41:    7 ->   10 loopCarriedDefUseDependence a$0 (LC =    3)
+  42:    7 ->   13 loopCarriedDefUseDependence a$0 (LC =    3)
+  43:    8 ->    9 fallThroughControlDependence
+  44:    9 ->   10 trueControlDependence
+  45:    9 ->   11 trueControlDependence
+  46:    9 ->   12 falseControlDependence
+  47:   10 ->    4 loopIndependentDefUseDependence a$0
+  48:   10 ->    5 loopIndependentDefUseDependence a$0
+  49:   10 ->    7 loopCarriedDefUseDependence a$0 (LC =    3)
+  50:   10 ->   10 loopCarriedDefUseDependence a$0 (LC =    3)
+  51:   10 ->   13 loopCarriedDefUseDependence a$0 (LC =    3)
+  52:   11 ->   12 fallThroughControlDependence
+  53:   12 ->   13 trueControlDependence
+  54:   12 ->   14 trueControlDependence
+  55:   13 ->    4 loopIndependentDefUseDependence a$0
+  56:   13 ->    5 loopIndependentDefUseDependence a$0
+  57:   13 ->    7 loopCarriedDefUseDependence a$0 (LC =    3)
+  58:   13 ->   10 loopCarriedDefUseDependence a$0 (LC =    3)
+  59:   13 ->   13 loopCarriedDefUseDependence a$0 (LC =    3)
+  60:   16 ->    5 outputDependence $SwitchDef
+  61:   16 ->   16 defOrderDependence $SwitchDef
+  62:   16 ->   17 loopIndependentDefUseDependence $SwitchDef
+  63:   16 ->   20 loopIndependentDefUseDependence $SwitchDef
+  64:   16 ->   23 loopIndependentDefUseDependence $SwitchDef
+  65:   17 ->   18 trueControlDependence
+  66:   17 ->   19 trueControlDependence
+  67:   17 ->   20 falseControlDependence
+  68:   18 ->    3 loopIndependentDefUseDependence b$1
+  69:   18 ->   16 loopIndependentDefUseDependence b$1
+  70:   18 ->   18 loopCarriedDefUseDependence b$1 (LC =    3)
+  71:   18 ->   21 loopCarriedDefUseDependence b$1 (LC =    3)
+  72:   18 ->   24 loopCarriedDefUseDependence b$1 (LC =    3)
+  73:   19 ->   20 fallThroughControlDependence
+  74:   20 ->   21 trueControlDependence
+  75:   20 ->   22 trueControlDependence
+  76:   20 ->   23 falseControlDependence
+  77:   21 ->    3 loopIndependentDefUseDependence b$1
+  78:   21 ->   16 loopIndependentDefUseDependence b$1
+  79:   21 ->   18 loopCarriedDefUseDependence b$1 (LC =    3)
+  80:   21 ->   21 loopCarriedDefUseDependence b$1 (LC =    3)
+  81:   21 ->   24 loopCarriedDefUseDependence b$1 (LC =    3)
+  82:   22 ->   23 fallThroughControlDependence
+  83:   23 ->   24 trueControlDependence
+  84:   23 ->   25 trueControlDependence
+  85:   24 ->    3 loopIndependentDefUseDependence b$1
+  86:   24 ->   16 loopIndependentDefUseDependence b$1
+  87:   24 ->   18 loopCarriedDefUseDependence b$1 (LC =    3)
+  88:   24 ->   21 loopCarriedDefUseDependence b$1 (LC =    3)
+  89:   24 ->   24 loopCarriedDefUseDependence b$1 (LC =    3)
 --
    0: Test17( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

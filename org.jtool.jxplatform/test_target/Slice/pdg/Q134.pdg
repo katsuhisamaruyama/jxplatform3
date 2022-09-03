@@ -9,14 +9,14 @@ Class Name = Q134
    4 formalOut D = {  } U = { $_ }
 --
    0: Q134( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: f( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence a$0
-   5: 2 -> 4 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence a$0
+   5:    2 ->    4 loopIndependentDefUseDependence $_
 --
 ----- ClDG (to here) -----
 

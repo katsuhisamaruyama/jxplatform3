@@ -19,112 +19,104 @@ Class Name = Test07
   16 ifSt D = {  } U = { a$0, b$1 }
   17 assignment D = { c$2 } U = { c$2, e$4 }
   18 assignment D = { d$3 } U = { d$3, e$4 }
-  24 assignment D = {  } U = { System.out.!println }
+  24 assignment D = {  } U = { System.out.!println( int ) }
   25 receiver D = {  } U = { System.out }
-  26 methodCall D = { System.out, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, a$0, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( int )
-  27 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
-  28 assignment D = {  } U = { System.out.!println }
+  26 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, a$0 } TO = java.io.PrintStream#println( int )
+* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  28 assignment D = {  } U = { System.out.!println( int ) }
   29 receiver D = {  } U = { System.out }
-  30 methodCall D = { System.out, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, e$4, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( int )
-  31 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
-  33 formalOut D = {  } U = { $_, System.out, System.out.trouble }
+  30 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, e$4 } TO = java.io.PrintStream#println( int )
+* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  33 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Test07( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 24 trueControlDependence
-   4: 0 -> 25 trueControlDependence
-   5: 0 -> 26 trueControlDependence
-   6: 0 -> 27 trueControlDependence
-   7: 0 -> 28 trueControlDependence
-   8: 0 -> 29 trueControlDependence
-   9: 0 -> 3 trueControlDependence
-  10: 0 -> 30 trueControlDependence
-  11: 0 -> 31 trueControlDependence
-  12: 0 -> 33 trueControlDependence
-  13: 0 -> 4 trueControlDependence
-  14: 0 -> 5 trueControlDependence
-  15: 0 -> 6 trueControlDependence
-  16: 1 -> 10 declaration
-  17: 1 -> 10 loopIndependentDefUseDependence a$0
-  18: 1 -> 11 declaration
-  19: 1 -> 11 outputDependence a$0
-  20: 1 -> 13 declaration
-  21: 1 -> 13 loopIndependentDefUseDependence a$0
-  22: 1 -> 16 declaration
-  23: 1 -> 16 loopIndependentDefUseDependence a$0
-  24: 1 -> 26 declaration
-  25: 1 -> 26 loopIndependentDefUseDependence a$0
-  26: 1 -> 7 declaration
-  27: 1 -> 7 loopIndependentDefUseDependence a$0
-  28: 1 -> 8 declaration
-  29: 1 -> 8 loopIndependentDefUseDependence a$0
-  30: 1 -> 9 declaration
-  31: 1 -> 9 loopIndependentDefUseDependence a$0
-  32: 10 -> 11 trueControlDependence
-  33: 10 -> 12 trueControlDependence
-  34: 10 -> 13 falseControlDependence
-  35: 11 -> 26 loopIndependentDefUseDependence a$0
-  36: 13 -> 14 trueControlDependence
-  37: 13 -> 15 trueControlDependence
-  38: 13 -> 16 falseControlDependence
-  39: 16 -> 17 trueControlDependence
-  40: 16 -> 18 trueControlDependence
-  41: 2 -> 10 declaration
-  42: 2 -> 10 loopIndependentDefUseDependence b$1
-  43: 2 -> 11 declaration
-  44: 2 -> 11 loopIndependentDefUseDependence b$1
-  45: 2 -> 12 declaration
-  46: 2 -> 12 loopIndependentDefUseDependence b$1
-  47: 2 -> 13 declaration
-  48: 2 -> 13 loopIndependentDefUseDependence b$1
-  49: 2 -> 16 declaration
-  50: 2 -> 16 loopIndependentDefUseDependence b$1
-  51: 2 -> 7 declaration
-  52: 2 -> 7 loopIndependentDefUseDependence b$1
-  53: 2 -> 8 declaration
-  54: 2 -> 8 outputDependence b$1
-  55: 26 -> 27 loopIndependentDefUseDependence System.out
-  56: 26 -> 27 outputDependence System.out.trouble
-  57: 27 -> 24 loopIndependentDefUseDependence System.out.!println
-  58: 27 -> 29 loopIndependentDefUseDependence System.out
-  59: 27 -> 30 loopIndependentDefUseDependence System.out
-  60: 27 -> 30 outputDependence System.out.trouble
-  61: 27 -> 31 outputDependence System.out.!println
-  62: 3 -> 14 declaration
-  63: 3 -> 14 loopIndependentDefUseDependence c$2
-  64: 3 -> 17 declaration
-  65: 3 -> 17 loopIndependentDefUseDependence c$2
-  66: 3 -> 6 declaration
-  67: 3 -> 6 loopIndependentDefUseDependence c$2
-  68: 30 -> 31 loopIndependentDefUseDependence System.out
-  69: 30 -> 31 outputDependence System.out.trouble
-  70: 31 -> 28 loopIndependentDefUseDependence System.out.!println
-  71: 31 -> 33 loopIndependentDefUseDependence System.out
-  72: 31 -> 33 loopIndependentDefUseDependence System.out.trouble
-  73: 4 -> 15 declaration
-  74: 4 -> 15 loopIndependentDefUseDependence d$3
-  75: 4 -> 18 declaration
-  76: 4 -> 18 loopIndependentDefUseDependence d$3
-  77: 4 -> 6 declaration
-  78: 4 -> 6 loopIndependentDefUseDependence d$3
-  79: 5 -> 17 declaration
-  80: 5 -> 17 loopIndependentDefUseDependence e$4
-  81: 5 -> 18 declaration
-  82: 5 -> 18 loopIndependentDefUseDependence e$4
-  83: 5 -> 30 declaration
-  84: 5 -> 30 loopIndependentDefUseDependence e$4
-  85: 6 -> 7 trueControlDependence
-  86: 7 -> 10 falseControlDependence
-  87: 7 -> 8 trueControlDependence
-  88: 7 -> 9 trueControlDependence
-  89: 9 -> 26 loopIndependentDefUseDependence a$0
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->   24 trueControlDependence
+   8:    0 ->   25 trueControlDependence
+   9:    0 ->   26 trueControlDependence
+  10:    0 ->   28 trueControlDependence
+  11:    0 ->   29 trueControlDependence
+  12:    0 ->   30 trueControlDependence
+  13:    0 ->   33 trueControlDependence
+  14:    0 -> * trueControlDependence
+  15:    0 -> * trueControlDependence
+  16:    1 ->    7 declaration
+  17:    1 ->    7 loopIndependentDefUseDependence a$0
+  18:    1 ->    8 declaration
+  19:    1 ->    8 loopIndependentDefUseDependence a$0
+  20:    1 ->    9 declaration
+  21:    1 ->    9 loopIndependentDefUseDependence a$0
+  22:    1 ->   10 declaration
+  23:    1 ->   10 loopIndependentDefUseDependence a$0
+  24:    1 ->   11 declaration
+  25:    1 ->   11 outputDependence a$0
+  26:    1 ->   13 declaration
+  27:    1 ->   13 loopIndependentDefUseDependence a$0
+  28:    1 ->   16 declaration
+  29:    1 ->   16 loopIndependentDefUseDependence a$0
+  30:    1 ->   26 declaration
+  31:    1 ->   26 loopIndependentDefUseDependence a$0
+  32:    2 ->    7 declaration
+  33:    2 ->    7 loopIndependentDefUseDependence b$1
+  34:    2 ->    8 declaration
+  35:    2 ->    8 outputDependence b$1
+  36:    2 ->   10 declaration
+  37:    2 ->   10 loopIndependentDefUseDependence b$1
+  38:    2 ->   11 declaration
+  39:    2 ->   11 loopIndependentDefUseDependence b$1
+  40:    2 ->   12 declaration
+  41:    2 ->   12 loopIndependentDefUseDependence b$1
+  42:    2 ->   13 declaration
+  43:    2 ->   13 loopIndependentDefUseDependence b$1
+  44:    2 ->   16 declaration
+  45:    2 ->   16 loopIndependentDefUseDependence b$1
+  46:    3 ->    6 declaration
+  47:    3 ->    6 loopIndependentDefUseDependence c$2
+  48:    3 ->   14 declaration
+  49:    3 ->   14 loopIndependentDefUseDependence c$2
+  50:    3 ->   17 declaration
+  51:    3 ->   17 loopIndependentDefUseDependence c$2
+  52:    4 ->    6 declaration
+  53:    4 ->    6 loopIndependentDefUseDependence d$3
+  54:    4 ->   15 declaration
+  55:    4 ->   15 loopIndependentDefUseDependence d$3
+  56:    4 ->   18 declaration
+  57:    4 ->   18 loopIndependentDefUseDependence d$3
+  58:    5 ->   17 declaration
+  59:    5 ->   17 loopIndependentDefUseDependence e$4
+  60:    5 ->   18 declaration
+  61:    5 ->   18 loopIndependentDefUseDependence e$4
+  62:    5 ->   30 declaration
+  63:    5 ->   30 loopIndependentDefUseDependence e$4
+  64:    6 ->    7 trueControlDependence
+  65:    7 ->    8 trueControlDependence
+  66:    7 ->    9 trueControlDependence
+  67:    7 ->   10 falseControlDependence
+  68:    9 ->   26 loopIndependentDefUseDependence a$0
+  69:   10 ->   11 trueControlDependence
+  70:   10 ->   12 trueControlDependence
+  71:   10 ->   13 falseControlDependence
+  72:   11 ->   26 loopIndependentDefUseDependence a$0
+  73:   13 ->   14 trueControlDependence
+  74:   13 ->   15 trueControlDependence
+  75:   13 ->   16 falseControlDependence
+  76:   16 ->   17 trueControlDependence
+  77:   16 ->   18 trueControlDependence
+  78: * ->   24 loopIndependentDefUseDependence System.out.!println( int )
+  79: * ->   28 loopIndependentDefUseDependence System.out.!println( int )
+  80: * -> * outputDependence System.out.!java.io.PrintStream.trouble
+  81: * -> * outputDependence System.out.!println( int )
 --
    0: Test07( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

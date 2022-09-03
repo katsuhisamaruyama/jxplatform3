@@ -6,138 +6,90 @@ Class Name = Sample17
    0 methodEntry [ main( java.lang.String[] ) ]
    1 throwsClause D = {  } U = { $java.awt.HeadlessException }
    2 formalIn D = { args$0 } U = {  }
-   3 localDeclaration D = { frame$1 } U = { frame$1.!JFrame }
+   3 localDeclaration D = { frame$1 } U = { javax.swing.JFrame.!JFrame( java.lang.String ) }
    4 receiver D = {  } U = {  }
-   5 constructorCall D = { frame$1.accessibleContext, frame$1.defaultCloseOperation, frame$1.rootPaneCheckingEnabled, java.awt.Frame.frameSerializedDataVersion, java.awt.Frame.mbManagement, java.awt.Frame.resizable, java.awt.Frame.state, java.awt.Frame.title, java.awt.Frame.undecorated } U = { $java.lang.String } TO = javax.swing.JFrame#JFrame( java.lang.String )
-   6 actualOut D = { frame$1.!JFrame, frame$1.accessibleContext, frame$1.defaultCloseOperation, frame$1.rootPaneCheckingEnabled, java.awt.Frame.frameSerializedDataVersion, java.awt.Frame.mbManagement, java.awt.Frame.resizable, java.awt.Frame.state, java.awt.Frame.title, java.awt.Frame.undecorated } U = {  }
-   7 localDeclaration D = { contentPane$2 } U = { frame$1.!getContentPane }
+   5 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JFrame#JFrame( java.lang.String )
+* actualOut D = { javax.swing.JFrame.!JFrame( java.lang.String ), javax.swing.JFrame.!java.awt.Frame.frameSerializedDataVersion, javax.swing.JFrame.!java.awt.Frame.mbManagement, javax.swing.JFrame.!java.awt.Frame.resizable, javax.swing.JFrame.!java.awt.Frame.state, javax.swing.JFrame.!java.awt.Frame.title, javax.swing.JFrame.!java.awt.Frame.undecorated, javax.swing.JFrame.!javax.swing.JFrame.accessibleContext, javax.swing.JFrame.!javax.swing.JFrame.defaultCloseOperation, javax.swing.JFrame.!javax.swing.JFrame.rootPaneCheckingEnabled } U = {  }
+   7 localDeclaration D = { contentPane$2 } U = { frame$1.!getContentPane( ) }
    8 receiver D = {  } U = { frame$1 }
-   9 methodCall D = {  } U = { frame$1, frame$1.rootPane, javax.swing.JRootPane.contentPane } TO = javax.swing.JFrame#getContentPane( )
-  10 actualOut D = { frame$1.!getContentPane } U = { frame$1.rootPane, javax.swing.JRootPane.contentPane }
-  11 localDeclaration D = { canvas$3 } U = { canvas$3.!CanvasB }
+   9 methodCall D = {  } U = { frame$1.!javax.swing.JFrame.rootPane, frame$1.!javax.swing.JRootPane.contentPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JFrame.rootPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JRootPane.contentPane } TO = javax.swing.JFrame#getContentPane( )
+  10 actualOut D = { frame$1.!getContentPane( ) } U = { frame$1.!javax.swing.JFrame.rootPane, frame$1.!javax.swing.JRootPane.contentPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JFrame.rootPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JRootPane.contentPane }
+  11 localDeclaration D = { canvas$3 } U = { CanvasB.!CanvasB( ) }
   12 receiver D = {  } U = {  }
-  13 constructorCall D = {  } U = {  } TO = CanvasB#CanvasB( )
-  14 actualOut D = { canvas$3.!CanvasB } U = {  }
-  15 assignment D = {  } U = { contentPane$2.!add }
-  16 receiver D = {  } U = { contentPane$2, frame$1.!getContentPane }
-  17 methodCall D = { contentPane$2, java.awt.Component.parent } U = { canvas$3, contentPane$2, contentPane$2.component, contentPane$2.containerListener, contentPane$2.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer } TO = java.awt.Container#add( java.awt.Component )
-  18 actualOut D = { contentPane$2, contentPane$2.!add, java.awt.Component.parent } U = { contentPane$2, contentPane$2.component, contentPane$2.containerListener, contentPane$2.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer }
-  19 assignment D = {  } U = { frame$1.!setDefaultCloseOperation }
+  13 constructorCall D = {  } U = { Color.white, this, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.mouseListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!java.awt.Component.width, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer } TO = CanvasB#CanvasB( )
+* actualOut D = { CanvasB.!CanvasB( ), CanvasB.java.awt.Dimension.!java.awt.Dimension.height, CanvasB.java.awt.Dimension.!java.awt.Dimension.width, this.!java.awt.Component.background, this.!java.awt.Component.mouseListener, this.!java.awt.Component.newEventsOnly, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet } U = { Color.white, this, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.mouseListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!java.awt.Component.width, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer }
+  15 assignment D = {  } U = { contentPane$2.!add( java.awt.Component ) }
+  16 receiver D = {  } U = { contentPane$2 }
+  17 methodCall D = {  } U = { CanvasB.!CanvasB( ).x, CanvasB.!CanvasB( ).y, canvas$3, canvas$3.x, canvas$3.y, contentPane$2.!java.awt.Component.parent, contentPane$2.!java.awt.Container.component, contentPane$2.!java.awt.Container.containerListener, contentPane$2.!java.awt.Container.eventMask, contentPane$2.!java.awt.Container.layoutMgr, contentPane$2.!java.awt.Container.peer, frame$1.!getContentPane( ).!java.awt.Component.parent, frame$1.!getContentPane( ).!java.awt.Container.component, frame$1.!getContentPane( ).!java.awt.Container.containerListener, frame$1.!getContentPane( ).!java.awt.Container.eventMask, frame$1.!getContentPane( ).!java.awt.Container.layoutMgr, frame$1.!getContentPane( ).!java.awt.Container.peer } TO = java.awt.Container#add( java.awt.Component )
+* actualOut D = { contentPane$2.!add( java.awt.Component ), contentPane$2.!java.awt.Component.parent } U = { contentPane$2.!java.awt.Component.parent, contentPane$2.!java.awt.Container.component, contentPane$2.!java.awt.Container.containerListener, contentPane$2.!java.awt.Container.eventMask, contentPane$2.!java.awt.Container.layoutMgr, contentPane$2.!java.awt.Container.peer, frame$1.!getContentPane( ).!java.awt.Component.parent, frame$1.!getContentPane( ).!java.awt.Container.component, frame$1.!getContentPane( ).!java.awt.Container.containerListener, frame$1.!getContentPane( ).!java.awt.Container.eventMask, frame$1.!getContentPane( ).!java.awt.Container.layoutMgr, frame$1.!getContentPane( ).!java.awt.Container.peer }
+  19 assignment D = {  } U = { frame$1.!setDefaultCloseOperation( int ) }
   20 receiver D = {  } U = { frame$1 }
-  21 methodCall D = { frame$1, frame$1.defaultCloseOperation } U = { JFrame.EXIT_ON_CLOSE, frame$1, frame$1.defaultCloseOperation, java.awt.Component.changeSupport, java.lang.System.security } TO = javax.swing.JFrame#setDefaultCloseOperation( int )
-  22 actualOut D = { frame$1, frame$1.!setDefaultCloseOperation, frame$1.defaultCloseOperation } U = { frame$1, frame$1.defaultCloseOperation, java.awt.Component.changeSupport, java.lang.System.security }
-  23 assignment D = {  } U = { frame$1.!pack }
+  21 methodCall D = {  } U = { JFrame.EXIT_ON_CLOSE, frame$1.!java.awt.Component.changeSupport, frame$1.!java.lang.System.security, frame$1.!javax.swing.JFrame.defaultCloseOperation, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Component.changeSupport, javax.swing.JFrame.!JFrame( java.lang.String ).!java.lang.System.security, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JFrame.defaultCloseOperation } TO = javax.swing.JFrame#setDefaultCloseOperation( int )
+* actualOut D = { frame$1.!javax.swing.JFrame.defaultCloseOperation, frame$1.!setDefaultCloseOperation( int ) } U = { frame$1.!java.awt.Component.changeSupport, frame$1.!java.lang.System.security, frame$1.!javax.swing.JFrame.defaultCloseOperation, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Component.changeSupport, javax.swing.JFrame.!JFrame( java.lang.String ).!java.lang.System.security, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JFrame.defaultCloseOperation }
+  23 assignment D = {  } U = { frame$1.!pack( ) }
   24 receiver D = {  } U = { frame$1 }
-  25 methodCall D = { frame$1, java.awt.Component.isPacked, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher } U = { frame$1, frame$1.allWindows, frame$1.beforeFirstShow, java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.x, java.awt.Component.y, java.awt.Container.component, java.awt.Dimension.height, java.awt.Dimension.width } TO = java.awt.Window#pack( )
-  26 actualOut D = { frame$1, frame$1.!pack, java.awt.Component.isPacked, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher } U = { frame$1, frame$1.allWindows, frame$1.beforeFirstShow, java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.x, java.awt.Component.y, java.awt.Container.component, java.awt.Dimension.height, java.awt.Dimension.width }
-  27 assignment D = {  } U = { frame$1.!setVisible }
+  25 methodCall D = {  } U = { frame$1.!java.awt.Container.component, frame$1.!java.awt.Container.peer, frame$1.!java.awt.Dimension.height, frame$1.!java.awt.Dimension.width, frame$1.!java.awt.Window.allWindows, frame$1.!java.awt.Window.beforeFirstShow, frame$1.!java.awt.Window.parent, frame$1.!java.awt.Window.peer, frame$1.!java.awt.Window.x, frame$1.!java.awt.Window.y, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Container.component, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Container.peer, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Dimension.height, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Dimension.width, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.allWindows, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.beforeFirstShow, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.parent, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.peer, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.x, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.y } TO = java.awt.Window#pack( )
+* actualOut D = { frame$1.!java.awt.Container.descendUnconditionallyWhenValidating, frame$1.!java.awt.Container.dispatcher, frame$1.!java.awt.Window.isPacked, frame$1.!java.awt.Window.peer, frame$1.!pack( ) } U = { frame$1.!java.awt.Container.component, frame$1.!java.awt.Container.peer, frame$1.!java.awt.Dimension.height, frame$1.!java.awt.Dimension.width, frame$1.!java.awt.Window.allWindows, frame$1.!java.awt.Window.beforeFirstShow, frame$1.!java.awt.Window.parent, frame$1.!java.awt.Window.peer, frame$1.!java.awt.Window.x, frame$1.!java.awt.Window.y, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Container.component, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Container.peer, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Dimension.height, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Dimension.width, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.allWindows, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.beforeFirstShow, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.parent, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.peer, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.x, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Window.y }
+  27 assignment D = {  } U = { frame$1.!setVisible( boolean ) }
   28 receiver D = {  } U = { frame$1 }
   29 methodCall D = {  } U = {  } TO = java.awt.Window#setVisible( boolean )
-  30 actualOut D = { frame$1.!setVisible } U = {  }
-  32 formalOut D = {  } U = { $_, frame$1.accessibleContext, frame$1.defaultCloseOperation, frame$1.rootPaneCheckingEnabled, java.awt.Component.isPacked, java.awt.Component.parent, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher, java.awt.Frame.frameSerializedDataVersion, java.awt.Frame.mbManagement, java.awt.Frame.resizable, java.awt.Frame.state, java.awt.Frame.title, java.awt.Frame.undecorated }
+  30 actualOut D = { frame$1.!setVisible( boolean ) } U = {  }
+  32 formalOut D = {  } U = { $_ }
 --
    0: Sample17( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: main( java.lang.String[] )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 32 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 10 -> 16 loopIndependentDefUseDependence frame$1.!getContentPane
-   8: 10 -> 7 loopIndependentDefUseDependence frame$1.!getContentPane
-   9: 11 -> 17 declaration
-  10: 11 -> 17 loopIndependentDefUseDependence canvas$3
-  11: 14 -> 11 loopIndependentDefUseDependence canvas$3.!CanvasB
-  12: 17 -> 18 loopIndependentDefUseDependence contentPane$2
-  13: 17 -> 18 loopIndependentDefUseDependence java.awt.Component.parent
-  14: 18 -> 15 loopIndependentDefUseDependence contentPane$2.!add
-  15: 18 -> 25 loopIndependentDefUseDependence java.awt.Component.parent
-  16: 18 -> 26 loopIndependentDefUseDependence java.awt.Component.parent
-  17: 18 -> 32 loopIndependentDefUseDependence java.awt.Component.parent
-  18: 21 -> 22 loopIndependentDefUseDependence frame$1
-  19: 21 -> 22 loopIndependentDefUseDependence frame$1.defaultCloseOperation
-  20: 22 -> 19 loopIndependentDefUseDependence frame$1.!setDefaultCloseOperation
-  21: 22 -> 24 loopIndependentDefUseDependence frame$1
-  22: 22 -> 25 loopIndependentDefUseDependence frame$1
-  23: 22 -> 32 loopIndependentDefUseDependence frame$1.defaultCloseOperation
-  24: 25 -> 26 loopIndependentDefUseDependence frame$1
-  25: 25 -> 26 loopIndependentDefUseDependence java.awt.Component.peer
-  26: 25 -> 26 outputDependence java.awt.Component.isPacked
-  27: 25 -> 26 outputDependence java.awt.Container.descendUnconditionallyWhenValidating
-  28: 25 -> 26 outputDependence java.awt.Container.dispatcher
-  29: 26 -> 23 loopIndependentDefUseDependence frame$1.!pack
-  30: 26 -> 28 loopIndependentDefUseDependence frame$1
-  31: 26 -> 32 loopIndependentDefUseDependence java.awt.Component.isPacked
-  32: 26 -> 32 loopIndependentDefUseDependence java.awt.Component.peer
-  33: 26 -> 32 loopIndependentDefUseDependence java.awt.Container.descendUnconditionallyWhenValidating
-  34: 26 -> 32 loopIndependentDefUseDependence java.awt.Container.dispatcher
-  35: 3 -> 20 declaration
-  36: 3 -> 20 loopIndependentDefUseDependence frame$1
-  37: 3 -> 21 declaration
-  38: 3 -> 21 loopIndependentDefUseDependence frame$1
-  39: 3 -> 22 declaration
-  40: 3 -> 24 declaration
-  41: 3 -> 25 declaration
-  42: 3 -> 26 declaration
-  43: 3 -> 28 declaration
-  44: 3 -> 8 declaration
-  45: 3 -> 8 loopIndependentDefUseDependence frame$1
-  46: 3 -> 9 declaration
-  47: 3 -> 9 loopIndependentDefUseDependence frame$1
-  48: 30 -> 27 loopIndependentDefUseDependence frame$1.!setVisible
-  49: 5 -> 1 exceptionCatch
-  50: 5 -> 10 trueControlDependence
-  51: 5 -> 11 trueControlDependence
-  52: 5 -> 12 trueControlDependence
-  53: 5 -> 13 trueControlDependence
-  54: 5 -> 14 trueControlDependence
-  55: 5 -> 15 trueControlDependence
-  56: 5 -> 16 trueControlDependence
-  57: 5 -> 17 trueControlDependence
-  58: 5 -> 18 trueControlDependence
-  59: 5 -> 19 trueControlDependence
-  60: 5 -> 20 trueControlDependence
-  61: 5 -> 21 trueControlDependence
-  62: 5 -> 22 trueControlDependence
-  63: 5 -> 23 trueControlDependence
-  64: 5 -> 24 trueControlDependence
-  65: 5 -> 25 trueControlDependence
-  66: 5 -> 26 trueControlDependence
-  67: 5 -> 27 trueControlDependence
-  68: 5 -> 28 trueControlDependence
-  69: 5 -> 29 trueControlDependence
-  70: 5 -> 3 trueControlDependence
-  71: 5 -> 30 trueControlDependence
-  72: 5 -> 6 outputDependence frame$1.accessibleContext
-  73: 5 -> 6 outputDependence frame$1.defaultCloseOperation
-  74: 5 -> 6 outputDependence frame$1.rootPaneCheckingEnabled
-  75: 5 -> 6 outputDependence java.awt.Frame.frameSerializedDataVersion
-  76: 5 -> 6 outputDependence java.awt.Frame.mbManagement
-  77: 5 -> 6 outputDependence java.awt.Frame.resizable
-  78: 5 -> 6 outputDependence java.awt.Frame.state
-  79: 5 -> 6 outputDependence java.awt.Frame.title
-  80: 5 -> 6 outputDependence java.awt.Frame.undecorated
-  81: 5 -> 7 trueControlDependence
-  82: 5 -> 8 trueControlDependence
-  83: 5 -> 9 trueControlDependence
-  84: 6 -> 21 loopIndependentDefUseDependence frame$1.defaultCloseOperation
-  85: 6 -> 3 loopIndependentDefUseDependence frame$1.!JFrame
-  86: 6 -> 32 loopIndependentDefUseDependence frame$1.accessibleContext
-  87: 6 -> 32 loopIndependentDefUseDependence frame$1.rootPaneCheckingEnabled
-  88: 6 -> 32 loopIndependentDefUseDependence java.awt.Frame.frameSerializedDataVersion
-  89: 6 -> 32 loopIndependentDefUseDependence java.awt.Frame.mbManagement
-  90: 6 -> 32 loopIndependentDefUseDependence java.awt.Frame.resizable
-  91: 6 -> 32 loopIndependentDefUseDependence java.awt.Frame.state
-  92: 6 -> 32 loopIndependentDefUseDependence java.awt.Frame.title
-  93: 6 -> 32 loopIndependentDefUseDependence java.awt.Frame.undecorated
-  94: 7 -> 16 declaration
-  95: 7 -> 16 loopIndependentDefUseDependence contentPane$2
-  96: 7 -> 17 declaration
-  97: 7 -> 17 loopIndependentDefUseDependence contentPane$2
-  98: 7 -> 18 declaration
+   1:    0 ->    2 trueControlDependence
+   2:    0 ->    4 trueControlDependence
+   3:    0 ->    5 trueControlDependence
+   4:    3 ->    8 declaration
+   5:    3 ->    8 loopIndependentDefUseDependence frame$1
+   6:    3 ->   20 declaration
+   7:    3 ->   20 loopIndependentDefUseDependence frame$1
+   8:    3 ->   24 declaration
+   9:    3 ->   24 loopIndependentDefUseDependence frame$1
+  10:    3 ->   28 declaration
+  11:    3 ->   28 loopIndependentDefUseDependence frame$1
+  12:    5 ->    1 exceptionCatch
+  13:    5 ->    3 trueControlDependence
+  14:    5 ->    7 trueControlDependence
+  15:    5 ->    8 trueControlDependence
+  16:    5 ->    9 trueControlDependence
+  17:    5 ->   10 trueControlDependence
+  18:    5 ->   11 trueControlDependence
+  19:    5 ->   12 trueControlDependence
+  20:    5 ->   13 trueControlDependence
+  21:    5 ->   15 trueControlDependence
+  22:    5 ->   16 trueControlDependence
+  23:    5 ->   17 trueControlDependence
+  24:    5 ->   19 trueControlDependence
+  25:    5 ->   20 trueControlDependence
+  26:    5 ->   21 trueControlDependence
+  27:    5 ->   23 trueControlDependence
+  28:    5 ->   24 trueControlDependence
+  29:    5 ->   25 trueControlDependence
+  30:    5 ->   27 trueControlDependence
+  31:    5 ->   28 trueControlDependence
+  32:    5 ->   29 trueControlDependence
+  33:    5 ->   30 trueControlDependence
+  34:    5 ->   32 trueControlDependence
+  35:    5 -> * trueControlDependence
+  36:    5 -> * trueControlDependence
+  37:    5 -> * trueControlDependence
+  38:    5 -> * trueControlDependence
+  39:    5 -> * trueControlDependence
+  40:    7 ->   16 declaration
+  41:    7 ->   16 loopIndependentDefUseDependence contentPane$2
+  42:   10 ->    7 loopIndependentDefUseDependence frame$1.!getContentPane( )
+  43:   11 ->   17 declaration
+  44:   11 ->   17 loopIndependentDefUseDependence canvas$3
+  45:   30 ->   27 loopIndependentDefUseDependence frame$1.!setVisible( boolean )
+  46: * ->    3 loopIndependentDefUseDependence javax.swing.JFrame.!JFrame( java.lang.String )
+  47: * ->   11 loopIndependentDefUseDependence CanvasB.!CanvasB( )
+  48: * ->   15 loopIndependentDefUseDependence contentPane$2.!add( java.awt.Component )
+  49: * ->   19 loopIndependentDefUseDependence frame$1.!setDefaultCloseOperation( int )
+  50: * ->   23 loopIndependentDefUseDependence frame$1.!pack( )
 --
 ----- ClDG (to here) -----
 

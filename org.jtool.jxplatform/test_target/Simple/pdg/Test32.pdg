@@ -7,22 +7,22 @@ Class Name = Test32
    1 throwsClause D = {  } U = { $java.lang.Exception }
    2 formalIn D = { x$0 } U = {  }
    3 ifSt D = {  } U = { x$0 }
-   4 throwSt D = {  } U = { Exception.!Exception }
+   4 throwSt D = {  } U = { java.lang.Exception.!Exception( ) }
    5 receiver D = {  } U = {  }
-   6 constructorCall D = { java.lang.Throwable.cause, java.lang.Throwable.stackTrace, java.lang.Throwable.suppressedExceptions } U = { java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Throwable.UNASSIGNED_STACK } TO = java.lang.Exception#Exception( )
-   7 actualOut D = { Exception.!Exception, java.lang.Throwable.cause, java.lang.Throwable.stackTrace, java.lang.Throwable.suppressedExceptions } U = { java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Throwable.UNASSIGNED_STACK }
+   6 constructorCall D = {  } U = { java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK } TO = java.lang.Exception#Exception( )
+* actualOut D = { java.lang.Exception.!Exception( ), java.lang.Exception.!java.lang.Throwable.cause, java.lang.Exception.!java.lang.Throwable.stackTrace, java.lang.Exception.!java.lang.Throwable.suppressedExceptions } U = { java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK }
    9 returnSt D = { $_ } U = { x$0 }
-  11 formalOut D = {  } U = { $_, java.lang.Throwable.cause, java.lang.Throwable.stackTrace, java.lang.Throwable.suppressedExceptions }
+  11 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
    2 localDeclaration D = { b$1 } U = {  }
    3 trySt D = {  } U = {  }
-   4 assignment D = { b$1 } U = { this.!n }
+   4 assignment D = { b$1 } U = { this.!n( int ) }
    5 receiver D = {  } U = {  }
-   6 methodCall D = {  } U = {  } TO = Test32#n( int )
+   6 methodCall D = {  } U = { this.java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, this.java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK } TO = Test32#n( int )
    7 actualIn D = {  } U = { a$0 }
-   8 actualOut D = { this.!n } U = {  }
+* actualOut D = { this.!n( int ), this.java.lang.Exception.!java.lang.Throwable.cause, this.java.lang.Exception.!java.lang.Throwable.stackTrace, this.java.lang.Exception.!java.lang.Throwable.suppressedExceptions } U = { this.java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, this.java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK }
   10 catchClause D = { e$3 } U = {  }
   11 localDeclaration D = { f$4 } U = { e$3 }
   12 finallyClause D = {  } U = {  }
@@ -30,55 +30,52 @@ Class Name = Test32
   15 formalOut D = {  } U = { $_ }
 --
    0: Test32( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: n( int )
-   1: 0 -> 11 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 2 -> 3 loopIndependentDefUseDependence x$0
-   5: 2 -> 9 loopIndependentDefUseDependence x$0
-   6: 3 -> 4 trueControlDependence
-   7: 3 -> 5 trueControlDependence
-   8: 3 -> 6 trueControlDependence
-   9: 3 -> 7 trueControlDependence
-  10: 3 -> 9 falseControlDependence
-  11: 4 -> 1 trueControlDependence
-  12: 4 -> 9 fallThroughControlDependence
-  13: 6 -> 7 outputDependence java.lang.Throwable.cause
-  14: 6 -> 7 outputDependence java.lang.Throwable.stackTrace
-  15: 6 -> 7 outputDependence java.lang.Throwable.suppressedExceptions
-  16: 7 -> 4 loopIndependentDefUseDependence Exception.!Exception
-  17: 9 -> 11 loopIndependentDefUseDependence $_
+   1:    0 ->    2 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    2 ->    3 loopIndependentDefUseDependence x$0
+   4:    2 ->    9 loopIndependentDefUseDependence x$0
+   5:    3 ->    4 trueControlDependence
+   6:    3 ->    5 trueControlDependence
+   7:    3 ->    6 trueControlDependence
+   8:    3 ->    9 falseControlDependence
+   9:    3 ->   11 falseControlDependence
+  10:    3 -> * trueControlDependence
+  11:    4 ->    1 trueControlDependence
+  12:    4 ->    9 fallThroughControlDependence
+  13:    4 ->   11 fallThroughControlDependence
+  14:    9 ->   11 loopIndependentDefUseDependence $_
+  15: * ->    4 loopIndependentDefUseDependence java.lang.Exception.!Exception( )
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 15 trueControlDependence
-   7: 0 -> 2 trueControlDependence
-   8: 0 -> 3 trueControlDependence
-   9: 1 -> 13 declaration
-  10: 1 -> 13 loopIndependentDefUseDependence a$0
-  11: 1 -> 7 declaration
-  12: 1 -> 7 loopIndependentDefUseDependence a$0
-  13: 10 -> 11 loopIndependentDefUseDependence e$3
-  14: 2 -> 13 declaration
-  15: 2 -> 13 outputDependence b$1
-  16: 2 -> 4 declaration
-  17: 2 -> 4 outputDependence b$1
-  18: 3 -> 5 trueControlDependence
-  19: 3 -> 6 trueControlDependence
-  20: 3 -> 7 trueControlDependence
-  21: 3 -> 8 trueControlDependence
-  22: 4 -> 13 outputDependence b$1
-  23: 6 -> 10 exceptionCatch
-  24: 6 -> 11 exceptionCatch
-  25: 6 -> 4 trueControlDependence
-  26: 7 -> 8 summary
-  27: 8 -> 4 loopIndependentDefUseDependence this.!n
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    5 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    0 ->   12 trueControlDependence
+   8:    0 ->   15 trueControlDependence
+   9:    1 ->    7 declaration
+  10:    1 ->    7 loopIndependentDefUseDependence a$0
+  11:    1 ->   13 declaration
+  12:    1 ->   13 loopIndependentDefUseDependence a$0
+  13:    2 ->    4 declaration
+  14:    2 ->    4 outputDependence b$1
+  15:    2 ->   13 declaration
+  16:    2 ->   13 outputDependence b$1
+  17:    3 ->   10 trueControlDependence
+  18:    3 ->   12 trueControlDependence
+  19:    4 ->   13 outputDependence b$1
+  20:    6 ->    4 trueControlDependence
+  21:    6 ->   10 exceptionCatch
+  22:    6 -> * trueControlDependence
+  23:   10 ->   11 loopIndependentDefUseDependence e$3
+  24:   10 ->   11 trueControlDependence
+  25:   12 ->   13 trueControlDependence
+  26: * ->    4 loopIndependentDefUseDependence this.!n( int )
 --
 ----- ClDG (to here) -----
 

@@ -7,10 +7,10 @@ Class Name = P132
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
    0: P132( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: x
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
 ----- ClDG (to here) -----
 

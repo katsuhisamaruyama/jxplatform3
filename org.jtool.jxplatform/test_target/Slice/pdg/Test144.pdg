@@ -1,0 +1,140 @@
+----- ClDG (from here) -----
+Class Name = Test144
+   0 constructorEntry [ Test144( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { a$0 } U = { P144.!P144( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P144#P144( )
+   4 actualOut D = { P144.!P144( ) } U = {  }
+   5 assignment D = {  } U = { a$0.!put( java.lang.String java.lang.String ) }
+   6 receiver D = {  } U = { a$0 }
+   7 methodCall D = {  } U = { P144.!P144( ).map, P144.!P144( ).map.!java.util.HashMap$Node.hash, P144.!P144( ).map.!java.util.HashMap$Node.key, P144.!P144( ).map.!java.util.HashMap$Node.next, P144.!P144( ).map.!java.util.HashMap$Node.value, P144.!P144( ).map.!java.util.HashMap.modCount, P144.!P144( ).map.!java.util.HashMap.size, P144.!P144( ).map.!java.util.HashMap.table, P144.!P144( ).map.!java.util.HashMap.threshold, a$0.map, a$0.map.!java.util.HashMap$Node.hash, a$0.map.!java.util.HashMap$Node.key, a$0.map.!java.util.HashMap$Node.next, a$0.map.!java.util.HashMap$Node.value, a$0.map.!java.util.HashMap.modCount, a$0.map.!java.util.HashMap.size, a$0.map.!java.util.HashMap.table, a$0.map.!java.util.HashMap.threshold } TO = P144#put( java.lang.String java.lang.String )
+   8 actualIn D = {  } U = { $java.lang.String }
+   9 actualIn D = {  } U = { $java.lang.String }
+* actualOut D = { a$0.!put( java.lang.String java.lang.String ), a$0.map.!java.util.HashMap$Node.next, a$0.map.!java.util.HashMap$Node.value, a$0.map.!java.util.HashMap.modCount, a$0.map.!java.util.HashMap.size } U = { P144.!P144( ).map, P144.!P144( ).map.!java.util.HashMap$Node.hash, P144.!P144( ).map.!java.util.HashMap$Node.key, P144.!P144( ).map.!java.util.HashMap$Node.next, P144.!P144( ).map.!java.util.HashMap$Node.value, P144.!P144( ).map.!java.util.HashMap.modCount, P144.!P144( ).map.!java.util.HashMap.size, P144.!P144( ).map.!java.util.HashMap.table, P144.!P144( ).map.!java.util.HashMap.threshold, a$0.map, a$0.map.!java.util.HashMap$Node.hash, a$0.map.!java.util.HashMap$Node.key, a$0.map.!java.util.HashMap$Node.next, a$0.map.!java.util.HashMap$Node.value, a$0.map.!java.util.HashMap.modCount, a$0.map.!java.util.HashMap.size, a$0.map.!java.util.HashMap.table, a$0.map.!java.util.HashMap.threshold }
+  11 localDeclaration D = { v1$1 } U = { a$0.!get( java.lang.String ) }
+  12 receiver D = {  } U = { a$0 }
+  13 methodCall D = {  } U = { P144.!P144( ).map, P144.!P144( ).map.!java.util.HashMap$Node.hash, P144.!P144( ).map.!java.util.HashMap$Node.key, P144.!P144( ).map.!java.util.HashMap$Node.next, P144.!P144( ).map.!java.util.HashMap$Node.value, P144.!P144( ).map.!java.util.HashMap.table, a$0.map, a$0.map.!java.util.HashMap$Node.hash, a$0.map.!java.util.HashMap$Node.key, a$0.map.!java.util.HashMap$Node.next, a$0.map.!java.util.HashMap$Node.value, a$0.map.!java.util.HashMap.table } TO = P144#get( java.lang.String )
+  14 actualIn D = {  } U = { $java.lang.String }
+  15 actualOut D = { a$0.!get( java.lang.String ) } U = { P144.!P144( ).map, P144.!P144( ).map.!java.util.HashMap$Node.hash, P144.!P144( ).map.!java.util.HashMap$Node.key, P144.!P144( ).map.!java.util.HashMap$Node.next, P144.!P144( ).map.!java.util.HashMap$Node.value, P144.!P144( ).map.!java.util.HashMap.table, a$0.map, a$0.map.!java.util.HashMap$Node.hash, a$0.map.!java.util.HashMap$Node.key, a$0.map.!java.util.HashMap$Node.next, a$0.map.!java.util.HashMap$Node.value, a$0.map.!java.util.HashMap.table }
+  16 localDeclaration D = { p$2 } U = { P144.!P144( ) }
+  17 receiver D = {  } U = {  }
+  18 constructorCall D = {  } U = {  } TO = P144#P144( )
+  19 actualOut D = { P144.!P144( ) } U = {  }
+  20 assignment D = {  } U = { p$2.!put( java.lang.String java.lang.String ) }
+  21 receiver D = {  } U = { p$2 }
+  22 methodCall D = {  } U = { P144.!P144( ).map, P144.!P144( ).map.!java.util.HashMap$Node.hash, P144.!P144( ).map.!java.util.HashMap$Node.key, P144.!P144( ).map.!java.util.HashMap$Node.next, P144.!P144( ).map.!java.util.HashMap$Node.value, P144.!P144( ).map.!java.util.HashMap.modCount, P144.!P144( ).map.!java.util.HashMap.size, P144.!P144( ).map.!java.util.HashMap.table, P144.!P144( ).map.!java.util.HashMap.threshold, p$2.map, p$2.map.!java.util.HashMap$Node.hash, p$2.map.!java.util.HashMap$Node.key, p$2.map.!java.util.HashMap$Node.next, p$2.map.!java.util.HashMap$Node.value, p$2.map.!java.util.HashMap.modCount, p$2.map.!java.util.HashMap.size, p$2.map.!java.util.HashMap.table, p$2.map.!java.util.HashMap.threshold } TO = P144#put( java.lang.String java.lang.String )
+  23 actualIn D = {  } U = { $java.lang.String }
+  24 actualIn D = {  } U = { $java.lang.String }
+* actualOut D = { p$2.!put( java.lang.String java.lang.String ), p$2.map.!java.util.HashMap$Node.next, p$2.map.!java.util.HashMap$Node.value, p$2.map.!java.util.HashMap.modCount, p$2.map.!java.util.HashMap.size } U = { P144.!P144( ).map, P144.!P144( ).map.!java.util.HashMap$Node.hash, P144.!P144( ).map.!java.util.HashMap$Node.key, P144.!P144( ).map.!java.util.HashMap$Node.next, P144.!P144( ).map.!java.util.HashMap$Node.value, P144.!P144( ).map.!java.util.HashMap.modCount, P144.!P144( ).map.!java.util.HashMap.size, P144.!P144( ).map.!java.util.HashMap.table, P144.!P144( ).map.!java.util.HashMap.threshold, p$2.map, p$2.map.!java.util.HashMap$Node.hash, p$2.map.!java.util.HashMap$Node.key, p$2.map.!java.util.HashMap$Node.next, p$2.map.!java.util.HashMap$Node.value, p$2.map.!java.util.HashMap.modCount, p$2.map.!java.util.HashMap.size, p$2.map.!java.util.HashMap.table, p$2.map.!java.util.HashMap.threshold }
+  26 localDeclaration D = { v2$3 } U = { p$2.!get( java.lang.String ) }
+  27 receiver D = {  } U = { p$2 }
+  28 methodCall D = {  } U = { P144.!P144( ).map, P144.!P144( ).map.!java.util.HashMap$Node.hash, P144.!P144( ).map.!java.util.HashMap$Node.key, P144.!P144( ).map.!java.util.HashMap$Node.next, P144.!P144( ).map.!java.util.HashMap$Node.value, P144.!P144( ).map.!java.util.HashMap.table, p$2.map, p$2.map.!java.util.HashMap$Node.hash, p$2.map.!java.util.HashMap$Node.key, p$2.map.!java.util.HashMap$Node.next, p$2.map.!java.util.HashMap$Node.value, p$2.map.!java.util.HashMap.table } TO = P144#get( java.lang.String )
+  29 actualIn D = {  } U = { $java.lang.String }
+  30 actualOut D = { p$2.!get( java.lang.String ) } U = { P144.!P144( ).map, P144.!P144( ).map.!java.util.HashMap$Node.hash, P144.!P144( ).map.!java.util.HashMap$Node.key, P144.!P144( ).map.!java.util.HashMap$Node.next, P144.!P144( ).map.!java.util.HashMap$Node.value, P144.!P144( ).map.!java.util.HashMap.table, p$2.map, p$2.map.!java.util.HashMap$Node.hash, p$2.map.!java.util.HashMap$Node.key, p$2.map.!java.util.HashMap$Node.next, p$2.map.!java.util.HashMap$Node.value, p$2.map.!java.util.HashMap.table }
+  31 localDeclaration D = { t$4 } U = { T144.!T144( ) }
+  32 receiver D = {  } U = {  }
+  33 constructorCall D = {  } U = {  } TO = T144#T144( )
+  34 actualOut D = { T144.!T144( ) } U = {  }
+  35 assignment D = {  } U = { t$4.!put( java.lang.String java.lang.String ) }
+  36 receiver D = {  } U = { t$4 }
+  37 methodCall D = {  } U = { T144.!T144( ).p, T144.!T144( ).p.map, T144.!T144( ).p.map.!java.util.HashMap$Node.hash, T144.!T144( ).p.map.!java.util.HashMap$Node.key, T144.!T144( ).p.map.!java.util.HashMap$Node.next, T144.!T144( ).p.map.!java.util.HashMap$Node.value, T144.!T144( ).p.map.!java.util.HashMap.modCount, T144.!T144( ).p.map.!java.util.HashMap.size, T144.!T144( ).p.map.!java.util.HashMap.table, T144.!T144( ).p.map.!java.util.HashMap.threshold, t$4.p, t$4.p.map, t$4.p.map.!java.util.HashMap$Node.hash, t$4.p.map.!java.util.HashMap$Node.key, t$4.p.map.!java.util.HashMap$Node.next, t$4.p.map.!java.util.HashMap$Node.value, t$4.p.map.!java.util.HashMap.modCount, t$4.p.map.!java.util.HashMap.size, t$4.p.map.!java.util.HashMap.table, t$4.p.map.!java.util.HashMap.threshold } TO = T144#put( java.lang.String java.lang.String )
+  38 actualIn D = {  } U = { $java.lang.String }
+  39 actualIn D = {  } U = { $java.lang.String }
+* actualOut D = { t$4.!put( java.lang.String java.lang.String ), t$4.p.map.!java.util.HashMap$Node.next, t$4.p.map.!java.util.HashMap$Node.value, t$4.p.map.!java.util.HashMap.modCount, t$4.p.map.!java.util.HashMap.size } U = { T144.!T144( ).p, T144.!T144( ).p.map, T144.!T144( ).p.map.!java.util.HashMap$Node.hash, T144.!T144( ).p.map.!java.util.HashMap$Node.key, T144.!T144( ).p.map.!java.util.HashMap$Node.next, T144.!T144( ).p.map.!java.util.HashMap$Node.value, T144.!T144( ).p.map.!java.util.HashMap.modCount, T144.!T144( ).p.map.!java.util.HashMap.size, T144.!T144( ).p.map.!java.util.HashMap.table, T144.!T144( ).p.map.!java.util.HashMap.threshold, t$4.p, t$4.p.map, t$4.p.map.!java.util.HashMap$Node.hash, t$4.p.map.!java.util.HashMap$Node.key, t$4.p.map.!java.util.HashMap$Node.next, t$4.p.map.!java.util.HashMap$Node.value, t$4.p.map.!java.util.HashMap.modCount, t$4.p.map.!java.util.HashMap.size, t$4.p.map.!java.util.HashMap.table, t$4.p.map.!java.util.HashMap.threshold }
+  41 localDeclaration D = { v3$5 } U = { t$4.!get( java.lang.String ) }
+  42 receiver D = {  } U = { t$4 }
+  43 methodCall D = {  } U = { T144.!T144( ).p, T144.!T144( ).p.map, T144.!T144( ).p.map.!java.util.HashMap$Node.hash, T144.!T144( ).p.map.!java.util.HashMap$Node.key, T144.!T144( ).p.map.!java.util.HashMap$Node.next, T144.!T144( ).p.map.!java.util.HashMap$Node.value, T144.!T144( ).p.map.!java.util.HashMap.table, t$4.p, t$4.p.map, t$4.p.map.!java.util.HashMap$Node.hash, t$4.p.map.!java.util.HashMap$Node.key, t$4.p.map.!java.util.HashMap$Node.next, t$4.p.map.!java.util.HashMap$Node.value, t$4.p.map.!java.util.HashMap.table } TO = T144#get( java.lang.String )
+  44 actualIn D = {  } U = { $java.lang.String }
+  45 actualOut D = { t$4.!get( java.lang.String ) } U = { T144.!T144( ).p, T144.!T144( ).p.map, T144.!T144( ).p.map.!java.util.HashMap$Node.hash, T144.!T144( ).p.map.!java.util.HashMap$Node.key, T144.!T144( ).p.map.!java.util.HashMap$Node.next, T144.!T144( ).p.map.!java.util.HashMap$Node.value, T144.!T144( ).p.map.!java.util.HashMap.table, t$4.p, t$4.p.map, t$4.p.map.!java.util.HashMap$Node.hash, t$4.p.map.!java.util.HashMap$Node.key, t$4.p.map.!java.util.HashMap$Node.next, t$4.p.map.!java.util.HashMap$Node.value, t$4.p.map.!java.util.HashMap.table }
+  47 formalOut D = {  } U = { $_ }
+--
+   0: Test144( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    0 ->   12 trueControlDependence
+  12:    0 ->   13 trueControlDependence
+  13:    0 ->   14 trueControlDependence
+  14:    0 ->   15 trueControlDependence
+  15:    0 ->   16 trueControlDependence
+  16:    0 ->   17 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    0 ->   19 trueControlDependence
+  19:    0 ->   20 trueControlDependence
+  20:    0 ->   21 trueControlDependence
+  21:    0 ->   22 trueControlDependence
+  22:    0 ->   23 trueControlDependence
+  23:    0 ->   24 trueControlDependence
+  24:    0 ->   26 trueControlDependence
+  25:    0 ->   27 trueControlDependence
+  26:    0 ->   28 trueControlDependence
+  27:    0 ->   29 trueControlDependence
+  28:    0 ->   30 trueControlDependence
+  29:    0 ->   31 trueControlDependence
+  30:    0 ->   32 trueControlDependence
+  31:    0 ->   33 trueControlDependence
+  32:    0 ->   34 trueControlDependence
+  33:    0 ->   35 trueControlDependence
+  34:    0 ->   36 trueControlDependence
+  35:    0 ->   37 trueControlDependence
+  36:    0 ->   38 trueControlDependence
+  37:    0 ->   39 trueControlDependence
+  38:    0 ->   41 trueControlDependence
+  39:    0 ->   42 trueControlDependence
+  40:    0 ->   43 trueControlDependence
+  41:    0 ->   44 trueControlDependence
+  42:    0 ->   45 trueControlDependence
+  43:    0 ->   47 trueControlDependence
+  44:    0 -> * trueControlDependence
+  45:    0 -> * trueControlDependence
+  46:    0 -> * trueControlDependence
+  47:    1 ->    6 declaration
+  48:    1 ->    6 loopIndependentDefUseDependence a$0
+  49:    1 ->   12 declaration
+  50:    1 ->   12 loopIndependentDefUseDependence a$0
+  51:    4 ->    1 loopIndependentDefUseDependence P144.!P144( )
+  52:    4 ->   19 outputDependence P144.!P144( )
+  53:   15 ->   11 loopIndependentDefUseDependence a$0.!get( java.lang.String )
+  54:   16 ->   21 declaration
+  55:   16 ->   21 loopIndependentDefUseDependence p$2
+  56:   16 ->   27 declaration
+  57:   16 ->   27 loopIndependentDefUseDependence p$2
+  58:   19 ->   16 loopIndependentDefUseDependence P144.!P144( )
+  59:   30 ->   26 loopIndependentDefUseDependence p$2.!get( java.lang.String )
+  60:   31 ->   36 declaration
+  61:   31 ->   36 loopIndependentDefUseDependence t$4
+  62:   31 ->   42 declaration
+  63:   31 ->   42 loopIndependentDefUseDependence t$4
+  64:   34 ->   31 loopIndependentDefUseDependence T144.!T144( )
+  65:   45 ->   41 loopIndependentDefUseDependence t$4.!get( java.lang.String )
+  66: * ->    5 loopIndependentDefUseDependence a$0.!put( java.lang.String java.lang.String )
+  67: * ->   13 loopIndependentDefUseDependence a$0.map.!java.util.HashMap$Node.next
+  68: * ->   13 loopIndependentDefUseDependence a$0.map.!java.util.HashMap$Node.value
+  69: * ->   15 loopIndependentDefUseDependence a$0.map.!java.util.HashMap$Node.next
+  70: * ->   15 loopIndependentDefUseDependence a$0.map.!java.util.HashMap$Node.value
+  71: * ->   20 loopIndependentDefUseDependence p$2.!put( java.lang.String java.lang.String )
+  72: * ->   28 loopIndependentDefUseDependence p$2.map.!java.util.HashMap$Node.next
+  73: * ->   28 loopIndependentDefUseDependence p$2.map.!java.util.HashMap$Node.value
+  74: * ->   30 loopIndependentDefUseDependence p$2.map.!java.util.HashMap$Node.next
+  75: * ->   30 loopIndependentDefUseDependence p$2.map.!java.util.HashMap$Node.value
+  76: * ->   35 loopIndependentDefUseDependence t$4.!put( java.lang.String java.lang.String )
+  77: * ->   43 loopIndependentDefUseDependence t$4.p.map.!java.util.HashMap$Node.next
+  78: * ->   43 loopIndependentDefUseDependence t$4.p.map.!java.util.HashMap$Node.value
+  79: * ->   45 loopIndependentDefUseDependence t$4.p.map.!java.util.HashMap$Node.next
+  80: * ->   45 loopIndependentDefUseDependence t$4.p.map.!java.util.HashMap$Node.value
+--
+----- ClDG (to here) -----
+

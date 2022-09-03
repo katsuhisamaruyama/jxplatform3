@@ -5,89 +5,83 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$6
 --
    0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
    1 formalIn D = { evt$0 } U = {  }
-   2 localDeclaration D = { canvas$1 } U = { this.tabbedCanvas.!getCurrentCanvas }
+   2 localDeclaration D = { canvas$1 } U = { this.tabbedCanvas.!getCurrentCanvas( ) }
    3 receiver D = {  } U = { this.tabbedCanvas }
    4 methodCall D = {  } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#getCurrentCanvas( )
-   5 actualOut D = { this.tabbedCanvas.!getCurrentCanvas } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab }
-   6 localDeclaration D = { undoManager$2 } U = { canvas$1.!getUndoManager, this.tabbedCanvas.!getCurrentCanvas.!getUndoManager }
-   7 receiver D = {  } U = { canvas$1, this.tabbedCanvas.!getCurrentCanvas }
-   8 methodCall D = {  } U = { canvas$1.undoManager, this.tabbedCanvas.!getCurrentCanvas.undoManager } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#getUndoManager( )
-   9 actualOut D = { canvas$1.!getUndoManager } U = { canvas$1.undoManager, this.tabbedCanvas.!getCurrentCanvas.undoManager }
+   5 actualOut D = { this.tabbedCanvas.!getCurrentCanvas( ) } U = { this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab }
+   6 localDeclaration D = { undoManager$2 } U = { canvas$1.!getUndoManager( ) }
+   7 receiver D = {  } U = { canvas$1 }
+   8 methodCall D = {  } U = { canvas$1.undoManager, this.tabbedCanvas.!getCurrentCanvas( ).undoManager } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#getUndoManager( )
+   9 actualOut D = { canvas$1.!getUndoManager( ) } U = { canvas$1.undoManager, this.tabbedCanvas.!getCurrentCanvas( ).undoManager }
   10 trySt D = {  } U = {  }
-  11 assignment D = {  } U = { canvas$1.!getUndoManager.!undo, undoManager$2.!undo }
-  12 receiver D = {  } U = { canvas$1.!getUndoManager, undoManager$2 }
-  13 methodCall D = {  } U = { canvas$1.!getUndoManager, canvas$1.!getUndoManager.indexOfNextAdd, javax.swing.undo.CompoundEdit.edits, javax.swing.undo.CompoundEdit.inProgress, undoManager$2, undoManager$2$Action.ANY, undoManager$2$Action.UNDO, undoManager$2.indexOfNextAdd } TO = javax.swing.undo.UndoManager#undo( )
-  14 actualOut D = { undoManager$2.!undo } U = { canvas$1.!getUndoManager.indexOfNextAdd, javax.swing.undo.CompoundEdit.edits, javax.swing.undo.CompoundEdit.inProgress, undoManager$2$Action.ANY, undoManager$2$Action.UNDO, undoManager$2.indexOfNextAdd }
-  15 assignment D = {  } U = { this.!updateUndoState }
+  11 assignment D = {  } U = { undoManager$2.!undo( ) }
+  12 receiver D = {  } U = { undoManager$2 }
+  13 methodCall D = {  } U = { canvas$1.!getUndoManager( ).!javax.swing.undo.UndoManager$Action.ANY, canvas$1.!getUndoManager( ).!javax.swing.undo.UndoManager$Action.UNDO, canvas$1.!getUndoManager( ).!javax.swing.undo.UndoManager.edits, canvas$1.!getUndoManager( ).!javax.swing.undo.UndoManager.inProgress, canvas$1.!getUndoManager( ).!javax.swing.undo.UndoManager.indexOfNextAdd, undoManager$2.!javax.swing.undo.UndoManager$Action.ANY, undoManager$2.!javax.swing.undo.UndoManager$Action.UNDO, undoManager$2.!javax.swing.undo.UndoManager.edits, undoManager$2.!javax.swing.undo.UndoManager.inProgress, undoManager$2.!javax.swing.undo.UndoManager.indexOfNextAdd } TO = javax.swing.undo.UndoManager#undo( )
+  14 actualOut D = { undoManager$2.!undo( ) } U = { canvas$1.!getUndoManager( ).!javax.swing.undo.UndoManager$Action.ANY, canvas$1.!getUndoManager( ).!javax.swing.undo.UndoManager$Action.UNDO, canvas$1.!getUndoManager( ).!javax.swing.undo.UndoManager.edits, canvas$1.!getUndoManager( ).!javax.swing.undo.UndoManager.inProgress, canvas$1.!getUndoManager( ).!javax.swing.undo.UndoManager.indexOfNextAdd, undoManager$2.!javax.swing.undo.UndoManager$Action.ANY, undoManager$2.!javax.swing.undo.UndoManager$Action.UNDO, undoManager$2.!javax.swing.undo.UndoManager.edits, undoManager$2.!javax.swing.undo.UndoManager.inProgress, undoManager$2.!javax.swing.undo.UndoManager.indexOfNextAdd }
+  15 assignment D = {  } U = { this.!updateUndoState( ) }
   16 receiver D = {  } U = {  }
-  17 methodCall D = {  } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoAction } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateUndoState( )
-  18 actualOut D = { this.!updateUndoState } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoAction }
-  19 assignment D = {  } U = { this.!updateRedoState }
+  17 methodCall D = {  } U = { canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, this.canvas$0.undoManager, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoAction, this.undoManager$1.!javax.swing.undo.UndoManager.edits, this.undoManager$1.!javax.swing.undo.UndoManager.inProgress, this.undoManager$1.!javax.swing.undo.UndoManager.indexOfNextAdd } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateUndoState( )
+  18 actualOut D = { this.!updateUndoState( ) } U = { canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, this.canvas$0.undoManager, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoAction, this.undoManager$1.!javax.swing.undo.UndoManager.edits, this.undoManager$1.!javax.swing.undo.UndoManager.inProgress, this.undoManager$1.!javax.swing.undo.UndoManager.indexOfNextAdd }
+  19 assignment D = {  } U = { this.!updateRedoState( ) }
   20 receiver D = {  } U = {  }
-  21 methodCall D = {  } U = { this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateRedoState( )
-  22 actualOut D = { this.!updateRedoState } U = { this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab }
-  23 assignment D = {  } U = { canvas$1.!clearFigure, this.tabbedCanvas.!getCurrentCanvas.!clearFigure }
-  24 receiver D = {  } U = { canvas$1, this.tabbedCanvas.!getCurrentCanvas }
-  25 methodCall D = { canvas$1.currentFigure, canvas$1.grabbedFigure } U = { canvas$1.currentFigure, canvas$1.grabbedFigure, this.tabbedCanvas.!getCurrentCanvas.currentFigure, this.tabbedCanvas.!getCurrentCanvas.grabbedFigure } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#clearFigure( )
-  26 actualOut D = { canvas$1.!clearFigure, canvas$1.currentFigure, canvas$1.grabbedFigure } U = { canvas$1.currentFigure, canvas$1.grabbedFigure, this.tabbedCanvas.!getCurrentCanvas.currentFigure, this.tabbedCanvas.!getCurrentCanvas.grabbedFigure }
+  21 methodCall D = {  } U = { canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, this.canvas$0.undoManager, this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoManager$1.!javax.swing.undo.UndoManager.edits, this.undoManager$1.!javax.swing.undo.UndoManager.inProgress, this.undoManager$1.!javax.swing.undo.UndoManager.indexOfNextAdd } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateRedoState( )
+  22 actualOut D = { this.!updateRedoState( ) } U = { canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, this.canvas$0.undoManager, this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoManager$1.!javax.swing.undo.UndoManager.edits, this.undoManager$1.!javax.swing.undo.UndoManager.inProgress, this.undoManager$1.!javax.swing.undo.UndoManager.indexOfNextAdd }
+  23 assignment D = {  } U = { canvas$1.!clearFigure( ) }
+  24 receiver D = {  } U = { canvas$1 }
+  25 methodCall D = {  } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#clearFigure( )
+  26 actualOut D = { canvas$1.!clearFigure( ) } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY }
   28 catchClause D = { e$3 } U = {  }
-  30 formalOut D = {  } U = { $_, canvas$1.currentFigure, canvas$1.grabbedFigure }
+  30 formalOut D = {  } U = { $_ }
+* actualOut D = { this.currentFigure } U = {  }
+* actualOut D = { canvas$1.grabbedFigure } U = {  }
 --
    0: serialVersionUID
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: actionPerformed( java.awt.event.ActionEvent )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 28 trueControlDependence
-   5: 0 -> 3 trueControlDependence
-   6: 0 -> 30 trueControlDependence
-   7: 0 -> 4 trueControlDependence
-   8: 0 -> 5 trueControlDependence
-   9: 0 -> 6 trueControlDependence
-  10: 0 -> 7 trueControlDependence
-  11: 0 -> 8 trueControlDependence
-  12: 0 -> 9 trueControlDependence
-  13: 10 -> 12 trueControlDependence
-  14: 10 -> 13 trueControlDependence
-  15: 10 -> 14 trueControlDependence
-  16: 13 -> 11 trueControlDependence
-  17: 13 -> 15 trueControlDependence
-  18: 13 -> 16 trueControlDependence
-  19: 13 -> 17 trueControlDependence
-  20: 13 -> 18 trueControlDependence
-  21: 13 -> 19 trueControlDependence
-  22: 13 -> 20 trueControlDependence
-  23: 13 -> 21 trueControlDependence
-  24: 13 -> 22 trueControlDependence
-  25: 13 -> 23 trueControlDependence
-  26: 13 -> 24 trueControlDependence
-  27: 13 -> 25 trueControlDependence
-  28: 13 -> 26 trueControlDependence
-  29: 13 -> 28 exceptionCatch
-  30: 14 -> 11 loopIndependentDefUseDependence undoManager$2.!undo
-  31: 18 -> 15 loopIndependentDefUseDependence this.!updateUndoState
-  32: 2 -> 24 declaration
-  33: 2 -> 24 loopIndependentDefUseDependence canvas$1
-  34: 2 -> 7 declaration
-  35: 2 -> 7 loopIndependentDefUseDependence canvas$1
-  36: 22 -> 19 loopIndependentDefUseDependence this.!updateRedoState
-  37: 25 -> 26 loopIndependentDefUseDependence canvas$1.currentFigure
-  38: 25 -> 26 loopIndependentDefUseDependence canvas$1.grabbedFigure
-  39: 26 -> 23 loopIndependentDefUseDependence canvas$1.!clearFigure
-  40: 26 -> 30 loopIndependentDefUseDependence canvas$1.currentFigure
-  41: 26 -> 30 loopIndependentDefUseDependence canvas$1.grabbedFigure
-  42: 5 -> 2 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas
-  43: 5 -> 24 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas
-  44: 5 -> 7 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas
-  45: 6 -> 12 declaration
-  46: 6 -> 12 loopIndependentDefUseDependence undoManager$2
-  47: 6 -> 13 declaration
-  48: 6 -> 13 loopIndependentDefUseDependence undoManager$2
-  49: 9 -> 12 loopIndependentDefUseDependence canvas$1.!getUndoManager
-  50: 9 -> 13 loopIndependentDefUseDependence canvas$1.!getUndoManager
-  51: 9 -> 6 loopIndependentDefUseDependence canvas$1.!getUndoManager
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   12 trueControlDependence
+  12:    0 ->   13 trueControlDependence
+  13:    0 ->   30 trueControlDependence
+  14:    2 ->    7 declaration
+  15:    2 ->    7 loopIndependentDefUseDependence canvas$1
+  16:    2 ->   24 declaration
+  17:    2 ->   24 loopIndependentDefUseDependence canvas$1
+  18:    5 ->    2 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas( )
+  19:    6 ->   12 declaration
+  20:    6 ->   12 loopIndependentDefUseDependence undoManager$2
+  21:    9 ->    6 loopIndependentDefUseDependence canvas$1.!getUndoManager( )
+  22:   10 ->   28 trueControlDependence
+  23:   13 ->   11 trueControlDependence
+  24:   13 ->   14 trueControlDependence
+  25:   13 ->   15 trueControlDependence
+  26:   13 ->   16 trueControlDependence
+  27:   13 ->   17 trueControlDependence
+  28:   13 ->   18 trueControlDependence
+  29:   13 ->   19 trueControlDependence
+  30:   13 ->   20 trueControlDependence
+  31:   13 ->   21 trueControlDependence
+  32:   13 ->   22 trueControlDependence
+  33:   13 ->   23 trueControlDependence
+  34:   13 ->   24 trueControlDependence
+  35:   13 ->   25 trueControlDependence
+  36:   13 ->   26 trueControlDependence
+  37:   13 ->   28 exceptionCatch
+  38:   13 -> * trueControlDependence
+  39:   13 -> * trueControlDependence
+  40:   14 ->   11 loopIndependentDefUseDependence undoManager$2.!undo( )
+  41:   18 ->   15 loopIndependentDefUseDependence this.!updateUndoState( )
+  42:   22 ->   19 loopIndependentDefUseDependence this.!updateRedoState( )
+  43:   26 ->   23 loopIndependentDefUseDependence canvas$1.!clearFigure( )
 --
 ----- ClDG (to here) -----
 

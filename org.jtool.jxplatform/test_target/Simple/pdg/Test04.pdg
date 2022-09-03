@@ -10,60 +10,55 @@ Class Name = Test04
 --
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
-   2 localDeclaration D = { out$1 } U = { this.!doReturn }
+   2 localDeclaration D = { out$1 } U = { this.!doReturn( int ) }
    3 receiver D = {  } U = {  }
    4 methodCall D = {  } U = {  } TO = Test04#doReturn( int )
    5 actualIn D = {  } U = { a$0 }
-   6 actualOut D = { this.!doReturn } U = {  }
-   7 assignment D = {  } U = { System.out.!println }
+   6 actualOut D = { this.!doReturn( int ) } U = {  }
+   7 assignment D = {  } U = { System.out.!println( int ) }
    8 receiver D = {  } U = { System.out }
-   9 methodCall D = { System.out, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out, out$1 } TO = java.io.PrintStream#println( int )
-  10 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
-  12 formalOut D = {  } U = { $_, System.out, System.out.trouble }
+   9 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, out$1 } TO = java.io.PrintStream#println( int )
+* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  12 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Test04( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: doReturn( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 8 trueControlDependence
-   5: 1 -> 2 loopIndependentDefUseDependence in$0
-   6: 2 -> 3 loopIndependentDefUseDependence in$0
-   7: 2 -> 4 loopIndependentDefUseDependence in$0
-   8: 3 -> 4 trueControlDependence
-   9: 3 -> 6 falseControlDependence
-  10: 4 -> 6 fallThroughControlDependence
-  11: 4 -> 8 loopIndependentDefUseDependence $_
-  12: 6 -> 8 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    8 trueControlDependence
+   5:    1 ->    2 loopIndependentDefUseDependence in$0
+   6:    2 ->    3 loopIndependentDefUseDependence in$0
+   7:    2 ->    4 loopIndependentDefUseDependence in$0
+   8:    3 ->    4 trueControlDependence
+   9:    3 ->    6 falseControlDependence
+  10:    4 ->    6 fallThroughControlDependence
+  11:    4 ->    8 loopIndependentDefUseDependence $_
+  12:    6 ->    8 loopIndependentDefUseDependence $_
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 12 trueControlDependence
-   4: 0 -> 2 trueControlDependence
-   5: 0 -> 3 trueControlDependence
-   6: 0 -> 4 trueControlDependence
-   7: 0 -> 5 trueControlDependence
-   8: 0 -> 6 trueControlDependence
-   9: 0 -> 7 trueControlDependence
-  10: 0 -> 8 trueControlDependence
-  11: 0 -> 9 trueControlDependence
-  12: 1 -> 5 declaration
-  13: 1 -> 5 loopIndependentDefUseDependence a$0
-  14: 10 -> 12 loopIndependentDefUseDependence System.out
-  15: 10 -> 12 loopIndependentDefUseDependence System.out.trouble
-  16: 10 -> 7 loopIndependentDefUseDependence System.out.!println
-  17: 2 -> 9 declaration
-  18: 2 -> 9 loopIndependentDefUseDependence out$1
-  19: 5 -> 6 summary
-  20: 6 -> 2 loopIndependentDefUseDependence this.!doReturn
-  21: 9 -> 10 loopIndependentDefUseDependence System.out
-  22: 9 -> 10 outputDependence System.out.trouble
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   12 trueControlDependence
+  11:    0 -> * trueControlDependence
+  12:    1 ->    5 declaration
+  13:    1 ->    5 loopIndependentDefUseDependence a$0
+  14:    2 ->    9 declaration
+  15:    2 ->    9 loopIndependentDefUseDependence out$1
+  16:    6 ->    2 loopIndependentDefUseDependence this.!doReturn( int )
+  17: * ->    7 loopIndependentDefUseDependence System.out.!println( int )
 --
    0: Test04( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

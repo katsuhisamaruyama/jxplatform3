@@ -1,0 +1,70 @@
+----- ClDG (from here) -----
+Class Name = Test142
+   0 constructorEntry [ Test142( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m( ) ]
+   1 assignment D = {  } U = { this.p.!set( java.lang.String java.lang.String ) }
+   2 receiver D = {  } U = { this.p }
+   3 methodCall D = {  } U = {  } TO = P142#set( java.lang.String java.lang.String )
+   4 actualIn D = {  } U = { $java.lang.String }
+   5 actualIn D = {  } U = { $java.lang.String }
+   6 actualOut D = { this.p.!set( java.lang.String java.lang.String ) } U = {  }
+   7 localDeclaration D = { k$0 } U = { this.p.!getKey( ) }
+   8 receiver D = {  } U = { this.p }
+   9 methodCall D = {  } U = { this.p.key } TO = P142#getKey( )
+  10 actualOut D = { this.p.!getKey( ) } U = { this.p.key }
+  11 localDeclaration D = { v$1 } U = { this.p.!getValue( ) }
+  12 receiver D = {  } U = { this.p }
+  13 methodCall D = {  } U = { this.p.key, this.p.key.!java.lang.String.COMPACT_STRINGS, this.p.key.!java.lang.String.coder, this.p.key.!java.lang.String.value, this.p.value } TO = P142#getValue( )
+  14 actualOut D = { this.p.!getValue( ) } U = { this.p.key, this.p.key.!java.lang.String.COMPACT_STRINGS, this.p.key.!java.lang.String.coder, this.p.key.!java.lang.String.value, this.p.value }
+  16 formalOut D = {  } U = { $_ }
+* actualOut D = { this.p.key } U = {  }
+* actualOut D = { this.p.value } U = {  }
+--
+   0 fieldEntry [ p ]
+   1 fieldDeclaration D = { this.p } U = { P142.!P142( ), this.p }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P142#P142( )
+   4 actualOut D = { P142.!P142( ) } U = {  }
+--
+   0: Test142( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   16 trueControlDependence
+  16:    0 -> * trueControlDependence
+  17:    0 -> * trueControlDependence
+  18:    6 ->    1 loopIndependentDefUseDependence this.p.!set( java.lang.String java.lang.String )
+  19:   10 ->    7 loopIndependentDefUseDependence this.p.!getKey( )
+  20:   14 ->   11 loopIndependentDefUseDependence this.p.!getValue( )
+  21: * ->    9 loopIndependentDefUseDependence this.p.key
+  22: * ->   10 loopIndependentDefUseDependence this.p.key
+  23: * ->   13 loopIndependentDefUseDependence this.p.key
+  24: * ->   13 loopIndependentDefUseDependence this.p.value
+  25: * ->   14 loopIndependentDefUseDependence this.p.key
+  26: * ->   14 loopIndependentDefUseDependence this.p.value
+--
+   0: p
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence P142.!P142( )
+--
+----- ClDG (to here) -----
+

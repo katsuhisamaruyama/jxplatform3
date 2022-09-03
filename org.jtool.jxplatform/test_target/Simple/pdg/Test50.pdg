@@ -1,0 +1,41 @@
+----- ClDG (from here) -----
+Class Name = Test50
+   0 constructorEntry [ Test50( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ m( ) ]
+   1 localDeclaration D = { strings$0 } U = { java.util.ArrayList.!ArrayList( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
+* actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   5 enhancedForSt D = { str$1 } U = { strings$0 }
+   6 localDeclaration D = { len$3 } U = { str$1.!length( ) }
+   7 receiver D = {  } U = { str$1 }
+   8 methodCall D = {  } U = { str$1.!java.lang.String.COMPACT_STRINGS, str$1.!java.lang.String.coder, str$1.!java.lang.String.value } TO = java.lang.String#length( )
+   9 actualOut D = { str$1.!length( ) } U = { str$1.!java.lang.String.COMPACT_STRINGS, str$1.!java.lang.String.coder, str$1.!java.lang.String.value }
+  11 formalOut D = {  } U = { $_ }
+--
+   0: Test50( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    5 trueControlDependence
+   5:    0 ->   11 trueControlDependence
+   6:    0 -> * trueControlDependence
+   7:    1 ->    5 declaration
+   8:    1 ->    5 loopIndependentDefUseDependence strings$0
+   9:    5 ->    5 defOrderDependence str$1
+  10:    5 ->    6 trueControlDependence
+  11:    5 ->    7 loopIndependentDefUseDependence str$1
+  12:    5 ->    7 trueControlDependence
+  13:    5 ->    8 trueControlDependence
+  14:    5 ->    9 trueControlDependence
+  15:    9 ->    6 loopIndependentDefUseDependence str$1.!length( )
+  16:    9 ->    9 defOrderDependence str$1.!length( )
+  17: * ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+--
+----- ClDG (to here) -----
+

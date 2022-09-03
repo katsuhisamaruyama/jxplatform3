@@ -4,12 +4,13 @@ Class Name = Test34
    1 fieldDeclaration D = { this.v } U = { this.v }
 --
    0 methodEntry [ m( ) ]
-   1 assignment D = {  } U = { this.!add }
+   1 assignment D = {  } U = { this.!add( int ) }
    2 receiver D = {  } U = {  }
-   3 methodCall D = { this.v } U = { this.v } TO = Test34#add( int )
+   3 methodCall D = {  } U = { this, this.v } TO = Test34#add( int )
    4 actualIn D = {  } U = {  }
-   5 actualOut D = { this.!add, this.v } U = { this.v }
-   7 formalOut D = {  } U = { $_, this.v }
+   5 actualOut D = { this.!add( int ) } U = { this, this.v }
+   7 formalOut D = {  } U = { $_ }
+* actualOut D = { this.v } U = {  }
 --
    0 methodEntry [ add( int ) ]
    1 formalIn D = { x$0 } U = {  }
@@ -17,41 +18,39 @@ Class Name = Test34
    3 localDeclaration D = { y$1 } U = { x$0 }
    4 synchronizedSt D = {  } U = { this }
    5 assignment D = { this.v } U = { this.v, y$1 }
-   7 formalOut D = {  } U = { $_, this.v }
+   7 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Test34( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: v
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 7 trueControlDependence
-   7: 3 -> 5 loopIndependentDefUseDependence this.v
-   8: 4 -> 5 summary
-   9: 5 -> 1 loopIndependentDefUseDependence this.!add
-  10: 5 -> 7 loopIndependentDefUseDependence this.v
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    0 -> * trueControlDependence
+   8:    5 ->    1 loopIndependentDefUseDependence this.!add( int )
+   9: * ->    5 loopIndependentDefUseDependence this.v
 --
    0: add( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 7 trueControlDependence
-   7: 1 -> 2 loopIndependentDefUseDependence x$0
-   8: 1 -> 3 loopIndependentDefUseDependence x$0
-   9: 3 -> 5 declaration
-  10: 3 -> 5 loopIndependentDefUseDependence y$1
-  11: 5 -> 7 loopIndependentDefUseDependence this.v
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    1 ->    2 loopIndependentDefUseDependence x$0
+   8:    1 ->    3 loopIndependentDefUseDependence x$0
+   9:    3 ->    5 declaration
+  10:    3 ->    5 loopIndependentDefUseDependence y$1
 --
    0: Test34( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

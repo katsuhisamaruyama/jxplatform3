@@ -5,26 +5,26 @@ Class Name = Pit
 --
    0 constructorEntry [ Pit( GameInfo ) ]
    1 formalIn D = { i$0 } U = {  }
-   2 assignment D = { this.info } U = { i$0 }
+   2 assignment D = { this.info } U = { i$0, i$0.font, i$0.height, i$0.level, i$0.lines, i$0.offImage, i$0.offg, i$0.score, i$0.width }
    3 assignment D = { this.box } U = { Pit.columns, Pit.rows }
    4 assignment D = { this.width } U = { Pit.columns, Tile.SIZE }
    5 assignment D = { this.height } U = { Pit.rows, Tile.SIZE }
-   6 assignment D = {  } U = { this.!setSize }
+   6 assignment D = {  } U = { this.!setSize( int int ) }
    7 receiver D = {  } U = {  }
-   8 methodCall D = {  } U = { this.height, this.width, this.x, this.y } TO = java.awt.Component#setSize( int int )
-   9 actualOut D = { this.!setSize } U = { this.x, this.y }
-  10 localDeclaration D = { seed$1 } U = { this.!getRuntime.!freeMemory }
-  11 receiver D = {  } U = { this.!getRuntime }
+   8 methodCall D = {  } U = { this.!java.awt.Component.x, this.!java.awt.Component.y, this.height, this.width } TO = java.awt.Component#setSize( int int )
+   9 actualOut D = { this.!setSize( int int ) } U = { this.!java.awt.Component.x, this.!java.awt.Component.y }
+  10 localDeclaration D = { seed$1 } U = { this.!getRuntime( ).!freeMemory( ) }
+  11 receiver D = {  } U = { this.!getRuntime( ) }
   12 receiver D = {  } U = {  }
-  13 methodCall D = {  } U = { this.currentRuntime } TO = java.lang.Runtime#getRuntime( )
-  14 actualOut D = { this.!getRuntime } U = { this.currentRuntime }
+  13 methodCall D = {  } U = { this.!java.lang.Runtime.currentRuntime } TO = java.lang.Runtime#getRuntime( )
+  14 actualOut D = { this.!getRuntime( ) } U = { this.!java.lang.Runtime.currentRuntime }
   15 methodCall D = {  } U = {  } TO = java.lang.Runtime#freeMemory( )
-  16 actualOut D = { this.!getRuntime.!freeMemory } U = {  }
-  17 assignment D = { this.rnd } U = { this.rnd.!Random }
+  16 actualOut D = { this.!getRuntime( ).!freeMemory( ) } U = {  }
+  17 assignment D = { this.rnd } U = { java.util.Random.!Random( long ) }
   18 receiver D = {  } U = {  }
-  19 constructorCall D = { java.util.concurrent.atomic.AtomicLong.value, this.rnd.haveNextNextGaussian, this.rnd.seed } U = { seed$1, this.rnd.seed } TO = java.util.Random#Random( long )
-  20 actualOut D = { java.util.concurrent.atomic.AtomicLong.value, this.rnd.!Random, this.rnd.haveNextNextGaussian, this.rnd.seed } U = { this.rnd.seed }
-  22 formalOut D = {  } U = { $_, java.util.concurrent.atomic.AtomicLong.value, this.box, this.height, this.info, this.rnd, this.rnd.haveNextNextGaussian, this.rnd.seed, this.width }
+  19 constructorCall D = {  } U = { java.util.Random.!java.util.Random.seed, seed$1 } TO = java.util.Random#Random( long )
+* actualOut D = { java.util.Random.!Random( long ), java.util.Random.!java.util.Random.haveNextNextGaussian, java.util.Random.!java.util.Random.seed, java.util.Random.!java.util.concurrent.atomic.AtomicLong.value } U = { java.util.Random.!java.util.Random.seed }
+  22 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ checkLines( ) ]
    1 localDeclaration D = { lines$0 } U = {  }
@@ -33,72 +33,77 @@ Class Name = Pit
    4 localDeclaration D = { isLine$2 } U = {  }
    5 localDeclaration D = { x$3 } U = {  }
    6 forSt D = {  } U = { Pit.columns, x$3 }
-   7 ifSt D = {  } U = { this.!getBox }
+   7 ifSt D = {  } U = { this.!getBox( int int ) }
    8 receiver D = {  } U = {  }
    9 methodCall D = {  } U = { this.box } TO = Pit#getBox( int int )
   10 actualIn D = {  } U = { x$3 }
   11 actualIn D = {  } U = { y$1 }
-  12 actualOut D = { this.!getBox } U = { this.box }
+  12 actualOut D = { this.!getBox( int int ) } U = { this.box }
   13 assignment D = { isLine$2 } U = {  }
   15 assignment D = { x$3 } U = { x$3 }
   16 ifSt D = {  } U = { isLine$2 }
-  17 assignment D = {  } U = { this.!eraseLine }
+  17 assignment D = {  } U = { this.!eraseLine( int ) }
   18 receiver D = {  } U = {  }
-  19 methodCall D = { this.box } U = { this.box } TO = Pit#eraseLine( int )
+  19 methodCall D = {  } U = { Pit.columns, t$2.color, t$2.posX, t$2.posY, this.box, this.tile$4.posY, tile$4.color, tile$4.posX, tile$4.posY } TO = Pit#eraseLine( int )
   20 actualIn D = {  } U = { y$1 }
-  21 actualOut D = { this.!eraseLine, this.box } U = { this.box }
+  21 actualOut D = { this.!eraseLine( int ) } U = { Pit.columns, t$2.color, t$2.posX, t$2.posY, this.box, this.tile$4.posY, tile$4.color, tile$4.posX, tile$4.posY }
   22 assignment D = { lines$0 } U = { lines$0 }
   24 assignment D = { y$1 } U = { y$1 }
   25 ifSt D = {  } U = { lines$0 }
-  26 assignment D = {  } U = { this.info.!addLines }
+  26 assignment D = {  } U = { this.info.!addLines( int ) }
   27 receiver D = {  } U = { this.info }
-  28 methodCall D = { this.info.level, this.info.lines, this.info.score } U = { this.info.level, this.info.lines, this.info.score } TO = GameInfo#addLines( int )
+  28 methodCall D = {  } U = { this.info.level, this.info.lines, this.level, this.score } TO = GameInfo#addLines( int )
   29 actualIn D = {  } U = { lines$0 }
-  30 actualOut D = { this.info.!addLines, this.info.level, this.info.lines, this.info.score } U = { this.info.level, this.info.lines, this.info.score }
-  31 assignment D = {  } U = { this.!update }
+  30 actualOut D = { this.info.!addLines( int ) } U = { this.info.level, this.info.lines, this.level, this.score }
+  31 assignment D = {  } U = { this.!update( ) }
   32 receiver D = {  } U = {  }
-  33 methodCall D = { this.currentBlock.tiles } U = { this.box, this.currentBlock, this.currentBlock.tiles, this.height, this.offg, this.width } TO = Pit#update( )
-  34 actualOut D = { this.!update, this.currentBlock.tiles } U = { this.box, this.currentBlock, this.currentBlock.tiles, this.height, this.offg, this.width }
-  37 formalOut D = {  } U = { $_, this.box, this.currentBlock.tiles, this.info.level, this.info.lines, this.info.score }
+  33 methodCall D = {  } U = { Color.black, Color.white, Pit.backgroundColor, Pit.columns, Pit.rows, Tile.BORDER, Tile.SIZE, this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y, this.box, this.color, this.currentBlock, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.height, this.offg, this.posX, this.posY, this.width, tile$2.color, tile$2.posX, tile$2.posY } TO = Pit#update( )
+* actualOut D = { this.!update( ), this.color.!java.awt.Color.cs, this.color.!java.awt.Color.falpha, this.color.!java.awt.Color.frgbvalue, this.color.!java.awt.Color.fvalue, this.color.!java.awt.Color.value, this.currentBlock.tiles.!java.util.HashMap.keySet } U = { Color.black, Color.white, Pit.backgroundColor, Pit.columns, Pit.rows, Tile.BORDER, Tile.SIZE, this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y, this.box, this.color, this.currentBlock, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.height, this.offg, this.posX, this.posY, this.width, tile$2.color, tile$2.posX, tile$2.posY }
+  37 formalOut D = {  } U = { $_ }
+* actualOut D = { this.box } U = {  }
+* actualOut D = { this.tile$4.posY } U = {  }
+* actualOut D = { this.level } U = {  }
+* actualOut D = { this.info.lines } U = {  }
+* actualOut D = { this.score } U = {  }
 --
    0 methodEntry [ update( ) ]
-   1 assignment D = {  } U = { this.offg.!setColor }
+   1 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
    2 receiver D = {  } U = { this.offg }
-   3 methodCall D = {  } U = { Color.black, Pit.backgroundColor } TO = java.awt.Graphics#setColor( java.awt.Color )
-   4 actualOut D = { this.offg.!setColor } U = {  }
-   5 assignment D = {  } U = { this.offg.!fillRect }
+   3 methodCall D = {  } U = { Pit.backgroundColor } TO = java.awt.Graphics#setColor( java.awt.Color )
+   4 actualOut D = { this.offg.!setColor( java.awt.Color ) } U = {  }
+   5 assignment D = {  } U = { this.offg.!fillRect( int int int int ) }
    6 receiver D = {  } U = { this.offg }
    7 methodCall D = {  } U = { this.height, this.width } TO = java.awt.Graphics#fillRect( int int int int )
-   8 actualOut D = { this.offg.!fillRect } U = {  }
+   8 actualOut D = { this.offg.!fillRect( int int int int ) } U = {  }
    9 localDeclaration D = { y$0 } U = {  }
   10 forSt D = {  } U = { Pit.rows, y$0 }
   11 localDeclaration D = { x$1 } U = {  }
   12 forSt D = {  } U = { Pit.columns, x$1 }
-  13 localDeclaration D = { tile$2 } U = { this.!getBox }
+  13 localDeclaration D = { tile$2 } U = { this.!getBox( int int ) }
   14 receiver D = {  } U = {  }
   15 methodCall D = {  } U = { this.box } TO = Pit#getBox( int int )
   16 actualIn D = {  } U = { x$1 }
   17 actualIn D = {  } U = { y$0 }
-  18 actualOut D = { this.!getBox } U = { this.box }
-  19 ifSt D = {  } U = { this.!getBox, tile$2 }
-  20 assignment D = {  } U = { this.!getBox.!paint, tile$2.!paint }
-  21 receiver D = {  } U = { this.!getBox, tile$2 }
-  22 methodCall D = { tile$2.color } U = { this.!getBox.color, this.!getBox.posX, this.!getBox.posY, tile$2.color, tile$2.posX, tile$2.posY } TO = Tile#paint( java.awt.Graphics )
+  18 actualOut D = { this.!getBox( int int ) } U = { this.box }
+  19 ifSt D = {  } U = { this.!getBox( int int ).color, this.!getBox( int int ).posX, this.!getBox( int int ).posY, tile$2, tile$2.color, tile$2.posX, tile$2.posY }
+  20 assignment D = {  } U = { tile$2.!paint( java.awt.Graphics ) }
+  21 receiver D = {  } U = { tile$2 }
+  22 methodCall D = {  } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.posX, this.posY } TO = Tile#paint( java.awt.Graphics )
   23 actualIn D = {  } U = { this.offg }
-  24 actualOut D = { tile$2.!paint, tile$2.color } U = { this.!getBox.color, this.!getBox.posX, this.!getBox.posY, tile$2.color, tile$2.posX, tile$2.posY }
+* actualOut D = { this.color.!java.awt.Color.cs, this.color.!java.awt.Color.falpha, this.color.!java.awt.Color.frgbvalue, this.color.!java.awt.Color.fvalue, this.color.!java.awt.Color.value, tile$2.!paint( java.awt.Graphics ) } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.posX, this.posY }
   26 assignment D = { x$1 } U = { x$1 }
   27 assignment D = { y$0 } U = { y$0 }
-  28 ifSt D = {  } U = { this.currentBlock }
-  29 assignment D = {  } U = { this.currentBlock.!paint }
+  28 ifSt D = {  } U = { this.currentBlock, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles }
+  29 assignment D = {  } U = { this.currentBlock.!paint( java.awt.Graphics ) }
   30 receiver D = {  } U = { this.currentBlock }
-  31 methodCall D = { this.currentBlock.tiles } U = { this.currentBlock, this.currentBlock.tiles } TO = Block#paint( java.awt.Graphics )
+  31 methodCall D = {  } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.posX, this.posY } TO = Block#paint( java.awt.Graphics )
   32 actualIn D = {  } U = { this.offg }
-  33 actualOut D = { this.currentBlock.!paint, this.currentBlock.tiles } U = { this.currentBlock.tiles }
-  35 assignment D = {  } U = { this.!repaint }
+* actualOut D = { this.color.!java.awt.Color.cs, this.color.!java.awt.Color.falpha, this.color.!java.awt.Color.frgbvalue, this.color.!java.awt.Color.fvalue, this.color.!java.awt.Color.value, this.currentBlock.!paint( java.awt.Graphics ), this.currentBlock.tiles.!java.util.HashMap.keySet } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.posX, this.posY }
+  35 assignment D = {  } U = { this.!repaint( ) }
   36 receiver D = {  } U = {  }
-  37 methodCall D = {  } U = { this.height, this.parent, this.peer, this.width, this.x, this.y } TO = java.awt.Component#repaint( )
-  38 actualOut D = { this.!repaint } U = { this.height, this.parent, this.peer, this.width, this.x, this.y }
-  40 formalOut D = {  } U = { $_, this.currentBlock.tiles, tile$2.color }
+  37 methodCall D = {  } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y } TO = java.awt.Component#repaint( )
+  38 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
+  40 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ font ]
    1 fieldDeclaration D = { this.font } U = { this.font }
@@ -114,16 +119,17 @@ Class Name = Pit
    2 forSt D = {  } U = { Pit.rows, y$0 }
    3 localDeclaration D = { x$1 } U = {  }
    4 forSt D = {  } U = { Pit.columns, x$1 }
-   5 assignment D = {  } U = { this.!setBox }
+   5 assignment D = {  } U = { this.!setBox( int int Tile ) }
    6 receiver D = {  } U = {  }
-   7 methodCall D = { this.box } U = { this.box } TO = Pit#setBox( int int Tile )
+   7 methodCall D = {  } U = { t$2.color, t$2.posX, t$2.posY } TO = Pit#setBox( int int Tile )
    8 actualIn D = {  } U = { x$1 }
    9 actualIn D = {  } U = { y$0 }
   10 actualIn D = {  } U = {  }
-  11 actualOut D = { this.!setBox, this.box } U = { this.box }
+  11 actualOut D = { this.!setBox( int int Tile ) } U = { t$2.color, t$2.posX, t$2.posY }
   12 assignment D = { x$1 } U = { x$1 }
   13 assignment D = { y$0 } U = { y$0 }
-  15 formalOut D = {  } U = { $_, this.box }
+  15 formalOut D = {  } U = { $_ }
+* actualOut D = { this.box } U = {  }
 --
    0 fieldEntry [ height ]
    1 fieldDeclaration D = { this.height } U = { this.height }
@@ -132,90 +138,93 @@ Class Name = Pit
    1 fieldDeclaration D = { this.box } U = { this.box }
 --
    0 methodEntry [ getCurrentBlock( ) ]
-   1 returnSt D = { $_ } U = { this.currentBlock }
+   1 returnSt D = { $_ } U = { this.currentBlock, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles }
    3 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ eraseLine( int ) ]
    1 formalIn D = { y$0 } U = {  }
    2 localDeclaration D = { x$1 } U = {  }
    3 forSt D = {  } U = { Pit.columns, x$1 }
-   4 localDeclaration D = { tile$2 } U = { this.!getBox }
+   4 localDeclaration D = { tile$2 } U = { this.!getBox( int int ) }
    5 receiver D = {  } U = {  }
    6 methodCall D = {  } U = { this.box } TO = Pit#getBox( int int )
    7 actualIn D = {  } U = { x$1 }
    8 actualIn D = {  } U = { y$0 }
-   9 actualOut D = { this.!getBox } U = { this.box }
+   9 actualOut D = { this.!getBox( int int ) } U = { this.box }
   10 assignment D = { tile$2 } U = {  }
   11 assignment D = { x$1 } U = { x$1 }
   12 forSt D = {  } U = { y$0 }
   13 localDeclaration D = { x$3 } U = {  }
   14 forSt D = {  } U = { Pit.columns, x$3 }
-  15 localDeclaration D = { tile$4 } U = { this.!getBox }
+  15 localDeclaration D = { tile$4 } U = { this.!getBox( int int ) }
   16 receiver D = {  } U = {  }
   17 methodCall D = {  } U = { this.box } TO = Pit#getBox( int int )
   18 actualIn D = {  } U = { x$3 }
   19 actualIn D = {  } U = { y$0 }
-  20 actualOut D = { this.!getBox } U = { this.box }
-  21 ifSt D = {  } U = { this.!getBox, tile$4 }
-  22 assignment D = {  } U = { this.!getBox.!setPosY, tile$4.!setPosY }
-  23 receiver D = {  } U = { this.!getBox, tile$4 }
-  24 methodCall D = { tile$4.posY } U = { this.!getBox.posY, tile$4.posY } TO = Tile#setPosY( int )
-  25 actualIn D = {  } U = { this.!getBox.!getPosY, tile$4.!getPosY }
-  26 receiver D = {  } U = { this.!getBox, tile$4 }
-  27 methodCall D = {  } U = { this.!getBox.posY, tile$4.posY } TO = Tile#getPosY( )
-  28 actualOut D = { tile$4.!getPosY } U = { this.!getBox.posY, tile$4.posY }
-  29 actualOut D = { tile$4.!setPosY, tile$4.posY } U = { this.!getBox.posY, tile$4.posY }
-  31 assignment D = {  } U = { this.!setBox }
+  20 actualOut D = { this.!getBox( int int ) } U = { this.box }
+  21 ifSt D = {  } U = { this.!getBox( int int ).color, this.!getBox( int int ).posX, this.!getBox( int int ).posY, tile$4, tile$4.color, tile$4.posX, tile$4.posY }
+  22 assignment D = {  } U = { tile$4.!setPosY( int ) }
+  23 receiver D = {  } U = { tile$4 }
+  24 methodCall D = {  } U = {  } TO = Tile#setPosY( int )
+  25 actualIn D = {  } U = { tile$4.!getPosY( ) }
+  26 receiver D = {  } U = { tile$4 }
+  27 methodCall D = {  } U = { this.!getBox( int int ).posY, tile$4.posY } TO = Tile#getPosY( )
+  28 actualOut D = { tile$4.!getPosY( ) } U = { this.!getBox( int int ).posY, tile$4.posY }
+  29 actualOut D = { tile$4.!setPosY( int ) } U = {  }
+  31 assignment D = {  } U = { this.!setBox( int int Tile ) }
   32 receiver D = {  } U = {  }
-  33 methodCall D = { this.box } U = { this.box } TO = Pit#setBox( int int Tile )
+  33 methodCall D = {  } U = { t$2.color, t$2.posX, t$2.posY } TO = Pit#setBox( int int Tile )
   34 actualIn D = {  } U = { x$3 }
   35 actualIn D = {  } U = { y$0 }
-  36 actualIn D = {  } U = { this.!getBox, tile$4 }
-  37 actualOut D = { this.!setBox, this.box } U = { this.box }
+  36 actualIn D = {  } U = { this.!getBox( int int ).color, this.!getBox( int int ).posX, this.!getBox( int int ).posY, tile$4, tile$4.color, tile$4.posX, tile$4.posY }
+  37 actualOut D = { this.!setBox( int int Tile ) } U = { t$2.color, t$2.posX, t$2.posY }
   38 assignment D = { x$3 } U = { x$3 }
   39 assignment D = { y$0 } U = { y$0 }
   40 localDeclaration D = { x$5 } U = {  }
   41 forSt D = {  } U = { Pit.columns, x$5 }
-  42 assignment D = {  } U = { this.!setBox }
+  42 assignment D = {  } U = { this.!setBox( int int Tile ) }
   43 receiver D = {  } U = {  }
-  44 methodCall D = { this.box } U = { this.box } TO = Pit#setBox( int int Tile )
+  44 methodCall D = {  } U = { t$2.color, t$2.posX, t$2.posY } TO = Pit#setBox( int int Tile )
   45 actualIn D = {  } U = { x$5 }
   46 actualIn D = {  } U = {  }
   47 actualIn D = {  } U = {  }
-  48 actualOut D = { this.!setBox, this.box } U = { this.box }
+  48 actualOut D = { this.!setBox( int int Tile ) } U = { t$2.color, t$2.posX, t$2.posY }
   49 assignment D = { x$5 } U = { x$5 }
-  51 formalOut D = {  } U = { $_, this.box, tile$4.posY }
+  51 formalOut D = {  } U = { $_ }
+* actualOut D = { tile$4.posY } U = {  }
+* actualOut D = { this.box } U = {  }
+* actualOut D = { this.box } U = {  }
 --
    0 methodEntry [ init( ) ]
-   1 assignment D = { this.offImage } U = { this.!createImage }
+   1 assignment D = { this.offImage } U = { this.!createImage( int int ) }
    2 receiver D = {  } U = {  }
-   3 methodCall D = {  } U = { this.height, this.parent, this.peer, this.width } TO = java.awt.Component#createImage( int int )
-   4 actualOut D = { this.!createImage } U = { this.parent, this.peer }
-   5 assignment D = { this.offg } U = { this.!createImage.!getGraphics, this.offImage.!getGraphics }
-   6 receiver D = {  } U = { this.!createImage, this.offImage }
+   3 methodCall D = {  } U = { this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.height, this.width } TO = java.awt.Component#createImage( int int )
+   4 actualOut D = { this.!createImage( int int ) } U = { this.!java.awt.Component.parent, this.!java.awt.Component.peer }
+   5 assignment D = { this.offg } U = { this.offImage.!getGraphics( ) }
+   6 receiver D = {  } U = { this.offImage }
    7 methodCall D = {  } U = {  } TO = java.awt.Image#getGraphics( )
-   8 actualOut D = { this.offImage.!getGraphics } U = {  }
-   9 assignment D = { this.font } U = { this.font.!Font }
+   8 actualOut D = { this.offImage.!getGraphics( ) } U = {  }
+   9 assignment D = { this.font } U = { java.awt.Font.!Font( java.lang.String int int ) }
   10 receiver D = {  } U = {  }
-  11 constructorCall D = { this.font.createdFont, this.font.fontSerializedDataVersion, this.font.name, this.font.pointSize, this.font.size, this.font.style } U = { $java.lang.String, $java.lang.String.BOLD } TO = java.awt.Font#Font( java.lang.String int int )
-  12 actualOut D = { this.font.!Font, this.font.createdFont, this.font.fontSerializedDataVersion, this.font.name, this.font.pointSize, this.font.size, this.font.style } U = {  }
-  13 assignment D = {  } U = { this.offImage.!getGraphics.!setColor, this.offg.!setColor }
-  14 receiver D = {  } U = { this.offImage.!getGraphics, this.offg }
-  15 methodCall D = {  } U = { Color.black, Pit.backgroundColor } TO = java.awt.Graphics#setColor( java.awt.Color )
-  16 actualOut D = { this.offg.!setColor } U = {  }
-  17 assignment D = {  } U = { this.offImage.!getGraphics.!fillRect, this.offg.!fillRect }
-  18 receiver D = {  } U = { this.offImage.!getGraphics, this.offg }
+  11 constructorCall D = {  } U = { $java.lang.String, Font.BOLD } TO = java.awt.Font#Font( java.lang.String int int )
+* actualOut D = { java.awt.Font.!Font( java.lang.String int int ), java.awt.Font.!java.awt.Font.createdFont, java.awt.Font.!java.awt.Font.fontSerializedDataVersion, java.awt.Font.!java.awt.Font.name, java.awt.Font.!java.awt.Font.pointSize, java.awt.Font.!java.awt.Font.size, java.awt.Font.!java.awt.Font.style } U = {  }
+  13 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
+  14 receiver D = {  } U = { this.offg }
+  15 methodCall D = {  } U = { Pit.backgroundColor } TO = java.awt.Graphics#setColor( java.awt.Color )
+  16 actualOut D = { this.offg.!setColor( java.awt.Color ) } U = {  }
+  17 assignment D = {  } U = { this.offg.!fillRect( int int int int ) }
+  18 receiver D = {  } U = { this.offg }
   19 methodCall D = {  } U = { this.height, this.width } TO = java.awt.Graphics#fillRect( int int int int )
-  20 actualOut D = { this.offg.!fillRect } U = {  }
-  21 assignment D = {  } U = { this.!printStartPrompt }
+  20 actualOut D = { this.offg.!fillRect( int int int int ) } U = {  }
+  21 assignment D = {  } U = { this.!printStartPrompt( ) }
   22 receiver D = {  } U = {  }
-  23 methodCall D = {  } U = { this.font, this.offImage.!getGraphics, this.offg } TO = Pit#printStartPrompt( )
-  24 actualOut D = { this.!printStartPrompt } U = { this.font, this.offImage.!getGraphics, this.offg }
-  25 assignment D = {  } U = { this.!repaint }
+  23 methodCall D = {  } U = { Color.white, this.font, this.offg } TO = Pit#printStartPrompt( )
+  24 actualOut D = { this.!printStartPrompt( ) } U = { Color.white, this.font, this.offg }
+  25 assignment D = {  } U = { this.!repaint( ) }
   26 receiver D = {  } U = {  }
-  27 methodCall D = {  } U = { this.height, this.parent, this.peer, this.width, this.x, this.y } TO = java.awt.Component#repaint( )
-  28 actualOut D = { this.!repaint } U = { this.height, this.parent, this.peer, this.width, this.x, this.y }
-  30 formalOut D = {  } U = { $_, this.font, this.font.createdFont, this.font.fontSerializedDataVersion, this.font.name, this.font.pointSize, this.font.size, this.font.style, this.offImage, this.offg }
+  27 methodCall D = {  } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y } TO = java.awt.Component#repaint( )
+  28 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
+  30 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ getBox( int int ) ]
    1 formalIn D = { x$0 } U = {  }
@@ -226,17 +235,17 @@ Class Name = Pit
    0 methodEntry [ paint( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 ifSt D = {  } U = { this.offImage }
-   3 assignment D = {  } U = { g$0.!drawImage }
+   3 assignment D = {  } U = { g$0.!drawImage( java.awt.Image int int java.awt.image.ImageObserver ) }
    4 receiver D = {  } U = { g$0 }
    5 methodCall D = {  } U = { this, this.offImage } TO = java.awt.Graphics#drawImage( java.awt.Image int int java.awt.image.ImageObserver )
-   6 actualOut D = { g$0.!drawImage } U = {  }
+   6 actualOut D = { g$0.!drawImage( java.awt.Image int int java.awt.image.ImageObserver ) } U = {  }
    9 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ offImage ]
    1 fieldDeclaration D = { this.offImage } U = { this.offImage }
 --
    0 methodEntry [ getNextBlock( ) ]
-   1 returnSt D = { $_ } U = { this.nextBlock }
+   1 returnSt D = { $_ } U = { this.nextBlock, this.nextBlock.offsetX, this.nextBlock.offsetY, this.nextBlock.pit, this.nextBlock.posX, this.nextBlock.posY, this.nextBlock.tiles }
    3 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ info ]
@@ -246,53 +255,53 @@ Class Name = Pit
    1 fieldDeclaration D = { Pit.columns } U = { Pit.columns, Pit.columns.COLUMNS }
 --
    0 methodEntry [ gameOver( ) ]
-   1 assignment D = {  } U = { this.offg.!setColor }
+   1 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
    2 receiver D = {  } U = { this.offg }
-   3 methodCall D = {  } U = { Color.black, Pit.backgroundColor } TO = java.awt.Graphics#setColor( java.awt.Color )
-   4 actualOut D = { this.offg.!setColor } U = {  }
-   5 assignment D = {  } U = { this.offg.!fillRect }
+   3 methodCall D = {  } U = { Pit.backgroundColor } TO = java.awt.Graphics#setColor( java.awt.Color )
+   4 actualOut D = { this.offg.!setColor( java.awt.Color ) } U = {  }
+   5 assignment D = {  } U = { this.offg.!fillRect( int int int int ) }
    6 receiver D = {  } U = { this.offg }
    7 methodCall D = {  } U = { this.width } TO = java.awt.Graphics#fillRect( int int int int )
-   8 actualOut D = { this.offg.!fillRect } U = {  }
-   9 assignment D = {  } U = { this.offg.!setColor }
+   8 actualOut D = { this.offg.!fillRect( int int int int ) } U = {  }
+   9 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
   10 receiver D = {  } U = { this.offg }
   11 methodCall D = {  } U = { Color.red } TO = java.awt.Graphics#setColor( java.awt.Color )
-  12 actualOut D = { this.offg.!setColor } U = {  }
-  13 assignment D = {  } U = { this.offg.!setFont }
+  12 actualOut D = { this.offg.!setColor( java.awt.Color ) } U = {  }
+  13 assignment D = {  } U = { this.offg.!setFont( java.awt.Font ) }
   14 receiver D = {  } U = { this.offg }
   15 methodCall D = {  } U = { this.font } TO = java.awt.Graphics#setFont( java.awt.Font )
-  16 actualOut D = { this.offg.!setFont } U = {  }
-  17 assignment D = {  } U = { this.offg.!drawString }
+  16 actualOut D = { this.offg.!setFont( java.awt.Font ) } U = {  }
+  17 assignment D = {  } U = { this.offg.!drawString( java.lang.String int int ) }
   18 receiver D = {  } U = { this.offg }
   19 methodCall D = {  } U = { $java.lang.String } TO = java.awt.Graphics#drawString( java.lang.String int int )
-  20 actualOut D = { this.offg.!drawString } U = {  }
-  21 assignment D = {  } U = { this.!printStartPrompt }
+  20 actualOut D = { this.offg.!drawString( java.lang.String int int ) } U = {  }
+  21 assignment D = {  } U = { this.!printStartPrompt( ) }
   22 receiver D = {  } U = {  }
-  23 methodCall D = {  } U = { this.font, this.offg } TO = Pit#printStartPrompt( )
-  24 actualOut D = { this.!printStartPrompt } U = { this.font, this.offg }
-  25 assignment D = {  } U = { this.!repaint }
+  23 methodCall D = {  } U = { Color.white, this.font, this.offg } TO = Pit#printStartPrompt( )
+  24 actualOut D = { this.!printStartPrompt( ) } U = { Color.white, this.font, this.offg }
+  25 assignment D = {  } U = { this.!repaint( ) }
   26 receiver D = {  } U = {  }
-  27 methodCall D = {  } U = { this.height, this.parent, this.peer, this.width, this.x, this.y } TO = java.awt.Component#repaint( )
-  28 actualOut D = { this.!repaint } U = { this.height, this.parent, this.peer, this.width, this.x, this.y }
+  27 methodCall D = {  } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y } TO = java.awt.Component#repaint( )
+  28 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
   30 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ printStartPrompt( ) ]
-   1 assignment D = {  } U = { this.offg.!setColor }
+   1 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
    2 receiver D = {  } U = { this.offg }
    3 methodCall D = {  } U = { Color.white } TO = java.awt.Graphics#setColor( java.awt.Color )
-   4 actualOut D = { this.offg.!setColor } U = {  }
-   5 assignment D = {  } U = { this.offg.!setFont }
+   4 actualOut D = { this.offg.!setColor( java.awt.Color ) } U = {  }
+   5 assignment D = {  } U = { this.offg.!setFont( java.awt.Font ) }
    6 receiver D = {  } U = { this.offg }
    7 methodCall D = {  } U = { this.font } TO = java.awt.Graphics#setFont( java.awt.Font )
-   8 actualOut D = { this.offg.!setFont } U = {  }
-   9 assignment D = {  } U = { this.offg.!drawString }
+   8 actualOut D = { this.offg.!setFont( java.awt.Font ) } U = {  }
+   9 assignment D = {  } U = { this.offg.!drawString( java.lang.String int int ) }
   10 receiver D = {  } U = { this.offg }
   11 methodCall D = {  } U = { $java.lang.String } TO = java.awt.Graphics#drawString( java.lang.String int int )
-  12 actualOut D = { this.offg.!drawString } U = {  }
-  13 assignment D = {  } U = { this.offg.!drawString }
+  12 actualOut D = { this.offg.!drawString( java.lang.String int int ) } U = {  }
+  13 assignment D = {  } U = { this.offg.!drawString( java.lang.String int int ) }
   14 receiver D = {  } U = { this.offg }
   15 methodCall D = {  } U = { $java.lang.String } TO = java.awt.Graphics#drawString( java.lang.String int int )
-  16 actualOut D = { this.offg.!drawString } U = {  }
+  16 actualOut D = { this.offg.!drawString( java.lang.String int int ) } U = {  }
   18 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ currentBlock ]
@@ -305,37 +314,53 @@ Class Name = Pit
    1 fieldDeclaration D = { this.width } U = { this.width }
 --
    0 methodEntry [ placeNextBlock( ) ]
-   1 ifSt D = {  } U = { this.nextBlock }
-   2 assignment D = { this.currentBlock } U = { this.nextBlock }
-   3 assignment D = {  } U = { this.currentBlock.!setPosXY, this.nextBlock.!setPosXY }
+   1 ifSt D = {  } U = { this.nextBlock, this.nextBlock.offsetX, this.nextBlock.offsetY, this.nextBlock.pit, this.nextBlock.posX, this.nextBlock.posY, this.nextBlock.tiles }
+   2 assignment D = { this.currentBlock } U = { this.nextBlock, this.nextBlock.offsetX, this.nextBlock.offsetY, this.nextBlock.pit, this.nextBlock.posX, this.nextBlock.posY, this.nextBlock.tiles }
+   3 assignment D = {  } U = { this.currentBlock.!setPosXY( int int ) }
    4 receiver D = {  } U = { this.currentBlock, this.nextBlock }
-   5 methodCall D = { this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles } U = { this.currentBlock, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles, this.nextBlock, this.nextBlock.posX, this.nextBlock.posY, this.nextBlock.tiles } TO = Block#setPosXY( int int )
+   5 methodCall D = {  } U = { this.currentBlock.tile$3.posX, this.currentBlock.tile$3.posY, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.nextBlock.tile$3.posX, this.nextBlock.tile$3.posY, this.nextBlock.tiles, this.nextBlock.tiles.!java.util.HashMap.keySet, this.nextBlock.tiles.!java.util.HashSet.map } TO = Block#setPosXY( int int )
    6 actualIn D = {  } U = { Pit.initPosX }
    7 actualIn D = {  } U = { Pit.initPosY }
-   8 actualOut D = { this.currentBlock.!setPosXY, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles } U = { this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles, this.nextBlock.posX, this.nextBlock.posY, this.nextBlock.tiles }
-  10 localDeclaration D = { kind$0 } U = { this.rnd.!nextInt }
+* actualOut D = { this.currentBlock.!setPosXY( int int ), this.currentBlock.tiles.!java.util.HashMap.keySet } U = { this.currentBlock.tile$3.posX, this.currentBlock.tile$3.posY, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.nextBlock.tile$3.posX, this.nextBlock.tile$3.posY, this.nextBlock.tiles, this.nextBlock.tiles.!java.util.HashMap.keySet, this.nextBlock.tiles.!java.util.HashSet.map }
+  10 localDeclaration D = { kind$0 } U = { this.rnd.!nextInt( int ) }
   11 receiver D = {  } U = { this.rnd }
-  12 methodCall D = {  } U = { Block.NUMBER_OF, this.rnd, this.rnd.seed } TO = java.util.Random#nextInt( int )
-  13 actualOut D = { this.rnd.!nextInt } U = { this.rnd.seed }
-  14 assignment D = { this.nextBlock } U = { this.!create }
+  12 methodCall D = {  } U = { Block.NUMBER_OF, this.rnd.!java.util.Random.seed } TO = java.util.Random#nextInt( int )
+  13 actualOut D = { this.rnd.!nextInt( int ) } U = { this.rnd.!java.util.Random.seed }
+  14 assignment D = { this.nextBlock } U = { this.!create( int int int ) }
   15 receiver D = {  } U = {  }
-  16 methodCall D = {  } U = {  } TO = Block#create( int int int )
+  16 methodCall D = {  } U = { BlueBlock.COLOR, CyanBlock.COLOR, GreenBlock.COLOR, MagentaBlock.COLOR, OrangeBlock.COLOR, RedBlock.color, YellowBlock.COLOR, this.offsetX, this.offsetX.SIZE, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = Block#create( int int int )
   17 actualIn D = {  } U = { kind$0 }
   18 actualIn D = {  } U = {  }
   19 actualIn D = {  } U = {  }
-  20 actualOut D = { this.!create } U = {  }
-  21 assignment D = {  } U = { this.!create.!setPit, this.nextBlock.!setPit }
-  22 receiver D = {  } U = { this.!create, this.nextBlock }
-  23 methodCall D = { this.nextBlock.pit } U = { this.!create.pit, this.nextBlock.pit } TO = Block#setPit( Pit )
+  20 actualOut D = { this.!create( int int int ) } U = { BlueBlock.COLOR, CyanBlock.COLOR, GreenBlock.COLOR, MagentaBlock.COLOR, OrangeBlock.COLOR, RedBlock.color, YellowBlock.COLOR, this.offsetX, this.offsetX.SIZE, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
+  21 assignment D = {  } U = { this.nextBlock.!setPit( Pit ) }
+  22 receiver D = {  } U = { this.nextBlock }
+  23 methodCall D = {  } U = { p$0.box, p$0.currentBlock, p$0.font, p$0.height, p$0.info, p$0.nextBlock, p$0.offImage, p$0.offg, p$0.rnd, p$0.width } TO = Block#setPit( Pit )
   24 actualIn D = {  } U = { this }
-  25 actualOut D = { this.nextBlock.!setPit, this.nextBlock.pit } U = { this.!create.pit, this.nextBlock.pit }
-  26 ifSt D = {  } U = { this.currentBlock }
-  27 returnSt D = { $_ } U = { this.currentBlock.!canPlace }
+  25 actualOut D = { this.nextBlock.!setPit( Pit ) } U = { p$0.box, p$0.currentBlock, p$0.font, p$0.height, p$0.info, p$0.nextBlock, p$0.offImage, p$0.offg, p$0.rnd, p$0.width }
+  26 ifSt D = {  } U = { this.currentBlock, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles }
+  27 returnSt D = { $_ } U = { this.currentBlock.!canPlace( ) }
   28 receiver D = {  } U = { this.currentBlock }
-  29 methodCall D = { this.currentBlock.tiles } U = { this.currentBlock.pit, this.currentBlock.pit.box, this.currentBlock.tiles } TO = Block#canPlace( )
-  30 actualOut D = { this.currentBlock.!canPlace, this.currentBlock.tiles } U = { this.currentBlock.pit, this.currentBlock.pit.box, this.currentBlock.tiles }
+  29 methodCall D = {  } U = { this.pit, this.pit.box, this.tile$3.posX, this.tile$3.posY, this.tiles, this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map, x$0.COLUMNS, y$1.ROWS } TO = Block#canPlace( )
+* actualOut D = { this.currentBlock.!canPlace( ), this.tiles.!java.util.HashMap.keySet } U = { this.pit, this.pit.box, this.tile$3.posX, this.tile$3.posY, this.tiles, this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map, x$0.COLUMNS, y$1.ROWS }
   32 returnSt D = { $_ } U = {  }
-  34 formalOut D = {  } U = { $_, this.currentBlock, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles, this.nextBlock, this.nextBlock.pit }
+  34 formalOut D = {  } U = { $_ }
+* actualOut D = { this.currentBlock.posX } U = {  }
+* actualOut D = { this.currentBlock.posY } U = {  }
+* actualOut D = { this.currentBlock.tile$3.posX } U = {  }
+* actualOut D = { this.currentBlock.tile$3.posY } U = {  }
+* actualOut D = { this.offsetX } U = {  }
+* actualOut D = { this.offsetY } U = {  }
+* actualOut D = { this.offsetY } U = {  }
+* actualOut D = { this.offsetY } U = {  }
+* actualOut D = { this.offsetY } U = {  }
+* actualOut D = { this.offsetY } U = {  }
+* actualOut D = { this.!create( int int int ).posX } U = {  }
+* actualOut D = { this.!create( int int int ).posY } U = {  }
+* actualOut D = { this.!create( int int int ).color } U = {  }
+* actualOut D = { this.!create( int int int ).posX } U = {  }
+* actualOut D = { this.!create( int int int ).posY } U = {  }
+* actualOut D = { this.nextBlock.pit } U = {  }
 --
    0 fieldEntry [ nextBlock ]
    1 fieldDeclaration D = { this.nextBlock } U = { this.nextBlock }
@@ -347,727 +372,681 @@ Class Name = Pit
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 formalIn D = { t$2 } U = {  }
-   4 assignment D = { this.box } U = { t$2, x$0, y$1 }
-   6 formalOut D = {  } U = { $_, this.box }
+   4 assignment D = { this.box } U = { t$2, t$2.color, t$2.posX, t$2.posY, x$0, y$1 }
+   6 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ update( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
-   2 assignment D = {  } U = { this.!paint }
+   2 assignment D = {  } U = { this.!paint( java.awt.Graphics ) }
    3 receiver D = {  } U = {  }
-   4 methodCall D = {  } U = { this.offImage } TO = Pit#paint( java.awt.Graphics )
+   4 methodCall D = {  } U = { this, this.offImage } TO = Pit#paint( java.awt.Graphics )
    5 actualIn D = {  } U = { g$0 }
-   6 actualOut D = { this.!paint } U = { this.offImage }
+   6 actualOut D = { this.!paint( java.awt.Graphics ) } U = { this, this.offImage }
    8 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ offg ]
    1 fieldDeclaration D = { this.offg } U = { this.offg }
 --
    0: rows
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: Pit( GameInfo )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 22 trueControlDependence
-  15: 0 -> 3 trueControlDependence
-  16: 0 -> 4 trueControlDependence
-  17: 0 -> 5 trueControlDependence
-  18: 0 -> 6 trueControlDependence
-  19: 0 -> 7 trueControlDependence
-  20: 0 -> 8 trueControlDependence
-  21: 0 -> 9 trueControlDependence
-  22: 1 -> 2 loopIndependentDefUseDependence i$0
-  23: 10 -> 19 declaration
-  24: 10 -> 19 loopIndependentDefUseDependence seed$1
-  25: 14 -> 11 loopIndependentDefUseDependence this.!getRuntime
-  26: 16 -> 10 loopIndependentDefUseDependence this.!getRuntime.!freeMemory
-  27: 17 -> 22 loopIndependentDefUseDependence this.rnd
-  28: 19 -> 20 loopIndependentDefUseDependence this.rnd.seed
-  29: 19 -> 20 outputDependence java.util.concurrent.atomic.AtomicLong.value
-  30: 19 -> 20 outputDependence this.rnd.haveNextNextGaussian
-  31: 2 -> 22 loopIndependentDefUseDependence this.info
-  32: 20 -> 17 loopIndependentDefUseDependence this.rnd.!Random
-  33: 20 -> 22 loopIndependentDefUseDependence java.util.concurrent.atomic.AtomicLong.value
-  34: 20 -> 22 loopIndependentDefUseDependence this.rnd.haveNextNextGaussian
-  35: 20 -> 22 loopIndependentDefUseDependence this.rnd.seed
-  36: 3 -> 22 loopIndependentDefUseDependence this.box
-  37: 4 -> 22 loopIndependentDefUseDependence this.width
-  38: 4 -> 8 loopIndependentDefUseDependence this.width
-  39: 5 -> 22 loopIndependentDefUseDependence this.height
-  40: 5 -> 8 loopIndependentDefUseDependence this.height
-  41: 9 -> 6 loopIndependentDefUseDependence this.!setSize
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   22 trueControlDependence
+  21:    0 -> * trueControlDependence
+  22:    1 ->    2 loopIndependentDefUseDependence i$0
+  23:    4 ->    8 loopIndependentDefUseDependence this.width
+  24:    5 ->    8 loopIndependentDefUseDependence this.height
+  25:    9 ->    6 loopIndependentDefUseDependence this.!setSize( int int )
+  26:   10 ->   19 declaration
+  27:   10 ->   19 loopIndependentDefUseDependence seed$1
+  28:   14 ->   11 loopIndependentDefUseDependence this.!getRuntime( )
+  29:   16 ->   10 loopIndependentDefUseDependence this.!getRuntime( ).!freeMemory( )
+  30: * ->   17 loopIndependentDefUseDependence java.util.Random.!Random( long )
 --
    0: checkLines( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 25 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 37 trueControlDependence
-   6: 1 -> 22 declaration
-   7: 1 -> 22 loopIndependentDefUseDependence lines$0
-   8: 1 -> 25 declaration
-   9: 1 -> 25 loopIndependentDefUseDependence lines$0
-  10: 1 -> 29 declaration
-  11: 1 -> 29 loopIndependentDefUseDependence lines$0
-  12: 10 -> 12 summary
-  13: 11 -> 12 summary
-  14: 12 -> 12 defOrderDependence this.!getBox
-  15: 12 -> 7 loopIndependentDefUseDependence this.!getBox
-  16: 13 -> 13 defOrderDependence isLine$2
-  17: 13 -> 16 loopIndependentDefUseDependence isLine$2
-  18: 13 -> 4 outputDependence isLine$2
-  19: 15 -> 10 loopCarriedDefUseDependence x$3 6
-  20: 15 -> 15 loopCarriedDefUseDependence x$3 6
-  21: 15 -> 5 outputDependence x$3
-  22: 15 -> 6 loopCarriedDefUseDependence x$3 6
-  23: 16 -> 17 trueControlDependence
-  24: 16 -> 18 trueControlDependence
-  25: 16 -> 19 trueControlDependence
-  26: 16 -> 20 trueControlDependence
-  27: 16 -> 21 trueControlDependence
-  28: 16 -> 22 trueControlDependence
-  29: 19 -> 21 loopIndependentDefUseDependence this.box
-  30: 2 -> 11 declaration
-  31: 2 -> 11 loopIndependentDefUseDependence y$1
-  32: 2 -> 20 declaration
-  33: 2 -> 20 loopIndependentDefUseDependence y$1
-  34: 2 -> 24 declaration
-  35: 2 -> 24 loopIndependentDefUseDependence y$1
-  36: 2 -> 3 declaration
-  37: 2 -> 3 loopIndependentDefUseDependence y$1
-  38: 20 -> 21 summary
-  39: 21 -> 12 loopCarriedDefUseDependence this.box 3
-  40: 21 -> 17 loopIndependentDefUseDependence this.!eraseLine
-  41: 21 -> 19 loopCarriedDefUseDependence this.box 3
-  42: 21 -> 21 defOrderDependence this.!eraseLine
-  43: 21 -> 33 loopIndependentDefUseDependence this.box
-  44: 21 -> 34 loopIndependentDefUseDependence this.box
-  45: 21 -> 37 loopIndependentDefUseDependence this.box
-  46: 21 -> 9 loopCarriedDefUseDependence this.box 3
-  47: 22 -> 22 loopCarriedDefUseDependence lines$0 3
-  48: 22 -> 25 loopIndependentDefUseDependence lines$0
-  49: 22 -> 29 loopIndependentDefUseDependence lines$0
-  50: 24 -> 11 loopCarriedDefUseDependence y$1 3
-  51: 24 -> 20 loopCarriedDefUseDependence y$1 3
-  52: 24 -> 24 loopCarriedDefUseDependence y$1 3
-  53: 24 -> 3 loopCarriedDefUseDependence y$1 3
-  54: 25 -> 26 trueControlDependence
-  55: 25 -> 27 trueControlDependence
-  56: 25 -> 28 trueControlDependence
-  57: 25 -> 29 trueControlDependence
-  58: 25 -> 30 trueControlDependence
-  59: 25 -> 31 trueControlDependence
-  60: 25 -> 32 trueControlDependence
-  61: 25 -> 33 trueControlDependence
-  62: 25 -> 34 trueControlDependence
-  63: 28 -> 30 loopIndependentDefUseDependence this.info.level
-  64: 28 -> 30 loopIndependentDefUseDependence this.info.lines
-  65: 28 -> 30 loopIndependentDefUseDependence this.info.score
-  66: 29 -> 30 summary
-  67: 3 -> 16 trueControlDependence
-  68: 3 -> 24 trueControlDependence
-  69: 3 -> 4 trueControlDependence
-  70: 3 -> 5 trueControlDependence
-  71: 3 -> 6 trueControlDependence
-  72: 30 -> 26 loopIndependentDefUseDependence this.info.!addLines
-  73: 30 -> 37 loopIndependentDefUseDependence this.info.level
-  74: 30 -> 37 loopIndependentDefUseDependence this.info.lines
-  75: 30 -> 37 loopIndependentDefUseDependence this.info.score
-  76: 33 -> 34 loopIndependentDefUseDependence this.currentBlock.tiles
-  77: 34 -> 31 loopIndependentDefUseDependence this.!update
-  78: 34 -> 37 loopIndependentDefUseDependence this.currentBlock.tiles
-  79: 4 -> 13 declaration
-  80: 4 -> 13 outputDependence isLine$2
-  81: 4 -> 16 declaration
-  82: 4 -> 16 loopIndependentDefUseDependence isLine$2
-  83: 4 -> 4 defOrderDependence isLine$2
-  84: 5 -> 10 declaration
-  85: 5 -> 10 loopIndependentDefUseDependence x$3
-  86: 5 -> 15 declaration
-  87: 5 -> 15 loopIndependentDefUseDependence x$3
-  88: 5 -> 5 defOrderDependence x$3
-  89: 5 -> 6 declaration
-  90: 5 -> 6 loopIndependentDefUseDependence x$3
-  91: 6 -> 10 trueControlDependence
-  92: 6 -> 11 trueControlDependence
-  93: 6 -> 12 trueControlDependence
-  94: 6 -> 15 trueControlDependence
-  95: 6 -> 7 trueControlDependence
-  96: 6 -> 8 trueControlDependence
-  97: 6 -> 9 trueControlDependence
-  98: 7 -> 13 trueControlDependence
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->   25 trueControlDependence
+   5:    0 ->   37 trueControlDependence
+   6:    1 ->   22 declaration
+   7:    1 ->   22 loopIndependentDefUseDependence lines$0
+   8:    1 ->   25 declaration
+   9:    1 ->   25 loopIndependentDefUseDependence lines$0
+  10:    1 ->   29 declaration
+  11:    1 ->   29 loopIndependentDefUseDependence lines$0
+  12:    2 ->    3 declaration
+  13:    2 ->    3 loopIndependentDefUseDependence y$1
+  14:    2 ->   11 declaration
+  15:    2 ->   11 loopIndependentDefUseDependence y$1
+  16:    2 ->   20 declaration
+  17:    2 ->   20 loopIndependentDefUseDependence y$1
+  18:    2 ->   24 declaration
+  19:    2 ->   24 loopIndependentDefUseDependence y$1
+  20:    3 ->    4 trueControlDependence
+  21:    3 ->    5 trueControlDependence
+  22:    3 ->    6 trueControlDependence
+  23:    3 ->   16 trueControlDependence
+  24:    3 ->   24 trueControlDependence
+  25:    4 ->    4 defOrderDependence isLine$2
+  26:    4 ->   13 declaration
+  27:    4 ->   13 outputDependence isLine$2
+  28:    4 ->   16 declaration
+  29:    4 ->   16 loopIndependentDefUseDependence isLine$2
+  30:    5 ->    5 defOrderDependence x$3
+  31:    5 ->    6 declaration
+  32:    5 ->    6 loopIndependentDefUseDependence x$3
+  33:    5 ->   10 declaration
+  34:    5 ->   10 loopIndependentDefUseDependence x$3
+  35:    5 ->   15 declaration
+  36:    5 ->   15 loopIndependentDefUseDependence x$3
+  37:    6 ->    7 trueControlDependence
+  38:    6 ->    8 trueControlDependence
+  39:    6 ->    9 trueControlDependence
+  40:    6 ->   10 trueControlDependence
+  41:    6 ->   11 trueControlDependence
+  42:    6 ->   12 trueControlDependence
+  43:    6 ->   15 trueControlDependence
+  44:    7 ->   13 trueControlDependence
+  45:   12 ->    7 loopIndependentDefUseDependence this.!getBox( int int )
+  46:   12 ->   12 defOrderDependence this.!getBox( int int )
+  47:   13 ->    4 outputDependence isLine$2
+  48:   13 ->   13 defOrderDependence isLine$2
+  49:   13 ->   16 loopIndependentDefUseDependence isLine$2
+  50:   15 ->    5 outputDependence x$3
+  51:   15 ->    6 loopCarriedDefUseDependence x$3 (LC =    6)
+  52:   15 ->   10 loopCarriedDefUseDependence x$3 (LC =    6)
+  53:   15 ->   15 loopCarriedDefUseDependence x$3 (LC =    6)
+  54:   16 ->   17 trueControlDependence
+  55:   16 ->   18 trueControlDependence
+  56:   16 ->   19 trueControlDependence
+  57:   16 ->   20 trueControlDependence
+  58:   16 ->   21 trueControlDependence
+  59:   16 ->   22 trueControlDependence
+  60:   16 -> * trueControlDependence
+  61:   16 -> * trueControlDependence
+  62:   21 ->   17 loopIndependentDefUseDependence this.!eraseLine( int )
+  63:   21 ->   21 defOrderDependence this.!eraseLine( int )
+  64:   22 ->   22 loopCarriedDefUseDependence lines$0 (LC =    3)
+  65:   22 ->   25 loopIndependentDefUseDependence lines$0
+  66:   22 ->   29 loopIndependentDefUseDependence lines$0
+  67:   24 ->    3 loopCarriedDefUseDependence y$1 (LC =    3)
+  68:   24 ->   11 loopCarriedDefUseDependence y$1 (LC =    3)
+  69:   24 ->   20 loopCarriedDefUseDependence y$1 (LC =    3)
+  70:   24 ->   24 loopCarriedDefUseDependence y$1 (LC =    3)
+  71:   25 ->   26 trueControlDependence
+  72:   25 ->   27 trueControlDependence
+  73:   25 ->   28 trueControlDependence
+  74:   25 ->   29 trueControlDependence
+  75:   25 ->   30 trueControlDependence
+  76:   25 ->   31 trueControlDependence
+  77:   25 ->   32 trueControlDependence
+  78:   25 ->   33 trueControlDependence
+  79:   25 -> * trueControlDependence
+  80:   25 -> * trueControlDependence
+  81:   25 -> * trueControlDependence
+  82:   25 -> * trueControlDependence
+  83:   30 ->   26 loopIndependentDefUseDependence this.info.!addLines( int )
+  84: * ->    9 loopCarriedDefUseDependence this.box (LC =    3)
+  85: * ->   12 loopCarriedDefUseDependence this.box (LC =    3)
+  86: * ->   19 loopCarriedDefUseDependence this.box (LC =    3)
+  87: * ->   19 loopCarriedDefUseDependence this.tile$4.posY (LC =    3)
+  88: * ->   21 loopIndependentDefUseDependence this.box
+  89: * ->   21 loopIndependentDefUseDependence this.tile$4.posY
+  90: * ->   30 loopIndependentDefUseDependence this.info.lines
+  91: * ->   30 loopIndependentDefUseDependence this.level
+  92: * ->   30 loopIndependentDefUseDependence this.score
+  93: * ->   31 loopIndependentDefUseDependence this.!update( )
+  94: * ->   33 loopIndependentDefUseDependence this.box
+  95: * -> * defOrderDependence this.box
+  96: * -> * defOrderDependence this.tile$4.posY
+  97: * -> * loopIndependentDefUseDependence this.box
 --
    0: update( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 28 trueControlDependence
-   5: 0 -> 3 trueControlDependence
-   6: 0 -> 35 trueControlDependence
-   7: 0 -> 36 trueControlDependence
-   8: 0 -> 37 trueControlDependence
-   9: 0 -> 38 trueControlDependence
-  10: 0 -> 4 trueControlDependence
-  11: 0 -> 40 trueControlDependence
-  12: 0 -> 5 trueControlDependence
-  13: 0 -> 6 trueControlDependence
-  14: 0 -> 7 trueControlDependence
-  15: 0 -> 8 trueControlDependence
-  16: 0 -> 9 trueControlDependence
-  17: 10 -> 11 trueControlDependence
-  18: 10 -> 12 trueControlDependence
-  19: 10 -> 27 trueControlDependence
-  20: 11 -> 11 defOrderDependence x$1
-  21: 11 -> 12 declaration
-  22: 11 -> 12 loopIndependentDefUseDependence x$1
-  23: 11 -> 16 declaration
-  24: 11 -> 16 loopIndependentDefUseDependence x$1
-  25: 11 -> 26 declaration
-  26: 11 -> 26 loopIndependentDefUseDependence x$1
-  27: 12 -> 13 trueControlDependence
-  28: 12 -> 14 trueControlDependence
-  29: 12 -> 15 trueControlDependence
-  30: 12 -> 16 trueControlDependence
-  31: 12 -> 17 trueControlDependence
-  32: 12 -> 18 trueControlDependence
-  33: 12 -> 19 trueControlDependence
-  34: 12 -> 26 trueControlDependence
-  35: 13 -> 13 defOrderDependence tile$2
-  36: 13 -> 19 declaration
-  37: 13 -> 19 loopIndependentDefUseDependence tile$2
-  38: 13 -> 21 declaration
-  39: 13 -> 21 loopIndependentDefUseDependence tile$2
-  40: 16 -> 18 summary
-  41: 17 -> 18 summary
-  42: 18 -> 13 loopIndependentDefUseDependence this.!getBox
-  43: 18 -> 18 defOrderDependence this.!getBox
-  44: 18 -> 19 loopIndependentDefUseDependence this.!getBox
-  45: 18 -> 21 loopIndependentDefUseDependence this.!getBox
-  46: 19 -> 20 trueControlDependence
-  47: 19 -> 21 trueControlDependence
-  48: 19 -> 22 trueControlDependence
-  49: 19 -> 23 trueControlDependence
-  50: 19 -> 24 trueControlDependence
-  51: 22 -> 24 loopIndependentDefUseDependence tile$2.color
-  52: 24 -> 20 loopIndependentDefUseDependence tile$2.!paint
-  53: 24 -> 22 loopCarriedDefUseDependence tile$2.color 12
-  54: 24 -> 24 defOrderDependence tile$2.!paint
-  55: 24 -> 40 loopIndependentDefUseDependence tile$2.color
-  56: 26 -> 11 outputDependence x$1
-  57: 26 -> 12 loopCarriedDefUseDependence x$1 12
-  58: 26 -> 16 loopCarriedDefUseDependence x$1 12
-  59: 26 -> 26 loopCarriedDefUseDependence x$1 12
-  60: 27 -> 10 loopCarriedDefUseDependence y$0 10
-  61: 27 -> 17 loopCarriedDefUseDependence y$0 10
-  62: 27 -> 27 loopCarriedDefUseDependence y$0 10
-  63: 28 -> 29 trueControlDependence
-  64: 28 -> 30 trueControlDependence
-  65: 28 -> 31 trueControlDependence
-  66: 28 -> 32 trueControlDependence
-  67: 28 -> 33 trueControlDependence
-  68: 31 -> 33 loopIndependentDefUseDependence this.currentBlock.tiles
-  69: 33 -> 29 loopIndependentDefUseDependence this.currentBlock.!paint
-  70: 33 -> 40 loopIndependentDefUseDependence this.currentBlock.tiles
-  71: 38 -> 35 loopIndependentDefUseDependence this.!repaint
-  72: 4 -> 1 loopIndependentDefUseDependence this.offg.!setColor
-  73: 8 -> 5 loopIndependentDefUseDependence this.offg.!fillRect
-  74: 9 -> 10 declaration
-  75: 9 -> 10 loopIndependentDefUseDependence y$0
-  76: 9 -> 17 declaration
-  77: 9 -> 17 loopIndependentDefUseDependence y$0
-  78: 9 -> 27 declaration
-  79: 9 -> 27 loopIndependentDefUseDependence y$0
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   28 trueControlDependence
+  12:    0 ->   35 trueControlDependence
+  13:    0 ->   36 trueControlDependence
+  14:    0 ->   37 trueControlDependence
+  15:    0 ->   38 trueControlDependence
+  16:    0 ->   40 trueControlDependence
+  17:    4 ->    1 loopIndependentDefUseDependence this.offg.!setColor( java.awt.Color )
+  18:    8 ->    5 loopIndependentDefUseDependence this.offg.!fillRect( int int int int )
+  19:    9 ->   10 declaration
+  20:    9 ->   10 loopIndependentDefUseDependence y$0
+  21:    9 ->   17 declaration
+  22:    9 ->   17 loopIndependentDefUseDependence y$0
+  23:    9 ->   27 declaration
+  24:    9 ->   27 loopIndependentDefUseDependence y$0
+  25:   10 ->   11 trueControlDependence
+  26:   10 ->   12 trueControlDependence
+  27:   10 ->   27 trueControlDependence
+  28:   11 ->   11 defOrderDependence x$1
+  29:   11 ->   12 declaration
+  30:   11 ->   12 loopIndependentDefUseDependence x$1
+  31:   11 ->   16 declaration
+  32:   11 ->   16 loopIndependentDefUseDependence x$1
+  33:   11 ->   26 declaration
+  34:   11 ->   26 loopIndependentDefUseDependence x$1
+  35:   12 ->   13 trueControlDependence
+  36:   12 ->   14 trueControlDependence
+  37:   12 ->   15 trueControlDependence
+  38:   12 ->   16 trueControlDependence
+  39:   12 ->   17 trueControlDependence
+  40:   12 ->   18 trueControlDependence
+  41:   12 ->   19 trueControlDependence
+  42:   12 ->   26 trueControlDependence
+  43:   13 ->   13 defOrderDependence tile$2
+  44:   13 ->   19 declaration
+  45:   13 ->   19 loopIndependentDefUseDependence tile$2
+  46:   13 ->   21 declaration
+  47:   13 ->   21 loopIndependentDefUseDependence tile$2
+  48:   18 ->   13 loopIndependentDefUseDependence this.!getBox( int int )
+  49:   18 ->   18 defOrderDependence this.!getBox( int int )
+  50:   19 ->   20 trueControlDependence
+  51:   19 ->   21 trueControlDependence
+  52:   19 ->   22 trueControlDependence
+  53:   19 ->   23 trueControlDependence
+  54:   19 -> * trueControlDependence
+  55:   26 ->   11 outputDependence x$1
+  56:   26 ->   12 loopCarriedDefUseDependence x$1 (LC =   12)
+  57:   26 ->   16 loopCarriedDefUseDependence x$1 (LC =   12)
+  58:   26 ->   26 loopCarriedDefUseDependence x$1 (LC =   12)
+  59:   27 ->   10 loopCarriedDefUseDependence y$0 (LC =   10)
+  60:   27 ->   17 loopCarriedDefUseDependence y$0 (LC =   10)
+  61:   27 ->   27 loopCarriedDefUseDependence y$0 (LC =   10)
+  62:   28 ->   29 trueControlDependence
+  63:   28 ->   30 trueControlDependence
+  64:   28 ->   31 trueControlDependence
+  65:   28 ->   32 trueControlDependence
+  66:   28 -> * trueControlDependence
+  67:   38 ->   35 loopIndependentDefUseDependence this.!repaint( )
+  68: * ->   20 loopIndependentDefUseDependence tile$2.!paint( java.awt.Graphics )
+  69: * ->   29 loopIndependentDefUseDependence this.currentBlock.!paint( java.awt.Graphics )
+  70: * -> * defOrderDependence this.color.!java.awt.Color.cs
+  71: * -> * defOrderDependence this.color.!java.awt.Color.falpha
+  72: * -> * defOrderDependence this.color.!java.awt.Color.frgbvalue
+  73: * -> * defOrderDependence this.color.!java.awt.Color.fvalue
+  74: * -> * defOrderDependence this.color.!java.awt.Color.value
+  75: * -> * defOrderDependence tile$2.!paint( java.awt.Graphics )
+  76: * -> * outputDependence this.color.!java.awt.Color.cs
+  77: * -> * outputDependence this.color.!java.awt.Color.falpha
+  78: * -> * outputDependence this.color.!java.awt.Color.frgbvalue
+  79: * -> * outputDependence this.color.!java.awt.Color.fvalue
+  80: * -> * outputDependence this.color.!java.awt.Color.value
 --
    0: font
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: initPosY
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: initPosX
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: gameStart( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 15 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 1 -> 13 declaration
-   5: 1 -> 13 loopIndependentDefUseDependence y$0
-   6: 1 -> 2 declaration
-   7: 1 -> 2 loopIndependentDefUseDependence y$0
-   8: 1 -> 9 declaration
-   9: 1 -> 9 loopIndependentDefUseDependence y$0
-  10: 10 -> 11 summary
-  11: 11 -> 11 defOrderDependence this.!setBox
-  12: 11 -> 15 loopIndependentDefUseDependence this.box
-  13: 11 -> 5 loopIndependentDefUseDependence this.!setBox
-  14: 11 -> 7 loopCarriedDefUseDependence this.box 4
-  15: 12 -> 12 loopCarriedDefUseDependence x$1 4
-  16: 12 -> 3 outputDependence x$1
-  17: 12 -> 4 loopCarriedDefUseDependence x$1 4
-  18: 12 -> 8 loopCarriedDefUseDependence x$1 4
-  19: 13 -> 13 loopCarriedDefUseDependence y$0 2
-  20: 13 -> 2 loopCarriedDefUseDependence y$0 2
-  21: 13 -> 9 loopCarriedDefUseDependence y$0 2
-  22: 2 -> 13 trueControlDependence
-  23: 2 -> 3 trueControlDependence
-  24: 2 -> 4 trueControlDependence
-  25: 3 -> 12 declaration
-  26: 3 -> 12 loopIndependentDefUseDependence x$1
-  27: 3 -> 3 defOrderDependence x$1
-  28: 3 -> 4 declaration
-  29: 3 -> 4 loopIndependentDefUseDependence x$1
-  30: 3 -> 8 declaration
-  31: 3 -> 8 loopIndependentDefUseDependence x$1
-  32: 4 -> 10 trueControlDependence
-  33: 4 -> 11 trueControlDependence
-  34: 4 -> 12 trueControlDependence
-  35: 4 -> 5 trueControlDependence
-  36: 4 -> 6 trueControlDependence
-  37: 4 -> 7 trueControlDependence
-  38: 4 -> 8 trueControlDependence
-  39: 4 -> 9 trueControlDependence
-  40: 7 -> 11 loopIndependentDefUseDependence this.box
-  41: 8 -> 11 summary
-  42: 9 -> 11 summary
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->   15 trueControlDependence
+   4:    1 ->    2 declaration
+   5:    1 ->    2 loopIndependentDefUseDependence y$0
+   6:    1 ->    9 declaration
+   7:    1 ->    9 loopIndependentDefUseDependence y$0
+   8:    1 ->   13 declaration
+   9:    1 ->   13 loopIndependentDefUseDependence y$0
+  10:    2 ->    3 trueControlDependence
+  11:    2 ->    4 trueControlDependence
+  12:    2 ->   13 trueControlDependence
+  13:    3 ->    3 defOrderDependence x$1
+  14:    3 ->    4 declaration
+  15:    3 ->    4 loopIndependentDefUseDependence x$1
+  16:    3 ->    8 declaration
+  17:    3 ->    8 loopIndependentDefUseDependence x$1
+  18:    3 ->   12 declaration
+  19:    3 ->   12 loopIndependentDefUseDependence x$1
+  20:    4 ->    5 trueControlDependence
+  21:    4 ->    6 trueControlDependence
+  22:    4 ->    7 trueControlDependence
+  23:    4 ->    8 trueControlDependence
+  24:    4 ->    9 trueControlDependence
+  25:    4 ->   10 trueControlDependence
+  26:    4 ->   11 trueControlDependence
+  27:    4 ->   12 trueControlDependence
+  28:    4 -> * trueControlDependence
+  29:   11 ->    5 loopIndependentDefUseDependence this.!setBox( int int Tile )
+  30:   11 ->   11 defOrderDependence this.!setBox( int int Tile )
+  31:   12 ->    3 outputDependence x$1
+  32:   12 ->    4 loopCarriedDefUseDependence x$1 (LC =    4)
+  33:   12 ->    8 loopCarriedDefUseDependence x$1 (LC =    4)
+  34:   12 ->   12 loopCarriedDefUseDependence x$1 (LC =    4)
+  35:   13 ->    2 loopCarriedDefUseDependence y$0 (LC =    2)
+  36:   13 ->    9 loopCarriedDefUseDependence y$0 (LC =    2)
+  37:   13 ->   13 loopCarriedDefUseDependence y$0 (LC =    2)
 --
    0: height
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: box
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: getCurrentBlock( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
 --
    0: eraseLine( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 12 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 40 trueControlDependence
-   6: 0 -> 41 trueControlDependence
-   7: 0 -> 51 trueControlDependence
-   8: 1 -> 12 loopIndependentDefUseDependence y$0
-   9: 1 -> 19 loopIndependentDefUseDependence y$0
-  10: 1 -> 35 loopIndependentDefUseDependence y$0
-  11: 1 -> 39 loopIndependentDefUseDependence y$0
-  12: 1 -> 8 loopIndependentDefUseDependence y$0
-  13: 10 -> 4 outputDependence tile$2
-  14: 11 -> 11 loopCarriedDefUseDependence x$1 3
-  15: 11 -> 3 loopCarriedDefUseDependence x$1 3
-  16: 11 -> 7 loopCarriedDefUseDependence x$1 3
-  17: 12 -> 13 trueControlDependence
-  18: 12 -> 14 trueControlDependence
-  19: 12 -> 39 trueControlDependence
-  20: 13 -> 13 defOrderDependence x$3
-  21: 13 -> 14 declaration
-  22: 13 -> 14 loopIndependentDefUseDependence x$3
-  23: 13 -> 18 declaration
-  24: 13 -> 18 loopIndependentDefUseDependence x$3
-  25: 13 -> 34 declaration
-  26: 13 -> 34 loopIndependentDefUseDependence x$3
-  27: 13 -> 38 declaration
-  28: 13 -> 38 loopIndependentDefUseDependence x$3
-  29: 14 -> 15 trueControlDependence
-  30: 14 -> 16 trueControlDependence
-  31: 14 -> 17 trueControlDependence
-  32: 14 -> 18 trueControlDependence
-  33: 14 -> 19 trueControlDependence
-  34: 14 -> 20 trueControlDependence
-  35: 14 -> 21 trueControlDependence
-  36: 14 -> 31 trueControlDependence
-  37: 14 -> 32 trueControlDependence
-  38: 14 -> 33 trueControlDependence
-  39: 14 -> 34 trueControlDependence
-  40: 14 -> 35 trueControlDependence
-  41: 14 -> 36 trueControlDependence
-  42: 14 -> 37 trueControlDependence
-  43: 14 -> 38 trueControlDependence
-  44: 15 -> 15 defOrderDependence tile$4
-  45: 15 -> 21 declaration
-  46: 15 -> 21 loopIndependentDefUseDependence tile$4
-  47: 15 -> 23 declaration
-  48: 15 -> 23 loopIndependentDefUseDependence tile$4
-  49: 15 -> 26 declaration
-  50: 15 -> 26 loopIndependentDefUseDependence tile$4
-  51: 15 -> 36 declaration
-  52: 15 -> 36 loopIndependentDefUseDependence tile$4
-  53: 18 -> 20 summary
-  54: 19 -> 20 summary
-  55: 2 -> 11 declaration
-  56: 2 -> 11 loopIndependentDefUseDependence x$1
-  57: 2 -> 3 declaration
-  58: 2 -> 3 loopIndependentDefUseDependence x$1
-  59: 2 -> 7 declaration
-  60: 2 -> 7 loopIndependentDefUseDependence x$1
-  61: 20 -> 15 loopIndependentDefUseDependence this.!getBox
-  62: 20 -> 20 defOrderDependence this.!getBox
-  63: 20 -> 21 loopIndependentDefUseDependence this.!getBox
-  64: 20 -> 23 loopIndependentDefUseDependence this.!getBox
-  65: 20 -> 26 loopIndependentDefUseDependence this.!getBox
-  66: 20 -> 36 loopIndependentDefUseDependence this.!getBox
-  67: 21 -> 22 trueControlDependence
-  68: 21 -> 23 trueControlDependence
-  69: 21 -> 24 trueControlDependence
-  70: 21 -> 25 trueControlDependence
-  71: 21 -> 26 trueControlDependence
-  72: 21 -> 27 trueControlDependence
-  73: 21 -> 28 trueControlDependence
-  74: 21 -> 29 trueControlDependence
-  75: 24 -> 29 loopIndependentDefUseDependence tile$4.posY
-  76: 25 -> 29 summary
-  77: 28 -> 25 loopIndependentDefUseDependence tile$4.!getPosY
-  78: 28 -> 28 defOrderDependence tile$4.!getPosY
-  79: 29 -> 22 loopIndependentDefUseDependence tile$4.!setPosY
-  80: 29 -> 24 loopCarriedDefUseDependence tile$4.posY 14
-  81: 29 -> 27 loopCarriedDefUseDependence tile$4.posY 14
-  82: 29 -> 28 loopCarriedDefUseDependence tile$4.posY 14
-  83: 29 -> 29 defOrderDependence tile$4.!setPosY
-  84: 29 -> 51 loopIndependentDefUseDependence tile$4.posY
-  85: 3 -> 10 trueControlDependence
-  86: 3 -> 11 trueControlDependence
-  87: 3 -> 4 trueControlDependence
-  88: 3 -> 5 trueControlDependence
-  89: 3 -> 6 trueControlDependence
-  90: 3 -> 7 trueControlDependence
-  91: 3 -> 8 trueControlDependence
-  92: 3 -> 9 trueControlDependence
-  93: 33 -> 37 loopIndependentDefUseDependence this.box
-  94: 34 -> 37 summary
-  95: 35 -> 37 summary
-  96: 36 -> 37 summary
-  97: 37 -> 17 loopCarriedDefUseDependence this.box 14
-  98: 37 -> 20 loopCarriedDefUseDependence this.box 14
-  99: 37 -> 31 loopIndependentDefUseDependence this.!setBox
- 100: 37 -> 33 loopCarriedDefUseDependence this.box 14
- 101: 37 -> 37 defOrderDependence this.!setBox
- 102: 37 -> 44 loopIndependentDefUseDependence this.box
- 103: 37 -> 48 outputDependence this.!setBox
- 104: 37 -> 51 loopIndependentDefUseDependence this.box
- 105: 38 -> 13 outputDependence x$3
- 106: 38 -> 14 loopCarriedDefUseDependence x$3 14
- 107: 38 -> 18 loopCarriedDefUseDependence x$3 14
- 108: 38 -> 34 loopCarriedDefUseDependence x$3 14
- 109: 38 -> 38 loopCarriedDefUseDependence x$3 14
- 110: 39 -> 12 loopCarriedDefUseDependence y$0 12
- 111: 39 -> 19 loopCarriedDefUseDependence y$0 12
- 112: 39 -> 35 loopCarriedDefUseDependence y$0 12
- 113: 39 -> 39 loopCarriedDefUseDependence y$0 12
- 114: 4 -> 10 declaration
- 115: 4 -> 10 outputDependence tile$2
- 116: 40 -> 41 declaration
- 117: 40 -> 41 loopIndependentDefUseDependence x$5
- 118: 40 -> 45 declaration
- 119: 40 -> 45 loopIndependentDefUseDependence x$5
- 120: 40 -> 49 declaration
- 121: 40 -> 49 loopIndependentDefUseDependence x$5
- 122: 41 -> 42 trueControlDependence
- 123: 41 -> 43 trueControlDependence
- 124: 41 -> 44 trueControlDependence
- 125: 41 -> 45 trueControlDependence
- 126: 41 -> 46 trueControlDependence
- 127: 41 -> 47 trueControlDependence
- 128: 41 -> 48 trueControlDependence
- 129: 41 -> 49 trueControlDependence
- 130: 44 -> 48 loopIndependentDefUseDependence this.box
- 131: 45 -> 48 summary
- 132: 46 -> 48 summary
- 133: 47 -> 48 summary
- 134: 48 -> 42 loopIndependentDefUseDependence this.!setBox
- 135: 48 -> 44 loopCarriedDefUseDependence this.box 41
- 136: 48 -> 48 defOrderDependence this.!setBox
- 137: 48 -> 51 loopIndependentDefUseDependence this.box
- 138: 49 -> 41 loopCarriedDefUseDependence x$5 41
- 139: 49 -> 45 loopCarriedDefUseDependence x$5 41
- 140: 49 -> 49 loopCarriedDefUseDependence x$5 41
- 141: 7 -> 9 summary
- 142: 8 -> 9 summary
- 143: 9 -> 20 outputDependence this.!getBox
- 144: 9 -> 4 loopIndependentDefUseDependence this.!getBox
- 145: 9 -> 9 defOrderDependence this.!getBox
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->   12 trueControlDependence
+   5:    0 ->   40 trueControlDependence
+   6:    0 ->   41 trueControlDependence
+   7:    0 ->   51 trueControlDependence
+   8:    1 ->    8 loopIndependentDefUseDependence y$0
+   9:    1 ->   12 loopIndependentDefUseDependence y$0
+  10:    1 ->   19 loopIndependentDefUseDependence y$0
+  11:    1 ->   35 loopIndependentDefUseDependence y$0
+  12:    1 ->   39 loopIndependentDefUseDependence y$0
+  13:    2 ->    3 declaration
+  14:    2 ->    3 loopIndependentDefUseDependence x$1
+  15:    2 ->    7 declaration
+  16:    2 ->    7 loopIndependentDefUseDependence x$1
+  17:    2 ->   11 declaration
+  18:    2 ->   11 loopIndependentDefUseDependence x$1
+  19:    3 ->    4 trueControlDependence
+  20:    3 ->    5 trueControlDependence
+  21:    3 ->    6 trueControlDependence
+  22:    3 ->    7 trueControlDependence
+  23:    3 ->    8 trueControlDependence
+  24:    3 ->    9 trueControlDependence
+  25:    3 ->   10 trueControlDependence
+  26:    3 ->   11 trueControlDependence
+  27:    4 ->   10 declaration
+  28:    4 ->   10 outputDependence tile$2
+  29:    9 ->    4 loopIndependentDefUseDependence this.!getBox( int int )
+  30:    9 ->    9 defOrderDependence this.!getBox( int int )
+  31:    9 ->   20 outputDependence this.!getBox( int int )
+  32:   10 ->    4 outputDependence tile$2
+  33:   11 ->    3 loopCarriedDefUseDependence x$1 (LC =    3)
+  34:   11 ->    7 loopCarriedDefUseDependence x$1 (LC =    3)
+  35:   11 ->   11 loopCarriedDefUseDependence x$1 (LC =    3)
+  36:   12 ->   13 trueControlDependence
+  37:   12 ->   14 trueControlDependence
+  38:   12 ->   39 trueControlDependence
+  39:   13 ->   13 defOrderDependence x$3
+  40:   13 ->   14 declaration
+  41:   13 ->   14 loopIndependentDefUseDependence x$3
+  42:   13 ->   18 declaration
+  43:   13 ->   18 loopIndependentDefUseDependence x$3
+  44:   13 ->   34 declaration
+  45:   13 ->   34 loopIndependentDefUseDependence x$3
+  46:   13 ->   38 declaration
+  47:   13 ->   38 loopIndependentDefUseDependence x$3
+  48:   14 ->   15 trueControlDependence
+  49:   14 ->   16 trueControlDependence
+  50:   14 ->   17 trueControlDependence
+  51:   14 ->   18 trueControlDependence
+  52:   14 ->   19 trueControlDependence
+  53:   14 ->   20 trueControlDependence
+  54:   14 ->   21 trueControlDependence
+  55:   14 ->   31 trueControlDependence
+  56:   14 ->   32 trueControlDependence
+  57:   14 ->   33 trueControlDependence
+  58:   14 ->   34 trueControlDependence
+  59:   14 ->   35 trueControlDependence
+  60:   14 ->   36 trueControlDependence
+  61:   14 ->   37 trueControlDependence
+  62:   14 ->   38 trueControlDependence
+  63:   14 -> * trueControlDependence
+  64:   15 ->   15 defOrderDependence tile$4
+  65:   15 ->   21 declaration
+  66:   15 ->   21 loopIndependentDefUseDependence tile$4
+  67:   15 ->   23 declaration
+  68:   15 ->   23 loopIndependentDefUseDependence tile$4
+  69:   15 ->   26 declaration
+  70:   15 ->   26 loopIndependentDefUseDependence tile$4
+  71:   15 ->   36 declaration
+  72:   15 ->   36 loopIndependentDefUseDependence tile$4
+  73:   20 ->   15 loopIndependentDefUseDependence this.!getBox( int int )
+  74:   20 ->   20 defOrderDependence this.!getBox( int int )
+  75:   21 ->   22 trueControlDependence
+  76:   21 ->   23 trueControlDependence
+  77:   21 ->   24 trueControlDependence
+  78:   21 ->   25 trueControlDependence
+  79:   21 ->   26 trueControlDependence
+  80:   21 ->   27 trueControlDependence
+  81:   21 ->   28 trueControlDependence
+  82:   21 ->   29 trueControlDependence
+  83:   21 -> * trueControlDependence
+  84:   28 ->   25 loopIndependentDefUseDependence tile$4.!getPosY( )
+  85:   28 ->   28 defOrderDependence tile$4.!getPosY( )
+  86:   29 ->   22 loopIndependentDefUseDependence tile$4.!setPosY( int )
+  87:   29 ->   29 defOrderDependence tile$4.!setPosY( int )
+  88:   37 ->   31 loopIndependentDefUseDependence this.!setBox( int int Tile )
+  89:   37 ->   37 defOrderDependence this.!setBox( int int Tile )
+  90:   37 ->   48 outputDependence this.!setBox( int int Tile )
+  91:   38 ->   13 outputDependence x$3
+  92:   38 ->   14 loopCarriedDefUseDependence x$3 (LC =   14)
+  93:   38 ->   18 loopCarriedDefUseDependence x$3 (LC =   14)
+  94:   38 ->   34 loopCarriedDefUseDependence x$3 (LC =   14)
+  95:   38 ->   38 loopCarriedDefUseDependence x$3 (LC =   14)
+  96:   39 ->   12 loopCarriedDefUseDependence y$0 (LC =   12)
+  97:   39 ->   19 loopCarriedDefUseDependence y$0 (LC =   12)
+  98:   39 ->   35 loopCarriedDefUseDependence y$0 (LC =   12)
+  99:   39 ->   39 loopCarriedDefUseDependence y$0 (LC =   12)
+ 100:   40 ->   41 declaration
+ 101:   40 ->   41 loopIndependentDefUseDependence x$5
+ 102:   40 ->   45 declaration
+ 103:   40 ->   45 loopIndependentDefUseDependence x$5
+ 104:   40 ->   49 declaration
+ 105:   40 ->   49 loopIndependentDefUseDependence x$5
+ 106:   41 ->   42 trueControlDependence
+ 107:   41 ->   43 trueControlDependence
+ 108:   41 ->   44 trueControlDependence
+ 109:   41 ->   45 trueControlDependence
+ 110:   41 ->   46 trueControlDependence
+ 111:   41 ->   47 trueControlDependence
+ 112:   41 ->   48 trueControlDependence
+ 113:   41 ->   49 trueControlDependence
+ 114:   41 -> * trueControlDependence
+ 115:   48 ->   42 loopIndependentDefUseDependence this.!setBox( int int Tile )
+ 116:   48 ->   48 defOrderDependence this.!setBox( int int Tile )
+ 117:   49 ->   41 loopCarriedDefUseDependence x$5 (LC =   41)
+ 118:   49 ->   45 loopCarriedDefUseDependence x$5 (LC =   41)
+ 119:   49 ->   49 loopCarriedDefUseDependence x$5 (LC =   41)
+ 120: * ->   17 loopCarriedDefUseDependence this.box (LC =   14)
+ 121: * ->   20 loopCarriedDefUseDependence this.box (LC =   14)
+ 122: * ->   21 loopCarriedDefUseDependence tile$4.posY (LC =   14)
+ 123: * ->   27 loopCarriedDefUseDependence tile$4.posY (LC =   14)
+ 124: * ->   28 loopCarriedDefUseDependence tile$4.posY (LC =   14)
+ 125: * ->   36 loopIndependentDefUseDependence tile$4.posY
+ 126: * -> * defOrderDependence this.box
+ 127: * -> * defOrderDependence tile$4.posY
+ 128: * -> * outputDependence this.box
 --
    0: init( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 26 trueControlDependence
-  20: 0 -> 27 trueControlDependence
-  21: 0 -> 28 trueControlDependence
-  22: 0 -> 3 trueControlDependence
-  23: 0 -> 30 trueControlDependence
-  24: 0 -> 4 trueControlDependence
-  25: 0 -> 5 trueControlDependence
-  26: 0 -> 6 trueControlDependence
-  27: 0 -> 7 trueControlDependence
-  28: 0 -> 8 trueControlDependence
-  29: 0 -> 9 trueControlDependence
-  30: 1 -> 30 loopIndependentDefUseDependence this.offImage
-  31: 1 -> 6 loopIndependentDefUseDependence this.offImage
-  32: 11 -> 12 outputDependence this.font.createdFont
-  33: 11 -> 12 outputDependence this.font.fontSerializedDataVersion
-  34: 11 -> 12 outputDependence this.font.name
-  35: 11 -> 12 outputDependence this.font.pointSize
-  36: 11 -> 12 outputDependence this.font.size
-  37: 11 -> 12 outputDependence this.font.style
-  38: 12 -> 30 loopIndependentDefUseDependence this.font.createdFont
-  39: 12 -> 30 loopIndependentDefUseDependence this.font.fontSerializedDataVersion
-  40: 12 -> 30 loopIndependentDefUseDependence this.font.name
-  41: 12 -> 30 loopIndependentDefUseDependence this.font.pointSize
-  42: 12 -> 30 loopIndependentDefUseDependence this.font.size
-  43: 12 -> 30 loopIndependentDefUseDependence this.font.style
-  44: 12 -> 9 loopIndependentDefUseDependence this.font.!Font
-  45: 16 -> 13 loopIndependentDefUseDependence this.offg.!setColor
-  46: 20 -> 17 loopIndependentDefUseDependence this.offg.!fillRect
-  47: 24 -> 21 loopIndependentDefUseDependence this.!printStartPrompt
-  48: 28 -> 25 loopIndependentDefUseDependence this.!repaint
-  49: 4 -> 1 loopIndependentDefUseDependence this.!createImage
-  50: 4 -> 6 loopIndependentDefUseDependence this.!createImage
-  51: 5 -> 14 loopIndependentDefUseDependence this.offg
-  52: 5 -> 18 loopIndependentDefUseDependence this.offg
-  53: 5 -> 23 loopIndependentDefUseDependence this.offg
-  54: 5 -> 24 loopIndependentDefUseDependence this.offg
-  55: 5 -> 30 loopIndependentDefUseDependence this.offg
-  56: 8 -> 14 loopIndependentDefUseDependence this.offImage.!getGraphics
-  57: 8 -> 18 loopIndependentDefUseDependence this.offImage.!getGraphics
-  58: 8 -> 23 loopIndependentDefUseDependence this.offImage.!getGraphics
-  59: 8 -> 24 loopIndependentDefUseDependence this.offImage.!getGraphics
-  60: 8 -> 5 loopIndependentDefUseDependence this.offImage.!getGraphics
-  61: 9 -> 23 loopIndependentDefUseDependence this.font
-  62: 9 -> 24 loopIndependentDefUseDependence this.font
-  63: 9 -> 30 loopIndependentDefUseDependence this.font
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   13 trueControlDependence
+  13:    0 ->   14 trueControlDependence
+  14:    0 ->   15 trueControlDependence
+  15:    0 ->   16 trueControlDependence
+  16:    0 ->   17 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    0 ->   19 trueControlDependence
+  19:    0 ->   20 trueControlDependence
+  20:    0 ->   21 trueControlDependence
+  21:    0 ->   22 trueControlDependence
+  22:    0 ->   23 trueControlDependence
+  23:    0 ->   24 trueControlDependence
+  24:    0 ->   25 trueControlDependence
+  25:    0 ->   26 trueControlDependence
+  26:    0 ->   27 trueControlDependence
+  27:    0 ->   28 trueControlDependence
+  28:    0 ->   30 trueControlDependence
+  29:    0 -> * trueControlDependence
+  30:    1 ->    6 loopIndependentDefUseDependence this.offImage
+  31:    4 ->    1 loopIndependentDefUseDependence this.!createImage( int int )
+  32:    5 ->   14 loopIndependentDefUseDependence this.offg
+  33:    5 ->   18 loopIndependentDefUseDependence this.offg
+  34:    5 ->   23 loopIndependentDefUseDependence this.offg
+  35:    5 ->   24 loopIndependentDefUseDependence this.offg
+  36:    8 ->    5 loopIndependentDefUseDependence this.offImage.!getGraphics( )
+  37:    9 ->   23 loopIndependentDefUseDependence this.font
+  38:    9 ->   24 loopIndependentDefUseDependence this.font
+  39:   16 ->   13 loopIndependentDefUseDependence this.offg.!setColor( java.awt.Color )
+  40:   20 ->   17 loopIndependentDefUseDependence this.offg.!fillRect( int int int int )
+  41:   24 ->   21 loopIndependentDefUseDependence this.!printStartPrompt( )
+  42:   28 ->   25 loopIndependentDefUseDependence this.!repaint( )
+  43: * ->    9 loopIndependentDefUseDependence java.awt.Font.!Font( java.lang.String int int )
 --
    0: getBox( int int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 5 trueControlDependence
-   5: 1 -> 3 loopIndependentDefUseDependence x$0
-   6: 2 -> 3 loopIndependentDefUseDependence y$1
-   7: 3 -> 5 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    5 trueControlDependence
+   5:    1 ->    3 loopIndependentDefUseDependence x$0
+   6:    2 ->    3 loopIndependentDefUseDependence y$1
+   7:    3 ->    5 loopIndependentDefUseDependence $_
 --
    0: paint( java.awt.Graphics )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 9 trueControlDependence
-   4: 1 -> 4 loopIndependentDefUseDependence g$0
-   5: 2 -> 3 trueControlDependence
-   6: 2 -> 4 trueControlDependence
-   7: 2 -> 5 trueControlDependence
-   8: 2 -> 6 trueControlDependence
-   9: 6 -> 3 loopIndependentDefUseDependence g$0.!drawImage
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    9 trueControlDependence
+   4:    1 ->    4 loopIndependentDefUseDependence g$0
+   5:    2 ->    3 trueControlDependence
+   6:    2 ->    4 trueControlDependence
+   7:    2 ->    5 trueControlDependence
+   8:    2 ->    6 trueControlDependence
+   9:    6 ->    3 loopIndependentDefUseDependence g$0.!drawImage( java.awt.Image int int java.awt.image.ImageObserver )
 --
    0: offImage
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: getNextBlock( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
 --
    0: info
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: columns
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: gameOver( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 26 trueControlDependence
-  20: 0 -> 27 trueControlDependence
-  21: 0 -> 28 trueControlDependence
-  22: 0 -> 3 trueControlDependence
-  23: 0 -> 30 trueControlDependence
-  24: 0 -> 4 trueControlDependence
-  25: 0 -> 5 trueControlDependence
-  26: 0 -> 6 trueControlDependence
-  27: 0 -> 7 trueControlDependence
-  28: 0 -> 8 trueControlDependence
-  29: 0 -> 9 trueControlDependence
-  30: 12 -> 9 loopIndependentDefUseDependence this.offg.!setColor
-  31: 16 -> 13 loopIndependentDefUseDependence this.offg.!setFont
-  32: 20 -> 17 loopIndependentDefUseDependence this.offg.!drawString
-  33: 24 -> 21 loopIndependentDefUseDependence this.!printStartPrompt
-  34: 28 -> 25 loopIndependentDefUseDependence this.!repaint
-  35: 4 -> 1 loopIndependentDefUseDependence this.offg.!setColor
-  36: 4 -> 12 outputDependence this.offg.!setColor
-  37: 8 -> 5 loopIndependentDefUseDependence this.offg.!fillRect
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   27 trueControlDependence
+  28:    0 ->   28 trueControlDependence
+  29:    0 ->   30 trueControlDependence
+  30:    4 ->    1 loopIndependentDefUseDependence this.offg.!setColor( java.awt.Color )
+  31:    4 ->   12 outputDependence this.offg.!setColor( java.awt.Color )
+  32:    8 ->    5 loopIndependentDefUseDependence this.offg.!fillRect( int int int int )
+  33:   12 ->    9 loopIndependentDefUseDependence this.offg.!setColor( java.awt.Color )
+  34:   16 ->   13 loopIndependentDefUseDependence this.offg.!setFont( java.awt.Font )
+  35:   20 ->   17 loopIndependentDefUseDependence this.offg.!drawString( java.lang.String int int )
+  36:   24 ->   21 loopIndependentDefUseDependence this.!printStartPrompt( )
+  37:   28 ->   25 loopIndependentDefUseDependence this.!repaint( )
 --
    0: printStartPrompt( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 18 trueControlDependence
-  10: 0 -> 2 trueControlDependence
-  11: 0 -> 3 trueControlDependence
-  12: 0 -> 4 trueControlDependence
-  13: 0 -> 5 trueControlDependence
-  14: 0 -> 6 trueControlDependence
-  15: 0 -> 7 trueControlDependence
-  16: 0 -> 8 trueControlDependence
-  17: 0 -> 9 trueControlDependence
-  18: 12 -> 16 outputDependence this.offg.!drawString
-  19: 12 -> 9 loopIndependentDefUseDependence this.offg.!drawString
-  20: 16 -> 13 loopIndependentDefUseDependence this.offg.!drawString
-  21: 4 -> 1 loopIndependentDefUseDependence this.offg.!setColor
-  22: 8 -> 5 loopIndependentDefUseDependence this.offg.!setFont
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    4 ->    1 loopIndependentDefUseDependence this.offg.!setColor( java.awt.Color )
+  19:    8 ->    5 loopIndependentDefUseDependence this.offg.!setFont( java.awt.Font )
+  20:   12 ->    9 loopIndependentDefUseDependence this.offg.!drawString( java.lang.String int int )
+  21:   12 ->   16 outputDependence this.offg.!drawString( java.lang.String int int )
+  22:   16 ->   13 loopIndependentDefUseDependence this.offg.!drawString( java.lang.String int int )
 --
    0: currentBlock
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: rnd
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: width
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: placeNextBlock( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 20 trueControlDependence
-  13: 0 -> 21 trueControlDependence
-  14: 0 -> 22 trueControlDependence
-  15: 0 -> 23 trueControlDependence
-  16: 0 -> 24 trueControlDependence
-  17: 0 -> 25 trueControlDependence
-  18: 0 -> 26 trueControlDependence
-  19: 0 -> 34 trueControlDependence
-  20: 1 -> 2 trueControlDependence
-  21: 1 -> 3 trueControlDependence
-  22: 1 -> 4 trueControlDependence
-  23: 1 -> 5 trueControlDependence
-  24: 1 -> 6 trueControlDependence
-  25: 1 -> 7 trueControlDependence
-  26: 1 -> 8 trueControlDependence
-  27: 10 -> 17 declaration
-  28: 10 -> 17 loopIndependentDefUseDependence kind$0
-  29: 13 -> 10 loopIndependentDefUseDependence this.rnd.!nextInt
-  30: 14 -> 22 loopIndependentDefUseDependence this.nextBlock
-  31: 14 -> 34 loopIndependentDefUseDependence this.nextBlock
-  32: 18 -> 20 summary
-  33: 19 -> 20 summary
-  34: 2 -> 26 loopIndependentDefUseDependence this.currentBlock
-  35: 2 -> 28 loopIndependentDefUseDependence this.currentBlock
-  36: 2 -> 34 loopIndependentDefUseDependence this.currentBlock
-  37: 2 -> 4 loopIndependentDefUseDependence this.currentBlock
-  38: 2 -> 5 loopIndependentDefUseDependence this.currentBlock
-  39: 20 -> 14 loopIndependentDefUseDependence this.!create
-  40: 20 -> 22 loopIndependentDefUseDependence this.!create
-  41: 23 -> 25 loopIndependentDefUseDependence this.nextBlock.pit
-  42: 24 -> 25 summary
-  43: 25 -> 21 loopIndependentDefUseDependence this.nextBlock.!setPit
-  44: 25 -> 34 loopIndependentDefUseDependence this.nextBlock.pit
-  45: 26 -> 27 trueControlDependence
-  46: 26 -> 28 trueControlDependence
-  47: 26 -> 29 trueControlDependence
-  48: 26 -> 30 trueControlDependence
-  49: 26 -> 32 falseControlDependence
-  50: 27 -> 32 fallThroughControlDependence
-  51: 27 -> 34 loopIndependentDefUseDependence $_
-  52: 29 -> 30 loopIndependentDefUseDependence this.currentBlock.tiles
-  53: 30 -> 27 loopIndependentDefUseDependence this.currentBlock.!canPlace
-  54: 30 -> 34 loopIndependentDefUseDependence this.currentBlock.tiles
-  55: 32 -> 34 loopIndependentDefUseDependence $_
-  56: 5 -> 8 loopIndependentDefUseDependence this.currentBlock.posX
-  57: 5 -> 8 loopIndependentDefUseDependence this.currentBlock.posY
-  58: 5 -> 8 loopIndependentDefUseDependence this.currentBlock.tiles
-  59: 6 -> 8 summary
-  60: 7 -> 8 summary
-  61: 8 -> 29 loopIndependentDefUseDependence this.currentBlock.tiles
-  62: 8 -> 3 loopIndependentDefUseDependence this.currentBlock.!setPosXY
-  63: 8 -> 34 loopIndependentDefUseDependence this.currentBlock.posX
-  64: 8 -> 34 loopIndependentDefUseDependence this.currentBlock.posY
-  65: 8 -> 34 loopIndependentDefUseDependence this.currentBlock.tiles
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->   10 trueControlDependence
+   3:    0 ->   11 trueControlDependence
+   4:    0 ->   12 trueControlDependence
+   5:    0 ->   13 trueControlDependence
+   6:    0 ->   14 trueControlDependence
+   7:    0 ->   15 trueControlDependence
+   8:    0 ->   16 trueControlDependence
+   9:    0 ->   17 trueControlDependence
+  10:    0 ->   18 trueControlDependence
+  11:    0 ->   19 trueControlDependence
+  12:    0 ->   20 trueControlDependence
+  13:    0 ->   21 trueControlDependence
+  14:    0 ->   22 trueControlDependence
+  15:    0 ->   23 trueControlDependence
+  16:    0 ->   24 trueControlDependence
+  17:    0 ->   25 trueControlDependence
+  18:    0 ->   26 trueControlDependence
+  19:    0 ->   34 trueControlDependence
+  20:    0 -> * trueControlDependence
+  21:    0 -> * trueControlDependence
+  22:    0 -> * trueControlDependence
+  23:    0 -> * trueControlDependence
+  24:    0 -> * trueControlDependence
+  25:    0 -> * trueControlDependence
+  26:    0 -> * trueControlDependence
+  27:    0 -> * trueControlDependence
+  28:    0 -> * trueControlDependence
+  29:    0 -> * trueControlDependence
+  30:    0 -> * trueControlDependence
+  31:    0 -> * trueControlDependence
+  32:    1 ->    2 trueControlDependence
+  33:    1 ->    3 trueControlDependence
+  34:    1 ->    4 trueControlDependence
+  35:    1 ->    5 trueControlDependence
+  36:    1 ->    6 trueControlDependence
+  37:    1 ->    7 trueControlDependence
+  38:    1 -> * trueControlDependence
+  39:    1 -> * trueControlDependence
+  40:    1 -> * trueControlDependence
+  41:    1 -> * trueControlDependence
+  42:    1 -> * trueControlDependence
+  43:    2 ->    4 loopIndependentDefUseDependence this.currentBlock
+  44:    2 ->   26 loopIndependentDefUseDependence this.currentBlock
+  45:    2 ->   28 loopIndependentDefUseDependence this.currentBlock
+  46:   10 ->   17 declaration
+  47:   10 ->   17 loopIndependentDefUseDependence kind$0
+  48:   13 ->   10 loopIndependentDefUseDependence this.rnd.!nextInt( int )
+  49:   14 ->   22 loopIndependentDefUseDependence this.nextBlock
+  50:   20 ->   14 loopIndependentDefUseDependence this.!create( int int int )
+  51:   25 ->   21 loopIndependentDefUseDependence this.nextBlock.!setPit( Pit )
+  52:   26 ->   27 trueControlDependence
+  53:   26 ->   28 trueControlDependence
+  54:   26 ->   29 trueControlDependence
+  55:   26 ->   32 falseControlDependence
+  56:   26 -> * trueControlDependence
+  57:   27 ->   32 fallThroughControlDependence
+  58:   27 ->   34 loopIndependentDefUseDependence $_
+  59:   32 ->   34 loopIndependentDefUseDependence $_
+  60: * ->    3 loopIndependentDefUseDependence this.currentBlock.!setPosXY( int int )
+  61: * ->   20 loopIndependentDefUseDependence this.offsetX
+  62: * ->   20 loopIndependentDefUseDependence this.offsetY
+  63: * ->   26 loopIndependentDefUseDependence this.currentBlock.posX
+  64: * ->   26 loopIndependentDefUseDependence this.currentBlock.posY
+  65: * ->   27 loopIndependentDefUseDependence this.currentBlock.!canPlace( )
+  66: * -> * loopIndependentDefUseDependence this.currentBlock.tile$3.posX
+  67: * -> * loopIndependentDefUseDependence this.currentBlock.tile$3.posY
+  68: * -> * outputDependence this.!create( int int int ).posX
+  69: * -> * outputDependence this.!create( int int int ).posY
+  70: * -> * outputDependence this.offsetY
+  71: * -> * outputDependence this.offsetY
+  72: * -> * outputDependence this.offsetY
+  73: * -> * outputDependence this.offsetY
 --
    0: nextBlock
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: backgroundColor
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: setBox( int int Tile )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 6 trueControlDependence
-   6: 1 -> 4 loopIndependentDefUseDependence x$0
-   7: 2 -> 4 loopIndependentDefUseDependence y$1
-   8: 3 -> 4 loopIndependentDefUseDependence t$2
-   9: 4 -> 6 loopIndependentDefUseDependence this.box
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    1 ->    4 loopIndependentDefUseDependence x$0
+   7:    2 ->    4 loopIndependentDefUseDependence y$1
+   8:    3 ->    4 loopIndependentDefUseDependence t$2
 --
    0: update( java.awt.Graphics )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 8 trueControlDependence
-   8: 1 -> 5 loopIndependentDefUseDependence g$0
-   9: 6 -> 2 loopIndependentDefUseDependence this.!paint
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    1 ->    5 loopIndependentDefUseDependence g$0
+   9:    6 ->    2 loopIndependentDefUseDependence this.!paint( java.awt.Graphics )
 --
    0: offg
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
 ----- ClDG (to here) -----
 

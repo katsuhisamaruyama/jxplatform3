@@ -3,89 +3,89 @@ Class Name = org.jtool.videostore.before.Customer
    0 methodEntry [ statement( ) ]
    1 localDeclaration D = { totalAmount$0 } U = {  }
    2 localDeclaration D = { frequentRenterPoints$1 } U = {  }
-   3 localDeclaration D = { result$2 } U = { $java.lang.String, this.!getName }
+   3 localDeclaration D = { result$2 } U = { $java.lang.String, this.!getName( ) }
    4 receiver D = {  } U = {  }
    5 methodCall D = {  } U = { this.name } TO = org.jtool.videostore.before.Customer#getName( )
-   6 actualOut D = { this.!getName } U = { this.name }
-   7 forSt D = {  } U = { each$3, this.rentals }
+   6 actualOut D = { this.!getName( ) } U = { this.name }
+   7 enhancedForSt D = { each$3 } U = { this.rentals }
    8 localDeclaration D = { thisAmount$5 } U = {  }
-   9 switchSt D = {  } U = { each$3.!getMovie.!getPriceCode }
-  10 receiver D = {  } U = { each$3.!getMovie }
+   9 switchSt D = { $SwitchDef } U = { each$3.!getMovie( ).!getPriceCode( ) }
+  10 receiver D = {  } U = { each$3.!getMovie( ) }
   11 receiver D = {  } U = { each$3 }
-  12 methodCall D = {  } U = {  } TO = org.jtool.videostore.before.Rental#getMovie( )
-  13 actualOut D = { each$3.!getMovie } U = {  }
-  14 methodCall D = {  } U = { each$3.!getMovie.priceCode } TO = org.jtool.videostore.before.Movie#getPriceCode( )
-  15 actualOut D = { each$3.!getMovie.!getPriceCode } U = { each$3.!getMovie.priceCode }
-  16 switchCase D = {  } U = { each$3.!getMovie.!getPriceCode, org.jtool.videostore.before.Movie.PriceCode.REGULAR }
+  12 methodCall D = {  } U = { each$3.movie, this.movie.priceCode, this.movie.title } TO = org.jtool.videostore.before.Rental#getMovie( )
+  13 actualOut D = { each$3.!getMovie( ) } U = { each$3.movie, this.movie.priceCode, this.movie.title }
+  14 methodCall D = {  } U = { each$3.!getMovie( ).priceCode } TO = org.jtool.videostore.before.Movie#getPriceCode( )
+  15 actualOut D = { each$3.!getMovie( ).!getPriceCode( ) } U = { each$3.!getMovie( ).priceCode }
+  16 switchCase D = {  } U = { $SwitchDef, org.jtool.videostore.before.Movie.PriceCode.REGULAR }
   17 assignment D = { thisAmount$5 } U = { thisAmount$5 }
-  18 ifSt D = {  } U = { each$3.!getDaysRented }
+  18 ifSt D = {  } U = { each$3.!getDaysRented( ) }
   19 receiver D = {  } U = { each$3 }
-  20 methodCall D = {  } U = {  } TO = org.jtool.videostore.before.Rental#getDaysRented( )
-  21 actualOut D = { each$3.!getDaysRented } U = {  }
-  22 assignment D = { thisAmount$5 } U = { each$3.!getDaysRented, thisAmount$5 }
+  20 methodCall D = {  } U = { each$3.daysRented } TO = org.jtool.videostore.before.Rental#getDaysRented( )
+  21 actualOut D = { each$3.!getDaysRented( ) } U = { each$3.daysRented }
+  22 assignment D = { thisAmount$5 } U = { each$3.!getDaysRented( ), thisAmount$5 }
   23 receiver D = {  } U = { each$3 }
-  24 methodCall D = {  } U = {  } TO = org.jtool.videostore.before.Rental#getDaysRented( )
-  25 actualOut D = { each$3.!getDaysRented } U = {  }
+  24 methodCall D = {  } U = { each$3.daysRented } TO = org.jtool.videostore.before.Rental#getDaysRented( )
+  25 actualOut D = { each$3.!getDaysRented( ) } U = { each$3.daysRented }
   27 breakSt D = {  } U = {  }
-  28 switchCase D = {  } U = { each$3.!getMovie.!getPriceCode, org.jtool.videostore.before.Movie.PriceCode.NEW_RELEASE }
-  29 assignment D = { thisAmount$5 } U = { each$3.!getDaysRented, thisAmount$5 }
+  28 switchCase D = {  } U = { $SwitchDef, org.jtool.videostore.before.Movie.PriceCode.NEW_RELEASE }
+  29 assignment D = { thisAmount$5 } U = { each$3.!getDaysRented( ), thisAmount$5 }
   30 receiver D = {  } U = { each$3 }
-  31 methodCall D = {  } U = {  } TO = org.jtool.videostore.before.Rental#getDaysRented( )
-  32 actualOut D = { each$3.!getDaysRented } U = {  }
+  31 methodCall D = {  } U = { each$3.daysRented } TO = org.jtool.videostore.before.Rental#getDaysRented( )
+  32 actualOut D = { each$3.!getDaysRented( ) } U = { each$3.daysRented }
   33 breakSt D = {  } U = {  }
-  34 switchCase D = {  } U = { each$3.!getMovie.!getPriceCode, org.jtool.videostore.before.Movie.PriceCode.CHILDRENS }
+  34 switchCase D = {  } U = { $SwitchDef, org.jtool.videostore.before.Movie.PriceCode.CHILDRENS }
   35 assignment D = { thisAmount$5 } U = { thisAmount$5 }
-  36 ifSt D = {  } U = { each$3.!getDaysRented }
+  36 ifSt D = {  } U = { each$3.!getDaysRented( ) }
   37 receiver D = {  } U = { each$3 }
-  38 methodCall D = {  } U = {  } TO = org.jtool.videostore.before.Rental#getDaysRented( )
-  39 actualOut D = { each$3.!getDaysRented } U = {  }
-  40 assignment D = { thisAmount$5 } U = { each$3.!getDaysRented, thisAmount$5 }
+  38 methodCall D = {  } U = { each$3.daysRented } TO = org.jtool.videostore.before.Rental#getDaysRented( )
+  39 actualOut D = { each$3.!getDaysRented( ) } U = { each$3.daysRented }
+  40 assignment D = { thisAmount$5 } U = { each$3.!getDaysRented( ), thisAmount$5 }
   41 receiver D = {  } U = { each$3 }
-  42 methodCall D = {  } U = {  } TO = org.jtool.videostore.before.Rental#getDaysRented( )
-  43 actualOut D = { each$3.!getDaysRented } U = {  }
+  42 methodCall D = {  } U = { each$3.daysRented } TO = org.jtool.videostore.before.Rental#getDaysRented( )
+  43 actualOut D = { each$3.!getDaysRented( ) } U = { each$3.daysRented }
   45 breakSt D = {  } U = {  }
   47 assignment D = { frequentRenterPoints$1 } U = { frequentRenterPoints$1 }
-  48 ifSt D = {  } U = { each$3.!getDaysRented, each$3.!getMovie.!getPriceCode, each$3.!getMovie.!getPriceCode.NEW_RELEASE }
-  49 receiver D = {  } U = { each$3.!getMovie }
+  48 ifSt D = {  } U = { Movie.PriceCode.NEW_RELEASE, each$3.!getDaysRented( ), each$3.!getMovie( ).!getPriceCode( ) }
+  49 receiver D = {  } U = { each$3.!getMovie( ) }
   50 receiver D = {  } U = { each$3 }
-  51 methodCall D = {  } U = {  } TO = org.jtool.videostore.before.Rental#getMovie( )
-  52 actualOut D = { each$3.!getMovie } U = {  }
-  53 methodCall D = {  } U = { each$3.!getMovie.priceCode } TO = org.jtool.videostore.before.Movie#getPriceCode( )
-  54 actualOut D = { each$3.!getMovie.!getPriceCode } U = { each$3.!getMovie.priceCode }
+  51 methodCall D = {  } U = { each$3.movie, this.movie.priceCode, this.movie.title } TO = org.jtool.videostore.before.Rental#getMovie( )
+  52 actualOut D = { each$3.!getMovie( ) } U = { each$3.movie, this.movie.priceCode, this.movie.title }
+  53 methodCall D = {  } U = { each$3.!getMovie( ).priceCode } TO = org.jtool.videostore.before.Movie#getPriceCode( )
+  54 actualOut D = { each$3.!getMovie( ).!getPriceCode( ) } U = { each$3.!getMovie( ).priceCode }
   55 receiver D = {  } U = { each$3 }
-  56 methodCall D = {  } U = {  } TO = org.jtool.videostore.before.Rental#getDaysRented( )
-  57 actualOut D = { each$3.!getDaysRented } U = {  }
+  56 methodCall D = {  } U = { each$3.daysRented } TO = org.jtool.videostore.before.Rental#getDaysRented( )
+  57 actualOut D = { each$3.!getDaysRented( ) } U = { each$3.daysRented }
   58 assignment D = { frequentRenterPoints$1 } U = { frequentRenterPoints$1 }
-  60 assignment D = { result$2 } U = { $java.lang.String, each$3.!getMovie.!getTitle, result$2, this.!valueOf }
-  61 receiver D = {  } U = { each$3.!getMovie }
+  60 assignment D = { result$2 } U = { $java.lang.String, each$3.!getMovie( ).!getTitle( ), result$2, this.!valueOf( double ) }
+  61 receiver D = {  } U = { each$3.!getMovie( ) }
   62 receiver D = {  } U = { each$3 }
-  63 methodCall D = {  } U = {  } TO = org.jtool.videostore.before.Rental#getMovie( )
-  64 actualOut D = { each$3.!getMovie } U = {  }
-  65 methodCall D = {  } U = { each$3.!getMovie.title } TO = org.jtool.videostore.before.Movie#getTitle( )
-  66 actualOut D = { each$3.!getMovie.!getTitle } U = { each$3.!getMovie.title }
+  63 methodCall D = {  } U = { each$3.movie, this.movie.priceCode, this.movie.title } TO = org.jtool.videostore.before.Rental#getMovie( )
+  64 actualOut D = { each$3.!getMovie( ) } U = { each$3.movie, this.movie.priceCode, this.movie.title }
+  65 methodCall D = {  } U = { each$3.!getMovie( ).title } TO = org.jtool.videostore.before.Movie#getTitle( )
+  66 actualOut D = { each$3.!getMovie( ).!getTitle( ) } U = { each$3.!getMovie( ).title }
   67 receiver D = {  } U = {  }
   68 methodCall D = {  } U = { thisAmount$5 } TO = java.lang.String#valueOf( double )
-  69 actualOut D = { this.!valueOf } U = {  }
+  69 actualOut D = { this.!valueOf( double ) } U = {  }
   70 assignment D = { totalAmount$0 } U = { thisAmount$5, totalAmount$0 }
-  71 assignment D = { result$2 } U = { $java.lang.String, result$2, this.!valueOf }
+  71 assignment D = { result$2 } U = { $java.lang.String, result$2, this.!valueOf( double ) }
   72 receiver D = {  } U = {  }
   73 methodCall D = {  } U = { totalAmount$0 } TO = java.lang.String#valueOf( double )
-  74 actualOut D = { this.!valueOf } U = {  }
-  75 assignment D = { result$2 } U = { $java.lang.String, result$2, this.!valueOf }
+  74 actualOut D = { this.!valueOf( double ) } U = {  }
+  75 assignment D = { result$2 } U = { $java.lang.String, result$2, this.!valueOf( int ) }
   76 receiver D = {  } U = {  }
-  77 methodCall D = {  } U = { frequentRenterPoints$1, this.COMPACT_STRINGS } TO = java.lang.String#valueOf( int )
-  78 actualOut D = { this.!valueOf } U = { this.COMPACT_STRINGS }
+  77 methodCall D = {  } U = { frequentRenterPoints$1, this.!java.lang.String.COMPACT_STRINGS } TO = java.lang.String#valueOf( int )
+  78 actualOut D = { this.!valueOf( int ) } U = { this.!java.lang.String.COMPACT_STRINGS }
   79 returnSt D = { $_ } U = { result$2 }
   81 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ addRental( org.jtool.videostore.before.Rental ) ]
    1 formalIn D = { rental$0 } U = {  }
-   2 assertSt D = {  } U = { rental$0 }
-   3 assignment D = {  } U = { this.rentals.!add }
-   4 receiver D = {  } U = { this, this.rentals }
-   5 methodCall D = { java.util.AbstractList.modCount, this, this.rentals, this.rentals.size } U = { java.util.AbstractList.modCount, rental$0, this, this.rentals, this.rentals.elementData, this.rentals.size } TO = java.util.List#add( java.lang.Object )
-   6 actualOut D = { java.util.AbstractList.modCount, this, this.rentals, this.rentals.!add, this.rentals.size } U = { java.util.AbstractList.modCount, this, this.rentals, this.rentals.elementData, this.rentals.size }
-   8 formalOut D = {  } U = { $_, java.util.AbstractList.modCount, this.rentals, this.rentals.size }
+   2 assertSt D = {  } U = { rental$0, rental$0.daysRented, rental$0.movie }
+   3 assignment D = {  } U = { this.rentals.!add( java.lang.Object ) }
+   4 receiver D = {  } U = { this.rentals }
+   5 methodCall D = {  } U = { rental$0, rental$0.daysRented, rental$0.movie, this.rentals.!java.util.ArrayList.elementData, this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size } TO = java.util.List#add( java.lang.Object )
+* actualOut D = { this.rentals.!add( java.lang.Object ), this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size } U = { this.rentals.!java.util.ArrayList.elementData, this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size }
+   8 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ name ]
    1 fieldDeclaration D = { this.name } U = { this.name }
@@ -95,246 +95,245 @@ Class Name = org.jtool.videostore.before.Customer
    3 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ rentals ]
-   1 fieldDeclaration D = { this.rentals } U = { ArrayList<Rental>.!ArrayList<Rental>, this.rentals }
+   1 fieldDeclaration D = { this.rentals } U = { java.util.ArrayList.!ArrayList( ), this.rentals }
    2 receiver D = {  } U = {  }
-   3 constructorCall D = { ArrayList<Rental>.elementData, java.util.AbstractList.modCount } U = { ArrayList<Rental>.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
-   4 actualOut D = { ArrayList<Rental>.!ArrayList<Rental>, ArrayList<Rental>.elementData, java.util.AbstractList.modCount } U = { ArrayList<Rental>.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
+* actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
 --
    0 constructorEntry [ Customer( java.lang.String ) ]
    1 formalIn D = { name$0 } U = {  }
-   2 assertSt D = {  } U = { name$0, name$0.!length }
+   2 assertSt D = {  } U = { name$0, name$0.!length( ) }
    3 receiver D = {  } U = { name$0 }
-   4 methodCall D = {  } U = { name$0, name$0.COMPACT_STRINGS, name$0.coder, name$0.value } TO = java.lang.String#length( )
-   5 actualOut D = { name$0.!length } U = { name$0.COMPACT_STRINGS, name$0.coder, name$0.value }
-   6 assignment D = { this.name } U = { name$0, this }
-   8 formalOut D = {  } U = { $_, this.name }
+   4 methodCall D = {  } U = { name$0.!java.lang.String.COMPACT_STRINGS, name$0.!java.lang.String.coder, name$0.!java.lang.String.value } TO = java.lang.String#length( )
+   5 actualOut D = { name$0.!length( ) } U = { name$0.!java.lang.String.COMPACT_STRINGS, name$0.!java.lang.String.coder, name$0.!java.lang.String.value }
+   6 assignment D = { this.name } U = { name$0 }
+   8 formalOut D = {  } U = { $_ }
 --
    0: statement( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 7 trueControlDependence
-   8: 0 -> 71 trueControlDependence
-   9: 0 -> 72 trueControlDependence
-  10: 0 -> 73 trueControlDependence
-  11: 0 -> 74 trueControlDependence
-  12: 0 -> 75 trueControlDependence
-  13: 0 -> 76 trueControlDependence
-  14: 0 -> 77 trueControlDependence
-  15: 0 -> 78 trueControlDependence
-  16: 0 -> 79 trueControlDependence
-  17: 0 -> 81 trueControlDependence
-  18: 1 -> 70 declaration
-  19: 1 -> 70 loopIndependentDefUseDependence totalAmount$0
-  20: 1 -> 73 declaration
-  21: 1 -> 73 loopIndependentDefUseDependence totalAmount$0
-  22: 13 -> 10 loopIndependentDefUseDependence each$3.!getMovie
-  23: 13 -> 52 outputDependence each$3.!getMovie
-  24: 15 -> 16 loopIndependentDefUseDependence each$3.!getMovie.!getPriceCode
-  25: 15 -> 28 loopIndependentDefUseDependence each$3.!getMovie.!getPriceCode
-  26: 15 -> 34 loopIndependentDefUseDependence each$3.!getMovie.!getPriceCode
-  27: 15 -> 54 outputDependence each$3.!getMovie.!getPriceCode
-  28: 15 -> 9 loopIndependentDefUseDependence each$3.!getMovie.!getPriceCode
-  29: 16 -> 17 trueControlDependence
-  30: 16 -> 18 trueControlDependence
-  31: 16 -> 19 trueControlDependence
-  32: 16 -> 20 trueControlDependence
-  33: 16 -> 21 trueControlDependence
-  34: 16 -> 27 trueControlDependence
-  35: 16 -> 28 falseControlDependence
-  36: 17 -> 22 loopIndependentDefUseDependence thisAmount$5
-  37: 17 -> 68 loopIndependentDefUseDependence thisAmount$5
-  38: 17 -> 70 loopIndependentDefUseDependence thisAmount$5
-  39: 17 -> 8 outputDependence thisAmount$5
-  40: 18 -> 22 trueControlDependence
-  41: 18 -> 23 trueControlDependence
-  42: 18 -> 24 trueControlDependence
-  43: 18 -> 25 trueControlDependence
-  44: 2 -> 47 declaration
-  45: 2 -> 47 loopIndependentDefUseDependence frequentRenterPoints$1
-  46: 2 -> 58 declaration
-  47: 2 -> 77 declaration
-  48: 2 -> 77 loopIndependentDefUseDependence frequentRenterPoints$1
-  49: 21 -> 18 loopIndependentDefUseDependence each$3.!getDaysRented
-  50: 21 -> 25 outputDependence each$3.!getDaysRented
-  51: 21 -> 57 outputDependence each$3.!getDaysRented
-  52: 22 -> 68 loopIndependentDefUseDependence thisAmount$5
-  53: 22 -> 70 loopIndependentDefUseDependence thisAmount$5
-  54: 22 -> 8 outputDependence thisAmount$5
-  55: 25 -> 22 loopIndependentDefUseDependence each$3.!getDaysRented
-  56: 25 -> 57 outputDependence each$3.!getDaysRented
-  57: 27 -> 28 fallThroughControlDependence
-  58: 28 -> 29 trueControlDependence
-  59: 28 -> 30 trueControlDependence
-  60: 28 -> 31 trueControlDependence
-  61: 28 -> 32 trueControlDependence
-  62: 28 -> 33 trueControlDependence
-  63: 28 -> 34 falseControlDependence
-  64: 29 -> 68 loopIndependentDefUseDependence thisAmount$5
-  65: 29 -> 70 loopIndependentDefUseDependence thisAmount$5
-  66: 29 -> 8 outputDependence thisAmount$5
-  67: 3 -> 60 declaration
-  68: 3 -> 60 loopIndependentDefUseDependence result$2
-  69: 3 -> 71 declaration
-  70: 3 -> 71 loopIndependentDefUseDependence result$2
-  71: 3 -> 75 declaration
-  72: 3 -> 79 declaration
-  73: 32 -> 29 loopIndependentDefUseDependence each$3.!getDaysRented
-  74: 32 -> 57 outputDependence each$3.!getDaysRented
-  75: 33 -> 34 fallThroughControlDependence
-  76: 34 -> 35 trueControlDependence
-  77: 34 -> 36 trueControlDependence
-  78: 34 -> 37 trueControlDependence
-  79: 34 -> 38 trueControlDependence
-  80: 34 -> 39 trueControlDependence
-  81: 34 -> 45 trueControlDependence
-  82: 35 -> 40 loopIndependentDefUseDependence thisAmount$5
-  83: 35 -> 68 loopIndependentDefUseDependence thisAmount$5
-  84: 35 -> 70 loopIndependentDefUseDependence thisAmount$5
-  85: 35 -> 8 outputDependence thisAmount$5
-  86: 36 -> 40 trueControlDependence
-  87: 36 -> 41 trueControlDependence
-  88: 36 -> 42 trueControlDependence
-  89: 36 -> 43 trueControlDependence
-  90: 39 -> 36 loopIndependentDefUseDependence each$3.!getDaysRented
-  91: 39 -> 43 outputDependence each$3.!getDaysRented
-  92: 39 -> 57 outputDependence each$3.!getDaysRented
-  93: 40 -> 68 loopIndependentDefUseDependence thisAmount$5
-  94: 40 -> 70 loopIndependentDefUseDependence thisAmount$5
-  95: 40 -> 8 outputDependence thisAmount$5
-  96: 43 -> 40 loopIndependentDefUseDependence each$3.!getDaysRented
-  97: 43 -> 57 outputDependence each$3.!getDaysRented
-  98: 47 -> 47 loopCarriedDefUseDependence frequentRenterPoints$1 7
-  99: 47 -> 58 loopIndependentDefUseDependence frequentRenterPoints$1
- 100: 47 -> 77 loopIndependentDefUseDependence frequentRenterPoints$1
- 101: 48 -> 58 trueControlDependence
- 102: 52 -> 49 loopIndependentDefUseDependence each$3.!getMovie
- 103: 52 -> 64 outputDependence each$3.!getMovie
- 104: 54 -> 15 outputDependence each$3.!getMovie.!getPriceCode
- 105: 54 -> 48 loopIndependentDefUseDependence each$3.!getMovie.!getPriceCode
- 106: 57 -> 21 outputDependence each$3.!getDaysRented
- 107: 57 -> 32 outputDependence each$3.!getDaysRented
- 108: 57 -> 39 outputDependence each$3.!getDaysRented
- 109: 57 -> 48 loopIndependentDefUseDependence each$3.!getDaysRented
- 110: 57 -> 57 defOrderDependence each$3.!getDaysRented
- 111: 58 -> 47 loopIndependentDefUseDependence frequentRenterPoints$1
- 112: 58 -> 77 loopIndependentDefUseDependence frequentRenterPoints$1
- 113: 6 -> 3 loopIndependentDefUseDependence this.!getName
- 114: 60 -> 60 loopCarriedDefUseDependence result$2 7
- 115: 60 -> 71 loopIndependentDefUseDependence result$2
- 116: 64 -> 13 outputDependence each$3.!getMovie
- 117: 64 -> 61 loopIndependentDefUseDependence each$3.!getMovie
- 118: 66 -> 60 loopIndependentDefUseDependence each$3.!getMovie.!getTitle
- 119: 66 -> 66 defOrderDependence each$3.!getMovie.!getTitle
- 120: 69 -> 60 loopIndependentDefUseDependence this.!valueOf
- 121: 69 -> 69 defOrderDependence this.!valueOf
- 122: 69 -> 74 outputDependence this.!valueOf
- 123: 7 -> 10 trueControlDependence
- 124: 7 -> 11 trueControlDependence
- 125: 7 -> 12 trueControlDependence
- 126: 7 -> 13 trueControlDependence
- 127: 7 -> 14 trueControlDependence
- 128: 7 -> 15 trueControlDependence
- 129: 7 -> 16 trueControlDependence
- 130: 7 -> 47 trueControlDependence
- 131: 7 -> 48 trueControlDependence
- 132: 7 -> 49 trueControlDependence
- 133: 7 -> 50 trueControlDependence
- 134: 7 -> 51 trueControlDependence
- 135: 7 -> 52 trueControlDependence
- 136: 7 -> 53 trueControlDependence
- 137: 7 -> 54 trueControlDependence
- 138: 7 -> 55 trueControlDependence
- 139: 7 -> 56 trueControlDependence
- 140: 7 -> 57 trueControlDependence
- 141: 7 -> 60 trueControlDependence
- 142: 7 -> 61 trueControlDependence
- 143: 7 -> 62 trueControlDependence
- 144: 7 -> 63 trueControlDependence
- 145: 7 -> 64 trueControlDependence
- 146: 7 -> 65 trueControlDependence
- 147: 7 -> 66 trueControlDependence
- 148: 7 -> 67 trueControlDependence
- 149: 7 -> 68 trueControlDependence
- 150: 7 -> 69 trueControlDependence
- 151: 7 -> 70 trueControlDependence
- 152: 7 -> 8 trueControlDependence
- 153: 7 -> 9 trueControlDependence
- 154: 70 -> 70 loopCarriedDefUseDependence totalAmount$0 7
- 155: 70 -> 73 loopIndependentDefUseDependence totalAmount$0
- 156: 71 -> 75 loopIndependentDefUseDependence result$2
- 157: 74 -> 71 loopIndependentDefUseDependence this.!valueOf
- 158: 74 -> 78 outputDependence this.!valueOf
- 159: 75 -> 79 loopIndependentDefUseDependence result$2
- 160: 78 -> 75 loopIndependentDefUseDependence this.!valueOf
- 161: 79 -> 81 loopIndependentDefUseDependence $_
- 162: 8 -> 17 declaration
- 163: 8 -> 17 loopIndependentDefUseDependence thisAmount$5
- 164: 8 -> 22 declaration
- 165: 8 -> 29 declaration
- 166: 8 -> 29 loopIndependentDefUseDependence thisAmount$5
- 167: 8 -> 35 declaration
- 168: 8 -> 35 loopIndependentDefUseDependence thisAmount$5
- 169: 8 -> 40 declaration
- 170: 8 -> 68 declaration
- 171: 8 -> 68 loopIndependentDefUseDependence thisAmount$5
- 172: 8 -> 70 declaration
- 173: 8 -> 70 loopIndependentDefUseDependence thisAmount$5
- 174: 8 -> 8 defOrderDependence thisAmount$5
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->   71 trueControlDependence
+   9:    0 ->   72 trueControlDependence
+  10:    0 ->   73 trueControlDependence
+  11:    0 ->   74 trueControlDependence
+  12:    0 ->   75 trueControlDependence
+  13:    0 ->   76 trueControlDependence
+  14:    0 ->   77 trueControlDependence
+  15:    0 ->   78 trueControlDependence
+  16:    0 ->   79 trueControlDependence
+  17:    0 ->   81 trueControlDependence
+  18:    1 ->   70 declaration
+  19:    1 ->   70 loopIndependentDefUseDependence totalAmount$0
+  20:    1 ->   73 declaration
+  21:    1 ->   73 loopIndependentDefUseDependence totalAmount$0
+  22:    2 ->   47 declaration
+  23:    2 ->   47 loopIndependentDefUseDependence frequentRenterPoints$1
+  24:    2 ->   58 declaration
+  25:    2 ->   77 declaration
+  26:    2 ->   77 loopIndependentDefUseDependence frequentRenterPoints$1
+  27:    3 ->   60 declaration
+  28:    3 ->   60 loopIndependentDefUseDependence result$2
+  29:    3 ->   71 declaration
+  30:    3 ->   71 loopIndependentDefUseDependence result$2
+  31:    3 ->   75 declaration
+  32:    3 ->   79 declaration
+  33:    6 ->    3 loopIndependentDefUseDependence this.!getName( )
+  34:    7 ->    7 defOrderDependence each$3
+  35:    7 ->    8 trueControlDependence
+  36:    7 ->    9 trueControlDependence
+  37:    7 ->   10 trueControlDependence
+  38:    7 ->   11 loopIndependentDefUseDependence each$3
+  39:    7 ->   11 trueControlDependence
+  40:    7 ->   12 trueControlDependence
+  41:    7 ->   13 trueControlDependence
+  42:    7 ->   14 trueControlDependence
+  43:    7 ->   15 trueControlDependence
+  44:    7 ->   16 trueControlDependence
+  45:    7 ->   19 loopIndependentDefUseDependence each$3
+  46:    7 ->   23 loopIndependentDefUseDependence each$3
+  47:    7 ->   30 loopIndependentDefUseDependence each$3
+  48:    7 ->   37 loopIndependentDefUseDependence each$3
+  49:    7 ->   41 loopIndependentDefUseDependence each$3
+  50:    7 ->   47 trueControlDependence
+  51:    7 ->   48 trueControlDependence
+  52:    7 ->   49 trueControlDependence
+  53:    7 ->   50 loopIndependentDefUseDependence each$3
+  54:    7 ->   50 trueControlDependence
+  55:    7 ->   51 trueControlDependence
+  56:    7 ->   52 trueControlDependence
+  57:    7 ->   53 trueControlDependence
+  58:    7 ->   54 trueControlDependence
+  59:    7 ->   55 loopIndependentDefUseDependence each$3
+  60:    7 ->   55 trueControlDependence
+  61:    7 ->   56 trueControlDependence
+  62:    7 ->   57 trueControlDependence
+  63:    7 ->   60 trueControlDependence
+  64:    7 ->   61 trueControlDependence
+  65:    7 ->   62 loopIndependentDefUseDependence each$3
+  66:    7 ->   62 trueControlDependence
+  67:    7 ->   63 trueControlDependence
+  68:    7 ->   64 trueControlDependence
+  69:    7 ->   65 trueControlDependence
+  70:    7 ->   66 trueControlDependence
+  71:    7 ->   67 trueControlDependence
+  72:    7 ->   68 trueControlDependence
+  73:    7 ->   69 trueControlDependence
+  74:    7 ->   70 trueControlDependence
+  75:    8 ->    8 defOrderDependence thisAmount$5
+  76:    8 ->   17 declaration
+  77:    8 ->   17 loopIndependentDefUseDependence thisAmount$5
+  78:    8 ->   22 declaration
+  79:    8 ->   29 declaration
+  80:    8 ->   29 loopIndependentDefUseDependence thisAmount$5
+  81:    8 ->   35 declaration
+  82:    8 ->   35 loopIndependentDefUseDependence thisAmount$5
+  83:    8 ->   40 declaration
+  84:    8 ->   68 declaration
+  85:    8 ->   68 loopIndependentDefUseDependence thisAmount$5
+  86:    8 ->   70 declaration
+  87:    8 ->   70 loopIndependentDefUseDependence thisAmount$5
+  88:    9 ->    9 defOrderDependence $SwitchDef
+  89:    9 ->   16 loopIndependentDefUseDependence $SwitchDef
+  90:    9 ->   28 loopIndependentDefUseDependence $SwitchDef
+  91:    9 ->   34 loopIndependentDefUseDependence $SwitchDef
+  92:   13 ->   10 loopIndependentDefUseDependence each$3.!getMovie( )
+  93:   13 ->   52 outputDependence each$3.!getMovie( )
+  94:   15 ->    9 loopIndependentDefUseDependence each$3.!getMovie( ).!getPriceCode( )
+  95:   15 ->   54 outputDependence each$3.!getMovie( ).!getPriceCode( )
+  96:   16 ->   17 trueControlDependence
+  97:   16 ->   18 trueControlDependence
+  98:   16 ->   19 trueControlDependence
+  99:   16 ->   20 trueControlDependence
+ 100:   16 ->   21 trueControlDependence
+ 101:   16 ->   27 trueControlDependence
+ 102:   16 ->   28 falseControlDependence
+ 103:   17 ->    8 outputDependence thisAmount$5
+ 104:   17 ->   22 loopIndependentDefUseDependence thisAmount$5
+ 105:   17 ->   68 loopIndependentDefUseDependence thisAmount$5
+ 106:   17 ->   70 loopIndependentDefUseDependence thisAmount$5
+ 107:   18 ->   22 trueControlDependence
+ 108:   18 ->   23 trueControlDependence
+ 109:   18 ->   24 trueControlDependence
+ 110:   18 ->   25 trueControlDependence
+ 111:   21 ->   18 loopIndependentDefUseDependence each$3.!getDaysRented( )
+ 112:   21 ->   25 outputDependence each$3.!getDaysRented( )
+ 113:   21 ->   57 outputDependence each$3.!getDaysRented( )
+ 114:   22 ->    8 outputDependence thisAmount$5
+ 115:   22 ->   68 loopIndependentDefUseDependence thisAmount$5
+ 116:   22 ->   70 loopIndependentDefUseDependence thisAmount$5
+ 117:   25 ->   22 loopIndependentDefUseDependence each$3.!getDaysRented( )
+ 118:   25 ->   57 outputDependence each$3.!getDaysRented( )
+ 119:   27 ->   28 fallThroughControlDependence
+ 120:   28 ->   29 trueControlDependence
+ 121:   28 ->   30 trueControlDependence
+ 122:   28 ->   31 trueControlDependence
+ 123:   28 ->   32 trueControlDependence
+ 124:   28 ->   33 trueControlDependence
+ 125:   28 ->   34 falseControlDependence
+ 126:   29 ->    8 outputDependence thisAmount$5
+ 127:   29 ->   68 loopIndependentDefUseDependence thisAmount$5
+ 128:   29 ->   70 loopIndependentDefUseDependence thisAmount$5
+ 129:   32 ->   29 loopIndependentDefUseDependence each$3.!getDaysRented( )
+ 130:   32 ->   57 outputDependence each$3.!getDaysRented( )
+ 131:   33 ->   34 fallThroughControlDependence
+ 132:   34 ->   35 trueControlDependence
+ 133:   34 ->   36 trueControlDependence
+ 134:   34 ->   37 trueControlDependence
+ 135:   34 ->   38 trueControlDependence
+ 136:   34 ->   39 trueControlDependence
+ 137:   34 ->   45 trueControlDependence
+ 138:   35 ->    8 outputDependence thisAmount$5
+ 139:   35 ->   40 loopIndependentDefUseDependence thisAmount$5
+ 140:   35 ->   68 loopIndependentDefUseDependence thisAmount$5
+ 141:   35 ->   70 loopIndependentDefUseDependence thisAmount$5
+ 142:   36 ->   40 trueControlDependence
+ 143:   36 ->   41 trueControlDependence
+ 144:   36 ->   42 trueControlDependence
+ 145:   36 ->   43 trueControlDependence
+ 146:   39 ->   36 loopIndependentDefUseDependence each$3.!getDaysRented( )
+ 147:   39 ->   43 outputDependence each$3.!getDaysRented( )
+ 148:   39 ->   57 outputDependence each$3.!getDaysRented( )
+ 149:   40 ->    8 outputDependence thisAmount$5
+ 150:   40 ->   68 loopIndependentDefUseDependence thisAmount$5
+ 151:   40 ->   70 loopIndependentDefUseDependence thisAmount$5
+ 152:   43 ->   40 loopIndependentDefUseDependence each$3.!getDaysRented( )
+ 153:   43 ->   57 outputDependence each$3.!getDaysRented( )
+ 154:   47 ->   47 loopIndependentDefUseDependence frequentRenterPoints$1
+ 155:   47 ->   58 loopIndependentDefUseDependence frequentRenterPoints$1
+ 156:   47 ->   77 loopIndependentDefUseDependence frequentRenterPoints$1
+ 157:   48 ->   58 trueControlDependence
+ 158:   52 ->   49 loopIndependentDefUseDependence each$3.!getMovie( )
+ 159:   52 ->   64 outputDependence each$3.!getMovie( )
+ 160:   54 ->   15 outputDependence each$3.!getMovie( ).!getPriceCode( )
+ 161:   54 ->   48 loopIndependentDefUseDependence each$3.!getMovie( ).!getPriceCode( )
+ 162:   57 ->   21 outputDependence each$3.!getDaysRented( )
+ 163:   57 ->   32 outputDependence each$3.!getDaysRented( )
+ 164:   57 ->   39 outputDependence each$3.!getDaysRented( )
+ 165:   57 ->   48 loopIndependentDefUseDependence each$3.!getDaysRented( )
+ 166:   57 ->   57 defOrderDependence each$3.!getDaysRented( )
+ 167:   58 ->   47 loopIndependentDefUseDependence frequentRenterPoints$1
+ 168:   58 ->   77 loopIndependentDefUseDependence frequentRenterPoints$1
+ 169:   60 ->   60 loopIndependentDefUseDependence result$2
+ 170:   60 ->   71 loopIndependentDefUseDependence result$2
+ 171:   64 ->   13 outputDependence each$3.!getMovie( )
+ 172:   64 ->   61 loopIndependentDefUseDependence each$3.!getMovie( )
+ 173:   66 ->   60 loopIndependentDefUseDependence each$3.!getMovie( ).!getTitle( )
+ 174:   66 ->   66 defOrderDependence each$3.!getMovie( ).!getTitle( )
+ 175:   69 ->   60 loopIndependentDefUseDependence this.!valueOf( double )
+ 176:   69 ->   69 defOrderDependence this.!valueOf( double )
+ 177:   69 ->   74 outputDependence this.!valueOf( double )
+ 178:   70 ->   70 loopIndependentDefUseDependence totalAmount$0
+ 179:   70 ->   73 loopIndependentDefUseDependence totalAmount$0
+ 180:   71 ->   75 loopIndependentDefUseDependence result$2
+ 181:   74 ->   71 loopIndependentDefUseDependence this.!valueOf( double )
+ 182:   75 ->   79 loopIndependentDefUseDependence result$2
+ 183:   78 ->   75 loopIndependentDefUseDependence this.!valueOf( int )
+ 184:   79 ->   81 loopIndependentDefUseDependence $_
 --
    0: addRental( org.jtool.videostore.before.Rental )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 8 trueControlDependence
-   8: 1 -> 2 loopIndependentDefUseDependence rental$0
-   9: 1 -> 5 loopIndependentDefUseDependence rental$0
-  10: 5 -> 6 loopIndependentDefUseDependence java.util.AbstractList.modCount
-  11: 5 -> 6 loopIndependentDefUseDependence this
-  12: 5 -> 6 loopIndependentDefUseDependence this.rentals
-  13: 5 -> 6 loopIndependentDefUseDependence this.rentals.size
-  14: 6 -> 3 loopIndependentDefUseDependence this.rentals.!add
-  15: 6 -> 8 loopIndependentDefUseDependence java.util.AbstractList.modCount
-  16: 6 -> 8 loopIndependentDefUseDependence this.rentals
-  17: 6 -> 8 loopIndependentDefUseDependence this.rentals.size
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    8 trueControlDependence
+   7:    0 -> * trueControlDependence
+   8:    1 ->    2 loopIndependentDefUseDependence rental$0
+   9:    1 ->    5 loopIndependentDefUseDependence rental$0
+  10: * ->    3 loopIndependentDefUseDependence this.rentals.!add( java.lang.Object )
 --
    0: name
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: getName( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
 --
    0: rentals
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 3 -> 4 outputDependence ArrayList<Rental>.elementData
-   6: 3 -> 4 outputDependence java.util.AbstractList.modCount
-   7: 4 -> 1 loopIndependentDefUseDependence ArrayList<Rental>.!ArrayList<Rental>
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 -> * trueControlDependence
+   5: * ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
 --
    0: Customer( java.lang.String )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 8 trueControlDependence
-   8: 1 -> 2 loopIndependentDefUseDependence name$0
-   9: 1 -> 3 loopIndependentDefUseDependence name$0
-  10: 1 -> 4 loopIndependentDefUseDependence name$0
-  11: 1 -> 6 loopIndependentDefUseDependence name$0
-  12: 5 -> 2 loopIndependentDefUseDependence name$0.!length
-  13: 6 -> 8 loopIndependentDefUseDependence this.name
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    1 ->    2 loopIndependentDefUseDependence name$0
+   9:    1 ->    3 loopIndependentDefUseDependence name$0
+  10:    1 ->    6 loopIndependentDefUseDependence name$0
+  11:    5 ->    2 loopIndependentDefUseDependence name$0.!length( )
 --
 ----- ClDG (to here) -----
 

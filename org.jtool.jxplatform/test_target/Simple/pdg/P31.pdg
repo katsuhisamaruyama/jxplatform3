@@ -2,73 +2,91 @@
 Class Name = P31
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { xx$0 } U = { super.x }
-   2 assignment D = {  } U = { super.!m }
+   2 assignment D = {  } U = { super.!m( ) }
    3 receiver D = {  } U = {  }
    4 methodCall D = {  } U = {  } TO = Test31#m( )
-   5 actualOut D = { super.!m } U = {  }
+   5 actualOut D = { super.!m( ) } U = {  }
    7 formalOut D = {  } U = { $_ }
 --
+   0 methodEntry [ n( ) ]
+   1 localDeclaration D = { p$0 } U = { this }
+   3 formalOut D = {  } U = { $_ }
+--
    0 constructorEntry [ P31( ) ]
-   1 assignment D = {  } U = {  }
+   1 assignment D = {  } U = { this.!P31( int ) }
    2 receiver D = {  } U = {  }
-   3 constructorCall D = { this.x } U = { this.x } TO = P31#P31( int )
+   3 constructorCall D = {  } U = {  } TO = P31#P31( int )
    4 actualIn D = {  } U = {  }
-   5 actualOut D = { , this.x } U = { this.x }
-   7 formalOut D = {  } U = { $_, this.x }
+   5 actualOut D = { this.!P31( int ) } U = {  }
+   7 formalOut D = {  } U = { $_ }
+* actualOut D = { this.!P31( int ).x } U = {  }
 --
    0 constructorEntry [ P31( int ) ]
    1 formalIn D = { x$0 } U = {  }
-   2 assignment D = {  } U = {  }
-   3 receiver D = {  } U = {  }
-   4 constructorCall D = { super.x } U = { super.x } TO = Test31#Test31( int )
-   5 actualIn D = {  } U = { x$0 }
-   6 actualOut D = { , super.x } U = { super.x }
-   7 assignment D = { this.x } U = { this, x$0 }
-   9 formalOut D = {  } U = { $_, super.x, this.x }
+   2 assignment D = { this.x } U = { x$0 }
+   4 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
+   0 constructorEntry [ P31( int int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 formalIn D = { y$1 } U = {  }
+   3 assignment D = {  } U = { super.!Test31( int ) }
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = {  } U = {  } TO = Test31#Test31( int )
+   6 actualIn D = {  } U = { x$0 }
+   7 actualOut D = { super.!Test31( int ) } U = {  }
+   8 assignment D = { this.x } U = { y$1 }
+  10 formalOut D = {  } U = { $_ }
+* actualOut D = { super.!Test31( int ).x } U = {  }
+--
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 7 trueControlDependence
-   7: 5 -> 2 loopIndependentDefUseDependence super.!m
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    5 ->    2 loopIndependentDefUseDependence super.!m( )
+--
+   0: n( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
 --
    0: P31( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 7 trueControlDependence
-   7: 3 -> 5 loopIndependentDefUseDependence this.x
-   8: 4 -> 5 summary
-   9: 5 -> 1 loopIndependentDefUseDependence 
-  10: 5 -> 7 loopIndependentDefUseDependence this.x
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    0 -> * trueControlDependence
+   8:    5 ->    1 loopIndependentDefUseDependence this.!P31( int )
 --
    0: P31( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 7 trueControlDependence
-   8: 0 -> 9 trueControlDependence
-   9: 1 -> 5 loopIndependentDefUseDependence x$0
-  10: 1 -> 7 loopIndependentDefUseDependence x$0
-  11: 4 -> 6 loopIndependentDefUseDependence super.x
-  12: 5 -> 6 summary
-  13: 6 -> 2 loopIndependentDefUseDependence 
-  14: 6 -> 9 loopIndependentDefUseDependence super.x
-  15: 7 -> 9 loopIndependentDefUseDependence this.x
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence x$0
 --
    0: x
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
+--
+   0: P31( int int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    0 -> * trueControlDependence
+  11:    1 ->    6 loopIndependentDefUseDependence x$0
+  12:    2 ->    8 loopIndependentDefUseDependence y$1
+  13:    7 ->    3 loopIndependentDefUseDependence super.!Test31( int )
 --
 ----- ClDG (to here) -----
 

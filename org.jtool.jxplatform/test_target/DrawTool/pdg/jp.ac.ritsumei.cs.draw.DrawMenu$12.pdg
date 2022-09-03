@@ -3,26 +3,23 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$12
    0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
    1 throwsClause D = {  } U = { $java.awt.HeadlessException }
    2 formalIn D = { evt$4 } U = {  }
-   3 assignment D = {  } U = { this.!closeFile }
+   3 assignment D = {  } U = { this.!closeFile( ) }
    4 receiver D = {  } U = {  }
-   5 methodCall D = { this.tabbedCanvas, this.tabbedCanvas.selectedTab } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.tool } TO = jp.ac.ritsumei.cs.draw.DrawMenu#closeFile( )
-   6 actualOut D = { this.!closeFile, this.tabbedCanvas, this.tabbedCanvas.selectedTab } U = { this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.tool }
-   8 formalOut D = {  } U = { $_, this.tabbedCanvas, this.tabbedCanvas.selectedTab }
+   5 methodCall D = {  } U = { System.err, canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, result$1.CANCEL_OPTION, result$1.YES_OPTION, result2$2.CANCEL_OPTION, this.!java.lang.Runtime.currentRuntime, this.!java.lang.String.COMPACT_STRINGS, this.!javax.accessibility.AccessibleState.SELECTED, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.model, this.!javax.swing.JTabbedPane.pages, this.!javax.swing.JTabbedPane.visComp, this.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.autoFlush, this.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.charOut, this.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.out, this.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.textOut, this.canvas$0.!getFigureManager( ).figure$4.color.!java.awt.Color.value, this.canvas$0.!getFigureManager( ).figures, this.canvas$0.!getFigureManager( ).filename, this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, this.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.lock, this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, this.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.coder, this.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count, this.canvas$0.!getFigureManager( ).sb$6.!java.lang.String.COMPACT_STRINGS, this.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.count, this.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.value, this.tabbedCanvas, this.tabbedCanvas.canvas$0.!getFigureManager( ).figures, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.tool, this.tool.menu, this.tool.selector, this.tool.tabbedCanvas } TO = jp.ac.ritsumei.cs.draw.DrawMenu#closeFile( )
+* actualOut D = { this.!closeFile( ), this.!javax.swing.JTabbedPane.visComp, this.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble, this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb, this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars, this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nextChar, this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out, this.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se, this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush, this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out, this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut, this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble, this.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder, this.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value, this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble, this.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count } U = { System.err, canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, result$1.CANCEL_OPTION, result$1.YES_OPTION, result2$2.CANCEL_OPTION, this.!java.lang.Runtime.currentRuntime, this.!java.lang.String.COMPACT_STRINGS, this.!javax.accessibility.AccessibleState.SELECTED, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.model, this.!javax.swing.JTabbedPane.pages, this.!javax.swing.JTabbedPane.visComp, this.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.autoFlush, this.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.charOut, this.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.out, this.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.textOut, this.canvas$0.!getFigureManager( ).figure$4.color.!java.awt.Color.value, this.canvas$0.!getFigureManager( ).figures, this.canvas$0.!getFigureManager( ).filename, this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, this.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.lock, this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, this.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.coder, this.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count, this.canvas$0.!getFigureManager( ).sb$6.!java.lang.String.COMPACT_STRINGS, this.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.count, this.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.value, this.tabbedCanvas, this.tabbedCanvas.canvas$0.!getFigureManager( ).figures, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.tool, this.tool.menu, this.tool.selector, this.tool.tabbedCanvas }
+   8 formalOut D = {  } U = { $_ }
+* actualOut D = { this.selectedTab } U = {  }
 --
    0: actionPerformed( java.awt.event.ActionEvent )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 4 trueControlDependence
-   4: 0 -> 5 trueControlDependence
-   5: 0 -> 6 trueControlDependence
-   6: 0 -> 8 trueControlDependence
-   7: 5 -> 1 exceptionCatch
-   8: 5 -> 3 trueControlDependence
-   9: 5 -> 6 loopIndependentDefUseDependence this.tabbedCanvas
-  10: 5 -> 6 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
-  11: 6 -> 3 loopIndependentDefUseDependence this.!closeFile
-  12: 6 -> 8 loopIndependentDefUseDependence this.tabbedCanvas
-  13: 6 -> 8 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+   1:    0 ->    2 trueControlDependence
+   2:    0 ->    4 trueControlDependence
+   3:    0 ->    5 trueControlDependence
+   4:    5 ->    1 exceptionCatch
+   5:    5 ->    3 trueControlDependence
+   6:    5 ->    8 trueControlDependence
+   7:    5 -> * trueControlDependence
+   8:    5 -> * trueControlDependence
+   9: * ->    3 loopIndependentDefUseDependence this.!closeFile( )
 --
 ----- ClDG (to here) -----
 

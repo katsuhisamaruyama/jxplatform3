@@ -4,134 +4,124 @@ Class Name = Producer
    1 trySt D = {  } U = {  }
    2 localDeclaration D = { i$0 } U = {  }
    3 forSt D = {  } U = { i$0 }
-   4 localDeclaration D = { data$1 } U = { this.!valueOf }
+   4 localDeclaration D = { data$1 } U = { this.!valueOf( int ) }
    5 receiver D = {  } U = {  }
-   6 methodCall D = {  } U = { i$0, this.COMPACT_STRINGS } TO = java.lang.String#valueOf( int )
-   7 actualOut D = { this.!valueOf } U = { this.COMPACT_STRINGS }
-   8 assignment D = {  } U = { this.storage.!put }
+   6 methodCall D = {  } U = { i$0, this.!java.lang.String.COMPACT_STRINGS } TO = java.lang.String#valueOf( int )
+   7 actualOut D = { this.!valueOf( int ) } U = { this.!java.lang.String.COMPACT_STRINGS }
+   8 assignment D = {  } U = { this.storage.!put( java.lang.String ) }
    9 receiver D = {  } U = { this.storage }
-  10 methodCall D = { this.storage.data } U = { this.storage.data } TO = Storage#put( java.lang.String )
-  11 actualIn D = {  } U = { data$1, this.!valueOf }
-  12 actualOut D = { this.storage.!put, this.storage.data } U = { this.storage.data }
-  13 assignment D = {  } U = { System.out.!println }
+  10 methodCall D = {  } U = { this.storage.data } TO = Storage#put( java.lang.String )
+  11 actualIn D = {  } U = { data$1 }
+  12 actualOut D = { this.storage.!put( java.lang.String ) } U = { this.storage.data }
+  13 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   14 receiver D = {  } U = { System.out }
-  15 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, data$1, java.io.FilterOutputStream.out, this.!valueOf } TO = java.io.PrintStream#println( java.lang.String )
-  16 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
-  17 assignment D = {  } U = { this.!sleep }
+  15 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, data$1 } TO = java.io.PrintStream#println( java.lang.String )
+* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  17 assignment D = {  } U = { this.!sleep( long ) }
   18 receiver D = {  } U = {  }
-  19 methodCall D = {  } U = { this.!random } TO = java.lang.Thread#sleep( long )
+  19 methodCall D = {  } U = { this.!random( ) } TO = java.lang.Thread#sleep( long )
   20 receiver D = {  } U = {  }
-  21 methodCall D = {  } U = { this$RandomNumberGeneratorHolder.randomNumberGenerator } TO = java.lang.Math#random( )
-  22 actualOut D = { this.!random } U = { this$RandomNumberGeneratorHolder.randomNumberGenerator }
-  23 actualOut D = { this.!sleep } U = {  }
+  21 methodCall D = {  } U = { this.!java.lang.Math$RandomNumberGeneratorHolder.randomNumberGenerator } TO = java.lang.Math#random( )
+  22 actualOut D = { this.!random( ) } U = { this.!java.lang.Math$RandomNumberGeneratorHolder.randomNumberGenerator }
+  23 actualOut D = { this.!sleep( long ) } U = {  }
   24 assignment D = { i$0 } U = { i$0 }
-  25 assignment D = {  } U = { this.storage.!put }
+  25 assignment D = {  } U = { this.storage.!put( java.lang.String ) }
   26 receiver D = {  } U = { this.storage }
-  27 methodCall D = { this.storage.data } U = { this.storage.data } TO = Storage#put( java.lang.String )
+  27 methodCall D = {  } U = { this.storage.data } TO = Storage#put( java.lang.String )
   28 actualIn D = {  } U = { $java.lang.String }
-  29 actualOut D = { this.storage.!put, this.storage.data } U = { this.storage.data }
+  29 actualOut D = { this.storage.!put( java.lang.String ) } U = { this.storage.data }
   31 catchClause D = { e$2 } U = {  }
-  33 formalOut D = {  } U = { $_, System.out, System.out.trouble, this.storage.data }
+  33 formalOut D = {  } U = { $_ }
+* actualOut D = { this.storage.data } U = {  }
+* actualOut D = { this.storage.data } U = {  }
 --
    0 constructorEntry [ Producer( Storage ) ]
    1 formalIn D = { storage$0 } U = {  }
-   2 assignment D = { this.storage } U = { storage$0, this }
-   4 formalOut D = {  } U = { $_, this.storage }
+   2 assignment D = { this.storage } U = { storage$0, storage$0.data }
+   4 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ storage ]
    1 fieldDeclaration D = { this.storage } U = { this.storage }
 --
    0: run( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 31 trueControlDependence
-   3: 0 -> 33 trueControlDependence
-   4: 1 -> 2 trueControlDependence
-   5: 1 -> 3 trueControlDependence
-   6: 10 -> 12 loopIndependentDefUseDependence this.storage.data
-   7: 10 -> 13 trueControlDependence
-   8: 10 -> 14 trueControlDependence
-   9: 10 -> 15 trueControlDependence
-  10: 10 -> 16 trueControlDependence
-  11: 10 -> 18 trueControlDependence
-  12: 10 -> 19 trueControlDependence
-  13: 10 -> 20 trueControlDependence
-  14: 10 -> 21 trueControlDependence
-  15: 10 -> 22 trueControlDependence
-  16: 10 -> 23 trueControlDependence
-  17: 10 -> 31 exceptionCatch
-  18: 10 -> 33 loopIndependentDefUseDependence this.storage.data
-  19: 10 -> 8 trueControlDependence
-  20: 11 -> 12 summary
-  21: 12 -> 10 loopCarriedDefUseDependence this.storage.data 3
-  22: 12 -> 12 defOrderDependence this.storage.!put
-  23: 12 -> 27 loopCarriedDefUseDependence this.storage.data 3
-  24: 12 -> 29 defOrderDependence this.storage.!put
-  25: 12 -> 33 loopIndependentDefUseDependence this.storage.data
-  26: 12 -> 8 loopIndependentDefUseDependence this.storage.!put
-  27: 15 -> 16 loopIndependentDefUseDependence System.out
-  28: 15 -> 16 outputDependence System.out.trouble
-  29: 16 -> 13 loopIndependentDefUseDependence System.out.!println
-  30: 16 -> 14 loopCarriedDefUseDependence System.out 3
-  31: 16 -> 15 loopCarriedDefUseDependence System.out 3
-  32: 16 -> 15 outputDependence System.out.trouble
-  33: 16 -> 16 defOrderDependence System.out.!println
-  34: 16 -> 33 loopIndependentDefUseDependence System.out
-  35: 16 -> 33 loopIndependentDefUseDependence System.out.trouble
-  36: 19 -> 17 trueControlDependence
-  37: 19 -> 24 trueControlDependence
-  38: 19 -> 3 trueControlDependence
-  39: 19 -> 31 exceptionCatch
-  40: 2 -> 24 declaration
-  41: 2 -> 24 loopIndependentDefUseDependence i$0
-  42: 2 -> 3 declaration
-  43: 2 -> 3 loopIndependentDefUseDependence i$0
-  44: 2 -> 6 declaration
-  45: 2 -> 6 loopIndependentDefUseDependence i$0
-  46: 22 -> 19 loopIndependentDefUseDependence this.!random
-  47: 22 -> 22 defOrderDependence this.!random
-  48: 23 -> 17 loopIndependentDefUseDependence this.!sleep
-  49: 23 -> 23 defOrderDependence this.!sleep
-  50: 24 -> 24 loopCarriedDefUseDependence i$0 3
-  51: 24 -> 3 loopIndependentDefUseDependence i$0
-  52: 24 -> 6 loopIndependentDefUseDependence i$0
-  53: 27 -> 25 trueControlDependence
-  54: 27 -> 29 loopIndependentDefUseDependence this.storage.data
-  55: 27 -> 31 exceptionCatch
-  56: 27 -> 33 loopIndependentDefUseDependence this.storage.data
-  57: 28 -> 29 summary
-  58: 29 -> 25 loopIndependentDefUseDependence this.storage.!put
-  59: 29 -> 33 loopIndependentDefUseDependence this.storage.data
-  60: 3 -> 10 trueControlDependence
-  61: 3 -> 11 trueControlDependence
-  62: 3 -> 12 trueControlDependence
-  63: 3 -> 26 trueControlDependence
-  64: 3 -> 27 falseControlDependence
-  65: 3 -> 28 trueControlDependence
-  66: 3 -> 29 trueControlDependence
-  67: 3 -> 4 trueControlDependence
-  68: 3 -> 5 trueControlDependence
-  69: 3 -> 6 trueControlDependence
-  70: 3 -> 7 trueControlDependence
-  71: 3 -> 9 trueControlDependence
-  72: 4 -> 11 declaration
-  73: 4 -> 11 loopIndependentDefUseDependence data$1
-  74: 4 -> 15 declaration
-  75: 4 -> 15 loopIndependentDefUseDependence data$1
-  76: 4 -> 4 defOrderDependence data$1
-  77: 7 -> 11 loopIndependentDefUseDependence this.!valueOf
-  78: 7 -> 15 loopIndependentDefUseDependence this.!valueOf
-  79: 7 -> 4 loopIndependentDefUseDependence this.!valueOf
-  80: 7 -> 7 defOrderDependence this.!valueOf
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->   33 trueControlDependence
+   5:    1 ->   31 trueControlDependence
+   6:    2 ->    3 declaration
+   7:    2 ->    3 loopIndependentDefUseDependence i$0
+   8:    2 ->    6 declaration
+   9:    2 ->    6 loopIndependentDefUseDependence i$0
+  10:    2 ->   24 declaration
+  11:    2 ->   24 loopIndependentDefUseDependence i$0
+  12:    3 ->    4 trueControlDependence
+  13:    3 ->    5 trueControlDependence
+  14:    3 ->    6 trueControlDependence
+  15:    3 ->    7 trueControlDependence
+  16:    3 ->    9 trueControlDependence
+  17:    3 ->   10 trueControlDependence
+  18:    3 ->   11 trueControlDependence
+  19:    3 ->   26 falseControlDependence
+  20:    3 ->   27 falseControlDependence
+  21:    3 ->   28 falseControlDependence
+  22:    4 ->    4 defOrderDependence data$1
+  23:    4 ->   11 declaration
+  24:    4 ->   11 loopIndependentDefUseDependence data$1
+  25:    4 ->   15 declaration
+  26:    4 ->   15 loopIndependentDefUseDependence data$1
+  27:    7 ->    4 loopIndependentDefUseDependence this.!valueOf( int )
+  28:    7 ->    7 defOrderDependence this.!valueOf( int )
+  29:   10 ->    8 trueControlDependence
+  30:   10 ->   12 trueControlDependence
+  31:   10 ->   13 trueControlDependence
+  32:   10 ->   14 trueControlDependence
+  33:   10 ->   15 trueControlDependence
+  34:   10 ->   18 trueControlDependence
+  35:   10 ->   19 trueControlDependence
+  36:   10 ->   20 trueControlDependence
+  37:   10 ->   21 trueControlDependence
+  38:   10 ->   22 trueControlDependence
+  39:   10 ->   31 exceptionCatch
+  40:   10 -> * trueControlDependence
+  41:   10 -> * trueControlDependence
+  42:   12 ->    8 loopIndependentDefUseDependence this.storage.!put( java.lang.String )
+  43:   12 ->   12 defOrderDependence this.storage.!put( java.lang.String )
+  44:   12 ->   29 outputDependence this.storage.!put( java.lang.String )
+  45:   19 ->    3 trueControlDependence
+  46:   19 ->   17 trueControlDependence
+  47:   19 ->   23 trueControlDependence
+  48:   19 ->   24 trueControlDependence
+  49:   19 ->   31 exceptionCatch
+  50:   22 ->   19 loopIndependentDefUseDependence this.!random( )
+  51:   22 ->   22 defOrderDependence this.!random( )
+  52:   23 ->   17 loopIndependentDefUseDependence this.!sleep( long )
+  53:   23 ->   23 defOrderDependence this.!sleep( long )
+  54:   24 ->    3 loopIndependentDefUseDependence i$0
+  55:   24 ->    6 loopIndependentDefUseDependence i$0
+  56:   24 ->   24 loopCarriedDefUseDependence i$0 (LC =    3)
+  57:   27 ->   25 trueControlDependence
+  58:   27 ->   29 trueControlDependence
+  59:   27 ->   31 exceptionCatch
+  60:   27 -> * trueControlDependence
+  61:   29 ->   25 loopIndependentDefUseDependence this.storage.!put( java.lang.String )
+  62: * ->   10 loopCarriedDefUseDependence this.storage.data (LC =    3)
+  63: * ->   12 loopIndependentDefUseDependence this.storage.data
+  64: * ->   13 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+  65: * ->   27 loopIndependentDefUseDependence this.storage.data
+  66: * ->   29 loopIndependentDefUseDependence this.storage.data
+  67: * -> * defOrderDependence System.out.!println( java.lang.String )
+  68: * -> * defOrderDependence this.storage.data
+  69: * -> * outputDependence this.storage.data
 --
    0: Producer( Storage )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence storage$0
-   5: 2 -> 4 loopIndependentDefUseDependence this.storage
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence storage$0
 --
    0: storage
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
 ----- ClDG (to here) -----
 

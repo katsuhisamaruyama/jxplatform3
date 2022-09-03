@@ -7,7 +7,7 @@ Class Name = org.jtool.videostore.before.Rental
    1 fieldDeclaration D = { this.daysRented } U = { this.daysRented }
 --
    0 methodEntry [ getMovie( ) ]
-   1 returnSt D = { $_ } U = { this.movie }
+   1 returnSt D = { $_ } U = { this.movie, this.movie.priceCode, this.movie.title }
    3 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ getDaysRented( ) ]
@@ -17,36 +17,34 @@ Class Name = org.jtool.videostore.before.Rental
    0 constructorEntry [ Rental( org.jtool.videostore.before.Movie int ) ]
    1 formalIn D = { movie$0 } U = {  }
    2 formalIn D = { daysRented$1 } U = {  }
-   3 assignment D = { this.movie } U = { movie$0, this }
-   4 assignment D = { this.daysRented } U = { daysRented$1, this }
-   6 formalOut D = {  } U = { $_, this.daysRented, this.movie }
+   3 assignment D = { this.movie } U = { movie$0, movie$0.priceCode, movie$0.title }
+   4 assignment D = { this.daysRented } U = { daysRented$1 }
+   6 formalOut D = {  } U = { $_ }
 --
    0: movie
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: daysRented
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: getMovie( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
 --
    0: getDaysRented( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
 --
    0: Rental( org.jtool.videostore.before.Movie int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 6 trueControlDependence
-   6: 1 -> 3 loopIndependentDefUseDependence movie$0
-   7: 2 -> 4 loopIndependentDefUseDependence daysRented$1
-   8: 3 -> 6 loopIndependentDefUseDependence this.movie
-   9: 4 -> 6 loopIndependentDefUseDependence this.daysRented
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    1 ->    3 loopIndependentDefUseDependence movie$0
+   7:    2 ->    4 loopIndependentDefUseDependence daysRented$1
 --
 ----- ClDG (to here) -----
 

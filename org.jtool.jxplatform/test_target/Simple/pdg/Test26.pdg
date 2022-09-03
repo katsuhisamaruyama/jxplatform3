@@ -6,24 +6,23 @@ Class Name = Test26
    0 initializerEntry [ .init( ) ]
    1 localDeclaration D = { c$0 } U = {  }
    2 assignment D = { this.xxx } U = { c$0 }
-   4 formalOut D = {  } U = { $_, this.xxx }
+   4 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ xxx ]
    1 fieldDeclaration D = { this.xxx } U = { this.xxx }
 --
    0: Test26( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: .init( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 declaration
-   5: 1 -> 2 loopIndependentDefUseDependence c$0
-   6: 2 -> 4 loopIndependentDefUseDependence this.xxx
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 declaration
+   5:    1 ->    2 loopIndependentDefUseDependence c$0
 --
    0: xxx
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
 ----- ClDG (to here) -----
 

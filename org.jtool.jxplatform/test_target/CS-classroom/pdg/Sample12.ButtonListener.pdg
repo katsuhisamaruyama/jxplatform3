@@ -3,17 +3,17 @@ Class Name = Sample12.ButtonListener
    0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    2 ifSt D = {  } U = { this.flag }
-   3 assignment D = {  } U = { this.label.!setText }
+   3 assignment D = {  } U = { this.label.!setText( java.lang.String ) }
    4 receiver D = {  } U = { this.label }
-   5 methodCall D = { this.label, this.label.mnemonicIndex, this.label.text } U = { $java.lang.String, java.awt.Component.accessibleContext, java.awt.Component.changeSupport, java.awt.Component.height, java.awt.Component.width, java.lang.String.value, javax.accessibility.AccessibleContext.accessibleChangeSupport, javax.accessibility.AccessibleContext.accessibleName, javax.swing.JComponent.revalidateRunnableScheduled, this.label, this.label.mnemonic, this.label.mnemonicIndex, this.label.text } TO = javax.swing.JLabel#setText( java.lang.String )
-   6 actualOut D = { this.label, this.label.!setText, this.label.mnemonicIndex, this.label.text } U = { java.awt.Component.accessibleContext, java.awt.Component.changeSupport, java.awt.Component.height, java.awt.Component.width, java.lang.String.value, javax.accessibility.AccessibleContext.accessibleChangeSupport, javax.accessibility.AccessibleContext.accessibleName, javax.swing.JComponent.revalidateRunnableScheduled, this.label, this.label.mnemonic, this.label.mnemonicIndex, this.label.text }
+   5 methodCall D = {  } U = { $java.lang.String, this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text } TO = javax.swing.JLabel#setText( java.lang.String )
+* actualOut D = { this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text, this.label.!setText( java.lang.String ) } U = { this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text }
    7 assignment D = { this.flag } U = {  }
-   8 assignment D = {  } U = { this.label.!setText }
+   8 assignment D = {  } U = { this.label.!setText( java.lang.String ) }
    9 receiver D = {  } U = { this.label }
-  10 methodCall D = { this.label, this.label.mnemonicIndex, this.label.text } U = { $java.lang.String, java.awt.Component.accessibleContext, java.awt.Component.changeSupport, java.awt.Component.height, java.awt.Component.width, java.lang.String.value, javax.accessibility.AccessibleContext.accessibleChangeSupport, javax.accessibility.AccessibleContext.accessibleName, javax.swing.JComponent.revalidateRunnableScheduled, this.label, this.label.mnemonic, this.label.mnemonicIndex, this.label.text } TO = javax.swing.JLabel#setText( java.lang.String )
-  11 actualOut D = { this.label, this.label.!setText, this.label.mnemonicIndex, this.label.text } U = { java.awt.Component.accessibleContext, java.awt.Component.changeSupport, java.awt.Component.height, java.awt.Component.width, java.lang.String.value, javax.accessibility.AccessibleContext.accessibleChangeSupport, javax.accessibility.AccessibleContext.accessibleName, javax.swing.JComponent.revalidateRunnableScheduled, this.label, this.label.mnemonic, this.label.mnemonicIndex, this.label.text }
+  10 methodCall D = {  } U = { $java.lang.String, this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text } TO = javax.swing.JLabel#setText( java.lang.String )
+* actualOut D = { this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text, this.label.!setText( java.lang.String ) } U = { this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text }
   12 assignment D = { this.flag } U = {  }
-  15 formalOut D = {  } U = { $_, this.flag, this.label, this.label.mnemonicIndex, this.label.text }
+  15 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ flag ]
    1 fieldDeclaration D = { this.flag } U = { this.flag }
@@ -24,51 +24,36 @@ Class Name = Sample12.ButtonListener
    0 constructorEntry [ ButtonListener( javax.swing.JLabel ) ]
    1 formalIn D = { l$0 } U = {  }
    2 assignment D = { this.label } U = { l$0 }
-   4 formalOut D = {  } U = { $_, this.label }
+   4 formalOut D = {  } U = { $_ }
 --
    0: actionPerformed( java.awt.event.ActionEvent )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 15 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 10 -> 11 loopIndependentDefUseDependence this.label
-   5: 10 -> 11 loopIndependentDefUseDependence this.label.mnemonicIndex
-   6: 10 -> 11 loopIndependentDefUseDependence this.label.text
-   7: 11 -> 15 loopIndependentDefUseDependence this.label
-   8: 11 -> 15 loopIndependentDefUseDependence this.label.mnemonicIndex
-   9: 11 -> 15 loopIndependentDefUseDependence this.label.text
-  10: 11 -> 8 loopIndependentDefUseDependence this.label.!setText
-  11: 12 -> 15 loopIndependentDefUseDependence this.flag
-  12: 2 -> 10 falseControlDependence
-  13: 2 -> 11 trueControlDependence
-  14: 2 -> 12 falseControlDependence
-  15: 2 -> 3 trueControlDependence
-  16: 2 -> 4 trueControlDependence
-  17: 2 -> 5 trueControlDependence
-  18: 2 -> 6 trueControlDependence
-  19: 2 -> 7 trueControlDependence
-  20: 2 -> 8 falseControlDependence
-  21: 2 -> 9 trueControlDependence
-  22: 5 -> 6 loopIndependentDefUseDependence this.label
-  23: 5 -> 6 loopIndependentDefUseDependence this.label.mnemonicIndex
-  24: 5 -> 6 loopIndependentDefUseDependence this.label.text
-  25: 6 -> 15 loopIndependentDefUseDependence this.label
-  26: 6 -> 15 loopIndependentDefUseDependence this.label.mnemonicIndex
-  27: 6 -> 15 loopIndependentDefUseDependence this.label.text
-  28: 6 -> 3 loopIndependentDefUseDependence this.label.!setText
-  29: 7 -> 15 loopIndependentDefUseDependence this.flag
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->   15 trueControlDependence
+   4:    2 ->    3 trueControlDependence
+   5:    2 ->    4 trueControlDependence
+   6:    2 ->    5 trueControlDependence
+   7:    2 ->    7 trueControlDependence
+   8:    2 ->    8 falseControlDependence
+   9:    2 ->    9 falseControlDependence
+  10:    2 ->   10 falseControlDependence
+  11:    2 ->   12 falseControlDependence
+  12:    2 -> * falseControlDependence
+  13:    2 -> * trueControlDependence
+  14: * ->    3 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
+  15: * ->    8 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
 --
    0: flag
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: label
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: ButtonListener( javax.swing.JLabel )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence l$0
-   5: 2 -> 4 loopIndependentDefUseDependence this.label
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence l$0
 --
 ----- ClDG (to here) -----
 

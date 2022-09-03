@@ -7,10 +7,10 @@ Class Name = Test24.Q24
    2 formalOut D = {  } U = { $_ }
 --
    0: n( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: Q24( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

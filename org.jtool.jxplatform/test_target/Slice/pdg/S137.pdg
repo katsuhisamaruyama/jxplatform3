@@ -2,68 +2,63 @@
 Class Name = S137
    0 methodEntry [ add( java.lang.String ) ]
    1 formalIn D = { elem$0 } U = {  }
-   2 assignment D = {  } U = { this.p.!add }
+   2 assignment D = {  } U = { this.p.!add( java.lang.String ) }
    3 receiver D = {  } U = { this.p }
-   4 methodCall D = { this.p, this.p.list } U = { this.p, this.p.list } TO = P137#add( java.lang.String )
+   4 methodCall D = {  } U = { this.p.list, this.p.list.!java.util.ArrayList.elementData, this.p.list.!java.util.ArrayList.modCount, this.p.list.!java.util.ArrayList.size } TO = P137#add( java.lang.String )
    5 actualIn D = {  } U = { elem$0 }
-   6 actualOut D = { this.p, this.p.!add, this.p.list } U = { this.p, this.p.list }
-   8 formalOut D = {  } U = { $_, this.p, this.p.list }
+* actualOut D = { this.p.!add( java.lang.String ), this.p.list.!java.util.ArrayList.modCount, this.p.list.!java.util.ArrayList.size } U = { this.p.list, this.p.list.!java.util.ArrayList.elementData, this.p.list.!java.util.ArrayList.modCount, this.p.list.!java.util.ArrayList.size }
+   8 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ p ]
-   1 fieldDeclaration D = { this.p } U = { P137.!P137, this.p }
+   1 fieldDeclaration D = { this.p } U = { P137.!P137( ), this.p }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P137#P137( )
-   4 actualOut D = { P137.!P137 } U = {  }
+   4 actualOut D = { P137.!P137( ) } U = {  }
 --
    0 constructorEntry [ S137( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ get( int ) ]
    1 formalIn D = { index$0 } U = {  }
-   2 returnSt D = { $_ } U = { this.p.!get }
+   2 returnSt D = { $_ } U = { this.p.!get( int ) }
    3 receiver D = {  } U = { this.p }
-   4 methodCall D = {  } U = { this.p, this.p.list } TO = P137#get( int )
+   4 methodCall D = {  } U = { this.p.list, this.p.list.!java.util.ArrayList.elementData, this.p.list.!java.util.ArrayList.size } TO = P137#get( int )
    5 actualIn D = {  } U = { index$0 }
-   6 actualOut D = { this.p.!get } U = { this.p.list }
+   6 actualOut D = { this.p.!get( int ) } U = { this.p.list, this.p.list.!java.util.ArrayList.elementData, this.p.list.!java.util.ArrayList.size }
    8 formalOut D = {  } U = { $_ }
 --
    0: add( java.lang.String )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 8 trueControlDependence
-   8: 1 -> 5 loopIndependentDefUseDependence elem$0
-   9: 4 -> 6 loopIndependentDefUseDependence this.p
-  10: 4 -> 6 loopIndependentDefUseDependence this.p.list
-  11: 5 -> 6 summary
-  12: 6 -> 2 loopIndependentDefUseDependence this.p.!add
-  13: 6 -> 8 loopIndependentDefUseDependence this.p
-  14: 6 -> 8 loopIndependentDefUseDependence this.p.list
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    8 trueControlDependence
+   7:    0 -> * trueControlDependence
+   8:    1 ->    5 loopIndependentDefUseDependence elem$0
+   9: * ->    2 loopIndependentDefUseDependence this.p.!add( java.lang.String )
 --
    0: p
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence P137.!P137
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence P137.!P137( )
 --
    0: S137( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: get( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 8 trueControlDependence
-   8: 1 -> 5 loopIndependentDefUseDependence index$0
-   9: 2 -> 8 loopIndependentDefUseDependence $_
-  10: 6 -> 2 loopIndependentDefUseDependence this.p.!get
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    1 ->    5 loopIndependentDefUseDependence index$0
+   9:    2 ->    8 loopIndependentDefUseDependence $_
+  10:    6 ->    2 loopIndependentDefUseDependence this.p.!get( int )
 --
 ----- ClDG (to here) -----
 

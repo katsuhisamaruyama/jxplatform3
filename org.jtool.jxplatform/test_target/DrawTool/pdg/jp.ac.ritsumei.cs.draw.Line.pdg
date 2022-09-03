@@ -6,119 +6,135 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
 --
    0 methodEntry [ drawGrabbedFigure( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
-   2 assignment D = {  } U = { g$0.!setColor }
+   2 assignment D = {  } U = { g$0.!setColor( java.awt.Color ) }
    3 receiver D = {  } U = { g$0 }
    4 methodCall D = {  } U = { this.color } TO = java.awt.Graphics#setColor( java.awt.Color )
-   5 actualOut D = { g$0.!setColor } U = {  }
-   6 assignment D = {  } U = { this.!drawGrabbedMark }
+   5 actualOut D = { g$0.!setColor( java.awt.Color ) } U = {  }
+   6 assignment D = {  } U = { this.!drawGrabbedMark( java.awt.Graphics int int ) }
    7 receiver D = {  } U = {  }
    8 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#drawGrabbedMark( java.awt.Graphics int int )
    9 actualIn D = {  } U = { g$0 }
-  10 actualIn D = {  } U = { this.!getLeft }
+  10 actualIn D = {  } U = { this.!getLeft( ) }
   11 receiver D = {  } U = {  }
   12 methodCall D = {  } U = { this.endX, this.startX } TO = jp.ac.ritsumei.cs.draw.Figure#getLeft( )
-  13 actualOut D = { this.!getLeft } U = { this.endX, this.startX }
-  14 actualIn D = {  } U = { this.!getTop }
+  13 actualOut D = { this.!getLeft( ) } U = { this.endX, this.startX }
+  14 actualIn D = {  } U = { this.!getTop( ) }
   15 receiver D = {  } U = {  }
   16 methodCall D = {  } U = { this.endY, this.startY } TO = jp.ac.ritsumei.cs.draw.Figure#getTop( )
-  17 actualOut D = { this.!getTop } U = { this.endY, this.startY }
-  18 actualOut D = { this.!drawGrabbedMark } U = {  }
-  19 assignment D = {  } U = { this.!drawGrabbedMark }
+  17 actualOut D = { this.!getTop( ) } U = { this.endY, this.startY }
+  18 actualOut D = { this.!drawGrabbedMark( java.awt.Graphics int int ) } U = {  }
+  19 assignment D = {  } U = { this.!drawGrabbedMark( java.awt.Graphics int int ) }
   20 receiver D = {  } U = {  }
   21 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#drawGrabbedMark( java.awt.Graphics int int )
   22 actualIn D = {  } U = { g$0 }
-  23 actualIn D = {  } U = { this.!getRight }
+  23 actualIn D = {  } U = { this.!getRight( ) }
   24 receiver D = {  } U = {  }
   25 methodCall D = {  } U = { this.endX, this.startX } TO = jp.ac.ritsumei.cs.draw.Figure#getRight( )
-  26 actualOut D = { this.!getRight } U = { this.endX, this.startX }
-  27 actualIn D = {  } U = { this.!getBottom }
+  26 actualOut D = { this.!getRight( ) } U = { this.endX, this.startX }
+  27 actualIn D = {  } U = { this.!getBottom( ) }
   28 receiver D = {  } U = {  }
   29 methodCall D = {  } U = { this.endY, this.startY } TO = jp.ac.ritsumei.cs.draw.Figure#getBottom( )
-  30 actualOut D = { this.!getBottom } U = { this.endY, this.startY }
-  31 actualOut D = { this.!drawGrabbedMark } U = {  }
+  30 actualOut D = { this.!getBottom( ) } U = { this.endY, this.startY }
+  31 actualOut D = { this.!drawGrabbedMark( java.awt.Graphics int int ) } U = {  }
   33 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ create( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
    2 formalIn D = { w$1 } U = {  }
-   3 returnSt D = { $_ } U = { Line.!Line }
+   3 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) }
    4 receiver D = {  } U = {  }
    5 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color float )
    6 actualIn D = {  } U = { c$0 }
    7 actualIn D = {  } U = { w$1 }
-   8 actualOut D = { Line.!Line } U = {  }
+   8 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) } U = {  }
   10 formalOut D = {  } U = { $_ }
+* actualOut D = { $_.color } U = {  }
+* actualOut D = { $_.outlineWidth } U = {  }
 --
    0 constructorEntry [ Line( java.awt.Color ) ]
    1 formalIn D = { c$0 } U = {  }
-   2 assignment D = {  } U = {  }
+   2 assignment D = {  } U = { super.!Figure( java.awt.Color ) }
    3 receiver D = {  } U = {  }
-   4 constructorCall D = { super.color, super.outlineWidth } U = { super.color, super.outlineWidth } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( java.awt.Color )
+   4 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( java.awt.Color )
    5 actualIn D = {  } U = { c$0 }
-   6 actualOut D = { , super.color, super.outlineWidth } U = { super.color, super.outlineWidth }
-   8 formalOut D = {  } U = { $_, super.color, super.outlineWidth }
+   6 actualOut D = { super.!Figure( java.awt.Color ) } U = {  }
+   8 formalOut D = {  } U = { $_ }
+* actualOut D = { super.!Figure( java.awt.Color ).color } U = {  }
+* actualOut D = { super.!Figure( java.awt.Color ).outlineWidth } U = {  }
 --
    0 methodEntry [ createClone( ) ]
-   1 localDeclaration D = { figure$0 } U = { figure$0.!Line }
+   1 localDeclaration D = { figure$0 } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color float )
    4 actualIn D = {  } U = { this.color }
    5 actualIn D = {  } U = { this.outlineWidth }
-   6 actualOut D = { figure$0.!Line } U = {  }
-   7 assignment D = {  } U = { figure$0.!setStart }
+   6 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) } U = {  }
+   7 assignment D = {  } U = { figure$0.!setStart( int int ) }
    8 receiver D = {  } U = { figure$0 }
-   9 methodCall D = { figure$0.startX, figure$0.startY } U = { figure$0.startX, figure$0.startY } TO = jp.ac.ritsumei.cs.draw.Figure#setStart( int int )
+   9 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#setStart( int int )
   10 actualIn D = {  } U = { this.startX }
   11 actualIn D = {  } U = { this.startY }
-  12 actualOut D = { figure$0.!setStart, figure$0.startX, figure$0.startY } U = { figure$0.startX, figure$0.startY }
-  13 assignment D = {  } U = { figure$0.!setEnd }
+  12 actualOut D = { figure$0.!setStart( int int ) } U = {  }
+  13 assignment D = {  } U = { figure$0.!setEnd( int int ) }
   14 receiver D = {  } U = { figure$0 }
-  15 methodCall D = { figure$0.endX, figure$0.endY } U = { figure$0.endX, figure$0.endY } TO = jp.ac.ritsumei.cs.draw.Figure#setEnd( int int )
+  15 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#setEnd( int int )
   16 actualIn D = {  } U = { this.endX }
   17 actualIn D = {  } U = { this.endY }
-  18 actualOut D = { figure$0.!setEnd, figure$0.endX, figure$0.endY } U = { figure$0.endX, figure$0.endY }
-  19 returnSt D = { $_ } U = { figure$0 }
-  21 formalOut D = {  } U = { $_, figure$0.endX, figure$0.endY, figure$0.startX, figure$0.startY }
+  18 actualOut D = { figure$0.!setEnd( int int ) } U = {  }
+  19 returnSt D = { $_ } U = { figure$0, figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).endX, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).endY, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).startX, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).startY }
+  21 formalOut D = {  } U = { $_ }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth } U = {  }
+* actualOut D = { figure$0.startX } U = {  }
+* actualOut D = { figure$0.startY } U = {  }
+* actualOut D = { figure$0.endX } U = {  }
+* actualOut D = { figure$0.endY } U = {  }
 --
    0 constructorEntry [ Line( int ) ]
    1 formalIn D = { w$0 } U = {  }
-   2 assignment D = {  } U = {  }
+   2 assignment D = {  } U = { super.!Figure( float ) }
    3 receiver D = {  } U = {  }
-   4 constructorCall D = { super.color, super.outlineWidth } U = { super.color, super.outlineWidth } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( float )
+   4 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( float )
    5 actualIn D = {  } U = { w$0 }
-   6 actualOut D = { , super.color, super.outlineWidth } U = { super.color, super.outlineWidth }
-   8 formalOut D = {  } U = { $_, super.color, super.outlineWidth }
+   6 actualOut D = { super.!Figure( float ) } U = { Color.black }
+   8 formalOut D = {  } U = { $_ }
+* actualOut D = { super.!Figure( float ).color } U = {  }
+* actualOut D = { super.!Figure( float ).outlineWidth } U = {  }
 --
    0 constructorEntry [ Line( ) ]
-   1 assignment D = {  } U = {  }
+   1 assignment D = {  } U = { super.!Figure( ) }
    2 receiver D = {  } U = {  }
-   3 constructorCall D = { super.color, super.outlineWidth } U = { super.color, super.outlineWidth } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( )
-   4 actualOut D = { , super.color, super.outlineWidth } U = { super.color, super.outlineWidth }
-   6 formalOut D = {  } U = { $_, super.color, super.outlineWidth }
+   3 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( )
+   4 actualOut D = { super.!Figure( ) } U = { Color.black }
+   6 formalOut D = {  } U = { $_ }
+* actualOut D = { super.!Figure( ).color } U = {  }
+* actualOut D = { super.!Figure( ).outlineWidth } U = {  }
 --
    0 methodEntry [ drawRubber( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 localDeclaration D = { g2$1 } U = { g$0 }
-   3 assignment D = {  } U = { g2$1.!setColor }
+   3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
    4 receiver D = {  } U = { g2$1 }
    5 methodCall D = {  } U = { this.color } TO = java.awt.Graphics#setColor( java.awt.Color )
-   6 actualOut D = { g2$1.!setColor } U = {  }
-   7 assignment D = {  } U = { g2$1.!drawLine }
+   6 actualOut D = { g2$1.!setColor( java.awt.Color ) } U = {  }
+   7 assignment D = {  } U = { g2$1.!drawLine( int int int int ) }
    8 receiver D = {  } U = { g2$1 }
    9 methodCall D = {  } U = { this.endX, this.endY, this.startX, this.startY } TO = java.awt.Graphics#drawLine( int int int int )
-  10 actualOut D = { g2$1.!drawLine } U = {  }
+  10 actualOut D = { g2$1.!drawLine( int int int int ) } U = {  }
   12 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Line( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
    2 formalIn D = { w$1 } U = {  }
-   3 assignment D = {  } U = {  }
+   3 assignment D = {  } U = { super.!Figure( java.awt.Color float ) }
    4 receiver D = {  } U = {  }
-   5 constructorCall D = { super.color, super.outlineWidth } U = { super.color, super.outlineWidth } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( java.awt.Color float )
+   5 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( java.awt.Color float )
    6 actualIn D = {  } U = { c$0 }
    7 actualIn D = {  } U = { w$1 }
-   8 actualOut D = { , super.color, super.outlineWidth } U = { super.color, super.outlineWidth }
-  10 formalOut D = {  } U = { $_, super.color, super.outlineWidth }
+   8 actualOut D = { super.!Figure( java.awt.Color float ) } U = {  }
+  10 formalOut D = {  } U = { $_ }
+* actualOut D = { super.!Figure( java.awt.Color float ).color } U = {  }
+* actualOut D = { super.!Figure( java.awt.Color float ).outlineWidth } U = {  }
 --
    0 methodEntry [ paintIcon( java.awt.Graphics int int int int ) ]
    1 formalIn D = { g$0 } U = {  }
@@ -126,20 +142,20 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    3 formalIn D = { y$2 } U = {  }
    4 formalIn D = { w$3 } U = {  }
    5 formalIn D = { h$4 } U = {  }
-   6 assignment D = {  } U = { g$0.!drawLine }
+   6 assignment D = {  } U = { g$0.!drawLine( int int int int ) }
    7 receiver D = {  } U = { g$0 }
    8 methodCall D = {  } U = { h$4, w$3, x$1, y$2 } TO = java.awt.Graphics#drawLine( int int int int )
-   9 actualOut D = { g$0.!drawLine } U = {  }
+   9 actualOut D = { g$0.!drawLine( int int int int ) } U = {  }
   10 localDeclaration D = { i$5 } U = {  }
   11 forSt D = {  } U = { i$5, this.outlineWidth }
-  12 assignment D = {  } U = { g$0.!drawLine }
+  12 assignment D = {  } U = { g$0.!drawLine( int int int int ) }
   13 receiver D = {  } U = { g$0 }
   14 methodCall D = {  } U = { h$4, i$5, w$3, x$1, y$2 } TO = java.awt.Graphics#drawLine( int int int int )
-  15 actualOut D = { g$0.!drawLine } U = {  }
-  16 assignment D = {  } U = { g$0.!drawLine }
+  15 actualOut D = { g$0.!drawLine( int int int int ) } U = {  }
+  16 assignment D = {  } U = { g$0.!drawLine( int int int int ) }
   17 receiver D = {  } U = { g$0 }
   18 methodCall D = {  } U = { h$4, i$5, w$3, x$1, y$2 } TO = java.awt.Graphics#drawLine( int int int int )
-  19 actualOut D = { g$0.!drawLine } U = {  }
+  19 actualOut D = { g$0.!drawLine( int int int int ) } U = {  }
   20 assignment D = { i$5 } U = { i$5 }
   22 formalOut D = {  } U = { $_ }
 --
@@ -150,13 +166,13 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    4 localDeclaration D = { ry$3 } U = { this.startY, y$1 }
    5 localDeclaration D = { dx$4 } U = { this.endX, this.startX }
    6 localDeclaration D = { dy$5 } U = { this.endY, this.startY }
-   7 localDeclaration D = { gap$6 } U = { this.!abs, this.!sqrt }
+   7 localDeclaration D = { gap$6 } U = { this.!abs( int ), this.!sqrt( double ) }
    8 receiver D = {  } U = {  }
    9 methodCall D = {  } U = { dx$4, dy$5, rx$2, ry$3 } TO = java.lang.Math#abs( int )
-  10 actualOut D = { this.!abs } U = {  }
+  10 actualOut D = { this.!abs( int ) } U = {  }
   11 receiver D = {  } U = {  }
   12 methodCall D = {  } U = { dx$4, dy$5 } TO = java.lang.Math#sqrt( double )
-  13 actualOut D = { this.!sqrt } U = {  }
+  13 actualOut D = { this.!sqrt( double ) } U = {  }
   14 returnSt D = { $_ } U = { gap$6, jp.ac.ritsumei.cs.draw.Figure.ALLOWABLE_GAP_WHEN_GRABBED }
   16 formalOut D = {  } U = { $_ }
 --
@@ -166,401 +182,375 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    0 methodEntry [ draw( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 localDeclaration D = { g2$1 } U = { g$0 }
-   3 assignment D = {  } U = { g2$1.!setColor }
+   3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
    4 receiver D = {  } U = { g2$1 }
    5 methodCall D = {  } U = { this.color } TO = java.awt.Graphics#setColor( java.awt.Color )
-   6 actualOut D = { g2$1.!setColor } U = {  }
-   7 assignment D = {  } U = { g2$1.!setStroke }
+   6 actualOut D = { g2$1.!setColor( java.awt.Color ) } U = {  }
+   7 assignment D = {  } U = { g2$1.!setStroke( java.awt.Stroke ) }
    8 receiver D = {  } U = { g2$1 }
-   9 methodCall D = {  } U = { BasicStroke.!BasicStroke } TO = java.awt.Graphics2D#setStroke( java.awt.Stroke )
+   9 methodCall D = {  } U = { java.awt.BasicStroke.!BasicStroke( float ) } TO = java.awt.Graphics2D#setStroke( java.awt.Stroke )
   10 receiver D = {  } U = {  }
-  11 constructorCall D = { BasicStroke.cap, BasicStroke.dash, BasicStroke.dash_phase, BasicStroke.join, BasicStroke.miterlimit, BasicStroke.width } U = { this.outlineWidth } TO = java.awt.BasicStroke#BasicStroke( float )
-  12 actualOut D = { BasicStroke.!BasicStroke, BasicStroke.cap, BasicStroke.dash, BasicStroke.dash_phase, BasicStroke.join, BasicStroke.miterlimit, BasicStroke.width } U = {  }
-  13 actualOut D = { g2$1.!setStroke } U = {  }
-  14 assignment D = {  } U = { g2$1.!drawLine }
+  11 constructorCall D = {  } U = { this.outlineWidth } TO = java.awt.BasicStroke#BasicStroke( float )
+* actualOut D = { java.awt.BasicStroke.!BasicStroke( float ), java.awt.BasicStroke.!java.awt.BasicStroke.cap, java.awt.BasicStroke.!java.awt.BasicStroke.dash, java.awt.BasicStroke.!java.awt.BasicStroke.dash_phase, java.awt.BasicStroke.!java.awt.BasicStroke.join, java.awt.BasicStroke.!java.awt.BasicStroke.miterlimit, java.awt.BasicStroke.!java.awt.BasicStroke.width } U = {  }
+  13 actualOut D = { g2$1.!setStroke( java.awt.Stroke ) } U = {  }
+  14 assignment D = {  } U = { g2$1.!drawLine( int int int int ) }
   15 receiver D = {  } U = { g2$1 }
   16 methodCall D = {  } U = { this.endX, this.endY, this.startX, this.startY } TO = java.awt.Graphics#drawLine( int int int int )
-  17 actualOut D = { g2$1.!drawLine } U = {  }
-  19 formalOut D = {  } U = { $_, BasicStroke.cap, BasicStroke.dash, BasicStroke.dash_phase, BasicStroke.join, BasicStroke.miterlimit, BasicStroke.width }
+  17 actualOut D = { g2$1.!drawLine( int int int int ) } U = {  }
+  19 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ drawOutline( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 localDeclaration D = { g2$1 } U = { g$0 }
-   3 assignment D = {  } U = { g2$1.!setColor }
+   3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
    4 receiver D = {  } U = { g2$1 }
    5 methodCall D = {  } U = { this.color } TO = java.awt.Graphics#setColor( java.awt.Color )
-   6 actualOut D = { g2$1.!setColor } U = {  }
-   7 assignment D = {  } U = { g2$1.!setStroke }
+   6 actualOut D = { g2$1.!setColor( java.awt.Color ) } U = {  }
+   7 assignment D = {  } U = { g2$1.!setStroke( java.awt.Stroke ) }
    8 receiver D = {  } U = { g2$1 }
    9 methodCall D = {  } U = { jp.ac.ritsumei.cs.draw.Figure.dotted } TO = java.awt.Graphics2D#setStroke( java.awt.Stroke )
-  10 actualOut D = { g2$1.!setStroke } U = {  }
-  11 assignment D = {  } U = { g2$1.!drawLine }
+  10 actualOut D = { g2$1.!setStroke( java.awt.Stroke ) } U = {  }
+  11 assignment D = {  } U = { g2$1.!drawLine( int int int int ) }
   12 receiver D = {  } U = { g2$1 }
   13 methodCall D = {  } U = { this.endX, this.endY, this.startX, this.startY } TO = java.awt.Graphics#drawLine( int int int int )
-  14 actualOut D = { g2$1.!drawLine } U = {  }
+  14 actualOut D = { g2$1.!drawLine( int int int int ) } U = {  }
   16 formalOut D = {  } U = { $_ }
 --
    0: getName( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
 --
    0: drawGrabbedFigure( java.awt.Graphics )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 26 trueControlDependence
-  20: 0 -> 27 trueControlDependence
-  21: 0 -> 28 trueControlDependence
-  22: 0 -> 29 trueControlDependence
-  23: 0 -> 3 trueControlDependence
-  24: 0 -> 30 trueControlDependence
-  25: 0 -> 31 trueControlDependence
-  26: 0 -> 33 trueControlDependence
-  27: 0 -> 4 trueControlDependence
-  28: 0 -> 5 trueControlDependence
-  29: 0 -> 6 trueControlDependence
-  30: 0 -> 7 trueControlDependence
-  31: 0 -> 8 trueControlDependence
-  32: 0 -> 9 trueControlDependence
-  33: 1 -> 22 loopIndependentDefUseDependence g$0
-  34: 1 -> 3 loopIndependentDefUseDependence g$0
-  35: 1 -> 9 loopIndependentDefUseDependence g$0
-  36: 13 -> 10 loopIndependentDefUseDependence this.!getLeft
-  37: 17 -> 14 loopIndependentDefUseDependence this.!getTop
-  38: 18 -> 31 outputDependence this.!drawGrabbedMark
-  39: 18 -> 6 loopIndependentDefUseDependence this.!drawGrabbedMark
-  40: 26 -> 23 loopIndependentDefUseDependence this.!getRight
-  41: 30 -> 27 loopIndependentDefUseDependence this.!getBottom
-  42: 31 -> 19 loopIndependentDefUseDependence this.!drawGrabbedMark
-  43: 5 -> 2 loopIndependentDefUseDependence g$0.!setColor
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   27 trueControlDependence
+  28:    0 ->   28 trueControlDependence
+  29:    0 ->   29 trueControlDependence
+  30:    0 ->   30 trueControlDependence
+  31:    0 ->   31 trueControlDependence
+  32:    0 ->   33 trueControlDependence
+  33:    1 ->    3 loopIndependentDefUseDependence g$0
+  34:    1 ->    9 loopIndependentDefUseDependence g$0
+  35:    1 ->   22 loopIndependentDefUseDependence g$0
+  36:    5 ->    2 loopIndependentDefUseDependence g$0.!setColor( java.awt.Color )
+  37:   13 ->   10 loopIndependentDefUseDependence this.!getLeft( )
+  38:   17 ->   14 loopIndependentDefUseDependence this.!getTop( )
+  39:   18 ->    6 loopIndependentDefUseDependence this.!drawGrabbedMark( java.awt.Graphics int int )
+  40:   18 ->   31 outputDependence this.!drawGrabbedMark( java.awt.Graphics int int )
+  41:   26 ->   23 loopIndependentDefUseDependence this.!getRight( )
+  42:   30 ->   27 loopIndependentDefUseDependence this.!getBottom( )
+  43:   31 ->   19 loopIndependentDefUseDependence this.!drawGrabbedMark( java.awt.Graphics int int )
 --
    0: create( java.awt.Color float )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 1 -> 6 loopIndependentDefUseDependence c$0
-  11: 2 -> 7 loopIndependentDefUseDependence w$1
-  12: 3 -> 10 loopIndependentDefUseDependence $_
-  13: 6 -> 8 summary
-  14: 7 -> 8 summary
-  15: 8 -> 3 loopIndependentDefUseDependence Line.!Line
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    0 -> * trueControlDependence
+  11:    0 -> * trueControlDependence
+  12:    1 ->    6 loopIndependentDefUseDependence c$0
+  13:    2 ->    7 loopIndependentDefUseDependence w$1
+  14:    3 ->   10 loopIndependentDefUseDependence $_
+  15:    8 ->    3 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float )
 --
    0: Line( java.awt.Color )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 8 trueControlDependence
-   8: 1 -> 5 loopIndependentDefUseDependence c$0
-   9: 4 -> 6 loopIndependentDefUseDependence super.color
-  10: 4 -> 6 loopIndependentDefUseDependence super.outlineWidth
-  11: 5 -> 6 summary
-  12: 6 -> 2 loopIndependentDefUseDependence 
-  13: 6 -> 8 loopIndependentDefUseDependence super.color
-  14: 6 -> 8 loopIndependentDefUseDependence super.outlineWidth
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    0 -> * trueControlDependence
+   9:    0 -> * trueControlDependence
+  10:    1 ->    5 loopIndependentDefUseDependence c$0
+  11:    6 ->    2 loopIndependentDefUseDependence super.!Figure( java.awt.Color )
 --
    0: createClone( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 21 trueControlDependence
-  14: 0 -> 3 trueControlDependence
-  15: 0 -> 4 trueControlDependence
-  16: 0 -> 5 trueControlDependence
-  17: 0 -> 6 trueControlDependence
-  18: 0 -> 7 trueControlDependence
-  19: 0 -> 8 trueControlDependence
-  20: 0 -> 9 trueControlDependence
-  21: 1 -> 14 declaration
-  22: 1 -> 14 loopIndependentDefUseDependence figure$0
-  23: 1 -> 19 declaration
-  24: 1 -> 19 loopIndependentDefUseDependence figure$0
-  25: 1 -> 8 declaration
-  26: 1 -> 8 loopIndependentDefUseDependence figure$0
-  27: 10 -> 12 summary
-  28: 11 -> 12 summary
-  29: 12 -> 21 loopIndependentDefUseDependence figure$0.startX
-  30: 12 -> 21 loopIndependentDefUseDependence figure$0.startY
-  31: 12 -> 7 loopIndependentDefUseDependence figure$0.!setStart
-  32: 15 -> 18 loopIndependentDefUseDependence figure$0.endX
-  33: 15 -> 18 loopIndependentDefUseDependence figure$0.endY
-  34: 16 -> 18 summary
-  35: 17 -> 18 summary
-  36: 18 -> 13 loopIndependentDefUseDependence figure$0.!setEnd
-  37: 18 -> 21 loopIndependentDefUseDependence figure$0.endX
-  38: 18 -> 21 loopIndependentDefUseDependence figure$0.endY
-  39: 19 -> 21 loopIndependentDefUseDependence $_
-  40: 4 -> 6 summary
-  41: 5 -> 6 summary
-  42: 6 -> 1 loopIndependentDefUseDependence figure$0.!Line
-  43: 9 -> 12 loopIndependentDefUseDependence figure$0.startX
-  44: 9 -> 12 loopIndependentDefUseDependence figure$0.startY
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   21 trueControlDependence
+  21:    0 -> * trueControlDependence
+  22:    0 -> * trueControlDependence
+  23:    0 -> * trueControlDependence
+  24:    0 -> * trueControlDependence
+  25:    0 -> * trueControlDependence
+  26:    0 -> * trueControlDependence
+  27:    1 ->    8 declaration
+  28:    1 ->    8 loopIndependentDefUseDependence figure$0
+  29:    1 ->   14 declaration
+  30:    1 ->   14 loopIndependentDefUseDependence figure$0
+  31:    1 ->   19 declaration
+  32:    1 ->   19 loopIndependentDefUseDependence figure$0
+  33:    6 ->    1 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float )
+  34:   12 ->    7 loopIndependentDefUseDependence figure$0.!setStart( int int )
+  35:   18 ->   13 loopIndependentDefUseDependence figure$0.!setEnd( int int )
+  36:   19 ->   21 loopIndependentDefUseDependence $_
+  37: * ->   19 loopIndependentDefUseDependence figure$0.endX
+  38: * ->   19 loopIndependentDefUseDependence figure$0.endY
+  39: * ->   19 loopIndependentDefUseDependence figure$0.startX
+  40: * ->   19 loopIndependentDefUseDependence figure$0.startY
+  41: * ->   19 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color
+  42: * ->   19 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth
 --
    0: Line( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 6 trueControlDependence
-   7: 0 -> 8 trueControlDependence
-   8: 1 -> 5 loopIndependentDefUseDependence w$0
-   9: 4 -> 6 loopIndependentDefUseDependence super.color
-  10: 4 -> 6 loopIndependentDefUseDependence super.outlineWidth
-  11: 5 -> 6 summary
-  12: 6 -> 2 loopIndependentDefUseDependence 
-  13: 6 -> 8 loopIndependentDefUseDependence super.color
-  14: 6 -> 8 loopIndependentDefUseDependence super.outlineWidth
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    0 -> * trueControlDependence
+   9:    0 -> * trueControlDependence
+  10:    1 ->    5 loopIndependentDefUseDependence w$0
+  11:    6 ->    2 loopIndependentDefUseDependence super.!Figure( float )
 --
    0: Line( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 6 trueControlDependence
-   6: 3 -> 4 loopIndependentDefUseDependence super.color
-   7: 3 -> 4 loopIndependentDefUseDependence super.outlineWidth
-   8: 4 -> 1 loopIndependentDefUseDependence 
-   9: 4 -> 6 loopIndependentDefUseDependence super.color
-  10: 4 -> 6 loopIndependentDefUseDependence super.outlineWidth
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    0 -> * trueControlDependence
+   7:    0 -> * trueControlDependence
+   8:    4 ->    1 loopIndependentDefUseDependence super.!Figure( )
 --
    0: drawRubber( java.awt.Graphics )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 12 trueControlDependence
-   4: 0 -> 2 trueControlDependence
-   5: 0 -> 3 trueControlDependence
-   6: 0 -> 4 trueControlDependence
-   7: 0 -> 5 trueControlDependence
-   8: 0 -> 6 trueControlDependence
-   9: 0 -> 7 trueControlDependence
-  10: 0 -> 8 trueControlDependence
-  11: 0 -> 9 trueControlDependence
-  12: 1 -> 2 loopIndependentDefUseDependence g$0
-  13: 10 -> 7 loopIndependentDefUseDependence g2$1.!drawLine
-  14: 2 -> 4 declaration
-  15: 2 -> 4 loopIndependentDefUseDependence g2$1
-  16: 2 -> 8 declaration
-  17: 2 -> 8 loopIndependentDefUseDependence g2$1
-  18: 6 -> 3 loopIndependentDefUseDependence g2$1.!setColor
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   12 trueControlDependence
+  12:    1 ->    2 loopIndependentDefUseDependence g$0
+  13:    2 ->    4 declaration
+  14:    2 ->    4 loopIndependentDefUseDependence g2$1
+  15:    2 ->    8 declaration
+  16:    2 ->    8 loopIndependentDefUseDependence g2$1
+  17:    6 ->    3 loopIndependentDefUseDependence g2$1.!setColor( java.awt.Color )
+  18:   10 ->    7 loopIndependentDefUseDependence g2$1.!drawLine( int int int int )
 --
    0: Line( java.awt.Color float )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 1 -> 6 loopIndependentDefUseDependence c$0
-  11: 2 -> 7 loopIndependentDefUseDependence w$1
-  12: 5 -> 8 loopIndependentDefUseDependence super.color
-  13: 5 -> 8 loopIndependentDefUseDependence super.outlineWidth
-  14: 6 -> 8 summary
-  15: 7 -> 8 summary
-  16: 8 -> 10 loopIndependentDefUseDependence super.color
-  17: 8 -> 10 loopIndependentDefUseDependence super.outlineWidth
-  18: 8 -> 3 loopIndependentDefUseDependence 
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    0 -> * trueControlDependence
+  11:    0 -> * trueControlDependence
+  12:    1 ->    6 loopIndependentDefUseDependence c$0
+  13:    2 ->    7 loopIndependentDefUseDependence w$1
+  14:    8 ->    3 loopIndependentDefUseDependence super.!Figure( java.awt.Color float )
 --
    0: paintIcon( java.awt.Graphics int int int int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 2 trueControlDependence
-   5: 0 -> 22 trueControlDependence
-   6: 0 -> 3 trueControlDependence
-   7: 0 -> 4 trueControlDependence
-   8: 0 -> 5 trueControlDependence
-   9: 0 -> 6 trueControlDependence
-  10: 0 -> 7 trueControlDependence
-  11: 0 -> 8 trueControlDependence
-  12: 0 -> 9 trueControlDependence
-  13: 1 -> 13 loopIndependentDefUseDependence g$0
-  14: 1 -> 17 loopIndependentDefUseDependence g$0
-  15: 1 -> 7 loopIndependentDefUseDependence g$0
-  16: 10 -> 11 declaration
-  17: 10 -> 11 loopIndependentDefUseDependence i$5
-  18: 10 -> 14 declaration
-  19: 10 -> 14 loopIndependentDefUseDependence i$5
-  20: 10 -> 18 declaration
-  21: 10 -> 18 loopIndependentDefUseDependence i$5
-  22: 10 -> 20 declaration
-  23: 10 -> 20 loopIndependentDefUseDependence i$5
-  24: 11 -> 12 trueControlDependence
-  25: 11 -> 13 trueControlDependence
-  26: 11 -> 14 trueControlDependence
-  27: 11 -> 15 trueControlDependence
-  28: 11 -> 16 trueControlDependence
-  29: 11 -> 17 trueControlDependence
-  30: 11 -> 18 trueControlDependence
-  31: 11 -> 19 trueControlDependence
-  32: 11 -> 20 trueControlDependence
-  33: 15 -> 12 loopIndependentDefUseDependence g$0.!drawLine
-  34: 15 -> 19 outputDependence g$0.!drawLine
-  35: 19 -> 15 outputDependence g$0.!drawLine
-  36: 19 -> 16 loopIndependentDefUseDependence g$0.!drawLine
-  37: 2 -> 14 loopIndependentDefUseDependence x$1
-  38: 2 -> 18 loopIndependentDefUseDependence x$1
-  39: 2 -> 8 loopIndependentDefUseDependence x$1
-  40: 20 -> 11 loopCarriedDefUseDependence i$5 11
-  41: 20 -> 14 loopCarriedDefUseDependence i$5 11
-  42: 20 -> 18 loopCarriedDefUseDependence i$5 11
-  43: 20 -> 20 loopCarriedDefUseDependence i$5 11
-  44: 3 -> 14 loopIndependentDefUseDependence y$2
-  45: 3 -> 18 loopIndependentDefUseDependence y$2
-  46: 3 -> 8 loopIndependentDefUseDependence y$2
-  47: 4 -> 14 loopIndependentDefUseDependence w$3
-  48: 4 -> 18 loopIndependentDefUseDependence w$3
-  49: 4 -> 8 loopIndependentDefUseDependence w$3
-  50: 5 -> 14 loopIndependentDefUseDependence h$4
-  51: 5 -> 18 loopIndependentDefUseDependence h$4
-  52: 5 -> 8 loopIndependentDefUseDependence h$4
-  53: 9 -> 15 outputDependence g$0.!drawLine
-  54: 9 -> 6 loopIndependentDefUseDependence g$0.!drawLine
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   22 trueControlDependence
+  13:    1 ->    7 loopIndependentDefUseDependence g$0
+  14:    1 ->   13 loopIndependentDefUseDependence g$0
+  15:    1 ->   17 loopIndependentDefUseDependence g$0
+  16:    2 ->    8 loopIndependentDefUseDependence x$1
+  17:    2 ->   14 loopIndependentDefUseDependence x$1
+  18:    2 ->   18 loopIndependentDefUseDependence x$1
+  19:    3 ->    8 loopIndependentDefUseDependence y$2
+  20:    3 ->   14 loopIndependentDefUseDependence y$2
+  21:    3 ->   18 loopIndependentDefUseDependence y$2
+  22:    4 ->    8 loopIndependentDefUseDependence w$3
+  23:    4 ->   14 loopIndependentDefUseDependence w$3
+  24:    4 ->   18 loopIndependentDefUseDependence w$3
+  25:    5 ->    8 loopIndependentDefUseDependence h$4
+  26:    5 ->   14 loopIndependentDefUseDependence h$4
+  27:    5 ->   18 loopIndependentDefUseDependence h$4
+  28:    9 ->    6 loopIndependentDefUseDependence g$0.!drawLine( int int int int )
+  29:    9 ->   15 outputDependence g$0.!drawLine( int int int int )
+  30:   10 ->   11 declaration
+  31:   10 ->   11 loopIndependentDefUseDependence i$5
+  32:   10 ->   14 declaration
+  33:   10 ->   14 loopIndependentDefUseDependence i$5
+  34:   10 ->   18 declaration
+  35:   10 ->   18 loopIndependentDefUseDependence i$5
+  36:   10 ->   20 declaration
+  37:   10 ->   20 loopIndependentDefUseDependence i$5
+  38:   11 ->   12 trueControlDependence
+  39:   11 ->   13 trueControlDependence
+  40:   11 ->   14 trueControlDependence
+  41:   11 ->   15 trueControlDependence
+  42:   11 ->   16 trueControlDependence
+  43:   11 ->   17 trueControlDependence
+  44:   11 ->   18 trueControlDependence
+  45:   11 ->   19 trueControlDependence
+  46:   11 ->   20 trueControlDependence
+  47:   15 ->   12 loopIndependentDefUseDependence g$0.!drawLine( int int int int )
+  48:   15 ->   19 outputDependence g$0.!drawLine( int int int int )
+  49:   19 ->   15 outputDependence g$0.!drawLine( int int int int )
+  50:   19 ->   16 loopIndependentDefUseDependence g$0.!drawLine( int int int int )
+  51:   20 ->   11 loopCarriedDefUseDependence i$5 (LC =   11)
+  52:   20 ->   14 loopCarriedDefUseDependence i$5 (LC =   11)
+  53:   20 ->   18 loopCarriedDefUseDependence i$5 (LC =   11)
+  54:   20 ->   20 loopCarriedDefUseDependence i$5 (LC =   11)
 --
    0: isGrabbed( int int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 16 trueControlDependence
-   8: 0 -> 2 trueControlDependence
-   9: 0 -> 3 trueControlDependence
-  10: 0 -> 4 trueControlDependence
-  11: 0 -> 5 trueControlDependence
-  12: 0 -> 6 trueControlDependence
-  13: 0 -> 7 trueControlDependence
-  14: 0 -> 8 trueControlDependence
-  15: 0 -> 9 trueControlDependence
-  16: 1 -> 3 loopIndependentDefUseDependence x$0
-  17: 10 -> 7 loopIndependentDefUseDependence this.!abs
-  18: 13 -> 7 loopIndependentDefUseDependence this.!sqrt
-  19: 14 -> 16 loopIndependentDefUseDependence $_
-  20: 2 -> 4 loopIndependentDefUseDependence y$1
-  21: 3 -> 9 declaration
-  22: 3 -> 9 loopIndependentDefUseDependence rx$2
-  23: 4 -> 9 declaration
-  24: 4 -> 9 loopIndependentDefUseDependence ry$3
-  25: 5 -> 12 declaration
-  26: 5 -> 12 loopIndependentDefUseDependence dx$4
-  27: 5 -> 9 declaration
-  28: 5 -> 9 loopIndependentDefUseDependence dx$4
-  29: 6 -> 12 declaration
-  30: 6 -> 12 loopIndependentDefUseDependence dy$5
-  31: 6 -> 9 declaration
-  32: 6 -> 9 loopIndependentDefUseDependence dy$5
-  33: 7 -> 14 declaration
-  34: 7 -> 14 loopIndependentDefUseDependence gap$6
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   16 trueControlDependence
+  16:    1 ->    3 loopIndependentDefUseDependence x$0
+  17:    2 ->    4 loopIndependentDefUseDependence y$1
+  18:    3 ->    9 declaration
+  19:    3 ->    9 loopIndependentDefUseDependence rx$2
+  20:    4 ->    9 declaration
+  21:    4 ->    9 loopIndependentDefUseDependence ry$3
+  22:    5 ->    9 declaration
+  23:    5 ->    9 loopIndependentDefUseDependence dx$4
+  24:    5 ->   12 declaration
+  25:    5 ->   12 loopIndependentDefUseDependence dx$4
+  26:    6 ->    9 declaration
+  27:    6 ->    9 loopIndependentDefUseDependence dy$5
+  28:    6 ->   12 declaration
+  29:    6 ->   12 loopIndependentDefUseDependence dy$5
+  30:    7 ->   14 declaration
+  31:    7 ->   14 loopIndependentDefUseDependence gap$6
+  32:   10 ->    7 loopIndependentDefUseDependence this.!abs( int )
+  33:   13 ->    7 loopIndependentDefUseDependence this.!sqrt( double )
+  34:   14 ->   16 loopIndependentDefUseDependence $_
 --
    0: name
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: draw( java.awt.Graphics )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 19 trueControlDependence
-  11: 0 -> 2 trueControlDependence
-  12: 0 -> 3 trueControlDependence
-  13: 0 -> 4 trueControlDependence
-  14: 0 -> 5 trueControlDependence
-  15: 0 -> 6 trueControlDependence
-  16: 0 -> 7 trueControlDependence
-  17: 0 -> 8 trueControlDependence
-  18: 0 -> 9 trueControlDependence
-  19: 1 -> 2 loopIndependentDefUseDependence g$0
-  20: 11 -> 12 outputDependence BasicStroke.cap
-  21: 11 -> 12 outputDependence BasicStroke.dash
-  22: 11 -> 12 outputDependence BasicStroke.dash_phase
-  23: 11 -> 12 outputDependence BasicStroke.join
-  24: 11 -> 12 outputDependence BasicStroke.miterlimit
-  25: 11 -> 12 outputDependence BasicStroke.width
-  26: 12 -> 19 loopIndependentDefUseDependence BasicStroke.cap
-  27: 12 -> 19 loopIndependentDefUseDependence BasicStroke.dash
-  28: 12 -> 19 loopIndependentDefUseDependence BasicStroke.dash_phase
-  29: 12 -> 19 loopIndependentDefUseDependence BasicStroke.join
-  30: 12 -> 19 loopIndependentDefUseDependence BasicStroke.miterlimit
-  31: 12 -> 19 loopIndependentDefUseDependence BasicStroke.width
-  32: 12 -> 9 loopIndependentDefUseDependence BasicStroke.!BasicStroke
-  33: 13 -> 7 loopIndependentDefUseDependence g2$1.!setStroke
-  34: 17 -> 14 loopIndependentDefUseDependence g2$1.!drawLine
-  35: 2 -> 15 declaration
-  36: 2 -> 15 loopIndependentDefUseDependence g2$1
-  37: 2 -> 4 declaration
-  38: 2 -> 4 loopIndependentDefUseDependence g2$1
-  39: 2 -> 8 declaration
-  40: 2 -> 8 loopIndependentDefUseDependence g2$1
-  41: 6 -> 3 loopIndependentDefUseDependence g2$1.!setColor
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   13 trueControlDependence
+  13:    0 ->   14 trueControlDependence
+  14:    0 ->   15 trueControlDependence
+  15:    0 ->   16 trueControlDependence
+  16:    0 ->   17 trueControlDependence
+  17:    0 ->   19 trueControlDependence
+  18:    0 -> * trueControlDependence
+  19:    1 ->    2 loopIndependentDefUseDependence g$0
+  20:    2 ->    4 declaration
+  21:    2 ->    4 loopIndependentDefUseDependence g2$1
+  22:    2 ->    8 declaration
+  23:    2 ->    8 loopIndependentDefUseDependence g2$1
+  24:    2 ->   15 declaration
+  25:    2 ->   15 loopIndependentDefUseDependence g2$1
+  26:    6 ->    3 loopIndependentDefUseDependence g2$1.!setColor( java.awt.Color )
+  27:   13 ->    7 loopIndependentDefUseDependence g2$1.!setStroke( java.awt.Stroke )
+  28:   17 ->   14 loopIndependentDefUseDependence g2$1.!drawLine( int int int int )
+  29: * ->    9 loopIndependentDefUseDependence java.awt.BasicStroke.!BasicStroke( float )
 --
    0: drawOutline( java.awt.Graphics )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 16 trueControlDependence
-   8: 0 -> 2 trueControlDependence
-   9: 0 -> 3 trueControlDependence
-  10: 0 -> 4 trueControlDependence
-  11: 0 -> 5 trueControlDependence
-  12: 0 -> 6 trueControlDependence
-  13: 0 -> 7 trueControlDependence
-  14: 0 -> 8 trueControlDependence
-  15: 0 -> 9 trueControlDependence
-  16: 1 -> 2 loopIndependentDefUseDependence g$0
-  17: 10 -> 7 loopIndependentDefUseDependence g2$1.!setStroke
-  18: 14 -> 11 loopIndependentDefUseDependence g2$1.!drawLine
-  19: 2 -> 12 declaration
-  20: 2 -> 12 loopIndependentDefUseDependence g2$1
-  21: 2 -> 4 declaration
-  22: 2 -> 4 loopIndependentDefUseDependence g2$1
-  23: 2 -> 8 declaration
-  24: 2 -> 8 loopIndependentDefUseDependence g2$1
-  25: 6 -> 3 loopIndependentDefUseDependence g2$1.!setColor
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   16 trueControlDependence
+  16:    1 ->    2 loopIndependentDefUseDependence g$0
+  17:    2 ->    4 declaration
+  18:    2 ->    4 loopIndependentDefUseDependence g2$1
+  19:    2 ->    8 declaration
+  20:    2 ->    8 loopIndependentDefUseDependence g2$1
+  21:    2 ->   12 declaration
+  22:    2 ->   12 loopIndependentDefUseDependence g2$1
+  23:    6 ->    3 loopIndependentDefUseDependence g2$1.!setColor( java.awt.Color )
+  24:   10 ->    7 loopIndependentDefUseDependence g2$1.!setStroke( java.awt.Stroke )
+  25:   14 ->   11 loopIndependentDefUseDependence g2$1.!drawLine( int int int int )
 --
 ----- ClDG (to here) -----
 

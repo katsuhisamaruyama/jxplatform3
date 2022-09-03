@@ -1,62 +1,53 @@
 ----- ClDG (from here) -----
 Class Name = Test137
    0 methodEntry [ m( ) ]
-   1 localDeclaration D = { s1$0 } U = { s1$0.!P137 }
+   1 localDeclaration D = { s1$0 } U = { P137.!P137( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P137#P137( )
-   4 actualOut D = { s1$0.!P137 } U = {  }
-   5 assignment D = {  } U = { s1$0.!add }
+   4 actualOut D = { P137.!P137( ) } U = {  }
+   5 assignment D = {  } U = { s1$0.!add( java.lang.String ) }
    6 receiver D = {  } U = { s1$0 }
-   7 methodCall D = { s1$0, s1$0.list } U = { s1$0, s1$0.list } TO = P137#add( java.lang.String )
+   7 methodCall D = {  } U = { P137.!P137( ).list, P137.!P137( ).list.!java.util.ArrayList.elementData, P137.!P137( ).list.!java.util.ArrayList.modCount, P137.!P137( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size } TO = P137#add( java.lang.String )
    8 actualIn D = {  } U = { $java.lang.String }
-   9 actualOut D = { s1$0, s1$0.!add, s1$0.list } U = { s1$0, s1$0.list }
-  10 localDeclaration D = { s$1 } U = { s1$0.!get }
+* actualOut D = { s1$0.!add( java.lang.String ), s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size } U = { P137.!P137( ).list, P137.!P137( ).list.!java.util.ArrayList.elementData, P137.!P137( ).list.!java.util.ArrayList.modCount, P137.!P137( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size }
+  10 localDeclaration D = { s$1 } U = { s1$0.!get( int ) }
   11 receiver D = {  } U = { s1$0 }
-  12 methodCall D = {  } U = { s1$0, s1$0.list } TO = P137#get( int )
+  12 methodCall D = {  } U = { P137.!P137( ).list, P137.!P137( ).list.!java.util.ArrayList.elementData, P137.!P137( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.size } TO = P137#get( int )
   13 actualIn D = {  } U = {  }
-  14 actualOut D = { s1$0.!get } U = { s1$0.list }
-  16 formalOut D = {  } U = { $_, s1$0.list }
+  14 actualOut D = { s1$0.!get( int ) } U = { P137.!P137( ).list, P137.!P137( ).list.!java.util.ArrayList.elementData, P137.!P137( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.size }
+  16 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Test137( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 16 trueControlDependence
-   8: 0 -> 2 trueControlDependence
-   9: 0 -> 3 trueControlDependence
-  10: 0 -> 4 trueControlDependence
-  11: 0 -> 5 trueControlDependence
-  12: 0 -> 6 trueControlDependence
-  13: 0 -> 7 trueControlDependence
-  14: 0 -> 8 trueControlDependence
-  15: 0 -> 9 trueControlDependence
-  16: 1 -> 11 declaration
-  17: 1 -> 12 declaration
-  18: 1 -> 6 declaration
-  19: 1 -> 6 loopIndependentDefUseDependence s1$0
-  20: 1 -> 7 declaration
-  21: 1 -> 7 loopIndependentDefUseDependence s1$0
-  22: 1 -> 9 declaration
-  23: 14 -> 10 loopIndependentDefUseDependence s1$0.!get
-  24: 4 -> 1 loopIndependentDefUseDependence s1$0.!P137
-  25: 7 -> 9 loopIndependentDefUseDependence s1$0
-  26: 7 -> 9 loopIndependentDefUseDependence s1$0.list
-  27: 8 -> 9 summary
-  28: 9 -> 11 loopIndependentDefUseDependence s1$0
-  29: 9 -> 12 loopIndependentDefUseDependence s1$0
-  30: 9 -> 12 loopIndependentDefUseDependence s1$0.list
-  31: 9 -> 14 loopIndependentDefUseDependence s1$0.list
-  32: 9 -> 16 loopIndependentDefUseDependence s1$0.list
-  33: 9 -> 5 loopIndependentDefUseDependence s1$0.!add
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    0 ->   12 trueControlDependence
+  12:    0 ->   13 trueControlDependence
+  13:    0 ->   14 trueControlDependence
+  14:    0 ->   16 trueControlDependence
+  15:    0 -> * trueControlDependence
+  16:    1 ->    6 declaration
+  17:    1 ->    6 loopIndependentDefUseDependence s1$0
+  18:    1 ->   11 declaration
+  19:    1 ->   11 loopIndependentDefUseDependence s1$0
+  20:    4 ->    1 loopIndependentDefUseDependence P137.!P137( )
+  21:   14 ->   10 loopIndependentDefUseDependence s1$0.!get( int )
+  22: * ->    5 loopIndependentDefUseDependence s1$0.!add( java.lang.String )
+  23: * ->   12 loopIndependentDefUseDependence s1$0.list.!java.util.ArrayList.size
+  24: * ->   14 loopIndependentDefUseDependence s1$0.list.!java.util.ArrayList.size
 --
    0: Test137( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

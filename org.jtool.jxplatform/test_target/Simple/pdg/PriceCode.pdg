@@ -1,67 +1,66 @@
 ----- ClDG (from here) -----
 Class Name = PriceCode
    0 enumConstantEntry [ REGULAR ]
-   1 fieldDeclaration D = { PriceCode.REGULAR } U = { PriceCode.!REGULAR }
-   2 constructorCall D = { PriceCode.priceCode } U = { PriceCode.priceCode } TO = PriceCode#PriceCode( int )
+   1 fieldDeclaration D = { PriceCode.REGULAR } U = { PriceCode.!PriceCode( int ) }
+   2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
    3 actualIn D = {  } U = {  }
-   4 actualOut D = { PriceCode.!REGULAR, PriceCode.priceCode } U = { PriceCode.priceCode }
+   4 actualOut D = { PriceCode.!PriceCode( int ) } U = {  }
+* actualOut D = { PriceCode.!PriceCode( int ).priceCode } U = {  }
 --
    0 constructorEntry [ PriceCode( int ) ]
    1 formalIn D = { code$0 } U = {  }
    2 assignment D = { this.priceCode } U = { code$0 }
-   4 formalOut D = {  } U = { $_, this.priceCode }
+   4 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ priceCode ]
    1 fieldDeclaration D = { this.priceCode } U = { this.priceCode }
 --
    0 enumConstantEntry [ CHILDRENS ]
-   1 fieldDeclaration D = { PriceCode.CHILDRENS } U = { PriceCode.!CHILDRENS }
-   2 constructorCall D = { PriceCode.priceCode } U = { PriceCode.priceCode } TO = PriceCode#PriceCode( int )
+   1 fieldDeclaration D = { PriceCode.CHILDRENS } U = { PriceCode.!PriceCode( int ) }
+   2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
    3 actualIn D = {  } U = {  }
-   4 actualOut D = { PriceCode.!CHILDRENS, PriceCode.priceCode } U = { PriceCode.priceCode }
+   4 actualOut D = { PriceCode.!PriceCode( int ) } U = {  }
+* actualOut D = { PriceCode.!PriceCode( int ).priceCode } U = {  }
 --
    0 enumConstantEntry [ NEW_RELEASE ]
-   1 fieldDeclaration D = { PriceCode.NEW_RELEASE } U = { PriceCode.!NEW_RELEASE }
-   2 constructorCall D = { PriceCode.priceCode } U = { PriceCode.priceCode } TO = PriceCode#PriceCode( int )
+   1 fieldDeclaration D = { PriceCode.NEW_RELEASE } U = { PriceCode.!PriceCode( int ) }
+   2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
    3 actualIn D = {  } U = {  }
-   4 actualOut D = { PriceCode.!NEW_RELEASE, PriceCode.priceCode } U = { PriceCode.priceCode }
+   4 actualOut D = { PriceCode.!PriceCode( int ) } U = {  }
+* actualOut D = { PriceCode.!PriceCode( int ).priceCode } U = {  }
 --
    0: REGULAR
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 2 -> 4 loopIndependentDefUseDependence PriceCode.priceCode
-   6: 3 -> 4 summary
-   7: 4 -> 1 loopIndependentDefUseDependence PriceCode.!REGULAR
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 -> * trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence PriceCode.!PriceCode( int )
 --
    0: PriceCode( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence code$0
-   5: 2 -> 4 loopIndependentDefUseDependence this.priceCode
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence code$0
 --
    0: priceCode
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: CHILDRENS
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 2 -> 4 loopIndependentDefUseDependence PriceCode.priceCode
-   6: 3 -> 4 summary
-   7: 4 -> 1 loopIndependentDefUseDependence PriceCode.!CHILDRENS
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 -> * trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence PriceCode.!PriceCode( int )
 --
    0: NEW_RELEASE
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 2 -> 4 loopIndependentDefUseDependence PriceCode.priceCode
-   6: 3 -> 4 summary
-   7: 4 -> 1 loopIndependentDefUseDependence PriceCode.!NEW_RELEASE
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 -> * trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence PriceCode.!PriceCode( int )
 --
 ----- ClDG (to here) -----
 

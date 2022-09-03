@@ -5,8 +5,8 @@ Class Name = Test40$LAMBDA1
    3 formalOut D = {  } U = { $_ }
 --
    0: actionPerformed( java.awt.event.ActionEvent )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 3 trueControlDependence
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
 --
 ----- ClDG (to here) -----
 

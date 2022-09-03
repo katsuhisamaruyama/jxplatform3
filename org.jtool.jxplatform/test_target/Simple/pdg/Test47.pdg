@@ -1,222 +1,212 @@
 ----- ClDG (from here) -----
 Class Name = Test47
    0 methodEntry [ m5( ) ]
-   1 localDeclaration D = { max$0 } U = { this.!max }
+   1 localDeclaration D = { max$0 } U = { this.!max( int int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = java.lang.Math#max( int int )
-   4 actualOut D = { this.!max } U = {  }
+   4 actualOut D = { this.!max( int int ) } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m6( ) ]
-   1 assignment D = {  } U = { this.!m1 }
+   1 assignment D = {  } U = { this.!m1( ) }
    2 receiver D = {  } U = {  }
-   3 methodCall D = {  } U = {  } TO = Test47#m1( )
-   4 actualOut D = { this.!m1 } U = {  }
+   3 methodCall D = {  } U = { this.$java.lang.String.!java.lang.String.COMPACT_STRINGS, this.$java.lang.String.!java.lang.String.coder, this.$java.lang.String.!java.lang.String.value, this.str$2.!java.lang.String.value } TO = Test47#m1( )
+   4 actualOut D = { this.!m1( ) } U = { this.$java.lang.String.!java.lang.String.COMPACT_STRINGS, this.$java.lang.String.!java.lang.String.coder, this.$java.lang.String.!java.lang.String.value, this.str$2.!java.lang.String.value }
    6 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m7( ) ]
    1 localDeclaration D = { d$0 } U = { Direction.UP }
-   2 localDeclaration D = { name1$1 } U = { d$0.!getName }
+   2 localDeclaration D = { name1$1 } U = { d$0.!getName( ) }
    3 receiver D = {  } U = { d$0 }
-   4 methodCall D = {  } U = { d$0 } TO = Direction#getName( )
-   5 actualOut D = { d$0.!getName } U = {  }
-   6 localDeclaration D = { name2$2 } U = { d$0.!name }
+   4 methodCall D = {  } U = { this.!java.lang.Enum.name } TO = Direction#getName( )
+   5 actualOut D = { d$0.!getName( ) } U = { this.!java.lang.Enum.name }
+   6 localDeclaration D = { name2$2 } U = { d$0.!name( ) }
    7 receiver D = {  } U = { d$0 }
-   8 methodCall D = {  } U = { d$0, d$0.name } TO = java.lang.Enum#name( )
-   9 actualOut D = { d$0.!name } U = { d$0.name }
+   8 methodCall D = {  } U = { d$0.!java.lang.Enum.name } TO = java.lang.Enum#name( )
+   9 actualOut D = { d$0.!name( ) } U = { d$0.!java.lang.Enum.name }
   11 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m1( ) ]
-   1 localDeclaration D = { len$0 } U = { $java.lang.String.!length }
+   1 localDeclaration D = { len$0 } U = { $java.lang.String.!length( ) }
    2 receiver D = {  } U = { $java.lang.String }
-   3 methodCall D = {  } U = { $java.lang.String, $java.lang.String.COMPACT_STRINGS, $java.lang.String.coder, $java.lang.String.value } TO = java.lang.String#length( )
-   4 actualOut D = { $java.lang.String.!length } U = { $java.lang.String.COMPACT_STRINGS, $java.lang.String.coder, $java.lang.String.value }
+   3 methodCall D = {  } U = { $java.lang.String.!java.lang.String.COMPACT_STRINGS, $java.lang.String.!java.lang.String.coder, $java.lang.String.!java.lang.String.value } TO = java.lang.String#length( )
+   4 actualOut D = { $java.lang.String.!length( ) } U = { $java.lang.String.!java.lang.String.COMPACT_STRINGS, $java.lang.String.!java.lang.String.coder, $java.lang.String.!java.lang.String.value }
    5 trySt D = {  } U = {  }
-   6 assignment D = {  } U = { $java.lang.String.!wait }
+   6 assignment D = {  } U = { $java.lang.String.!wait( ) }
    7 receiver D = {  } U = { $java.lang.String }
    8 methodCall D = {  } U = {  } TO = java.lang.Object#wait( )
-   9 actualOut D = { $java.lang.String.!wait } U = {  }
+   9 actualOut D = { $java.lang.String.!wait( ) } U = {  }
   11 catchClause D = { e$1 } U = {  }
   12 localDeclaration D = { str$2 } U = { $java.lang.String }
-  13 assignment D = {  } U = { str$2.!length }
+  13 assignment D = {  } U = { str$2.!length( ) }
   14 receiver D = {  } U = { str$2 }
-  15 methodCall D = {  } U = { str$2, str$2.COMPACT_STRINGS, str$2.coder, str$2.value } TO = java.lang.String#length( )
-  16 actualOut D = { str$2.!length } U = { str$2.COMPACT_STRINGS, str$2.coder, str$2.value }
+  15 methodCall D = {  } U = { str$2.!java.lang.String.COMPACT_STRINGS, str$2.!java.lang.String.coder, str$2.!java.lang.String.value } TO = java.lang.String#length( )
+  16 actualOut D = { str$2.!length( ) } U = { str$2.!java.lang.String.COMPACT_STRINGS, str$2.!java.lang.String.coder, str$2.!java.lang.String.value }
   18 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m4( ) ]
-   1 localDeclaration D = { p1$0 } U = { p1$0.!P47 }
+   1 localDeclaration D = { p1$0 } U = { P47.!P47( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P47#P47( )
-   4 actualOut D = { p1$0.!P47 } U = {  }
-   5 localDeclaration D = { p2$1 } U = { p2$1.!P47 }
+   4 actualOut D = { P47.!P47( ) } U = {  }
+   5 localDeclaration D = { p2$1 } U = { P47.!P47( java.lang.String ) }
    6 receiver D = {  } U = {  }
-   7 constructorCall D = { p2$1.value } U = { p2$1.value } TO = P47#P47( java.lang.String )
+   7 constructorCall D = {  } U = {  } TO = P47#P47( java.lang.String )
    8 actualIn D = {  } U = { $java.lang.String }
-   9 actualOut D = { p2$1.!P47, p2$1.value } U = { p2$1.value }
-  11 formalOut D = {  } U = { $_, p2$1.value }
+   9 actualOut D = { P47.!P47( java.lang.String ) } U = {  }
+  11 formalOut D = {  } U = { $_ }
+* actualOut D = { P47.!P47( java.lang.String ).value } U = {  }
 --
    0 methodEntry [ m2( ) ]
-   1 localDeclaration D = { name$0 } U = { $java.lang.Class.!getName }
+   1 localDeclaration D = { name$0 } U = { $java.lang.Class.!getName( ) }
    2 receiver D = {  } U = { $java.lang.Class }
-   3 methodCall D = {  } U = { $java.lang.Class, $java.lang.Class.name } TO = java.lang.Class#getName( )
-   4 actualOut D = { $java.lang.Class.!getName } U = { $java.lang.Class.name }
+   3 methodCall D = {  } U = { $java.lang.Class.!java.lang.Class.name } TO = java.lang.Class#getName( )
+   4 actualOut D = { $java.lang.Class.!getName( ) } U = { $java.lang.Class.!java.lang.Class.name }
    5 trySt D = {  } U = {  }
-   6 assignment D = {  } U = { $java.lang.Class.!wait }
+   6 assignment D = {  } U = { $java.lang.Class.!wait( ) }
    7 receiver D = {  } U = { $java.lang.Class }
    8 methodCall D = {  } U = {  } TO = java.lang.Object#wait( )
-   9 actualOut D = { $java.lang.Class.!wait } U = {  }
+   9 actualOut D = { $java.lang.Class.!wait( ) } U = {  }
   11 catchClause D = { e$1 } U = {  }
   12 localDeclaration D = { clazz$2 } U = { $java.lang.Class }
-  13 assignment D = {  } U = { clazz$2.!getName }
+  13 assignment D = {  } U = { clazz$2.!getName( ) }
   14 receiver D = {  } U = { clazz$2 }
-  15 methodCall D = {  } U = { clazz$2, clazz$2.name } TO = java.lang.Class#getName( )
-  16 actualOut D = { clazz$2.!getName } U = { clazz$2.name }
+  15 methodCall D = {  } U = { clazz$2.!java.lang.Class.name } TO = java.lang.Class#getName( )
+  16 actualOut D = { clazz$2.!getName( ) } U = { clazz$2.!java.lang.Class.name }
   18 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m3( ) ]
-   1 localDeclaration D = { p$0 } U = { p$0.!P47 }
+   1 localDeclaration D = { p$0 } U = { P47.!P47( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P47#P47( )
-   4 actualOut D = { p$0.!P47 } U = {  }
-   5 assignment D = {  } U = { p$0.!set }
+   4 actualOut D = { P47.!P47( ) } U = {  }
+   5 assignment D = {  } U = { p$0.!set( java.lang.String ) }
    6 receiver D = {  } U = { p$0 }
-   7 methodCall D = { p$0.value } U = { p$0.value } TO = P47#set( java.lang.String )
+   7 methodCall D = {  } U = {  } TO = P47#set( java.lang.String )
    8 actualIn D = {  } U = { $java.lang.String }
-   9 actualOut D = { p$0.!set, p$0.value } U = { p$0.value }
-  11 formalOut D = {  } U = { $_, p$0.value }
+   9 actualOut D = { p$0.!set( java.lang.String ) } U = {  }
+  11 formalOut D = {  } U = { $_ }
+* actualOut D = { p$0.value } U = {  }
 --
    0 constructorEntry [ Test47( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m5( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 6 trueControlDependence
-   6: 4 -> 1 loopIndependentDefUseDependence this.!max
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence this.!max( int int )
 --
    0: m6( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 6 trueControlDependence
-   6: 4 -> 1 loopIndependentDefUseDependence this.!m1
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence this.!m1( )
 --
    0: m7( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 11 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 0 -> 9 trueControlDependence
-  11: 1 -> 3 declaration
-  12: 1 -> 3 loopIndependentDefUseDependence d$0
-  13: 1 -> 4 declaration
-  14: 1 -> 4 loopIndependentDefUseDependence d$0
-  15: 1 -> 7 declaration
-  16: 1 -> 7 loopIndependentDefUseDependence d$0
-  17: 1 -> 8 declaration
-  18: 1 -> 8 loopIndependentDefUseDependence d$0
-  19: 5 -> 2 loopIndependentDefUseDependence d$0.!getName
-  20: 9 -> 6 loopIndependentDefUseDependence d$0.!name
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    1 ->    3 declaration
+  12:    1 ->    3 loopIndependentDefUseDependence d$0
+  13:    1 ->    7 declaration
+  14:    1 ->    7 loopIndependentDefUseDependence d$0
+  15:    5 ->    2 loopIndependentDefUseDependence d$0.!getName( )
+  16:    9 ->    6 loopIndependentDefUseDependence d$0.!name( )
 --
    0: m1( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 11 trueControlDependence
-   3: 0 -> 12 trueControlDependence
-   4: 0 -> 13 trueControlDependence
-   5: 0 -> 14 trueControlDependence
-   6: 0 -> 15 trueControlDependence
-   7: 0 -> 16 trueControlDependence
-   8: 0 -> 18 trueControlDependence
-   9: 0 -> 2 trueControlDependence
-  10: 0 -> 3 trueControlDependence
-  11: 0 -> 4 trueControlDependence
-  12: 0 -> 5 trueControlDependence
-  13: 12 -> 14 declaration
-  14: 12 -> 14 loopIndependentDefUseDependence str$2
-  15: 12 -> 15 declaration
-  16: 12 -> 15 loopIndependentDefUseDependence str$2
-  17: 16 -> 13 loopIndependentDefUseDependence str$2.!length
-  18: 4 -> 1 loopIndependentDefUseDependence $java.lang.String.!length
-  19: 5 -> 7 trueControlDependence
-  20: 5 -> 8 trueControlDependence
-  21: 5 -> 9 trueControlDependence
-  22: 8 -> 11 exceptionCatch
-  23: 8 -> 6 trueControlDependence
-  24: 9 -> 6 loopIndependentDefUseDependence $java.lang.String.!wait
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    0 ->   12 trueControlDependence
+   9:    0 ->   13 trueControlDependence
+  10:    0 ->   14 trueControlDependence
+  11:    0 ->   15 trueControlDependence
+  12:    0 ->   16 trueControlDependence
+  13:    0 ->   18 trueControlDependence
+  14:    4 ->    1 loopIndependentDefUseDependence $java.lang.String.!length( )
+  15:    5 ->   11 trueControlDependence
+  16:    8 ->    6 trueControlDependence
+  17:    8 ->    9 trueControlDependence
+  18:    8 ->   11 exceptionCatch
+  19:    9 ->    6 loopIndependentDefUseDependence $java.lang.String.!wait( )
+  20:   12 ->   14 declaration
+  21:   12 ->   14 loopIndependentDefUseDependence str$2
+  22:   16 ->   13 loopIndependentDefUseDependence str$2.!length( )
 --
    0: m4( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 11 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 0 -> 9 trueControlDependence
-  11: 4 -> 1 loopIndependentDefUseDependence p1$0.!P47
-  12: 7 -> 9 loopIndependentDefUseDependence p2$1.value
-  13: 8 -> 9 summary
-  14: 9 -> 11 loopIndependentDefUseDependence p2$1.value
-  15: 9 -> 5 loopIndependentDefUseDependence p2$1.!P47
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    0 -> * trueControlDependence
+  12:    4 ->    1 loopIndependentDefUseDependence P47.!P47( )
+  13:    9 ->    5 loopIndependentDefUseDependence P47.!P47( java.lang.String )
 --
    0: m2( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 11 trueControlDependence
-   3: 0 -> 12 trueControlDependence
-   4: 0 -> 13 trueControlDependence
-   5: 0 -> 14 trueControlDependence
-   6: 0 -> 15 trueControlDependence
-   7: 0 -> 16 trueControlDependence
-   8: 0 -> 18 trueControlDependence
-   9: 0 -> 2 trueControlDependence
-  10: 0 -> 3 trueControlDependence
-  11: 0 -> 4 trueControlDependence
-  12: 0 -> 5 trueControlDependence
-  13: 12 -> 14 declaration
-  14: 12 -> 14 loopIndependentDefUseDependence clazz$2
-  15: 12 -> 15 declaration
-  16: 12 -> 15 loopIndependentDefUseDependence clazz$2
-  17: 16 -> 13 loopIndependentDefUseDependence clazz$2.!getName
-  18: 4 -> 1 loopIndependentDefUseDependence $java.lang.Class.!getName
-  19: 5 -> 7 trueControlDependence
-  20: 5 -> 8 trueControlDependence
-  21: 5 -> 9 trueControlDependence
-  22: 8 -> 11 exceptionCatch
-  23: 8 -> 6 trueControlDependence
-  24: 9 -> 6 loopIndependentDefUseDependence $java.lang.Class.!wait
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    0 ->   12 trueControlDependence
+   9:    0 ->   13 trueControlDependence
+  10:    0 ->   14 trueControlDependence
+  11:    0 ->   15 trueControlDependence
+  12:    0 ->   16 trueControlDependence
+  13:    0 ->   18 trueControlDependence
+  14:    4 ->    1 loopIndependentDefUseDependence $java.lang.Class.!getName( )
+  15:    5 ->   11 trueControlDependence
+  16:    8 ->    6 trueControlDependence
+  17:    8 ->    9 trueControlDependence
+  18:    8 ->   11 exceptionCatch
+  19:    9 ->    6 loopIndependentDefUseDependence $java.lang.Class.!wait( )
+  20:   12 ->   14 declaration
+  21:   12 ->   14 loopIndependentDefUseDependence clazz$2
+  22:   16 ->   13 loopIndependentDefUseDependence clazz$2.!getName( )
 --
    0: m3( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 11 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 0 -> 9 trueControlDependence
-  11: 1 -> 6 declaration
-  12: 1 -> 6 loopIndependentDefUseDependence p$0
-  13: 4 -> 1 loopIndependentDefUseDependence p$0.!P47
-  14: 7 -> 9 loopIndependentDefUseDependence p$0.value
-  15: 8 -> 9 summary
-  16: 9 -> 11 loopIndependentDefUseDependence p$0.value
-  17: 9 -> 5 loopIndependentDefUseDependence p$0.!set
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    0 -> * trueControlDependence
+  12:    1 ->    6 declaration
+  13:    1 ->    6 loopIndependentDefUseDependence p$0
+  14:    4 ->    1 loopIndependentDefUseDependence P47.!P47( )
+  15:    9 ->    5 loopIndependentDefUseDependence p$0.!set( java.lang.String )
 --
    0: Test47( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

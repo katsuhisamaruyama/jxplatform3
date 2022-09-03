@@ -4,169 +4,108 @@ Class Name = DialogA
    1 formalIn D = { frame$0 } U = {  }
    2 formalIn D = { title$1 } U = {  }
    3 formalIn D = { msg$2 } U = {  }
-   4 assignment D = {  } U = {  }
+   4 assignment D = {  } U = { super.!JDialog( java.awt.Frame java.lang.String boolean ) }
    5 receiver D = {  } U = {  }
-   6 constructorCall D = { java.awt.Component.newEventsOnly, java.awt.Window.windowListener, super.accessibleContext, super.defaultCloseOperation, super.rootPaneCheckingEnabled } U = { frame$0, java.awt.Dialog$ModalityType.MODELESS, java.awt.Dialog.DEFAULT_MODALITY_TYPE, java.awt.Window.windowListener, javax.swing.SwingUtilities.sharedOwnerFrameKey, title$1 } TO = javax.swing.JDialog#JDialog( java.awt.Frame java.lang.String boolean )
-   7 actualOut D = { , java.awt.Component.newEventsOnly, java.awt.Window.windowListener, super.accessibleContext, super.defaultCloseOperation, super.rootPaneCheckingEnabled } U = { java.awt.Dialog$ModalityType.MODELESS, java.awt.Dialog.DEFAULT_MODALITY_TYPE, java.awt.Window.windowListener, javax.swing.SwingUtilities.sharedOwnerFrameKey }
-   8 localDeclaration D = { contentPane$3 } U = { this.!getContentPane }
+   6 constructorCall D = {  } U = { frame$0, super.!java.awt.Dialog$ModalityType.MODELESS, super.!java.awt.Dialog.DEFAULT_MODALITY_TYPE, super.!java.awt.Window.windowListener, super.!javax.swing.SwingUtilities.sharedOwnerFrameKey, title$1 } TO = javax.swing.JDialog#JDialog( java.awt.Frame java.lang.String boolean )
+* actualOut D = { super.!JDialog( java.awt.Frame java.lang.String boolean ), super.!java.awt.Window.newEventsOnly, super.!java.awt.Window.windowListener, super.!javax.swing.JDialog.accessibleContext, super.!javax.swing.JDialog.defaultCloseOperation, super.!javax.swing.JDialog.rootPaneCheckingEnabled } U = { super.!java.awt.Dialog$ModalityType.MODELESS, super.!java.awt.Dialog.DEFAULT_MODALITY_TYPE, super.!java.awt.Window.windowListener, super.!javax.swing.SwingUtilities.sharedOwnerFrameKey }
+   8 localDeclaration D = { contentPane$3 } U = { this.!getContentPane( ) }
    9 receiver D = {  } U = {  }
-  10 methodCall D = {  } U = { javax.swing.JRootPane.contentPane, this.rootPane } TO = javax.swing.JDialog#getContentPane( )
-  11 actualOut D = { this.!getContentPane } U = { javax.swing.JRootPane.contentPane, this.rootPane }
-  12 localDeclaration D = { yesButton$4 } U = { yesButton$4.!JButton }
+  10 methodCall D = {  } U = { this.!javax.swing.JDialog.rootPane, this.!javax.swing.JRootPane.contentPane } TO = javax.swing.JDialog#getContentPane( )
+  11 actualOut D = { this.!getContentPane( ) } U = { this.!javax.swing.JDialog.rootPane, this.!javax.swing.JRootPane.contentPane }
+  12 localDeclaration D = { yesButton$4 } U = { javax.swing.JButton.!JButton( java.lang.String ) }
   13 receiver D = {  } U = {  }
   14 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JButton#JButton( java.lang.String )
-  15 actualOut D = { yesButton$4.!JButton } U = {  }
-  16 assignment D = {  } U = { contentPane$3.!add }
-  17 receiver D = {  } U = { contentPane$3, this.!getContentPane }
-  18 methodCall D = { contentPane$3, java.awt.Component.parent } U = { contentPane$3, contentPane$3.component, contentPane$3.containerListener, contentPane$3.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, yesButton$4, yesButton$4.EAST } TO = java.awt.Container#add( java.awt.Component java.lang.Object )
-  19 actualOut D = { contentPane$3, contentPane$3.!add, java.awt.Component.parent } U = { contentPane$3, contentPane$3.component, contentPane$3.containerListener, contentPane$3.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer }
-  20 assignment D = {  } U = { yesButton$4.!addActionListener }
+  15 actualOut D = { javax.swing.JButton.!JButton( java.lang.String ) } U = {  }
+  16 assignment D = {  } U = { contentPane$3.!add( java.awt.Component java.lang.Object ) }
+  17 receiver D = {  } U = { contentPane$3 }
+  18 methodCall D = {  } U = { contentPane$3.!java.awt.Component.parent, contentPane$3.!java.awt.Container.component, contentPane$3.!java.awt.Container.containerListener, contentPane$3.!java.awt.Container.eventMask, contentPane$3.!java.awt.Container.layoutMgr, contentPane$3.!java.awt.Container.peer, javax.swing.JButton.!JButton( java.lang.String ).EAST, this.!getContentPane( ).!java.awt.Component.parent, this.!getContentPane( ).!java.awt.Container.component, this.!getContentPane( ).!java.awt.Container.containerListener, this.!getContentPane( ).!java.awt.Container.eventMask, this.!getContentPane( ).!java.awt.Container.layoutMgr, this.!getContentPane( ).!java.awt.Container.peer, yesButton$4, yesButton$4.EAST } TO = java.awt.Container#add( java.awt.Component java.lang.Object )
+* actualOut D = { contentPane$3.!add( java.awt.Component java.lang.Object ), contentPane$3.!java.awt.Component.parent } U = { contentPane$3.!java.awt.Component.parent, contentPane$3.!java.awt.Container.component, contentPane$3.!java.awt.Container.containerListener, contentPane$3.!java.awt.Container.eventMask, contentPane$3.!java.awt.Container.layoutMgr, contentPane$3.!java.awt.Container.peer, this.!getContentPane( ).!java.awt.Component.parent, this.!getContentPane( ).!java.awt.Container.component, this.!getContentPane( ).!java.awt.Container.containerListener, this.!getContentPane( ).!java.awt.Container.eventMask, this.!getContentPane( ).!java.awt.Container.layoutMgr, this.!getContentPane( ).!java.awt.Container.peer }
+  20 assignment D = {  } U = { yesButton$4.!addActionListener( java.awt.event.ActionListener ) }
   21 receiver D = {  } U = { yesButton$4 }
-  22 methodCall D = { javax.swing.event.EventListenerList.listenerList, yesButton$4 } U = { .!, javax.swing.JComponent.listenerList, javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.event.EventListenerList.listenerList, yesButton$4 } TO = javax.swing.AbstractButton#addActionListener( java.awt.event.ActionListener )
+  22 methodCall D = {  } U = { .!ActionListener( ), javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.listenerList, yesButton$4.!javax.swing.AbstractButton.listenerList, yesButton$4.!javax.swing.event.EventListenerList.NULL_ARRAY, yesButton$4.!javax.swing.event.EventListenerList.listenerList } TO = javax.swing.AbstractButton#addActionListener( java.awt.event.ActionListener )
   23 receiver D = {  } U = {  }
   24 constructorCall D = {  } U = {  } TO = java.awt.event.ActionListener#ActionListener( )
-  25 actualOut D = { .! } U = {  }
-  26 actualOut D = { javax.swing.event.EventListenerList.listenerList, yesButton$4, yesButton$4.!addActionListener } U = { javax.swing.JComponent.listenerList, javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.event.EventListenerList.listenerList, yesButton$4 }
-  27 localDeclaration D = { label$6 } U = { label$6.!JLabel }
+  25 actualOut D = { .!ActionListener( ) } U = {  }
+* actualOut D = { yesButton$4.!addActionListener( java.awt.event.ActionListener ), yesButton$4.!javax.swing.event.EventListenerList.listenerList } U = { javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.listenerList, yesButton$4.!javax.swing.AbstractButton.listenerList, yesButton$4.!javax.swing.event.EventListenerList.NULL_ARRAY, yesButton$4.!javax.swing.event.EventListenerList.listenerList }
+  27 localDeclaration D = { label$6 } U = { javax.swing.JLabel.!JLabel( java.lang.String int ) }
   28 receiver D = {  } U = {  }
-  29 constructorCall D = { label$6.defaultIcon, label$6.disabledIcon, label$6.disabledIconSet, label$6.horizontalAlignment, label$6.horizontalTextPosition, label$6.iconTextGap, label$6.labelFor, label$6.mnemonic, label$6.mnemonicIndex, label$6.text, label$6.verticalAlignment, label$6.verticalTextPosition } U = { msg$2, msg$2.CENTER } TO = javax.swing.JLabel#JLabel( java.lang.String int )
-  30 actualOut D = { label$6.!JLabel, label$6.defaultIcon, label$6.disabledIcon, label$6.disabledIconSet, label$6.horizontalAlignment, label$6.horizontalTextPosition, label$6.iconTextGap, label$6.labelFor, label$6.mnemonic, label$6.mnemonicIndex, label$6.text, label$6.verticalAlignment, label$6.verticalTextPosition } U = {  }
-  31 assignment D = {  } U = { contentPane$3.!add }
+  29 constructorCall D = {  } U = { msg$2, msg$2.CENTER } TO = javax.swing.JLabel#JLabel( java.lang.String int )
+* actualOut D = { javax.swing.JLabel.!JLabel( java.lang.String int ), javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, javax.swing.JLabel.!javax.swing.JLabel.labelFor, javax.swing.JLabel.!javax.swing.JLabel.mnemonic, javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, javax.swing.JLabel.!javax.swing.JLabel.text, javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = {  }
+  31 assignment D = {  } U = { contentPane$3.!add( java.awt.Component java.lang.Object ) }
   32 receiver D = {  } U = { contentPane$3 }
-  33 methodCall D = { contentPane$3, java.awt.Component.parent } U = { contentPane$3, contentPane$3.component, contentPane$3.containerListener, contentPane$3.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, label$6, label$6.CENTER } TO = java.awt.Container#add( java.awt.Component java.lang.Object )
-  34 actualOut D = { contentPane$3, contentPane$3.!add, java.awt.Component.parent } U = { contentPane$3, contentPane$3.component, contentPane$3.containerListener, contentPane$3.layoutMgr, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer }
-  35 assignment D = {  } U = { this.!pack }
+  33 methodCall D = {  } U = { contentPane$3.!java.awt.Component.parent, contentPane$3.!java.awt.Container.component, contentPane$3.!java.awt.Container.containerListener, contentPane$3.!java.awt.Container.eventMask, contentPane$3.!java.awt.Container.layoutMgr, contentPane$3.!java.awt.Container.peer, javax.swing.JLabel.!JLabel( java.lang.String int ).CENTER, label$6, label$6.CENTER, this.!getContentPane( ).!java.awt.Component.parent, this.!getContentPane( ).!java.awt.Container.component, this.!getContentPane( ).!java.awt.Container.containerListener, this.!getContentPane( ).!java.awt.Container.eventMask, this.!getContentPane( ).!java.awt.Container.layoutMgr, this.!getContentPane( ).!java.awt.Container.peer } TO = java.awt.Container#add( java.awt.Component java.lang.Object )
+* actualOut D = { contentPane$3.!add( java.awt.Component java.lang.Object ), contentPane$3.!java.awt.Component.parent } U = { contentPane$3.!java.awt.Component.parent, contentPane$3.!java.awt.Container.component, contentPane$3.!java.awt.Container.containerListener, contentPane$3.!java.awt.Container.eventMask, contentPane$3.!java.awt.Container.layoutMgr, contentPane$3.!java.awt.Container.peer, this.!getContentPane( ).!java.awt.Component.parent, this.!getContentPane( ).!java.awt.Container.component, this.!getContentPane( ).!java.awt.Container.containerListener, this.!getContentPane( ).!java.awt.Container.eventMask, this.!getContentPane( ).!java.awt.Container.layoutMgr, this.!getContentPane( ).!java.awt.Container.peer }
+  35 assignment D = {  } U = { this.!pack( ) }
   36 receiver D = {  } U = {  }
-  37 methodCall D = { java.awt.Component.isPacked, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher } U = { java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.x, java.awt.Component.y, java.awt.Container.component, java.awt.Dimension.height, java.awt.Dimension.width, this.allWindows, this.beforeFirstShow } TO = java.awt.Window#pack( )
-  38 actualOut D = { java.awt.Component.isPacked, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher, this.!pack } U = { java.awt.Component.parent, java.awt.Component.peer, java.awt.Component.x, java.awt.Component.y, java.awt.Container.component, java.awt.Dimension.height, java.awt.Dimension.width, this.allWindows, this.beforeFirstShow }
-  40 formalOut D = {  } U = { $_, java.awt.Component.isPacked, java.awt.Component.newEventsOnly, java.awt.Component.parent, java.awt.Component.peer, java.awt.Container.descendUnconditionallyWhenValidating, java.awt.Container.dispatcher, java.awt.Window.windowListener, javax.swing.event.EventListenerList.listenerList, label$6.defaultIcon, label$6.disabledIcon, label$6.disabledIconSet, label$6.horizontalAlignment, label$6.horizontalTextPosition, label$6.iconTextGap, label$6.labelFor, label$6.mnemonic, label$6.mnemonicIndex, label$6.text, label$6.verticalAlignment, label$6.verticalTextPosition, super.accessibleContext, super.defaultCloseOperation, super.rootPaneCheckingEnabled }
+  37 methodCall D = {  } U = { this.!java.awt.Container.component, this.!java.awt.Container.peer, this.!java.awt.Dimension.height, this.!java.awt.Dimension.width, this.!java.awt.Window.allWindows, this.!java.awt.Window.beforeFirstShow, this.!java.awt.Window.parent, this.!java.awt.Window.peer, this.!java.awt.Window.x, this.!java.awt.Window.y } TO = java.awt.Window#pack( )
+* actualOut D = { this.!java.awt.Container.descendUnconditionallyWhenValidating, this.!java.awt.Container.dispatcher, this.!java.awt.Window.isPacked, this.!java.awt.Window.peer, this.!pack( ) } U = { this.!java.awt.Container.component, this.!java.awt.Container.peer, this.!java.awt.Dimension.height, this.!java.awt.Dimension.width, this.!java.awt.Window.allWindows, this.!java.awt.Window.beforeFirstShow, this.!java.awt.Window.parent, this.!java.awt.Window.peer, this.!java.awt.Window.x, this.!java.awt.Window.y }
+  40 formalOut D = {  } U = { $_ }
 --
    0: DialogA( java.awt.Frame java.lang.String java.lang.String )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 26 trueControlDependence
-  20: 0 -> 27 trueControlDependence
-  21: 0 -> 28 trueControlDependence
-  22: 0 -> 29 trueControlDependence
-  23: 0 -> 3 trueControlDependence
-  24: 0 -> 30 trueControlDependence
-  25: 0 -> 31 trueControlDependence
-  26: 0 -> 32 trueControlDependence
-  27: 0 -> 33 trueControlDependence
-  28: 0 -> 34 trueControlDependence
-  29: 0 -> 35 trueControlDependence
-  30: 0 -> 36 trueControlDependence
-  31: 0 -> 37 trueControlDependence
-  32: 0 -> 38 trueControlDependence
-  33: 0 -> 4 trueControlDependence
-  34: 0 -> 40 trueControlDependence
-  35: 0 -> 5 trueControlDependence
-  36: 0 -> 6 trueControlDependence
-  37: 0 -> 7 trueControlDependence
-  38: 0 -> 8 trueControlDependence
-  39: 0 -> 9 trueControlDependence
-  40: 1 -> 6 loopIndependentDefUseDependence frame$0
-  41: 11 -> 17 loopIndependentDefUseDependence this.!getContentPane
-  42: 11 -> 8 loopIndependentDefUseDependence this.!getContentPane
-  43: 12 -> 18 declaration
-  44: 12 -> 18 loopIndependentDefUseDependence yesButton$4
-  45: 12 -> 21 declaration
-  46: 12 -> 21 loopIndependentDefUseDependence yesButton$4
-  47: 12 -> 22 declaration
-  48: 12 -> 22 loopIndependentDefUseDependence yesButton$4
-  49: 12 -> 26 declaration
-  50: 15 -> 12 loopIndependentDefUseDependence yesButton$4.!JButton
-  51: 18 -> 19 loopIndependentDefUseDependence contentPane$3
-  52: 18 -> 19 loopIndependentDefUseDependence java.awt.Component.parent
-  53: 19 -> 16 loopIndependentDefUseDependence contentPane$3.!add
-  54: 19 -> 32 loopIndependentDefUseDependence contentPane$3
-  55: 19 -> 33 loopIndependentDefUseDependence contentPane$3
-  56: 19 -> 33 loopIndependentDefUseDependence java.awt.Component.parent
-  57: 19 -> 34 outputDependence contentPane$3.!add
-  58: 2 -> 6 loopIndependentDefUseDependence title$1
-  59: 22 -> 26 loopIndependentDefUseDependence javax.swing.event.EventListenerList.listenerList
-  60: 22 -> 26 loopIndependentDefUseDependence yesButton$4
-  61: 25 -> 22 loopIndependentDefUseDependence .!
-  62: 26 -> 20 loopIndependentDefUseDependence yesButton$4.!addActionListener
-  63: 26 -> 40 loopIndependentDefUseDependence javax.swing.event.EventListenerList.listenerList
-  64: 27 -> 33 declaration
-  65: 27 -> 33 loopIndependentDefUseDependence label$6
-  66: 29 -> 30 outputDependence label$6.defaultIcon
-  67: 29 -> 30 outputDependence label$6.disabledIcon
-  68: 29 -> 30 outputDependence label$6.disabledIconSet
-  69: 29 -> 30 outputDependence label$6.horizontalAlignment
-  70: 29 -> 30 outputDependence label$6.horizontalTextPosition
-  71: 29 -> 30 outputDependence label$6.iconTextGap
-  72: 29 -> 30 outputDependence label$6.labelFor
-  73: 29 -> 30 outputDependence label$6.mnemonic
-  74: 29 -> 30 outputDependence label$6.mnemonicIndex
-  75: 29 -> 30 outputDependence label$6.text
-  76: 29 -> 30 outputDependence label$6.verticalAlignment
-  77: 29 -> 30 outputDependence label$6.verticalTextPosition
-  78: 3 -> 29 loopIndependentDefUseDependence msg$2
-  79: 30 -> 27 loopIndependentDefUseDependence label$6.!JLabel
-  80: 30 -> 40 loopIndependentDefUseDependence label$6.defaultIcon
-  81: 30 -> 40 loopIndependentDefUseDependence label$6.disabledIcon
-  82: 30 -> 40 loopIndependentDefUseDependence label$6.disabledIconSet
-  83: 30 -> 40 loopIndependentDefUseDependence label$6.horizontalAlignment
-  84: 30 -> 40 loopIndependentDefUseDependence label$6.horizontalTextPosition
-  85: 30 -> 40 loopIndependentDefUseDependence label$6.iconTextGap
-  86: 30 -> 40 loopIndependentDefUseDependence label$6.labelFor
-  87: 30 -> 40 loopIndependentDefUseDependence label$6.mnemonic
-  88: 30 -> 40 loopIndependentDefUseDependence label$6.mnemonicIndex
-  89: 30 -> 40 loopIndependentDefUseDependence label$6.text
-  90: 30 -> 40 loopIndependentDefUseDependence label$6.verticalAlignment
-  91: 30 -> 40 loopIndependentDefUseDependence label$6.verticalTextPosition
-  92: 33 -> 34 loopIndependentDefUseDependence contentPane$3
-  93: 33 -> 34 loopIndependentDefUseDependence java.awt.Component.parent
-  94: 34 -> 31 loopIndependentDefUseDependence contentPane$3.!add
-  95: 34 -> 37 loopIndependentDefUseDependence java.awt.Component.parent
-  96: 34 -> 38 loopIndependentDefUseDependence java.awt.Component.parent
-  97: 34 -> 40 loopIndependentDefUseDependence java.awt.Component.parent
-  98: 37 -> 38 loopIndependentDefUseDependence java.awt.Component.peer
-  99: 37 -> 38 outputDependence java.awt.Component.isPacked
- 100: 37 -> 38 outputDependence java.awt.Container.descendUnconditionallyWhenValidating
- 101: 37 -> 38 outputDependence java.awt.Container.dispatcher
- 102: 38 -> 35 loopIndependentDefUseDependence this.!pack
- 103: 38 -> 40 loopIndependentDefUseDependence java.awt.Component.isPacked
- 104: 38 -> 40 loopIndependentDefUseDependence java.awt.Component.peer
- 105: 38 -> 40 loopIndependentDefUseDependence java.awt.Container.descendUnconditionallyWhenValidating
- 106: 38 -> 40 loopIndependentDefUseDependence java.awt.Container.dispatcher
- 107: 6 -> 7 loopIndependentDefUseDependence java.awt.Window.windowListener
- 108: 6 -> 7 outputDependence java.awt.Component.newEventsOnly
- 109: 6 -> 7 outputDependence super.accessibleContext
- 110: 6 -> 7 outputDependence super.defaultCloseOperation
- 111: 6 -> 7 outputDependence super.rootPaneCheckingEnabled
- 112: 7 -> 4 loopIndependentDefUseDependence 
- 113: 7 -> 40 loopIndependentDefUseDependence java.awt.Component.newEventsOnly
- 114: 7 -> 40 loopIndependentDefUseDependence java.awt.Window.windowListener
- 115: 7 -> 40 loopIndependentDefUseDependence super.accessibleContext
- 116: 7 -> 40 loopIndependentDefUseDependence super.defaultCloseOperation
- 117: 7 -> 40 loopIndependentDefUseDependence super.rootPaneCheckingEnabled
- 118: 8 -> 17 declaration
- 119: 8 -> 17 loopIndependentDefUseDependence contentPane$3
- 120: 8 -> 18 declaration
- 121: 8 -> 18 loopIndependentDefUseDependence contentPane$3
- 122: 8 -> 19 declaration
- 123: 8 -> 32 declaration
- 124: 8 -> 33 declaration
- 125: 8 -> 34 declaration
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    0 ->    9 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    0 ->   12 trueControlDependence
+  12:    0 ->   13 trueControlDependence
+  13:    0 ->   14 trueControlDependence
+  14:    0 ->   15 trueControlDependence
+  15:    0 ->   16 trueControlDependence
+  16:    0 ->   17 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    0 ->   20 trueControlDependence
+  19:    0 ->   21 trueControlDependence
+  20:    0 ->   22 trueControlDependence
+  21:    0 ->   23 trueControlDependence
+  22:    0 ->   24 trueControlDependence
+  23:    0 ->   25 trueControlDependence
+  24:    0 ->   27 trueControlDependence
+  25:    0 ->   28 trueControlDependence
+  26:    0 ->   29 trueControlDependence
+  27:    0 ->   31 trueControlDependence
+  28:    0 ->   32 trueControlDependence
+  29:    0 ->   33 trueControlDependence
+  30:    0 ->   35 trueControlDependence
+  31:    0 ->   36 trueControlDependence
+  32:    0 ->   37 trueControlDependence
+  33:    0 ->   40 trueControlDependence
+  34:    0 -> * trueControlDependence
+  35:    0 -> * trueControlDependence
+  36:    0 -> * trueControlDependence
+  37:    0 -> * trueControlDependence
+  38:    0 -> * trueControlDependence
+  39:    0 -> * trueControlDependence
+  40:    1 ->    6 loopIndependentDefUseDependence frame$0
+  41:    2 ->    6 loopIndependentDefUseDependence title$1
+  42:    3 ->   29 loopIndependentDefUseDependence msg$2
+  43:    8 ->   17 declaration
+  44:    8 ->   17 loopIndependentDefUseDependence contentPane$3
+  45:    8 ->   32 declaration
+  46:    8 ->   32 loopIndependentDefUseDependence contentPane$3
+  47:   11 ->    8 loopIndependentDefUseDependence this.!getContentPane( )
+  48:   12 ->   18 declaration
+  49:   12 ->   18 loopIndependentDefUseDependence yesButton$4
+  50:   12 ->   21 declaration
+  51:   12 ->   21 loopIndependentDefUseDependence yesButton$4
+  52:   15 ->   12 loopIndependentDefUseDependence javax.swing.JButton.!JButton( java.lang.String )
+  53:   25 ->   22 loopIndependentDefUseDependence .!ActionListener( )
+  54:   27 ->   33 declaration
+  55:   27 ->   33 loopIndependentDefUseDependence label$6
+  56: * ->    4 loopIndependentDefUseDependence super.!JDialog( java.awt.Frame java.lang.String boolean )
+  57: * ->   16 loopIndependentDefUseDependence contentPane$3.!add( java.awt.Component java.lang.Object )
+  58: * ->   20 loopIndependentDefUseDependence yesButton$4.!addActionListener( java.awt.event.ActionListener )
+  59: * ->   27 loopIndependentDefUseDependence javax.swing.JLabel.!JLabel( java.lang.String int )
+  60: * ->   31 loopIndependentDefUseDependence contentPane$3.!add( java.awt.Component java.lang.Object )
+  61: * ->   33 loopIndependentDefUseDependence contentPane$3.!java.awt.Component.parent
+  62: * ->   35 loopIndependentDefUseDependence this.!pack( )
+  63: * -> * loopIndependentDefUseDependence contentPane$3.!java.awt.Component.parent
+  64: * -> * outputDependence contentPane$3.!add( java.awt.Component java.lang.Object )
 --
 ----- ClDG (to here) -----
 

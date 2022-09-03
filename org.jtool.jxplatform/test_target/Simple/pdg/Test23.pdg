@@ -15,52 +15,50 @@ Class Name = Test23
 --
    0 methodEntry [ m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
-   2 localDeclaration D = { x$1 } U = { this.!inc }
+   2 localDeclaration D = { x$1 } U = { this.!inc( int ) }
    3 receiver D = {  } U = {  }
    4 methodCall D = {  } U = {  } TO = Test23#inc( int )
-   5 actualIn D = {  } U = { this.!dec }
+   5 actualIn D = {  } U = { this.!dec( int ) }
    6 receiver D = {  } U = {  }
    7 methodCall D = {  } U = {  } TO = Test23#dec( int )
    8 actualIn D = {  } U = { a$0 }
-   9 actualOut D = { this.!dec } U = {  }
-  10 actualOut D = { this.!inc } U = {  }
+   9 actualOut D = { this.!dec( int ) } U = {  }
+  10 actualOut D = { this.!inc( int ) } U = {  }
   12 formalOut D = {  } U = { $_ }
 --
    0: Test23( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: dec( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence num$0
-   5: 2 -> 4 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence num$0
+   5:    2 ->    4 loopIndependentDefUseDependence $_
 --
    0: inc( int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence num$0
-   5: 2 -> 4 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence num$0
+   5:    2 ->    4 loopIndependentDefUseDependence $_
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 12 trueControlDependence
-   4: 0 -> 2 trueControlDependence
-   5: 0 -> 3 trueControlDependence
-   6: 0 -> 4 trueControlDependence
-   7: 0 -> 5 trueControlDependence
-   8: 0 -> 6 trueControlDependence
-   9: 0 -> 7 trueControlDependence
-  10: 0 -> 8 trueControlDependence
-  11: 0 -> 9 trueControlDependence
-  12: 1 -> 8 declaration
-  13: 1 -> 8 loopIndependentDefUseDependence a$0
-  14: 10 -> 2 loopIndependentDefUseDependence this.!inc
-  15: 5 -> 10 summary
-  16: 8 -> 9 summary
-  17: 9 -> 5 loopIndependentDefUseDependence this.!dec
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   12 trueControlDependence
+  12:    1 ->    8 declaration
+  13:    1 ->    8 loopIndependentDefUseDependence a$0
+  14:    9 ->    5 loopIndependentDefUseDependence this.!dec( int )
+  15:   10 ->    2 loopIndependentDefUseDependence this.!inc( int )
 --
 ----- ClDG (to here) -----
 

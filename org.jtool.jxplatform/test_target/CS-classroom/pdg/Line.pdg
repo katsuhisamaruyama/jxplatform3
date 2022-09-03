@@ -5,66 +5,58 @@ Class Name = Line
    2 formalIn D = { y1$1 } U = {  }
    3 formalIn D = { x2$2 } U = {  }
    4 formalIn D = { y2$3 } U = {  }
-   5 assignment D = {  } U = {  }
+   5 assignment D = {  } U = { super.!Shape( int int int int ) }
    6 receiver D = {  } U = {  }
-   7 constructorCall D = { super.x1, super.x2, super.y1, super.y2 } U = { super.x1, super.x2, super.y1, super.y2 } TO = Shape#Shape( int int int int )
+   7 constructorCall D = {  } U = {  } TO = Shape#Shape( int int int int )
    8 actualIn D = {  } U = { x1$0 }
    9 actualIn D = {  } U = { y1$1 }
   10 actualIn D = {  } U = { x2$2 }
   11 actualIn D = {  } U = { y2$3 }
-  12 actualOut D = { , super.x1, super.x2, super.y1, super.y2 } U = { super.x1, super.x2, super.y1, super.y2 }
-  14 formalOut D = {  } U = { $_, super.x1, super.x2, super.y1, super.y2 }
+  12 actualOut D = { super.!Shape( int int int int ) } U = {  }
+  14 formalOut D = {  } U = { $_ }
+* actualOut D = { super.!Shape( int int int int ).x1 } U = {  }
+* actualOut D = { super.!Shape( int int int int ).x2 } U = {  }
+* actualOut D = { super.!Shape( int int int int ).y1 } U = {  }
+* actualOut D = { super.!Shape( int int int int ).y2 } U = {  }
 --
    0 methodEntry [ draw( ) ]
-   1 assignment D = {  } U = { System.out.!println }
+   1 assignment D = {  } U = { System.out.!println( java.lang.String ) }
    2 receiver D = {  } U = { System.out }
-   3 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( java.lang.String )
-   4 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
-   6 formalOut D = {  } U = { $_, System.out, System.out.trouble }
+   3 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut } TO = java.io.PrintStream#println( java.lang.String )
+* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+   6 formalOut D = {  } U = { $_ }
 --
    0: Line( int int int int )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 14 trueControlDependence
-   6: 0 -> 2 trueControlDependence
-   7: 0 -> 3 trueControlDependence
-   8: 0 -> 4 trueControlDependence
-   9: 0 -> 5 trueControlDependence
-  10: 0 -> 6 trueControlDependence
-  11: 0 -> 7 trueControlDependence
-  12: 0 -> 8 trueControlDependence
-  13: 0 -> 9 trueControlDependence
-  14: 1 -> 8 loopIndependentDefUseDependence x1$0
-  15: 10 -> 12 summary
-  16: 11 -> 12 summary
-  17: 12 -> 14 loopIndependentDefUseDependence super.x1
-  18: 12 -> 14 loopIndependentDefUseDependence super.x2
-  19: 12 -> 14 loopIndependentDefUseDependence super.y1
-  20: 12 -> 14 loopIndependentDefUseDependence super.y2
-  21: 12 -> 5 loopIndependentDefUseDependence 
-  22: 2 -> 9 loopIndependentDefUseDependence y1$1
-  23: 3 -> 10 loopIndependentDefUseDependence x2$2
-  24: 4 -> 11 loopIndependentDefUseDependence y2$3
-  25: 7 -> 12 loopIndependentDefUseDependence super.x1
-  26: 7 -> 12 loopIndependentDefUseDependence super.x2
-  27: 7 -> 12 loopIndependentDefUseDependence super.y1
-  28: 7 -> 12 loopIndependentDefUseDependence super.y2
-  29: 8 -> 12 summary
-  30: 9 -> 12 summary
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   14 trueControlDependence
+  14:    0 -> * trueControlDependence
+  15:    0 -> * trueControlDependence
+  16:    0 -> * trueControlDependence
+  17:    0 -> * trueControlDependence
+  18:    1 ->    8 loopIndependentDefUseDependence x1$0
+  19:    2 ->    9 loopIndependentDefUseDependence y1$1
+  20:    3 ->   10 loopIndependentDefUseDependence x2$2
+  21:    4 ->   11 loopIndependentDefUseDependence y2$3
+  22:   12 ->    5 loopIndependentDefUseDependence super.!Shape( int int int int )
 --
    0: draw( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 6 trueControlDependence
-   6: 3 -> 4 loopIndependentDefUseDependence System.out
-   7: 3 -> 4 outputDependence System.out.trouble
-   8: 4 -> 1 loopIndependentDefUseDependence System.out.!println
-   9: 4 -> 6 loopIndependentDefUseDependence System.out
-  10: 4 -> 6 loopIndependentDefUseDependence System.out.trouble
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    6 trueControlDependence
+   5:    0 -> * trueControlDependence
+   6: * ->    1 loopIndependentDefUseDependence System.out.!println( java.lang.String )
 --
 ----- ClDG (to here) -----
 

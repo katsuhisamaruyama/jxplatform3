@@ -2,122 +2,110 @@
 Class Name = Consumer
    0 constructorEntry [ Consumer( Storage ) ]
    1 formalIn D = { storage$0 } U = {  }
-   2 assignment D = { this.storage } U = { storage$0, this }
-   4 formalOut D = {  } U = { $_, this.storage }
+   2 assignment D = { this.storage } U = { storage$0, storage$0.data }
+   4 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ run( ) ]
    1 trySt D = {  } U = {  }
    2 whileSt D = {  } U = {  }
-   3 localDeclaration D = { data$0 } U = { this.storage.!take }
+   3 localDeclaration D = { data$0 } U = { this.storage.!take( ) }
    4 receiver D = {  } U = { this.storage }
-   5 methodCall D = { this.storage, this.storage.data } U = { this.storage, this.storage.data } TO = Storage#take( )
-   6 actualOut D = { this.storage, this.storage.!take, this.storage.data } U = { this.storage, this.storage.data }
-   7 ifSt D = {  } U = { data$0.!equals, this.storage.!take.!equals }
-   8 receiver D = {  } U = { data$0, this.storage.!take }
-   9 methodCall D = {  } U = { $java.lang.String, data$0, data$0.COMPACT_STRINGS, data$0.coder, data$0.value, this.storage.!take, this.storage.!take.COMPACT_STRINGS, this.storage.!take.coder, this.storage.!take.value } TO = java.lang.String#equals( java.lang.Object )
-  10 actualOut D = { data$0.!equals } U = { data$0.COMPACT_STRINGS, data$0.coder, data$0.value, this.storage.!take.COMPACT_STRINGS, this.storage.!take.coder, this.storage.!take.value }
+   5 methodCall D = {  } U = { this.storage.data, this.storage.java.lang.String.!java.lang.String.coder, this.storage.java.lang.String.!java.lang.String.hash, this.storage.java.lang.String.!java.lang.String.value } TO = Storage#take( )
+* actualOut D = { this.storage.!take( ), this.storage.java.lang.String.!java.lang.String.coder, this.storage.java.lang.String.!java.lang.String.hash, this.storage.java.lang.String.!java.lang.String.value } U = { this.storage.data, this.storage.java.lang.String.!java.lang.String.coder, this.storage.java.lang.String.!java.lang.String.hash, this.storage.java.lang.String.!java.lang.String.value }
+   7 ifSt D = {  } U = { data$0.!equals( java.lang.Object ) }
+   8 receiver D = {  } U = { data$0 }
+   9 methodCall D = {  } U = { $java.lang.String, data$0.!java.lang.String.COMPACT_STRINGS, data$0.!java.lang.String.coder, data$0.!java.lang.String.value, this.storage.!take( ).!java.lang.String.COMPACT_STRINGS, this.storage.!take( ).!java.lang.String.coder, this.storage.!take( ).!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
+  10 actualOut D = { data$0.!equals( java.lang.Object ) } U = { data$0.!java.lang.String.COMPACT_STRINGS, data$0.!java.lang.String.coder, data$0.!java.lang.String.value, this.storage.!take( ).!java.lang.String.COMPACT_STRINGS, this.storage.!take( ).!java.lang.String.coder, this.storage.!take( ).!java.lang.String.value }
   11 breakSt D = {  } U = {  }
-  13 assignment D = {  } U = { System.out.!println }
+  13 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   14 receiver D = {  } U = { System.out }
-  15 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, data$0, java.io.FilterOutputStream.out, this.storage.!take } TO = java.io.PrintStream#println( java.lang.String )
-  16 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
-  17 assignment D = {  } U = { this.!sleep }
+  15 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, data$0 } TO = java.io.PrintStream#println( java.lang.String )
+* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  17 assignment D = {  } U = { this.!sleep( long ) }
   18 receiver D = {  } U = {  }
-  19 methodCall D = {  } U = { this.!random } TO = java.lang.Thread#sleep( long )
+  19 methodCall D = {  } U = { this.!random( ) } TO = java.lang.Thread#sleep( long )
   20 receiver D = {  } U = {  }
-  21 methodCall D = {  } U = { this$RandomNumberGeneratorHolder.randomNumberGenerator } TO = java.lang.Math#random( )
-  22 actualOut D = { this.!random } U = { this$RandomNumberGeneratorHolder.randomNumberGenerator }
-  23 actualOut D = { this.!sleep } U = {  }
+  21 methodCall D = {  } U = { this.!java.lang.Math$RandomNumberGeneratorHolder.randomNumberGenerator } TO = java.lang.Math#random( )
+  22 actualOut D = { this.!random( ) } U = { this.!java.lang.Math$RandomNumberGeneratorHolder.randomNumberGenerator }
+  23 actualOut D = { this.!sleep( long ) } U = {  }
   25 catchClause D = { e$1 } U = {  }
-  27 formalOut D = {  } U = { $_, System.out, System.out.trouble, this.storage, this.storage.data }
+  27 formalOut D = {  } U = { $_ }
+* actualOut D = { this.storage.data } U = {  }
 --
    0 fieldEntry [ storage ]
    1 fieldDeclaration D = { this.storage } U = { this.storage }
 --
    0: Consumer( Storage )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 loopIndependentDefUseDependence storage$0
-   5: 2 -> 4 loopIndependentDefUseDependence this.storage
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence storage$0
 --
    0: run( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 25 trueControlDependence
-   3: 0 -> 27 trueControlDependence
-   4: 1 -> 2 trueControlDependence
-   5: 10 -> 10 defOrderDependence data$0.!equals
-   6: 10 -> 7 loopIndependentDefUseDependence data$0.!equals
-   7: 11 -> 13 fallThroughControlDependence
-   8: 11 -> 14 trueControlDependence
-   9: 11 -> 15 fallThroughControlDependence
-  10: 11 -> 16 trueControlDependence
-  11: 11 -> 18 trueControlDependence
-  12: 11 -> 19 fallThroughControlDependence
-  13: 11 -> 20 trueControlDependence
-  14: 11 -> 21 fallThroughControlDependence
-  15: 11 -> 22 trueControlDependence
-  16: 11 -> 23 trueControlDependence
-  17: 15 -> 16 loopIndependentDefUseDependence System.out
-  18: 15 -> 16 outputDependence System.out.trouble
-  19: 16 -> 13 loopIndependentDefUseDependence System.out.!println
-  20: 16 -> 14 loopCarriedDefUseDependence System.out 2
-  21: 16 -> 15 loopCarriedDefUseDependence System.out 2
-  22: 16 -> 15 outputDependence System.out.trouble
-  23: 16 -> 16 defOrderDependence System.out.!println
-  24: 16 -> 27 loopIndependentDefUseDependence System.out
-  25: 16 -> 27 loopIndependentDefUseDependence System.out.trouble
-  26: 19 -> 17 trueControlDependence
-  27: 19 -> 2 trueControlDependence
-  28: 19 -> 25 exceptionCatch
-  29: 2 -> 4 trueControlDependence
-  30: 2 -> 5 trueControlDependence
-  31: 2 -> 6 trueControlDependence
-  32: 22 -> 19 loopIndependentDefUseDependence this.!random
-  33: 22 -> 22 defOrderDependence this.!random
-  34: 23 -> 17 loopIndependentDefUseDependence this.!sleep
-  35: 23 -> 23 defOrderDependence this.!sleep
-  36: 3 -> 15 declaration
-  37: 3 -> 15 loopIndependentDefUseDependence data$0
-  38: 3 -> 3 defOrderDependence data$0
-  39: 3 -> 8 declaration
-  40: 3 -> 8 loopIndependentDefUseDependence data$0
-  41: 3 -> 9 declaration
-  42: 3 -> 9 loopIndependentDefUseDependence data$0
-  43: 5 -> 10 trueControlDependence
-  44: 5 -> 25 exceptionCatch
-  45: 5 -> 27 loopIndependentDefUseDependence this.storage
-  46: 5 -> 27 loopIndependentDefUseDependence this.storage.data
-  47: 5 -> 3 trueControlDependence
-  48: 5 -> 6 loopIndependentDefUseDependence this.storage
-  49: 5 -> 6 loopIndependentDefUseDependence this.storage.data
-  50: 5 -> 7 trueControlDependence
-  51: 5 -> 8 trueControlDependence
-  52: 5 -> 9 trueControlDependence
-  53: 6 -> 15 loopIndependentDefUseDependence this.storage.!take
-  54: 6 -> 27 loopIndependentDefUseDependence this.storage
-  55: 6 -> 27 loopIndependentDefUseDependence this.storage.data
-  56: 6 -> 3 loopIndependentDefUseDependence this.storage.!take
-  57: 6 -> 4 loopCarriedDefUseDependence this.storage 2
-  58: 6 -> 5 loopCarriedDefUseDependence this.storage 2
-  59: 6 -> 5 loopCarriedDefUseDependence this.storage.data 2
-  60: 6 -> 6 defOrderDependence this.storage.!take
-  61: 6 -> 8 loopIndependentDefUseDependence this.storage.!take
-  62: 6 -> 9 loopIndependentDefUseDependence this.storage.!take
-  63: 7 -> 11 trueControlDependence
-  64: 7 -> 13 falseControlDependence
-  65: 7 -> 14 trueControlDependence
-  66: 7 -> 15 falseControlDependence
-  67: 7 -> 16 trueControlDependence
-  68: 7 -> 18 trueControlDependence
-  69: 7 -> 19 falseControlDependence
-  70: 7 -> 20 trueControlDependence
-  71: 7 -> 21 falseControlDependence
-  72: 7 -> 22 trueControlDependence
-  73: 7 -> 23 trueControlDependence
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->   27 trueControlDependence
+   4:    1 ->   25 trueControlDependence
+   5:    2 ->    4 trueControlDependence
+   6:    2 ->    5 trueControlDependence
+   7:    3 ->    3 defOrderDependence data$0
+   8:    3 ->    8 declaration
+   9:    3 ->    8 loopIndependentDefUseDependence data$0
+  10:    3 ->   15 declaration
+  11:    3 ->   15 loopIndependentDefUseDependence data$0
+  12:    5 ->    3 trueControlDependence
+  13:    5 ->    7 trueControlDependence
+  14:    5 ->    8 trueControlDependence
+  15:    5 ->    9 trueControlDependence
+  16:    5 ->   10 trueControlDependence
+  17:    5 ->   25 exceptionCatch
+  18:    5 -> * trueControlDependence
+  19:    5 -> * trueControlDependence
+  20:    7 ->   11 trueControlDependence
+  21:    7 ->   13 falseControlDependence
+  22:    7 ->   14 falseControlDependence
+  23:    7 ->   15 falseControlDependence
+  24:    7 ->   18 falseControlDependence
+  25:    7 ->   19 falseControlDependence
+  26:    7 ->   20 falseControlDependence
+  27:    7 ->   21 falseControlDependence
+  28:    7 ->   22 falseControlDependence
+  29:    7 -> * falseControlDependence
+  30:   10 ->    7 loopIndependentDefUseDependence data$0.!equals( java.lang.Object )
+  31:   10 ->   10 defOrderDependence data$0.!equals( java.lang.Object )
+  32:   11 ->   13 fallThroughControlDependence
+  33:   11 ->   14 fallThroughControlDependence
+  34:   11 ->   15 fallThroughControlDependence
+  35:   11 ->   18 fallThroughControlDependence
+  36:   11 ->   19 fallThroughControlDependence
+  37:   11 ->   20 fallThroughControlDependence
+  38:   11 ->   21 fallThroughControlDependence
+  39:   11 ->   22 fallThroughControlDependence
+  40:   11 -> * fallThroughControlDependence
+  41:   19 ->    2 trueControlDependence
+  42:   19 ->   17 trueControlDependence
+  43:   19 ->   23 trueControlDependence
+  44:   19 ->   25 exceptionCatch
+  45:   22 ->   19 loopIndependentDefUseDependence this.!random( )
+  46:   22 ->   22 defOrderDependence this.!random( )
+  47:   23 ->   17 loopIndependentDefUseDependence this.!sleep( long )
+  48:   23 ->   23 defOrderDependence this.!sleep( long )
+  49: * ->    3 loopIndependentDefUseDependence this.storage.!take( )
+  50: * ->    5 loopCarriedDefUseDependence this.storage.data (LC =    2)
+  51: * ->    5 loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.coder (LC =    2)
+  52: * ->    5 loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.hash (LC =    2)
+  53: * ->    5 loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.value (LC =    2)
+  54: * ->   13 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+  55: * -> * defOrderDependence System.out.!println( java.lang.String )
+  56: * -> * defOrderDependence this.storage.!take( )
+  57: * -> * defOrderDependence this.storage.data
+  58: * -> * loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.coder (LC =    2)
+  59: * -> * loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.hash (LC =    2)
+  60: * -> * loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.value (LC =    2)
+  61: * -> * loopIndependentDefUseDependence this.storage.data
 --
    0: storage
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
 ----- ClDG (to here) -----
 

@@ -2,24 +2,20 @@
 Class Name = Sample15$1
    0 methodEntry [ windowClosing( java.awt.event.WindowEvent ) ]
    1 formalIn D = { evt$4 } U = {  }
-   2 assignment D = {  } U = { System.out.!println }
+   2 assignment D = {  } U = { System.out.!println( java.lang.String ) }
    3 receiver D = {  } U = { System.out }
-   4 methodCall D = { System.out, System.out.trouble } U = { $java.lang.String, System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out } TO = java.io.PrintStream#println( java.lang.String )
-   5 actualOut D = { System.out, System.out.!println, System.out.trouble } U = { System.out, System.out.autoFlush, System.out.charOut, System.out.textOut, java.io.FilterOutputStream.out }
-   7 formalOut D = {  } U = { $_, System.out, System.out.trouble }
+   4 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut } TO = java.io.PrintStream#println( java.lang.String )
+* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+   7 formalOut D = {  } U = { $_ }
 --
    0: windowClosing( java.awt.event.WindowEvent )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 5 trueControlDependence
-   6: 0 -> 7 trueControlDependence
-   7: 4 -> 5 loopIndependentDefUseDependence System.out
-   8: 4 -> 5 outputDependence System.out.trouble
-   9: 5 -> 2 loopIndependentDefUseDependence System.out.!println
-  10: 5 -> 7 loopIndependentDefUseDependence System.out
-  11: 5 -> 7 loopIndependentDefUseDependence System.out.trouble
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    7 trueControlDependence
+   6:    0 -> * trueControlDependence
+   7: * ->    2 loopIndependentDefUseDependence System.out.!println( java.lang.String )
 --
 ----- ClDG (to here) -----
 

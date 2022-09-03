@@ -1,326 +1,397 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
    0 methodEntry [ getColor( ) ]
-   1 localDeclaration D = { icon$0 } U = { this.colorCombo.!getSelectedItem }
+   1 localDeclaration D = { icon$0 } U = { this.colorCombo.!getSelectedItem( ) }
    2 receiver D = {  } U = { this.colorCombo }
-   3 methodCall D = {  } U = { this.colorCombo, this.colorCombo.dataModel } TO = javax.swing.JComboBox#getSelectedItem( )
-   4 actualOut D = { this.colorCombo.!getSelectedItem } U = { this.colorCombo.dataModel }
-   5 returnSt D = { $_ } U = { icon$0.!getFigure.!getColor }
-   6 receiver D = {  } U = { icon$0.!getFigure }
+   3 methodCall D = {  } U = { this.colorCombo.!javax.swing.JComboBox.dataModel } TO = javax.swing.JComboBox#getSelectedItem( )
+   4 actualOut D = { this.colorCombo.!getSelectedItem( ) } U = { this.colorCombo.!javax.swing.JComboBox.dataModel }
+   5 returnSt D = { $_ } U = { icon$0.!getFigure( ).!getColor( ) }
+   6 receiver D = {  } U = { icon$0.!getFigure( ) }
    7 receiver D = {  } U = { icon$0 }
-   8 methodCall D = {  } U = { icon$0.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#getFigure( )
-   9 actualOut D = { icon$0.!getFigure } U = { icon$0.figure }
-  10 methodCall D = {  } U = { icon$0.!getFigure.color } TO = jp.ac.ritsumei.cs.draw.Figure#getColor( )
-  11 actualOut D = { icon$0.!getFigure.!getColor } U = { icon$0.!getFigure.color }
+   8 methodCall D = {  } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#getFigure( )
+   9 actualOut D = { icon$0.!getFigure( ) } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY }
+  10 methodCall D = {  } U = { icon$0.!getFigure( ).color } TO = jp.ac.ritsumei.cs.draw.Figure#getColor( )
+  11 actualOut D = { icon$0.!getFigure( ).!getColor( ) } U = { icon$0.!getFigure( ).color }
   13 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ shapeComboIcons ]
-   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons } U = { FigureIcon.!FigureIcon, jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons }
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons } U = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ), jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons }
    2 receiver D = {  } U = {  }
-   3 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-   4 actualIn D = {  } U = { Line.!Line }
+   3 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+   4 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( ) }
    5 receiver D = {  } U = {  }
-   6 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( )
-   7 actualOut D = { Line.!Line } U = {  }
-   8 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+   6 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( )
+   7 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( ) } U = { Color.black }
+   8 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
    9 receiver D = {  } U = {  }
-  10 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  11 actualIn D = {  } U = { Rect.!Rect }
+  10 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  11 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ) }
   12 receiver D = {  } U = {  }
-  13 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Rect#Rect( )
-  14 actualOut D = { Rect.!Rect } U = {  }
-  15 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  13 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Rect#Rect( )
+  14 actualOut D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ) } U = { Color.black }
+  15 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   16 receiver D = {  } U = {  }
-  17 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  18 actualIn D = {  } U = { FilledRect.!FilledRect }
+  17 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  18 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ) }
   19 receiver D = {  } U = {  }
-  20 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.FilledRect#FilledRect( )
-  21 actualOut D = { FilledRect.!FilledRect } U = {  }
-  22 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  20 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.FilledRect#FilledRect( )
+  21 actualOut D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ) } U = { Color.black }
+  22 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   23 receiver D = {  } U = {  }
-  24 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  25 actualIn D = {  } U = { Oval.!Oval }
+  24 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  25 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ) }
   26 receiver D = {  } U = {  }
-  27 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Oval#Oval( )
-  28 actualOut D = { Oval.!Oval } U = {  }
-  29 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  27 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Oval#Oval( )
+  28 actualOut D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ) } U = { Color.black }
+  29 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   30 receiver D = {  } U = {  }
-  31 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  32 actualIn D = {  } U = { FilledOval.!FilledOval }
+  31 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  32 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ) }
   33 receiver D = {  } U = {  }
-  34 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.FilledOval#FilledOval( )
-  35 actualOut D = { FilledOval.!FilledOval } U = {  }
-  36 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  34 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.FilledOval#FilledOval( )
+  35 actualOut D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ) } U = { Color.black }
+  36 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).outlineWidth } U = {  }
 --
    0 methodEntry [ createFigure( ) ]
-   1 localDeclaration D = { shape$0 } U = { this.!getShape }
+   1 localDeclaration D = { shape$0 } U = { this.!getShape( ) }
    2 receiver D = {  } U = {  }
-   3 methodCall D = {  } U = { this.shapeCombo } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getShape( )
-   4 actualOut D = { this.!getShape } U = { this.shapeCombo }
-   5 ifSt D = {  } U = { shape$0, this.!getShape }
-   6 returnSt D = { $_ } U = { shape$0.!create, this.!getShape.!create }
-   7 receiver D = {  } U = { shape$0, this.!getShape }
+   3 methodCall D = {  } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.figure, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getShape( )
+   4 actualOut D = { this.!getShape( ) } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.figure, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel }
+   5 ifSt D = {  } U = { shape$0, shape$0.color, shape$0.endX, shape$0.endY, shape$0.outlineWidth, shape$0.startX, shape$0.startY, this.!getShape( ).color, this.!getShape( ).endX, this.!getShape( ).endY, this.!getShape( ).outlineWidth, this.!getShape( ).startX, this.!getShape( ).startY }
+   6 returnSt D = { $_ } U = { shape$0.!create( java.awt.Color float ) }
+   7 receiver D = {  } U = { shape$0 }
    8 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#create( java.awt.Color float )
-   9 actualIn D = {  } U = { this.!getColor }
+   9 actualIn D = {  } U = { this.!getColor( ) }
   10 receiver D = {  } U = {  }
-  11 methodCall D = {  } U = { this.colorCombo } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getColor( )
-  12 actualOut D = { this.!getColor } U = { this.colorCombo }
-  13 actualIn D = {  } U = { this.!getLineWidth }
+  11 methodCall D = {  } U = { this.colorCombo, this.colorCombo.!javax.swing.JComboBox.dataModel, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.!getFigure( ).color, this.icon$0.figure } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getColor( )
+  12 actualOut D = { this.!getColor( ) } U = { this.colorCombo, this.colorCombo.!javax.swing.JComboBox.dataModel, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.!getFigure( ).color, this.icon$0.figure }
+  13 actualIn D = {  } U = { this.!getLineWidth( ) }
   14 receiver D = {  } U = {  }
-  15 methodCall D = {  } U = { this.widthCombo } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getLineWidth( )
-  16 actualOut D = { this.!getLineWidth } U = { this.widthCombo }
-  17 actualOut D = { shape$0.!create } U = {  }
+  15 methodCall D = {  } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.!getFigure( ).outlineWidth, this.icon$0.figure, this.widthCombo, this.widthCombo.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getLineWidth( )
+  16 actualOut D = { this.!getLineWidth( ) } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.!getFigure( ).outlineWidth, this.icon$0.figure, this.widthCombo, this.widthCombo.!javax.swing.JComboBox.dataModel }
+  17 actualOut D = { shape$0.!create( java.awt.Color float ) } U = {  }
   19 returnSt D = { $_ } U = {  }
   21 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ FigureSelector( ) ]
-   1 assignment D = {  } U = { this.!setLayout }
+   1 assignment D = {  } U = { this.!setLayout( java.awt.LayoutManager ) }
    2 receiver D = {  } U = {  }
-   3 methodCall D = { this.layoutMgr } U = { FlowLayout.!FlowLayout } TO = java.awt.Container#setLayout( java.awt.LayoutManager )
+   3 methodCall D = {  } U = { java.awt.FlowLayout.!FlowLayout( int ) } TO = java.awt.Container#setLayout( java.awt.LayoutManager )
    4 receiver D = {  } U = {  }
-   5 constructorCall D = { FlowLayout.hgap, FlowLayout.serialVersionOnStream, FlowLayout.vgap } U = { FlowLayout.RIGHT } TO = java.awt.FlowLayout#FlowLayout( int )
-   6 actualOut D = { FlowLayout.!FlowLayout, FlowLayout.hgap, FlowLayout.serialVersionOnStream, FlowLayout.vgap } U = {  }
-   7 actualOut D = { this.!setLayout, this.layoutMgr } U = {  }
-   8 assignment D = {  } U = { this.!createComboBoxes }
+   5 constructorCall D = {  } U = { FlowLayout.RIGHT } TO = java.awt.FlowLayout#FlowLayout( int )
+* actualOut D = { java.awt.FlowLayout.!FlowLayout( int ), java.awt.FlowLayout.!java.awt.FlowLayout.hgap, java.awt.FlowLayout.!java.awt.FlowLayout.serialVersionOnStream, java.awt.FlowLayout.!java.awt.FlowLayout.vgap } U = {  }
+* actualOut D = { this.!java.awt.Container.layoutMgr, this.!setLayout( java.awt.LayoutManager ) } U = {  }
+   8 assignment D = {  } U = { this.!createComboBoxes( ) }
    9 receiver D = {  } U = {  }
-  10 methodCall D = { this.colorCombo, this.shapeCombo, this.widthCombo } U = { this.colorCombo, this.shapeCombo, this.widthCombo } TO = jp.ac.ritsumei.cs.draw.FigureSelector#createComboBoxes( )
-  11 actualOut D = { this.!createComboBoxes, this.colorCombo, this.shapeCombo, this.widthCombo } U = { this.colorCombo, this.shapeCombo, this.widthCombo }
-  13 formalOut D = {  } U = { $_, FlowLayout.hgap, FlowLayout.serialVersionOnStream, FlowLayout.vgap, this.colorCombo, this.layoutMgr, this.shapeCombo, this.widthCombo }
+  10 methodCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY, icons$1.length, jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.cb$0.!javax.swing.JComboBox.dataModel, this.colorCombo, this.javax.swing.JComboBox.!java.lang.Boolean.TRUE, this.javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, this.javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel, this.widthCombo } TO = jp.ac.ritsumei.cs.draw.FigureSelector#createComboBoxes( )
+* actualOut D = { this.!createComboBoxes( ), this.!java.awt.Component.parent, this.javax.swing.JComboBox.!javax.swing.DefaultComboBoxModel.objects, this.javax.swing.JComboBox.!javax.swing.JComboBox.actionCommand, this.javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, this.javax.swing.JComboBox.!javax.swing.JComboBox.firingActionEvent, this.javax.swing.JComboBox.!javax.swing.JComboBox.isEditable, this.javax.swing.JComboBox.!javax.swing.JComboBox.keySelectionManager, this.javax.swing.JComboBox.!javax.swing.JComboBox.lightWeightPopupEnabled, this.javax.swing.JComboBox.!javax.swing.JComboBox.maximumRowCount, this.javax.swing.JComboBox.!javax.swing.JComboBox.selectedItemReminder, this.javax.swing.JComboBox.!javax.swing.JComboBox.selectingItem, this.javax.swing.JComboBox.!javax.swing.JComponent.inputVerifier, this.javax.swing.JComboBox.!javax.swing.JComponent.listenerList, this.javax.swing.JComboBox.!javax.swing.JComponent.revalidateRunnableScheduled, this.javax.swing.JComboBox.!javax.swing.JComponent.verifyInputWhenFocusTarget, this.javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, this.javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, this.javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, this.javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, this.javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, this.javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, this.javax.swing.JLabel.!javax.swing.JLabel.labelFor, this.javax.swing.JLabel.!javax.swing.JLabel.mnemonic, this.javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, this.javax.swing.JLabel.!javax.swing.JLabel.text, this.javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, this.javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY, icons$1.length, jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.cb$0.!javax.swing.JComboBox.dataModel, this.colorCombo, this.javax.swing.JComboBox.!java.lang.Boolean.TRUE, this.javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, this.javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel, this.widthCombo }
+  13 formalOut D = {  } U = { $_ }
+* actualOut D = { this.!createComboBoxes( ).figure } U = {  }
+* actualOut D = { this.colorCombo } U = {  }
+* actualOut D = { this.shapeCombo } U = {  }
+* actualOut D = { this.widthCombo } U = {  }
 --
    0 fieldEntry [ colorComboIcons ]
-   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons } U = { FigureIcon.!FigureIcon, jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons }
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons } U = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ), jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons }
    2 receiver D = {  } U = {  }
-   3 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-   4 actualIn D = {  } U = { Line.!Line }
+   3 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+   4 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
    5 receiver D = {  } U = {  }
    6 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
    7 actualIn D = {  } U = { Color.black }
-   8 actualOut D = { Line.!Line } U = {  }
-   9 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+   8 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+   9 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   10 receiver D = {  } U = {  }
-  11 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  12 actualIn D = {  } U = { Line.!Line }
+  11 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  12 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
   13 receiver D = {  } U = {  }
   14 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
   15 actualIn D = {  } U = { Color.yellow }
-  16 actualOut D = { Line.!Line } U = {  }
-  17 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  16 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  17 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   18 receiver D = {  } U = {  }
-  19 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  20 actualIn D = {  } U = { Line.!Line }
+  19 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  20 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
   21 receiver D = {  } U = {  }
   22 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
   23 actualIn D = {  } U = { Color.green }
-  24 actualOut D = { Line.!Line } U = {  }
-  25 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  24 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  25 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   26 receiver D = {  } U = {  }
-  27 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  28 actualIn D = {  } U = { Line.!Line }
+  27 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  28 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
   29 receiver D = {  } U = {  }
   30 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
   31 actualIn D = {  } U = { Color.red }
-  32 actualOut D = { Line.!Line } U = {  }
-  33 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  32 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  33 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   34 receiver D = {  } U = {  }
-  35 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  36 actualIn D = {  } U = { Line.!Line }
+  35 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  36 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
   37 receiver D = {  } U = {  }
   38 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
   39 actualIn D = {  } U = { Color.pink }
-  40 actualOut D = { Line.!Line } U = {  }
-  41 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  40 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  41 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   42 receiver D = {  } U = {  }
-  43 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  44 actualIn D = {  } U = { Line.!Line }
+  43 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  44 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
   45 receiver D = {  } U = {  }
   46 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
   47 actualIn D = {  } U = { Color.blue }
-  48 actualOut D = { Line.!Line } U = {  }
-  49 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  48 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  49 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   50 receiver D = {  } U = {  }
-  51 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  52 actualIn D = {  } U = { Line.!Line }
+  51 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  52 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
   53 receiver D = {  } U = {  }
   54 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
   55 actualIn D = {  } U = { Color.magenta }
-  56 actualOut D = { Line.!Line } U = {  }
-  57 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  56 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  57 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   58 receiver D = {  } U = {  }
-  59 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  60 actualIn D = {  } U = { Line.!Line }
+  59 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  60 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
   61 receiver D = {  } U = {  }
   62 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
   63 actualIn D = {  } U = { Color.orange }
-  64 actualOut D = { Line.!Line } U = {  }
-  65 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  64 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  65 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   66 receiver D = {  } U = {  }
-  67 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  68 actualIn D = {  } U = { Line.!Line }
+  67 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  68 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
   69 receiver D = {  } U = {  }
   70 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
   71 actualIn D = {  } U = { Color.gray }
-  72 actualOut D = { Line.!Line } U = {  }
-  73 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  72 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  73 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   74 receiver D = {  } U = {  }
-  75 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  76 actualIn D = {  } U = { Line.!Line }
+  75 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  76 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
   77 receiver D = {  } U = {  }
   78 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
   79 actualIn D = {  } U = { Color.darkGray }
-  80 actualOut D = { Line.!Line } U = {  }
-  81 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  80 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  81 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   82 receiver D = {  } U = {  }
-  83 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  84 actualIn D = {  } U = { Line.!Line }
+  83 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  84 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
   85 receiver D = {  } U = {  }
   86 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
   87 actualIn D = {  } U = { Color.lightGray }
-  88 actualOut D = { Line.!Line } U = {  }
-  89 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  88 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  89 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   90 receiver D = {  } U = {  }
-  91 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  92 actualIn D = {  } U = { Line.!Line }
+  91 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  92 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
   93 receiver D = {  } U = {  }
   94 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
   95 actualIn D = {  } U = { Color.cyan }
-  96 actualOut D = { Line.!Line } U = {  }
-  97 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  96 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  97 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   98 receiver D = {  } U = {  }
-  99 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
- 100 actualIn D = {  } U = { Line.!Line }
+  99 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 100 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
  101 receiver D = {  } U = {  }
  102 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
  103 actualIn D = {  } U = { Color.white }
- 104 actualOut D = { Line.!Line } U = {  }
- 105 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+ 104 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+ 105 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
 --
    0 fieldEntry [ serialVersionUID ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.FigureSelector.serialVersionUID }
 --
    0 methodEntry [ getLineWidth( ) ]
-   1 localDeclaration D = { icon$0 } U = { this.widthCombo.!getSelectedItem }
+   1 localDeclaration D = { icon$0 } U = { this.widthCombo.!getSelectedItem( ) }
    2 receiver D = {  } U = { this.widthCombo }
-   3 methodCall D = {  } U = { this.widthCombo, this.widthCombo.dataModel } TO = javax.swing.JComboBox#getSelectedItem( )
-   4 actualOut D = { this.widthCombo.!getSelectedItem } U = { this.widthCombo.dataModel }
-   5 returnSt D = { $_ } U = { icon$0.!getFigure.!getOutlineWidth }
-   6 receiver D = {  } U = { icon$0.!getFigure }
+   3 methodCall D = {  } U = { this.widthCombo.!javax.swing.JComboBox.dataModel } TO = javax.swing.JComboBox#getSelectedItem( )
+   4 actualOut D = { this.widthCombo.!getSelectedItem( ) } U = { this.widthCombo.!javax.swing.JComboBox.dataModel }
+   5 returnSt D = { $_ } U = { icon$0.!getFigure( ).!getOutlineWidth( ) }
+   6 receiver D = {  } U = { icon$0.!getFigure( ) }
    7 receiver D = {  } U = { icon$0 }
-   8 methodCall D = {  } U = { icon$0.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#getFigure( )
-   9 actualOut D = { icon$0.!getFigure } U = { icon$0.figure }
-  10 methodCall D = {  } U = { icon$0.!getFigure.outlineWidth } TO = jp.ac.ritsumei.cs.draw.Figure#getOutlineWidth( )
-  11 actualOut D = { icon$0.!getFigure.!getOutlineWidth } U = { icon$0.!getFigure.outlineWidth }
+   8 methodCall D = {  } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#getFigure( )
+   9 actualOut D = { icon$0.!getFigure( ) } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY }
+  10 methodCall D = {  } U = { icon$0.!getFigure( ).outlineWidth } TO = jp.ac.ritsumei.cs.draw.Figure#getOutlineWidth( )
+  11 actualOut D = { icon$0.!getFigure( ).!getOutlineWidth( ) } U = { icon$0.!getFigure( ).outlineWidth }
   13 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ widthComboIcons ]
-   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons } U = { FigureIcon.!FigureIcon, jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons }
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons } U = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ), jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons }
    2 receiver D = {  } U = {  }
-   3 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-   4 actualIn D = {  } U = { Line.!Line }
+   3 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+   4 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) }
    5 receiver D = {  } U = {  }
-   6 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
+   6 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
    7 actualIn D = {  } U = {  }
-   8 actualOut D = { Line.!Line } U = {  }
-   9 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+   8 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) } U = { Color.black }
+   9 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   10 receiver D = {  } U = {  }
-  11 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  12 actualIn D = {  } U = { Line.!Line }
+  11 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  12 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) }
   13 receiver D = {  } U = {  }
-  14 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
+  14 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
   15 actualIn D = {  } U = {  }
-  16 actualOut D = { Line.!Line } U = {  }
-  17 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  16 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) } U = { Color.black }
+  17 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   18 receiver D = {  } U = {  }
-  19 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  20 actualIn D = {  } U = { Line.!Line }
+  19 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  20 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) }
   21 receiver D = {  } U = {  }
-  22 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
+  22 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
   23 actualIn D = {  } U = {  }
-  24 actualOut D = { Line.!Line } U = {  }
-  25 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  24 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) } U = { Color.black }
+  25 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
   26 receiver D = {  } U = {  }
-  27 constructorCall D = { FigureIcon.figure } U = { FigureIcon.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  28 actualIn D = {  } U = { Line.!Line }
+  27 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  28 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) }
   29 receiver D = {  } U = {  }
-  30 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
+  30 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
   31 actualIn D = {  } U = {  }
-  32 actualOut D = { Line.!Line } U = {  }
-  33 actualOut D = { FigureIcon.!FigureIcon, FigureIcon.figure } U = { FigureIcon.figure }
+  32 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) } U = { Color.black }
+  33 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).color } U = {  }
+* actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth } U = {  }
 --
    0 methodEntry [ createComboBoxes( ) ]
-   1 localDeclaration D = { shapeLabel$0 } U = { shapeLabel$0.!JLabel }
+   1 localDeclaration D = { shapeLabel$0 } U = { javax.swing.JLabel.!JLabel( java.lang.String ) }
    2 receiver D = {  } U = {  }
-   3 constructorCall D = { shapeLabel$0.defaultIcon, shapeLabel$0.disabledIcon, shapeLabel$0.disabledIconSet, shapeLabel$0.horizontalAlignment, shapeLabel$0.horizontalTextPosition, shapeLabel$0.iconTextGap, shapeLabel$0.labelFor, shapeLabel$0.mnemonic, shapeLabel$0.mnemonicIndex, shapeLabel$0.text, shapeLabel$0.verticalAlignment, shapeLabel$0.verticalTextPosition } U = { $java.lang.String } TO = javax.swing.JLabel#JLabel( java.lang.String )
-   4 actualOut D = { shapeLabel$0.!JLabel, shapeLabel$0.defaultIcon, shapeLabel$0.disabledIcon, shapeLabel$0.disabledIconSet, shapeLabel$0.horizontalAlignment, shapeLabel$0.horizontalTextPosition, shapeLabel$0.iconTextGap, shapeLabel$0.labelFor, shapeLabel$0.mnemonic, shapeLabel$0.mnemonicIndex, shapeLabel$0.text, shapeLabel$0.verticalAlignment, shapeLabel$0.verticalTextPosition } U = {  }
-   5 assignment D = {  } U = { this.!add }
+   3 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JLabel#JLabel( java.lang.String )
+* actualOut D = { javax.swing.JLabel.!JLabel( java.lang.String ), javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, javax.swing.JLabel.!javax.swing.JLabel.labelFor, javax.swing.JLabel.!javax.swing.JLabel.mnemonic, javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, javax.swing.JLabel.!javax.swing.JLabel.text, javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = {  }
+   5 assignment D = {  } U = { this.!add( java.awt.Component ) }
    6 receiver D = {  } U = {  }
-   7 methodCall D = { java.awt.Component.parent } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, shapeLabel$0, this.component, this.containerListener, this.layoutMgr } TO = java.awt.Container#add( java.awt.Component )
-   8 actualOut D = { java.awt.Component.parent, this.!add } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.component, this.containerListener, this.layoutMgr }
-   9 assignment D = { this.shapeCombo } U = { this.shapeCombo.!JComboBox<FigureIcon> }
+   7 methodCall D = {  } U = { shapeLabel$0, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer } TO = java.awt.Container#add( java.awt.Component )
+* actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+   9 assignment D = { this.shapeCombo } U = { javax.swing.JComboBox.!JComboBox( ) }
   10 receiver D = {  } U = {  }
-  11 constructorCall D = { javax.swing.DefaultComboBoxModel.objects, javax.swing.JComponent.inputVerifier, javax.swing.JComponent.listenerList, javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComponent.verifyInputWhenFocusTarget, this.shapeCombo.actionCommand, this.shapeCombo.dataModel, this.shapeCombo.firingActionEvent, this.shapeCombo.isEditable, this.shapeCombo.keySelectionManager, this.shapeCombo.lightWeightPopupEnabled, this.shapeCombo.maximumRowCount, this.shapeCombo.selectedItemReminder, this.shapeCombo.selectingItem } U = { java.lang.Boolean.TRUE, javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.shapeCombo.dataModel } TO = javax.swing.JComboBox#JComboBox( )
-  12 actualOut D = { javax.swing.DefaultComboBoxModel.objects, javax.swing.JComponent.inputVerifier, javax.swing.JComponent.listenerList, javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComponent.verifyInputWhenFocusTarget, this.shapeCombo.!JComboBox<FigureIcon>, this.shapeCombo.actionCommand, this.shapeCombo.dataModel, this.shapeCombo.firingActionEvent, this.shapeCombo.isEditable, this.shapeCombo.keySelectionManager, this.shapeCombo.lightWeightPopupEnabled, this.shapeCombo.maximumRowCount, this.shapeCombo.selectedItemReminder, this.shapeCombo.selectingItem } U = { java.lang.Boolean.TRUE, javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.shapeCombo.dataModel }
-  13 assignment D = {  } U = { this.!add }
+  11 constructorCall D = {  } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey } TO = javax.swing.JComboBox#JComboBox( )
+* actualOut D = { javax.swing.JComboBox.!JComboBox( ), javax.swing.JComboBox.!javax.swing.DefaultComboBoxModel.objects, javax.swing.JComboBox.!javax.swing.JComboBox.actionCommand, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JComboBox.firingActionEvent, javax.swing.JComboBox.!javax.swing.JComboBox.isEditable, javax.swing.JComboBox.!javax.swing.JComboBox.keySelectionManager, javax.swing.JComboBox.!javax.swing.JComboBox.lightWeightPopupEnabled, javax.swing.JComboBox.!javax.swing.JComboBox.maximumRowCount, javax.swing.JComboBox.!javax.swing.JComboBox.selectedItemReminder, javax.swing.JComboBox.!javax.swing.JComboBox.selectingItem, javax.swing.JComboBox.!javax.swing.JComponent.inputVerifier, javax.swing.JComboBox.!javax.swing.JComponent.listenerList, javax.swing.JComboBox.!javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComboBox.!javax.swing.JComponent.verifyInputWhenFocusTarget } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey }
+  13 assignment D = {  } U = { this.!add( java.awt.Component ) }
   14 receiver D = {  } U = {  }
-  15 methodCall D = { java.awt.Component.parent } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.component, this.containerListener, this.layoutMgr, this.shapeCombo } TO = java.awt.Container#add( java.awt.Component )
-  16 actualOut D = { java.awt.Component.parent, this.!add } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.component, this.containerListener, this.layoutMgr }
-  17 assignment D = {  } U = { this.shapeCombo.!addItem }
+  15 methodCall D = {  } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.shapeCombo } TO = java.awt.Container#add( java.awt.Component )
+* actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  17 assignment D = {  } U = { this.shapeCombo.!addItem( java.lang.Object ) }
   18 receiver D = {  } U = { this.shapeCombo }
-  19 methodCall D = {  } U = { CursorIcon.!CursorIcon, this.shapeCombo, this.shapeCombo.dataModel } TO = javax.swing.JComboBox#addItem( java.lang.Object )
+  19 methodCall D = {  } U = { javax.swing.JComboBox.!JComboBox( ).!javax.swing.JComboBox.dataModel, jp.ac.ritsumei.cs.draw.CursorIcon.!CursorIcon( ), this.shapeCombo.!javax.swing.JComboBox.dataModel } TO = javax.swing.JComboBox#addItem( java.lang.Object )
   20 receiver D = {  } U = {  }
-  21 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.CursorIcon#CursorIcon( )
-  22 actualOut D = { CursorIcon.!CursorIcon } U = {  }
-  23 actualOut D = { this.shapeCombo.!addItem } U = { this.shapeCombo.dataModel }
-  24 assignment D = {  } U = { this.!addItems }
+  21 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.CursorIcon#CursorIcon( )
+  22 actualOut D = { jp.ac.ritsumei.cs.draw.CursorIcon.!CursorIcon( ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  23 actualOut D = { this.shapeCombo.!addItem( java.lang.Object ) } U = { javax.swing.JComboBox.!JComboBox( ).!javax.swing.JComboBox.dataModel, this.shapeCombo.!javax.swing.JComboBox.dataModel }
+  24 assignment D = {  } U = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) }
   25 receiver D = {  } U = {  }
-  26 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.FigureSelector#addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+  26 methodCall D = {  } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
   27 actualIn D = {  } U = { this.shapeCombo }
   28 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons }
-  29 actualOut D = { this.!addItems } U = {  }
-  30 localDeclaration D = { colorLabel$1 } U = { colorLabel$1.!JLabel }
+  29 actualOut D = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel }
+  30 localDeclaration D = { colorLabel$1 } U = { javax.swing.JLabel.!JLabel( java.lang.String ) }
   31 receiver D = {  } U = {  }
-  32 constructorCall D = { colorLabel$1.defaultIcon, colorLabel$1.disabledIcon, colorLabel$1.disabledIconSet, colorLabel$1.horizontalAlignment, colorLabel$1.horizontalTextPosition, colorLabel$1.iconTextGap, colorLabel$1.labelFor, colorLabel$1.mnemonic, colorLabel$1.mnemonicIndex, colorLabel$1.text, colorLabel$1.verticalAlignment, colorLabel$1.verticalTextPosition } U = { $java.lang.String } TO = javax.swing.JLabel#JLabel( java.lang.String )
-  33 actualOut D = { colorLabel$1.!JLabel, colorLabel$1.defaultIcon, colorLabel$1.disabledIcon, colorLabel$1.disabledIconSet, colorLabel$1.horizontalAlignment, colorLabel$1.horizontalTextPosition, colorLabel$1.iconTextGap, colorLabel$1.labelFor, colorLabel$1.mnemonic, colorLabel$1.mnemonicIndex, colorLabel$1.text, colorLabel$1.verticalAlignment, colorLabel$1.verticalTextPosition } U = {  }
-  34 assignment D = {  } U = { this.!add }
+  32 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JLabel#JLabel( java.lang.String )
+* actualOut D = { javax.swing.JLabel.!JLabel( java.lang.String ), javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, javax.swing.JLabel.!javax.swing.JLabel.labelFor, javax.swing.JLabel.!javax.swing.JLabel.mnemonic, javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, javax.swing.JLabel.!javax.swing.JLabel.text, javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = {  }
+  34 assignment D = {  } U = { this.!add( java.awt.Component ) }
   35 receiver D = {  } U = {  }
-  36 methodCall D = { java.awt.Component.parent } U = { colorLabel$1, java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.component, this.containerListener, this.layoutMgr } TO = java.awt.Container#add( java.awt.Component )
-  37 actualOut D = { java.awt.Component.parent, this.!add } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.component, this.containerListener, this.layoutMgr }
-  38 assignment D = { this.colorCombo } U = { this.colorCombo.!JComboBox<FigureIcon> }
+  36 methodCall D = {  } U = { colorLabel$1, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer } TO = java.awt.Container#add( java.awt.Component )
+* actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  38 assignment D = { this.colorCombo } U = { javax.swing.JComboBox.!JComboBox( ) }
   39 receiver D = {  } U = {  }
-  40 constructorCall D = { javax.swing.DefaultComboBoxModel.objects, javax.swing.JComponent.inputVerifier, javax.swing.JComponent.listenerList, javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComponent.verifyInputWhenFocusTarget, this.colorCombo.actionCommand, this.colorCombo.dataModel, this.colorCombo.firingActionEvent, this.colorCombo.isEditable, this.colorCombo.keySelectionManager, this.colorCombo.lightWeightPopupEnabled, this.colorCombo.maximumRowCount, this.colorCombo.selectedItemReminder, this.colorCombo.selectingItem } U = { java.lang.Boolean.TRUE, javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.colorCombo.dataModel } TO = javax.swing.JComboBox#JComboBox( )
-  41 actualOut D = { javax.swing.DefaultComboBoxModel.objects, javax.swing.JComponent.inputVerifier, javax.swing.JComponent.listenerList, javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComponent.verifyInputWhenFocusTarget, this.colorCombo.!JComboBox<FigureIcon>, this.colorCombo.actionCommand, this.colorCombo.dataModel, this.colorCombo.firingActionEvent, this.colorCombo.isEditable, this.colorCombo.keySelectionManager, this.colorCombo.lightWeightPopupEnabled, this.colorCombo.maximumRowCount, this.colorCombo.selectedItemReminder, this.colorCombo.selectingItem } U = { java.lang.Boolean.TRUE, javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.colorCombo.dataModel }
-  42 assignment D = {  } U = { this.!add }
+  40 constructorCall D = {  } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey } TO = javax.swing.JComboBox#JComboBox( )
+* actualOut D = { javax.swing.JComboBox.!JComboBox( ), javax.swing.JComboBox.!javax.swing.DefaultComboBoxModel.objects, javax.swing.JComboBox.!javax.swing.JComboBox.actionCommand, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JComboBox.firingActionEvent, javax.swing.JComboBox.!javax.swing.JComboBox.isEditable, javax.swing.JComboBox.!javax.swing.JComboBox.keySelectionManager, javax.swing.JComboBox.!javax.swing.JComboBox.lightWeightPopupEnabled, javax.swing.JComboBox.!javax.swing.JComboBox.maximumRowCount, javax.swing.JComboBox.!javax.swing.JComboBox.selectedItemReminder, javax.swing.JComboBox.!javax.swing.JComboBox.selectingItem, javax.swing.JComboBox.!javax.swing.JComponent.inputVerifier, javax.swing.JComboBox.!javax.swing.JComponent.listenerList, javax.swing.JComboBox.!javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComboBox.!javax.swing.JComponent.verifyInputWhenFocusTarget } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey }
+  42 assignment D = {  } U = { this.!add( java.awt.Component ) }
   43 receiver D = {  } U = {  }
-  44 methodCall D = { java.awt.Component.parent } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.colorCombo, this.component, this.containerListener, this.layoutMgr } TO = java.awt.Container#add( java.awt.Component )
-  45 actualOut D = { java.awt.Component.parent, this.!add } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.component, this.containerListener, this.layoutMgr }
-  46 assignment D = {  } U = { this.!addItems }
+  44 methodCall D = {  } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.colorCombo } TO = java.awt.Container#add( java.awt.Component )
+* actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  46 assignment D = {  } U = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) }
   47 receiver D = {  } U = {  }
-  48 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.FigureSelector#addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+  48 methodCall D = {  } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
   49 actualIn D = {  } U = { this.colorCombo }
   50 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons }
-  51 actualOut D = { this.!addItems } U = {  }
-  52 localDeclaration D = { lineWidthLabel$2 } U = { lineWidthLabel$2.!JLabel }
+  51 actualOut D = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel }
+  52 localDeclaration D = { lineWidthLabel$2 } U = { javax.swing.JLabel.!JLabel( java.lang.String ) }
   53 receiver D = {  } U = {  }
-  54 constructorCall D = { lineWidthLabel$2.defaultIcon, lineWidthLabel$2.disabledIcon, lineWidthLabel$2.disabledIconSet, lineWidthLabel$2.horizontalAlignment, lineWidthLabel$2.horizontalTextPosition, lineWidthLabel$2.iconTextGap, lineWidthLabel$2.labelFor, lineWidthLabel$2.mnemonic, lineWidthLabel$2.mnemonicIndex, lineWidthLabel$2.text, lineWidthLabel$2.verticalAlignment, lineWidthLabel$2.verticalTextPosition } U = { $java.lang.String } TO = javax.swing.JLabel#JLabel( java.lang.String )
-  55 actualOut D = { lineWidthLabel$2.!JLabel, lineWidthLabel$2.defaultIcon, lineWidthLabel$2.disabledIcon, lineWidthLabel$2.disabledIconSet, lineWidthLabel$2.horizontalAlignment, lineWidthLabel$2.horizontalTextPosition, lineWidthLabel$2.iconTextGap, lineWidthLabel$2.labelFor, lineWidthLabel$2.mnemonic, lineWidthLabel$2.mnemonicIndex, lineWidthLabel$2.text, lineWidthLabel$2.verticalAlignment, lineWidthLabel$2.verticalTextPosition } U = {  }
-  56 assignment D = {  } U = { this.!add }
+  54 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JLabel#JLabel( java.lang.String )
+* actualOut D = { javax.swing.JLabel.!JLabel( java.lang.String ), javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, javax.swing.JLabel.!javax.swing.JLabel.labelFor, javax.swing.JLabel.!javax.swing.JLabel.mnemonic, javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, javax.swing.JLabel.!javax.swing.JLabel.text, javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = {  }
+  56 assignment D = {  } U = { this.!add( java.awt.Component ) }
   57 receiver D = {  } U = {  }
-  58 methodCall D = { java.awt.Component.parent } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, lineWidthLabel$2, this.component, this.containerListener, this.layoutMgr } TO = java.awt.Container#add( java.awt.Component )
-  59 actualOut D = { java.awt.Component.parent, this.!add } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.component, this.containerListener, this.layoutMgr }
-  60 assignment D = { this.widthCombo } U = { this.widthCombo.!JComboBox<FigureIcon> }
+  58 methodCall D = {  } U = { lineWidthLabel$2, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer } TO = java.awt.Container#add( java.awt.Component )
+* actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  60 assignment D = { this.widthCombo } U = { javax.swing.JComboBox.!JComboBox( ) }
   61 receiver D = {  } U = {  }
-  62 constructorCall D = { javax.swing.DefaultComboBoxModel.objects, javax.swing.JComponent.inputVerifier, javax.swing.JComponent.listenerList, javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComponent.verifyInputWhenFocusTarget, this.widthCombo.actionCommand, this.widthCombo.dataModel, this.widthCombo.firingActionEvent, this.widthCombo.isEditable, this.widthCombo.keySelectionManager, this.widthCombo.lightWeightPopupEnabled, this.widthCombo.maximumRowCount, this.widthCombo.selectedItemReminder, this.widthCombo.selectingItem } U = { java.lang.Boolean.TRUE, javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.widthCombo.dataModel } TO = javax.swing.JComboBox#JComboBox( )
-  63 actualOut D = { javax.swing.DefaultComboBoxModel.objects, javax.swing.JComponent.inputVerifier, javax.swing.JComponent.listenerList, javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComponent.verifyInputWhenFocusTarget, this.widthCombo.!JComboBox<FigureIcon>, this.widthCombo.actionCommand, this.widthCombo.dataModel, this.widthCombo.firingActionEvent, this.widthCombo.isEditable, this.widthCombo.keySelectionManager, this.widthCombo.lightWeightPopupEnabled, this.widthCombo.maximumRowCount, this.widthCombo.selectedItemReminder, this.widthCombo.selectingItem } U = { java.lang.Boolean.TRUE, javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.widthCombo.dataModel }
-  64 assignment D = {  } U = { this.!add }
+  62 constructorCall D = {  } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey } TO = javax.swing.JComboBox#JComboBox( )
+* actualOut D = { javax.swing.JComboBox.!JComboBox( ), javax.swing.JComboBox.!javax.swing.DefaultComboBoxModel.objects, javax.swing.JComboBox.!javax.swing.JComboBox.actionCommand, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JComboBox.firingActionEvent, javax.swing.JComboBox.!javax.swing.JComboBox.isEditable, javax.swing.JComboBox.!javax.swing.JComboBox.keySelectionManager, javax.swing.JComboBox.!javax.swing.JComboBox.lightWeightPopupEnabled, javax.swing.JComboBox.!javax.swing.JComboBox.maximumRowCount, javax.swing.JComboBox.!javax.swing.JComboBox.selectedItemReminder, javax.swing.JComboBox.!javax.swing.JComboBox.selectingItem, javax.swing.JComboBox.!javax.swing.JComponent.inputVerifier, javax.swing.JComboBox.!javax.swing.JComponent.listenerList, javax.swing.JComboBox.!javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComboBox.!javax.swing.JComponent.verifyInputWhenFocusTarget } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey }
+  64 assignment D = {  } U = { this.!add( java.awt.Component ) }
   65 receiver D = {  } U = {  }
-  66 methodCall D = { java.awt.Component.parent } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.component, this.containerListener, this.layoutMgr, this.widthCombo } TO = java.awt.Container#add( java.awt.Component )
-  67 actualOut D = { java.awt.Component.parent, this.!add } U = { java.awt.Component.eventMask, java.awt.Component.parent, java.awt.Component.peer, this.component, this.containerListener, this.layoutMgr }
-  68 assignment D = {  } U = { this.!addItems }
+  66 methodCall D = {  } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.widthCombo } TO = java.awt.Container#add( java.awt.Component )
+* actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  68 assignment D = {  } U = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) }
   69 receiver D = {  } U = {  }
-  70 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.FigureSelector#addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+  70 methodCall D = {  } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
   71 actualIn D = {  } U = { this.widthCombo }
   72 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons }
-  73 actualOut D = { this.!addItems } U = {  }
-  75 formalOut D = {  } U = { $_, colorLabel$1.defaultIcon, colorLabel$1.disabledIcon, colorLabel$1.disabledIconSet, colorLabel$1.horizontalAlignment, colorLabel$1.horizontalTextPosition, colorLabel$1.iconTextGap, colorLabel$1.labelFor, colorLabel$1.mnemonic, colorLabel$1.mnemonicIndex, colorLabel$1.text, colorLabel$1.verticalAlignment, colorLabel$1.verticalTextPosition, java.awt.Component.parent, javax.swing.DefaultComboBoxModel.objects, javax.swing.JComponent.inputVerifier, javax.swing.JComponent.listenerList, javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComponent.verifyInputWhenFocusTarget, lineWidthLabel$2.defaultIcon, lineWidthLabel$2.disabledIcon, lineWidthLabel$2.disabledIconSet, lineWidthLabel$2.horizontalAlignment, lineWidthLabel$2.horizontalTextPosition, lineWidthLabel$2.iconTextGap, lineWidthLabel$2.labelFor, lineWidthLabel$2.mnemonic, lineWidthLabel$2.mnemonicIndex, lineWidthLabel$2.text, lineWidthLabel$2.verticalAlignment, lineWidthLabel$2.verticalTextPosition, shapeLabel$0.defaultIcon, shapeLabel$0.disabledIcon, shapeLabel$0.disabledIconSet, shapeLabel$0.horizontalAlignment, shapeLabel$0.horizontalTextPosition, shapeLabel$0.iconTextGap, shapeLabel$0.labelFor, shapeLabel$0.mnemonic, shapeLabel$0.mnemonicIndex, shapeLabel$0.text, shapeLabel$0.verticalAlignment, shapeLabel$0.verticalTextPosition, this.colorCombo, this.colorCombo.actionCommand, this.colorCombo.dataModel, this.colorCombo.firingActionEvent, this.colorCombo.isEditable, this.colorCombo.keySelectionManager, this.colorCombo.lightWeightPopupEnabled, this.colorCombo.maximumRowCount, this.colorCombo.selectedItemReminder, this.colorCombo.selectingItem, this.shapeCombo, this.shapeCombo.actionCommand, this.shapeCombo.dataModel, this.shapeCombo.firingActionEvent, this.shapeCombo.isEditable, this.shapeCombo.keySelectionManager, this.shapeCombo.lightWeightPopupEnabled, this.shapeCombo.maximumRowCount, this.shapeCombo.selectedItemReminder, this.shapeCombo.selectingItem, this.widthCombo, this.widthCombo.actionCommand, this.widthCombo.dataModel, this.widthCombo.firingActionEvent, this.widthCombo.isEditable, this.widthCombo.keySelectionManager, this.widthCombo.lightWeightPopupEnabled, this.widthCombo.maximumRowCount, this.widthCombo.selectedItemReminder, this.widthCombo.selectingItem }
+  73 actualOut D = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel }
+  75 formalOut D = {  } U = { $_ }
+* actualOut D = { jp.ac.ritsumei.cs.draw.CursorIcon.!CursorIcon( ).figure } U = {  }
 --
    0 fieldEntry [ colorCombo ]
    1 fieldDeclaration D = { this.colorCombo } U = { this.colorCombo }
@@ -333,808 +404,730 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
    2 formalIn D = { icons$1 } U = {  }
    3 localDeclaration D = { i$2 } U = {  }
    4 forSt D = {  } U = { i$2, icons$1, icons$1.length }
-   5 assignment D = {  } U = { cb$0.!addItem }
+   5 assignment D = {  } U = { cb$0.!addItem( java.lang.Object ) }
    6 receiver D = {  } U = { cb$0 }
-   7 methodCall D = {  } U = { cb$0, cb$0.dataModel, i$2, icons$1 } TO = javax.swing.JComboBox#addItem( java.lang.Object )
-   8 actualOut D = { cb$0.!addItem } U = { cb$0.dataModel }
+   7 methodCall D = {  } U = { cb$0.!javax.swing.JComboBox.dataModel, i$2, icons$1 } TO = javax.swing.JComboBox#addItem( java.lang.Object )
+   8 actualOut D = { cb$0.!addItem( java.lang.Object ) } U = { cb$0.!javax.swing.JComboBox.dataModel }
    9 assignment D = { i$2 } U = { i$2 }
   11 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ getShape( ) ]
-   1 localDeclaration D = { icon$0 } U = { this.shapeCombo.!getSelectedItem }
+   1 localDeclaration D = { icon$0 } U = { this.shapeCombo.!getSelectedItem( ) }
    2 receiver D = {  } U = { this.shapeCombo }
-   3 methodCall D = {  } U = { this.shapeCombo, this.shapeCombo.dataModel } TO = javax.swing.JComboBox#getSelectedItem( )
-   4 actualOut D = { this.shapeCombo.!getSelectedItem } U = { this.shapeCombo.dataModel }
-   5 returnSt D = { $_ } U = { icon$0.!getFigure }
+   3 methodCall D = {  } U = { this.shapeCombo.!javax.swing.JComboBox.dataModel } TO = javax.swing.JComboBox#getSelectedItem( )
+   4 actualOut D = { this.shapeCombo.!getSelectedItem( ) } U = { this.shapeCombo.!javax.swing.JComboBox.dataModel }
+   5 returnSt D = { $_ } U = { icon$0.!getFigure( ) }
    6 receiver D = {  } U = { icon$0 }
-   7 methodCall D = {  } U = { icon$0.figure } TO = jp.ac.ritsumei.cs.draw.FigureIcon#getFigure( )
-   8 actualOut D = { icon$0.!getFigure } U = { icon$0.figure }
+   7 methodCall D = {  } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#getFigure( )
+   8 actualOut D = { icon$0.!getFigure( ) } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY }
   10 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ isGrabMode( ) ]
-   1 returnSt D = { $_ } U = { this.!getShape }
+   1 returnSt D = { $_ } U = { this.!getShape( ) }
    2 receiver D = {  } U = {  }
-   3 methodCall D = {  } U = { this.shapeCombo } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getShape( )
-   4 actualOut D = { this.!getShape } U = { this.shapeCombo }
+   3 methodCall D = {  } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.figure, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getShape( )
+   4 actualOut D = { this.!getShape( ) } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.figure, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel }
    6 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ widthCombo ]
    1 fieldDeclaration D = { this.widthCombo } U = { this.widthCombo }
 --
    0: getColor( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 13 trueControlDependence
-   5: 0 -> 2 trueControlDependence
-   6: 0 -> 3 trueControlDependence
-   7: 0 -> 4 trueControlDependence
-   8: 0 -> 5 trueControlDependence
-   9: 0 -> 6 trueControlDependence
-  10: 0 -> 7 trueControlDependence
-  11: 0 -> 8 trueControlDependence
-  12: 0 -> 9 trueControlDependence
-  13: 1 -> 7 declaration
-  14: 1 -> 7 loopIndependentDefUseDependence icon$0
-  15: 11 -> 5 loopIndependentDefUseDependence icon$0.!getFigure.!getColor
-  16: 4 -> 1 loopIndependentDefUseDependence this.colorCombo.!getSelectedItem
-  17: 5 -> 13 loopIndependentDefUseDependence $_
-  18: 9 -> 6 loopIndependentDefUseDependence icon$0.!getFigure
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   13 trueControlDependence
+  13:    1 ->    7 declaration
+  14:    1 ->    7 loopIndependentDefUseDependence icon$0
+  15:    4 ->    1 loopIndependentDefUseDependence this.colorCombo.!getSelectedItem( )
+  16:    5 ->   13 loopIndependentDefUseDependence $_
+  17:    9 ->    6 loopIndependentDefUseDependence icon$0.!getFigure( )
+  18:   11 ->    5 loopIndependentDefUseDependence icon$0.!getFigure( ).!getColor( )
 --
    0: shapeComboIcons
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 26 trueControlDependence
-  20: 0 -> 27 trueControlDependence
-  21: 0 -> 28 trueControlDependence
-  22: 0 -> 29 trueControlDependence
-  23: 0 -> 3 trueControlDependence
-  24: 0 -> 30 trueControlDependence
-  25: 0 -> 31 trueControlDependence
-  26: 0 -> 32 trueControlDependence
-  27: 0 -> 33 trueControlDependence
-  28: 0 -> 34 trueControlDependence
-  29: 0 -> 35 trueControlDependence
-  30: 0 -> 36 trueControlDependence
-  31: 0 -> 4 trueControlDependence
-  32: 0 -> 5 trueControlDependence
-  33: 0 -> 6 trueControlDependence
-  34: 0 -> 7 trueControlDependence
-  35: 0 -> 8 trueControlDependence
-  36: 0 -> 9 trueControlDependence
-  37: 10 -> 15 loopIndependentDefUseDependence FigureIcon.figure
-  38: 11 -> 15 summary
-  39: 14 -> 11 loopIndependentDefUseDependence Rect.!Rect
-  40: 15 -> 17 loopIndependentDefUseDependence FigureIcon.figure
-  41: 15 -> 22 outputDependence FigureIcon.!FigureIcon
-  42: 17 -> 22 loopIndependentDefUseDependence FigureIcon.figure
-  43: 18 -> 22 summary
-  44: 21 -> 18 loopIndependentDefUseDependence FilledRect.!FilledRect
-  45: 22 -> 24 loopIndependentDefUseDependence FigureIcon.figure
-  46: 22 -> 29 outputDependence FigureIcon.!FigureIcon
-  47: 24 -> 29 loopIndependentDefUseDependence FigureIcon.figure
-  48: 25 -> 29 summary
-  49: 28 -> 25 loopIndependentDefUseDependence Oval.!Oval
-  50: 29 -> 31 loopIndependentDefUseDependence FigureIcon.figure
-  51: 29 -> 36 outputDependence FigureIcon.!FigureIcon
-  52: 3 -> 8 loopIndependentDefUseDependence FigureIcon.figure
-  53: 31 -> 36 loopIndependentDefUseDependence FigureIcon.figure
-  54: 32 -> 36 summary
-  55: 35 -> 32 loopIndependentDefUseDependence FilledOval.!FilledOval
-  56: 36 -> 1 loopIndependentDefUseDependence FigureIcon.!FigureIcon
-  57: 4 -> 8 summary
-  58: 7 -> 4 loopIndependentDefUseDependence Line.!Line
-  59: 8 -> 10 loopIndependentDefUseDependence FigureIcon.figure
-  60: 8 -> 15 outputDependence FigureIcon.!FigureIcon
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   27 trueControlDependence
+  28:    0 ->   28 trueControlDependence
+  29:    0 ->   29 trueControlDependence
+  30:    0 ->   30 trueControlDependence
+  31:    0 ->   31 trueControlDependence
+  32:    0 ->   32 trueControlDependence
+  33:    0 ->   33 trueControlDependence
+  34:    0 ->   34 trueControlDependence
+  35:    0 ->   35 trueControlDependence
+  36:    0 ->   36 trueControlDependence
+  37:    0 -> * trueControlDependence
+  38:    0 -> * trueControlDependence
+  39:    0 -> * trueControlDependence
+  40:    0 -> * trueControlDependence
+  41:    0 -> * trueControlDependence
+  42:    0 -> * trueControlDependence
+  43:    0 -> * trueControlDependence
+  44:    0 -> * trueControlDependence
+  45:    0 -> * trueControlDependence
+  46:    0 -> * trueControlDependence
+  47:    0 -> * trueControlDependence
+  48:    0 -> * trueControlDependence
+  49:    0 -> * trueControlDependence
+  50:    0 -> * trueControlDependence
+  51:    0 -> * trueControlDependence
+  52:    7 ->    4 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( )
+  53:    8 ->   15 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  54:   14 ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Rect.!Rect( )
+  55:   15 ->   22 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  56:   21 ->   18 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( )
+  57:   22 ->   29 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  58:   28 ->   25 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Oval.!Oval( )
+  59:   29 ->   36 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  60:   35 ->   32 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( )
+  61:   36 ->    1 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  62: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+  63: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+  64: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+  65: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
 --
    0: createFigure( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 21 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 1 -> 5 declaration
-   8: 1 -> 5 loopIndependentDefUseDependence shape$0
-   9: 1 -> 7 declaration
-  10: 1 -> 7 loopIndependentDefUseDependence shape$0
-  11: 12 -> 9 loopIndependentDefUseDependence this.!getColor
-  12: 16 -> 13 loopIndependentDefUseDependence this.!getLineWidth
-  13: 17 -> 6 loopIndependentDefUseDependence shape$0.!create
-  14: 19 -> 21 loopIndependentDefUseDependence $_
-  15: 4 -> 1 loopIndependentDefUseDependence this.!getShape
-  16: 4 -> 5 loopIndependentDefUseDependence this.!getShape
-  17: 4 -> 7 loopIndependentDefUseDependence this.!getShape
-  18: 5 -> 10 trueControlDependence
-  19: 5 -> 11 trueControlDependence
-  20: 5 -> 12 trueControlDependence
-  21: 5 -> 13 trueControlDependence
-  22: 5 -> 14 trueControlDependence
-  23: 5 -> 15 trueControlDependence
-  24: 5 -> 16 trueControlDependence
-  25: 5 -> 17 trueControlDependence
-  26: 5 -> 19 falseControlDependence
-  27: 5 -> 6 trueControlDependence
-  28: 5 -> 7 trueControlDependence
-  29: 5 -> 8 trueControlDependence
-  30: 5 -> 9 trueControlDependence
-  31: 6 -> 19 fallThroughControlDependence
-  32: 6 -> 21 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->   21 trueControlDependence
+   7:    1 ->    5 declaration
+   8:    1 ->    5 loopIndependentDefUseDependence shape$0
+   9:    1 ->    7 declaration
+  10:    1 ->    7 loopIndependentDefUseDependence shape$0
+  11:    4 ->    1 loopIndependentDefUseDependence this.!getShape( )
+  12:    5 ->    6 trueControlDependence
+  13:    5 ->    7 trueControlDependence
+  14:    5 ->    8 trueControlDependence
+  15:    5 ->    9 trueControlDependence
+  16:    5 ->   10 trueControlDependence
+  17:    5 ->   11 trueControlDependence
+  18:    5 ->   12 trueControlDependence
+  19:    5 ->   13 trueControlDependence
+  20:    5 ->   14 trueControlDependence
+  21:    5 ->   15 trueControlDependence
+  22:    5 ->   16 trueControlDependence
+  23:    5 ->   17 trueControlDependence
+  24:    5 ->   19 falseControlDependence
+  25:    6 ->   19 fallThroughControlDependence
+  26:    6 ->   21 loopIndependentDefUseDependence $_
+  27:   12 ->    9 loopIndependentDefUseDependence this.!getColor( )
+  28:   16 ->   13 loopIndependentDefUseDependence this.!getLineWidth( )
+  29:   17 ->    6 loopIndependentDefUseDependence shape$0.!create( java.awt.Color float )
+  30:   19 ->   21 loopIndependentDefUseDependence $_
 --
    0: FigureSelector( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 13 trueControlDependence
-   5: 0 -> 2 trueControlDependence
-   6: 0 -> 3 trueControlDependence
-   7: 0 -> 4 trueControlDependence
-   8: 0 -> 5 trueControlDependence
-   9: 0 -> 6 trueControlDependence
-  10: 0 -> 7 trueControlDependence
-  11: 0 -> 8 trueControlDependence
-  12: 0 -> 9 trueControlDependence
-  13: 10 -> 11 loopIndependentDefUseDependence this.colorCombo
-  14: 10 -> 11 loopIndependentDefUseDependence this.shapeCombo
-  15: 10 -> 11 loopIndependentDefUseDependence this.widthCombo
-  16: 11 -> 13 loopIndependentDefUseDependence this.colorCombo
-  17: 11 -> 13 loopIndependentDefUseDependence this.shapeCombo
-  18: 11 -> 13 loopIndependentDefUseDependence this.widthCombo
-  19: 11 -> 8 loopIndependentDefUseDependence this.!createComboBoxes
-  20: 3 -> 7 outputDependence this.layoutMgr
-  21: 5 -> 6 outputDependence FlowLayout.hgap
-  22: 5 -> 6 outputDependence FlowLayout.serialVersionOnStream
-  23: 5 -> 6 outputDependence FlowLayout.vgap
-  24: 6 -> 13 loopIndependentDefUseDependence FlowLayout.hgap
-  25: 6 -> 13 loopIndependentDefUseDependence FlowLayout.serialVersionOnStream
-  26: 6 -> 13 loopIndependentDefUseDependence FlowLayout.vgap
-  27: 6 -> 3 loopIndependentDefUseDependence FlowLayout.!FlowLayout
-  28: 7 -> 1 loopIndependentDefUseDependence this.!setLayout
-  29: 7 -> 13 loopIndependentDefUseDependence this.layoutMgr
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    8 trueControlDependence
+   7:    0 ->    9 trueControlDependence
+   8:    0 ->   10 trueControlDependence
+   9:    0 ->   13 trueControlDependence
+  10:    0 -> * trueControlDependence
+  11:    0 -> * trueControlDependence
+  12:    0 -> * trueControlDependence
+  13:    0 -> * trueControlDependence
+  14:    0 -> * trueControlDependence
+  15:    0 -> * trueControlDependence
+  16:    0 -> * trueControlDependence
+  17: * ->    1 loopIndependentDefUseDependence this.!setLayout( java.awt.LayoutManager )
+  18: * ->    3 loopIndependentDefUseDependence java.awt.FlowLayout.!FlowLayout( int )
+  19: * ->    8 loopIndependentDefUseDependence this.!createComboBoxes( )
+  20: * ->   10 loopIndependentDefUseDependence this.!java.awt.Container.layoutMgr
+  21: * -> * loopIndependentDefUseDependence this.!java.awt.Container.layoutMgr
+  22: * -> * loopIndependentDefUseDependence this.colorCombo
+  23: * -> * loopIndependentDefUseDependence this.shapeCombo
+  24: * -> * loopIndependentDefUseDependence this.widthCombo
 --
    0: colorComboIcons
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 100 trueControlDependence
-   4: 0 -> 101 trueControlDependence
-   5: 0 -> 102 trueControlDependence
-   6: 0 -> 103 trueControlDependence
-   7: 0 -> 104 trueControlDependence
-   8: 0 -> 105 trueControlDependence
-   9: 0 -> 11 trueControlDependence
-  10: 0 -> 12 trueControlDependence
-  11: 0 -> 13 trueControlDependence
-  12: 0 -> 14 trueControlDependence
-  13: 0 -> 15 trueControlDependence
-  14: 0 -> 16 trueControlDependence
-  15: 0 -> 17 trueControlDependence
-  16: 0 -> 18 trueControlDependence
-  17: 0 -> 19 trueControlDependence
-  18: 0 -> 2 trueControlDependence
-  19: 0 -> 20 trueControlDependence
-  20: 0 -> 21 trueControlDependence
-  21: 0 -> 22 trueControlDependence
-  22: 0 -> 23 trueControlDependence
-  23: 0 -> 24 trueControlDependence
-  24: 0 -> 25 trueControlDependence
-  25: 0 -> 26 trueControlDependence
-  26: 0 -> 27 trueControlDependence
-  27: 0 -> 28 trueControlDependence
-  28: 0 -> 29 trueControlDependence
-  29: 0 -> 3 trueControlDependence
-  30: 0 -> 30 trueControlDependence
-  31: 0 -> 31 trueControlDependence
-  32: 0 -> 32 trueControlDependence
-  33: 0 -> 33 trueControlDependence
-  34: 0 -> 34 trueControlDependence
-  35: 0 -> 35 trueControlDependence
-  36: 0 -> 36 trueControlDependence
-  37: 0 -> 37 trueControlDependence
-  38: 0 -> 38 trueControlDependence
-  39: 0 -> 39 trueControlDependence
-  40: 0 -> 4 trueControlDependence
-  41: 0 -> 40 trueControlDependence
-  42: 0 -> 41 trueControlDependence
-  43: 0 -> 42 trueControlDependence
-  44: 0 -> 43 trueControlDependence
-  45: 0 -> 44 trueControlDependence
-  46: 0 -> 45 trueControlDependence
-  47: 0 -> 46 trueControlDependence
-  48: 0 -> 47 trueControlDependence
-  49: 0 -> 48 trueControlDependence
-  50: 0 -> 49 trueControlDependence
-  51: 0 -> 5 trueControlDependence
-  52: 0 -> 50 trueControlDependence
-  53: 0 -> 51 trueControlDependence
-  54: 0 -> 52 trueControlDependence
-  55: 0 -> 53 trueControlDependence
-  56: 0 -> 54 trueControlDependence
-  57: 0 -> 55 trueControlDependence
-  58: 0 -> 56 trueControlDependence
-  59: 0 -> 57 trueControlDependence
-  60: 0 -> 58 trueControlDependence
-  61: 0 -> 59 trueControlDependence
-  62: 0 -> 6 trueControlDependence
-  63: 0 -> 60 trueControlDependence
-  64: 0 -> 61 trueControlDependence
-  65: 0 -> 62 trueControlDependence
-  66: 0 -> 63 trueControlDependence
-  67: 0 -> 64 trueControlDependence
-  68: 0 -> 65 trueControlDependence
-  69: 0 -> 66 trueControlDependence
-  70: 0 -> 67 trueControlDependence
-  71: 0 -> 68 trueControlDependence
-  72: 0 -> 69 trueControlDependence
-  73: 0 -> 7 trueControlDependence
-  74: 0 -> 70 trueControlDependence
-  75: 0 -> 71 trueControlDependence
-  76: 0 -> 72 trueControlDependence
-  77: 0 -> 73 trueControlDependence
-  78: 0 -> 74 trueControlDependence
-  79: 0 -> 75 trueControlDependence
-  80: 0 -> 76 trueControlDependence
-  81: 0 -> 77 trueControlDependence
-  82: 0 -> 78 trueControlDependence
-  83: 0 -> 79 trueControlDependence
-  84: 0 -> 8 trueControlDependence
-  85: 0 -> 80 trueControlDependence
-  86: 0 -> 81 trueControlDependence
-  87: 0 -> 82 trueControlDependence
-  88: 0 -> 83 trueControlDependence
-  89: 0 -> 84 trueControlDependence
-  90: 0 -> 85 trueControlDependence
-  91: 0 -> 86 trueControlDependence
-  92: 0 -> 87 trueControlDependence
-  93: 0 -> 88 trueControlDependence
-  94: 0 -> 89 trueControlDependence
-  95: 0 -> 9 trueControlDependence
-  96: 0 -> 90 trueControlDependence
-  97: 0 -> 91 trueControlDependence
-  98: 0 -> 92 trueControlDependence
-  99: 0 -> 93 trueControlDependence
- 100: 0 -> 94 trueControlDependence
- 101: 0 -> 95 trueControlDependence
- 102: 0 -> 96 trueControlDependence
- 103: 0 -> 97 trueControlDependence
- 104: 0 -> 98 trueControlDependence
- 105: 0 -> 99 trueControlDependence
- 106: 100 -> 105 summary
- 107: 103 -> 104 summary
- 108: 104 -> 100 loopIndependentDefUseDependence Line.!Line
- 109: 105 -> 1 loopIndependentDefUseDependence FigureIcon.!FigureIcon
- 110: 11 -> 17 loopIndependentDefUseDependence FigureIcon.figure
- 111: 12 -> 17 summary
- 112: 15 -> 16 summary
- 113: 16 -> 12 loopIndependentDefUseDependence Line.!Line
- 114: 16 -> 24 outputDependence Line.!Line
- 115: 17 -> 19 loopIndependentDefUseDependence FigureIcon.figure
- 116: 17 -> 25 outputDependence FigureIcon.!FigureIcon
- 117: 19 -> 25 loopIndependentDefUseDependence FigureIcon.figure
- 118: 20 -> 25 summary
- 119: 23 -> 24 summary
- 120: 24 -> 20 loopIndependentDefUseDependence Line.!Line
- 121: 24 -> 32 outputDependence Line.!Line
- 122: 25 -> 27 loopIndependentDefUseDependence FigureIcon.figure
- 123: 25 -> 33 outputDependence FigureIcon.!FigureIcon
- 124: 27 -> 33 loopIndependentDefUseDependence FigureIcon.figure
- 125: 28 -> 33 summary
- 126: 3 -> 9 loopIndependentDefUseDependence FigureIcon.figure
- 127: 31 -> 32 summary
- 128: 32 -> 28 loopIndependentDefUseDependence Line.!Line
- 129: 32 -> 40 outputDependence Line.!Line
- 130: 33 -> 35 loopIndependentDefUseDependence FigureIcon.figure
- 131: 33 -> 41 outputDependence FigureIcon.!FigureIcon
- 132: 35 -> 41 loopIndependentDefUseDependence FigureIcon.figure
- 133: 36 -> 41 summary
- 134: 39 -> 40 summary
- 135: 4 -> 9 summary
- 136: 40 -> 36 loopIndependentDefUseDependence Line.!Line
- 137: 40 -> 48 outputDependence Line.!Line
- 138: 41 -> 43 loopIndependentDefUseDependence FigureIcon.figure
- 139: 41 -> 49 outputDependence FigureIcon.!FigureIcon
- 140: 43 -> 49 loopIndependentDefUseDependence FigureIcon.figure
- 141: 44 -> 49 summary
- 142: 47 -> 48 summary
- 143: 48 -> 44 loopIndependentDefUseDependence Line.!Line
- 144: 48 -> 56 outputDependence Line.!Line
- 145: 49 -> 51 loopIndependentDefUseDependence FigureIcon.figure
- 146: 49 -> 57 outputDependence FigureIcon.!FigureIcon
- 147: 51 -> 57 loopIndependentDefUseDependence FigureIcon.figure
- 148: 52 -> 57 summary
- 149: 55 -> 56 summary
- 150: 56 -> 52 loopIndependentDefUseDependence Line.!Line
- 151: 56 -> 64 outputDependence Line.!Line
- 152: 57 -> 59 loopIndependentDefUseDependence FigureIcon.figure
- 153: 57 -> 65 outputDependence FigureIcon.!FigureIcon
- 154: 59 -> 65 loopIndependentDefUseDependence FigureIcon.figure
- 155: 60 -> 65 summary
- 156: 63 -> 64 summary
- 157: 64 -> 60 loopIndependentDefUseDependence Line.!Line
- 158: 64 -> 72 outputDependence Line.!Line
- 159: 65 -> 67 loopIndependentDefUseDependence FigureIcon.figure
- 160: 65 -> 73 outputDependence FigureIcon.!FigureIcon
- 161: 67 -> 73 loopIndependentDefUseDependence FigureIcon.figure
- 162: 68 -> 73 summary
- 163: 7 -> 8 summary
- 164: 71 -> 72 summary
- 165: 72 -> 68 loopIndependentDefUseDependence Line.!Line
- 166: 72 -> 80 outputDependence Line.!Line
- 167: 73 -> 75 loopIndependentDefUseDependence FigureIcon.figure
- 168: 73 -> 81 outputDependence FigureIcon.!FigureIcon
- 169: 75 -> 81 loopIndependentDefUseDependence FigureIcon.figure
- 170: 76 -> 81 summary
- 171: 79 -> 80 summary
- 172: 8 -> 16 outputDependence Line.!Line
- 173: 8 -> 4 loopIndependentDefUseDependence Line.!Line
- 174: 80 -> 76 loopIndependentDefUseDependence Line.!Line
- 175: 80 -> 88 outputDependence Line.!Line
- 176: 81 -> 83 loopIndependentDefUseDependence FigureIcon.figure
- 177: 81 -> 89 outputDependence FigureIcon.!FigureIcon
- 178: 83 -> 89 loopIndependentDefUseDependence FigureIcon.figure
- 179: 84 -> 89 summary
- 180: 87 -> 88 summary
- 181: 88 -> 84 loopIndependentDefUseDependence Line.!Line
- 182: 88 -> 96 outputDependence Line.!Line
- 183: 89 -> 91 loopIndependentDefUseDependence FigureIcon.figure
- 184: 89 -> 97 outputDependence FigureIcon.!FigureIcon
- 185: 9 -> 11 loopIndependentDefUseDependence FigureIcon.figure
- 186: 9 -> 17 outputDependence FigureIcon.!FigureIcon
- 187: 91 -> 97 loopIndependentDefUseDependence FigureIcon.figure
- 188: 92 -> 97 summary
- 189: 95 -> 96 summary
- 190: 96 -> 104 outputDependence Line.!Line
- 191: 96 -> 92 loopIndependentDefUseDependence Line.!Line
- 192: 97 -> 105 outputDependence FigureIcon.!FigureIcon
- 193: 97 -> 99 loopIndependentDefUseDependence FigureIcon.figure
- 194: 99 -> 105 loopIndependentDefUseDependence FigureIcon.figure
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   27 trueControlDependence
+  28:    0 ->   28 trueControlDependence
+  29:    0 ->   29 trueControlDependence
+  30:    0 ->   30 trueControlDependence
+  31:    0 ->   31 trueControlDependence
+  32:    0 ->   32 trueControlDependence
+  33:    0 ->   33 trueControlDependence
+  34:    0 ->   34 trueControlDependence
+  35:    0 ->   35 trueControlDependence
+  36:    0 ->   36 trueControlDependence
+  37:    0 ->   37 trueControlDependence
+  38:    0 ->   38 trueControlDependence
+  39:    0 ->   39 trueControlDependence
+  40:    0 ->   40 trueControlDependence
+  41:    0 ->   41 trueControlDependence
+  42:    0 ->   42 trueControlDependence
+  43:    0 ->   43 trueControlDependence
+  44:    0 ->   44 trueControlDependence
+  45:    0 ->   45 trueControlDependence
+  46:    0 ->   46 trueControlDependence
+  47:    0 ->   47 trueControlDependence
+  48:    0 ->   48 trueControlDependence
+  49:    0 ->   49 trueControlDependence
+  50:    0 ->   50 trueControlDependence
+  51:    0 ->   51 trueControlDependence
+  52:    0 ->   52 trueControlDependence
+  53:    0 ->   53 trueControlDependence
+  54:    0 ->   54 trueControlDependence
+  55:    0 ->   55 trueControlDependence
+  56:    0 ->   56 trueControlDependence
+  57:    0 ->   57 trueControlDependence
+  58:    0 ->   58 trueControlDependence
+  59:    0 ->   59 trueControlDependence
+  60:    0 ->   60 trueControlDependence
+  61:    0 ->   61 trueControlDependence
+  62:    0 ->   62 trueControlDependence
+  63:    0 ->   63 trueControlDependence
+  64:    0 ->   64 trueControlDependence
+  65:    0 ->   65 trueControlDependence
+  66:    0 ->   66 trueControlDependence
+  67:    0 ->   67 trueControlDependence
+  68:    0 ->   68 trueControlDependence
+  69:    0 ->   69 trueControlDependence
+  70:    0 ->   70 trueControlDependence
+  71:    0 ->   71 trueControlDependence
+  72:    0 ->   72 trueControlDependence
+  73:    0 ->   73 trueControlDependence
+  74:    0 ->   74 trueControlDependence
+  75:    0 ->   75 trueControlDependence
+  76:    0 ->   76 trueControlDependence
+  77:    0 ->   77 trueControlDependence
+  78:    0 ->   78 trueControlDependence
+  79:    0 ->   79 trueControlDependence
+  80:    0 ->   80 trueControlDependence
+  81:    0 ->   81 trueControlDependence
+  82:    0 ->   82 trueControlDependence
+  83:    0 ->   83 trueControlDependence
+  84:    0 ->   84 trueControlDependence
+  85:    0 ->   85 trueControlDependence
+  86:    0 ->   86 trueControlDependence
+  87:    0 ->   87 trueControlDependence
+  88:    0 ->   88 trueControlDependence
+  89:    0 ->   89 trueControlDependence
+  90:    0 ->   90 trueControlDependence
+  91:    0 ->   91 trueControlDependence
+  92:    0 ->   92 trueControlDependence
+  93:    0 ->   93 trueControlDependence
+  94:    0 ->   94 trueControlDependence
+  95:    0 ->   95 trueControlDependence
+  96:    0 ->   96 trueControlDependence
+  97:    0 ->   97 trueControlDependence
+  98:    0 ->   98 trueControlDependence
+  99:    0 ->   99 trueControlDependence
+ 100:    0 ->  100 trueControlDependence
+ 101:    0 ->  101 trueControlDependence
+ 102:    0 ->  102 trueControlDependence
+ 103:    0 ->  103 trueControlDependence
+ 104:    0 ->  104 trueControlDependence
+ 105:    0 ->  105 trueControlDependence
+ 106:    0 -> * trueControlDependence
+ 107:    0 -> * trueControlDependence
+ 108:    0 -> * trueControlDependence
+ 109:    0 -> * trueControlDependence
+ 110:    0 -> * trueControlDependence
+ 111:    0 -> * trueControlDependence
+ 112:    0 -> * trueControlDependence
+ 113:    0 -> * trueControlDependence
+ 114:    0 -> * trueControlDependence
+ 115:    0 -> * trueControlDependence
+ 116:    0 -> * trueControlDependence
+ 117:    0 -> * trueControlDependence
+ 118:    0 -> * trueControlDependence
+ 119:    0 -> * trueControlDependence
+ 120:    0 -> * trueControlDependence
+ 121:    0 -> * trueControlDependence
+ 122:    0 -> * trueControlDependence
+ 123:    0 -> * trueControlDependence
+ 124:    0 -> * trueControlDependence
+ 125:    0 -> * trueControlDependence
+ 126:    0 -> * trueControlDependence
+ 127:    0 -> * trueControlDependence
+ 128:    0 -> * trueControlDependence
+ 129:    0 -> * trueControlDependence
+ 130:    0 -> * trueControlDependence
+ 131:    0 -> * trueControlDependence
+ 132:    0 -> * trueControlDependence
+ 133:    0 -> * trueControlDependence
+ 134:    0 -> * trueControlDependence
+ 135:    0 -> * trueControlDependence
+ 136:    0 -> * trueControlDependence
+ 137:    0 -> * trueControlDependence
+ 138:    0 -> * trueControlDependence
+ 139:    0 -> * trueControlDependence
+ 140:    0 -> * trueControlDependence
+ 141:    0 -> * trueControlDependence
+ 142:    0 -> * trueControlDependence
+ 143:    0 -> * trueControlDependence
+ 144:    0 -> * trueControlDependence
+ 145:    8 ->    4 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 146:    8 ->   16 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 147:    9 ->   17 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 148:   16 ->   12 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 149:   16 ->   24 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 150:   17 ->   25 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 151:   24 ->   20 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 152:   24 ->   32 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 153:   25 ->   33 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 154:   32 ->   28 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 155:   32 ->   40 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 156:   33 ->   41 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 157:   40 ->   36 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 158:   40 ->   48 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 159:   41 ->   49 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 160:   48 ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 161:   48 ->   56 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 162:   49 ->   57 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 163:   56 ->   52 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 164:   56 ->   64 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 165:   57 ->   65 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 166:   64 ->   60 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 167:   64 ->   72 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 168:   65 ->   73 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 169:   72 ->   68 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 170:   72 ->   80 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 171:   73 ->   81 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 172:   80 ->   76 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 173:   80 ->   88 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 174:   81 ->   89 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 175:   88 ->   84 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 176:   88 ->   96 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 177:   89 ->   97 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 178:   96 ->   92 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 179:   96 ->  104 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 180:   97 ->  105 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 181:  104 ->  100 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
+ 182:  105 ->    1 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 183: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 184: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 185: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 186: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 187: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 188: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 189: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 190: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 191: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 192: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 193: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 194: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+ 195: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 196: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 197: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 198: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 199: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 200: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 201: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 202: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 203: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 204: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 205: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 206: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 207: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
+ 208: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
+ 209: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
+ 210: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
+ 211: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
+ 212: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
+ 213: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
+ 214: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
+ 215: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
+ 216: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
+ 217: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
+ 218: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
 --
    0: serialVersionUID
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: getLineWidth( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 13 trueControlDependence
-   5: 0 -> 2 trueControlDependence
-   6: 0 -> 3 trueControlDependence
-   7: 0 -> 4 trueControlDependence
-   8: 0 -> 5 trueControlDependence
-   9: 0 -> 6 trueControlDependence
-  10: 0 -> 7 trueControlDependence
-  11: 0 -> 8 trueControlDependence
-  12: 0 -> 9 trueControlDependence
-  13: 1 -> 7 declaration
-  14: 1 -> 7 loopIndependentDefUseDependence icon$0
-  15: 11 -> 5 loopIndependentDefUseDependence icon$0.!getFigure.!getOutlineWidth
-  16: 4 -> 1 loopIndependentDefUseDependence this.widthCombo.!getSelectedItem
-  17: 5 -> 13 loopIndependentDefUseDependence $_
-  18: 9 -> 6 loopIndependentDefUseDependence icon$0.!getFigure
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   13 trueControlDependence
+  13:    1 ->    7 declaration
+  14:    1 ->    7 loopIndependentDefUseDependence icon$0
+  15:    4 ->    1 loopIndependentDefUseDependence this.widthCombo.!getSelectedItem( )
+  16:    5 ->   13 loopIndependentDefUseDependence $_
+  17:    9 ->    6 loopIndependentDefUseDependence icon$0.!getFigure( )
+  18:   11 ->    5 loopIndependentDefUseDependence icon$0.!getFigure( ).!getOutlineWidth( )
 --
    0: widthComboIcons
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 26 trueControlDependence
-  20: 0 -> 27 trueControlDependence
-  21: 0 -> 28 trueControlDependence
-  22: 0 -> 29 trueControlDependence
-  23: 0 -> 3 trueControlDependence
-  24: 0 -> 30 trueControlDependence
-  25: 0 -> 31 trueControlDependence
-  26: 0 -> 32 trueControlDependence
-  27: 0 -> 33 trueControlDependence
-  28: 0 -> 4 trueControlDependence
-  29: 0 -> 5 trueControlDependence
-  30: 0 -> 6 trueControlDependence
-  31: 0 -> 7 trueControlDependence
-  32: 0 -> 8 trueControlDependence
-  33: 0 -> 9 trueControlDependence
-  34: 11 -> 17 loopIndependentDefUseDependence FigureIcon.figure
-  35: 12 -> 17 summary
-  36: 15 -> 16 summary
-  37: 16 -> 12 loopIndependentDefUseDependence Line.!Line
-  38: 16 -> 24 outputDependence Line.!Line
-  39: 17 -> 19 loopIndependentDefUseDependence FigureIcon.figure
-  40: 17 -> 25 outputDependence FigureIcon.!FigureIcon
-  41: 19 -> 25 loopIndependentDefUseDependence FigureIcon.figure
-  42: 20 -> 25 summary
-  43: 23 -> 24 summary
-  44: 24 -> 20 loopIndependentDefUseDependence Line.!Line
-  45: 24 -> 32 outputDependence Line.!Line
-  46: 25 -> 27 loopIndependentDefUseDependence FigureIcon.figure
-  47: 25 -> 33 outputDependence FigureIcon.!FigureIcon
-  48: 27 -> 33 loopIndependentDefUseDependence FigureIcon.figure
-  49: 28 -> 33 summary
-  50: 3 -> 9 loopIndependentDefUseDependence FigureIcon.figure
-  51: 31 -> 32 summary
-  52: 32 -> 28 loopIndependentDefUseDependence Line.!Line
-  53: 33 -> 1 loopIndependentDefUseDependence FigureIcon.!FigureIcon
-  54: 4 -> 9 summary
-  55: 7 -> 8 summary
-  56: 8 -> 16 outputDependence Line.!Line
-  57: 8 -> 4 loopIndependentDefUseDependence Line.!Line
-  58: 9 -> 11 loopIndependentDefUseDependence FigureIcon.figure
-  59: 9 -> 17 outputDependence FigureIcon.!FigureIcon
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   27 trueControlDependence
+  28:    0 ->   28 trueControlDependence
+  29:    0 ->   29 trueControlDependence
+  30:    0 ->   30 trueControlDependence
+  31:    0 ->   31 trueControlDependence
+  32:    0 ->   32 trueControlDependence
+  33:    0 ->   33 trueControlDependence
+  34:    0 -> * trueControlDependence
+  35:    0 -> * trueControlDependence
+  36:    0 -> * trueControlDependence
+  37:    0 -> * trueControlDependence
+  38:    0 -> * trueControlDependence
+  39:    0 -> * trueControlDependence
+  40:    0 -> * trueControlDependence
+  41:    0 -> * trueControlDependence
+  42:    0 -> * trueControlDependence
+  43:    0 -> * trueControlDependence
+  44:    0 -> * trueControlDependence
+  45:    0 -> * trueControlDependence
+  46:    8 ->    4 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
+  47:    8 ->   16 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
+  48:    9 ->   17 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  49:   16 ->   12 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
+  50:   16 ->   24 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
+  51:   17 ->   25 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  52:   24 ->   20 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
+  53:   24 ->   32 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
+  54:   25 ->   33 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  55:   32 ->   28 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
+  56:   33 ->    1 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  57: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+  58: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+  59: * -> * outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+  60: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).color
+  61: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).color
+  62: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).color
+  63: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth
+  64: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth
+  65: * -> * outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth
 --
    0: createComboBoxes( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 26 trueControlDependence
-  20: 0 -> 27 trueControlDependence
-  21: 0 -> 28 trueControlDependence
-  22: 0 -> 29 trueControlDependence
-  23: 0 -> 3 trueControlDependence
-  24: 0 -> 30 trueControlDependence
-  25: 0 -> 31 trueControlDependence
-  26: 0 -> 32 trueControlDependence
-  27: 0 -> 33 trueControlDependence
-  28: 0 -> 34 trueControlDependence
-  29: 0 -> 35 trueControlDependence
-  30: 0 -> 36 trueControlDependence
-  31: 0 -> 37 trueControlDependence
-  32: 0 -> 38 trueControlDependence
-  33: 0 -> 39 trueControlDependence
-  34: 0 -> 4 trueControlDependence
-  35: 0 -> 40 trueControlDependence
-  36: 0 -> 41 trueControlDependence
-  37: 0 -> 42 trueControlDependence
-  38: 0 -> 43 trueControlDependence
-  39: 0 -> 44 trueControlDependence
-  40: 0 -> 45 trueControlDependence
-  41: 0 -> 46 trueControlDependence
-  42: 0 -> 47 trueControlDependence
-  43: 0 -> 48 trueControlDependence
-  44: 0 -> 49 trueControlDependence
-  45: 0 -> 5 trueControlDependence
-  46: 0 -> 50 trueControlDependence
-  47: 0 -> 51 trueControlDependence
-  48: 0 -> 52 trueControlDependence
-  49: 0 -> 53 trueControlDependence
-  50: 0 -> 54 trueControlDependence
-  51: 0 -> 55 trueControlDependence
-  52: 0 -> 56 trueControlDependence
-  53: 0 -> 57 trueControlDependence
-  54: 0 -> 58 trueControlDependence
-  55: 0 -> 59 trueControlDependence
-  56: 0 -> 6 trueControlDependence
-  57: 0 -> 60 trueControlDependence
-  58: 0 -> 61 trueControlDependence
-  59: 0 -> 62 trueControlDependence
-  60: 0 -> 63 trueControlDependence
-  61: 0 -> 64 trueControlDependence
-  62: 0 -> 65 trueControlDependence
-  63: 0 -> 66 trueControlDependence
-  64: 0 -> 67 trueControlDependence
-  65: 0 -> 68 trueControlDependence
-  66: 0 -> 69 trueControlDependence
-  67: 0 -> 7 trueControlDependence
-  68: 0 -> 70 trueControlDependence
-  69: 0 -> 71 trueControlDependence
-  70: 0 -> 72 trueControlDependence
-  71: 0 -> 73 trueControlDependence
-  72: 0 -> 75 trueControlDependence
-  73: 0 -> 8 trueControlDependence
-  74: 0 -> 9 trueControlDependence
-  75: 1 -> 7 declaration
-  76: 1 -> 7 loopIndependentDefUseDependence shapeLabel$0
-  77: 11 -> 12 loopIndependentDefUseDependence this.shapeCombo.dataModel
-  78: 11 -> 12 outputDependence javax.swing.DefaultComboBoxModel.objects
-  79: 11 -> 12 outputDependence javax.swing.JComponent.inputVerifier
-  80: 11 -> 12 outputDependence javax.swing.JComponent.listenerList
-  81: 11 -> 12 outputDependence javax.swing.JComponent.revalidateRunnableScheduled
-  82: 11 -> 12 outputDependence javax.swing.JComponent.verifyInputWhenFocusTarget
-  83: 11 -> 12 outputDependence this.shapeCombo.actionCommand
-  84: 11 -> 12 outputDependence this.shapeCombo.firingActionEvent
-  85: 11 -> 12 outputDependence this.shapeCombo.isEditable
-  86: 11 -> 12 outputDependence this.shapeCombo.keySelectionManager
-  87: 11 -> 12 outputDependence this.shapeCombo.lightWeightPopupEnabled
-  88: 11 -> 12 outputDependence this.shapeCombo.maximumRowCount
-  89: 11 -> 12 outputDependence this.shapeCombo.selectedItemReminder
-  90: 11 -> 12 outputDependence this.shapeCombo.selectingItem
-  91: 12 -> 19 loopIndependentDefUseDependence this.shapeCombo.dataModel
-  92: 12 -> 23 loopIndependentDefUseDependence this.shapeCombo.dataModel
-  93: 12 -> 40 outputDependence javax.swing.DefaultComboBoxModel.objects
-  94: 12 -> 40 outputDependence javax.swing.JComponent.inputVerifier
-  95: 12 -> 40 outputDependence javax.swing.JComponent.listenerList
-  96: 12 -> 40 outputDependence javax.swing.JComponent.revalidateRunnableScheduled
-  97: 12 -> 40 outputDependence javax.swing.JComponent.verifyInputWhenFocusTarget
-  98: 12 -> 75 loopIndependentDefUseDependence this.shapeCombo.actionCommand
-  99: 12 -> 75 loopIndependentDefUseDependence this.shapeCombo.dataModel
- 100: 12 -> 75 loopIndependentDefUseDependence this.shapeCombo.firingActionEvent
- 101: 12 -> 75 loopIndependentDefUseDependence this.shapeCombo.isEditable
- 102: 12 -> 75 loopIndependentDefUseDependence this.shapeCombo.keySelectionManager
- 103: 12 -> 75 loopIndependentDefUseDependence this.shapeCombo.lightWeightPopupEnabled
- 104: 12 -> 75 loopIndependentDefUseDependence this.shapeCombo.maximumRowCount
- 105: 12 -> 75 loopIndependentDefUseDependence this.shapeCombo.selectedItemReminder
- 106: 12 -> 75 loopIndependentDefUseDependence this.shapeCombo.selectingItem
- 107: 12 -> 9 loopIndependentDefUseDependence this.shapeCombo.!JComboBox<FigureIcon>
- 108: 15 -> 16 loopIndependentDefUseDependence java.awt.Component.parent
- 109: 16 -> 13 loopIndependentDefUseDependence this.!add
- 110: 16 -> 36 loopIndependentDefUseDependence java.awt.Component.parent
- 111: 16 -> 37 outputDependence this.!add
- 112: 22 -> 19 loopIndependentDefUseDependence CursorIcon.!CursorIcon
- 113: 23 -> 17 loopIndependentDefUseDependence this.shapeCombo.!addItem
- 114: 29 -> 24 loopIndependentDefUseDependence this.!addItems
- 115: 29 -> 51 outputDependence this.!addItems
- 116: 3 -> 4 outputDependence shapeLabel$0.defaultIcon
- 117: 3 -> 4 outputDependence shapeLabel$0.disabledIcon
- 118: 3 -> 4 outputDependence shapeLabel$0.disabledIconSet
- 119: 3 -> 4 outputDependence shapeLabel$0.horizontalAlignment
- 120: 3 -> 4 outputDependence shapeLabel$0.horizontalTextPosition
- 121: 3 -> 4 outputDependence shapeLabel$0.iconTextGap
- 122: 3 -> 4 outputDependence shapeLabel$0.labelFor
- 123: 3 -> 4 outputDependence shapeLabel$0.mnemonic
- 124: 3 -> 4 outputDependence shapeLabel$0.mnemonicIndex
- 125: 3 -> 4 outputDependence shapeLabel$0.text
- 126: 3 -> 4 outputDependence shapeLabel$0.verticalAlignment
- 127: 3 -> 4 outputDependence shapeLabel$0.verticalTextPosition
- 128: 30 -> 36 declaration
- 129: 30 -> 36 loopIndependentDefUseDependence colorLabel$1
- 130: 32 -> 33 outputDependence colorLabel$1.defaultIcon
- 131: 32 -> 33 outputDependence colorLabel$1.disabledIcon
- 132: 32 -> 33 outputDependence colorLabel$1.disabledIconSet
- 133: 32 -> 33 outputDependence colorLabel$1.horizontalAlignment
- 134: 32 -> 33 outputDependence colorLabel$1.horizontalTextPosition
- 135: 32 -> 33 outputDependence colorLabel$1.iconTextGap
- 136: 32 -> 33 outputDependence colorLabel$1.labelFor
- 137: 32 -> 33 outputDependence colorLabel$1.mnemonic
- 138: 32 -> 33 outputDependence colorLabel$1.mnemonicIndex
- 139: 32 -> 33 outputDependence colorLabel$1.text
- 140: 32 -> 33 outputDependence colorLabel$1.verticalAlignment
- 141: 32 -> 33 outputDependence colorLabel$1.verticalTextPosition
- 142: 33 -> 30 loopIndependentDefUseDependence colorLabel$1.!JLabel
- 143: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.defaultIcon
- 144: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.disabledIcon
- 145: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.disabledIconSet
- 146: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.horizontalAlignment
- 147: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.horizontalTextPosition
- 148: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.iconTextGap
- 149: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.labelFor
- 150: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.mnemonic
- 151: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.mnemonicIndex
- 152: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.text
- 153: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.verticalAlignment
- 154: 33 -> 75 loopIndependentDefUseDependence colorLabel$1.verticalTextPosition
- 155: 36 -> 37 loopIndependentDefUseDependence java.awt.Component.parent
- 156: 37 -> 34 loopIndependentDefUseDependence this.!add
- 157: 37 -> 44 loopIndependentDefUseDependence java.awt.Component.parent
- 158: 37 -> 45 outputDependence this.!add
- 159: 38 -> 44 loopIndependentDefUseDependence this.colorCombo
- 160: 38 -> 49 loopIndependentDefUseDependence this.colorCombo
- 161: 38 -> 75 loopIndependentDefUseDependence this.colorCombo
- 162: 4 -> 1 loopIndependentDefUseDependence shapeLabel$0.!JLabel
- 163: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.defaultIcon
- 164: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.disabledIcon
- 165: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.disabledIconSet
- 166: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.horizontalAlignment
- 167: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.horizontalTextPosition
- 168: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.iconTextGap
- 169: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.labelFor
- 170: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.mnemonic
- 171: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.mnemonicIndex
- 172: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.text
- 173: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.verticalAlignment
- 174: 4 -> 75 loopIndependentDefUseDependence shapeLabel$0.verticalTextPosition
- 175: 40 -> 41 loopIndependentDefUseDependence this.colorCombo.dataModel
- 176: 40 -> 41 outputDependence javax.swing.DefaultComboBoxModel.objects
- 177: 40 -> 41 outputDependence javax.swing.JComponent.inputVerifier
- 178: 40 -> 41 outputDependence javax.swing.JComponent.listenerList
- 179: 40 -> 41 outputDependence javax.swing.JComponent.revalidateRunnableScheduled
- 180: 40 -> 41 outputDependence javax.swing.JComponent.verifyInputWhenFocusTarget
- 181: 40 -> 41 outputDependence this.colorCombo.actionCommand
- 182: 40 -> 41 outputDependence this.colorCombo.firingActionEvent
- 183: 40 -> 41 outputDependence this.colorCombo.isEditable
- 184: 40 -> 41 outputDependence this.colorCombo.keySelectionManager
- 185: 40 -> 41 outputDependence this.colorCombo.lightWeightPopupEnabled
- 186: 40 -> 41 outputDependence this.colorCombo.maximumRowCount
- 187: 40 -> 41 outputDependence this.colorCombo.selectedItemReminder
- 188: 40 -> 41 outputDependence this.colorCombo.selectingItem
- 189: 41 -> 38 loopIndependentDefUseDependence this.colorCombo.!JComboBox<FigureIcon>
- 190: 41 -> 62 outputDependence javax.swing.DefaultComboBoxModel.objects
- 191: 41 -> 62 outputDependence javax.swing.JComponent.inputVerifier
- 192: 41 -> 62 outputDependence javax.swing.JComponent.listenerList
- 193: 41 -> 62 outputDependence javax.swing.JComponent.revalidateRunnableScheduled
- 194: 41 -> 62 outputDependence javax.swing.JComponent.verifyInputWhenFocusTarget
- 195: 41 -> 75 loopIndependentDefUseDependence this.colorCombo.actionCommand
- 196: 41 -> 75 loopIndependentDefUseDependence this.colorCombo.dataModel
- 197: 41 -> 75 loopIndependentDefUseDependence this.colorCombo.firingActionEvent
- 198: 41 -> 75 loopIndependentDefUseDependence this.colorCombo.isEditable
- 199: 41 -> 75 loopIndependentDefUseDependence this.colorCombo.keySelectionManager
- 200: 41 -> 75 loopIndependentDefUseDependence this.colorCombo.lightWeightPopupEnabled
- 201: 41 -> 75 loopIndependentDefUseDependence this.colorCombo.maximumRowCount
- 202: 41 -> 75 loopIndependentDefUseDependence this.colorCombo.selectedItemReminder
- 203: 41 -> 75 loopIndependentDefUseDependence this.colorCombo.selectingItem
- 204: 44 -> 45 loopIndependentDefUseDependence java.awt.Component.parent
- 205: 45 -> 42 loopIndependentDefUseDependence this.!add
- 206: 45 -> 58 loopIndependentDefUseDependence java.awt.Component.parent
- 207: 45 -> 59 outputDependence this.!add
- 208: 51 -> 46 loopIndependentDefUseDependence this.!addItems
- 209: 51 -> 73 outputDependence this.!addItems
- 210: 52 -> 58 declaration
- 211: 52 -> 58 loopIndependentDefUseDependence lineWidthLabel$2
- 212: 54 -> 55 outputDependence lineWidthLabel$2.defaultIcon
- 213: 54 -> 55 outputDependence lineWidthLabel$2.disabledIcon
- 214: 54 -> 55 outputDependence lineWidthLabel$2.disabledIconSet
- 215: 54 -> 55 outputDependence lineWidthLabel$2.horizontalAlignment
- 216: 54 -> 55 outputDependence lineWidthLabel$2.horizontalTextPosition
- 217: 54 -> 55 outputDependence lineWidthLabel$2.iconTextGap
- 218: 54 -> 55 outputDependence lineWidthLabel$2.labelFor
- 219: 54 -> 55 outputDependence lineWidthLabel$2.mnemonic
- 220: 54 -> 55 outputDependence lineWidthLabel$2.mnemonicIndex
- 221: 54 -> 55 outputDependence lineWidthLabel$2.text
- 222: 54 -> 55 outputDependence lineWidthLabel$2.verticalAlignment
- 223: 54 -> 55 outputDependence lineWidthLabel$2.verticalTextPosition
- 224: 55 -> 52 loopIndependentDefUseDependence lineWidthLabel$2.!JLabel
- 225: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.defaultIcon
- 226: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.disabledIcon
- 227: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.disabledIconSet
- 228: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.horizontalAlignment
- 229: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.horizontalTextPosition
- 230: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.iconTextGap
- 231: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.labelFor
- 232: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.mnemonic
- 233: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.mnemonicIndex
- 234: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.text
- 235: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.verticalAlignment
- 236: 55 -> 75 loopIndependentDefUseDependence lineWidthLabel$2.verticalTextPosition
- 237: 58 -> 59 loopIndependentDefUseDependence java.awt.Component.parent
- 238: 59 -> 56 loopIndependentDefUseDependence this.!add
- 239: 59 -> 66 loopIndependentDefUseDependence java.awt.Component.parent
- 240: 59 -> 67 outputDependence this.!add
- 241: 60 -> 66 loopIndependentDefUseDependence this.widthCombo
- 242: 60 -> 71 loopIndependentDefUseDependence this.widthCombo
- 243: 60 -> 75 loopIndependentDefUseDependence this.widthCombo
- 244: 62 -> 63 loopIndependentDefUseDependence this.widthCombo.dataModel
- 245: 62 -> 63 outputDependence javax.swing.DefaultComboBoxModel.objects
- 246: 62 -> 63 outputDependence javax.swing.JComponent.inputVerifier
- 247: 62 -> 63 outputDependence javax.swing.JComponent.listenerList
- 248: 62 -> 63 outputDependence javax.swing.JComponent.revalidateRunnableScheduled
- 249: 62 -> 63 outputDependence javax.swing.JComponent.verifyInputWhenFocusTarget
- 250: 62 -> 63 outputDependence this.widthCombo.actionCommand
- 251: 62 -> 63 outputDependence this.widthCombo.firingActionEvent
- 252: 62 -> 63 outputDependence this.widthCombo.isEditable
- 253: 62 -> 63 outputDependence this.widthCombo.keySelectionManager
- 254: 62 -> 63 outputDependence this.widthCombo.lightWeightPopupEnabled
- 255: 62 -> 63 outputDependence this.widthCombo.maximumRowCount
- 256: 62 -> 63 outputDependence this.widthCombo.selectedItemReminder
- 257: 62 -> 63 outputDependence this.widthCombo.selectingItem
- 258: 63 -> 60 loopIndependentDefUseDependence this.widthCombo.!JComboBox<FigureIcon>
- 259: 63 -> 75 loopIndependentDefUseDependence javax.swing.DefaultComboBoxModel.objects
- 260: 63 -> 75 loopIndependentDefUseDependence javax.swing.JComponent.inputVerifier
- 261: 63 -> 75 loopIndependentDefUseDependence javax.swing.JComponent.listenerList
- 262: 63 -> 75 loopIndependentDefUseDependence javax.swing.JComponent.revalidateRunnableScheduled
- 263: 63 -> 75 loopIndependentDefUseDependence javax.swing.JComponent.verifyInputWhenFocusTarget
- 264: 63 -> 75 loopIndependentDefUseDependence this.widthCombo.actionCommand
- 265: 63 -> 75 loopIndependentDefUseDependence this.widthCombo.dataModel
- 266: 63 -> 75 loopIndependentDefUseDependence this.widthCombo.firingActionEvent
- 267: 63 -> 75 loopIndependentDefUseDependence this.widthCombo.isEditable
- 268: 63 -> 75 loopIndependentDefUseDependence this.widthCombo.keySelectionManager
- 269: 63 -> 75 loopIndependentDefUseDependence this.widthCombo.lightWeightPopupEnabled
- 270: 63 -> 75 loopIndependentDefUseDependence this.widthCombo.maximumRowCount
- 271: 63 -> 75 loopIndependentDefUseDependence this.widthCombo.selectedItemReminder
- 272: 63 -> 75 loopIndependentDefUseDependence this.widthCombo.selectingItem
- 273: 66 -> 67 loopIndependentDefUseDependence java.awt.Component.parent
- 274: 67 -> 64 loopIndependentDefUseDependence this.!add
- 275: 67 -> 75 loopIndependentDefUseDependence java.awt.Component.parent
- 276: 7 -> 8 loopIndependentDefUseDependence java.awt.Component.parent
- 277: 73 -> 68 loopIndependentDefUseDependence this.!addItems
- 278: 8 -> 15 loopIndependentDefUseDependence java.awt.Component.parent
- 279: 8 -> 16 outputDependence this.!add
- 280: 8 -> 5 loopIndependentDefUseDependence this.!add
- 281: 9 -> 15 loopIndependentDefUseDependence this.shapeCombo
- 282: 9 -> 18 loopIndependentDefUseDependence this.shapeCombo
- 283: 9 -> 19 loopIndependentDefUseDependence this.shapeCombo
- 284: 9 -> 27 loopIndependentDefUseDependence this.shapeCombo
- 285: 9 -> 75 loopIndependentDefUseDependence this.shapeCombo
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    5 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    0 ->    9 trueControlDependence
+   8:    0 ->   10 trueControlDependence
+   9:    0 ->   11 trueControlDependence
+  10:    0 ->   13 trueControlDependence
+  11:    0 ->   14 trueControlDependence
+  12:    0 ->   15 trueControlDependence
+  13:    0 ->   17 trueControlDependence
+  14:    0 ->   18 trueControlDependence
+  15:    0 ->   19 trueControlDependence
+  16:    0 ->   20 trueControlDependence
+  17:    0 ->   21 trueControlDependence
+  18:    0 ->   22 trueControlDependence
+  19:    0 ->   23 trueControlDependence
+  20:    0 ->   24 trueControlDependence
+  21:    0 ->   25 trueControlDependence
+  22:    0 ->   26 trueControlDependence
+  23:    0 ->   27 trueControlDependence
+  24:    0 ->   28 trueControlDependence
+  25:    0 ->   29 trueControlDependence
+  26:    0 ->   30 trueControlDependence
+  27:    0 ->   31 trueControlDependence
+  28:    0 ->   32 trueControlDependence
+  29:    0 ->   34 trueControlDependence
+  30:    0 ->   35 trueControlDependence
+  31:    0 ->   36 trueControlDependence
+  32:    0 ->   38 trueControlDependence
+  33:    0 ->   39 trueControlDependence
+  34:    0 ->   40 trueControlDependence
+  35:    0 ->   42 trueControlDependence
+  36:    0 ->   43 trueControlDependence
+  37:    0 ->   44 trueControlDependence
+  38:    0 ->   46 trueControlDependence
+  39:    0 ->   47 trueControlDependence
+  40:    0 ->   48 trueControlDependence
+  41:    0 ->   49 trueControlDependence
+  42:    0 ->   50 trueControlDependence
+  43:    0 ->   51 trueControlDependence
+  44:    0 ->   52 trueControlDependence
+  45:    0 ->   53 trueControlDependence
+  46:    0 ->   54 trueControlDependence
+  47:    0 ->   56 trueControlDependence
+  48:    0 ->   57 trueControlDependence
+  49:    0 ->   58 trueControlDependence
+  50:    0 ->   60 trueControlDependence
+  51:    0 ->   61 trueControlDependence
+  52:    0 ->   62 trueControlDependence
+  53:    0 ->   64 trueControlDependence
+  54:    0 ->   65 trueControlDependence
+  55:    0 ->   66 trueControlDependence
+  56:    0 ->   68 trueControlDependence
+  57:    0 ->   69 trueControlDependence
+  58:    0 ->   70 trueControlDependence
+  59:    0 ->   71 trueControlDependence
+  60:    0 ->   72 trueControlDependence
+  61:    0 ->   73 trueControlDependence
+  62:    0 ->   75 trueControlDependence
+  63:    0 -> * trueControlDependence
+  64:    0 -> * trueControlDependence
+  65:    0 -> * trueControlDependence
+  66:    0 -> * trueControlDependence
+  67:    0 -> * trueControlDependence
+  68:    0 -> * trueControlDependence
+  69:    0 -> * trueControlDependence
+  70:    0 -> * trueControlDependence
+  71:    0 -> * trueControlDependence
+  72:    0 -> * trueControlDependence
+  73:    0 -> * trueControlDependence
+  74:    0 -> * trueControlDependence
+  75:    0 -> * trueControlDependence
+  76:    1 ->    7 declaration
+  77:    1 ->    7 loopIndependentDefUseDependence shapeLabel$0
+  78:    9 ->   15 loopIndependentDefUseDependence this.shapeCombo
+  79:    9 ->   18 loopIndependentDefUseDependence this.shapeCombo
+  80:    9 ->   27 loopIndependentDefUseDependence this.shapeCombo
+  81:   22 ->   19 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.CursorIcon.!CursorIcon( )
+  82:   23 ->   17 loopIndependentDefUseDependence this.shapeCombo.!addItem( java.lang.Object )
+  83:   29 ->   24 loopIndependentDefUseDependence this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+  84:   29 ->   51 outputDependence this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+  85:   30 ->   36 declaration
+  86:   30 ->   36 loopIndependentDefUseDependence colorLabel$1
+  87:   38 ->   44 loopIndependentDefUseDependence this.colorCombo
+  88:   38 ->   49 loopIndependentDefUseDependence this.colorCombo
+  89:   51 ->   46 loopIndependentDefUseDependence this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+  90:   51 ->   73 outputDependence this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+  91:   52 ->   58 declaration
+  92:   52 ->   58 loopIndependentDefUseDependence lineWidthLabel$2
+  93:   60 ->   66 loopIndependentDefUseDependence this.widthCombo
+  94:   60 ->   71 loopIndependentDefUseDependence this.widthCombo
+  95:   73 ->   68 loopIndependentDefUseDependence this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+  96: * ->    1 loopIndependentDefUseDependence javax.swing.JLabel.!JLabel( java.lang.String )
+  97: * ->    5 loopIndependentDefUseDependence this.!add( java.awt.Component )
+  98: * ->    9 loopIndependentDefUseDependence javax.swing.JComboBox.!JComboBox( )
+  99: * ->   13 loopIndependentDefUseDependence this.!add( java.awt.Component )
+ 100: * ->   15 loopIndependentDefUseDependence this.!java.awt.Component.parent
+ 101: * ->   30 loopIndependentDefUseDependence javax.swing.JLabel.!JLabel( java.lang.String )
+ 102: * ->   34 loopIndependentDefUseDependence this.!add( java.awt.Component )
+ 103: * ->   36 loopIndependentDefUseDependence this.!java.awt.Component.parent
+ 104: * ->   38 loopIndependentDefUseDependence javax.swing.JComboBox.!JComboBox( )
+ 105: * ->   40 loopIndependentDefUseDependence javax.swing.JComboBox.!javax.swing.JComboBox.dataModel
+ 106: * ->   42 loopIndependentDefUseDependence this.!add( java.awt.Component )
+ 107: * ->   44 loopIndependentDefUseDependence this.!java.awt.Component.parent
+ 108: * ->   52 loopIndependentDefUseDependence javax.swing.JLabel.!JLabel( java.lang.String )
+ 109: * ->   56 loopIndependentDefUseDependence this.!add( java.awt.Component )
+ 110: * ->   58 loopIndependentDefUseDependence this.!java.awt.Component.parent
+ 111: * ->   60 loopIndependentDefUseDependence javax.swing.JComboBox.!JComboBox( )
+ 112: * ->   62 loopIndependentDefUseDependence javax.swing.JComboBox.!javax.swing.JComboBox.dataModel
+ 113: * ->   64 loopIndependentDefUseDependence this.!add( java.awt.Component )
+ 114: * ->   66 loopIndependentDefUseDependence this.!java.awt.Component.parent
+ 115: * -> * loopIndependentDefUseDependence javax.swing.JComboBox.!javax.swing.JComboBox.dataModel
+ 116: * -> * loopIndependentDefUseDependence javax.swing.JComboBox.!javax.swing.JComboBox.dataModel
+ 117: * -> * loopIndependentDefUseDependence this.!java.awt.Component.parent
+ 118: * -> * loopIndependentDefUseDependence this.!java.awt.Component.parent
+ 119: * -> * loopIndependentDefUseDependence this.!java.awt.Component.parent
+ 120: * -> * loopIndependentDefUseDependence this.!java.awt.Component.parent
+ 121: * -> * loopIndependentDefUseDependence this.!java.awt.Component.parent
+ 122: * -> * outputDependence javax.swing.JComboBox.!JComboBox( )
+ 123: * -> * outputDependence javax.swing.JComboBox.!JComboBox( )
+ 124: * -> * outputDependence javax.swing.JComboBox.!javax.swing.DefaultComboBoxModel.objects
+ 125: * -> * outputDependence javax.swing.JComboBox.!javax.swing.DefaultComboBoxModel.objects
+ 126: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.actionCommand
+ 127: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.actionCommand
+ 128: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.firingActionEvent
+ 129: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.firingActionEvent
+ 130: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.isEditable
+ 131: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.isEditable
+ 132: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.keySelectionManager
+ 133: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.keySelectionManager
+ 134: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.lightWeightPopupEnabled
+ 135: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.lightWeightPopupEnabled
+ 136: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.maximumRowCount
+ 137: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.maximumRowCount
+ 138: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.selectedItemReminder
+ 139: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.selectedItemReminder
+ 140: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.selectingItem
+ 141: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComboBox.selectingItem
+ 142: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComponent.inputVerifier
+ 143: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComponent.inputVerifier
+ 144: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComponent.listenerList
+ 145: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComponent.listenerList
+ 146: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComponent.revalidateRunnableScheduled
+ 147: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComponent.revalidateRunnableScheduled
+ 148: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComponent.verifyInputWhenFocusTarget
+ 149: * -> * outputDependence javax.swing.JComboBox.!javax.swing.JComponent.verifyInputWhenFocusTarget
+ 150: * -> * outputDependence javax.swing.JLabel.!JLabel( java.lang.String )
+ 151: * -> * outputDependence javax.swing.JLabel.!JLabel( java.lang.String )
+ 152: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.defaultIcon
+ 153: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.defaultIcon
+ 154: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.disabledIcon
+ 155: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.disabledIcon
+ 156: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet
+ 157: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet
+ 158: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment
+ 159: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment
+ 160: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition
+ 161: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition
+ 162: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.iconTextGap
+ 163: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.iconTextGap
+ 164: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.labelFor
+ 165: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.labelFor
+ 166: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.mnemonic
+ 167: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.mnemonic
+ 168: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex
+ 169: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex
+ 170: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.text
+ 171: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.text
+ 172: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment
+ 173: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment
+ 174: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition
+ 175: * -> * outputDependence javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition
+ 176: * -> * outputDependence this.!add( java.awt.Component )
+ 177: * -> * outputDependence this.!add( java.awt.Component )
+ 178: * -> * outputDependence this.!add( java.awt.Component )
+ 179: * -> * outputDependence this.!add( java.awt.Component )
+ 180: * -> * outputDependence this.!add( java.awt.Component )
 --
    0: colorCombo
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: shapeCombo
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
    0: addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 11 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 1 -> 6 loopIndependentDefUseDependence cb$0
-   7: 1 -> 7 loopIndependentDefUseDependence cb$0
-   8: 2 -> 4 loopIndependentDefUseDependence icons$1
-   9: 2 -> 7 loopIndependentDefUseDependence icons$1
-  10: 3 -> 4 declaration
-  11: 3 -> 4 loopIndependentDefUseDependence i$2
-  12: 3 -> 7 declaration
-  13: 3 -> 7 loopIndependentDefUseDependence i$2
-  14: 3 -> 9 declaration
-  15: 3 -> 9 loopIndependentDefUseDependence i$2
-  16: 4 -> 5 trueControlDependence
-  17: 4 -> 6 trueControlDependence
-  18: 4 -> 7 trueControlDependence
-  19: 4 -> 8 trueControlDependence
-  20: 4 -> 9 trueControlDependence
-  21: 8 -> 5 loopIndependentDefUseDependence cb$0.!addItem
-  22: 8 -> 8 defOrderDependence cb$0.!addItem
-  23: 9 -> 4 loopCarriedDefUseDependence i$2 4
-  24: 9 -> 7 loopCarriedDefUseDependence i$2 4
-  25: 9 -> 9 loopCarriedDefUseDependence i$2 4
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->   11 trueControlDependence
+   6:    1 ->    6 loopIndependentDefUseDependence cb$0
+   7:    2 ->    4 loopIndependentDefUseDependence icons$1
+   8:    2 ->    7 loopIndependentDefUseDependence icons$1
+   9:    3 ->    4 declaration
+  10:    3 ->    4 loopIndependentDefUseDependence i$2
+  11:    3 ->    7 declaration
+  12:    3 ->    7 loopIndependentDefUseDependence i$2
+  13:    3 ->    9 declaration
+  14:    3 ->    9 loopIndependentDefUseDependence i$2
+  15:    4 ->    5 trueControlDependence
+  16:    4 ->    6 trueControlDependence
+  17:    4 ->    7 trueControlDependence
+  18:    4 ->    8 trueControlDependence
+  19:    4 ->    9 trueControlDependence
+  20:    8 ->    5 loopIndependentDefUseDependence cb$0.!addItem( java.lang.Object )
+  21:    8 ->    8 defOrderDependence cb$0.!addItem( java.lang.Object )
+  22:    9 ->    4 loopCarriedDefUseDependence i$2 (LC =    4)
+  23:    9 ->    7 loopCarriedDefUseDependence i$2 (LC =    4)
+  24:    9 ->    9 loopCarriedDefUseDependence i$2 (LC =    4)
 --
    0: getShape( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 0 -> 3 trueControlDependence
-   5: 0 -> 4 trueControlDependence
-   6: 0 -> 5 trueControlDependence
-   7: 0 -> 6 trueControlDependence
-   8: 0 -> 7 trueControlDependence
-   9: 0 -> 8 trueControlDependence
-  10: 1 -> 6 declaration
-  11: 1 -> 6 loopIndependentDefUseDependence icon$0
-  12: 4 -> 1 loopIndependentDefUseDependence this.shapeCombo.!getSelectedItem
-  13: 5 -> 10 loopIndependentDefUseDependence $_
-  14: 8 -> 5 loopIndependentDefUseDependence icon$0.!getFigure
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    1 ->    6 declaration
+  11:    1 ->    6 loopIndependentDefUseDependence icon$0
+  12:    4 ->    1 loopIndependentDefUseDependence this.shapeCombo.!getSelectedItem( )
+  13:    5 ->   10 loopIndependentDefUseDependence $_
+  14:    8 ->    5 loopIndependentDefUseDependence icon$0.!getFigure( )
 --
    0: isGrabMode( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 0 -> 6 trueControlDependence
-   6: 1 -> 6 loopIndependentDefUseDependence $_
-   7: 4 -> 1 loopIndependentDefUseDependence this.!getShape
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    1 ->    6 loopIndependentDefUseDependence $_
+   7:    4 ->    1 loopIndependentDefUseDependence this.!getShape( )
 --
    0: widthCombo
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
 ----- ClDG (to here) -----
 

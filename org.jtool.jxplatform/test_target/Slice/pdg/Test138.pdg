@@ -4,104 +4,130 @@ Class Name = Test138
    2 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ m( ) ]
-   1 localDeclaration D = { s1$0 } U = { s1$0.!P138 }
+   1 localDeclaration D = { s1$0 } U = { P138.!P138( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P138#P138( )
-   4 actualOut D = { s1$0.!P138 } U = {  }
-   5 localDeclaration D = { s2$1 } U = { s2$1.!P138 }
+   4 actualOut D = { P138.!P138( ) } U = {  }
+   5 localDeclaration D = { s2$1 } U = { P138.!P138( ) }
    6 receiver D = {  } U = {  }
    7 constructorCall D = {  } U = {  } TO = P138#P138( )
-   8 actualOut D = { s2$1.!P138 } U = {  }
+   8 actualOut D = { P138.!P138( ) } U = {  }
    9 localDeclaration D = { a$2 } U = { $java.lang.String }
-  10 assignment D = {  } U = { s1$0.!add }
+  10 assignment D = {  } U = { s1$0.!add( java.lang.String ) }
   11 receiver D = {  } U = { s1$0 }
-  12 methodCall D = { s1$0, s1$0.list } U = { s1$0, s1$0.list } TO = P138#add( java.lang.String )
+  12 methodCall D = {  } U = { P138.!P138( ).list, P138.!P138( ).list.!java.util.ArrayList.elementData, P138.!P138( ).list.!java.util.ArrayList.modCount, P138.!P138( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size } TO = P138#add( java.lang.String )
   13 actualIn D = {  } U = { a$2 }
-  14 actualOut D = { s1$0, s1$0.!add, s1$0.list } U = { s1$0, s1$0.list }
-  15 assignment D = {  } U = { s1$0.!add }
+* actualOut D = { s1$0.!add( java.lang.String ), s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size } U = { P138.!P138( ).list, P138.!P138( ).list.!java.util.ArrayList.elementData, P138.!P138( ).list.!java.util.ArrayList.modCount, P138.!P138( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size }
+  15 assignment D = {  } U = { s1$0.!add( java.lang.String ) }
   16 receiver D = {  } U = { s1$0 }
-  17 methodCall D = { s1$0, s1$0.list } U = { s1$0, s1$0.list } TO = P138#add( java.lang.String )
+  17 methodCall D = {  } U = { P138.!P138( ).list, P138.!P138( ).list.!java.util.ArrayList.elementData, P138.!P138( ).list.!java.util.ArrayList.modCount, P138.!P138( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size } TO = P138#add( java.lang.String )
   18 actualIn D = {  } U = { $java.lang.String }
-  19 actualOut D = { s1$0, s1$0.!add, s1$0.list } U = { s1$0, s1$0.list }
-  20 assignment D = {  } U = { s2$1.!add }
+* actualOut D = { s1$0.!add( java.lang.String ), s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size } U = { P138.!P138( ).list, P138.!P138( ).list.!java.util.ArrayList.elementData, P138.!P138( ).list.!java.util.ArrayList.modCount, P138.!P138( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size }
+  20 assignment D = {  } U = { s2$1.!add( java.lang.String ) }
   21 receiver D = {  } U = { s2$1 }
-  22 methodCall D = { s2$1, s2$1.list } U = { s2$1, s2$1.list } TO = P138#add( java.lang.String )
+  22 methodCall D = {  } U = { P138.!P138( ).list, P138.!P138( ).list.!java.util.ArrayList.elementData, P138.!P138( ).list.!java.util.ArrayList.modCount, P138.!P138( ).list.!java.util.ArrayList.size, s2$1.list, s2$1.list.!java.util.ArrayList.elementData, s2$1.list.!java.util.ArrayList.modCount, s2$1.list.!java.util.ArrayList.size } TO = P138#add( java.lang.String )
   23 actualIn D = {  } U = { $java.lang.String }
-  24 actualOut D = { s2$1, s2$1.!add, s2$1.list } U = { s2$1, s2$1.list }
-  25 localDeclaration D = { s3$3 } U = { s1$0 }
-  26 localDeclaration D = { s4$4 } U = { s2$1 }
-  28 formalOut D = {  } U = { $_, s1$0.list, s2$1.list }
+* actualOut D = { s2$1.!add( java.lang.String ), s2$1.list.!java.util.ArrayList.modCount, s2$1.list.!java.util.ArrayList.size } U = { P138.!P138( ).list, P138.!P138( ).list.!java.util.ArrayList.elementData, P138.!P138( ).list.!java.util.ArrayList.modCount, P138.!P138( ).list.!java.util.ArrayList.size, s2$1.list, s2$1.list.!java.util.ArrayList.elementData, s2$1.list.!java.util.ArrayList.modCount, s2$1.list.!java.util.ArrayList.size }
+  25 localDeclaration D = { s3$3 } U = { P138.!P138( ).list, s1$0, s1$0.list }
+  26 localDeclaration D = { l1$4 } U = { s1$0.!getList( ) }
+  27 receiver D = {  } U = { s1$0 }
+  28 methodCall D = {  } U = { P138.!P138( ).list, s1$0.list, s3$3.list } TO = P138#getList( )
+  29 actualOut D = { s1$0.!getList( ) } U = { P138.!P138( ).list, s1$0.list, s3$3.list }
+  30 localDeclaration D = { l3$5 } U = { s3$3.!getList( ) }
+  31 receiver D = {  } U = { s3$3 }
+  32 methodCall D = {  } U = { P138.!P138( ).list, s1$0.list, s3$3.list } TO = P138#getList( )
+  33 actualOut D = { s3$3.!getList( ) } U = { P138.!P138( ).list, s1$0.list, s3$3.list }
+  34 localDeclaration D = { l2$6 } U = { s2$1.!getList( ) }
+  35 receiver D = {  } U = { s2$1 }
+  36 methodCall D = {  } U = { P138.!P138( ).list, s2$1.list } TO = P138#getList( )
+  37 actualOut D = { s2$1.!getList( ) } U = { P138.!P138( ).list, s2$1.list }
+  38 localDeclaration D = { l4$7 } U = { s1$0.!getList2( ) }
+  39 receiver D = {  } U = { s1$0, s3$3 }
+  40 methodCall D = {  } U = { P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.elementData, P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.size, P138.!P138( ).list, s1$0.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s1$0.java.util.ArrayList.!java.util.ArrayList.elementData, s1$0.java.util.ArrayList.!java.util.ArrayList.size, s1$0.list, s3$3.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s3$3.java.util.ArrayList.!java.util.ArrayList.elementData, s3$3.java.util.ArrayList.!java.util.ArrayList.size, s3$3.list } TO = P138#getList2( )
+* actualOut D = { s1$0.!getList2( ), s1$0.java.util.ArrayList.!java.util.AbstractList.modCount, s1$0.java.util.ArrayList.!java.util.ArrayList.elementData, s1$0.java.util.ArrayList.!java.util.ArrayList.size } U = { P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.elementData, P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.size, P138.!P138( ).list, s1$0.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s1$0.java.util.ArrayList.!java.util.ArrayList.elementData, s1$0.java.util.ArrayList.!java.util.ArrayList.size, s1$0.list, s3$3.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s3$3.java.util.ArrayList.!java.util.ArrayList.elementData, s3$3.java.util.ArrayList.!java.util.ArrayList.size, s3$3.list }
+  43 formalOut D = {  } U = { $_ }
 --
    0: Test138( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 10 trueControlDependence
-   3: 0 -> 11 trueControlDependence
-   4: 0 -> 12 trueControlDependence
-   5: 0 -> 13 trueControlDependence
-   6: 0 -> 14 trueControlDependence
-   7: 0 -> 15 trueControlDependence
-   8: 0 -> 16 trueControlDependence
-   9: 0 -> 17 trueControlDependence
-  10: 0 -> 18 trueControlDependence
-  11: 0 -> 19 trueControlDependence
-  12: 0 -> 2 trueControlDependence
-  13: 0 -> 20 trueControlDependence
-  14: 0 -> 21 trueControlDependence
-  15: 0 -> 22 trueControlDependence
-  16: 0 -> 23 trueControlDependence
-  17: 0 -> 24 trueControlDependence
-  18: 0 -> 25 trueControlDependence
-  19: 0 -> 26 trueControlDependence
-  20: 0 -> 28 trueControlDependence
-  21: 0 -> 3 trueControlDependence
-  22: 0 -> 4 trueControlDependence
-  23: 0 -> 5 trueControlDependence
-  24: 0 -> 6 trueControlDependence
-  25: 0 -> 7 trueControlDependence
-  26: 0 -> 8 trueControlDependence
-  27: 0 -> 9 trueControlDependence
-  28: 1 -> 11 declaration
-  29: 1 -> 11 loopIndependentDefUseDependence s1$0
-  30: 1 -> 12 declaration
-  31: 1 -> 12 loopIndependentDefUseDependence s1$0
-  32: 1 -> 14 declaration
-  33: 1 -> 16 declaration
-  34: 1 -> 17 declaration
-  35: 1 -> 19 declaration
-  36: 1 -> 25 declaration
-  37: 12 -> 14 loopIndependentDefUseDependence s1$0
-  38: 12 -> 14 loopIndependentDefUseDependence s1$0.list
-  39: 13 -> 14 summary
-  40: 14 -> 10 loopIndependentDefUseDependence s1$0.!add
-  41: 14 -> 16 loopIndependentDefUseDependence s1$0
-  42: 14 -> 17 loopIndependentDefUseDependence s1$0
-  43: 14 -> 17 loopIndependentDefUseDependence s1$0.list
-  44: 14 -> 19 outputDependence s1$0.!add
-  45: 17 -> 19 loopIndependentDefUseDependence s1$0
-  46: 17 -> 19 loopIndependentDefUseDependence s1$0.list
-  47: 18 -> 19 summary
-  48: 19 -> 15 loopIndependentDefUseDependence s1$0.!add
-  49: 19 -> 25 loopIndependentDefUseDependence s1$0
-  50: 19 -> 28 loopIndependentDefUseDependence s1$0.list
-  51: 22 -> 24 loopIndependentDefUseDependence s2$1
-  52: 22 -> 24 loopIndependentDefUseDependence s2$1.list
-  53: 23 -> 24 summary
-  54: 24 -> 20 loopIndependentDefUseDependence s2$1.!add
-  55: 24 -> 26 loopIndependentDefUseDependence s2$1
-  56: 24 -> 28 loopIndependentDefUseDependence s2$1.list
-  57: 4 -> 1 loopIndependentDefUseDependence s1$0.!P138
-  58: 5 -> 21 declaration
-  59: 5 -> 21 loopIndependentDefUseDependence s2$1
-  60: 5 -> 22 declaration
-  61: 5 -> 22 loopIndependentDefUseDependence s2$1
-  62: 5 -> 24 declaration
-  63: 5 -> 26 declaration
-  64: 8 -> 5 loopIndependentDefUseDependence s2$1.!P138
-  65: 9 -> 13 declaration
-  66: 9 -> 13 loopIndependentDefUseDependence a$2
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   15 trueControlDependence
+  15:    0 ->   16 trueControlDependence
+  16:    0 ->   17 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    0 ->   20 trueControlDependence
+  19:    0 ->   21 trueControlDependence
+  20:    0 ->   22 trueControlDependence
+  21:    0 ->   23 trueControlDependence
+  22:    0 ->   25 trueControlDependence
+  23:    0 ->   26 trueControlDependence
+  24:    0 ->   27 trueControlDependence
+  25:    0 ->   28 trueControlDependence
+  26:    0 ->   29 trueControlDependence
+  27:    0 ->   30 trueControlDependence
+  28:    0 ->   31 trueControlDependence
+  29:    0 ->   32 trueControlDependence
+  30:    0 ->   33 trueControlDependence
+  31:    0 ->   34 trueControlDependence
+  32:    0 ->   35 trueControlDependence
+  33:    0 ->   36 trueControlDependence
+  34:    0 ->   37 trueControlDependence
+  35:    0 ->   38 trueControlDependence
+  36:    0 ->   39 trueControlDependence
+  37:    0 ->   40 trueControlDependence
+  38:    0 ->   43 trueControlDependence
+  39:    0 -> * trueControlDependence
+  40:    0 -> * trueControlDependence
+  41:    0 -> * trueControlDependence
+  42:    0 -> * trueControlDependence
+  43:    1 ->   11 declaration
+  44:    1 ->   11 loopIndependentDefUseDependence s1$0
+  45:    1 ->   16 declaration
+  46:    1 ->   16 loopIndependentDefUseDependence s1$0
+  47:    1 ->   25 declaration
+  48:    1 ->   25 loopIndependentDefUseDependence s1$0
+  49:    1 ->   27 declaration
+  50:    1 ->   27 loopIndependentDefUseDependence s1$0
+  51:    1 ->   39 declaration
+  52:    1 ->   39 loopIndependentDefUseDependence s1$0
+  53:    4 ->    1 loopIndependentDefUseDependence P138.!P138( )
+  54:    4 ->    8 outputDependence P138.!P138( )
+  55:    5 ->   21 declaration
+  56:    5 ->   21 loopIndependentDefUseDependence s2$1
+  57:    5 ->   35 declaration
+  58:    5 ->   35 loopIndependentDefUseDependence s2$1
+  59:    8 ->    5 loopIndependentDefUseDependence P138.!P138( )
+  60:    9 ->   13 declaration
+  61:    9 ->   13 loopIndependentDefUseDependence a$2
+  62:   25 ->   31 declaration
+  63:   25 ->   31 loopIndependentDefUseDependence s3$3
+  64:   25 ->   39 declaration
+  65:   25 ->   39 loopIndependentDefUseDependence s3$3
+  66:   29 ->   26 loopIndependentDefUseDependence s1$0.!getList( )
+  67:   33 ->   30 loopIndependentDefUseDependence s3$3.!getList( )
+  68:   37 ->   34 loopIndependentDefUseDependence s2$1.!getList( )
+  69: * ->   10 loopIndependentDefUseDependence s1$0.!add( java.lang.String )
+  70: * ->   15 loopIndependentDefUseDependence s1$0.!add( java.lang.String )
+  71: * ->   17 loopIndependentDefUseDependence s1$0.list.!java.util.ArrayList.modCount
+  72: * ->   17 loopIndependentDefUseDependence s1$0.list.!java.util.ArrayList.size
+  73: * ->   20 loopIndependentDefUseDependence s2$1.!add( java.lang.String )
+  74: * ->   38 loopIndependentDefUseDependence s1$0.!getList2( )
+  75: * -> * loopIndependentDefUseDependence s1$0.list.!java.util.ArrayList.modCount
+  76: * -> * loopIndependentDefUseDependence s1$0.list.!java.util.ArrayList.size
+  77: * -> * outputDependence s1$0.!add( java.lang.String )
 --
 ----- ClDG (to here) -----
 

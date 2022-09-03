@@ -3,42 +3,40 @@ Class Name = Sample103FX$1
    0 methodEntry [ handle( javafx.event.ActionEvent ) ]
    1 formalIn D = { event$4 } U = {  }
    2 ifSt D = {  } U = { this.flag }
-   3 assignment D = {  } U = { label$2.!setText }
+   3 assignment D = {  } U = { label$2.!setText( java.lang.String ) }
    4 receiver D = {  } U = { label$2 }
    5 methodCall D = {  } U = { $java.lang.String } TO = javafx.scene.control.Labeled#setText( java.lang.String )
-   6 actualOut D = { label$2.!setText } U = {  }
+   6 actualOut D = { label$2.!setText( java.lang.String ) } U = {  }
    7 assignment D = { this.flag } U = {  }
-   8 assignment D = {  } U = { label$2.!setText }
+   8 assignment D = {  } U = { label$2.!setText( java.lang.String ) }
    9 receiver D = {  } U = { label$2 }
   10 methodCall D = {  } U = { $java.lang.String } TO = javafx.scene.control.Labeled#setText( java.lang.String )
-  11 actualOut D = { label$2.!setText } U = {  }
+  11 actualOut D = { label$2.!setText( java.lang.String ) } U = {  }
   12 assignment D = { this.flag } U = {  }
-  15 formalOut D = {  } U = { $_, this.flag }
+  15 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ flag ]
    1 fieldDeclaration D = { this.flag } U = { this.flag }
 --
    0: handle( javafx.event.ActionEvent )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 15 trueControlDependence
-   3: 0 -> 2 trueControlDependence
-   4: 11 -> 8 loopIndependentDefUseDependence label$2.!setText
-   5: 12 -> 15 loopIndependentDefUseDependence this.flag
-   6: 2 -> 10 falseControlDependence
-   7: 2 -> 11 trueControlDependence
-   8: 2 -> 12 falseControlDependence
-   9: 2 -> 3 trueControlDependence
-  10: 2 -> 4 trueControlDependence
-  11: 2 -> 5 trueControlDependence
-  12: 2 -> 6 trueControlDependence
-  13: 2 -> 7 trueControlDependence
-  14: 2 -> 8 falseControlDependence
-  15: 2 -> 9 trueControlDependence
-  16: 6 -> 3 loopIndependentDefUseDependence label$2.!setText
-  17: 7 -> 15 loopIndependentDefUseDependence this.flag
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->   15 trueControlDependence
+   4:    2 ->    3 trueControlDependence
+   5:    2 ->    4 trueControlDependence
+   6:    2 ->    5 trueControlDependence
+   7:    2 ->    6 trueControlDependence
+   8:    2 ->    7 trueControlDependence
+   9:    2 ->    8 falseControlDependence
+  10:    2 ->    9 falseControlDependence
+  11:    2 ->   10 falseControlDependence
+  12:    2 ->   11 falseControlDependence
+  13:    2 ->   12 falseControlDependence
+  14:    6 ->    3 loopIndependentDefUseDependence label$2.!setText( java.lang.String )
+  15:   11 ->    8 loopIndependentDefUseDependence label$2.!setText( java.lang.String )
 --
    0: flag
-   1: 0 -> 1 trueControlDependence
+   1:    0 ->    1 trueControlDependence
 --
 ----- ClDG (to here) -----
 

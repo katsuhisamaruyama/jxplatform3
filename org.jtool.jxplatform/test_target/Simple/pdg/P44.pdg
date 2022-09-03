@@ -1,32 +1,32 @@
 ----- ClDG (from here) -----
 Class Name = P44
    0 fieldEntry [ q ]
-   1 fieldDeclaration D = { this.q } U = { Q44.!Q44, this.q }
+   1 fieldDeclaration D = { this.q } U = { Q44.!Q44( ), this.q }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = Q44#Q44( )
-   4 actualOut D = { Q44.!Q44 } U = {  }
+   4 actualOut D = { Q44.!Q44( ) } U = {  }
 --
    0 methodEntry [ getQ( ) ]
-   1 returnSt D = { $_ } U = { this.q }
+   1 returnSt D = { $_ } U = { this.q, this.q.r, this.q.y }
    3 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ P44( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: q
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 4 trueControlDependence
-   5: 4 -> 1 loopIndependentDefUseDependence Q44.!Q44
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence Q44.!Q44( )
 --
    0: getQ( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 3 trueControlDependence
-   3: 1 -> 3 loopIndependentDefUseDependence $_
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
 --
    0: P44( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

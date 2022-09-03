@@ -31,59 +31,59 @@ Class Name = Test21
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 3 trueControlDependence
-   4: 0 -> 7 trueControlDependence
-   5: 1 -> 4 declaration
-   6: 1 -> 4 loopIndependentDefUseDependence a$0
-   7: 2 -> 3 declaration
-   8: 2 -> 3 loopIndependentDefUseDependence i$1
-   9: 2 -> 5 declaration
-  10: 2 -> 5 loopIndependentDefUseDependence i$1
-  11: 3 -> 4 trueControlDependence
-  12: 3 -> 5 trueControlDependence
-  13: 5 -> 3 loopCarriedDefUseDependence i$1 3
-  14: 5 -> 5 loopCarriedDefUseDependence i$1 3
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    7 trueControlDependence
+   5:    1 ->    4 declaration
+   6:    1 ->    4 loopIndependentDefUseDependence a$0
+   7:    2 ->    3 declaration
+   8:    2 ->    3 loopIndependentDefUseDependence i$1
+   9:    2 ->    5 declaration
+  10:    2 ->    5 loopIndependentDefUseDependence i$1
+  11:    3 ->    4 trueControlDependence
+  12:    3 ->    5 trueControlDependence
+  13:    5 ->    3 loopCarriedDefUseDependence i$1 (LC =    3)
+  14:    5 ->    5 loopCarriedDefUseDependence i$1 (LC =    3)
 --
    0: m4( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 4 trueControlDependence
-   4: 1 -> 2 declaration
-   5: 1 -> 2 loopIndependentDefUseDependence i$0
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 declaration
+   5:    1 ->    2 loopIndependentDefUseDependence i$0
 --
    0: m2( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 5 trueControlDependence
-   4: 1 -> 2 declaration
-   5: 1 -> 2 loopIndependentDefUseDependence i$0
-   6: 1 -> 3 declaration
-   7: 1 -> 3 loopIndependentDefUseDependence i$0
-   8: 2 -> 3 trueControlDependence
-   9: 3 -> 2 loopCarriedDefUseDependence i$0 2
-  10: 3 -> 3 loopCarriedDefUseDependence i$0 2
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    5 trueControlDependence
+   4:    1 ->    2 declaration
+   5:    1 ->    2 loopIndependentDefUseDependence i$0
+   6:    1 ->    3 declaration
+   7:    1 ->    3 loopIndependentDefUseDependence i$0
+   8:    2 ->    3 trueControlDependence
+   9:    3 ->    2 loopCarriedDefUseDependence i$0 (LC =    2)
+  10:    3 ->    3 loopCarriedDefUseDependence i$0 (LC =    2)
 --
    0: m3( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 2 trueControlDependence
-   3: 0 -> 8 trueControlDependence
-   4: 1 -> 3 declaration
-   5: 1 -> 3 loopIndependentDefUseDependence i$0
-   6: 1 -> 6 declaration
-   7: 1 -> 6 loopIndependentDefUseDependence i$0
-   8: 2 -> 3 trueControlDependence
-   9: 3 -> 2 falseControlDependence
-  10: 3 -> 4 trueControlDependence
-  11: 3 -> 6 falseControlDependence
-  12: 4 -> 2 fallThroughControlDependence
-  13: 4 -> 6 fallThroughControlDependence
-  14: 6 -> 3 loopCarriedDefUseDependence i$0 2
-  15: 6 -> 6 loopCarriedDefUseDependence i$0 2
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    8 trueControlDependence
+   4:    1 ->    3 declaration
+   5:    1 ->    3 loopIndependentDefUseDependence i$0
+   6:    1 ->    6 declaration
+   7:    1 ->    6 loopIndependentDefUseDependence i$0
+   8:    2 ->    3 trueControlDependence
+   9:    3 ->    2 falseControlDependence
+  10:    3 ->    4 trueControlDependence
+  11:    3 ->    6 falseControlDependence
+  12:    4 ->    2 fallThroughControlDependence
+  13:    4 ->    6 fallThroughControlDependence
+  14:    6 ->    3 loopCarriedDefUseDependence i$0 (LC =    2)
+  15:    6 ->    6 loopCarriedDefUseDependence i$0 (LC =    2)
 --
    0: Test21( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 

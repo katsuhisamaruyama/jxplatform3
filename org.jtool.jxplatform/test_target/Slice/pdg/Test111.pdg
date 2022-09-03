@@ -4,11 +4,11 @@ Class Name = Test111
    1 localDeclaration D = { x$0 } U = {  }
    2 localDeclaration D = { y$1 } U = {  }
    3 localDeclaration D = { z$2 } U = {  }
-   4 switchSt D = {  } U = { x$0 }
-   5 switchCase D = {  } U = { x$0 }
+   4 switchSt D = { $SwitchDef } U = { x$0 }
+   5 switchCase D = {  } U = { $SwitchDef }
    6 assignment D = { y$1 } U = {  }
    7 breakSt D = {  } U = {  }
-   8 switchCase D = {  } U = { x$0 }
+   8 switchCase D = {  } U = { $SwitchDef }
    9 assignment D = { z$2 } U = {  }
   10 breakSt D = {  } U = {  }
   12 localDeclaration D = { p$3 } U = { y$1 }
@@ -19,39 +19,37 @@ Class Name = Test111
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )
-   1: 0 -> 1 trueControlDependence
-   2: 0 -> 12 trueControlDependence
-   3: 0 -> 13 trueControlDependence
-   4: 0 -> 15 trueControlDependence
-   5: 0 -> 2 trueControlDependence
-   6: 0 -> 3 trueControlDependence
-   7: 0 -> 4 trueControlDependence
-   8: 0 -> 5 trueControlDependence
-   9: 1 -> 4 declaration
-  10: 1 -> 4 loopIndependentDefUseDependence x$0
-  11: 1 -> 5 declaration
-  12: 1 -> 5 loopIndependentDefUseDependence x$0
-  13: 1 -> 8 declaration
-  14: 1 -> 8 loopIndependentDefUseDependence x$0
-  15: 2 -> 12 declaration
-  16: 2 -> 12 loopIndependentDefUseDependence y$1
-  17: 2 -> 6 declaration
-  18: 2 -> 6 outputDependence y$1
-  19: 3 -> 13 declaration
-  20: 3 -> 13 loopIndependentDefUseDependence z$2
-  21: 3 -> 9 declaration
-  22: 3 -> 9 outputDependence z$2
-  23: 5 -> 6 trueControlDependence
-  24: 5 -> 7 trueControlDependence
-  25: 5 -> 8 falseControlDependence
-  26: 6 -> 12 loopIndependentDefUseDependence y$1
-  27: 7 -> 8 fallThroughControlDependence
-  28: 8 -> 10 trueControlDependence
-  29: 8 -> 9 trueControlDependence
-  30: 9 -> 13 loopIndependentDefUseDependence z$2
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->   12 trueControlDependence
+   7:    0 ->   13 trueControlDependence
+   8:    0 ->   15 trueControlDependence
+   9:    1 ->    4 declaration
+  10:    1 ->    4 loopIndependentDefUseDependence x$0
+  11:    2 ->    6 declaration
+  12:    2 ->    6 outputDependence y$1
+  13:    2 ->   12 declaration
+  14:    2 ->   12 loopIndependentDefUseDependence y$1
+  15:    3 ->    9 declaration
+  16:    3 ->    9 outputDependence z$2
+  17:    3 ->   13 declaration
+  18:    3 ->   13 loopIndependentDefUseDependence z$2
+  19:    4 ->    5 loopIndependentDefUseDependence $SwitchDef
+  20:    4 ->    8 loopIndependentDefUseDependence $SwitchDef
+  21:    5 ->    6 trueControlDependence
+  22:    5 ->    7 trueControlDependence
+  23:    5 ->    8 falseControlDependence
+  24:    6 ->   12 loopIndependentDefUseDependence y$1
+  25:    7 ->    8 fallThroughControlDependence
+  26:    8 ->    9 trueControlDependence
+  27:    8 ->   10 trueControlDependence
+  28:    9 ->   13 loopIndependentDefUseDependence z$2
 --
    0: Test111( )
-   1: 0 -> 2 trueControlDependence
+   1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
 
