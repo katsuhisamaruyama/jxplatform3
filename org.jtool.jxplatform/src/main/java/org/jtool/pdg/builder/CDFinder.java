@@ -10,6 +10,7 @@ import org.jtool.pdg.PDGNode;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
+import org.jtool.cfg.CFGTry;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.StopConditionOnReachablePath;
@@ -25,6 +26,7 @@ public class CDFinder {
     
     public static void find(BarePDG bpdg , CFG cfg) {
         findCDs(bpdg, cfg);
+        findCDsOnTryCatch(bpdg, cfg);
         findCDsFromEntry(bpdg, cfg);
         findCDsOnDeclarations(bpdg, cfg);
     }
@@ -116,6 +118,24 @@ public class CDFinder {
                     return false;
                 }
             });
+        }
+    }
+    
+    private static void findCDsOnTryCatch(BarePDG bpdg, CFG cfg) {
+        for (CFGNode cfgnode : cfg.getNodes()) {
+            if (cfgnode.isTry()) {
+                CFGTry trynode = (CFGTry)cfgnode;
+                trynode.getCatchNodes().forEach(catchnode -> {
+                    CD edge = new CD(trynode.getPDGNode(), catchnode.getPDGNode());
+                    edge.setTrue();
+                    bpdg.add(edge);
+                });
+                if (trynode.getFinallyNode() != null) {
+                    CD edge = new CD(trynode.getPDGNode(), trynode.getFinallyNode().getPDGNode());
+                    edge.setTrue();
+                    bpdg.add(edge);
+                }
+            }
         }
     }
 }

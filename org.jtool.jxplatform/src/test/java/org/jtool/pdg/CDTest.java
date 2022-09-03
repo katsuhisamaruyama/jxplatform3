@@ -40,14 +40,6 @@ public class CDTest {
     }
     
     @Test
-    public void testIsTrue2() {
-        PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test103", "m( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 11, 12);
-        
-        assertTrue(result.get(0).isTrue());
-    }
-    
-    @Test
     public void testIsTrue3() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test103", "setA( int )");
         List<Dependence> result = PDGTestUtil.getDependence(pdg, 0, 1);
@@ -106,7 +98,7 @@ public class CDTest {
     @Test
     public void testIsTrue10() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 3, 4);
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 3, 12);
         
         assertTrue(result.get(0).isTrue());
     }
@@ -114,7 +106,7 @@ public class CDTest {
     @Test
     public void testIsTrue11() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 3, 7);
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 3, 14);
         
         assertTrue(result.get(0).isTrue());
     }
@@ -123,6 +115,37 @@ public class CDTest {
     public void testIsTrue12() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
         List<Dependence> result = PDGTestUtil.getDependence(pdg, 7, 5);
+        
+        assertTrue(result.get(0).isTrue());
+    }
+    
+    @Test
+    public void testIsTrue13() {
+        PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 7, 9);
+        
+        assertTrue(result.get(0).isTrue());
+    }
+    
+    @Test
+    public void testIsTrue14() {
+        PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 7, 10);
+        
+        assertTrue(result.get(0).isTrue());
+    }
+    
+    @Test
+    public void testIsTrue15() {
+        PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 12, 13);
+        
+        assertTrue(result.get(0).isTrue());
+    }
+    
+    public void testIsTrue16() {
+        PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 14, 15);
         
         assertTrue(result.get(0).isTrue());
     }
@@ -187,14 +210,6 @@ public class CDTest {
     public void testIsExceptionCatch1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
         List<Dependence> result = PDGTestUtil.getDependence(pdg, 7, 12);
-        
-        assertTrue(result.get(0).isExceptionCatch());
-    }
-    
-    @Test
-    public void testIsExceptionCatch2() {
-        PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 7, 13);
         
         assertTrue(result.get(0).isExceptionCatch());
     }
