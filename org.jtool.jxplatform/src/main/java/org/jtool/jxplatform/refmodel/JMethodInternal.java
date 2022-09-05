@@ -96,7 +96,13 @@ class JMethodInternal extends JMethod {
     private String getReferenceForm(DefUseField var, String prefix, String returnValue) {
         if (jmethod.isConstructor()) {
             if (var.getReferenceForm().startsWith("this.") && var.isThis()) {
-                return var.getReferenceForm().replace("this.", returnValue + ".");
+                if (prefix.endsWith("super")) {
+                    return var.getReferenceForm().replace("this.", "super.");
+                } else if (prefix.endsWith("this")) {
+                    return var.getReferenceForm();
+                } else {
+                    return var.getReferenceForm().replace("this.", returnValue + ".");
+                }
             }
         } else {
             if (var.getReferenceForm().startsWith("this.") && var.isThis()) {
