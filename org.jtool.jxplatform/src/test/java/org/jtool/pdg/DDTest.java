@@ -56,7 +56,7 @@ public class DDTest {
     }
     
     @Test
-    public void testIssLIDD4() {
+    public void testIsLIDD4() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         List<Dependence> result = PDGTestUtil.getDependence(pdg, 1, 4);
         
@@ -83,6 +83,30 @@ public class DDTest {
     public void testIsLIDD7() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         List<Dependence> result = PDGTestUtil.getDependence(pdg, 5, 8);
+        
+        assertTrue(result.get(0).isLIDD());
+    }
+    
+    @Test
+    public void testIsLIDD8() {
+        PDG pdg = PDGTestUtil.createPDG(SliceProject, "S140", "S140( int )");
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 16, 8);
+        
+        assertTrue(result.get(0).isLIDD());
+    }
+    
+    @Test
+    public void testIsLIDD9() {
+        PDG pdg = PDGTestUtil.createPDG(SliceProject, "S140", "S140( )");
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 26, 6);
+        
+        assertTrue(result.get(0).isLIDD());
+    }
+    
+    @Test
+    public void testIsLIDD10() {
+        PDG pdg = PDGTestUtil.createPDG(SliceProject, "S140", "S140( )");
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 27, 5);
         
         assertTrue(result.get(0).isLIDD());
     }
@@ -546,8 +570,6 @@ public class DDTest {
         PDGNode src = PDGTestUtil.getNode(pdg, 15);
         PDGNode dst = PDGTestUtil.getNode(pdg, 16);
         List<Dependence> result = PDGTestUtil.getDependence(sdg, src, dst);
-        
-        sdg.print();
         
         assertTrue(result.get(0).isSummary());
     }
