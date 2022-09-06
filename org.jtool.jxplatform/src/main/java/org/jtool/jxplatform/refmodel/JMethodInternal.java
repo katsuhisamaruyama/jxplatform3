@@ -96,10 +96,10 @@ class JMethodInternal extends JMethod {
     private String getReferenceForm(DefUseField var, String prefix, String returnValue) {
         if (jmethod.isConstructor()) {
             if (var.getReferenceForm().startsWith("this.") && var.isThis()) {
-                if (prefix.endsWith("super")) {
-                    return var.getReferenceForm().replace("this.", "super.");
-                } else if (prefix.endsWith("this")) {
+                if (isThisInvocation(prefix)) {
                     return var.getReferenceForm();
+                } else if (isSuperInvocation(prefix)) {
+                    return var.getReferenceForm().replace("this.", "super.");
                 } else {
                     return var.getReferenceForm().replace("this.", returnValue + ".");
                 }
@@ -114,6 +114,14 @@ class JMethodInternal extends JMethod {
             }
         }
         return var.getReferenceForm();
+    }
+    
+    private boolean isThisInvocation(String prefix) {
+        return prefix.endsWith("this");
+    }
+    
+    private boolean isSuperInvocation(String prefix) {
+        return prefix.endsWith("super");
     }
     
     @Override
