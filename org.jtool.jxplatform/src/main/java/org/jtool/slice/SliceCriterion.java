@@ -6,11 +6,12 @@
 package org.jtool.slice;
 
 import org.jtool.pdg.DependencyGraph;
-import org.jtool.pdg.ClDG;
-import org.jtool.pdg.PDG;
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
+import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaClass;
+import org.jtool.srcmodel.JavaMethod;
+import org.jtool.srcmodel.JavaField;
 import org.jtool.cfg.JVariableReference;
 import java.util.Set;
 import java.util.HashSet;
@@ -98,16 +99,10 @@ public class SliceCriterion {
     public static SliceCriterion find(DependencyGraph graph, JavaClass jclass, int lineNumber, int columnNumber) {
         Set<PDGNode> nodes = new HashSet<>();
         graph.getPDGs().stream()
-                .filter(g -> g.getQualifiedName().getClassName().equals(jclass.getQualifiedName().getClassName()))
+                .filter(g -> jclass.getQualifiedName().getClassName().equals(g.getQualifiedName().getClassName()))
                 .forEach(g -> nodes.addAll(g.getNodes()));
-        
         String code = jclass.getFile().getSource();
-        String[] lines = code.split(System.getProperty("line.separator"));
-        int position = 0;
-        for (int line = 0; line < lineNumber - 1; line++) {
-            position = position + lines[line].length() + 1;
-        }
-        position = position + columnNumber;
+        int position = getPosition(lineNumber, columnNumber, code);
         
         return find(graph, nodes, position);
     }
@@ -115,23 +110,79 @@ public class SliceCriterion {
     /**
      * Finds a slicing criterion on a target variable at a given position on the source code.
      * @param graph the whole dependency graph to be sliced
-     * @param pdg a PDG containing the target variable
-     * @param position the offset value indicating the position where the target variable exists
+     * @param jmethod a method containing a target variable
+     * @param lineNumber the line number of the location where a target variable exists
+     * @param columnNumber the column number of the location where a target variable exists
      * @return the slicing criterion, or {@code null} if a valid slice criterion is not found
      */
-    public static SliceCriterion find(DependencyGraph graph, PDG pdg, int position) {
-        return find(graph, pdg.getNodes(), position);
+    public static SliceCriterion find(DependencyGraph graph, JavaMethod jmethod, int lineNumber, int columnNumber) {
+        Set<PDGNode> nodes = new HashSet<>();
+        graph.getPDGs().stream()
+                .filter(g -> jmethod.getQualifiedName().fqn().equals(g.getQualifiedName().fqn()))
+                .forEach(g -> nodes.addAll(g.getNodes()));
+        
+        String code = jmethod.getFile().getSource();
+        int position = getPosition(lineNumber, columnNumber, code);
+        
+        return find(graph, nodes, position);
     }
     
     /**
      * Finds a slicing criterion on a target variable at a given position on the source code.
      * @param graph the whole dependency graph to be sliced
-     * @param cldg a ClDG containing the target variable
-     * @param position the offset value indicating the position where the target variable exists
+     * @param jfield a field containing a target variable
+     * @param lineNumber the line number of the location where a target variable exists
+     * @param columnNumber the column number of the location where a target variable exists
      * @return the slicing criterion, or {@code null} if a valid slice criterion is not found
      */
-    public static SliceCriterion find(DependencyGraph graph, ClDG cldg, int position) {
-        return find(graph, cldg.getNodes(), position);
+    public static SliceCriterion find(DependencyGraph graph, JavaField jfield, int lineNumber, int columnNumber) {
+        Set<PDGNode> nodes = new HashSet<>();
+        graph.getPDGs().stream()
+                .filter(g -> jfield.getQualifiedName().fqn().equals(g.getQualifiedName().fqn()))
+                .forEach(g -> nodes.addAll(g.getNodes()));
+        
+        String code = jfield.getFile().getSource();
+        int position = getPosition(lineNumber, columnNumber, code);
+        
+        return find(graph, nodes, position);
+    }
+    
+    /**
+     * Finds a slicing criterion on a target variable at a given position on the source code.
+     * @param graph the whole dependency graph to be sliced
+     * @param jfile a source file containing a target variable
+     * @param lineNumber the line number of the location where a target variable exists
+     * @param columnNumber the column number of the location where a target variable exists
+     * @return the slicing criterion, or {@code null} if a valid slice criterion is not found
+     */
+    public static SliceCriterion find(DependencyGraph graph, JavaFile jfile, int lineNumber, int columnNumber) {
+        Set<PDGNode> nodes = new HashSet<>();
+        graph.getPDGs().stream()
+                .filter(g -> jfile.getClasses().stream()
+                        .anyMatch(jclass -> jclass.getQualifiedName().getClassName().equals(g.getQualifiedName().getClassName())))
+                .forEach(g -> nodes.addAll(g.getNodes()));
+        
+        String code = jfile.getSource();
+        int position = getPosition(lineNumber, columnNumber, code);
+        
+        return find(graph, nodes, position);
+    }
+    
+    /**
+     * Calculate the offset value indicating the position where the target variable exists
+     * @param lineNumber the line number of the location where a target variable exists
+     * @param columnNumber the column number of the location where a target variable exists
+     * @param code the contents of target code
+     * @return the offset value for the target variable exists
+     */
+    private static int getPosition(int lineNumber, int columnNumber, String code) {
+        String[] lines = code.split(System.getProperty("line.separator"));
+        int position = 0;
+        for (int line = 0; line < lineNumber - 1; line++) {
+            position = position + lines[line].length() + 1;
+        }
+        position = position + columnNumber;
+        return position;
     }
     
     /**
@@ -141,7 +192,7 @@ public class SliceCriterion {
      * @param position the offset value indicating the position where the target variable exists
      * @return the slicing criterion, or {@code null} if a valid slice criterion is not found
      */
-    public static SliceCriterion find(DependencyGraph graph, Set<PDGNode> nodes, int position) {
+    private static SliceCriterion find(DependencyGraph graph, Set<PDGNode> nodes, int position) {
         for (PDGNode node : nodes) {
             if (node.getCFGNode().isActualOut()) {
                 continue;
@@ -186,6 +237,11 @@ public class SliceCriterion {
         return buf.toString();
     }
     
+    /**
+     * Obtains the names of variables.
+     * @param vars the collection of the variables
+     * @return the string representing the information
+     */
     private String getVariableNames(Set<JVariableReference> vars) {
         if (vars.size() == 0) {
             return "Unspecified";

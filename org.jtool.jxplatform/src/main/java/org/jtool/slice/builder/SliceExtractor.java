@@ -3,14 +3,13 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.slice;
+package org.jtool.slice.builder;
 
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
-import org.jtool.slice.builder.ASTNodeOnCFGCollector;
-import org.jtool.slice.builder.CodeGenerator;
-import org.jtool.slice.builder.MethodInvocationCollector;
+import org.jtool.slice.Slice;
 import org.jtool.cfg.CFGMethodCall;
+import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.JReference;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
@@ -33,6 +32,7 @@ import org.eclipse.jdt.core.dom.CatchClause;
 import org.eclipse.jdt.core.dom.ClassInstanceCreation;
 import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.Block;
+import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.Statement;
 import org.eclipse.jdt.core.dom.StructuralPropertyDescriptor;
 import org.eclipse.jdt.core.dom.Expression;
@@ -68,6 +68,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -137,6 +138,10 @@ public class SliceExtractor extends ASTVisitor {
     }
     
     private void createSliceExtractor(Set<PDGNode> pdgNodes, JavaFile jfile, ASTNode astNode) {
+        if(astNode == null) {
+            return;
+        }
+        
         this.pdgNodes = pdgNodes;
         this.astNode = astNode;
         
@@ -184,15 +189,24 @@ public class SliceExtractor extends ASTVisitor {
     
     protected PDGNode getPDGNode(ASTNode node) {
         for (PDGNode pdgnode : pdgNodes) {
-            if (equalsASTNode(node, pdgnode.getCFGNode().getASTNode())) {
+            if (hasConcreteASTNode(pdgnode) && equalsASTNode(node, pdgnode.getCFGNode().getASTNode())) {
                 return pdgnode;
             }
         }
         return null;
     }
     
+    protected boolean hasConcreteASTNode(PDGNode pdgnode) {
+        return !pdgnode.getCFGNode().isReceiver() &&
+               !pdgnode.getCFGNode().isActualOut() &&
+               !pdgnode.getCFGNode().isFormalOut() &&
+               !pdgnode.getCFGNode().isDummy() &&
+               !pdgnode.getCFGNode().isMerge();
+    }
+    
     protected boolean equalsASTNode(ASTNode node1, ASTNode node2) {
-        return node1.getStartPosition() == node2.getStartPosition() &&
+        return node1 != null && node2 != null &&
+               node1.getStartPosition() == node2.getStartPosition() &&
                node1.getLength() == node2.getLength();
     }
     
@@ -300,9 +314,6 @@ public class SliceExtractor extends ASTVisitor {
     
     @Override
     public boolean visit(ConditionalExpression node) {
-        
-        System.err.println("NODE = " + node);
-        
         if (removeWholeElement(node)) {
             return false;
         }
@@ -614,8 +625,9 @@ public class SliceExtractor extends ASTVisitor {
         
         for (int index = 0; index < arguments.size(); index++) {
             Expression expr = (Expression)arguments.get(index);
-            if (!containsAnyInSubTree(expr)) {
-                ITypeBinding tbinding = expr.resolveTypeBinding();
+            
+            ITypeBinding tbinding = expr.resolveTypeBinding();
+            if (tbinding != null && !containsAnyInSubTree(expr)) {
                 Expression dummyExpr = getDummyTypeExpression(expr, tbinding);
                 arguments.remove(index);
                 arguments.add(index, dummyExpr);
@@ -833,12 +845,6 @@ public class SliceExtractor extends ASTVisitor {
             checkThrowStatement(node.getBody());
             checkBreakStatement(node.getBody());
             checkContinueStatement(node.getBody());
-        }
-        
-        if (!containsAnyInSubTree(node.getBody())) {
-            pullUpMethodInvocations(node, node.getExpression());
-            node.delete();
-            return false;
         }
         
         return true;
@@ -1111,12 +1117,18 @@ public class SliceExtractor extends ASTVisitor {
             return false;
         }
         
-        List<CatchClause> tmpCatchClauses = new ArrayList<CatchClause>(node.catchClauses());
-        for (CatchClause catchClause : tmpCatchClauses) {
+        List<CatchClause> catchClauses = new ArrayList<CatchClause>(node.catchClauses());
+        for (CatchClause catchClause : catchClauses) {
             if (removeWholeElement(catchClause)) {
                 catchClause.delete();
             }
         }
+        
+        Block finallyBlock = node.getFinally();
+        if (removeWholeElement(finallyBlock)) {
+            finallyBlock.delete();
+        }
+        
         return true;
     }
     
@@ -1164,5 +1176,70 @@ public class SliceExtractor extends ASTVisitor {
         SimpleType type = statement.getAST().newSimpleType(name);
         instanceCreation.setType(type);
         return instanceCreation;
+    }
+    
+    /**
+     * Collect AST nodes corresponding to method invocations.
+     * 
+     * @author Katsuhisa Maruyama
+     */
+    private class MethodInvocationCollector extends ASTVisitor {
+        
+        private List<MethodInvocation> nodes = new ArrayList<>();
+        
+        public MethodInvocationCollector(ASTNode node) {
+            node.accept(this);
+        }
+        
+        public List<MethodInvocation> getNodes() {
+            return nodes;
+        }
+        
+        @Override
+        public boolean visit(MethodInvocation node) {
+            nodes.add(node);
+            return true;
+        }
+    }
+    
+    /**
+     * Collects AST nodes appearing on a CFG.
+     * 
+     * @author Katsuhisa Maruyama
+     */
+    private class ASTNodeOnCFGCollector extends ASTVisitor {
+        
+        private Map<String, ASTNode> nodeMap = new HashMap<>();
+        
+        public ASTNodeOnCFGCollector(ASTNode node) {
+            node.accept(this);
+        }
+        
+        public Set<ASTNode> getNodeSet() {
+            return new HashSet<ASTNode>(nodeMap.values());
+        }
+        
+        public ASTNode get(ASTNode node) {
+            if (node == null) {
+                return null;
+            }
+            return nodeMap.get(key(node));
+        }
+        
+        @Override
+        public void preVisit(ASTNode node) {
+            if (isCFGNode(node)) {
+                nodeMap.put(key(node), node);
+            }
+        }
+        
+        private String key(ASTNode node) {
+            return String.valueOf(node.getStartPosition() + "-" + node.getLength());
+        }
+        
+        private boolean isCFGNode(ASTNode node) {
+            return node instanceof BodyDeclaration ||
+                   CFGNode.isStatement(node) || CFGNode.isExpression(node) || CFGNode.isLiteral(node);
+        }
     }
 }
