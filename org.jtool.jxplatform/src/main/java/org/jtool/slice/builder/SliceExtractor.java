@@ -130,7 +130,7 @@ public class SliceExtractor extends ASTVisitor {
             if (jc.getQualifiedName().equals(jfield.getDeclaringClass().getQualifiedName())) {
                 for (JavaField jf : jc.getFields()) {
                     if (jf.getQualifiedName().equals(jfield.getQualifiedName())) {
-                        createSliceExtractor(pdgNodes, jfile, jf.getASTNode());
+                        createSliceExtractor(pdgNodes, jfile, jf.getASTNode().getParent());
                     }
                 }
             }
