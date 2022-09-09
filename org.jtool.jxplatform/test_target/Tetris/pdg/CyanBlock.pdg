@@ -38,8 +38,8 @@ Class Name = CyanBlock
   35 actualIn D = {  } U = { CyanBlock.COLOR }
   36 actualOut D = { this.!addTile( int int java.awt.Color ) } U = { this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
   38 formalOut D = {  } U = { $_ }
-* actualOut D = { super.!Block( int int ).posX } U = {  }
-* actualOut D = { super.!Block( int int ).posY } U = {  }
+* actualOut D = { super.posX } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { this.!addTile( int int java.awt.Color ).color } U = {  }
 * actualOut D = { this.!addTile( int int java.awt.Color ).posX } U = {  }
 * actualOut D = { this.!addTile( int int java.awt.Color ).posY } U = {  }

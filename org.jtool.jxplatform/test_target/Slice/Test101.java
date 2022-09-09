@@ -1,5 +1,5 @@
 class Test101 {
-    private int p = 1;
+    private int a, p = 1, q;
 
     public void m() {
         int x = 10;

@@ -14,9 +14,9 @@ Class Name = Circle
    8 actualIn D = {  } U = {  }
    9 actualOut D = { this.!Circle( int int int ) } U = {  }
   11 formalOut D = {  } U = { $_ }
-* actualOut D = { this.!Circle( int int int ).radius } U = {  }
-* actualOut D = { this.!Circle( int int int ).x } U = {  }
-* actualOut D = { this.!Circle( int int int ).y } U = {  }
+* actualOut D = { this.radius } U = {  }
+* actualOut D = { this.x } U = {  }
+* actualOut D = { this.y } U = {  }
 --
    0 methodEntry [ getY( ) ]
    1 returnSt D = { $_ } U = { this.y }

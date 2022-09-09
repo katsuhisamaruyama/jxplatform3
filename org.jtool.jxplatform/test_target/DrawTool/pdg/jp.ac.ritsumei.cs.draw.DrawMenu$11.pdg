@@ -25,8 +25,8 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$11
 * actualOut D = { this.changed } U = {  }
 * actualOut D = { this.currentFigure } U = {  }
 * actualOut D = { this.grabbedFigure } U = {  }
-* actualOut D = { canvas$25.!deleteFigure( ).canvas } U = {  }
-* actualOut D = { canvas$25.!deleteFigure( ).figure } U = {  }
+* actualOut D = { super.canvas } U = {  }
+* actualOut D = { super.figure } U = {  }
 --
    0: serialVersionUID
    1:    0 ->    1 trueControlDependence

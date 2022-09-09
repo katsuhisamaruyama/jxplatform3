@@ -25,9 +25,9 @@ Class Name = BoldCircle
   11 actualOut D = { super.!Circle( int int int ) } U = {  }
   12 assignment D = { this.width } U = { w$3 }
   14 formalOut D = {  } U = { $_ }
-* actualOut D = { super.!Circle( int int int ).radius } U = {  }
-* actualOut D = { super.!Circle( int int int ).x } U = {  }
-* actualOut D = { super.!Circle( int int int ).y } U = {  }
+* actualOut D = { super.radius } U = {  }
+* actualOut D = { super.x } U = {  }
+* actualOut D = { super.y } U = {  }
 --
    0: getWidth( )
    1:    0 ->    1 trueControlDependence

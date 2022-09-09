@@ -370,7 +370,7 @@ public class LocalAliasResolverTest {
         
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0.x;b$1.x", TestUtil.asSortedStrOfReference(result));
+        assertEquals("P43.!P43( int ).x;a$0.x;b$1.x", TestUtil.asSortedStrOfReference(result));
     }
     
     @Test
@@ -737,7 +737,7 @@ public class LocalAliasResolverTest {
         assert node.isLocalDeclaration();
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("a$0;a$0.q;a$0.q.y;c$3;c$3.q;c$3.q.y",
+        assertEquals("P45.!P45( ).q;P45.!P45( ).q.y;a$0;a$0.q;a$0.q.y;c$3;c$3.q;c$3.q.y",
                 TestUtil.asSortedStrOfReference(result));
     }
 }

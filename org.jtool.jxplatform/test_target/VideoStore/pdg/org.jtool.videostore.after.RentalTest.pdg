@@ -29,7 +29,7 @@ Class Name = org.jtool.videostore.after.RentalTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0 constructorEntry [ RentalTest( ) ]
    2 formalOut D = {  } U = { $_ }
@@ -125,7 +125,7 @@ Class Name = org.jtool.videostore.after.RentalTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0 methodEntry [ testRegularMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ) }
@@ -187,7 +187,7 @@ Class Name = org.jtool.videostore.after.RentalTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0: testDaysRentedOfRegularMovie( )
    1:    0 ->    1 trueControlDependence

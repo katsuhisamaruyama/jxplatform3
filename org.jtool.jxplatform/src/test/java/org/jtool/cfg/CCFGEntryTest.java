@@ -619,7 +619,7 @@ public class CCFGEntryTest {
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
         
-        assertEquals("Test101#p", TestUtil.asSortedStrOfCFG(result));
+        assertEquals("Test101#a;Test101#p;Test101#q", TestUtil.asSortedStrOfCFG(result));
     }
     
     @Test

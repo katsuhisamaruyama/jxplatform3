@@ -8,7 +8,7 @@ Class Name = org.jtool.videostore.after.ChildrensPrice
    5 actualIn D = {  } U = { priceCode$0 }
    6 actualOut D = { super.!Price( org.jtool.videostore.after.Movie.PriceCode ) } U = {  }
    8 formalOut D = {  } U = { $_ }
-* actualOut D = { super.!Price( org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0 methodEntry [ getCharge( int ) ]
    1 formalIn D = { daysRented$0 } U = {  }

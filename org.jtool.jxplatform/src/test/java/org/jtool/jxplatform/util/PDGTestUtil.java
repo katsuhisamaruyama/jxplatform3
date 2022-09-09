@@ -35,6 +35,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -119,6 +120,12 @@ public class PDGTestUtil {
             .collect(Collectors.toList());
     }
     
+    public static List<String> getIdList(DependencyGraph graph, Set<? extends PDGNode> set) {
+        long min = graph.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get() - 1;
+        return set.stream().map(e -> e.getId() - min).sorted().map(e -> String.valueOf(e))
+            .collect(Collectors.toList());
+    }
+    
     public static List<String> getIdList(PDG pdg, List<? extends PDGNode> list) {
         return list.stream().map(e -> String.valueOf(e.getId() - pdg.getEntryNode().getId()))
             .collect(Collectors.toList());
@@ -129,8 +136,8 @@ public class PDGTestUtil {
         return getIdList(pdg, srcs);
     }
     
-    public static List<String> getIdListOfSrc(PDG pdg, List<? extends Dependence> set) {
-        Set<PDGNode> srcs = set.stream().map(e -> (PDGNode)e.getSrcNode()).collect(Collectors.toSet());
+    public static List<String> getIdListOfSrc(PDG pdg, List<? extends Dependence> list) {
+        Set<PDGNode> srcs = list.stream().map(e -> (PDGNode)e.getSrcNode()).collect(Collectors.toSet());
         return getIdList(pdg, srcs);
     }
     
@@ -139,13 +146,17 @@ public class PDGTestUtil {
         return getIdList(pdg, srcs);
     }
     
-    public static List<String> getIdListOfDst(PDG pdg, List<? extends Dependence> set) {
-        Set<PDGNode> srcs = set.stream().map(e -> (PDGNode)e.getDstNode()).collect(Collectors.toSet());
+    public static List<String> getIdListOfDst(PDG pdg, List<? extends Dependence> list) {
+        Set<PDGNode> srcs = list.stream().map(e -> (PDGNode)e.getDstNode()).collect(Collectors.toSet());
         return getIdList(pdg, srcs);
     }
     
-    public static String asStrOfPDGNode(List<? extends PDGNode> set) {
+    public static String asStrOfPDGNode(Set<? extends PDGNode> set) {
         return set.stream().map(e -> String.valueOf(e.getId())).collect(Collectors.joining(";"));
+    }
+    
+    public static String asStrOfPDGNode(List<? extends PDGNode> list) {
+        return list.stream().map(e -> String.valueOf(e.getId())).collect(Collectors.joining(";"));
     }
     
     public static String asSortedStrOfPDGEntry(Set<? extends PDGEntry> set) {
@@ -158,6 +169,15 @@ public class PDGTestUtil {
     
     public static String asStrOfNode(ClDG cldg, PDGNode node) {
         for (PDG pdg : cldg.getPDGs()) {
+            if (pdg.getNodes().contains(node)) {
+                return String.valueOf(node.getId() - pdg.getEntryNode().getId());
+            }
+        }
+        return "";
+    }
+    
+    public static String asStrOfNode(SDG sdg, PDGNode node) {
+        for (PDG pdg : sdg.getPDGs()) {
             if (pdg.getNodes().contains(node)) {
                 return String.valueOf(node.getId() - pdg.getEntryNode().getId());
             }

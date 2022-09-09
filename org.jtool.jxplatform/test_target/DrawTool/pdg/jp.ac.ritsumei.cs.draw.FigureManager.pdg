@@ -38,8 +38,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   25 actualOut D = { figure$7.!setEnd( int int ) } U = {  }
   27 returnSt D = { $_ } U = { figure$7, figure$7.color, figure$7.endX, figure$7.endY, figure$7.outlineWidth, figure$7.startX, figure$7.startY, this.!createFigure( java.lang.String ).color, this.!createFigure( java.lang.String ).endX, this.!createFigure( java.lang.String ).endY, this.!createFigure( java.lang.String ).outlineWidth, this.!createFigure( java.lang.String ).startX, this.!createFigure( java.lang.String ).startY }
   29 formalOut D = {  } U = { $_ }
-* actualOut D = { this.!createFigure( java.lang.String ).color } U = {  }
-* actualOut D = { this.!createFigure( java.lang.String ).outlineWidth } U = {  }
+* actualOut D = { this.color } U = {  }
+* actualOut D = { this.outlineWidth } U = {  }
 * actualOut D = { figure$7.startX } U = {  }
 * actualOut D = { figure$7.startY } U = {  }
 * actualOut D = { figure$7.endX } U = {  }
@@ -111,16 +111,16 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   41 actualOut D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ) } U = { Color.black }
   47 returnSt D = { $_ } U = {  }
   49 formalOut D = {  } U = { $_ }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.outlineWidth } U = {  }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.outlineWidth } U = {  }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.outlineWidth } U = {  }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.outlineWidth } U = {  }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.outlineWidth } U = {  }
+* actualOut D = { this.color } U = {  }
+* actualOut D = { this.outlineWidth } U = {  }
+* actualOut D = { this.color } U = {  }
+* actualOut D = { this.outlineWidth } U = {  }
+* actualOut D = { this.color } U = {  }
+* actualOut D = { this.outlineWidth } U = {  }
+* actualOut D = { this.color } U = {  }
+* actualOut D = { this.outlineWidth } U = {  }
+* actualOut D = { this.color } U = {  }
+* actualOut D = { this.outlineWidth } U = {  }
 --
    0 methodEntry [ remove( jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { figure$0 } U = {  }
@@ -263,10 +263,10 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
  129 returnSt D = { $_ } U = {  }
  130 returnSt D = { $_ } U = {  }
  132 formalOut D = {  } U = { $_ }
-* actualOut D = { this.!createFigure( java.lang.String int int int int java.awt.Color float ).color } U = {  }
+* actualOut D = { this.color } U = {  }
 * actualOut D = { this.figure$7.endX } U = {  }
 * actualOut D = { this.figure$7.endY } U = {  }
-* actualOut D = { this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth } U = {  }
+* actualOut D = { this.outlineWidth } U = {  }
 * actualOut D = { this.figure$7.startX } U = {  }
 * actualOut D = { this.figure$7.startY } U = {  }
 --
@@ -475,14 +475,10 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   48:   19 ->   14 loopIndependentDefUseDependence figure$7.!setStart( int int )
   49:   25 ->   20 loopIndependentDefUseDependence figure$7.!setEnd( int int )
   50:   27 ->   29 loopIndependentDefUseDependence $_
-  51: * ->   13 loopIndependentDefUseDependence this.!createFigure( java.lang.String ).color
-  52: * ->   13 loopIndependentDefUseDependence this.!createFigure( java.lang.String ).outlineWidth
-  53: * ->   27 loopIndependentDefUseDependence figure$7.endX
-  54: * ->   27 loopIndependentDefUseDependence figure$7.endY
-  55: * ->   27 loopIndependentDefUseDependence figure$7.startX
-  56: * ->   27 loopIndependentDefUseDependence figure$7.startY
-  57: * ->   27 loopIndependentDefUseDependence this.!createFigure( java.lang.String ).color
-  58: * ->   27 loopIndependentDefUseDependence this.!createFigure( java.lang.String ).outlineWidth
+  51: * ->   27 loopIndependentDefUseDependence figure$7.endX
+  52: * ->   27 loopIndependentDefUseDependence figure$7.endY
+  53: * ->   27 loopIndependentDefUseDependence figure$7.startX
+  54: * ->   27 loopIndependentDefUseDependence figure$7.startY
 --
    0: figures
    1:    0 ->    1 trueControlDependence
@@ -918,51 +914,47 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
  291: * ->   86 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
  292: * ->   86 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
  293: * ->   86 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 294: * ->  103 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).color
- 295: * ->  103 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth
- 296: * ->  107 loopIndependentDefUseDependence System.err.!println( java.lang.String )
- 297: * ->  113 loopIndependentDefUseDependence System.err.!println( java.lang.String )
- 298: * ->  121 loopIndependentDefUseDependence br$1.!close( )
- 299: * -> * defOrderDependence java.awt.Color.!Color( int int int )
- 300: * -> * defOrderDependence java.util.StringTokenizer.!StringTokenizer( java.lang.String )
- 301: * -> * defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).color
- 302: * -> * defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth
+ 294: * ->  107 loopIndependentDefUseDependence System.err.!println( java.lang.String )
+ 295: * ->  113 loopIndependentDefUseDependence System.err.!println( java.lang.String )
+ 296: * ->  121 loopIndependentDefUseDependence br$1.!close( )
+ 297: * -> * defOrderDependence java.awt.Color.!Color( int int int )
+ 298: * -> * defOrderDependence java.util.StringTokenizer.!StringTokenizer( java.lang.String )
+ 299: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 300: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 301: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 302: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
  303: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
  304: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
  305: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
  306: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
  307: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 308: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 309: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 310: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 311: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 308: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 309: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 310: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 311: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
  312: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
  313: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
  314: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
  315: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
  316: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 317: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 318: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 319: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 320: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 317: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 318: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 319: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 320: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
  321: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
  322: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
  323: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
  324: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
  325: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 326: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 327: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 328: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 329: * -> * loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 326: * -> * outputDependence st$6.!nextToken( )
+ 327: * -> * outputDependence st$6.!nextToken( )
+ 328: * -> * outputDependence st$6.!nextToken( )
+ 329: * -> * outputDependence st$6.!nextToken( )
  330: * -> * outputDependence st$6.!nextToken( )
  331: * -> * outputDependence st$6.!nextToken( )
  332: * -> * outputDependence st$6.!nextToken( )
  333: * -> * outputDependence st$6.!nextToken( )
  334: * -> * outputDependence st$6.!nextToken( )
- 335: * -> * outputDependence st$6.!nextToken( )
- 336: * -> * outputDependence st$6.!nextToken( )
- 337: * -> * outputDependence st$6.!nextToken( )
- 338: * -> * outputDependence st$6.!nextToken( )
 --
    0: add( jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlDependence

@@ -22,7 +22,7 @@ Class Name = org.jtool.videostore.after.MovieTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0 methodEntry [ testTitleOfRegularMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
@@ -43,7 +43,7 @@ Class Name = org.jtool.videostore.after.MovieTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0 methodEntry [ testTitleOfChildrensMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
@@ -64,7 +64,7 @@ Class Name = org.jtool.videostore.after.MovieTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0 methodEntry [ testTitleOfNewReleaseMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
@@ -85,7 +85,7 @@ Class Name = org.jtool.videostore.after.MovieTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0 methodEntry [ testPriceCodeOfRegularMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
@@ -106,7 +106,7 @@ Class Name = org.jtool.videostore.after.MovieTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0 methodEntry [ testPriceCodeOfChildrensMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
@@ -127,7 +127,7 @@ Class Name = org.jtool.videostore.after.MovieTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0: MovieTest( )
    1:    0 ->    2 trueControlDependence

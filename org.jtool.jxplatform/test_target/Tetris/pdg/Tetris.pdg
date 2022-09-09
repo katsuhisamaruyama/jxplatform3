@@ -100,9 +100,9 @@ Class Name = Tetris
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { this.pit.nextBlock.pit } U = {  }
-* actualOut D = { this.pit.!placeNextBlock( ).posX } U = {  }
+* actualOut D = { super.posX } U = {  }
 * actualOut D = { this.pit.currentBlock.posX } U = {  }
-* actualOut D = { this.pit.!placeNextBlock( ).posY } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { this.pit.currentBlock.posY } U = {  }
 * actualOut D = { this.pit.currentBlock } U = {  }
 * actualOut D = { this.pit.nextBlock } U = {  }
@@ -134,9 +134,9 @@ Class Name = Tetris
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { tetris$1.pit.nextBlock.pit } U = {  }
-* actualOut D = { tetris$1.!init( ).posX } U = {  }
+* actualOut D = { super.posX } U = {  }
 * actualOut D = { tetris$1.pit.currentBlock.posX } U = {  }
-* actualOut D = { tetris$1.!init( ).posY } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { tetris$1.pit.currentBlock.posY } U = {  }
 * actualOut D = { tetris$1.info.font } U = {  }
 * actualOut D = { tetris$1.!init( ).height } U = {  }
@@ -279,9 +279,9 @@ Class Name = Tetris
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { this.pit.nextBlock.pit } U = {  }
-* actualOut D = { this.pit.!placeNextBlock( ).posX } U = {  }
+* actualOut D = { super.posX } U = {  }
 * actualOut D = { this.pit.currentBlock.posX } U = {  }
-* actualOut D = { this.pit.!placeNextBlock( ).posY } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { this.pit.currentBlock.posY } U = {  }
 * actualOut D = { this.pit.currentBlock } U = {  }
 * actualOut D = { this.pit.nextBlock } U = {  }
@@ -376,9 +376,9 @@ Class Name = Tetris
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { this.pit.nextBlock.pit } U = {  }
-* actualOut D = { this.pit.!placeNextBlock( ).posX } U = {  }
+* actualOut D = { super.posX } U = {  }
 * actualOut D = { this.pit.currentBlock.posX } U = {  }
-* actualOut D = { this.pit.!placeNextBlock( ).posY } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { this.pit.currentBlock.posY } U = {  }
 * actualOut D = { this.pit.currentBlock } U = {  }
 * actualOut D = { this.pit.nextBlock } U = {  }
@@ -590,8 +590,6 @@ Class Name = Tetris
  188: * -> * outputDependence this.offsetY
  189: * -> * outputDependence this.offsetY
  190: * -> * outputDependence this.offsetY
- 191: * -> * outputDependence this.pit.!placeNextBlock( ).posX
- 192: * -> * outputDependence this.pit.!placeNextBlock( ).posY
 --
    0: keyTyped( java.awt.event.KeyEvent )
    1:    0 ->    1 trueControlDependence
@@ -889,10 +887,8 @@ Class Name = Tetris
  190: * -> * outputDependence this.offsetY
  191: * -> * outputDependence this.offsetY
  192: * -> * outputDependence this.offsetY
- 193: * -> * outputDependence this.pit.!placeNextBlock( ).posX
- 194: * -> * outputDependence this.pit.!placeNextBlock( ).posY
- 195: * -> * outputDependence this.pit.!update( )
- 196: * -> * outputDependence this.timer
+ 193: * -> * outputDependence this.pit.!update( )
+ 194: * -> * outputDependence this.timer
 --
    0: startTimer( )
    1:    0 ->    1 trueControlDependence
@@ -1104,10 +1100,6 @@ Class Name = Tetris
  199: * -> * outputDependence this.offsetY
  200: * -> * outputDependence this.offsetY
  201: * -> * outputDependence this.offsetY
- 202: * -> * outputDependence this.pit.!placeNextBlock( ).posX
- 203: * -> * outputDependence this.pit.!placeNextBlock( ).posX
- 204: * -> * outputDependence this.pit.!placeNextBlock( ).posY
- 205: * -> * outputDependence this.pit.!placeNextBlock( ).posY
 --
 ----- ClDG (to here) -----
 

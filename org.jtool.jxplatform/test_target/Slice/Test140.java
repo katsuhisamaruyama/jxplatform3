@@ -16,15 +16,18 @@ class S140 extends Test140 {
 
     S140() {
         this(100);
+        int xx = this.x;
     }
 
     S140(int x) {
         super(x);
         this.x = x;
+        int xx = super.x;
     }
 
     public void m() {
-        int xx = super.x;
+        super.x = 10;
         super.m();
+        int xx = super.x;
     }
 }

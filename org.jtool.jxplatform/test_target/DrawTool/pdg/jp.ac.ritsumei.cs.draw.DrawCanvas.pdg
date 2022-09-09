@@ -609,8 +609,8 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   51 methodCall D = {  } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y } TO = java.awt.Component#repaint( )
   52 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
   54 formalOut D = {  } U = { $_ }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureDrawn.!FigureDrawn( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ).canvas } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureDrawn.!FigureDrawn( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { super.canvas } U = {  }
+* actualOut D = { super.figure } U = {  }
 * actualOut D = { figure$0.endX } U = {  }
 * actualOut D = { figure$0.endY } U = {  }
 * actualOut D = { figure$0.startX } U = {  }
@@ -676,8 +676,8 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   42 methodCall D = {  } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y } TO = java.awt.Component#repaint( )
   43 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
   45 formalOut D = {  } U = { $_ }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureDeleted.!FigureDeleted( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ).canvas } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureDeleted.!FigureDeleted( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { super.canvas } U = {  }
+* actualOut D = { super.figure } U = {  }
 * actualOut D = { this.changed } U = {  }
 * actualOut D = { this.currentFigure } U = {  }
 * actualOut D = { this.grabbedFigure } U = {  }
@@ -859,14 +859,14 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
  166 actualOut D = { this.!setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure ) } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY }
  167 assignment D = { this.grabbedFigure } U = {  }
  171 formalOut D = {  } U = { $_ }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureMoved.!FigureMoved( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure jp.ac.ritsumei.cs.draw.Figure ).canvas } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureMoved.!FigureMoved( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { super.canvas } U = {  }
+* actualOut D = { super.figure } U = {  }
 * actualOut D = { jp.ac.ritsumei.cs.draw.FigureMoved.!FigureMoved( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure jp.ac.ritsumei.cs.draw.Figure ).redoFigure } U = {  }
 * actualOut D = { jp.ac.ritsumei.cs.draw.FigureMoved.!FigureMoved( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure jp.ac.ritsumei.cs.draw.Figure ).undoFigure } U = {  }
 * actualOut D = { this.changed } U = {  }
 * actualOut D = { this.currentFigure } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureDrawn.!FigureDrawn( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ).canvas } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureDrawn.!FigureDrawn( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { super.canvas } U = {  }
+* actualOut D = { super.figure } U = {  }
 * actualOut D = { this.!getCurrentFigure( ).endX } U = {  }
 * actualOut D = { this.!getCurrentFigure( ).endY } U = {  }
 * actualOut D = { this.changed } U = {  }

@@ -35,8 +35,8 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$10
 * actualOut D = { canvas$21.figure$0.endY } U = {  }
 * actualOut D = { canvas$21.figure$0.startX } U = {  }
 * actualOut D = { canvas$21.figure$0.startY } U = {  }
-* actualOut D = { canvas$21.!pasteFigure( jp.ac.ritsumei.cs.draw.Figure ).canvas } U = {  }
-* actualOut D = { canvas$21.!pasteFigure( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { super.canvas } U = {  }
+* actualOut D = { super.figure } U = {  }
 --
    0 fieldEntry [ serialVersionUID ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.DrawMenu$10.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.DrawMenu$10.serialVersionUID }

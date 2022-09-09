@@ -41,14 +41,14 @@ Class Name = Sample5
   35 methodCall D = {  } U = { Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.autoFlush, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.charOut, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.out, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, rectangle$3.System.out.!java.io.PrintStream.autoFlush, rectangle$3.System.out.!java.io.PrintStream.charOut, rectangle$3.System.out.!java.io.PrintStream.out, rectangle$3.System.out.!java.io.PrintStream.textOut, shape$1.System.out.!java.io.PrintStream.autoFlush, shape$1.System.out.!java.io.PrintStream.charOut, shape$1.System.out.!java.io.PrintStream.out, shape$1.System.out.!java.io.PrintStream.textOut } TO = Shape#draw( )
 * actualOut D = { shape$1.!draw( ), shape$1.System.out.!java.io.PrintStream.trouble } U = { Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.autoFlush, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.charOut, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.out, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, rectangle$3.System.out.!java.io.PrintStream.autoFlush, rectangle$3.System.out.!java.io.PrintStream.charOut, rectangle$3.System.out.!java.io.PrintStream.out, rectangle$3.System.out.!java.io.PrintStream.textOut, shape$1.System.out.!java.io.PrintStream.autoFlush, shape$1.System.out.!java.io.PrintStream.charOut, shape$1.System.out.!java.io.PrintStream.out, shape$1.System.out.!java.io.PrintStream.textOut }
   38 formalOut D = {  } U = { $_ }
-* actualOut D = { Line.!Line( int int int int ).x1 } U = {  }
-* actualOut D = { Line.!Line( int int int int ).x2 } U = {  }
-* actualOut D = { Line.!Line( int int int int ).y1 } U = {  }
-* actualOut D = { Line.!Line( int int int int ).y2 } U = {  }
-* actualOut D = { Rectangle.!Rectangle( int int int int ).x1 } U = {  }
-* actualOut D = { Rectangle.!Rectangle( int int int int ).x2 } U = {  }
-* actualOut D = { Rectangle.!Rectangle( int int int int ).y1 } U = {  }
-* actualOut D = { Rectangle.!Rectangle( int int int int ).y2 } U = {  }
+* actualOut D = { super.x1 } U = {  }
+* actualOut D = { super.x2 } U = {  }
+* actualOut D = { super.y1 } U = {  }
+* actualOut D = { super.y2 } U = {  }
+* actualOut D = { super.x1 } U = {  }
+* actualOut D = { super.x2 } U = {  }
+* actualOut D = { super.y1 } U = {  }
+* actualOut D = { super.y2 } U = {  }
 --
    0: Sample5( )
    1:    0 ->    2 trueControlDependence
@@ -127,6 +127,10 @@ Class Name = Sample5
   71: * ->   33 loopIndependentDefUseDependence shape$1.!draw( )
   72: * -> * outputDependence shape$1.!draw( )
   73: * -> * outputDependence shape$1.System.out.!java.io.PrintStream.trouble
+  74: * -> * outputDependence super.x1
+  75: * -> * outputDependence super.x2
+  76: * -> * outputDependence super.y1
+  77: * -> * outputDependence super.y2
 --
 ----- ClDG (to here) -----
 

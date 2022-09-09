@@ -355,8 +355,8 @@ Class Name = Pit
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
-* actualOut D = { this.!create( int int int ).posX } U = {  }
-* actualOut D = { this.!create( int int int ).posY } U = {  }
+* actualOut D = { super.posX } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { this.!create( int int int ).color } U = {  }
 * actualOut D = { this.!create( int int int ).posX } U = {  }
 * actualOut D = { this.!create( int int int ).posY } U = {  }
@@ -1011,12 +1011,10 @@ Class Name = Pit
   65: * ->   27 loopIndependentDefUseDependence this.currentBlock.!canPlace( )
   66: * -> * loopIndependentDefUseDependence this.currentBlock.tile$3.posX
   67: * -> * loopIndependentDefUseDependence this.currentBlock.tile$3.posY
-  68: * -> * outputDependence this.!create( int int int ).posX
-  69: * -> * outputDependence this.!create( int int int ).posY
+  68: * -> * outputDependence this.offsetY
+  69: * -> * outputDependence this.offsetY
   70: * -> * outputDependence this.offsetY
   71: * -> * outputDependence this.offsetY
-  72: * -> * outputDependence this.offsetY
-  73: * -> * outputDependence this.offsetY
 --
    0: nextBlock
    1:    0 ->    1 trueControlDependence

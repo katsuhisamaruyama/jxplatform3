@@ -150,43 +150,43 @@ Class Name = Block
   55 returnSt D = { $_ } U = {  }
   57 formalOut D = {  } U = { $_ }
 * actualOut D = { this.offsetY } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { super.posX } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { $_.color } U = {  }
 * actualOut D = { $_.posX } U = {  }
 * actualOut D = { $_.posY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { super.posX } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { $_.color } U = {  }
 * actualOut D = { $_.posX } U = {  }
 * actualOut D = { $_.posY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { super.posX } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { $_.color } U = {  }
 * actualOut D = { $_.posX } U = {  }
 * actualOut D = { $_.posY } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { super.posX } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { $_.color } U = {  }
 * actualOut D = { $_.posX } U = {  }
 * actualOut D = { $_.posY } U = {  }
 * actualOut D = { this.offsetX } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { super.posX } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { $_.color } U = {  }
 * actualOut D = { $_.posX } U = {  }
 * actualOut D = { $_.posY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { super.posX } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { $_.color } U = {  }
 * actualOut D = { $_.posX } U = {  }
 * actualOut D = { $_.posY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { super.posX } U = {  }
+* actualOut D = { super.posY } U = {  }
 * actualOut D = { $_.color } U = {  }
 * actualOut D = { $_.posX } U = {  }
 * actualOut D = { $_.posY } U = {  }
@@ -838,20 +838,6 @@ Class Name = Block
  144: * ->   39 loopIndependentDefUseDependence this.offsetX
  145: * ->   46 loopIndependentDefUseDependence this.offsetY
  146: * ->   53 loopIndependentDefUseDependence this.offsetY
- 147: * -> * outputDependence $_.posX
- 148: * -> * outputDependence $_.posX
- 149: * -> * outputDependence $_.posX
- 150: * -> * outputDependence $_.posX
- 151: * -> * outputDependence $_.posX
- 152: * -> * outputDependence $_.posX
- 153: * -> * outputDependence $_.posX
- 154: * -> * outputDependence $_.posY
- 155: * -> * outputDependence $_.posY
- 156: * -> * outputDependence $_.posY
- 157: * -> * outputDependence $_.posY
- 158: * -> * outputDependence $_.posY
- 159: * -> * outputDependence $_.posY
- 160: * -> * outputDependence $_.posY
 --
    0: fall( )
    1:    0 ->    1 trueControlDependence

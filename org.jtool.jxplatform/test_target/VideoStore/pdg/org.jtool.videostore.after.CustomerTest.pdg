@@ -135,7 +135,7 @@ Class Name = org.jtool.videostore.after.CustomerTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0 methodEntry [ testName( ) ]
    1 localDeclaration D = { customer$0 } U = { org.jtool.videostore.after.Customer.!Customer( java.lang.String ) }
@@ -404,7 +404,7 @@ Class Name = org.jtool.videostore.after.CustomerTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0 methodEntry [ testStatementForRentingNewReleaseMovie( ) ]
    1 localDeclaration D = { customer$0 } U = { org.jtool.videostore.after.Customer.!Customer( java.lang.String ) }
@@ -592,7 +592,7 @@ Class Name = org.jtool.videostore.after.CustomerTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0 fieldEntry [ ChildrensMovie ]
    1 fieldDeclaration D = { org.jtool.videostore.after.CustomerTest.ChildrensMovie } U = { org.jtool.videostore.after.CustomerTest.ChildrensMovie, org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
@@ -605,7 +605,7 @@ Class Name = org.jtool.videostore.after.CustomerTest
 * actualOut D = { this.price } U = {  }
 * actualOut D = { this.price } U = {  }
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-* actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+* actualOut D = { super.priceCode } U = {  }
 --
    0: testNullRental( )
    1:    0 ->    1 trueControlDependence

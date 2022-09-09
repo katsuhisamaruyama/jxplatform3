@@ -1224,7 +1224,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 1);
         List<JVariableReference> result = node.getDefVariables();
         
-        assertEquals("xx$0", TestUtil.asStrOfReference(result));
+        assertEquals("super.x", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2501,7 +2501,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 1);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("super.x", TestUtil.asStrOfReference(result));
+        assertEquals("", TestUtil.asStrOfReference(result));
     }
     
     @Test
@@ -2510,7 +2510,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 3);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("", TestUtil.asStrOfReference(result));
+        assertEquals("super.x", TestUtil.asStrOfReference(result));
     }
     
     @Test

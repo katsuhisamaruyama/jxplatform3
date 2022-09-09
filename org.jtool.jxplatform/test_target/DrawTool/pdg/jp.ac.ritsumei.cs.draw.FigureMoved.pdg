@@ -49,8 +49,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureMoved
   13 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#createClone( )
   14 actualOut D = { figure$1.!createClone( ) } U = {  }
   16 formalOut D = {  } U = { $_ }
-* actualOut D = { super.!FigureEdit( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ).canvas } U = {  }
-* actualOut D = { super.!FigureEdit( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+* actualOut D = { super.canvas } U = {  }
+* actualOut D = { super.figure } U = {  }
 --
    0 methodEntry [ redo( ) ]
    1 throwsClause D = {  } U = { $javax.swing.undo.CannotUndoException }

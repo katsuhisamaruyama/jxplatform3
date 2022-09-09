@@ -24,8 +24,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
   18 actualOut D = { figure$0.!setEnd( int int ) } U = {  }
   19 returnSt D = { $_ } U = { figure$0, figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY, jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ).color, jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ).endX, jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ).endY, jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ).outlineWidth, jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ).startX, jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ).startY }
   21 formalOut D = {  } U = { $_ }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ).color } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ).outlineWidth } U = {  }
+* actualOut D = { super.color } U = {  }
+* actualOut D = { super.outlineWidth } U = {  }
 * actualOut D = { figure$0.startX } U = {  }
 * actualOut D = { figure$0.startY } U = {  }
 * actualOut D = { figure$0.endX } U = {  }
@@ -102,8 +102,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
    5 actualIn D = {  } U = { w$0 }
    6 actualOut D = { super.!Oval( int ) } U = { Color.black }
    8 formalOut D = {  } U = { $_ }
-* actualOut D = { super.!Oval( int ).color } U = {  }
-* actualOut D = { super.!Oval( int ).outlineWidth } U = {  }
+* actualOut D = { this.color } U = {  }
+* actualOut D = { this.outlineWidth } U = {  }
 --
    0 methodEntry [ create( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
@@ -115,8 +115,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
    7 actualIn D = {  } U = { w$1 }
    8 actualOut D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ) } U = {  }
   10 formalOut D = {  } U = { $_ }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.outlineWidth } U = {  }
+* actualOut D = { super.color } U = {  }
+* actualOut D = { super.outlineWidth } U = {  }
 --
    0 constructorEntry [ FilledOval( ) ]
    1 assignment D = {  } U = { super.!Oval( ) }
@@ -124,8 +124,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
    3 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Oval#Oval( )
    4 actualOut D = { super.!Oval( ) } U = { Color.black }
    6 formalOut D = {  } U = { $_ }
-* actualOut D = { super.!Oval( ).color } U = {  }
-* actualOut D = { super.!Oval( ).outlineWidth } U = {  }
+* actualOut D = { this.color } U = {  }
+* actualOut D = { this.outlineWidth } U = {  }
 --
    0 constructorEntry [ FilledOval( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
@@ -137,8 +137,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
    7 actualIn D = {  } U = { w$1 }
    8 actualOut D = { super.!Oval( java.awt.Color float ) } U = {  }
   10 formalOut D = {  } U = { $_ }
-* actualOut D = { super.!Oval( java.awt.Color float ).color } U = {  }
-* actualOut D = { super.!Oval( java.awt.Color float ).outlineWidth } U = {  }
+* actualOut D = { super.color } U = {  }
+* actualOut D = { super.outlineWidth } U = {  }
 --
    0 constructorEntry [ FilledOval( java.awt.Color ) ]
    1 formalIn D = { c$0 } U = {  }
@@ -148,8 +148,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
    5 actualIn D = {  } U = { c$0 }
    6 actualOut D = { super.!Oval( java.awt.Color ) } U = {  }
    8 formalOut D = {  } U = { $_ }
-* actualOut D = { super.!Oval( java.awt.Color ).color } U = {  }
-* actualOut D = { super.!Oval( java.awt.Color ).outlineWidth } U = {  }
+* actualOut D = { this.color } U = {  }
+* actualOut D = { this.outlineWidth } U = {  }
 --
    0 methodEntry [ paintIcon( java.awt.Graphics int int int int ) ]
    1 formalIn D = { g$0 } U = {  }
@@ -207,8 +207,6 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
   38: * ->   19 loopIndependentDefUseDependence figure$0.endY
   39: * ->   19 loopIndependentDefUseDependence figure$0.startX
   40: * ->   19 loopIndependentDefUseDependence figure$0.startY
-  41: * ->   19 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ).color
-  42: * ->   19 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ).outlineWidth
 --
    0: isGrabbed( int int )
    1:    0 ->    1 trueControlDependence
