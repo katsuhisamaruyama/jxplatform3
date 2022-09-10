@@ -48,10 +48,6 @@ public class CodeGenerator {
         this.options = options;
     }
     
-    public String generate(ASTNode node, String contents) {
-        return generate(node, contents, null);
-    }
-    
     public String generate(ASTNode node, String contents, Set<ASTNode> nodes) {
         Set<Comment> comments = null;
         ASTNode root = node.getRoot();
@@ -67,7 +63,9 @@ public class CodeGenerator {
         String newCode = contents;
         if (node instanceof AbstractTypeDeclaration) {
             newCode = format(code, CodeFormatter.K_COMPILATION_UNIT);
-        } else if (node instanceof MethodDeclaration || node instanceof Initializer || node instanceof VariableDeclaration) {
+        } else if (node instanceof MethodDeclaration ||
+                   node instanceof Initializer ||
+                   node instanceof VariableDeclaration) {
             newCode = format(code, CodeFormatter.K_CLASS_BODY_DECLARATIONS);
         } else if (node instanceof Statement) {
             newCode = format(code, CodeFormatter.K_STATEMENTS);
@@ -104,16 +102,12 @@ public class CodeGenerator {
         return code;
     }
     
-    class CommentVisitor extends ASTVisitor {
+    private class CommentVisitor extends ASTVisitor {
         
         private CompilationUnit compilationUnit;
         private Set<ASTNode> nodes;
         
         private Set<Comment> comments = new HashSet<>();
-        
-        CommentVisitor(CompilationUnit cu) {
-            this(cu, null);
-        }
         
         CommentVisitor(CompilationUnit cu, Set<ASTNode> nodes) {
             this.compilationUnit = cu;
@@ -170,7 +164,7 @@ public class CodeGenerator {
         }
     }
     
-    class CodeRestrationVisitor extends NaiveASTFlattener {
+    private class CodeRestrationVisitor extends NaiveASTFlattener {
         
         private String contents;
         private Set<Comment> comments = new HashSet<>();

@@ -7,7 +7,6 @@ package org.jtool.slice.builder;
 
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
-import org.jtool.slice.Slice;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.JReference;
@@ -76,22 +75,19 @@ import java.util.Map;
  * 
  * @author Katsuhisa Maruyama
  */
-public class SliceExtractor extends ASTVisitor {
+public class CodeExtractor extends ASTVisitor {
     
     protected JavaClass jclass;
     protected Set<PDGNode> pdgNodes;
     
     protected ASTNode astNode = null;
-    protected Set<ASTNode> sliceNodes = new HashSet<>();
+    protected Set<ASTNode> targetNodes = new HashSet<>();
     
-    public SliceExtractor(ModelBuilder builder, Slice slice, JavaClass jclass) {
-        this(builder, slice.getNodes(), jclass);
-    }
-    
-    public SliceExtractor(ModelBuilder builder, Set<PDGNode> pdgNodes, JavaClass jclass) {
+    public CodeExtractor(JavaClass jclass, Set<PDGNode> pdgNodes) {
         this.jclass = jclass;
+        ModelBuilder builder = jclass.getJavaProject().getModelBuilder();
         
-        JavaFile jfile = builder.copyJavaFile(jclass.getFile());;
+        JavaFile jfile = builder.copyJavaFile(jclass.getFile());
         for (JavaClass jc : jfile.getClasses()) {
             if (jc.getQualifiedName().equals(jclass.getQualifiedName())) {
                 createSliceExtractor(pdgNodes, jfile, jc.getASTNode());
@@ -99,12 +95,9 @@ public class SliceExtractor extends ASTVisitor {
         }
     }
     
-    public SliceExtractor(ModelBuilder builder, Slice slice, JavaMethod jmethod) {
-        this(builder, slice.getNodes(), jmethod);
-    }
-    
-    public SliceExtractor(ModelBuilder builder, Set<PDGNode> pdgNodes, JavaMethod jmethod) {
+    public CodeExtractor(JavaMethod jmethod, Set<PDGNode> pdgNodes) {
         this.jclass = jmethod.getDeclaringClass();
+        ModelBuilder builder = jclass.getJavaProject().getModelBuilder();
         
         JavaFile jfile = builder.copyJavaFile(jmethod.getDeclaringClass().getFile());
         for (JavaClass jc : jfile.getClasses()) {
@@ -118,12 +111,9 @@ public class SliceExtractor extends ASTVisitor {
         }
     }
     
-    public SliceExtractor(ModelBuilder builder, Slice slice, JavaField jfield) {
-        this(builder, slice.getNodes(), jfield);
-    }
-    
-    public SliceExtractor(ModelBuilder builder, Set<PDGNode> pdgNodes, JavaField jfield) {
+    public CodeExtractor(JavaField jfield, Set<PDGNode> pdgNodes) {
         this.jclass = jfield.getDeclaringClass();
+        ModelBuilder builder = jclass.getJavaProject().getModelBuilder();
         
         JavaFile jfile = builder.copyJavaFile(jfield.getDeclaringClass().getFile());
         for (JavaClass jc : jfile.getClasses()) {
@@ -145,7 +135,7 @@ public class SliceExtractor extends ASTVisitor {
         this.pdgNodes = pdgNodes;
         this.astNode = astNode;
         
-        sliceNodes.add(astNode);
+        targetNodes.add(astNode);
         ASTNodeOnCFGCollector collector = new ASTNodeOnCFGCollector(jfile.getCompilationUnit());
         for (PDGNode pdgnode : pdgNodes) {
             registerASTNode(pdgnode.getCFGNode().getASTNode(), collector);
@@ -162,7 +152,7 @@ public class SliceExtractor extends ASTVisitor {
     private void registerASTNode(ASTNode astNode, ASTNodeOnCFGCollector collector) {
         ASTNode correspondingNode = collector.get(astNode);
         if (correspondingNode != null) {
-            sliceNodes.add(correspondingNode);
+            targetNodes.add(correspondingNode);
         }
     }
     
@@ -183,7 +173,7 @@ public class SliceExtractor extends ASTVisitor {
         CodeGenerator codeGenerator = new CodeGenerator();
         codeGenerator.setOptions(options);
         
-        String code = codeGenerator.generate(astNode, jclass.getFile().getSource(), sliceNodes);
+        String code = codeGenerator.generate(astNode, jclass.getFile().getSource(), targetNodes);
         return code;
     }
     
@@ -215,7 +205,7 @@ public class SliceExtractor extends ASTVisitor {
             return false;
         }
         
-        for (ASTNode n : sliceNodes) {
+        for (ASTNode n : targetNodes) {
             if (equalsASTNode(node, n)) {
                 return true;
             }
@@ -779,8 +769,8 @@ public class SliceExtractor extends ASTVisitor {
     }
     
     private void checkBreakStatement(BreakStatement statement) {
-        if (statement instanceof BreakStatement && !sliceNodes.contains(statement)) {
-            sliceNodes.add(statement);
+        if (statement instanceof BreakStatement && !targetNodes.contains(statement)) {
+            targetNodes.add(statement);
         }
     }
     
@@ -807,8 +797,8 @@ public class SliceExtractor extends ASTVisitor {
     }
     
     private void checkContinueStatement(ContinueStatement statement) {
-        if (statement instanceof ContinueStatement && !sliceNodes.contains(statement)) {
-            sliceNodes.add(statement);
+        if (statement instanceof ContinueStatement && !targetNodes.contains(statement)) {
+            targetNodes.add(statement);
         }
     }
     
@@ -1094,11 +1084,11 @@ public class SliceExtractor extends ASTVisitor {
     }
     
     private void checkReturnStatement(ReturnStatement statement) {
-        if (statement instanceof ReturnStatement && !sliceNodes.contains(statement)) {
+        if (statement instanceof ReturnStatement && !targetNodes.contains(statement)) {
             Expression returnExpression = getDummyReturnExpression(statement);
             statement.setExpression(returnExpression);
             
-            sliceNodes.add(statement);
+            targetNodes.add(statement);
         }
     }
     
@@ -1162,11 +1152,11 @@ public class SliceExtractor extends ASTVisitor {
     }
     
     private void checkThrowStatement(ThrowStatement statement) {
-        if (statement instanceof ThrowStatement && !sliceNodes.contains(statement)) {
+        if (statement instanceof ThrowStatement && !targetNodes.contains(statement)) {
             Expression throwExpression = getDummyThrowExpression(statement);
             statement.setExpression(throwExpression);
             
-            sliceNodes.add(statement);
+            targetNodes.add(statement);
         }
     }
     
