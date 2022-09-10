@@ -172,7 +172,6 @@ public class CFGFieldEntryTest {
         assertEquals("this.y", TestUtil.asStrOfReference(result));
     }
     
-    // TODO
     @Test
     public void testUseFieldsS135() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S136", "map");

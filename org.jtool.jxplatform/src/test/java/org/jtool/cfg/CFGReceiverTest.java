@@ -168,7 +168,6 @@ public class CFGReceiverTest {
         assertEquals("a$0", result);
     }
     
-    // TODO
     @Test
     public void testGetNameTest126_5() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test126", "m( )");

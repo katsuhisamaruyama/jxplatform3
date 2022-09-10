@@ -1075,7 +1075,6 @@ public class CFGMethodCallTest {
         assertEquals("S130", TestUtil.asSortedStrOfString(result));
     }
     
-    // TODO
     @Test
     public void testGetApproximatedTypeNamesTest131_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test131", "m( )");

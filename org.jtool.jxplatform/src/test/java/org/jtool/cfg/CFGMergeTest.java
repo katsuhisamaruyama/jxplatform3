@@ -27,7 +27,6 @@ public class CFGMergeTest {
         SliceProject.getModelBuilder().unbuild();
     }
     
-    // TODO
     @Test
     public void testGetBranchTest108() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test108", "m( )");

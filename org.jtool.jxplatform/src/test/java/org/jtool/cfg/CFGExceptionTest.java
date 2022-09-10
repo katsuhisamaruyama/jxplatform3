@@ -37,7 +37,6 @@ public class CFGExceptionTest {
         assertEquals("java.lang.Exception", result);
     }
     
-    // TODO
     @Test
     public void testGetTypeNameTest123_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test123", "n( int )");
