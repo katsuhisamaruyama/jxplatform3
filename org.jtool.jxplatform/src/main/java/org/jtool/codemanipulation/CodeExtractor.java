@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.slice.builder;
+package org.jtool.codemanipulation;
 
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
@@ -22,6 +22,7 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Initializer;
 import org.eclipse.jdt.core.dom.LambdaExpression;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
+import org.eclipse.jdt.core.dom.EnumConstantDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationStatement;
 import org.eclipse.jdt.core.dom.VariableDeclarationExpression;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
@@ -90,7 +91,7 @@ public class CodeExtractor extends ASTVisitor {
         JavaFile jfile = builder.copyJavaFile(jclass.getFile());
         for (JavaClass jc : jfile.getClasses()) {
             if (jc.getQualifiedName().equals(jclass.getQualifiedName())) {
-                createSliceExtractor(pdgNodes, jfile, jc.getASTNode());
+                createCodeExtractor(pdgNodes, jfile, jc.getASTNode());
             }
         }
     }
@@ -104,7 +105,7 @@ public class CodeExtractor extends ASTVisitor {
             if (jc.getQualifiedName().equals(jmethod.getDeclaringClass().getQualifiedName())) {
                 for (JavaMethod jm : jc.getMethods()) {
                     if (jm.getQualifiedName().equals(jmethod.getQualifiedName())) {
-                        createSliceExtractor(pdgNodes, jfile, jm.getASTNode());
+                        createCodeExtractor(pdgNodes, jfile, jm.getASTNode());
                     }
                 }
             }
@@ -120,14 +121,14 @@ public class CodeExtractor extends ASTVisitor {
             if (jc.getQualifiedName().equals(jfield.getDeclaringClass().getQualifiedName())) {
                 for (JavaField jf : jc.getFields()) {
                     if (jf.getQualifiedName().equals(jfield.getQualifiedName())) {
-                        createSliceExtractor(pdgNodes, jfile, jf.getASTNode().getParent());
+                        createCodeExtractor(pdgNodes, jfile, jf.getASTNode().getParent());
                     }
                 }
             }
         }
     }
     
-    private void createSliceExtractor(Set<PDGNode> pdgNodes, JavaFile jfile, ASTNode astNode) {
+    private void createCodeExtractor(Set<PDGNode> pdgNodes, JavaFile jfile, ASTNode astNode) {
         if(astNode == null) {
             return;
         }
@@ -138,12 +139,18 @@ public class CodeExtractor extends ASTVisitor {
         targetNodes.add(astNode);
         ASTNodeOnCFGCollector collector = new ASTNodeOnCFGCollector(jfile.getCompilationUnit());
         for (PDGNode pdgnode : pdgNodes) {
+            
+            System.err.println("N = " + pdgnode);
+            
+            
             registerASTNode(pdgnode.getCFGNode().getASTNode(), collector);
             
             if (pdgnode.isStatement()) {
                 PDGStatement stnode = (PDGStatement)pdgnode;
                 for (JReference var : stnode.getDefVariables()) {
-                    registerASTNode(var.getASTNode(), collector);
+                    if (!var.isVersatileReference()) {
+                        registerASTNode(var.getASTNode(), collector);
+                    }
                 }
             }
         }
@@ -247,6 +254,10 @@ public class CodeExtractor extends ASTVisitor {
             return false;
         }
         
+        if (node.getJavadoc() != null) {
+            node.getJavadoc().accept(this);
+        }
+        
         ITypeBinding[] bindings = node.resolveBinding().getParameterTypes();
         StringBuilder buf = new StringBuilder();
         buf.append(node.getName().getIdentifier());
@@ -344,6 +355,14 @@ public class CodeExtractor extends ASTVisitor {
     }
     
     @Override
+    public boolean visit(EnumConstantDeclaration node) {
+        if (removeWholeElement(node)) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
     @SuppressWarnings("unchecked")
     public boolean visit(VariableDeclarationStatement node) {
         if (removeWholeElement(node)) {
@@ -392,7 +411,12 @@ public class CodeExtractor extends ASTVisitor {
     @SuppressWarnings("unchecked")
     protected void pullUpExpressionInVariableDeclaration(ASTNode astnode, Expression expr) {
         if (expr != null && containsAnyInSubTree(expr)) {
-            ASTNode parent = getEnclosingStatement(astnode.getParent()).getParent();
+            
+            ASTNode enclosingStatement = getEnclosingStatement(astnode.getParent());
+            if (enclosingStatement == null) {
+                return;
+            }
+            ASTNode parent = enclosingStatement.getParent();
             
             if (parent instanceof Block) {
                 Expression newExpression = (Expression)ASTNode.copySubtree(expr.getAST(), expr);
@@ -507,7 +531,6 @@ public class CodeExtractor extends ASTVisitor {
                 parentExpression.setExpression(newExpression);
             }
         } else {
-            statement.delete();
             return false;
         }
         return true;
@@ -743,6 +766,8 @@ public class CodeExtractor extends ASTVisitor {
         if (removeWholeElement(node)) {
             return false;
         }
+        
+        addEnclosedAssignments(node.getExpression());
         return true;
     }
     
@@ -808,19 +833,22 @@ public class CodeExtractor extends ASTVisitor {
             return false;
         }
         
+        addEnclosedAssignments(node.getExpression());
+        
         if (contains(node)) {
             checkReturnStatement(node.getBody());
             checkThrowStatement(node.getBody());
             checkBreakStatement(node.getBody());
             checkContinueStatement(node.getBody());
         }
-        
-        if (!containsAnyInSubTree(node.getBody())) {
-            pullUpMethodInvocations(node, node.getExpression());
-            node.delete();
+        return true;
+    }
+    
+    @Override
+    public boolean visit(EmptyStatement node) {
+        if (removeWholeElement(node)) {
             return false;
         }
-        
         return true;
     }
     
@@ -855,21 +883,15 @@ public class CodeExtractor extends ASTVisitor {
             return false;
         }
         
+        if (node.getExpression() != null) {
+            addEnclosedAssignments(node.getExpression());
+        }
+        
         if (contains(node)) {
             checkReturnStatement(node.getBody());
             checkThrowStatement(node.getBody());
             checkBreakStatement(node.getBody());
             checkContinueStatement(node.getBody());
-        }
-        
-        if (!containsAnyInSubTree(node.getBody()) && node.updaters().size() == 0) {
-            List<Expression> exprs = new ArrayList<>();
-            exprs.addAll((List<Expression>)node.initializers());
-            exprs.add(node.getExpression());
-            exprs.addAll((List<Expression>)node.updaters());
-            pullUpMethodInvocations(node, exprs);
-            node.delete();
-            return false;
         }
         
         List<Expression> removeNodes = new ArrayList<>();
@@ -892,6 +914,8 @@ public class CodeExtractor extends ASTVisitor {
             return false;
         }
         
+        addEnclosedAssignments(node.getExpression());
+        
         if (contains(node)) {
             checkReturnStatement(node.getThenStatement());
             checkReturnStatement(node.getElseStatement());
@@ -903,15 +927,14 @@ public class CodeExtractor extends ASTVisitor {
             checkContinueStatement(node.getElseStatement());
         }
         
-        if (!containsAnyInSubTree(node.getThenStatement()) && !containsAnyInSubTree(node.getElseStatement())) {
-            pullUpMethodInvocations(node, node.getExpression());
-            node.delete();
-            return false;
+        if (node.getElseStatement()!= null && !containsAnyInSubTree(node.getElseStatement())) {
+            node.getElseStatement().delete();
         }
         
         if (!(node.getThenStatement() instanceof Block) && !containsAnyInSubTree(node.getThenStatement())) {
             EmptyStatement empty = node.getAST().newEmptyStatement();
             node.setThenStatement(empty);
+            targetNodes.add(empty);
         }
         return true;
     }
@@ -927,6 +950,8 @@ public class CodeExtractor extends ASTVisitor {
         if (removeWholeElement(node)) {
             return false;
         }
+        
+        addEnclosedAssignments(node.getExpression());
         
         if (contains(node)) {
             for (Statement statement : (List<Statement>)node.statements()) {
@@ -956,17 +981,13 @@ public class CodeExtractor extends ASTVisitor {
             return false;
         }
         
+        addEnclosedAssignments(node.getExpression());
+        
         if (contains(node)) {
             checkReturnStatement(node.getBody());
             checkThrowStatement(node.getBody());
             checkBreakStatement(node.getBody());
             checkContinueStatement(node.getBody());
-        }
-        
-        if (!containsAnyInSubTree(node.getBody())) {
-            pullUpMethodInvocations(node, node.getExpression());
-            node.delete();
-            return false;
         }
         
         return true;
@@ -1067,6 +1088,15 @@ public class CodeExtractor extends ASTVisitor {
             newExpression = node.getAST().newNullLiteral();
         }
         return newExpression;
+    }
+    
+    private void addEnclosedAssignments(Expression node) {
+        ASTNodeOnCFGCollector collector = new ASTNodeOnCFGCollector(node);
+        for (ASTNode n : collector.getNodeSet()) {
+            if (n instanceof Assignment) {
+                targetNodes.add(n);
+            }
+        }
     }
     
     @SuppressWarnings("unchecked")
