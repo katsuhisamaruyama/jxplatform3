@@ -1,5 +1,4 @@
-
-class Test42 {
+public class Test42 {
 
     private final P42 a = new P42(1);
     private final P42 b = a;

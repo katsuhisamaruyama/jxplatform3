@@ -1,4 +1,4 @@
-class Test47 {
+public class Test47 {
 
     void m1() {
         int len = "xyz".length();

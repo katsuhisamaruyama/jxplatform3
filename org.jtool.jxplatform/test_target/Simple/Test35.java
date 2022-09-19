@@ -1,4 +1,3 @@
-
 public class Test35 {
 
     public void m1() {

@@ -1,4 +1,4 @@
-class Test39 {
+public class Test39 {
 
     public void m() {
         int[] a = { 1, 2, 3, 4, 5 };

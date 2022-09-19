@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-class Test46 {
+public class Test46 {
 
     P46 m1() {
         P46 p = new P46();

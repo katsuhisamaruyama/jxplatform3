@@ -1,4 +1,3 @@
-
 public class Test31 {
     protected int x;
 

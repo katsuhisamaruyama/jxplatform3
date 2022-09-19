@@ -1,4 +1,4 @@
-class Test38 {
+public class Test38 {
 
     private String[] x;
     private int[] y;

@@ -139,10 +139,6 @@ public class CodeExtractor extends ASTVisitor {
         targetNodes.add(astNode);
         ASTNodeOnCFGCollector collector = new ASTNodeOnCFGCollector(jfile.getCompilationUnit());
         for (PDGNode pdgnode : pdgNodes) {
-            
-            System.err.println("N = " + pdgnode);
-            
-            
             registerASTNode(pdgnode.getCFGNode().getASTNode(), collector);
             
             if (pdgnode.isStatement()) {

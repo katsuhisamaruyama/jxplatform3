@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class Test48 {
+public class Test48 {
 
     void m1() {
         P48 p = new P48();

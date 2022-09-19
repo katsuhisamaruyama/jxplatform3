@@ -13,14 +13,14 @@ public class Test07 {
                 a = a + 1;
             } else if (b < a) {
                 a = b;
-                b = b+1;
+                b = b + 1;
             } else {
                 if (a < b) {
-                    c = c+1;
-                    d = d-1;
+                    c = c + 1;
+                    d = d - 1;
                 } else if (b < a) {
-                    c = c+e;
-                    d = d-e;
+                    c = c + e;
+                    d = d - e;
                 }
             }
         }

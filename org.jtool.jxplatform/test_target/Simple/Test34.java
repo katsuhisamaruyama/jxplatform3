@@ -1,4 +1,3 @@
-
 public class Test34 {
     private int v = 0;
     

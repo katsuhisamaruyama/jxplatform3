@@ -1,4 +1,4 @@
-class Test44 {
+public class Test44 {
 
     void m1() { 
         P44 a = new P44();

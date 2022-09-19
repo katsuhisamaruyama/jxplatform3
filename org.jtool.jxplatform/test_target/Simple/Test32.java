@@ -1,4 +1,3 @@
-
 public class Test32 {
 
     public void m() {

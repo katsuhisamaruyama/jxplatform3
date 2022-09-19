@@ -1,4 +1,4 @@
-class Test41 {
+public class Test41 {
 
     void m() {
         PriceCode c1 = PriceCode.CHILDRENS;

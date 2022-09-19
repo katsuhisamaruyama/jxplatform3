@@ -1,5 +1,4 @@
 public class Test26 {
-
     private int xxx;
     
     {
