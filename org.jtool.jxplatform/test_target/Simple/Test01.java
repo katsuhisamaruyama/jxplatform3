@@ -9,7 +9,7 @@ public class Test01 {
         if (a == 0) {
             a++;
             System.out.println(a);
-        } else { 
+        } else {
             a++;
             a = -b;
             System.out.println(a);
