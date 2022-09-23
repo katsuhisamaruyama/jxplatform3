@@ -7,7 +7,6 @@ package org.jtool.jxplatform.util;
 
 import org.jtool.slice.Slice;
 import org.jtool.slice.SliceCriterion;
-import org.jtool.slice.builder.SliceExtractor;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
@@ -24,7 +23,7 @@ public class SliceTestUtil {
         JavaClass jclass = jproject.getClass(cname);
         SDG sdg = PDGTestUtil.createSDG(jproject, cname);
         
-        sdg.print();
+        //sdg.print();
         
         return SliceCriterion.find(sdg, jclass, lineNumber, offset);
     }
@@ -48,11 +47,9 @@ public class SliceTestUtil {
             options.put(DefaultCodeFormatterConstants.FORMATTER_INDENTATION_SIZE, "4");
             
             JavaClass jclass = jproject.getClass(cname);
-            SliceExtractor extractor = new SliceExtractor(jproject.getModelBuilder(), slice, jclass);
-            String code = extractor.extract(options);
+            String code = slice.getCode(jclass, options);
             
             System.out.println(code);
-            
             return code;
         }
         return "Failed";
@@ -68,8 +65,7 @@ public class SliceTestUtil {
             
             JavaClass jclass = jproject.getClass(cname);
             JavaMethod jmethod = jclass.getMethod(sig);
-            SliceExtractor extractor = new SliceExtractor(jproject.getModelBuilder(), slice, jmethod);
-            String code = extractor.extract(options);
+            String code = slice.getCode(jmethod, options);
             return code;
         }
         return "Failed";
@@ -85,8 +81,7 @@ public class SliceTestUtil {
             
             JavaClass jclass = jproject.getClass(cname);
             JavaField jfield = jclass.getField(sig);
-            SliceExtractor extractor = new SliceExtractor(jproject.getModelBuilder(), slice, jfield);
-            String code = extractor.extract(options);
+            String code = slice.getCode(jfield, options);
             return code;
         }
         return "Failed";

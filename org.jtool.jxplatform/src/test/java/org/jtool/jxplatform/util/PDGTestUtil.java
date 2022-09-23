@@ -35,6 +35,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -84,8 +85,28 @@ public class PDGTestUtil {
     
     public static PDGNode getNode(PDG pdg, int index) {
         return pdg.getNodes().stream()
-                             .filter(n -> n.getId() == index + pdg.getEntryNode().getId())
-                             .findFirst().orElse(null);
+                .filter(n -> n.getId() == index + pdg.getEntryNode().getId())
+                .findFirst().orElse(null);
+    }
+    
+    public static PDGNode getNode(DependencyGraph graph, int index) {
+        long min = graph.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get() - 1;
+        return getNode(graph, min, index);
+    }
+    
+    public static Set<PDGNode> getNodes(DependencyGraph graph, int[] indices) {
+        long min = graph.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get() - 1;
+        Set<Integer> set = new HashSet<>(indices.length);
+        for (int i : indices) {
+            set.add(i);
+        }
+        return set.stream().map(index -> getNode(graph, min, index)).collect(Collectors.toSet());
+    }
+    
+    private static PDGNode getNode(DependencyGraph graph, long min, int index) {
+        return graph.getNodes().stream()
+                .filter(n -> n.getId() == index + min)
+                .findFirst().orElse(null);
     }
     
     public static List<Dependence> getDependence(PDG pdg, int src, int dst) {
