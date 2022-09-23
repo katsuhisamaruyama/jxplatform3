@@ -5,14 +5,13 @@
 
 package org.jtool.slice;
 
-import org.jtool.slice.builder.Slicer;
-import org.jtool.slice.builder.CodeExtractor;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.pdg.DependencyGraph;
 import org.jtool.pdg.PDGNode;
 import org.jtool.cfg.JVariableReference;
+import org.jtool.codemanipulation.CodeExtractor;
 import org.jtool.graph.GraphNode;
 import java.util.Set;
 import java.util.HashSet;
