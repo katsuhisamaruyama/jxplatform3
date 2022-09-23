@@ -159,6 +159,10 @@ public class CodeExtractor extends ASTVisitor {
         }
     }
     
+    protected Set<ASTNode> getTargetNodes() {
+        return targetNodes;
+    }
+    
     public ASTNode extractAST() {
         if (astNode != null) {
             astNode.accept(this);
