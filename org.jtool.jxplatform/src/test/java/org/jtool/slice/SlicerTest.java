@@ -3,9 +3,8 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.slice.builder;
+package org.jtool.slice;
 
-import org.jtool.slice.SliceCriterion;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.PDGTestUtil;

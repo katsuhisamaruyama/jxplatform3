@@ -459,7 +459,6 @@ public class SliceTest {
                 "        int y = 0;\n" + 
                 "        if (x > 10) {\n" + 
                 "            y++;\n" + 
-                "        } else {\n" + 
                 "        }\n" + 
                 "        int p = y;\n" + 
                 "    }\n" + 
@@ -2016,7 +2015,7 @@ public class SliceTest {
         
         String expected = 
                 "enum PriceCode {\n" +
-                "    CHILDRENS(100), REGULAR(200), NEW_RELEASE(300);\n" +
+                "    ;\n" +
                 "    PriceCode(int priceCode) {\n" +
                 "        this.priceCode = priceCode;\n" +
                 "    }\n" +
