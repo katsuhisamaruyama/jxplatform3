@@ -67,7 +67,7 @@ public class SDGTest {
         SDG sdg = PDGTestUtil.createSDG(SimpleProject);
         Set<PDGNode> result = sdg.getNodes();
         
-        assertEquals(2004, result.size());
+        assertEquals(2090, result.size());
     }
     
     @Test
@@ -115,7 +115,7 @@ public class SDGTest {
         SDG sdg = PDGTestUtil.createSDG(SimpleProject);
         List<Dependence> result = sdg.getEdges();
         
-        assertEquals(4313, result.size());
+        assertEquals(4477, result.size());
     }
     
     @Test
@@ -163,7 +163,7 @@ public class SDGTest {
         SDG sdg = PDGTestUtil.createSDG(SimpleProject);
         List<Dependence> result = sdg.getSpecificEdges();
         
-        assertEquals(811, result.size());
+        assertEquals(840, result.size());
     }
     
     @Test
@@ -208,7 +208,7 @@ public class SDGTest {
     public void testGetPDGs3() {
         SDG sdg = PDGTestUtil.createSDG(SimpleProject);
         
-        assertEquals(250, sdg.getPDGs().size());
+        assertEquals(266, sdg.getPDGs().size());
     }
     
     @Test
@@ -250,7 +250,7 @@ public class SDGTest {
     public void testGetClDGs3() {
         SDG sdg = PDGTestUtil.createSDG(SimpleProject);
         
-        assertEquals(75, sdg.getClDGs().size());
+        assertEquals(80, sdg.getClDGs().size());
     }
     
     @Test

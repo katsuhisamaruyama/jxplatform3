@@ -21,8 +21,8 @@ public class ModelBuilderBatchTest {
         ModelBuilderBatch builder = new ModelBuilderBatch(false);
         JavaProject project = builder.build(name, target, target);
         
-        assertEquals(50, project.getFiles().size());
-        assertEquals(75, project.getClasses().size());
+        assertEquals(54, project.getFiles().size());
+        assertEquals(80, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -36,8 +36,8 @@ public class ModelBuilderBatchTest {
         builder.setLogVisible(false);
         JavaProject project = builder.build(name, target, target, target, target);
         
-        assertEquals(50, project.getFiles().size());
-        assertEquals(75, project.getClasses().size());
+        assertEquals(54, project.getFiles().size());
+        assertEquals(80, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -51,8 +51,8 @@ public class ModelBuilderBatchTest {
         ModelBuilderBatch builder = new ModelBuilderBatch(false);
         JavaProject project = builder.build(name, target, path, path, path);
         
-        assertEquals(50, project.getFiles().size());
-        assertEquals(75, project.getClasses().size());
+        assertEquals(54, project.getFiles().size());
+        assertEquals(80, project.getClasses().size());
         
         builder.unbuild();
     }
@@ -166,8 +166,8 @@ public class ModelBuilderBatchTest {
         List<JavaProject> projects = builder.build(name, target);
         
         assertEquals(1, projects.size());
-        assertEquals(50, projects.get(0).getFiles().size());
-        assertEquals(75, projects.get(0).getClasses().size());
+        assertEquals(54, projects.get(0).getFiles().size());
+        assertEquals(80, projects.get(0).getClasses().size());
         
         builder.unbuild();
     }
