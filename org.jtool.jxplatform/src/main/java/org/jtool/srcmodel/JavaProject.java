@@ -10,7 +10,6 @@ import org.jtool.jxplatform.builder.ModelBuilder;
 import org.jtool.jxplatform.project.ModelBuilderImpl;
 import org.jtool.pdg.builder.PDGStore;
 import org.jtool.srcmodel.builder.ProjectStore;
-
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
@@ -80,6 +79,16 @@ public class JavaProject {
     protected String[] binaryPath;
     
     /**
+     * The version of the compiler source.
+     */
+    protected String compilerSourceVersion = null;
+    
+    /**
+     * The the version of the compiler target platform.
+     */
+    protected String compilerTargetVersion = null;;
+    
+    /**
      * A CFG repository that stores CFGs for source files for this project.
      */
     protected CFGStore cfgStore;
@@ -100,15 +109,7 @@ public class JavaProject {
      * @param path the absolute path that indicates the root directory of this project in the file system
      */
     public JavaProject(String name, String path) {
-        assert name != null;
-        assert path != null;
-        
-        this.name = name;
-        this.pathInWorkspace = path;
-        this.path = path;
-        
-        cfgStore = new CFGStore();
-        pdgStore = new PDGStore(cfgStore);
+        this(name, path, path);
     }
     
     /**
@@ -505,6 +506,32 @@ public class JavaProject {
      */
     public String[] getBinaryPath() {
         return binaryPath;
+    }
+    
+    /**
+     * Sets the versions for compilation.
+     * @param compilerSourceVersion the version of the compiler source.
+     * @param compilerTargetVersion the version of the compiler target platform.
+     */
+    public void setCompilerVersions(String compilerSourceVersion, String compilerTargetVersion) {
+        this.compilerSourceVersion = compilerSourceVersion;
+        this.compilerTargetVersion = compilerTargetVersion;
+    }
+    
+    /**
+     * Returns the version of the compiler source.
+     * @return the version number
+     */
+    public String getCompilerSourceVersion() {
+        return compilerSourceVersion;
+    }
+    
+    /**
+     * Returns the version of the compiler target platform.
+     * @return the version number
+     */
+    public String getCompilerTargetVersion() {
+        return compilerTargetVersion;
     }
     
     /**
