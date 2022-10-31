@@ -38,29 +38,26 @@ class AntEnv extends ProjectEnv {
     @Override
     boolean isApplicable() {
         try {
-            Path config = basePath.resolve(Paths.get(AntEnv.configName));
-            if (config.toFile().exists()) {
-                setPaths(config.toString());
+            if (configFile != null && configFile.toFile().exists()) {
+                setConfigParameters(configFile);
                 return true;
             }
         } catch (Exception e) { /* empty */ }
         return false;
     }
     
-    @Override
-    boolean isProject() {
-        return sourcePaths.size() > 0;
-    }
-    
-    private void setPaths(String configFile) throws Exception {
+    private void setConfigParameters(Path configPath) throws Exception {
         ConfigParser parser = new ConfigParser();
         SAXParser saxParser = SAXParserFactory.newInstance().newSAXParser();
-        saxParser.parse(configFile.toString(), parser);
+        saxParser.parse(configPath.toString(), parser);
         parser.postProcess();
         
         sourcePaths = parser.srcpath;
         binaryPaths = parser.binpath;
         classPaths = parser.classpath;
+        
+        compilerSourceVersion = parser.properties.get("javac.source");
+        compilerTargetVersion = parser.properties.get("javac.target");
     }
     
     private class ConfigParser extends DefaultHandler {

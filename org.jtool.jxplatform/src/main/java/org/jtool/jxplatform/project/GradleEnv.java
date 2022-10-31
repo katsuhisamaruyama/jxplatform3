@@ -11,18 +11,25 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import org.eclipse.jdt.core.JavaCore;
+import org.gradle.api.JavaVersion;
 import org.gradle.tooling.ProjectConnection;
 import org.gradle.tooling.GradleConnector;
 import org.gradle.tooling.BuildLauncher;
+import org.gradle.tooling.BuildException;
 import org.gradle.tooling.model.GradleProject;
 import org.gradle.tooling.model.GradleTask;
 import org.gradle.tooling.model.DomainObjectSet;
 import org.gradle.tooling.model.eclipse.EclipseProject;
+import org.gradle.tooling.model.eclipse.EclipseJavaSourceSettings;
 
 /**
- * Obtains path information from the Ant setting.
+ * Obtains path information from the Gradle setting.
  * 
  * @author Katsuhisa Maruyama
  */
@@ -30,13 +37,13 @@ class GradleEnv extends ProjectEnv {
     
     private final static GradleConnector connector = GradleConnector.newConnector();
     
-    private final static String configName = ".gradle";
+    private final static String configName = "build.gradle";
     
     private static String addedTaskName = "copyDependenciesForJxplatform";
     
     GradleEnv(String name, Path basePath) {
         super(name, basePath);
-        configFile = basePath.resolve(getFileName(basePath, GradleEnv.configName));
+        configFile = basePath.resolve(Paths.get(GradleEnv.configName));
     }
     
     @Override
@@ -44,19 +51,12 @@ class GradleEnv extends ProjectEnv {
         return new GradleEnv(name, basePath);
     }
     
-    private String getFileName(Path path, String sufix) {
-        File[] files = path.toFile().listFiles((file, name) -> name.endsWith(sufix));
-        if (files.length > 0) {
-            return files[0].getAbsolutePath();
-        }
-        return GradleEnv.configName;
-    }
-    
     @Override
     boolean isApplicable() {
         try {
-            if (configFile.toFile().exists()) {
-                setPaths(configFile.toString());
+            configFile = getConfigFile(configFile);
+            if (configFile != null && configFile.toFile().exists()) {
+                setConfigParameters(configFile);
                 return true;
             }
             return false;
@@ -64,30 +64,78 @@ class GradleEnv extends ProjectEnv {
         return false;
     }
     
-    @Override
-    boolean isProject() {
-        return sourcePaths.size() > 0;
+    private Path getConfigFile(Path path) {
+        Path parent = path.getParent();
+        while (parent != null) {
+            Path pconfigFile = parent.resolve(Paths.get(GradleEnv.configName));
+            if (pconfigFile.toFile().exists()) {
+                return pconfigFile;
+            }
+            parent = parent.getParent();
+        }
+        return null;
     }
     
-    private void setPaths(String configFile) throws Exception {
+    private void setConfigParameters(Path configPath) throws Exception {
         ProjectConnection connection = connector.forProjectDirectory(basePath.toFile()).connect();
         try {
             EclipseProject project = connection.model(EclipseProject.class).get();
-            if (project == null) {
-                return;
-            }
             
             sourcePaths = project.getSourceDirectories().stream()
                     .map(elem -> basePath.resolve(elem.getPath()).toString()).collect(Collectors.toSet());
-            
             binaryPaths = project.getSourceDirectories().stream()
                     .map(elem -> basePath.resolve(elem.getOutput()).toString()).collect(Collectors.toSet());
-            
             classPaths.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
             classPaths.add(libPath.toString());
+            
+            EclipseJavaSourceSettings javaSettings = project.getJavaSourceSettings();
+            if (javaSettings != null) {
+                compilerSourceVersion = compilerVersion(javaSettings.getSourceLanguageLevel());
+                compilerTargetVersion = compilerVersion(javaSettings.getTargetBytecodeVersion());
+            } else {
+                compilerSourceVersion = JavaCore.VERSION_11;
+                compilerTargetVersion = JavaCore.VERSION_11;
+            }
+        } catch (BuildException e) {
+            unknownModel();
         } finally {
            connection.close();
         }
+    }
+    
+    private String compilerVersion(JavaVersion v) {
+        if (v != null) {
+            String version = v.getMajorVersion();
+            try {
+                double value = Double.valueOf(version);
+                if (value <= 10) {
+                    return "1." + version;
+                } else {
+                    return version;
+                }
+            } catch (NumberFormatException e) { /* empty */ }
+        }
+        return JavaCore.VERSION_11;
+    }
+    
+    private void unknownModel() {
+        String sourceDirectoryCandidate[] = { "src", "main", "java" };
+        String sourceDirectory = resolvePath(sourceDirectoryCandidate);
+        if (sourceDirectory != null) {
+            sourcePaths.add(sourceDirectory);
+        }
+        String testSourceDirectoryCandidate[] = { "src", "test", "java" };
+        String testSourceDirectory = resolvePath(testSourceDirectoryCandidate);
+        if (testSourceDirectory != null) {
+            sourcePaths.add(testSourceDirectory);
+        }
+        binaryPaths = new HashSet<>();
+        classPaths = new HashSet<>();
+        classPaths.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
+        classPaths.add(libPath.toString());
+        
+        compilerSourceVersion = JavaCore.VERSION_11;
+        compilerTargetVersion = JavaCore.VERSION_11;
     }
     
     @Override
@@ -98,7 +146,9 @@ class GradleEnv extends ProjectEnv {
     
     @Override
     void setUpEachProject() throws Exception {
-        copyDependentLibrariesByCommandExecutor();
+        if (isProject()) {
+            copyDependentLibrariesByCommandExecutor();
+        }
         super.setUpEachProject();
     }
     
@@ -106,12 +156,35 @@ class GradleEnv extends ProjectEnv {
         ProjectConnection connection = connector.forProjectDirectory(basePath.toFile()).connect();
         modules = new ArrayList<>();
         try {
-            GradleProject gproject = connection.model(GradleProject.class).get();
-            modules = gproject.getChildren().stream()
-                    .map(elem -> elem.getName()).collect(Collectors.toList());
+            GradleProject project = connection.model(GradleProject.class).get();
+            collectSubProjects(project);
+        } catch (BuildException e) {
+            collectModulesForUnknownModel();
         } finally {
             connection.close();
         }
+    }
+    
+    private void collectSubProjects(GradleProject project) {
+        List<GradleProject> children = project.getChildren().stream().collect(Collectors.toList());
+        children.stream().map(child -> child.getPath().substring(1).replace(':', File.separatorChar))
+            .forEach(name -> modules.add(name));
+        children.forEach(child -> collectSubProjects(child));
+    }
+    
+    private void collectModulesForUnknownModel() {
+        try (Stream<Path> paths = Files.list(basePath)) {
+            paths.filter(path -> isProject(path))
+                 .forEach(path -> modules.add(path.toString().substring(basePath.toString().length() + 1)));
+        } catch (Exception e2) { /* empty */ }
+    }
+    
+    private boolean isProject(Path path) {
+        if (path.toString().equals(basePath.toString()) || !path.toFile().isDirectory()) {
+            return false;
+        }
+        File[] files = path.toFile().listFiles((file, name) -> name.endsWith(GradleEnv.configName));
+        return files.length > 0;
     }
     
     private void copyDependentLibrariesByCommandExecutor() throws Exception {

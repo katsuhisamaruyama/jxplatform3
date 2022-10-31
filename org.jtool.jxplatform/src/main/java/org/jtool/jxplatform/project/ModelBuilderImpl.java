@@ -105,7 +105,7 @@ public abstract class ModelBuilderImpl {
     }
     
     public JavaFile getUnregisteredJavaFile(String filepath, String code, JavaProject jproject, String charset) {
-        ASTParser parser = getParser();
+        ASTParser parser = getParser(jproject);
         
         String[] sourcepaths = jproject.getSourcePath();
         parser.setUnitName(filepath);
@@ -127,12 +127,15 @@ public abstract class ModelBuilderImpl {
         return null;
     }
     
-    protected ASTParser getParser() {
+    protected ASTParser getParser(JavaProject jproject) {
+        String sourceVersion = getCompilerVersion(jproject.getCompilerSourceVersion());
+        String targetVersion = getCompilerVersion(jproject.getCompilerTargetVersion());
+        
         ASTParser parser = ASTParser.newParser(AST.JLS18);
         Map<String, String> options = JavaCore.getOptions();
-        options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
+        options.put(JavaCore.COMPILER_SOURCE, sourceVersion);
         options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
-        options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_1_8);
+        options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, targetVersion);
         options.put(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
         options.put(JavaCore.COMPILER_PB_FORBIDDEN_REFERENCE, JavaCore.IGNORE);
         parser.setCompilerOptions(options);
@@ -142,6 +145,29 @@ public abstract class ModelBuilderImpl {
         parser.setStatementsRecovery(true);
         parser.setBindingsRecovery(true);
         return parser;
+    }
+    
+    private String getCompilerVersion(String version) {
+        if (version == null) {
+            return JavaCore.VERSION_11;
+        }
+        try {
+            double value = Double.valueOf(version);
+            if (value <= 1.6) {
+                return JavaCore.VERSION_1_6;
+            } else if (value <= 1.7) {
+                return JavaCore.VERSION_1_7;
+            } else if (value <= 1.8) {
+                return JavaCore.VERSION_1_8;
+            } else if (value <= 9) {
+                return JavaCore.VERSION_9;
+            } else if (value <= 10) {
+                return JavaCore.VERSION_10;
+            }
+        } catch (NumberFormatException e) {
+            /* empty */
+        }
+        return JavaCore.VERSION_11;
     }
     
     protected Set<IProblem> getParseErrors(CompilationUnit cu) {

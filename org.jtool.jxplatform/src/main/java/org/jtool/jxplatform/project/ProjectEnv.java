@@ -42,6 +42,9 @@ abstract class ProjectEnv {
     protected Set<String> includedSourceFiles = new HashSet<String>();
     protected Set<String> excludedSourceFiles = new HashSet<String>();
     
+    protected String compilerSourceVersion;
+    protected String compilerTargetVersion;
+    
     ProjectEnv(String name, Path basePath) {
         this.name = name;
         this.basePath = basePath;
@@ -80,7 +83,7 @@ abstract class ProjectEnv {
     }
     
     boolean isProject() {
-        return true;
+        return sourcePaths.size() > 0;
     }
     
     String getName() {
@@ -126,6 +129,14 @@ abstract class ProjectEnv {
     
     Set<String> getExcludedSourceFiles() {
         return excludedSourceFiles;
+    }
+    
+    String getCompilerSourceVersion() {
+        return compilerSourceVersion;
+    }
+    
+    String getCompilerTargetVersion() {
+        return compilerTargetVersion;
     }
     
     protected String resolvePath(String names[]) {

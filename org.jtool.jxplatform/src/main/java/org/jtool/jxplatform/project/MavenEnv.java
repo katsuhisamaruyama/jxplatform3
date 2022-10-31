@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.io.File;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,7 +20,9 @@ import java.util.Properties;
 import java.io.InputStream;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Build;
+import org.apache.maven.model.BuildBase;
 import org.apache.maven.model.Plugin;
+import org.apache.maven.model.Parent;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.shared.invoker.InvocationRequest;
 import org.apache.maven.shared.invoker.DefaultInvocationRequest;
@@ -36,8 +39,6 @@ class MavenEnv extends ProjectEnv {
     
     private final static String configName = "pom.xml";
     
-    private boolean sourceDirExists = false;
-    
     private static String mvnCommand = findCommandPath("mvn", "-v");
     
     MavenEnv(String name, Path basePath) {
@@ -53,56 +54,124 @@ class MavenEnv extends ProjectEnv {
     @Override
     boolean isApplicable() {
         try {
-            if (configFile.toFile().exists()) {
-                setPaths(configFile.toString());
+            if (configFile != null && configFile.toFile().exists()) {
+                setConfigParameters(configFile);
                 return true;
             }
         } catch (Exception e) { /* empty */ }
         return false;
     }
     
-    @Override
-    boolean isProject() {
-        return sourceDirExists;
+    private List<Model> getModels(Path configPath) throws Exception {
+        List<Model> models = new ArrayList<>();
+        Model model = getModel(configPath);
+        models.add(model);
+        
+        Path curpath = basePath;
+        while (model != null) {
+            Parent parent = model.getParent();
+            if (parent == null) {
+                break;
+            }
+            
+            try {
+                String pomname = File.separatorChar + configName;
+                String relpath = parent.getRelativePath();
+                String filename = relpath.endsWith(pomname) ? relpath : relpath + pomname;
+                Path filepath = curpath.resolve(Paths.get(filename)).normalize();
+                curpath = filepath.getParent();
+                model = getModel(filepath);
+                models.add(model);
+            } catch (Exception e) {
+                break;
+            }
+        }
+        return models;
     }
     
-    private void setPaths(String configFile) throws Exception {
+    private Model getModel(Path path) throws Exception {
         MavenXpp3Reader reader = new MavenXpp3Reader();
-        Model model = reader.read(Files.newBufferedReader(Paths.get(configFile)));
-        model.setPomFile(Paths.get(configFile).toFile());
+        Model model = reader.read(Files.newBufferedReader(path));
+        model.setPomFile(path.toFile());
+        return model;
+    }
+    
+    private String compilerVersion(List<Model> models, String key) throws Exception {
+        for (Model m : models) {
+            Properties properties = m.getProperties();
+            String version = properties.getProperty(key);
+            if (version != null) {
+                return version;
+            }
+        }
+        return null;
+    }
+    
+    private void setConfigParameters(Path cpath) throws Exception {
+        List<Model> models = getModels(cpath);
+        Model model = models.get(0);
+        
         modules = model.getModules();
+        
+        compilerSourceVersion = compilerVersion(models, "maven.compiler.source");
+        compilerTargetVersion = compilerVersion(models, "maven.compiler.target");
         
         sourcePaths = new HashSet<>();
         binaryPaths = new HashSet<>();
         classPaths = new HashSet<>();
         
-        Build build = model.getBuild();
-        if (build == null) {
-            return;
+        String sourceDirectory = null;
+        String testSourceDirectory = null;
+        for (Model m : models) {
+            Build build = m.getBuild();
+            if (build != null) {
+                String sdir = build.getSourceDirectory();
+                if (sdir != null && sourceDirectory == null) {
+                    sourceDirectory = sdir;
+                }
+                String tdir = build.getTestSourceDirectory();
+                if (sdir != null && testSourceDirectory == null) {
+                    testSourceDirectory = tdir;
+                }
+            }
         }
         
         String sourceDirectoryCandidates[][] = { { "src", "main", "java" }, { "src" } };
         String testSourceDirectoryCandidates[][] = { { "src", "test", "java" }, { "test" } };
-        String sourceDirectory = getSourceDirectory(
-                build.getSourceDirectory(), sourceDirectoryCandidates);
-        String testSourceDirectory = getSourceDirectory(
-                build.getTestSourceDirectory(), testSourceDirectoryCandidates);
-        
+        sourceDirectory = getSourceDirectory(sourceDirectory, sourceDirectoryCandidates);
+        testSourceDirectory = getSourceDirectory(testSourceDirectory, testSourceDirectoryCandidates);
         if (sourceDirectory == null && testSourceDirectory == null) {
-            sourceDirectory = basePath.toString();
-            testSourceDirectory = basePath.toString();
             File dir = new File(basePath.toString());
-            sourceDirExists = Arrays.asList(dir.listFiles()).stream()
+            boolean sourceDirExists = Arrays.asList(dir.listFiles()).stream()
                     .anyMatch(file -> file.isFile() && file.getName().endsWith(".java"));
+            if (sourceDirExists) {
+                sourceDirectory = basePath.toString();
+                testSourceDirectory = basePath.toString();
+            }
         }
+        
         if (sourceDirectory != null) {
             sourcePaths.add(sourceDirectory);
+        } else {
+            return;
         }
         if (testSourceDirectory != null) {
             sourcePaths.add(testSourceDirectory);
         }
         
-        String buildDirectory  = build.getDirectory();
+        Build build = model.getBuild();
+        String buildDirectory = null;
+        if (build != null) {
+            buildDirectory = build.getDirectory();
+        } else {
+            BuildBase buildBase = model.getProfiles().stream()
+                    .filter(p -> p.getBuild() != null)
+                    .map(p -> p.getBuild()).findFirst().orElse(null);
+            if (buildBase != null) {
+                buildDirectory = buildBase.getDirectory();
+            }
+        }
+        
         if (buildDirectory == null) {
             buildDirectory = basePath.resolve("target").toString();
         }
@@ -122,11 +191,15 @@ class MavenEnv extends ProjectEnv {
             sourcePaths.add(generatedTestSourceDirectory);
         }
         
-        String outputDirectory = build.getOutputDirectory();
+        String outputDirectory = null;
+        String testOutputDirectory = null;
+        if (build != null) {
+            outputDirectory = build.getOutputDirectory();
+            testOutputDirectory = build.getTestOutputDirectory();
+        }
         if (outputDirectory == null) {
             outputDirectory = buildPath.resolve("classes").toString();
         }
-        String testOutputDirectory = build.getTestOutputDirectory();
         if (testOutputDirectory == null) {
             testOutputDirectory = buildPath.resolve("test-classes").toString();
         }
@@ -136,10 +209,20 @@ class MavenEnv extends ProjectEnv {
         classPaths.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
         classPaths.add(libPath.toString());
         
-        Stream<Plugin> plugins1 = build.getPlugins().stream();
-        Stream<Plugin> plugins2 = model.getProfiles().stream()
-                .filter(p -> p.getBuild() != null).map(p -> p.getBuild()).flatMap(m -> m.getPlugins().stream());
-        
+        Stream<Plugin> plugins1;
+        if (build != null) {
+            plugins1 = build.getPlugins().stream();
+        } else {
+            plugins1 = new ArrayList<Plugin>().stream();
+        }
+        Stream<Plugin> plugins2;
+        if (model.getProfiles() != null) {
+            plugins2 = model.getProfiles().stream()
+                    .filter(p -> p.getBuild() != null)
+                    .map(p -> p.getBuild()).flatMap(m -> m.getPlugins().stream());
+        } else {
+            plugins2 = new ArrayList<Plugin>().stream();
+        }
         List<Xpp3Dom> configurations = Stream.concat(plugins1, plugins2)
                 .filter(p -> p.getArtifactId().equals("maven-compiler-plugin"))
                 .filter(p -> p.getConfiguration() != null)
@@ -153,19 +236,20 @@ class MavenEnv extends ProjectEnv {
         Set<String> excludes = new HashSet<>();
         configurations.forEach(dom -> collectFileNames(dom, excludes, "exclude", "testExclude"));
         excludedSourceFiles = collectFileNames(excludes);
+        //excludedSourceFiles.forEach(p -> System.err.println("Ex = " + p));
     }
     
     private String getSourceDirectory(String dir, String[][] names) {
         if (dir != null) {
             String sourceDirectory = toAbsolutePath(dir);
-            sourceDirExists = sourceDirExists | new File(sourceDirectory).exists();
-            return sourceDirectory;
+            if (new File(sourceDirectory).exists()) {
+                return sourceDirectory;
+            }
         }
         
         for (int index = 0; index < names.length; index++) {
             String sourceDirectory = resolvePath(names[index]);
             if (sourceDirectory != null) {
-                sourceDirExists = true;
                 return sourceDirectory;
             }
         }
@@ -193,16 +277,21 @@ class MavenEnv extends ProjectEnv {
     }
     
     private Set<String> collectFileNames(Set<String> filenames) {
-        Set<String> paths = new HashSet<>();
+        Set<String> names = new HashSet<>();
         for (String srcpath : sourcePaths) {
             for (String filename : filenames) {
                 Path path = Paths.get(srcpath, filename);
-                if (path.toFile().exists()) {
-                    paths.add(path.toString());
+                if (path.toFile().isFile()) {
+                    names.add(path.toString());
+                } else if (path.toFile().isDirectory()) {
+                    try (Stream<Path> children = Files.list(path)) {
+                        children.filter(child -> child.toFile().isFile())
+                                .forEach(child -> names.add(child.toString()));
+                    } catch (Exception e) { /* empty */ }
                 }
             }
         }
-        return paths;
+        return names;
     }
     
     @Override

@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.HashSet;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import org.eclipse.jdt.core.JavaCore;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -38,24 +39,26 @@ class EclipseEnv extends ProjectEnv {
     @Override
     boolean isApplicable() {
         try {
-            Path config = basePath.resolve(Paths.get(EclipseEnv.configName));
-            if (config.toFile().exists()) {
-                setPaths(config.toString());
+            if (configFile != null && configFile.toFile().exists()) {
+                setConfigParameters(configFile);
                 return true;
             }
         } catch (Exception e) { /* empty */ }
         return false;
     }
     
-    private void setPaths(String configFile) throws Exception {
+    private void setConfigParameters(Path configPath) throws Exception {
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         ConfigParser parser = new ConfigParser();
         SAXParser saxParser = saxParserFactory.newSAXParser();
-        saxParser.parse(configFile, parser);
+        saxParser.parse(configPath.toString(), parser);
         
         sourcePaths = parser.srcpaths;
         binaryPaths = parser.binpaths;
         classPaths = parser.classpaths;
+        
+        compilerSourceVersion = JavaCore.VERSION_11;
+        compilerTargetVersion = JavaCore.VERSION_11;
     }
     
     private class ConfigParser extends DefaultHandler {

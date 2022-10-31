@@ -36,6 +36,7 @@ class SimpleEnv extends ProjectEnv {
         sourcePaths.add(basePath.toString());
         binaryPaths.add(basePath.resolve("bin").toString());
         classPaths.add(basePath.resolve("lib").toString());
+        classPaths.add(basePath.resolve("lib-copied").toString());
     }
     
     @Override

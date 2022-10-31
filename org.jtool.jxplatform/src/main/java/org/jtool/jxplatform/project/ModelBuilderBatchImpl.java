@@ -92,9 +92,11 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     }
     
     private ProjectEnv createTopProjectEnv(String name, String target) {
+        logger.printMessage("Checking development environment for " + target);
         ProjectEnv env = createProjectEnv(name, target, null);
         try {
             env.setUpTopProject();
+            logger.printMessage("Found config file: " + env.getConfigFile());
         } catch (Exception e) {
             logger.printError("Fail to collect dependent files.");
         }
@@ -149,6 +151,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         String[] binpath = getPath(projectEnv.getBinaryPaths());
         JavaProject jproject = createProject(projectEnv.getName(), projectEnv.getBasePath(),
                 classpath, srcpath, binpath);
+        jproject.setCompilerVersions(projectEnv.getCompilerSourceVersion(), projectEnv.getCompilerTargetVersion());
         
         run(jproject, projectEnv.getExcludedSourceFiles());
         
@@ -346,7 +349,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         
         logger.printMessage("Target = " + jproject.getPath() + " (" + jproject.getName() + ")");
         logger.printMessage("** Ready to parse " + size + " files");
-        ASTParser parser = getParser();
+        ASTParser parser = getParser(jproject);
         
         parser.setEnvironment(jproject.getClassPath(), null, null, true);
         parser.createASTs(paths, encodings, new String[]{ }, requestor, null);
