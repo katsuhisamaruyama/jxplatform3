@@ -347,10 +347,10 @@ class MavenEnv extends ProjectEnv {
         Invoker invoker = new DefaultInvoker();
         invoker.setMavenHome(Paths.get(userHome).toFile());
         invoker.setMavenExecutable(mvnCommandFile);
-        //invoker.setOutputHandler(msg -> System.out.println(msg));
-        invoker.setOutputHandler(null);
-        invoker.setErrorHandler(null);
-        invoker.setInputStream(InputStream.nullInputStream());
+        //request.setOutputHandler(msg -> System.out.println(msg));
+        request.setOutputHandler(null);
+        request.setErrorHandler(null);
+        request.setInputStream(InputStream.nullInputStream());
         invoker.execute(request);
     }
     
