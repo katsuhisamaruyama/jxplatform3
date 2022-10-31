@@ -107,7 +107,10 @@ public class TypeCollector extends ASTVisitor {
     @Override
     public boolean visit(SimpleType node) {
         ITypeBinding tbinding = node.resolveBinding();
-        if (tbinding != null && !tbinding.isTypeVariable()) {
+        if (tbinding != null &&
+                !tbinding.isTypeVariable() &&
+                !JavaElementUtil.isPrimitiveType(tbinding.toString()) &&
+                !isArrayType(tbinding.toString())) {
             JavaClass jc = JavaElementUtil.findDeclaringClass(tbinding, jproject);
             if (jc != null) {
                 types.add(jc);
@@ -117,6 +120,10 @@ public class TypeCollector extends ASTVisitor {
             }
         }
         return false;
+    }
+    
+    private boolean isArrayType(String type) {
+        return type.endsWith("[]");
     }
     
     @Override
