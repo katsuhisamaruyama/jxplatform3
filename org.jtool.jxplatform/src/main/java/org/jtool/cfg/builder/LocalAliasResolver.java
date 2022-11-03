@@ -315,7 +315,7 @@ class LocalAliasResolver {
         if (name.equals(name1)) {
             return name.replace(name1, name2);
         } else if (name.indexOf("." + name1 + ".") != -1) {
-            return name.replaceAll("." + name1 + ".", "." + name2 + ".");
+            return name.replace("." + name1 + ".", "." + name2 + ".");
         } else if (name.startsWith(name1 + ".")) {
             return name.replace(name1 + ".", name2 + ".");
         } else if (name.endsWith("." + name1)) {

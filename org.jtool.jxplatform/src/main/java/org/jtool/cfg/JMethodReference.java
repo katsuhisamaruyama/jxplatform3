@@ -87,7 +87,7 @@ public class JMethodReference extends JReference {
     /**
      * The collection of the approximated types of a receiver associated to this node.
      */
-    private Set<JClass> approximatedTypes;
+    private Set<JClass> approximatedTypes = new HashSet<>();
     
     /**
      * The collection of type parameter names.

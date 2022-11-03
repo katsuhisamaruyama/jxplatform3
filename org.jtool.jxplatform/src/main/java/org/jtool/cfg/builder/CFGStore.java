@@ -35,6 +35,7 @@ public class CFGStore {
     
     public CFGStore() {
         CFGNode.resetId();
+        Resolver.initialize();
     }
     
     public void resetId() {
