@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.stream.Collectors;
-import java.io.File;
 
 /**
  * An object representing a project that contains source files to be analyzed.
@@ -42,6 +41,11 @@ public class JavaProject {
      * The absolute path string that indicates the root directory of this project in the file system.
      */
     protected String path;
+    
+    /**
+     * The absolute path string that indicates the root directory of the top project enclosing this project in the file system.
+     */
+    protected String topPath;
     
     /**
      * The map paths and source files corresponding to the paths.
@@ -107,9 +111,10 @@ public class JavaProject {
      * Creates a project that stores source files and their related information.
      * @param name the name of this project
      * @param path the absolute path that indicates the root directory of this project in the file system
+     * @param topPath the absolute path string that indicates the root directory of the top project enclosing this project
      */
-    public JavaProject(String name, String path) {
-        this(name, path, path);
+    public JavaProject(String name, String path, String topPath) {
+        this(name, path, path, topPath);
     }
     
     /**
@@ -117,8 +122,9 @@ public class JavaProject {
      * @param name the name of this project
      * @param wpath the absolute path that indicates the root directory of this project relative to the workspace
      * @param path the absolute path that indicates the root directory of this project in the file system
+     * @param topPath the absolute path string that indicates the root directory of the top project enclosing this project
      */
-    public JavaProject(String name, String wpath, String path) {
+    public JavaProject(String name, String wpath, String path, String topPath) {
         assert name != null;
         assert wpath != null;
         assert path != null;
@@ -126,6 +132,7 @@ public class JavaProject {
         this.name = name;
         this.pathInWorkspace = wpath;
         this.path = path;
+        this.topPath = topPath;
         
         cfgStore = new CFGStore();
         pdgStore = new PDGStore(cfgStore);
@@ -214,6 +221,14 @@ public class JavaProject {
      */
     public String getPath() {
         return path;
+    }
+    
+    /**
+     * Returns the path string that indicates the root directory of the top project enclosing this project in the file system.
+     * @return the absolute path of the top project
+     */
+    public String getTopPath() {
+        return topPath;
     }
     
     /**
@@ -557,38 +572,6 @@ public class JavaProject {
      */
     public PDGStore getPDGStore() {
         return pdgStore;
-    }
-    
-    /**
-     * Makes the directory having a given name.
-     * @param name the directory name relative to the project path
-     * @return {@code true} if the directory are newly made, otherwise {@code false}
-     */
-    public boolean makeDir(String name) {
-        String dirname = path + File.separator + name;
-        File dir = new File(dirname);
-        if (!dir.isDirectory()) {
-            dir.mkdirs();
-            return true;
-        }
-        return false;
-    }
-    
-    /**
-     * Removes the directory and files stored in the directory.
-     * @param name the directory name relative to the project path
-     */
-    public void removeDir(String name) {
-        String dirname = path + File.separator + name;
-        File dir = new File(dirname);
-        if (dir.isDirectory()) {
-            String[] names = dir.list();
-            for (int i = 0; i < names.length; i++) {
-                File f = new File(dir.getPath() + File.separator + names[i]);
-                f.delete();
-            }
-        }
-        dir.delete();
     }
     
     /**

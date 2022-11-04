@@ -22,7 +22,7 @@ public class GradleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new GradleEnv(name, basePath);
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(name, env.getName());
@@ -34,10 +34,22 @@ public class GradleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new GradleEnv(name, basePath);
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(target, env.getBasePath().toString());
+    }
+    
+    @Test
+    public void testGetTopPath() {
+        String name = "mockito-4.2.0";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals(target, env.getTopPath().toString());
     }
     
     @Test
@@ -46,7 +58,7 @@ public class GradleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new GradleEnv(name, basePath);
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(target + "/build.gradle", env.configFile.toString());
@@ -58,7 +70,7 @@ public class GradleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new GradleEnv(name, basePath);
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getModules().size());
@@ -70,7 +82,7 @@ public class GradleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new GradleEnv(name, basePath);
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
@@ -85,7 +97,7 @@ public class GradleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new GradleEnv(name, basePath);
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
@@ -100,7 +112,7 @@ public class GradleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new GradleEnv(name, basePath);
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
@@ -115,7 +127,7 @@ public class GradleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new GradleEnv(name, basePath);
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getIncludedSourceFiles().size());
@@ -127,7 +139,7 @@ public class GradleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new GradleEnv(name, basePath);
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getExcludedSourceFiles().size());

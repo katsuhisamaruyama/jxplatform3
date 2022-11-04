@@ -22,7 +22,7 @@ public class AntEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new AntEnv(name, basePath);
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(name, env.getName());
@@ -34,10 +34,22 @@ public class AntEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new AntEnv(name, basePath);
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(target, env.getBasePath().toString());
+    }
+    
+    @Test
+    public void testGetTopPath() {
+        String name = "ant-1.10.12";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals(target, env.getTopPath().toString());
     }
     
     @Test
@@ -46,7 +58,7 @@ public class AntEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new AntEnv(name, basePath);
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(target + "/build.xml", env.configFile.toString());
@@ -58,7 +70,7 @@ public class AntEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new AntEnv(name, basePath);
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getModules().size());
@@ -70,7 +82,7 @@ public class AntEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new AntEnv(name, basePath);
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
@@ -85,7 +97,7 @@ public class AntEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new AntEnv(name, basePath);
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
@@ -99,7 +111,7 @@ public class AntEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new AntEnv(name, basePath);
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
@@ -114,7 +126,7 @@ public class AntEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new AntEnv(name, basePath);
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getIncludedSourceFiles().size());
@@ -126,7 +138,7 @@ public class AntEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new AntEnv(name, basePath);
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getExcludedSourceFiles().size());

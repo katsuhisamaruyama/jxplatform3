@@ -26,14 +26,14 @@ class EclipseEnv extends ProjectEnv {
     
     private final static String configName = ".classpath";
     
-    EclipseEnv(String name, Path basePath) {
-        super(name, basePath);
+    EclipseEnv(String name, Path basePath, Path topPath) {
+        super(name, basePath, topPath);
         configFile = basePath.resolve(Paths.get(EclipseEnv.configName));
     }
     
     @Override
-    ProjectEnv createProjectEnv(String name, Path basePath) {
-        return new EclipseEnv(name, basePath);
+    ProjectEnv createProjectEnv(String name, Path basePath, Path topPath) {
+        return new EclipseEnv(name, basePath, topPath);
     }
     
     @Override

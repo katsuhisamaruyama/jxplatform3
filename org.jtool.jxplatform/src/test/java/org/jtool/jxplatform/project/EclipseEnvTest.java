@@ -22,7 +22,7 @@ public class EclipseEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new EclipseEnv(name, basePath);
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(name, env.getName());
@@ -34,10 +34,22 @@ public class EclipseEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new EclipseEnv(name, basePath);
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(target, env.getBasePath().toString());
+    }
+    
+    @Test
+    public void testGetTopPath() {
+        String name = "DrawTool";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals(target, env.getTopPath().toString());
     }
     
     @Test
@@ -46,7 +58,7 @@ public class EclipseEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new EclipseEnv(name, basePath);
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(target + "/.classpath", env.configFile.toString());
@@ -58,7 +70,7 @@ public class EclipseEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new EclipseEnv(name, basePath);
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getModules().size());
@@ -70,7 +82,7 @@ public class EclipseEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new EclipseEnv(name, basePath);
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
@@ -84,7 +96,7 @@ public class EclipseEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new EclipseEnv(name, basePath);
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
@@ -98,7 +110,7 @@ public class EclipseEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new EclipseEnv(name, basePath);
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
@@ -112,7 +124,7 @@ public class EclipseEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new EclipseEnv(name, basePath);
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getIncludedSourceFiles().size());
@@ -124,7 +136,7 @@ public class EclipseEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new EclipseEnv(name, basePath);
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getExcludedSourceFiles().size());

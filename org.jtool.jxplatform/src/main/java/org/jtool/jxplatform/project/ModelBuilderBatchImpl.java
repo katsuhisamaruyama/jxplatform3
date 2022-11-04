@@ -50,17 +50,17 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     }
     
     public List<JavaProject> build(String name, String target) {
-        ProjectEnv projectEnv = createTopProjectEnv(name, target);
+        ProjectEnv topProjectEnv = createTopProjectEnv(name, target);
         
-        List<ProjectEnv> projectEnvs = getSubProjects(projectEnv);
+        List<ProjectEnv> projectEnvs = getSubProjects(topProjectEnv, topProjectEnv);
         if (projectEnvs.size() > 0) {
-            return buildMultiTargets(projectEnvs);
+            return buildMultiTargets(projectEnvs, topProjectEnv);
         } else {
-            return buildSingleTarget(projectEnv);
+            return buildSingleTarget(topProjectEnv);
         }
     }
     
-    private List<ProjectEnv> getSubProjects(ProjectEnv projectEnv) {
+    private List<ProjectEnv> getSubProjects(ProjectEnv projectEnv, ProjectEnv topProjectEnv) {
         List<ProjectEnv> projectEnvs = new ArrayList<>();
         
         List<String> modules = projectEnv.getModules();
@@ -76,14 +76,14 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                 if (dir.isDirectory()) {
                     String path = dir.getAbsolutePath();
                     String subprojectname = projectEnv.getName() + "#" + module;
-                    ProjectEnv env = createProjectEnv(subprojectname, path, projectEnv);
+                    ProjectEnv env = createProjectEnv(subprojectname, path, projectEnv, topProjectEnv);
                     
                     if (env.isProject()) {
                         if (ModelBuilderBatchImpl.containJavaFile(env.getSourcePaths())) {
                             projectEnvs.add(env);
                         }
                     } else {
-                        projectEnvs.addAll(getSubProjects(env));
+                        projectEnvs.addAll(getSubProjects(env, topProjectEnv));
                     }
                 }
             }
@@ -93,7 +93,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     
     private ProjectEnv createTopProjectEnv(String name, String target) {
         logger.printMessage("Checking development environment for " + target);
-        ProjectEnv env = createProjectEnv(name, target, null);
+        ProjectEnv env = createProjectEnv(name, target, null, null);
         try {
             env.setUpTopProject();
             logger.printMessage("Found config file: " + env.getConfigFile());
@@ -103,13 +103,17 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         return env;
     }
     
-    private ProjectEnv createProjectEnv(String name, String target, ProjectEnv parent) {
+    private ProjectEnv createProjectEnv(String name, String target, ProjectEnv parent, ProjectEnv topProjectEnv) {
         String cdir = new File(".").getAbsoluteFile().getParent();
         Path basePath = Paths.get(getFullPath(target, cdir));
-        return ProjectEnv.getProjectEnv(name, basePath, parent);
+        if (topProjectEnv == null) {
+            return ProjectEnv.getProjectEnv(name, basePath, basePath, parent);
+        } else {
+            return ProjectEnv.getProjectEnv(name, basePath, topProjectEnv.getBasePath(), parent);
+        }
     }
     
-    private List<JavaProject> buildMultiTargets(List<ProjectEnv> projectEnvs) {
+    private List<JavaProject> buildMultiTargets(List<ProjectEnv> projectEnvs, ProjectEnv topProjectEnv) {
         List<JavaProject> projects = new ArrayList<>();
         for (ProjectEnv env : projectEnvs) {
             logger.printMessage("Checking sub-project " + env.getName());
@@ -122,11 +126,11 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         return projects;
     }
     
-    private List<JavaProject> buildSingleTarget(ProjectEnv projectEnv) {
+    private List<JavaProject> buildSingleTarget(ProjectEnv topProjectEnv) {
         List<JavaProject> projects = new ArrayList<>();
-        logger.printMessage("Checking project " + projectEnv.getName());
+        logger.printMessage("Checking project " + topProjectEnv.getName());
         
-        JavaProject jproject = buildTarget(projectEnv);
+        JavaProject jproject = buildTarget(topProjectEnv);
         if (jproject != null) {
             projects.add(jproject);
         }
@@ -149,7 +153,8 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         String[] classpath = getClassPath(projectEnv.getClassPaths());
         String[] srcpath = getPath(projectEnv.getSourcePaths());
         String[] binpath = getPath(projectEnv.getBinaryPaths());
-        JavaProject jproject = createProject(projectEnv.getName(), projectEnv.getBasePath(),
+        JavaProject jproject = createProject(projectEnv.getName(),
+                projectEnv.getBasePath(), projectEnv.getTopPath(),
                 classpath, srcpath, binpath);
         jproject.setCompilerVersions(projectEnv.getCompilerSourceVersion(), projectEnv.getCompilerTargetVersion());
         
@@ -179,7 +184,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         String[] classpaths = getClassPath(classpath);
         String[] srcpaths = getPath(srcpath, basePath, "src");
         String[] binpaths = getPath(srcpath, basePath, "bin");
-        return build(name, basePath, classpaths, srcpaths, binpaths);
+        return build(name, basePath, basePath, classpaths, srcpaths, binpaths);
     }
     
     public JavaProject build(String name, String target, String classpath, String srcpath, String binpath) {
@@ -191,18 +196,19 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     public JavaProject build(String name, String target, String[] classpath, String[] srcpath, String[] binpath) {
         String cdir = new File(".").getAbsoluteFile().getParent();
         Path basePath = Paths.get(getFullPath(target, cdir));
-        return build(name, basePath, classpath, srcpath, binpath);
+        return build(name, basePath, basePath, classpath, srcpath, binpath);
     }
     
-    public JavaProject build(String name, Path basePath, String[] classpath, String[] srcpath, String[] binpath) {
-        JavaProject jproject = createProject(name, basePath, classpath, srcpath, binpath);
+    public JavaProject build(String name, Path basePath, Path topPath, String[] classpath, String[] srcpath, String[] binpath) {
+        JavaProject jproject = createProject(name, basePath, topPath, classpath, srcpath, binpath);
         run(jproject);
         logger.writeLog();
         return jproject;
     }
     
-    public JavaProject createProject(String name, Path basePath, String[] classpath, String[] srcpath, String[] binpath) {
-        JavaProject jproject = new JavaProject(name, basePath.toString());
+    public JavaProject createProject(String name, Path basePath, Path topPath,
+            String[] classpath, String[] srcpath, String[] binpath) {
+        JavaProject jproject = new JavaProject(name, basePath.toString(), topPath.toString());
         jproject.setModelBuilderImpl(this);
         jproject.setClassPath(getClassPath(classpath));
         jproject.setSourceBinaryPaths(srcpath, binpath);

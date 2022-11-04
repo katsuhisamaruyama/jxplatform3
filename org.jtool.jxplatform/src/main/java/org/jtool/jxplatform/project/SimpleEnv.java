@@ -14,16 +14,16 @@ import java.nio.file.Path;
  */
 class SimpleEnv extends ProjectEnv {
     
-    SimpleEnv(String name, Path basePath) {
-        super(name, basePath);
+    SimpleEnv(String name, Path basePath, Path topPath) {
+        super(name, basePath, topPath);
         configFile = null;
         
         setPaths();
     }
     
     @Override
-    ProjectEnv createProjectEnv(String name, Path basePath) {
-        return new SimpleEnv(name, basePath);
+    ProjectEnv createProjectEnv(String name, Path basePath, Path topPath) {
+        return new SimpleEnv(name, basePath, topPath);
     }
     
     @Override

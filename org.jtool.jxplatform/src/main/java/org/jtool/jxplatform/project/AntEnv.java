@@ -25,14 +25,14 @@ class AntEnv extends ProjectEnv {
     
     private final static String configName = "build.xml";
     
-    AntEnv(String name, Path basePath) {
-        super(name, basePath);
+    AntEnv(String name, Path basePath, Path topPath) {
+        super(name, basePath, topPath);
         configFile = basePath.resolve(Paths.get(AntEnv.configName));
     }
     
     @Override
-    ProjectEnv createProjectEnv(String name, Path basePath) {
-        return new AntEnv(name, basePath);
+    ProjectEnv createProjectEnv(String name, Path basePath, Path topPath) {
+        return new AntEnv(name, basePath, topPath);
     }
     
     @Override

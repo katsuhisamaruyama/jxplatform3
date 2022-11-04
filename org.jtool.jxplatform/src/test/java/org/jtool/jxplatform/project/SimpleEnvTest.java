@@ -22,7 +22,7 @@ public class SimpleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new SimpleEnv(name, basePath);
+        ProjectEnv env = new SimpleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(name, env.getName());
@@ -34,10 +34,22 @@ public class SimpleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new SimpleEnv(name, basePath);
+        ProjectEnv env = new SimpleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(target, env.getBasePath().toString());
+    }
+    
+    @Test
+    public void testGetTopPath() {
+        String name = "Simple";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new SimpleEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals(target, env.getTopPath().toString());
     }
     
     @Test
@@ -46,7 +58,7 @@ public class SimpleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new SimpleEnv(name, basePath);
+        ProjectEnv env = new SimpleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(null, env.configFile);
@@ -58,7 +70,7 @@ public class SimpleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new SimpleEnv(name, basePath);
+        ProjectEnv env = new SimpleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getModules().size());
@@ -70,7 +82,7 @@ public class SimpleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new SimpleEnv(name, basePath);
+        ProjectEnv env = new SimpleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
@@ -85,7 +97,7 @@ public class SimpleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new SimpleEnv(name, basePath);
+        ProjectEnv env = new SimpleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
@@ -99,7 +111,7 @@ public class SimpleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new SimpleEnv(name, basePath);
+        ProjectEnv env = new SimpleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
@@ -113,7 +125,7 @@ public class SimpleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new EclipseEnv(name, basePath);
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getIncludedSourceFiles().size());
@@ -125,7 +137,7 @@ public class SimpleEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = new SimpleEnv(name, basePath);
+        ProjectEnv env = new SimpleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getExcludedSourceFiles().size());

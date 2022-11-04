@@ -30,6 +30,7 @@ abstract class ProjectEnv {
     
     protected String name;
     protected Path basePath;
+    protected Path topPath;
     protected Path libPath;
     protected Path configFile;
     
@@ -45,38 +46,38 @@ abstract class ProjectEnv {
     protected String compilerSourceVersion;
     protected String compilerTargetVersion;
     
-    ProjectEnv(String name, Path basePath) {
+    ProjectEnv(String name, Path basePath, Path topPath) {
         this.name = name;
         this.basePath = basePath;
-        
+        this.topPath = topPath;
         this.libPath = basePath.resolve(COPIED_CLASSPATH);
         this.configFile = null;
         this.modules = new ArrayList<>();
     }
     
-    static ProjectEnv getProjectEnv(String name, Path basePath, ProjectEnv parent) {
+    static ProjectEnv getProjectEnv(String name, Path basePath, Path topPath, ProjectEnv parent) {
         if (parent != null) {
-            ProjectEnv env = parent.createProjectEnv(name, basePath);
+            ProjectEnv env = parent.createProjectEnv(name, basePath, topPath);
             if (env.isApplicable()) {
                 return env;
             }
         }
         
         List<ProjectEnv> envs = new ArrayList<ProjectEnv>();
-        envs.add(new MavenEnv(name, basePath));
-        envs.add(new AntEnv(name, basePath));
-        envs.add(new GradleEnv(name, basePath));
-        envs.add(new EclipseEnv(name, basePath));
+        envs.add(new MavenEnv(name, basePath, topPath));
+        envs.add(new AntEnv(name, basePath, topPath));
+        envs.add(new GradleEnv(name, basePath, topPath));
+        envs.add(new EclipseEnv(name, basePath, topPath));
         
         for (ProjectEnv env : envs) {
             if (env.isApplicable()) {
                 return env;
             }
         }
-        return new SimpleEnv(name, basePath);
+        return new SimpleEnv(name, basePath, topPath);
     }
     
-    abstract ProjectEnv createProjectEnv(String name, Path basePath);
+    abstract ProjectEnv createProjectEnv(String name, Path basePath, Path topPath);
     
     boolean isApplicable() {
         return false;
@@ -92,6 +93,10 @@ abstract class ProjectEnv {
     
     Path getBasePath() {
         return basePath;
+    }
+    
+    Path getTopPath() {
+        return topPath;
     }
     
     Path getConfigFile() {

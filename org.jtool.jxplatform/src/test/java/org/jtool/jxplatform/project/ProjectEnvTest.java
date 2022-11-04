@@ -19,7 +19,7 @@ public class ProjectEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null);
+        ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null, null);
         
         assertTrue(env.toString().startsWith("Simple "));
     }
@@ -30,7 +30,7 @@ public class ProjectEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null);
+        ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null, null);
         
         assertTrue(env.toString().startsWith("Eclipse "));
     }
@@ -41,7 +41,7 @@ public class ProjectEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null);
+        ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null, null);
         
         assertTrue(env.toString().startsWith("Ant "));
     }
@@ -52,12 +52,12 @@ public class ProjectEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null);
+        ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null, null);
         
         assertTrue(env.toString().startsWith("Maven "));
         
         Path subBasePath = basePath.resolve("guava");
-        ProjectEnv subEnv = ProjectEnv.getProjectEnv(env.getModules().get(0), subBasePath, env);
+        ProjectEnv subEnv = ProjectEnv.getProjectEnv(env.getModules().get(0), subBasePath, env.getBasePath(), env);
         
         assertTrue(subEnv.toString().startsWith("Maven "));
     }
@@ -68,7 +68,7 @@ public class ProjectEnvTest {
         String target = BuilderTestUtil.getTarget(name);
         Path basePath = Paths.get(target);
         
-        ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null);
+        ProjectEnv env = ProjectEnv.getProjectEnv(name, basePath, null, null);
         
         assertTrue(env.toString().startsWith("Gradle "));
     }

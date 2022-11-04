@@ -41,14 +41,14 @@ class MavenEnv extends ProjectEnv {
     
     private static String mvnCommand = findCommandPath("mvn", "-v");
     
-    MavenEnv(String name, Path basePath) {
-        super(name, basePath);
+    MavenEnv(String name, Path basePath, Path topPath) {
+        super(name, basePath, topPath);
         configFile = basePath.resolve(Paths.get(MavenEnv.configName));
     }
     
     @Override
-    ProjectEnv createProjectEnv(String name, Path basePath) {
-        return new MavenEnv(name, basePath);
+    ProjectEnv createProjectEnv(String name, Path basePath, Path topPath) {
+        return new MavenEnv(name, basePath, topPath);
     }
     
     @Override

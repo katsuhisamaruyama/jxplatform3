@@ -41,14 +41,14 @@ class GradleEnv extends ProjectEnv {
     
     private static String addedTaskName = "copyDependenciesForJxplatform";
     
-    GradleEnv(String name, Path basePath) {
-        super(name, basePath);
+    GradleEnv(String name, Path basePath, Path topPath) {
+        super(name, basePath, topPath);
         configFile = basePath.resolve(Paths.get(GradleEnv.configName));
     }
     
     @Override
-    ProjectEnv createProjectEnv(String name, Path basePath) {
-        return new GradleEnv(name, basePath);
+    ProjectEnv createProjectEnv(String name, Path basePath, Path topPath) {
+        return new GradleEnv(name, basePath, topPath);
     }
     
     @Override
