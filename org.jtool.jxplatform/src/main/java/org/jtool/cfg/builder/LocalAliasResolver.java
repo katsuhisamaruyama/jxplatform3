@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Stack;
 import java.util.Collection;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -246,22 +247,29 @@ class LocalAliasResolver {
     }
     
     private void createAliasMap(CFGNode node, Alias alias, Set<CFGNode> track) {
-        track.add(node);
+        Stack<CFGNode> stack = new Stack<>();
+        stack.push(node);
         
-        for (ControlFlow edge : node.getOutgoingFlows()) {
-            CFGNode succ = edge.getDstNode();
-            if (succ.isStatement()) {
-                CFGStatement stNode = (CFGStatement)succ;
-                if (stNode.isActualOut()) {
-                    registerAlias(stNode, alias);
-                } else if (define(stNode, alias.lefthand) || define(stNode, alias.righthand)) {
-                    return;
-                } else {
-                    registerAlias(stNode, alias);
+        while (!stack.isEmpty()) {
+            CFGNode top = stack.pop();
+            
+            track.add(top);
+            
+            for (ControlFlow edge : top.getOutgoingFlows()) {
+                CFGNode succ = edge.getDstNode();
+                if (succ.isStatement()) {
+                    CFGStatement stNode = (CFGStatement)succ;
+                    if (stNode.isActualOut()) {
+                        registerAlias(stNode, alias);
+                    } else if (define(stNode, alias.lefthand) || define(stNode, alias.righthand)) {
+                        return;
+                    } else {
+                        registerAlias(stNode, alias);
+                    }
                 }
-            } 
-            if (!track.contains(succ)) {
-                createAliasMap(succ, alias, track);
+                if (!track.contains(succ)) {
+                    stack.push(succ);
+                }
             }
         }
     }
