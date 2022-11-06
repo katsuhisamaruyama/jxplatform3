@@ -49,12 +49,12 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     protected Set<String> methods = new HashSet<>();
     protected Set<String> fields = new HashSet<>();
     
-    protected List<String> superClassChain;
-    protected List<String> ancestors;
-    protected List<String> descendants;
+    protected List<String> superClassChain = null;
+    protected List<String> ancestors = null;;
+    protected List<String> descendants = null;
     
-    private List<BytecodeClass> superClassChainCache;
-    private List<BytecodeClass> ancestorsCache;
+    private List<BytecodeClass> superClassChainCache = null;
+    private List<BytecodeClass> ancestorsCache = null;
     private List<BytecodeClass> descendantsCache = new ArrayList<>();
     
     protected final static String ElementSeparator = ";";
@@ -78,6 +78,16 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     JClass createCacheClass(BytecodeClassStore bcStore) {
         JClass clazz = new JClassCache(this, bcStore);
         return clazz;
+    }
+    
+    void update() {
+        superClassChain = null;
+        ancestors = null;
+        descendants = null;
+        
+        superClassChainCache = null;
+        ancestorsCache = null;
+        descendantsCache = new ArrayList<>();
     }
     
     String getCacheName() {

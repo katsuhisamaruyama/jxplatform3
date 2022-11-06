@@ -461,10 +461,12 @@ public class BytecodeClassStore {
         analysisLevel = 3;
         
         if (!bootModuleResistered) {
+            bootModuleBytecodeClassMap.values().forEach(bclass -> bclass.update());
             bootModuleBytecodeClassMap.values().forEach(bclass -> bclass.findClassHierarchy());
             bootModuleBytecodeClassMap.values().forEach(bclass -> bclass.setClassHierarchy());
         }
         
+        bytecodeClassMap.values().forEach(bclass -> bclass.update());
         bytecodeClassMap.values().forEach(bclass -> bclass.findClassHierarchy());
         bytecodeClassMap.values().forEach(bclass -> bclass.setClassHierarchy());
         
