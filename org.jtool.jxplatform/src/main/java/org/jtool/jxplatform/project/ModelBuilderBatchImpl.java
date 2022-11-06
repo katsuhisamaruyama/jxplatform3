@@ -82,9 +82,8 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                         if (ModelBuilderBatchImpl.containJavaFile(env.getSourcePaths())) {
                             projectEnvs.add(env);
                         }
-                    } else {
-                        projectEnvs.addAll(getSubProjects(env, topProjectEnv));
                     }
+                    projectEnvs.addAll(getSubProjects(env, topProjectEnv));
                 }
             }
         }
