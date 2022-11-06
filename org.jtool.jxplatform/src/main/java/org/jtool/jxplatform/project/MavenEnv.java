@@ -172,23 +172,26 @@ class MavenEnv extends ProjectEnv {
             }
         }
         
+        String generatedSourceDirectoryCandidates[] = { "generated-sources", "generated" };
+        String generatedTestSourceDirectoryCandidates[] = { "generated-test-sources", "generated" };
+        
         if (buildDirectory == null) {
             buildDirectory = basePath.resolve("target").toString();
         }
         Path buildPath = Paths.get(buildDirectory);
         
-        String generatedSourceDirectoryCandidates[] = { "generated-sources", "generated" };
-        String generatedSourceDirectory = getGeneratedSourceDirectory(buildPath,
+        List<String> generatedSourceDirectories = getGeneratedSourceDirectories(buildPath,
                 generatedSourceDirectoryCandidates);
-        if (generatedSourceDirectory != null) {
-            sourcePaths.add(generatedSourceDirectory);
-        }
-        
-        String generatedTestSourceDirectoryCandidates[] = { "generated-test-sources", "generated" };
-        String generatedTestSourceDirectory = getGeneratedSourceDirectory(buildPath,
+        sourcePaths.addAll(generatedSourceDirectories);
+        List<String> generatedTestSourceDirectories = getGeneratedSourceDirectories(buildPath,
                 generatedTestSourceDirectoryCandidates);
-        if (generatedTestSourceDirectory != null) {
-            sourcePaths.add(generatedTestSourceDirectory);
+        sourcePaths.addAll(generatedTestSourceDirectories);
+        
+        Path srcPath = basePath.resolve("src");
+        if (srcPath != null) {
+            List<String> generatedDirectories = getGeneratedSourceDirectories(srcPath,
+                    generatedSourceDirectoryCandidates);
+            sourcePaths.addAll(generatedDirectories);
         }
         
         String outputDirectory = null;
@@ -236,7 +239,6 @@ class MavenEnv extends ProjectEnv {
         Set<String> excludes = new HashSet<>();
         configurations.forEach(dom -> collectFileNames(dom, excludes, "exclude", "testExclude"));
         excludedSourceFiles = collectFileNames(excludes);
-        //excludedSourceFiles.forEach(p -> System.err.println("Ex = " + p));
     }
     
     private String getSourceDirectory(String dir, String[][] names) {
@@ -256,15 +258,16 @@ class MavenEnv extends ProjectEnv {
         return null;
     }
     
-    private String getGeneratedSourceDirectory(Path buildPath, String names[]) {
+    private List<String> getGeneratedSourceDirectories(Path buildPath, String names[]) {
+        List<String> paths = new ArrayList<>();
         for (int index = 0; index < names.length; index++) {
             Path path = buildPath.resolve(names[index]);
             String resolvedPath = toAbsolutePath(path.toString());
             if (new File(resolvedPath).exists()) {
-                return resolvedPath;
+                paths.add(resolvedPath);
             }
         }
-        return null;
+        return paths;
     }
     
     private void collectFileNames(Xpp3Dom dom, Set<String> filenames, String qname, String testqname) {
