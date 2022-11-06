@@ -87,6 +87,16 @@ public class BytecodeClassStore {
     }
     
     public void destroy() {
+        jproject = null;
+        classPool = null;
+        cacheNames.clear();
+        
+        bytecodeClassMap.values().forEach(c -> c.destroy());
+        bytecodeClassMap.clear();
+        internalClassMap.values().forEach(c -> c.destroy());
+        internalClassMap.clear();
+        externalClassMap.values().forEach(c -> c.destroy());
+        externalClassMap.clear();
     }
     
     public void update() {
@@ -430,7 +440,7 @@ public class BytecodeClassStore {
         Set<BytecodeName> names = getBytecodeNamesToBeLoaded();
         if (names.size() > 0) {
             
-            logger.printMessage("** Ready to build java models of " + names.size() + " bytecode-classes");
+            logger.printMessage("** Ready to parse " + names.size() + " bytecode-classes used in " + jproject.getName());
             pm.begin(names.size());
             for (BytecodeName bytecodeName : names) {
                 try {
@@ -480,7 +490,7 @@ public class BytecodeClassStore {
         }
         bclasses.addAll(bytecodeClassMap.values());
         
-        logger.printMessage("** Ready to collect information on java models of " +
+        logger.printMessage("** Ready to collect information on " +
                                 bclasses.size() + " non-private bytecode-classes");
         pm.begin(bclasses.size());
         for (BytecodeClass bclass : bclasses) {

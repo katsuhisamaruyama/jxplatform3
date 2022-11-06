@@ -39,10 +39,15 @@ public class PDGStore {
         this.cfgStore = cfgStore;
     }
     
+    public void freeze() {
+        cfgStore.freeze();
+    }
+    
     public void destroy() {
         bpdgMap.clear();
         pdgMap.clear();
         cldgMap.clear();
+        cfgStore.destroy();
     }
     
     public BarePDG findBarePDG(String fqn) {

@@ -45,6 +45,7 @@ public class ProjectStore {
     }
     
     public void removeProject(String path) {
+        clear(path);
         projectStore.remove(path);
     }
     

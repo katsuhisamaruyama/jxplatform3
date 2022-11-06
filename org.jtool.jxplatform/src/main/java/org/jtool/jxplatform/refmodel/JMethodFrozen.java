@@ -27,6 +27,12 @@ class JMethodFrozen extends JMethod {
     }
     
     @Override
+    protected void destroy() {
+        super.destroy();
+        bclass = null;
+    }
+    
+    @Override
     protected void collectDefUseFieldsInThisMethod() {
         if (!isDefUseCollected) {
             collectDefUseFields();

@@ -22,6 +22,11 @@ abstract public class JField extends JCommon {
         this.declaringClass = declaringClass;
     }
     
+    protected void destroy() {
+        super.destroy();
+        declaringClass = null;
+    }
+    
     public JClass getDeclaringClass() {
         return declaringClass;
     }

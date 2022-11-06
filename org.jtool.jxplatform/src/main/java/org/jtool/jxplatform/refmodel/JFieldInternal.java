@@ -22,6 +22,12 @@ class JFieldInternal extends JField {
         this.jfield = jfield;
     }
     
+    @Override
+    protected void destroy() {
+        super.destroy();
+        jfield = null;
+    }
+    
     public JavaField getJavaField() {
         return jfield;
     }

@@ -44,16 +44,39 @@ public class CFGStore {
     
     public void create(JavaProject jproject) {
         this.jproject = jproject;
-        this.bcStore = new BytecodeClassStore(jproject);
-        bcStore.create();
+        createBCStore();
+    }
+    
+    public void freeze() {
+        bcStore.destroy();
+        bcStore = null;
     }
     
     public void destroy() {
+        cfgs.clear();
+        ucfgs.clear();
+        ccfgs.clear();
         bcStore.destroy();
     }
     
     public BytecodeClassStore getBCStore() {
+        if (bcStore == null) {
+            createBCStore();
+        }
         return bcStore;
+    }
+    
+    private void createBCStore() {
+        this.bcStore = new BytecodeClassStore(jproject);
+        bcStore.create();
+    }
+    
+    private void updateBCStore() {
+        if (bcStore == null) {
+            createBCStore();
+        } else {
+            bcStore.update();
+        }
     }
     
     public int analysisLevel() {
@@ -114,7 +137,7 @@ public class CFGStore {
         }
         
         if (force) {
-            bcStore.update();
+            updateBCStore();
             removeCFGs(jclass);
         }
         
@@ -141,7 +164,7 @@ public class CFGStore {
         }
         
         if (force) {
-            bcStore.update();
+            updateBCStore();
             removeCFGs(jmethod.getDeclaringClass());
         }
         
@@ -168,7 +191,7 @@ public class CFGStore {
         }
         
         if (force) {
-            bcStore.update();
+            updateBCStore();
             removeCFGs(jfield.getDeclaringClass());
         }
         

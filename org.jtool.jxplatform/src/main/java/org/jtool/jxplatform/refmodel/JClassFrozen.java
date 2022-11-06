@@ -29,6 +29,12 @@ class JClassFrozen extends JClass {
     }
     
     @Override
+    protected void destroy() {
+        super.destroy();
+        bclass = null;
+    }
+    
+    @Override
     protected void findSuperClassChain() {
         for (String className : bclass.getSuperClassChain()) {
             JClass clazz = bcStore.getJClass(className);

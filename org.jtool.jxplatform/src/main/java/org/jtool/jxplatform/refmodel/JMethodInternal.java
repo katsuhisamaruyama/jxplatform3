@@ -32,6 +32,13 @@ class JMethodInternal extends JMethod {
     }
     
     @Override
+    protected void destroy() {
+        super.destroy();
+        jmethod = null;
+        cfg = null;
+    }
+    
+    @Override
     protected void collectDefUseFieldsInThisMethod() {
         if (!isDefUseCollected) {
             collectDefUseFields();

@@ -50,7 +50,7 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     protected Set<String> fields = new HashSet<>();
     
     protected List<String> superClassChain = null;
-    protected List<String> ancestors = null;;
+    protected List<String> ancestors = null;
     protected List<String> descendants = null;
     
     private List<BytecodeClass> superClassChainCache = null;
@@ -63,6 +63,33 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         this.cacheName = cacheName;
         this.bootModule = bootModule;
         this.bcStore = bcStore;
+    }
+    
+    protected void destroy() {
+        bcStore = null;
+        
+        superClass = null;
+        superInterfaces.clear();
+        
+        defFieldsCache.clear();
+        useFieldsCache.clear();
+        calledMethodsCache.clear();
+        notSpecialMethods.clear();
+        
+        defFieldsMap.clear();
+        useFieldsMap.clear();
+        calledMethodsMap.clear();
+        
+        methods.clear();
+        fields.clear();
+        
+        superClassChain.clear();
+        ancestors.clear();
+        descendants.clear();
+        
+        superClassChainCache.clear();
+        ancestorsCache.clear();
+        descendantsCache.clear();
     }
     
     boolean isCache() {

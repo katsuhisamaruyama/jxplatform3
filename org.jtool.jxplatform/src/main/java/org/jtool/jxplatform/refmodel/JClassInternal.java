@@ -37,6 +37,12 @@ class JClassInternal extends JClass {
                 .forEach(jf -> this.fields.add(new JFieldInternal(jf, this)));
     }
     
+    @Override
+    protected void destroy() {
+        super.destroy();
+        jclass = null;
+    }
+    
     public JavaClass getJavaClass() {
         return jclass;
     }

@@ -26,6 +26,11 @@ abstract class JCommon {
         this.bcStore = bcStore;
     }
     
+    protected void destroy() {
+        qname = null;
+        bcStore = null;
+    }
+    
     public QualifiedName getQualifiedName() {
         return qname;
     }

@@ -39,6 +39,17 @@ abstract public class JMethod extends JCommon {
         this.declaringClass = declaringClass;
     }
     
+    @Override
+    protected void destroy() {
+        super.destroy();
+        declaringClass = null;
+        defFields.clear();
+        useFields.clear();
+        accessedMethods.clear();
+        allDefFields.clear();
+        allUseFields.clear();
+    }
+    
     public JClass getDeclaringClass() {
         return declaringClass;
     }

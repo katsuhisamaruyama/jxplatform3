@@ -37,6 +37,19 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
         super(qname, bcStore);
     }
     
+    protected void destroy() {
+        super.destroy();
+        superClass = null;
+        superInterfaces.clear();
+        methods.forEach(m -> m.destroy());
+        methods.clear();
+        fields.forEach(f -> f.destroy());
+        fields.clear();
+        superClassChain.clear();
+        ancestors.clear();
+        descendants.clear();
+    }
+    
     @Override
     public String getName() {
         return qname.getClassName();

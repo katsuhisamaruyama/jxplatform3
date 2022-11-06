@@ -193,6 +193,14 @@ public class JavaProject {
      * Clears information on this project.
      */
     public void clear() {
+        fileStore.clear();
+        packageStore.clear();
+        classStore.clear();
+        externalClassStore.clear();
+        classPath = null;
+        sourcePath = null;
+        binaryPath = null;
+        
         if (cfgStore != null && pdgStore != null) {
             cfgStore.destroy();
             pdgStore.destroy();
