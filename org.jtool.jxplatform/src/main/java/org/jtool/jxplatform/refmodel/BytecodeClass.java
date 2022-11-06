@@ -27,6 +27,7 @@ import com.google.common.collect.Multimap;
 public abstract class BytecodeClass implements BytecodeClassCache {
     
     protected String cacheName;
+    protected boolean bootModule;
     protected BytecodeClassStore bcStore;
     
     protected String name;
@@ -58,8 +59,9 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     
     protected final static String ElementSeparator = ";";
     
-    BytecodeClass(String cacheName, BytecodeClassStore bcStore) {
+    BytecodeClass(String cacheName, boolean bootModule, BytecodeClassStore bcStore) {
         this.cacheName = cacheName;
+        this.bootModule = bootModule;
         this.bcStore = bcStore;
     }
     
@@ -80,6 +82,10 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     
     String getCacheName() {
         return cacheName;
+    }
+    
+    boolean isBootModule() {
+        return bootModule;
     }
     
     public String getName() {

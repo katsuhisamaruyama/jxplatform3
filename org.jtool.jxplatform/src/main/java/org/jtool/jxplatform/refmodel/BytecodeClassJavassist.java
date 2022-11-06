@@ -32,8 +32,8 @@ public class BytecodeClassJavassist extends BytecodeClass {
     
     private CtClass ctClass;
     
-    BytecodeClassJavassist(CtClass ctClass, String cacheName, BytecodeClassStore bcStore) {
-        super(cacheName, bcStore);
+    BytecodeClassJavassist(CtClass ctClass, String cacheName, boolean bootModule, BytecodeClassStore bcStore) {
+        super(cacheName, bootModule, bcStore);
         
         this.ctClass = ctClass;
         

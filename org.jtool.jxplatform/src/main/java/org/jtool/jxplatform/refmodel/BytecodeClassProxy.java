@@ -17,8 +17,8 @@ public class BytecodeClassProxy extends BytecodeClass {
     
     protected final static String ElementSeparator = ";";
     
-    BytecodeClassProxy(String cacheName, BytecodeClassStore bcStore) {
-        super(cacheName, bcStore);
+    BytecodeClassProxy(String cacheName, boolean bootModule, BytecodeClassStore bcStore) {
+        super(cacheName, bootModule, bcStore);
     }
     
     @Override
