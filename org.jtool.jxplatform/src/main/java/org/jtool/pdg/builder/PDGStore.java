@@ -12,14 +12,17 @@ import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodEntry;
 import org.jtool.cfg.CFGFieldEntry;
+import org.jtool.cfg.builder.CCFGBuilder;
 import org.jtool.cfg.builder.CFGStore;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * An object that stores information on PDGs in the project.
@@ -37,10 +40,6 @@ public class PDGStore {
     
     public PDGStore(CFGStore cfgStore) {
         this.cfgStore = cfgStore;
-    }
-    
-    public void cleanup() {
-        cfgStore.cleanup();
     }
     
     public void destroy() {
@@ -185,6 +184,20 @@ public class PDGStore {
                         cldg.getPDGs().forEach(pdg -> pdgMap.put(pdg.getQualifiedName().fqn(), pdg));
                     }
                 }
+            }
+        }
+        
+        PDGBuilder.connectMethodCalls(sdg);
+        PDGBuilder.connectFieldAccesses(sdg);
+        return sdg;
+    }
+    
+    public SDG createSDGForMeasurement(List<CCFG> ccfgs) {
+        SDG sdg = new SDG();
+        for (CCFG ccfg : ccfgs) {
+            ClDG cldg = PDGBuilder.buildClDG(ccfg, bpdgMap);
+            if (cldg != null) {
+                sdg.add(cldg);
             }
         }
         

@@ -15,6 +15,8 @@ import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.refmodel.BytecodeClassStore;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -144,6 +146,17 @@ public class CFGStore {
         CCFG ccfg = CCFGBuilder.build(jclass, force);
         addCCFG(ccfg, true);
         return ccfg;
+    }
+    
+    public List<CCFG> createCCFGsForMeasurement(List<JavaClass> classes) {
+        List<CCFG> ccfgs = new ArrayList<>();
+        for (JavaClass jclass : classes) {
+            CCFG ccfg = CCFGBuilder.build(jclass, false);
+            if (ccfg != null) {
+                ccfgs.add(ccfg);
+            }
+        }
+        return ccfgs;
     }
     
     public CFG getCFG(JavaMethod jmethod, boolean force) {
