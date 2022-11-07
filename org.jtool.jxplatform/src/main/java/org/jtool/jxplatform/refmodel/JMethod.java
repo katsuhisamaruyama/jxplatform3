@@ -43,11 +43,15 @@ abstract public class JMethod extends JCommon {
     protected void destroy() {
         super.destroy();
         declaringClass = null;
-        defFields.clear();
-        useFields.clear();
-        accessedMethods.clear();
-        allDefFields.clear();
-        allUseFields.clear();
+        defFields.forEach(du -> du.destroy());
+        defFields = null;
+        useFields.forEach(du -> du.destroy());
+        useFields = null;
+        accessedMethods= null;
+        allDefFields.forEach(du -> du.destroy());
+        allDefFields = null;
+        allUseFields.forEach(du -> du.destroy());
+        allUseFields = null;
     }
     
     public JClass getDeclaringClass() {

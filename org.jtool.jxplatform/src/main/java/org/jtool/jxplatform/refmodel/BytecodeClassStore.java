@@ -58,13 +58,11 @@ public class BytecodeClassStore {
     private Set<String> cacheNames = new HashSet<>();
     
     private Map<String, BytecodeClass> bytecodeClassMap = new HashMap<>();
-    private static Map<String, BytecodeClass> bootModuleBytecodeClassMap = new HashMap<>();
+    private Map<String, BytecodeClass> bootModuleBytecodeClassMap = new HashMap<>();
     
     private Map<String, JClass> internalClassMap = new HashMap<>();
     private Map<String, JClass> externalClassMap = new HashMap<>();
-    private static Map<String, JClass> bootModuleExternalClassMap = new HashMap<>();
-    
-    private static boolean bootModuleResistered = false;
+    private Map<String, JClass> bootModuleExternalClassMap = new HashMap<>();
     
     public BytecodeClassStore(JavaProject jproject) {
         this.jproject = jproject;
@@ -87,16 +85,14 @@ public class BytecodeClassStore {
     }
     
     public void destroy() {
-        jproject = null;
         classPool = null;
-        cacheNames.clear();
-        
+        cacheNames = null;
         bytecodeClassMap.values().forEach(c -> c.destroy());
-        bytecodeClassMap.clear();
+        bytecodeClassMap = null;
         internalClassMap.values().forEach(c -> c.destroy());
-        internalClassMap.clear();
+        internalClassMap = null;
         externalClassMap.values().forEach(c -> c.destroy());
-        externalClassMap.clear();
+        externalClassMap = null;
     }
     
     public void update() {
@@ -140,15 +136,13 @@ public class BytecodeClassStore {
     private Set<BytecodeName> collectBytecodeNames(List<String> classPaths) {
         Set<BytecodeName> bytecodeNames = new HashSet<>();
         
-        if (!bootModuleResistered) {
-            boolean makeCacheDirectory = BytecodeCacheManager.makeCacheDirectory(jproject.getTopPath());
-            boolean readBootCacheOk = readBootCache(jproject.getTopPath());
-            if (makeCacheDirectory && readBootCacheOk) {
-                analysisLevel = 2;
-            } else {
-                bytecodeNames.addAll(collectClassNamesFromBootModules());
-                cacheNames.add(BOOT_CACHE_FILENAME);
-            }
+        boolean makeCacheDirectory = BytecodeCacheManager.makeCacheDirectory(jproject.getTopPath());
+        boolean readBootCacheOk = readBootCache(jproject.getTopPath());
+        if (makeCacheDirectory && readBootCacheOk) {
+            analysisLevel = 2;
+        } else {
+            bytecodeNames.addAll(collectClassNamesFromBootModules());
+            cacheNames.add(BOOT_CACHE_FILENAME);
         }
         
         BytecodeCacheManager.makeCacheDirectory(jproject.getPath());
@@ -433,7 +427,6 @@ public class BytecodeClassStore {
         collectBytecodeClassInfo(logger, pm);
         
         writeBytecodeCache();
-        bootModuleResistered = true;
     }
     
     private void buildBytecodeClass(Logger logger, ConsoleProgressMonitor pm) {
@@ -470,13 +463,9 @@ public class BytecodeClassStore {
     private void setClassHierarchy() {
         analysisLevel = 3;
         
-        if (!bootModuleResistered) {
-            bootModuleBytecodeClassMap.values().forEach(bclass -> bclass.update());
-            bootModuleBytecodeClassMap.values().forEach(bclass -> bclass.findClassHierarchy());
-            bootModuleBytecodeClassMap.values().forEach(bclass -> bclass.setClassHierarchy());
-        }
+        bootModuleBytecodeClassMap.values().forEach(bclass -> bclass.findClassHierarchy());
+        bootModuleBytecodeClassMap.values().forEach(bclass -> bclass.setClassHierarchy());
         
-        bytecodeClassMap.values().forEach(bclass -> bclass.update());
         bytecodeClassMap.values().forEach(bclass -> bclass.findClassHierarchy());
         bytecodeClassMap.values().forEach(bclass -> bclass.setClassHierarchy());
         
@@ -485,9 +474,7 @@ public class BytecodeClassStore {
     
     private void collectBytecodeClassInfo(Logger logger, ConsoleProgressMonitor pm) {
         Set<BytecodeClass> bclasses = new HashSet<>();
-        if (!bootModuleResistered) {
-            bclasses.addAll(bootModuleBytecodeClassMap.values());
-        }
+        bclasses.addAll(bootModuleBytecodeClassMap.values());
         bclasses.addAll(bytecodeClassMap.values());
         
         logger.printMessage("** Ready to collect information on " +

@@ -72,6 +72,12 @@ public class BytecodeClassJavassist extends BytecodeClass {
     }
     
     @Override
+    protected void destroy() {
+        super.destroy();
+        ctClass = null;
+    }
+    
+    @Override
     protected void collectInfo() {
         for (CtMethod cm : ctClass.getDeclaredMethods()) {
             parseMethod(cm, bcStore.getMethodSignature(cm));

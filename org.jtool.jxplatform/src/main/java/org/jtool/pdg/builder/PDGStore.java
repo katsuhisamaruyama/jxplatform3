@@ -39,8 +39,8 @@ public class PDGStore {
         this.cfgStore = cfgStore;
     }
     
-    public void freeze() {
-        cfgStore.freeze();
+    public void cleanup() {
+        cfgStore.cleanup();
     }
     
     public void destroy() {

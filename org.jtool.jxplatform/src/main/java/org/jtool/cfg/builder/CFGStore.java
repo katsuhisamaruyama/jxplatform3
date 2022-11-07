@@ -47,16 +47,16 @@ public class CFGStore {
         createBCStore();
     }
     
-    public void freeze() {
+    public void cleanup() {
         bcStore.destroy();
         bcStore = null;
     }
     
     public void destroy() {
-        cfgs.clear();
-        ucfgs.clear();
-        ccfgs.clear();
-        bcStore.destroy();
+        cfgs = null;
+        ucfgs = null;
+        ccfgs = null;
+        bcStore = null;
     }
     
     public BytecodeClassStore getBCStore() {

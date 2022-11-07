@@ -40,14 +40,14 @@ abstract public class JClass extends JCommon implements BytecodeClassCache {
     protected void destroy() {
         super.destroy();
         superClass = null;
-        superInterfaces.clear();
+        superInterfaces = null;
         methods.forEach(m -> m.destroy());
-        methods.clear();
+        methods = null;
         fields.forEach(f -> f.destroy());
-        fields.clear();
-        superClassChain.clear();
-        ancestors.clear();
-        descendants.clear();
+        fields = null;
+        superClassChain = null;
+        ancestors = null;
+        descendants = null;
     }
     
     @Override

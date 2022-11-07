@@ -69,27 +69,33 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         bcStore = null;
         
         superClass = null;
-        superInterfaces.clear();
+        superInterfaces = null;
+        defFieldsCache.values().forEach(du -> du.destroy());
+        defFieldsCache = null;
+        useFieldsCache.values().forEach(du -> du.destroy());
+        useFieldsCache = null;
+        calledMethodsCache = null;
+        notSpecialMethods = null;
         
-        defFieldsCache.clear();
-        useFieldsCache.clear();
-        calledMethodsCache.clear();
-        notSpecialMethods.clear();
+        if (defFieldsMap != null) {
+            defFieldsMap.values().forEach(c -> c.forEach(du -> du.destroy()));
+        }
+        defFieldsMap = null;
+        if (useFieldsMap != null) {
+            useFieldsMap.values().forEach(c -> c.forEach(du -> du.destroy()));
+        }
+        useFieldsMap = null;
         
-        defFieldsMap.clear();
-        useFieldsMap.clear();
-        calledMethodsMap.clear();
+        calledMethodsMap = null;
+        methods = null;
+        fields = null;
         
-        methods.clear();
-        fields.clear();
-        
-        superClassChain.clear();
-        ancestors.clear();
-        descendants.clear();
-        
-        superClassChainCache.clear();
-        ancestorsCache.clear();
-        descendantsCache.clear();
+        superClassChain = null;
+        ancestors = null;
+        descendants = null;
+        superClassChainCache = null;
+        ancestorsCache = null;
+        descendantsCache = null;
     }
     
     boolean isCache() {
@@ -105,16 +111,6 @@ public abstract class BytecodeClass implements BytecodeClassCache {
     JClass createCacheClass(BytecodeClassStore bcStore) {
         JClass clazz = new JClassCache(this, bcStore);
         return clazz;
-    }
-    
-    void update() {
-        superClassChain = null;
-        ancestors = null;
-        descendants = null;
-        
-        superClassChainCache = null;
-        ancestorsCache = null;
-        descendantsCache = new ArrayList<>();
     }
     
     String getCacheName() {
