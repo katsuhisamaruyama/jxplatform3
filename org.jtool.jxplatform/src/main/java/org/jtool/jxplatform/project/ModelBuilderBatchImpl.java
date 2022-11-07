@@ -78,11 +78,6 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                     String subprojectname = projectEnv.getName() + "#" + module;
                     ProjectEnv env = createProjectEnv(subprojectname, path, projectEnv, topProjectEnv);
                     
-                    if (env.isProject()) {
-                        if (ModelBuilderBatchImpl.containJavaFile(env.getSourcePaths())) {
-                            projectEnvs.add(env);
-                        }
-                    }
                     projectEnvs.addAll(getSubProjects(env, topProjectEnv));
                 }
             }
