@@ -12,13 +12,11 @@ import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodEntry;
 import org.jtool.cfg.CFGFieldEntry;
-import org.jtool.cfg.builder.CCFGBuilder;
 import org.jtool.cfg.builder.CFGStore;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
@@ -192,10 +190,14 @@ public class PDGStore {
         return sdg;
     }
     
-    public SDG createSDGForMeasurement(List<CCFG> ccfgs) {
+    public ClDG generateClDG(CCFG ccfg) {
+        return PDGBuilder.buildClDG(ccfg, bpdgMap);
+    }
+    
+    public SDG generateSDG(List<CCFG> ccfgs) {
         SDG sdg = new SDG();
         for (CCFG ccfg : ccfgs) {
-            ClDG cldg = PDGBuilder.buildClDG(ccfg, bpdgMap);
+            ClDG cldg = generateClDG(ccfg);
             if (cldg != null) {
                 sdg.add(cldg);
             }

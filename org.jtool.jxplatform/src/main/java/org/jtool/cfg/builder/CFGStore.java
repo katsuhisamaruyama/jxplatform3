@@ -143,20 +143,35 @@ public class CFGStore {
             removeCFGs(jclass);
         }
         
+        return generateCCFG(jclass, force);
+    }
+    
+    public CCFG generateCCFG(JavaClass jclass, boolean force) {
         CCFG ccfg = CCFGBuilder.build(jclass, force);
-        addCCFG(ccfg, true);
+        if (ccfg != null) {
+            addCCFG(ccfg, true);
+        }
         return ccfg;
     }
     
-    public List<CCFG> createCCFGsForMeasurement(List<JavaClass> classes) {
+    public List<CCFG> generateCCFG(List<JavaClass> classes) {
         List<CCFG> ccfgs = new ArrayList<>();
         for (JavaClass jclass : classes) {
             CCFG ccfg = CCFGBuilder.build(jclass, false);
             if (ccfg != null) {
+                addCCFG(ccfg, true);
                 ccfgs.add(ccfg);
             }
         }
         return ccfgs;
+    }
+    
+    public CCFG generateCCFG(JavaClass jclass) {
+        CCFG ccfg = CCFGBuilder.build(jclass, false);
+        if (ccfg != null) {
+            addCCFG(ccfg, true);
+        }
+        return ccfg;
     }
     
     public CFG getCFG(JavaMethod jmethod, boolean force) {
