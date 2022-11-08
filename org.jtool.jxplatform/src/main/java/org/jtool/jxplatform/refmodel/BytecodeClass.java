@@ -70,22 +70,13 @@ public abstract class BytecodeClass implements BytecodeClassCache {
         
         superClass = null;
         superInterfaces = null;
-        defFieldsCache.values().forEach(du -> du.destroy());
         defFieldsCache = null;
-        useFieldsCache.values().forEach(du -> du.destroy());
         useFieldsCache = null;
         calledMethodsCache = null;
         notSpecialMethods = null;
         
-        if (defFieldsMap != null) {
-            defFieldsMap.values().forEach(c -> c.forEach(du -> du.destroy()));
-        }
         defFieldsMap = null;
-        if (useFieldsMap != null) {
-            useFieldsMap.values().forEach(c -> c.forEach(du -> du.destroy()));
-        }
         useFieldsMap = null;
-        
         calledMethodsMap = null;
         methods = null;
         fields = null;

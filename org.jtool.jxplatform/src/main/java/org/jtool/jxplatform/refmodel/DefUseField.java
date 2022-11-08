@@ -72,10 +72,6 @@ public class DefUseField {
                 Boolean.parseBoolean(s[8]), Boolean.parseBoolean(s[9]));
     }
     
-    protected void destroy() {
-        holdingNodes = null;
-    }
-    
     public String getQualifiedName() {
         return className + FieldPropertySeparator + name + FieldPropertySeparator + referenceForm;
     }
