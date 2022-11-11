@@ -66,6 +66,8 @@ public class BytecodeClassStore {
     
     private int analyzedBytecodeNum = 0;
     
+    BytecodeCacheManager cacheManager = new BytecodeCacheManagerJSON();
+    
     public BytecodeClassStore(JavaProject jproject) {
         this.jproject = jproject;
     }
@@ -142,7 +144,7 @@ public class BytecodeClassStore {
     private Set<BytecodeName> collectBytecodeNames(List<String> classPaths) {
         Set<BytecodeName> bytecodeNames = new HashSet<>();
         
-        boolean makeCacheDirectory = BytecodeCacheManager.makeCacheDirectory(jproject.getTopPath());
+        boolean makeCacheDirectory = cacheManager.makeCacheDirectory(jproject.getTopPath());
         boolean readBootCacheOk = readBootCache(jproject.getTopPath());
         if (makeCacheDirectory && readBootCacheOk) {
             analysisLevel = 2;
@@ -151,7 +153,7 @@ public class BytecodeClassStore {
             cacheNames.add(BOOT_CACHE_FILENAME);
         }
         
-        BytecodeCacheManager.makeCacheDirectory(jproject.getPath());
+        cacheManager.makeCacheDirectory(jproject.getPath());
         bytecodeNames.addAll(classPaths.stream()
                 .flatMap(path -> collectClassNames(path).stream())
                 .collect(Collectors.toSet()));
@@ -160,8 +162,8 @@ public class BytecodeClassStore {
     
     private boolean readBootCache(String path) {
         boolean bootModuleVersionOk = BootModuleVersion
-                .equals(BytecodeCacheManager.readBootModuleVersion(path, BOOT_VERSION_FILENAME));
-        boolean readCacheOk = BytecodeCacheManager.readCache(jproject, path, BOOT_CACHE_FILENAME, true);
+                .equals(cacheManager.readBootModuleVersion(path, BOOT_VERSION_FILENAME));
+        boolean readCacheOk = cacheManager.readCache(jproject, path, BOOT_CACHE_FILENAME, true);
         return bootModuleVersionOk && readCacheOk;
     }
     
@@ -221,9 +223,10 @@ public class BytecodeClassStore {
         }
         
         if (analysisLevel == 2) {
-            long cacheTime = BytecodeCacheManager.getLastModifiedTimeJarsCacheFile(jproject.getPath(), cacheName);
-            if (cacheTime >= file.lastModified() && BytecodeCacheManager.canRead(jproject.getPath(), cacheName)) {
-                boolean readCacheOk = BytecodeCacheManager.readCache(jproject, jproject.getPath(), cacheName, false);
+            long cacheTime = cacheManager.getLastModifiedTimeJarsCacheFile(jproject.getPath(), cacheName);
+            if (cacheTime >= file.lastModified() && cacheManager.canRead(jproject.getPath(), cacheName)) {
+                //boolean readCacheOk = BytecodeCacheManager.readCache(jproject, jproject.getPath(), cacheName, false);
+                boolean readCacheOk = cacheManager.readCache(jproject, jproject.getPath(), cacheName, false);
                 if (readCacheOk) {
                     return;
                 }
@@ -271,8 +274,8 @@ public class BytecodeClassStore {
     }
     
     public void removeBytecodeCache() {
-        BytecodeCacheManager.removeBytecodeCache(jproject.getPath());
-        BytecodeCacheManager.removeBytecodeCache(jproject.getTopPath());
+        cacheManager.removeBytecodeCache(jproject.getPath());
+        cacheManager.removeBytecodeCache(jproject.getTopPath());
     }
     
     public void writeBytecodeCache() {
@@ -281,17 +284,17 @@ public class BytecodeClassStore {
                 List<BytecodeClass> classes = bootModuleBytecodeClassMap.values().stream()
                         .filter(bclass -> bclass.getCacheName().equals(cacheName))
                         .collect(Collectors.toList());
-                BytecodeCacheManager.writeCache(jproject.getTopPath(), sortBytecodeClasses(classes), cacheName);
-                BytecodeCacheManager.writeBootModuleVersion(jproject.getTopPath(), BOOT_VERSION_FILENAME, BootModuleVersion);
-                BytecodeCacheManager.writeGitIgnore(jproject.getTopPath());
+                cacheManager.writeCache(jproject.getTopPath(), sortBytecodeClasses(classes), cacheName);
+                cacheManager.writeBootModuleVersion(jproject.getTopPath(), BOOT_VERSION_FILENAME, BootModuleVersion);
+                cacheManager.writeGitIgnore(jproject.getTopPath());
             } else {
                 List<BytecodeClass> classes = bytecodeClassMap.values().stream()
                         .filter(bclass -> bclass.getCacheName().equals(cacheName))
                         .collect(Collectors.toList());
-                BytecodeCacheManager.writeCache(jproject.getPath(), sortBytecodeClasses(classes), cacheName);
+                cacheManager.writeCache(jproject.getPath(), sortBytecodeClasses(classes), cacheName);
             }
         }
-        BytecodeCacheManager.writeGitIgnore(jproject.getPath());
+        cacheManager.writeGitIgnore(jproject.getPath());
     }
     
     private List<BytecodeClass> sortBytecodeClasses(List<? extends BytecodeClass> co) {
