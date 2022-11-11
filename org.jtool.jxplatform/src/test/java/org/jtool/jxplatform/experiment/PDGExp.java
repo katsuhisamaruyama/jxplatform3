@@ -66,9 +66,11 @@ public class PDGExp {
     public static void main(String[] args) {
         PDGExp tester = new PDGExp();
         
-        tester.run("ant-1.10.12", SrcModelExp.TEST_TARGET_DIR);
-        tester.run("guava-31.0.1", SrcModelExp.TEST_TARGET_DIR);
-        tester.run("mockito-4.2.0", SrcModelExp.TEST_TARGET_DIR);
+        tester.run("ExpForPaper", SrcModelExp.TEST_TARGET_DIR);
+        
+//        tester.run("ant-1.10.12", SrcModelExp.TEST_TARGET_DIR);
+//        tester.run("guava-31.0.1", SrcModelExp.TEST_TARGET_DIR);
+//        tester.run("mockito-4.2.0", SrcModelExp.TEST_TARGET_DIR);
         
 //        tester.run("ant-1.10.12");
 //        tester.run("antlr4-4.9.3/runtime/Java");
