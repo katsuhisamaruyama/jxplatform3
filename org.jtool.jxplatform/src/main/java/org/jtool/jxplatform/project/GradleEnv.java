@@ -71,6 +71,9 @@ class GradleEnv extends ProjectEnv {
             if (pconfigFile.toFile().exists()) {
                 return pconfigFile;
             }
+            if (parent.equals(basePath)) {
+                return null;
+            }
             parent = parent.getParent();
         }
         return null;
