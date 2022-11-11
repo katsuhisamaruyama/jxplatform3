@@ -64,12 +64,18 @@ public class BytecodeClassStore {
     private Map<String, JClass> externalClassMap = new HashMap<>();
     private Map<String, JClass> bootModuleExternalClassMap = new HashMap<>();
     
+    private int analyzedBytecodeNum = 0;
+    
     public BytecodeClassStore(JavaProject jproject) {
         this.jproject = jproject;
     }
     
     public JavaProject getJavaProject() {
         return jproject;
+    }
+    
+    public int getAnalyzedBytecodeNum() {
+        return analyzedBytecodeNum;
     }
     
     public void create() {
@@ -431,6 +437,7 @@ public class BytecodeClassStore {
     
     private void buildBytecodeClass(Logger logger, ConsoleProgressMonitor pm) {
         Set<BytecodeName> names = getBytecodeNamesToBeLoaded();
+        analyzedBytecodeNum = names.size();
         if (names.size() > 0) {
             
             logger.printMessage("** Ready to parse " + names.size() + " bytecode-classes used in " + jproject.getName());
