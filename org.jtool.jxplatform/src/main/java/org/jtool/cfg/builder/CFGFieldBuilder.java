@@ -26,14 +26,14 @@ import org.eclipse.jdt.core.dom.IVariableBinding;
  */
 class CFGFieldBuilder {
     
-    static CFG build(JavaField jfield, boolean toBeResolved) {
+    static CFG build(JavaField jfield) {
         if (jfield.getVariableBinding() == null) {
             return null;
         }
-        return build(jfield, jfield.getVariableBinding(), toBeResolved);
+        return build(jfield, jfield.getVariableBinding());
     }
     
-    private static CFG build(JavaField jfield, IVariableBinding vbinding, boolean toBeResolved) {
+    private static CFG build(JavaField jfield, IVariableBinding vbinding) {
         CFG cfg = new CFG();
         
         CFGFieldEntry entry;
@@ -88,10 +88,6 @@ class CFGFieldBuilder {
         edge = new ControlFlow(curNode, exit);
         edge.setTrue();
         cfg.add(edge);
-        
-        if (toBeResolved) {
-            Resolver.resolveReferences(jfield.getJavaProject(), cfg);
-        }
         
         return cfg;
     }

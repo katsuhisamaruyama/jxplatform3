@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 class CFGMethodBuilder {
     
     @SuppressWarnings("unchecked")
-    static CFG build(JavaMethod jmethod, boolean toBeResolved) {
+    static CFG build(JavaMethod jmethod) {
         List<VariableDeclaration> params;
         if (!jmethod.isInitializer()) {
             if (jmethod.isLambda()) {
@@ -57,11 +57,10 @@ class CFGMethodBuilder {
         } else {
             params = new ArrayList<>();
         }
-        return build(jmethod, jmethod.getMethodBinding(), params, toBeResolved);
+        return build(jmethod, jmethod.getMethodBinding(), params);
     }
     
-    private static CFG build(JavaMethod jmethod, IMethodBinding mbinding,
-            List<VariableDeclaration> params, boolean toBeResolved) {
+    private static CFG build(JavaMethod jmethod, IMethodBinding mbinding, List<VariableDeclaration> params) {
         CFG cfg = new CFG();
         
         CFGMethodEntry entry;
@@ -126,11 +125,6 @@ class CFGMethodBuilder {
             ControlFlow exceptionExitEdge = new ControlFlow(n, exit);
             exceptionExitEdge.setTrue();
             cfg.add(exceptionExitEdge);
-        }
-        
-        if (toBeResolved) {
-            Resolver.resolveReferences(jmethod.getJavaProject(), cfg);
-            Resolver.resolveLocalAlias(jmethod.getJavaProject(), cfg);
         }
         
         addUseVariablesForReturn(cfg);

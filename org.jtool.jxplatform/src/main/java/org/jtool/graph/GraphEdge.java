@@ -34,6 +34,9 @@ public abstract class GraphEdge extends GraphElement {
      * @param dst the destination node of this edge
      */
     protected GraphEdge(GraphNode src, GraphNode dst) {
+        assert src != null;
+        assert dst != null;
+        
         this.src = src;
         this.dst = dst;
         src.addOutgoingEdge(this);
@@ -61,6 +64,8 @@ public abstract class GraphEdge extends GraphElement {
      * @param node the source node to be set
      */
     public void setSrcNode(GraphNode node) {
+        assert node != null;
+        
         src.removeOutgoingEdge(this);
         dst.removeIncomingEdge(this);
         src = node;
@@ -73,6 +78,8 @@ public abstract class GraphEdge extends GraphElement {
      * @param node the destination node to be set
      */
     public void setDstNode(GraphNode node) {
+        assert node != null;
+        
         src.removeOutgoingEdge(this);
         dst.removeIncomingEdge(this);
         dst = node;

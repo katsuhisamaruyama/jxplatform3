@@ -30,13 +30,14 @@ public class DefUseField {
     private boolean inProject;
     private boolean isThis;
     private boolean isUncovered;
-    private List<CFGStatement> holdingNodes = new ArrayList<>();
     private boolean isReturnValue;
+    private List<CFGStatement> holdingNodes = new ArrayList<>();
     
     public DefUseField(JFieldReference fvar, CFGStatement node) {
         this(fvar.getDeclaringClassName(), fvar.getName(), fvar.getReferenceForm(),
                 fvar.getType(), fvar.isPrimitiveType(), fvar.getModifiers(),
-                fvar.isInProject(), fvar.isThis(), fvar.isUncoveredFieldReference(), fvar.isReturnValueReference());
+                fvar.isInProject(), fvar.isThis(),
+                fvar.isUncoveredFieldReference(), fvar.isReturnValueReference());
         if (node != null) {
             holdingNodes.add(node);
         }
@@ -126,6 +127,8 @@ public class DefUseField {
     public boolean isReturnValue() {
         return isReturnValue;
     }
+    
+    
     
     public void addHoldingNodes(List<CFGMethodCall> nodes) {
         holdingNodes.addAll(nodes);
