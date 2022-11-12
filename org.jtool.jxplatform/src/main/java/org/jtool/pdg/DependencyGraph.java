@@ -327,10 +327,10 @@ public abstract class DependencyGraph {
     }
     
     /**
-     * Finds dependence edges that uncover field accesses.
+     * Tests there is a dependence edge that uncovers field accesses, connecting two nodes.
      * @param src the source node
      * @param dst the destination node
-     * @return the collection of the dependence edges
+     * @return {@code true} if a dependence edge was found, otherwise {@code false}
      */
     public boolean existsUncoveredFieldAccessEdge(PDGNode src, PDGNode dst) {
         return uncoveredFieldAccessEdgeMap.get(src).contains(dst);
@@ -347,7 +347,7 @@ public abstract class DependencyGraph {
     /**
      * Tests if a given dependency graph is equal to this dependency graph.
      * @param graph the dependency graph to be checked
-     * @return the {@code true} if the given dependency graph is equal to this dependency graph
+     * @return {@code true} if the given dependency graph is equal to this dependency graph
      */
     public boolean equals(DependencyGraph graph) {
         return graph != null && (this == graph || getQualifiedName().equals(graph.getQualifiedName()));
