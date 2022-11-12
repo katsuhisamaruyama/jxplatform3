@@ -34,19 +34,13 @@ eclipse {
 
 jar {
     archiveBaseName = 'jxplatform'
-    classifier = 'plugin'
-    archiveVersion = '3.0'
-}
-
-jar {
-    archiveBaseName = 'jxplatform'
-    classifier = ''
+    classifier = 'core'
     archiveVersion = '3.0'
 }
 
 shadowJar {
     archiveBaseName = 'jxplatform'
-    classifier = ''
+    classifier = 'all'
     archiveVersion = '3.0'
 }
 test.enabled = false
