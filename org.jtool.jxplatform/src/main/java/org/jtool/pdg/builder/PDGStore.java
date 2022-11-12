@@ -485,10 +485,8 @@ public class PDGStore {
     }
     
     private void addUncoveredFieldAccessEdge(DependencyGraph graph, PDGNode src, PDGNode dst) {
-        List<Dependence> edges = graph.findUncoveredFieldAccessEdge(src, dst);
-        DD edge = (DD)edges.stream().filter(e -> e.isUncoveredFieldAccess()).findFirst().orElse(null);
-        if (edge == null) {
-            edge = new DD(src, dst);
+        if (!graph.existsUncoveredFieldAccessEdge(src, dst)) {
+            DD edge = new DD(src, dst);
             edge.setUncoveredFieldAccess();
             graph.addInterEdge(edge);
             graph.addUncoveredFieldAccessEdge(edge);

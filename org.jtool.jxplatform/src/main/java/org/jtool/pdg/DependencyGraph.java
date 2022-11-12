@@ -14,6 +14,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 
 /**
  * An object storing information on a dependency graph.
@@ -43,9 +45,9 @@ public abstract class DependencyGraph {
     protected List<Dependence> interEdges = new ArrayList<>();
     
     /**
-     * Edges that uncover field accesses in this dependency graph.
+     * Map for edges (connecting two nodes) that uncover field accesses in this dependency graph.
      */
-    private List<Dependence> uncoveredFieldAccessEdges = new ArrayList<>();
+    private Multimap<PDGNode, PDGNode> uncoveredFieldAccessEdgeMap = HashMultimap.create();
     
     /**
      * Creates a dependency graph.
@@ -321,7 +323,7 @@ public abstract class DependencyGraph {
      * @param edge the edge to be added
      */
     public void addUncoveredFieldAccessEdge(DD edge) {
-        uncoveredFieldAccessEdges.add(edge);
+        uncoveredFieldAccessEdgeMap.put(edge.getSrcNode(), edge.getDstNode());
     }
     
     /**
@@ -330,10 +332,8 @@ public abstract class DependencyGraph {
      * @param dst the destination node
      * @return the collection of the dependence edges
      */
-    public List<Dependence> findUncoveredFieldAccessEdge(PDGNode src, PDGNode dst) {
-        return uncoveredFieldAccessEdges.stream()
-                .filter(e -> e.getSrcNode().equals(src) && e.getDstNode().equals(dst))
-                .collect(Collectors.toList());
+    public boolean existsUncoveredFieldAccessEdge(PDGNode src, PDGNode dst) {
+        return uncoveredFieldAccessEdgeMap.get(src).contains(dst);
     }
     
     /**
