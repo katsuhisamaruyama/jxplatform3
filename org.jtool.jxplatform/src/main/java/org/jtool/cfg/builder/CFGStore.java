@@ -17,8 +17,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -123,17 +121,6 @@ public class CFGStore {
     
     public CCFG generateUnregisteredCCFG(JavaClass jclass, boolean force) {
         return CCFGBuilder.build(jclass, force);
-    }
-    
-    public List<CCFG> generateUnregisteredCCFG(List<JavaClass> classes, boolean force) {
-        List<CCFG> ccfgs = new ArrayList<>();
-        for (JavaClass jclass : classes) {
-            CCFG ccfg = generateUnregisteredCCFG(jclass, force);
-            if (ccfg != null) {
-                ccfgs.add(ccfg);
-            }
-        }
-        return ccfgs;
     }
     
     private CFG findRegisteredCFG(String fqn) {

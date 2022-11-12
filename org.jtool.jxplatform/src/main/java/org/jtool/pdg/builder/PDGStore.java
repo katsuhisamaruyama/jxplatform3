@@ -211,19 +211,6 @@ public class PDGStore {
         return PDGBuilder.buildClDG(ccfg, bpdgMap);
     }
     
-    public SDG generateUnregisteredSDG(List<CCFG> ccfgs) {
-        SDG sdg = new SDG();
-        for (CCFG ccfg : ccfgs) {
-            ClDG cldg = generateUnregisteredClDG(ccfg);
-            if (cldg != null) {
-                sdg.add(cldg);
-            }
-        }
-        
-        findConnection(sdg);
-        return sdg;
-    }
-    
     Set<JavaClass> getColleagues(JavaClass jclass) {
         Set<JavaClass> allClasses = new HashSet<>();
         collectColleagues(jclass, allClasses);
@@ -254,7 +241,7 @@ public class PDGStore {
         }
     }
     
-    private void findConnection(DependencyGraph graph) {
+    public void findConnection(DependencyGraph graph) {
         List<CFGNode> nodes = graph.getNodes().stream()
                 .map(node -> node.getCFGNode())
                 .collect(Collectors.toList());
