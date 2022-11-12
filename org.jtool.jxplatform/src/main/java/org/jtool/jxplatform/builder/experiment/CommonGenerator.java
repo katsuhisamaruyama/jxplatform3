@@ -108,6 +108,7 @@ public class CommonGenerator {
             pm.work(1);
         }
         pm.done();
+        
         return ccfgs;
     }
     
@@ -130,9 +131,7 @@ public class CommonGenerator {
         }
         pm.done();
         
-        System.err.println("FIND CONNECTION");
         pdgStore.findConnection(sdg);
-        
         return sdg;
     }
     
