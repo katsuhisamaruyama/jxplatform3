@@ -136,7 +136,7 @@ public class ClDG extends DependencyGraph {
             pdgs.put(pdg.getQualifiedName().fqn(), pdg);
             addNodes(pdg.getNodes());
             addEdges(pdg.getEdges());
-            pdg.getSpecificEdges().forEach(e -> add(e));
+            addInterEdges(pdg.getInterEdges());
         }
     }
     

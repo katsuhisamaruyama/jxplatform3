@@ -104,7 +104,7 @@ public class SDG extends DependencyGraph {
             cldgs.put(cldg.getQualifiedName().fqn(), cldg);
             addNodes(cldg.getNodes());
             addEdges(cldg.getEdges());
-            cldg.getSpecificEdges().forEach(e -> add(e));
+            addInterEdges(cldg.getInterEdges());
             
             cldg.getPDGs().forEach(pdg -> pdgs.put(pdg.getQualifiedName().fqn(), pdg));
         }

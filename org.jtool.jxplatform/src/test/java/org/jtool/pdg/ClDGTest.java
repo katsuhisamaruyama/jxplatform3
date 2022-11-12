@@ -256,113 +256,113 @@ public class ClDGTest {
     }
     
     @Test
-    public void testGetSpecificEdges103_1() {
+    public void testGetInterEdges103_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test103");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(6, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesTest119_1() {
+    public void testGetInterEdgesTest119_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test119");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(5, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesA119_1() {
+    public void testGetInterEdgesA119_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "A119");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(5, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesTest129_1() {
+    public void testGetInterEdgesTest129_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test129");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(4, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesP129_1() {
+    public void testGetInterEdgesP129_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "P129");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(8, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesQ134_1() {
+    public void testGetInterEdgesQ134_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Q134");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(2, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesR134_1() {
+    public void testGetInterEdgesR134_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "R134");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(2, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesI134_1() {
+    public void testGetInterEdgesI134_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "I134");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(1, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesTest139_1() {
+    public void testGetInterEdgesTest139_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test139");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(2, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesPriceCode_1() {
+    public void testGetInterEdgesPriceCode_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(6, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesCustomer_1() {
+    public void testGetInterEdgesCustomer_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Customer");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(6, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesCustomerTest_1() {
+    public void testGetInterEdgesCustomerTest_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "CustomerTest");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(3, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesOrder_1() {
+    public void testGetInterEdgesOrder_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Order");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(4, result.size());
     }
     
     @Test
-    public void testGetSpecificEdgesRental_1() {
+    public void testGetInterEdgesRental_1() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Rental");
-        List<Dependence> result = cldg.getSpecificEdges();
+        List<Dependence> result = cldg.getInterEdges();
         
         assertEquals(4, result.size());
     }

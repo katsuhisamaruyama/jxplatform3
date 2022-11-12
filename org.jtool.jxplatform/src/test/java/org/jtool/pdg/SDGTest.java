@@ -143,49 +143,49 @@ public class SDGTest {
     }
     
     @Test
-    public void testGetSpecificEdges1() {
+    public void testGetSInterEdges1() {
         SDG sdg = PDGTestUtil.createSDG(CSclassroomProject);
-        List<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getInterEdges();
         
         assertEquals(697, result.size());
     }
     
     @Test
-    public void testGetSpecificEdges2() {
+    public void testGetInterEdges2() {
         SDG sdg = PDGTestUtil.createSDG(DrawToolProject);
-        List<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getInterEdges();
         
         assertEquals(11010, result.size());
     }
     
     @Test
-    public void testGetSpecificEdges3() {
+    public void testGetInterEdges3() {
         SDG sdg = PDGTestUtil.createSDG(SimpleProject);
-        List<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getInterEdges();
         
         assertEquals(840, result.size());
     }
     
     @Test
-    public void testGetSpecificEdges4() {
+    public void testGetInterEdges4() {
         SDG sdg = PDGTestUtil.createSDG(SliceProject);
-        List<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getInterEdges();
         
         assertEquals(1638, result.size());
     }
     
     @Test
-    public void testGetSpecificEdges5() {
+    public void testGetInterEdges5() {
         SDG sdg = PDGTestUtil.createSDG(TetrisProject);
-        List<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getInterEdges();
         
         assertEquals(3545, result.size());
     }
     
     @Test
-    public void testGetSpecificEdges6() {
+    public void testGetInterEdges6() {
         SDG sdg = PDGTestUtil.createSDG(VideoStoreProject);
-        List<Dependence> result = sdg.getSpecificEdges();
+        List<Dependence> result = sdg.getInterEdges();
         
         assertEquals(2656, result.size());
     }

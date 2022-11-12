@@ -30,12 +30,22 @@ public abstract class DependencyGraph {
     /**
      * All edges that are included in this dependency graph.
      */
-    protected List<Dependence> allEdges = new ArrayList<>();
+    protected List<CD> cdEdges = new ArrayList<>();
     
     /**
-     * Specific (not all) edges that are included in this dependency graph.
+     * All edges that are included in this dependency graph.
      */
-    protected List<Dependence> specificEdges = new ArrayList<>();
+    protected List<DD> ddEdges = new ArrayList<>();
+    
+    /**
+     * All edges that are included in this dependency graph.
+     */
+    //protected List<Dependence> allEdges = new ArrayList<>();
+    
+    /**
+     * Edges that link nodes in different PDGs.
+     */
+    protected List<Dependence> interEdges = new ArrayList<>();
     
     /**
      * Creates a dependency graph.
@@ -86,7 +96,7 @@ public abstract class DependencyGraph {
     /**
      * Adds a node specific to this dependency graph.
      * This method is not intended to be invoked by clients.
-     * @param node the specific PDG node to be added
+     * @param node the node to be added
      */
     public void add(PDGNode node) {
         allNodes.add(node);
@@ -95,29 +105,41 @@ public abstract class DependencyGraph {
     /**
      * Adds edges to this dependency graph.
      * This method is not intended to be invoked by clients.
-     * @param nodes the collection of edges to be added
+     * @param edges the collection of the edges to be added
      */
     public void addEdges(List<Dependence> edges) {
-        allEdges.addAll(edges);
+        edges.forEach(edge -> add(edge));
     }
     
     /**
-     * Adds an edge specific to this dependency graph.
+     * Adds an edge that links nodes within different PDGs.
      * This method is not intended to be invoked by clients.
-     * @param edge the specific dependence edge to be added
+     * @param edge the dependence edge to be added
      */
     public void add(Dependence edge) {
-        specificEdges.add(edge);
-        allEdges.add(edge);
+        if (edge.isCD()) {
+            cdEdges.add((CD)edge);
+        } else if (edge.isDD()) {
+            ddEdges.add((DD)edge);
+        }
     }
     
     /**
-     * Obtains edges specific to this dependency graph.
+     * Adds edges that link nodes within different PDGs.
      * This method is not intended to be invoked by clients.
-     * @return the collection of the specific edges
+     * @param edges the collection of the edges to be added
      */
-    List<Dependence> getSpecificEdges() {
-        return specificEdges;
+    public void addInterEdges(List<Dependence> edges) {
+        edges.forEach(edge -> addInterEdge(edge));
+    }
+    
+    /**
+     * Adds an edge that links nodes within different PDGs.
+     * This method is not intended to be invoked by clients.
+     * @param edge the edge to be added
+     */
+    public void addInterEdge(Dependence edge) {
+        interEdges.add(edge);
     }
     
     /**
@@ -173,7 +195,35 @@ public abstract class DependencyGraph {
      * @return the collection of the edges
      */
     public List<Dependence> getEdges() {
+        List<Dependence> allEdges = new ArrayList<>();
+        allEdges.addAll(cdEdges);
+        allEdges.addAll(ddEdges);
+        allEdges.addAll(interEdges);
         return allEdges;
+    }
+    
+    /**
+     * Returns all control dependence edges of this dependency graph.
+     * @return the collection of the edges
+     */
+    public List<CD> getCDEdges() {
+        return cdEdges;
+    }
+    
+    /**
+     * Returns all data dependence edges of this dependency graph.
+     * @return the collection of the edges
+     */
+    public List<DD> getDDEdges() {
+        return ddEdges;
+    }
+    
+    /**
+     * Obtains edges that link nodes within different PDGs.
+     * @return the collection of the edges
+     */
+    public List<Dependence> getInterEdges() {
+        return interEdges;
     }
     
     /**
@@ -191,8 +241,8 @@ public abstract class DependencyGraph {
      * @return the collection of the incoming edges
      */
     public Set<Dependence> getIncomingDependenceEdges(PDGNode node) {
-        return allEdges.stream().filter(edge -> edge.getDstNode().equals(node))
-                                .collect(Collectors.toSet());
+        return getEdges().stream()
+                .filter(edge -> edge.getDstNode().equals(node)).collect(Collectors.toSet());
     }
     
     /**
@@ -201,9 +251,8 @@ public abstract class DependencyGraph {
      * @return the collection of the incoming edges
      */
     public Set<CD> getIncomingCDEdges(PDGNode node) {
-        return getIncomingDependenceEdges(node).stream().filter(edge -> edge.isCD())
-                                                        .map(edge -> (CD)edge)
-                                                        .collect(Collectors.toSet());
+        return getCDEdges().stream()
+                .filter(edge -> edge.getDstNode().equals(node)).collect(Collectors.toSet());
     }
     
     /**
@@ -211,9 +260,8 @@ public abstract class DependencyGraph {
      * @return the collection of the incoming edges
      */
     public Set<DD> getIncomingDDEdges(PDGNode node) {
-        return getIncomingDependenceEdges(node).stream().filter(edge -> edge.isDD())
-                                                        .map(edge -> (DD)edge)
-                                                        .collect(Collectors.toSet());
+        return getDDEdges().stream()
+                .filter(edge -> edge.getDstNode().equals(node)).collect(Collectors.toSet());
     }
     
     /**
@@ -222,8 +270,8 @@ public abstract class DependencyGraph {
      * @return the collection of the outgoing edges
      */
     public Set<Dependence> getOutgoingDependenceEdges(PDGNode node) {
-        return allEdges.stream().filter(edge -> edge.getSrcNode().equals(node))
-                                .collect(Collectors.toSet());
+        return getEdges().stream()
+                .filter(edge -> edge.getSrcNode().equals(node)).collect(Collectors.toSet());
     }
     
     /**
@@ -232,9 +280,8 @@ public abstract class DependencyGraph {
      * @return the collection of the outgoing edges
      */
     public Set<CD> getOutgoingCDEdges(PDGNode node) {
-        return getOutgoingDependenceEdges(node).stream().filter(edge -> edge.isCD())
-                                                        .map(edge -> (CD)edge)
-                                                        .collect(Collectors.toSet());
+        return getCDEdges().stream()
+                .filter(edge -> edge.getSrcNode().equals(node)).collect(Collectors.toSet());
     }
     
     /**
@@ -243,9 +290,8 @@ public abstract class DependencyGraph {
      * @return the collection of the outgoing edges
      */
     public Set<DD> getOutgoingDDEdges(PDGNode node) {
-        return getOutgoingDependenceEdges(node).stream().filter(edge -> edge.isDD())
-                                                        .map(edge -> (DD)edge)
-                                                        .collect(Collectors.toSet());
+        return getDDEdges().stream()
+                .filter(edge -> edge.getSrcNode().equals(node)).collect(Collectors.toSet());
     }
     
     /**
@@ -255,8 +301,9 @@ public abstract class DependencyGraph {
      * @return the collection of the dependence edges
      */
     public List<Dependence> getDependence(PDGNode src, PDGNode dst) {
-        return allEdges.stream().filter(e -> e.getSrcNode().equals(src) && e.getDstNode().equals(dst))
-                                .collect(Collectors.toList());
+        return getEdges().stream()
+                .filter(e -> e.getSrcNode().equals(src) && e.getDstNode().equals(dst))
+                .collect(Collectors.toList());
     }
     
     /**
