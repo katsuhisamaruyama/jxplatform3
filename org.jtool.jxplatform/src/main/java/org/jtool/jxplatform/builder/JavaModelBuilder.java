@@ -200,7 +200,7 @@ public class JavaModelBuilder {
      */
     public List<JavaProject> build() {
         if (!autoCheckEnv.equals("yes")) {
-            modelBuilder = new ModelBuilderBatch(true);
+            modelBuilder = new ModelBuilderBatch(true, true);
             if (logfile.length() > 0) {
                 modelBuilder.getModelBuilderImpl().getLogger().setLogFile(projectPath + File.separator + logfile);
             }
@@ -209,7 +209,7 @@ public class JavaModelBuilder {
             projects.add(modelBuilder.build(projectName, projectPath, classpath, srcpath, binpath));
             return projects;
         } else {
-            modelBuilder = new ModelBuilderBatch(true);
+            modelBuilder = new ModelBuilderBatch(true, true);
             if (logfile.length() > 0) {
                 modelBuilder.getModelBuilderImpl().getLogger().setLogFile(projectPath + File.separator + logfile);
             }

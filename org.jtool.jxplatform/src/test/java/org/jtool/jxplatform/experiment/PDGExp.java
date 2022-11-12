@@ -36,7 +36,7 @@ public class PDGExp {
         }
         
         ZonedDateTime startTime = TimeInfo.getCurrentTime();
-        ModelBuilderBatch builder = new ModelBuilderBatch(true);
+        ModelBuilderBatch builder = new ModelBuilderBatch(true, true);
         List<JavaProject> jprojects = builder.build(name, target);
         jprojects.forEach(jproject -> buildPDGs(builder, jproject));
         ZonedDateTime endTime = TimeInfo.getCurrentTime();

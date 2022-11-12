@@ -24,19 +24,29 @@ public class ModelBuilderBatch extends ModelBuilder {
     /**
      * Creates a batch-mode model builder.
      * @param analyzingBytecode {@code true} if byte-code analysis is performed, otherwise {@code false}
+     * @param useCache {@code true} if the cache is used, otherwise {@code false}
      */
-    public ModelBuilderBatch(boolean analyzingBytecode) {
+    public ModelBuilderBatch(boolean analyzingBytecode, boolean useCache) {
         this.builderImpl = new ModelBuilderBatchImpl(this);
         impl = builderImpl;
         
         impl.analyzeBytecode(analyzingBytecode);
+        impl.useCache(useCache);
+    }
+    
+    /**
+     * Creates a batch-mode model builder.
+     * @param analyzingBytecode {@code true} if byte-code analysis is performed, otherwise {@code false}
+     */
+    public ModelBuilderBatch(boolean analyzingBytecode) {
+        this(analyzingBytecode, true);
     }
     
     /**
      * Creates a batch-mode model builder.
      */
     public ModelBuilderBatch() {
-        this(false);
+        this(true, true);
     }
     
     /**

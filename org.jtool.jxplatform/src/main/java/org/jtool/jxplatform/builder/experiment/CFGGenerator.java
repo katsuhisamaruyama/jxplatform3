@@ -6,10 +6,12 @@
 package org.jtool.jxplatform.builder.experiment;
 
 import org.jtool.cfg.CCFG;
+import org.jtool.cfg.CFG;
 import org.jtool.jxplatform.builder.TimeInfo;
 import org.jtool.srcmodel.JavaProject;
 import java.io.File;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.time.ZonedDateTime;
 
@@ -31,13 +33,12 @@ public class CFGGenerator extends CommonGenerator {
         }
         
         CFGGenerator generator = new CFGGenerator();
-        
         generator.setOptions(args);
-        generator.run(true);
-        generator.run(false);
+        
+        generator.run();
     }
     
-    private void run(boolean removeCahche) {
+    private void run() {
         File dir = new File(path);
         if (!dir.exists()) {
             System.err.println("Not found project " + path);
@@ -50,16 +51,12 @@ public class CFGGenerator extends CommonGenerator {
         System.out.println("Target: " + name + " (" + path + ")");
         buildSrcModels(name, path);
         
-        if (removeCahche) {
-            jprojects.forEach(p -> p.getCFGStore().getBCStore().removeBytecodeCache());
-        }
-        
         System.out.println("-CFG Generator");
         System.out.println("Target: " + name + " (" + path + ")");
         buildCFGs(jprojects);
         
-        String srcinfo = getSrcModelInfo(name, jprojects);
-        String cfginfo = getCFGInfo(ccfgs);
+        String srcinfo = SrcModelGenerator.getSrcModelInfo(name, jprojects);
+        String cfginfo = CFGGenerator.getCFGInfo(ccfgs);
         
         builder.unbuild();
         
@@ -69,7 +66,7 @@ public class CFGGenerator extends CommonGenerator {
         System.out.print(timesecSrcModel + " , ");
         System.out.print(timesecCFG + " , ");
         System.out.print("BYTECODE=" + binanalysis + " , ");
-        System.out.print("CACHE=" + !removeCahche + " , ");
+        System.out.print("CACHE=" + useCache + " , ");
         System.out.print("BYTECODE_NUM=" + bytecodenum + " , ");
         System.out.println();
         System.out.println();
@@ -80,15 +77,29 @@ public class CFGGenerator extends CommonGenerator {
         timesecCFG = 0;
         bytecodenum = 0;
         
+        ZonedDateTime startTime = TimeInfo.getCurrentTime();
         for (JavaProject jproject: jprojects) {
-            ZonedDateTime startTime = TimeInfo.getCurrentTime();
+            ZonedDateTime startTimeCFG = TimeInfo.getCurrentTime();
             List<CCFG> result = generateCCFGs(jproject, jproject.getClasses());
             ccfgs.addAll(result);
-            ZonedDateTime endTime = TimeInfo.getCurrentTime();
-            timesecCFG = timesecCFG + CommonGenerator.getTimeSec(startTime, endTime);
+            ZonedDateTime endTimeCFG = TimeInfo.getCurrentTime();
+            timesecCFG = timesecCFG + CommonGenerator.getTimeSec(startTimeCFG, endTimeCFG);
             bytecodenum = bytecodenum + jproject.getCFGStore().getBCStore().getAnalyzedBytecodeNum();
             
             jproject.getCFGStore().destroy();
         }
+        ZonedDateTime endTime = TimeInfo.getCurrentTime();
+        printTimeSec(startTime, endTime);
+    }
+    
+    static String getCFGInfo(List<CCFG> ccfgs) {
+        List<CFG> cfgs = ccfgs.stream().flatMap(g -> g.getCFGs().stream()).collect(Collectors.toList());
+        long nodes = cfgs.stream().flatMap(g -> g.getNodes().stream()).count();
+        long edges = cfgs.stream().flatMap(g -> g.getEdges().stream()).count();
+        
+        StringBuilder buf = new StringBuilder();
+        buf.append(nodes + " , ");
+        buf.append(edges + " , ");
+        return buf.toString();
     }
 }

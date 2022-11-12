@@ -66,6 +66,22 @@ public abstract class ModelBuilder {
     }
     
     /**
+     * Sets whether byte-code analysis is performed.
+     * @param bool {@code true} if byte-code analysis is performed, otherwise {@code false}
+     */
+    public void useCache(boolean bool) {
+        impl.useCache(bool);
+    }
+    
+    /**
+     * Tests if byte-code analysis is performed.
+     * @return {@code true} if byte-code analysis is performed, otherwise {@code false}
+     */
+    public boolean useCache() {
+        return impl.useCache();
+    }
+    
+    /**
      * Disposes the created models.
      */
     public void unbuild() {

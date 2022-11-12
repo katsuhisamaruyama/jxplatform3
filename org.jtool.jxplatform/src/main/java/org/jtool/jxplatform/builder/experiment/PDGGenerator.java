@@ -6,9 +6,9 @@
 package org.jtool.jxplatform.builder.experiment;
 
 import org.jtool.cfg.CCFG;
-import org.jtool.jxplatform.builder.TimeInfo;
 import org.jtool.pdg.SDG;
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.jxplatform.builder.TimeInfo;
 import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
@@ -30,19 +30,17 @@ public class PDGGenerator extends CommonGenerator {
     
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("java -cp jxplatform-3.0.jar org.jtool.jxplatform.builder.experiment.PDGGenerator" +
-                    "-target target_dir [-name target_name] [-logging on/off] [-binanalysis on/off]");
+            System.out.println(getCommandMessage("PDGGenerator"));
             System.exit(0);
         }
         
         PDGGenerator generator = new PDGGenerator();
         generator.setOptions(args);
         
-        generator.run(true);
-        generator.run(false);
+        generator.run();
     }
     
-    private void run(boolean removeCahche) {
+    private void run() {
         File dir = new File(path);
         if (!dir.exists()) {
             System.err.println("Not found project " + path);
@@ -55,17 +53,13 @@ public class PDGGenerator extends CommonGenerator {
         System.out.println("Target: " + name + " (" + path + ")");
         buildSrcModels(name, path);
         
-        if (removeCahche) {
-            jprojects.forEach(p -> p.getCFGStore().getBCStore().removeBytecodeCache());
-        }
-        
         System.out.println("-CFG/PDG Generator");
         System.out.println("Target: " + name + " (" + path + ")");
         buildPDGs(jprojects);
         
-        String srcinfo = getSrcModelInfo(name, jprojects);
-        String cfginfo = getCFGInfo(ccfgs);
-        String pdginfo = getPDGInfo(sdgs);
+        String srcinfo = SrcModelGenerator.getSrcModelInfo(name, jprojects);
+        String cfginfo = CFGGenerator.getCFGInfo(ccfgs);
+        String pdginfo = PDGGenerator.getPDGInfo(sdgs);
         
         builder.unbuild();
         
@@ -77,7 +71,7 @@ public class PDGGenerator extends CommonGenerator {
         System.out.print(timesecCFG + " , ");
         System.out.print(timesecPDG + " , ");
         System.out.print("BYTECODE=" + binanalysis + " , ");
-        System.out.print("CACHE=" + !removeCahche + " , ");
+        System.out.print("CACHE=" + useCache + " , ");
         System.out.print("BYTECODE_NUM=" + bytecodenum + " , ");
         System.out.println();
         System.out.println();
@@ -91,23 +85,33 @@ public class PDGGenerator extends CommonGenerator {
         sdgs = new ArrayList<>();
         timesecPDG = 0;
         
-        ZonedDateTime startTime;
-        ZonedDateTime endTime;
-        
+        ZonedDateTime startTime = TimeInfo.getCurrentTime();
         for (JavaProject jproject: jprojects) {
-            startTime = TimeInfo.getCurrentTime();
+            ZonedDateTime startTimeCFG = TimeInfo.getCurrentTime();
             List<CCFG> pccfgs = generateCCFGs(jproject, jproject.getClasses());
             ccfgs.addAll(pccfgs);
-            endTime = TimeInfo.getCurrentTime();
-            timesecCFG = timesecCFG + getTimeSec(startTime, endTime);
+            ZonedDateTime endTimeCFG = TimeInfo.getCurrentTime();
+            timesecCFG = timesecCFG + getTimeSec(startTimeCFG, endTimeCFG);
             
-            startTime = TimeInfo.getCurrentTime();
+            ZonedDateTime startTimePDG = TimeInfo.getCurrentTime();
             SDG sdg = generateClDGs(jproject, pccfgs);
             sdgs.add(sdg);
-            endTime = TimeInfo.getCurrentTime();
-            timesecPDG = timesecPDG + getTimeSec(startTime, endTime);
+            ZonedDateTime endTimePDG = TimeInfo.getCurrentTime();
+            timesecPDG = timesecPDG + getTimeSec(startTimePDG, endTimePDG);
             
             jproject.getCFGStore().destroy();
         }
+        ZonedDateTime endTime = TimeInfo.getCurrentTime();
+        printTimeSec(startTime, endTime);
+    }
+    
+    static String getPDGInfo(List<SDG> sdgs) {
+        long nodes = sdgs.stream().flatMap(g -> g.getNodes().stream()).count();
+        long edges = sdgs.stream().flatMap(g -> g.getEdges().stream()).count();
+        
+        StringBuilder buf = new StringBuilder();
+        buf.append(nodes + " , ");
+        buf.append(edges + " , ");
+        return buf.toString();
     }
 }

@@ -7,9 +7,7 @@ package org.jtool.jxplatform.builder.experiment;
 
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaClass;
-import org.jtool.srcmodel.JavaFile;
 import org.jtool.cfg.CCFG;
-import org.jtool.cfg.CFG;
 import org.jtool.cfg.builder.CFGStore;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.SDG;
@@ -21,13 +19,8 @@ import org.jtool.jxplatform.project.CommandLineOptions;
 import org.jtool.jxplatform.project.ConsoleProgressMonitor;
 import org.jtool.jxplatform.project.NullConsoleProgressMonitor;
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.stream.Stream;
-import java.util.stream.Collectors;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -40,16 +33,18 @@ public class CommonGenerator {
     
     protected String path;
     protected String name;
-    protected boolean binanalysis;
     protected boolean logging;
+    protected boolean binanalysis;
+    protected boolean useCache;
     
     protected ModelBuilderBatch builder;
     protected List<JavaProject> jprojects;
     protected long timesecSrcModel;
     
     protected static String getCommandMessage(String generatorName) {
-       return "java -Xms32G -Xmx32G -cp jxplatform-3.0.jar org.jtool.jxplatform.experiment." + generatorName +
-                 " -target target_path [-name target_name] [-logging on/off] [-binanalysis on/off]";
+       return "java -Xms32G -Xmx32G -cp jxplatform-3.0.jar org.jtool.jxplatform.experiment." + generatorName + "\n" +
+              "   -target target_path [-name target_name]\n" +
+              "   [-logging on/off] [-binanalysis on/off] [-cache on/off]";
     }
     
     protected void setOptions(String[] args) {
@@ -64,6 +59,7 @@ public class CommonGenerator {
         }
         logging = options.get("-logging", "on").equals("on") ? true : false;
         binanalysis = options.get("-binanalysis", "on").equals("on") ? true : false;
+        useCache = options.get("-cache", "on").equals("on") ? true : false;
     }
     
     static long getTimeSec(ZonedDateTime startTime, ZonedDateTime endTime) {
@@ -79,7 +75,7 @@ public class CommonGenerator {
     }
     
     protected void setModelBuilder() {
-        builder = new ModelBuilderBatch(binanalysis);
+        builder = new ModelBuilderBatch(binanalysis, useCache);
         builder.setLogVisible(logging);
     }
     
@@ -88,6 +84,8 @@ public class CommonGenerator {
         jprojects = builder.build(name, path);
         ZonedDateTime endTime = TimeInfo.getCurrentTime();
         timesecSrcModel = getTimeSec(startTime, endTime);
+        
+        printTimeSec(startTime, endTime);
     }
     
     protected List<CCFG> generateCCFGs(JavaProject jproject, List<JavaClass> classes) {
@@ -133,61 +131,5 @@ public class CommonGenerator {
         
         pdgStore.findConnection(sdg);
         return sdg;
-    }
-    
-    protected String getSrcModelInfo(String name, List<JavaProject> jprojects) {
-        List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
-        long loc = getLoc(jprojects);
-        long files = jprojects.stream().flatMap(p -> p.getFiles().stream()).count();
-        long cnum = classes.size();
-        long mnum = classes.stream().flatMap(p -> p.getMethods().stream()).count();
-        long fnum = classes.stream().flatMap(p -> p.getFields().stream()).count();
-        
-        StringBuilder buf = new StringBuilder();
-        buf.append(name + " , ");
-        buf.append(loc + " , ");
-        buf.append(jprojects.size() + " , ");
-        buf.append(files + " , ");
-        buf.append(cnum + " , ");
-        buf.append(mnum + " , ");
-        buf.append(fnum + " , ");
-        return buf.toString();
-    }
-    
-    private static long getLoc(List<JavaProject> jprojects) {
-        long loc = 0;
-        for (JavaProject jproject : jprojects) {
-            for (JavaFile jfile : jproject.getFiles()) {
-                Path file = Paths.get(jfile.getPath());
-                try (Stream<String> stream = Files.lines(file)) {
-                    long count = stream.count();
-                    loc = loc + count;
-                } catch (Exception e) {
-                    System.err.println("ERROR " + e.getMessage() + jfile.getPath());
-                }
-            }
-        }
-        return loc;
-    }
-    
-    protected String getCFGInfo(List<CCFG> ccfgs) {
-        List<CFG> cfgs = ccfgs.stream().flatMap(g -> g.getCFGs().stream()).collect(Collectors.toList());
-        long nodes = cfgs.stream().flatMap(g -> g.getNodes().stream()).count();
-        long edges = cfgs.stream().flatMap(g -> g.getEdges().stream()).count();
-        
-        StringBuilder buf = new StringBuilder();
-        buf.append(nodes + " , ");
-        buf.append(edges + " , ");
-        return buf.toString();
-    }
-    
-    protected String getPDGInfo(List<SDG> sdgs) {
-        long nodes = sdgs.stream().flatMap(g -> g.getNodes().stream()).count();
-        long edges = sdgs.stream().flatMap(g -> g.getEdges().stream()).count();
-        
-        StringBuilder buf = new StringBuilder();
-        buf.append(nodes + " , ");
-        buf.append(edges + " , ");
-        return buf.toString();
     }
 }

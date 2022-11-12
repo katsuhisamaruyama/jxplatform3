@@ -55,6 +55,9 @@ public class BytecodeClassStore {
     
     private int analysisLevel;
     
+    private boolean analyzeBytecode;
+    private boolean useCache;
+    
     private Set<String> cacheNames = new HashSet<>();
     
     private Map<String, BytecodeClass> bytecodeClassMap = new HashMap<>();
@@ -66,10 +69,12 @@ public class BytecodeClassStore {
     
     private int analyzedBytecodeNum = 0;
     
-    BytecodeCacheManager cacheManager = new BytecodeCacheManagerJSON();
+    BytecodeCacheManager cacheManager = new BytecodeCacheManagerXML();
     
     public BytecodeClassStore(JavaProject jproject) {
         this.jproject = jproject;
+        analyzeBytecode = jproject.getModelBuilderImpl().analyzeBytecode();
+        useCache = jproject.getModelBuilderImpl().useCache();
     }
     
     public JavaProject getJavaProject() {
@@ -85,7 +90,7 @@ public class BytecodeClassStore {
         JCommon.maxNumberOfChainForSourcecode = builderImpl.getSourcecodeAnalysisChain();
         JCommon.maxNumberOfChainForBytecode = builderImpl.getBytecodeAnalysisChain();
         
-        if (builderImpl.analyzeBytecode()) {
+        if (analyzeBytecode) {
             analysisLevel = 1;
         } else {
             analysisLevel = 0;
@@ -119,7 +124,7 @@ public class BytecodeClassStore {
     }
     
     public boolean analyzingBytecode() {
-        return jproject.getModelBuilderImpl().analyzeBytecode();
+        return analyzeBytecode;
     }
     
     public Set<BytecodeName> getBytecodeNamesToBeLoaded() {
@@ -144,10 +149,15 @@ public class BytecodeClassStore {
     private Set<BytecodeName> collectBytecodeNames(List<String> classPaths) {
         Set<BytecodeName> bytecodeNames = new HashSet<>();
         
-        boolean makeCacheDirectory = cacheManager.makeCacheDirectory(jproject.getTopPath());
-        boolean readBootCacheOk = readBootCache(jproject.getTopPath());
-        if (makeCacheDirectory && readBootCacheOk) {
-            analysisLevel = 2;
+        cacheManager.makeCacheDirectory(jproject.getTopPath());
+        if (useCache) {
+            boolean readBootCacheOk = readBootCache(jproject.getTopPath());
+            if (readBootCacheOk) {
+                analysisLevel = 2;
+            } else {
+                bytecodeNames.addAll(collectClassNamesFromBootModules());
+                cacheNames.add(BOOT_CACHE_FILENAME);
+            }
         } else {
             bytecodeNames.addAll(collectClassNamesFromBootModules());
             cacheNames.add(BOOT_CACHE_FILENAME);
@@ -222,10 +232,9 @@ public class BytecodeClassStore {
             return;
         }
         
-        if (analysisLevel == 2) {
+        if (useCache && analysisLevel == 2) {
             long cacheTime = cacheManager.getLastModifiedTimeJarsCacheFile(jproject.getPath(), cacheName);
             if (cacheTime >= file.lastModified() && cacheManager.canRead(jproject.getPath(), cacheName)) {
-                //boolean readCacheOk = BytecodeCacheManager.readCache(jproject, jproject.getPath(), cacheName, false);
                 boolean readCacheOk = cacheManager.readCache(jproject, jproject.getPath(), cacheName, false);
                 if (readCacheOk) {
                     return;
@@ -273,12 +282,12 @@ public class BytecodeClassStore {
         }
     }
     
-    public void removeBytecodeCache() {
+    void removeBytecodeCache() {
         cacheManager.removeBytecodeCache(jproject.getPath());
         cacheManager.removeBytecodeCache(jproject.getTopPath());
     }
     
-    public void writeBytecodeCache() {
+    private void writeBytecodeCache() {
         for (String cacheName : cacheNames) {
             if (cacheName.equals(BOOT_CACHE_FILENAME)) {
                 List<BytecodeClass> classes = bootModuleBytecodeClassMap.values().stream()

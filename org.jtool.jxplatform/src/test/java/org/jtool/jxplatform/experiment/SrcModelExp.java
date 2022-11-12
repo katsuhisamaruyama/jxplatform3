@@ -43,7 +43,7 @@ public class SrcModelExp {
         }
         
         ZonedDateTime startTime = TimeInfo.getCurrentTime();
-        ModelBuilderBatch builder = new ModelBuilderBatch(true);
+        ModelBuilderBatch builder = new ModelBuilderBatch(true, true);
         builder.build(name, target);
         ZonedDateTime endTime = TimeInfo.getCurrentTime();
         
