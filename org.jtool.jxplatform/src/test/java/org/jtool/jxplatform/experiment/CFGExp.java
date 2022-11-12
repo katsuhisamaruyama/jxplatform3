@@ -64,7 +64,7 @@ public class CFGExp {
     public static void main(String[] args) {
         CFGExp tester = new CFGExp();
         
-        tester.run("ExpForPaper", SrcModelExp.TEST_TARGET_DIR);
+        tester.run("ExpForPaper");
         
 //        tester.run("ant-1.10.12", SrcModelExp.TEST_TARGET_DIR);
 //        tester.run("guava-31.0.1", SrcModelExp.TEST_TARGET_DIR);

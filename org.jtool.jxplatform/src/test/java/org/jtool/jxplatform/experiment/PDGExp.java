@@ -66,7 +66,7 @@ public class PDGExp {
     public static void main(String[] args) {
         PDGExp tester = new PDGExp();
         
-        tester.run("ExpForPaper", SrcModelExp.TEST_TARGET_DIR);
+        tester.run("ExpForPaper");
         
 //        tester.run("ant-1.10.12", SrcModelExp.TEST_TARGET_DIR);
 //        tester.run("guava-31.0.1", SrcModelExp.TEST_TARGET_DIR);
