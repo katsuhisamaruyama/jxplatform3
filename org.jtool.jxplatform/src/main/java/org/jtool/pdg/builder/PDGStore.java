@@ -49,6 +49,7 @@ import java.util.stream.Collectors;
  * 
  * @author Katsuhisa Maruyama
  */
+@SuppressWarnings("unused")
 public class PDGStore {
     
     private CFGStore cfgStore;
@@ -347,18 +348,18 @@ public class PDGStore {
     } 
     
     private void findSummaryEdges(DependencyGraph graph, Set<CFGMethodCall> callers) {
-        CallGraph callGraph = CallGraphBuilder.getCallGraph(cfgStore.getJavaProject());
-        Map<String, PDG> pdgMap = graph.getPDGs().stream()
-                .collect(Collectors.toMap(pdg -> pdg.getQualifiedName().fqn(), pdg -> pdg));
+        //CallGraph callGraph = CallGraphBuilder.getCallGraph(cfgStore.getJavaProject());
+        //Map<String, PDG> pdgMap = graph.getPDGs().stream()
+        //        .collect(Collectors.toMap(pdg -> pdg.getQualifiedName().fqn(), pdg -> pdg));
         
-        Map<CFG, Set<PDGStatement>> finsMap = new HashMap<>();
+        //Map<CFG, Set<PDGStatement>> finsMap = new HashMap<>();
         for (CFGMethodCall caller : callers) {
             for (String className : caller.getApproximatedTypeNames()) {
                 QualifiedName qname = new QualifiedName(className, caller.getSignature());
                 PDG callee = graph.findPDG(qname.fqn());
                 if (callee != null) {
-                    DependencyGraph minimumGraph = getMinimumGraph(graph, callGraph, pdgMap, caller, callee);
-                    findSummaryEdges(minimumGraph, caller, callee.getCFG(), finsMap);
+                    //DependencyGraph minimumGraph = getMinimumGraph(graph, callGraph, pdgMap, caller, callee);
+                    //findSummaryEdges(minimumGraph, caller, callee.getCFG(), finsMap);
                 } else {
                     findConservativelySummaryEdges(graph, caller);
                 }
@@ -366,6 +367,7 @@ public class PDGStore {
         }
     }
     
+    /*
     private DependencyGraph getMinimumGraph(DependencyGraph graph,
             CallGraph callGraph, Map<String, PDG> pdgMap, CFGMethodCall caller, PDG callee) {
         Set<CFGNode> entryNodes = new HashSet<>();
@@ -449,6 +451,7 @@ public class PDGStore {
             }
         }
     }
+    */
     
     private void findConservativelySummaryEdges(DependencyGraph graph,
             CFGMethodCall caller) {
