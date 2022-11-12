@@ -24,7 +24,7 @@ import javax.json.Json;
 import javax.json.JsonValue;
 import javax.json.JsonString;
 import javax.json.JsonWriterFactory;
-import javax.json.stream.JsonGenerator;
+//import javax.json.stream.JsonGenerator;
 import javax.json.JsonObject;
 import javax.json.JsonArray;
 import javax.json.JsonStructure;
@@ -156,7 +156,7 @@ class BytecodeCacheManagerJSON extends BytecodeCacheManager {
     private static String stringify(JsonStructure json) {
         StringWriter stringWriter = new StringWriter();
         Map<String, Object> config = new HashMap<>();
-        config.put(JsonGenerator.PRETTY_PRINTING, Boolean.TRUE);
+        //config.put(JsonGenerator.PRETTY_PRINTING, Boolean.TRUE);
         JsonWriterFactory factory = Json.createWriterFactory(config);
         JsonWriter jsonWriter = factory.createWriter(stringWriter);
         jsonWriter.write(json);
