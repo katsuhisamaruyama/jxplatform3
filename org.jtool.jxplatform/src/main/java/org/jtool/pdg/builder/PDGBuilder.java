@@ -38,7 +38,7 @@ public class PDGBuilder {
             
             Dependence edge = new Dependence(entry, pdg.getEntryNode());
             edge.setClassMember();
-            cldg.add(edge);
+            cldg.addInterEdge(edge);
         }
         return cldg;
     }
@@ -48,6 +48,7 @@ public class PDGBuilder {
         if (bpdg == null) {
             bpdg = new BarePDG(cfg);
             createNodes(bpdg, cfg);
+            
             CDFinder.find(bpdg, cfg);
             DDFinder.find(bpdg, cfg);
             bpdgMap.put(cfg.getQualifiedName().fqn(), bpdg);
@@ -62,8 +63,7 @@ public class PDGBuilder {
     }
     
     private static void createNodes(BarePDG bpdg, CFG cfg) {
-        cfg.getNodes().stream()
-                      .map(cfgnode -> createNode(bpdg, cfgnode))
+        cfg.getNodes().stream().map(cfgnode -> createNode(bpdg, cfgnode))
                       .filter(pdgnode -> pdgnode != null)
                       .forEach(pdgnode -> bpdg.add(pdgnode));
     }

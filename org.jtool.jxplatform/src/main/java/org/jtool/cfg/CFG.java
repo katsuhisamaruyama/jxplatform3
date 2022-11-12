@@ -378,9 +378,9 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      */
     public Set<CFGNode> forwardReachableNodes(CFGNode startnode,
             boolean loopbackOk, boolean fallthroughOk, StopConditionOnReachablePath condition) {
-        Set<CFGNode> nodes = new HashSet<CFGNode>();
+        Set<CFGNode> track = new HashSet<CFGNode>();
         if (startnode == null) {
-            return nodes;
+            return track;
         }
         
         Stack<CFGNode> nodeStack = new Stack<>();
@@ -389,17 +389,16 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
         while (!nodeStack.isEmpty()) {
             CFGNode node = nodeStack.pop();
             
-            if (condition.isStop(node) || nodes.contains(node)) {
+            if (condition.isStop(node) || track.contains(node)) {
                 continue;
             }
-            nodes.add(node);
+            track.add(node);
             
             node.getOutgoingFlows().stream() 
                 .filter(flow -> (loopbackOk || !flow.isLoopBack()) && (fallthroughOk || !flow.isFallThrough()))
-                .map(flow -> flow.getDstNode())
-                .forEach(succ -> nodeStack.push(succ));
+                .forEach(flow -> nodeStack.push(flow.getDstNode()));
         }
-        return nodes;
+        return track;
     }
     
     /**
@@ -443,9 +442,9 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      */
     public Set<CFGNode> backwardReachableNodes(CFGNode startnode,
             boolean loopbackOk, boolean fallthroughOk, StopConditionOnReachablePath condition) {
-        Set<CFGNode> nodes = new HashSet<CFGNode>();
+        Set<CFGNode> track = new HashSet<CFGNode>();
         if (startnode == null) {
-            return nodes;
+            return track;
         }
         
         Stack<CFGNode> nodeStack = new Stack<>();
@@ -454,17 +453,16 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
         while (!nodeStack.isEmpty()) {
             CFGNode node = nodeStack.pop();
             
-            if (condition.isStop(node) || nodes.contains(node)) {
+            if (condition.isStop(node) || track.contains(node)) {
                 continue;
             }
-            nodes.add(node);
+            track.add(node);
             
             node.getIncomingFlows().stream()
                 .filter(flow -> (loopbackOk || !flow.isLoopBack()) && (fallthroughOk || !flow.isFallThrough()))
-                .map(flow -> flow.getSrcNode())
-                .forEach(pred -> nodeStack.push(pred));
+                .forEach(flow -> nodeStack.push(flow.getSrcNode()));
         }
-        return nodes;
+        return track;
     }
     
     /**

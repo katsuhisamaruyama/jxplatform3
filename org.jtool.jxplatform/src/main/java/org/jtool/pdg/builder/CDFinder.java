@@ -32,11 +32,9 @@ public class CDFinder {
     }
     
     private static void findCDs(BarePDG bpdg, CFG cfg) {
-        for (CFGNode cfgnode : cfg.getNodes()) {
-            if (cfgnode.isBranch()) {
-                findCDs(bpdg, cfg, cfgnode);
-            }
-        }
+        cfg.getNodes().stream().filter(node -> node.isBranch()).forEach(cfgnode -> {
+            findCDs(bpdg, cfg, cfgnode);
+        });
     }
     
     private static void findCDs(BarePDG bpdg, CFG cfg, CFGNode branchNode) {
@@ -66,17 +64,26 @@ public class CDFinder {
         }
     }
     
-    private static void findCDsFromEntry(BarePDG bpdg, CFG cfg) {
-        CFGNode entryNode = cfg.getEntryNode();
-        Set<CFGNode> postDominator = cfg.postDominator(entryNode);
-        for (CFGNode cfgnode : postDominator) {
-            if ((cfgnode.isStatementNotParameter() && !cfgnode.isMethodCall()) || cfgnode.isFormal()) {
-                CD edge = new CD(entryNode.getPDGNode(), cfgnode.getPDGNode());
-                edge.setTrue();
-                bpdg.add(edge);
+    private static void findCDsOnTryCatch(BarePDG bpdg, CFG cfg) {
+        for (CFGNode cfgnode : cfg.getNodes()) {
+            if (cfgnode.isTry()) {
+                CFGTry trynode = (CFGTry)cfgnode;
+                trynode.getCatchNodes().forEach(catchnode -> {
+                    CD edge = new CD(trynode.getPDGNode(), catchnode.getPDGNode());
+                    edge.setTrue();
+                    bpdg.add(edge);
+                });
+                if (trynode.getFinallyNode() != null) {
+                    CD edge = new CD(trynode.getPDGNode(), trynode.getFinallyNode().getPDGNode());
+                    edge.setTrue();
+                    bpdg.add(edge);
+                }
             }
         }
-        
+    }
+    
+    private static void findCDsFromEntry(BarePDG bpdg, CFG cfg) {
+        CFGNode entryNode = cfg.getEntryNode();
         for (PDGNode pdgnode : bpdg.getNodes()) {
             if (!pdgnode.isEntry() && pdgnode.getIncomingCDEdges().size() == 0) {
                 CD edge = new CD(entryNode.getPDGNode(), pdgnode);
@@ -118,24 +125,6 @@ public class CDFinder {
                     return false;
                 }
             });
-        }
-    }
-    
-    private static void findCDsOnTryCatch(BarePDG bpdg, CFG cfg) {
-        for (CFGNode cfgnode : cfg.getNodes()) {
-            if (cfgnode.isTry()) {
-                CFGTry trynode = (CFGTry)cfgnode;
-                trynode.getCatchNodes().forEach(catchnode -> {
-                    CD edge = new CD(trynode.getPDGNode(), catchnode.getPDGNode());
-                    edge.setTrue();
-                    bpdg.add(edge);
-                });
-                if (trynode.getFinallyNode() != null) {
-                    CD edge = new CD(trynode.getPDGNode(), trynode.getFinallyNode().getPDGNode());
-                    edge.setTrue();
-                    bpdg.add(edge);
-                }
-            }
         }
     }
 }
