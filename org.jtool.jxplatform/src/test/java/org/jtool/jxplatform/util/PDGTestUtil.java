@@ -116,7 +116,7 @@ public class PDGTestUtil {
     }
     
     public static List<Dependence> getDependence(DependencyGraph graph, PDGNode src, PDGNode dst) {
-        return Dependence.sortEdges(graph.getDependence(src, dst));
+        return Dependence.sortEdges(graph.findDependence(src, dst));
     }
     
     public static List<PDGNode> getNodes(PDG pdg, String kind) {

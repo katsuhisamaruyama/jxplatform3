@@ -38,14 +38,14 @@ public abstract class DependencyGraph {
     protected List<DD> ddEdges = new ArrayList<>();
     
     /**
-     * All edges that are included in this dependency graph.
-     */
-    //protected List<Dependence> allEdges = new ArrayList<>();
-    
-    /**
      * Edges that link nodes in different PDGs.
      */
     protected List<Dependence> interEdges = new ArrayList<>();
+    
+    /**
+     * Edges that uncover field accesses in this dependency graph.
+     */
+    private List<Dependence> uncoveredFieldAccessEdges = new ArrayList<>();
     
     /**
      * Creates a dependency graph.
@@ -121,6 +121,8 @@ public abstract class DependencyGraph {
             cdEdges.add((CD)edge);
         } else if (edge.isDD()) {
             ddEdges.add((DD)edge);
+        } else {
+            interEdges.add(edge);
         }
     }
     
@@ -140,6 +142,13 @@ public abstract class DependencyGraph {
      */
     public void addInterEdge(Dependence edge) {
         interEdges.add(edge);
+        
+        if (edge.isCD()) {
+            cdEdges.add((CD)edge);
+            
+        } else if (edge.isDD()) {
+            ddEdges.add((DD)edge);
+        }
     }
     
     /**
@@ -300,8 +309,29 @@ public abstract class DependencyGraph {
      * @param dst the destination node
      * @return the collection of the dependence edges
      */
-    public List<Dependence> getDependence(PDGNode src, PDGNode dst) {
+    public List<Dependence> findDependence(PDGNode src, PDGNode dst) {
         return getEdges().stream()
+                .filter(e -> e.getSrcNode().equals(src) && e.getDstNode().equals(dst))
+                .collect(Collectors.toList());
+    }
+    
+    /**
+     * Adds an edge that uncovers an field access.
+     * This method is not intended to be invoked by clients.
+     * @param edge the edge to be added
+     */
+    public void addUncoveredFieldAccessEdge(DD edge) {
+        uncoveredFieldAccessEdges.add(edge);
+    }
+    
+    /**
+     * Finds dependence edges that uncover field accesses.
+     * @param src the source node
+     * @param dst the destination node
+     * @return the collection of the dependence edges
+     */
+    public List<Dependence> findUncoveredFieldAccessEdge(PDGNode src, PDGNode dst) {
+        return uncoveredFieldAccessEdges.stream()
                 .filter(e -> e.getSrcNode().equals(src) && e.getDstNode().equals(dst))
                 .collect(Collectors.toList());
     }
