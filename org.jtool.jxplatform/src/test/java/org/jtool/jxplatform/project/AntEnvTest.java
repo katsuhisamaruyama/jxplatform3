@@ -143,4 +143,28 @@ public class AntEnvTest {
         
         assertEquals(0, env.getExcludedSourceFiles().size());
     }
+    
+    @Test
+    public void testGetCompilerSourceVersion() {
+        String name = "ant-1.10.12";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals("1.8", env.getCompilerSourceVersion());
+    }
+    
+    @Test
+    public void testGetCompilerTargetVersion() {
+        String name = "ant-1.10.12";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new AntEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals("1.8", env.getCompilerTargetVersion());
+    }
 }

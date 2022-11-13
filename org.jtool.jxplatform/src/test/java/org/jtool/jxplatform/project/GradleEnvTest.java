@@ -144,4 +144,28 @@ public class GradleEnvTest {
         
         assertEquals(0, env.getExcludedSourceFiles().size());
     }
+    
+    @Test
+    public void testGetCompilerSourceVersion() {
+        String name = "mockito-4.2.0";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals("1.8", env.getCompilerSourceVersion());
+    }
+    
+    @Test
+    public void testGetCompilerTargetVersion() {
+        String name = "mockito-4.2.0";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new GradleEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals("1.8", env.getCompilerTargetVersion());
+    }
 }

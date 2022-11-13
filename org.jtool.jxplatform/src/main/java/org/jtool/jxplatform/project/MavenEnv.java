@@ -29,6 +29,7 @@ import org.apache.maven.shared.invoker.DefaultInvocationRequest;
 import org.apache.maven.shared.invoker.Invoker;
 import org.apache.maven.shared.invoker.DefaultInvoker;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.eclipse.jdt.core.JavaCore;
 
 /**
  * Obtains path information from the Maven setting.
@@ -96,42 +97,59 @@ class MavenEnv extends ProjectEnv {
         return model;
     }
     
-    private String compilerVersion(List<Model> models, String key) throws Exception {
-        for (Model m : models) {
-            Properties properties = m.getProperties();
-            String version = properties.getProperty(key);
-            if (version != null) {
-                return version;
+    private List<BuildBase> getBuilds(List<Model> models) {
+        List<BuildBase> builds = new ArrayList<>();
+        for (Model model : models) {
+            Build build = model.getBuild();
+            if (build != null) {
+                builds.add(build);
             }
+            model.getProfiles().stream().filter(profile -> profile.getBuild() != null)
+                .forEach(profiles -> builds.add(profiles.getBuild()));
         }
-        return null;
+        return builds;
+    }
+    
+    private List<Plugin> getPlugins(List<BuildBase> builds) {
+        List<Plugin> plugins = new ArrayList<>();
+        builds.stream().forEach(build -> plugins.addAll(build.getPlugins()));
+        builds.stream().filter(build -> build.getPluginManagement() != null)
+            .forEach(build -> plugins.addAll(build.getPluginManagement().getPlugins()));
+        return plugins;
     }
     
     private void setConfigParameters(Path cpath) throws Exception {
         List<Model> models = getModels(cpath);
+        List<BuildBase> builds = getBuilds(models);
+        List<Plugin> plugins = getPlugins(builds);
+        
         Model model = models.get(0);
-        
         modules = model.getModules();
-        
-        compilerSourceVersion = compilerVersion(models, "maven.compiler.source");
-        compilerTargetVersion = compilerVersion(models, "maven.compiler.target");
         
         sourcePaths = new HashSet<>();
         binaryPaths = new HashSet<>();
         classPaths = new HashSet<>();
         
         String sourceDirectory = null;
-        String testSourceDirectory = null;
-        for (Model m : models) {
-            Build build = m.getBuild();
-            if (build != null) {
-                String sdir = build.getSourceDirectory();
-                if (sdir != null && sourceDirectory == null) {
-                    sourceDirectory = sdir;
+        for (BuildBase buildBase : builds) {
+            if (buildBase instanceof Build) {
+                Build build = (Build)buildBase;
+                
+                sourceDirectory = build.getSourceDirectory();
+                if (sourceDirectory != null) {
+                    break;
                 }
-                String tdir = build.getTestSourceDirectory();
-                if (sdir != null && testSourceDirectory == null) {
-                    testSourceDirectory = tdir;
+            }
+        }
+        
+        String testSourceDirectory = null;
+        for (BuildBase buildBase : builds) {
+            if (buildBase instanceof Build) {
+                Build build = (Build)buildBase;
+                
+                testSourceDirectory = build.getTestSourceDirectory();
+                if (testSourceDirectory != null) {
+                    break;
                 }
             }
         }
@@ -155,20 +173,16 @@ class MavenEnv extends ProjectEnv {
         } else {
             return;
         }
+        
         if (testSourceDirectory != null) {
             sourcePaths.add(testSourceDirectory);
         }
         
-        Build build = model.getBuild();
         String buildDirectory = null;
-        if (build != null) {
-            buildDirectory = build.getDirectory();
-        } else {
-            BuildBase buildBase = model.getProfiles().stream()
-                    .filter(p -> p.getBuild() != null)
-                    .map(p -> p.getBuild()).findFirst().orElse(null);
-            if (buildBase != null) {
-                buildDirectory = buildBase.getDirectory();
+        for (BuildBase buildBase : builds) {
+            buildDirectory = buildBase.getDirectory();
+            if (buildDirectory != null) {
+                break;
             }
         }
         
@@ -195,42 +209,72 @@ class MavenEnv extends ProjectEnv {
         }
         
         String outputDirectory = null;
-        String testOutputDirectory = null;
-        if (build != null) {
-            outputDirectory = build.getOutputDirectory();
-            testOutputDirectory = build.getTestOutputDirectory();
+        for (BuildBase buildBase : builds) {
+            if (buildBase instanceof Build) {
+                Build build = (Build)buildBase;
+                
+                outputDirectory = build.getOutputDirectory();
+                if (outputDirectory != null) {
+                    break;
+                }
+            }
         }
         if (outputDirectory == null) {
             outputDirectory = buildPath.resolve("classes").toString();
         }
+        
+        String testOutputDirectory = null;
+        for (BuildBase buildBase : builds) {
+            if (buildBase instanceof Build) {
+                Build build = (Build)buildBase;
+                
+                testOutputDirectory = build.getTestOutputDirectory();
+                if (testOutputDirectory != null) {
+                    break;
+                }
+            }
+        }
         if (testOutputDirectory == null) {
             testOutputDirectory = buildPath.resolve("test-classes").toString();
         }
+        
         binaryPaths.add(toAbsolutePath(outputDirectory));
         binaryPaths.add(toAbsolutePath(testOutputDirectory));
         
         classPaths.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
         classPaths.add(libPath.toString());
         
-        Stream<Plugin> plugins1;
-        if (build != null) {
-            plugins1 = build.getPlugins().stream();
-        } else {
-            plugins1 = new ArrayList<Plugin>().stream();
-        }
-        Stream<Plugin> plugins2;
-        if (model.getProfiles() != null) {
-            plugins2 = model.getProfiles().stream()
-                    .filter(p -> p.getBuild() != null)
-                    .map(p -> p.getBuild()).flatMap(m -> m.getPlugins().stream());
-        } else {
-            plugins2 = new ArrayList<Plugin>().stream();
-        }
-        List<Xpp3Dom> configurations = Stream.concat(plugins1, plugins2)
-                .filter(p -> p.getArtifactId().equals("maven-compiler-plugin"))
-                .filter(p -> p.getConfiguration() != null)
+        List<Xpp3Dom> configurations = plugins.stream()
+                .filter(plugin -> plugin.getArtifactId().equals("maven-compiler-plugin"))
+                .filter(plugin -> plugin.getConfiguration() != null)
                 .map(p -> (Xpp3Dom)p.getConfiguration())
                 .collect(Collectors.toList());
+        
+        compilerSourceVersion = compilerVersion(models, "maven.compiler.source");
+        if (compilerSourceVersion == null) {
+            for (Xpp3Dom dom : configurations) {
+                compilerSourceVersion = getValue(dom, "source");
+                if (compilerSourceVersion != null) {
+                    break;
+                }
+            }
+        }
+        if (compilerSourceVersion == null) {
+            compilerSourceVersion = JavaCore.VERSION_11;
+        }
+        
+        compilerTargetVersion = compilerVersion(models, "maven.compiler.target");
+        if (compilerTargetVersion == null) {
+            for (Xpp3Dom dom : configurations) {
+                compilerTargetVersion = getValue(dom, "source");
+                if (compilerTargetVersion != null) {
+                    break;
+                }
+            }
+        }
+        if (compilerTargetVersion == null) {
+            compilerTargetVersion = JavaCore.VERSION_11;
+        }
         
         Set<String> includes = new HashSet<>();
         configurations.forEach(dom -> collectFileNames(dom, includes, "include", "testInclude"));
@@ -268,6 +312,26 @@ class MavenEnv extends ProjectEnv {
             }
         }
         return paths;
+    }
+    
+    private String compilerVersion(List<Model> models, String key) throws Exception {
+        for (Model model : models) {
+            Properties properties = model.getProperties();
+            String version = properties.getProperty(key);
+            if (version != null) {
+                return version;
+            }
+        }
+        return null;
+    }
+    
+    private String getValue(Xpp3Dom dom, String qname) {
+        for (Xpp3Dom child : dom.getChildren()) {
+            if (child.getName().equals(qname)) {
+                return child.getValue();
+            }
+        }
+        return null;
     }
     
     private void collectFileNames(Xpp3Dom dom, Set<String> filenames, String qname, String testqname) {

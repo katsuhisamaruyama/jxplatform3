@@ -141,4 +141,28 @@ public class EclipseEnvTest {
         
         assertEquals(0, env.getExcludedSourceFiles().size());
     }
+    
+    @Test
+    public void testGetCompilerSourceVersion() {
+        String name = "DrawTool";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals("11", env.getCompilerSourceVersion());
+    }
+    
+    @Test
+    public void testGetCompilerTargetVersion() {
+        String name = "DrawTool";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new EclipseEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals("11", env.getCompilerTargetVersion());
+    }
 }

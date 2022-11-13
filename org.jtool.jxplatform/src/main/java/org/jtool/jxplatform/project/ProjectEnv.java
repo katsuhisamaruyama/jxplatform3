@@ -36,9 +36,9 @@ abstract class ProjectEnv {
     
     protected List<String> modules;
     
-    protected Set<String> classPaths = new HashSet<String>();
     protected Set<String> sourcePaths = new HashSet<String>();
     protected Set<String> binaryPaths = new HashSet<String>();
+    protected Set<String> classPaths = new HashSet<String>();
     
     protected Set<String> includedSourceFiles = new HashSet<String>();
     protected Set<String> excludedSourceFiles = new HashSet<String>();

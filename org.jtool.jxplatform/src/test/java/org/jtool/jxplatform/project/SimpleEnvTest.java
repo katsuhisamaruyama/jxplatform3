@@ -115,8 +115,9 @@ public class SimpleEnvTest {
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
-        assertEquals(1, paths.size());
+        assertEquals(2, paths.size());
         assertEquals(target + "/lib", paths.get(0));
+        assertEquals(target + "/lib-copied", paths.get(1));
     }
     
     @Test
@@ -141,5 +142,29 @@ public class SimpleEnvTest {
         assertTrue(env.isApplicable());
         
         assertEquals(0, env.getExcludedSourceFiles().size());
+    }
+    
+    @Test
+    public void testGetCompilerSourceVersion() {
+        String name = "Simple";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new SimpleEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals("11", env.getCompilerSourceVersion());
+    }
+    
+    @Test
+    public void testGetCompilerTargetVersion() {
+        String name = "Simple";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new SimpleEnv(name, basePath, basePath);
+        assertTrue(env.isApplicable());
+        
+        assertEquals("11", env.getCompilerTargetVersion());
     }
 }

@@ -87,9 +87,8 @@ public class MavenEnvTest {
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
-        assertEquals(2, paths.size());
+        assertEquals(1, paths.size());
         assertEquals(target + "/src", paths.get(0));
-        assertEquals(target + "/test", paths.get(1));
     }
     
     @Test
@@ -102,9 +101,8 @@ public class MavenEnvTest {
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
-        assertEquals(2, paths.size());
-        assertEquals(target + "/target/classes", paths.get(0));
-        assertEquals(target + "/target/test-classes", paths.get(1));
+        assertEquals(1, paths.size());
+        assertEquals(target + "/bin", paths.get(0));
     }
     
     @Test
@@ -117,9 +115,8 @@ public class MavenEnvTest {
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
-        assertEquals(2, paths.size());
+        assertEquals(1, paths.size());
         assertEquals(target + "/lib", paths.get(0));
-        assertEquals(target + "/lib-copied", paths.get(1));
     }
     
     @Test
@@ -179,7 +176,8 @@ public class MavenEnvTest {
         ProjectEnv env = new MavenEnv(name, basePath, basePath.getParent());
         assertTrue(env.isApplicable());
         
-        assertEquals("guava-31.0.1", env.getTopPath().toString());
+        String cdir = target.replace("/" + name, "/");
+        assertEquals(cdir + "guava-31.0.1", env.getTopPath().toString());
     }
     
     @Test
@@ -277,5 +275,29 @@ public class MavenEnvTest {
         List<String> paths = TestUtil.asSortedList(env.getExcludedSourceFiles());
         assertEquals(1, paths.size());
         assertEquals(target + "/src/com/google/dummy/ExcludedDummy.java", paths.get(0));
+    }
+    
+    @Test
+    public void testGetCompilerSourceVersion() {
+        String name = "guava-31.0.1/guava";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new MavenEnv(name, basePath, basePath.getParent());
+        assertTrue(env.isApplicable());
+        
+        assertEquals("1.8", env.getCompilerSourceVersion());
+    }
+    
+    @Test
+    public void testGetCompilerTargetVersion() {
+        String name = "guava-31.0.1/guava";
+        String target = BuilderTestUtil.getTarget(name);
+        Path basePath = Paths.get(target);
+        
+        ProjectEnv env = new MavenEnv(name, basePath, basePath.getParent());
+        assertTrue(env.isApplicable());
+        
+        assertEquals("1.8", env.getCompilerTargetVersion());
     }
 }

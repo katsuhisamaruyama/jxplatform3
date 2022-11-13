@@ -7,6 +7,8 @@ package org.jtool.jxplatform.project;
 
 import java.nio.file.Path;
 
+import org.eclipse.jdt.core.JavaCore;
+
 /**
  * Obtains path information from the Eclipse setting.
  * 
@@ -37,6 +39,9 @@ class SimpleEnv extends ProjectEnv {
         binaryPaths.add(basePath.resolve("bin").toString());
         classPaths.add(basePath.resolve("lib").toString());
         classPaths.add(basePath.resolve("lib-copied").toString());
+        
+        compilerSourceVersion = JavaCore.VERSION_11;
+        compilerTargetVersion = JavaCore.VERSION_11;
     }
     
     @Override
