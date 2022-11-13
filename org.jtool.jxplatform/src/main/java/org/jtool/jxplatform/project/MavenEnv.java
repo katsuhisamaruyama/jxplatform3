@@ -168,12 +168,12 @@ class MavenEnv extends ProjectEnv {
             }
         }
         
-        if (sourceDirectory != null) {
-            sourcePaths.add(sourceDirectory);
-        } else {
+        if (sourceDirectory == null && testSourceDirectory == null) {
             return;
         }
-        
+        if (sourceDirectory != null) {
+            sourcePaths.add(sourceDirectory);
+        }
         if (testSourceDirectory != null) {
             sourcePaths.add(testSourceDirectory);
         }
