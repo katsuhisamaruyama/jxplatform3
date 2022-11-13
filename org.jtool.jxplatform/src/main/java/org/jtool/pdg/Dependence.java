@@ -5,13 +5,11 @@
 
 package org.jtool.pdg;
 
-import org.jtool.cfg.ControlFlow;
 import org.jtool.graph.GraphEdge;
 import org.jtool.graph.GraphElement;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 
 /**

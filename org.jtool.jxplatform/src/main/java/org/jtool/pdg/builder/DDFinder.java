@@ -37,7 +37,7 @@ public class DDFinder {
         for (CFGNode cfgnode : cfg.getNodes()) {
             if (cfgnode.isStatement() && cfgnode.hasDefVariable()) {
                 CFGStatement anchor = (CFGStatement)cfgnode;
-                Set<CFGNode> reachableNodes = cfg.forwardReachableNodes(anchor, true, false);
+                List<CFGNode> reachableNodes = cfg.forwardReachableNodes(anchor, true, false);
                 reachableNodes.remove(anchor);
                 
                 for (JVariableReference jvar : anchor.getDefVariables()) {
@@ -49,7 +49,7 @@ public class DDFinder {
         }
     }
     
-    private static boolean checkReachableNodes(Set<CFGNode> nodes, JVariableReference jvar) {
+    private static boolean checkReachableNodes(List<CFGNode> nodes, JVariableReference jvar) {
         for (CFGNode node : nodes) {
             if (node.isStatement()) {
                 CFGStatement candidate = (CFGStatement)node;

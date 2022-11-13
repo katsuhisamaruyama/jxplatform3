@@ -98,7 +98,7 @@ public abstract class GraphElement {
      * @param s2 the second collection of graph elements
      * @return the collection of graph elements that are contained in both the first one and the second one
      */
-    public static <E extends GraphElement> Set<E> intersection(Set<E> s1, Set<E> s2) {
+    public static <E extends GraphElement> Set<E> intersection(Collection<E> s1, Collection<E> s2) {
         Set<E> s = new HashSet<>();
         if (s1.size() > s2.size()) {
             for (E e : s2) {
@@ -135,7 +135,7 @@ public abstract class GraphElement {
      * @param s1 the first set of graph elements
      * @param s2 the second set of graph elements
      * @return {@code true} if all graph elements of the first one are contained in the second one
-     * and the two collections are not equal, otherwise {@code false}
+     * and the two ones are not equal, otherwise {@code false}
      */
     public static <E extends GraphElement> boolean subset(Collection<E> s1, Collection<E> s2) {
         return subsetEqual(s1, s2) && s1.size() < s2.size();
