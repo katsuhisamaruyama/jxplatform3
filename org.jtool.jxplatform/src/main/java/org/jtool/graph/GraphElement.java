@@ -7,6 +7,7 @@ package org.jtool.graph;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Collection;
 
 /**
  * An abstract element of a graph.
@@ -48,13 +49,13 @@ public abstract class GraphElement {
     }
     
     /**
-     * Tests if two graph element sets are equal.
+     * Tests if two graph element collections are equal regarded as a set.
      * @param <E> the type of graph elements
-     * @param s1 the first set of graph elements
-     * @param s2 the second set of graph elements
-     * @return {@code true} if the two sets are equal, otherwise {@code false}
+     * @param s1 the first collection of graph elements
+     * @param s2 the second collection of graph elements
+     * @return {@code true} if the two collections are equal, otherwise {@code false}
      */
-    public static <E extends GraphElement> boolean equals(Set<E> s1, Set<E> s2) {
+    public static <E extends GraphElement> boolean equals(Collection<E> s1, Collection<E> s2) {
         if (s1.size() != s2.size()) {
             return false;
         }
@@ -63,13 +64,13 @@ public abstract class GraphElement {
     }
     
     /**
-     * Obtains a difference set of two graph element sets.
+     * Obtains a difference set of two graph element collections regarded as a set.
      * @param <E> the type of graph elements
-     * @param s1 the first set of graph elements
-     * @param s2 the second set of graph elements
-     * @return the collection of graph elements that remain after removing the second one from the first one
+     * @param s1 the first collection of graph elements
+     * @param s2 the second collection of graph elements
+     * @return the set of graph elements that remain after removing the second one from the first one
      */
-    public static <E extends GraphElement> Set<E> difference(Set<E> s1, Set<E> s2) {
+    public static <E extends GraphElement> Set<E> difference(Collection<E> s1, Collection<E> s2) {
         Set<E> s = new HashSet<>();
         s.addAll(s1);
         s2.forEach(e -> s.remove(e));
@@ -77,13 +78,13 @@ public abstract class GraphElement {
     }
     
     /**
-     * Obtains a union set of two graph element sets.
+     * Obtains a union set of two graph element collections.
      * @param <E> the type of graph elements
-     * @param s1 the first set of graph elements
-     * @param s2 the second set of graph elements
-     * @return the collection of graph elements that are contained in either the first one or the second one
+     * @param s1 the first collection of graph elements
+     * @param s2 the second collection of graph elements
+     * @return the set of graph elements that are contained in either the first one or the second one
      */
-    public static <E extends GraphElement> Set<E> union(Set<E> s1, Set<E> s2) {
+    public static <E extends GraphElement> Set<E> union(Collection<E> s1, Collection<E> s2) {
         Set<E> s = new HashSet<>();
         s.addAll(s1);
         s.addAll(s2);
@@ -91,10 +92,10 @@ public abstract class GraphElement {
     }
     
     /**
-     * Obtains an intersection set of two graph element sets.
+     * Obtains an intersection set of two graph element collections.
      * @param <E> the type of graph elements
-     * @param s1 the first set of graph elements
-     * @param s2 the second set of graph elements
+     * @param s1 the first collection of graph elements
+     * @param s2 the second collection of graph elements
      * @return the collection of graph elements that are contained in both the first one and the second one
      */
     public static <E extends GraphElement> Set<E> intersection(Set<E> s1, Set<E> s2) {
@@ -116,27 +117,27 @@ public abstract class GraphElement {
     }
     
     /**
-     * Tests if one graph element set is the subset of or equals to the other set.
+     * Tests if one graph element collection is contained in or equal to the other collection.
      * @param <E> the type of graph elements
-     * @param s1 the first set of graph elements
-     * @param s2 the second set of graph elements
+     * @param s1 the first collection of graph elements
+     * @param s2 the second collection of graph elements
      * @return {@code true} if all graph elements of the first one are contained in the second one,
      * otherwise {@code false}
      */
-    public static <E extends GraphElement> boolean subsetEqual(Set<E> s1, Set<E> s2) {
+    public static <E extends GraphElement> boolean subsetEqual(Collection<E> s1, Collection<E> s2) {
         Set<E> s = difference(s1, s2);
         return s.isEmpty();
     }
     
     /**
-     * Tests if one graph element set is the subset of the other set.
+     * Tests if one graph element collection is contained in and not equal to the other collection.
      * @param <E> the type of graph elements
      * @param s1 the first set of graph elements
      * @param s2 the second set of graph elements
      * @return {@code true} if all graph elements of the first one are contained in the second one
-     * and the two sets are not equal, otherwise {@code false}
+     * and the two collections are not equal, otherwise {@code false}
      */
-    public static <E extends GraphElement> boolean subset(Set<E> s1, Set<E> s2) {
+    public static <E extends GraphElement> boolean subset(Collection<E> s1, Collection<E> s2) {
         return subsetEqual(s1, s2) && s1.size() < s2.size();
     }
 }
