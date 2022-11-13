@@ -376,9 +376,9 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param condition the condition that stops traversing
      * @return the collection of the forward-traversed nodes
      */
-    public Set<CFGNode> forwardReachableNodes(CFGNode startnode,
+    public List<CFGNode> forwardReachableNodes(CFGNode startnode,
             boolean loopbackOk, boolean fallthroughOk, StopConditionOnReachablePath condition) {
-        Set<CFGNode> track = new HashSet<CFGNode>();
+        List<CFGNode> track = new ArrayList<CFGNode>();
         if (startnode == null) {
             return track;
         }
@@ -408,7 +408,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the forward-traversed nodes
      */
-    public Set<CFGNode> forwardReachableNodes(CFGNode startnode, boolean loopbackOk, boolean fallthroughOk) {
+    public List<CFGNode> forwardReachableNodes(CFGNode startnode, boolean loopbackOk, boolean fallthroughOk) {
         return forwardReachableNodes(startnode, loopbackOk, fallthroughOk, node -> { return false; });
     }
     
@@ -420,11 +420,10 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the forward-traversed nodes
      */
-    public Set<CFGNode> forwardReachableNodes(CFGNode from, CFGNode to,
-            boolean loopbackOk, boolean fallthroughOk) {
-        Set<CFGNode> nodes;
+    public List<CFGNode> forwardReachableNodes(CFGNode from, CFGNode to, boolean loopbackOk, boolean fallthroughOk) {
+        List<CFGNode> nodes;
         if (from.equals(to)) {
-            nodes = new HashSet<CFGNode>();
+            nodes = new ArrayList<CFGNode>();
         } else {
             nodes = forwardReachableNodes(from, loopbackOk, fallthroughOk, node -> node.equals(to));
         }
@@ -440,9 +439,9 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param condition the condition that stops traversing
      * @return the collection of the backward-traversed nodes
      */
-    public Set<CFGNode> backwardReachableNodes(CFGNode startnode,
+    public List<CFGNode> backwardReachableNodes(CFGNode startnode,
             boolean loopbackOk, boolean fallthroughOk, StopConditionOnReachablePath condition) {
-        Set<CFGNode> track = new HashSet<CFGNode>();
+        List<CFGNode> track = new ArrayList<CFGNode>();
         if (startnode == null) {
             return track;
         }
@@ -473,7 +472,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the backward-traversed nodes
      */
-    public Set<CFGNode> backwardReachableNodes(CFGNode startnode, boolean loopbackOk, boolean fallthroughOk) {
+    public List<CFGNode> backwardReachableNodes(CFGNode startnode, boolean loopbackOk, boolean fallthroughOk) {
         return backwardReachableNodes(startnode, loopbackOk, fallthroughOk, node -> { return false; });
     }
     
@@ -485,11 +484,11 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the backward-traversed nodes
      */
-    public Set<CFGNode> backwardReachableNodes(CFGNode from, CFGNode to,
+    public List<CFGNode> backwardReachableNodes(CFGNode from, CFGNode to,
             boolean loopbackOk, boolean fallthroughOk) {
-        Set<CFGNode> nodes;
+        List<CFGNode> nodes;
         if (from.equals(to)) {
-            nodes = new HashSet<CFGNode>();
+            nodes = new ArrayList<CFGNode>();
         } else {
             nodes = backwardReachableNodes(from, loopbackOk, fallthroughOk, node -> node.equals(to));
         }
@@ -506,8 +505,8 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @return the collection of the traversed nodes
      */
     public Set<CFGNode> reachableNodes(CFGNode from, CFGNode to, boolean loopbackOk, boolean fallthroughOk) {
-        Set<CFGNode> fnodes = forwardReachableNodes(from, to, loopbackOk, fallthroughOk);
-        Set<CFGNode> bnodes = backwardReachableNodes(to, from, loopbackOk, fallthroughOk);
+        List<CFGNode> fnodes = forwardReachableNodes(from, to, loopbackOk, fallthroughOk);
+        List<CFGNode> bnodes = backwardReachableNodes(to, from, loopbackOk, fallthroughOk);
         Set<CFGNode> nodes = GraphElement.intersection(fnodes, bnodes);
         return nodes;
     }
@@ -519,12 +518,12 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @return the collection of the reachable nodes
      */
     public Set<CFGNode> constrainedReachableNodes(CFGNode from, CFGNode to) {
-        Set<CFGNode> bnodesf = backwardReachableNodes(to, from, true, true);
-        Set<CFGNode> fnodesf = forwardReachableNodes(from, getExitNode(), true, true);
+        List<CFGNode> bnodesf = backwardReachableNodes(to, from, true, true);
+        List<CFGNode> fnodesf = forwardReachableNodes(from, getExitNode(), true, true);
         Set<CFGNode> fCRP = GraphElement.intersection(bnodesf, fnodesf);
         
-        Set<CFGNode> fnodesb = forwardReachableNodes(from, to, true, true);
-        Set<CFGNode> bnodesb = backwardReachableNodes(to, getExitNode(), true, true);
+        List<CFGNode> fnodesb = forwardReachableNodes(from, to, true, true);
+        List<CFGNode> bnodesb = backwardReachableNodes(to, getExitNode(), true, true);
         Set<CFGNode> bCRP = GraphElement.intersection(fnodesb, bnodesb);
         
         Set<CFGNode> CRP = GraphElement.union(fCRP, bCRP);
@@ -540,20 +539,18 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      */
     public Set<CFGNode> postDominator(CFGNode anchor) {
         Set<CFGNode> postDominator = new HashSet<>();
-        for (CFGNode node : getNodes()) {
+        List<CFGNode> candidates = forwardReachableNodes(anchor, true, true);
+        for (CFGNode node : candidates) {
             if (!anchor.equals(node)) {
-                
-
-                
-                if (node.getOutgoingFlows().size() == 1) {
-                    CFGNode succ = node.getOutgoingFlows().iterator().next().getDstNode();
-                    if (succ.getIncomingFlows().size() == 1 && postDominator.contains(succ)) {
-                        postDominator.add(node);
-                        continue;
-                    }
+                boolean postDom = node.getIncomingEdges().stream()
+                        .map(edge -> (CFGNode)edge.getSrcNode())
+                        .allMatch(pred -> postDominator.contains(pred));
+                if (postDom) {
+                    postDominator.add(node);
+                    continue;
                 }
                 
-                Set<CFGNode> track = forwardReachableNodes(anchor, node, true, true);
+                List<CFGNode> track = forwardReachableNodes(anchor, node, true, true);
                 if (track.contains(node) && !track.contains(getExitNode())) {
                     postDominator.add(node);
                 }
@@ -561,28 +558,6 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
         }
         return postDominator;
     }
-    
-    public Set<CFGNode> postDominator2(CFGNode anchor) {
-        Set<CFGNode> postDominator = new HashSet<>();
-        for (CFGNode node : CFGNode.sortNodesInverse(getNodes())) {
-            if (!anchor.equals(node)) {
-                if (node.getOutgoingFlows().size() == 1) {
-                    CFGNode succ = node.getOutgoingFlows().iterator().next().getDstNode();
-                    if (succ.getIncomingFlows().size() == 1 && postDominator.contains(succ)) {
-                        postDominator.add(node);
-                        continue;
-                    }
-                }
-                
-                Set<CFGNode> track = forwardReachableNodes(anchor, node, true, true);
-                if (track.contains(node) && !track.contains(getExitNode())) {
-                    postDominator.add(node);
-                }
-            }
-        }
-        return postDominator;
-    }
-    
     
     /**
      * {@inheritDoc}

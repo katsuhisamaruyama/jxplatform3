@@ -46,8 +46,7 @@ public class CDFinder {
             postDominatorForBranch.add(branchDstNode);
             
             for (CFGNode cfgnode : postDominatorForBranch) {
-                if (cfgnode.isStatement() && 
-                  !branchNode.equals(cfgnode) && !postDominator.contains(cfgnode)) {
+                if (cfgnode.isStatement() && !branchNode.equals(cfgnode) && !postDominator.contains(cfgnode)) {
                     CD edge = new CD(branchNode.getPDGNode(), cfgnode.getPDGNode());
                     if (branch.isTrue()) {
                         edge.setTrue();
