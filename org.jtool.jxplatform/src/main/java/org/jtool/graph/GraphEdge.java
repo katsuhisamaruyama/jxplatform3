@@ -8,13 +8,12 @@ package org.jtool.graph;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * An edge object for agraph.
+ * An edge object for a graph.
  * 
- * @author Katsuhsa Maruyama
+ * @author Katsuhisa Maruyama
  */
 public abstract class GraphEdge extends GraphElement {
     
@@ -44,6 +43,22 @@ public abstract class GraphEdge extends GraphElement {
     }
     
     /**
+     * Returns the identification number of the source node of this edge.
+     * @return the identification number of the source node
+     */
+    private long getSrcId() {
+        return src.getId();
+    }
+    
+    /**
+     * Returns the identification number of the destination node of this edge.
+     * @return the identification number of the destination node
+     */
+    private long getDstId() {
+        return dst.getId();
+    }
+    
+    /**
      * Returns the source node for this edge.
      * @return the source node
      */
@@ -68,6 +83,7 @@ public abstract class GraphEdge extends GraphElement {
         
         src.removeOutgoingEdge(this);
         dst.removeIncomingEdge(this);
+        
         src = node;
         src.addOutgoingEdge(this);
         dst.addIncomingEdge(this);
@@ -82,6 +98,7 @@ public abstract class GraphEdge extends GraphElement {
         
         src.removeOutgoingEdge(this);
         dst.removeIncomingEdge(this);
+        
         dst = node;
         src.addOutgoingEdge(this);
         dst.addIncomingEdge(this);
@@ -128,21 +145,9 @@ public abstract class GraphEdge extends GraphElement {
      * @param co the list to be sorted
      * @return the sorted list of the edges
      */
-    protected static List<GraphEdge> sortGrapgEdge(Collection<? extends GraphEdge> co) {
-        List<GraphEdge> edges = new ArrayList<>(co);
-        Collections.sort(edges, new Comparator<>() {
-            
-            @Override
-            public int compare(GraphEdge edge1, GraphEdge edge2) {
-                if (edge2.src.id == edge1.src.id) {
-                    return edge2.dst.id == edge1.dst.id ? 0 : edge1.dst.id > edge2.dst.id ? 1 : -1;
-                } else if (edge1.src.id > edge2.src.id) {
-                    return 1;
-                } else {
-                    return -1;
-                }
-            }
-        });
+    protected static List<GraphEdge> sortGrapgEdge(Collection<? extends GraphEdge> collection) {
+        List<GraphEdge> edges = new ArrayList<>(collection);
+        edges.sort(Comparator.comparingLong(GraphEdge::getSrcId).thenComparingLong(GraphEdge::getDstId));
         return edges;
     }
 }

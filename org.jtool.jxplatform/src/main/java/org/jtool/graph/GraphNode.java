@@ -5,18 +5,17 @@
 
 package org.jtool.graph;
 
-import java.util.Set;
-import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 
 /**
  * A node object for a graph.
  * 
- * @author Katsuhsa Maruyama
+ * @author Katsuhisa Maruyama
  */
 public abstract class GraphNode extends GraphElement {
     
@@ -36,16 +35,6 @@ public abstract class GraphNode extends GraphElement {
     protected List<GraphEdge> outgoingEdges = new ArrayList<>();
     
     /**
-     * The collection of source nodes of this node. 
-     */
-    protected Set<GraphNode> srcNodes = new HashSet<>();
-    
-    /**
-     * The collection of destination nodes of this node. 
-     */
-    protected Set<GraphNode> dstNodes = new HashSet<>();
-    
-    /**
      * Creates a new, empty object that represents a node.
      * @param id the identification number this node independently has
      */
@@ -59,8 +48,6 @@ public abstract class GraphNode extends GraphElement {
     public void clear() {
         incomingEdges.clear();
         outgoingEdges.clear();
-        srcNodes.clear();
-        dstNodes.clear();
     }
     
     /**
@@ -84,9 +71,9 @@ public abstract class GraphNode extends GraphElement {
      * @param edge the incoming edge to be added
      */
     public void addIncomingEdge(GraphEdge edge) {
-        if (incomingEdges.add(edge)) {
-            srcNodes.add(edge.getSrcNode());
-        }
+        assert edge != null;
+        
+        incomingEdges.add(edge);
     }
     
     /**
@@ -94,9 +81,9 @@ public abstract class GraphNode extends GraphElement {
      * @param edge the outgoing edge to be added
      */
     public void addOutgoingEdge(GraphEdge edge) {
-        if (outgoingEdges.add(edge)) {
-            dstNodes.add(edge.getDstNode());
-        }
+        assert edge != null;
+        
+        outgoingEdges.add(edge);
     }
     
     /**
@@ -104,6 +91,8 @@ public abstract class GraphNode extends GraphElement {
      * @param edges the collection of the incoming edges to be added
      */
     public void addIncomingEdges(List<GraphEdge> edges) {
+        assert edges != null;
+        
         edges.forEach(edge -> addIncomingEdge(edge));
     }
     
@@ -112,6 +101,8 @@ public abstract class GraphNode extends GraphElement {
      * @param edges the collection of the outgoing edges to be added
      */
     public void addOutgoingEdges(List<GraphEdge> edges) {
+        assert edges != null;
+        
         edges.forEach(edge -> addOutgoingEdge(edge));
     }
     
@@ -120,17 +111,11 @@ public abstract class GraphNode extends GraphElement {
      * @param edge the incoming edge to be removed
      */
     public void removeIncomingEdge(GraphEdge edge) {
-        GraphNode src = edge.getSrcNode();
+        assert edge != null;
         
         incomingEdges.remove(edge);
-        if (!incomingEdges.stream().anyMatch(e -> e.getSrcNode().equals(src))) {
-            srcNodes.remove(src);
-        }
-        
+        GraphNode src = edge.getSrcNode();
         src.outgoingEdges.remove(edge);
-        if (!src.outgoingEdges.stream().anyMatch(e -> e.getDstNode().equals(this))) {
-            src.dstNodes.remove(this);
-        }
     }
     
     /**
@@ -138,16 +123,11 @@ public abstract class GraphNode extends GraphElement {
      * @param edge the outgoing edge to be removed
      */
     public void removeOutgoingEdge(GraphEdge edge) {
-        GraphNode dst = edge.getDstNode();
+        assert edge != null;
         
         outgoingEdges.remove(edge);
-        if (!outgoingEdges.stream().anyMatch(e -> e.getDstNode().equals(dst))) {
-            dstNodes.remove(dst);
-        }
+        GraphNode dst = edge.getDstNode();
         dst.incomingEdges.remove(edge);
-        if (!incomingEdges.stream().anyMatch(e -> e.getSrcNode().equals(this))) {
-            dst.srcNodes.remove(this);
-        }
     }
     
     /**
@@ -171,7 +151,7 @@ public abstract class GraphNode extends GraphElement {
      * @return the collection of the source nodes
      */
     public Set<GraphNode> getSrcNodes() {
-        return srcNodes;
+        return incomingEdges.stream().map(edge -> edge.getSrcNode()).collect(Collectors.toSet());
     }
     
     /**
@@ -179,7 +159,7 @@ public abstract class GraphNode extends GraphElement {
      * @return The collection of destination nodes
      */
     public Set<GraphNode> getDstNodes() {
-        return dstNodes;
+        return outgoingEdges.stream().map(edge -> edge.getDstNode()).collect(Collectors.toSet());
     }
     
     /**
@@ -225,19 +205,13 @@ public abstract class GraphNode extends GraphElement {
     }
     
     /**
-     * Sorts the list of nodes
-     * @param co the list to be sorted
+     * Sorts the collection of nodes in the order of identification numbers
+     * @param collection the collection of nodes to be sorted
      * @return the sorted list of the nodes
      */
-    public static List<GraphNode> sortGraphNode(Collection<? extends GraphNode> co) {
-        List<GraphNode> nodes = new ArrayList<>(co);
-        Collections.sort(nodes, new Comparator<>() {
-            
-            @Override
-            public int compare(GraphNode node1, GraphNode node2) {
-                return node2.id == node1.id ? 0 : node1.id > node2.id ? 1 : -1;
-            }
-        });
+    public static List<GraphNode> sortGraphNode(Collection<? extends GraphNode> collection) {
+        List<GraphNode> nodes = new ArrayList<>(collection);
+        nodes.sort(Comparator.comparingLong(GraphNode::getId));
         return nodes;
     }
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * A graph object having nodes and edges.
  * 
- * @author Katsuhsa Maruyama
+ * @author Katsuhisa Maruyama
  */
 public class Graph<N extends GraphNode, E extends GraphEdge> {
     
@@ -62,6 +62,8 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
      * @param nodes a collection of nodes to be added
      */
     public void addNodes(Set<N> nodes) {
+        assert nodes != null;
+        
         this.nodes = nodes;
     }
     
@@ -70,6 +72,8 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
      * @param edges a collection of edges to be added
      */
     public void addEdges(List<E> edges) {
+        assert edges != null;
+        
         this.edges = edges;
     }
     
@@ -78,6 +82,8 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
      * @param node the node to be added
      */
     public void add(N node) {
+        assert node != null;
+        
         nodes.add(node);
     }
     
@@ -86,6 +92,8 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
      * @param edge the edge to be added
      */
     public void add(E edge) {
+        assert edge != null;
+        
         edges.add(edge);
     }
     
@@ -94,8 +102,11 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
      * @param node the node to be removed
      */
     public void remove(N node) {
+        assert node != null;
+        
         nodes.remove(node);
-        new HashSet<E>(getEdges()).stream()
+        Set<E> temp = new HashSet<E>(getEdges());
+        temp.stream()
             .filter(edge -> edge.getSrcNode().equals(node) || edge.getDstNode().equals(node))
             .forEach(edge -> remove(edge));
     }
@@ -105,6 +116,8 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
      * @param edge the edge to be removed
      */
     public void remove(E edge) {
+        assert edge != null;
+        
         edges.remove(edge);
         edge.getSrcNode().removeOutgoingEdge(edge);
         edge.getDstNode().removeIncomingEdge(edge);
@@ -116,6 +129,8 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
      * @return {@code true} if this graph contains the node, otherwise {@code false}
      */
     public boolean contains(N node) {
+        assert node != null;
+        
         return nodes.contains(node);
     }
     
@@ -125,6 +140,8 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
      * @return {@code true} if this graph contains the edge, otherwise {@code false}
      */
     public boolean contains(E edge) {
+        assert edge != null;
+        
         return edges.contains(edge);
     }
     

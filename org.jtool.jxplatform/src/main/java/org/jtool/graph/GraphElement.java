@@ -11,7 +11,7 @@ import java.util.HashSet;
 /**
  * An abstract element of a graph.
  * 
- * @author Katsuhsa Maruyama
+ * @author Katsuhisa Maruyama
  */
 public abstract class GraphElement {
     
@@ -20,10 +20,7 @@ public abstract class GraphElement {
      */
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof GraphElement) {
-            return equals((GraphElement)obj);
-        }
-        return false;
+        return (obj instanceof GraphElement) ? equals((GraphElement)obj) : false;
     }
     
     /**
