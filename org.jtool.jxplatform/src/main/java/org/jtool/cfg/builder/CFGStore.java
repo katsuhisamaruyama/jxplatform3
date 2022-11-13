@@ -164,6 +164,8 @@ public class CFGStore {
         Resolver.resolveLocalAlias(jmethod.getJavaProject(), cfg);
         CFGsForVisit.remove(fqn);
         
+        CFGMethodBuilder.addUseVariablesForReturn(cfg);
+        
         ucfgs.remove(fqn);
         cfgs.put(fqn, cfg);
         return cfg;
@@ -211,6 +213,9 @@ public class CFGStore {
         }
         
         cfg = CFGMethodBuilder.build(jmethod);
+        
+        CFGMethodBuilder.addUseVariablesForReturn(cfg);
+        
         ucfgs.put(fqn, cfg);
         return cfg;
     }

@@ -127,8 +127,6 @@ class CFGMethodBuilder {
             cfg.add(exceptionExitEdge);
         }
         
-        addUseVariablesForReturn(cfg);
-        
         return cfg;
     }
     
@@ -219,7 +217,7 @@ class CFGMethodBuilder {
         return formalOut;
     }
     
-    private static void addUseVariablesForReturn(CFG cfg) {
+    static void addUseVariablesForReturn(CFG cfg) {
         List<CFGStatement> returnNodes = cfg.getStatementNodes().stream()
                                             .filter(node -> node.isReturn())
                                             .collect(Collectors.toList());
