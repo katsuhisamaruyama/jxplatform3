@@ -540,6 +540,30 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      */
     public Set<CFGNode> postDominator(CFGNode anchor) {
         Set<CFGNode> postDominator = new HashSet<>();
+        for (CFGNode node : getNodes()) {
+            if (!anchor.equals(node)) {
+                
+
+                
+                if (node.getOutgoingFlows().size() == 1) {
+                    CFGNode succ = node.getOutgoingFlows().iterator().next().getDstNode();
+                    if (succ.getIncomingFlows().size() == 1 && postDominator.contains(succ)) {
+                        postDominator.add(node);
+                        continue;
+                    }
+                }
+                
+                Set<CFGNode> track = forwardReachableNodes(anchor, node, true, true);
+                if (track.contains(node) && !track.contains(getExitNode())) {
+                    postDominator.add(node);
+                }
+            }
+        }
+        return postDominator;
+    }
+    
+    public Set<CFGNode> postDominator2(CFGNode anchor) {
+        Set<CFGNode> postDominator = new HashSet<>();
         for (CFGNode node : CFGNode.sortNodesInverse(getNodes())) {
             if (!anchor.equals(node)) {
                 if (node.getOutgoingFlows().size() == 1) {
@@ -558,6 +582,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
         }
         return postDominator;
     }
+    
     
     /**
      * {@inheritDoc}

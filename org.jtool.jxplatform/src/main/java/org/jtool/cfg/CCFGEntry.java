@@ -26,22 +26,22 @@ public class CCFGEntry extends CFGNode {
     /**
      * The class associated with this entry node.
      */
-    private JavaClass jclass;
+    private final JavaClass jclass;
     
     /**
      * The collection of CFGs for the methods within the class associated with this entry node.
      */
-    private Set<CFG> methods = new HashSet<>();
+    private final Set<CFG> methods = new HashSet<>();
     
     /**
      * The collection of CFGs for the fields within the class associated with this entry node.
      */
-    private Set<CFG> fields = new HashSet<>();
+    private final Set<CFG> fields = new HashSet<>();
     
     /**
      * The collection of CCFGs for the inner classes within the class associated with this entry node.
      */
-    private Set<CCFG> classes = new HashSet<>();
+    private final Set<CCFG> classes = new HashSet<>();
     
     /**
      * Creates a new object that represents an entry for a class.
@@ -76,6 +76,8 @@ public class CCFGEntry extends CFGNode {
      * @param ccfg the CCFG to be associated
      */
     public void setCCFG(CCFG ccfg) {
+        assert ccfg != null;
+        
         this.ccfg = ccfg;
     }
     
@@ -93,6 +95,8 @@ public class CCFGEntry extends CFGNode {
      * @param cfg the CFG to be added 
      */
     public void addMethod(CFG cfg) {
+        assert cfg != null;
+        
         methods.add(cfg);
     }
     
@@ -110,6 +114,8 @@ public class CCFGEntry extends CFGNode {
      * @param cfg the CFG to be added
      */
     public void addField(CFG cfg) {
+        assert cfg != null;
+        
         fields.add(cfg);
     }
     
@@ -127,6 +133,8 @@ public class CCFGEntry extends CFGNode {
      * @param ccfg the CCFG to be added 
      */
     public void addClass(CCFG ccfg) {
+        assert ccfg != null;
+        
         classes.add(ccfg);
     }
     

@@ -23,7 +23,7 @@ public class PDGNode extends GraphNode {
     /**
      * The CFG node corresponding to this node.
      */
-    protected CFGNode cfgnode;
+    protected final CFGNode cfgnode;
     
     /**
      * Creates a new object that represents a PDG node.
@@ -32,6 +32,7 @@ public class PDGNode extends GraphNode {
      */
     protected PDGNode(CFGNode node) {
         super(node.getId());
+        
         cfgnode = node;
         cfgnode.setPDGNode(this);
     }
@@ -98,7 +99,7 @@ public class PDGNode extends GraphNode {
      */
     public boolean isDominated() {
         return getIncomingCDEdges().stream()
-                                   .anyMatch(cd -> cd.isTrue() || cd.isFalse() || cd.isFallThrough());
+                .anyMatch(cd -> cd.isTrue() || cd.isFalse() || cd.isFallThrough());
     }
     
     /**
@@ -119,15 +120,22 @@ public class PDGNode extends GraphNode {
     
     /**
      * Obtains control dependence edges incoming to this node.
-     * This method is not intended to be invoked by clients.
-     * @return the collection of the incoming edges
+     * @return the collection of the incoming control dependence edges
      */
     public Set<CD> getIncomingCDEdges() {
         return getIncomingEdges().stream()
-                                 .map(edge -> (Dependence)edge)
-                                 .filter(edge -> edge.isCD())
-                                 .map(edge -> (CD)edge)
-                                 .collect(Collectors.toSet());
+                .map(edge -> (Dependence)edge).filter(edge -> edge.isCD())
+                .map(edge -> (CD)edge).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Obtains data dependence edges incoming to this node.
+     * @return the collection of the incoming data dependence edges
+     */
+    public Set<DD> getIncomingDDEdges() {
+        return getIncomingEdges().stream()
+                .map(edge -> (Dependence)edge).filter(edge -> edge.isDD())
+                .map(edge -> (DD)edge).collect(Collectors.toSet());
     }
     
     /**

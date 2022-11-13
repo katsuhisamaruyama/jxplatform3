@@ -28,12 +28,12 @@ public class JavaField extends JavaVariable {
     /**
      * Variable binding information on this class.
      */
-    private IVariableBinding binding;
+    private final IVariableBinding binding;
     
     /**
      * A class that declares (or encloses the declaration of) this field.
      */
-    private JavaClass declaringClass;
+    private final JavaClass declaringClass;
     
     /**
      * Creates a new object representing a field.

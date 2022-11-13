@@ -43,6 +43,8 @@ public class PDGEntry extends PDGNode {
      * @param pdg the PDG to be associated
      */
     public void setPDG(PDG pdg) {
+        assert pdg != null;
+        
         this.pdg = pdg;
     }
     

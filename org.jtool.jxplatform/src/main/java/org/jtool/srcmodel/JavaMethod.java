@@ -38,12 +38,12 @@ public class JavaMethod extends JavaElement {
     /**
      * Method binding information on this method.
      */
-    private IMethodBinding binding;
+    private final IMethodBinding binding;
     
     /**
      * A class that declares (or encloses the declaration of) this method.
      */
-    private JavaClass declaringClass;
+    private final JavaClass declaringClass;
     
     /**
      * The constant value that represents the a static initializer.
@@ -53,22 +53,22 @@ public class JavaMethod extends JavaElement {
     /**
      * The fully-qualified name of this method.
      */
-    private QualifiedName qname;
+    private final QualifiedName qname;
     
     /**
      * The the return type of this method.
      */
-    private String returnType;
+    private final String returnType;
     
     /**
      * The modifiers of this method.
      */
-    private int modifiers;
+    private final int modifiers;
     
     /**
      * The kind of this method.
      */
-    private Kind kind;
+    private final Kind kind;
     
     /**
      * The kind of a method.
@@ -104,6 +104,7 @@ public class JavaMethod extends JavaElement {
         super(node);
         
         assert jclass != null;
+        
         this.declaringClass = jclass;
         
         IMethodBinding mbinding = node.resolveBinding();
@@ -142,6 +143,7 @@ public class JavaMethod extends JavaElement {
         super(node);
         
         assert jclass != null;
+        
         this.declaringClass = jclass;
         
         this.binding = null;
@@ -166,6 +168,7 @@ public class JavaMethod extends JavaElement {
         super(null);
         
         assert jclass != null;
+        
         this.declaringClass = jclass;
         
         if (mbinding != null) {
@@ -198,7 +201,9 @@ public class JavaMethod extends JavaElement {
     public JavaMethod(LambdaExpression node, IMethodBinding mbinding, JavaClass jclass) {
         super(node);
         
+        assert node != null;
         assert jclass != null;
+        
         this.declaringClass = jclass;
         
         this.binding = mbinding.getMethodDeclaration();

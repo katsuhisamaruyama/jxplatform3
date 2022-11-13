@@ -20,17 +20,17 @@ public class JavaLocalVar extends JavaVariable {
     /**
      * The variable binding information on this class.
      */
-    private IVariableBinding binding;
+    private final IVariableBinding binding;
     
     /**
      * the identification number of this local variable.
      */
-    private long variableId;
+    private final long variableId;
     
     /**
      * A method that contains this local variable.
      */
-    private JavaMethod declaringMethod = null;
+    private final JavaMethod declaringMethod;
     
     /**
      * Creates a new object representing a local variable.
@@ -65,6 +65,8 @@ public class JavaLocalVar extends JavaVariable {
             this.binding = null;
             this.qname = new QualifiedName();
             this.kind = JavaVariable.Kind.UNKNOWN;
+            this.variableId = -1;
+            this.declaringMethod = null;
         }
     }
     
@@ -80,6 +82,7 @@ public class JavaLocalVar extends JavaVariable {
         assert tbinding != null;
         
         tbinding = tbinding.getTypeDeclaration();
+        this.binding = null;
         this.qname = new QualifiedName("", tbinding.getName());
         this.type = tbinding.getQualifiedName();
         this.isPrimitive = tbinding.isPrimitive();

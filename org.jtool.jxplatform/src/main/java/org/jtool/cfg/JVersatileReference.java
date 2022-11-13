@@ -30,6 +30,8 @@ public class JVersatileReference extends JVariableReference {
     public JVersatileReference(ASTNode node, String name, ITypeBinding tbinding) {
         super(node);
         
+        assert tbinding != null;
+        
         ITypeBinding binding = tbinding.getTypeDeclaration();
         this.type = binding.getQualifiedName();
         this.isPrimitiveType = binding.isPrimitive();

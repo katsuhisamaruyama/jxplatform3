@@ -29,8 +29,6 @@ public class CFGStore {
     private JavaProject jproject;
     private BytecodeClassStore bcStore;
     
-    private int analysisLevel;
-    
     private Map<String, CFG> cfgs = new HashMap<>();
     private Map<String, CFG> ucfgs = new HashMap<>();
     private Map<String, CCFG> ccfgs = new HashMap<>();
@@ -80,10 +78,6 @@ public class CFGStore {
         } else {
             bcStore.update();
         }
-    }
-    
-    public int analysisLevel() {
-        return analysisLevel;
     }
     
     public JavaProject getJavaProject() {

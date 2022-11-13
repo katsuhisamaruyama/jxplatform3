@@ -19,12 +19,12 @@ public class JLocalVarReference extends JVariableReference {
     /**
      * A flag that indicates whether this is a reference to a parameter.
      */
-    private boolean isParameter;
+    private final boolean isParameter;
     
     /**
      * The identification number of a referenced variable.
      */
-    private int variableId;
+    private final int variableId;
     
     /**
      * Creates a new object that represents a reference to a local variable.
@@ -34,6 +34,8 @@ public class JLocalVarReference extends JVariableReference {
      */
     public JLocalVarReference(ASTNode node, IVariableBinding vbinding) {
         super(node);
+        
+        assert vbinding != null;
         
         IVariableBinding binding = vbinding.getVariableDeclaration();
         this.enclosingClassName = findEnclosingClassName(node);

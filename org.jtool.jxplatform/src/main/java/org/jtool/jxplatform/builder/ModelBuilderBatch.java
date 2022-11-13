@@ -19,7 +19,7 @@ public class ModelBuilderBatch extends ModelBuilder {
     /**
      * The implementation module of this model builder.
      */
-    private ModelBuilderBatchImpl builderImpl;
+    private final ModelBuilderBatchImpl builderImpl;
     
     /**
      * Creates a batch-mode model builder.

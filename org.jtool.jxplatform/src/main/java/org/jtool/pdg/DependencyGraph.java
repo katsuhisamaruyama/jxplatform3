@@ -92,6 +92,8 @@ public abstract class DependencyGraph {
      * @param nodes the collection of nodes to be added
      */
     public void addNodes(Set<PDGNode> nodes) {
+        assert nodes != null;
+        
         allNodes.addAll(nodes);
     }
     
@@ -101,6 +103,8 @@ public abstract class DependencyGraph {
      * @param node the node to be added
      */
     public void add(PDGNode node) {
+        assert node != null;
+        
         allNodes.add(node);
     }
     
@@ -110,6 +114,8 @@ public abstract class DependencyGraph {
      * @param edges the collection of the edges to be added
      */
     public void addEdges(List<Dependence> edges) {
+        assert edges != null;
+        
         edges.forEach(edge -> add(edge));
     }
     
@@ -119,6 +125,8 @@ public abstract class DependencyGraph {
      * @param edge the dependence edge to be added
      */
     public void add(Dependence edge) {
+        assert edge != null;
+        
         if (edge.isCD()) {
             cdEdges.add((CD)edge);
         } else if (edge.isDD()) {
@@ -134,6 +142,8 @@ public abstract class DependencyGraph {
      * @param edges the collection of the edges to be added
      */
     public void addInterEdges(List<Dependence> edges) {
+        assert edges != null;
+        
         edges.forEach(edge -> addInterEdge(edge));
     }
     
@@ -143,6 +153,8 @@ public abstract class DependencyGraph {
      * @param edge the edge to be added
      */
     public void addInterEdge(Dependence edge) {
+        assert edge != null;
+        
         interEdges.add(edge);
         
         if (edge.isCD()) {
@@ -323,6 +335,8 @@ public abstract class DependencyGraph {
      * @param edge the edge to be added
      */
     public void addUncoveredFieldAccessEdge(DD edge) {
+        assert edge != null;
+        
         uncoveredFieldAccessEdgeMap.put(edge.getSrcNode(), edge.getDstNode());
     }
     

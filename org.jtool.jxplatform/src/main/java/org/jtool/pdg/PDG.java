@@ -54,6 +54,8 @@ public class PDG extends DependencyGraph {
      * @param bpdg the bare PDG
      */
     public void setBarePDG(BarePDG bpdg) {
+        assert bpdg != null;
+        
         this.bpdg = bpdg;
         addNodes(bpdg.getNodes());
         addEdges(bpdg.getEdges());
@@ -73,6 +75,8 @@ public class PDG extends DependencyGraph {
      * @param node the entry node to be set
      */
     public void setEntryNode(PDGEntry node) {
+        assert node != null;
+        
         entry = node;
         entry.setPDG(this);
     }

@@ -23,32 +23,32 @@ public class JFieldReference extends JVariableReference {
     /**
      * A flag that indicates whether this is a reference to a field.
      */
-    private boolean isField;
+    private final boolean isField;
     
     /**
      * A flag that indicates whether this is a reference to an enum constant.
      */
-    private boolean isEnumConstant;
+    private final boolean isEnumConstant;
     
     /**
      * A flag that indicates whether this is a reference a field within the class itself.
      */
-    private boolean isThis;
+    private final boolean isThis;
     
     /**
      * A flag that indicates whether this is a reference to a field within the parent class.
      */
-    private boolean isSuper;
+    private final boolean isSuper;
     
     /**
      * An AST node corresponding to the name of this reference.
      */
-    private ASTNode nameNode;
+    private final ASTNode nameNode;
     
     /**
      * A flag that indicates whether if this is a reference to an available field.
      */
-    private boolean available = true;
+    private final boolean available;
     
     /**
      * A prefix reference located prior to this reference.
@@ -93,6 +93,7 @@ public class JFieldReference extends JVariableReference {
         this.isEnumConstant = isEnumConstant(binding);
         this.isThis = enclosingClassName.equals(declaringClassName);
         this.isSuper = node instanceof SuperFieldAccess;
+        this.available = true;
     }
     
     /**
@@ -152,6 +153,7 @@ public class JFieldReference extends JVariableReference {
         this.isEnumConstant = false;
         this.isThis = enclosingClassName.equals(declaringClassName);
         this.isSuper = false;
+        this.available = true;
     }
     
     /**

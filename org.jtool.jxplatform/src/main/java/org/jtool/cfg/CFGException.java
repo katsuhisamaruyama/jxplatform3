@@ -18,7 +18,7 @@ public class CFGException extends CFGStatement {
     /**
      * The type binding information on the type of the exception.
      */
-    private ITypeBinding tbinding;
+    private final ITypeBinding tbinding;
     
     /**
      * Creates a new object that represents an exception.

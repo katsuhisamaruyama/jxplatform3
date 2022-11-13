@@ -18,7 +18,7 @@ public class BasicBlock {
     /**
      * The leader node for this basic block.
      */
-    private CFGNode leader;
+    private final CFGNode leader;
     
     /**
      * The the ordered list of nodes contained in this basic block.
@@ -31,6 +31,7 @@ public class BasicBlock {
      */
     public BasicBlock(CFGNode node) {
         assert node != null;
+        
         leader = node;
     }
     
@@ -57,6 +58,7 @@ public class BasicBlock {
      */
     public void add(CFGNode node) {
         assert node != null;
+        
         nodes.add(node);
     }
     

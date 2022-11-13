@@ -20,7 +20,7 @@ public class CFGMethodEntry extends CFGEntry {
     /**
      * The method associated with this entry node.
      */
-    private JavaMethod jmethod;
+    private final JavaMethod jmethod;
     
     /**
      * The collection of formal-in nodes of the method associated with this entry node.
@@ -35,7 +35,7 @@ public class CFGMethodEntry extends CFGEntry {
     /**
      * The collection of the exception nodes corresponding to {@code throws}. 
      */
-    private List<CFGException> exceptionNodes = new ArrayList<>();
+    private final List<CFGException> exceptionNodes = new ArrayList<>();
     
     /**
      * Creates a new object that represents an entry for a method.
@@ -62,6 +62,8 @@ public class CFGMethodEntry extends CFGEntry {
      * @param node the formal-in node to be added
      */
     public void addFormalIn(CFGParameter node) {
+        assert node != null;
+        
         formalIns.add(node);
     }
     
@@ -71,6 +73,8 @@ public class CFGMethodEntry extends CFGEntry {
      * @param nodes the collection of the formal-in nodes to be set
      */
     public void setFormalIns(List<CFGParameter> nodes) {
+        assert nodes != null;
+        
         formalIns.addAll(nodes);
     }
     
@@ -79,6 +83,8 @@ public class CFGMethodEntry extends CFGEntry {
      * @param node the formal-out node to be set
      */
     public void setFormalOut(CFGParameter node) {
+        assert node != null;
+        
         formalOut = node;
     }
     
@@ -129,6 +135,8 @@ public class CFGMethodEntry extends CFGEntry {
      * @param node the exception node to be added
      */
     public void addExceptionNode(CFGException node) {
+        assert node != null;
+        
         exceptionNodes.add(node);
     }
     

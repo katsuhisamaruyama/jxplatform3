@@ -35,7 +35,7 @@ public class SDG extends DependencyGraph {
     /**
      * The qualified name of this SDG.
      */
-    private QualifiedName qname;
+    private final QualifiedName qname;
     
     /**
      * Creates a ClDG.
@@ -43,7 +43,7 @@ public class SDG extends DependencyGraph {
      * @param node the entry node of this ClDG
      */
     public SDG() {
-        qname = new QualifiedName("SDG", TimeInfo.getTimeAsISOString(TimeInfo.getCurrentTime()));
+        qname = new QualifiedName("%SDG", TimeInfo.getTimeAsISOString(TimeInfo.getCurrentTime()));
     }
     
     /**
@@ -96,7 +96,6 @@ public class SDG extends DependencyGraph {
     
     /**
      * Adds a ClDG to this SDG.
-     * This method is not intended to be invoked by clients.
      * @param cldg the ClDG to be added
      */
     public void add(ClDG cldg) {
@@ -133,6 +132,8 @@ public class SDG extends DependencyGraph {
      * @return the found ClDG, or {@code null} if the corresponding ClDG is not found
      */
     public ClDG findClDG(JavaClass jclass) {
+        assert jclass != null;
+        
         return cldgs.get(jclass.getQualifiedName().fqn());
     }
     
@@ -142,6 +143,8 @@ public class SDG extends DependencyGraph {
      * @return the found PDG, or {@code null} if the corresponding PDG is not found
      */
     public PDG findPDG(JavaMethod jmethod) {
+        assert jmethod != null;
+        
         return pdgs.get(jmethod.getQualifiedName().fqn());
     }
     
@@ -151,6 +154,8 @@ public class SDG extends DependencyGraph {
      * @return the found PDG, or {@code null} if the corresponding PDG is not found
      */
     public PDG findPDG(JavaField jfield) {
+        assert jfield!= null;
+        
         return pdgs.get(jfield.getQualifiedName().fqn());
     }
     
@@ -160,6 +165,6 @@ public class SDG extends DependencyGraph {
      */
     @Override
     public String toString() {
-        return toString("SDG");
+        return qname.fqn();
     }
 } 

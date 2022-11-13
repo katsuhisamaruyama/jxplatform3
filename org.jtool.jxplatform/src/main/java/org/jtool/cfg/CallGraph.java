@@ -30,7 +30,7 @@ public class CallGraph {
     /**
      * The name of this call graph.
      */
-    private String name;
+    private final String name;
     
     /**
      * Creates a call graph having a given name.
@@ -70,9 +70,9 @@ public class CallGraph {
      * @param graph the call graph to be appended
      */
     public void append(CallGraph graph) {
-       if (graph != null) {
-           graph.getEdges().forEach(e -> setCall((CFGEntry)e.getSrcNode(), (CFGEntry)e.getDstNode()));
-       }
+        assert graph != null;
+        
+        graph.getEdges().forEach(e -> setCall((CFGEntry)e.getSrcNode(), (CFGEntry)e.getDstNode()));
     }
     
     /**
@@ -82,6 +82,9 @@ public class CallGraph {
      * @param callee a node for the callee site
      */
     public void setCall(CFGEntry caller, CFGEntry callee) {
+        assert caller != null;
+        assert callee != null;
+        
         if (!nodes.contains(caller)) {
             nodes.add(caller);
         }

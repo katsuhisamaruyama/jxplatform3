@@ -17,12 +17,12 @@ public abstract class JavaElement {
     /**
      * An AST node corresponding to this model element.
      */
-    protected ASTNode astNode;
+    protected final ASTNode astNode;
     
     /**
      * Information on a code fragment for this model element.
      */
-    protected CodeRange codeRange;
+    protected final CodeRange codeRange;
     
     /**
      * Creates a new object of this model element.

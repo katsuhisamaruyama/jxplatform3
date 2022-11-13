@@ -53,6 +53,7 @@ import org.eclipse.jdt.core.dom.VariableDeclarationStatement;
 import org.eclipse.jdt.core.dom.WhileStatement;
 import java.util.Set;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.stream.Collectors;
@@ -233,6 +234,8 @@ public class CFGNode extends GraphNode {
      * @param node the PDG node to be set
      */
     public void setPDGNode(PDGNode node) {
+        assert node != null;
+        
         pdgNode = node;
     }
     
@@ -298,7 +301,7 @@ public class CFGNode extends GraphNode {
      */
     public List<ControlFlow> getIncomingTrueFlows() {
         return getIncomingFlows().stream()
-                                 .filter(edge -> edge.isTrue()).collect(Collectors.toList());
+                .filter(edge -> edge.isTrue()).collect(Collectors.toList());
     }
     
     /**
@@ -307,7 +310,7 @@ public class CFGNode extends GraphNode {
      */
     public List<ControlFlow> getIncomingFalseFlows() {
         return getIncomingFlows().stream()
-                                 .filter(edge -> edge.isFalse()).collect(Collectors.toList());
+                .filter(edge -> edge.isFalse()).collect(Collectors.toList());
     }
     
     /**
@@ -316,8 +319,7 @@ public class CFGNode extends GraphNode {
      */
     public ControlFlow getOutgoingTrueFlow() {
         return getOutgoingFlows().stream()
-                                 .filter(edge -> edge.isTrue())
-                                 .findFirst().orElse(null);
+                .filter(edge -> edge.isTrue()).findFirst().orElse(null);
     }
     
     /**
@@ -326,8 +328,7 @@ public class CFGNode extends GraphNode {
      */
     public ControlFlow getOutgoingFalseFlow() {
         return getOutgoingFlows().stream()
-                                 .filter(edge -> edge.isFalse())
-                                 .findFirst().orElse(null);
+                .filter(edge -> edge.isFalse()).findFirst().orElse(null);
     }
     
     /**
@@ -836,12 +837,17 @@ public class CFGNode extends GraphNode {
      * @param nodes the collection of the CFG nodes to be sorted
      * @return the sorted list of the CFG nodes
      */
-    public static List<CFGNode> sortNodesInverse(Collection<? extends CFGNode> nodes) {
-        return nodes.stream()
-                    .sorted(Comparator.comparingLong(CFGNode::getId).reversed())
-                    .collect(Collectors.toList());
+    public static List<CFGNode> sortNodesInverse(Collection<? extends CFGNode> collection) {
+        List<CFGNode> nodes = new ArrayList<>(collection);
+        nodes.stream().sorted(Comparator.comparingLong(CFGNode::getId).reversed());
+        return nodes;
     }
     
+    /**
+     * Tests if a AST node is categorized into the statement.
+     * @param node an AST node to be checked
+     * @return {@code true} if the AST node is categorized into the statement, otherwise {@code false}
+     */
     public static boolean isStatement(ASTNode node) {
         return (
                 node instanceof VariableDeclarationStatement ||
@@ -873,6 +879,11 @@ public class CFGNode extends GraphNode {
             );
     }
     
+    /**
+     * Tests if a AST node is categorized into the expression.
+     * @param node an AST node to be checked
+     * @return {@code true} if the AST node is categorized into the expression, otherwise {@code false}
+     */
     public static boolean isExpression(ASTNode node) {
         return (
                 node instanceof Assignment ||
@@ -888,6 +899,11 @@ public class CFGNode extends GraphNode {
             );
     }
     
+    /**
+     * Tests if a AST node is categorized into the literal.
+     * @param node an AST node to be checked
+     * @return {@code true} if the AST node is categorized into the literal, otherwise {@code false}
+     */
     public static boolean isLiteral(ASTNode node) {
         return (
                 node instanceof BooleanLiteral ||

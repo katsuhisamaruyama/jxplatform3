@@ -5,6 +5,7 @@
 
 package org.jtool.pdg;
 
+import org.jtool.cfg.ControlFlow;
 import org.jtool.graph.GraphEdge;
 import org.jtool.graph.GraphElement;
 import java.util.List;
@@ -336,23 +337,11 @@ public class Dependence extends GraphEdge {
      * @param co the list of the dependence edges to be sorted
      * @return the sorted list of the dependence edges
      */
-    public static List<Dependence> sortEdges(Collection<? extends Dependence> co) {
-        List<Dependence> edges = new ArrayList<>(co);
-        Collections.sort(edges, new Comparator<>() {
-            
-            @Override
-            public int compare(Dependence edge1, Dependence edge2) {
-                if (edge2.src.getId() == edge1.src.getId()) {
-                    return edge2.dst.getId() == edge1.dst.getId() ?
-                           edge2.kind.toString().compareTo(edge1.kind.toString()) :
-                           edge1.dst.getId() > edge2.dst.getId() ? 1 : -1;
-                } else if (edge1.src.getId() > edge2.src.getId()) {
-                    return 1;
-                } else {
-                    return -1;
-                }
-            }
-        });
+    public static List<Dependence> sortEdges(Collection<? extends Dependence> collection) {
+        List<Dependence> edges = new ArrayList<>(collection);
+        edges.sort(Comparator.comparingLong((Dependence edge) -> edge.getSrcId())
+                             .thenComparingLong((Dependence edge) -> edge.getDstId())
+                             .thenComparing((Dependence edge) -> edge.getKind().toString()));
         return edges;
     }
     
@@ -361,9 +350,11 @@ public class Dependence extends GraphEdge {
      * @param co the list of the dependence edges to be sorted
      * @return the sorted list of the dependence edges
      */
-    public static List<Dependence> sortEdgesReverse(Collection<? extends Dependence> co) {
-        List<Dependence> edges = sortEdges(co);
-        Collections.reverse(edges);
+    public static List<Dependence> sortEdgesReverse(Collection<? extends Dependence> collection) {
+        List<Dependence> edges = new ArrayList<>(collection);
+        edges.sort(Comparator.comparingLong((Dependence edge) -> edge.getSrcId())
+                             .thenComparingLong((Dependence edge) -> edge.getDstId())
+                             .thenComparing((Dependence edge) -> edge.getKind().toString()).reversed());
         return edges;
     }
     

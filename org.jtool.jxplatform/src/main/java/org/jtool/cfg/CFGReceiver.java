@@ -60,6 +60,8 @@ public class CFGReceiver extends CFGStatement {
      * @param methodCall the method call node
      */
     public void setMethodCall(CFGMethodCall methodCall) {
+        assert methodCall != null;
+        
         this.methodCall = methodCall;
     }
     

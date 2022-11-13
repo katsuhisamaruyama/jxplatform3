@@ -8,7 +8,6 @@ package org.jtool.cfg;
 import org.jtool.graph.GraphEdge;
 import org.jtool.graph.GraphElement;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
@@ -246,23 +245,10 @@ public class ControlFlow extends GraphEdge {
      * @param co the list of the control flow edges to be sorted
      * @return the sorted list of the control flow edges
      */
-    public static List<ControlFlow> sortEdges(Collection<? extends ControlFlow> co) {
-        List<ControlFlow> edges = new ArrayList<>(co);
-        Collections.sort(edges, new Comparator<>() {
-            
-            @Override
-            public int compare(ControlFlow edge1, ControlFlow edge2) {
-                if (edge2.src.getId() == edge1.src.getId()) {
-                    return edge2.dst.getId() == edge1.dst.getId() ?
-                           edge2.kind.toString().compareTo(edge1.kind.toString()) :
-                           edge1.dst.getId() > edge2.dst.getId() ? 1 : -1;
-                } else if (edge1.src.getId() > edge2.src.getId()) {
-                    return 1;
-                } else {
-                    return -1;
-                }
-            }
-        });
+    public static List<ControlFlow> sortEdges(Collection<? extends ControlFlow> collection) {
+        List<ControlFlow> edges = new ArrayList<>(collection);
+        edges.sort(Comparator.comparingLong((ControlFlow edge) -> edge.getSrcId())
+                             .thenComparingLong((ControlFlow edge) -> edge.getDstId()));
         return edges;
     }
 }

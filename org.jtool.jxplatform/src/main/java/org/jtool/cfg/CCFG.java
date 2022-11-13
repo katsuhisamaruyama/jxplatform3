@@ -53,6 +53,8 @@ public class CCFG {
      * @param node the entry node of this CFG
      */
     public void setEntryNode(CCFGEntry node) {
+        assert node != null;
+        
         entry = node;
         entry.setCCFG(this);
     }
@@ -88,6 +90,8 @@ public class CCFG {
      * @param cfg the CFG to be added
      */
     public void add(CFG cfg) {
+        assert cfg != null;
+        
         if (!cfgs.values().contains(cfg)) {
             cfgs.put(cfg.getQualifiedName().fqn(), cfg);
         }

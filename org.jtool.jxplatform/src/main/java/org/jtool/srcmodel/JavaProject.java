@@ -30,22 +30,22 @@ public class JavaProject {
     /**
      * The name of this project.
      */
-    protected String name;
+    protected final String name;
     
     /**
      * The absolute path string that indicates the root directory of this project relative to the workspace.
      */
-    protected String pathInWorkspace;
+    protected final String pathInWorkspace;
     
     /**
      * The absolute path string that indicates the root directory of this project in the file system.
      */
-    protected String path;
+    protected final String path;
     
     /**
      * The absolute path string that indicates the root directory of the top project enclosing this project in the file system.
      */
-    protected String topPath;
+    protected final String topPath;
     
     /**
      * The map paths and source files corresponding to the paths.
@@ -95,12 +95,12 @@ public class JavaProject {
     /**
      * A CFG repository that stores CFGs for source files for this project.
      */
-    protected CFGStore cfgStore;
+    protected final CFGStore cfgStore;
     
     /**
      * A PDG repository that stores PDGs for source files for this project.
      */
-    protected PDGStore pdgStore;
+    protected final PDGStore pdgStore;
     
     /**
      * A model builder that creates Java models in this project.
@@ -125,8 +125,6 @@ public class JavaProject {
      * @param topPath the absolute path string that indicates the root directory of the top project enclosing this project
      */
     public JavaProject(String name, String wpath, String path, String topPath) {
-        assert name != null;
-        assert wpath != null;
         assert path != null;
         
         this.name = name;
@@ -241,6 +239,7 @@ public class JavaProject {
     
     /**
      * Adds a file to this project.
+     * This method is not intended to be invoked by clients.
      * @param jfile the file to be added
      */
     void addFile(JavaFile jfile) {
@@ -251,6 +250,7 @@ public class JavaProject {
     
     /**
      * Removes a file from this project.
+     * This method is not intended to be invoked by clients.
      * @param path the path of a file to be removed
      */
     void removeFile(String path) {
@@ -287,6 +287,7 @@ public class JavaProject {
     
     /**
      * Adds a package to this project.
+     * This method is not intended to be invoked by clients.
      * @param jpackage the package to be added
      */
     void addPackage(JavaPackage jpackage) {
@@ -297,6 +298,7 @@ public class JavaProject {
     
     /**
      * Removes a package from this project.
+     * This method is not intended to be invoked by clients.
      * @param jpackage the package to be removed
      */
     void removePackage(JavaPackage jpackage) {
@@ -342,6 +344,7 @@ public class JavaProject {
     
     /**
      * Adds a class to this project.
+     * This method is not intended to be invoked by clients.
      * @param jclass the class to be added
      */
     void addClass(JavaClass jclass) {
@@ -352,6 +355,7 @@ public class JavaProject {
     
     /**
      * Removes a class from this project.
+     * This method is not intended to be invoked by clients.
      * @param jclass the class to be removed
      */
     void removeClass(JavaClass jclass) {
@@ -388,6 +392,7 @@ public class JavaProject {
     
     /**
      * Adds a class to this project, which exists outside this project.
+     * This method is not intended to be invoked by clients.
      * @param jclass the class to be added
      */
     void addExternalClass(JavaClass jclass) {
@@ -466,6 +471,7 @@ public class JavaProject {
     
     /**
      * Removes classes from this project.
+     * This method is not intended to be invoked by clients.
      * @param classes the classes to be removed
      */
     void removeClasses(List<JavaClass> classes) {

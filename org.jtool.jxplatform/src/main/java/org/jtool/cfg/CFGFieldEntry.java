@@ -18,7 +18,7 @@ public class CFGFieldEntry extends CFGEntry {
     /**
      * The field associated with this entry node.
      */
-    private JavaField jfield;
+    private final JavaField jfield;
     
     /**
      * The CFG node for the declaration of the field associated with this entry node.
@@ -50,6 +50,8 @@ public class CFGFieldEntry extends CFGEntry {
      * @param node the CFG node of the field declaration to be set
      */
     public void setDeclarationNode(CFGStatement node) {
+        assert node != null;
+        
         declNode = node;
     }
     

@@ -36,6 +36,8 @@ public class CFGMerge extends CFGNode {
      * @param branch the branch node to be set
      */
     public void setBranch(CFGStatement branch) {
+        assert branch != null;
+        
         this.branch = branch;
     }
     

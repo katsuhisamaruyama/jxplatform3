@@ -18,7 +18,7 @@ public abstract class CFGEntry extends CFGNode {
     /**
      * The fully-qualified name of the CFG that has this entry node.
      */
-    protected QualifiedName fqn;
+    protected final QualifiedName fqn;
     
     /**
      * The CFG associated with this entry node. 
@@ -43,6 +43,8 @@ public abstract class CFGEntry extends CFGNode {
      * @param cfg the CFG to be associated
      */
     public void setCFG(CFG cfg) {
+        assert cfg != null;
+        
         this.cfg = cfg;
     }
     

@@ -32,47 +32,47 @@ public class JMethodReference extends JReference {
     /**
      * The AST node corresponding to the name of this reference.
      */
-    protected ASTNode nameNode;
+    protected final ASTNode nameNode;
     
     /**
      * A flag that indicates whether this is a reference to a method.
      */
-    private boolean isMethod;
+    private final boolean isMethod;
     
     /**
      * A flag that indicates whether this is a reference to a constructor.
      */
-    private boolean isConstructor;
+    private final boolean isConstructor;
     
     /**
      * A flag that indicates whether this is a reference to an enum constant.
      */
-    private boolean isEnumConstant;
+    private final boolean isEnumConstant;
     
     /**
      * A flag that indicates whether this is a reference to a variable-arity method.
      */
-    private boolean isVarargs;
+    private final boolean isVarargs;
     
     /**
      * The collection of AST nodes corresponding to the arguments of this method reference.
      */
-    private List<Expression> arguments = new ArrayList<>();
+    private final List<Expression> arguments = new ArrayList<>();
     
     /**
      * The collection of the types of arguments of the referencing method.
      */
-    private List<String> argumentTypes = new ArrayList<>();
+    private final List<String> argumentTypes = new ArrayList<>();
     
     /**
      * The collection stores information on whether each argument of this method reference is primitive.
      */
-    private List<Boolean> argumentPrimitiveTypes = new ArrayList<>();
+    private final List<Boolean> argumentPrimitiveTypes = new ArrayList<>();
     
     /**
      * The collection of the exception types that the referenced method might throw.
      */
-    private Set<ITypeBinding> exceptionTypes = new HashSet<>();
+    private final Set<ITypeBinding> exceptionTypes = new HashSet<>();
     
     /**
      * The node corresponding to the receiver of this method reference.
@@ -104,6 +104,8 @@ public class JMethodReference extends JReference {
      */
     public JMethodReference(ASTNode node, ASTNode nameNode, IMethodBinding mbinding, List<Expression> args) {
         super(node);
+        
+        assert mbinding != null;
         
         this.nameNode = nameNode;
         

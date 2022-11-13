@@ -23,12 +23,12 @@ public class JavaPackage {
     /**
      * An AST node corresponding to this model element.
      */
-    private ASTNode astNode;
+    private final ASTNode astNode;
     
     /**
      * The name of this package.
      */
-    private String name;
+    private final String name;
     
     /**
      * A flag indicating whether this package exists inside the target project.
@@ -52,8 +52,6 @@ public class JavaPackage {
      * @param name the name of this package
      */
     private JavaPackage(PackageDeclaration node, String name) {
-        assert name != null;
-        
         this.astNode = node;
         this.name = name;
     }

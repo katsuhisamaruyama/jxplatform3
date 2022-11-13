@@ -28,7 +28,7 @@ public abstract class JReference {
     /**
      * The AST node corresponding to this reference.
      */
-    protected ASTNode astNode;
+    protected final ASTNode astNode;
     
     /**
      * The name of a class that encloses the referencing element.
@@ -531,8 +531,6 @@ public abstract class JReference {
      * @return the type binding information on the found class, or {@code null} if no class is found
      */
     public static ITypeBinding findEnclosingClass(ASTNode node) {
-        assert node != null;
-        
         TypeDeclaration tnode = (TypeDeclaration)getEnclosingElement(node, ASTNode.TYPE_DECLARATION);
         if (tnode != null) {
             return tnode.resolveBinding();
@@ -555,8 +553,6 @@ public abstract class JReference {
      * @return the method binding information on the found method, or {@code null} if no method is found
      */
     public static IMethodBinding findEnclosingMethod(ASTNode node) {
-        assert node != null;
-        
         MethodDeclaration mnode = (MethodDeclaration)getEnclosingElement(node, ASTNode.METHOD_DECLARATION);
         if (mnode != null) {
             return mnode.resolveBinding();
@@ -570,8 +566,6 @@ public abstract class JReference {
      * @return the type string
      */
     protected String getType(ITypeBinding tbinding) {
-        assert tbinding != null;
-        
         if (tbinding.isParameterizedType()) {
             tbinding = tbinding.getErasure();
         }

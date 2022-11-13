@@ -23,27 +23,27 @@ public class JavaFile {
     /**
      * The compilation unit created by the Eclipse's JDT parser.
      */
-    private CompilationUnit compilationUnit;
+    private final CompilationUnit compilationUnit;
     
     /**
      * The project that this file exists.
      */
-    private JavaProject jproject;
+    private final JavaProject jproject;
     
     /**
      * The absolute path that indicates the location of this file in the file system.
      */
-    private String path;
+    private final String path;
     
     /**
      * The contents (source code) of this file.
      */
-    private String source;
+    private final String source;
     
     /**
      * The character set of the contents of this file.
      */
-    private String charset;
+    private final String charset;
     
     /**
      * The package declared in this file.
@@ -163,6 +163,8 @@ public class JavaFile {
      * @param jclass a class to be added
      */
     void addClass(JavaClass jclass) {
+        assert jclass != null;
+        
         classes.add(jclass);
         jproject.addClass(jclass);
     }
@@ -181,6 +183,8 @@ public class JavaFile {
      * @param node the corresponding AST node 
      */
     public void addImport(ASTNode node) {
+        assert node != null;
+        
         imports.add(node);
     }
     

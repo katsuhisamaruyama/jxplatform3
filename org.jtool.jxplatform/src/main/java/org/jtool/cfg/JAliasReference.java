@@ -15,7 +15,7 @@ public class JAliasReference extends JVariableReference {
     /**
      * A reference to the original of an alias variable.
      */
-    private JVariableReference original;
+    private final JVariableReference original;
     
     /**
      * Creates a new object that represents a reference to an alias variable.
@@ -26,6 +26,8 @@ public class JAliasReference extends JVariableReference {
      */
     public JAliasReference(JVariableReference jvar, String name, JVariableReference original) {
         super(jvar.getASTNode());
+        
+        assert original != null;
         
         this.original = original;
         this.isPrimitiveType = jvar.isPrimitiveType;

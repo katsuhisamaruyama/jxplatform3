@@ -18,22 +18,22 @@ public class CodeRange {
     /**
      * The position that indicates where the code fragment for an AST node begins.
      */
-    private int startPosition;
+    private final int startPosition;
     
     /**
      * The position that indicates where the code fragment for an AST node ends.
      */
-    private int endPosition;
+    private final int endPosition;
     
     /**
      * The upper line number of the position that indicates the code fragment for an AST node begins.
      */
-    private int upperLineNumber;
+    private final int upperLineNumber;
     
     /**
      * The bottom line number of the position that indicates the code fragment for an AST node ends.
      */
-    private int bottomLineNumber;
+    private final int bottomLineNumber;
     
     /**
      * Creates code range information on a given AST node.
@@ -41,6 +41,7 @@ public class CodeRange {
      */
     public CodeRange(ASTNode node) {
         assert node != null;
+        
         CompilationUnit cu = (CompilationUnit)node.getRoot();
         startPosition = node.getStartPosition();
         endPosition = node.getStartPosition() + node.getLength() - 1;

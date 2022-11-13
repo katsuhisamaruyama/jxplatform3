@@ -40,6 +40,8 @@ public class CFGTry extends CFGStatement {
      * @param node the catch node
      */
     public void addCatchNode(CFGStatement node) {
+        assert node != null;
+        
         catchNodes.add(node);
     }
     
@@ -56,6 +58,8 @@ public class CFGTry extends CFGStatement {
      * @param node the catch node
      */
     public void setFinallyNode(CFGStatement node) {
+        assert node != null;
+        
         finallyNode = node;
     }
     
@@ -66,5 +70,4 @@ public class CFGTry extends CFGStatement {
     public CFGStatement getFinallyNode() {
         return finallyNode;
     }
-    
 }

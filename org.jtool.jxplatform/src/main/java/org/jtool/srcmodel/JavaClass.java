@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.util.Optional;
 
@@ -35,37 +36,37 @@ public class JavaClass extends JavaElement {
     /**
      * A project which this model element exists in
      */
-    private JavaProject jproject;
+    private final JavaProject jproject;
     
     /**
      * A file that declares this model element.
      */
-    private JavaFile jfile;
+    private final JavaFile jfile;
     
     /**
      * Type binding information on this class.
      */
-    private ITypeBinding binding;
+    private final ITypeBinding binding;
     
     /**
      * The fully-qualified name of this class.
      */
-    private QualifiedName qname;
+    private final QualifiedName qname;
     
     /**
      * The constant value that represents the array class.
      */
-    public static QualifiedName ArrayClassFqn = new QualifiedName(".JavaArray", "");
+    public static final QualifiedName ArrayClassFqn = new QualifiedName(".JavaArray", "");
     
     /**
      * The modifiers of this class.
      */
-    private int modifiers;
+    private final int modifiers;
     
     /**
      * The kind of this class.
      */
-    private Kind kind;
+    private final Kind kind;
     
     /**
      * The kind of a class.
@@ -235,6 +236,7 @@ public class JavaClass extends JavaElement {
         super(null);
         
         assert jproject != null;
+        
         this.jproject = jproject;
         this.jfile = null;
         
@@ -278,8 +280,6 @@ public class JavaClass extends JavaElement {
     public JavaClass(LambdaExpression node, ITypeBinding tbinding, String name, JavaMethod jmethod) {
         super(node);
         
-        assert tbinding != null;
-        assert name != null;
         assert jmethod != null;
         
         this.jproject = jmethod.getFile().getJavaProject();
@@ -327,6 +327,9 @@ public class JavaClass extends JavaElement {
      */
     private JavaClass(QualifiedName qname, JavaProject jproject) {
         super(null);
+        
+        assert qname != null;
+        assert jproject != null;
         
         this.jproject = jproject;
         this.jfile = null;
@@ -781,9 +784,9 @@ public class JavaClass extends JavaElement {
      * @return the sorted field list
      */
     public static List<JavaField> sortFields(List<? extends JavaField> list) {
-        return list.stream()
-                .sorted((jf1, jf2) -> jf1.getName().compareTo(jf2.getName()))
-                .collect(Collectors.toList());
+        List<JavaField> fieldlist = new ArrayList<>(list);
+        fieldlist.stream().sorted(Comparator.comparing(JavaField::getName));
+        return fieldlist;
     }
     
     /**
@@ -792,9 +795,9 @@ public class JavaClass extends JavaElement {
      * @return the sorted method list
      */
     public static List<JavaMethod> sortMethods(List<? extends JavaMethod> list) {
-        return list.stream()
-                .sorted((jm1, jm2) -> jm1.getSignature().compareTo(jm2.getSignature()))
-                .collect(Collectors.toList());
+        List<JavaMethod> methodlist = new ArrayList<>(list);
+        methodlist.stream().sorted(Comparator.comparing(JavaMethod::getSignature));
+        return methodlist;
     }
     
     /**
@@ -803,9 +806,9 @@ public class JavaClass extends JavaElement {
      * @return the sorted class list
      */
     public static List<JavaClass> sortClasses(List<? extends JavaClass> list) {
-        return list.stream()
-                .sorted((jc1, jc2) -> jc1.getQualifiedName().fqn().compareTo(jc2.getQualifiedName().fqn()))
-                .collect(Collectors.toList());
+        List<JavaClass> classlist = new ArrayList<>(list);
+        classlist.stream().sorted(Comparator.comparing(jclass -> jclass.getQualifiedName().fqn()));
+        return classlist;
     }
     
     /**

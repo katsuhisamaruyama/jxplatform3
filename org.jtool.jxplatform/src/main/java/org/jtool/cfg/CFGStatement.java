@@ -77,6 +77,8 @@ public class CFGStatement extends CFGNode {
      * @param jvs the collection of the variables to be added
      */
     public void addDefVariables(List<JVariableReference> jvs) {
+        assert jvs != null;
+        
         jvs.forEach(jv -> addDefVariable(jv));
     }
     
@@ -86,6 +88,8 @@ public class CFGStatement extends CFGNode {
      * @param jvs the collection of the variables to be added
      */
     public void addUseVariables(List<JVariableReference> jvs) {
+        assert jvs != null;
+        
         jvs.forEach(jv -> addUseVariable(jv));
     }
     
@@ -131,6 +135,8 @@ public class CFGStatement extends CFGNode {
      * @param jvs the collection of the variables to be set
      */
     public void setDefVariables(List<JVariableReference> jvs) {
+        assert jvs != null;
+        
         defs = jvs;
     }
     
@@ -140,6 +146,8 @@ public class CFGStatement extends CFGNode {
      * @param jvs the collection of the variables to be set
      */
     public void setUseVariables(List<JVariableReference> jvs) {
+        assert jvs != null;
+        
         uses = jvs;
     }
     

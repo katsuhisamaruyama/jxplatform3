@@ -19,7 +19,7 @@ public abstract class JavaVariable extends JavaElement {
     /**
      * A file that declares this model element.
      */
-    protected JavaFile jfile;
+    protected final JavaFile jfile;
     
     /**
      * The fully-qualified name of this variable.

@@ -46,7 +46,7 @@ public abstract class GraphEdge extends GraphElement {
      * Returns the identification number of the source node of this edge.
      * @return the identification number of the source node
      */
-    private long getSrcId() {
+    protected long getSrcId() {
         return src.getId();
     }
     
@@ -54,7 +54,7 @@ public abstract class GraphEdge extends GraphElement {
      * Returns the identification number of the destination node of this edge.
      * @return the identification number of the destination node
      */
-    private long getDstId() {
+    protected long getDstId() {
         return dst.getId();
     }
     

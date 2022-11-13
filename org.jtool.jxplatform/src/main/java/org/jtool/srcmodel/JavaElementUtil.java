@@ -28,6 +28,8 @@ public class JavaElementUtil {
      * @return the fully-qualified name
      */
     public static QualifiedName findQualifiedName(ITypeBinding tbinding) {
+        assert tbinding != null;
+        
         if (tbinding.isTypeVariable()) {
             return new QualifiedName("java.lang.Object", "");
         }
@@ -68,6 +70,8 @@ public class JavaElementUtil {
      * @return the found class, or {@code null} if no class is found
      */
     public static JavaClass findDeclaringClass(ITypeBinding tbinding, JavaProject jproject) {
+        assert jproject != null;
+        
         if (tbinding != null) {
             tbinding = tbinding.getTypeDeclaration();
             QualifiedName qname = findQualifiedName(tbinding);
@@ -118,6 +122,8 @@ public class JavaElementUtil {
      * @return the found method, or {@code null} if no method is found
      */
     public static JavaMethod findDeclaringMethod(IMethodBinding mbinding, JavaProject jproject) {
+        assert jproject != null;
+        
         if (mbinding != null) { 
             mbinding = mbinding.getMethodDeclaration();
             JavaClass jclass = findDeclaringClass(mbinding.getDeclaringClass(), jproject);
@@ -162,6 +168,8 @@ public class JavaElementUtil {
      * @return the found field, or {@code null} if no field is found
      */
     public static JavaField findDeclaringField(IVariableBinding vbinding, JavaProject jproject) {
+        assert jproject != null;
+        
         if (vbinding != null && vbinding.isField()) {
             vbinding = vbinding.getVariableDeclaration();
             JavaClass jclass = findDeclaringClass(vbinding.getDeclaringClass(), jproject);
@@ -208,6 +216,8 @@ public class JavaElementUtil {
      * @return the found ancestor, or {@code null} if no AST node is found
      */
     public static ASTNode findAncestorNode(ASTNode node, int sort) {
+        assert node != null;
+        
         if (node.getNodeType() == sort) {
             return node;
         }
@@ -225,6 +235,9 @@ public class JavaElementUtil {
      * @return the found class, or {@code null} if there is no class enclosing the model element
      */
     public static JavaClass findEnclosingClass(ASTNode node, JavaProject jproject) {
+        assert node != null;
+        assert jproject != null;
+        
         TypeDeclaration tnode = (TypeDeclaration)findAncestorNode(node, ASTNode.TYPE_DECLARATION);
         if (tnode != null) {
             return findDeclaringClass(tnode.resolveBinding(), jproject);
@@ -243,6 +256,9 @@ public class JavaElementUtil {
      * @return the found method, or {@code null} if there is no method enclosing the model element
      */
     public static JavaMethod findEnclosingMethod(ASTNode node, JavaProject jproject) {
+        assert node != null;
+        assert jproject != null;
+        
         MethodDeclaration mnode = (MethodDeclaration)findAncestorNode(node, ASTNode.METHOD_DECLARATION);
         if (mnode != null) {
             return findDeclaringMethod(mnode.resolveBinding(), jproject);

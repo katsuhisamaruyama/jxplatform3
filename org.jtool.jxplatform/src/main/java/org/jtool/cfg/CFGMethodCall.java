@@ -22,7 +22,7 @@ public class CFGMethodCall extends CFGStatement {
     /**
      * The reference to the called method.
      */
-    private JMethodReference jmethodCall;
+    private final JMethodReference jmethodCall;
     
     /**
      * The collection of actual-in nodes on this method call.
@@ -195,6 +195,8 @@ public class CFGMethodCall extends CFGStatement {
      * @param node the actual-in node to be added
      */
     public void addActualIn(CFGParameter node) {
+        assert node != null;
+        
         actualIns.add(node);
     }
     
@@ -204,6 +206,8 @@ public class CFGMethodCall extends CFGStatement {
      * @param nodes the collection of actual-in nodes to be set
      */
     public void setActualIns(List<CFGParameter> nodes) {
+        assert nodes != null;
+        
         actualIns.addAll(nodes);
     }
     
@@ -213,6 +217,8 @@ public class CFGMethodCall extends CFGStatement {
      * @param node the actual-out node to be set
      */
     public void setActualOut(CFGParameter node) {
+        assert node != null;
+        
         actualOut = node;
     }
     
