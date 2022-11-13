@@ -193,6 +193,7 @@ public class CFGStore {
         }
         
         CFGsForVisit.add(fqn);
+        Resolver.resolveReferences(jfield.getJavaProject(), cfg);
         Resolver.resolveLocalAlias(jfield.getJavaProject(), cfg);
         CFGsForVisit.remove(fqn);
         
