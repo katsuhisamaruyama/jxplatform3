@@ -228,7 +228,7 @@ public class ClDGTest {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Customer");
         List<Dependence> result = cldg.getEdges();
         
-        assertEquals(74, result.size());
+        assertEquals(76, result.size());
     }
     
     @Test

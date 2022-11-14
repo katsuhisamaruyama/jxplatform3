@@ -140,7 +140,7 @@ public class CDTest {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test122", "m( )");
         List<Dependence> result = PDGTestUtil.getDependence(pdg, 12, 13);
         
-        assertTrue(result.get(0).isTrue());
+        assertTrue(result.get(1).isTrue());
     }
     
     public void testIsTrue16() {
@@ -195,15 +195,15 @@ public class CDTest {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
         List<Dependence> result = PDGTestUtil.getDependence(pdg, 1, 4);
         
-        assertTrue(result.get(1).isDeclaration());
+        assertTrue(result.get(0).isDeclaration());
     }
     
     @Test
     public void testIsDeclaration2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test108", "m( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 2, 5);
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 3, 6);
         
-        assertTrue(result.get(1).isDeclaration());
+        assertTrue(result.get(0).isDeclaration());
     }
     
     @Test

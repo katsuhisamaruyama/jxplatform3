@@ -739,7 +739,7 @@ public class PDGTest {
         PDG pdg = cldg.findPDG("Customer#statement( Order )");
         List<Dependence> result = pdg.getEdges();
         
-        assertEquals(36, result.size());
+        assertEquals(38, result.size());
     }
     
     @Test

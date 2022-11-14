@@ -85,28 +85,29 @@ public class PDGTestUtil {
     
     public static PDGNode getNode(PDG pdg, int index) {
         return pdg.getNodes().stream()
-                .filter(n -> n.getId() == index + pdg.getEntryNode().getId())
-                .findFirst().orElse(null);
-    }
-    
-    public static PDGNode getNode(DependencyGraph graph, int index) {
-        long min = graph.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get() - 1;
-        return getNode(graph, min, index);
-    }
-    
-    public static Set<PDGNode> getNodes(DependencyGraph graph, int[] indices) {
-        long min = graph.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get() - 1;
-        Set<Integer> set = new HashSet<>(indices.length);
-        for (int i : indices) {
-            set.add(i);
-        }
-        return set.stream().map(index -> getNode(graph, min, index)).collect(Collectors.toSet());
+                .filter(n -> n.getId() == index + pdg.getEntryNode().getId()).findFirst().orElse(null);
     }
     
     private static PDGNode getNode(DependencyGraph graph, long min, int index) {
         return graph.getNodes().stream()
-                .filter(n -> n.getId() == index + min)
-                .findFirst().orElse(null);
+                .filter(n -> n.getId() == index + min).findFirst().orElse(null);
+    }
+    
+    public static PDGNode getNode(DependencyGraph graph, int index) {
+        if (graph instanceof PDG) {
+            return getNode((PDG)graph, index);
+        }
+        long min = graph.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get();
+        return getNode(graph, min, index);
+    }
+    
+    public static Set<PDGNode> getNodes(DependencyGraph graph, int[] indices) {
+        Set<PDGNode> nodes = new HashSet<>();
+        for (int i : indices) {
+            PDGNode node = getNode(graph, i);
+            nodes.add(node);
+        }
+        return nodes;
     }
     
     public static List<Dependence> getDependence(PDG pdg, int src, int dst) {

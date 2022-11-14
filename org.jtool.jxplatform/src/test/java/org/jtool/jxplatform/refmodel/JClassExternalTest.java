@@ -740,7 +740,7 @@ public class JClassExternalTest {
         List<String> result = TestUtil.asSortedList(serializableClass.getDescendantClasses().stream()
                 .map(o -> o.getName()));
         
-        assertEquals(3133, result.size());
+        assertEquals(3106, result.size());
         assertEquals("apple.security.AppleProvider", result.get(0));
     }
     
@@ -759,7 +759,7 @@ public class JClassExternalTest {
         List<String> result = TestUtil.asSortedList(objectClass.getDescendantClasses().stream()
                 .map(o -> o.getName()));
         
-        assertEquals(21119, result.size());
+        assertEquals(20841, result.size());
         assertEquals("apple.laf.JRSUIConstants", result.get(0));
     }
     
@@ -768,7 +768,7 @@ public class JClassExternalTest {
         List<String> result = TestUtil.asSortedList(mapClass.getDescendantClasses().stream()
                 .map(o -> o.getName()));
         
-        assertEquals(101, result.size());
+        assertEquals(100, result.size());
         assertEquals("apple.security.AppleProvider", result.get(0));
     }
     
@@ -777,7 +777,7 @@ public class JClassExternalTest {
         List<String> result = TestUtil.asSortedList(hashMapClass.getDescendantClasses().stream()
                 .map(o -> o.getName()));
         
-        assertEquals(14, result.size());
+        assertEquals(13, result.size());
         assertEquals("java.util.LinkedHashMap", result.get(4));
     }
 }
