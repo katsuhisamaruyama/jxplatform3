@@ -235,7 +235,7 @@ public class ControlFlow extends GraphEdge {
             buf.append(" " + getKind().toString());
         }
         if (loopback != null) {
-            buf.append(" (LC = " + String.valueOf(getLoopBack().getId()) + ")");
+            buf.append(" (L = " + String.valueOf(getLoopBack().getId()) + ")");
         }
         return buf.toString();
     }

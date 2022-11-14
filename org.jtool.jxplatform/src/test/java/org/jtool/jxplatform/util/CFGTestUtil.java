@@ -325,7 +325,7 @@ public class CFGTestUtil {
             buf.append(" " + edge.getKind().toString());
         }
         if (edge.getLoopBack() != null) {
-            buf.append(" (LC = " + getIdString(cfg, edge.getLoopBack()) + ")");
+            buf.append(" (L = " + getIdString(cfg, edge.getLoopBack()) + ")");
         }
         return buf.toString();
     }
@@ -349,9 +349,9 @@ public class CFGTestUtil {
         if (node instanceof CCFGEntry) {
             return " [ " + ((CCFGEntry)node).getQualifiedName().getClassName() + " ]";
         } else if (node instanceof CFGMethodEntry) {
-            return " [ " + ((CFGMethodEntry)node).getQualifiedName().getMemberSignature() + " ]";
+            return " [ " + ((CFGMethodEntry)node).getQualifiedName().fqn() + " ]";
         } else if (node instanceof CFGFieldEntry) {
-            return " [ " + ((CFGFieldEntry)node).getQualifiedName().getMemberSignature() + " ]";
+            return " [ " + ((CFGFieldEntry)node).getQualifiedName().fqn() + " ]";
         } else if (node instanceof CFGMethodCall) {
             return getVars((CFGStatement)node) + " TO = " + ((CFGMethodCall)node).getQualifiedName();
         } else if (node instanceof CFGStatement) {
