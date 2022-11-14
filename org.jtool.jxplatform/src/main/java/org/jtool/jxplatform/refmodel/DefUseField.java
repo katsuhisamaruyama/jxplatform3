@@ -128,8 +128,6 @@ public class DefUseField {
         return isReturnValue;
     }
     
-    
-    
     public void addHoldingNodes(List<CFGMethodCall> nodes) {
         holdingNodes.addAll(nodes);
     }
