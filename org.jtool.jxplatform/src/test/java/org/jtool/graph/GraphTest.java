@@ -32,7 +32,6 @@ public class GraphTest {
     public void testGetNodes1() {
         ConcreteGraphNode n1 = createNode(1);
         ConcreteGraphNode n2 = createNode(2);
-        
         Set<GraphNode> nodes = new HashSet<>();
         nodes.add(n1);
         nodes.add(n2);
@@ -51,7 +50,6 @@ public class GraphTest {
         ConcreteGraphNode n3 = createNode(3);
         ConcreteGraphEdge e12 = createEdge(n1, n2);
         ConcreteGraphEdge e13 = createEdge(n1, n3);
-        
         List<GraphEdge> edges = new ArrayList<>();
         edges.add(e12);
         edges.add(e13);

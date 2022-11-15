@@ -24,7 +24,6 @@ public class GraphEdgeTest {
     public void testGetSrcNode1() {
         ConcreteGraphNode n1 = createNode(1);
         ConcreteGraphNode n2 = createNode(2);
-        
         ConcreteGraphEdge e12 = createEdge(n1, n2);
         GraphNode result = e12.getSrcNode();
         
@@ -35,7 +34,6 @@ public class GraphEdgeTest {
     public void testGetDstNode1() {
         ConcreteGraphNode n1 = createNode(1);
         ConcreteGraphNode n2 = createNode(2);
-        
         ConcreteGraphEdge e12 = createEdge(n1, n2);
         GraphNode result = e12.getDstNode();
         
@@ -47,7 +45,6 @@ public class GraphEdgeTest {
         ConcreteGraphNode n1 = createNode(1);
         ConcreteGraphNode n2 = createNode(2);
         ConcreteGraphNode n3 = createNode(3);
-        
         ConcreteGraphEdge e12 = createEdge(n1, n2);
         e12.setSrcNode(n3);
         GraphNode result = e12.getSrcNode();
@@ -60,7 +57,6 @@ public class GraphEdgeTest {
         ConcreteGraphNode n1 = createNode(1);
         ConcreteGraphNode n2 = createNode(2);
         ConcreteGraphNode n4 = createNode(4);
-        
         ConcreteGraphEdge e12 = createEdge(n1, n2);
         e12.setDstNode(n4);
         GraphNode result = e12.getDstNode();
