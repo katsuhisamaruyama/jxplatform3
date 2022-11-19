@@ -736,14 +736,6 @@ public class CFGNodeTest {
     }
     
     @Test
-    public void testIsLabel() {
-        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test35", "m3( )");
-        CFGNode node = CFGTestUtil.getNode(cfg, 4);
-        
-        assertTrue(node.isLabel());
-    }
-    
-    @Test
     public void testIsSwitch() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test111", "m( )");
         CFGNode node = CFGTestUtil.getNode(cfg, 4);

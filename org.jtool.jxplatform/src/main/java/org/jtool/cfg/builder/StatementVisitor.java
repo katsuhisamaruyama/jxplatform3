@@ -370,6 +370,9 @@ public class StatementVisitor extends ASTVisitor {
         CFGNode exitNode = new CFGNode();
         blockEntries.push(entryNode);
         blockExits.push(exitNode);
+        
+        setLabelNode(node, entryNode);
+        
         Statement body = node.getBody();
         body.accept(this);
         
@@ -395,6 +398,8 @@ public class StatementVisitor extends ASTVisitor {
         CFGNode exitNode = new CFGNode();
         blockEntries.push(entryNode);
         blockExits.push(exitNode);
+        
+        setLabelNode(node, entryNode);
         
         ControlFlow entryEdge = cfg.getFlow(prevNode, nextNode);
         Statement body = node.getBody();
@@ -463,6 +468,9 @@ public class StatementVisitor extends ASTVisitor {
         CFGNode exitNode = new CFGNode();
         blockEntries.push(entryNode);
         blockExits.push(exitNode);
+        
+        setLabelNode(node, entryNode);
+        
         Statement body = node.getBody();
         body.accept(this);
         for (Expression update : (List<Expression>)node.updaters()) {
@@ -503,14 +511,18 @@ public class StatementVisitor extends ASTVisitor {
         Expression expression = node.getExpression();
         ExpressionVisitor exprVisitor = new ExpressionVisitor(this, jproject, cfg, forNode);
         expression.accept(exprVisitor);
+        CFGNode entryNode = exprVisitor.getEntryNode();
         CFGNode curNode = exprVisitor.getExitNode();
         
         ControlFlow edge = createFlow(curNode, nextNode);
         edge.setTrue();
         
         CFGNode exitNode = new CFGNode();
-        blockEntries.push(curNode);
+        blockEntries.push(entryNode);
         blockExits.push(exitNode);
+        
+        setLabelNode(node, entryNode);
+        
         Statement body = node.getBody();
         body.accept(this);
         
@@ -538,11 +550,9 @@ public class StatementVisitor extends ASTVisitor {
         CFGNode jumpNode;
         if (node.getLabel() != null) {
             String name = node.getLabel().getFullyQualifiedName();
-            jumpNode = getLabel(name).getNode();
+            jumpNode = getLabel(name).getEndNode();
         } else {
             jumpNode = (CFGNode)blockExits.peek();
-            // Goes to the entry point and moves its false-successor immediately.
-            // Not go to the exit point directly according to the Java specification.
         }
         if (jumpNode != null) {
             ControlFlow edge = createFlow(breakNode, jumpNode);
@@ -561,7 +571,7 @@ public class StatementVisitor extends ASTVisitor {
         CFGNode jumpNode;
         if (node.getLabel() != null) {
             String name = node.getLabel().getFullyQualifiedName();
-            jumpNode = getLabel(name).getNode();
+            jumpNode = getLabel(name).getBeginNode();
         } else {
             jumpNode = (CFGNode)blockEntries.peek();
         }
@@ -626,16 +636,14 @@ public class StatementVisitor extends ASTVisitor {
     
     @Override
     public boolean visit(LabeledStatement node) {
-        CFGStatement labelNode = new CFGStatement(node, CFGNode.Kind.labelSt);
-        reconnect(labelNode);
-        
-        ControlFlow trueEdge = createFlow(labelNode, nextNode);
-        trueEdge.setTrue();
-        
         String name = node.getLabel().getFullyQualifiedName();
-        labels.add(new Label(name, labelNode));
+        CFGNode exitNode = new CFGNode();
+        labels.add(new Label(name, exitNode));
+        
         Statement body = node.getBody();
         body.accept(this);
+        
+        nextNode.addIncomingEdges(exitNode.getIncomingEdges());
         return false;
     }
     
@@ -863,17 +871,11 @@ public class StatementVisitor extends ASTVisitor {
         return nodes;
     }
     
-    class Label {
-        String name = "";
-        CFGNode node;
-        
-        Label(String name, CFGNode node) {
-            this.name = name;
-            this.node = node;
-        }
-        
-        CFGNode getNode() {
-            return node;
+    private void setLabelNode(ASTNode node, CFGNode entryNode) {
+        if (node.getParent() instanceof LabeledStatement) {
+            LabeledStatement label = (LabeledStatement)node.getParent();
+            String name = label.getLabel().getFullyQualifiedName();
+            getLabel(name).setBeginNode(entryNode);
         }
     }
     
@@ -883,7 +885,36 @@ public class StatementVisitor extends ASTVisitor {
                 return label;
             }
         }
-        return null;
+        return new Label("", null, null);
+    }
+    
+    private class Label {
+        String name = "";
+        CFGNode begin = null;
+        CFGNode end;
+        
+        Label(String name, CFGNode begin, CFGNode end) {
+            this.name = name;
+            this.begin = begin;
+            this.end = end;
+        }
+        
+        Label(String name, CFGNode end) {
+            this.name = name;
+            this.end = end;
+        }
+        
+        void setBeginNode(CFGNode begin) {
+            this.begin = begin;
+        }
+        
+        CFGNode getBeginNode() {
+            return begin;
+        }
+        
+        CFGNode getEndNode() {
+            return end;
+        }
     }
     
     private class SwitchCaseLabel {

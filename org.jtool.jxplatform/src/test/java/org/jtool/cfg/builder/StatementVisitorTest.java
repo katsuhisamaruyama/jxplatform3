@@ -31,7 +31,6 @@ import org.eclipse.jdt.core.dom.BreakStatement;
 import org.eclipse.jdt.core.dom.ContinueStatement;
 import org.eclipse.jdt.core.dom.ReturnStatement;
 import org.eclipse.jdt.core.dom.AssertStatement;
-import org.eclipse.jdt.core.dom.LabeledStatement;
 import org.eclipse.jdt.core.dom.SynchronizedStatement;
 import org.eclipse.jdt.core.dom.ThrowStatement;
 import org.eclipse.jdt.core.dom.TryStatement;
@@ -966,7 +965,7 @@ public class StatementVisitorTest {
         assertTrue(node.getKind() == CFGNode.Kind.breakSt);
         
         assertEquals(2, node.getOutgoingEdges().size());
-        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() + 7);
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 4);
         assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() - 1);
         
         assertEquals("break LOOP1;", node.getASTNode().toString().trim());
@@ -993,32 +992,13 @@ public class StatementVisitorTest {
         CFGNode node = nodes.get(0);
         assert (node.getASTNode() instanceof ContinueStatement);
         
+        cfg.print();
+        
         assertEquals(2, node.getOutgoingEdges().size());
-        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() + 7);
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() + 4);
         assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() - 1);
         
         assertEquals("continue LOOP1;", node.getASTNode().toString().trim());
-    }
-    
-    @Test
-    public void testLabeledStatement() {
-        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test35", "m3( )");
-        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "LabeledStatement");
-        CFGNode node = nodes.get(0);
-        assert (node.getASTNode() instanceof LabeledStatement);
-        
-        assertTrue(node.getKind() == CFGNode.Kind.labelSt);
-        
-        assertEquals(1, node.getOutgoingEdges().size());
-        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 1);
-        
-        assertEquals("LOOP1: for (int x=0; x < 10; x++) {\n"
-                   + "  LOOP2:   for (int y=10; y >= 0; y--) {\n"
-                   + "    if (x == y) {\n"
-                   + "      break LOOP1;\n"
-                   + "    }\n"
-                   + "  }\n"
-                   + "}", node.getASTNode().toString().trim());
     }
     
     @Test
