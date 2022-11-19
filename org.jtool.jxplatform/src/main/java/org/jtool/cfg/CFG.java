@@ -46,21 +46,6 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     }
     
     /**
-     * Creates and returns a copy of this CFG.
-     * @return the copy.
-     */
-    @Override
-    public CFG clone() {
-        CFG clone = new CFG();
-        clone.nodes = new HashSet<>(nodes);
-        clone.edges = new ArrayList<>(edges);
-        clone.entry = entry;
-        clone.exit = exit;
-        clone.basicBlocks = new ArrayList<>(basicBlocks);
-        return clone;
-    }
-    
-    /**
      * Sets the entry node of this CFG.
      * This method is not intended to be invoked by clients.
      * @param node the entry node of this CFG
@@ -378,7 +363,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      */
     public List<CFGNode> forwardReachableNodes(CFGNode startnode,
             boolean loopbackOk, boolean fallthroughOk, StopConditionOnReachablePath condition) {
-        List<CFGNode> track = new ArrayList<CFGNode>();
+        List<CFGNode> track = new ArrayList<>();
         if (startnode == null) {
             return track;
         }
@@ -441,7 +426,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      */
     public List<CFGNode> backwardReachableNodes(CFGNode startnode,
             boolean loopbackOk, boolean fallthroughOk, StopConditionOnReachablePath condition) {
-        List<CFGNode> track = new ArrayList<CFGNode>();
+        List<CFGNode> track = new ArrayList<>();
         if (startnode == null) {
             return track;
         }
@@ -542,14 +527,6 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
         List<CFGNode> candidates = forwardReachableNodes(anchor, true, true);
         for (CFGNode node : candidates) {
             if (!anchor.equals(node)) {
-                boolean postDom = node.getIncomingEdges().stream()
-                        .map(edge -> (CFGNode)edge.getSrcNode())
-                        .allMatch(pred -> postDominator.contains(pred));
-                if (postDom) {
-                    postDominator.add(node);
-                    continue;
-                }
-                
                 List<CFGNode> track = forwardReachableNodes(anchor, node, true, true);
                 if (track.contains(node) && !track.contains(getExitNode())) {
                     postDominator.add(node);

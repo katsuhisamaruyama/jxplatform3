@@ -780,8 +780,8 @@ public class CFGNode extends GraphNode {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(GraphElement elem) {
-        return (elem instanceof CFGNode) ? equals((CFGNode)elem) : false;
+    public boolean equals(Object obj) {
+        return (obj instanceof CFGNode) ? equals((CFGNode)obj) : false;
     }
     
     /**

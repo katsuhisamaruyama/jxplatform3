@@ -36,18 +36,6 @@ public class CCFG {
     }
     
     /**
-     * Creates and returns a copy of this CCFG.
-     * @return the copy.
-     */
-    @Override
-    public CCFG clone() {
-        CCFG clone = new CCFG();
-        clone.cfgs = new HashMap<>(cfgs);
-        clone.entry = entry;
-        return clone;
-    }
-    
-    /**
      * Sets the entry node of this CFG.
      * This method is not intended to be invoked by clients.
      * @param node the entry node of this CFG
@@ -98,8 +86,8 @@ public class CCFG {
     }
     
     /**
-     * Returns a copy of this CCFG.
-     * @return the copy
+     * Return CFGs contained in this CCFG.
+     * @return the collection of the contained CFGs
      */
     public Set<CFG> getCFGs() {
         return new HashSet<>(cfgs.values());

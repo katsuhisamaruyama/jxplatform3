@@ -6,7 +6,6 @@
 package org.jtool.cfg;
 
 import org.jtool.graph.GraphEdge;
-import org.jtool.graph.GraphElement;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -195,8 +194,8 @@ public class ControlFlow extends GraphEdge {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(GraphElement elem) {
-        return (elem instanceof ControlFlow) ? equals((ControlFlow)elem) : false;
+    public boolean equals(Object obj) {
+        return (obj instanceof ControlFlow) ? equals((ControlFlow)obj) : false;
     }
     
     /**
