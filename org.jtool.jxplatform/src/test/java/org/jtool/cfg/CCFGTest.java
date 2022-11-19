@@ -30,7 +30,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsTest103() {
+    public void testGetCFGs_Test103() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -38,7 +38,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsTest119() {
+    public void testGetCFGs_Test119() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -46,7 +46,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsA119() {
+    public void testGetCFGs_A119() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A119");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -54,7 +54,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsTest129() {
+    public void testGetCFGs_Test129() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test129");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -62,7 +62,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsP129() {
+    public void testGetCFGs_P129() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -70,7 +70,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsS129() {
+    public void testGetCFGs_S129() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "S129");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -86,7 +86,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsU129() {
+    public void testGetCFGs_U129() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "U129");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -94,7 +94,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsTest134() {
+    public void testGetCFGs_Test134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test134");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -102,7 +102,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsI134() {
+    public void testGetCFGs_I134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "I134");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -110,7 +110,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsP134() {
+    public void testGetCFGs_P134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P134");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -118,7 +118,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsQ134() {
+    public void testGetCFGs_Q134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Q134");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -126,7 +126,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsR134() {
+    public void testGetCFGs_R134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "R134");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -134,7 +134,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsTest139() {
+    public void testGetCFGs_Test139() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test139");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -142,7 +142,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsPriceCode() {
+    public void testGetCFGs_PriceCode() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -150,7 +150,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsCustomer() {
+    public void testGetCFGs_Customer() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -158,7 +158,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsCustomerTest() {
+    public void testGetCFGs_CustomerTest() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "CustomerTest");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -166,7 +166,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsOrder() {
+    public void testGetCFGs_Order() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         Set<CFG> result = ccfg.getCFGs();
         
@@ -174,7 +174,7 @@ public class CCFGTest {
     }
     
     @Test
-    public void testGetCFGsRental() {
+    public void testGetCFGs_Rental() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         Set<CFG> result = ccfg.getCFGs();
         

@@ -28,7 +28,7 @@ public class CFGMergeTest {
     }
     
     @Test
-    public void testGetBranchTest108() {
+    public void testGetBranch_Test108() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test108", "m( )");
         CFGMerge node = (CFGMerge)CFGTestUtil.getNode(cfg, 7);
         CFGNode branch = CFGTestUtil.getNode(cfg, 4);
@@ -38,7 +38,7 @@ public class CFGMergeTest {
     }
     
     @Test
-    public void testGetBranchTest111() {
+    public void testGetBranch_Test111() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test111", "m( )");
         CFGMerge node = (CFGMerge)CFGTestUtil.getNode(cfg, 11);
         CFGNode branch = CFGTestUtil.getNode(cfg, 4);
@@ -48,7 +48,7 @@ public class CFGMergeTest {
     }
     
     @Test
-    public void testGetBranchTest113() {
+    public void testGetBranch_Test113() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test113", "m( )");
         CFGMerge node = (CFGMerge)CFGTestUtil.getNode(cfg, 7);
         CFGNode branch = CFGTestUtil.getNode(cfg, 3);
@@ -58,7 +58,7 @@ public class CFGMergeTest {
     }
     
     @Test
-    public void testGetBranchTest122() {
+    public void testGetBranch_Test122() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test122", "m( )");
         CFGMerge node = (CFGMerge)CFGTestUtil.getNode(cfg, 11);
         CFGNode branch = CFGTestUtil.getNode(cfg, 3);

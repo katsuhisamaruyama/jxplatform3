@@ -28,7 +28,7 @@ public class CFGExceptionTest {
     }
     
     @Test
-    public void testGetTypeNameTest122() {
+    public void testGetTypeName_Test122() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test122", "n( int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         CFGException exception = node.getExceptionNodes().get(0);
@@ -38,7 +38,7 @@ public class CFGExceptionTest {
     }
     
     @Test
-    public void testGetTypeNameTest123_1() {
+    public void testGetTypeName_Test123_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test123", "n( int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         CFGException exception = node.getExceptionNodes().get(0);
@@ -48,7 +48,7 @@ public class CFGExceptionTest {
     }
     
     @Test
-    public void testGetTypeNameTest123_2() {
+    public void testGetTypeName_Test123_2() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test123", "n2( int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         CFGException exception = node.getExceptionNodes().get(0);
@@ -58,7 +58,7 @@ public class CFGExceptionTest {
     }
     
     @Test
-    public void testGetTypeNameTest123_3() {
+    public void testGetTypeName_Test123_3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test123", "n3( int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         CFGException exception = node.getExceptionNodes().get(0);

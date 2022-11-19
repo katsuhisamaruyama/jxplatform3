@@ -37,7 +37,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest101() {
+    public void testGetQualifiedName_Test101() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test101");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -46,7 +46,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest134() {
+    public void testGetQualifiedName_Test134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test134");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -55,7 +55,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameP134() {
+    public void testGetQualifiedName_P134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P134");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -64,7 +64,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameQ134() {
+    public void testGetQualifiedName_Q134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Q134");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -73,7 +73,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameR134() {
+    public void testGetQualifiedName_R134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "R134");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -82,7 +82,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameI134() {
+    public void testGetQualifiedName_I134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "I134");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -91,7 +91,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest139() {
+    public void testGetQualifiedName_Test139() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test139");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -100,7 +100,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNamePriceCode() {
+    public void testGetQualifiedName_PriceCode() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -109,7 +109,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameCustomer() {
+    public void testGetQualifiedName_Customer() {
         CCFG ccfg = CFGTestUtil.createCCFG(VideoStoreProject, "org.jtool.videostore.after.Customer");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -118,7 +118,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameRental() {
+    public void testGetQualifiedName_Rental() {
         CCFG ccfg = CFGTestUtil.createCCFG(VideoStoreProject, "org.jtool.videostore.after.Rental");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -127,7 +127,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest28() {
+    public void testGetQualifiedName_Test28() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test28");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -136,7 +136,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest28$MyActionListener() {
+    public void testGetQualifiedName_Test28$MyActionListener() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test28.MyActionListener");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -145,7 +145,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest29() {
+    public void testGetQualifiedName_Test29() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test29");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -154,7 +154,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest29$1MyActionListener() {
+    public void testGetQualifiedName_Test29$1MyActionListener() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test29$1MyActionListener");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -163,7 +163,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest30() {
+    public void testGetQualifiedName_Test30() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test30");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -172,7 +172,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest30$1() {
+    public void testGetQualifiedName_Test30$1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test30$1");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -181,7 +181,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGTest101() {
+    public void testGetCCFG_Test101() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test101");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -190,7 +190,7 @@ public class CCFGEntryTest {
     }
 
     @Test
-    public void testGetCCFGTest134() {
+    public void testGetCCFG_Test134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test134");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -199,7 +199,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGP134() {
+    public void testGetCCFG_P134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P134");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -208,7 +208,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGQ134() {
+    public void testGetCCFG_Q134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Q134");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -217,7 +217,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGR134() {
+    public void testGetCCFG_R134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "R134");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -226,7 +226,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGI134() {
+    public void testGetCCFG_I134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "I134");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -235,7 +235,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGTest135() {
+    public void testGetCCFG_Test135() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test135");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -244,7 +244,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGS135() {
+    public void testGetCCFG_S135() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "S135");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -253,7 +253,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGTest139() {
+    public void testGetCCFG_Test139() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test139");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -262,7 +262,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGPriceCode() {
+    public void testGetCCFG_PriceCode() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -271,7 +271,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGCustomer() {
+    public void testGetCCFG_Customer() {
         CCFG ccfg = CFGTestUtil.createCCFG(VideoStoreProject, "org.jtool.videostore.after.Customer");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -280,7 +280,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGRental() {
+    public void testGetCCFG_Rental() {
         CCFG ccfg = CFGTestUtil.createCCFG(VideoStoreProject, "org.jtool.videostore.after.Rental");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -289,7 +289,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGTest28() {
+    public void testGetCCFG_Test28() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test28");
         CCFGEntry node = ccfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -298,7 +298,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGTest28$MyActionListener() {
+    public void testGetCCFG_Test28$MyActionListener() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test28.MyActionListener");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -307,7 +307,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGTest29() {
+    public void testGetCCFG_Test29() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test29");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -316,7 +316,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGTest29$1MyActionListener() {
+    public void testGetCCFG_Test29$1MyActionListener() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test29$1MyActionListener");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -325,7 +325,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGTest30() {
+    public void testGetCCFG_Test30() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test30");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -334,7 +334,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetCCFGTest30$1() {
+    public void testGetCCFG_Test30$1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test30$1");
         CCFGEntry node = ccfg.getEntryNode();
         CCFG result = node.getCCFG();
@@ -343,7 +343,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest101() {
+    public void testGetMethods_Test101() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test101");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -352,7 +352,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest119() {
+    public void testGetMethods_Test119() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -361,7 +361,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsA119() {
+    public void testGetMethods_A119() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A119");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -370,7 +370,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest120() {
+    public void testGetMethods_Test120() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test120");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -385,7 +385,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsA120() {
+    public void testGetMethods_A120() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A120");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -394,7 +394,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest127() {
+    public void testGetMethods_Test127() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test127");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -403,7 +403,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsA127() {
+    public void testGetMethods_A127() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A127");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -412,7 +412,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest134() {
+    public void testGetMethods_Test134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test134");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -434,7 +434,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsP134() {
+    public void testGetMethods_P134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P134");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -443,7 +443,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsQ134() {
+    public void testGetMethods_Q134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Q134");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -452,7 +452,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsR134() {
+    public void testGetMethods_R134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "R134");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -461,7 +461,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsI134() {
+    public void testGetMethods_I134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "I134");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -470,7 +470,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest135() {
+    public void testGetMethods_Test135() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test135");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -479,7 +479,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsS135() {
+    public void testGetMethods_S135() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "S135");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -489,7 +489,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest136() {
+    public void testGetMethods_Test136() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test136");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -498,7 +498,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsS136() {
+    public void testGetMethods_S136() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "S136");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -508,7 +508,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest139() {
+    public void testGetMethods_Test139() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test139");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -517,7 +517,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsPriceCode() {
+    public void testGetMethods_PriceCode() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -526,7 +526,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsCustomer() {
+    public void testGetMethods_Customer() {
         CCFG ccfg = CFGTestUtil.createCCFG(VideoStoreProject, "org.jtool.videostore.after.Customer");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -541,7 +541,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsRental() {
+    public void testGetMethods_Rental() {
         CCFG ccfg = CFGTestUtil.createCCFG(VideoStoreProject, "org.jtool.videostore.after.Rental");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -555,7 +555,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest28() {
+    public void testGetMethods_Test28() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test28");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -564,7 +564,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest28$MyActionListener() {
+    public void testGetMethods_Test28$MyActionListener() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test28.MyActionListener");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -575,7 +575,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest29() {
+    public void testGetMethods_Test29() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test29");
         CCFGEntry node = ccfg.getEntryNode();
             Set<CFG> result = node.getMethods();
@@ -584,7 +584,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest29$1MyActionListener() {
+    public void testGetMethods_Test29$1MyActionListener() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test29$1MyActionListener");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -595,7 +595,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetMethodsTest30() {
+    public void testGetMethods_Test30() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test30");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -604,7 +604,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testMethodsTest30$1() {
+    public void testMethods_Test30$1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test30$1");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getMethods();
@@ -614,7 +614,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsTest101() {
+    public void testGetFields_Test101() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test101");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -623,7 +623,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsTest119() {
+    public void testGetFields_Test119() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -632,7 +632,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsA119() {
+    public void testGetFields_A119() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A119");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -641,7 +641,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsTest120() {
+    public void testGetFields_Test120() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test120");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -650,7 +650,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsA120() {
+    public void testGetFields_A120() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A120");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -659,7 +659,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsTest127() {
+    public void testGetFields_Test127() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test127");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -668,7 +668,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsA127() {
+    public void testGetFields_A127() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A127");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -677,7 +677,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsTest134() {
+    public void testGetFields_Test134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test134");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -686,7 +686,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsP134() {
+    public void testGetFields_P134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P134");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -695,7 +695,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsQ134() {
+    public void testGetFields_Q134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Q134");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -704,7 +704,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsR134() {
+    public void testGetFields_R134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "R134");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -713,7 +713,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsI134() {
+    public void testGetFields_I134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "I134");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -722,7 +722,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsTest135() {
+    public void testGetFields_Test135() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test135");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -731,7 +731,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsS135() {
+    public void testGetFields_S135() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "S135");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -740,7 +740,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsTest136() {
+    public void testGetFields_Test136() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test136");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -749,7 +749,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsS136() {
+    public void testGetFields_S136() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "S136");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -758,7 +758,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsTest139() {
+    public void testGetFields_Test139() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test139");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -767,7 +767,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsPriceCode() {
+    public void testGetFields_PriceCode() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -780,7 +780,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsCustomer() {
+    public void testGetFields_Customer() {
         CCFG ccfg = CFGTestUtil.createCCFG(VideoStoreProject, "org.jtool.videostore.after.Customer");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -791,7 +791,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetFieldsRental() {
+    public void testGetFields_Rental() {
         CCFG ccfg = CFGTestUtil.createCCFG(VideoStoreProject, "org.jtool.videostore.after.Rental");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CFG> result = node.getFields();
@@ -802,7 +802,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetClassesTest101() {
+    public void testGetClasses_Test101() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test101");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CCFG> result = node.getClasses();
@@ -811,7 +811,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetClassesTest28() {
+    public void testGetClasses_Test28() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test28");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CCFG> result = node.getClasses();
@@ -820,7 +820,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetClassesTest28$MyActionListener() {
+    public void testGetClasses_Test28$MyActionListener() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test28.MyActionListener");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CCFG> result = node.getClasses();
@@ -829,7 +829,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetClassesTest29() {
+    public void testGetClasses_Test29() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test29");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CCFG> result = node.getClasses();
@@ -838,7 +838,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetClassesTest29$1MyActionListener() {
+    public void testGetClasses_Test29$1MyActionListener() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test29$1MyActionListener");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CCFG> result = node.getClasses();
@@ -847,7 +847,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetClassesTest30() {
+    public void testGetClasses_Test30() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test30");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CCFG> result = node.getClasses();
@@ -856,7 +856,7 @@ public class CCFGEntryTest {
     }
     
     @Test
-    public void testGetClassesTest30$1() {
+    public void testGetClasses_Test30$1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SimpleProject, "Test30$1");
         CCFGEntry node = ccfg.getEntryNode();
         Set<CCFG> result = node.getClasses();

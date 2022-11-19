@@ -31,7 +31,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodes103_1() {
+    public void testGetNodes_Test103_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#m( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -40,7 +40,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodes103_2() {
+    public void testGetNodes_Test103_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#setA( int )");
         Set<CFGNode> result = cfg.getNodes();
@@ -49,7 +49,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodes103_3() {
+    public void testGetNodes_Test103_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#getA( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -58,7 +58,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodes103_4() {
+    public void testGetNodes_Test103_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#incA( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -67,7 +67,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodes103_5() {
+    public void testGetNodes_Test103_5() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#Test103( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -76,7 +76,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodes103_6() {
+    public void testGetNodes_Test103_6() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#a");
         Set<CFGNode> result = cfg.getNodes();
@@ -85,7 +85,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesTest119_1() {
+    public void testGetNodes_Test119_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#m( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -94,7 +94,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesTest119_2() {
+    public void testGetNodes_Test119_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#getP( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -103,7 +103,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesTest119_3() {
+    public void testGetNodes_Test119_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#Test119( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -112,7 +112,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesTest119_4() {
+    public void testGetNodes_Test119_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#p");
         Set<CFGNode> result = cfg.getNodes();
@@ -121,7 +121,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesA119_1() {
+    public void testGetNodes_A119_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A119");
         CFG cfg = ccfg.getCFG("A119#x");
         Set<CFGNode> result = cfg.getNodes();
@@ -130,7 +130,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesA119_2() {
+    public void testGetNodes_A119_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A119");
         CFG cfg = ccfg.getCFG("A119#y");
         Set<CFGNode> result = cfg.getNodes();
@@ -139,7 +139,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesTest129_1() {
+    public void testGetNodes_Test129_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test129");
         CFG cfg = ccfg.getCFG("Test129#m( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -148,7 +148,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesTest129_2() {
+    public void testGetNodes_Test129_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test129");
         CFG cfg = ccfg.getCFG("Test129#s1");
         Set<CFGNode> result = cfg.getNodes();
@@ -157,7 +157,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesTest129_3() {
+    public void testGetNodes_Test129_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test129");
         CFG cfg = ccfg.getCFG("Test129#s2");
         Set<CFGNode> result = cfg.getNodes();
@@ -166,7 +166,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesP129_1() {
+    public void testGetNodes_P129_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#get1( java.lang.String )");
         Set<CFGNode> result = cfg.getNodes();
@@ -175,7 +175,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesP129_2() {
+    public void testGetNodes_P129_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#set1( java.lang.String java.lang.String )");
         Set<CFGNode> result = cfg.getNodes();
@@ -184,7 +184,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesP129_3() {
+    public void testGetNodes_P129_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#map");
         Set<CFGNode> result = cfg.getNodes();
@@ -193,7 +193,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesP129_4() {
+    public void testGetNodes_P129_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#key");
         Set<CFGNode> result = cfg.getNodes();
@@ -211,7 +211,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesQ134() {
+    public void testGetNodes_Q134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Q134");
         CFG cfg = ccfg.getCFG("Q134#f( int )");
         Set<CFGNode> result = cfg.getNodes();
@@ -220,7 +220,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesR134() {
+    public void testGetNodes_R134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "R134");
         CFG cfg = ccfg.getCFG("R134#f( int )");
         Set<CFGNode> result = cfg.getNodes();
@@ -229,7 +229,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesI134() {
+    public void testGetNodes_I134() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "I134");
         CFG cfg = ccfg.getCFG("I134#f( int )");
         Set<CFGNode> result = cfg.getNodes();
@@ -238,7 +238,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesTest139() {
+    public void testGetNodes_Test139() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test139");
         CFG cfg = ccfg.getCFG("Test139#m( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -247,7 +247,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesPriceCode_1() {
+    public void testGetNodes_PriceCode_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#PriceCode( int )");
         Set<CFGNode> result = cfg.getNodes();
@@ -256,7 +256,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesPriceCode_2() {
+    public void testGetNodes_PriceCode_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#getPriceCode( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -265,7 +265,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesPriceCode_3() {
+    public void testGetNodes_PriceCode_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#priceCode");
         Set<CFGNode> result = cfg.getNodes();
@@ -274,7 +274,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesPriceCode_4() {
+    public void testGetNodes_PriceCode_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#CHILDRENS");
         Set<CFGNode> result = cfg.getNodes();
@@ -283,7 +283,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesPriceCode_5() {
+    public void testGetNodes_PriceCode_5() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#REGULAR");
         Set<CFGNode> result = cfg.getNodes();
@@ -292,7 +292,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesPriceCode_6() {
+    public void testGetNodes_PriceCode_6() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#NEW_RELEASE");
         Set<CFGNode> result = cfg.getNodes();
@@ -301,7 +301,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesCustomer_1() {
+    public void testGetNodes_Customer_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#Customer( java.lang.String )");
         Set<CFGNode> result = cfg.getNodes();
@@ -310,7 +310,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesCustomer_2() {
+    public void testGetNodes_Customer_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#statement( Order )");
         Set<CFGNode> result = cfg.getNodes();
@@ -319,7 +319,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesCustomer_3() {
+    public void testGetNodes_Customer_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#getAmount( Order )");
         Set<CFGNode> result = cfg.getNodes();
@@ -328,7 +328,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesCustomer_4() {
+    public void testGetNodes_Customer_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#setDiscount( double )");
         Set<CFGNode> result = cfg.getNodes();
@@ -337,7 +337,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesCustomer_5() {
+    public void testGetNodes_Customer_5() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#name");
         Set<CFGNode> result = cfg.getNodes();
@@ -346,7 +346,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesCustomer_6() {
+    public void testGetNodes_Customer_6() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#discount");
         Set<CFGNode> result = cfg.getNodes();
@@ -355,7 +355,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesCustomerTest_1() {
+    public void testGetNodes_CustomerTest_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "CustomerTest");
         CFG cfg = ccfg.getCFG("CustomerTest#CustomerTest( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -364,7 +364,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesCustomerTest_2() {
+    public void testGetNodes_CustomerTest_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "CustomerTest");
         CFG cfg = ccfg.getCFG("CustomerTest#testStatement1( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -373,7 +373,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesCustomerTest_3() {
+    public void testGetNodes_CustomerTest_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "CustomerTest");
         CFG cfg = ccfg.getCFG("CustomerTest#testStatement2( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -382,7 +382,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesOrder_1() {
+    public void testGetNodes_Order_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#Order( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -391,7 +391,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesOrder_2() {
+    public void testGetNodes_Order_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#addRental( Rental )");
         Set<CFGNode> result = cfg.getNodes();
@@ -400,7 +400,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesOrder_3() {
+    public void testGetNodes_Order_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#getSize( )");
         Set<CFGNode> result = cfg.getNodes();
@@ -409,7 +409,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesOrder_4() {
+    public void testGetNodes_Order_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#rentals");
         Set<CFGNode> result = cfg.getNodes();
@@ -418,7 +418,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesRental_1() {
+    public void testGetNodes_Rental_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#Rental( int int )");
         Set<CFGNode> result = cfg.getNodes();
@@ -427,7 +427,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesRental_2() {
+    public void testGetNodes_Rental_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#getCharge( double )");
         Set<CFGNode> result = cfg.getNodes();
@@ -436,7 +436,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesRental_3() {
+    public void testGetNodes_Rental_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#price");
         Set<CFGNode> result = cfg.getNodes();
@@ -445,7 +445,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetNodesRental_4() {
+    public void testGetNodes_Rental_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#days");
         Set<CFGNode> result = cfg.getNodes();
@@ -454,7 +454,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdges103_1() {
+    public void testGetEdges__Test103_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#m( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -463,7 +463,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdges103_2() {
+    public void testGetEdges__Test103_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#setA( int )");
         List<ControlFlow> result = cfg.getEdges();
@@ -472,7 +472,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdges103_3() {
+    public void testGetEdges__Test103_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#getA( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -481,7 +481,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdges103_4() {
+    public void testGetEdges__Test103_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#incA( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -490,7 +490,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdges103_5() {
+    public void testGetEdges__Test103_5() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#Test103( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -499,7 +499,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdges103_6() {
+    public void testGetEdges__Test103_6() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test103");
         CFG cfg = ccfg.getCFG("Test103#a");
         List<ControlFlow> result = cfg.getEdges();
@@ -508,7 +508,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesTest119_1() {
+    public void testGetEdges_Test119_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#m( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -517,7 +517,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesTest119_2() {
+    public void testGetEdges_Test119_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#getP( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -526,7 +526,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesTest119_3() {
+    public void testGetEdges_Test119_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#Test119( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -535,7 +535,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesTest119_4() {
+    public void testGetEdges_Test119_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test119");
         CFG cfg = ccfg.getCFG("Test119#p");
         List<ControlFlow> result = cfg.getEdges();
@@ -544,7 +544,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesA119_1() {
+    public void testGetEdges_A119_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A119");
         CFG cfg = ccfg.getCFG("A119#x");
         List<ControlFlow> result = cfg.getEdges();
@@ -553,7 +553,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesA119_2() {
+    public void testGetEdges_A119_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "A119");
         CFG cfg = ccfg.getCFG("A119#y");
         List<ControlFlow> result = cfg.getEdges();
@@ -562,7 +562,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesTest129_1() {
+    public void testGetEdges_Test129_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test129");
         CFG cfg = ccfg.getCFG("Test129#m( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -571,7 +571,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesTest129_2() {
+    public void testGetEdges_Test129_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test129");
         CFG cfg = ccfg.getCFG("Test129#s1");
         List<ControlFlow> result = cfg.getEdges();
@@ -580,7 +580,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesTest129_3() {
+    public void testGetEdges_Test129_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test129");
         CFG cfg = ccfg.getCFG("Test129#s2");
         List<ControlFlow> result = cfg.getEdges();
@@ -589,7 +589,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesP129_1() {
+    public void testGetEdges_P129_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#get1( java.lang.String )");
         List<ControlFlow> result = cfg.getEdges();
@@ -598,7 +598,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesP129_2() {
+    public void testGetEdges_P129_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#set1( java.lang.String java.lang.String )");
         List<ControlFlow> result = cfg.getEdges();
@@ -607,7 +607,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesP129_3() {
+    public void testGetEdges_P129_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#map");
         List<ControlFlow> result = cfg.getEdges();
@@ -616,7 +616,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesP129_4() {
+    public void testGetEdges_P129_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#key");
         List<ControlFlow> result = cfg.getEdges();
@@ -625,7 +625,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesP129_5() {
+    public void testGetEdges_P129_5() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "P129");
         CFG cfg = ccfg.getCFG("P129#value");
         List<ControlFlow> result = cfg.getEdges();
@@ -634,7 +634,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesQ134_1() {
+    public void testGetEdges_Q134_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Q134");
         CFG cfg = ccfg.getCFG("Q134#f( int )");
         List<ControlFlow> result = cfg.getEdges();
@@ -643,7 +643,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesR134_1() {
+    public void testGetEdges_R134_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "R134");
         CFG cfg = ccfg.getCFG("R134#f( int )");
         List<ControlFlow> result = cfg.getEdges();
@@ -652,7 +652,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesI134_1() {
+    public void testGetEdges_I134_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "I134");
         CFG cfg = ccfg.getCFG("I134#f( int )");
         List<ControlFlow> result = cfg.getEdges();
@@ -661,7 +661,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesTest139_1() {
+    public void testGetEdges_Test139_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Test139");
         CFG cfg = ccfg.getCFG("Test139#m( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -670,7 +670,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesPriceCode_1() {
+    public void testGetEdges_PriceCode_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#PriceCode( int )");
         List<ControlFlow> result = cfg.getEdges();
@@ -679,7 +679,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesPriceCode_2() {
+    public void testGetEdges_PriceCode_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#getPriceCode( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -688,7 +688,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesPriceCode_3() {
+    public void testGetEdges_PriceCode_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#priceCode");
         List<ControlFlow> result = cfg.getEdges();
@@ -697,7 +697,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesPriceCode_4() {
+    public void testGetEdges_PriceCode_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#CHILDRENS");
         List<ControlFlow> result = cfg.getEdges();
@@ -706,7 +706,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesPriceCode_5() {
+    public void testGetEdges_PriceCode_5() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#REGULAR");
         List<ControlFlow> result = cfg.getEdges();
@@ -715,7 +715,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesPriceCode_6() {
+    public void testGetEdges_PriceCode_6() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "PriceCode");
         CFG cfg = ccfg.getCFG("PriceCode#NEW_RELEASE");
         List<ControlFlow> result = cfg.getEdges();
@@ -724,7 +724,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesCustomer_1() {
+    public void testGetEdges_Customer_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#Customer( java.lang.String )");
         List<ControlFlow> result = cfg.getEdges();
@@ -733,7 +733,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesCustomer_2() {
+    public void testGetEdges_Customer_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#statement( Order )");
         List<ControlFlow> result = cfg.getEdges();
@@ -742,7 +742,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesCustomer_3() {
+    public void testGetEdges_Customer_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#getAmount( Order )");
         List<ControlFlow> result = cfg.getEdges();
@@ -751,7 +751,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesCustomer_4() {
+    public void testGetEdges_Customer_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#setDiscount( double )");
         List<ControlFlow> result = cfg.getEdges();
@@ -760,7 +760,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesCustomer_5() {
+    public void testGetEdges_Customer_5() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#name");
         List<ControlFlow> result = cfg.getEdges();
@@ -769,7 +769,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesCustomer_6() {
+    public void testGetEdges_Customer_6() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Customer");
         CFG cfg = ccfg.getCFG("Customer#discount");
         List<ControlFlow> result = cfg.getEdges();
@@ -778,7 +778,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesCustomerTest_1() {
+    public void testGetEdges_CustomerTest_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "CustomerTest");
         CFG cfg = ccfg.getCFG("CustomerTest#CustomerTest( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -787,7 +787,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesCustomerTest_2() {
+    public void testGetEdges_CustomerTest_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "CustomerTest");
         CFG cfg = ccfg.getCFG("CustomerTest#testStatement1( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -796,7 +796,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesCustomerTest_3() {
+    public void testGetEdges_CustomerTest_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "CustomerTest");
         CFG cfg = ccfg.getCFG("CustomerTest#testStatement2( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -805,7 +805,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesOrder_1() {
+    public void testGetEdges_Order_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#Order( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -814,7 +814,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesOrder_2() {
+    public void testGetEdges_Order_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#addRental( Rental )");
         List<ControlFlow> result = cfg.getEdges();
@@ -823,7 +823,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesOrder_3() {
+    public void testGetEdges_Order_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#getSize( )");
         List<ControlFlow> result = cfg.getEdges();
@@ -832,7 +832,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesOrder_4() {
+    public void testGetEdges_Order_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Order");
         CFG cfg = ccfg.getCFG("Order#rentals");
         List<ControlFlow> result = cfg.getEdges();
@@ -841,7 +841,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesRental_1() {
+    public void testGetEdges_Rental_1() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#Rental( int int )");
         List<ControlFlow> result = cfg.getEdges();
@@ -850,7 +850,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesRental_2() {
+    public void testGetEdges_Rental_2() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#getCharge( double )");
         List<ControlFlow> result = cfg.getEdges();
@@ -859,7 +859,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesRental_3() {
+    public void testGetEdges_Rental_3() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#price");
         List<ControlFlow> result = cfg.getEdges();
@@ -868,7 +868,7 @@ public class CFGTest {
     }
     
     @Test
-    public void testGetEdgesRental_4() {
+    public void testGetEdges_Rental_4() {
         CCFG ccfg = CFGTestUtil.createCCFG(SliceProject, "Rental");
         CFG cfg = ccfg.getCFG("Rental#days");
         List<ControlFlow> result = cfg.getEdges();

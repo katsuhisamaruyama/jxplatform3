@@ -28,7 +28,7 @@ public class CFGExitTest {
     }
     
     @Test
-    public void testGetTypeNameTest122() {
+    public void testGetTypeName_Test122() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "m( )");
         CFGExit node = (CFGExit)CFGTestUtil.getNode(cfg, 4);
         
@@ -36,7 +36,7 @@ public class CFGExitTest {
     }
     
     @Test
-    public void testGetTypeNameTest123_1() {
+    public void testGetTypeName_Test123_1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "p");
         CFGExit node = (CFGExit)CFGTestUtil.getNode(cfg, 2);
         

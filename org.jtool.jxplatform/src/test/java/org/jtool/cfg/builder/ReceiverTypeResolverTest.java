@@ -33,7 +33,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForStringLiteralReceiver1() {
+    public void testGetApproximatedTypeNames_ForStringLiteralReceiver1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m1( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 3);
         assert node.isMethodCall();
@@ -43,7 +43,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForStringLiteralReceiver2() {
+    public void testGetApproximatedTypeNames_ForStringLiteralReceiver2() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m1( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
         assert node.isMethodCall();
@@ -53,7 +53,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForStringLiteralReceiver3() {
+    public void testGetApproximatedTypeNames_ForStringLiteralReceiver3() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m1( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 15);
         assert node.isMethodCall();
@@ -63,7 +63,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForTypeLiteralReceiver1() {
+    public void testGetApproximatedTypeNames_ForTypeLiteralReceiver1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m2( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 3);
         assert node.isMethodCall();
@@ -73,7 +73,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForTypeLiteralReceiver2() {
+    public void testGetApproximatedTypeNames_ForTypeLiteralReceiver2() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m2( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
         assert node.isMethodCall();
@@ -83,7 +83,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForTypeLiteralReceiver3() {
+    public void testGetApproximatedTypeNames_ForTypeLiteralReceiver3() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m2( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 15);
         assert node.isMethodCall();
@@ -93,7 +93,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForCastReceiver() {
+    public void testGetApproximatedTypeNames_ForCastReceiver() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m3( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 7);
         assert node.isMethodCall();
@@ -103,7 +103,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForClassInstanceCreation1() {
+    public void testGetApproximatedTypeNames_ForClassInstanceCreation1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m4( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 3);
         assert node.isConstructorCall();
@@ -113,7 +113,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForClassInstanceCreation2() {
+    public void testGetApproximatedTypeNames_ForClassInstanceCreation2() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m4( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 7);
         assert node.isMethodCall();
@@ -123,7 +123,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForStaticMethodCall() {
+    public void testGetApproximatedTypeNames_ForStaticMethodCall() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m5( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 3);
         assert node.isMethodCall();
@@ -133,7 +133,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForLocalMethodCall() {
+    public void testGetApproximatedTypeNames_ForLocalMethodCall() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m6( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 3);
         assert node.isMethodCall();
@@ -143,7 +143,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForConstructorInvocation() {
+    public void testGetApproximatedTypeNames_ForConstructorInvocation() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 3);
         assert node.isConstructorCall();
@@ -153,7 +153,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForSuperConstructorInvocation() {
+    public void testGetApproximatedTypeNames_ForSuperConstructorInvocation() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "P31( int int )");
         
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 5);
@@ -164,7 +164,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForSuperMethodInvocation() {
+    public void testGetApproximatedTypeNames_ForSuperMethodInvocation() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "P31", "m( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
         assert node.isMethodCall();
@@ -174,7 +174,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForEnumConstantCall1() {
+    public void testGetApproximatedTypeNames_ForEnumConstantCall1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "PriceCode", "REGULAR");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 2);
         assert node.isConstructorCall();
@@ -184,7 +184,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForEnumConstantCall2() {
+    public void testGetApproximatedTypeNames_ForEnumConstantCall2() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m7( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
         assert node.isMethodCall();
@@ -194,7 +194,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForEnumConstantCall3() {
+    public void testGetApproximatedTypeNames_ForEnumConstantCall3() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test47", "m7( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
         assert node.isMethodCall();
@@ -204,7 +204,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFieldReceiver1() {
+    public void testGetApproximatedTypeNames_ForFieldReceiver1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m1( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 7);
         assert node.isMethodCall();
@@ -214,7 +214,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFieldReceiver2() {
+    public void testGetApproximatedTypeNames_ForFieldReceiver2() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m1( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
         assert node.isMethodCall();
@@ -224,7 +224,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFieldReceiver3() {
+    public void testGetApproximatedTypeNames_ForFieldReceiver3() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m1( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 15);
         assert node.isMethodCall();
@@ -234,7 +234,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFieldReceiver4() {
+    public void testGetApproximatedTypeNames_ForFieldReceiver4() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m2( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 7);
         assert node.isMethodCall();
@@ -244,7 +244,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFieldReceiver5() {
+    public void testGetApproximatedTypeNames_ForFieldReceiver5() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m2( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
         assert node.isMethodCall();
@@ -254,7 +254,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFieldReceiver6() {
+    public void testGetApproximatedTypeNames_ForFieldReceiver6() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m2( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 15);
         assert node.isMethodCall();
@@ -264,7 +264,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFieldReceiver7() {
+    public void testGetApproximatedTypeNames_ForFieldReceiver7() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m2( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 20);
         assert node.isMethodCall();
@@ -274,7 +274,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForReturnReceiver1() {
+    public void testGetApproximatedTypeNames_ForReturnReceiver1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m3( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 10);
         assert node.isMethodCall();
@@ -284,7 +284,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForReturnReceiver2() {
+    public void testGetApproximatedTypeNames_ForReturnReceiver2() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m3( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 17);
         assert node.isMethodCall();
@@ -294,7 +294,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForReturnReceiver3() {
+    public void testGetApproximatedTypeNames_ForReturnReceiver3() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m3( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 24);
         assert node.isMethodCall();
@@ -304,7 +304,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForReturnReceiver4() {
+    public void testGetApproximatedTypeNames_ForReturnReceiver4() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m4( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 10);
         assert node.isMethodCall();
@@ -314,7 +314,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForReturnReceiver5() {
+    public void testGetApproximatedTypeNames_ForReturnReceiver5() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m4( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 17);
         assert node.isMethodCall();
@@ -324,7 +324,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForReturnReceiver6() {
+    public void testGetApproximatedTypeNames_ForReturnReceiver6() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m4( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 24);
         assert node.isMethodCall();
@@ -334,7 +334,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForReturnReceiver7() {
+    public void testGetApproximatedTypeNames_ForReturnReceiver7() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m5( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
         assert node.isMethodCall();
@@ -344,7 +344,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForReturnReceiver8() {
+    public void testGetApproximatedTypeNames_ForReturnReceiver8() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m5( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 15);
         assert node.isMethodCall();
@@ -354,7 +354,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForReturnReceiver9() {
+    public void testGetApproximatedTypeNames_ForReturnReceiver9() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m14( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
         assert node.isMethodCall();
@@ -364,7 +364,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForReturnReceiver10() {
+    public void testGetApproximatedTypeNames_ForReturnReceiver10() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m15( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 7);
         assert node.isMethodCall();
@@ -374,7 +374,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForReturnReceiver11() {
+    public void testGetApproximatedTypeNames_ForReturnReceiver11() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m15( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 15);
         assert node.isMethodCall();
@@ -384,7 +384,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForLocalReceiver1() {
+    public void testGetApproximatedTypeNames_ForLocalReceiver1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m6( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 7);
         assert node.isMethodCall();
@@ -394,7 +394,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForLocalReceiver2() {
+    public void testGetApproximatedTypeNames_ForLocalReceiver2() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m6( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
         assert node.isMethodCall();
@@ -404,7 +404,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForLocalReceiver3() {
+    public void testGetApproximatedTypeNames_ForLocalReceiver3() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m6( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 15);
         assert node.isMethodCall();
@@ -414,7 +414,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForLocalReceiver4() {
+    public void testGetApproximatedTypeNames_ForLocalReceiver4() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m7( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 7);
         assert node.isMethodCall();
@@ -424,7 +424,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForLocalReceiver5() {
+    public void testGetApproximatedTypeNames_ForLocalReceiver5() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m7( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
         assert node.isMethodCall();
@@ -434,7 +434,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForLocalReceiver6() {
+    public void testGetApproximatedTypeNames_ForLocalReceiver6() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m7( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 15);
         assert node.isMethodCall();
@@ -444,7 +444,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForLocalReceiver7() {
+    public void testGetApproximatedTypeNames_ForLocalReceiver7() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m7( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 19);
         assert node.isMethodCall();
@@ -454,7 +454,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForLocalReceiver8() {
+    public void testGetApproximatedTypeNames_ForLocalReceiver8() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m8( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 7);
         assert node.isMethodCall();
@@ -464,7 +464,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForLocalReceiver9() {
+    public void testGetApproximatedTypeNames_ForLocalReceiver9() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m8( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 11);
         assert node.isMethodCall();
@@ -474,7 +474,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForLocalReceiver10() {
+    public void testGetApproximatedTypeNames_ForLocalReceiver10() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m8( )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 15);
         assert node.isMethodCall();
@@ -484,7 +484,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFormalReceiver1() {
+    public void testGetApproximatedTypeNames_ForFormalReceiver1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m9( S48 )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
         assert node.isMethodCall();
@@ -494,7 +494,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFormalReceiver2() {
+    public void testGetApproximatedTypeNames_ForFormalReceiver2() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m10( S48 )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
         assert node.isMethodCall();
@@ -504,7 +504,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFormalReceiver3() {
+    public void testGetApproximatedTypeNames_ForFormalReceiver3() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m11( S48 )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
         assert node.isMethodCall();
@@ -514,7 +514,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFormalReceiver4() {
+    public void testGetApproximatedTypeNames_ForFormalReceiver4() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m12( S48 )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
         assert node.isMethodCall();
@@ -524,7 +524,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFormalReceiver5() {
+    public void testGetApproximatedTypeNames_ForFormalReceiver5() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m13( S48 )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
         assert node.isMethodCall();
@@ -534,7 +534,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFormalReceiver6() {
+    public void testGetApproximatedTypeNames_ForFormalReceiver6() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m13( S48 )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
         assert node.isMethodCall();
@@ -544,7 +544,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFormalReceiver7() {
+    public void testGetApproximatedTypeNames_ForFormalReceiver7() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m16( S48 )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
         assert node.isMethodCall();
@@ -554,7 +554,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForFormalReceiver8() {
+    public void testGetApproximatedTypeNames_ForFormalReceiver8() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test48", "m16( S48 )");
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);
         assert node.isMethodCall();
@@ -564,7 +564,7 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
-    public void testgetApproximatedTypeNamesForEnhancedFor1() {
+    public void testGetApproximatedTypeNames_ForEnhancedFor1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test50", "m( )");
         
         CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 8);

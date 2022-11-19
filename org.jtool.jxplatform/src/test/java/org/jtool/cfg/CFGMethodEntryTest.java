@@ -32,7 +32,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest101() {
+    public void testGetQualifiedName_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "m( )");
         CFGEntry node = cfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -41,7 +41,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNamePriceCode() {
+    public void testGetQualifiedName_PriceCode() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "PriceCode", "getPriceCode( )");
         CFGEntry node = cfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -50,7 +50,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetSignatureTest101() {
+    public void testGetSignature_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "m( )");
         CFGEntry node = cfg.getEntryNode();
         String result = node.getSignature();
@@ -59,7 +59,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetCFGTest101() {
+    public void testGetCFG_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "m( )");
         CFGEntry node = cfg.getEntryNode();
         CFG result = node.getCFG();
@@ -68,7 +68,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetJavaMethodTest101() {
+    public void testGetJavaMethod_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "m( )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         JavaMethod result = node.getJavaMethod();
@@ -77,7 +77,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetJavaMethodTest120() {
+    public void testGetJavaMethod_Test120() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m0( int int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         JavaMethod result = node.getJavaMethod();
@@ -86,7 +86,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetJavaMethodTest127() {
+    public void testGetJavaMethod_Test127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test127", "Test127( )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         JavaMethod result = node.getJavaMethod();
@@ -95,7 +95,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetJavaMethodA127() {
+    public void testGetJavaMethod_A127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "A127", "setY( int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         JavaMethod result = node.getJavaMethod();
@@ -104,7 +104,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetFormalInsTest101() {
+    public void testGetFormalIns_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "m( )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         List<CFGParameter> result = node.getFormalIns();
@@ -113,7 +113,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetFormalInsTest120() {
+    public void testGetFormalIns_Test120() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m0( int int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         List<CFGParameter> result = node.getFormalIns();
@@ -122,7 +122,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetFormalInsTest127() {
+    public void testGetFormalIns_Test127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test127", "Test127( )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         List<CFGParameter> result = node.getFormalIns();
@@ -131,7 +131,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetFormalInsA127() {
+    public void testGetFormalIns_A127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "A127", "setY( int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         List<CFGParameter> result = node.getFormalIns();
@@ -140,7 +140,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetFormalOutTest101() {
+    public void testGetFormalOut_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "m( )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         CFGParameter result = node.getFormalOut();
@@ -149,7 +149,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetFormalOutTest120() {
+    public void testGetFormalOut_Test120() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test120", "m0( int int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         CFGParameter result = node.getFormalOut();
@@ -158,7 +158,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetFormalOutTest127() {
+    public void testGetFormalOut_Test127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test127", "Test127( )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         CFGParameter result = node.getFormalOut();
@@ -167,7 +167,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetFormalOutA127() {
+    public void testGetFormalOut_A127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "A127", "setY( int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         CFGParameter result = node.getFormalOut();
@@ -176,7 +176,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetExceptionNodesTest101() {
+    public void testGetExceptionNodes_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "m( )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         List<CFGException> result = node.getExceptionNodes();
@@ -185,7 +185,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetExceptionNodesTest122() {
+    public void testGetExceptionNodes_Test122() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test122", "n( int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         List<CFGException> result = node.getExceptionNodes();
@@ -194,7 +194,7 @@ public class CFGMethodEntryTest {
     }
     
     @Test
-    public void testGetExceptionNodesTest123() {
+    public void testGetExceptionNodes_Test123() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test123", "n( int )");
         CFGMethodEntry node = (CFGMethodEntry)cfg.getEntryNode();
         List<CFGException> result = node.getExceptionNodes();

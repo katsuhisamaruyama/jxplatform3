@@ -38,7 +38,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest101() {
+    public void testGetQualifiedName_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "p");
         CFGEntry node = cfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -47,7 +47,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNamePriceCode() {
+    public void testGetQualifiedName_PriceCode() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "PriceCode", "CHILDRENS");
         CFGEntry node = cfg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -56,7 +56,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetSignartureTest101() {
+    public void testGetSignarture_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "p");
         CFGEntry node = cfg.getEntryNode();
         String result = node.getSignature();
@@ -65,7 +65,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetCFGTest101() {
+    public void testGetCFG_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "p");
         CFGEntry node = cfg.getEntryNode();
         CFG result = node.getCFG();
@@ -74,7 +74,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetFieldTest101() {
+    public void testGetField_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "p");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         JavaField result = node.getJavaField();
@@ -83,7 +83,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetFieldA127() {
+    public void testGetField_A127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "A127", "y");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         JavaField result = node.getJavaField();
@@ -92,7 +92,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetFieldS135() {
+    public void testGetField_S135() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S135", "key");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         JavaField result = node.getJavaField();
@@ -101,7 +101,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetDeclarationNodeTest101() {
+    public void testGetDeclarationNode_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "p");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         CFGStatement result = node.getDeclarationNode();
@@ -110,7 +110,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetDeclarationNodeA127() {
+    public void testGetDeclarationNode_A127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "A127", "y");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         CFGStatement result = node.getDeclarationNode();
@@ -119,7 +119,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetDeclarationNodeS135() {
+    public void testGetDeclarationNode_S135() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S136", "map");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         CFGStatement result = node.getDeclarationNode();
@@ -128,7 +128,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetDefField101() {
+    public void testGetDefField_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "p");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         JReference result = node.getDefField();
@@ -137,7 +137,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetDefFieldA127() {
+    public void testGetDefField_A127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "A127", "y");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         JReference result = node.getDefField();
@@ -146,7 +146,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testGetDefFieldS135() {
+    public void testGetDefField_S135() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S136", "map");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         JReference result = node.getDefField();
@@ -155,7 +155,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testUseFields101() {
+    public void testUseFields_Test101() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test101", "p");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         List<JVariableReference> result = node.getUseFields();
@@ -164,7 +164,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testUseFieldsA127() {
+    public void testUseFields_A127() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "A127", "y");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         List<JVariableReference> result = node.getUseFields();
@@ -173,7 +173,7 @@ public class CFGFieldEntryTest {
     }
     
     @Test
-    public void testUseFieldsS135() {
+    public void testUseFields_S135() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S136", "map");
         CFGFieldEntry node = (CFGFieldEntry)cfg.getEntryNode();
         List<JVariableReference> result = node.getUseFields();
