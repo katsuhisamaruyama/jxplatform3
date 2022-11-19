@@ -3,13 +3,11 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.slice.builder;
+package org.jtool.slice;
 
-import org.jtool.slice.SliceCriterion;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.DependencyGraph;
-import org.jtool.pdg.CD;
-import org.jtool.pdg.Dependence;
+import org.jtool.pdg.DependencyGraphEdge;
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
 import org.jtool.cfg.CFGNode;
@@ -22,6 +20,7 @@ import org.jtool.cfg.StopConditionOnReachablePath;
 import org.jtool.graph.GraphNode;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Collects nodes in a program slice.
@@ -32,11 +31,10 @@ public class Slicer {
     
     private DependencyGraph graph;
     
-    private PDG pdg;
     private Set<PDGNode> nodesInSlice = new HashSet<>();
     
     private Set<CFGNode> nodesInTargetMethod;
-    private Set<CFGNode> reachableNodesToCriterion;
+    private List<CFGNode> reachableNodesToCriterion;
     
     private Set<PDGNode> reachedMethodCalls = new HashSet<>();
     private Set<PDGNode> pendingNodes = new HashSet<>();
@@ -44,8 +42,8 @@ public class Slicer {
     public Slicer(SliceCriterion criterion) {
         assert criterion != null;
         
-        this.graph = criterion.getDependencyGraph();
-        pdg = graph.getPDGs().stream()
+        graph = criterion.getDependencyGraph();
+        PDG pdg = graph.getPDGs().stream()
                 .filter(g -> g.getNodes().contains(criterion.getNode())).findFirst().orElse(null);
         
         if (pdg != null) {
@@ -56,16 +54,11 @@ public class Slicer {
         }
     }
     
-    public PDG getPDG() {
-        return pdg;
-    }
-    
     public Set<PDGNode> getNodes() {
         return nodesInSlice;
     }
     
     private void extract(PDG pdg, PDGNode node, JVariableReference var) {
-        System.err.println("NODE = " + node);
         Set<PDGNode> startnodes = findStartNodes(pdg, node, var);
         
         startnodes.stream()
@@ -81,7 +74,7 @@ public class Slicer {
         
         startnodes.forEach(start -> traverseBackward(start));
         
-        pdg.getIncomingCDEdges(node).stream()
+        graph.getIncomingCDEdges(node).stream()
             .filter(edge -> edge.isTrue() || edge.isFalse())
             .forEach(edge -> traverseBackward(edge.getSrcNode()));
     }
@@ -145,8 +138,8 @@ public class Slicer {
             PDG pdg, PDGNode node, JVariableReference jv) {
         CFG cfg = pdg.getCFG();
         
-        for (GraphNode n : node.getCFGNode().getSrcNodes()) {
-            cfg.backwardReachableNodes((CFGNode)n, true, true, new StopConditionOnReachablePath() {
+        for (GraphNode pred : node.getCFGNode().getSrcNodes()) {
+            cfg.backwardReachableNodes((CFGNode)pred, true, true, new StopConditionOnReachablePath() {
                 
                 @Override
                 public boolean isStop(CFGNode node) {
@@ -202,7 +195,6 @@ public class Slicer {
         System.err.println("*****NODE*** " + node);
         //graph.getIncomingDependenceEdges(node).forEach(e -> System.err.println("  E = " + e));
         
-        
         nodesInSlice.add(node);
         
         //collectReachedMethodCalls(node);
@@ -219,7 +211,7 @@ public class Slicer {
             traverseBackward(callNode);
         }
         
-        for (Dependence edge : Dependence.sortEdges(graph.getIncomingDependenceEdges(node))) {
+        for (DependencyGraphEdge edge : DependencyGraphEdge.sortEdges(graph.getIncomingEdges(node))) {
             PDGNode src = edge.getSrcNode();
             
             if (edge.isFallThrough() || edge.isClassMember() || edge.isCall()) {
@@ -289,7 +281,7 @@ public class Slicer {
             traverseBackward(src);
         }
         
-        graph.getOutgoingDependenceEdges(node).stream()
+        graph.getOutgoingEdges(node).stream()
             .filter(edge -> edge.isExceptionCatch())
             .forEach(edge -> traverseBackward(edge.getDstNode()));
     }
@@ -318,11 +310,11 @@ public class Slicer {
     }
     
     private boolean hasCallee(PDGNode node) {
-        return graph.getOutgoingDependenceEdges(node).stream().anyMatch(edge -> edge.isCall());
+        return graph.getOutgoingEdges(node).stream().anyMatch(edge -> edge.isCall());
     }
     
     private PDGNode getDominantNode(PDGNode node) {
-        for (CD edge : graph.getIncomingCDEdges(node)) {
+        for (DependencyGraphEdge edge : graph.getIncomingCDEdges(node)) {
             if (edge.isTrue() || edge.isFalse()) {
                 return edge.getSrcNode();
             }
@@ -332,7 +324,7 @@ public class Slicer {
     
     @SuppressWarnings("unused")
     private PDGNode getDominatedNode(PDGNode node) {
-        for (CD edge : graph.getOutgoingCDEdges(node)) {
+        for (DependencyGraphEdge edge : graph.getOutgoingCDEdges(node)) {
             if (edge.isTrue() || edge.isFalse()) {
                 return edge.getDstNode();
             }
