@@ -5,6 +5,8 @@
 
 package org.jtool.pdg.builder;
 
+import org.jtool.pdg.PDG;
+import org.jtool.pdg.Dependence;
 import org.jtool.pdg.CD;
 import org.jtool.pdg.PDGNode;
 import org.jtool.cfg.CFG;
@@ -15,7 +17,11 @@ import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.StopConditionOnReachablePath;
 import java.util.Set;
+import java.util.Stack;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Finds control dependences in a bare PDG.
@@ -24,20 +30,22 @@ import java.util.HashSet;
  */
 public class CDFinder {
     
-    public static void find(BarePDG bpdg , CFG cfg) {
-        findCDs(bpdg, cfg);
-        findCDsOnTryCatch(bpdg, cfg);
-        findCDsFromEntry(bpdg, cfg);
-        findCDsOnDeclarations(bpdg, cfg);
+    public static void find(PDG pdg , CFG cfg) {
+        findCDs(pdg, cfg);
+        findCDsOnTryCatch(pdg, cfg);
+        findCDsFromEntry(pdg, cfg);
+        findCDsOnDeclarations(pdg, cfg);
+        
+        removeTransitiveCDs(pdg);
     }
     
-    private static void findCDs(BarePDG bpdg, CFG cfg) {
+    private static void findCDs(PDG pdg, CFG cfg) {
         cfg.getNodes().stream().filter(node -> node.isBranch()).forEach(cfgnode -> {
-            findCDs(bpdg, cfg, cfgnode);
+            findCDs(pdg, cfg, cfgnode);
         });
     }
     
-    private static void findCDs(BarePDG bpdg, CFG cfg, CFGNode branchNode) {
+    private static void findCDs(PDG pdg, CFG cfg, CFGNode branchNode) {
         Set<CFGNode> postDominator = cfg.postDominator(branchNode);
         
         for (ControlFlow branch : branchNode.getOutgoingFlows()) {
@@ -57,13 +65,13 @@ public class CDFinder {
                     } else if (branch.isExceptionCatch()) {
                         edge.setExceptionCatch();
                     }
-                    bpdg.add(edge);
+                    pdg.add(edge);
                 }
             }
         }
     }
     
-    private static void findCDsOnTryCatch(BarePDG bpdg, CFG cfg) {
+    private static void findCDsOnTryCatch(PDG bpdg, CFG cfg) {
         for (CFGNode cfgnode : cfg.getNodes()) {
             if (cfgnode.isTry()) {
                 CFGTry trynode = (CFGTry)cfgnode;
@@ -81,26 +89,26 @@ public class CDFinder {
         }
     }
     
-    private static void findCDsFromEntry(BarePDG bpdg, CFG cfg) {
+    private static void findCDsFromEntry(PDG pdg, CFG cfg) {
         CFGNode entryNode = cfg.getEntryNode();
-        for (PDGNode pdgnode : bpdg.getNodes()) {
-            if (!pdgnode.isEntry() && pdgnode.getIncomingCDEdges().size() == 0) {
+        for (PDGNode pdgnode : pdg.getNodes()) {
+            if (!pdgnode.isEntry() && pdg.getIncomingCDEdges(pdgnode).size() == 0) {
                 CD edge = new CD(entryNode.getPDGNode(), pdgnode);
                 edge.setTrue();
-                bpdg.add(edge);
+                pdg.add(edge);
             }
         }
     }
     
-    private static void findCDsOnDeclarations(BarePDG bpdg, CFG cfg) {
+    private static void findCDsOnDeclarations(PDG pdg, CFG cfg) {
         for (CFGNode cfgnode : cfg.getNodes()) {
             if (cfgnode.isStatement()) {
-                findCDsOnDeclarations(bpdg, cfg, (CFGStatement)cfgnode);
+                findCDsOnDeclarations(pdg, cfg, (CFGStatement)cfgnode);
             }
         }
     }
     
-    private static void findCDsOnDeclarations(BarePDG bpdg, CFG cfg, CFGStatement cfgnode) {
+    private static void findCDsOnDeclarations(PDG pdg, CFG cfg, CFGStatement cfgnode) {
         Set<JVariableReference> vars = new HashSet<>();
         vars.addAll(cfgnode.getDefVariables());
         vars.addAll(cfgnode.getUseVariables());
@@ -116,7 +124,7 @@ public class CDFinder {
                             if (!decnode.equals(cfgnode)) {
                                 CD edge = new CD(decnode.getPDGNode(), cfgnode.getPDGNode());
                                 edge.setDeclaration();
-                                bpdg.add(edge);
+                                pdg.add(edge);
                             }
                             return true;
                         }
@@ -125,5 +133,52 @@ public class CDFinder {
                 }
             });
         }
+    }
+    
+    private static void removeTransitiveCDs(PDG pdg) {
+        for (PDGNode node: pdg.getNodes()) {
+            Set<CD> edges = pdg.getIncomingCDEdges(node).stream()
+                    .filter(e -> e.isTrue() || e.isFalse()).collect(Collectors.toSet());
+            Set<CD> removed = new HashSet<>();
+            for (CD edge1 : edges) {
+                if (!removed.contains(edge1)) {
+                    PDGNode node1 = edge1.getSrcNode();
+                    for (CD edge2 : edges) {
+                        PDGNode node2 = edge2.getSrcNode();
+                        if (!node1.equals(node2) && !removed.contains(edge2)) {
+                            if (getCDAncestors(node2).contains(node1)) {
+                                removed.add(edge1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            for (CD edge : removed) {
+                pdg.remove(edge);
+            }
+        }
+        
+    }
+    
+    public static List<PDGNode> getCDAncestors(PDGNode anchor) {
+        List<PDGNode> track = new ArrayList<PDGNode>();
+        
+        Stack<PDGNode> nodeStack = new Stack<>();
+        nodeStack.push(anchor);
+        
+        while (!nodeStack.isEmpty()) {
+            PDGNode node = nodeStack.pop();
+            
+            if (track.contains(node)) {
+                continue;
+            }
+            track.add(node);
+            
+            node.getIncomingEdges().stream().map(edge -> (Dependence)edge)
+                .filter(edge -> (edge.isTrue() || edge.isFalse()))
+                .forEach(edge -> nodeStack.push(edge.getSrcNode()));
+        }
+        return track;
     }
 }
