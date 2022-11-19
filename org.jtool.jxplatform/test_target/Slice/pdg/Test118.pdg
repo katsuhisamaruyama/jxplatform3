@@ -1,69 +1,69 @@
 ----- ClDG (from here) -----
 Class Name = Test118
-   0 methodEntry [ m0( int int int ) ]
+   0 methodEntry [ Test118#m0( int int int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 formalIn D = { b$1 } U = {  }
    3 formalIn D = { c$2 } U = {  }
    4 returnSt D = { $_ } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m2( int int int ) ]
+   0 methodEntry [ Test118#m2( int int int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 formalIn D = { b$1 } U = {  }
    3 formalIn D = { c$2 } U = {  }
    4 returnSt D = { $_ } U = { b$1 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m3( int int int ) ]
+   0 methodEntry [ Test118#m3( int int int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 formalIn D = { b$1 } U = {  }
    3 formalIn D = { c$2 } U = {  }
    4 returnSt D = { $_ } U = { c$2 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m5( int int int ) ]
+   0 methodEntry [ Test118#m5( int int int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 formalIn D = { b$1 } U = {  }
    3 formalIn D = { c$2 } U = {  }
    4 returnSt D = { $_ } U = { b$1, c$2 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m7( int int int ) ]
+   0 methodEntry [ Test118#m7( int int int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 formalIn D = { b$1 } U = {  }
    3 formalIn D = { c$2 } U = {  }
    4 returnSt D = { $_ } U = { a$0, b$1, c$2 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test118( ) ]
+   0 constructorEntry [ Test118#Test118( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m8( ) ]
+   0 methodEntry [ Test118#m8( ) ]
    1 returnSt D = { $_ } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m1( int int int ) ]
+   0 methodEntry [ Test118#m1( int int int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 formalIn D = { b$1 } U = {  }
    3 formalIn D = { c$2 } U = {  }
    4 returnSt D = { $_ } U = { a$0 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m4( int int int ) ]
+   0 methodEntry [ Test118#m4( int int int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 formalIn D = { b$1 } U = {  }
    3 formalIn D = { c$2 } U = {  }
    4 returnSt D = { $_ } U = { a$0, b$1 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m8( int int int ) ]
+   0 methodEntry [ Test118#m8( int int int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 formalIn D = { b$1 } U = {  }
    3 formalIn D = { c$2 } U = {  }
    4 returnSt D = { $_ } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test118#m( ) ]
    1 localDeclaration D = { x$0 } U = { this.!m0( int int int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test118#m0( int int int )
@@ -129,7 +129,7 @@ Class Name = Test118
   63 actualOut D = { this.!m8( int int int ) } U = {  }
   65 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m6( int int int ) ]
+   0 methodEntry [ Test118#m6( int int int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 formalIn D = { b$1 } U = {  }
    3 formalIn D = { c$2 } U = {  }

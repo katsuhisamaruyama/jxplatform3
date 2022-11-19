@@ -1,20 +1,18 @@
 ----- ClDG (from here) -----
 Class Name = Test35
-   0 methodEntry [ m3( ) ]
-   1 labelSt D = {  } U = {  }
-   2 localDeclaration D = { x$0 } U = {  }
-   3 forSt D = {  } U = { x$0 }
-   4 labelSt D = {  } U = {  }
-   5 localDeclaration D = { y$1 } U = {  }
-   6 forSt D = {  } U = { y$1 }
-   7 ifSt D = {  } U = { x$0, y$1 }
-   8 breakSt D = {  } U = {  }
-  10 assignment D = { y$1 } U = { y$1 }
-  11 assignment D = { x$0 } U = { x$0 }
-  12 localDeclaration D = { y$2 } U = {  }
-  14 formalOut D = {  } U = { $_ }
+   0 methodEntry [ Test35#m3( ) ]
+   1 localDeclaration D = { x$0 } U = {  }
+   2 forSt D = {  } U = { x$0 }
+   3 localDeclaration D = { y$1 } U = {  }
+   4 forSt D = {  } U = { y$1 }
+   5 ifSt D = {  } U = { x$0, y$1 }
+   6 breakSt D = {  } U = {  }
+   8 assignment D = { y$1 } U = { y$1 }
+   9 assignment D = { x$0 } U = { x$0 }
+  10 localDeclaration D = { y$2 } U = {  }
+  12 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m2( ) ]
+   0 methodEntry [ Test35#m2( ) ]
    1 localDeclaration D = { x$0 } U = {  }
    2 whileSt D = {  } U = { x$0 }
    3 ifSt D = {  } U = { x$0 }
@@ -24,7 +22,18 @@ Class Name = Test35
    8 localDeclaration D = { y$1 } U = {  }
   10 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m1( ) ]
+   0 methodEntry [ Test35#m6( ) ]
+   1 localDeclaration D = { z$0 } U = {  }
+   2 localDeclaration D = { x$1 } U = {  }
+   3 forSt D = {  } U = { x$1 }
+   4 ifSt D = {  } U = { x$1 }
+   5 continueSt D = {  } U = {  }
+   7 assignment D = { z$0 } U = { z$0 }
+   8 assignment D = { x$1 } U = { x$1 }
+   9 localDeclaration D = { y$2 } U = {  }
+  11 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test35#m1( ) ]
    1 localDeclaration D = { x$0 } U = {  }
    2 whileSt D = {  } U = { x$0 }
    3 ifSt D = {  } U = { x$0 }
@@ -33,63 +42,65 @@ Class Name = Test35
    7 localDeclaration D = { y$1 } U = {  }
    9 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m4( ) ]
-   1 labelSt D = {  } U = {  }
-   2 localDeclaration D = { x$0 } U = {  }
-   3 forSt D = {  } U = { x$0 }
-   4 labelSt D = {  } U = {  }
-   5 localDeclaration D = { y$1 } U = {  }
-   6 forSt D = {  } U = { y$1 }
-   7 ifSt D = {  } U = { x$0, y$1 }
-   8 continueSt D = {  } U = {  }
-  10 assignment D = { y$1 } U = { y$1 }
-  11 assignment D = { x$0 } U = { x$0 }
-  12 localDeclaration D = { y$2 } U = {  }
-  14 formalOut D = {  } U = { $_ }
+   0 methodEntry [ Test35#m4( ) ]
+   1 localDeclaration D = { x$0 } U = {  }
+   2 forSt D = {  } U = { x$0 }
+   3 localDeclaration D = { y$1 } U = {  }
+   4 forSt D = {  } U = { y$1 }
+   5 ifSt D = {  } U = { x$0, y$1 }
+   6 continueSt D = {  } U = {  }
+   8 assignment D = { y$1 } U = { y$1 }
+   9 assignment D = { x$0 } U = { x$0 }
+  10 localDeclaration D = { y$2 } U = {  }
+  12 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test35( ) ]
+   0 methodEntry [ Test35#m5( ) ]
+   1 localDeclaration D = { z$0 } U = {  }
+   2 localDeclaration D = { x$1 } U = {  }
+   3 forSt D = {  } U = { x$1 }
+   4 ifSt D = {  } U = { x$1 }
+   5 breakSt D = {  } U = {  }
+   7 assignment D = { z$0 } U = { z$0 }
+   8 assignment D = { x$1 } U = { x$1 }
+   9 localDeclaration D = { y$2 } U = {  }
+  11 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test35#Test35( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m3( )
    1:    0 ->    1 trueControlDependence
-   2:    0 ->    2 trueControlDependence
-   3:    0 ->    3 trueControlDependence
-   4:    0 ->   12 trueControlDependence
-   5:    0 ->   14 trueControlDependence
-   6:    2 ->    2 defOrderDependence x$0
-   7:    2 ->    3 declaration
-   8:    2 ->    3 loopIndependentDefUseDependence x$0
-   9:    2 ->    7 declaration
-  10:    2 ->    7 loopIndependentDefUseDependence x$0
-  11:    2 ->   11 declaration
-  12:    2 ->   11 loopIndependentDefUseDependence x$0
-  13:    3 ->    4 trueControlDependence
-  14:    3 ->    5 trueControlDependence
-  15:    3 ->    6 trueControlDependence
-  16:    5 ->    5 defOrderDependence y$1
-  17:    5 ->    6 declaration
-  18:    5 ->    6 loopIndependentDefUseDependence y$1
-  19:    5 ->    7 declaration
-  20:    5 ->    7 loopIndependentDefUseDependence y$1
-  21:    5 ->   10 declaration
-  22:    5 ->   10 loopIndependentDefUseDependence y$1
-  23:    6 ->    7 trueControlDependence
-  24:    6 ->   11 falseControlDependence
-  25:    7 ->    6 falseControlDependence
-  26:    7 ->    8 trueControlDependence
-  27:    7 ->   10 falseControlDependence
-  28:    8 ->    1 trueControlDependence
-  29:    8 ->    2 trueControlDependence
-  30:    8 ->    6 fallThroughControlDependence
-  31:    8 ->   10 fallThroughControlDependence
-  32:   10 ->    5 outputDependence y$1
-  33:   10 ->    6 loopIndependentDefUseDependence y$1
-  34:   10 ->    7 loopCarriedDefUseDependence y$1 (LC =    6)
-  35:   10 ->   10 loopCarriedDefUseDependence y$1 (LC =    6)
-  36:   11 ->    2 outputDependence x$0
-  37:   11 ->    3 loopIndependentDefUseDependence x$0
-  38:   11 ->    7 loopCarriedDefUseDependence x$0 (LC =    6)
-  39:   11 ->   11 loopCarriedDefUseDependence x$0 (LC =    6)
+   2:    0 ->   10 trueControlDependence
+   3:    0 ->   12 trueControlDependence
+   4:    1 ->    2 declaration
+   5:    1 ->    2 loopIndependentDefUseDependence x$0
+   6:    1 ->    5 declaration
+   7:    1 ->    5 loopIndependentDefUseDependence x$0
+   8:    1 ->    9 declaration
+   9:    1 ->    9 loopIndependentDefUseDependence x$0
+  10:    2 ->    3 trueControlDependence
+  11:    3 ->    3 defOrderDependence y$1
+  12:    3 ->    4 declaration
+  13:    3 ->    4 loopCarriedDefUseDependence y$1 (LC =    4)
+  14:    3 ->    5 declaration
+  15:    3 ->    5 loopCarriedDefUseDependence y$1 (LC =    4)
+  16:    3 ->    8 declaration
+  17:    3 ->    8 loopCarriedDefUseDependence y$1 (LC =    4)
+  18:    4 ->    2 falseControlDependence
+  19:    4 ->    5 trueControlDependence
+  20:    4 ->    9 falseControlDependence
+  21:    5 ->    4 falseControlDependence
+  22:    5 ->    6 trueControlDependence
+  23:    5 ->    8 falseControlDependence
+  24:    6 ->    4 fallThroughControlDependence
+  25:    6 ->    8 fallThroughControlDependence
+  26:    8 ->    3 outputDependence y$1
+  27:    8 ->    4 loopCarriedDefUseDependence y$1 (LC =    4)
+  28:    8 ->    5 loopCarriedDefUseDependence y$1 (LC =    4)
+  29:    8 ->    8 loopCarriedDefUseDependence y$1 (LC =    4)
+  30:    9 ->    2 loopIndependentDefUseDependence x$0
+  31:    9 ->    5 loopCarriedDefUseDependence x$0 (LC =    4)
+  32:    9 ->    9 loopCarriedDefUseDependence x$0 (LC =    4)
 --
    0: m2( )
    1:    0 ->    1 trueControlDependence
@@ -108,77 +119,120 @@ Class Name = Test35
   14:    3 ->    4 trueControlDependence
   15:    3 ->    5 trueControlDependence
   16:    3 ->    7 falseControlDependence
-  17:    4 ->    2 loopIndependentDefUseDependence x$0
+  17:    4 ->    2 loopCarriedDefUseDependence x$0 (LC =    2)
   18:    4 ->    3 loopCarriedDefUseDependence x$0 (LC =    2)
   19:    4 ->    4 loopCarriedDefUseDependence x$0 (LC =    2)
   20:    4 ->    7 loopCarriedDefUseDependence x$0 (LC =    2)
   21:    5 ->    7 fallThroughControlDependence
-  22:    7 ->    2 loopIndependentDefUseDependence x$0
+  22:    7 ->    2 loopCarriedDefUseDependence x$0 (LC =    2)
   23:    7 ->    3 loopCarriedDefUseDependence x$0 (LC =    2)
   24:    7 ->    4 loopCarriedDefUseDependence x$0 (LC =    2)
   25:    7 ->    7 loopCarriedDefUseDependence x$0 (LC =    2)
 --
-   0: m1( )
+   0: m6( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
-   3:    0 ->    7 trueControlDependence
+   3:    0 ->    3 trueControlDependence
    4:    0 ->    9 trueControlDependence
-   5:    1 ->    2 declaration
-   6:    1 ->    2 loopIndependentDefUseDependence x$0
-   7:    1 ->    3 declaration
-   8:    1 ->    3 loopIndependentDefUseDependence x$0
-   9:    1 ->    6 declaration
-  10:    1 ->    6 loopIndependentDefUseDependence x$0
-  11:    2 ->    3 trueControlDependence
-  12:    3 ->    2 falseControlDependence
-  13:    3 ->    4 trueControlDependence
-  14:    3 ->    6 falseControlDependence
-  15:    4 ->    2 fallThroughControlDependence
-  16:    4 ->    6 fallThroughControlDependence
-  17:    6 ->    2 loopIndependentDefUseDependence x$0
-  18:    6 ->    3 loopCarriedDefUseDependence x$0 (LC =    2)
-  19:    6 ->    6 loopCarriedDefUseDependence x$0 (LC =    2)
+   5:    0 ->   11 trueControlDependence
+   6:    1 ->    7 declaration
+   7:    1 ->    7 loopIndependentDefUseDependence z$0
+   8:    2 ->    3 declaration
+   9:    2 ->    3 loopIndependentDefUseDependence x$1
+  10:    2 ->    4 declaration
+  11:    2 ->    4 loopIndependentDefUseDependence x$1
+  12:    2 ->    8 declaration
+  13:    2 ->    8 loopIndependentDefUseDependence x$1
+  14:    3 ->    4 trueControlDependence
+  15:    4 ->    5 trueControlDependence
+  16:    4 ->    7 falseControlDependence
+  17:    4 ->    8 falseControlDependence
+  18:    5 ->    7 fallThroughControlDependence
+  19:    5 ->    8 fallThroughControlDependence
+  20:    7 ->    7 loopCarriedDefUseDependence z$0 (LC =    3)
+  21:    8 ->    3 loopCarriedDefUseDependence x$1 (LC =    3)
+  22:    8 ->    4 loopCarriedDefUseDependence x$1 (LC =    3)
+  23:    8 ->    8 loopCarriedDefUseDependence x$1 (LC =    3)
+--
+   0: m1( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    7 trueControlDependence
+   3:    0 ->    9 trueControlDependence
+   4:    1 ->    2 declaration
+   5:    1 ->    2 loopIndependentDefUseDependence x$0
+   6:    1 ->    3 declaration
+   7:    1 ->    3 loopIndependentDefUseDependence x$0
+   8:    1 ->    6 declaration
+   9:    1 ->    6 loopIndependentDefUseDependence x$0
+  10:    2 ->    3 trueControlDependence
+  11:    3 ->    2 falseControlDependence
+  12:    3 ->    4 trueControlDependence
+  13:    3 ->    6 falseControlDependence
+  14:    4 ->    2 fallThroughControlDependence
+  15:    4 ->    6 fallThroughControlDependence
+  16:    6 ->    2 loopCarriedDefUseDependence x$0 (LC =    2)
+  17:    6 ->    3 loopCarriedDefUseDependence x$0 (LC =    2)
+  18:    6 ->    6 loopCarriedDefUseDependence x$0 (LC =    2)
 --
    0: m4( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
-   3:    0 ->    3 trueControlDependence
+   3:    0 ->   10 trueControlDependence
    4:    0 ->   12 trueControlDependence
-   5:    0 ->   14 trueControlDependence
-   6:    2 ->    2 defOrderDependence x$0
+   5:    1 ->    2 declaration
+   6:    1 ->    2 loopIndependentDefUseDependence x$0
+   7:    1 ->    5 declaration
+   8:    1 ->    5 loopIndependentDefUseDependence x$0
+   9:    1 ->    9 declaration
+  10:    1 ->    9 loopIndependentDefUseDependence x$0
+  11:    2 ->    3 trueControlDependence
+  12:    3 ->    3 defOrderDependence y$1
+  13:    3 ->    4 declaration
+  14:    3 ->    4 loopIndependentDefUseDependence y$1
+  15:    3 ->    5 declaration
+  16:    3 ->    5 loopIndependentDefUseDependence y$1
+  17:    3 ->    8 declaration
+  18:    3 ->    8 loopIndependentDefUseDependence y$1
+  19:    4 ->    5 trueControlDependence
+  20:    4 ->    9 falseControlDependence
+  21:    5 ->    4 falseControlDependence
+  22:    5 ->    6 trueControlDependence
+  23:    5 ->    8 falseControlDependence
+  24:    6 ->    4 fallThroughControlDependence
+  25:    6 ->    8 fallThroughControlDependence
+  26:    8 ->    3 outputDependence y$1
+  27:    8 ->    4 loopCarriedDefUseDependence y$1 (LC =    4)
+  28:    8 ->    5 loopCarriedDefUseDependence y$1 (LC =    4)
+  29:    8 ->    8 loopCarriedDefUseDependence y$1 (LC =    4)
+  30:    9 ->    2 loopIndependentDefUseDependence x$0
+  31:    9 ->    5 loopCarriedDefUseDependence x$0 (LC =    4)
+  32:    9 ->    9 loopCarriedDefUseDependence x$0 (LC =    4)
+--
+   0: m5( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    9 trueControlDependence
+   4:    0 ->   11 trueControlDependence
+   5:    1 ->    7 declaration
+   6:    1 ->    7 loopIndependentDefUseDependence z$0
    7:    2 ->    3 declaration
-   8:    2 ->    3 loopIndependentDefUseDependence x$0
-   9:    2 ->    7 declaration
-  10:    2 ->    7 loopIndependentDefUseDependence x$0
-  11:    2 ->   11 declaration
-  12:    2 ->   11 loopIndependentDefUseDependence x$0
+   8:    2 ->    3 loopIndependentDefUseDependence x$1
+   9:    2 ->    4 declaration
+  10:    2 ->    4 loopIndependentDefUseDependence x$1
+  11:    2 ->    8 declaration
+  12:    2 ->    8 loopIndependentDefUseDependence x$1
   13:    3 ->    4 trueControlDependence
-  14:    3 ->    5 trueControlDependence
-  15:    3 ->    6 trueControlDependence
-  16:    5 ->    5 defOrderDependence y$1
-  17:    5 ->    6 declaration
-  18:    5 ->    6 loopIndependentDefUseDependence y$1
-  19:    5 ->    7 declaration
-  20:    5 ->    7 loopIndependentDefUseDependence y$1
-  21:    5 ->   10 declaration
-  22:    5 ->   10 loopIndependentDefUseDependence y$1
-  23:    6 ->    7 trueControlDependence
-  24:    6 ->   11 falseControlDependence
-  25:    7 ->    6 falseControlDependence
-  26:    7 ->    8 trueControlDependence
-  27:    7 ->   10 falseControlDependence
-  28:    8 ->    1 trueControlDependence
-  29:    8 ->    2 trueControlDependence
-  30:    8 ->    6 fallThroughControlDependence
-  31:    8 ->   10 fallThroughControlDependence
-  32:   10 ->    5 outputDependence y$1
-  33:   10 ->    6 loopIndependentDefUseDependence y$1
-  34:   10 ->    7 loopCarriedDefUseDependence y$1 (LC =    6)
-  35:   10 ->   10 loopCarriedDefUseDependence y$1 (LC =    6)
-  36:   11 ->    2 outputDependence x$0
-  37:   11 ->    3 loopIndependentDefUseDependence x$0
-  38:   11 ->    7 loopCarriedDefUseDependence x$0 (LC =    6)
-  39:   11 ->   11 loopCarriedDefUseDependence x$0 (LC =    6)
+  14:    4 ->    3 falseControlDependence
+  15:    4 ->    5 trueControlDependence
+  16:    4 ->    7 falseControlDependence
+  17:    4 ->    8 falseControlDependence
+  18:    5 ->    3 fallThroughControlDependence
+  19:    5 ->    7 fallThroughControlDependence
+  20:    5 ->    8 fallThroughControlDependence
+  21:    7 ->    7 loopCarriedDefUseDependence z$0 (LC =    3)
+  22:    8 ->    3 loopCarriedDefUseDependence x$1 (LC =    3)
+  23:    8 ->    4 loopCarriedDefUseDependence x$1 (LC =    3)
+  24:    8 ->    8 loopCarriedDefUseDependence x$1 (LC =    3)
 --
    0: Test35( )
    1:    0 ->    2 trueControlDependence

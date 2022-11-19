@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test05
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test05#m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
    2 localDeclaration D = { b$1 } U = {  }
    3 localDeclaration D = { c$2 } U = {  }
@@ -31,7 +31,7 @@ Class Name = Test05
 * actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   31 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test05( ) ]
+   0 constructorEntry [ Test05#Test05( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )

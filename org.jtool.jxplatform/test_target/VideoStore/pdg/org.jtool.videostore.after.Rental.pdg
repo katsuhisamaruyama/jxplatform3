@@ -1,20 +1,20 @@
 ----- ClDG (from here) -----
 Class Name = org.jtool.videostore.after.Rental
-   0 methodEntry [ getMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.Rental#getMovie( ) ]
    1 returnSt D = { $_ } U = { this.movie, this.movie.price, this.movie.title }
    3 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Rental( org.jtool.videostore.after.Movie int ) ]
+   0 constructorEntry [ org.jtool.videostore.after.Rental#Rental( org.jtool.videostore.after.Movie int ) ]
    1 formalIn D = { movie$0 } U = {  }
    2 formalIn D = { daysRented$1 } U = {  }
    3 assignment D = { this.movie } U = { movie$0, movie$0.price, movie$0.title }
    4 assignment D = { this.daysRented } U = { daysRented$1 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ movie ]
+   0 fieldEntry [ org.jtool.videostore.after.Rental#movie ]
    1 fieldDeclaration D = { this.movie } U = { this.movie }
 --
-   0 methodEntry [ getFrequentRenterPoints( ) ]
+   0 methodEntry [ org.jtool.videostore.after.Rental#getFrequentRenterPoints( ) ]
    1 returnSt D = { $_ } U = { this.movie.!getFrequentRenterPoints( int ) }
    2 receiver D = {  } U = { this.movie }
    3 methodCall D = {  } U = { this.movie.price } TO = org.jtool.videostore.after.Movie#getFrequentRenterPoints( int )
@@ -22,14 +22,14 @@ Class Name = org.jtool.videostore.after.Rental
    5 actualOut D = { this.movie.!getFrequentRenterPoints( int ) } U = { this.movie.price }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getDaysRented( ) ]
+   0 methodEntry [ org.jtool.videostore.after.Rental#getDaysRented( ) ]
    1 returnSt D = { $_ } U = { this.daysRented }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ daysRented ]
+   0 fieldEntry [ org.jtool.videostore.after.Rental#daysRented ]
    1 fieldDeclaration D = { this.daysRented } U = { this.daysRented }
 --
-   0 methodEntry [ getCharge( ) ]
+   0 methodEntry [ org.jtool.videostore.after.Rental#getCharge( ) ]
    1 returnSt D = { $_ } U = { this.movie.!getCharge( int ) }
    2 receiver D = {  } U = { this.movie }
    3 methodCall D = {  } U = { this.movie.price } TO = org.jtool.videostore.after.Movie#getCharge( int )

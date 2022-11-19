@@ -1,12 +1,12 @@
 ----- ClDG (from here) -----
 Class Name = Test145
-   0 fieldEntry [ list ]
+   0 fieldEntry [ Test145#list ]
    1 fieldDeclaration D = { this.list } U = { java.util.ArrayList.!ArrayList( ), this.list }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
 * actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test145#m( ) ]
    1 assignment D = {  } U = { this.list.!add( java.lang.Object ) }
    2 receiver D = {  } U = { this.list }
    3 methodCall D = {  } U = { T145.!T145( int ), this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size } TO = java.util.List#add( java.lang.Object )
@@ -34,11 +34,11 @@ Class Name = Test145
   26 formalOut D = {  } U = { $_ }
 * actualOut D = { T145.!T145( int ).a } U = {  }
 --
-   0 methodEntry [ getList( ) ]
+   0 methodEntry [ Test145#getList( ) ]
    1 returnSt D = { $_ } U = { this.list }
    3 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test145( ) ]
+   0 constructorEntry [ Test145#Test145( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: list

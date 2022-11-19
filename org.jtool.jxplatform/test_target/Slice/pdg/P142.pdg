@@ -1,26 +1,26 @@
 ----- ClDG (from here) -----
 Class Name = P142
-   0 constructorEntry [ P142( ) ]
+   0 constructorEntry [ P142#P142( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getKey( ) ]
+   0 methodEntry [ P142#getKey( ) ]
    1 returnSt D = { $_ } U = { this.key }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ key ]
+   0 fieldEntry [ P142#key ]
    1 fieldDeclaration D = { this.key } U = { this.key }
 --
-   0 fieldEntry [ value ]
+   0 fieldEntry [ P142#value ]
    1 fieldDeclaration D = { this.value } U = { this.value }
 --
-   0 methodEntry [ set( java.lang.String java.lang.String ) ]
+   0 methodEntry [ P142#set( java.lang.String java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 formalIn D = { value$1 } U = {  }
    3 assignment D = { this.key } U = { key$0 }
    4 assignment D = { this.value } U = { value$1 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getValue( ) ]
+   0 methodEntry [ P142#getValue( ) ]
    1 ifSt D = {  } U = { this.key.!equals( java.lang.Object ) }
    2 receiver D = {  } U = { this.key }
    3 methodCall D = {  } U = { this.key, this.key.!java.lang.String.COMPACT_STRINGS, this.key.!java.lang.String.coder, this.key.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )

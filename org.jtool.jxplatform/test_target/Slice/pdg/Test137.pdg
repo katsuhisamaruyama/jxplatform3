@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test137
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test137#m( ) ]
    1 localDeclaration D = { s1$0 } U = { P137.!P137( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P137#P137( )
@@ -17,7 +17,7 @@ Class Name = Test137
   14 actualOut D = { s1$0.!get( int ) } U = { P137.!P137( ).list, P137.!P137( ).list.!java.util.ArrayList.elementData, P137.!P137( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.size }
   16 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test137( ) ]
+   0 constructorEntry [ Test137#Test137( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )

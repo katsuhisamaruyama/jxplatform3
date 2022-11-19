@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = CanvasA
-   0 methodEntry [ paintComponent( java.awt.Graphics ) ]
+   0 methodEntry [ CanvasA#paintComponent( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 assignment D = {  } U = { super.!paintComponent( java.awt.Graphics ) }
    3 receiver D = {  } U = {  }
@@ -28,7 +28,7 @@ Class Name = CanvasA
   25 actualOut D = { g$0.!drawLine( int int int int ) } U = {  }
   27 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ CanvasA( ) ]
+   0 constructorEntry [ CanvasA#CanvasA( ) ]
    1 assignment D = {  } U = { this.!setBackground( java.awt.Color ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { Color.white, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width } TO = javax.swing.JComponent#setBackground( java.awt.Color )
@@ -46,7 +46,7 @@ Class Name = CanvasA
 * actualOut D = { java.awt.Font.!Font( java.lang.String int int ), java.awt.Font.!java.awt.Font.createdFont, java.awt.Font.!java.awt.Font.fontSerializedDataVersion, java.awt.Font.!java.awt.Font.name, java.awt.Font.!java.awt.Font.pointSize, java.awt.Font.!java.awt.Font.size, java.awt.Font.!java.awt.Font.style } U = {  }
   17 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ font ]
+   0 fieldEntry [ CanvasA#font ]
    1 fieldDeclaration D = { this.font } U = { this.font }
 --
    0: paintComponent( java.awt.Graphics )

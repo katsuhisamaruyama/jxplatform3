@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = org.jtool.videostore.after.MovieTest
-   0 constructorEntry [ MovieTest( ) ]
+   0 constructorEntry [ org.jtool.videostore.after.MovieTest#MovieTest( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ testPriceCodeOfNewReleaseMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.MovieTest#testPriceCodeOfNewReleaseMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR } TO = org.jtool.videostore.after.Movie#Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
@@ -24,7 +24,7 @@ Class Name = org.jtool.videostore.after.MovieTest
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
 * actualOut D = { super.priceCode } U = {  }
 --
-   0 methodEntry [ testTitleOfRegularMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.MovieTest#testTitleOfRegularMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR } TO = org.jtool.videostore.after.Movie#Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
@@ -45,7 +45,7 @@ Class Name = org.jtool.videostore.after.MovieTest
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
 * actualOut D = { super.priceCode } U = {  }
 --
-   0 methodEntry [ testTitleOfChildrensMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.MovieTest#testTitleOfChildrensMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR } TO = org.jtool.videostore.after.Movie#Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
@@ -66,7 +66,7 @@ Class Name = org.jtool.videostore.after.MovieTest
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
 * actualOut D = { super.priceCode } U = {  }
 --
-   0 methodEntry [ testTitleOfNewReleaseMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.MovieTest#testTitleOfNewReleaseMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR } TO = org.jtool.videostore.after.Movie#Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
@@ -87,7 +87,7 @@ Class Name = org.jtool.videostore.after.MovieTest
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
 * actualOut D = { super.priceCode } U = {  }
 --
-   0 methodEntry [ testPriceCodeOfRegularMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.MovieTest#testPriceCodeOfRegularMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR } TO = org.jtool.videostore.after.Movie#Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
@@ -108,7 +108,7 @@ Class Name = org.jtool.videostore.after.MovieTest
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
 * actualOut D = { super.priceCode } U = {  }
 --
-   0 methodEntry [ testPriceCodeOfChildrensMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.MovieTest#testPriceCodeOfChildrensMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR } TO = org.jtool.videostore.after.Movie#Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )

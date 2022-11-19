@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$8
-   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawMenu$8#actionPerformed( java.awt.event.ActionEvent ) ]
    1 formalIn D = { evt$12 } U = {  }
    2 localDeclaration D = { canvas$13 } U = { this.tabbedCanvas.!getCurrentCanvas( ) }
    3 receiver D = {  } U = { this.tabbedCanvas }
@@ -34,7 +34,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$8
 * actualOut D = { super.canvas } U = {  }
 * actualOut D = { super.figure } U = {  }
 --
-   0 fieldEntry [ serialVersionUID ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawMenu$8#serialVersionUID ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.DrawMenu$8.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.DrawMenu$8.serialVersionUID }
 --
    0: actionPerformed( java.awt.event.ActionEvent )

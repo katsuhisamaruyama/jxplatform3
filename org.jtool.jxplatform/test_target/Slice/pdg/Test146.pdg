@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test146
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test146#m( ) ]
    1 localDeclaration D = { total$0 } U = {  }
    2 localDeclaration D = { strings$1 } U = { java.util.ArrayList.!ArrayList( ) }
    3 receiver D = {  } U = {  }
@@ -14,7 +14,7 @@ Class Name = Test146
   11 localDeclaration D = { result$4 } U = { total$0 }
   13 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test146( ) ]
+   0 constructorEntry [ Test146#Test146( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )

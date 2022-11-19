@@ -1,15 +1,15 @@
 ----- ClDG (from here) -----
 Class Name = Test105
-   0 fieldEntry [ a ]
+   0 fieldEntry [ Test105#a ]
    1 fieldDeclaration D = { this.a } U = { this.a }
 --
-   0 methodEntry [ setA( int ) ]
+   0 methodEntry [ Test105#setA( int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 assignment D = { this.a } U = { a$0 }
    3 returnSt D = { $_ } U = { a$0 }
    5 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test105#m( ) ]
    1 localDeclaration D = { x$0 } U = { this.!setA( int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test105#setA( int )
@@ -20,7 +20,7 @@ Class Name = Test105
    9 formalOut D = {  } U = { $_ }
 * actualOut D = { this.a } U = {  }
 --
-   0 constructorEntry [ Test105( ) ]
+   0 constructorEntry [ Test105#Test105( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: a

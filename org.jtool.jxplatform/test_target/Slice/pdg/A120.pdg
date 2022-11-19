@@ -1,12 +1,12 @@
 ----- ClDG (from here) -----
 Class Name = A120
-   0 fieldEntry [ y ]
+   0 fieldEntry [ A120#y ]
    1 fieldDeclaration D = { this.y } U = { this.y }
 --
-   0 fieldEntry [ x ]
+   0 fieldEntry [ A120#x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
-   0 constructorEntry [ A120( ) ]
+   0 constructorEntry [ A120#A120( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: y

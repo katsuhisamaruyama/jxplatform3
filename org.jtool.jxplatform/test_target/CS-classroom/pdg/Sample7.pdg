@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Sample7
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Sample7#main( java.lang.String[] ) ]
    1 formalIn D = { args$0 } U = {  }
    2 localDeclaration D = { numbers$1 } U = {  }
    3 assignment D = { numbers$1 } U = {  }
@@ -24,7 +24,7 @@ Class Name = Sample7
 * actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   24 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Sample7( ) ]
+   0 constructorEntry [ Sample7#Sample7( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: main( java.lang.String[] )

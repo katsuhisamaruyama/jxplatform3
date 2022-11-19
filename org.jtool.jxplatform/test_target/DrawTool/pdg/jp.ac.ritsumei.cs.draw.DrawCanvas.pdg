@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
-   0 methodEntry [ autoSave( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#autoSave( ) ]
    1 ifSt D = {  } U = { this.menu, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener }
    2 whileSt D = {  } U = { this.!getCurrentFigure( ) }
    3 receiver D = {  } U = {  }
@@ -23,11 +23,11 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
 * actualOut D = { this.menu.!saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas ), this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nextChar, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out, this.menu.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble, this.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder, this.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count } U = { System.err, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, this.!java.lang.String.COMPACT_STRINGS, this.figureManager.figures, this.figureManager.filename, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.autoFlush, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.charOut, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.out, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.textOut, this.menu.canvas$0.!getFigureManager( ).figure$4.color.!java.awt.Color.value, this.menu.canvas$0.!getFigureManager( ).figures, this.menu.canvas$0.!getFigureManager( ).filename, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, this.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.lock, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.coder, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.String.COMPACT_STRINGS, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.count, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.value, this.menu.canvas$0.figureManager }
   25 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ mouseEntered( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#mouseEntered( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ) ]
    1 formalIn D = { menu$0 } U = {  }
    2 formalIn D = { selector$1 } U = {  }
    3 formalIn D = { filename$2 } U = {  }
@@ -74,7 +74,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
 * actualOut D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( ).filename } U = {  }
 * actualOut D = { this.changed } U = {  }
 --
-   0 methodEntry [ paintComponent( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#paintComponent( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 assignment D = {  } U = { super.!paintComponent( java.awt.Graphics ) }
    3 receiver D = {  } U = {  }
@@ -105,27 +105,27 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   28 actualOut D = { this.!drawGrabbedFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) } U = { this.!java.awt.Component.background, this.!java.awt.Component.parent }
   31 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ serialVersionUID ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#serialVersionUID ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.DrawCanvas.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.DrawCanvas.serialVersionUID }
 --
-   0 methodEntry [ mouseMoved( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#mouseMoved( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ currentFigure ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#currentFigure ]
    1 fieldDeclaration D = { this.currentFigure } U = { this.currentFigure }
 --
-   0 fieldEntry [ undoManager ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#undoManager ]
    1 fieldDeclaration D = { this.undoManager } U = { this.undoManager }
 --
-   0 methodEntry [ mouseExited( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#mouseExited( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ menu ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#menu ]
    1 fieldDeclaration D = { this.menu } U = { this.menu }
 --
-   0 methodEntry [ mousePressed( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#mousePressed( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    2 localDeclaration D = { g$1 } U = { this.!getGraphics( ) }
    3 receiver D = {  } U = {  }
@@ -233,7 +233,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
 * actualOut D = { this.!getCurrentFigure( ).endX } U = {  }
 * actualOut D = { this.!getCurrentFigure( ).endY } U = {  }
 --
-   0 methodEntry [ drawOutline( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#drawOutline( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { g$0 } U = {  }
    2 formalIn D = { figure$1 } U = {  }
    3 localDeclaration D = { c$2 } U = { g$0.!getColor( ) }
@@ -258,10 +258,10 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   22 actualOut D = { g$0.!setColor( java.awt.Color ) } U = {  }
   24 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ changed ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#changed ]
    1 fieldDeclaration D = { this.changed } U = { this.changed }
 --
-   0 methodEntry [ removeUndoableEditListener( javax.swing.event.UndoableEditListener ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#removeUndoableEditListener( javax.swing.event.UndoableEditListener ) ]
    1 formalIn D = { listener$0 } U = {  }
    2 assignment D = {  } U = { this.support.!removeUndoableEditListener( javax.swing.event.UndoableEditListener ) }
    3 receiver D = {  } U = { this.support }
@@ -269,7 +269,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
 * actualOut D = { this.support.!java.util.Vector.modCount, this.support.!removeUndoableEditListener( javax.swing.event.UndoableEditListener ) } U = { this.support.!java.util.Vector.modCount, this.support.!javax.swing.undo.UndoableEditSupport.listeners }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ clearFigure( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#clearFigure( ) ]
    1 assignment D = {  } U = { this.!setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure )
@@ -279,10 +279,10 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    8 formalOut D = {  } U = { $_ }
 * actualOut D = { this.currentFigure } U = {  }
 --
-   0 fieldEntry [ isGrabMode ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#isGrabMode ]
    1 fieldDeclaration D = { this.isGrabMode } U = { this.isGrabMode }
 --
-   0 methodEntry [ drawFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#drawFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { g$0 } U = {  }
    2 formalIn D = { figure$1 } U = {  }
    3 localDeclaration D = { c$2 } U = { g$0.!getColor( ) }
@@ -304,24 +304,24 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   19 actualOut D = { g$0.!setColor( java.awt.Color ) } U = {  }
   21 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getUndoManager( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#getUndoManager( ) ]
    1 returnSt D = { $_ } U = { this.undoManager }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ hasChanged( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#hasChanged( ) ]
    1 returnSt D = { $_ } U = { this.changed }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ setChanged( boolean ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#setChanged( boolean ) ]
    1 formalIn D = { bool$0 } U = {  }
    2 assignment D = { this.changed } U = { bool$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getCurrentFigure( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#getCurrentFigure( ) ]
    1 returnSt D = { $_ } U = { this.currentFigure, this.currentFigure.color, this.currentFigure.endX, this.currentFigure.endY, this.currentFigure.outlineWidth, this.currentFigure.startX, this.currentFigure.startY }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { figure$0 } U = {  }
    2 assignment D = { this.currentFigure } U = { figure$0, figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY }
    3 assignment D = {  } U = { this.!notifyAll( ) }
@@ -330,7 +330,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    6 actualOut D = { this.!notifyAll( ) } U = {  }
    8 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ addUndoableEditListener( javax.swing.event.UndoableEditListener ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#addUndoableEditListener( javax.swing.event.UndoableEditListener ) ]
    1 formalIn D = { listener$0 } U = {  }
    2 assignment D = {  } U = { this.support.!addUndoableEditListener( javax.swing.event.UndoableEditListener ) }
    3 receiver D = {  } U = { this.support }
@@ -338,7 +338,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
 * actualOut D = { this.support.!addUndoableEditListener( javax.swing.event.UndoableEditListener ), this.support.!java.util.Vector.modCount } U = { this.support.!java.util.Vector.elementCount, this.support.!java.util.Vector.elementData, this.support.!java.util.Vector.modCount, this.support.!javax.swing.undo.UndoableEditSupport.listeners }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { g$0 } U = {  }
    2 formalIn D = { figure$1 } U = {  }
    3 localDeclaration D = { c$2 } U = { g$0.!getColor( ) }
@@ -363,20 +363,20 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   22 actualOut D = { g$0.!setColor( java.awt.Color ) } U = {  }
   24 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ setUndoManager( javax.swing.undo.UndoManager ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#setUndoManager( javax.swing.undo.UndoManager ) ]
    1 formalIn D = { undoManger$0 } U = {  }
    2 assignment D = { this.undoManager } U = { undoManger$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getFigureManager( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#getFigureManager( ) ]
    1 returnSt D = { $_ } U = { this.figureManager, this.figureManager.figures, this.figureManager.filename }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ mouseClicked( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#mouseClicked( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ mouseDragged( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#mouseDragged( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    2 ifSt D = {  } U = { this.!getCurrentFigure( ) }
    3 receiver D = {  } U = {  }
@@ -476,10 +476,10 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
 * actualOut D = { this.!getCurrentFigure( ).endX } U = {  }
 * actualOut D = { this.!getCurrentFigure( ).endY } U = {  }
 --
-   0 fieldEntry [ grabbedFigure ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#grabbedFigure ]
    1 fieldDeclaration D = { this.grabbedFigure } U = { this.grabbedFigure }
 --
-   0 methodEntry [ drawGrabbedFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#drawGrabbedFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { g$0 } U = {  }
    2 formalIn D = { figure$1 } U = {  }
    3 localDeclaration D = { c$2 } U = { g$0.!getColor( ) }
@@ -504,7 +504,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   22 actualOut D = { g$0.!setColor( java.awt.Color ) } U = {  }
   24 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ isOverlapped( jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#isOverlapped( jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { figure$0 } U = {  }
    2 enhancedForSt D = { fig$1 } U = { this.figureManager.!getFigures( ) }
    3 receiver D = {  } U = { this.figureManager }
@@ -519,7 +519,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   13 returnSt D = { $_ } U = {  }
   15 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getGrabbedFigure( int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#getGrabbedFigure( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 localDeclaration D = { it$2 } U = { this.figureManager.!getFigures( ).!listIterator( ) }
@@ -555,7 +555,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   34 returnSt D = { $_ } U = {  }
   36 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ pasteFigure( jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#pasteFigure( jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { figure$0 } U = {  }
    2 assignment D = {  } U = { this.support.!postEdit( javax.swing.undo.UndoableEdit ) }
    3 receiver D = {  } U = { this.support }
@@ -619,19 +619,19 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
 * actualOut D = { this.currentFigure } U = {  }
 * actualOut D = { this.grabbedFigure } U = {  }
 --
-   0 fieldEntry [ figureManager ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#figureManager ]
    1 fieldDeclaration D = { this.figureManager } U = { this.figureManager }
 --
-   0 fieldEntry [ support ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#support ]
    1 fieldDeclaration D = { this.support } U = { javax.swing.undo.UndoableEditSupport.!UndoableEditSupport( ), this.support }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = javax.swing.undo.UndoableEditSupport#UndoableEditSupport( )
 * actualOut D = { javax.swing.undo.UndoableEditSupport.!UndoableEditSupport( ), javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.compoundEdit, javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.listeners, javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.realSource, javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.updateLevel } U = {  }
 --
-   0 fieldEntry [ selector ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#selector ]
    1 fieldDeclaration D = { this.selector } U = { this.selector }
 --
-   0 methodEntry [ deleteFigure( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#deleteFigure( ) ]
    1 assignment D = {  } U = { this.support.!postEdit( javax.swing.undo.UndoableEdit ) }
    2 receiver D = {  } U = { this.support }
    3 methodCall D = {  } U = { jp.ac.ritsumei.cs.draw.FigureDeleted.!FigureDeleted( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ), this.support.!javax.swing.undo.CompoundEdit.edits, this.support.!javax.swing.undo.CompoundEdit.inProgress, this.support.!javax.swing.undo.UndoableEditSupport.compoundEdit, this.support.!javax.swing.undo.UndoableEditSupport.listeners, this.support.!javax.swing.undo.UndoableEditSupport.realSource, this.support.!javax.swing.undo.UndoableEditSupport.updateLevel } TO = javax.swing.undo.UndoableEditSupport#postEdit( javax.swing.undo.UndoableEdit )
@@ -682,17 +682,17 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
 * actualOut D = { this.currentFigure } U = {  }
 * actualOut D = { this.grabbedFigure } U = {  }
 --
-   0 methodEntry [ getGrabbedFigure( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#getGrabbedFigure( ) ]
    1 returnSt D = { $_ } U = { this.grabbedFigure, this.grabbedFigure.color, this.grabbedFigure.endX, this.grabbedFigure.endY, this.grabbedFigure.outlineWidth, this.grabbedFigure.startX, this.grabbedFigure.startY }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ curY ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#curY ]
    1 fieldDeclaration D = { this.curY } U = { this.curY }
 --
-   0 fieldEntry [ curX ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#curX ]
    1 fieldDeclaration D = { this.curX } U = { this.curX }
 --
-   0 methodEntry [ mouseReleased( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#mouseReleased( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    2 ifSt D = {  } U = { this.!getCurrentFigure( ) }
    3 receiver D = {  } U = {  }
@@ -893,13 +893,14 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   18:    9 ->   12 exceptionCatch
   19:   10 ->    7 loopIndependentDefUseDependence this.!wait( )
   20:   10 ->   10 defOrderDependence this.!wait( )
-  21:   13 ->   17 trueControlDependence
-  22:   13 ->   18 trueControlDependence
-  23:   13 ->   19 trueControlDependence
-  24:   13 ->   20 trueControlDependence
-  25:   13 -> * trueControlDependence
-  26:   16 ->   13 loopIndependentDefUseDependence this.!hasChanged( )
-  27: * ->   17 loopIndependentDefUseDependence this.menu.!saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
+  21:   12 ->   12 outputDependence e$0
+  22:   13 ->   17 trueControlDependence
+  23:   13 ->   18 trueControlDependence
+  24:   13 ->   19 trueControlDependence
+  25:   13 ->   20 trueControlDependence
+  26:   13 -> * trueControlDependence
+  27:   16 ->   13 loopIndependentDefUseDependence this.!hasChanged( )
+  28: * ->   17 loopIndependentDefUseDependence this.menu.!saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
 --
    0: mouseEntered( java.awt.event.MouseEvent )
    1:    0 ->    1 trueControlDependence
@@ -1579,28 +1580,27 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
 --
    0: isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlDependence
-   2:    0 ->    2 trueControlDependence
-   3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->   15 trueControlDependence
-   7:    1 ->    7 loopIndependentDefUseDependence figure$0
-   8:    2 ->    2 defOrderDependence fig$1
-   9:    2 ->    6 trueControlDependence
-  10:    2 ->    7 trueControlDependence
-  11:    2 ->    8 trueControlDependence
-  12:    2 ->    9 loopIndependentDefUseDependence fig$1
-  13:    2 ->    9 trueControlDependence
-  14:    2 ->   10 trueControlDependence
-  15:    2 ->   13 falseControlDependence
-  16:    5 ->    2 loopIndependentDefUseDependence this.figureManager.!getFigures( )
-  17:    6 ->    2 falseControlDependence
-  18:    6 ->   11 trueControlDependence
-  19:   10 ->    6 loopIndependentDefUseDependence figure$0.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
-  20:   10 ->   10 defOrderDependence figure$0.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
-  21:   11 ->    2 fallThroughControlDependence
-  22:   11 ->   15 loopIndependentDefUseDependence $_
-  23:   13 ->   15 loopIndependentDefUseDependence $_
+   2:    0 ->    3 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    0 ->    5 trueControlDependence
+   5:    0 ->   15 trueControlDependence
+   6:    1 ->    7 loopIndependentDefUseDependence figure$0
+   7:    2 ->    2 defOrderDependence fig$1
+   8:    2 ->    6 trueControlDependence
+   9:    2 ->    7 trueControlDependence
+  10:    2 ->    8 trueControlDependence
+  11:    2 ->    9 loopIndependentDefUseDependence fig$1
+  12:    2 ->    9 trueControlDependence
+  13:    2 ->   10 trueControlDependence
+  14:    2 ->   13 falseControlDependence
+  15:    5 ->    2 loopIndependentDefUseDependence this.figureManager.!getFigures( )
+  16:    6 ->    2 falseControlDependence
+  17:    6 ->   11 trueControlDependence
+  18:   10 ->    6 loopIndependentDefUseDependence figure$0.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
+  19:   10 ->   10 defOrderDependence figure$0.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
+  20:   11 ->    2 fallThroughControlDependence
+  21:   11 ->   15 loopIndependentDefUseDependence $_
+  22:   13 ->   15 loopIndependentDefUseDependence $_
 --
    0: getGrabbedFigure( int int )
    1:    0 ->    1 trueControlDependence
@@ -1616,56 +1616,55 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   11:    0 ->   11 trueControlDependence
   12:    0 ->   12 trueControlDependence
   13:    0 ->   13 trueControlDependence
-  14:    0 ->   18 trueControlDependence
-  15:    0 ->   19 trueControlDependence
-  16:    0 ->   20 trueControlDependence
-  17:    0 ->   21 trueControlDependence
-  18:    0 ->   36 trueControlDependence
-  19:    1 ->   29 loopIndependentDefUseDependence x$0
-  20:    2 ->   30 loopIndependentDefUseDependence y$1
-  21:    3 ->   11 declaration
-  22:    3 ->   11 loopIndependentDefUseDependence it$2
-  23:    3 ->   15 declaration
-  24:    3 ->   15 loopIndependentDefUseDependence it$2
-  25:    3 ->   19 declaration
-  26:    3 ->   19 loopIndependentDefUseDependence it$2
-  27:    3 ->   23 declaration
-  28:    3 ->   23 loopIndependentDefUseDependence it$2
-  29:    7 ->    4 loopIndependentDefUseDependence this.figureManager.!getFigures( )
-  30:    9 ->    3 loopIndependentDefUseDependence this.figureManager.!getFigures( ).!listIterator( )
-  31:   10 ->   14 trueControlDependence
-  32:   10 ->   15 trueControlDependence
-  33:   10 ->   16 trueControlDependence
-  34:   10 ->   17 trueControlDependence
-  35:   13 ->   10 loopIndependentDefUseDependence it$2.!hasNext( )
-  36:   17 ->   14 loopIndependentDefUseDependence it$2.!next( )
-  37:   17 ->   17 defOrderDependence it$2.!next( )
-  38:   18 ->   22 trueControlDependence
-  39:   18 ->   23 trueControlDependence
-  40:   18 ->   24 trueControlDependence
-  41:   18 ->   25 trueControlDependence
-  42:   18 ->   26 trueControlDependence
-  43:   18 ->   27 trueControlDependence
-  44:   18 ->   28 trueControlDependence
-  45:   18 ->   29 trueControlDependence
-  46:   18 ->   30 trueControlDependence
-  47:   18 ->   31 trueControlDependence
-  48:   18 ->   34 falseControlDependence
-  49:   21 ->   18 loopIndependentDefUseDependence it$2.!hasPrevious( )
-  50:   22 ->   22 defOrderDependence figure$3
-  51:   22 ->   27 declaration
-  52:   22 ->   27 loopIndependentDefUseDependence figure$3
-  53:   22 ->   32 declaration
-  54:   22 ->   32 loopIndependentDefUseDependence figure$3
-  55:   25 ->   22 loopIndependentDefUseDependence it$2.!previous( )
-  56:   25 ->   25 defOrderDependence it$2.!previous( )
-  57:   26 ->   18 falseControlDependence
-  58:   26 ->   32 trueControlDependence
-  59:   31 ->   26 loopIndependentDefUseDependence figure$3.!isGrabbed( int int )
-  60:   31 ->   31 defOrderDependence figure$3.!isGrabbed( int int )
-  61:   32 ->   18 fallThroughControlDependence
-  62:   32 ->   36 loopIndependentDefUseDependence $_
-  63:   34 ->   36 loopIndependentDefUseDependence $_
+  14:    0 ->   19 trueControlDependence
+  15:    0 ->   20 trueControlDependence
+  16:    0 ->   21 trueControlDependence
+  17:    0 ->   36 trueControlDependence
+  18:    1 ->   29 loopIndependentDefUseDependence x$0
+  19:    2 ->   30 loopIndependentDefUseDependence y$1
+  20:    3 ->   11 declaration
+  21:    3 ->   11 loopIndependentDefUseDependence it$2
+  22:    3 ->   15 declaration
+  23:    3 ->   15 loopIndependentDefUseDependence it$2
+  24:    3 ->   19 declaration
+  25:    3 ->   19 loopIndependentDefUseDependence it$2
+  26:    3 ->   23 declaration
+  27:    3 ->   23 loopIndependentDefUseDependence it$2
+  28:    7 ->    4 loopIndependentDefUseDependence this.figureManager.!getFigures( )
+  29:    9 ->    3 loopIndependentDefUseDependence this.figureManager.!getFigures( ).!listIterator( )
+  30:   10 ->   14 trueControlDependence
+  31:   10 ->   15 trueControlDependence
+  32:   10 ->   16 trueControlDependence
+  33:   10 ->   17 trueControlDependence
+  34:   13 ->   10 loopIndependentDefUseDependence it$2.!hasNext( )
+  35:   17 ->   14 loopIndependentDefUseDependence it$2.!next( )
+  36:   17 ->   17 defOrderDependence it$2.!next( )
+  37:   18 ->   22 trueControlDependence
+  38:   18 ->   23 trueControlDependence
+  39:   18 ->   24 trueControlDependence
+  40:   18 ->   25 trueControlDependence
+  41:   18 ->   26 trueControlDependence
+  42:   18 ->   27 trueControlDependence
+  43:   18 ->   28 trueControlDependence
+  44:   18 ->   29 trueControlDependence
+  45:   18 ->   30 trueControlDependence
+  46:   18 ->   31 trueControlDependence
+  47:   18 ->   34 falseControlDependence
+  48:   21 ->   18 loopIndependentDefUseDependence it$2.!hasPrevious( )
+  49:   22 ->   22 defOrderDependence figure$3
+  50:   22 ->   27 declaration
+  51:   22 ->   27 loopIndependentDefUseDependence figure$3
+  52:   22 ->   32 declaration
+  53:   22 ->   32 loopIndependentDefUseDependence figure$3
+  54:   25 ->   22 loopIndependentDefUseDependence it$2.!previous( )
+  55:   25 ->   25 defOrderDependence it$2.!previous( )
+  56:   26 ->   18 falseControlDependence
+  57:   26 ->   32 trueControlDependence
+  58:   31 ->   26 loopIndependentDefUseDependence figure$3.!isGrabbed( int int )
+  59:   31 ->   31 defOrderDependence figure$3.!isGrabbed( int int )
+  60:   32 ->   18 fallThroughControlDependence
+  61:   32 ->   36 loopIndependentDefUseDependence $_
+  62:   34 ->   36 loopIndependentDefUseDependence $_
 --
    0: pasteFigure( jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlDependence

@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test122
-   0 methodEntry [ n( int ) ]
+   0 methodEntry [ Test122#n( int ) ]
    1 throwsClause D = {  } U = { $java.lang.Exception }
    2 formalIn D = { x$0 } U = {  }
    3 ifSt D = {  } U = { x$0 }
@@ -11,10 +11,10 @@ Class Name = Test122
    9 returnSt D = { $_ } U = { x$0 }
   11 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test122( ) ]
+   0 constructorEntry [ Test122#Test122( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test122#m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
    2 localDeclaration D = { b$1 } U = {  }
    3 trySt D = {  } U = {  }
@@ -60,33 +60,32 @@ Class Name = Test122
    5:    0 ->    6 trueControlDependence
    6:    0 ->    7 trueControlDependence
    7:    0 ->    8 trueControlDependence
-   8:    0 ->   14 trueControlDependence
-   9:    0 ->   16 trueControlDependence
-  10:    0 ->   18 trueControlDependence
-  11:    1 ->    4 declaration
-  12:    1 ->    4 loopIndependentDefUseDependence a$0
-  13:    1 ->    8 declaration
-  14:    1 ->    8 loopIndependentDefUseDependence a$0
-  15:    2 ->    5 declaration
-  16:    2 ->    5 outputDependence b$1
-  17:    2 ->   10 declaration
-  18:    2 ->   15 declaration
-  19:    2 ->   15 loopIndependentDefUseDependence b$1
-  20:    2 ->   16 declaration
-  21:    2 ->   16 loopIndependentDefUseDependence b$1
-  22:    3 ->   12 trueControlDependence
-  23:    3 ->   14 trueControlDependence
-  24:    5 ->   10 loopIndependentDefUseDependence b$1
-  25:    5 ->   15 loopIndependentDefUseDependence b$1
-  26:    5 ->   16 loopIndependentDefUseDependence b$1
-  27:    7 ->    5 trueControlDependence
-  28:    7 ->   10 trueControlDependence
-  29:    7 ->   12 exceptionCatch
-  30:    7 -> * trueControlDependence
-  31:   12 ->   13 loopIndependentDefUseDependence e$6
-  32:   12 ->   13 trueControlDependence
-  33:   14 ->   15 trueControlDependence
-  34: * ->    5 loopIndependentDefUseDependence this.!n( int )
+   8:    0 ->   16 trueControlDependence
+   9:    0 ->   18 trueControlDependence
+  10:    1 ->    4 declaration
+  11:    1 ->    4 loopIndependentDefUseDependence a$0
+  12:    1 ->    8 declaration
+  13:    1 ->    8 loopIndependentDefUseDependence a$0
+  14:    2 ->    5 declaration
+  15:    2 ->    5 outputDependence b$1
+  16:    2 ->   10 declaration
+  17:    2 ->   15 declaration
+  18:    2 ->   15 loopIndependentDefUseDependence b$1
+  19:    2 ->   16 declaration
+  20:    2 ->   16 loopIndependentDefUseDependence b$1
+  21:    3 ->   12 trueControlDependence
+  22:    3 ->   14 trueControlDependence
+  23:    5 ->   10 loopIndependentDefUseDependence b$1
+  24:    5 ->   15 loopIndependentDefUseDependence b$1
+  25:    5 ->   16 loopIndependentDefUseDependence b$1
+  26:    7 ->    5 trueControlDependence
+  27:    7 ->   10 trueControlDependence
+  28:    7 ->   12 exceptionCatch
+  29:    7 -> * trueControlDependence
+  30:   12 ->   13 loopIndependentDefUseDependence e$6
+  31:   12 ->   13 trueControlDependence
+  32:   14 ->   15 trueControlDependence
+  33: * ->    5 loopIndependentDefUseDependence this.!n( int )
 --
 ----- ClDG (to here) -----
 

@@ -1,15 +1,15 @@
 ----- ClDG (from here) -----
 Class Name = org.jtool.videostore.after.Movie.PriceCode
-   0 enumConstantEntry [ CHILDRENS ]
+   0 enumConstantEntry [ org.jtool.videostore.after.Movie.PriceCode#CHILDRENS ]
    1 fieldDeclaration D = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS } U = {  }
 --
-   0 constructorEntry [ PriceCode( ) ]
+   0 constructorEntry [ org.jtool.videostore.after.Movie.PriceCode#PriceCode( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 enumConstantEntry [ REGULAR ]
+   0 enumConstantEntry [ org.jtool.videostore.after.Movie.PriceCode#REGULAR ]
    1 fieldDeclaration D = { org.jtool.videostore.after.Movie.PriceCode.REGULAR } U = {  }
 --
-   0 enumConstantEntry [ NEW_RELEASE ]
+   0 enumConstantEntry [ org.jtool.videostore.after.Movie.PriceCode#NEW_RELEASE ]
    1 fieldDeclaration D = { org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE } U = {  }
 --
    0: CHILDRENS

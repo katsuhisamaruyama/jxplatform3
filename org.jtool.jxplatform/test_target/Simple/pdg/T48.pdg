@@ -1,12 +1,12 @@
 ----- ClDG (from here) -----
 Class Name = T48
-   0 methodEntry [ m1( ) ]
+   0 methodEntry [ T48#m1( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ T48( ) ]
+   0 constructorEntry [ T48#T48( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m3( ) ]
+   0 methodEntry [ T48#m3( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m1( )

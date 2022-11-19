@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = RedBlock
-   0 constructorEntry [ RedBlock( int int ) ]
+   0 constructorEntry [ RedBlock#RedBlock( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 assignment D = {  } U = { super.!Block( int int ) }
@@ -54,7 +54,7 @@ Class Name = RedBlock
 * actualOut D = { this.!addTile( int int java.awt.Color ).posX } U = {  }
 * actualOut D = { this.!addTile( int int java.awt.Color ).posY } U = {  }
 --
-   0 fieldEntry [ color ]
+   0 fieldEntry [ RedBlock#color ]
    1 fieldDeclaration D = { RedBlock.color } U = { RedBlock.color, RedBlock.color.red }
 --
    0: RedBlock( int int )

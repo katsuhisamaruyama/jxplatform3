@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = SubRuntimeException
-   0 constructorEntry [ SubRuntimeException( ) ]
+   0 constructorEntry [ SubRuntimeException#SubRuntimeException( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: SubRuntimeException( )

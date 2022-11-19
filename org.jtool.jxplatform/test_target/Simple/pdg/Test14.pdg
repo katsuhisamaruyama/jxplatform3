@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test14
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test14#m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
    2 localDeclaration D = { b$1 } U = {  }
    3 localDeclaration D = { c$2 } U = {  }
@@ -26,10 +26,10 @@ Class Name = Test14
 * actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   27 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test14( ) ]
+   0 constructorEntry [ Test14#Test14( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ flag ]
+   0 fieldEntry [ Test14#flag ]
    1 fieldDeclaration D = { Test14.flag } U = { Test14.flag }
 --
    0: m( )
@@ -37,72 +37,70 @@ Class Name = Test14
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->   10 trueControlDependence
-   7:    0 ->   11 trueControlDependence
-   8:    0 ->   12 trueControlDependence
-   9:    0 ->   18 trueControlDependence
-  10:    0 ->   19 trueControlDependence
-  11:    0 ->   20 trueControlDependence
-  12:    0 ->   22 trueControlDependence
-  13:    0 ->   23 trueControlDependence
-  14:    0 ->   24 trueControlDependence
-  15:    0 ->   27 trueControlDependence
-  16:    0 -> * trueControlDependence
-  17:    0 -> * trueControlDependence
-  18:    1 ->    6 declaration
-  19:    1 ->    6 outputDependence a$0
-  20:    1 ->    7 declaration
-  21:    1 ->   13 declaration
-  22:    1 ->   13 loopIndependentDefUseDependence a$0
-  23:    1 ->   14 declaration
-  24:    1 ->   14 loopIndependentDefUseDependence a$0
-  25:    1 ->   15 declaration
-  26:    1 ->   20 declaration
-  27:    1 ->   20 loopIndependentDefUseDependence a$0
-  28:    2 ->    6 declaration
-  29:    2 ->    6 loopIndependentDefUseDependence b$1
-  30:    2 ->   13 declaration
-  31:    2 ->   13 outputDependence b$1
-  32:    2 ->   20 declaration
-  33:    2 ->   20 loopIndependentDefUseDependence b$1
-  34:    3 ->    6 declaration
-  35:    3 ->    6 loopIndependentDefUseDependence c$2
-  36:    3 ->   11 declaration
-  37:    3 ->   11 outputDependence c$2
-  38:    3 ->   13 declaration
-  39:    3 ->   20 declaration
-  40:    4 ->   24 declaration
-  41:    4 ->   24 loopIndependentDefUseDependence str$3
-  42:    5 ->    6 trueControlDependence
-  43:    5 ->    7 trueControlDependence
-  44:    6 ->    6 defOrderDependence a$0
-  45:    6 ->    7 loopIndependentDefUseDependence a$0
-  46:    6 ->   13 loopIndependentDefUseDependence a$0
-  47:    6 ->   14 loopIndependentDefUseDependence a$0
-  48:    6 ->   20 loopIndependentDefUseDependence a$0
-  49:    7 ->    5 falseControlDependence
-  50:    7 ->    8 trueControlDependence
-  51:    8 ->    5 fallThroughControlDependence
-  52:   10 ->   12 loopIndependentDefUseDependence Test14.flag
-  53:   11 ->   13 loopIndependentDefUseDependence c$2
-  54:   11 ->   20 loopIndependentDefUseDependence c$2
-  55:   12 ->   13 trueControlDependence
-  56:   12 ->   14 trueControlDependence
-  57:   12 ->   15 trueControlDependence
-  58:   13 ->   13 defOrderDependence b$1
-  59:   13 ->   20 loopIndependentDefUseDependence b$1
-  60:   14 ->   13 loopCarriedDefUseDependence a$0 (LC =   12)
-  61:   14 ->   14 loopCarriedDefUseDependence a$0 (LC =   12)
-  62:   14 ->   15 loopIndependentDefUseDependence a$0
-  63:   14 ->   20 loopIndependentDefUseDependence a$0
-  64:   15 ->   12 falseControlDependence
-  65:   15 ->   16 trueControlDependence
-  66:   16 ->   12 fallThroughControlDependence
-  67: * ->   18 loopIndependentDefUseDependence System.out.!println( java.lang.String )
-  68: * ->   22 loopIndependentDefUseDependence System.out.!println( java.lang.String )
-  69: * -> * outputDependence System.out.!java.io.PrintStream.trouble
-  70: * -> * outputDependence System.out.!println( java.lang.String )
+   5:    0 ->   10 trueControlDependence
+   6:    0 ->   11 trueControlDependence
+   7:    0 ->   18 trueControlDependence
+   8:    0 ->   19 trueControlDependence
+   9:    0 ->   20 trueControlDependence
+  10:    0 ->   22 trueControlDependence
+  11:    0 ->   23 trueControlDependence
+  12:    0 ->   24 trueControlDependence
+  13:    0 ->   27 trueControlDependence
+  14:    0 -> * trueControlDependence
+  15:    0 -> * trueControlDependence
+  16:    1 ->    6 declaration
+  17:    1 ->    6 outputDependence a$0
+  18:    1 ->    7 declaration
+  19:    1 ->   13 declaration
+  20:    1 ->   13 loopIndependentDefUseDependence a$0
+  21:    1 ->   14 declaration
+  22:    1 ->   14 loopIndependentDefUseDependence a$0
+  23:    1 ->   15 declaration
+  24:    1 ->   20 declaration
+  25:    1 ->   20 loopIndependentDefUseDependence a$0
+  26:    2 ->    6 declaration
+  27:    2 ->    6 loopIndependentDefUseDependence b$1
+  28:    2 ->   13 declaration
+  29:    2 ->   13 outputDependence b$1
+  30:    2 ->   20 declaration
+  31:    2 ->   20 loopIndependentDefUseDependence b$1
+  32:    3 ->    6 declaration
+  33:    3 ->    6 loopIndependentDefUseDependence c$2
+  34:    3 ->   11 declaration
+  35:    3 ->   11 outputDependence c$2
+  36:    3 ->   13 declaration
+  37:    3 ->   20 declaration
+  38:    4 ->   24 declaration
+  39:    4 ->   24 loopIndependentDefUseDependence str$3
+  40:    5 ->    6 trueControlDependence
+  41:    5 ->    7 trueControlDependence
+  42:    6 ->    6 defOrderDependence a$0
+  43:    6 ->    7 loopIndependentDefUseDependence a$0
+  44:    6 ->   13 loopIndependentDefUseDependence a$0
+  45:    6 ->   14 loopIndependentDefUseDependence a$0
+  46:    6 ->   20 loopIndependentDefUseDependence a$0
+  47:    7 ->    5 falseControlDependence
+  48:    7 ->    8 trueControlDependence
+  49:    8 ->    5 fallThroughControlDependence
+  50:   10 ->   12 loopIndependentDefUseDependence Test14.flag
+  51:   11 ->   13 loopIndependentDefUseDependence c$2
+  52:   11 ->   20 loopIndependentDefUseDependence c$2
+  53:   12 ->   13 trueControlDependence
+  54:   12 ->   14 trueControlDependence
+  55:   12 ->   15 trueControlDependence
+  56:   13 ->   13 defOrderDependence b$1
+  57:   13 ->   20 loopIndependentDefUseDependence b$1
+  58:   14 ->   13 loopCarriedDefUseDependence a$0 (LC =   12)
+  59:   14 ->   14 loopCarriedDefUseDependence a$0 (LC =   12)
+  60:   14 ->   15 loopIndependentDefUseDependence a$0
+  61:   14 ->   20 loopIndependentDefUseDependence a$0
+  62:   15 ->   12 falseControlDependence
+  63:   15 ->   16 trueControlDependence
+  64:   16 ->   12 fallThroughControlDependence
+  65: * ->   18 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+  66: * ->   22 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+  67: * -> * outputDependence System.out.!java.io.PrintStream.trouble
+  68: * -> * outputDependence System.out.!println( java.lang.String )
 --
    0: Test14( )
    1:    0 ->    2 trueControlDependence

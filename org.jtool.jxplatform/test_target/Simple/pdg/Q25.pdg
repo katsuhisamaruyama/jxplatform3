@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Q25
-   0 constructorEntry [ Q25( ) ]
+   0 constructorEntry [ Q25#Q25( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: Q25( )

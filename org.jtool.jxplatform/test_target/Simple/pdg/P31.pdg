@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = P31
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ P31#m( ) ]
    1 localDeclaration D = { xx$0 } U = { super.x }
    2 assignment D = {  } U = { super.!m( ) }
    3 receiver D = {  } U = {  }
@@ -8,11 +8,11 @@ Class Name = P31
    5 actualOut D = { super.!m( ) } U = {  }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ n( ) ]
+   0 methodEntry [ P31#n( ) ]
    1 localDeclaration D = { p$0 } U = { this }
    3 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ P31( ) ]
+   0 constructorEntry [ P31#P31( ) ]
    1 assignment D = {  } U = { this.!P31( int ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P31#P31( int )
@@ -21,15 +21,15 @@ Class Name = P31
    7 formalOut D = {  } U = { $_ }
 * actualOut D = { this.x } U = {  }
 --
-   0 constructorEntry [ P31( int ) ]
+   0 constructorEntry [ P31#P31( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 assignment D = { this.x } U = { x$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ x ]
+   0 fieldEntry [ P31#x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
-   0 constructorEntry [ P31( int int ) ]
+   0 constructorEntry [ P31#P31( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 assignment D = {  } U = { super.!Test31( int ) }

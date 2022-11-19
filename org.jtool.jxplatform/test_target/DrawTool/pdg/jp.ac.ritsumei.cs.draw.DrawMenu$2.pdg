@@ -1,10 +1,10 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$2
-   0 methodEntry [ menuDeselected( javax.swing.event.MenuEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawMenu$2#menuDeselected( javax.swing.event.MenuEvent ) ]
    1 formalIn D = { evt$13 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ menuSelected( javax.swing.event.MenuEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawMenu$2#menuSelected( javax.swing.event.MenuEvent ) ]
    1 formalIn D = { evt$7 } U = {  }
    2 assignment D = {  } U = { windowMenu$3.!removeAll( ) }
    3 receiver D = {  } U = { windowMenu$3 }
@@ -35,7 +35,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$2
 * actualOut D = { windowItem$11.!addActionListener( java.awt.event.ActionListener ), windowItem$11.!javax.swing.event.EventListenerList.listenerList } U = { javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.event.EventListenerList.listenerList, windowItem$11.!javax.swing.AbstractButton.listenerList, windowItem$11.!javax.swing.event.EventListenerList.NULL_ARRAY, windowItem$11.!javax.swing.event.EventListenerList.listenerList }
   30 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ menuCanceled( javax.swing.event.MenuEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawMenu$2#menuCanceled( javax.swing.event.MenuEvent ) ]
    1 formalIn D = { evt$12 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
@@ -95,8 +95,9 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$2
   49: * ->   25 loopIndependentDefUseDependence windowItem$11.!addActionListener( java.awt.event.ActionListener )
   50: * ->   27 loopIndependentDefUseDependence windowItem$11.!javax.swing.event.EventListenerList.listenerList
   51: * -> * defOrderDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
-  52: * -> * defOrderDependence windowItem$11.!addActionListener( java.awt.event.ActionListener )
-  53: * -> * loopIndependentDefUseDependence windowItem$11.!javax.swing.event.EventListenerList.listenerList
+  52: * -> * defOrderDependence javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged
+  53: * -> * defOrderDependence windowItem$11.!addActionListener( java.awt.event.ActionListener )
+  54: * -> * loopIndependentDefUseDependence windowItem$11.!javax.swing.event.EventListenerList.listenerList
 --
    0: menuCanceled( javax.swing.event.MenuEvent )
    1:    0 ->    1 trueControlDependence

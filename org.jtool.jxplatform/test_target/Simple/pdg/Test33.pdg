@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Test33
-   0 constructorEntry [ Test33( ) ]
+   0 constructorEntry [ Test33#Test33( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test33#m( ) ]
    1 trySt D = {  } U = {  }
    2 localDeclaration D = { in$2 } U = { java.io.FileInputStream.!FileInputStream( java.lang.String ) }
    3 receiver D = {  } U = {  }
@@ -41,18 +41,19 @@ Class Name = Test33
   13:    4 -> * trueControlDependence
   14:    6 ->    7 declaration
   15:    6 ->    7 outputDependence c$3
-  16:    7 ->   11 trueControlDependence
-  17:    9 ->    7 trueControlDependence
-  18:    9 ->   10 trueControlDependence
-  19:    9 ->   13 exceptionCatch
-  20:   10 ->    7 loopIndependentDefUseDependence in$2.!read( )
-  21:   13 ->   14 trueControlDependence
-  22:   13 ->   15 loopIndependentDefUseDependence e$4
-  23:   13 ->   15 trueControlDependence
-  24:   13 ->   16 trueControlDependence
-  25:   13 ->   17 trueControlDependence
-  26:   17 ->   14 loopIndependentDefUseDependence e$4.!printStackTrace( )
-  27: * ->    2 loopIndependentDefUseDependence java.io.FileInputStream.!FileInputStream( java.lang.String )
+  16:    7 ->    7 outputDependence c$3
+  17:    7 ->   11 trueControlDependence
+  18:    9 ->    7 trueControlDependence
+  19:    9 ->   10 trueControlDependence
+  20:    9 ->   13 exceptionCatch
+  21:   10 ->    7 loopIndependentDefUseDependence in$2.!read( )
+  22:   13 ->   14 trueControlDependence
+  23:   13 ->   15 loopIndependentDefUseDependence e$4
+  24:   13 ->   15 trueControlDependence
+  25:   13 ->   16 trueControlDependence
+  26:   13 ->   17 trueControlDependence
+  27:   17 ->   14 loopIndependentDefUseDependence e$4.!printStackTrace( )
+  28: * ->    2 loopIndependentDefUseDependence java.io.FileInputStream.!FileInputStream( java.lang.String )
 --
 ----- ClDG (to here) -----
 

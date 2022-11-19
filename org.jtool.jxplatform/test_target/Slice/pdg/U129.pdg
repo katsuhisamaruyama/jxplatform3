@@ -1,15 +1,15 @@
 ----- ClDG (from here) -----
 Class Name = U129
-   0 fieldEntry [ t ]
+   0 fieldEntry [ U129#t ]
    1 fieldDeclaration D = { this.t } U = { T129.!T129( ), this.t }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = T129#T129( )
    4 actualOut D = { T129.!T129( ) } U = {  }
 --
-   0 constructorEntry [ U129( ) ]
+   0 constructorEntry [ U129#U129( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ set1( java.lang.String java.lang.String ) ]
+   0 methodEntry [ U129#set1( java.lang.String java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 formalIn D = { value$1 } U = {  }
    3 assignment D = {  } U = { this.t.!set1( java.lang.String java.lang.String ) }
@@ -20,7 +20,7 @@ Class Name = U129
 * actualOut D = { this.t.!set1( java.lang.String java.lang.String ), this.t.p.map.!java.util.HashMap$Node.next, this.t.p.map.!java.util.HashMap$Node.value, this.t.p.map.!java.util.HashMap.modCount, this.t.p.map.!java.util.HashMap.size } U = { this.t.p, this.t.p.map, this.t.p.map.!java.util.HashMap$Node.hash, this.t.p.map.!java.util.HashMap$Node.key, this.t.p.map.!java.util.HashMap$Node.next, this.t.p.map.!java.util.HashMap$Node.value, this.t.p.map.!java.util.HashMap.modCount, this.t.p.map.!java.util.HashMap.size, this.t.p.map.!java.util.HashMap.table, this.t.p.map.!java.util.HashMap.threshold }
   10 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ get1( java.lang.String ) ]
+   0 methodEntry [ U129#get1( java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 returnSt D = { $_ } U = { this.t.!get1( java.lang.String ) }
    3 receiver D = {  } U = { this.t }

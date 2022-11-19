@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = CustomerTest
-   0 methodEntry [ testStatement1( ) ]
+   0 methodEntry [ CustomerTest#testStatement1( ) ]
    1 localDeclaration D = { customer$0 } U = { Customer.!Customer( java.lang.String ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = Customer#Customer( java.lang.String )
@@ -39,7 +39,7 @@ Class Name = CustomerTest
 * actualOut D = { Rental.!Rental( int int ).price } U = {  }
 * actualOut D = { customer$0.discount } U = {  }
 --
-   0 methodEntry [ testStatement2( ) ]
+   0 methodEntry [ CustomerTest#testStatement2( ) ]
    1 localDeclaration D = { customer$0 } U = { Customer.!Customer( java.lang.String ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = Customer#Customer( java.lang.String )
@@ -90,7 +90,7 @@ Class Name = CustomerTest
 * actualOut D = { Rental.!Rental( int int ).price } U = {  }
 * actualOut D = { customer$0.discount } U = {  }
 --
-   0 constructorEntry [ CustomerTest( ) ]
+   0 constructorEntry [ CustomerTest#CustomerTest( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: testStatement1( )

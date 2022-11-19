@@ -1,21 +1,21 @@
 ----- ClDG (from here) -----
 Class Name = Enum60
-   0 constructorEntry [ Enum60( int ) ]
+   0 constructorEntry [ Enum60#Enum60( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 assignment D = { this.x } U = { x$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 enumConstantEntry [ X ]
+   0 enumConstantEntry [ Enum60#X ]
    1 fieldDeclaration D = { Enum60.X } U = { Enum60.!Enum60( int ) }
    2 constructorCall D = {  } U = {  } TO = Enum60#Enum60( int )
    3 actualIn D = {  } U = {  }
    4 actualOut D = { Enum60.!Enum60( int ) } U = {  }
 * actualOut D = { Enum60.!Enum60( int ).x } U = {  }
 --
-   0 fieldEntry [ x ]
+   0 fieldEntry [ Enum60#x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
-   0 enumConstantEntry [ Y ]
+   0 enumConstantEntry [ Enum60#Y ]
    1 fieldDeclaration D = { Enum60.Y } U = { Enum60.!Enum60( int ) }
    2 constructorCall D = {  } U = {  } TO = Enum60#Enum60( int )
    3 actualIn D = {  } U = {  }

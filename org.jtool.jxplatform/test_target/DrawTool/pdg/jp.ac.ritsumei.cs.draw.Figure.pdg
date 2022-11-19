@@ -1,19 +1,19 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.Figure
-   0 fieldEntry [ ALLOWABLE_GAP_WHEN_GRABBED ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.Figure#ALLOWABLE_GAP_WHEN_GRABBED ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.Figure.ALLOWABLE_GAP_WHEN_GRABBED } U = { jp.ac.ritsumei.cs.draw.Figure.ALLOWABLE_GAP_WHEN_GRABBED }
 --
-   0 methodEntry [ setStart( int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#setStart( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 assignment D = { this.startX } U = { x$0 }
    4 assignment D = { this.startY } U = { y$1 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ color ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.Figure#color ]
    1 fieldDeclaration D = { this.color } U = { this.color }
 --
-   0 methodEntry [ getInfo( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getInfo( ) ]
    1 returnSt D = { $_ } U = { $java.lang.String, this.!getName( ), this.!getPositionInfo( int int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#getName( )
@@ -42,7 +42,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
   26 actualOut D = { this.!getPositionInfo( int int ) } U = {  }
   28 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Figure( ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Figure#Figure( ) ]
    1 assignment D = {  } U = { this.!Figure( java.awt.Color float ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( java.awt.Color float )
@@ -53,7 +53,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 constructorEntry [ Figure( float ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Figure#Figure( float ) ]
    1 formalIn D = { w$0 } U = {  }
    2 assignment D = {  } U = { this.!Figure( java.awt.Color float ) }
    3 receiver D = {  } U = {  }
@@ -65,14 +65,14 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 methodEntry [ getTop( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getTop( ) ]
    1 returnSt D = { $_ } U = { this.!min( int int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { this.endY, this.startY } TO = java.lang.Math#min( int int )
    4 actualOut D = { this.!min( int int ) } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ hashCode( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#hashCode( ) ]
    1 returnSt D = { $_ } U = { this.!getName( ).!hashCode( ) }
    2 receiver D = {  } U = { this.!getName( ) }
    3 receiver D = {  } U = {  }
@@ -82,11 +82,11 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    7 actualOut D = { this.!getName( ).!hashCode( ) } U = {  }
    9 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ drawGrabbedFigure( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#drawGrabbedFigure( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getHeight( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getHeight( ) ]
    1 returnSt D = { $_ } U = { this.!getBottom( ), this.!getTop( ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { this.endY, this.startY } TO = jp.ac.ritsumei.cs.draw.Figure#getBottom( )
@@ -96,11 +96,11 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    7 actualOut D = { this.!getTop( ) } U = { this.endY, this.startY }
    9 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getOutlineWidth( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getOutlineWidth( ) ]
    1 returnSt D = { $_ } U = { this.outlineWidth }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ drawGrabbedMark( java.awt.Graphics int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#drawGrabbedMark( java.awt.Graphics int int ) ]
    1 formalIn D = { g$0 } U = {  }
    2 formalIn D = { x$1 } U = {  }
    3 formalIn D = { y$2 } U = {  }
@@ -110,7 +110,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    7 actualOut D = { g$0.!fillRect( int int int int ) } U = {  }
    9 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ isOverlapped( jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#isOverlapped( jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { figure$0 } U = {  }
    2 returnSt D = { $_ } U = { figure$0.!getBottom( ), figure$0.!getLeft( ), figure$0.!getRight( ), figure$0.!getTop( ), this.!getBottom( ), this.!getLeft( ), this.!getRight( ), this.!getTop( ) }
    3 receiver D = {  } U = {  }
@@ -139,7 +139,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
   26 actualOut D = { figure$0.!getBottom( ) } U = {  }
   28 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ equals( jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#equals( jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { figure$0 } U = {  }
    2 returnSt D = { $_ } U = { this.!getName( ).!equals( java.lang.Object ), this.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure ) }
    3 receiver D = {  } U = { this.!getName( ) }
@@ -157,47 +157,47 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
   15 actualOut D = { this.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure ) } U = { this.endX, this.endY, this.startX, this.startY }
   17 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ drawOutline( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#drawOutline( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ drawRubber( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#drawRubber( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ outlineWidth ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.Figure#outlineWidth ]
    1 fieldDeclaration D = { this.outlineWidth } U = { this.outlineWidth }
 --
-   0 fieldEntry [ dotted ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.Figure#dotted ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.Figure.dotted } U = { java.awt.BasicStroke.!BasicStroke( float int int float float[] float ), jp.ac.ritsumei.cs.draw.Figure.dotted }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { BasicStroke.CAP_SQUARE, BasicStroke.CAP_SQUARE.JOIN_MITER } TO = java.awt.BasicStroke#BasicStroke( float int int float float[] float )
 * actualOut D = { java.awt.BasicStroke.!BasicStroke( float int int float float[] float ), java.awt.BasicStroke.!java.awt.BasicStroke.cap, java.awt.BasicStroke.!java.awt.BasicStroke.dash, java.awt.BasicStroke.!java.awt.BasicStroke.dash_phase, java.awt.BasicStroke.!java.awt.BasicStroke.join, java.awt.BasicStroke.!java.awt.BasicStroke.miterlimit, java.awt.BasicStroke.!java.awt.BasicStroke.width } U = {  }
 --
-   0 fieldEntry [ startX ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.Figure#startX ]
    1 fieldDeclaration D = { this.startX } U = { this.startX }
 --
-   0 methodEntry [ getPositionInfo( int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getPositionInfo( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 returnSt D = { $_ } U = { $java.lang.String, x$0, y$1 }
    5 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ startY ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.Figure#startY ]
    1 fieldDeclaration D = { this.startY } U = { this.startY }
 --
-   0 methodEntry [ setEnd( int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#setEnd( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 assignment D = { this.endX } U = { x$0 }
    4 assignment D = { this.endY } U = { y$1 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getColor( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getColor( ) ]
    1 returnSt D = { $_ } U = { this.color }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getWidth( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getWidth( ) ]
    1 returnSt D = { $_ } U = { this.!getLeft( ), this.!getRight( ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { this.endX, this.startX } TO = jp.ac.ritsumei.cs.draw.Figure#getRight( )
@@ -207,14 +207,14 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    7 actualOut D = { this.!getLeft( ) } U = { this.endX, this.startX }
    9 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getLeft( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getLeft( ) ]
    1 returnSt D = { $_ } U = { this.!min( int int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { this.endX, this.startX } TO = java.lang.Math#min( int int )
    4 actualOut D = { this.!min( int int ) } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ move( int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#move( int int ) ]
    1 formalIn D = { dx$0 } U = {  }
    2 formalIn D = { dy$1 } U = {  }
    3 assignment D = { this.startX } U = { dx$0, this.startX }
@@ -223,50 +223,50 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    6 assignment D = { this.endY } U = { dy$1, this.endY }
    8 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getBottom( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getBottom( ) ]
    1 returnSt D = { $_ } U = { this.!max( int int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { this.endY, this.startY } TO = java.lang.Math#max( int int )
    4 actualOut D = { this.!max( int int ) } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Figure( java.awt.Color float ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Figure#Figure( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
    2 formalIn D = { w$1 } U = {  }
    3 assignment D = { this.color } U = { c$0 }
    4 assignment D = { this.outlineWidth } U = { w$1 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ isGrabbed( int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#isGrabbed( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    4 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getName( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getName( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ createClone( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#createClone( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ endX ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.Figure#endX ]
    1 fieldDeclaration D = { this.endX } U = { this.endX }
 --
-   0 methodEntry [ create( java.awt.Color float ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#create( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
    2 formalIn D = { w$1 } U = {  }
    4 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ endY ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.Figure#endY ]
    1 fieldDeclaration D = { this.endY } U = { this.endY }
 --
-   0 methodEntry [ getRight( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getRight( ) ]
    1 returnSt D = { $_ } U = { this.!max( int int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { this.endX, this.startX } TO = java.lang.Math#max( int int )
    4 actualOut D = { this.!max( int int ) } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Figure( java.awt.Color ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Figure#Figure( java.awt.Color ) ]
    1 formalIn D = { c$0 } U = {  }
    2 assignment D = {  } U = { this.!Figure( java.awt.Color float ) }
    3 receiver D = {  } U = {  }
@@ -278,7 +278,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 methodEntry [ replace( jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#replace( jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { figure$0 } U = {  }
    2 assignment D = { this.startX } U = { figure$0, figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY }
    3 assignment D = { this.startY } U = { figure$0, figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY }
@@ -286,7 +286,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    5 assignment D = { this.endY } U = { figure$0, figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ paintIcon( java.awt.Graphics int int int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#paintIcon( java.awt.Graphics int int int int ) ]
    1 formalIn D = { g$0 } U = {  }
    2 formalIn D = { x$1 } U = {  }
    3 formalIn D = { y$2 } U = {  }
@@ -294,7 +294,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    5 formalIn D = { h$4 } U = {  }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ equals( java.lang.Object ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#equals( java.lang.Object ) ]
    1 formalIn D = { obj$0 } U = {  }
    2 ifSt D = {  } U = { obj$0 }
    3 localDeclaration D = { figure$1 } U = { obj$0 }
@@ -306,7 +306,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
   10 returnSt D = { $_ } U = {  }
   12 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ draw( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#draw( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --

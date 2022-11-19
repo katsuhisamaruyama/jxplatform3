@@ -1,12 +1,12 @@
 ----- ClDG (from here) -----
 Class Name = ButtonEventHandler
-   0 fieldEntry [ flag ]
+   0 fieldEntry [ ButtonEventHandler#flag ]
    1 fieldDeclaration D = { this.flag } U = { this.flag }
 --
-   0 fieldEntry [ label ]
+   0 fieldEntry [ ButtonEventHandler#label ]
    1 fieldDeclaration D = { this.label } U = { this.label }
 --
-   0 methodEntry [ handle( javafx.event.ActionEvent ) ]
+   0 methodEntry [ ButtonEventHandler#handle( javafx.event.ActionEvent ) ]
    1 formalIn D = { event$0 } U = {  }
    2 ifSt D = {  } U = { this.flag }
    3 assignment D = {  } U = { this.label.!setText( java.lang.String ) }
@@ -21,7 +21,7 @@ Class Name = ButtonEventHandler
   12 assignment D = { this.flag } U = {  }
   15 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ ButtonEventHandler( javafx.scene.control.Label ) ]
+   0 constructorEntry [ ButtonEventHandler#ButtonEventHandler( javafx.scene.control.Label ) ]
    1 formalIn D = { l$0 } U = {  }
    2 assignment D = { this.label } U = { l$0 }
    4 formalOut D = {  } U = { $_ }

@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = T144
-   0 constructorEntry [ T144( ) ]
+   0 constructorEntry [ T144#T144( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ put( java.lang.String java.lang.String ) ]
+   0 methodEntry [ T144#put( java.lang.String java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 formalIn D = { value$1 } U = {  }
    3 assignment D = {  } U = { this.p.!put( java.lang.String java.lang.String ) }
@@ -14,7 +14,7 @@ Class Name = T144
 * actualOut D = { this.p.!put( java.lang.String java.lang.String ), this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.modCount, this.p.map.!java.util.HashMap.size } U = { this.p.map, this.p.map.!java.util.HashMap$Node.hash, this.p.map.!java.util.HashMap$Node.key, this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.modCount, this.p.map.!java.util.HashMap.size, this.p.map.!java.util.HashMap.table, this.p.map.!java.util.HashMap.threshold }
   10 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ get( java.lang.String ) ]
+   0 methodEntry [ T144#get( java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 returnSt D = { $_ } U = { this.p.!get( java.lang.String ) }
    3 receiver D = {  } U = { this.p }
@@ -23,7 +23,7 @@ Class Name = T144
    6 actualOut D = { this.p.!get( java.lang.String ) } U = { this.p.map, this.p.map.!java.util.HashMap$Node.hash, this.p.map.!java.util.HashMap$Node.key, this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.table }
    8 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ p ]
+   0 fieldEntry [ T144#p ]
    1 fieldDeclaration D = { this.p } U = { P144.!P144( ), this.p }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P144#P144( )

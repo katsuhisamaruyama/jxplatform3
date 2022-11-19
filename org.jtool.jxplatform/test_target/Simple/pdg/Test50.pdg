@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Test50
-   0 constructorEntry [ Test50( ) ]
+   0 constructorEntry [ Test50#Test50( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test50#m( ) ]
    1 localDeclaration D = { strings$0 } U = { java.util.ArrayList.!ArrayList( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
@@ -33,9 +33,10 @@ Class Name = Test50
   12:    5 ->    7 trueControlDependence
   13:    5 ->    8 trueControlDependence
   14:    5 ->    9 trueControlDependence
-  15:    9 ->    6 loopIndependentDefUseDependence str$1.!length( )
-  16:    9 ->    9 defOrderDependence str$1.!length( )
-  17: * ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+  15:    6 ->    6 outputDependence len$3
+  16:    9 ->    6 loopIndependentDefUseDependence str$1.!length( )
+  17:    9 ->    9 defOrderDependence str$1.!length( )
+  18: * ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
 --
 ----- ClDG (to here) -----
 

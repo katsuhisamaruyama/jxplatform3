@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = org.jtool.videostore.before.Customer
-   0 methodEntry [ statement( ) ]
+   0 methodEntry [ org.jtool.videostore.before.Customer#statement( ) ]
    1 localDeclaration D = { totalAmount$0 } U = {  }
    2 localDeclaration D = { frequentRenterPoints$1 } U = {  }
    3 localDeclaration D = { result$2 } U = { $java.lang.String, this.!getName( ) }
@@ -78,7 +78,7 @@ Class Name = org.jtool.videostore.before.Customer
   79 returnSt D = { $_ } U = { result$2 }
   81 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ addRental( org.jtool.videostore.before.Rental ) ]
+   0 methodEntry [ org.jtool.videostore.before.Customer#addRental( org.jtool.videostore.before.Rental ) ]
    1 formalIn D = { rental$0 } U = {  }
    2 assertSt D = {  } U = { rental$0, rental$0.daysRented, rental$0.movie }
    3 assignment D = {  } U = { this.rentals.!add( java.lang.Object ) }
@@ -87,20 +87,20 @@ Class Name = org.jtool.videostore.before.Customer
 * actualOut D = { this.rentals.!add( java.lang.Object ), this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size } U = { this.rentals.!java.util.ArrayList.elementData, this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size }
    8 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ name ]
+   0 fieldEntry [ org.jtool.videostore.before.Customer#name ]
    1 fieldDeclaration D = { this.name } U = { this.name }
 --
-   0 methodEntry [ getName( ) ]
+   0 methodEntry [ org.jtool.videostore.before.Customer#getName( ) ]
    1 returnSt D = { $_ } U = { this.name }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ rentals ]
+   0 fieldEntry [ org.jtool.videostore.before.Customer#rentals ]
    1 fieldDeclaration D = { this.rentals } U = { java.util.ArrayList.!ArrayList( ), this.rentals }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
 * actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
 --
-   0 constructorEntry [ Customer( java.lang.String ) ]
+   0 constructorEntry [ org.jtool.videostore.before.Customer#Customer( java.lang.String ) ]
    1 formalIn D = { name$0 } U = {  }
    2 assertSt D = {  } U = { name$0, name$0.!length( ) }
    3 receiver D = {  } U = { name$0 }

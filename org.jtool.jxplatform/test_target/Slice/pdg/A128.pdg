@@ -1,21 +1,21 @@
 ----- ClDG (from here) -----
 Class Name = A128
-   0 methodEntry [ getY( ) ]
+   0 methodEntry [ A128#getY( ) ]
    1 returnSt D = { $_ } U = { this.y }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ setY( int ) ]
+   0 methodEntry [ A128#setY( int ) ]
    1 formalIn D = { y$0 } U = {  }
    2 assignment D = { this.y } U = { y$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ z ]
+   0 fieldEntry [ A128#z ]
    1 fieldDeclaration D = { A128.z } U = { A128.z }
 --
-   0 constructorEntry [ A128( ) ]
+   0 constructorEntry [ A128#A128( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ add( int ) ]
+   0 methodEntry [ A128#add( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 localDeclaration D = { ret$1 } U = { A128.!A128( ) }
    3 receiver D = {  } U = {  }
@@ -30,7 +30,7 @@ Class Name = A128
   13 formalOut D = {  } U = { $_ }
 * actualOut D = { ret$1.y } U = {  }
 --
-   0 fieldEntry [ y ]
+   0 fieldEntry [ A128#y ]
    1 fieldDeclaration D = { this.y } U = { this.y }
 --
    0: getY( )

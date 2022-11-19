@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test30$1
-   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   0 methodEntry [ Test30$1#actionPerformed( java.awt.event.ActionEvent ) ]
    1 formalIn D = { e$1 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --

@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Test08
-   0 constructorEntry [ Test08( ) ]
+   0 constructorEntry [ Test08#Test08( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test08#m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
    2 localDeclaration D = { b$1 } U = {  }
    3 localDeclaration D = { c$2 } U = {  }
@@ -111,7 +111,7 @@ Class Name = Test08
   67:    7 ->   10 trueControlDependence
   68:    7 ->   11 trueControlDependence
   69:    7 ->   12 falseControlDependence
-  70:    8 ->    5 loopIndependentDefUseDependence c$2
+  70:    8 ->    5 loopCarriedDefUseDependence c$2 (LC =    5)
   71:    8 ->    8 loopCarriedDefUseDependence c$2 (LC =    5)
   72:    8 ->   13 loopCarriedDefUseDependence c$2 (LC =    5)
   73:    8 ->   33 loopIndependentDefUseDependence c$2
@@ -134,19 +134,19 @@ Class Name = Test08
   90:   12 ->   14 trueControlDependence
   91:   12 ->   15 trueControlDependence
   92:   12 ->   16 trueControlDependence
-  93:   13 ->    5 loopIndependentDefUseDependence c$2
+  93:   13 ->    5 loopCarriedDefUseDependence c$2 (LC =    5)
   94:   13 ->    8 loopCarriedDefUseDependence c$2 (LC =    5)
   95:   13 ->   13 loopCarriedDefUseDependence c$2 (LC =    5)
   96:   13 ->   14 loopIndependentDefUseDependence c$2
   97:   13 ->   33 loopIndependentDefUseDependence c$2
   98:   14 ->   15 outputDependence a$0
-  99:   15 ->    7 loopIndependentDefUseDependence a$0
+  99:   15 ->    7 loopCarriedDefUseDependence a$0 (LC =    5)
  100:   15 ->    9 loopCarriedDefUseDependence a$0 (LC =    5)
  101:   15 ->   10 loopCarriedDefUseDependence a$0 (LC =    5)
  102:   15 ->   12 loopCarriedDefUseDependence a$0 (LC =    5)
  103:   15 ->   14 outputDependence a$0
  104:   15 ->   25 loopIndependentDefUseDependence a$0
- 105:   16 ->    7 loopIndependentDefUseDependence b$1
+ 105:   16 ->    7 loopCarriedDefUseDependence b$1 (LC =    5)
  106:   16 ->    9 outputDependence b$1
  107:   16 ->   12 loopCarriedDefUseDependence b$1 (LC =    5)
  108:   16 ->   15 loopCarriedDefUseDependence b$1 (LC =    5)

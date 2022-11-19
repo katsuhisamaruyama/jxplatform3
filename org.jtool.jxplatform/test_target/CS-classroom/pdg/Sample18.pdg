@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Sample18
-   0 constructorEntry [ Sample18( ) ]
+   0 constructorEntry [ Sample18#Sample18( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Sample18#main( java.lang.String[] ) ]
    1 throwsClause D = {  } U = { $java.awt.HeadlessException }
    2 formalIn D = { args$0 } U = {  }
    3 localDeclaration D = { frame$1 } U = { javax.swing.JFrame.!JFrame( java.lang.String ) }

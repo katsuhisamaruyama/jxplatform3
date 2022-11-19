@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Circle
-   0 fieldEntry [ radius ]
+   0 fieldEntry [ Circle#radius ]
    1 fieldDeclaration D = { this.radius } U = { this.radius }
 --
-   0 constructorEntry [ Circle( int int ) ]
+   0 constructorEntry [ Circle#Circle( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 assignment D = {  } U = { this.!Circle( int int int ) }
@@ -18,37 +18,37 @@ Class Name = Circle
 * actualOut D = { this.x } U = {  }
 * actualOut D = { this.y } U = {  }
 --
-   0 methodEntry [ getY( ) ]
+   0 methodEntry [ Circle#getY( ) ]
    1 returnSt D = { $_ } U = { this.y }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getRadius( ) ]
+   0 methodEntry [ Circle#getRadius( ) ]
    1 returnSt D = { $_ } U = { this.radius }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getX( ) ]
+   0 methodEntry [ Circle#getX( ) ]
    1 returnSt D = { $_ } U = { this.x }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ setRadius( int ) ]
+   0 methodEntry [ Circle#setRadius( int ) ]
    1 formalIn D = { r$0 } U = {  }
    2 assignment D = { this.radius } U = { r$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ print( ) ]
+   0 methodEntry [ Circle#print( ) ]
    1 assignment D = {  } U = { System.out.!println( java.lang.String ) }
    2 receiver D = {  } U = { System.out }
    3 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, this.radius, this.x, this.y } TO = java.io.PrintStream#println( java.lang.String )
 * actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
    6 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ y ]
+   0 fieldEntry [ Circle#y ]
    1 fieldDeclaration D = { this.y } U = { this.y }
 --
-   0 fieldEntry [ x ]
+   0 fieldEntry [ Circle#x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
-   0 constructorEntry [ Circle( int int int ) ]
+   0 constructorEntry [ Circle#Circle( int int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 formalIn D = { r$2 } U = {  }

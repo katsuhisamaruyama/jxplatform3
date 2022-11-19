@@ -1,12 +1,12 @@
 ----- ClDG (from here) -----
 Class Name = Test126
-   0 fieldEntry [ p ]
+   0 fieldEntry [ Test126#p ]
    1 fieldDeclaration D = { this.p } U = { this.p }
 --
-   0 constructorEntry [ Test126( ) ]
+   0 constructorEntry [ Test126#Test126( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test126#m( ) ]
    1 localDeclaration D = { a$0 } U = { A126.!A126( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = A126#A126( )

@@ -1,28 +1,28 @@
 ----- ClDG (from here) -----
 Class Name = PriceCode
-   0 enumConstantEntry [ REGULAR ]
+   0 enumConstantEntry [ PriceCode#REGULAR ]
    1 fieldDeclaration D = { PriceCode.REGULAR } U = { PriceCode.!PriceCode( int ) }
    2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
    3 actualIn D = {  } U = {  }
    4 actualOut D = { PriceCode.!PriceCode( int ) } U = {  }
 * actualOut D = { PriceCode.!PriceCode( int ).priceCode } U = {  }
 --
-   0 constructorEntry [ PriceCode( int ) ]
+   0 constructorEntry [ PriceCode#PriceCode( int ) ]
    1 formalIn D = { code$0 } U = {  }
    2 assignment D = { this.priceCode } U = { code$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ priceCode ]
+   0 fieldEntry [ PriceCode#priceCode ]
    1 fieldDeclaration D = { this.priceCode } U = { this.priceCode }
 --
-   0 enumConstantEntry [ CHILDRENS ]
+   0 enumConstantEntry [ PriceCode#CHILDRENS ]
    1 fieldDeclaration D = { PriceCode.CHILDRENS } U = { PriceCode.!PriceCode( int ) }
    2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
    3 actualIn D = {  } U = {  }
    4 actualOut D = { PriceCode.!PriceCode( int ) } U = {  }
 * actualOut D = { PriceCode.!PriceCode( int ).priceCode } U = {  }
 --
-   0 enumConstantEntry [ NEW_RELEASE ]
+   0 enumConstantEntry [ PriceCode#NEW_RELEASE ]
    1 fieldDeclaration D = { PriceCode.NEW_RELEASE } U = { PriceCode.!PriceCode( int ) }
    2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
    3 actualIn D = {  } U = {  }

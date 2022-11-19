@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Sample20
-   0 constructorEntry [ Sample20( ) ]
+   0 constructorEntry [ Sample20#Sample20( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Sample20#main( java.lang.String[] ) ]
    1 formalIn D = { args$0 } U = {  }
    2 localDeclaration D = { thread$1 } U = { ThreadA.!ThreadA( ) }
    3 receiver D = {  } U = {  }
@@ -57,7 +57,8 @@ Class Name = Sample20
   29:   16 ->   16 loopCarriedDefUseDependence i$2 (LC =   11)
   30: * ->    6 loopIndependentDefUseDependence thread$1.!start( )
   31: * ->   12 loopIndependentDefUseDependence System.out.!println( java.lang.String )
-  32: * -> * defOrderDependence System.out.!println( java.lang.String )
+  32: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
+  33: * -> * defOrderDependence System.out.!println( java.lang.String )
 --
 ----- ClDG (to here) -----
 

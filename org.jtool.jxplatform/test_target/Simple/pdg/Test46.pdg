@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Test46
-   0 constructorEntry [ Test46( ) ]
+   0 constructorEntry [ Test46#Test46( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m1( ) ]
+   0 methodEntry [ Test46#m1( ) ]
    1 localDeclaration D = { p$0 } U = { P46.!P46( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P46#P46( )
@@ -21,7 +21,7 @@ Class Name = Test46
   16 formalOut D = {  } U = { $_ }
 * actualOut D = { p$0.value } U = {  }
 --
-   0 methodEntry [ m2( ) ]
+   0 methodEntry [ Test46#m2( ) ]
    1 localDeclaration D = { q$0 } U = { Q46.!Q46( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = Q46#Q46( )
@@ -40,7 +40,7 @@ Class Name = Test46
   16 returnSt D = { $_ } U = { Q46.!Q46( ).map, q$0, q$0.map, q$0.map.!java.util.HashMap$Node.next, q$0.map.!java.util.HashMap$Node.value, q$0.map.!java.util.HashMap.modCount, q$0.map.!java.util.HashMap.size }
   18 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m3( ) ]
+   0 methodEntry [ Test46#m3( ) ]
    1 localDeclaration D = { m$0 } U = { java.util.HashMap.!HashMap( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )
@@ -56,7 +56,7 @@ Class Name = Test46
   13 returnSt D = { $_ } U = { m$0, m$0.!java.util.HashMap$Node.next, m$0.!java.util.HashMap$Node.value, m$0.!java.util.HashMap.modCount, m$0.!java.util.HashMap.size }
   15 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m4( ) ]
+   0 methodEntry [ Test46#m4( ) ]
    1 localDeclaration D = { l$0 } U = { java.util.ArrayList.!ArrayList( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )

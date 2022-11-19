@@ -1,16 +1,16 @@
 ----- ClDG (from here) -----
 Class Name = Test134
-   0 constructorEntry [ Test134( ) ]
+   0 constructorEntry [ Test134#Test134( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getP( ) ]
+   0 methodEntry [ Test134#getP( ) ]
    1 returnSt D = { $_ } U = { P134.!P134( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P134#P134( )
    4 actualOut D = { P134.!P134( ) } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ a2( ) ]
+   0 methodEntry [ Test134#a2( ) ]
    1 assignment D = {  } U = { this.!n2( P134 int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test134#n2( P134 int )
@@ -22,7 +22,7 @@ Class Name = Test134
    9 actualOut D = { this.!n2( P134 int ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ a1( ) ]
+   0 methodEntry [ Test134#a1( ) ]
    1 assignment D = {  } U = { this.!n1( P134 int ) }
    2 receiver D = {  } U = { this }
    3 methodCall D = {  } U = {  } TO = Test134#n1( P134 int )
@@ -34,14 +34,14 @@ Class Name = Test134
    9 actualOut D = { this.!n1( P134 int ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getQ( ) ]
+   0 methodEntry [ Test134#getQ( ) ]
    1 returnSt D = { $_ } U = { Q134.!Q134( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = Q134#Q134( )
    4 actualOut D = { Q134.!Q134( ) } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m3( ) ]
+   0 methodEntry [ Test134#m3( ) ]
    1 localDeclaration D = { x$0 } U = {  }
    2 localDeclaration D = { p$1 } U = { R134.!R134( ) }
    3 receiver D = {  } U = {  }
@@ -59,7 +59,7 @@ Class Name = Test134
   15 actualOut D = { p$1.!f( int ) } U = {  }
   17 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m2( ) ]
+   0 methodEntry [ Test134#m2( ) ]
    1 localDeclaration D = { x$0 } U = {  }
    2 localDeclaration D = { p$1 } U = {  }
    3 ifSt D = {  } U = { x$0 }
@@ -94,19 +94,19 @@ Class Name = Test134
 * actualOut D = { l2$4.!add( java.lang.Object ), l2$4.!java.util.ArrayList.modCount, l2$4.!java.util.ArrayList.size } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, l2$4.!java.util.ArrayList.elementData, l2$4.!java.util.ArrayList.modCount, l2$4.!java.util.ArrayList.size }
   35 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ inc( int ) ]
+   0 methodEntry [ Test134#inc( int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 returnSt D = { $_ } U = { a$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getPQ( ) ]
+   0 methodEntry [ Test134#getPQ( ) ]
    1 returnSt D = { $_ } U = { Q134.!Q134( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = Q134#Q134( )
    4 actualOut D = { Q134.!Q134( ) } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test134#m( ) ]
    1 localDeclaration D = { x$0 } U = {  }
    2 localDeclaration D = { y1$1 } U = { this.!inc( int ) }
    3 receiver D = {  } U = {  }
@@ -213,12 +213,12 @@ Class Name = Test134
  104 actualOut D = { p4$23.!f( int ) } U = {  }
  106 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ dec( int ) ]
+   0 methodEntry [ Test134#dec( int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 returnSt D = { $_ } U = { a$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ n1( P134 int ) ]
+   0 methodEntry [ Test134#n1( P134 int ) ]
    1 formalIn D = { p$0 } U = {  }
    2 formalIn D = { x$1 } U = {  }
    3 localDeclaration D = { z$2 } U = { p$0.!f( int ) }
@@ -228,7 +228,7 @@ Class Name = Test134
    7 actualOut D = { p$0.!f( int ) } U = {  }
    9 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ n2( P134 int ) ]
+   0 methodEntry [ Test134#n2( P134 int ) ]
    1 formalIn D = { p$0 } U = {  }
    2 formalIn D = { x$1 } U = {  }
    3 localDeclaration D = { z$2 } U = { p$0.!f( int ) }

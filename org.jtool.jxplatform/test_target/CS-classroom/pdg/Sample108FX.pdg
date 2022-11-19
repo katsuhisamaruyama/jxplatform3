@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Sample108FX
-   0 constructorEntry [ Sample108FX( ) ]
+   0 constructorEntry [ Sample108FX#Sample108FX( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ mouseDragged( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ) ]
+   0 methodEntry [ Sample108FX#mouseDragged( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ) ]
    1 formalIn D = { event$0 } U = {  }
    2 formalIn D = { canvas$1 } U = {  }
    3 ifSt D = {  } U = { this.line }
@@ -23,7 +23,7 @@ Class Name = Sample108FX
   17 actualOut D = { this.line.!setEndY( double ) } U = { this.line.!javafx.scene.shape.Line.endY }
   20 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ mouseReleased( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ) ]
+   0 methodEntry [ Sample108FX#mouseReleased( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ) ]
    1 formalIn D = { event$0 } U = {  }
    2 formalIn D = { canvas$1 } U = {  }
    3 ifSt D = {  } U = { this.line }
@@ -49,10 +49,10 @@ Class Name = Sample108FX
   23 actualOut D = { canvas$1.!getChildren( ).!remove( java.lang.Object ) } U = {  }
   27 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ line ]
+   0 fieldEntry [ Sample108FX#line ]
    1 fieldDeclaration D = { this.line } U = { this.line }
 --
-   0 methodEntry [ start( javafx.stage.Stage ) ]
+   0 methodEntry [ Sample108FX#start( javafx.stage.Stage ) ]
    1 throwsClause D = {  } U = { $java.lang.Exception }
    2 formalIn D = { stage$0 } U = {  }
    3 assignment D = {  } U = { stage$0.!setTitle( java.lang.String ) }
@@ -76,10 +76,10 @@ Class Name = Sample108FX
   21 methodCall D = {  } U = { $LAMBDA } TO = javafx.scene.Node#setOnMousePressed( javafx.event.EventHandler )
   22 lambda D = { $LAMBDA } U = { this.!mousePressed( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ) }
   23 receiver D = {  } U = {  }
-  24 methodCall D = {  } U = { BlendMode.MULTIPLY, Color.GREEN, this.canvas$1.!javafx.scene.Parent.children, this.event$0.!javafx.scene.input.MouseEvent.x, this.event$0.!javafx.scene.input.MouseEvent.y, this.javafx.scene.shape.Line.!com.sun.javafx.sg.prism.NGShape$Mode.FILL, this.javafx.scene.shape.Line.!javafx.scene.paint.Color.BLACK, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endY, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startY, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.fill, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.stroke, this.line, this.line.!javafx.scene.Node.blendMode } TO = Sample108FX#mousePressed( javafx.scene.input.MouseEvent javafx.scene.layout.Pane )
+  24 methodCall D = {  } U = { BlendMode.MULTIPLY, Color.GREEN, this.canvas$1.!javafx.scene.Parent.children, this.event$0.!javafx.scene.input.MouseEvent.x, this.event$0.!javafx.scene.input.MouseEvent.y, this.javafx.scene.layout.Pane.!Pane( ).!javafx.scene.Parent.children, this.javafx.scene.shape.Line.!com.sun.javafx.sg.prism.NGShape$Mode.FILL, this.javafx.scene.shape.Line.!javafx.scene.paint.Color.BLACK, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endY, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startY, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.fill, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.stroke, this.line, this.line.!javafx.scene.Node.blendMode } TO = Sample108FX#mousePressed( javafx.scene.input.MouseEvent javafx.scene.layout.Pane )
   25 actualIn D = {  } U = { event$2 }
   26 actualIn D = {  } U = { canvas$1 }
-* actualOut D = { this.!mousePressed( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ), this.javafx.scene.shape.Line.!javafx.scene.shape.Line$1.this$0, this.javafx.scene.shape.Line.!javafx.scene.shape.Line$2.this$0, this.javafx.scene.shape.Line.!javafx.scene.shape.Line$3.this$0, this.javafx.scene.shape.Line.!javafx.scene.shape.Line$4.this$0, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endY, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.shape, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startY, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.fill, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.impl_mode, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.platformImageChangeListener, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.stroke, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.strokeAttributesDirty, this.line.!javafx.scene.Node.blendMode } U = { BlendMode.MULTIPLY, Color.GREEN, this.canvas$1.!javafx.scene.Parent.children, this.event$0.!javafx.scene.input.MouseEvent.x, this.event$0.!javafx.scene.input.MouseEvent.y, this.javafx.scene.shape.Line.!com.sun.javafx.sg.prism.NGShape$Mode.FILL, this.javafx.scene.shape.Line.!javafx.scene.paint.Color.BLACK, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endY, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startY, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.fill, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.stroke, this.line, this.line.!javafx.scene.Node.blendMode }
+* actualOut D = { this.!mousePressed( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ), this.javafx.scene.shape.Line.!javafx.scene.shape.Line$1.this$0, this.javafx.scene.shape.Line.!javafx.scene.shape.Line$2.this$0, this.javafx.scene.shape.Line.!javafx.scene.shape.Line$3.this$0, this.javafx.scene.shape.Line.!javafx.scene.shape.Line$4.this$0, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endY, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.shape, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startY, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.fill, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.impl_mode, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.platformImageChangeListener, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.stroke, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.strokeAttributesDirty, this.line.!javafx.scene.Node.blendMode } U = { BlendMode.MULTIPLY, Color.GREEN, this.canvas$1.!javafx.scene.Parent.children, this.event$0.!javafx.scene.input.MouseEvent.x, this.event$0.!javafx.scene.input.MouseEvent.y, this.javafx.scene.layout.Pane.!Pane( ).!javafx.scene.Parent.children, this.javafx.scene.shape.Line.!com.sun.javafx.sg.prism.NGShape$Mode.FILL, this.javafx.scene.shape.Line.!javafx.scene.paint.Color.BLACK, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.endY, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startX, this.javafx.scene.shape.Line.!javafx.scene.shape.Line.startY, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.fill, this.javafx.scene.shape.Line.!javafx.scene.shape.Shape.stroke, this.line, this.line.!javafx.scene.Node.blendMode }
   28 actualOut D = { canvas$1.!setOnMousePressed( javafx.event.EventHandler ) } U = {  }
   29 assignment D = {  } U = { canvas$1.!setOnMouseDragged( javafx.event.EventHandler ) }
   30 receiver D = {  } U = { canvas$1 }
@@ -96,10 +96,10 @@ Class Name = Sample108FX
   41 methodCall D = {  } U = { $LAMBDA } TO = javafx.scene.Node#setOnMouseReleased( javafx.event.EventHandler )
   42 lambda D = { $LAMBDA } U = { this.!mouseReleased( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ) }
   43 receiver D = {  } U = {  }
-  44 methodCall D = {  } U = { this.canvas$1.!javafx.scene.Parent.children, this.event$0.!javafx.scene.input.MouseEvent.x, this.event$0.!javafx.scene.input.MouseEvent.y, this.line, this.line.!javafx.scene.shape.Line.startX, this.line.!javafx.scene.shape.Line.startY } TO = Sample108FX#mouseReleased( javafx.scene.input.MouseEvent javafx.scene.layout.Pane )
+  44 methodCall D = {  } U = { this.canvas$1.!javafx.scene.Parent.children, this.event$0.!javafx.scene.input.MouseEvent.x, this.event$0.!javafx.scene.input.MouseEvent.y, this.javafx.scene.layout.Pane.!Pane( ).!javafx.scene.Parent.children, this.line, this.line.!javafx.scene.shape.Line.startX, this.line.!javafx.scene.shape.Line.startY } TO = Sample108FX#mouseReleased( javafx.scene.input.MouseEvent javafx.scene.layout.Pane )
   45 actualIn D = {  } U = { event$4 }
   46 actualIn D = {  } U = { canvas$1 }
-  47 actualOut D = { this.!mouseReleased( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ) } U = { this.canvas$1.!javafx.scene.Parent.children, this.event$0.!javafx.scene.input.MouseEvent.x, this.event$0.!javafx.scene.input.MouseEvent.y, this.line, this.line.!javafx.scene.shape.Line.startX, this.line.!javafx.scene.shape.Line.startY }
+  47 actualOut D = { this.!mouseReleased( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ) } U = { this.canvas$1.!javafx.scene.Parent.children, this.event$0.!javafx.scene.input.MouseEvent.x, this.event$0.!javafx.scene.input.MouseEvent.y, this.javafx.scene.layout.Pane.!Pane( ).!javafx.scene.Parent.children, this.line, this.line.!javafx.scene.shape.Line.startX, this.line.!javafx.scene.shape.Line.startY }
   48 actualOut D = { canvas$1.!setOnMouseReleased( javafx.event.EventHandler ) } U = {  }
   49 localDeclaration D = { scene$5 } U = { javafx.scene.Scene.!Scene( javafx.scene.Parent ) }
   50 receiver D = {  } U = {  }
@@ -116,7 +116,7 @@ Class Name = Sample108FX
   62 formalOut D = {  } U = { $_ }
 * actualOut D = { this.line } U = {  }
 --
-   0 methodEntry [ mousePressed( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ) ]
+   0 methodEntry [ Sample108FX#mousePressed( javafx.scene.input.MouseEvent javafx.scene.layout.Pane ) ]
    1 formalIn D = { event$0 } U = {  }
    2 formalIn D = { canvas$1 } U = {  }
    3 assignment D = { this.line } U = { javafx.scene.shape.Line.!Line( double double double double ) }
@@ -152,7 +152,7 @@ Class Name = Sample108FX
   33 actualOut D = { canvas$1.!getChildren( ).!add( java.lang.Object ) } U = {  }
   35 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Sample108FX#main( java.lang.String[] ) ]
    1 formalIn D = { args$0 } U = {  }
    2 assignment D = {  } U = { this.!launch( java.lang.String[] ) }
    3 receiver D = {  } U = {  }

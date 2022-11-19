@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Sample105FX
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Sample105FX#main( java.lang.String[] ) ]
    1 formalIn D = { args$0 } U = {  }
    2 assignment D = {  } U = { this.!launch( java.lang.String[] ) }
    3 receiver D = {  } U = {  }
@@ -8,7 +8,7 @@ Class Name = Sample105FX
    5 actualOut D = { this.!launch( java.lang.String[] ) } U = { this.!com.sun.javafx.application.LauncherImpl.savedPreloaderClass, this.!java.lang.Class.name, this.!java.lang.StackTraceElement.declaringClass, this.!java.lang.StackTraceElement.methodName, this.!java.lang.String.value, this.!java.lang.StringBuilder.count, this.!java.lang.StringBuilder.value, this.!java.lang.System.err, this.!java.lang.Thread.EMPTY_STACK_TRACE, this.!java.lang.Thread.contextClassLoader, this.!sun.security.util.SecurityConstants.GET_CLASSLOADER_PERMISSION, this.!sun.security.util.SecurityConstants.GET_STACK_TRACE_PERMISSION }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ start( javafx.stage.Stage ) ]
+   0 methodEntry [ Sample105FX#start( javafx.stage.Stage ) ]
    1 throwsClause D = {  } U = { $java.lang.Exception }
    2 formalIn D = { stage$0 } U = {  }
    3 assignment D = {  } U = { stage$0.!setTitle( java.lang.String ) }
@@ -79,7 +79,7 @@ Class Name = Sample105FX
   68 actualOut D = { stage$0.!show( ) } U = {  }
   70 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Sample105FX( ) ]
+   0 constructorEntry [ Sample105FX#Sample105FX( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: main( java.lang.String[] )

@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.Rect
-   0 methodEntry [ drawGrabbedFigure( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Rect#drawGrabbedFigure( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 assignment D = {  } U = { g$0.!setColor( java.awt.Color ) }
    3 receiver D = {  } U = { g$0 }
@@ -60,7 +60,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
   57 actualOut D = { this.!drawGrabbedMark( java.awt.Graphics int int ) } U = {  }
   59 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Rect( int ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Rect#Rect( int ) ]
    1 formalIn D = { w$0 } U = {  }
    2 assignment D = {  } U = { super.!Figure( float ) }
    3 receiver D = {  } U = {  }
@@ -71,7 +71,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 methodEntry [ drawOutline( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Rect#drawOutline( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 localDeclaration D = { g2$1 } U = { g$0 }
    3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
@@ -100,7 +100,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
   26 actualOut D = { g2$1.!drawRect( int int int int ) } U = {  }
   28 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ createClone( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Rect#createClone( ) ]
    1 localDeclaration D = { figure$0 } U = { jp.ac.ritsumei.cs.draw.Rect.!Rect( java.awt.Color float ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Rect#Rect( java.awt.Color float )
@@ -128,7 +128,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
 * actualOut D = { figure$0.endX } U = {  }
 * actualOut D = { figure$0.endY } U = {  }
 --
-   0 methodEntry [ drawRubber( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Rect#drawRubber( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 localDeclaration D = { g2$1 } U = { g$0 }
    3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
@@ -153,7 +153,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
   22 actualOut D = { g2$1.!drawRect( int int int int ) } U = {  }
   24 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Rect( java.awt.Color ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Rect#Rect( java.awt.Color ) ]
    1 formalIn D = { c$0 } U = {  }
    2 assignment D = {  } U = { super.!Figure( java.awt.Color ) }
    3 receiver D = {  } U = {  }
@@ -164,7 +164,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 methodEntry [ isInRect( int int int int int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Rect#isInRect( int int int int int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 formalIn D = { x1$2 } U = {  }
@@ -174,7 +174,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
    7 returnSt D = { $_ } U = { x$0, x1$2, x2$4, y$1, y1$3, y2$5 }
    9 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ isGrabbed( int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Rect#isGrabbed( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 localDeclaration D = { ox1$2 } U = { jp.ac.ritsumei.cs.draw.Figure.ALLOWABLE_GAP_WHEN_GRABBED, this.!getLeft( ) }
@@ -232,7 +232,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
   56 actualOut D = { this.!isInRect( int int int int int int ) } U = {  }
   58 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ paintIcon( java.awt.Graphics int int int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Rect#paintIcon( java.awt.Graphics int int int int ) ]
    1 formalIn D = { g$0 } U = {  }
    2 formalIn D = { x$1 } U = {  }
    3 formalIn D = { y$2 } U = {  }
@@ -244,7 +244,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
    9 actualOut D = { g$0.!drawRect( int int int int ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Rect( java.awt.Color float ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Rect#Rect( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
    2 formalIn D = { w$1 } U = {  }
    3 assignment D = {  } U = { super.!Figure( java.awt.Color float ) }
@@ -257,11 +257,11 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
 * actualOut D = { super.color } U = {  }
 * actualOut D = { super.outlineWidth } U = {  }
 --
-   0 methodEntry [ getName( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Rect#getName( ) ]
    1 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Rect.name }
    3 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Rect( ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Rect#Rect( ) ]
    1 assignment D = {  } U = { super.!Figure( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( )
@@ -270,7 +270,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 methodEntry [ create( java.awt.Color float ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Rect#create( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
    2 formalIn D = { w$1 } U = {  }
    3 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Rect.!Rect( java.awt.Color float ) }
@@ -283,7 +283,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
 * actualOut D = { super.color } U = {  }
 * actualOut D = { super.outlineWidth } U = {  }
 --
-   0 methodEntry [ draw( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Rect#draw( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 localDeclaration D = { g2$1 } U = { g$0 }
    3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
@@ -315,7 +315,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Rect
   29 actualOut D = { g$0.!drawRect( int int int int ) } U = {  }
   31 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ name ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.Rect#name ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.Rect.name } U = { $java.lang.String, jp.ac.ritsumei.cs.draw.Rect.name }
 --
    0: drawGrabbedFigure( java.awt.Graphics )

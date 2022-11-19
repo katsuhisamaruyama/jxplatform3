@@ -1,11 +1,11 @@
 ----- ClDG (from here) -----
 Class Name = R134
-   0 methodEntry [ f( int ) ]
+   0 methodEntry [ R134#f( int ) ]
    1 formalIn D = { a$0 } U = {  }
    2 returnSt D = { $_ } U = { a$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ R134( ) ]
+   0 constructorEntry [ R134#R134( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: f( int )

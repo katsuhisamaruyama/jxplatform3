@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test104
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test104#m( ) ]
    1 localDeclaration D = { x$0 } U = {  }
    2 localDeclaration D = { y$1 } U = {  }
    3 localDeclaration D = { z$2 } U = {  }
@@ -12,7 +12,7 @@ Class Name = Test104
    9 assignment D = { z$2 } U = { x$0 }
   11 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test104( ) ]
+   0 constructorEntry [ Test104#Test104( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )

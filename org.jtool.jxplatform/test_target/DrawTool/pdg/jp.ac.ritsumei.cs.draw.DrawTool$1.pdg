@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.DrawTool$1
-   0 methodEntry [ windowClosing( java.awt.event.WindowEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawTool$1#windowClosing( java.awt.event.WindowEvent ) ]
    1 throwsClause D = {  } U = { $java.awt.HeadlessException }
    2 formalIn D = { evt$2 } U = {  }
    3 assignment D = {  } U = { main$1.!closeWindow( ) }

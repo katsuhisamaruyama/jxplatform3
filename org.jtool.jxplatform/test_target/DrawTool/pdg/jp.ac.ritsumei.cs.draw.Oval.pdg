@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.Oval
-   0 constructorEntry [ Oval( java.awt.Color ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Oval#Oval( java.awt.Color ) ]
    1 formalIn D = { c$0 } U = {  }
    2 assignment D = {  } U = { super.!Figure( java.awt.Color ) }
    3 receiver D = {  } U = {  }
@@ -11,7 +11,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 methodEntry [ paintIcon( java.awt.Graphics int int int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Oval#paintIcon( java.awt.Graphics int int int int ) ]
    1 formalIn D = { g$0 } U = {  }
    2 formalIn D = { x$1 } U = {  }
    3 formalIn D = { y$2 } U = {  }
@@ -23,7 +23,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
    9 actualOut D = { g$0.!drawOval( int int int int ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ draw( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Oval#draw( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 localDeclaration D = { g2$1 } U = { g$0 }
    3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
@@ -55,7 +55,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
   29 actualOut D = { g2$1.!drawOval( int int int int ) } U = {  }
   31 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ drawOutline( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Oval#drawOutline( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 localDeclaration D = { g2$1 } U = { g$0 }
    3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
@@ -84,7 +84,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
   26 actualOut D = { g2$1.!drawOval( int int int int ) } U = {  }
   28 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ drawRubber( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Oval#drawRubber( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 localDeclaration D = { g2$1 } U = { g$0 }
    3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
@@ -109,7 +109,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
   22 actualOut D = { g2$1.!drawOval( int int int int ) } U = {  }
   24 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Oval( java.awt.Color float ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Oval#Oval( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
    2 formalIn D = { w$1 } U = {  }
    3 assignment D = {  } U = { super.!Figure( java.awt.Color float ) }
@@ -122,7 +122,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
 * actualOut D = { super.color } U = {  }
 * actualOut D = { super.outlineWidth } U = {  }
 --
-   0 methodEntry [ create( java.awt.Color float ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Oval#create( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
    2 formalIn D = { w$1 } U = {  }
    3 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Oval.!Oval( java.awt.Color float ) }
@@ -135,7 +135,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
 * actualOut D = { super.color } U = {  }
 * actualOut D = { super.outlineWidth } U = {  }
 --
-   0 methodEntry [ isInOval( int int int int int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Oval#isInOval( int int int int int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 formalIn D = { x1$2 } U = {  }
@@ -151,7 +151,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
   13 returnSt D = { $_ } U = { a$6, b$7, rx$10, ry$11 }
   15 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ createClone( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Oval#createClone( ) ]
    1 localDeclaration D = { figure$0 } U = { jp.ac.ritsumei.cs.draw.Oval.!Oval( java.awt.Color float ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Oval#Oval( java.awt.Color float )
@@ -179,7 +179,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
 * actualOut D = { figure$0.endX } U = {  }
 * actualOut D = { figure$0.endY } U = {  }
 --
-   0 methodEntry [ drawGrabbedFigure( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Oval#drawGrabbedFigure( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 assignment D = {  } U = { g$0.!setColor( java.awt.Color ) }
    3 receiver D = {  } U = { g$0 }
@@ -251,7 +251,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
   69 actualOut D = { this.!drawGrabbedMark( java.awt.Graphics int int ) } U = {  }
   71 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Oval( ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Oval#Oval( ) ]
    1 assignment D = {  } U = { super.!Figure( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( )
@@ -260,7 +260,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 constructorEntry [ Oval( int ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Oval#Oval( int ) ]
    1 formalIn D = { w$0 } U = {  }
    2 assignment D = {  } U = { super.!Figure( float ) }
    3 receiver D = {  } U = {  }
@@ -271,7 +271,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 methodEntry [ isGrabbed( int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Oval#isGrabbed( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 localDeclaration D = { ox$2 } U = { jp.ac.ritsumei.cs.draw.Figure.ALLOWABLE_GAP_WHEN_GRABBED, this.!getLeft( ) }
@@ -329,10 +329,10 @@ Class Name = jp.ac.ritsumei.cs.draw.Oval
   56 actualOut D = { this.!isInOval( int int int int int int ) } U = {  }
   58 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ name ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.Oval#name ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.Oval.name } U = { $java.lang.String, jp.ac.ritsumei.cs.draw.Oval.name }
 --
-   0 methodEntry [ getName( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Oval#getName( ) ]
    1 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Oval.name }
    3 formalOut D = {  } U = { $_ }
 --

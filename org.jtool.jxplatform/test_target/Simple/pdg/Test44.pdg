@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test44
-   0 methodEntry [ m1( ) ]
+   0 methodEntry [ Test44#m1( ) ]
    1 localDeclaration D = { a$0 } U = { P44.!P44( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P44#P44( )
@@ -18,7 +18,7 @@ Class Name = Test44
   15 actualOut D = { b$1.!getY( ) } U = { a$0.q.y, b$1.y }
   17 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m2( ) ]
+   0 methodEntry [ Test44#m2( ) ]
    1 localDeclaration D = { a$0 } U = { P44.!P44( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P44#P44( )
@@ -45,7 +45,7 @@ Class Name = Test44
   24 actualOut D = { b$1.!getY( ) } U = { a$0.!getQ( ).y, b$1.y }
   26 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m3( ) ]
+   0 methodEntry [ Test44#m3( ) ]
    1 localDeclaration D = { a$0 } U = { P44.!P44( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P44#P44( )
@@ -64,7 +64,7 @@ Class Name = Test44
   16 localDeclaration D = { x2$3 } U = { a$0.!getQ( ).r, a$0.!getQ( ).y, b$1, b$1.r, b$1.y }
   18 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m4( ) ]
+   0 methodEntry [ Test44#m4( ) ]
    1 localDeclaration D = { a$0 } U = { P44.!P44( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P44#P44( )
@@ -86,7 +86,7 @@ Class Name = Test44
   19 localDeclaration D = { x2$3 } U = { a$0.!getQ( ).!getR( ).r, a$0.!getQ( ).!getR( ).y, b$1, b$1.r, b$1.y }
   21 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test44( ) ]
+   0 constructorEntry [ Test44#Test44( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m1( )

@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = DialogA$1
-   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   0 methodEntry [ DialogA$1#actionPerformed( java.awt.event.ActionEvent ) ]
    1 formalIn D = { e$5 } U = {  }
    2 assignment D = {  } U = { this.!setVisible( boolean ) }
    3 receiver D = {  } U = {  }

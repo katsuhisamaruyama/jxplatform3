@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$1
-   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawMenu$1#actionPerformed( java.awt.event.ActionEvent ) ]
    1 formalIn D = { evt$4 } U = {  }
    2 localDeclaration D = { wi$5 } U = { evt$4.!getSource( ) }
    3 receiver D = {  } U = { evt$4 }

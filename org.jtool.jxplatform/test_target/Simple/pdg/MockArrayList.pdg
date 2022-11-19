@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = MockArrayList
-   0 constructorEntry [ MockArrayList( ) ]
+   0 constructorEntry [ MockArrayList#MockArrayList( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: MockArrayList( )

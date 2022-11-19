@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.FigureDeleted
-   0 constructorEntry [ FigureDeleted( ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.FigureDeleted#FigureDeleted( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ undo( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureDeleted#undo( ) ]
    1 throwsClause D = {  } U = { $javax.swing.undo.CannotUndoException }
    2 assignment D = {  } U = { super.!undo( ) }
    3 receiver D = {  } U = {  }
@@ -24,7 +24,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureDeleted
   18 actualOut D = { this.canvas.!repaint( ) } U = { this.canvas.!java.awt.Component.height, this.canvas.!java.awt.Component.parent, this.canvas.!java.awt.Component.peer, this.canvas.!java.awt.Component.width, this.canvas.!java.awt.Component.x, this.canvas.!java.awt.Component.y }
   20 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ redo( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureDeleted#redo( ) ]
    1 throwsClause D = {  } U = { $javax.swing.undo.CannotUndoException }
    2 throwsClause D = {  } U = { $javax.swing.undo.CannotRedoException }
    3 assignment D = {  } U = { super.!redo( ) }
@@ -46,7 +46,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureDeleted
   19 actualOut D = { this.canvas.!repaint( ) } U = { this.canvas.!java.awt.Component.height, this.canvas.!java.awt.Component.parent, this.canvas.!java.awt.Component.peer, this.canvas.!java.awt.Component.width, this.canvas.!java.awt.Component.x, this.canvas.!java.awt.Component.y }
   21 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ FigureDeleted( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.FigureDeleted#FigureDeleted( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { canvas$0 } U = {  }
    2 formalIn D = { figure$1 } U = {  }
    3 assignment D = {  } U = { super.!FigureEdit( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ) }
@@ -59,7 +59,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureDeleted
 * actualOut D = { super.canvas } U = {  }
 * actualOut D = { super.figure } U = {  }
 --
-   0 fieldEntry [ serialVersionUID ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.FigureDeleted#serialVersionUID ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureDeleted.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.FigureDeleted.serialVersionUID }
 --
    0: FigureDeleted( )

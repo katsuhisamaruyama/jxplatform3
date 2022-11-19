@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test45
-   0 methodEntry [ m1( ) ]
+   0 methodEntry [ Test45#m1( ) ]
    1 localDeclaration D = { a$0 } U = { P45.!P45( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P45#P45( )
@@ -15,7 +15,7 @@ Class Name = Test45
   12 localDeclaration D = { x2$4 } U = { P45.!P45( ).q, P45.!P45( ).q.y, Q45.!Q45( ).y, a$0, a$0.q, a$0.q.y, c$3, c$3.y }
   14 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m2( ) ]
+   0 methodEntry [ Test45#m2( ) ]
    1 localDeclaration D = { a$0 } U = { P45.!P45( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P45#P45( )
@@ -30,7 +30,7 @@ Class Name = Test45
   12 localDeclaration D = { x2$4 } U = { P45.!P45( ).q, P45.!P45( ).q.y, a$0, a$0.q, a$0.q.y, c$3, c$3.q, c$3.q.y }
   14 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test45( ) ]
+   0 constructorEntry [ Test45#Test45( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m1( )

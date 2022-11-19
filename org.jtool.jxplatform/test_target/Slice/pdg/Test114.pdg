@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Test114
-   0 constructorEntry [ Test114( ) ]
+   0 constructorEntry [ Test114#Test114( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test114#m( ) ]
    1 localDeclaration D = { x$0 } U = {  }
    2 localDeclaration D = { y$1 } U = {  }
    3 ifSt D = {  } U = { x$0 }

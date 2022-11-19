@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$12
-   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawMenu$12#actionPerformed( java.awt.event.ActionEvent ) ]
    1 throwsClause D = {  } U = { $java.awt.HeadlessException }
    2 formalIn D = { evt$4 } U = {  }
    3 assignment D = {  } U = { this.!closeFile( ) }

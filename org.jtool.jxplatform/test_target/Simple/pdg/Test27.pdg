@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test27
-   0 methodEntry [ n( ) ]
+   0 methodEntry [ Test27#n( ) ]
    1 localDeclaration D = { sum$0 } U = {  }
    2 localDeclaration D = { numbers$1 } U = { java.util.ArrayList.!ArrayList( ) }
    3 receiver D = {  } U = {  }
@@ -10,23 +10,23 @@ Class Name = Test27
    7 assignment D = { sum$0 } U = { num$2, sum$0 }
    9 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ x ]
+   0 fieldEntry [ Test27#x ]
    1 fieldDeclaration D = { this.x } U = { this.!init( ), this.x }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test27#init( )
    4 actualOut D = { this.!init( ) } U = {  }
 --
-   0 fieldEntry [ list ]
+   0 fieldEntry [ Test27#list ]
    1 fieldDeclaration D = { this.list } U = { MockArrayList.!MockArrayList( ), this.list }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = MockArrayList#MockArrayList( )
    4 actualOut D = { MockArrayList.!MockArrayList( ) } U = {  }
 --
-   0 methodEntry [ init( ) ]
+   0 methodEntry [ Test27#init( ) ]
    1 returnSt D = { $_ } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test27( ) ]
+   0 constructorEntry [ Test27#Test27( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: n( )
@@ -44,7 +44,8 @@ Class Name = Test27
   12:    6 ->    6 defOrderDependence num$2
   13:    6 ->    7 loopIndependentDefUseDependence num$2
   14:    6 ->    7 trueControlDependence
-  15: * ->    2 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+  15:    7 ->    7 loopIndependentDefUseDependence sum$0
+  16: * ->    2 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
 --
    0: x
    1:    0 ->    1 trueControlDependence

@@ -1,21 +1,21 @@
 ----- ClDG (from here) -----
 Class Name = Shape
-   0 fieldEntry [ y1 ]
+   0 fieldEntry [ Shape#y1 ]
    1 fieldDeclaration D = { this.y1 } U = { this.y1 }
 --
-   0 fieldEntry [ x1 ]
+   0 fieldEntry [ Shape#x1 ]
    1 fieldDeclaration D = { this.x1 } U = { this.x1 }
 --
-   0 fieldEntry [ y2 ]
+   0 fieldEntry [ Shape#y2 ]
    1 fieldDeclaration D = { this.y2 } U = { this.y2 }
 --
-   0 fieldEntry [ x2 ]
+   0 fieldEntry [ Shape#x2 ]
    1 fieldDeclaration D = { this.x2 } U = { this.x2 }
 --
-   0 methodEntry [ draw( ) ]
+   0 methodEntry [ Shape#draw( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Shape( int int int int ) ]
+   0 constructorEntry [ Shape#Shape( int int int int ) ]
    1 formalIn D = { x1$0 } U = {  }
    2 formalIn D = { y1$1 } U = {  }
    3 formalIn D = { x2$2 } U = {  }

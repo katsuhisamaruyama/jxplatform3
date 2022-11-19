@@ -1,24 +1,24 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.AutoSave
-   0 fieldEntry [ SAVE_PERIOD ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.AutoSave#SAVE_PERIOD ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.AutoSave.SAVE_PERIOD } U = { jp.ac.ritsumei.cs.draw.AutoSave.SAVE_PERIOD }
 --
-   0 fieldEntry [ tabbedCanvas ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.AutoSave#tabbedCanvas ]
    1 fieldDeclaration D = { this.tabbedCanvas } U = { this.tabbedCanvas }
 --
-   0 methodEntry [ terminate( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.AutoSave#terminate( ) ]
    1 assignment D = { this.isRunning } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ isRunning ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.AutoSave#isRunning ]
    1 fieldDeclaration D = { this.isRunning } U = { this.isRunning }
 --
-   0 constructorEntry [ AutoSave( jp.ac.ritsumei.cs.draw.TabbedCanvas ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.AutoSave#AutoSave( jp.ac.ritsumei.cs.draw.TabbedCanvas ) ]
    1 formalIn D = { tabbedCanvas$0 } U = {  }
    2 assignment D = { this.tabbedCanvas } U = { tabbedCanvas$0, tabbedCanvas$0.canvases, tabbedCanvas$0.menu, tabbedCanvas$0.selectedTab, tabbedCanvas$0.selector }
    4 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ run( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.AutoSave#run( ) ]
    1 assignment D = { this.isRunning } U = {  }
    2 whileSt D = {  } U = { this.isRunning }
    3 trySt D = {  } U = {  }
@@ -74,21 +74,35 @@ Class Name = jp.ac.ritsumei.cs.draw.AutoSave
   15:    6 ->    9 exceptionCatch
   16:    7 ->    4 loopIndependentDefUseDependence this.!sleep( long )
   17:    7 ->    7 defOrderDependence this.!sleep( long )
-  18:   10 ->   10 defOrderDependence canvas$1
+  18:    9 ->    9 outputDependence e$0
   19:   10 ->   10 defOrderDependence canvas$1
-  20:   10 ->   14 trueControlDependence
-  21:   10 ->   15 loopIndependentDefUseDependence canvas$1
-  22:   10 ->   15 trueControlDependence
-  23:   10 ->   16 trueControlDependence
-  24:   10 -> * trueControlDependence
-  25:   13 ->   10 loopIndependentDefUseDependence this.tabbedCanvas.!getAllCanvases( )
-  26:   13 ->   13 defOrderDependence this.tabbedCanvas.!getAllCanvases( )
-  27: * ->   14 loopIndependentDefUseDependence canvas$1.!autoSave( )
-  28: * ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC =    2)
-  29: * ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC =    2)
-  30: * -> * defOrderDependence canvas$1.!autoSave( )
-  31: * -> * loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC =    2)
-  32: * -> * loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC =    2)
+  20:   10 ->   10 defOrderDependence canvas$1
+  21:   10 ->   14 trueControlDependence
+  22:   10 ->   15 loopIndependentDefUseDependence canvas$1
+  23:   10 ->   15 trueControlDependence
+  24:   10 ->   16 trueControlDependence
+  25:   10 -> * trueControlDependence
+  26:   13 ->   10 loopIndependentDefUseDependence this.tabbedCanvas.!getAllCanvases( )
+  27:   13 ->   13 defOrderDependence this.tabbedCanvas.!getAllCanvases( )
+  28: * ->   14 loopIndependentDefUseDependence canvas$1.!autoSave( )
+  29: * ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC =    2)
+  30: * ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC =    2)
+  31: * -> * defOrderDependence canvas$1.!autoSave( )
+  32: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble
+  33: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb
+  34: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars
+  35: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nextChar
+  36: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out
+  37: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se
+  38: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush
+  39: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out
+  40: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut
+  41: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble
+  42: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder
+  43: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value
+  44: * -> * defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble
+  45: * -> * loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC =    2)
+  46: * -> * loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC =    2)
 --
 ----- ClDG (to here) -----
 

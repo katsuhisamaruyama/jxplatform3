@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = I134
-   0 methodEntry [ f( int ) ]
+   0 methodEntry [ I134#f( int ) ]
    1 formalIn D = { a$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --

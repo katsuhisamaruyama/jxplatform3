@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Sample14
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Sample14#main( java.lang.String[] ) ]
    1 throwsClause D = {  } U = { $java.awt.HeadlessException }
    2 formalIn D = { args$0 } U = {  }
    3 localDeclaration D = { frame$1 } U = { javax.swing.JFrame.!JFrame( java.lang.String ) }
@@ -33,7 +33,7 @@ Class Name = Sample14
   30 actualOut D = { frame$1.!setVisible( boolean ) } U = {  }
   32 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Sample14( ) ]
+   0 constructorEntry [ Sample14#Sample14( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: main( java.lang.String[] )

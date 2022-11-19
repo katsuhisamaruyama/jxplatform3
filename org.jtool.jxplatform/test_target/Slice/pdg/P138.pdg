@@ -1,22 +1,22 @@
 ----- ClDG (from here) -----
 Class Name = P138
-   0 fieldEntry [ list ]
+   0 fieldEntry [ P138#list ]
    1 fieldDeclaration D = { this.list } U = { java.util.ArrayList.!ArrayList( ), this.list }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
 * actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
 --
-   0 methodEntry [ getList2( ) ]
+   0 methodEntry [ P138#getList2( ) ]
    1 returnSt D = { $_ } U = { java.util.ArrayList.!ArrayList( java.util.Collection ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, java.util.ArrayList.!java.util.ArrayList.elementData, java.util.ArrayList.!java.util.ArrayList.size, this.list } TO = java.util.ArrayList#ArrayList( java.util.Collection )
 * actualOut D = { java.util.ArrayList.!ArrayList( java.util.Collection ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData, java.util.ArrayList.!java.util.ArrayList.size } U = { java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, java.util.ArrayList.!java.util.ArrayList.elementData, java.util.ArrayList.!java.util.ArrayList.size }
    6 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ P138( ) ]
+   0 constructorEntry [ P138#P138( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ add( java.lang.String ) ]
+   0 methodEntry [ P138#add( java.lang.String ) ]
    1 formalIn D = { elem$0 } U = {  }
    2 assignment D = {  } U = { this.list.!add( java.lang.Object ) }
    3 receiver D = {  } U = { this.list }
@@ -24,7 +24,7 @@ Class Name = P138
 * actualOut D = { this.list.!add( java.lang.Object ), this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size } U = { this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getList( ) ]
+   0 methodEntry [ P138#getList( ) ]
    1 returnSt D = { $_ } U = { this.list }
    3 formalOut D = {  } U = { $_ }
 --

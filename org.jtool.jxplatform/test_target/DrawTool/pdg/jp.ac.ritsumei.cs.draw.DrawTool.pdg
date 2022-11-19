@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.DrawTool
-   0 fieldEntry [ selector ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawTool#selector ]
    1 fieldDeclaration D = { this.selector } U = { this.selector }
 --
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawTool#main( java.lang.String[] ) ]
    1 throwsClause D = {  } U = { $java.awt.HeadlessException }
    2 formalIn D = { args$0 } U = {  }
    3 assignment D = {  } U = { this.!setDefault( java.util.Locale ) }
@@ -78,7 +78,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawTool
 * actualOut D = { this.selectedTab } U = {  }
 * actualOut D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).selector } U = {  }
 --
-   0 methodEntry [ closeWindow( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawTool#closeWindow( ) ]
    1 throwsClause D = {  } U = { $java.awt.HeadlessException }
    2 ifSt D = {  } U = { this.menu, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener }
    3 assignment D = {  } U = { this.menu.!closeFile( ) }
@@ -88,7 +88,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawTool
    9 formalOut D = {  } U = { $_ }
 * actualOut D = { this.selectedTab } U = {  }
 --
-   0 constructorEntry [ DrawTool( java.lang.String ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.DrawTool#DrawTool( java.lang.String ) ]
    1 throwsClause D = {  } U = { $java.awt.HeadlessException }
    2 formalIn D = { title$0 } U = {  }
    3 assignment D = {  } U = { super.!JFrame( java.lang.String ) }
@@ -204,20 +204,20 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawTool
 * actualOut D = { this.tabbedCanvas.!init( ).filename } U = {  }
 * actualOut D = { this.selectedTab } U = {  }
 --
-   0 fieldEntry [ menu ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawTool#menu ]
    1 fieldDeclaration D = { this.menu } U = { this.menu }
 --
-   0 methodEntry [ terminate( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawTool#terminate( ) ]
    1 assignment D = {  } U = { this.!exit( int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { this.!java.lang.Runtime.currentRuntime } TO = java.lang.System#exit( int )
    4 actualOut D = { this.!exit( int ) } U = { this.!java.lang.Runtime.currentRuntime }
    6 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ serialVersionUID ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawTool#serialVersionUID ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.DrawTool.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.DrawTool.serialVersionUID }
 --
-   0 fieldEntry [ tabbedCanvas ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawTool#tabbedCanvas ]
    1 fieldDeclaration D = { this.tabbedCanvas } U = { this.tabbedCanvas }
 --
    0: selector
@@ -346,13 +346,12 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawTool
    1:    0 ->    2 trueControlDependence
    2:    2 ->    4 trueControlDependence
    3:    2 ->    5 trueControlDependence
-   4:    2 ->    9 falseControlDependence
-   5:    5 ->    1 exceptionCatch
-   6:    5 ->    3 trueControlDependence
-   7:    5 ->    9 trueControlDependence
+   4:    5 ->    1 exceptionCatch
+   5:    5 ->    3 trueControlDependence
+   6:    5 ->    9 trueControlDependence
+   7:    5 -> * trueControlDependence
    8:    5 -> * trueControlDependence
-   9:    5 -> * trueControlDependence
-  10: * ->    3 loopIndependentDefUseDependence this.menu.!closeFile( )
+   9: * ->    3 loopIndependentDefUseDependence this.menu.!closeFile( )
 --
    0: DrawTool( java.lang.String )
    1:    0 ->    2 trueControlDependence

@@ -1,50 +1,50 @@
 ----- ClDG (from here) -----
 Class Name = P48
-   0 methodEntry [ getTT( ) ]
+   0 methodEntry [ P48#getTT( ) ]
    1 returnSt D = { $_ } U = { this.t }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getStr( ) ]
+   0 methodEntry [ P48#getStr( ) ]
    1 returnSt D = { $_ } U = { this.str }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getArrayList( ) ]
+   0 methodEntry [ P48#getArrayList( ) ]
    1 returnSt D = { $_ } U = { java.util.ArrayList.!ArrayList( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
 * actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
    6 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ ss ]
+   0 fieldEntry [ P48#ss ]
    1 fieldDeclaration D = { this.ss } U = { this.ss }
 --
-   0 methodEntry [ getSS( ) ]
+   0 methodEntry [ P48#getSS( ) ]
    1 returnSt D = { $_ } U = { this.ss }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ str ]
+   0 fieldEntry [ P48#str ]
    1 fieldDeclaration D = { this.str } U = { $java.lang.String, this.str }
 --
-   0 fieldEntry [ t ]
+   0 fieldEntry [ P48#t ]
    1 fieldDeclaration D = { this.t } U = { T48.!T48( ), this.t }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = T48#T48( )
    4 actualOut D = { T48.!T48( ) } U = {  }
 --
-   0 fieldEntry [ s ]
+   0 fieldEntry [ P48#s ]
    1 fieldDeclaration D = { this.s } U = { S48.!S48( ), this.s }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = S48#S48( )
    4 actualOut D = { S48.!S48( ) } U = {  }
 --
-   0 constructorEntry [ P48( ) ]
+   0 constructorEntry [ P48#P48( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getT( ) ]
+   0 methodEntry [ P48#getT( ) ]
    1 returnSt D = { $_ } U = { this.t }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getS( ) ]
+   0 methodEntry [ P48#getS( ) ]
    1 returnSt D = { $_ } U = { this.s }
    3 formalOut D = {  } U = { $_ }
 --

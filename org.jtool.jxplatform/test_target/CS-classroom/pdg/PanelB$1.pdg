@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = PanelB$1
-   0 fieldEntry [ flag ]
+   0 fieldEntry [ PanelB$1#flag ]
    1 fieldDeclaration D = { this.flag } U = { this.flag }
 --
-   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   0 methodEntry [ PanelB$1#actionPerformed( java.awt.event.ActionEvent ) ]
    1 formalIn D = { e$2 } U = {  }
    2 ifSt D = {  } U = { this.flag }
    3 assignment D = {  } U = { label$0.!setText( java.lang.String ) }

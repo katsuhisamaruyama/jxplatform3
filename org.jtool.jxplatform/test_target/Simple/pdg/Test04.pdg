@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test04
-   0 methodEntry [ doReturn( int ) ]
+   0 methodEntry [ Test04#doReturn( int ) ]
    1 formalIn D = { in$0 } U = {  }
    2 assignment D = { in$0 } U = { in$0 }
    3 ifSt D = {  } U = { in$0 }
@@ -8,7 +8,7 @@ Class Name = Test04
    6 returnSt D = { $_ } U = {  }
    8 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test04#m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
    2 localDeclaration D = { out$1 } U = { this.!doReturn( int ) }
    3 receiver D = {  } U = {  }
@@ -21,7 +21,7 @@ Class Name = Test04
 * actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   12 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test04( ) ]
+   0 constructorEntry [ Test04#Test04( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: doReturn( int )

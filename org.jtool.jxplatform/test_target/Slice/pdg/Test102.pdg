@@ -1,11 +1,11 @@
 ----- ClDG (from here) -----
 Class Name = Test102
-   0 methodEntry [ inc( int ) ]
+   0 methodEntry [ Test102#inc( int ) ]
    1 formalIn D = { n$0 } U = {  }
    2 returnSt D = { $_ } U = { n$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test102#m( ) ]
    1 localDeclaration D = { x$0 } U = { this.!inc( int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test102#inc( int )
@@ -26,7 +26,7 @@ Class Name = Test102
 * actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   20 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test102( ) ]
+   0 constructorEntry [ Test102#Test102( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: inc( int )

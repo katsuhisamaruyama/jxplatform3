@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test48
-   0 methodEntry [ m10( S48 ) ]
+   0 methodEntry [ Test48#m10( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
    2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
@@ -8,7 +8,7 @@ Class Name = Test48
    5 actualOut D = { s$0.!m1( ) } U = {  }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m11( S48 ) ]
+   0 methodEntry [ Test48#m11( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
    2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
@@ -16,7 +16,7 @@ Class Name = Test48
    5 actualOut D = { s$0.!m1( ) } U = {  }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m7( ) ]
+   0 methodEntry [ Test48#m7( ) ]
    1 localDeclaration D = { t$0 } U = { T48.!T48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = T48#T48( )
@@ -39,7 +39,7 @@ Class Name = Test48
   20 actualOut D = { t$0.!toString( ) } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value }
   22 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m12( S48 ) ]
+   0 methodEntry [ Test48#m12( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
    2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
@@ -47,7 +47,7 @@ Class Name = Test48
    5 actualOut D = { s$0.!m1( ) } U = {  }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m15( ) ]
+   0 methodEntry [ Test48#m15( ) ]
    1 localDeclaration D = { str$0 } U = { $java.lang.String }
    2 assignment D = {  } U = { str$0.!substring( int ).!length( ) }
    3 receiver D = {  } U = { str$0.!substring( int ) }
@@ -67,7 +67,7 @@ Class Name = Test48
   18 catchClause D = { e$1 } U = {  }
   20 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ n10( ) ]
+   0 methodEntry [ Test48#n10( ) ]
    1 localDeclaration D = { s$0 } U = { S48.!S48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = S48#S48( )
@@ -79,7 +79,7 @@ Class Name = Test48
    9 actualOut D = { this.!m10( S48 ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m6( ) ]
+   0 methodEntry [ Test48#m6( ) ]
    1 localDeclaration D = { s$0 } U = { S48.!S48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = S48#S48( )
@@ -98,7 +98,7 @@ Class Name = Test48
   16 actualOut D = { s$0.!toString( ) } U = { S48.!S48( ).!java.lang.Class.name, S48.!S48( ).!java.lang.StringBuilder.count, S48.!S48( ).!java.lang.StringBuilder.value, s$0.!java.lang.Class.name, s$0.!java.lang.StringBuilder.count, s$0.!java.lang.StringBuilder.value }
   18 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m8( ) ]
+   0 methodEntry [ Test48#m8( ) ]
    1 localDeclaration D = { t$0 } U = { T48.!T48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = T48#T48( )
@@ -117,7 +117,7 @@ Class Name = Test48
   16 actualOut D = { t$0.!toString( ) } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value }
   18 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m14( ) ]
+   0 methodEntry [ Test48#m14( ) ]
    1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
@@ -132,7 +132,7 @@ Class Name = Test48
   12 actualOut D = { l$1.!size( ) } U = { l$1.!java.util.ArrayList.size, p$0.!getArrayList( ).!java.util.ArrayList.size }
   14 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m4( ) ]
+   0 methodEntry [ Test48#m4( ) ]
    1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
@@ -160,7 +160,7 @@ Class Name = Test48
   25 actualOut D = { p$0.!getT( ).!m3( ) } U = {  }
   27 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m5( ) ]
+   0 methodEntry [ Test48#m5( ) ]
    1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
@@ -179,7 +179,7 @@ Class Name = Test48
   16 actualOut D = { s$1.!m2( ) } U = {  }
   18 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ l11( S48 ) ]
+   0 methodEntry [ Test48#l11( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
    2 assignment D = {  } U = { this.!n11( S48 ) }
    3 receiver D = {  } U = {  }
@@ -191,7 +191,7 @@ Class Name = Test48
    9 actualOut D = { this.!n11( S48 ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m3( ) ]
+   0 methodEntry [ Test48#m3( ) ]
    1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
@@ -219,7 +219,7 @@ Class Name = Test48
   25 actualOut D = { p$0.!getStr( ).!length( ) } U = { P48.!P48( ).!getStr( ).!java.lang.String.COMPACT_STRINGS, P48.!P48( ).!getStr( ).!java.lang.String.coder, P48.!P48( ).!getStr( ).!java.lang.String.value, p$0.!getStr( ).!java.lang.String.COMPACT_STRINGS, p$0.!getStr( ).!java.lang.String.coder, p$0.!getStr( ).!java.lang.String.value }
   27 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m1( ) ]
+   0 methodEntry [ Test48#m1( ) ]
    1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
@@ -238,7 +238,7 @@ Class Name = Test48
   16 actualOut D = { p$0.str.!length( ) } U = { P48.!P48( ).str.!java.lang.String.COMPACT_STRINGS, P48.!P48( ).str.!java.lang.String.coder, P48.!P48( ).str.!java.lang.String.value, p$0.str.!java.lang.String.COMPACT_STRINGS, p$0.str.!java.lang.String.coder, p$0.str.!java.lang.String.value }
   18 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m2( ) ]
+   0 methodEntry [ Test48#m2( ) ]
    1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P48#P48( )
@@ -263,7 +263,7 @@ Class Name = Test48
   23 catchClause D = { e$1 } U = {  }
   25 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ n11( S48 ) ]
+   0 methodEntry [ Test48#n11( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
    2 assignment D = {  } U = { this.!m11( S48 ) }
    3 receiver D = {  } U = {  }
@@ -272,7 +272,7 @@ Class Name = Test48
    6 actualOut D = { this.!m11( S48 ) } U = {  }
    8 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m16( S48 ) ]
+   0 methodEntry [ Test48#m16( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
    2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
@@ -284,7 +284,7 @@ Class Name = Test48
    9 actualOut D = { s$0.!m2( ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m9( S48 ) ]
+   0 methodEntry [ Test48#m9( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
    2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
@@ -292,7 +292,7 @@ Class Name = Test48
    5 actualOut D = { s$0.!m1( ) } U = {  }
    7 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m13( S48 ) ]
+   0 methodEntry [ Test48#m13( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
    2 assignment D = {  } U = { s$0.!m1( ) }
    3 receiver D = {  } U = { s$0 }
@@ -304,7 +304,7 @@ Class Name = Test48
    9 actualOut D = { s$0.!m2( ) } U = {  }
   11 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ n13( ) ]
+   0 methodEntry [ Test48#n13( ) ]
    1 assignment D = {  } U = { this.!m13( S48 ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test48#m13( S48 )
@@ -315,10 +315,10 @@ Class Name = Test48
    8 actualOut D = { this.!m13( S48 ) } U = {  }
   10 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test48( ) ]
+   0 constructorEntry [ Test48#Test48( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ n9( ) ]
+   0 methodEntry [ Test48#n9( ) ]
    1 assignment D = {  } U = { this.!m9( S48 ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test48#m9( S48 )
@@ -329,7 +329,7 @@ Class Name = Test48
    8 actualOut D = { this.!m9( S48 ) } U = {  }
   10 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ n12( S48 ) ]
+   0 methodEntry [ Test48#n12( S48 ) ]
    1 formalIn D = { s$0 } U = {  }
    2 assignment D = {  } U = { this.!m12( S48 ) }
    3 receiver D = {  } U = {  }

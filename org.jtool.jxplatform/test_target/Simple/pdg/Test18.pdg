@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test18
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test18#m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
    2 localDeclaration D = { i$1 } U = {  }
    3 forSt D = {  } U = { i$1 }
@@ -15,48 +15,47 @@ Class Name = Test18
   13 assignment D = { i$1 } U = { i$1 }
   15 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test18( ) ]
+   0 constructorEntry [ Test18#Test18( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
-   3:    0 ->    3 trueControlDependence
-   4:    0 ->   15 trueControlDependence
-   5:    1 ->    6 declaration
-   6:    1 ->    6 loopIndependentDefUseDependence a$0
-   7:    1 ->    9 declaration
-   8:    1 ->    9 loopIndependentDefUseDependence a$0
-   9:    1 ->   10 declaration
-  10:    1 ->   10 loopIndependentDefUseDependence a$0
-  11:    2 ->    3 declaration
-  12:    2 ->    3 loopIndependentDefUseDependence i$1
-  13:    2 ->   13 declaration
-  14:    2 ->   13 loopIndependentDefUseDependence i$1
-  15:    3 ->    4 trueControlDependence
-  16:    3 ->    5 trueControlDependence
-  17:    3 ->    9 trueControlDependence
-  18:    4 ->    4 defOrderDependence j$2
-  19:    4 ->    5 declaration
-  20:    4 ->    5 loopIndependentDefUseDependence j$2
-  21:    4 ->    8 declaration
-  22:    5 ->    6 trueControlDependence
-  23:    5 ->    7 trueControlDependence
-  24:    6 ->    6 loopCarriedDefUseDependence a$0 (LC =    5)
-  25:    6 ->    9 loopIndependentDefUseDependence a$0
-  26:    6 ->   10 loopCarriedDefUseDependence a$0 (LC =    3)
-  27:    7 ->    5 fallThroughControlDependence
-  28:    7 ->    8 fallThroughControlDependence
-  29:    8 ->    4 outputDependence j$2
-  30:    8 ->    5 loopIndependentDefUseDependence j$2
-  31:    9 ->    3 falseControlDependence
-  32:    9 ->   10 trueControlDependence
-  33:    9 ->   11 trueControlDependence
-  34:    9 ->   13 falseControlDependence
-  35:   11 ->    3 fallThroughControlDependence
-  36:   11 ->   13 fallThroughControlDependence
-  37:   13 ->    3 loopIndependentDefUseDependence i$1
-  38:   13 ->   13 loopCarriedDefUseDependence i$1 (LC =    3)
+   3:    0 ->   15 trueControlDependence
+   4:    1 ->    6 declaration
+   5:    1 ->    6 loopIndependentDefUseDependence a$0
+   6:    1 ->    9 declaration
+   7:    1 ->    9 loopIndependentDefUseDependence a$0
+   8:    1 ->   10 declaration
+   9:    1 ->   10 loopIndependentDefUseDependence a$0
+  10:    2 ->    3 declaration
+  11:    2 ->    3 loopIndependentDefUseDependence i$1
+  12:    2 ->   13 declaration
+  13:    2 ->   13 loopIndependentDefUseDependence i$1
+  14:    3 ->    4 trueControlDependence
+  15:    3 ->    5 trueControlDependence
+  16:    3 ->    9 trueControlDependence
+  17:    4 ->    4 defOrderDependence j$2
+  18:    4 ->    5 declaration
+  19:    4 ->    5 loopIndependentDefUseDependence j$2
+  20:    4 ->    8 declaration
+  21:    5 ->    6 trueControlDependence
+  22:    5 ->    7 trueControlDependence
+  23:    6 ->    6 loopCarriedDefUseDependence a$0 (LC =    5)
+  24:    6 ->    9 loopIndependentDefUseDependence a$0
+  25:    6 ->   10 loopCarriedDefUseDependence a$0 (LC =    3)
+  26:    7 ->    5 fallThroughControlDependence
+  27:    7 ->    8 fallThroughControlDependence
+  28:    8 ->    4 outputDependence j$2
+  29:    8 ->    5 loopIndependentDefUseDependence j$2
+  30:    9 ->    3 falseControlDependence
+  31:    9 ->   10 trueControlDependence
+  32:    9 ->   11 trueControlDependence
+  33:    9 ->   13 falseControlDependence
+  34:   11 ->    3 fallThroughControlDependence
+  35:   11 ->   13 fallThroughControlDependence
+  36:   13 ->    3 loopCarriedDefUseDependence i$1 (LC =    3)
+  37:   13 ->   13 loopCarriedDefUseDependence i$1 (LC =    3)
 --
    0: Test18( )
    1:    0 ->    2 trueControlDependence

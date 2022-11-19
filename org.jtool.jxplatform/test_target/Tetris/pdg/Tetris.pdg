@@ -1,16 +1,16 @@
 ----- ClDG (from here) -----
 Class Name = Tetris
-   0 fieldEntry [ timer ]
+   0 fieldEntry [ Tetris#timer ]
    1 fieldDeclaration D = { this.timer } U = { this.timer }
 --
-   0 methodEntry [ stopTimer( ) ]
+   0 methodEntry [ Tetris#stopTimer( ) ]
    1 assignment D = { this.timer } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Tetris( ) ]
+   0 constructorEntry [ Tetris#Tetris( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ init( ) ]
+   0 methodEntry [ Tetris#init( ) ]
    1 assignment D = { this.info } U = { GameInfo.!GameInfo( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { GameInfo.!GameInfo( ).height, GameInfo.!GameInfo( ).width, GameInfo.rows, Tile.SIZE, this.!java.awt.Component.x, this.!java.awt.Component.y } TO = GameInfo#GameInfo( )
@@ -112,11 +112,11 @@ Class Name = Tetris
 * actualOut D = { this.pit.!placeNextBlock( ).posY } U = {  }
 * actualOut D = { this.pit.currentBlock.tile$3.posY } U = {  }
 --
-   0 methodEntry [ keyTyped( java.awt.event.KeyEvent ) ]
+   0 methodEntry [ Tetris#keyTyped( java.awt.event.KeyEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Tetris#main( java.lang.String[] ) ]
    1 formalIn D = { argv$0 } U = {  }
    2 localDeclaration D = { tetris$1 } U = { Tetris.!Tetris( ) }
    3 receiver D = {  } U = {  }
@@ -158,20 +158,20 @@ Class Name = Tetris
 * actualOut D = { tetris$1.pit.currentBlock.tile$3.posX } U = {  }
 * actualOut D = { tetris$1.pit.currentBlock.tile$3.posY } U = {  }
 --
-   0 fieldEntry [ COLUMNS ]
+   0 fieldEntry [ Tetris#COLUMNS ]
    1 fieldDeclaration D = { Tetris.COLUMNS } U = { Tetris.COLUMNS }
 --
-   0 fieldEntry [ ROWS ]
+   0 fieldEntry [ Tetris#ROWS ]
    1 fieldDeclaration D = { Tetris.ROWS } U = { Tetris.ROWS }
 --
-   0 methodEntry [ keyReleased( java.awt.event.KeyEvent ) ]
+   0 methodEntry [ Tetris#keyReleased( java.awt.event.KeyEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ pit ]
+   0 fieldEntry [ Tetris#pit ]
    1 fieldDeclaration D = { this.pit } U = { this.pit }
 --
-   0 methodEntry [ createTimer( ) ]
+   0 methodEntry [ Tetris#createTimer( ) ]
    1 ifSt D = {  } U = { this.timer }
    2 assignment D = {  } U = { this.!stopTimer( ) }
    3 receiver D = {  } U = {  }
@@ -184,10 +184,10 @@ Class Name = Tetris
   12 formalOut D = {  } U = { $_ }
 * actualOut D = { this.timer } U = {  }
 --
-   0 fieldEntry [ info ]
+   0 fieldEntry [ Tetris#info ]
    1 fieldDeclaration D = { this.info } U = { this.info }
 --
-   0 methodEntry [ keyPressed( java.awt.event.KeyEvent ) ]
+   0 methodEntry [ Tetris#keyPressed( java.awt.event.KeyEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    2 localDeclaration D = { keyCode$1 } U = { e$0.!getKeyCode( ) }
    3 receiver D = {  } U = { e$0 }
@@ -299,14 +299,14 @@ Class Name = Tetris
 * actualOut D = { block$2.posY } U = {  }
 * actualOut D = { this.tile$2.posY } U = {  }
 --
-   0 methodEntry [ startTimer( ) ]
+   0 methodEntry [ Tetris#startTimer( ) ]
    1 assignment D = {  } U = { this.timer.!start( ) }
    2 receiver D = {  } U = { this.timer }
    3 methodCall D = {  } U = { this.timer.!java.lang.Thread.group, this.timer.!java.lang.Thread.threadStatus, this.timer.!java.lang.ThreadGroup.destroyed, this.timer.!java.lang.ThreadGroup.nUnstartedThreads, this.timer.!java.lang.ThreadGroup.nthreads, this.timer.!java.lang.ThreadGroup.threads } TO = java.lang.Thread#start( )
 * actualOut D = { this.timer.!java.lang.ThreadGroup.nUnstartedThreads, this.timer.!java.lang.ThreadGroup.nthreads, this.timer.!java.lang.ThreadGroup.threads, this.timer.!start( ) } U = { this.timer.!java.lang.Thread.group, this.timer.!java.lang.Thread.threadStatus, this.timer.!java.lang.ThreadGroup.destroyed, this.timer.!java.lang.ThreadGroup.nUnstartedThreads, this.timer.!java.lang.ThreadGroup.nthreads, this.timer.!java.lang.ThreadGroup.threads }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ run( ) ]
+   0 methodEntry [ Tetris#run( ) ]
    1 localDeclaration D = { isGameOver$0 } U = {  }
    2 localDeclaration D = { thisThread$1 } U = { this.!currentThread( ) }
    3 receiver D = {  } U = {  }
@@ -943,28 +943,28 @@ Class Name = Tetris
   42:   13 ->   13 defOrderDependence this.info.!getSpeed( )
   43:   14 ->    8 loopIndependentDefUseDependence this.!sleep( long )
   44:   14 ->   14 defOrderDependence this.!sleep( long )
-  45:   17 ->   17 defOrderDependence block$3
-  46:   17 ->   22 declaration
-  47:   17 ->   22 loopIndependentDefUseDependence block$3
-  48:   17 ->   25 declaration
-  49:   17 ->   25 outputDependence block$3
-  50:   20 ->   17 loopIndependentDefUseDependence this.pit.!getCurrentBlock( )
-  51:   20 ->   20 defOrderDependence this.pit.!getCurrentBlock( )
-  52:   21 ->   25 trueControlDependence
-  53:   21 ->   26 trueControlDependence
-  54:   21 ->   27 trueControlDependence
-  55:   21 ->   28 trueControlDependence
-  56:   21 ->   30 trueControlDependence
-  57:   21 ->   31 trueControlDependence
-  58:   21 ->   32 trueControlDependence
-  59:   21 ->   34 trueControlDependence
-  60:   21 ->   35 trueControlDependence
-  61:   21 ->   36 trueControlDependence
-  62:   21 ->   37 trueControlDependence
-  63:   21 ->   38 trueControlDependence
-  64:   21 ->   39 trueControlDependence
-  65:   21 ->   40 trueControlDependence
-  66:   21 -> * trueControlDependence
+  45:   16 ->   16 outputDependence e$2
+  46:   17 ->   17 defOrderDependence block$3
+  47:   17 ->   22 declaration
+  48:   17 ->   22 loopIndependentDefUseDependence block$3
+  49:   17 ->   25 declaration
+  50:   17 ->   25 outputDependence block$3
+  51:   20 ->   17 loopIndependentDefUseDependence this.pit.!getCurrentBlock( )
+  52:   20 ->   20 defOrderDependence this.pit.!getCurrentBlock( )
+  53:   21 ->   25 trueControlDependence
+  54:   21 ->   26 trueControlDependence
+  55:   21 ->   27 trueControlDependence
+  56:   21 ->   28 trueControlDependence
+  57:   21 ->   30 trueControlDependence
+  58:   21 ->   31 trueControlDependence
+  59:   21 ->   32 trueControlDependence
+  60:   21 ->   34 trueControlDependence
+  61:   21 ->   35 trueControlDependence
+  62:   21 ->   36 trueControlDependence
+  63:   21 ->   37 trueControlDependence
+  64:   21 ->   38 trueControlDependence
+  65:   21 ->   39 trueControlDependence
+  66:   21 ->   40 trueControlDependence
   67:   21 -> * trueControlDependence
   68:   21 -> * trueControlDependence
   69:   21 -> * trueControlDependence
@@ -990,116 +990,131 @@ Class Name = Tetris
   89:   21 -> * trueControlDependence
   90:   21 -> * trueControlDependence
   91:   21 -> * trueControlDependence
-  92:   25 ->   17 outputDependence block$3
-  93:   30 ->   30 defOrderDependence isGameOver$0
-  94:   30 ->   47 loopIndependentDefUseDependence isGameOver$0
-  95:   40 ->   37 loopIndependentDefUseDependence this.pit.!getNextBlock( )
-  96:   40 ->   40 defOrderDependence this.pit.!getNextBlock( )
-  97:   47 ->   48 trueControlDependence
-  98:   47 ->   49 trueControlDependence
-  99:   47 ->   50 trueControlDependence
- 100:   47 ->   51 trueControlDependence
- 101:   47 ->   52 trueControlDependence
- 102:   47 ->   53 trueControlDependence
- 103:   47 ->   54 trueControlDependence
- 104:   47 ->   55 trueControlDependence
- 105:   47 -> * trueControlDependence
- 106:   51 ->   48 loopIndependentDefUseDependence this.pit.!gameOver( )
- 107:   51 ->   51 defOrderDependence this.pit.!gameOver( )
- 108:   55 ->   52 loopIndependentDefUseDependence this.!stopTimer( )
- 109:   55 ->   55 defOrderDependence this.!stopTimer( )
- 110: * ->    6 loopIndependentDefUseDependence this.timer
- 111: * ->   19 loopIndependentDefUseDependence this.pit.currentBlock
- 112: * ->   20 loopIndependentDefUseDependence this.pit.currentBlock
- 113: * ->   21 loopIndependentDefUseDependence block$3.!fall( )
- 114: * ->   23 loopCarriedDefUseDependence block$3.posY (LC =    6)
- 115: * ->   23 loopCarriedDefUseDependence this.pit.box (LC =    6)
- 116: * ->   23 loopCarriedDefUseDependence this.tiles.!java.util.HashMap.keySet (LC =    6)
- 117: * ->   26 loopIndependentDefUseDependence this.pit.!checkLines( )
- 118: * ->   28 loopCarriedDefUseDependence this.box (LC =    6)
- 119: * ->   28 loopCarriedDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
- 120: * ->   28 loopCarriedDefUseDependence this.level (LC =    6)
- 121: * ->   28 loopCarriedDefUseDependence this.pit.info.lines (LC =    6)
- 122: * ->   28 loopCarriedDefUseDependence this.score (LC =    6)
- 123: * ->   28 loopCarriedDefUseDependence this.tile$4.posY (LC =    6)
- 124: * ->   30 loopIndependentDefUseDependence this.pit.!placeNextBlock( )
- 125: * ->   32 loopCarriedDefUseDependence this.offsetX (LC =    6)
- 126: * ->   32 loopCarriedDefUseDependence this.offsetY (LC =    6)
- 127: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock (LC =    6)
- 128: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tile$3.posX (LC =    6)
- 129: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tile$3.posY (LC =    6)
- 130: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
- 131: * ->   32 loopCarriedDefUseDependence this.pit.nextBlock (LC =    6)
- 132: * ->   32 loopIndependentDefUseDependence this.pit.box
- 133: * ->   34 loopIndependentDefUseDependence this.info.!update( Block )
- 134: * ->   36 loopCarriedDefUseDependence this.info.nextBlock$0.tiles.!java.util.HashMap.keySet (LC =    6)
- 135: * ->   39 loopIndependentDefUseDependence this.pit.nextBlock
- 136: * ->   40 loopIndependentDefUseDependence this.pit.nextBlock
- 137: * ->   43 loopIndependentDefUseDependence this.pit.!update( )
- 138: * ->   45 loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
- 139: * ->   45 loopIndependentDefUseDependence this.box
- 140: * ->   45 loopIndependentDefUseDependence this.pit.currentBlock
- 141: * ->   45 loopIndependentDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet
- 142: * -> * defOrderDependence block$3.!fall( )
- 143: * -> * defOrderDependence block$3.posY
- 144: * -> * defOrderDependence this.box
- 145: * -> * defOrderDependence this.color.!java.awt.Color.cs
- 146: * -> * defOrderDependence this.color.!java.awt.Color.falpha
- 147: * -> * defOrderDependence this.color.!java.awt.Color.frgbvalue
- 148: * -> * defOrderDependence this.color.!java.awt.Color.fvalue
- 149: * -> * defOrderDependence this.color.!java.awt.Color.value
- 150: * -> * defOrderDependence this.info.!update( Block )
- 151: * -> * defOrderDependence this.level
- 152: * -> * defOrderDependence this.offsetX
- 153: * -> * defOrderDependence this.pit.!checkLines( )
- 154: * -> * defOrderDependence this.pit.!placeNextBlock( )
- 155: * -> * defOrderDependence this.pit.!update( )
- 156: * -> * defOrderDependence this.pit.box
- 157: * -> * defOrderDependence this.pit.currentBlock
- 158: * -> * defOrderDependence this.pit.currentBlock.tile$3.posX
- 159: * -> * defOrderDependence this.pit.currentBlock.tile$3.posY
- 160: * -> * defOrderDependence this.pit.info.lines
- 161: * -> * defOrderDependence this.pit.nextBlock
- 162: * -> * defOrderDependence this.score
- 163: * -> * defOrderDependence this.tile$4.posY
- 164: * -> * defOrderDependence this.timer
- 165: * -> * loopCarriedDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
- 166: * -> * loopCarriedDefUseDependence this.info.nextBlock$0.tiles.!java.util.HashMap.keySet (LC =    6)
- 167: * -> * loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
- 168: * -> * loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
- 169: * -> * loopCarriedDefUseDependence this.tiles.!java.util.HashMap.keySet (LC =    6)
- 170: * -> * loopIndependentDefUseDependence block$3.posY
- 171: * -> * loopIndependentDefUseDependence this.box
- 172: * -> * loopIndependentDefUseDependence this.box
- 173: * -> * loopIndependentDefUseDependence this.level
- 174: * -> * loopIndependentDefUseDependence this.offsetX
- 175: * -> * loopIndependentDefUseDependence this.offsetY
- 176: * -> * loopIndependentDefUseDependence this.pit.box
- 177: * -> * loopIndependentDefUseDependence this.pit.box
- 178: * -> * loopIndependentDefUseDependence this.pit.currentBlock
- 179: * -> * loopIndependentDefUseDependence this.pit.currentBlock
- 180: * -> * loopIndependentDefUseDependence this.pit.currentBlock.tile$3.posX
- 181: * -> * loopIndependentDefUseDependence this.pit.currentBlock.tile$3.posY
- 182: * -> * loopIndependentDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet
- 183: * -> * loopIndependentDefUseDependence this.pit.info.lines
- 184: * -> * loopIndependentDefUseDependence this.pit.nextBlock
- 185: * -> * loopIndependentDefUseDependence this.score
- 186: * -> * loopIndependentDefUseDependence this.tile$4.posY
- 187: * -> * outputDependence this.color.!java.awt.Color.cs
- 188: * -> * outputDependence this.color.!java.awt.Color.cs
- 189: * -> * outputDependence this.color.!java.awt.Color.falpha
- 190: * -> * outputDependence this.color.!java.awt.Color.falpha
- 191: * -> * outputDependence this.color.!java.awt.Color.frgbvalue
- 192: * -> * outputDependence this.color.!java.awt.Color.frgbvalue
- 193: * -> * outputDependence this.color.!java.awt.Color.fvalue
- 194: * -> * outputDependence this.color.!java.awt.Color.fvalue
- 195: * -> * outputDependence this.color.!java.awt.Color.value
- 196: * -> * outputDependence this.color.!java.awt.Color.value
- 197: * -> * outputDependence this.offsetY
- 198: * -> * outputDependence this.offsetY
- 199: * -> * outputDependence this.offsetY
- 200: * -> * outputDependence this.offsetY
- 201: * -> * outputDependence this.offsetY
+  92:   21 -> * trueControlDependence
+  93:   25 ->   17 outputDependence block$3
+  94:   30 ->   30 defOrderDependence isGameOver$0
+  95:   30 ->   47 loopIndependentDefUseDependence isGameOver$0
+  96:   40 ->   37 loopIndependentDefUseDependence this.pit.!getNextBlock( )
+  97:   40 ->   40 defOrderDependence this.pit.!getNextBlock( )
+  98:   47 ->   48 trueControlDependence
+  99:   47 ->   49 trueControlDependence
+ 100:   47 ->   50 trueControlDependence
+ 101:   47 ->   51 trueControlDependence
+ 102:   47 ->   52 trueControlDependence
+ 103:   47 ->   53 trueControlDependence
+ 104:   47 ->   54 trueControlDependence
+ 105:   47 ->   55 trueControlDependence
+ 106:   47 -> * trueControlDependence
+ 107:   51 ->   48 loopIndependentDefUseDependence this.pit.!gameOver( )
+ 108:   51 ->   51 defOrderDependence this.pit.!gameOver( )
+ 109:   55 ->   52 loopIndependentDefUseDependence this.!stopTimer( )
+ 110:   55 ->   55 defOrderDependence this.!stopTimer( )
+ 111: * ->    6 loopCarriedDefUseDependence this.timer (LC =    6)
+ 112: * ->   19 loopCarriedDefUseDependence this.pit.currentBlock (LC =    6)
+ 113: * ->   20 loopCarriedDefUseDependence this.pit.currentBlock (LC =    6)
+ 114: * ->   21 loopIndependentDefUseDependence block$3.!fall( )
+ 115: * ->   23 loopCarriedDefUseDependence block$3.posY (LC =    6)
+ 116: * ->   23 loopCarriedDefUseDependence this.pit.box (LC =    6)
+ 117: * ->   23 loopCarriedDefUseDependence this.tiles.!java.util.HashMap.keySet (LC =    6)
+ 118: * ->   26 loopIndependentDefUseDependence this.pit.!checkLines( )
+ 119: * ->   28 loopCarriedDefUseDependence this.box (LC =    6)
+ 120: * ->   28 loopCarriedDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
+ 121: * ->   28 loopCarriedDefUseDependence this.level (LC =    6)
+ 122: * ->   28 loopCarriedDefUseDependence this.pit.info.lines (LC =    6)
+ 123: * ->   28 loopCarriedDefUseDependence this.score (LC =    6)
+ 124: * ->   28 loopCarriedDefUseDependence this.tile$4.posY (LC =    6)
+ 125: * ->   30 loopIndependentDefUseDependence this.pit.!placeNextBlock( )
+ 126: * ->   32 loopCarriedDefUseDependence this.offsetX (LC =    6)
+ 127: * ->   32 loopCarriedDefUseDependence this.offsetY (LC =    6)
+ 128: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock (LC =    6)
+ 129: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tile$3.posX (LC =    6)
+ 130: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tile$3.posY (LC =    6)
+ 131: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
+ 132: * ->   32 loopCarriedDefUseDependence this.pit.nextBlock (LC =    6)
+ 133: * ->   32 loopIndependentDefUseDependence this.pit.box
+ 134: * ->   34 loopIndependentDefUseDependence this.info.!update( Block )
+ 135: * ->   36 loopCarriedDefUseDependence this.info.nextBlock$0.tiles.!java.util.HashMap.keySet (LC =    6)
+ 136: * ->   39 loopIndependentDefUseDependence this.pit.nextBlock
+ 137: * ->   40 loopIndependentDefUseDependence this.pit.nextBlock
+ 138: * ->   43 loopIndependentDefUseDependence this.pit.!update( )
+ 139: * ->   45 loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
+ 140: * ->   45 loopIndependentDefUseDependence this.box
+ 141: * ->   45 loopIndependentDefUseDependence this.pit.currentBlock
+ 142: * ->   45 loopIndependentDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet
+ 143: * -> * defOrderDependence block$3.!fall( )
+ 144: * -> * defOrderDependence block$3.posY
+ 145: * -> * defOrderDependence this.box
+ 146: * -> * defOrderDependence this.color.!java.awt.Color.cs
+ 147: * -> * defOrderDependence this.color.!java.awt.Color.falpha
+ 148: * -> * defOrderDependence this.color.!java.awt.Color.frgbvalue
+ 149: * -> * defOrderDependence this.color.!java.awt.Color.fvalue
+ 150: * -> * defOrderDependence this.color.!java.awt.Color.value
+ 151: * -> * defOrderDependence this.info.!update( Block )
+ 152: * -> * defOrderDependence this.info.nextBlock$0.tile$2.color.!java.awt.Color.cs
+ 153: * -> * defOrderDependence this.info.nextBlock$0.tile$2.color.!java.awt.Color.falpha
+ 154: * -> * defOrderDependence this.info.nextBlock$0.tile$2.color.!java.awt.Color.frgbvalue
+ 155: * -> * defOrderDependence this.info.nextBlock$0.tile$2.color.!java.awt.Color.fvalue
+ 156: * -> * defOrderDependence this.info.nextBlock$0.tile$2.color.!java.awt.Color.value
+ 157: * -> * defOrderDependence this.level
+ 158: * -> * defOrderDependence this.offsetX
+ 159: * -> * defOrderDependence this.pit.!checkLines( )
+ 160: * -> * defOrderDependence this.pit.!placeNextBlock( )
+ 161: * -> * defOrderDependence this.pit.!update( )
+ 162: * -> * defOrderDependence this.pit.box
+ 163: * -> * defOrderDependence this.pit.currentBlock
+ 164: * -> * defOrderDependence this.pit.currentBlock.tile$3.posX
+ 165: * -> * defOrderDependence this.pit.currentBlock.tile$3.posY
+ 166: * -> * defOrderDependence this.pit.info.lines
+ 167: * -> * defOrderDependence this.pit.nextBlock
+ 168: * -> * defOrderDependence this.score
+ 169: * -> * defOrderDependence this.tile$4.posY
+ 170: * -> * defOrderDependence this.timer
+ 171: * -> * loopCarriedDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
+ 172: * -> * loopCarriedDefUseDependence this.info.nextBlock$0.tiles.!java.util.HashMap.keySet (LC =    6)
+ 173: * -> * loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
+ 174: * -> * loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
+ 175: * -> * loopCarriedDefUseDependence this.tiles.!java.util.HashMap.keySet (LC =    6)
+ 176: * -> * loopIndependentDefUseDependence block$3.posY
+ 177: * -> * loopIndependentDefUseDependence this.box
+ 178: * -> * loopIndependentDefUseDependence this.box
+ 179: * -> * loopIndependentDefUseDependence this.level
+ 180: * -> * loopIndependentDefUseDependence this.offsetX
+ 181: * -> * loopIndependentDefUseDependence this.offsetY
+ 182: * -> * loopIndependentDefUseDependence this.pit.box
+ 183: * -> * loopIndependentDefUseDependence this.pit.box
+ 184: * -> * loopIndependentDefUseDependence this.pit.currentBlock
+ 185: * -> * loopIndependentDefUseDependence this.pit.currentBlock
+ 186: * -> * loopIndependentDefUseDependence this.pit.currentBlock.tile$3.posX
+ 187: * -> * loopIndependentDefUseDependence this.pit.currentBlock.tile$3.posY
+ 188: * -> * loopIndependentDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet
+ 189: * -> * loopIndependentDefUseDependence this.pit.info.lines
+ 190: * -> * loopIndependentDefUseDependence this.pit.nextBlock
+ 191: * -> * loopIndependentDefUseDependence this.score
+ 192: * -> * loopIndependentDefUseDependence this.tile$4.posY
+ 193: * -> * outputDependence super.posX
+ 194: * -> * outputDependence super.posY
+ 195: * -> * outputDependence this.color.!java.awt.Color.cs
+ 196: * -> * outputDependence this.color.!java.awt.Color.cs
+ 197: * -> * outputDependence this.color.!java.awt.Color.falpha
+ 198: * -> * outputDependence this.color.!java.awt.Color.falpha
+ 199: * -> * outputDependence this.color.!java.awt.Color.frgbvalue
+ 200: * -> * outputDependence this.color.!java.awt.Color.frgbvalue
+ 201: * -> * outputDependence this.color.!java.awt.Color.fvalue
+ 202: * -> * outputDependence this.color.!java.awt.Color.fvalue
+ 203: * -> * outputDependence this.color.!java.awt.Color.value
+ 204: * -> * outputDependence this.color.!java.awt.Color.value
+ 205: * -> * outputDependence this.offsetY
+ 206: * -> * outputDependence this.offsetY
+ 207: * -> * outputDependence this.offsetY
+ 208: * -> * outputDependence this.offsetY
+ 209: * -> * outputDependence this.offsetY
+ 210: * -> * outputDependence this.pit.!placeNextBlock( ).color
+ 211: * -> * outputDependence this.pit.!placeNextBlock( ).posX
+ 212: * -> * outputDependence this.pit.!placeNextBlock( ).posY
+ 213: * -> * outputDependence this.pit.currentBlock.posX
+ 214: * -> * outputDependence this.pit.currentBlock.posY
+ 215: * -> * outputDependence this.pit.nextBlock.pit
+ 216: * -> * outputDependence this.tile$2.posY
 --
 ----- ClDG (to here) -----
 

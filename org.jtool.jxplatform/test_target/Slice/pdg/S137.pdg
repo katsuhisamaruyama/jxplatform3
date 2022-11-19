@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = S137
-   0 methodEntry [ add( java.lang.String ) ]
+   0 methodEntry [ S137#add( java.lang.String ) ]
    1 formalIn D = { elem$0 } U = {  }
    2 assignment D = {  } U = { this.p.!add( java.lang.String ) }
    3 receiver D = {  } U = { this.p }
@@ -9,16 +9,16 @@ Class Name = S137
 * actualOut D = { this.p.!add( java.lang.String ), this.p.list.!java.util.ArrayList.modCount, this.p.list.!java.util.ArrayList.size } U = { this.p.list, this.p.list.!java.util.ArrayList.elementData, this.p.list.!java.util.ArrayList.modCount, this.p.list.!java.util.ArrayList.size }
    8 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ p ]
+   0 fieldEntry [ S137#p ]
    1 fieldDeclaration D = { this.p } U = { P137.!P137( ), this.p }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P137#P137( )
    4 actualOut D = { P137.!P137( ) } U = {  }
 --
-   0 constructorEntry [ S137( ) ]
+   0 constructorEntry [ S137#S137( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ get( int ) ]
+   0 methodEntry [ S137#get( int ) ]
    1 formalIn D = { index$0 } U = {  }
    2 returnSt D = { $_ } U = { this.p.!get( int ) }
    3 receiver D = {  } U = { this.p }

@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Test10
-   0 constructorEntry [ Test10( ) ]
+   0 constructorEntry [ Test10#Test10( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test10#m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
    2 whileSt D = {  } U = { a$0 }
    3 switchSt D = { $SwitchDef } U = { a$0 }
@@ -44,8 +44,8 @@ Class Name = Test10
   20:    4 ->    5 trueControlDependence
   21:    4 ->    6 trueControlDependence
   22:    4 ->    7 falseControlDependence
-  23:    5 ->    2 loopIndependentDefUseDependence a$0
-  24:    5 ->    3 loopIndependentDefUseDependence a$0
+  23:    5 ->    2 loopCarriedDefUseDependence a$0 (LC =    2)
+  24:    5 ->    3 loopCarriedDefUseDependence a$0 (LC =    2)
   25:    5 ->    5 loopCarriedDefUseDependence a$0 (LC =    2)
   26:    5 ->    8 loopCarriedDefUseDependence a$0 (LC =    2)
   27:    5 ->   11 loopCarriedDefUseDependence a$0 (LC =    2)
@@ -53,16 +53,16 @@ Class Name = Test10
   29:    7 ->    8 trueControlDependence
   30:    7 ->    9 trueControlDependence
   31:    7 ->   10 falseControlDependence
-  32:    8 ->    2 loopIndependentDefUseDependence a$0
-  33:    8 ->    3 loopIndependentDefUseDependence a$0
+  32:    8 ->    2 loopCarriedDefUseDependence a$0 (LC =    2)
+  33:    8 ->    3 loopCarriedDefUseDependence a$0 (LC =    2)
   34:    8 ->    5 loopCarriedDefUseDependence a$0 (LC =    2)
   35:    8 ->    8 loopCarriedDefUseDependence a$0 (LC =    2)
   36:    8 ->   11 loopCarriedDefUseDependence a$0 (LC =    2)
   37:    9 ->   10 fallThroughControlDependence
   38:   10 ->   11 trueControlDependence
   39:   10 ->   12 trueControlDependence
-  40:   11 ->    2 loopIndependentDefUseDependence a$0
-  41:   11 ->    3 loopIndependentDefUseDependence a$0
+  40:   11 ->    2 loopCarriedDefUseDependence a$0 (LC =    2)
+  41:   11 ->    3 loopCarriedDefUseDependence a$0 (LC =    2)
   42:   11 ->    5 loopCarriedDefUseDependence a$0 (LC =    2)
   43:   11 ->    8 loopCarriedDefUseDependence a$0 (LC =    2)
   44:   11 ->   11 loopCarriedDefUseDependence a$0 (LC =    2)

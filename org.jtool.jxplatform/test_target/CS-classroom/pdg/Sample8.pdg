@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Sample8
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Sample8#main( java.lang.String[] ) ]
    1 formalIn D = { args$0 } U = {  }
    2 trySt D = {  } U = {  }
    3 localDeclaration D = { circle$1 } U = { Circle2.!Circle2( int ) }
@@ -16,7 +16,7 @@ Class Name = Sample8
   15 formalOut D = {  } U = { $_ }
 * actualOut D = { Circle2.!Circle2( int ).radius } U = {  }
 --
-   0 constructorEntry [ Sample8( ) ]
+   0 constructorEntry [ Sample8#Sample8( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: main( java.lang.String[] )

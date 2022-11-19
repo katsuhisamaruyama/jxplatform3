@@ -1,19 +1,19 @@
 ----- ClDG (from here) -----
 Class Name = A119
-   0 methodEntry [ getX( ) ]
+   0 methodEntry [ A119#getX( ) ]
    1 returnSt D = { $_ } U = { this.x }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ x ]
+   0 fieldEntry [ A119#x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
-   0 fieldEntry [ y ]
+   0 fieldEntry [ A119#y ]
    1 fieldDeclaration D = { this.y } U = { this.y }
 --
-   0 constructorEntry [ A119( ) ]
+   0 constructorEntry [ A119#A119( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ setX( int ) ]
+   0 methodEntry [ A119#setX( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 assignment D = { this.x } U = { x$0 }
    4 formalOut D = {  } U = { $_ }

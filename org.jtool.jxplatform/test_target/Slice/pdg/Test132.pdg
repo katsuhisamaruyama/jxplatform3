@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test132
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test132#m( ) ]
    1 localDeclaration D = { y$0 } U = { this.!n( ), this.!n( ).x }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { p$0.x } TO = Test132#n( )
@@ -8,7 +8,7 @@ Class Name = Test132
    6 formalOut D = {  } U = { $_ }
 * actualOut D = { p$0.x } U = {  }
 --
-   0 methodEntry [ n( ) ]
+   0 methodEntry [ Test132#n( ) ]
    1 localDeclaration D = { p$0 } U = { P132.!P132( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P132#P132( )
@@ -17,7 +17,7 @@ Class Name = Test132
    6 returnSt D = { $_ } U = { P132.!P132( ).x, p$0, p$0.x }
    8 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test132( ) ]
+   0 constructorEntry [ Test132#Test132( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )

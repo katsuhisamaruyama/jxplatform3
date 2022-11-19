@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Sample102FXML
-   0 constructorEntry [ Sample102FXML( ) ]
+   0 constructorEntry [ Sample102FXML#Sample102FXML( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ start( javafx.stage.Stage ) ]
+   0 methodEntry [ Sample102FXML#start( javafx.stage.Stage ) ]
    1 throwsClause D = {  } U = { $java.lang.Exception }
    2 formalIn D = { stage$0 } U = {  }
    3 assignment D = {  } U = { stage$0.!setTitle( java.lang.String ) }
@@ -42,7 +42,7 @@ Class Name = Sample102FXML
   36 actualOut D = { stage$0.!show( ) } U = {  }
   38 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Sample102FXML#main( java.lang.String[] ) ]
    1 formalIn D = { args$0 } U = {  }
    2 assignment D = {  } U = { this.!launch( java.lang.String[] ) }
    3 receiver D = {  } U = {  }

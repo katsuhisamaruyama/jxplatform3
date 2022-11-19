@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = org.jtool.videostore.after.Movie
-   0 methodEntry [ setPriceCode( org.jtool.videostore.after.Movie.PriceCode ) ]
+   0 methodEntry [ org.jtool.videostore.after.Movie#setPriceCode( org.jtool.videostore.after.Movie.PriceCode ) ]
    1 formalIn D = { priceCode$0 } U = {  }
    2 switchSt D = { $SwitchDef } U = { priceCode$0 }
    3 switchCase D = {  } U = { $SwitchDef, org.jtool.videostore.after.Movie.PriceCode.REGULAR }
@@ -29,14 +29,14 @@ Class Name = org.jtool.videostore.after.Movie
 * actualOut D = { super.priceCode } U = {  }
 * actualOut D = { super.priceCode } U = {  }
 --
-   0 methodEntry [ getPriceCode( ) ]
+   0 methodEntry [ org.jtool.videostore.after.Movie#getPriceCode( ) ]
    1 returnSt D = { $_ } U = { this.price.!getPriceCode( ) }
    2 receiver D = {  } U = { this.price }
    3 methodCall D = {  } U = { this.price.priceCode } TO = org.jtool.videostore.after.Price#getPriceCode( )
    4 actualOut D = { this.price.!getPriceCode( ) } U = { this.price.priceCode }
    6 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) ]
+   0 constructorEntry [ org.jtool.videostore.after.Movie#Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) ]
    1 formalIn D = { title$0 } U = {  }
    2 formalIn D = { priceCode$1 } U = {  }
    3 assertSt D = {  } U = { title$0 }
@@ -52,14 +52,14 @@ Class Name = org.jtool.videostore.after.Movie
 * actualOut D = { this.price } U = {  }
 * actualOut D = { super.priceCode } U = {  }
 --
-   0 fieldEntry [ price ]
+   0 fieldEntry [ org.jtool.videostore.after.Movie#price ]
    1 fieldDeclaration D = { this.price } U = { this.price }
 --
-   0 methodEntry [ getTitle( ) ]
+   0 methodEntry [ org.jtool.videostore.after.Movie#getTitle( ) ]
    1 returnSt D = { $_ } U = { this.title }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getFrequentRenterPoints( int ) ]
+   0 methodEntry [ org.jtool.videostore.after.Movie#getFrequentRenterPoints( int ) ]
    1 formalIn D = { daysRented$0 } U = {  }
    2 returnSt D = { $_ } U = { this.price.!getFrequentRenterPoints( int ) }
    3 receiver D = {  } U = { this.price }
@@ -68,10 +68,10 @@ Class Name = org.jtool.videostore.after.Movie
    6 actualOut D = { this.price.!getFrequentRenterPoints( int ) } U = {  }
    8 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ title ]
+   0 fieldEntry [ org.jtool.videostore.after.Movie#title ]
    1 fieldDeclaration D = { this.title } U = { this.title }
 --
-   0 methodEntry [ getCharge( int ) ]
+   0 methodEntry [ org.jtool.videostore.after.Movie#getCharge( int ) ]
    1 formalIn D = { daysRented$0 } U = {  }
    2 returnSt D = { $_ } U = { this.price.!getCharge( int ) }
    3 receiver D = {  } U = { this.price }

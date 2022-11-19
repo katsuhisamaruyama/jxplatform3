@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = BlueBlock
-   0 fieldEntry [ COLOR ]
+   0 fieldEntry [ BlueBlock#COLOR ]
    1 fieldDeclaration D = { BlueBlock.COLOR } U = { BlueBlock.COLOR, BlueBlock.COLOR.blue }
 --
-   0 constructorEntry [ BlueBlock( int int ) ]
+   0 constructorEntry [ BlueBlock#BlueBlock( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 assignment D = {  } U = { super.!Block( int int ) }

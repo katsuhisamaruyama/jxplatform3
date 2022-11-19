@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = S136
-   0 methodEntry [ set( java.lang.String java.lang.String ) ]
+   0 methodEntry [ S136#set( java.lang.String java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 formalIn D = { value$1 } U = {  }
    3 assignment D = {  } U = { this.map.!put( java.lang.Object java.lang.Object ) }
@@ -9,7 +9,7 @@ Class Name = S136
 * actualOut D = { this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!put( java.lang.Object java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!java.util.HashMap.table, this.map.!java.util.HashMap.threshold }
    8 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ get( java.lang.String ) ]
+   0 methodEntry [ S136#get( java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 returnSt D = { $_ } U = { this.map.!get( java.lang.Object ) }
    3 receiver D = {  } U = { this.map }
@@ -17,10 +17,10 @@ Class Name = S136
    5 actualOut D = { this.map.!get( java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.table }
    7 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ S136( ) ]
+   0 constructorEntry [ S136#S136( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ map ]
+   0 fieldEntry [ S136#map ]
    1 fieldDeclaration D = { this.map } U = { java.util.HashMap.!HashMap( ), this.map }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )

@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Sample6
-   0 constructorEntry [ Sample6( ) ]
+   0 constructorEntry [ Sample6#Sample6( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Sample6#main( java.lang.String[] ) ]
    1 formalIn D = { args$0 } U = {  }
    2 localDeclaration D = { list$1 } U = { java.util.ArrayList.!ArrayList( ) }
    3 receiver D = {  } U = {  }
@@ -278,36 +278,37 @@ Class Name = Sample6
  181: * ->   82 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
  182: * ->   83 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
  183: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
- 184: * -> * defOrderDependence System.out.!println( java.lang.String )
+ 184: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
  185: * -> * defOrderDependence System.out.!println( java.lang.String )
- 186: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
+ 186: * -> * defOrderDependence System.out.!println( java.lang.String )
  187: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
- 188: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
+ 188: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
  189: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
- 190: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
+ 190: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
  191: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
- 192: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 192: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
  193: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
  194: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 195: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 195: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
  196: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
  197: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 198: * -> * outputDependence System.out.!java.io.PrintStream.trouble
+ 198: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
  199: * -> * outputDependence System.out.!java.io.PrintStream.trouble
  200: * -> * outputDependence System.out.!java.io.PrintStream.trouble
  201: * -> * outputDependence System.out.!java.io.PrintStream.trouble
  202: * -> * outputDependence System.out.!java.io.PrintStream.trouble
  203: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 204: * -> * outputDependence System.out.!println( java.lang.String )
+ 204: * -> * outputDependence System.out.!java.io.PrintStream.trouble
  205: * -> * outputDependence System.out.!println( java.lang.String )
  206: * -> * outputDependence System.out.!println( java.lang.String )
  207: * -> * outputDependence System.out.!println( java.lang.String )
  208: * -> * outputDependence System.out.!println( java.lang.String )
  209: * -> * outputDependence System.out.!println( java.lang.String )
- 210: * -> * outputDependence java.lang.String.!String( java.lang.String )
+ 210: * -> * outputDependence System.out.!println( java.lang.String )
  211: * -> * outputDependence java.lang.String.!String( java.lang.String )
- 212: * -> * outputDependence list$1.!add( java.lang.Object )
+ 212: * -> * outputDependence java.lang.String.!String( java.lang.String )
  213: * -> * outputDependence list$1.!add( java.lang.Object )
+ 214: * -> * outputDependence list$1.!add( java.lang.Object )
 --
 ----- ClDG (to here) -----
 

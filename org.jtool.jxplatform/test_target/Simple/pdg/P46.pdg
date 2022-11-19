@@ -1,16 +1,16 @@
 ----- ClDG (from here) -----
 Class Name = P46
-   0 fieldEntry [ value ]
+   0 fieldEntry [ P46#value ]
    1 fieldDeclaration D = { this.value } U = { this.value }
 --
-   0 methodEntry [ get( ) ]
+   0 methodEntry [ P46#get( ) ]
    1 returnSt D = { $_ } U = { this.value }
    3 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ P46( ) ]
+   0 constructorEntry [ P46#P46( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ set( java.lang.String ) ]
+   0 methodEntry [ P46#set( java.lang.String ) ]
    1 formalIn D = { value$0 } U = {  }
    2 assignment D = { this.value } U = { value$0 }
    4 formalOut D = {  } U = { $_ }

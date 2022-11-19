@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Customer
-   0 methodEntry [ getAmount( Order ) ]
+   0 methodEntry [ Customer#getAmount( Order ) ]
    1 formalIn D = { order$0 } U = {  }
    2 localDeclaration D = { amount$1 } U = {  }
    3 enhancedForSt D = { rental$2 } U = { order$0, order$0.rentals }
@@ -12,7 +12,7 @@ Class Name = Customer
    9 returnSt D = { $_ } U = { amount$1 }
   11 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ statement( Order ) ]
+   0 methodEntry [ Customer#statement( Order ) ]
    1 formalIn D = { order$0 } U = {  }
    2 ifSt D = {  } U = { order$0, order$0.rentals }
    3 returnSt D = { $_ } U = { $java.lang.String }
@@ -29,20 +29,20 @@ Class Name = Customer
   16 returnSt D = { $_ } U = { $java.lang.String, amount$1, this.name }
   18 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ setDiscount( double ) ]
+   0 methodEntry [ Customer#setDiscount( double ) ]
    1 formalIn D = { dis$0 } U = {  }
    2 assignment D = { this.discount } U = { dis$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ discount ]
+   0 fieldEntry [ Customer#discount ]
    1 fieldDeclaration D = { this.discount } U = { this.discount }
 --
-   0 constructorEntry [ Customer( java.lang.String ) ]
+   0 constructorEntry [ Customer#Customer( java.lang.String ) ]
    1 formalIn D = { name$0 } U = {  }
    2 assignment D = { this.name } U = { name$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ name ]
+   0 fieldEntry [ Customer#name ]
    1 fieldDeclaration D = { this.name } U = { $java.lang.String, this.name }
 --
    0: getAmount( Order )

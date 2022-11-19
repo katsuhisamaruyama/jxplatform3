@@ -1,12 +1,12 @@
 ----- ClDG (from here) -----
 Class Name = Q46
-   0 fieldEntry [ map ]
+   0 fieldEntry [ Q46#map ]
    1 fieldDeclaration D = { this.map } U = { java.util.HashMap.!HashMap( ), this.map }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )
 * actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
 --
-   0 methodEntry [ get( java.lang.String ) ]
+   0 methodEntry [ Q46#get( java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 returnSt D = { $_ } U = { this.map.!get( java.lang.Object ) }
    3 receiver D = {  } U = { this.map }
@@ -14,10 +14,10 @@ Class Name = Q46
    5 actualOut D = { this.map.!get( java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.table }
    7 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Q46( ) ]
+   0 constructorEntry [ Q46#Q46( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ set( java.lang.String java.lang.String ) ]
+   0 methodEntry [ Q46#set( java.lang.String java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 formalIn D = { value$1 } U = {  }
    3 assignment D = {  } U = { this.map.!put( java.lang.Object java.lang.Object ) }

@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = org.jtool.videostore.use.CustomerUse
-   0 constructorEntry [ CustomerUse( ) ]
+   0 constructorEntry [ org.jtool.videostore.use.CustomerUse#CustomerUse( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ makeCustomer( ) ]
+   0 methodEntry [ org.jtool.videostore.use.CustomerUse#makeCustomer( ) ]
    1 localDeclaration D = { customer$0 } U = { org.jtool.videostore.after.Customer.!Customer( java.lang.String ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = org.jtool.videostore.after.Customer#Customer( java.lang.String )

@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = org.jtool.videostore.after.RentalTest
-   0 methodEntry [ testDaysRentedOfRegularMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.RentalTest#testDaysRentedOfRegularMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { movie$0.price, movie$0.title } TO = org.jtool.videostore.after.Rental#Rental( org.jtool.videostore.after.Movie int )
@@ -18,7 +18,7 @@ Class Name = org.jtool.videostore.after.RentalTest
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).daysRented } U = {  }
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie } U = {  }
 --
-   0 fieldEntry [ ChildrensMovie ]
+   0 fieldEntry [ org.jtool.videostore.after.RentalTest#ChildrensMovie ]
    1 fieldDeclaration D = { org.jtool.videostore.after.RentalTest.ChildrensMovie } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ), org.jtool.videostore.after.RentalTest.ChildrensMovie }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR } TO = org.jtool.videostore.after.Movie#Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
@@ -31,10 +31,10 @@ Class Name = org.jtool.videostore.after.RentalTest
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
 * actualOut D = { super.priceCode } U = {  }
 --
-   0 constructorEntry [ RentalTest( ) ]
+   0 constructorEntry [ org.jtool.videostore.after.RentalTest#RentalTest( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ testDaysRentedOfNewReleaseMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.RentalTest#testDaysRentedOfNewReleaseMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { movie$0.price, movie$0.title } TO = org.jtool.videostore.after.Rental#Rental( org.jtool.videostore.after.Movie int )
@@ -52,7 +52,7 @@ Class Name = org.jtool.videostore.after.RentalTest
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).daysRented } U = {  }
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie } U = {  }
 --
-   0 methodEntry [ testChildrensMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.RentalTest#testChildrensMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { movie$0.price, movie$0.title } TO = org.jtool.videostore.after.Rental#Rental( org.jtool.videostore.after.Movie int )
@@ -83,7 +83,7 @@ Class Name = org.jtool.videostore.after.RentalTest
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).daysRented } U = {  }
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie } U = {  }
 --
-   0 methodEntry [ testNewReleaseMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.RentalTest#testNewReleaseMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { movie$0.price, movie$0.title } TO = org.jtool.videostore.after.Rental#Rental( org.jtool.videostore.after.Movie int )
@@ -114,7 +114,7 @@ Class Name = org.jtool.videostore.after.RentalTest
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).daysRented } U = {  }
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie } U = {  }
 --
-   0 fieldEntry [ RegularMovie ]
+   0 fieldEntry [ org.jtool.videostore.after.RentalTest#RegularMovie ]
    1 fieldDeclaration D = { org.jtool.videostore.after.RentalTest.RegularMovie } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ), org.jtool.videostore.after.RentalTest.RegularMovie }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR } TO = org.jtool.videostore.after.Movie#Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
@@ -127,7 +127,7 @@ Class Name = org.jtool.videostore.after.RentalTest
 * actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
 * actualOut D = { super.priceCode } U = {  }
 --
-   0 methodEntry [ testRegularMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.RentalTest#testRegularMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { movie$0.price, movie$0.title } TO = org.jtool.videostore.after.Rental#Rental( org.jtool.videostore.after.Movie int )
@@ -158,7 +158,7 @@ Class Name = org.jtool.videostore.after.RentalTest
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).daysRented } U = {  }
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie } U = {  }
 --
-   0 methodEntry [ testDaysRentedOfChildrensMovie( ) ]
+   0 methodEntry [ org.jtool.videostore.after.RentalTest#testDaysRentedOfChildrensMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { movie$0.price, movie$0.title } TO = org.jtool.videostore.after.Rental#Rental( org.jtool.videostore.after.Movie int )
@@ -176,7 +176,7 @@ Class Name = org.jtool.videostore.after.RentalTest
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).daysRented } U = {  }
 * actualOut D = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie } U = {  }
 --
-   0 fieldEntry [ NewReleaseMovie ]
+   0 fieldEntry [ org.jtool.videostore.after.RentalTest#NewReleaseMovie ]
    1 fieldDeclaration D = { org.jtool.videostore.after.RentalTest.NewReleaseMovie } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ), org.jtool.videostore.after.RentalTest.NewReleaseMovie }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR } TO = org.jtool.videostore.after.Movie#Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )

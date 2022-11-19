@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = PanelB
-   0 constructorEntry [ PanelB( ) ]
+   0 constructorEntry [ PanelB#PanelB( ) ]
    1 assignment D = {  } U = { this.!setLayout( java.awt.LayoutManager ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { java.awt.BorderLayout.!BorderLayout( ) } TO = java.awt.Container#setLayout( java.awt.LayoutManager )

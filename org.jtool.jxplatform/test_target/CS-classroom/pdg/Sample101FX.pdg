@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Sample101FX
-   0 methodEntry [ start( javafx.stage.Stage ) ]
+   0 methodEntry [ Sample101FX#start( javafx.stage.Stage ) ]
    1 throwsClause D = {  } U = { $java.lang.Exception }
    2 formalIn D = { stage$0 } U = {  }
    3 assignment D = {  } U = { stage$0.!setTitle( java.lang.String ) }
@@ -57,10 +57,10 @@ Class Name = Sample101FX
   54 actualOut D = { stage$0.!show( ) } U = {  }
   56 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Sample101FX( ) ]
+   0 constructorEntry [ Sample101FX#Sample101FX( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Sample101FX#main( java.lang.String[] ) ]
    1 formalIn D = { args$0 } U = {  }
    2 assignment D = {  } U = { this.!launch( java.lang.String[] ) }
    3 receiver D = {  } U = {  }

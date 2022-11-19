@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Storage
-   0 methodEntry [ put( java.lang.String ) ]
+   0 methodEntry [ Storage#put( java.lang.String ) ]
    1 throwsClause D = {  } U = { $java.lang.InterruptedException }
    2 formalIn D = { d$0 } U = {  }
    3 whileSt D = {  } U = { this.data }
@@ -15,10 +15,10 @@ Class Name = Storage
   12 actualOut D = { this.!notifyAll( ) } U = {  }
   14 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Storage( ) ]
+   0 constructorEntry [ Storage#Storage( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ take( ) ]
+   0 methodEntry [ Storage#take( ) ]
    1 throwsClause D = {  } U = { $java.lang.InterruptedException }
    2 whileSt D = {  } U = { this.data }
    3 assignment D = {  } U = { this.!wait( ) }
@@ -37,58 +37,56 @@ Class Name = Storage
   16 returnSt D = { $_ } U = { r$0 }
   18 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ data ]
+   0 fieldEntry [ Storage#data ]
    1 fieldDeclaration D = { this.data } U = { this.data }
 --
    0: put( java.lang.String )
    1:    0 ->    2 trueControlDependence
-   2:    0 ->    3 trueControlDependence
-   3:    2 ->    8 loopIndependentDefUseDependence d$0
-   4:    3 ->    5 trueControlDependence
-   5:    3 ->    6 trueControlDependence
-   6:    3 ->    8 falseControlDependence
-   7:    3 ->    9 falseControlDependence
-   8:    3 ->   10 falseControlDependence
-   9:    3 ->   11 falseControlDependence
-  10:    3 ->   12 falseControlDependence
-  11:    3 ->   14 falseControlDependence
-  12:    6 ->    1 exceptionCatch
-  13:    6 ->    3 trueControlDependence
-  14:    6 ->    4 trueControlDependence
-  15:    6 ->    7 trueControlDependence
-  16:    7 ->    4 loopIndependentDefUseDependence this.!wait( )
-  17:    7 ->    7 defOrderDependence this.!wait( )
-  18:   12 ->    9 loopIndependentDefUseDependence this.!notifyAll( )
+   2:    2 ->    8 loopIndependentDefUseDependence d$0
+   3:    3 ->    5 trueControlDependence
+   4:    3 ->    6 trueControlDependence
+   5:    3 ->    8 falseControlDependence
+   6:    3 ->    9 falseControlDependence
+   7:    3 ->   10 falseControlDependence
+   8:    3 ->   11 falseControlDependence
+   9:    3 ->   12 falseControlDependence
+  10:    3 ->   14 falseControlDependence
+  11:    6 ->    1 exceptionCatch
+  12:    6 ->    3 trueControlDependence
+  13:    6 ->    4 trueControlDependence
+  14:    6 ->    7 trueControlDependence
+  15:    7 ->    4 loopIndependentDefUseDependence this.!wait( )
+  16:    7 ->    7 defOrderDependence this.!wait( )
+  17:   12 ->    9 loopIndependentDefUseDependence this.!notifyAll( )
 --
    0: Storage( )
    1:    0 ->    2 trueControlDependence
 --
    0: take( )
-   1:    0 ->    2 trueControlDependence
-   2:    2 ->    4 trueControlDependence
-   3:    2 ->    5 trueControlDependence
-   4:    2 ->    7 falseControlDependence
-   5:    2 ->    8 falseControlDependence
-   6:    2 ->    9 falseControlDependence
-   7:    2 ->   11 falseControlDependence
-   8:    2 ->   12 falseControlDependence
-   9:    2 ->   13 falseControlDependence
-  10:    2 ->   14 falseControlDependence
-  11:    2 ->   15 falseControlDependence
-  12:    2 ->   16 falseControlDependence
-  13:    2 ->   18 falseControlDependence
-  14:    2 -> * falseControlDependence
-  15:    5 ->    1 exceptionCatch
-  16:    5 ->    2 trueControlDependence
-  17:    5 ->    3 trueControlDependence
-  18:    5 ->    6 trueControlDependence
-  19:    6 ->    3 loopIndependentDefUseDependence this.!wait( )
-  20:    6 ->    6 defOrderDependence this.!wait( )
-  21:    7 ->   16 declaration
-  22:    7 ->   16 loopIndependentDefUseDependence r$0
-  23:   15 ->   12 loopIndependentDefUseDependence this.!notifyAll( )
-  24:   16 ->   18 loopIndependentDefUseDependence $_
-  25: * ->    7 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
+   1:    2 ->    4 trueControlDependence
+   2:    2 ->    5 trueControlDependence
+   3:    2 ->    7 falseControlDependence
+   4:    2 ->    8 falseControlDependence
+   5:    2 ->    9 falseControlDependence
+   6:    2 ->   11 falseControlDependence
+   7:    2 ->   12 falseControlDependence
+   8:    2 ->   13 falseControlDependence
+   9:    2 ->   14 falseControlDependence
+  10:    2 ->   15 falseControlDependence
+  11:    2 ->   16 falseControlDependence
+  12:    2 ->   18 falseControlDependence
+  13:    2 -> * falseControlDependence
+  14:    5 ->    1 exceptionCatch
+  15:    5 ->    2 trueControlDependence
+  16:    5 ->    3 trueControlDependence
+  17:    5 ->    6 trueControlDependence
+  18:    6 ->    3 loopIndependentDefUseDependence this.!wait( )
+  19:    6 ->    6 defOrderDependence this.!wait( )
+  20:    7 ->   16 declaration
+  21:    7 ->   16 loopIndependentDefUseDependence r$0
+  22:   15 ->   12 loopIndependentDefUseDependence this.!notifyAll( )
+  23:   16 ->   18 loopIndependentDefUseDependence $_
+  24: * ->    7 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
 --
    0: data
    1:    0 ->    1 trueControlDependence

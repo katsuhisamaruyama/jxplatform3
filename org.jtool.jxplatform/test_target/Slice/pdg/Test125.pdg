@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test125
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test125#m( ) ]
    1 localDeclaration D = { p$0 } U = {  }
    2 localDeclaration D = { q$1 } U = { this.!inc1( int ) }
    3 receiver D = {  } U = {  }
@@ -18,18 +18,18 @@ Class Name = Test125
   15 actualOut D = { this.!inc2( int ) } U = {  }
   17 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test125( ) ]
+   0 constructorEntry [ Test125#Test125( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ inc1( int ) ]
+   0 methodEntry [ Test125#inc1( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 returnSt D = { $_ } U = { x$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ p ]
+   0 fieldEntry [ Test125#p ]
    1 fieldDeclaration D = { this.p } U = { this.p }
 --
-   0 methodEntry [ inc2( int ) ]
+   0 methodEntry [ Test125#inc2( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 returnSt D = { $_ } U = { x$0 }
    4 formalOut D = {  } U = { $_ }

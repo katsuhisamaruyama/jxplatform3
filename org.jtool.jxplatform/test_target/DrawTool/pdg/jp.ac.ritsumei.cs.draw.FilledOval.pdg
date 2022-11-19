@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.FilledOval
-   0 fieldEntry [ name ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.FilledOval#name ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FilledOval.name } U = { $java.lang.String, jp.ac.ritsumei.cs.draw.FilledOval.name }
 --
-   0 methodEntry [ createClone( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FilledOval#createClone( ) ]
    1 localDeclaration D = { figure$0 } U = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.FilledOval#FilledOval( java.awt.Color float )
@@ -31,7 +31,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
 * actualOut D = { figure$0.endX } U = {  }
 * actualOut D = { figure$0.endY } U = {  }
 --
-   0 methodEntry [ isGrabbed( int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FilledOval#isGrabbed( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 returnSt D = { $_ } U = { this.!isInOval( int int int int int int ) }
@@ -58,11 +58,11 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
   24 actualOut D = { this.!isInOval( int int int int int int ) } U = {  }
   26 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getName( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FilledOval#getName( ) ]
    1 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.FilledOval.name }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ draw( java.awt.Graphics ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FilledOval#draw( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 localDeclaration D = { g2$1 } U = { g$0 }
    3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
@@ -94,7 +94,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
   29 actualOut D = { g$0.!fillOval( int int int int ) } U = {  }
   31 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ FilledOval( int ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.FilledOval#FilledOval( int ) ]
    1 formalIn D = { w$0 } U = {  }
    2 assignment D = {  } U = { super.!Oval( int ) }
    3 receiver D = {  } U = {  }
@@ -105,7 +105,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 methodEntry [ create( java.awt.Color float ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FilledOval#create( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
    2 formalIn D = { w$1 } U = {  }
    3 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( java.awt.Color float ) }
@@ -118,7 +118,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
 * actualOut D = { super.color } U = {  }
 * actualOut D = { super.outlineWidth } U = {  }
 --
-   0 constructorEntry [ FilledOval( ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.FilledOval#FilledOval( ) ]
    1 assignment D = {  } U = { super.!Oval( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Oval#Oval( )
@@ -127,7 +127,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 constructorEntry [ FilledOval( java.awt.Color float ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.FilledOval#FilledOval( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
    2 formalIn D = { w$1 } U = {  }
    3 assignment D = {  } U = { super.!Oval( java.awt.Color float ) }
@@ -140,7 +140,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
 * actualOut D = { super.color } U = {  }
 * actualOut D = { super.outlineWidth } U = {  }
 --
-   0 constructorEntry [ FilledOval( java.awt.Color ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.FilledOval#FilledOval( java.awt.Color ) ]
    1 formalIn D = { c$0 } U = {  }
    2 assignment D = {  } U = { super.!Oval( java.awt.Color ) }
    3 receiver D = {  } U = {  }
@@ -151,7 +151,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FilledOval
 * actualOut D = { this.color } U = {  }
 * actualOut D = { this.outlineWidth } U = {  }
 --
-   0 methodEntry [ paintIcon( java.awt.Graphics int int int int ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FilledOval#paintIcon( java.awt.Graphics int int int int ) ]
    1 formalIn D = { g$0 } U = {  }
    2 formalIn D = { x$1 } U = {  }
    3 formalIn D = { y$2 } U = {  }

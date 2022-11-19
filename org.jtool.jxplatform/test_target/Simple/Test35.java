@@ -33,7 +33,7 @@ public class Test35 {
         }
         int y = 0;
     }
-
+    
     public void m4() {
         LOOP1: for (int x = 0; x < 10; x++) {
             LOOP2: for (int y = 10; y >= 0; y--) {
@@ -41,6 +41,28 @@ public class Test35 {
                     continue LOOP1;
                 }
             }
+        }
+        int y = 0;
+    }
+
+    public void m5() {
+        int z = 0;
+        for (int x = 0; x < 10; x++) {
+            if (x == 5) {
+                break;
+            }
+            z++;
+        }
+        int y = 0;
+    }
+    
+    public void m6() {
+        int z = 0;
+        for (int x = 0; x < 10; x++) {
+            if (x == 5) {
+                continue;
+            }
+            z++;
         }
         int y = 0;
     }

@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test136
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test136#m( ) ]
    1 localDeclaration D = { a$0 } U = {  }
    2 assignment D = {  } U = { this.s1.!set( java.lang.String java.lang.String ) }
    3 receiver D = {  } U = { this.s1 }
@@ -27,19 +27,19 @@ Class Name = Test136
   24 actualOut D = { this.s2.!get( java.lang.String ) } U = { this.s2.map, this.s2.map.!java.util.HashMap$Node.hash, this.s2.map.!java.util.HashMap$Node.key, this.s2.map.!java.util.HashMap$Node.next, this.s2.map.!java.util.HashMap$Node.value, this.s2.map.!java.util.HashMap.table }
   26 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ s1 ]
+   0 fieldEntry [ Test136#s1 ]
    1 fieldDeclaration D = { this.s1 } U = { S136.!S136( ), this.s1 }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = S136#S136( )
    4 actualOut D = { S136.!S136( ) } U = {  }
 --
-   0 fieldEntry [ s2 ]
+   0 fieldEntry [ Test136#s2 ]
    1 fieldDeclaration D = { this.s2 } U = { S136.!S136( ), this.s2 }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = S136#S136( )
    4 actualOut D = { S136.!S136( ) } U = {  }
 --
-   0 constructorEntry [ Test136( ) ]
+   0 constructorEntry [ Test136#Test136( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )

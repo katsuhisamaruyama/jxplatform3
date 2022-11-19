@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Test141
-   0 constructorEntry [ Test141( ) ]
+   0 constructorEntry [ Test141#Test141( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test141#m( ) ]
    1 assignment D = {  } U = { this.map1.!put( java.lang.Object java.lang.Object ) }
    2 receiver D = {  } U = { this.map1 }
    3 methodCall D = {  } U = { $java.lang.String, this.map1.!java.util.HashMap$Node.hash, this.map1.!java.util.HashMap$Node.key, this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!java.util.HashMap.table, this.map1.!java.util.HashMap.threshold } TO = java.util.Map#put( java.lang.Object java.lang.Object )
@@ -22,7 +22,7 @@ Class Name = Test141
   16 actualOut D = { this.map2.!get( java.lang.Object ) } U = { this.map2.!java.util.HashMap$Node.hash, this.map2.!java.util.HashMap$Node.key, this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.table }
   18 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m2( ) ]
+   0 methodEntry [ Test141#m2( ) ]
    1 assignment D = {  } U = { this.map1.!put( java.lang.Object java.lang.Object ) }
    2 receiver D = {  } U = { this.map1 }
    3 methodCall D = {  } U = { $java.lang.String, this.map1.!java.util.HashMap$Node.hash, this.map1.!java.util.HashMap$Node.key, this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!java.util.HashMap.table, this.map1.!java.util.HashMap.threshold } TO = java.util.Map#put( java.lang.Object java.lang.Object )
@@ -41,13 +41,13 @@ Class Name = Test141
   16 actualOut D = { this.map1.!get( java.lang.Object ) } U = { this.map1.!java.util.HashMap$Node.hash, this.map1.!java.util.HashMap$Node.key, this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.table }
   18 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ map1 ]
+   0 fieldEntry [ Test141#map1 ]
    1 fieldDeclaration D = { this.map1 } U = { java.util.HashMap.!HashMap( ), this.map1 }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )
 * actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
 --
-   0 fieldEntry [ map2 ]
+   0 fieldEntry [ Test141#map2 ]
    1 fieldDeclaration D = { this.map2 } U = { java.util.HashMap.!HashMap( ), this.map2 }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )

@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Test130
-   0 constructorEntry [ Test130( ) ]
+   0 constructorEntry [ Test130#Test130( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ n( int ) ]
+   0 methodEntry [ Test130#n( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 returnSt D = { $_ } U = { S130.!S130( int ) }
    3 receiver D = {  } U = {  }
@@ -13,7 +13,7 @@ Class Name = Test130
    8 formalOut D = {  } U = { $_ }
 * actualOut D = { $_.x } U = {  }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test130#m( ) ]
    1 localDeclaration D = { p$0 } U = {  }
    2 localDeclaration D = { q$1 } U = { this.!n( int ).!getX( ) }
    3 receiver D = {  } U = { this.!n( int ) }

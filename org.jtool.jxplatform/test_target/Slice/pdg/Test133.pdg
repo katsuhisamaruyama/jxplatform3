@@ -1,28 +1,28 @@
 ----- ClDG (from here) -----
 Class Name = Test133
-   0 fieldEntry [ x ]
+   0 fieldEntry [ Test133#x ]
    1 fieldDeclaration D = { this.x } U = { Test133.!Test133( ), this.x }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = Test133#Test133( )
    4 actualOut D = { Test133.!Test133( ) } U = {  }
 --
-   0 fieldEntry [ y ]
+   0 fieldEntry [ Test133#y ]
    1 fieldDeclaration D = { this.y } U = { Test133.!Test133( ), this.y }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = Test133#Test133( )
    4 actualOut D = { Test133.!Test133( ) } U = {  }
 --
-   0 constructorEntry [ Test133( ) ]
+   0 constructorEntry [ Test133#Test133( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getX( ) ]
+   0 methodEntry [ Test133#getX( ) ]
    1 returnSt D = { $_ } U = { this.x, this.x.a, this.x.x, this.x.y }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ a ]
+   0 fieldEntry [ Test133#a ]
    1 fieldDeclaration D = { this.a } U = { this.a }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test133#m( ) ]
    1 localDeclaration D = { p1$0 } U = { this.a }
    2 localDeclaration D = { p2$1 } U = { this.x, this.x.a, this.x.x, this.x.y }
    3 localDeclaration D = { p3$2 } U = { this.x.!getA( ) }
@@ -77,11 +77,11 @@ Class Name = Test133
   52 actualOut D = { this.x.!getY( ).!getA( ) } U = { this.x.!getY( ).a }
   54 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getA( ) ]
+   0 methodEntry [ Test133#getA( ) ]
    1 returnSt D = { $_ } U = { this.a }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getY( ) ]
+   0 methodEntry [ Test133#getY( ) ]
    1 returnSt D = { $_ } U = { this.y, this.y.a, this.y.x, this.y.y }
    3 formalOut D = {  } U = { $_ }
 --

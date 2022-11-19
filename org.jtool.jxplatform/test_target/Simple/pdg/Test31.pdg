@@ -1,21 +1,21 @@
 ----- ClDG (from here) -----
 Class Name = Test31
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test31#m( ) ]
    1 assignment D = {  } U = { this.!m( ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = {  } TO = Test31#m( )
    4 actualOut D = { this.!m( ) } U = {  }
    6 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test31( int ) ]
+   0 constructorEntry [ Test31#Test31( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 assignment D = { this.x } U = { x$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ x ]
+   0 fieldEntry [ Test31#x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
-   0 constructorEntry [ Test31( ) ]
+   0 constructorEntry [ Test31#Test31( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )

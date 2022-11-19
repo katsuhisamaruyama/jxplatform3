@@ -1,13 +1,13 @@
 ----- ClDG (from here) -----
 Class Name = S130
-   0 methodEntry [ getX( ) ]
+   0 methodEntry [ S130#getX( ) ]
    1 returnSt D = { $_ } U = { this.x }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ x ]
+   0 fieldEntry [ S130#x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
-   0 constructorEntry [ S130( int ) ]
+   0 constructorEntry [ S130#S130( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 assignment D = { this.x } U = { x$0 }
    4 formalOut D = {  } U = { $_ }

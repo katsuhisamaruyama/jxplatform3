@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Rental
-   0 methodEntry [ getCharge( double ) ]
+   0 methodEntry [ Rental#getCharge( double ) ]
    1 formalIn D = { discount$0 } U = {  }
    2 localDeclaration D = { charge$1 } U = { this.!floor( double ) }
    3 receiver D = {  } U = {  }
@@ -9,13 +9,13 @@ Class Name = Rental
    6 returnSt D = { $_ } U = { charge$1 }
    8 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ price ]
+   0 fieldEntry [ Rental#price ]
    1 fieldDeclaration D = { this.price } U = { this.price }
 --
-   0 fieldEntry [ days ]
+   0 fieldEntry [ Rental#days ]
    1 fieldDeclaration D = { this.days } U = { this.days }
 --
-   0 constructorEntry [ Rental( int int ) ]
+   0 constructorEntry [ Rental#Rental( int int ) ]
    1 formalIn D = { price$0 } U = {  }
    2 formalIn D = { days$1 } U = {  }
    3 assignment D = { this.price } U = { price$0 }

@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Test40
-   0 constructorEntry [ Test40( ) ]
+   0 constructorEntry [ Test40#Test40( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m1( ) ]
+   0 methodEntry [ Test40#m1( ) ]
    1 localDeclaration D = { button$0 } U = { javax.swing.JButton.!JButton( java.lang.String ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JButton#JButton( java.lang.String )
@@ -18,7 +18,7 @@ Class Name = Test40
 * actualOut D = { button$0.!addActionListener( java.awt.event.ActionListener ), button$0.!javax.swing.event.EventListenerList.listenerList } U = { button$0.!javax.swing.AbstractButton.listenerList, button$0.!javax.swing.event.EventListenerList.NULL_ARRAY, button$0.!javax.swing.event.EventListenerList.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.listenerList }
   14 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m3( ) ]
+   0 methodEntry [ Test40#m3( ) ]
    1 localDeclaration D = { button$0 } U = { javax.swing.JButton.!JButton( java.lang.String ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JButton#JButton( java.lang.String )
@@ -30,7 +30,7 @@ Class Name = Test40
 * actualOut D = { button$0.!addActionListener( java.awt.event.ActionListener ), button$0.!javax.swing.event.EventListenerList.listenerList } U = { button$0.!javax.swing.AbstractButton.listenerList, button$0.!javax.swing.event.EventListenerList.NULL_ARRAY, button$0.!javax.swing.event.EventListenerList.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.listenerList }
   11 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m2( ) ]
+   0 methodEntry [ Test40#m2( ) ]
    1 localDeclaration D = { button$0 } U = { javax.swing.JButton.!JButton( java.lang.String ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JButton#JButton( java.lang.String )

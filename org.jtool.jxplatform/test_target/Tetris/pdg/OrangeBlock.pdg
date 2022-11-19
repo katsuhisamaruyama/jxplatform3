@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = OrangeBlock
-   0 fieldEntry [ COLOR ]
+   0 fieldEntry [ OrangeBlock#COLOR ]
    1 fieldDeclaration D = { OrangeBlock.COLOR } U = { OrangeBlock.COLOR, OrangeBlock.COLOR.orange }
 --
-   0 constructorEntry [ OrangeBlock( int int ) ]
+   0 constructorEntry [ OrangeBlock#OrangeBlock( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 assignment D = {  } U = { super.!Block( int int ) }

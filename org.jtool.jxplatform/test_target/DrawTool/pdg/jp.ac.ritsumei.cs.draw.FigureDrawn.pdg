@@ -1,12 +1,12 @@
 ----- ClDG (from here) -----
 Class Name = jp.ac.ritsumei.cs.draw.FigureDrawn
-   0 fieldEntry [ serialVersionUID ]
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.FigureDrawn#serialVersionUID ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureDrawn.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.FigureDrawn.serialVersionUID }
 --
-   0 constructorEntry [ FigureDrawn( ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.FigureDrawn#FigureDrawn( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ undo( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureDrawn#undo( ) ]
    1 throwsClause D = {  } U = { $javax.swing.undo.CannotUndoException }
    2 assignment D = {  } U = { super.!undo( ) }
    3 receiver D = {  } U = {  }
@@ -27,7 +27,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureDrawn
   18 actualOut D = { this.canvas.!repaint( ) } U = { this.canvas.!java.awt.Component.height, this.canvas.!java.awt.Component.parent, this.canvas.!java.awt.Component.peer, this.canvas.!java.awt.Component.width, this.canvas.!java.awt.Component.x, this.canvas.!java.awt.Component.y }
   20 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ redo( ) ]
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureDrawn#redo( ) ]
    1 throwsClause D = {  } U = { $javax.swing.undo.CannotUndoException }
    2 throwsClause D = {  } U = { $javax.swing.undo.CannotRedoException }
    3 assignment D = {  } U = { super.!redo( ) }
@@ -49,7 +49,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureDrawn
   19 actualOut D = { this.canvas.!repaint( ) } U = { this.canvas.!java.awt.Component.height, this.canvas.!java.awt.Component.parent, this.canvas.!java.awt.Component.peer, this.canvas.!java.awt.Component.width, this.canvas.!java.awt.Component.x, this.canvas.!java.awt.Component.y }
   21 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ FigureDrawn( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ) ]
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.FigureDrawn#FigureDrawn( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { canvas$0 } U = {  }
    2 formalIn D = { figure$1 } U = {  }
    3 assignment D = {  } U = { super.!FigureEdit( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ) }

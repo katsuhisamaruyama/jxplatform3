@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Test24.P24
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test24.P24#m( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ P24( ) ]
+   0 constructorEntry [ Test24.P24#P24( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: m( )

@@ -1,13 +1,13 @@
 ----- ClDG (from here) -----
 Class Name = P129
-   0 methodEntry [ set2( java.lang.String java.lang.String ) ]
+   0 methodEntry [ P129#set2( java.lang.String java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 formalIn D = { value$1 } U = {  }
    3 assignment D = { this.key } U = { key$0 }
    4 assignment D = { this.value } U = { value$1 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ get1( java.lang.String ) ]
+   0 methodEntry [ P129#get1( java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 returnSt D = { $_ } U = { this.map.!get( java.lang.Object ) }
    3 receiver D = {  } U = { this.map }
@@ -15,10 +15,10 @@ Class Name = P129
    5 actualOut D = { this.map.!get( java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.table }
    7 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ key ]
+   0 fieldEntry [ P129#key ]
    1 fieldDeclaration D = { this.key } U = { this.key }
 --
-   0 methodEntry [ set1( java.lang.String java.lang.String ) ]
+   0 methodEntry [ P129#set1( java.lang.String java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 formalIn D = { value$1 } U = {  }
    3 assignment D = {  } U = { this.map.!put( java.lang.Object java.lang.Object ) }
@@ -27,16 +27,16 @@ Class Name = P129
 * actualOut D = { this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!put( java.lang.Object java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!java.util.HashMap.table, this.map.!java.util.HashMap.threshold }
    8 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ value ]
+   0 fieldEntry [ P129#value ]
    1 fieldDeclaration D = { this.value } U = { this.value }
 --
-   0 fieldEntry [ map ]
+   0 fieldEntry [ P129#map ]
    1 fieldDeclaration D = { this.map } U = { java.util.HashMap.!HashMap( ), this.map }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )
 * actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
 --
-   0 methodEntry [ get2( java.lang.String ) ]
+   0 methodEntry [ P129#get2( java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
    2 ifSt D = {  } U = { key$0.!equals( java.lang.Object ) }
    3 receiver D = {  } U = { key$0 }
@@ -46,7 +46,7 @@ Class Name = P129
    8 returnSt D = { $_ } U = {  }
   10 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ P129( ) ]
+   0 constructorEntry [ P129#P129( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: set2( java.lang.String java.lang.String )

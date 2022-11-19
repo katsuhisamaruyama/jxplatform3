@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Pit
-   0 fieldEntry [ rows ]
+   0 fieldEntry [ Pit#rows ]
    1 fieldDeclaration D = { Pit.rows } U = { Pit.rows, Pit.rows.ROWS }
 --
-   0 constructorEntry [ Pit( GameInfo ) ]
+   0 constructorEntry [ Pit#Pit( GameInfo ) ]
    1 formalIn D = { i$0 } U = {  }
    2 assignment D = { this.info } U = { i$0, i$0.font, i$0.height, i$0.level, i$0.lines, i$0.offImage, i$0.offg, i$0.score, i$0.width }
    3 assignment D = { this.box } U = { Pit.columns, Pit.rows }
@@ -26,7 +26,7 @@ Class Name = Pit
 * actualOut D = { java.util.Random.!Random( long ), java.util.Random.!java.util.Random.haveNextNextGaussian, java.util.Random.!java.util.Random.seed, java.util.Random.!java.util.concurrent.atomic.AtomicLong.value } U = { java.util.Random.!java.util.Random.seed }
   22 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ checkLines( ) ]
+   0 methodEntry [ Pit#checkLines( ) ]
    1 localDeclaration D = { lines$0 } U = {  }
    2 localDeclaration D = { y$1 } U = {  }
    3 forSt D = {  } U = { Pit.rows, y$1 }
@@ -66,7 +66,7 @@ Class Name = Pit
 * actualOut D = { this.info.lines } U = {  }
 * actualOut D = { this.score } U = {  }
 --
-   0 methodEntry [ update( ) ]
+   0 methodEntry [ Pit#update( ) ]
    1 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
    2 receiver D = {  } U = { this.offg }
    3 methodCall D = {  } U = { Pit.backgroundColor } TO = java.awt.Graphics#setColor( java.awt.Color )
@@ -105,16 +105,16 @@ Class Name = Pit
   38 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
   40 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ font ]
+   0 fieldEntry [ Pit#font ]
    1 fieldDeclaration D = { this.font } U = { this.font }
 --
-   0 fieldEntry [ initPosY ]
+   0 fieldEntry [ Pit#initPosY ]
    1 fieldDeclaration D = { Pit.initPosY } U = { Pit.initPosY }
 --
-   0 fieldEntry [ initPosX ]
+   0 fieldEntry [ Pit#initPosX ]
    1 fieldDeclaration D = { Pit.initPosX } U = { Pit.columns, Pit.initPosX }
 --
-   0 methodEntry [ gameStart( ) ]
+   0 methodEntry [ Pit#gameStart( ) ]
    1 localDeclaration D = { y$0 } U = {  }
    2 forSt D = {  } U = { Pit.rows, y$0 }
    3 localDeclaration D = { x$1 } U = {  }
@@ -131,17 +131,17 @@ Class Name = Pit
   15 formalOut D = {  } U = { $_ }
 * actualOut D = { this.box } U = {  }
 --
-   0 fieldEntry [ height ]
+   0 fieldEntry [ Pit#height ]
    1 fieldDeclaration D = { this.height } U = { this.height }
 --
-   0 fieldEntry [ box ]
+   0 fieldEntry [ Pit#box ]
    1 fieldDeclaration D = { this.box } U = { this.box }
 --
-   0 methodEntry [ getCurrentBlock( ) ]
+   0 methodEntry [ Pit#getCurrentBlock( ) ]
    1 returnSt D = { $_ } U = { this.currentBlock, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ eraseLine( int ) ]
+   0 methodEntry [ Pit#eraseLine( int ) ]
    1 formalIn D = { y$0 } U = {  }
    2 localDeclaration D = { x$1 } U = {  }
    3 forSt D = {  } U = { Pit.columns, x$1 }
@@ -168,8 +168,8 @@ Class Name = Pit
   24 methodCall D = {  } U = {  } TO = Tile#setPosY( int )
   25 actualIn D = {  } U = { tile$4.!getPosY( ) }
   26 receiver D = {  } U = { tile$4 }
-  27 methodCall D = {  } U = { this.!getBox( int int ).posY, tile$4.posY } TO = Tile#getPosY( )
-  28 actualOut D = { tile$4.!getPosY( ) } U = { this.!getBox( int int ).posY, tile$4.posY }
+  27 methodCall D = {  } U = { tile$4.posY } TO = Tile#getPosY( )
+  28 actualOut D = { tile$4.!getPosY( ) } U = { tile$4.posY }
   29 actualOut D = { tile$4.!setPosY( int ) } U = {  }
   31 assignment D = {  } U = { this.!setBox( int int Tile ) }
   32 receiver D = {  } U = {  }
@@ -195,7 +195,7 @@ Class Name = Pit
 * actualOut D = { this.box } U = {  }
 * actualOut D = { this.box } U = {  }
 --
-   0 methodEntry [ init( ) ]
+   0 methodEntry [ Pit#init( ) ]
    1 assignment D = { this.offImage } U = { this.!createImage( int int ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.height, this.width } TO = java.awt.Component#createImage( int int )
@@ -226,13 +226,13 @@ Class Name = Pit
   28 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
   30 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getBox( int int ) ]
+   0 methodEntry [ Pit#getBox( int int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 returnSt D = { $_ } U = { this.box, x$0, y$1 }
    5 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ paint( java.awt.Graphics ) ]
+   0 methodEntry [ Pit#paint( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 ifSt D = {  } U = { this.offImage }
    3 assignment D = {  } U = { g$0.!drawImage( java.awt.Image int int java.awt.image.ImageObserver ) }
@@ -241,20 +241,20 @@ Class Name = Pit
    6 actualOut D = { g$0.!drawImage( java.awt.Image int int java.awt.image.ImageObserver ) } U = {  }
    9 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ offImage ]
+   0 fieldEntry [ Pit#offImage ]
    1 fieldDeclaration D = { this.offImage } U = { this.offImage }
 --
-   0 methodEntry [ getNextBlock( ) ]
+   0 methodEntry [ Pit#getNextBlock( ) ]
    1 returnSt D = { $_ } U = { this.nextBlock, this.nextBlock.offsetX, this.nextBlock.offsetY, this.nextBlock.pit, this.nextBlock.posX, this.nextBlock.posY, this.nextBlock.tiles }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ info ]
+   0 fieldEntry [ Pit#info ]
    1 fieldDeclaration D = { this.info } U = { this.info }
 --
-   0 fieldEntry [ columns ]
+   0 fieldEntry [ Pit#columns ]
    1 fieldDeclaration D = { Pit.columns } U = { Pit.columns, Pit.columns.COLUMNS }
 --
-   0 methodEntry [ gameOver( ) ]
+   0 methodEntry [ Pit#gameOver( ) ]
    1 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
    2 receiver D = {  } U = { this.offg }
    3 methodCall D = {  } U = { Pit.backgroundColor } TO = java.awt.Graphics#setColor( java.awt.Color )
@@ -285,7 +285,7 @@ Class Name = Pit
   28 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
   30 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ printStartPrompt( ) ]
+   0 methodEntry [ Pit#printStartPrompt( ) ]
    1 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
    2 receiver D = {  } U = { this.offg }
    3 methodCall D = {  } U = { Color.white } TO = java.awt.Graphics#setColor( java.awt.Color )
@@ -304,16 +304,16 @@ Class Name = Pit
   16 actualOut D = { this.offg.!drawString( java.lang.String int int ) } U = {  }
   18 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ currentBlock ]
+   0 fieldEntry [ Pit#currentBlock ]
    1 fieldDeclaration D = { this.currentBlock } U = { this.currentBlock }
 --
-   0 fieldEntry [ rnd ]
+   0 fieldEntry [ Pit#rnd ]
    1 fieldDeclaration D = { this.rnd } U = { this.rnd }
 --
-   0 fieldEntry [ width ]
+   0 fieldEntry [ Pit#width ]
    1 fieldDeclaration D = { this.width } U = { this.width }
 --
-   0 methodEntry [ placeNextBlock( ) ]
+   0 methodEntry [ Pit#placeNextBlock( ) ]
    1 ifSt D = {  } U = { this.nextBlock, this.nextBlock.offsetX, this.nextBlock.offsetY, this.nextBlock.pit, this.nextBlock.posX, this.nextBlock.posY, this.nextBlock.tiles }
    2 assignment D = { this.currentBlock } U = { this.nextBlock, this.nextBlock.offsetX, this.nextBlock.offsetY, this.nextBlock.pit, this.nextBlock.posX, this.nextBlock.posY, this.nextBlock.tiles }
    3 assignment D = {  } U = { this.currentBlock.!setPosXY( int int ) }
@@ -362,20 +362,20 @@ Class Name = Pit
 * actualOut D = { this.!create( int int int ).posY } U = {  }
 * actualOut D = { this.nextBlock.pit } U = {  }
 --
-   0 fieldEntry [ nextBlock ]
+   0 fieldEntry [ Pit#nextBlock ]
    1 fieldDeclaration D = { this.nextBlock } U = { this.nextBlock }
 --
-   0 fieldEntry [ backgroundColor ]
+   0 fieldEntry [ Pit#backgroundColor ]
    1 fieldDeclaration D = { Pit.backgroundColor } U = { Pit.backgroundColor, Pit.backgroundColor.black }
 --
-   0 methodEntry [ setBox( int int Tile ) ]
+   0 methodEntry [ Pit#setBox( int int Tile ) ]
    1 formalIn D = { x$0 } U = {  }
    2 formalIn D = { y$1 } U = {  }
    3 formalIn D = { t$2 } U = {  }
    4 assignment D = { this.box } U = { t$2, t$2.color, t$2.posX, t$2.posY, x$0, y$1 }
    6 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ update( java.awt.Graphics ) ]
+   0 methodEntry [ Pit#update( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 assignment D = {  } U = { this.!paint( java.awt.Graphics ) }
    3 receiver D = {  } U = {  }
@@ -384,7 +384,7 @@ Class Name = Pit
    6 actualOut D = { this.!paint( java.awt.Graphics ) } U = { this, this.offImage }
    8 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ offg ]
+   0 fieldEntry [ Pit#offg ]
    1 fieldDeclaration D = { this.offg } U = { this.offg }
 --
    0: rows
@@ -650,6 +650,7 @@ Class Name = Pit
   35:   13 ->    2 loopCarriedDefUseDependence y$0 (LC =    2)
   36:   13 ->    9 loopCarriedDefUseDependence y$0 (LC =    2)
   37:   13 ->   13 loopCarriedDefUseDependence y$0 (LC =    2)
+  38: * -> * outputDependence this.box
 --
    0: height
    1:    0 ->    1 trueControlDependence
@@ -791,6 +792,7 @@ Class Name = Pit
  126: * -> * defOrderDependence this.box
  127: * -> * defOrderDependence tile$4.posY
  128: * -> * outputDependence this.box
+ 129: * -> * outputDependence this.box
 --
    0: init( )
    1:    0 ->    1 trueControlDependence

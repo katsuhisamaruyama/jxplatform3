@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Sample5
-   0 constructorEntry [ Sample5( ) ]
+   0 constructorEntry [ Sample5#Sample5( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ main( java.lang.String[] ) ]
+   0 methodEntry [ Sample5#main( java.lang.String[] ) ]
    1 formalIn D = { args$0 } U = {  }
    2 localDeclaration D = { shape$1 } U = {  }
    3 localDeclaration D = { line$2 } U = { Line.!Line( int int int int ) }

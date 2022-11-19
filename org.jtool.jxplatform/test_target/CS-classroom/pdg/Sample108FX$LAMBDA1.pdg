@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Sample108FX$LAMBDA1
-   0 methodEntry [ handle( javafx.event.Event ) ]
+   0 methodEntry [ Sample108FX$LAMBDA1#handle( javafx.event.Event ) ]
    1 formalIn D = { event$2 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --

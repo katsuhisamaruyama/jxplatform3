@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Sample18$1
-   0 methodEntry [ actionPerformed( java.awt.event.ActionEvent ) ]
+   0 methodEntry [ Sample18$1#actionPerformed( java.awt.event.ActionEvent ) ]
    1 formalIn D = { e$8 } U = {  }
    2 assignment D = {  } U = { this.!exit( int ) }
    3 receiver D = {  } U = {  }

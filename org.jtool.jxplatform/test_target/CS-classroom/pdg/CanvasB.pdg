@@ -1,12 +1,12 @@
 ----- ClDG (from here) -----
 Class Name = CanvasB
-   0 fieldEntry [ RADIUS ]
+   0 fieldEntry [ CanvasB#RADIUS ]
    1 fieldDeclaration D = { CanvasB.RADIUS } U = { CanvasB.RADIUS }
 --
-   0 fieldEntry [ y ]
+   0 fieldEntry [ CanvasB#y ]
    1 fieldDeclaration D = { this.y } U = { this.y }
 --
-   0 constructorEntry [ CanvasB( ) ]
+   0 constructorEntry [ CanvasB#CanvasB( ) ]
    1 assignment D = {  } U = { this.!setBackground( java.awt.Color ) }
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { Color.white, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width } TO = javax.swing.JComponent#setBackground( java.awt.Color )
@@ -24,15 +24,15 @@ Class Name = CanvasB
 * actualOut D = { this.!addMouseListener( java.awt.event.MouseListener ), this.!java.awt.Component.mouseListener, this.!java.awt.Component.newEventsOnly } U = { this.!java.awt.Component.mouseListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer }
   17 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ mouseExited( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ CanvasB#mouseExited( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ mouseReleased( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ CanvasB#mouseReleased( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ paintComponent( java.awt.Graphics ) ]
+   0 methodEntry [ CanvasB#paintComponent( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
    2 assignment D = {  } U = { super.!paintComponent( java.awt.Graphics ) }
    3 receiver D = {  } U = {  }
@@ -49,7 +49,7 @@ Class Name = CanvasB
   14 actualOut D = { g$0.!drawOval( int int int int ) } U = {  }
   17 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ mouseClicked( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ CanvasB#mouseClicked( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    2 assignment D = { this.x } U = { e$0.!getX( ) }
    3 receiver D = {  } U = { e$0 }
@@ -65,15 +65,15 @@ Class Name = CanvasB
   13 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
   15 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ mouseEntered( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ CanvasB#mouseEntered( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ mousePressed( java.awt.event.MouseEvent ) ]
+   0 methodEntry [ CanvasB#mousePressed( java.awt.event.MouseEvent ) ]
    1 formalIn D = { e$0 } U = {  }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ x ]
+   0 fieldEntry [ CanvasB#x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
    0: RADIUS

@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test24
-   0 methodEntry [ x( ) ]
+   0 methodEntry [ Test24#x( ) ]
    1 localDeclaration D = { p$0 } U = { Test24.P24.!P24( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = Test24.P24#P24( )
@@ -23,7 +23,7 @@ Class Name = Test24
   20 actualOut D = { q$1.!n( ) } U = {  }
   22 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test24( ) ]
+   0 constructorEntry [ Test24#Test24( ) ]
    2 formalOut D = {  } U = { $_ }
 --
    0: x( )

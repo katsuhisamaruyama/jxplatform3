@@ -1,9 +1,9 @@
 ----- ClDG (from here) -----
 Class Name = Test28
-   0 constructorEntry [ Test28( ) ]
+   0 constructorEntry [ Test28#Test28( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test28#m( ) ]
    1 localDeclaration D = { button$0 } U = { javax.swing.JButton.!JButton( java.lang.String ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JButton#JButton( java.lang.String )

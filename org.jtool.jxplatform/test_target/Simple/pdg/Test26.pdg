@@ -1,14 +1,14 @@
 ----- ClDG (from here) -----
 Class Name = Test26
-   0 constructorEntry [ Test26( ) ]
+   0 constructorEntry [ Test26#Test26( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 initializerEntry [ .init( ) ]
+   0 initializerEntry [ Test26#.init( ) ]
    1 localDeclaration D = { c$0 } U = {  }
    2 assignment D = { this.xxx } U = { c$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ xxx ]
+   0 fieldEntry [ Test26#xxx ]
    1 fieldDeclaration D = { this.xxx } U = { this.xxx }
 --
    0: Test26( )

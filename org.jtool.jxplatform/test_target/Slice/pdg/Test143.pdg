@@ -1,6 +1,6 @@
 ----- ClDG (from here) -----
 Class Name = Test143
-   0 methodEntry [ m( ) ]
+   0 methodEntry [ Test143#m( ) ]
    1 assignment D = {  } U = { this.p.!set( java.lang.String java.lang.String ) }
    2 receiver D = {  } U = { this.p }
    3 methodCall D = {  } U = { this.p.map, this.p.map.!java.util.HashMap$Node.hash, this.p.map.!java.util.HashMap$Node.key, this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.modCount, this.p.map.!java.util.HashMap.size, this.p.map.!java.util.HashMap.table, this.p.map.!java.util.HashMap.threshold } TO = P143#set( java.lang.String java.lang.String )
@@ -14,10 +14,10 @@ Class Name = Test143
   11 actualOut D = { this.p.!get( java.lang.String ) } U = { this.p.map, this.p.map.!java.util.HashMap$Node.hash, this.p.map.!java.util.HashMap$Node.key, this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.table }
   13 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test143( ) ]
+   0 constructorEntry [ Test143#Test143( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ p ]
+   0 fieldEntry [ Test143#p ]
    1 fieldDeclaration D = { this.p } U = { P143.!P143( ), this.p }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P143#P143( )

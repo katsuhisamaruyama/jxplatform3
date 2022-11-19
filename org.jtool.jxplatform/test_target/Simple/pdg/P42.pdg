@@ -1,15 +1,15 @@
 ----- ClDG (from here) -----
 Class Name = P42
-   0 constructorEntry [ P42( int ) ]
+   0 constructorEntry [ P42#P42( int ) ]
    1 formalIn D = { x$0 } U = {  }
    2 assignment D = { this.x } U = { x$0 }
    4 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ getX( ) ]
+   0 methodEntry [ P42#getX( ) ]
    1 returnSt D = { $_ } U = { this.x }
    3 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ x ]
+   0 fieldEntry [ P42#x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
 --
    0: P42( int )

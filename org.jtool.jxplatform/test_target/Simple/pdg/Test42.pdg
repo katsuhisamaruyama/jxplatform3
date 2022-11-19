@@ -1,11 +1,11 @@
 ----- ClDG (from here) -----
 Class Name = Test42
-   0 methodEntry [ m1( ) ]
+   0 methodEntry [ Test42#m1( ) ]
    1 localDeclaration D = { x1$0 } U = { this.a, this.a.x, this.b, this.b.x }
    2 localDeclaration D = { x2$1 } U = { this.a, this.a.x, this.b, this.b.x }
    4 formalOut D = {  } U = { $_ }
 --
-   0 methodEntry [ m2( ) ]
+   0 methodEntry [ Test42#m2( ) ]
    1 localDeclaration D = { x1$0 } U = { this.a.!getX( ) }
    2 receiver D = {  } U = { this.a }
    3 methodCall D = {  } U = { this.a.x, this.b.x } TO = P42#getX( )
@@ -16,10 +16,10 @@ Class Name = Test42
    8 actualOut D = { this.b.!getX( ) } U = { this.a.x, this.b.x }
   10 formalOut D = {  } U = { $_ }
 --
-   0 constructorEntry [ Test42( ) ]
+   0 constructorEntry [ Test42#Test42( ) ]
    2 formalOut D = {  } U = { $_ }
 --
-   0 fieldEntry [ a ]
+   0 fieldEntry [ Test42#a ]
    1 fieldDeclaration D = { this.a } U = { P42.!P42( int ), this.a }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = P42#P42( int )
@@ -27,7 +27,7 @@ Class Name = Test42
    5 actualOut D = { P42.!P42( int ) } U = {  }
 * actualOut D = { P42.!P42( int ).x } U = {  }
 --
-   0 fieldEntry [ b ]
+   0 fieldEntry [ Test42#b ]
    1 fieldDeclaration D = { this.b } U = { this.a, this.a.x, this.b }
 --
    0: m1( )
