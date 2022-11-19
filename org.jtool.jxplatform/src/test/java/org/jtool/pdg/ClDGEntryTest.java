@@ -30,7 +30,7 @@ public class ClDGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest101() {
+    public void testGetQualifiedName_Test101() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test101");
         ClDGEntry node = cldg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -39,7 +39,7 @@ public class ClDGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNamePriceCode() {
+    public void testGetQualifiedName_PriceCode() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         ClDGEntry node = cldg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -48,7 +48,7 @@ public class ClDGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest134() {
+    public void testGetQualifiedName_Test134() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "I134");
         ClDGEntry node = cldg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -57,7 +57,7 @@ public class ClDGEntryTest {
     }
     
     @Test
-    public void testGetClDGTest101() {
+    public void testGetClDG_Test101() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test101");
         ClDGEntry node = cldg.getEntryNode();
         ClDG result = node.getClDG();
@@ -67,7 +67,7 @@ public class ClDGEntryTest {
     
     
     @Test
-    public void testGetClDGPriceCode() {
+    public void testGetClDG_PriceCode() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         ClDGEntry node = cldg.getEntryNode();
         ClDG result = node.getClDG();
@@ -76,7 +76,7 @@ public class ClDGEntryTest {
     }
     
     @Test
-    public void testGetClDGI134() {
+    public void testGetClDG_I134() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "I134");
         ClDGEntry node = cldg.getEntryNode();
         ClDG result = node.getClDG();
@@ -85,7 +85,7 @@ public class ClDGEntryTest {
     }
     
     @Test
-    public void testGetCCFGEntryTest101() {
+    public void testGetCCFGEntry_Test101() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test101");
         ClDGEntry node = cldg.getEntryNode();
         CCFGEntry result = node.getCCFGEntry();
@@ -94,7 +94,7 @@ public class ClDGEntryTest {
     }
     
     @Test
-    public void testGetCCFGEntryPriceCode() {
+    public void testGetCCFGEntry_PriceCode() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         ClDGEntry node = cldg.getEntryNode();
         CCFGEntry result = node.getCCFGEntry();
@@ -103,7 +103,7 @@ public class ClDGEntryTest {
     }
     
     @Test
-    public void testGetCCFGEntryI134() {
+    public void testGetCCFGEntry_I134() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "I134");
         ClDGEntry node = cldg.getEntryNode();
         CCFGEntry result = node.getCCFGEntry();
@@ -112,7 +112,7 @@ public class ClDGEntryTest {
     }
     
     @Test
-    public void testGetCCFGTest101() {
+    public void testGetCCFG_Test101() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "Test101");
         ClDGEntry node = cldg.getEntryNode();
         ClDG result = node.getClDG();
@@ -121,7 +121,7 @@ public class ClDGEntryTest {
     }
     
     @Test
-    public void testGetCCFGPriceCode() {
+    public void testGetCCFG_PriceCode() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "PriceCode");
         ClDGEntry node = cldg.getEntryNode();
         ClDG result = node.getClDG();
@@ -130,7 +130,7 @@ public class ClDGEntryTest {
     }
     
     @Test
-    public void testGetCCFGI134() {
+    public void testGetCCFG_I134() {
         ClDG cldg = PDGTestUtil.createClDG(SliceProject, "I134");
         ClDGEntry node = cldg.getEntryNode();
         ClDG result = node.getClDG();

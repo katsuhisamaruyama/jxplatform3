@@ -6,11 +6,11 @@
 package org.jtool.jxplatform.util;
 
 import org.jtool.srcmodel.JavaElement;
+import org.jtool.pdg.PDG;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.CFGException;
-import org.jtool.pdg.DependencyGraph;
 import org.jtool.cfg.JReference;
 import java.util.List;
 import java.util.Set;
@@ -84,7 +84,7 @@ public static <T> List<String> asSortedList(Set<T> set) {
         return asSortedStr(set.stream().map(e -> e.getQualifiedName().fqn()));
     }
     
-    public static String asSortedStrOfDG(Set<? extends DependencyGraph> set) {
+    public static String asSortedStrOfPDG(Set<? extends PDG> set) {
         return asSortedStr(set.stream().map(e -> e.getQualifiedName().fqn()));
     }
     

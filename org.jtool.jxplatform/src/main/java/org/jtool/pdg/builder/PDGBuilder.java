@@ -7,7 +7,7 @@ package org.jtool.pdg.builder;
 
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.ClDG;
-import org.jtool.pdg.Dependence;
+import org.jtool.pdg.InterPDGCD;
 import org.jtool.pdg.ClDGEntry;
 import org.jtool.pdg.PDGEntry;
 import org.jtool.pdg.PDGNode;
@@ -17,7 +17,6 @@ import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGEntry;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
-import java.util.Map;
 
 /**
  * Builds a PDG for a class member (a method, constructor, initializer, or field).
@@ -26,49 +25,42 @@ import java.util.Map;
  */
 public class PDGBuilder {
     
-    static ClDG buildClDG(CCFG ccfg, Map<String, BarePDG> bpdgMap) {
+    static ClDG buildClDG(CCFG ccfg) {
         ClDG cldg = new ClDG();
         ClDGEntry entry = new ClDGEntry(ccfg.getEntryNode());
         cldg.setEntryNode(entry);
-        cldg.add(entry);
         
         for (CFG cfg : ccfg.getCFGs()) {
-            PDG pdg = buildPDG(cfg, bpdgMap);
+            PDG pdg = buildPDG(cfg);
             cldg.add(pdg);
             
-            Dependence edge = new Dependence(entry, pdg.getEntryNode());
+            InterPDGCD edge = new InterPDGCD(entry, pdg.getEntryNode());
             edge.setClassMember();
-            cldg.addInterEdge(edge);
+            cldg.addClassMemberEdge(edge);
         }
         return cldg;
     }
     
-    private static PDG buildPDG(CFG cfg, Map<String, BarePDG> bpdgMap) {
-        BarePDG bpdg = bpdgMap.get(cfg.getQualifiedName().fqn()); 
-        if (bpdg == null) {
-            bpdg = new BarePDG(cfg);
-            createNodes(bpdg, cfg);
-            
-            CDFinder.find(bpdg, cfg);
-            DDFinder.find(bpdg, cfg);
-            bpdgMap.put(cfg.getQualifiedName().fqn(), bpdg);
-        }
+    static PDG buildPDG(CFG cfg) {
+        PDG pdg = new PDG(cfg);
+        createNodes(pdg, cfg);
         
-        PDG pdg = new PDG();
-        pdg.setBarePDG(bpdg);
         PDGEntry entry = (PDGEntry)pdg.getNodes().stream()
-                                      .filter(node -> node.isEntry()).findFirst().orElse(null);
+                .filter(node -> node.isEntry()).findFirst().orElse(null);
         pdg.setEntryNode(entry);
+        
+        CDFinder.find(pdg, cfg);
+        DDFinder.find(pdg, cfg);
         return pdg;
     }
     
-    private static void createNodes(BarePDG bpdg, CFG cfg) {
-        cfg.getNodes().stream().map(cfgnode -> createNode(bpdg, cfgnode))
+    private static void createNodes(PDG pdg, CFG cfg) {
+        cfg.getNodes().stream().map(cfgnode -> createNode(pdg, cfgnode))
                       .filter(pdgnode -> pdgnode != null)
-                      .forEach(pdgnode -> bpdg.add(pdgnode));
+                      .forEach(pdgnode -> pdg.add(pdgnode));
     }
     
-    private static PDGNode createNode(BarePDG bpdg, CFGNode node) {
+    private static PDGNode createNode(PDG bpdg, CFGNode node) {
         if (node.isMethodEntry() || node.isConstructorEntry() || node.isInitializerEntry() ||
                    node.isFieldEntry() || node.isEnumConstantEntry()) {
             PDGEntry pdgnode = new PDGEntry((CFGEntry)node);

@@ -33,11 +33,11 @@ public class CodeExtractorTest {
         return code;
     }
     
-    private static String getCode(JavaProject jproject, String cname, String msig, int[] indices) {
+    private static String getCode(JavaProject jproject, String cname, String sig, int[] indices) {
         JavaClass jclass = jproject.getClass(cname);
         ClDG cldg = jproject.getModelBuilder().getClDG(jclass);
-        QualifiedName qname = new QualifiedName(cname, msig);
-        PDG pdg = cldg.findPDG(qname.fqn());
+        QualifiedName qname = new QualifiedName(cname, sig);
+        PDG pdg = cldg.getPDG(qname.fqn());
         
         Set<PDGNode> nodes = PDGTestUtil.getNodes(pdg, indices);
         CodeExtractor extractor = new CodeExtractor(jclass, nodes);
@@ -87,7 +87,7 @@ public class CodeExtractorTest {
     
     @Test
     public void testExtractConstructor1() {
-        String result = getCode(SimpleProject, "Test01", new int[]{ 0, 1 });
+        String result = getCode(SimpleProject, "Test01", "Test01( )", new int[]{ 0 });
         
         String expected = 
                 "public class Test01 {\n" +
@@ -521,7 +521,7 @@ public class CodeExtractorTest {
     
     @Test
     public void testExtractIfStatement10() {
-        String result = getCode(SimpleProject, "Test07", "m( )", new int[]{ 10 });
+        String result = getCode(SimpleProject, "Test07", "m( )", new int[]{ 11 });
         
         String expected = 
                 "public class Test07 {\n" +
@@ -1345,7 +1345,7 @@ public class CodeExtractorTest {
     
     @Test
     public void testExtractJavadoc1() {
-        String result = getCode(SimpleProject, "Test60", new int[]{ 1 });
+        String result = getCode(SimpleProject, "Test60", new int[]{ 0 });
         
         String expected = 
                 "/**\n" +

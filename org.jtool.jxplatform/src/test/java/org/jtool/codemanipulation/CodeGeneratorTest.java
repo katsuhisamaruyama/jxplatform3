@@ -105,7 +105,7 @@ public class CodeGeneratorTest {
     
     @Test
     public void testComment1() {
-        String result = getCode(SimpleProject, "Test61", new int[]{ 1 });
+        String result = getCode(SimpleProject, "Test61", new int[]{ 0 });
         
         String expected = 
                 "/*\n" +
@@ -126,7 +126,7 @@ public class CodeGeneratorTest {
     
     @Test
     public void testComment2() {
-        String result = getCode(SimpleProject, "Test61", new int[]{ 5 });
+        String result = getCode(SimpleProject, "Test61", new int[]{ 4 });
         
         String expected = 
                 "/*\n" +
@@ -150,7 +150,7 @@ public class CodeGeneratorTest {
     
     @Test
     public void testComment3() {
-        String result = getCode(SimpleProject, "Test61", new int[]{ 13 });
+        String result = getCode(SimpleProject, "Test61", new int[]{ 12 });
         
         String expected = 
                 "/*\n" +
@@ -174,7 +174,7 @@ public class CodeGeneratorTest {
     
     @Test
     public void testComment4() {
-        String result = getCode(SimpleProject, "Test61", new int[]{ 16 });
+        String result = getCode(SimpleProject, "Test61", new int[]{ 15 });
         
         String expected = 
                 "/*\n" +
@@ -195,7 +195,7 @@ public class CodeGeneratorTest {
     
     @Test
     public void testComment5() {
-        String result = getCode(SimpleProject, "Test61", new int[]{ 7 });
+        String result = getCode(SimpleProject, "Test61", new int[]{ 6 });
         
         String expected = 
                 "/*\n" +
@@ -217,7 +217,7 @@ public class CodeGeneratorTest {
     
     @Test
     public void testComment6() {
-        String result = getCode(SimpleProject, "Test61", new int[]{ 8 });
+        String result = getCode(SimpleProject, "Test61", new int[]{ 7 });
         
         String expected = 
                 "/*\n" +
@@ -239,7 +239,7 @@ public class CodeGeneratorTest {
     
     @Test
     public void testComment7() {
-        String result = getCode(SimpleProject, "Test61", new int[]{ 9 });
+        String result = getCode(SimpleProject, "Test61", new int[]{ 8 });
         
         String expected = 
                 "/*\n" +
@@ -263,7 +263,7 @@ public class CodeGeneratorTest {
     
     @Test
     public void testComment8() {
-        String result = getCode(SimpleProject, "Test61", new int[]{ 5, 7 });
+        String result = getCode(SimpleProject, "Test61", new int[]{ 4, 6 });
         
         String expected = 
                 "/*\n" +

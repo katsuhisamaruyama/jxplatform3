@@ -29,35 +29,20 @@ public class DD extends Dependence {
      * Creates a new object that represents a data dependence.
      * @param src the source node
      * @param dst destination node
-     */
-    public DD(PDGNode src, PDGNode dst) {
-        super(src, dst);
-    }
-    
-    /**
-     * Creates a new object that represents a data dependence.
-     * @param src the source node
-     * @param dst destination node
      * @param jv the variable related to this data dependence
      */
     public DD(PDGNode src, PDGNode dst, JVariableReference jv) {
         super(src, dst);
+        
+        assert jv != null;
+        
         this.jvar = jv;
     }
     
     /**
-     * Sets the variable related to this data dependence.
-     * @param jv the variable to be set
+     * {@inheritDoc}
      */
-    public void setVariable(JVariableReference jv) {
-        this.jvar = jv;
-    }
-    
-    /**
-     * Returns the variable related to this data dependence.
-     * The value of a variable defined in the source node reaches that used in the destination node.
-     * @return the variable storing the passed value
-     */
+    @Override
     public JVariableReference getVariable() {
         return jvar;
     }
@@ -67,6 +52,8 @@ public class DD extends Dependence {
      * @param node loop-carried node
      */
     public void setLoopCarriedNode(PDGNode node) {
+        assert node != null;
+        
         loopCarriedNode = node;
     }
     
@@ -98,63 +85,28 @@ public class DD extends Dependence {
      * Sets as a loop-independent data dependence.
      */
     public void setLIDD() {
-        kind = Kind.loopIndependentDefUseDependence;
+        kind = DependencyGraphEdgeKind.loopIndependentDefUseDependence;
     }
     
     /**
      * Sets as a loop-carried data dependence.
      */
     public void setLCDD() {
-        kind = Kind.loopCarriedDefUseDependence;
+        kind = DependencyGraphEdgeKind.loopCarriedDefUseDependence;
     }
     
     /**
      * Sets as a define-order dependence.
      */
     public void setDefOrder() {
-        kind = Kind.defOrderDependence;
+        kind = DependencyGraphEdgeKind.defOrderDependence;
     }
     
     /**
      * Sets as an output dependence.
      */
     public void setOutput() {
-        kind = Kind.outputDependence;
-    }
-    
-    /**
-     * Sets as a parameter-in dependence.
-     */
-    public void setParameterIn() {
-        kind = Kind.parameterIn;
-    }
-    
-    /**
-     * Sets as a parameter-out dependence.
-     */
-    public void setParameterOut() {
-        kind = Kind.parameterOut;
-    }
-    
-    /**
-     * Sets as a field access dependence.
-     */
-    public void setFieldAccess() {
-        kind = Kind.fieldAccess;
-    }
-    
-    /**
-     * Sets as an uncovered field access dependence.
-     */
-    public void setUncoveredFieldAccess() {
-        kind = Kind.uncoveredFieldAccess;
-    }
-    
-    /**
-     * Sets as a summary data dependence.
-     */
-    public void setSummary() {
-        kind = Kind.summary;
+        kind = DependencyGraphEdgeKind.outputDependence;
     }
     
     /**
@@ -201,23 +153,23 @@ public class DD extends Dependence {
             }
             buf.append(" ]");
         }
-        if (kind == Kind.loopIndependentDefUseDependence) {
+        if (kind == DependencyGraphEdgeKind.loopIndependentDefUseDependence) {
             buf.append(" LIDD");
-        } else if (kind == Kind.loopCarriedDefUseDependence) {
+        } else if (kind == DependencyGraphEdgeKind.loopCarriedDefUseDependence) {
             buf.append(" LCDD");
-        } else if (kind == Kind.defOrderDependence) {
+        } else if (kind == DependencyGraphEdgeKind.defOrderDependence) {
             buf.append(" DO");
-        } else if (kind == Kind.outputDependence) {
+        } else if (kind == DependencyGraphEdgeKind.outputDependence) {
             buf.append(" OD");
-        } else if (kind == Kind.parameterIn) {
+        } else if (kind == DependencyGraphEdgeKind.parameterIn) {
             buf.append(" PIN");
-        } else if (kind == Kind.parameterOut) {
+        } else if (kind == DependencyGraphEdgeKind.parameterOut) {
             buf.append(" POUT");
-        } else if (kind == Kind.fieldAccess) {
+        } else if (kind == DependencyGraphEdgeKind.fieldAccess) {
             buf.append(" FACC");
-        } else if (kind == Kind.uncoveredFieldAccess) {
+        } else if (kind == DependencyGraphEdgeKind.uncoveredFieldAccess) {
             buf.append(" CFACC");
-        } else if (kind == Kind.summary) {
+        } else if (kind == DependencyGraphEdgeKind.summary) {
             buf.append(" SUMM");
         }
         return buf.toString();

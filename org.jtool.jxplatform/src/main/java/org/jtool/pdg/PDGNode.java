@@ -7,7 +7,6 @@ package org.jtool.pdg;
 
 import org.jtool.cfg.CFGNode;
 import org.jtool.graph.GraphNode;
-import java.util.Set;
 import java.util.List;
 import java.util.Collection;
 import java.util.Comparator;
@@ -78,64 +77,11 @@ public class PDGNode extends GraphNode {
     }
     
     /**
-     * Tests if this node causes joining.
-     * @return {@code true} if this node causes joining, otherwise {@code false}
-     */
-    public boolean isJoin() {
-        return cfgnode.isJoin();
-    }
-    
-    /**
      * Tests if this node indicates the entry for a method, a field, or a class.
      * @return {@code true} if this is an entry node, otherwise {@code false}
      */
     public boolean isEntry() {
         return false;
-    }
-    
-    /**
-     * Tests if this node is dominated by any control flow.
-     * @return {@code true} if this is a dominated node, otherwise {@code false}
-     */
-    public boolean isDominated() {
-        return getIncomingCDEdges().stream()
-                .anyMatch(cd -> cd.isTrue() || cd.isFalse() || cd.isFallThrough());
-    }
-    
-    /**
-     * Tests if this node is dominated by a true control flow.
-     * @return {@code true} if this is a true-dominated node, otherwise {@code false}
-     */
-    public boolean isTrueDominated() {
-        return getIncomingCDEdges().stream().anyMatch(cd -> cd.isTrue());
-    }
-    
-    /**
-     * Tests if this node is dominated by a false control flow.
-     * @return {@code true} if this is a false-dominated node, otherwise {@code false}
-     */
-    public boolean isFalseDominated() {
-        return getIncomingCDEdges().stream().anyMatch(cd -> cd.isFalse());
-    }
-    
-    /**
-     * Obtains control dependence edges incoming to this node.
-     * @return the collection of the incoming control dependence edges
-     */
-    public Set<CD> getIncomingCDEdges() {
-        return getIncomingEdges().stream()
-                .map(edge -> (Dependence)edge).filter(edge -> edge.isCD())
-                .map(edge -> (CD)edge).collect(Collectors.toSet());
-    }
-    
-    /**
-     * Obtains data dependence edges incoming to this node.
-     * @return the collection of the incoming data dependence edges
-     */
-    public Set<DD> getIncomingDDEdges() {
-        return getIncomingEdges().stream()
-                .map(edge -> (Dependence)edge).filter(edge -> edge.isDD())
-                .map(edge -> (DD)edge).collect(Collectors.toSet());
     }
     
     /**

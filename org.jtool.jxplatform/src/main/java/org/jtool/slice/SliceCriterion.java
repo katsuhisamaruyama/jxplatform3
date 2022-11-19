@@ -8,11 +8,11 @@ package org.jtool.slice;
 import org.jtool.pdg.DependencyGraph;
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
+import org.jtool.cfg.JVariableReference;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
-import org.jtool.cfg.JVariableReference;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -232,7 +232,7 @@ public class SliceCriterion {
         buf.append("Node = " + node.getId());
         buf.append(";");
         buf.append(" Variable =" + getVariableNames(variables));
-        buf.append(" on " + graph.getQualifiedName().fqn());
+        buf.append(" on " + graph.getName());
         buf.append("\n");
         return buf.toString();
     }

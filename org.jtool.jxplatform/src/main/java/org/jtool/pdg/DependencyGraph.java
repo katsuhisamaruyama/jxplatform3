@@ -5,44 +5,62 @@
 
 package org.jtool.pdg;
 
-import org.jtool.cfg.CFG;
-import org.jtool.cfg.CCFG;
+import org.jtool.srcmodel.JavaClass;
+import org.jtool.srcmodel.JavaField;
+import org.jtool.srcmodel.JavaMethod;
 import org.jtool.graph.GraphNode;
-import org.jtool.srcmodel.QualifiedName;
-import java.util.Set;
-import java.util.HashSet;
+import org.jtool.jxplatform.builder.TimeInfo;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.HashSet;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 /**
- * An object storing information on a dependency graph.
+ * An object storing information on a dependency graph consisting of ClDGs.
  * 
  * @author Katsuhisa Maruyama
  */
-public abstract class DependencyGraph {
+public class DependencyGraph {
+    
+    /**
+     * The qualified name of this dependency graph.
+     */
+    private final String name;
+    
+    /**
+     * The map between the fully-qualified names and ClDGs that have their corresponding names.
+     */
+    private Map<String, ClDG> cldgs = new HashMap<>();
+    
+    /**
+     * The map between the fully-qualified names and PDGs that have their corresponding names.
+     */
+    private Map<String, PDG> pdgs = new HashMap<>();
     
     /**
      * All nodes that are included in this dependency graph.
      */
-    protected Set<PDGNode> allNodes = new HashSet<>();
+    private Set<PDGNode> nodes = new HashSet<>();
     
     /**
-     * All edges that are included in this dependency graph.
+     * All edges that are included in PDSs of this dependency graph.
      */
-    protected List<CD> cdEdges = new ArrayList<>();
+    private List<DependencyGraphEdge> edges = new ArrayList<>();
     
     /**
-     * All edges that are included in this dependency graph.
+     * The map between source node and its its edges that connect nodes in different PDGs.
      */
-    protected List<DD> ddEdges = new ArrayList<>();
+    private Multimap<PDGNode, DependencyGraphEdge> interPDGEdgeMapWithSrcKey = HashMultimap.create();
     
     /**
-     * Edges that link nodes in different PDGs.
+     * The map between destination node and its edges that connect nodes in different PDGs.
      */
-    protected List<Dependence> interEdges = new ArrayList<>();
+    private Multimap<PDGNode, DependencyGraphEdge> interPDGEdgeMapWithDstKey = HashMultimap.create();
     
     /**
      * Map for edges (connecting two nodes) that uncover field accesses in this dependency graph.
@@ -51,158 +69,138 @@ public abstract class DependencyGraph {
     
     /**
      * Creates a dependency graph.
+     * This method is not intended to be invoked by clients.
+     * @param name the name to be set
      */
-    protected DependencyGraph() {
+    public DependencyGraph(String name) {
+        this.name = name + "-" + TimeInfo.getTimeAsISOString(TimeInfo.getCurrentTime());
     }
     
     /**
-     * Returns the identification number of this dependency graph.
-     * @return the identification number
+     * Returns the name of this dependency graph.
+     * @return the name
      */
-    public abstract long getId();
+    public String getName() {
+        return name;
+    }
+    /**
+     * Adds a ClDG to this dependency graph.
+     * @param cldg the ClDG to be added
+     */
+    public void add(ClDG cldg) {
+        if (!cldgs.values().contains(cldg)) {
+            cldg.getNodes().stream().forEach(node -> add(node));
+            cldg.getEdges().stream().forEach(edge -> add(edge));
+            cldgs.put(cldg.getQualifiedName().fqn(), cldg);
+            
+            cldg.getPDGs().forEach(pdg -> pdgs.put(pdg.getQualifiedName().fqn(), pdg));
+        }
+    }
     
     /**
-     * Returns the fully-qualified name of this dependency graph.
-     * @return the fully-qualified name
+     * Adds a PDG to to this dependency graph.
+     * @param pdg the PDG to be added
      */
-    public abstract QualifiedName getQualifiedName();
+    public void add(PDG pdg) {
+        if (!pdgs.values().contains(pdg)) {
+            pdg.getNodes().stream().forEach(node -> add(node));
+            pdg.getEdges().stream().forEach(edge -> add(edge));
+            pdgs.put(pdg.getQualifiedName().fqn(), pdg);
+        }
+    }
     
     /**
-     * Returns the signature of this dependency graph.
-     * @return the graph signature
+     * Returns ClDGs contained in this dependency graph.
+     * @return the collection of all the contained ClDGs
      */
-    public abstract String getSignature();
+    public Set<ClDG> getClDGs() {
+        return new HashSet<ClDG>(cldgs.values());
+    }
     
     /**
      * Returns PDGs contained in this dependency graph.
      * @return the collection of all the contained PDGs
      */
-    public abstract Set<PDG> getPDGs();
+    public Set<PDG> getPDGs() {
+        return new HashSet<PDG>(pdgs.values());
+    }
+    
+    /**
+     * Finds a ClDG having a given name from ClDGs contained in this dependency graph.
+     * @param fqn the fully-qualified name of the ClDG to be retrieved
+     * @return the found ClDG, or {@code null} if the corresponding ClDG is not found
+     */
+    public ClDG getClDG(String fqn) {
+        return cldgs.get(fqn);
+    }
     
     /**
      * Finds a PDG having a given name from PDGs contained in this dependency graph.
      * @param fqn the fully-qualified name of the PDG to be retrieved
      * @return the found PDG, or {@code null} if the corresponding PDG is not found
      */
-    public abstract PDG findPDG(String fqn);
-    
-    /**
-     * Adds nodes to this dependency graph.
-     * This method is not intended to be invoked by clients.
-     * @param nodes the collection of nodes to be added
-     */
-    public void addNodes(Set<PDGNode> nodes) {
-        assert nodes != null;
-        
-        allNodes.addAll(nodes);
+    public PDG getPDG(String fqn) {
+        return pdgs.get(fqn);
     }
     
     /**
-     * Adds a node specific to this dependency graph.
+     * Finds a ClDG corresponding to a given class from ClDGs contained in this dependency graph.
+     * @param jclass the class for the ClDG to be retrieved
+     * @return the found ClDG, or {@code null} if the corresponding ClDG is not found
+     */
+    public ClDG getClDG(JavaClass jclass) {
+        assert jclass != null;
+        
+        return getClDG(jclass.getQualifiedName().fqn());
+    }
+    
+    /**
+     * Finds a PDG corresponding to a given method from PDGs contained in this dependency graph.
+     * @param jmethod the method for the PDG to be retrieved
+     * @return the found PDG, or {@code null} if the corresponding PDG is not found
+     */
+    public PDG getPDG(JavaMethod jmethod) {
+            assert jmethod != null;
+            
+            return getPDG(jmethod.getQualifiedName().fqn());
+    }
+    
+    /**
+     * Finds a PDG corresponding to a given field from PDGs contained in this dependency graph.
+     * @param jmethod the field for the PDG to be retrieved
+     * @return the found PDG, or {@code null} if the corresponding PDG is not found
+     */
+    public PDG getPDG(JavaField jfield) {
+        assert jfield!= null;
+        
+        return getPDG(jfield.getQualifiedName().fqn());
+    }
+    
+    /**
+     * Adds a node to this dependency graph.
      * This method is not intended to be invoked by clients.
      * @param node the node to be added
      */
     public void add(PDGNode node) {
         assert node != null;
         
-        allNodes.add(node);
+        nodes.add(node);
     }
     
     /**
-     * Adds edges to this dependency graph.
-     * This method is not intended to be invoked by clients.
-     * @param edges the collection of the edges to be added
-     */
-    public void addEdges(List<Dependence> edges) {
-        assert edges != null;
-        
-        edges.forEach(edge -> add(edge));
-    }
-    
-    /**
-     * Adds an edge that links nodes within different PDGs.
+     * Adds an edge to this dependency graph.
      * This method is not intended to be invoked by clients.
      * @param edge the dependence edge to be added
      */
-    public void add(Dependence edge) {
+    public void add(DependencyGraphEdge edge) {
         assert edge != null;
         
-        if (edge.isCD()) {
-            cdEdges.add((CD)edge);
-        } else if (edge.isDD()) {
-            ddEdges.add((DD)edge);
+        if (edge.isInterPDGEdge()) {
+            interPDGEdgeMapWithSrcKey.put(edge.getSrcNode(), edge);
+            interPDGEdgeMapWithDstKey.put(edge.getDstNode(), edge);
         } else {
-            interEdges.add(edge);
+            edges.add(edge);
         }
-    }
-    
-    /**
-     * Adds edges that link nodes within different PDGs.
-     * This method is not intended to be invoked by clients.
-     * @param edges the collection of the edges to be added
-     */
-    public void addInterEdges(List<Dependence> edges) {
-        assert edges != null;
-        
-        edges.forEach(edge -> addInterEdge(edge));
-    }
-    
-    /**
-     * Adds an edge that links nodes within different PDGs.
-     * This method is not intended to be invoked by clients.
-     * @param edge the edge to be added
-     */
-    public void addInterEdge(Dependence edge) {
-        assert edge != null;
-        
-        interEdges.add(edge);
-        
-        if (edge.isCD()) {
-            cdEdges.add((CD)edge);
-            
-        } else if (edge.isDD()) {
-            ddEdges.add((DD)edge);
-        }
-    }
-    
-    /**
-     * Tests if this dependency graph represents a PDG.
-     * @return {@code true} if this is a PDG, otherwise {@code false}
-     */
-    public boolean isPDG() {
-        return false;
-    }
-    
-    /**
-     * Tests if this dependency graph represents a ClDG.
-     * @return {@code true} if this is a ClDG, otherwise {@code false}
-     */
-    public boolean isClDG() {
-        return false;
-    }
-    
-    /**
-     * Tests if this dependency graph represents an SDG.
-     * @return {@code true} if this is an SDG, otherwise {@code false}
-     */
-    public boolean isSDG() {
-        return false;
-    }
-    
-    /**
-     * Returns the CFG corresponding to this dependency graph.
-     * @return the CFG, or {@code null} if the corresponding CFG does not exist
-     */
-    public CFG getCFG() {
-        return null;
-    }
-    
-    /**
-     * Returns the CFG corresponding to this dependency graph.
-     * @return the CCFG, or {@code null} if the corresponding CCFG does not exist
-     */
-    public CCFG getCCFG() {
-        return null;
     }
     
     /**
@@ -210,18 +208,17 @@ public abstract class DependencyGraph {
      * @return the collection of the nodes
      */
     public Set<PDGNode> getNodes() {
-        return allNodes;
+        return nodes;
     }
     
     /**
      * Returns all edges of this dependency graph.
      * @return the collection of the edges
      */
-    public List<Dependence> getEdges() {
-        List<Dependence> allEdges = new ArrayList<>();
-        allEdges.addAll(cdEdges);
-        allEdges.addAll(ddEdges);
-        allEdges.addAll(interEdges);
+    public List<DependencyGraphEdge> getEdges() {
+        List<DependencyGraphEdge> allEdges = new ArrayList<>();
+        allEdges.addAll(edges);
+        allEdges.addAll(interPDGEdgeMapWithSrcKey.values());
         return allEdges;
     }
     
@@ -229,33 +226,24 @@ public abstract class DependencyGraph {
      * Returns all control dependence edges of this dependency graph.
      * @return the collection of the edges
      */
-    public List<CD> getCDEdges() {
-        return cdEdges;
+    public List<DependencyGraphEdge> getCDEdges() {
+        return getEdges().stream().filter(e -> e.isCD()).collect(Collectors.toList());
     }
     
     /**
      * Returns all data dependence edges of this dependency graph.
      * @return the collection of the edges
      */
-    public List<DD> getDDEdges() {
-        return ddEdges;
+    public List<DependencyGraphEdge> getDDEdges() {
+        return getEdges().stream().filter(e -> e.isDD()).collect(Collectors.toList());
     }
     
     /**
-     * Obtains edges that link nodes within different PDGs.
+     * Obtains edges that connect nodes in different PDGs.
      * @return the collection of the edges
      */
-    public List<Dependence> getInterEdges() {
-        return interEdges;
-    }
-    
-    /**
-     * Finds the node having a given identification number.
-     * @param id the identification number to the node to be retrieved
-     * @return the found node, or {@code null} if the corresponding node is not found
-     */
-    public PDGNode getNode(int id) {
-        return getNodes().stream().filter(node -> node.getId() == id).findFirst().orElse(null);
+    List<DependencyGraphEdge> getInterPDGEdges() {
+        return new ArrayList<DependencyGraphEdge>(interPDGEdgeMapWithSrcKey.values());
     }
     
     /**
@@ -263,9 +251,14 @@ public abstract class DependencyGraph {
      * @param node the node
      * @return the collection of the incoming edges
      */
-    public Set<Dependence> getIncomingDependenceEdges(PDGNode node) {
-        return getEdges().stream()
-                .filter(edge -> edge.getDstNode().equals(node)).collect(Collectors.toSet());
+    public List<DependencyGraphEdge> getIncomingEdges(PDGNode node) {
+        assert node != null;
+        
+        List<DependencyGraphEdge> allEdges = new ArrayList<>();
+        allEdges.addAll(node.getIncomingEdges().stream()
+                .map(e -> (DependencyGraphEdge)e).collect(Collectors.toList()));
+        allEdges.addAll(interPDGEdgeMapWithDstKey.get(node));
+        return allEdges;
     }
     
     /**
@@ -273,18 +266,20 @@ public abstract class DependencyGraph {
      * @param node the node
      * @return the collection of the incoming edges
      */
-    public Set<CD> getIncomingCDEdges(PDGNode node) {
-        return getCDEdges().stream()
-                .filter(edge -> edge.getDstNode().equals(node)).collect(Collectors.toSet());
+    public List<DependencyGraphEdge> getIncomingCDEdges(PDGNode node) {
+        assert node != null;
+        
+        return getIncomingEdges(node).stream().filter(e -> e.isCD()).collect(Collectors.toList());
     }
     
     /**
      * Obtains data dependence edges incoming to this node.
      * @return the collection of the incoming edges
      */
-    public Set<DD> getIncomingDDEdges(PDGNode node) {
-        return getDDEdges().stream()
-                .filter(edge -> edge.getDstNode().equals(node)).collect(Collectors.toSet());
+    public List<DependencyGraphEdge> getIncomingDDEdges(PDGNode node) {
+        assert node != null;
+        
+        return getIncomingEdges(node).stream().filter(e -> e.isDD()).collect(Collectors.toList());
     }
     
     /**
@@ -292,9 +287,14 @@ public abstract class DependencyGraph {
      * @param node the node
      * @return the collection of the outgoing edges
      */
-    public Set<Dependence> getOutgoingDependenceEdges(PDGNode node) {
-        return getEdges().stream()
-                .filter(edge -> edge.getSrcNode().equals(node)).collect(Collectors.toSet());
+    public List<DependencyGraphEdge> getOutgoingEdges(PDGNode node) {
+        assert node != null;
+        
+        List<DependencyGraphEdge> allEdges = new ArrayList<>();
+        allEdges.addAll(node.getOutgoingEdges().stream()
+                .map(e -> (DependencyGraphEdge)e).collect(Collectors.toList()));
+        allEdges.addAll(interPDGEdgeMapWithSrcKey.get(node));
+        return allEdges;
     }
     
     /**
@@ -302,9 +302,10 @@ public abstract class DependencyGraph {
      * @param node the node
      * @return the collection of the outgoing edges
      */
-    public Set<CD> getOutgoingCDEdges(PDGNode node) {
-        return getCDEdges().stream()
-                .filter(edge -> edge.getSrcNode().equals(node)).collect(Collectors.toSet());
+    public List<DependencyGraphEdge> getOutgoingCDEdges(PDGNode node) {
+        assert node != null;
+        
+        return getOutgoingEdges(node).stream().filter(e -> e.isCD()).collect(Collectors.toList());
     }
     
     /**
@@ -312,21 +313,10 @@ public abstract class DependencyGraph {
      * @param node the node
      * @return the collection of the outgoing edges
      */
-    public Set<DD> getOutgoingDDEdges(PDGNode node) {
-        return getDDEdges().stream()
-                .filter(edge -> edge.getSrcNode().equals(node)).collect(Collectors.toSet());
-    }
-    
-    /**
-     * Finds dependence edges between two nodes.
-     * @param src the source node
-     * @param dst the destination node
-     * @return the collection of the dependence edges
-     */
-    public List<Dependence> findDependence(PDGNode src, PDGNode dst) {
-        return getEdges().stream()
-                .filter(e -> e.getSrcNode().equals(src) && e.getDstNode().equals(dst))
-                .collect(Collectors.toList());
+    public List<DependencyGraphEdge> getOutgoingDDEdges(PDGNode node) {
+        assert node != null;
+        
+        return getOutgoingEdges(node).stream().filter(e -> e.isDD()).collect(Collectors.toList());
     }
     
     /**
@@ -334,7 +324,7 @@ public abstract class DependencyGraph {
      * This method is not intended to be invoked by clients.
      * @param edge the edge to be added
      */
-    public void addUncoveredFieldAccessEdge(DD edge) {
+    public void addUncoveredFieldAccessEdge(InterPDGDD edge) {
         assert edge != null;
         
         uncoveredFieldAccessEdgeMap.put(edge.getSrcNode(), edge.getDstNode());
@@ -347,6 +337,9 @@ public abstract class DependencyGraph {
      * @return {@code true} if a dependence edge was found, otherwise {@code false}
      */
     public boolean existsUncoveredFieldAccessEdge(PDGNode src, PDGNode dst) {
+        assert src != null;
+        assert dst != null;
+        
         return uncoveredFieldAccessEdgeMap.get(src).contains(dst);
     }
     
@@ -364,7 +357,7 @@ public abstract class DependencyGraph {
      * @return {@code true} if the given dependency graph is equal to this dependency graph
      */
     public boolean equals(DependencyGraph graph) {
-        return graph != null && (this == graph || getQualifiedName().equals(graph.getQualifiedName()));
+        return graph != null && (this == graph || getName().equals(graph.getName()));
     }
     
     /**
@@ -372,7 +365,7 @@ public abstract class DependencyGraph {
      */
     @Override
     public int hashCode() {
-        return getQualifiedName().hashCode();
+        return getName().hashCode();
     }
     
     /**
@@ -384,17 +377,16 @@ public abstract class DependencyGraph {
     
     /**
      * Obtains information on this dependency graph.
-     * @param kindName the kind name of this dependency graph
      * @return the string representing the information on this dependency graph
      */
-    public String toString(String kindName) {
+    public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- " + kindName + " (from here) -----\n");
-        buf.append("Name = " + getQualifiedName());
+        buf.append("----- (from here) -----\n");
+        buf.append("Name = " + getName());
         buf.append("\n");
         buf.append(toStringForNodes()); 
         buf.append(toStringForEdges());
-        buf.append("----- " + kindName + " (to here) -----\n");
+        buf.append("----- (to here) -----\n");
         return buf.toString();
     }
     
@@ -402,7 +394,7 @@ public abstract class DependencyGraph {
      * Obtains information on all nodes enclosed in this dependency graph.
      * @return the string representing the information
      */
-    protected String toStringForNodes() {
+    private String toStringForNodes() {
         StringBuilder buf = new StringBuilder();
         GraphNode.sortGraphNode(getNodes()).forEach(node -> {
             buf.append(node.toString());
@@ -415,45 +407,15 @@ public abstract class DependencyGraph {
      * Obtains information on all edges enclosed in this dependency graph.
      * @return the string representing the information
      */
-    protected String toStringForEdges() {
+    private String toStringForEdges() {
         StringBuffer buf = new StringBuffer();
         int index = 1;
-        for (Dependence edge : Dependence.sortEdges(getEdges())) {
+        for (DependencyGraphEdge edge : DependencyGraphEdge.sortEdges(getEdges())) {
             buf.append(String.valueOf(index));
             buf.append(": ");
             buf.append(edge.toString());
             buf.append("\n");
             index++;
-        }
-        return buf.toString();
-    }
-    
-    /**
-     * Obtains information on control dependence edges enclosed in this dependency graph.
-     * @return the string representing the information
-     */
-    protected String toStringForCDEdges() {
-        StringBuffer buf = new StringBuffer();
-        for (Dependence edge : Dependence.sortEdges(getEdges())) {
-            if (edge.isCD()) {
-                buf.append(edge.toString());
-                buf.append("\n");
-            }
-        }
-        return buf.toString();
-    }
-    
-    /**
-     * Obtains information on data dependence edges enclosed in this dependency graph.
-     * @return the string representing the information
-     */
-    protected String toStringForDDEdges() {
-        StringBuffer buf = new StringBuffer();
-        for (Dependence edge : Dependence.sortEdges(getEdges())) {
-            if (edge.isDD()) {
-                buf.append(edge.toString());
-                buf.append("\n");
-            }
         }
         return buf.toString();
     }

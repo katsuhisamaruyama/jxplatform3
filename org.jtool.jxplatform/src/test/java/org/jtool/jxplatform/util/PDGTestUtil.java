@@ -9,10 +9,12 @@ import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.pdg.DependencyGraph;
-import org.jtool.pdg.PDG;
-import org.jtool.pdg.ClDG;
 import org.jtool.pdg.SDG;
+import org.jtool.pdg.ClDG;
+import org.jtool.pdg.PDG;
+import org.jtool.pdg.DependencyGraph;
+import org.jtool.pdg.DependencyGraphEdge;
+import org.jtool.pdg.DependencyGraphEdgeKind;
 import org.jtool.pdg.Dependence;
 import org.jtool.pdg.DD;
 import org.jtool.pdg.PDGNode;
@@ -65,59 +67,71 @@ public class PDGTestUtil {
         return jproject.getPDGStore().getClDG(jclass, false, whole);
     }
     
-    public static SDG createSDG(JavaProject jproject, String cname) {
+    public static DependencyGraph createDependencyGraph(JavaProject jproject, String cname) {
         JavaClass jclass = jproject.getClass(cname);
-        return jproject.getPDGStore().getSDG(jclass, false);
+        return jproject.getPDGStore().getDependencyGraph(jclass, false);
     }
     
-    public static SDG createSDG(JavaProject jproject, String cname, boolean whole) {
+    public static DependencyGraph createDependencyGraph(JavaProject jproject, String cname, boolean whole) {
         JavaClass jclass = jproject.getClass(cname);
-        return jproject.getPDGStore().getSDG(jclass, false, whole);
+        return jproject.getPDGStore().getDependencyGraph(jclass, false, whole);
     }
     
     public static SDG createSDG(JavaProject jproject) {
         return jproject.getPDGStore().getSDG(false);
     }
     
-    public static SDG createSDG(JavaProject jproject, Set<JavaClass> classes) {
-        return jproject.getPDGStore().getSDG(classes, false, false);
+    public static DependencyGraph createDependencyGraph(JavaProject jproject, Set<JavaClass> classes) {
+        return jproject.getPDGStore().getDependencyGraph(classes, false, false);
     }
     
     public static PDGNode getNode(PDG pdg, int index) {
-        return pdg.getNodes().stream()
-                .filter(n -> n.getId() == index + pdg.getEntryNode().getId()).findFirst().orElse(null);
+        long entry = pdg.getEntryNode().getId();
+        return pdg.getNodes().stream().filter(n -> n.getId() == entry + index).findFirst().orElse(null);
     }
     
-    private static PDGNode getNode(DependencyGraph graph, long min, int index) {
-        return graph.getNodes().stream()
-                .filter(n -> n.getId() == index + min).findFirst().orElse(null);
-    }
-    
-    public static PDGNode getNode(DependencyGraph graph, int index) {
-        if (graph instanceof PDG) {
-            return getNode((PDG)graph, index);
-        }
-        long min = graph.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get();
-        return getNode(graph, min, index);
-    }
-    
-    public static Set<PDGNode> getNodes(DependencyGraph graph, int[] indices) {
+    public static Set<PDGNode> getNodes(PDG pdg, int[] indices) {
+        long entry = pdg.getEntryNode().getId();
         Set<PDGNode> nodes = new HashSet<>();
-        for (int i : indices) {
-            PDGNode node = getNode(graph, i);
+        for (int index : indices) {
+            PDGNode node = pdg.getNodes().stream().filter(n -> n.getId() == entry + index).findFirst().orElse(null);
             nodes.add(node);
         }
         return nodes;
     }
     
-    public static List<Dependence> getDependence(PDG pdg, int src, int dst) {
-        PDGNode srcNode = getNode(pdg, src);
-        PDGNode dstNode = getNode(pdg, dst);
+    public static Set<PDGNode> getNodes(ClDG cldg, int[] indices) {
+        long entry = cldg.getEntryNode().getId();
+        Set<PDGNode> nodes = new HashSet<>();
+        for (int index : indices) {
+            PDGNode node = cldg.getNodes().stream().filter(n -> n.getId() == entry + index).findFirst().orElse(null);
+            nodes.add(node);
+        }
+        return nodes;
+    }
+    
+    public static List<Dependence> getDependence(PDG pdg, long srcId, long dstId) {
+        PDGNode srcNode = pdg.getNode(srcId);
+        PDGNode dstNode = pdg.getNode(dstId);
         return getDependence(pdg, srcNode, dstNode);
     }
     
-    public static List<Dependence> getDependence(DependencyGraph graph, PDGNode src, PDGNode dst) {
-        return Dependence.sortEdges(graph.findDependence(src, dst));
+    public static List<Dependence> getDependence(PDG pdg, PDGNode src, PDGNode dst) {
+        List<Dependence> edges = pdg.getOutgoingEdges(src).stream()
+                .filter(e -> e.getDstNode().equals(dst)).collect(Collectors.toList());
+        return Dependence.sortEdges(edges);
+    }
+    
+    public static List<DependencyGraphEdge> getDependence(ClDG cldg, PDGNode src, PDGNode dst) {
+        List<DependencyGraphEdge> edges = cldg.getEdges().stream()
+                .filter(e -> e.getSrcNode().equals(src) && e.getDstNode().equals(dst)).collect(Collectors.toList());
+        return DependencyGraphEdge.sortEdges(edges);
+    }
+    
+    public static List<DependencyGraphEdge> getDependence(DependencyGraph graph, PDGNode src, PDGNode dst) {
+        List<DependencyGraphEdge> edges = graph.getOutgoingEdges(src).stream()
+                .filter(e -> e.getDstNode().equals(dst)).collect(Collectors.toList());
+        return DependencyGraphEdge.sortEdges(edges);
     }
     
     public static List<PDGNode> getNodes(PDG pdg, String kind) {
@@ -132,19 +146,21 @@ public class PDGTestUtil {
             .filter(n -> n.getCFGNode().getKind() == kind).collect(Collectors.toList());
     }
     
-    public static List<Dependence> getEdges(PDG pdg, Dependence.Kind kind) {
-        return Dependence.sortEdges(pdg.getEdges()).stream()
-            .filter(n -> n.getKind() == kind).collect(Collectors.toList());
+    public static List<Dependence> getEdges(PDG pdg, DependencyGraphEdgeKind kind) {
+        return DependencyGraphEdge.sortEdges(pdg.getEdges()).stream().map(e -> (Dependence)e)
+            .filter(e -> e.getKind() == kind).collect(Collectors.toList());
+    }
+    
+    public static String getIdStr(ClDG cldg, PDGNode node) {
+        return String.valueOf(node.getId() - cldg.getEntryNode().getId());
+    }
+    
+    public static String getIdStr(PDG pdg, PDGNode node) {
+        return String.valueOf(node.getId() - pdg.getEntryNode().getId());
     }
     
     public static List<String> getIdList(PDG pdg, Set<? extends PDGNode> set) {
         return set.stream().map(e -> String.valueOf(e.getId() - pdg.getEntryNode().getId())).sorted()
-            .collect(Collectors.toList());
-    }
-    
-    public static List<String> getIdList(DependencyGraph graph, Set<? extends PDGNode> set) {
-        long min = graph.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get() - 1;
-        return set.stream().map(e -> e.getId() - min).sorted().map(e -> String.valueOf(e))
             .collect(Collectors.toList());
     }
     
@@ -153,9 +169,26 @@ public class PDGTestUtil {
             .collect(Collectors.toList());
     }
     
-    public static List<String> getIdListOfSrc(PDG pdg, Set<? extends Dependence> set) {
+    public static List<String> getIdList(ClDG cldg, Set<? extends PDGNode> set) {
+        long min = cldg.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get();
+        return set.stream().map(e -> String.valueOf(e.getId() - min)).sorted()
+            .collect(Collectors.toList());
+    }
+    
+    public static List<String> getIdList(DependencyGraph graph, Set<? extends PDGNode> set) {
+        long min = graph.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get();
+        return set.stream().map(e -> (e.getId() - min)).sorted().map(id -> String.valueOf(id))
+            .collect(Collectors.toList());
+    }
+    
+    public static List<String> getIdListOfSrc(DependencyGraph graph, List<? extends DependencyGraphEdge> set) {
         Set<PDGNode> srcs = set.stream().map(e -> (PDGNode)e.getSrcNode()).collect(Collectors.toSet());
-        return getIdList(pdg, srcs);
+        return getIdList(graph, srcs);
+    }
+    
+    public static List<String> getIdListOfSrc(ClDG cldg, List<? extends Dependence> list) {
+        Set<PDGNode> srcs = list.stream().map(e -> (PDGNode)e.getSrcNode()).collect(Collectors.toSet());
+        return getIdList(cldg, srcs);
     }
     
     public static List<String> getIdListOfSrc(PDG pdg, List<? extends Dependence> list) {
@@ -163,21 +196,26 @@ public class PDGTestUtil {
         return getIdList(pdg, srcs);
     }
     
-    public static List<String> getIdListOfDst(PDG pdg, Set<? extends Dependence> set) {
-        Set<PDGNode> srcs = set.stream().map(e -> (PDGNode)e.getDstNode()).collect(Collectors.toSet());
-        return getIdList(pdg, srcs);
+    public static List<String> getIdListOfDst(DependencyGraph graph, List<? extends DependencyGraphEdge> set) {
+        Set<PDGNode> dsts = set.stream().map(e -> (PDGNode)e.getDstNode()).collect(Collectors.toSet());
+        return getIdList(graph, dsts);
+    }
+    
+    public static List<String> getIdListOfDst(ClDG cldg, List<? extends Dependence> list) {
+        Set<PDGNode> dsts = list.stream().map(e -> (PDGNode)e.getDstNode()).collect(Collectors.toSet());
+        return getIdList(cldg, dsts);
     }
     
     public static List<String> getIdListOfDst(PDG pdg, List<? extends Dependence> list) {
-        Set<PDGNode> srcs = list.stream().map(e -> (PDGNode)e.getDstNode()).collect(Collectors.toSet());
-        return getIdList(pdg, srcs);
+        Set<PDGNode> dsts = list.stream().map(e -> (PDGNode)e.getDstNode()).collect(Collectors.toSet());
+        return getIdList(pdg, dsts);
     }
     
-    public static String asStrOfPDGNode(Set<? extends PDGNode> set) {
+    public static String asStrOfPDGNode1(Set<? extends PDGNode> set) {
         return set.stream().map(e -> String.valueOf(e.getId())).collect(Collectors.joining(";"));
     }
     
-    public static String asStrOfPDGNode(List<? extends PDGNode> list) {
+    public static String asStrOfPDGNode1(List<? extends PDGNode> list) {
         return list.stream().map(e -> String.valueOf(e.getId())).collect(Collectors.joining(";"));
     }
     
@@ -198,8 +236,8 @@ public class PDGTestUtil {
         return "";
     }
     
-    public static String asStrOfNode(SDG sdg, PDGNode node) {
-        for (PDG pdg : sdg.getPDGs()) {
+    public static String asStrOfNode(DependencyGraph graph, PDGNode node) {
+        for (PDG pdg : graph.getPDGs()) {
             if (pdg.getNodes().contains(node)) {
                 return String.valueOf(node.getId() - pdg.getEntryNode().getId());
             }
@@ -293,10 +331,10 @@ public class PDGTestUtil {
         try {
             Files.createDirectories(pdgPath);
             
-            SDG sdg = jproject.getPDGStore().getSDG(false);
+            DependencyGraph sdg = jproject.getPDGStore().getSDG(false);
             for (JavaClass jclass : jproject.getClasses()) {
                 Path path = pdgPath.resolve(jclass.getQualifiedName().fqn() + ".pdg");
-                ClDG cldg = sdg.findClDG(jclass.getQualifiedName().fqn());
+                ClDG cldg = sdg.getClDG(jclass.getQualifiedName().fqn());
                 writePDG(path, getClDGData(cldg));
             }
         } catch (IOException e) {
@@ -343,7 +381,7 @@ public class PDGTestUtil {
         buf.append("\n");
         
         List<String> edgesInfo = Dependence.sortEdges(pdg.getEdges()).stream()
-                .map(edge -> toString(cfg, edge)).sorted().collect(Collectors.toList());
+                .map(e -> toString(cfg, e)).sorted().collect(Collectors.toList());
         long index = 1;
         for (String edgeInfo : edgesInfo) {
             buf.append(GraphElement.getIdString(index));

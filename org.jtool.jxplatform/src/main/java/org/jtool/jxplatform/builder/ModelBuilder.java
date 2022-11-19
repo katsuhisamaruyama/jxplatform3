@@ -18,6 +18,7 @@ import org.jtool.jxplatform.project.ModelBuilderImpl;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.SDG;
+import org.jtool.pdg.DependencyGraph;
 import java.util.Set;
 
 /**
@@ -341,7 +342,7 @@ public abstract class ModelBuilder {
      * @param ccfg the target CCFG
      * @param force {@code true} if the ClDG will be forcibly recreated,
      *        or {@code false} if a ClDG stored in the repository will be reused
-     * @param whole {@code true} if the PDG will be created with the whole information related to
+     * @param whole {@code true} if a ClDG will be created with the whole information related to
      *        calls to methods and accesses to fields of outside classes
      * @return the created or found ClDG, or {@code null} if no ClDG is created or found
      */
@@ -368,7 +369,7 @@ public abstract class ModelBuilder {
      * @param jclass the class of interest
      * @param force {@code true} if the PDG will be forcibly recreated,
      *        or {@code false} if a ClDG stored in the repository will be reused
-     * @param whole {@code true} if the PDG will be created with the whole information related to
+     * @param whole {@code true} if a ClDG will be created with the whole information related to
      *        calls to methods and accesses to fields of outside classes
      * @return the created or found ClDG, or {@code null} if no ClDG is created or found
      */
@@ -392,8 +393,8 @@ public abstract class ModelBuilder {
      * Obtains an SDG for all classes in a project,
      * using the whole information related to calls to methods and accesses to fields of outside classes.
      * @param jproject the target project
-     * @param force {@code true} if the SDG will be forcibly recreated,
-     *        or {@code false} if a SDG stored in the repository will be reused
+     * @param force {@code true} if an SDG will be forcibly recreated,
+     *        or {@code false} if an SDG stored in the repository will be reused
      * @return the created or found SDG
      */
     public SDG getSDG(JavaProject jproject, boolean force) {
@@ -403,7 +404,7 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Obtains the SDG for all classes in a project from the cache,
+     * Obtains an SDG for all classes in a project from the cache,
      * using the whole information related to calls to methods and accesses to fields of outside classes.
      * @param jproject the target project
      * @return the created or found SDG
@@ -413,52 +414,52 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Obtains an SDG for classes related to a given class.
+     * Obtains a dependency graph for classes related to a given class.
      * @param jclass the class of interest
-     * @param force {@code true} if the SDG will be forcibly recreated,
-     *        or {@code false} if a SDG stored in the repository will be reused
-     * @param whole {@code true} if the PDG will be created with the whole information related to
+     * @param force {@code true} if the dependency graph will be forcibly recreated,
+     *        or {@code false} if a dependency graph stored in the repository will be reused
+     * @param whole {@code true} if a dependency graph will be created with the whole information related to
      *        calls to methods and accesses to fields of outside classes
-     * @return the created or found SDG
+     * @return the created or found dependency graph
      */
-    public SDG getSDG(JavaClass jclass, boolean force, boolean whole) {
+    public DependencyGraph getDependencyGraph(JavaClass jclass, boolean force, boolean whole) {
         assert jclass != null;
         
-        return jclass.getJavaProject().getPDGStore().getSDG(jclass, force, whole);
+        return jclass.getJavaProject().getPDGStore().getDependencyGraph(jclass, force, whole);
     }
     
     /**
-     * Obtains an SDG for classes related to a given class from the cache,
+     * Obtains a dependency graph for classes related to a given class from the cache,
      * using the whole information related to calls to methods and accesses to fields of outside classes.
      * @param jclass the class of interest
-     * @return the created or found SDG
+     * @return the created or found dependency graph
      */
-    public SDG getSDG(JavaClass jclass) {
-        return getSDG(jclass, false, true);
+    public DependencyGraph getSDG(JavaClass jclass) {
+        return getDependencyGraph(jclass, false, true);
     }
     
     /**
-     * Obtains an SDG for classes related to given classes.
+     * Obtains a dependency graph for classes related to given classes.
      * @param classes the collection of the classes of interest
-     * @param force {@code true} if the SDG will be forcibly recreated,
-     *        or {@code false} if a SDG stored in the repository will be reused
-     * @return the created or found SDG
+     * @param force {@code true} if a dependency graph will be forcibly recreated,
+     *        or {@code false} if a dependency graph stored in the repository will be reused
+     * @return the created or found dependency graph
      */
-    public SDG getSDG(Set<JavaClass> classes, boolean force) {
+    public DependencyGraph getgetDependencyGraph(Set<JavaClass> classes, boolean force) {
         if (classes.size() > 0) {
             JavaClass jclass = classes.iterator().next();
-            return jclass.getJavaProject().getPDGStore().getSDG(classes, force, false);
+            return jclass.getJavaProject().getPDGStore().getDependencyGraph(classes, force, false);
         }
-        return new SDG();
+        return new DependencyGraph("NoClass");
     }
     
     /**
-     * Obtains an SDG for classes related to given classes from the cache.
+     * Obtains a dependency graph for classes related to given classes from the cache.
      * @param classes the collection of the classes of interest
-     * @return the created or found SDG
+     * @return the created or found dependency graph
      */
-    public SDG getSDG(Set<JavaClass> classes) {
-        return getSDG(classes, false);
+    public DependencyGraph getgetDependencyGraph(Set<JavaClass> classes) {
+        return getgetDependencyGraph(classes, false);
     }
     
     /**

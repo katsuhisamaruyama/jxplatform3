@@ -11,7 +11,7 @@ import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
-import org.jtool.pdg.SDG;
+import org.jtool.pdg.DependencyGraph;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants;
 import java.util.Map;
@@ -21,11 +21,8 @@ public class SliceTestUtil {
     
     public static SliceCriterion getSliceCriterion(JavaProject jproject, String cname, int lineNumber, int offset) {
         JavaClass jclass = jproject.getClass(cname);
-        SDG sdg = PDGTestUtil.createSDG(jproject, cname);
-        
-        //sdg.print();
-        
-        return SliceCriterion.find(sdg, jclass, lineNumber, offset);
+        DependencyGraph graph = PDGTestUtil.createDependencyGraph(jproject, cname);
+        return SliceCriterion.find(graph, jclass, lineNumber, offset);
     }
     
     public static Slice getSlice(JavaProject jproject, String cname, int lineNumber, int offset) {

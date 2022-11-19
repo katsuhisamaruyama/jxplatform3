@@ -35,7 +35,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest101_1() {
+    public void testGetQualifiedName_Test101_1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test101", "m( )");
         PDGEntry node = pdg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -44,7 +44,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest101_2() {
+    public void testGetQualifiedName_Test101_2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test101", "p");
         PDGEntry node = pdg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -53,7 +53,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNamePriceCode_1() {
+    public void testGetQualifiedName_PriceCode_1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "PriceCode", "getPriceCode( )");
         PDGEntry node = pdg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -62,7 +62,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNamePriceCode_2() {
+    public void testGetQualifiedName_PriceCode_2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "PriceCode", "CHILDRENS");
         PDGEntry node = pdg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -71,7 +71,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetQualifiedNameTest134() {
+    public void testGetQualifiedName_Test134() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "I134", "f( int )");
         PDGEntry node = pdg.getEntryNode();
         QualifiedName result = node.getQualifiedName();
@@ -80,7 +80,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetSignartureTest101_1() {
+    public void testGetSignarture_Test101_1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test101", "m( )");
         PDGEntry node = pdg.getEntryNode();
         String result = node.getSignature();
@@ -89,7 +89,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetSignartureTest101_2() {
+    public void testGetSignarture_Test101_2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test101", "p");
         PDGEntry node = pdg.getEntryNode();
         String result = node.getSignature();
@@ -98,7 +98,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetSignarturePriceCode_1() {
+    public void testGetSignarture_PriceCode_1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "PriceCode", "getPriceCode( )");
         PDGEntry node = pdg.getEntryNode();
         String result = node.getSignature();
@@ -107,7 +107,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetSignarturePriceCode_2() {
+    public void testGetSignarture_PriceCode_2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "PriceCode", "CHILDRENS");
         PDGEntry node = pdg.getEntryNode();
         String result = node.getSignature();
@@ -116,7 +116,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetSignartureTest134() {
+    public void testGetSignarture_Test134() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "I134", "f( int )");
         PDGEntry node = pdg.getEntryNode();
         String result = node.getSignature();
@@ -125,7 +125,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetCFGEntryTest101_1() {
+    public void testGetCFGEntry_Test101_1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test101", "m( )");
         PDGEntry node = pdg.getEntryNode();
         CFGEntry result = node.getCFGEntry();
@@ -134,7 +134,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetCFGEntryTest101_2() {
+    public void testGetCFGEntry_Test101_2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test101", "p");
         PDGEntry node = pdg.getEntryNode();
         CFGEntry result = node.getCFGEntry();
@@ -143,7 +143,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetCFGEntryPriceCode_1() {
+    public void testGetCFGEntry_PriceCode_1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "PriceCode", "getPriceCode( )");
         PDGEntry node = pdg.getEntryNode();
         CFGEntry result = node.getCFGEntry();
@@ -152,7 +152,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetCFGEntryPriceCode_2() {
+    public void testGetCFGEntry_PriceCode_2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "PriceCode", "CHILDRENS");
         PDGEntry node = pdg.getEntryNode();
         CFGEntry result = node.getCFGEntry();
@@ -161,7 +161,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetCFGEntryTest134() {
+    public void testGetCFGEntry_Test134() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "I134", "f( int )");
         PDGEntry node = pdg.getEntryNode();
         CFGEntry result = node.getCFGEntry();
@@ -170,7 +170,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetPDGTest101_1() {
+    public void testGetPDG_Test101_1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test101", "m( )");
         PDGEntry node = pdg.getEntryNode();
         PDG result = node.getPDG();
@@ -179,7 +179,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetPDGTest101_2() {
+    public void testGetPDG_Test101_2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "Test101", "p");
         PDGEntry node = pdg.getEntryNode();
         PDG result = node.getPDG();
@@ -188,7 +188,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetPDGPriceCode_1() {
+    public void testGetPDG_PriceCode_1() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "PriceCode", "getPriceCode( )");
         PDGEntry node = pdg.getEntryNode();
         PDG result = node.getPDG();
@@ -197,7 +197,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetPDGPriceCode_2() {
+    public void testGetPDG_PriceCode_2() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "PriceCode", "CHILDRENS");
         PDGEntry node = pdg.getEntryNode();
         PDG result = node.getPDG();
@@ -206,7 +206,7 @@ public class PDGEntryTest {
     }
     
     @Test
-    public void testGetPDGTest134() {
+    public void testGetPDG_Test134() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "I134", "f( int )");
         PDGEntry node = pdg.getEntryNode();
         PDG result = node.getPDG();

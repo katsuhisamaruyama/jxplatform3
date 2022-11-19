@@ -25,35 +25,35 @@ public class CD extends Dependence {
      * Sets as a true control dependence.
      */
     public void setTrue() {
-        kind = Kind.trueControlDependence;
+        kind = DependencyGraphEdgeKind.trueControlDependence;
     }
     
     /**
      * Sets as a false control dependence.
      */
     public void setFalse() {
-        kind = Kind.falseControlDependence;
+        kind = DependencyGraphEdgeKind.falseControlDependence;
     }
     
     /**
      * Sets as a fall-through control dependence.
      */
     public void setFallThrough() {
-        kind = Kind.fallThroughControlDependence;
+        kind = DependencyGraphEdgeKind.fallThroughControlDependence;
     }
     
     /**
      * Sets as a declaration edge.
      */
     public void setDeclaration() {
-        kind = Kind.declaration;
+        kind = DependencyGraphEdgeKind.declaration;
     }
     
     /**
      * Sets as an exception catch edge.
      */
     public void setExceptionCatch() {
-        kind = Kind.exceptionCatch;
+        kind = DependencyGraphEdgeKind.exceptionCatch;
     }
     
     /**
@@ -63,15 +63,15 @@ public class CD extends Dependence {
     public String toString() {
         StringBuilder buf = new StringBuilder();
         buf.append(super.toString());
-        if (kind == Kind.trueControlDependence) {
+        if (kind == DependencyGraphEdgeKind.trueControlDependence) {
             buf.append(" T");
-        } else if (kind == Kind.falseControlDependence) {
+        } else if (kind == DependencyGraphEdgeKind.falseControlDependence) {
             buf.append(" F");
-        } else if (kind == Kind.fallThroughControlDependence) {
+        } else if (kind == DependencyGraphEdgeKind.fallThroughControlDependence) {
             buf.append(" FALL");
-        } else if (kind == Kind.declaration) {
+        } else if (kind == DependencyGraphEdgeKind.declaration) {
             buf.append(" DECL");
-        } else if (kind == Kind.exceptionCatch) {
+        } else if (kind == DependencyGraphEdgeKind.exceptionCatch) {
             buf.append(" EXCP");
         }
         return buf.toString();
