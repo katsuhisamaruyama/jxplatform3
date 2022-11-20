@@ -80,12 +80,12 @@ public class CFGTestUtil {
     
     public static List<ControlFlow> getEdges(CFG cfg, ControlFlow.Kind kind) {
         return ControlFlow.sortEdges(cfg.getEdges()).stream()
-            .filter(n -> n.getKind() == kind).collect(Collectors.toList());
+            .filter(e -> e.getKind() == kind).collect(Collectors.toList());
     }
     
     public static List<ControlFlow> getLCFlow(CFG cfg) {
         return ControlFlow.sortEdges(cfg.getEdges()).stream()
-            .filter(n -> n.getLoopBack() != null).collect(Collectors.toList());
+            .filter(e -> e.getLoopBack() != null).collect(Collectors.toList());
     }
     
     public static List<BasicBlock> getBasicBlocks(CFG cfg) {

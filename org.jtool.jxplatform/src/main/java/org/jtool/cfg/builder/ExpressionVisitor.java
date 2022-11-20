@@ -415,6 +415,7 @@ public class ExpressionVisitor extends ASTVisitor {
             receiverNode = new CFGReceiver(node, CFGNode.Kind.receiver);
         }
         receiverNode.setName("this");
+        entryNode = receiverNode;
         
         insertBeforeCurrentNode(receiverNode);
         
@@ -463,6 +464,7 @@ public class ExpressionVisitor extends ASTVisitor {
         } else {
             receiverNode.setName("super");
         }
+        entryNode = receiverNode;
         
         insertBeforeCurrentNode(receiverNode);
         
@@ -496,6 +498,7 @@ public class ExpressionVisitor extends ASTVisitor {
         
         CFGReceiver receiverNode = new CFGReceiver(node, CFGNode.Kind.receiver);
         receiverNode.setName("this");
+        entryNode = receiverNode;
         
         insertBeforeCurrentNode(receiverNode);
         
@@ -530,6 +533,7 @@ public class ExpressionVisitor extends ASTVisitor {
             receiverNode = new CFGReceiver(node, CFGNode.Kind.receiver);
         }
         receiverNode.setName("super");
+        entryNode = receiverNode;
         
         insertBeforeCurrentNode(receiverNode);
         
@@ -575,6 +579,7 @@ public class ExpressionVisitor extends ASTVisitor {
         String className = node.resolveConstructorBinding()
                 .getDeclaringClass().getErasure().getQualifiedName();
         receiverNode.setName(className);
+        entryNode = receiverNode;
         
         insertBeforeCurrentNode(receiverNode);
         
@@ -618,6 +623,7 @@ public class ExpressionVisitor extends ASTVisitor {
         
         JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
+        entryNode = callNode;
         
         createActualIn(callNode, node.arguments());
         JReturnValueReference ret = createActualOutForReturn(callNode, mbinding.getName());
@@ -848,6 +854,7 @@ public class ExpressionVisitor extends ASTVisitor {
         }
         
         CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
+        entryNode = lambdaNode;
         
         insertBeforeCurrentNode(lambdaNode);
         
@@ -909,6 +916,7 @@ public class ExpressionVisitor extends ASTVisitor {
         }
         
         CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
+        entryNode = lambdaNode;
         
         insertBeforeCurrentNode(lambdaNode);
         
@@ -930,6 +938,7 @@ public class ExpressionVisitor extends ASTVisitor {
         }
         
         CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
+        entryNode = lambdaNode;
         
         insertBeforeCurrentNode(lambdaNode);
         
@@ -955,6 +964,7 @@ public class ExpressionVisitor extends ASTVisitor {
     @SuppressWarnings("unchecked")
     public boolean visit(SwitchExpression node) {
         CFGStatement switchExpNode = new CFGStatement(node, CFGNode.Kind.switchExpression);
+        entryNode = switchExpNode;
         
         insertBeforeCurrentNode(switchExpNode);
         

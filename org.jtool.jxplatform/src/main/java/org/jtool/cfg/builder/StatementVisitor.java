@@ -379,7 +379,7 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow loopbackEdge = cfg.getFlow(prevNode, nextNode);
         if (loopbackEdge != null) {
             loopbackEdge.setDstNode(entryNode);
-            loopbackEdge.setLoopBack(whileNode);
+            loopbackEdge.setLoopBack(entryNode);
         }
          
         ControlFlow falseEdge = createFlow(whileNode, nextNode);
@@ -487,7 +487,7 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow loopbackEdge = cfg.getFlow(prevNode, nextNode);
         if (loopbackEdge != null) {
             loopbackEdge.setDstNode(entryNode);
-            loopbackEdge.setLoopBack(forNode);
+            loopbackEdge.setLoopBack(entryNode);
         }
         
         ControlFlow falseEdge = createFlow(forNode, nextNode);
@@ -528,8 +528,8 @@ public class StatementVisitor extends ASTVisitor {
         
         ControlFlow loopbackEdge = cfg.getFlow(prevNode, nextNode);
         if (loopbackEdge != null) {
-            loopbackEdge.setDstNode(curNode);
-            loopbackEdge.setLoopBack(forNode);
+            loopbackEdge.setDstNode(entryNode);
+            loopbackEdge.setLoopBack(entryNode);
         }
         
         ControlFlow falseEdge = createFlow(forNode, nextNode);

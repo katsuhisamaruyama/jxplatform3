@@ -421,6 +421,26 @@ public class StatementVisitorTest {
     }
     
     @Test
+    public void testWhileStatement6() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test63", "m( )");
+        List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "WhileStatement");
+        CFGNode node = nodes.get(0);
+        assert (node.getASTNode() instanceof WhileStatement);
+        
+        assertTrue(node.getKind() == CFGNode.Kind.whileSt);
+        
+        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 5);
+        assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 7);
+        List<ControlFlow> lc = CFGTestUtil.getLCFlow(cfg);
+        assertEquals(node.getId() + 1, lc.get(0).getLoopBack().getId());
+        
+        assertEquals("while (get(a) > 0) {\n"
+                   + "  a--;\n"
+                   + "}", node.getASTNode().toString().trim());
+    }
+    
+    @Test
     public void testDoStatement() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test22", "m( )");
         List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "DoStatement");
