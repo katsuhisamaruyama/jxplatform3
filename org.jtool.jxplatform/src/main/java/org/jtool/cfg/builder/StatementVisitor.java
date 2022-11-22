@@ -244,16 +244,15 @@ public class StatementVisitor extends ASTVisitor {
         Expression condition = node.getExpression();
         ExpressionVisitor condVisitor = new ExpressionVisitor(this, jproject, cfg, ifNode);
         condition.accept(condVisitor);
-        CFGNode curNode = condVisitor.getExitNode();
         
-        ControlFlow trueEdge = createFlow(curNode, nextNode);
+        ControlFlow trueEdge = createFlow(ifNode, nextNode);
         trueEdge.setTrue();
         
         Statement thenSt = node.getThenStatement();
         thenSt.accept(this);
         
         ControlFlow trueMergeEdge = cfg.getFlow(prevNode, nextNode);
-        ControlFlow falseEdge = createFlow(curNode, nextNode);
+        ControlFlow falseEdge = createFlow(ifNode, nextNode);
         falseEdge.setFalse();
         
         Statement elseSt = node.getElseStatement();
@@ -280,14 +279,13 @@ public class StatementVisitor extends ASTVisitor {
         Expression condition = node.getExpression();
         ExpressionVisitor condVisitor = new ExpressionVisitor(this, jproject, cfg, switchNode);
         condition.accept(condVisitor);
-        CFGNode curNode = condVisitor.getExitNode();
         
         ITypeBinding tbinding = condition.resolveTypeBinding();
         JVariableReference jvar = new JVersatileReference(node,
                 "$SwitchDef", tbinding.getQualifiedName(), tbinding.isPrimitive());
         switchNode.addDefVariable(jvar);
         
-        ControlFlow caseEdge = createFlow(curNode, nextNode);
+        ControlFlow caseEdge = createFlow(switchNode, nextNode);
         caseEdge.setTrue();
         
         CFGNode exitNode = new CFGNode();
@@ -346,10 +344,10 @@ public class StatementVisitor extends ASTVisitor {
         trueEdge.setTrue();
         
         for (Statement statement : caseLabel.statements()) {
-            statement.accept(this); 
+            statement.accept(this);
         }
         
-        ControlFlow falseEdge = createFlow(caseNode, nextNode);
+        ControlFlow falseEdge = createFlow(curNode, nextNode);
         falseEdge.setFalse();
     }
     
@@ -361,9 +359,8 @@ public class StatementVisitor extends ASTVisitor {
         Expression condition = node.getExpression();
         ExpressionVisitor condVisitor = new ExpressionVisitor(this, jproject, cfg, whileNode);
         condition.accept(condVisitor);
-        CFGNode curNode = condVisitor.getExitNode();
         
-        ControlFlow trueEdge = createFlow(curNode, nextNode);
+        ControlFlow trueEdge = createFlow(whileNode, nextNode);
         trueEdge.setTrue();
         
         CFGNode entryNode = condVisitor.getEntryNode();
@@ -379,9 +376,9 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow loopbackEdge = cfg.getFlow(prevNode, nextNode);
         if (loopbackEdge != null) {
             loopbackEdge.setDstNode(entryNode);
-            loopbackEdge.setLoopBack(entryNode);
+            loopbackEdge.setLoopBack(whileNode);
         }
-         
+        
         ControlFlow falseEdge = createFlow(whileNode, nextNode);
         falseEdge.setFalse();
         prevNode = whileNode;
@@ -412,9 +409,8 @@ public class StatementVisitor extends ASTVisitor {
         Expression condition = node.getExpression();
         ExpressionVisitor condVisitor = new ExpressionVisitor(this, jproject, cfg, doNode);
         condition.accept(condVisitor);
-        CFGNode curNode = condVisitor.getExitNode();
         
-        ControlFlow loopbackEdge = createFlow(curNode, entryEdge.getDstNode());
+        ControlFlow loopbackEdge = createFlow(doNode, entryEdge.getDstNode());
         loopbackEdge.setTrue();
         loopbackEdge.setLoopBack(doNode);
         
@@ -446,24 +442,20 @@ public class StatementVisitor extends ASTVisitor {
         }
         
         CFGStatement forNode = new CFGStatement(node, CFGNode.Kind.forSt);
+        reconnect(forNode);
+        
         CFGNode entryNode;
         Expression condition = node.getExpression();
         if (condition != null) {
             ExpressionVisitor condVisitor = new ExpressionVisitor(this, jproject, cfg, forNode);
             condition.accept(condVisitor);
-            CFGNode curNode = condVisitor.getExitNode();
-            reconnect(forNode);
-            
-            ControlFlow edge = createFlow(curNode, nextNode);
-            edge.setTrue();
             entryNode = condVisitor.getEntryNode();
         } else {
-            reconnect(forNode);
-            
-            ControlFlow edge = createFlow(forNode, nextNode);
-            edge.setTrue();
             entryNode = forNode;
         }
+        
+        ControlFlow trueEdge = createFlow(forNode, nextNode);
+        trueEdge.setTrue();
         
         CFGNode exitNode = new CFGNode();
         blockEntries.push(entryNode);
@@ -487,7 +479,7 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow loopbackEdge = cfg.getFlow(prevNode, nextNode);
         if (loopbackEdge != null) {
             loopbackEdge.setDstNode(entryNode);
-            loopbackEdge.setLoopBack(entryNode);
+            loopbackEdge.setLoopBack(forNode);
         }
         
         ControlFlow falseEdge = createFlow(forNode, nextNode);
@@ -512,10 +504,9 @@ public class StatementVisitor extends ASTVisitor {
         ExpressionVisitor exprVisitor = new ExpressionVisitor(this, jproject, cfg, forNode);
         expression.accept(exprVisitor);
         CFGNode entryNode = exprVisitor.getEntryNode();
-        CFGNode curNode = exprVisitor.getExitNode();
         
-        ControlFlow edge = createFlow(curNode, nextNode);
-        edge.setTrue();
+        ControlFlow trueEdge = createFlow(forNode, nextNode);
+        trueEdge.setTrue();
         
         CFGNode exitNode = new CFGNode();
         blockEntries.push(entryNode);
@@ -529,7 +520,7 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow loopbackEdge = cfg.getFlow(prevNode, nextNode);
         if (loopbackEdge != null) {
             loopbackEdge.setDstNode(entryNode);
-            loopbackEdge.setLoopBack(entryNode);
+            loopbackEdge.setLoopBack(forNode);
         }
         
         ControlFlow falseEdge = createFlow(forNode, nextNode);
@@ -557,6 +548,7 @@ public class StatementVisitor extends ASTVisitor {
         if (jumpNode != null) {
             ControlFlow edge = createFlow(breakNode, jumpNode);
             edge.setTrue();
+            
             edge = createFlow(breakNode, nextNode);
             edge.setFallThrough();
         }

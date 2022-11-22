@@ -17,10 +17,10 @@ import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.StopConditionOnReachablePath;
 import java.util.Set;
-import java.util.Stack;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 /**
@@ -40,35 +40,38 @@ public class CDFinder {
     }
     
     private static void findCDs(PDG pdg, CFG cfg) {
-        cfg.getNodes().stream().filter(node -> node.isBranch()).forEach(cfgnode -> {
-            findCDs(pdg, cfg, cfgnode);
-        });
+        cfg.getNodes().stream().filter(node -> node.isBranch()).forEach(node -> findCDs(pdg, cfg, node));
     }
     
     private static void findCDs(PDG pdg, CFG cfg, CFGNode branchNode) {
         Set<CFGNode> postDominator = cfg.postDominator(branchNode);
         
-        for (ControlFlow branch : branchNode.getOutgoingFlows()) {
-            CFGNode branchDstNode = branch.getDstNode();
-            Set<CFGNode> postDominatorForBranch = cfg.postDominator(branchDstNode);
-            postDominatorForBranch.add(branchDstNode);
+        for (ControlFlow flow : branchNode.getOutgoingFlows()) {
+            CFGNode branchDstNode = flow.getDstNode();
+            Set<CFGNode> postDominatorsForDstNode = cfg.postDominator(branchDstNode);
+            postDominatorsForDstNode.add(branchDstNode);
             
-            for (CFGNode cfgnode : postDominatorForBranch) {
-                if (cfgnode.isStatement() && !branchNode.equals(cfgnode) && !postDominator.contains(cfgnode)) {
-                    CD edge = new CD(branchNode.getPDGNode(), cfgnode.getPDGNode());
-                    if (branch.isTrue()) {
-                        edge.setTrue();
-                    } else if (branch.isFalse()) {
-                        edge.setFalse();
-                    } else if (branch.isFallThrough()) {
-                        edge.setFallThrough();
-                    } else if (branch.isExceptionCatch()) {
-                        edge.setExceptionCatch();
-                    }
-                    pdg.add(edge);
+            for (CFGNode node : postDominatorsForDstNode) {
+                if (node.isStatement() && !branchNode.equals(node) && !postDominator.contains(node)) {
+                    CD cd = createCD(branchNode, flow, node);
+                    pdg.add(cd);
                 }
             }
         }
+    }
+    
+    private static CD createCD(CFGNode branchNode, ControlFlow flow, CFGNode node) {
+        CD edge = new CD(branchNode.getPDGNode(), node.getPDGNode());
+        if (flow.isTrue()) {
+            edge.setTrue();
+        } else if (flow.isFalse()) {
+            edge.setFalse();
+        } else if (flow.isFallThrough()) {
+            edge.setFallThrough();
+        } else if (flow.isExceptionCatch()) {
+            edge.setExceptionCatch();
+        }
+        return edge;
     }
     
     private static void findCDsOnTryCatch(PDG bpdg, CFG cfg) {
@@ -146,7 +149,7 @@ public class CDFinder {
                     for (CD edge2 : edges) {
                         PDGNode node2 = edge2.getSrcNode();
                         if (!node1.equals(node2) && !removed.contains(edge2)) {
-                            if (getCDAncestors(node2).contains(node1)) {
+                            if (getCDAncestors(pdg, node2).contains(node1)) {
                                 removed.add(edge1);
                                 break;
                             }
@@ -161,7 +164,7 @@ public class CDFinder {
         
     }
     
-    public static List<PDGNode> getCDAncestors(PDGNode anchor) {
+    public static List<PDGNode> getCDAncestors(PDG pdg, PDGNode anchor) {
         List<PDGNode> track = new ArrayList<PDGNode>();
         
         Stack<PDGNode> nodeStack = new Stack<>();
@@ -175,7 +178,7 @@ public class CDFinder {
             }
             track.add(node);
             
-            node.getIncomingEdges().stream().map(edge -> (Dependence)edge)
+            pdg.getIncomingEdges(node).stream().map(edge -> (Dependence)edge)
                 .filter(edge -> (edge.isTrue() || edge.isFalse()))
                 .forEach(edge -> nodeStack.push(edge.getSrcNode()));
         }

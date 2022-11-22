@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Stack;
 import java.util.Comparator;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 /**
@@ -379,8 +380,9 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
             }
             track.add(node);
             
-            node.getOutgoingFlows().stream() 
-                .filter(flow -> (loopbackOk || !flow.isLoopBack()) && (fallthroughOk || !flow.isFallThrough()))
+            List<ControlFlow> edges = ControlFlow.sortEdges(node.getOutgoingFlows());
+            Collections.reverse(edges);
+            edges.stream().filter(flow -> (loopbackOk || !flow.isLoopBack()) && (fallthroughOk || !flow.isFallThrough()))
                 .forEach(flow -> nodeStack.push(flow.getDstNode()));
         }
         return track;
@@ -442,9 +444,10 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
             }
             track.add(node);
             
-            node.getIncomingFlows().stream()
-                .filter(flow -> (loopbackOk || !flow.isLoopBack()) && (fallthroughOk || !flow.isFallThrough()))
-                .forEach(flow -> nodeStack.push(flow.getSrcNode()));
+            List<ControlFlow> edges = ControlFlow.sortEdges(node.getIncomingFlows());
+            Collections.reverse(edges);
+            edges.stream().filter(flow -> (loopbackOk || !flow.isLoopBack()) && (fallthroughOk || !flow.isFallThrough()))
+                    .forEach(flow -> nodeStack.push(flow.getSrcNode()));
         }
         return track;
     }

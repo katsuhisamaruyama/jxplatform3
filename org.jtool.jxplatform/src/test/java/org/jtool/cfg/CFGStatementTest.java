@@ -1811,7 +1811,7 @@ public class CFGStatementTest {
         CFGStatement node = (CFGStatement)CFGTestUtil.getNode(cfg, 2);
         List<JVariableReference> result = node.getUseVariables();
         
-        assertEquals("S130.!S130( int )", TestUtil.asStrOfReference(result));
+        assertEquals("S130.!S130( int );S130.!S130( int ).x", TestUtil.asStrOfReference(result));
     }
     
     @Test

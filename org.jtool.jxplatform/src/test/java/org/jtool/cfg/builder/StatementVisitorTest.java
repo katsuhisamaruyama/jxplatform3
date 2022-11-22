@@ -433,7 +433,7 @@ public class StatementVisitorTest {
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 5);
         assertEquals(node.getId(), cfg.getFalseSuccessor(node).getId() - 7);
         List<ControlFlow> lc = CFGTestUtil.getLCFlow(cfg);
-        assertEquals(node.getId() + 1, lc.get(0).getLoopBack().getId());
+        assertEquals(node.getId(), lc.get(0).getLoopBack().getId());
         
         assertEquals("while (get(a) > 0) {\n"
                    + "  a--;\n"

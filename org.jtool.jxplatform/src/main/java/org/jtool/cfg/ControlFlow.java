@@ -247,7 +247,8 @@ public class ControlFlow extends GraphEdge {
     public static List<ControlFlow> sortEdges(Collection<? extends ControlFlow> collection) {
         List<ControlFlow> edges = new ArrayList<>(collection);
         edges.sort(Comparator.comparingLong((ControlFlow edge) -> edge.getSrcId())
-                             .thenComparingLong((ControlFlow edge) -> edge.getDstId()));
+                             .thenComparingLong((ControlFlow edge) -> edge.getDstId())
+                             .thenComparing((ControlFlow edge) -> edge.getKind().toString()));
         return edges;
     }
 }

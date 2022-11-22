@@ -358,11 +358,20 @@ public class CFGNode extends GraphNode {
     }
     
     /**
+     * Tests if this node causes selection.
+     * @return {@code true} if this node causes selection, otherwise {@code false}
+     */
+    public boolean isSelection() {
+        return kind == Kind.ifSt || kind == Kind.switchSt || kind == Kind.switchCase ||
+               kind == Kind.switchDefault || kind == Kind.switchExpression;
+    }
+    
+    /**
      * Tests if this node causes looping.
      * @return {@code true} if this node causes looping, otherwise {@code false}
      */
     public boolean isLoop() {
-        return kind == Kind.whileSt || kind == Kind.doSt || kind == Kind.forSt;
+        return kind == Kind.whileSt || kind == Kind.doSt || kind == Kind.forSt || kind == Kind.enhancedForSt;
     }
     
     /**

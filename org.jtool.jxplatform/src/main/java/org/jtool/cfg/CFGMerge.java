@@ -31,7 +31,7 @@ public class CFGMerge extends CFGNode {
     }
     
     /**
-     * Sets the node for the branch that causes the merge.
+     * Sets a node for the branch that causes the merge.
      * This method is not intended to be invoked by clients.
      * @param branch the branch node to be set
      */
