@@ -38,7 +38,7 @@ Class Name = Test146
   18:    6 ->    8 trueControlDependence
   19:    6 ->    9 trueControlDependence
   20:    6 ->   10 trueControlDependence
-  21:    7 ->    7 loopIndependentDefUseDependence total$0
+  21:    7 ->    7 loopCarriedDefUseDependence total$0 (LC = 6)
   22:    7 ->   11 loopIndependentDefUseDependence total$0
   23:   10 ->    7 loopIndependentDefUseDependence str$2.!length( )
   24:   10 ->   10 defOrderDependence str$2.!length( )

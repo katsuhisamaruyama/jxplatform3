@@ -31,8 +31,8 @@ Class Name = Test110
   13:    2 ->    6 declaration
   14:    2 ->    6 loopIndependentDefUseDependence y$1
   15:    3 ->    4 trueControlDependence
-  16:    4 ->    3 loopCarriedDefUseDependence x$0 (LC =    3)
-  17:    4 ->    4 loopCarriedDefUseDependence x$0 (LC =    3)
+  16:    4 ->    3 loopCarriedDefUseDependence x$0 (LC = 3)
+  17:    4 ->    4 loopCarriedDefUseDependence x$0 (LC = 3)
   18:    4 ->    5 loopIndependentDefUseDependence x$0
 --
 ----- ClDG (to here) -----

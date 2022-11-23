@@ -325,7 +325,7 @@ public class CFGTestUtil {
             buf.append(" " + edge.getKind().toString());
         }
         if (edge.getLoopBack() != null) {
-            buf.append(" (L = " + getIdString(cfg, edge.getLoopBack()) + ")");
+            buf.append(" (L = " + String.valueOf(getId(cfg,edge.getLoopBack())) + ")");
         }
         return buf.toString();
     }
@@ -338,7 +338,7 @@ public class CFGTestUtil {
         return GraphElement.getIdString(id);
     }
     
-    private static long getId(CFG cfg, CFGNode node) {
+    public static long getId(CFG cfg, CFGNode node) {
         if (shouldBeWritten(node)) {
             return node.getId() - cfg.getEntryNode().getId();
         }

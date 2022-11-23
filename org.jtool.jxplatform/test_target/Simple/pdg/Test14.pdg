@@ -90,8 +90,8 @@ Class Name = Test14
   55:   12 ->   15 trueControlDependence
   56:   13 ->   13 defOrderDependence b$1
   57:   13 ->   20 loopIndependentDefUseDependence b$1
-  58:   14 ->   13 loopCarriedDefUseDependence a$0 (LC =   12)
-  59:   14 ->   14 loopCarriedDefUseDependence a$0 (LC =   12)
+  58:   14 ->   13 loopCarriedDefUseDependence a$0 (LC = 12)
+  59:   14 ->   14 loopCarriedDefUseDependence a$0 (LC = 12)
   60:   14 ->   15 loopIndependentDefUseDependence a$0
   61:   14 ->   20 loopIndependentDefUseDependence a$0
   62:   15 ->   12 falseControlDependence

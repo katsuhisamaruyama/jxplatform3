@@ -63,7 +63,7 @@ Class Name = Customer
   15:    3 ->    6 trueControlDependence
   16:    3 ->    7 trueControlDependence
   17:    3 ->    8 trueControlDependence
-  18:    4 ->    4 loopIndependentDefUseDependence amount$1
+  18:    4 ->    4 loopCarriedDefUseDependence amount$1 (LC = 3)
   19:    4 ->    9 loopIndependentDefUseDependence amount$1
   20:    8 ->    4 loopIndependentDefUseDependence rental$2.!getCharge( double )
   21:    8 ->    8 defOrderDependence rental$2.!getCharge( double )

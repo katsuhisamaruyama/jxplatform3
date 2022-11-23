@@ -263,7 +263,7 @@ Class Name = org.jtool.videostore.before.Customer
  151:   40 ->   70 loopIndependentDefUseDependence thisAmount$5
  152:   43 ->   40 loopIndependentDefUseDependence each$3.!getDaysRented( )
  153:   43 ->   57 outputDependence each$3.!getDaysRented( )
- 154:   47 ->   47 loopIndependentDefUseDependence frequentRenterPoints$1
+ 154:   47 ->   47 loopCarriedDefUseDependence frequentRenterPoints$1 (LC = 7)
  155:   47 ->   58 loopIndependentDefUseDependence frequentRenterPoints$1
  156:   47 ->   77 loopIndependentDefUseDependence frequentRenterPoints$1
  157:   48 ->   58 trueControlDependence
@@ -276,9 +276,9 @@ Class Name = org.jtool.videostore.before.Customer
  164:   57 ->   39 outputDependence each$3.!getDaysRented( )
  165:   57 ->   48 loopIndependentDefUseDependence each$3.!getDaysRented( )
  166:   57 ->   57 defOrderDependence each$3.!getDaysRented( )
- 167:   58 ->   47 loopIndependentDefUseDependence frequentRenterPoints$1
+ 167:   58 ->   47 loopCarriedDefUseDependence frequentRenterPoints$1 (LC = 7)
  168:   58 ->   77 loopIndependentDefUseDependence frequentRenterPoints$1
- 169:   60 ->   60 loopIndependentDefUseDependence result$2
+ 169:   60 ->   60 loopCarriedDefUseDependence result$2 (LC = 7)
  170:   60 ->   71 loopIndependentDefUseDependence result$2
  171:   64 ->   13 outputDependence each$3.!getMovie( )
  172:   64 ->   61 loopIndependentDefUseDependence each$3.!getMovie( )
@@ -287,7 +287,7 @@ Class Name = org.jtool.videostore.before.Customer
  175:   69 ->   60 loopIndependentDefUseDependence this.!valueOf( double )
  176:   69 ->   69 defOrderDependence this.!valueOf( double )
  177:   69 ->   74 outputDependence this.!valueOf( double )
- 178:   70 ->   70 loopIndependentDefUseDependence totalAmount$0
+ 178:   70 ->   70 loopCarriedDefUseDependence totalAmount$0 (LC = 7)
  179:   70 ->   73 loopIndependentDefUseDependence totalAmount$0
  180:   71 ->   75 loopIndependentDefUseDependence result$2
  181:   74 ->   71 loopIndependentDefUseDependence this.!valueOf( double )

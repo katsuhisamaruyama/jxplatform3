@@ -1,0 +1,50 @@
+----- ClDG (from here) -----
+Class Name = Test63
+   0 constructorEntry [ Test63#Test63( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test63#get( int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 returnSt D = { $_ } U = { a$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test63#m( ) ]
+   1 localDeclaration D = { a$0 } U = {  }
+   2 whileSt D = {  } U = { this.!get( int ) }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = Test63#get( int )
+   5 actualIn D = {  } U = { a$0 }
+   6 actualOut D = { this.!get( int ) } U = {  }
+   7 assignment D = { a$0 } U = { a$0 }
+   9 formalOut D = {  } U = { $_ }
+--
+   0: Test63( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: get( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence a$0
+   5:    2 ->    4 loopIndependentDefUseDependence $_
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    9 trueControlDependence
+   4:    1 ->    5 declaration
+   5:    1 ->    5 loopIndependentDefUseDependence a$0
+   6:    1 ->    7 declaration
+   7:    1 ->    7 loopIndependentDefUseDependence a$0
+   8:    2 ->    3 trueControlDependence
+   9:    2 ->    4 trueControlDependence
+  10:    2 ->    5 trueControlDependence
+  11:    2 ->    6 trueControlDependence
+  12:    2 ->    7 trueControlDependence
+  13:    6 ->    2 loopCarriedDefUseDependence this.!get( int ) (LC = 2)
+  14:    6 ->    6 defOrderDependence this.!get( int )
+  15:    7 ->    5 loopIndependentDefUseDependence a$0
+  16:    7 ->    7 loopCarriedDefUseDependence a$0 (LC = 2)
+--
+----- ClDG (to here) -----
+

@@ -1009,35 +1009,35 @@ Class Name = Tetris
  108:   51 ->   51 defOrderDependence this.pit.!gameOver( )
  109:   55 ->   52 loopIndependentDefUseDependence this.!stopTimer( )
  110:   55 ->   55 defOrderDependence this.!stopTimer( )
- 111: * ->    6 loopCarriedDefUseDependence this.timer (LC =    6)
- 112: * ->   19 loopCarriedDefUseDependence this.pit.currentBlock (LC =    6)
- 113: * ->   20 loopCarriedDefUseDependence this.pit.currentBlock (LC =    6)
+ 111: * ->    6 loopCarriedDefUseDependence this.timer (LC = 6)
+ 112: * ->   19 loopCarriedDefUseDependence this.pit.currentBlock (LC = 6)
+ 113: * ->   20 loopCarriedDefUseDependence this.pit.currentBlock (LC = 6)
  114: * ->   21 loopIndependentDefUseDependence block$3.!fall( )
- 115: * ->   23 loopCarriedDefUseDependence block$3.posY (LC =    6)
- 116: * ->   23 loopCarriedDefUseDependence this.pit.box (LC =    6)
- 117: * ->   23 loopCarriedDefUseDependence this.tiles.!java.util.HashMap.keySet (LC =    6)
+ 115: * ->   23 loopCarriedDefUseDependence block$3.posY (LC = 6)
+ 116: * ->   23 loopCarriedDefUseDependence this.pit.box (LC = 6)
+ 117: * ->   23 loopCarriedDefUseDependence this.tiles.!java.util.HashMap.keySet (LC = 6)
  118: * ->   26 loopIndependentDefUseDependence this.pit.!checkLines( )
- 119: * ->   28 loopCarriedDefUseDependence this.box (LC =    6)
- 120: * ->   28 loopCarriedDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
- 121: * ->   28 loopCarriedDefUseDependence this.level (LC =    6)
- 122: * ->   28 loopCarriedDefUseDependence this.pit.info.lines (LC =    6)
- 123: * ->   28 loopCarriedDefUseDependence this.score (LC =    6)
- 124: * ->   28 loopCarriedDefUseDependence this.tile$4.posY (LC =    6)
+ 119: * ->   28 loopCarriedDefUseDependence this.box (LC = 6)
+ 120: * ->   28 loopCarriedDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet (LC = 6)
+ 121: * ->   28 loopCarriedDefUseDependence this.level (LC = 6)
+ 122: * ->   28 loopCarriedDefUseDependence this.pit.info.lines (LC = 6)
+ 123: * ->   28 loopCarriedDefUseDependence this.score (LC = 6)
+ 124: * ->   28 loopCarriedDefUseDependence this.tile$4.posY (LC = 6)
  125: * ->   30 loopIndependentDefUseDependence this.pit.!placeNextBlock( )
- 126: * ->   32 loopCarriedDefUseDependence this.offsetX (LC =    6)
- 127: * ->   32 loopCarriedDefUseDependence this.offsetY (LC =    6)
- 128: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock (LC =    6)
- 129: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tile$3.posX (LC =    6)
- 130: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tile$3.posY (LC =    6)
- 131: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
- 132: * ->   32 loopCarriedDefUseDependence this.pit.nextBlock (LC =    6)
+ 126: * ->   32 loopCarriedDefUseDependence this.offsetX (LC = 6)
+ 127: * ->   32 loopCarriedDefUseDependence this.offsetY (LC = 6)
+ 128: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock (LC = 6)
+ 129: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tile$3.posX (LC = 6)
+ 130: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tile$3.posY (LC = 6)
+ 131: * ->   32 loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC = 6)
+ 132: * ->   32 loopCarriedDefUseDependence this.pit.nextBlock (LC = 6)
  133: * ->   32 loopIndependentDefUseDependence this.pit.box
  134: * ->   34 loopIndependentDefUseDependence this.info.!update( Block )
- 135: * ->   36 loopCarriedDefUseDependence this.info.nextBlock$0.tiles.!java.util.HashMap.keySet (LC =    6)
+ 135: * ->   36 loopCarriedDefUseDependence this.info.nextBlock$0.tiles.!java.util.HashMap.keySet (LC = 6)
  136: * ->   39 loopIndependentDefUseDependence this.pit.nextBlock
  137: * ->   40 loopIndependentDefUseDependence this.pit.nextBlock
  138: * ->   43 loopIndependentDefUseDependence this.pit.!update( )
- 139: * ->   45 loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
+ 139: * ->   45 loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC = 6)
  140: * ->   45 loopIndependentDefUseDependence this.box
  141: * ->   45 loopIndependentDefUseDependence this.pit.currentBlock
  142: * ->   45 loopIndependentDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet
@@ -1069,11 +1069,11 @@ Class Name = Tetris
  168: * -> * defOrderDependence this.score
  169: * -> * defOrderDependence this.tile$4.posY
  170: * -> * defOrderDependence this.timer
- 171: * -> * loopCarriedDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
- 172: * -> * loopCarriedDefUseDependence this.info.nextBlock$0.tiles.!java.util.HashMap.keySet (LC =    6)
- 173: * -> * loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
- 174: * -> * loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC =    6)
- 175: * -> * loopCarriedDefUseDependence this.tiles.!java.util.HashMap.keySet (LC =    6)
+ 171: * -> * loopCarriedDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet (LC = 6)
+ 172: * -> * loopCarriedDefUseDependence this.info.nextBlock$0.tiles.!java.util.HashMap.keySet (LC = 6)
+ 173: * -> * loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC = 6)
+ 174: * -> * loopCarriedDefUseDependence this.pit.currentBlock.tiles.!java.util.HashMap.keySet (LC = 6)
+ 175: * -> * loopCarriedDefUseDependence this.tiles.!java.util.HashMap.keySet (LC = 6)
  176: * -> * loopIndependentDefUseDependence block$3.posY
  177: * -> * loopIndependentDefUseDependence this.box
  178: * -> * loopIndependentDefUseDependence this.box

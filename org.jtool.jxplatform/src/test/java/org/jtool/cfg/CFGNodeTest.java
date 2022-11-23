@@ -320,6 +320,14 @@ public class CFGNodeTest {
     }
     
     @Test
+    public void testIsLoop4() {
+        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test146", "m( )");
+        CFGNode node = CFGTestUtil.getNode(cfg, 6);
+        
+        assertTrue(node.isLoop());
+    }
+    
+    @Test
     public void testIsJoin1() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test108", "m( )");
         CFGNode node = CFGTestUtil.getNode(cfg, 3);

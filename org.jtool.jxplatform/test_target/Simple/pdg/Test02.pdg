@@ -80,11 +80,11 @@ Class Name = Test02
   46:    7 ->    7 defOrderDependence c$2
   47:    7 ->    9 loopIndependentDefUseDependence c$2
   48:    7 ->   16 loopIndependentDefUseDependence c$2
-  49:    8 ->    6 loopCarriedDefUseDependence a$0 (LC =    6)
-  50:    8 ->    7 loopCarriedDefUseDependence a$0 (LC =    6)
-  51:    8 ->    8 loopCarriedDefUseDependence a$0 (LC =    6)
+  49:    8 ->    6 loopCarriedDefUseDependence a$0 (LC = 6)
+  50:    8 ->    7 loopCarriedDefUseDependence a$0 (LC = 6)
+  51:    8 ->    8 loopCarriedDefUseDependence a$0 (LC = 6)
   52:    8 ->   12 loopIndependentDefUseDependence a$0
-  53:    9 ->    9 loopCarriedDefUseDependence b$1 (LC =    6)
+  53:    9 ->    9 loopCarriedDefUseDependence b$1 (LC = 6)
   54:    9 ->   20 loopIndependentDefUseDependence b$1
   55: * ->   10 loopIndependentDefUseDependence System.out.!println( int )
   56: * ->   14 loopIndependentDefUseDependence System.out.!println( int )

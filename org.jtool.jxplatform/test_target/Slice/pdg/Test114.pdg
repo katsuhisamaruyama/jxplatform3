@@ -39,8 +39,8 @@ Class Name = Test114
   19:    3 ->    4 trueControlDependence
   20:    3 ->    6 falseControlDependence
   21:    4 ->    5 trueControlDependence
-  22:    5 ->    4 loopCarriedDefUseDependence x$0 (LC =    4)
-  23:    5 ->    5 loopCarriedDefUseDependence x$0 (LC =    4)
+  22:    5 ->    4 loopCarriedDefUseDependence x$0 (LC = 4)
+  23:    5 ->    5 loopCarriedDefUseDependence x$0 (LC = 4)
   24:    5 ->    8 loopIndependentDefUseDependence x$0
   25:    6 ->    9 loopIndependentDefUseDependence y$1
 --

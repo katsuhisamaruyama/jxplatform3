@@ -63,11 +63,11 @@ Class Name = Test12
   32:    3 ->    8 trueControlDependence
   33:    3 ->   10 trueControlDependence
   34:    3 -> * trueControlDependence
-  35:    4 ->    3 loopCarriedDefUseDependence a$0 (LC =    3)
-  36:    4 ->    4 loopCarriedDefUseDependence a$0 (LC =    3)
+  35:    4 ->    3 loopCarriedDefUseDependence a$0 (LC = 3)
+  36:    4 ->    4 loopCarriedDefUseDependence a$0 (LC = 3)
   37:    4 ->    8 loopIndependentDefUseDependence a$0
   38:    4 ->   11 loopIndependentDefUseDependence a$0
-  39:    5 ->    5 loopCarriedDefUseDependence b$1 (LC =    3)
+  39:    5 ->    5 loopCarriedDefUseDependence b$1 (LC = 3)
   40:    5 ->    8 loopIndependentDefUseDependence b$1
   41:    5 ->   11 loopIndependentDefUseDependence b$1
   42:    5 ->   18 loopIndependentDefUseDependence b$1

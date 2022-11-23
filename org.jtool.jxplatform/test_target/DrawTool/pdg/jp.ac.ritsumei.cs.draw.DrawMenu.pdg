@@ -427,19 +427,19 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu
   17 formalOut D = {  } U = { $_ }
 * actualOut D = { this.directory } U = {  }
 * actualOut D = { this.changed } U = {  }
-* actualOut D = { $_.figureManager } U = {  }
-* actualOut D = { $_.figureManager } U = {  }
-* actualOut D = { $_.menu } U = {  }
-* actualOut D = { $_.selector } U = {  }
+* actualOut D = { this.!openFile( java.lang.String ).figureManager } U = {  }
+* actualOut D = { this.!openFile( java.lang.String ).figureManager } U = {  }
+* actualOut D = { this.!openFile( java.lang.String ).menu } U = {  }
+* actualOut D = { this.!openFile( java.lang.String ).selector } U = {  }
 * actualOut D = { this.canvas$1.undoManager } U = {  }
 * actualOut D = { this.figure$7.endX } U = {  }
 * actualOut D = { this.figure$7.endY } U = {  }
 * actualOut D = { this.figure$7.startX } U = {  }
 * actualOut D = { this.figure$7.startY } U = {  }
-* actualOut D = { $_.figures } U = {  }
-* actualOut D = { $_.figures } U = {  }
-* actualOut D = { $_.filename } U = {  }
-* actualOut D = { $_.filename } U = {  }
+* actualOut D = { this.!openFile( java.lang.String ).figures } U = {  }
+* actualOut D = { this.!openFile( java.lang.String ).figures } U = {  }
+* actualOut D = { this.!openFile( java.lang.String ).filename } U = {  }
+* actualOut D = { this.!openFile( java.lang.String ).filename } U = {  }
 * actualOut D = { this.selectedTab } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawMenu#fileExists( java.lang.String ) ]
@@ -1974,45 +1974,49 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu
    3:    1 ->    3 loopIndependentDefUseDependence $_
 --
    0: closeAllFiles( )
-   1:    0 ->    3 trueControlDependence
-   2:    0 ->    4 trueControlDependence
-   3:    0 ->    5 trueControlDependence
-   4:    2 ->    2 defOrderDependence canvas$0
-   5:    2 ->    7 trueControlDependence
-   6:    2 ->    8 trueControlDependence
-   7:    2 ->    9 loopIndependentDefUseDependence canvas$0
-   8:    2 ->    9 trueControlDependence
-   9:    5 ->    2 loopIndependentDefUseDependence this.tabbedCanvas.!getAllCanvases( )
-  10:    6 ->    2 falseControlDependence
-  11:    6 ->   11 trueControlDependence
-  12:    8 ->    1 exceptionCatch
-  13:    8 ->    6 trueControlDependence
-  14:    8 -> * trueControlDependence
+   1:    2 ->    2 defOrderDependence canvas$0
+   2:    2 ->    7 trueControlDependence
+   3:    2 ->    8 trueControlDependence
+   4:    2 ->    9 loopIndependentDefUseDependence canvas$0
+   5:    2 ->    9 trueControlDependence
+   6:    5 ->    2 loopCarriedDefUseDependence this.tabbedCanvas.!getAllCanvases( ) (LC = 2)
+   7:    5 ->    5 defOrderDependence this.tabbedCanvas.!getAllCanvases( )
+   8:    6 ->    2 falseControlDependence
+   9:    6 ->    3 falseControlDependence
+  10:    6 ->    4 falseControlDependence
+  11:    6 ->    5 falseControlDependence
+  12:    6 ->   11 trueControlDependence
+  13:    8 ->    1 exceptionCatch
+  14:    8 ->    6 trueControlDependence
   15:    8 -> * trueControlDependence
-  16:   11 ->    2 fallThroughControlDependence
-  17:   11 ->   14 trueControlDependence
-  18: * ->    6 loopIndependentDefUseDependence this.!closeFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
-  19: * ->    8 loopIndependentDefUseDependence this.!javax.swing.JTabbedPane.visComp
-  20: * ->    8 loopIndependentDefUseDependence this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out
-  21: * ->    8 loopIndependentDefUseDependence this.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count
-  22: * -> * defOrderDependence this.!closeFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
-  23: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble
-  24: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb
-  25: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars
-  26: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nextChar
-  27: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out
-  28: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se
-  29: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush
-  30: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out
-  31: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut
-  32: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble
-  33: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder
-  34: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value
-  35: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble
-  36: * -> * loopIndependentDefUseDependence this.!javax.swing.JTabbedPane.visComp
-  37: * -> * loopIndependentDefUseDependence this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out
-  38: * -> * loopIndependentDefUseDependence this.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count
-  39: * -> * outputDependence this.selectedTab
+  16:    8 -> * trueControlDependence
+  17:   11 ->    2 fallThroughControlDependence
+  18:   11 ->    3 fallThroughControlDependence
+  19:   11 ->    4 fallThroughControlDependence
+  20:   11 ->    5 fallThroughControlDependence
+  21:   11 ->   14 trueControlDependence
+  22: * ->    6 loopIndependentDefUseDependence this.!closeFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
+  23: * ->    8 loopCarriedDefUseDependence this.!javax.swing.JTabbedPane.visComp (LC = 2)
+  24: * ->    8 loopCarriedDefUseDependence this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC = 2)
+  25: * ->    8 loopCarriedDefUseDependence this.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC = 2)
+  26: * -> * defOrderDependence this.!closeFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
+  27: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble
+  28: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb
+  29: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars
+  30: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nextChar
+  31: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out
+  32: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se
+  33: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush
+  34: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out
+  35: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut
+  36: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble
+  37: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder
+  38: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value
+  39: * -> * defOrderDependence this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble
+  40: * -> * loopCarriedDefUseDependence this.!javax.swing.JTabbedPane.visComp (LC = 2)
+  41: * -> * loopCarriedDefUseDependence this.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC = 2)
+  42: * -> * loopCarriedDefUseDependence this.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC = 2)
+  43: * -> * outputDependence this.selectedTab
 --
    0: redoAction
    1:    0 ->    1 trueControlDependence
@@ -2068,9 +2072,9 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu
   43: * ->    3 loopIndependentDefUseDependence this.!getFileName( boolean )
   44: * ->   11 loopIndependentDefUseDependence this.!openFile( java.lang.String )
   45: * -> * loopIndependentDefUseDependence this.directory
-  46: * -> * outputDependence $_.figureManager
-  47: * -> * outputDependence $_.figures
-  48: * -> * outputDependence $_.filename
+  46: * -> * outputDependence this.!openFile( java.lang.String ).figureManager
+  47: * -> * outputDependence this.!openFile( java.lang.String ).figures
+  48: * -> * outputDependence this.!openFile( java.lang.String ).filename
 --
    0: fileExists( java.lang.String )
    1:    0 ->    1 trueControlDependence
@@ -3149,16 +3153,16 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu
   26: * ->    1 loopIndependentDefUseDependence this.fileListMenu.!removeAll( )
   27: * ->    6 loopIndependentDefUseDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
   28: * ->   10 loopIndependentDefUseDependence this.fileListMenu.!add( javax.swing.JMenuItem )
-  29: * ->   12 loopIndependentDefUseDependence this.fileListMenu.!javax.swing.JMenu.popupMenu
+  29: * ->   12 loopCarriedDefUseDependence this.fileListMenu.!javax.swing.JMenu.popupMenu (LC = 5)
   30: * ->   14 loopIndependentDefUseDependence fileItem$2.!addActionListener( java.awt.event.ActionListener )
-  31: * ->   16 loopIndependentDefUseDependence fileItem$2.!javax.swing.event.EventListenerList.listenerList
+  31: * ->   16 loopCarriedDefUseDependence fileItem$2.!javax.swing.event.EventListenerList.listenerList (LC = 5)
   32: * -> * defOrderDependence fileItem$2.!addActionListener( java.awt.event.ActionListener )
   33: * -> * defOrderDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
   34: * -> * defOrderDependence javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged
   35: * -> * defOrderDependence this.fileListMenu.!add( javax.swing.JMenuItem )
   36: * -> * defOrderDependence this.fileListMenu.!javax.swing.JMenu.popupListener
-  37: * -> * loopIndependentDefUseDependence fileItem$2.!javax.swing.event.EventListenerList.listenerList
-  38: * -> * loopIndependentDefUseDependence this.fileListMenu.!javax.swing.JMenu.popupMenu
+  37: * -> * loopCarriedDefUseDependence fileItem$2.!javax.swing.event.EventListenerList.listenerList (LC = 5)
+  38: * -> * loopCarriedDefUseDependence this.fileListMenu.!javax.swing.JMenu.popupMenu (LC = 5)
 --
    0: openFile( java.lang.String )
    1:    0 ->    3 trueControlDependence

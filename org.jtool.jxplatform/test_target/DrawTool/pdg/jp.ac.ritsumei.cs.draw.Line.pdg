@@ -448,10 +448,10 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
   48:   15 ->   19 outputDependence g$0.!drawLine( int int int int )
   49:   19 ->   15 outputDependence g$0.!drawLine( int int int int )
   50:   19 ->   16 loopIndependentDefUseDependence g$0.!drawLine( int int int int )
-  51:   20 ->   11 loopCarriedDefUseDependence i$5 (LC =   11)
-  52:   20 ->   14 loopCarriedDefUseDependence i$5 (LC =   11)
-  53:   20 ->   18 loopCarriedDefUseDependence i$5 (LC =   11)
-  54:   20 ->   20 loopCarriedDefUseDependence i$5 (LC =   11)
+  51:   20 ->   11 loopCarriedDefUseDependence i$5 (LC = 11)
+  52:   20 ->   14 loopCarriedDefUseDependence i$5 (LC = 11)
+  53:   20 ->   18 loopCarriedDefUseDependence i$5 (LC = 11)
+  54:   20 ->   20 loopCarriedDefUseDependence i$5 (LC = 11)
 --
    0: isGrabbed( int int )
    1:    0 ->    1 trueControlDependence

@@ -90,18 +90,18 @@ Class Name = Consumer
   46:   23 ->   17 loopIndependentDefUseDependence this.!sleep( long )
   47:   23 ->   23 defOrderDependence this.!sleep( long )
   48: * ->    3 loopIndependentDefUseDependence this.storage.!take( )
-  49: * ->    5 loopCarriedDefUseDependence this.storage.data (LC =    2)
-  50: * ->    5 loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.coder (LC =    2)
-  51: * ->    5 loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.hash (LC =    2)
-  52: * ->    5 loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.value (LC =    2)
+  49: * ->    5 loopCarriedDefUseDependence this.storage.data (LC = 2)
+  50: * ->    5 loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.coder (LC = 2)
+  51: * ->    5 loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.hash (LC = 2)
+  52: * ->    5 loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.value (LC = 2)
   53: * ->   13 loopIndependentDefUseDependence System.out.!println( java.lang.String )
   54: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
   55: * -> * defOrderDependence System.out.!println( java.lang.String )
   56: * -> * defOrderDependence this.storage.!take( )
   57: * -> * defOrderDependence this.storage.data
-  58: * -> * loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.coder (LC =    2)
-  59: * -> * loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.hash (LC =    2)
-  60: * -> * loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.value (LC =    2)
+  58: * -> * loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.coder (LC = 2)
+  59: * -> * loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.hash (LC = 2)
+  60: * -> * loopCarriedDefUseDependence this.storage.java.lang.String.!java.lang.String.value (LC = 2)
   61: * -> * loopIndependentDefUseDependence this.storage.data
 --
    0: storage

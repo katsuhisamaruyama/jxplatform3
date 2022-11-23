@@ -62,9 +62,9 @@ Class Name = Sample21
   30:   15 ->   18 trueControlDependence
   31:   15 ->   20 trueControlDependence
   32:   15 -> * trueControlDependence
-  33:   20 ->   15 loopCarriedDefUseDependence i$3 (LC =   15)
-  34:   20 ->   18 loopCarriedDefUseDependence i$3 (LC =   15)
-  35:   20 ->   20 loopCarriedDefUseDependence i$3 (LC =   15)
+  33:   20 ->   15 loopCarriedDefUseDependence i$3 (LC = 15)
+  34:   20 ->   18 loopCarriedDefUseDependence i$3 (LC = 15)
+  35:   20 ->   20 loopCarriedDefUseDependence i$3 (LC = 15)
   36: * ->    6 loopIndependentDefUseDependence java.lang.Thread.!Thread( java.lang.Runnable )
   37: * ->   10 loopIndependentDefUseDependence thread$2.!start( )
   38: * ->   16 loopIndependentDefUseDependence System.out.!println( java.lang.String )

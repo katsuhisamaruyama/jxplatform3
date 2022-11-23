@@ -407,7 +407,7 @@ public class PDGTestUtil {
                 buf.append(" " + dd.getVariable().getReferenceForm());
             }
             if (dd.isLoopCarried()) {
-                buf.append(" (LC = " + CFGTestUtil.getIdString(cfg, dd.getLoopCarriedNode().getCFGNode()) + ")");
+                buf.append(" (LC = " + String.valueOf(CFGTestUtil.getId(cfg, dd.getLoopCarriedNode().getCFGNode())) + ")");
             }
         }
         return buf.toString();

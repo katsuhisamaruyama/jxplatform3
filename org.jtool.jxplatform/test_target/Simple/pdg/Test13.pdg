@@ -68,8 +68,8 @@ Class Name = Test13
    5:    1 ->    3 loopIndependentDefUseDependence in$0
    6:    2 ->    3 trueControlDependence
    7:    2 ->    4 trueControlDependence
-   8:    3 ->    2 loopCarriedDefUseDependence in$0 (LC =    2)
-   9:    3 ->    3 loopCarriedDefUseDependence in$0 (LC =    2)
+   8:    3 ->    2 loopCarriedDefUseDependence in$0 (LC = 2)
+   9:    3 ->    3 loopCarriedDefUseDependence in$0 (LC = 2)
   10:    3 ->    4 loopIndependentDefUseDependence in$0
   11:    4 ->    2 trueControlDependence
   12:    4 ->    4 outputDependence $_

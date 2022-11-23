@@ -55,8 +55,8 @@ Class Name = Sample6
   49 localDeclaration D = { i$3 } U = {  }
   50 forSt D = {  } U = { i$3, list$1.!size( ) }
   51 receiver D = {  } U = { list$1 }
-  52 methodCall D = {  } U = {  } TO = java.util.ArrayList#size( )
-  53 actualOut D = { list$1.!size( ) } U = {  }
+  52 methodCall D = {  } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#size( )
+  53 actualOut D = { list$1.!size( ) } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.size }
   54 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   55 receiver D = {  } U = { System.out }
   56 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, list$1.!get( int ) } TO = java.io.PrintStream#println( java.lang.String )
@@ -79,8 +79,8 @@ Class Name = Sample6
   73 localDeclaration D = { i$4 } U = {  }
   74 forSt D = {  } U = { i$4, list$1.!size( ) }
   75 receiver D = {  } U = { list$1 }
-  76 methodCall D = {  } U = {  } TO = java.util.ArrayList#size( )
-  77 actualOut D = { list$1.!size( ) } U = {  }
+  76 methodCall D = {  } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#size( )
+  77 actualOut D = { list$1.!size( ) } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.size }
   78 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   79 receiver D = {  } U = { System.out }
   80 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, list$1.!get( int ) } TO = java.io.PrintStream#println( java.lang.String )
@@ -135,72 +135,72 @@ Class Name = Sample6
   38:    0 ->   47 trueControlDependence
   39:    0 ->   49 trueControlDependence
   40:    0 ->   50 trueControlDependence
-  41:    0 ->   51 trueControlDependence
-  42:    0 ->   52 trueControlDependence
-  43:    0 ->   53 trueControlDependence
-  44:    0 ->   62 trueControlDependence
-  45:    0 ->   63 trueControlDependence
-  46:    0 ->   64 trueControlDependence
-  47:    0 ->   66 trueControlDependence
-  48:    0 ->   67 trueControlDependence
-  49:    0 ->   68 trueControlDependence
-  50:    0 ->   69 trueControlDependence
-  51:    0 ->   70 trueControlDependence
-  52:    0 ->   71 trueControlDependence
-  53:    0 ->   73 trueControlDependence
-  54:    0 ->   74 trueControlDependence
-  55:    0 ->   75 trueControlDependence
-  56:    0 ->   76 trueControlDependence
-  57:    0 ->   77 trueControlDependence
-  58:    0 ->   87 trueControlDependence
+  41:    0 ->   62 trueControlDependence
+  42:    0 ->   63 trueControlDependence
+  43:    0 ->   64 trueControlDependence
+  44:    0 ->   66 trueControlDependence
+  45:    0 ->   67 trueControlDependence
+  46:    0 ->   68 trueControlDependence
+  47:    0 ->   69 trueControlDependence
+  48:    0 ->   70 trueControlDependence
+  49:    0 ->   71 trueControlDependence
+  50:    0 ->   73 trueControlDependence
+  51:    0 ->   74 trueControlDependence
+  52:    0 ->   87 trueControlDependence
+  53:    0 -> * trueControlDependence
+  54:    0 -> * trueControlDependence
+  55:    0 -> * trueControlDependence
+  56:    0 -> * trueControlDependence
+  57:    0 -> * trueControlDependence
+  58:    0 -> * trueControlDependence
   59:    0 -> * trueControlDependence
   60:    0 -> * trueControlDependence
   61:    0 -> * trueControlDependence
   62:    0 -> * trueControlDependence
   63:    0 -> * trueControlDependence
   64:    0 -> * trueControlDependence
-  65:    0 -> * trueControlDependence
-  66:    0 -> * trueControlDependence
-  67:    0 -> * trueControlDependence
-  68:    0 -> * trueControlDependence
-  69:    0 -> * trueControlDependence
-  70:    0 -> * trueControlDependence
-  71:    2 ->    7 declaration
-  72:    2 ->    7 loopIndependentDefUseDependence list$1
-  73:    2 ->   14 declaration
-  74:    2 ->   14 loopIndependentDefUseDependence list$1
-  75:    2 ->   21 declaration
-  76:    2 ->   21 loopIndependentDefUseDependence list$1
-  77:    2 ->   30 declaration
-  78:    2 ->   30 loopIndependentDefUseDependence list$1
-  79:    2 ->   35 declaration
-  80:    2 ->   35 loopIndependentDefUseDependence list$1
-  81:    2 ->   45 declaration
-  82:    2 ->   45 loopIndependentDefUseDependence list$1
-  83:    2 ->   57 declaration
-  84:    2 ->   57 loopIndependentDefUseDependence list$1
-  85:    2 ->   63 declaration
-  86:    2 ->   63 loopIndependentDefUseDependence list$1
-  87:    2 ->   69 declaration
-  88:    2 ->   69 loopIndependentDefUseDependence list$1
-  89:    2 ->   81 declaration
-  90:    2 ->   81 loopIndependentDefUseDependence list$1
-  91:   32 ->   29 loopIndependentDefUseDependence list$1.!size( )
-  92:   32 ->   47 outputDependence list$1.!size( )
-  93:   34 ->   40 declaration
-  94:   34 ->   40 loopIndependentDefUseDependence first$2
-  95:   37 ->   34 loopIndependentDefUseDependence list$1.!get( int )
-  96:   37 ->   59 outputDependence list$1.!get( int )
-  97:   37 ->   83 outputDependence list$1.!get( int )
-  98:   47 ->   44 loopIndependentDefUseDependence list$1.!size( )
-  99:   47 ->   50 loopIndependentDefUseDependence list$1.!size( )
- 100:   47 ->   71 outputDependence list$1.!size( )
- 101:   49 ->   50 declaration
- 102:   49 ->   50 loopIndependentDefUseDependence i$3
- 103:   49 ->   58 declaration
- 104:   49 ->   58 loopIndependentDefUseDependence i$3
- 105:   49 ->   61 declaration
- 106:   49 ->   61 loopIndependentDefUseDependence i$3
+  65:    2 ->    7 declaration
+  66:    2 ->    7 loopIndependentDefUseDependence list$1
+  67:    2 ->   14 declaration
+  68:    2 ->   14 loopIndependentDefUseDependence list$1
+  69:    2 ->   21 declaration
+  70:    2 ->   21 loopIndependentDefUseDependence list$1
+  71:    2 ->   30 declaration
+  72:    2 ->   30 loopIndependentDefUseDependence list$1
+  73:    2 ->   35 declaration
+  74:    2 ->   35 loopIndependentDefUseDependence list$1
+  75:    2 ->   45 declaration
+  76:    2 ->   45 loopIndependentDefUseDependence list$1
+  77:    2 ->   51 declaration
+  78:    2 ->   51 loopIndependentDefUseDependence list$1
+  79:    2 ->   57 declaration
+  80:    2 ->   57 loopIndependentDefUseDependence list$1
+  81:    2 ->   63 declaration
+  82:    2 ->   63 loopIndependentDefUseDependence list$1
+  83:    2 ->   69 declaration
+  84:    2 ->   69 loopIndependentDefUseDependence list$1
+  85:    2 ->   75 declaration
+  86:    2 ->   75 loopIndependentDefUseDependence list$1
+  87:    2 ->   81 declaration
+  88:    2 ->   81 loopIndependentDefUseDependence list$1
+  89:   32 ->   29 loopIndependentDefUseDependence list$1.!size( )
+  90:   32 ->   47 outputDependence list$1.!size( )
+  91:   34 ->   40 declaration
+  92:   34 ->   40 loopIndependentDefUseDependence first$2
+  93:   37 ->   34 loopIndependentDefUseDependence list$1.!get( int )
+  94:   37 ->   59 outputDependence list$1.!get( int )
+  95:   37 ->   83 outputDependence list$1.!get( int )
+  96:   47 ->   44 loopIndependentDefUseDependence list$1.!size( )
+  97:   47 ->   53 outputDependence list$1.!size( )
+  98:   49 ->   50 declaration
+  99:   49 ->   50 loopIndependentDefUseDependence i$3
+ 100:   49 ->   58 declaration
+ 101:   49 ->   58 loopIndependentDefUseDependence i$3
+ 102:   49 ->   61 declaration
+ 103:   49 ->   61 loopIndependentDefUseDependence i$3
+ 104:   50 ->   51 trueControlDependence
+ 105:   50 ->   52 trueControlDependence
+ 106:   50 ->   53 trueControlDependence
  107:   50 ->   54 trueControlDependence
  108:   50 ->   55 trueControlDependence
  109:   50 ->   56 trueControlDependence
@@ -209,106 +209,115 @@ Class Name = Sample6
  112:   50 ->   59 trueControlDependence
  113:   50 ->   61 trueControlDependence
  114:   50 -> * trueControlDependence
- 115:   53 ->   50 loopIndependentDefUseDependence list$1.!size( )
- 116:   53 ->   71 outputDependence list$1.!size( )
- 117:   59 ->   56 loopIndependentDefUseDependence list$1.!get( int )
- 118:   59 ->   59 defOrderDependence list$1.!get( int )
- 119:   59 ->   83 outputDependence list$1.!get( int )
- 120:   61 ->   50 loopCarriedDefUseDependence i$3 (LC =   50)
- 121:   61 ->   58 loopCarriedDefUseDependence i$3 (LC =   50)
- 122:   61 ->   61 loopCarriedDefUseDependence i$3 (LC =   50)
- 123:   71 ->   68 loopIndependentDefUseDependence list$1.!size( )
- 124:   71 ->   74 loopIndependentDefUseDependence list$1.!size( )
- 125:   73 ->   74 declaration
- 126:   73 ->   74 loopIndependentDefUseDependence i$4
- 127:   73 ->   82 declaration
- 128:   73 ->   82 loopIndependentDefUseDependence i$4
- 129:   73 ->   85 declaration
- 130:   73 ->   85 loopIndependentDefUseDependence i$4
- 131:   74 ->   78 trueControlDependence
- 132:   74 ->   79 trueControlDependence
- 133:   74 ->   80 trueControlDependence
- 134:   74 ->   81 trueControlDependence
- 135:   74 ->   82 trueControlDependence
- 136:   74 ->   83 trueControlDependence
- 137:   74 ->   85 trueControlDependence
- 138:   74 -> * trueControlDependence
- 139:   77 ->   74 loopIndependentDefUseDependence list$1.!size( )
- 140:   83 ->   80 loopIndependentDefUseDependence list$1.!get( int )
- 141:   83 ->   83 defOrderDependence list$1.!get( int )
- 142:   85 ->   74 loopCarriedDefUseDependence i$4 (LC =   74)
- 143:   85 ->   82 loopCarriedDefUseDependence i$4 (LC =   74)
- 144:   85 ->   85 loopCarriedDefUseDependence i$4 (LC =   74)
- 145: * ->    2 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
- 146: * ->    6 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
- 147: * ->    8 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
- 148: * ->   13 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
- 149: * ->   15 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
- 150: * ->   15 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 151: * ->   15 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 152: * ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
- 153: * ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
- 154: * ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
- 155: * ->   20 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
- 156: * ->   22 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
- 157: * ->   22 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 158: * ->   22 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 159: * ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
- 160: * ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
- 161: * ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
- 162: * ->   27 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 163: * ->   31 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 164: * ->   32 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 165: * ->   36 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 166: * ->   37 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 167: * ->   38 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 168: * ->   42 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 169: * ->   46 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 170: * ->   47 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 171: * ->   54 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 172: * ->   58 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 173: * ->   59 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 174: * ->   62 loopIndependentDefUseDependence list$1.!remove( int )
- 175: * ->   64 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 176: * ->   64 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 177: * ->   66 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 178: * ->   70 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 179: * ->   71 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 180: * ->   78 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 181: * ->   82 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 182: * ->   83 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 183: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
- 184: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
- 185: * -> * defOrderDependence System.out.!println( java.lang.String )
- 186: * -> * defOrderDependence System.out.!println( java.lang.String )
- 187: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
- 188: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
- 189: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
- 190: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
- 191: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
- 192: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
- 193: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 194: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 195: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 196: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 197: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 198: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 199: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 200: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 201: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 202: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 203: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 204: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 205: * -> * outputDependence System.out.!println( java.lang.String )
- 206: * -> * outputDependence System.out.!println( java.lang.String )
- 207: * -> * outputDependence System.out.!println( java.lang.String )
- 208: * -> * outputDependence System.out.!println( java.lang.String )
- 209: * -> * outputDependence System.out.!println( java.lang.String )
- 210: * -> * outputDependence System.out.!println( java.lang.String )
- 211: * -> * outputDependence java.lang.String.!String( java.lang.String )
- 212: * -> * outputDependence java.lang.String.!String( java.lang.String )
- 213: * -> * outputDependence list$1.!add( java.lang.Object )
- 214: * -> * outputDependence list$1.!add( java.lang.Object )
+ 115:   53 ->   50 loopCarriedDefUseDependence list$1.!size( ) (LC = 50)
+ 116:   53 ->   53 defOrderDependence list$1.!size( )
+ 117:   53 ->   71 outputDependence list$1.!size( )
+ 118:   59 ->   56 loopIndependentDefUseDependence list$1.!get( int )
+ 119:   59 ->   59 defOrderDependence list$1.!get( int )
+ 120:   59 ->   83 outputDependence list$1.!get( int )
+ 121:   61 ->   50 loopCarriedDefUseDependence i$3 (LC = 50)
+ 122:   61 ->   58 loopCarriedDefUseDependence i$3 (LC = 50)
+ 123:   61 ->   61 loopCarriedDefUseDependence i$3 (LC = 50)
+ 124:   71 ->   68 loopIndependentDefUseDependence list$1.!size( )
+ 125:   71 ->   77 outputDependence list$1.!size( )
+ 126:   73 ->   74 declaration
+ 127:   73 ->   74 loopIndependentDefUseDependence i$4
+ 128:   73 ->   82 declaration
+ 129:   73 ->   82 loopIndependentDefUseDependence i$4
+ 130:   73 ->   85 declaration
+ 131:   73 ->   85 loopIndependentDefUseDependence i$4
+ 132:   74 ->   75 trueControlDependence
+ 133:   74 ->   76 trueControlDependence
+ 134:   74 ->   77 trueControlDependence
+ 135:   74 ->   78 trueControlDependence
+ 136:   74 ->   79 trueControlDependence
+ 137:   74 ->   80 trueControlDependence
+ 138:   74 ->   81 trueControlDependence
+ 139:   74 ->   82 trueControlDependence
+ 140:   74 ->   83 trueControlDependence
+ 141:   74 ->   85 trueControlDependence
+ 142:   74 -> * trueControlDependence
+ 143:   77 ->   74 loopCarriedDefUseDependence list$1.!size( ) (LC = 74)
+ 144:   77 ->   77 defOrderDependence list$1.!size( )
+ 145:   83 ->   80 loopIndependentDefUseDependence list$1.!get( int )
+ 146:   83 ->   83 defOrderDependence list$1.!get( int )
+ 147:   85 ->   74 loopCarriedDefUseDependence i$4 (LC = 74)
+ 148:   85 ->   82 loopCarriedDefUseDependence i$4 (LC = 74)
+ 149:   85 ->   85 loopCarriedDefUseDependence i$4 (LC = 74)
+ 150: * ->    2 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+ 151: * ->    6 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
+ 152: * ->    8 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
+ 153: * ->   13 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
+ 154: * ->   15 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
+ 155: * ->   15 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 156: * ->   15 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 157: * ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
+ 158: * ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
+ 159: * ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
+ 160: * ->   20 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
+ 161: * ->   22 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
+ 162: * ->   22 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 163: * ->   22 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 164: * ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
+ 165: * ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
+ 166: * ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
+ 167: * ->   27 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 168: * ->   31 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 169: * ->   32 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 170: * ->   36 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 171: * ->   37 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 172: * ->   38 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 173: * ->   42 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 174: * ->   46 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 175: * ->   47 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 176: * ->   52 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 177: * ->   53 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 178: * ->   54 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 179: * ->   58 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 180: * ->   59 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 181: * ->   62 loopIndependentDefUseDependence list$1.!remove( int )
+ 182: * ->   64 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 183: * ->   64 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 184: * ->   66 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 185: * ->   70 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 186: * ->   71 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 187: * ->   76 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 188: * ->   77 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 189: * ->   78 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 190: * ->   82 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 191: * ->   83 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 192: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
+ 193: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
+ 194: * -> * defOrderDependence System.out.!println( java.lang.String )
+ 195: * -> * defOrderDependence System.out.!println( java.lang.String )
+ 196: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
+ 197: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
+ 198: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
+ 199: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
+ 200: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
+ 201: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
+ 202: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 203: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 204: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 205: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 206: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 207: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 208: * -> * outputDependence System.out.!java.io.PrintStream.trouble
+ 209: * -> * outputDependence System.out.!java.io.PrintStream.trouble
+ 210: * -> * outputDependence System.out.!java.io.PrintStream.trouble
+ 211: * -> * outputDependence System.out.!java.io.PrintStream.trouble
+ 212: * -> * outputDependence System.out.!java.io.PrintStream.trouble
+ 213: * -> * outputDependence System.out.!java.io.PrintStream.trouble
+ 214: * -> * outputDependence System.out.!println( java.lang.String )
+ 215: * -> * outputDependence System.out.!println( java.lang.String )
+ 216: * -> * outputDependence System.out.!println( java.lang.String )
+ 217: * -> * outputDependence System.out.!println( java.lang.String )
+ 218: * -> * outputDependence System.out.!println( java.lang.String )
+ 219: * -> * outputDependence System.out.!println( java.lang.String )
+ 220: * -> * outputDependence java.lang.String.!String( java.lang.String )
+ 221: * -> * outputDependence java.lang.String.!String( java.lang.String )
+ 222: * -> * outputDependence list$1.!add( java.lang.Object )
+ 223: * -> * outputDependence list$1.!add( java.lang.Object )
 --
 ----- ClDG (to here) -----
 

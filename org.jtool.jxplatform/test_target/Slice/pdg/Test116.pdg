@@ -55,17 +55,17 @@ Class Name = Test116
   34:    5 ->    9 trueControlDependence
   35:    5 ->   12 trueControlDependence
   36:    6 ->    7 trueControlDependence
-  37:    7 ->    6 loopCarriedDefUseDependence x$1 (LC =    5)
-  38:    7 ->    7 loopCarriedDefUseDependence x$1 (LC =    5)
+  37:    7 ->    6 loopCarriedDefUseDependence x$1 (LC = 5)
+  38:    7 ->    7 loopCarriedDefUseDependence x$1 (LC = 5)
   39:    7 ->   13 loopIndependentDefUseDependence x$1
   40:    9 ->   10 trueControlDependence
-  41:   10 ->    9 loopCarriedDefUseDependence y$2 (LC =    5)
-  42:   10 ->   10 loopCarriedDefUseDependence y$2 (LC =    5)
+  41:   10 ->    9 loopCarriedDefUseDependence y$2 (LC = 5)
+  42:   10 ->   10 loopCarriedDefUseDependence y$2 (LC = 5)
   43:   10 ->   14 loopIndependentDefUseDependence y$2
-  44:   12 ->    5 loopCarriedDefUseDependence i$3 (LC =    5)
-  45:   12 ->    7 loopCarriedDefUseDependence i$3 (LC =    5)
-  46:   12 ->   10 loopCarriedDefUseDependence i$3 (LC =    5)
-  47:   12 ->   12 loopCarriedDefUseDependence i$3 (LC =    5)
+  44:   12 ->    5 loopCarriedDefUseDependence i$3 (LC = 5)
+  45:   12 ->    7 loopCarriedDefUseDependence i$3 (LC = 5)
+  46:   12 ->   10 loopCarriedDefUseDependence i$3 (LC = 5)
+  47:   12 ->   12 loopCarriedDefUseDependence i$3 (LC = 5)
 --
    0: Test116( )
    1:    0 ->    2 trueControlDependence

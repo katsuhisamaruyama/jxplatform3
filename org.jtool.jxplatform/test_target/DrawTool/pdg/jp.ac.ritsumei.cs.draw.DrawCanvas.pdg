@@ -876,31 +876,32 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    1:    0 ->    1 trueControlDependence
    2:    0 ->   25 trueControlDependence
    3:    1 ->    2 trueControlDependence
-   4:    1 ->    3 trueControlDependence
-   5:    1 ->    4 trueControlDependence
-   6:    1 ->    5 trueControlDependence
-   7:    1 ->   13 trueControlDependence
-   8:    1 ->   14 trueControlDependence
-   9:    1 ->   15 trueControlDependence
-  10:    1 ->   16 trueControlDependence
+   4:    1 ->   13 trueControlDependence
+   5:    1 ->   14 trueControlDependence
+   6:    1 ->   15 trueControlDependence
+   7:    1 ->   16 trueControlDependence
+   8:    2 ->    3 trueControlDependence
+   9:    2 ->    4 trueControlDependence
+  10:    2 ->    5 trueControlDependence
   11:    2 ->    6 trueControlDependence
   12:    2 ->    8 trueControlDependence
   13:    2 ->    9 trueControlDependence
-  14:    5 ->    2 loopIndependentDefUseDependence this.!getCurrentFigure( )
-  15:    6 ->   12 trueControlDependence
-  16:    9 ->    7 trueControlDependence
-  17:    9 ->   10 trueControlDependence
-  18:    9 ->   12 exceptionCatch
-  19:   10 ->    7 loopIndependentDefUseDependence this.!wait( )
-  20:   10 ->   10 defOrderDependence this.!wait( )
-  21:   12 ->   12 outputDependence e$0
-  22:   13 ->   17 trueControlDependence
-  23:   13 ->   18 trueControlDependence
-  24:   13 ->   19 trueControlDependence
-  25:   13 ->   20 trueControlDependence
-  26:   13 -> * trueControlDependence
-  27:   16 ->   13 loopIndependentDefUseDependence this.!hasChanged( )
-  28: * ->   17 loopIndependentDefUseDependence this.menu.!saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
+  14:    5 ->    2 loopCarriedDefUseDependence this.!getCurrentFigure( ) (LC = 2)
+  15:    5 ->    5 defOrderDependence this.!getCurrentFigure( )
+  16:    6 ->   12 trueControlDependence
+  17:    9 ->    7 trueControlDependence
+  18:    9 ->   10 trueControlDependence
+  19:    9 ->   12 exceptionCatch
+  20:   10 ->    7 loopIndependentDefUseDependence this.!wait( )
+  21:   10 ->   10 defOrderDependence this.!wait( )
+  22:   12 ->   12 outputDependence e$0
+  23:   13 ->   17 trueControlDependence
+  24:   13 ->   18 trueControlDependence
+  25:   13 ->   19 trueControlDependence
+  26:   13 ->   20 trueControlDependence
+  27:   13 -> * trueControlDependence
+  28:   16 ->   13 loopIndependentDefUseDependence this.!hasChanged( )
+  29: * ->   17 loopIndependentDefUseDependence this.menu.!saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
 --
    0: mouseEntered( java.awt.event.MouseEvent )
    1:    0 ->    1 trueControlDependence
@@ -973,19 +974,19 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   16 trueControlDependence
-  11:    0 ->   17 trueControlDependence
-  12:    0 ->   18 trueControlDependence
-  13:    0 ->   19 trueControlDependence
-  14:    0 ->   31 trueControlDependence
-  15:    1 ->    4 loopIndependentDefUseDependence g$0
-  16:    1 ->   13 loopIndependentDefUseDependence g$0
-  17:    1 ->   23 loopIndependentDefUseDependence g$0
-  18:    5 ->    2 loopIndependentDefUseDependence super.!paintComponent( java.awt.Graphics )
-  19:    6 ->    6 defOrderDependence figure$1
+   7:    0 ->   16 trueControlDependence
+   8:    0 ->   17 trueControlDependence
+   9:    0 ->   18 trueControlDependence
+  10:    0 ->   19 trueControlDependence
+  11:    0 ->   31 trueControlDependence
+  12:    1 ->    4 loopIndependentDefUseDependence g$0
+  13:    1 ->   13 loopIndependentDefUseDependence g$0
+  14:    1 ->   23 loopIndependentDefUseDependence g$0
+  15:    5 ->    2 loopIndependentDefUseDependence super.!paintComponent( java.awt.Graphics )
+  16:    6 ->    6 defOrderDependence figure$1
+  17:    6 ->    7 trueControlDependence
+  18:    6 ->    8 trueControlDependence
+  19:    6 ->    9 trueControlDependence
   20:    6 ->   10 trueControlDependence
   21:    6 ->   11 trueControlDependence
   22:    6 ->   12 trueControlDependence
@@ -993,22 +994,23 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   24:    6 ->   14 loopIndependentDefUseDependence figure$1
   25:    6 ->   14 trueControlDependence
   26:    6 ->   15 trueControlDependence
-  27:    9 ->    6 loopIndependentDefUseDependence this.figureManager.!getFigures( )
-  28:   15 ->   10 loopIndependentDefUseDependence this.!drawFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
-  29:   15 ->   15 defOrderDependence this.!drawFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
-  30:   16 ->   20 trueControlDependence
-  31:   16 ->   21 trueControlDependence
-  32:   16 ->   22 trueControlDependence
-  33:   16 ->   23 trueControlDependence
-  34:   16 ->   24 trueControlDependence
-  35:   16 ->   25 trueControlDependence
-  36:   16 ->   26 trueControlDependence
-  37:   16 ->   27 trueControlDependence
-  38:   16 ->   28 trueControlDependence
-  39:   19 ->   16 loopIndependentDefUseDependence this.!getCurrentFigure( )
-  40:   19 ->   27 outputDependence this.!getCurrentFigure( )
-  41:   27 ->   24 loopIndependentDefUseDependence this.!getCurrentFigure( )
-  42:   28 ->   20 loopIndependentDefUseDependence this.!drawGrabbedFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
+  27:    9 ->    6 loopCarriedDefUseDependence this.figureManager.!getFigures( ) (LC = 6)
+  28:    9 ->    9 defOrderDependence this.figureManager.!getFigures( )
+  29:   15 ->   10 loopIndependentDefUseDependence this.!drawFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
+  30:   15 ->   15 defOrderDependence this.!drawFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
+  31:   16 ->   20 trueControlDependence
+  32:   16 ->   21 trueControlDependence
+  33:   16 ->   22 trueControlDependence
+  34:   16 ->   23 trueControlDependence
+  35:   16 ->   24 trueControlDependence
+  36:   16 ->   25 trueControlDependence
+  37:   16 ->   26 trueControlDependence
+  38:   16 ->   27 trueControlDependence
+  39:   16 ->   28 trueControlDependence
+  40:   19 ->   16 loopIndependentDefUseDependence this.!getCurrentFigure( )
+  41:   19 ->   27 outputDependence this.!getCurrentFigure( )
+  42:   27 ->   24 loopIndependentDefUseDependence this.!getCurrentFigure( )
+  43:   28 ->   20 loopIndependentDefUseDependence this.!drawGrabbedFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
 --
    0: serialVersionUID
    1:    0 ->    1 trueControlDependence
@@ -1580,27 +1582,31 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
 --
    0: isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlDependence
-   2:    0 ->    3 trueControlDependence
-   3:    0 ->    4 trueControlDependence
-   4:    0 ->    5 trueControlDependence
-   5:    0 ->   15 trueControlDependence
-   6:    1 ->    7 loopIndependentDefUseDependence figure$0
-   7:    2 ->    2 defOrderDependence fig$1
-   8:    2 ->    6 trueControlDependence
-   9:    2 ->    7 trueControlDependence
-  10:    2 ->    8 trueControlDependence
-  11:    2 ->    9 loopIndependentDefUseDependence fig$1
-  12:    2 ->    9 trueControlDependence
-  13:    2 ->   10 trueControlDependence
-  14:    2 ->   13 falseControlDependence
-  15:    5 ->    2 loopIndependentDefUseDependence this.figureManager.!getFigures( )
-  16:    6 ->    2 falseControlDependence
-  17:    6 ->   11 trueControlDependence
-  18:   10 ->    6 loopIndependentDefUseDependence figure$0.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
-  19:   10 ->   10 defOrderDependence figure$0.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
-  20:   11 ->    2 fallThroughControlDependence
-  21:   11 ->   15 loopIndependentDefUseDependence $_
-  22:   13 ->   15 loopIndependentDefUseDependence $_
+   2:    0 ->   15 trueControlDependence
+   3:    1 ->    7 loopIndependentDefUseDependence figure$0
+   4:    2 ->    2 defOrderDependence fig$1
+   5:    2 ->    6 trueControlDependence
+   6:    2 ->    7 trueControlDependence
+   7:    2 ->    8 trueControlDependence
+   8:    2 ->    9 loopIndependentDefUseDependence fig$1
+   9:    2 ->    9 trueControlDependence
+  10:    2 ->   10 trueControlDependence
+  11:    2 ->   13 falseControlDependence
+  12:    5 ->    2 loopCarriedDefUseDependence this.figureManager.!getFigures( ) (LC = 2)
+  13:    5 ->    5 defOrderDependence this.figureManager.!getFigures( )
+  14:    6 ->    2 falseControlDependence
+  15:    6 ->    3 falseControlDependence
+  16:    6 ->    4 falseControlDependence
+  17:    6 ->    5 falseControlDependence
+  18:    6 ->   11 trueControlDependence
+  19:   10 ->    6 loopIndependentDefUseDependence figure$0.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
+  20:   10 ->   10 defOrderDependence figure$0.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
+  21:   11 ->    2 fallThroughControlDependence
+  22:   11 ->    3 fallThroughControlDependence
+  23:   11 ->    4 fallThroughControlDependence
+  24:   11 ->    5 fallThroughControlDependence
+  25:   11 ->   15 loopIndependentDefUseDependence $_
+  26:   13 ->   15 loopIndependentDefUseDependence $_
 --
    0: getGrabbedFigure( int int )
    1:    0 ->    1 trueControlDependence
@@ -1613,58 +1619,63 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    8:    0 ->    8 trueControlDependence
    9:    0 ->    9 trueControlDependence
   10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   19 trueControlDependence
-  15:    0 ->   20 trueControlDependence
-  16:    0 ->   21 trueControlDependence
-  17:    0 ->   36 trueControlDependence
-  18:    1 ->   29 loopIndependentDefUseDependence x$0
-  19:    2 ->   30 loopIndependentDefUseDependence y$1
-  20:    3 ->   11 declaration
-  21:    3 ->   11 loopIndependentDefUseDependence it$2
-  22:    3 ->   15 declaration
-  23:    3 ->   15 loopIndependentDefUseDependence it$2
-  24:    3 ->   19 declaration
-  25:    3 ->   19 loopIndependentDefUseDependence it$2
-  26:    3 ->   23 declaration
-  27:    3 ->   23 loopIndependentDefUseDependence it$2
-  28:    7 ->    4 loopIndependentDefUseDependence this.figureManager.!getFigures( )
-  29:    9 ->    3 loopIndependentDefUseDependence this.figureManager.!getFigures( ).!listIterator( )
-  30:   10 ->   14 trueControlDependence
-  31:   10 ->   15 trueControlDependence
-  32:   10 ->   16 trueControlDependence
-  33:   10 ->   17 trueControlDependence
-  34:   13 ->   10 loopIndependentDefUseDependence it$2.!hasNext( )
-  35:   17 ->   14 loopIndependentDefUseDependence it$2.!next( )
-  36:   17 ->   17 defOrderDependence it$2.!next( )
-  37:   18 ->   22 trueControlDependence
-  38:   18 ->   23 trueControlDependence
-  39:   18 ->   24 trueControlDependence
-  40:   18 ->   25 trueControlDependence
-  41:   18 ->   26 trueControlDependence
-  42:   18 ->   27 trueControlDependence
-  43:   18 ->   28 trueControlDependence
-  44:   18 ->   29 trueControlDependence
-  45:   18 ->   30 trueControlDependence
-  46:   18 ->   31 trueControlDependence
-  47:   18 ->   34 falseControlDependence
-  48:   21 ->   18 loopIndependentDefUseDependence it$2.!hasPrevious( )
-  49:   22 ->   22 defOrderDependence figure$3
-  50:   22 ->   27 declaration
-  51:   22 ->   27 loopIndependentDefUseDependence figure$3
-  52:   22 ->   32 declaration
-  53:   22 ->   32 loopIndependentDefUseDependence figure$3
-  54:   25 ->   22 loopIndependentDefUseDependence it$2.!previous( )
-  55:   25 ->   25 defOrderDependence it$2.!previous( )
-  56:   26 ->   18 falseControlDependence
-  57:   26 ->   32 trueControlDependence
-  58:   31 ->   26 loopIndependentDefUseDependence figure$3.!isGrabbed( int int )
-  59:   31 ->   31 defOrderDependence figure$3.!isGrabbed( int int )
-  60:   32 ->   18 fallThroughControlDependence
-  61:   32 ->   36 loopIndependentDefUseDependence $_
-  62:   34 ->   36 loopIndependentDefUseDependence $_
+  11:    0 ->   36 trueControlDependence
+  12:    1 ->   29 loopIndependentDefUseDependence x$0
+  13:    2 ->   30 loopIndependentDefUseDependence y$1
+  14:    3 ->   11 declaration
+  15:    3 ->   11 loopIndependentDefUseDependence it$2
+  16:    3 ->   15 declaration
+  17:    3 ->   15 loopIndependentDefUseDependence it$2
+  18:    3 ->   19 declaration
+  19:    3 ->   19 loopIndependentDefUseDependence it$2
+  20:    3 ->   23 declaration
+  21:    3 ->   23 loopIndependentDefUseDependence it$2
+  22:    7 ->    4 loopIndependentDefUseDependence this.figureManager.!getFigures( )
+  23:    9 ->    3 loopIndependentDefUseDependence this.figureManager.!getFigures( ).!listIterator( )
+  24:   10 ->   11 trueControlDependence
+  25:   10 ->   12 trueControlDependence
+  26:   10 ->   13 trueControlDependence
+  27:   10 ->   14 trueControlDependence
+  28:   10 ->   15 trueControlDependence
+  29:   10 ->   16 trueControlDependence
+  30:   10 ->   17 trueControlDependence
+  31:   13 ->   10 loopCarriedDefUseDependence it$2.!hasNext( ) (LC = 10)
+  32:   13 ->   13 defOrderDependence it$2.!hasNext( )
+  33:   17 ->   14 loopIndependentDefUseDependence it$2.!next( )
+  34:   17 ->   17 defOrderDependence it$2.!next( )
+  35:   18 ->   22 trueControlDependence
+  36:   18 ->   23 trueControlDependence
+  37:   18 ->   24 trueControlDependence
+  38:   18 ->   25 trueControlDependence
+  39:   18 ->   26 trueControlDependence
+  40:   18 ->   27 trueControlDependence
+  41:   18 ->   28 trueControlDependence
+  42:   18 ->   29 trueControlDependence
+  43:   18 ->   30 trueControlDependence
+  44:   18 ->   31 trueControlDependence
+  45:   18 ->   34 falseControlDependence
+  46:   21 ->   18 loopCarriedDefUseDependence it$2.!hasPrevious( ) (LC = 18)
+  47:   21 ->   21 defOrderDependence it$2.!hasPrevious( )
+  48:   22 ->   22 defOrderDependence figure$3
+  49:   22 ->   27 declaration
+  50:   22 ->   27 loopIndependentDefUseDependence figure$3
+  51:   22 ->   32 declaration
+  52:   22 ->   32 loopIndependentDefUseDependence figure$3
+  53:   25 ->   22 loopIndependentDefUseDependence it$2.!previous( )
+  54:   25 ->   25 defOrderDependence it$2.!previous( )
+  55:   26 ->   18 falseControlDependence
+  56:   26 ->   19 falseControlDependence
+  57:   26 ->   20 falseControlDependence
+  58:   26 ->   21 falseControlDependence
+  59:   26 ->   32 trueControlDependence
+  60:   31 ->   26 loopIndependentDefUseDependence figure$3.!isGrabbed( int int )
+  61:   31 ->   31 defOrderDependence figure$3.!isGrabbed( int int )
+  62:   32 ->   18 fallThroughControlDependence
+  63:   32 ->   19 fallThroughControlDependence
+  64:   32 ->   20 fallThroughControlDependence
+  65:   32 ->   21 fallThroughControlDependence
+  66:   32 ->   36 loopIndependentDefUseDependence $_
+  67:   34 ->   36 loopIndependentDefUseDependence $_
 --
    0: pasteFigure( jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlDependence
@@ -1691,43 +1702,43 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   22:    0 ->   22 trueControlDependence
   23:    0 ->   23 trueControlDependence
   24:    0 ->   24 trueControlDependence
-  25:    0 ->   25 trueControlDependence
-  26:    0 ->   26 trueControlDependence
-  27:    0 ->   27 trueControlDependence
-  28:    0 ->   28 trueControlDependence
-  29:    0 ->   35 trueControlDependence
-  30:    0 ->   36 trueControlDependence
-  31:    0 ->   37 trueControlDependence
-  32:    0 ->   38 trueControlDependence
-  33:    0 ->   39 trueControlDependence
-  34:    0 ->   40 trueControlDependence
-  35:    0 ->   41 trueControlDependence
-  36:    0 ->   42 trueControlDependence
-  37:    0 ->   43 trueControlDependence
-  38:    0 ->   44 trueControlDependence
-  39:    0 ->   45 trueControlDependence
-  40:    0 ->   46 trueControlDependence
-  41:    0 ->   47 trueControlDependence
-  42:    0 ->   48 trueControlDependence
-  43:    0 ->   49 trueControlDependence
-  44:    0 ->   50 trueControlDependence
-  45:    0 ->   51 trueControlDependence
-  46:    0 ->   52 trueControlDependence
-  47:    0 ->   54 trueControlDependence
+  25:    0 ->   35 trueControlDependence
+  26:    0 ->   36 trueControlDependence
+  27:    0 ->   37 trueControlDependence
+  28:    0 ->   38 trueControlDependence
+  29:    0 ->   39 trueControlDependence
+  30:    0 ->   40 trueControlDependence
+  31:    0 ->   41 trueControlDependence
+  32:    0 ->   42 trueControlDependence
+  33:    0 ->   43 trueControlDependence
+  34:    0 ->   44 trueControlDependence
+  35:    0 ->   45 trueControlDependence
+  36:    0 ->   46 trueControlDependence
+  37:    0 ->   47 trueControlDependence
+  38:    0 ->   48 trueControlDependence
+  39:    0 ->   49 trueControlDependence
+  40:    0 ->   50 trueControlDependence
+  41:    0 ->   51 trueControlDependence
+  42:    0 ->   52 trueControlDependence
+  43:    0 ->   54 trueControlDependence
+  44:    0 -> * trueControlDependence
+  45:    0 -> * trueControlDependence
+  46:    0 -> * trueControlDependence
+  47:    0 -> * trueControlDependence
   48:    0 -> * trueControlDependence
-  49:    0 -> * trueControlDependence
-  50:    0 -> * trueControlDependence
-  51:    0 -> * trueControlDependence
-  52:    0 -> * trueControlDependence
-  53:    1 ->    8 loopIndependentDefUseDependence figure$0
-  54:    1 ->   27 loopIndependentDefUseDependence figure$0
-  55:    1 ->   30 loopIndependentDefUseDependence figure$0
-  56:    1 ->   38 loopIndependentDefUseDependence figure$0
-  57:    9 ->    4 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureDrawn.!FigureDrawn( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure )
-  58:   10 ->    2 loopIndependentDefUseDependence this.support.!postEdit( javax.swing.undo.UndoableEdit )
-  59:   14 ->   11 loopIndependentDefUseDependence this.menu.!updateUndoState( )
-  60:   18 ->   15 loopIndependentDefUseDependence this.menu.!updateRedoState( )
-  61:   23 ->   19 loopIndependentDefUseDependence this.menu.!updateEditState( boolean )
+  49:    1 ->    8 loopIndependentDefUseDependence figure$0
+  50:    1 ->   27 loopIndependentDefUseDependence figure$0
+  51:    1 ->   30 loopIndependentDefUseDependence figure$0
+  52:    1 ->   38 loopIndependentDefUseDependence figure$0
+  53:    9 ->    4 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureDrawn.!FigureDrawn( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure )
+  54:   10 ->    2 loopIndependentDefUseDependence this.support.!postEdit( javax.swing.undo.UndoableEdit )
+  55:   14 ->   11 loopIndependentDefUseDependence this.menu.!updateUndoState( )
+  56:   18 ->   15 loopIndependentDefUseDependence this.menu.!updateRedoState( )
+  57:   23 ->   19 loopIndependentDefUseDependence this.menu.!updateEditState( boolean )
+  58:   24 ->   25 trueControlDependence
+  59:   24 ->   26 trueControlDependence
+  60:   24 ->   27 trueControlDependence
+  61:   24 ->   28 trueControlDependence
   62:   24 ->   29 trueControlDependence
   63:   24 ->   30 trueControlDependence
   64:   24 ->   31 trueControlDependence
@@ -1738,45 +1749,50 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   69:   24 -> * trueControlDependence
   70:   24 -> * trueControlDependence
   71:   24 -> * trueControlDependence
-  72:   28 ->   24 loopIndependentDefUseDependence this.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
-  73:   34 ->   29 loopIndependentDefUseDependence figure$0.!move( int int )
-  74:   34 ->   34 defOrderDependence figure$0.!move( int int )
-  75:   39 ->   35 loopIndependentDefUseDependence this.figureManager.!add( jp.ac.ritsumei.cs.draw.Figure )
-  76:   44 ->   40 loopIndependentDefUseDependence this.!setChanged( boolean )
-  77:   48 ->   45 loopIndependentDefUseDependence this.!clearFigure( )
-  78:   52 ->   49 loopIndependentDefUseDependence this.!repaint( )
-  79: * ->   31 loopCarriedDefUseDependence figure$0.endX (LC =   24)
-  80: * ->   31 loopCarriedDefUseDependence figure$0.endY (LC =   24)
-  81: * ->   31 loopCarriedDefUseDependence figure$0.startX (LC =   24)
-  82: * ->   31 loopCarriedDefUseDependence figure$0.startY (LC =   24)
-  83: * ->   34 loopIndependentDefUseDependence figure$0.endX
-  84: * ->   34 loopIndependentDefUseDependence figure$0.endY
-  85: * ->   34 loopIndependentDefUseDependence figure$0.startX
-  86: * ->   34 loopIndependentDefUseDependence figure$0.startY
-  87: * ->   37 loopIndependentDefUseDependence figure$0.endX
-  88: * ->   37 loopIndependentDefUseDependence figure$0.endY
-  89: * ->   37 loopIndependentDefUseDependence figure$0.startX
-  90: * ->   37 loopIndependentDefUseDependence figure$0.startY
-  91: * ->   38 loopIndependentDefUseDependence figure$0.endX
-  92: * ->   38 loopIndependentDefUseDependence figure$0.endY
-  93: * ->   38 loopIndependentDefUseDependence figure$0.startX
-  94: * ->   38 loopIndependentDefUseDependence figure$0.startY
-  95: * ->   39 loopIndependentDefUseDependence figure$0.endX
-  96: * ->   39 loopIndependentDefUseDependence figure$0.endY
-  97: * ->   39 loopIndependentDefUseDependence figure$0.startX
-  98: * ->   39 loopIndependentDefUseDependence figure$0.startY
-  99: * ->   47 loopIndependentDefUseDependence figure$0.endX
- 100: * ->   47 loopIndependentDefUseDependence figure$0.endY
- 101: * ->   47 loopIndependentDefUseDependence figure$0.startX
- 102: * ->   47 loopIndependentDefUseDependence figure$0.startY
- 103: * ->   48 loopIndependentDefUseDependence figure$0.endX
- 104: * ->   48 loopIndependentDefUseDependence figure$0.endY
- 105: * ->   48 loopIndependentDefUseDependence figure$0.startX
- 106: * ->   48 loopIndependentDefUseDependence figure$0.startY
- 107: * -> * defOrderDependence figure$0.endX
- 108: * -> * defOrderDependence figure$0.endY
- 109: * -> * defOrderDependence figure$0.startX
- 110: * -> * defOrderDependence figure$0.startY
+  72:   28 ->   24 loopCarriedDefUseDependence this.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure ) (LC = 24)
+  73:   28 ->   28 defOrderDependence this.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
+  74:   34 ->   29 loopIndependentDefUseDependence figure$0.!move( int int )
+  75:   34 ->   34 defOrderDependence figure$0.!move( int int )
+  76:   39 ->   35 loopIndependentDefUseDependence this.figureManager.!add( jp.ac.ritsumei.cs.draw.Figure )
+  77:   44 ->   40 loopIndependentDefUseDependence this.!setChanged( boolean )
+  78:   48 ->   45 loopIndependentDefUseDependence this.!clearFigure( )
+  79:   52 ->   49 loopIndependentDefUseDependence this.!repaint( )
+  80: * ->   27 loopIndependentDefUseDependence figure$0.endX
+  81: * ->   27 loopIndependentDefUseDependence figure$0.endY
+  82: * ->   27 loopIndependentDefUseDependence figure$0.startX
+  83: * ->   27 loopIndependentDefUseDependence figure$0.startY
+  84: * ->   31 loopCarriedDefUseDependence figure$0.endX (LC = 24)
+  85: * ->   31 loopCarriedDefUseDependence figure$0.endY (LC = 24)
+  86: * ->   31 loopCarriedDefUseDependence figure$0.startX (LC = 24)
+  87: * ->   31 loopCarriedDefUseDependence figure$0.startY (LC = 24)
+  88: * ->   34 loopIndependentDefUseDependence figure$0.endX
+  89: * ->   34 loopIndependentDefUseDependence figure$0.endY
+  90: * ->   34 loopIndependentDefUseDependence figure$0.startX
+  91: * ->   34 loopIndependentDefUseDependence figure$0.startY
+  92: * ->   37 loopIndependentDefUseDependence figure$0.endX
+  93: * ->   37 loopIndependentDefUseDependence figure$0.endY
+  94: * ->   37 loopIndependentDefUseDependence figure$0.startX
+  95: * ->   37 loopIndependentDefUseDependence figure$0.startY
+  96: * ->   38 loopIndependentDefUseDependence figure$0.endX
+  97: * ->   38 loopIndependentDefUseDependence figure$0.endY
+  98: * ->   38 loopIndependentDefUseDependence figure$0.startX
+  99: * ->   38 loopIndependentDefUseDependence figure$0.startY
+ 100: * ->   39 loopIndependentDefUseDependence figure$0.endX
+ 101: * ->   39 loopIndependentDefUseDependence figure$0.endY
+ 102: * ->   39 loopIndependentDefUseDependence figure$0.startX
+ 103: * ->   39 loopIndependentDefUseDependence figure$0.startY
+ 104: * ->   47 loopIndependentDefUseDependence figure$0.endX
+ 105: * ->   47 loopIndependentDefUseDependence figure$0.endY
+ 106: * ->   47 loopIndependentDefUseDependence figure$0.startX
+ 107: * ->   47 loopIndependentDefUseDependence figure$0.startY
+ 108: * ->   48 loopIndependentDefUseDependence figure$0.endX
+ 109: * ->   48 loopIndependentDefUseDependence figure$0.endY
+ 110: * ->   48 loopIndependentDefUseDependence figure$0.startX
+ 111: * ->   48 loopIndependentDefUseDependence figure$0.startY
+ 112: * -> * defOrderDependence figure$0.endX
+ 113: * -> * defOrderDependence figure$0.endY
+ 114: * -> * defOrderDependence figure$0.startX
+ 115: * -> * defOrderDependence figure$0.startY
 --
    0: figureManager
    1:    0 ->    1 trueControlDependence

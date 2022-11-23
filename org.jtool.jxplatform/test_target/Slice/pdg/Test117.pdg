@@ -43,11 +43,11 @@ Class Name = Test117
   21:    5 ->    6 trueControlDependence
   22:    5 ->    7 trueControlDependence
   23:    5 ->    8 trueControlDependence
-  24:    6 ->    6 loopCarriedDefUseDependence y$1 (LC =    5)
+  24:    6 ->    6 loopCarriedDefUseDependence y$1 (LC = 5)
   25:    6 ->   10 loopIndependentDefUseDependence y$1
-  26:    7 ->    5 loopCarriedDefUseDependence i$2 (LC =    5)
-  27:    7 ->    7 loopCarriedDefUseDependence i$2 (LC =    5)
-  28:    8 ->    8 loopCarriedDefUseDependence x$0 (LC =    5)
+  26:    7 ->    5 loopCarriedDefUseDependence i$2 (LC = 5)
+  27:    7 ->    7 loopCarriedDefUseDependence i$2 (LC = 5)
+  28:    8 ->    8 loopCarriedDefUseDependence x$0 (LC = 5)
   29:    8 ->    9 loopIndependentDefUseDependence x$0
 --
 ----- ClDG (to here) -----

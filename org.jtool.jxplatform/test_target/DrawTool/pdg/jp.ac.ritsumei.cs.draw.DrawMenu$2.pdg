@@ -50,12 +50,12 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$2
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   30 trueControlDependence
-  11:    5 ->    2 loopIndependentDefUseDependence windowMenu$3.!removeAll( )
-  12:    6 ->    6 defOrderDependence canvas$8
+   7:    0 ->   30 trueControlDependence
+   8:    5 ->    2 loopIndependentDefUseDependence windowMenu$3.!removeAll( )
+   9:    6 ->    6 defOrderDependence canvas$8
+  10:    6 ->    7 trueControlDependence
+  11:    6 ->    8 trueControlDependence
+  12:    6 ->    9 trueControlDependence
   13:    6 ->   10 trueControlDependence
   14:    6 ->   11 loopIndependentDefUseDependence canvas$8
   15:    6 ->   11 trueControlDependence
@@ -76,28 +76,29 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$2
   30:    6 ->   27 trueControlDependence
   31:    6 -> * trueControlDependence
   32:    6 -> * trueControlDependence
-  33:    9 ->    6 loopIndependentDefUseDependence this.tabbedCanvas.!getAllCanvases( )
-  34:   10 ->   10 defOrderDependence fmanager$10
-  35:   10 ->   17 declaration
-  36:   10 ->   17 loopIndependentDefUseDependence fmanager$10
-  37:   13 ->   10 loopIndependentDefUseDependence canvas$8.!getFigureManager( )
-  38:   13 ->   13 defOrderDependence canvas$8.!getFigureManager( )
-  39:   14 ->   14 defOrderDependence windowItem$11
-  40:   14 ->   23 declaration
-  41:   14 ->   23 loopIndependentDefUseDependence windowItem$11
-  42:   14 ->   26 declaration
-  43:   14 ->   26 loopIndependentDefUseDependence windowItem$11
-  44:   19 ->   16 loopIndependentDefUseDependence fmanager$10.!getTitle( )
-  45:   19 ->   19 defOrderDependence fmanager$10.!getTitle( )
-  46:   24 ->   21 loopIndependentDefUseDependence windowMenu$3.!add( javax.swing.JMenuItem )
-  47:   24 ->   24 defOrderDependence windowMenu$3.!add( javax.swing.JMenuItem )
-  48: * ->   14 loopIndependentDefUseDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
-  49: * ->   25 loopIndependentDefUseDependence windowItem$11.!addActionListener( java.awt.event.ActionListener )
-  50: * ->   27 loopIndependentDefUseDependence windowItem$11.!javax.swing.event.EventListenerList.listenerList
-  51: * -> * defOrderDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
-  52: * -> * defOrderDependence javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged
-  53: * -> * defOrderDependence windowItem$11.!addActionListener( java.awt.event.ActionListener )
-  54: * -> * loopIndependentDefUseDependence windowItem$11.!javax.swing.event.EventListenerList.listenerList
+  33:    9 ->    6 loopCarriedDefUseDependence this.tabbedCanvas.!getAllCanvases( ) (LC = 6)
+  34:    9 ->    9 defOrderDependence this.tabbedCanvas.!getAllCanvases( )
+  35:   10 ->   10 defOrderDependence fmanager$10
+  36:   10 ->   17 declaration
+  37:   10 ->   17 loopIndependentDefUseDependence fmanager$10
+  38:   13 ->   10 loopIndependentDefUseDependence canvas$8.!getFigureManager( )
+  39:   13 ->   13 defOrderDependence canvas$8.!getFigureManager( )
+  40:   14 ->   14 defOrderDependence windowItem$11
+  41:   14 ->   23 declaration
+  42:   14 ->   23 loopIndependentDefUseDependence windowItem$11
+  43:   14 ->   26 declaration
+  44:   14 ->   26 loopIndependentDefUseDependence windowItem$11
+  45:   19 ->   16 loopIndependentDefUseDependence fmanager$10.!getTitle( )
+  46:   19 ->   19 defOrderDependence fmanager$10.!getTitle( )
+  47:   24 ->   21 loopIndependentDefUseDependence windowMenu$3.!add( javax.swing.JMenuItem )
+  48:   24 ->   24 defOrderDependence windowMenu$3.!add( javax.swing.JMenuItem )
+  49: * ->   14 loopIndependentDefUseDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
+  50: * ->   25 loopIndependentDefUseDependence windowItem$11.!addActionListener( java.awt.event.ActionListener )
+  51: * ->   27 loopCarriedDefUseDependence windowItem$11.!javax.swing.event.EventListenerList.listenerList (LC = 6)
+  52: * -> * defOrderDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
+  53: * -> * defOrderDependence javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged
+  54: * -> * defOrderDependence windowItem$11.!addActionListener( java.awt.event.ActionListener )
+  55: * -> * loopCarriedDefUseDependence windowItem$11.!javax.swing.event.EventListenerList.listenerList (LC = 6)
 --
    0: menuCanceled( javax.swing.event.MenuEvent )
    1:    0 ->    1 trueControlDependence

@@ -85,30 +85,30 @@ Class Name = Test19
   53:    4 ->   12 trueControlDependence
   54:    4 ->   13 trueControlDependence
   55:    5 ->    6 trueControlDependence
-  56:    6 ->    6 loopCarriedDefUseDependence a$1 (LC =    5)
-  57:    6 ->    8 loopCarriedDefUseDependence a$1 (LC =    4)
-  58:    6 ->   11 loopCarriedDefUseDependence a$1 (LC =    4)
+  56:    6 ->    6 loopCarriedDefUseDependence a$1 (LC = 5)
+  57:    6 ->    8 loopIndependentDefUseDependence a$1
+  58:    6 ->   11 loopIndependentDefUseDependence a$1
   59:    6 ->   12 loopIndependentDefUseDependence a$1
   60:    7 ->    8 trueControlDependence
-  61:    8 ->   11 loopCarriedDefUseDependence a$1 (LC =    4)
+  61:    8 ->   11 loopIndependentDefUseDependence a$1
   62:    8 ->   12 loopIndependentDefUseDependence a$1
   63:   10 ->   11 trueControlDependence
-  64:   11 ->   11 loopCarriedDefUseDependence a$1 (LC =   10)
+  64:   11 ->   11 loopCarriedDefUseDependence a$1 (LC = 10)
   65:   11 ->   12 loopIndependentDefUseDependence a$1
-  66:   12 ->    6 loopCarriedDefUseDependence a$1 (LC =    4)
-  67:   12 ->    8 loopCarriedDefUseDependence a$1 (LC =    4)
-  68:   12 ->   11 loopCarriedDefUseDependence a$1 (LC =    4)
-  69:   12 ->   12 loopCarriedDefUseDependence a$1 (LC =    4)
+  66:   12 ->    6 loopCarriedDefUseDependence a$1 (LC = 4)
+  67:   12 ->    8 loopCarriedDefUseDependence a$1 (LC = 4)
+  68:   12 ->   11 loopCarriedDefUseDependence a$1 (LC = 4)
+  69:   12 ->   12 loopCarriedDefUseDependence a$1 (LC = 4)
   70:   12 ->   16 loopIndependentDefUseDependence a$1
-  71:   13 ->    4 loopCarriedDefUseDependence i$0 (LC =    4)
-  72:   13 ->    5 loopCarriedDefUseDependence i$0 (LC =    4)
-  73:   13 ->    6 loopCarriedDefUseDependence i$0 (LC =    4)
-  74:   13 ->    7 loopCarriedDefUseDependence i$0 (LC =    4)
-  75:   13 ->    8 loopCarriedDefUseDependence i$0 (LC =    4)
-  76:   13 ->   10 loopCarriedDefUseDependence i$0 (LC =    4)
-  77:   13 ->   11 loopCarriedDefUseDependence i$0 (LC =    4)
-  78:   13 ->   12 loopCarriedDefUseDependence i$0 (LC =    4)
-  79:   13 ->   13 loopCarriedDefUseDependence i$0 (LC =    4)
+  71:   13 ->    4 loopCarriedDefUseDependence i$0 (LC = 4)
+  72:   13 ->    5 loopCarriedDefUseDependence i$0 (LC = 4)
+  73:   13 ->    6 loopCarriedDefUseDependence i$0 (LC = 4)
+  74:   13 ->    7 loopCarriedDefUseDependence i$0 (LC = 4)
+  75:   13 ->    8 loopCarriedDefUseDependence i$0 (LC = 4)
+  76:   13 ->   10 loopCarriedDefUseDependence i$0 (LC = 4)
+  77:   13 ->   11 loopCarriedDefUseDependence i$0 (LC = 4)
+  78:   13 ->   12 loopCarriedDefUseDependence i$0 (LC = 4)
+  79:   13 ->   13 loopCarriedDefUseDependence i$0 (LC = 4)
   80: * ->   14 loopIndependentDefUseDependence System.out.!println( int )
   81: * ->   18 loopIndependentDefUseDependence System.out.!println( int )
   82: * -> * outputDependence System.out.!java.io.PrintStream.trouble

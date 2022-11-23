@@ -111,21 +111,21 @@ Class Name = Test08
   67:    7 ->   10 trueControlDependence
   68:    7 ->   11 trueControlDependence
   69:    7 ->   12 falseControlDependence
-  70:    8 ->    5 loopCarriedDefUseDependence c$2 (LC =    5)
-  71:    8 ->    8 loopCarriedDefUseDependence c$2 (LC =    5)
-  72:    8 ->   13 loopCarriedDefUseDependence c$2 (LC =    5)
+  70:    8 ->    5 loopCarriedDefUseDependence c$2 (LC = 5)
+  71:    8 ->    8 loopCarriedDefUseDependence c$2 (LC = 5)
+  72:    8 ->   13 loopCarriedDefUseDependence c$2 (LC = 5)
   73:    8 ->   33 loopIndependentDefUseDependence c$2
-  74:    9 ->    7 loopCarriedDefUseDependence b$1 (LC =    5)
+  74:    9 ->    7 loopCarriedDefUseDependence b$1 (LC = 5)
   75:    9 ->    9 defOrderDependence b$1
-  76:    9 ->   12 loopCarriedDefUseDependence b$1 (LC =    5)
-  77:    9 ->   15 loopCarriedDefUseDependence b$1 (LC =    5)
-  78:    9 ->   16 loopCarriedDefUseDependence b$1 (LC =    5)
+  76:    9 ->   12 loopCarriedDefUseDependence b$1 (LC = 5)
+  77:    9 ->   15 loopCarriedDefUseDependence b$1 (LC = 5)
+  78:    9 ->   16 loopCarriedDefUseDependence b$1 (LC = 5)
   79:    9 ->   29 loopIndependentDefUseDependence b$1
-  80:   10 ->    7 loopCarriedDefUseDependence a$0 (LC =    5)
-  81:   10 ->    9 loopCarriedDefUseDependence a$0 (LC =    5)
-  82:   10 ->   10 loopCarriedDefUseDependence a$0 (LC =    5)
+  80:   10 ->    7 loopCarriedDefUseDependence a$0 (LC = 5)
+  81:   10 ->    9 loopCarriedDefUseDependence a$0 (LC = 5)
+  82:   10 ->   10 loopCarriedDefUseDependence a$0 (LC = 5)
   83:   10 ->   11 loopIndependentDefUseDependence a$0
-  84:   10 ->   12 loopCarriedDefUseDependence a$0 (LC =    5)
+  84:   10 ->   12 loopCarriedDefUseDependence a$0 (LC = 5)
   85:   10 ->   14 outputDependence a$0
   86:   10 ->   25 loopIndependentDefUseDependence a$0
   87:   11 ->    6 outputDependence i$4
@@ -134,23 +134,23 @@ Class Name = Test08
   90:   12 ->   14 trueControlDependence
   91:   12 ->   15 trueControlDependence
   92:   12 ->   16 trueControlDependence
-  93:   13 ->    5 loopCarriedDefUseDependence c$2 (LC =    5)
-  94:   13 ->    8 loopCarriedDefUseDependence c$2 (LC =    5)
-  95:   13 ->   13 loopCarriedDefUseDependence c$2 (LC =    5)
+  93:   13 ->    5 loopCarriedDefUseDependence c$2 (LC = 5)
+  94:   13 ->    8 loopCarriedDefUseDependence c$2 (LC = 5)
+  95:   13 ->   13 loopCarriedDefUseDependence c$2 (LC = 5)
   96:   13 ->   14 loopIndependentDefUseDependence c$2
   97:   13 ->   33 loopIndependentDefUseDependence c$2
   98:   14 ->   15 outputDependence a$0
-  99:   15 ->    7 loopCarriedDefUseDependence a$0 (LC =    5)
- 100:   15 ->    9 loopCarriedDefUseDependence a$0 (LC =    5)
- 101:   15 ->   10 loopCarriedDefUseDependence a$0 (LC =    5)
- 102:   15 ->   12 loopCarriedDefUseDependence a$0 (LC =    5)
+  99:   15 ->    7 loopCarriedDefUseDependence a$0 (LC = 5)
+ 100:   15 ->    9 loopCarriedDefUseDependence a$0 (LC = 5)
+ 101:   15 ->   10 loopCarriedDefUseDependence a$0 (LC = 5)
+ 102:   15 ->   12 loopCarriedDefUseDependence a$0 (LC = 5)
  103:   15 ->   14 outputDependence a$0
  104:   15 ->   25 loopIndependentDefUseDependence a$0
- 105:   16 ->    7 loopCarriedDefUseDependence b$1 (LC =    5)
+ 105:   16 ->    7 loopCarriedDefUseDependence b$1 (LC = 5)
  106:   16 ->    9 outputDependence b$1
- 107:   16 ->   12 loopCarriedDefUseDependence b$1 (LC =    5)
- 108:   16 ->   15 loopCarriedDefUseDependence b$1 (LC =    5)
- 109:   16 ->   16 loopCarriedDefUseDependence b$1 (LC =    5)
+ 107:   16 ->   12 loopCarriedDefUseDependence b$1 (LC = 5)
+ 108:   16 ->   15 loopCarriedDefUseDependence b$1 (LC = 5)
+ 109:   16 ->   16 loopCarriedDefUseDependence b$1 (LC = 5)
  110:   16 ->   29 loopIndependentDefUseDependence b$1
  111: * ->   19 loopIndependentDefUseDependence System.out.!println( int )
  112: * ->   23 loopIndependentDefUseDependence System.out.!println( int )

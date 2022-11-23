@@ -96,18 +96,18 @@ Class Name = Producer
   50:   22 ->   22 defOrderDependence this.!random( )
   51:   23 ->   17 loopIndependentDefUseDependence this.!sleep( long )
   52:   23 ->   23 defOrderDependence this.!sleep( long )
-  53:   24 ->    3 loopCarriedDefUseDependence i$0 (LC =    3)
-  54:   24 ->    6 loopCarriedDefUseDependence i$0 (LC =    3)
-  55:   24 ->   24 loopCarriedDefUseDependence i$0 (LC =    3)
+  53:   24 ->    3 loopCarriedDefUseDependence i$0 (LC = 3)
+  54:   24 ->    6 loopCarriedDefUseDependence i$0 (LC = 3)
+  55:   24 ->   24 loopCarriedDefUseDependence i$0 (LC = 3)
   56:   27 ->   25 trueControlDependence
   57:   27 ->   29 trueControlDependence
   58:   27 ->   31 exceptionCatch
   59:   27 -> * trueControlDependence
   60:   29 ->   25 loopIndependentDefUseDependence this.storage.!put( java.lang.String )
-  61: * ->   10 loopCarriedDefUseDependence this.storage.data (LC =    3)
+  61: * ->   10 loopCarriedDefUseDependence this.storage.data (LC = 3)
   62: * ->   12 loopIndependentDefUseDependence this.storage.data
   63: * ->   13 loopIndependentDefUseDependence System.out.!println( java.lang.String )
-  64: * ->   27 loopCarriedDefUseDependence this.storage.data (LC =    3)
+  64: * ->   27 loopCarriedDefUseDependence this.storage.data (LC = 3)
   65: * ->   29 loopIndependentDefUseDependence this.storage.data
   66: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
   67: * -> * defOrderDependence System.out.!println( java.lang.String )

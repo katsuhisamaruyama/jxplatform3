@@ -35,25 +35,26 @@ Class Name = Test33
    7:    2 ->    8 loopIndependentDefUseDependence in$2
    8:    4 ->    2 trueControlDependence
    9:    4 ->    6 trueControlDependence
-  10:    4 ->    8 trueControlDependence
-  11:    4 ->    9 trueControlDependence
-  12:    4 ->   13 exceptionCatch
-  13:    4 -> * trueControlDependence
-  14:    6 ->    7 declaration
-  15:    6 ->    7 outputDependence c$3
-  16:    7 ->    7 outputDependence c$3
+  10:    4 ->   13 exceptionCatch
+  11:    4 -> * trueControlDependence
+  12:    6 ->    7 declaration
+  13:    6 ->    7 outputDependence c$3
+  14:    7 ->    7 outputDependence c$3
+  15:    7 ->    8 trueControlDependence
+  16:    7 ->    9 trueControlDependence
   17:    7 ->   11 trueControlDependence
   18:    9 ->    7 trueControlDependence
   19:    9 ->   10 trueControlDependence
   20:    9 ->   13 exceptionCatch
-  21:   10 ->    7 loopIndependentDefUseDependence in$2.!read( )
-  22:   13 ->   14 trueControlDependence
-  23:   13 ->   15 loopIndependentDefUseDependence e$4
-  24:   13 ->   15 trueControlDependence
-  25:   13 ->   16 trueControlDependence
-  26:   13 ->   17 trueControlDependence
-  27:   17 ->   14 loopIndependentDefUseDependence e$4.!printStackTrace( )
-  28: * ->    2 loopIndependentDefUseDependence java.io.FileInputStream.!FileInputStream( java.lang.String )
+  21:   10 ->    7 loopCarriedDefUseDependence in$2.!read( ) (LC = 7)
+  22:   10 ->   10 defOrderDependence in$2.!read( )
+  23:   13 ->   14 trueControlDependence
+  24:   13 ->   15 loopIndependentDefUseDependence e$4
+  25:   13 ->   15 trueControlDependence
+  26:   13 ->   16 trueControlDependence
+  27:   13 ->   17 trueControlDependence
+  28:   17 ->   14 loopIndependentDefUseDependence e$4.!printStackTrace( )
+  29: * ->    2 loopIndependentDefUseDependence java.io.FileInputStream.!FileInputStream( java.lang.String )
 --
 ----- ClDG (to here) -----
 

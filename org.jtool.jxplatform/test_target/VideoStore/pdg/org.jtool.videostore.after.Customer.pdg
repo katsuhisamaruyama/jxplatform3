@@ -100,7 +100,7 @@ Class Name = org.jtool.videostore.after.Customer
   12:    2 ->    4 trueControlDependence
   13:    2 ->    5 trueControlDependence
   14:    2 ->    6 trueControlDependence
-  15:    3 ->    3 loopIndependentDefUseDependence result$0
+  15:    3 ->    3 loopCarriedDefUseDependence result$0 (LC = 2)
   16:    3 ->    7 loopIndependentDefUseDependence result$0
   17:    6 ->    3 loopIndependentDefUseDependence each$1.!getFrequentRenterPoints( )
   18:    6 ->    6 defOrderDependence each$1.!getFrequentRenterPoints( )
@@ -179,7 +179,7 @@ Class Name = org.jtool.videostore.after.Customer
   42:    5 ->   16 trueControlDependence
   43:    5 ->   17 trueControlDependence
   44:    5 ->   18 trueControlDependence
-  45:    6 ->    6 loopIndependentDefUseDependence result$0
+  45:    6 ->    6 loopCarriedDefUseDependence result$0 (LC = 5)
   46:    6 ->   19 loopIndependentDefUseDependence result$0
   47:   10 ->    7 loopIndependentDefUseDependence each$1.!getMovie( )
   48:   10 ->   10 defOrderDependence each$1.!getMovie( )
@@ -213,7 +213,7 @@ Class Name = org.jtool.videostore.after.Customer
   12:    2 ->    4 trueControlDependence
   13:    2 ->    5 trueControlDependence
   14:    2 ->    6 trueControlDependence
-  15:    3 ->    3 loopIndependentDefUseDependence result$0
+  15:    3 ->    3 loopCarriedDefUseDependence result$0 (LC = 2)
   16:    3 ->    7 loopIndependentDefUseDependence result$0
   17:    6 ->    3 loopIndependentDefUseDependence each$1.!getCharge( )
   18:    6 ->    6 defOrderDependence each$1.!getCharge( )

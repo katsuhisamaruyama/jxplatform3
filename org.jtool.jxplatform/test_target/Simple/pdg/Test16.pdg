@@ -45,20 +45,20 @@ Class Name = Test16
   23:    4 ->    6 trueControlDependence
   24:    4 ->    8 falseControlDependence
   25:    4 ->   10 trueControlDependence
-  26:    5 ->    5 loopCarriedDefUseDependence a$0 (LC =    3)
+  26:    5 ->    5 loopCarriedDefUseDependence a$0 (LC = 3)
   27:    5 ->    6 loopIndependentDefUseDependence a$0
   28:    5 ->    7 loopIndependentDefUseDependence a$0
   29:    5 ->   13 loopIndependentDefUseDependence a$0
   30:    6 ->    7 trueControlDependence
-  31:    7 ->    5 loopCarriedDefUseDependence a$0 (LC =    3)
-  32:    7 ->    6 loopCarriedDefUseDependence a$0 (LC =    6)
-  33:    7 ->    7 loopCarriedDefUseDependence a$0 (LC =    6)
+  31:    7 ->    5 loopCarriedDefUseDependence a$0 (LC = 3)
+  32:    7 ->    6 loopCarriedDefUseDependence a$0 (LC = 6)
+  33:    7 ->    7 loopCarriedDefUseDependence a$0 (LC = 6)
   34:    7 ->   13 loopIndependentDefUseDependence a$0
   35:    8 ->    3 fallThroughControlDependence
   36:    8 ->   10 fallThroughControlDependence
-  37:   10 ->    3 loopCarriedDefUseDependence i$1 (LC =    3)
-  38:   10 ->    4 loopCarriedDefUseDependence i$1 (LC =    3)
-  39:   10 ->   10 loopCarriedDefUseDependence i$1 (LC =    3)
+  37:   10 ->    3 loopCarriedDefUseDependence i$1 (LC = 3)
+  38:   10 ->    4 loopCarriedDefUseDependence i$1 (LC = 3)
+  39:   10 ->   10 loopCarriedDefUseDependence i$1 (LC = 3)
   40: * ->   11 loopIndependentDefUseDependence System.out.!println( int )
 --
    0: Test16( )

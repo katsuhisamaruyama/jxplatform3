@@ -37,8 +37,8 @@ Class Name = Test113
   20:    3 ->    5 trueControlDependence
   21:    4 ->    9 loopIndependentDefUseDependence y$1
   22:    5 ->    6 trueControlDependence
-  23:    6 ->    5 loopCarriedDefUseDependence x$0 (LC =    5)
-  24:    6 ->    6 loopCarriedDefUseDependence x$0 (LC =    5)
+  23:    6 ->    5 loopCarriedDefUseDependence x$0 (LC = 5)
+  24:    6 ->    6 loopCarriedDefUseDependence x$0 (LC = 5)
   25:    6 ->    8 loopIndependentDefUseDependence x$0
 --
    0: Test113( )

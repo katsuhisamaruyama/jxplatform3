@@ -99,49 +99,49 @@ Class Name = Block
    3 formalIn D = { y$2 } U = {  }
    4 switchSt D = { $SwitchDef } U = { id$0 }
    5 switchCase D = {  } U = { $SwitchDef }
-   6 returnSt D = { $_ } U = { YellowBlock.!YellowBlock( int int ) }
+   6 returnSt D = { $_ } U = { YellowBlock.!YellowBlock( int int ), YellowBlock.!YellowBlock( int int ).color, YellowBlock.!YellowBlock( int int ).posX, YellowBlock.!YellowBlock( int int ).posY }
    7 receiver D = {  } U = {  }
    8 constructorCall D = {  } U = { YellowBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = YellowBlock#YellowBlock( int int )
    9 actualIn D = {  } U = { x$1 }
   10 actualIn D = {  } U = { y$2 }
   11 actualOut D = { YellowBlock.!YellowBlock( int int ) } U = { YellowBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
   12 switchCase D = {  } U = { $SwitchDef }
-  13 returnSt D = { $_ } U = { BlueBlock.!BlueBlock( int int ) }
+  13 returnSt D = { $_ } U = { BlueBlock.!BlueBlock( int int ), BlueBlock.!BlueBlock( int int ).color, BlueBlock.!BlueBlock( int int ).posX, BlueBlock.!BlueBlock( int int ).posY }
   14 receiver D = {  } U = {  }
   15 constructorCall D = {  } U = { BlueBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = BlueBlock#BlueBlock( int int )
   16 actualIn D = {  } U = { x$1 }
   17 actualIn D = {  } U = { y$2 }
   18 actualOut D = { BlueBlock.!BlueBlock( int int ) } U = { BlueBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
   19 switchCase D = {  } U = { $SwitchDef }
-  20 returnSt D = { $_ } U = { GreenBlock.!GreenBlock( int int ) }
+  20 returnSt D = { $_ } U = { GreenBlock.!GreenBlock( int int ), GreenBlock.!GreenBlock( int int ).color, GreenBlock.!GreenBlock( int int ).posX, GreenBlock.!GreenBlock( int int ).posY }
   21 receiver D = {  } U = {  }
   22 constructorCall D = {  } U = { GreenBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = GreenBlock#GreenBlock( int int )
   23 actualIn D = {  } U = { x$1 }
   24 actualIn D = {  } U = { y$2 }
   25 actualOut D = { GreenBlock.!GreenBlock( int int ) } U = { GreenBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
   26 switchCase D = {  } U = { $SwitchDef }
-  27 returnSt D = { $_ } U = { CyanBlock.!CyanBlock( int int ) }
+  27 returnSt D = { $_ } U = { CyanBlock.!CyanBlock( int int ), CyanBlock.!CyanBlock( int int ).color, CyanBlock.!CyanBlock( int int ).posX, CyanBlock.!CyanBlock( int int ).posY }
   28 receiver D = {  } U = {  }
   29 constructorCall D = {  } U = { CyanBlock.COLOR, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = CyanBlock#CyanBlock( int int )
   30 actualIn D = {  } U = { x$1 }
   31 actualIn D = {  } U = { y$2 }
   32 actualOut D = { CyanBlock.!CyanBlock( int int ) } U = { CyanBlock.COLOR, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
   33 switchCase D = {  } U = { $SwitchDef }
-  34 returnSt D = { $_ } U = { RedBlock.!RedBlock( int int ) }
+  34 returnSt D = { $_ } U = { RedBlock.!RedBlock( int int ), RedBlock.!RedBlock( int int ).color, RedBlock.!RedBlock( int int ).posX, RedBlock.!RedBlock( int int ).posY }
   35 receiver D = {  } U = {  }
   36 constructorCall D = {  } U = { RedBlock.color, this.offsetX, this.offsetX.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = RedBlock#RedBlock( int int )
   37 actualIn D = {  } U = { x$1 }
   38 actualIn D = {  } U = { y$2 }
   39 actualOut D = { RedBlock.!RedBlock( int int ) } U = { RedBlock.color, this.offsetX, this.offsetX.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
   40 switchCase D = {  } U = { $SwitchDef }
-  41 returnSt D = { $_ } U = { MagentaBlock.!MagentaBlock( int int ) }
+  41 returnSt D = { $_ } U = { MagentaBlock.!MagentaBlock( int int ), MagentaBlock.!MagentaBlock( int int ).color, MagentaBlock.!MagentaBlock( int int ).posX, MagentaBlock.!MagentaBlock( int int ).posY }
   42 receiver D = {  } U = {  }
   43 constructorCall D = {  } U = { MagentaBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = MagentaBlock#MagentaBlock( int int )
   44 actualIn D = {  } U = { x$1 }
   45 actualIn D = {  } U = { y$2 }
   46 actualOut D = { MagentaBlock.!MagentaBlock( int int ) } U = { MagentaBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
   47 switchCase D = {  } U = { $SwitchDef }
-  48 returnSt D = { $_ } U = { OrangeBlock.!OrangeBlock( int int ) }
+  48 returnSt D = { $_ } U = { OrangeBlock.!OrangeBlock( int int ), OrangeBlock.!OrangeBlock( int int ).color, OrangeBlock.!OrangeBlock( int int ).posX, OrangeBlock.!OrangeBlock( int int ).posY }
   49 receiver D = {  } U = {  }
   50 constructorCall D = {  } U = { OrangeBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = OrangeBlock#OrangeBlock( int int )
   51 actualIn D = {  } U = { x$1 }
@@ -152,44 +152,44 @@ Class Name = Block
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { super.posX } U = {  }
 * actualOut D = { super.posY } U = {  }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { YellowBlock.!YellowBlock( int int ).color } U = {  }
+* actualOut D = { YellowBlock.!YellowBlock( int int ).posX } U = {  }
+* actualOut D = { YellowBlock.!YellowBlock( int int ).posY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { super.posX } U = {  }
 * actualOut D = { super.posY } U = {  }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { BlueBlock.!BlueBlock( int int ).color } U = {  }
+* actualOut D = { BlueBlock.!BlueBlock( int int ).posX } U = {  }
+* actualOut D = { BlueBlock.!BlueBlock( int int ).posY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { super.posX } U = {  }
 * actualOut D = { super.posY } U = {  }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { GreenBlock.!GreenBlock( int int ).color } U = {  }
+* actualOut D = { GreenBlock.!GreenBlock( int int ).posX } U = {  }
+* actualOut D = { GreenBlock.!GreenBlock( int int ).posY } U = {  }
 * actualOut D = { super.posX } U = {  }
 * actualOut D = { super.posY } U = {  }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { CyanBlock.!CyanBlock( int int ).color } U = {  }
+* actualOut D = { CyanBlock.!CyanBlock( int int ).posX } U = {  }
+* actualOut D = { CyanBlock.!CyanBlock( int int ).posY } U = {  }
 * actualOut D = { this.offsetX } U = {  }
 * actualOut D = { super.posX } U = {  }
 * actualOut D = { super.posY } U = {  }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { RedBlock.!RedBlock( int int ).color } U = {  }
+* actualOut D = { RedBlock.!RedBlock( int int ).posX } U = {  }
+* actualOut D = { RedBlock.!RedBlock( int int ).posY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { super.posX } U = {  }
 * actualOut D = { super.posY } U = {  }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { MagentaBlock.!MagentaBlock( int int ).color } U = {  }
+* actualOut D = { MagentaBlock.!MagentaBlock( int int ).posX } U = {  }
+* actualOut D = { MagentaBlock.!MagentaBlock( int int ).posY } U = {  }
 * actualOut D = { this.offsetY } U = {  }
 * actualOut D = { super.posX } U = {  }
 * actualOut D = { super.posY } U = {  }
-* actualOut D = { $_.color } U = {  }
-* actualOut D = { $_.posX } U = {  }
-* actualOut D = { $_.posY } U = {  }
+* actualOut D = { OrangeBlock.!OrangeBlock( int int ).color } U = {  }
+* actualOut D = { OrangeBlock.!OrangeBlock( int int ).posX } U = {  }
+* actualOut D = { OrangeBlock.!OrangeBlock( int int ).posY } U = {  }
 --
    0 methodEntry [ Block#fall( ) ]
    1 ifSt D = {  } U = { this.!canMove( int int ) }
@@ -536,54 +536,58 @@ Class Name = Block
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    6 trueControlDependence
-   5:    0 ->    7 trueControlDependence
-   6:    0 ->    8 trueControlDependence
-   7:    0 ->   31 trueControlDependence
-   8:    0 -> * trueControlDependence
-   9:    1 ->    6 declaration
-  10:    1 ->    6 loopIndependentDefUseDependence it$0
-  11:    1 ->   10 declaration
-  12:    1 ->   10 loopIndependentDefUseDependence it$0
-  13:    5 ->    9 trueControlDependence
-  14:    5 ->   10 trueControlDependence
-  15:    5 ->   11 trueControlDependence
-  16:    5 ->   12 trueControlDependence
-  17:    5 ->   13 trueControlDependence
-  18:    5 ->   14 trueControlDependence
-  19:    5 ->   15 trueControlDependence
-  20:    5 ->   16 trueControlDependence
-  21:    5 ->   17 trueControlDependence
-  22:    5 ->   18 trueControlDependence
-  23:    5 ->   19 trueControlDependence
-  24:    5 ->   20 trueControlDependence
-  25:    5 ->   21 trueControlDependence
-  26:    5 ->   22 trueControlDependence
-  27:    5 ->   23 trueControlDependence
-  28:    5 ->   24 trueControlDependence
-  29:    5 ->   25 trueControlDependence
-  30:    5 ->   26 trueControlDependence
-  31:    5 ->   29 falseControlDependence
-  32:    8 ->    5 loopIndependentDefUseDependence it$0.!hasNext( )
-  33:    9 ->    9 defOrderDependence tile$1
-  34:    9 ->   19 declaration
-  35:    9 ->   19 loopIndependentDefUseDependence tile$1
-  36:    9 ->   24 declaration
-  37:    9 ->   24 loopIndependentDefUseDependence tile$1
-  38:   12 ->    9 loopIndependentDefUseDependence it$0.!next( )
-  39:   12 ->   12 defOrderDependence it$0.!next( )
-  40:   13 ->    5 falseControlDependence
-  41:   13 ->   27 trueControlDependence
-  42:   20 ->   16 loopIndependentDefUseDependence this.!getXByRotation( Tile )
-  43:   20 ->   20 defOrderDependence this.!getXByRotation( Tile )
-  44:   25 ->   21 loopIndependentDefUseDependence this.!getYByRotation( Tile )
-  45:   25 ->   25 defOrderDependence this.!getYByRotation( Tile )
-  46:   26 ->   13 loopIndependentDefUseDependence this.!canTake( int int )
-  47:   26 ->   26 defOrderDependence this.!canTake( int int )
-  48:   27 ->    5 fallThroughControlDependence
-  49:   27 ->   31 loopIndependentDefUseDependence $_
-  50:   29 ->   31 loopIndependentDefUseDependence $_
-  51: * ->    1 loopIndependentDefUseDependence this.tiles.!iterator( )
+   4:    0 ->   31 trueControlDependence
+   5:    0 -> * trueControlDependence
+   6:    1 ->    6 declaration
+   7:    1 ->    6 loopIndependentDefUseDependence it$0
+   8:    1 ->   10 declaration
+   9:    1 ->   10 loopIndependentDefUseDependence it$0
+  10:    5 ->    9 trueControlDependence
+  11:    5 ->   10 trueControlDependence
+  12:    5 ->   11 trueControlDependence
+  13:    5 ->   12 trueControlDependence
+  14:    5 ->   13 trueControlDependence
+  15:    5 ->   14 trueControlDependence
+  16:    5 ->   15 trueControlDependence
+  17:    5 ->   16 trueControlDependence
+  18:    5 ->   17 trueControlDependence
+  19:    5 ->   18 trueControlDependence
+  20:    5 ->   19 trueControlDependence
+  21:    5 ->   20 trueControlDependence
+  22:    5 ->   21 trueControlDependence
+  23:    5 ->   22 trueControlDependence
+  24:    5 ->   23 trueControlDependence
+  25:    5 ->   24 trueControlDependence
+  26:    5 ->   25 trueControlDependence
+  27:    5 ->   26 trueControlDependence
+  28:    5 ->   29 falseControlDependence
+  29:    8 ->    5 loopCarriedDefUseDependence it$0.!hasNext( ) (LC = 5)
+  30:    8 ->    8 defOrderDependence it$0.!hasNext( )
+  31:    9 ->    9 defOrderDependence tile$1
+  32:    9 ->   19 declaration
+  33:    9 ->   19 loopIndependentDefUseDependence tile$1
+  34:    9 ->   24 declaration
+  35:    9 ->   24 loopIndependentDefUseDependence tile$1
+  36:   12 ->    9 loopIndependentDefUseDependence it$0.!next( )
+  37:   12 ->   12 defOrderDependence it$0.!next( )
+  38:   13 ->    5 falseControlDependence
+  39:   13 ->    6 falseControlDependence
+  40:   13 ->    7 falseControlDependence
+  41:   13 ->    8 falseControlDependence
+  42:   13 ->   27 trueControlDependence
+  43:   20 ->   16 loopIndependentDefUseDependence this.!getXByRotation( Tile )
+  44:   20 ->   20 defOrderDependence this.!getXByRotation( Tile )
+  45:   25 ->   21 loopIndependentDefUseDependence this.!getYByRotation( Tile )
+  46:   25 ->   25 defOrderDependence this.!getYByRotation( Tile )
+  47:   26 ->   13 loopIndependentDefUseDependence this.!canTake( int int )
+  48:   26 ->   26 defOrderDependence this.!canTake( int int )
+  49:   27 ->    5 fallThroughControlDependence
+  50:   27 ->    6 fallThroughControlDependence
+  51:   27 ->    7 fallThroughControlDependence
+  52:   27 ->    8 fallThroughControlDependence
+  53:   27 ->   31 loopIndependentDefUseDependence $_
+  54:   29 ->   31 loopIndependentDefUseDependence $_
+  55: * ->    1 loopIndependentDefUseDependence this.tiles.!iterator( )
 --
    0: NUMBER_OF
    1:    0 ->    1 trueControlDependence
@@ -597,19 +601,19 @@ Class Name = Block
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
    8:    0 ->    9 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 ->   11 trueControlDependence
-  11:    0 ->   12 trueControlDependence
-  12:    0 ->   30 trueControlDependence
-  13:    0 -> * trueControlDependence
-  14:    1 ->    3 loopIndependentDefUseDependence x$0
-  15:    1 ->   20 loopIndependentDefUseDependence x$0
-  16:    2 ->    4 loopIndependentDefUseDependence y$1
-  17:    2 ->   24 loopIndependentDefUseDependence y$1
-  18:    5 ->   10 declaration
-  19:    5 ->   10 loopIndependentDefUseDependence it$2
-  20:    5 ->   14 declaration
-  21:    5 ->   14 loopIndependentDefUseDependence it$2
+   9:    0 ->   30 trueControlDependence
+  10:    0 -> * trueControlDependence
+  11:    1 ->    3 loopIndependentDefUseDependence x$0
+  12:    1 ->   20 loopIndependentDefUseDependence x$0
+  13:    2 ->    4 loopIndependentDefUseDependence y$1
+  14:    2 ->   24 loopIndependentDefUseDependence y$1
+  15:    5 ->   10 declaration
+  16:    5 ->   10 loopIndependentDefUseDependence it$2
+  17:    5 ->   14 declaration
+  18:    5 ->   14 loopIndependentDefUseDependence it$2
+  19:    9 ->   10 trueControlDependence
+  20:    9 ->   11 trueControlDependence
+  21:    9 ->   12 trueControlDependence
   22:    9 ->   13 trueControlDependence
   23:    9 ->   14 trueControlDependence
   24:    9 ->   15 trueControlDependence
@@ -628,29 +632,30 @@ Class Name = Block
   37:    9 ->   28 trueControlDependence
   38:    9 -> * trueControlDependence
   39:    9 -> * trueControlDependence
-  40:   12 ->    9 loopIndependentDefUseDependence it$2.!hasNext( )
-  41:   13 ->   13 defOrderDependence tile$3
-  42:   13 ->   18 declaration
-  43:   13 ->   18 loopIndependentDefUseDependence tile$3
-  44:   13 ->   21 declaration
-  45:   13 ->   21 loopIndependentDefUseDependence tile$3
-  46:   13 ->   25 declaration
-  47:   13 ->   25 loopIndependentDefUseDependence tile$3
-  48:   16 ->   13 loopIndependentDefUseDependence it$2.!next( )
-  49:   16 ->   16 defOrderDependence it$2.!next( )
-  50:   23 ->   20 loopIndependentDefUseDependence tile$3.!getPosX( )
-  51:   23 ->   23 defOrderDependence tile$3.!getPosX( )
-  52:   27 ->   24 loopIndependentDefUseDependence tile$3.!getPosY( )
-  53:   27 ->   27 defOrderDependence tile$3.!getPosY( )
-  54:   28 ->   17 loopIndependentDefUseDependence tile$3.!setPosXY( int int )
-  55:   28 ->   28 defOrderDependence tile$3.!setPosXY( int int )
-  56: * ->    5 loopIndependentDefUseDependence this.tiles.!iterator( )
-  57: * ->   22 loopCarriedDefUseDependence tile$3.posX (LC =    9)
-  58: * ->   23 loopCarriedDefUseDependence tile$3.posX (LC =    9)
-  59: * ->   26 loopCarriedDefUseDependence tile$3.posY (LC =    9)
-  60: * ->   27 loopCarriedDefUseDependence tile$3.posY (LC =    9)
-  61: * -> * defOrderDependence tile$3.posX
-  62: * -> * defOrderDependence tile$3.posY
+  40:   12 ->    9 loopCarriedDefUseDependence it$2.!hasNext( ) (LC = 9)
+  41:   12 ->   12 defOrderDependence it$2.!hasNext( )
+  42:   13 ->   13 defOrderDependence tile$3
+  43:   13 ->   18 declaration
+  44:   13 ->   18 loopIndependentDefUseDependence tile$3
+  45:   13 ->   21 declaration
+  46:   13 ->   21 loopIndependentDefUseDependence tile$3
+  47:   13 ->   25 declaration
+  48:   13 ->   25 loopIndependentDefUseDependence tile$3
+  49:   16 ->   13 loopIndependentDefUseDependence it$2.!next( )
+  50:   16 ->   16 defOrderDependence it$2.!next( )
+  51:   23 ->   20 loopIndependentDefUseDependence tile$3.!getPosX( )
+  52:   23 ->   23 defOrderDependence tile$3.!getPosX( )
+  53:   27 ->   24 loopIndependentDefUseDependence tile$3.!getPosY( )
+  54:   27 ->   27 defOrderDependence tile$3.!getPosY( )
+  55:   28 ->   17 loopIndependentDefUseDependence tile$3.!setPosXY( int int )
+  56:   28 ->   28 defOrderDependence tile$3.!setPosXY( int int )
+  57: * ->    5 loopIndependentDefUseDependence this.tiles.!iterator( )
+  58: * ->   22 loopCarriedDefUseDependence tile$3.posX (LC = 9)
+  59: * ->   23 loopCarriedDefUseDependence tile$3.posX (LC = 9)
+  60: * ->   26 loopCarriedDefUseDependence tile$3.posY (LC = 9)
+  61: * ->   27 loopCarriedDefUseDependence tile$3.posY (LC = 9)
+  62: * -> * defOrderDependence tile$3.posX
+  63: * -> * defOrderDependence tile$3.posY
 --
    0: moveLeft( )
    1:    0 ->    1 trueControlDependence
@@ -831,12 +836,33 @@ Class Name = Block
  138:   48 ->   57 loopIndependentDefUseDependence $_
  139:   53 ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int )
  140:   55 ->   57 loopIndependentDefUseDependence $_
- 141: * ->   11 loopIndependentDefUseDependence this.offsetY
- 142: * ->   18 loopIndependentDefUseDependence this.offsetY
- 143: * ->   25 loopIndependentDefUseDependence this.offsetY
- 144: * ->   39 loopIndependentDefUseDependence this.offsetX
- 145: * ->   46 loopIndependentDefUseDependence this.offsetY
- 146: * ->   53 loopIndependentDefUseDependence this.offsetY
+ 141: * ->    6 loopIndependentDefUseDependence YellowBlock.!YellowBlock( int int ).color
+ 142: * ->    6 loopIndependentDefUseDependence YellowBlock.!YellowBlock( int int ).posX
+ 143: * ->    6 loopIndependentDefUseDependence YellowBlock.!YellowBlock( int int ).posY
+ 144: * ->   11 loopIndependentDefUseDependence this.offsetY
+ 145: * ->   13 loopIndependentDefUseDependence BlueBlock.!BlueBlock( int int ).color
+ 146: * ->   13 loopIndependentDefUseDependence BlueBlock.!BlueBlock( int int ).posX
+ 147: * ->   13 loopIndependentDefUseDependence BlueBlock.!BlueBlock( int int ).posY
+ 148: * ->   18 loopIndependentDefUseDependence this.offsetY
+ 149: * ->   20 loopIndependentDefUseDependence GreenBlock.!GreenBlock( int int ).color
+ 150: * ->   20 loopIndependentDefUseDependence GreenBlock.!GreenBlock( int int ).posX
+ 151: * ->   20 loopIndependentDefUseDependence GreenBlock.!GreenBlock( int int ).posY
+ 152: * ->   25 loopIndependentDefUseDependence this.offsetY
+ 153: * ->   27 loopIndependentDefUseDependence CyanBlock.!CyanBlock( int int ).color
+ 154: * ->   27 loopIndependentDefUseDependence CyanBlock.!CyanBlock( int int ).posX
+ 155: * ->   27 loopIndependentDefUseDependence CyanBlock.!CyanBlock( int int ).posY
+ 156: * ->   34 loopIndependentDefUseDependence RedBlock.!RedBlock( int int ).color
+ 157: * ->   34 loopIndependentDefUseDependence RedBlock.!RedBlock( int int ).posX
+ 158: * ->   34 loopIndependentDefUseDependence RedBlock.!RedBlock( int int ).posY
+ 159: * ->   39 loopIndependentDefUseDependence this.offsetX
+ 160: * ->   41 loopIndependentDefUseDependence MagentaBlock.!MagentaBlock( int int ).color
+ 161: * ->   41 loopIndependentDefUseDependence MagentaBlock.!MagentaBlock( int int ).posX
+ 162: * ->   41 loopIndependentDefUseDependence MagentaBlock.!MagentaBlock( int int ).posY
+ 163: * ->   46 loopIndependentDefUseDependence this.offsetY
+ 164: * ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int ).color
+ 165: * ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int ).posX
+ 166: * ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int ).posY
+ 167: * ->   53 loopIndependentDefUseDependence this.offsetY
 --
    0: fall( )
    1:    0 ->    1 trueControlDependence
@@ -883,16 +909,16 @@ Class Name = Block
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    6 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 ->   23 trueControlDependence
-  10:    0 -> * trueControlDependence
-  11:    1 ->   17 loopIndependentDefUseDependence dy$0
-  12:    2 ->    7 declaration
-  13:    2 ->    7 loopIndependentDefUseDependence it$1
-  14:    2 ->   11 declaration
-  15:    2 ->   11 loopIndependentDefUseDependence it$1
+   6:    0 ->   23 trueControlDependence
+   7:    0 -> * trueControlDependence
+   8:    1 ->   17 loopIndependentDefUseDependence dy$0
+   9:    2 ->    7 declaration
+  10:    2 ->    7 loopIndependentDefUseDependence it$1
+  11:    2 ->   11 declaration
+  12:    2 ->   11 loopIndependentDefUseDependence it$1
+  13:    6 ->    7 trueControlDependence
+  14:    6 ->    8 trueControlDependence
+  15:    6 ->    9 trueControlDependence
   16:    6 ->   10 trueControlDependence
   17:    6 ->   11 trueControlDependence
   18:    6 ->   12 trueControlDependence
@@ -906,22 +932,23 @@ Class Name = Block
   26:    6 ->   20 trueControlDependence
   27:    6 ->   21 trueControlDependence
   28:    6 -> * trueControlDependence
-  29:    9 ->    6 loopIndependentDefUseDependence it$1.!hasNext( )
-  30:   10 ->   10 defOrderDependence tile$2
-  31:   10 ->   15 declaration
-  32:   10 ->   15 loopIndependentDefUseDependence tile$2
-  33:   10 ->   18 declaration
-  34:   10 ->   18 loopIndependentDefUseDependence tile$2
-  35:   13 ->   10 loopIndependentDefUseDependence it$1.!next( )
-  36:   13 ->   13 defOrderDependence it$1.!next( )
-  37:   20 ->   17 loopIndependentDefUseDependence tile$2.!getPosY( )
-  38:   20 ->   20 defOrderDependence tile$2.!getPosY( )
-  39:   21 ->   14 loopIndependentDefUseDependence tile$2.!setPosY( int )
-  40:   21 ->   21 defOrderDependence tile$2.!setPosY( int )
-  41: * ->    2 loopIndependentDefUseDependence this.tiles.!iterator( )
-  42: * ->   19 loopCarriedDefUseDependence tile$2.posY (LC =    6)
-  43: * ->   20 loopCarriedDefUseDependence tile$2.posY (LC =    6)
-  44: * -> * defOrderDependence tile$2.posY
+  29:    9 ->    6 loopCarriedDefUseDependence it$1.!hasNext( ) (LC = 6)
+  30:    9 ->    9 defOrderDependence it$1.!hasNext( )
+  31:   10 ->   10 defOrderDependence tile$2
+  32:   10 ->   15 declaration
+  33:   10 ->   15 loopIndependentDefUseDependence tile$2
+  34:   10 ->   18 declaration
+  35:   10 ->   18 loopIndependentDefUseDependence tile$2
+  36:   13 ->   10 loopIndependentDefUseDependence it$1.!next( )
+  37:   13 ->   13 defOrderDependence it$1.!next( )
+  38:   20 ->   17 loopIndependentDefUseDependence tile$2.!getPosY( )
+  39:   20 ->   20 defOrderDependence tile$2.!getPosY( )
+  40:   21 ->   14 loopIndependentDefUseDependence tile$2.!setPosY( int )
+  41:   21 ->   21 defOrderDependence tile$2.!setPosY( int )
+  42: * ->    2 loopIndependentDefUseDependence this.tiles.!iterator( )
+  43: * ->   19 loopCarriedDefUseDependence tile$2.posY (LC = 6)
+  44: * ->   20 loopCarriedDefUseDependence tile$2.posY (LC = 6)
+  45: * -> * defOrderDependence tile$2.posY
 --
    0: tiles
    1:    0 ->    1 trueControlDependence
@@ -939,16 +966,16 @@ Class Name = Block
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    6 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 ->   23 trueControlDependence
-  10:    0 -> * trueControlDependence
-  11:    1 ->   17 loopIndependentDefUseDependence dx$0
-  12:    2 ->    7 declaration
-  13:    2 ->    7 loopIndependentDefUseDependence it$1
-  14:    2 ->   11 declaration
-  15:    2 ->   11 loopIndependentDefUseDependence it$1
+   6:    0 ->   23 trueControlDependence
+   7:    0 -> * trueControlDependence
+   8:    1 ->   17 loopIndependentDefUseDependence dx$0
+   9:    2 ->    7 declaration
+  10:    2 ->    7 loopIndependentDefUseDependence it$1
+  11:    2 ->   11 declaration
+  12:    2 ->   11 loopIndependentDefUseDependence it$1
+  13:    6 ->    7 trueControlDependence
+  14:    6 ->    8 trueControlDependence
+  15:    6 ->    9 trueControlDependence
   16:    6 ->   10 trueControlDependence
   17:    6 ->   11 trueControlDependence
   18:    6 ->   12 trueControlDependence
@@ -962,22 +989,23 @@ Class Name = Block
   26:    6 ->   20 trueControlDependence
   27:    6 ->   21 trueControlDependence
   28:    6 -> * trueControlDependence
-  29:    9 ->    6 loopIndependentDefUseDependence it$1.!hasNext( )
-  30:   10 ->   10 defOrderDependence tile$2
-  31:   10 ->   15 declaration
-  32:   10 ->   15 loopIndependentDefUseDependence tile$2
-  33:   10 ->   18 declaration
-  34:   10 ->   18 loopIndependentDefUseDependence tile$2
-  35:   13 ->   10 loopIndependentDefUseDependence it$1.!next( )
-  36:   13 ->   13 defOrderDependence it$1.!next( )
-  37:   20 ->   17 loopIndependentDefUseDependence tile$2.!getPosX( )
-  38:   20 ->   20 defOrderDependence tile$2.!getPosX( )
-  39:   21 ->   14 loopIndependentDefUseDependence tile$2.!setPosX( int )
-  40:   21 ->   21 defOrderDependence tile$2.!setPosX( int )
-  41: * ->    2 loopIndependentDefUseDependence this.tiles.!iterator( )
-  42: * ->   19 loopCarriedDefUseDependence tile$2.posX (LC =    6)
-  43: * ->   20 loopCarriedDefUseDependence tile$2.posX (LC =    6)
-  44: * -> * defOrderDependence tile$2.posX
+  29:    9 ->    6 loopCarriedDefUseDependence it$1.!hasNext( ) (LC = 6)
+  30:    9 ->    9 defOrderDependence it$1.!hasNext( )
+  31:   10 ->   10 defOrderDependence tile$2
+  32:   10 ->   15 declaration
+  33:   10 ->   15 loopIndependentDefUseDependence tile$2
+  34:   10 ->   18 declaration
+  35:   10 ->   18 loopIndependentDefUseDependence tile$2
+  36:   13 ->   10 loopIndependentDefUseDependence it$1.!next( )
+  37:   13 ->   13 defOrderDependence it$1.!next( )
+  38:   20 ->   17 loopIndependentDefUseDependence tile$2.!getPosX( )
+  39:   20 ->   20 defOrderDependence tile$2.!getPosX( )
+  40:   21 ->   14 loopIndependentDefUseDependence tile$2.!setPosX( int )
+  41:   21 ->   21 defOrderDependence tile$2.!setPosX( int )
+  42: * ->    2 loopIndependentDefUseDependence this.tiles.!iterator( )
+  43: * ->   19 loopCarriedDefUseDependence tile$2.posX (LC = 6)
+  44: * ->   20 loopCarriedDefUseDependence tile$2.posX (LC = 6)
+  45: * -> * defOrderDependence tile$2.posX
 --
    0: addTile( int int java.awt.Color )
    1:    0 ->    1 trueControlDependence
@@ -1025,15 +1053,15 @@ Class Name = Block
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    5 trueControlDependence
-   5:    0 ->    6 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 ->   28 trueControlDependence
-   9:    0 -> * trueControlDependence
-  10:    1 ->    6 declaration
-  11:    1 ->    6 loopIndependentDefUseDependence it$0
-  12:    1 ->   10 declaration
-  13:    1 ->   10 loopIndependentDefUseDependence it$0
+   5:    0 ->   28 trueControlDependence
+   6:    0 -> * trueControlDependence
+   7:    1 ->    6 declaration
+   8:    1 ->    6 loopIndependentDefUseDependence it$0
+   9:    1 ->   10 declaration
+  10:    1 ->   10 loopIndependentDefUseDependence it$0
+  11:    5 ->    6 trueControlDependence
+  12:    5 ->    7 trueControlDependence
+  13:    5 ->    8 trueControlDependence
   14:    5 ->    9 trueControlDependence
   15:    5 ->   10 trueControlDependence
   16:    5 ->   11 trueControlDependence
@@ -1054,29 +1082,30 @@ Class Name = Block
   31:    5 ->   26 trueControlDependence
   32:    5 -> * trueControlDependence
   33:    5 -> * trueControlDependence
-  34:    8 ->    5 loopIndependentDefUseDependence it$0.!hasNext( )
-  35:    9 ->    9 defOrderDependence tile$1
-  36:    9 ->   14 declaration
-  37:    9 ->   14 loopIndependentDefUseDependence tile$1
-  38:    9 ->   19 declaration
-  39:    9 ->   19 loopIndependentDefUseDependence tile$1
-  40:    9 ->   24 declaration
-  41:    9 ->   24 loopIndependentDefUseDependence tile$1
-  42:   12 ->    9 loopIndependentDefUseDependence it$0.!next( )
-  43:   12 ->   12 defOrderDependence it$0.!next( )
-  44:   20 ->   16 loopIndependentDefUseDependence this.!getXByRotation( Tile )
-  45:   20 ->   20 defOrderDependence this.!getXByRotation( Tile )
-  46:   25 ->   21 loopIndependentDefUseDependence this.!getYByRotation( Tile )
-  47:   25 ->   25 defOrderDependence this.!getYByRotation( Tile )
-  48:   26 ->   13 loopIndependentDefUseDependence tile$1.!setPosXY( int int )
-  49:   26 ->   26 defOrderDependence tile$1.!setPosXY( int int )
-  50: * ->    1 loopIndependentDefUseDependence this.tiles.!iterator( )
-  51: * ->   19 loopCarriedDefUseDependence tile$1.posX (LC =    5)
-  52: * ->   19 loopCarriedDefUseDependence tile$1.posY (LC =    5)
-  53: * ->   24 loopCarriedDefUseDependence tile$1.posX (LC =    5)
-  54: * ->   24 loopCarriedDefUseDependence tile$1.posY (LC =    5)
-  55: * -> * defOrderDependence tile$1.posX
-  56: * -> * defOrderDependence tile$1.posY
+  34:    8 ->    5 loopCarriedDefUseDependence it$0.!hasNext( ) (LC = 5)
+  35:    8 ->    8 defOrderDependence it$0.!hasNext( )
+  36:    9 ->    9 defOrderDependence tile$1
+  37:    9 ->   14 declaration
+  38:    9 ->   14 loopIndependentDefUseDependence tile$1
+  39:    9 ->   19 declaration
+  40:    9 ->   19 loopIndependentDefUseDependence tile$1
+  41:    9 ->   24 declaration
+  42:    9 ->   24 loopIndependentDefUseDependence tile$1
+  43:   12 ->    9 loopIndependentDefUseDependence it$0.!next( )
+  44:   12 ->   12 defOrderDependence it$0.!next( )
+  45:   20 ->   16 loopIndependentDefUseDependence this.!getXByRotation( Tile )
+  46:   20 ->   20 defOrderDependence this.!getXByRotation( Tile )
+  47:   25 ->   21 loopIndependentDefUseDependence this.!getYByRotation( Tile )
+  48:   25 ->   25 defOrderDependence this.!getYByRotation( Tile )
+  49:   26 ->   13 loopIndependentDefUseDependence tile$1.!setPosXY( int int )
+  50:   26 ->   26 defOrderDependence tile$1.!setPosXY( int int )
+  51: * ->    1 loopIndependentDefUseDependence this.tiles.!iterator( )
+  52: * ->   19 loopCarriedDefUseDependence tile$1.posX (LC = 5)
+  53: * ->   19 loopCarriedDefUseDependence tile$1.posY (LC = 5)
+  54: * ->   24 loopCarriedDefUseDependence tile$1.posX (LC = 5)
+  55: * ->   24 loopCarriedDefUseDependence tile$1.posY (LC = 5)
+  56: * -> * defOrderDependence tile$1.posX
+  57: * -> * defOrderDependence tile$1.posY
 --
    0: canMove( int int )
    1:    0 ->    1 trueControlDependence
@@ -1084,54 +1113,58 @@ Class Name = Block
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    8 trueControlDependence
-   7:    0 ->    9 trueControlDependence
-   8:    0 ->   10 trueControlDependence
-   9:    0 ->   31 trueControlDependence
-  10:    0 -> * trueControlDependence
-  11:    1 ->   18 loopIndependentDefUseDependence dx$0
-  12:    2 ->   22 loopIndependentDefUseDependence dy$1
-  13:    3 ->    8 declaration
-  14:    3 ->    8 loopIndependentDefUseDependence it$2
-  15:    3 ->   12 declaration
-  16:    3 ->   12 loopIndependentDefUseDependence it$2
-  17:    7 ->   11 trueControlDependence
-  18:    7 ->   12 trueControlDependence
-  19:    7 ->   13 trueControlDependence
-  20:    7 ->   14 trueControlDependence
-  21:    7 ->   15 trueControlDependence
-  22:    7 ->   16 trueControlDependence
-  23:    7 ->   17 trueControlDependence
-  24:    7 ->   18 trueControlDependence
-  25:    7 ->   19 trueControlDependence
-  26:    7 ->   20 trueControlDependence
-  27:    7 ->   21 trueControlDependence
-  28:    7 ->   22 trueControlDependence
-  29:    7 ->   23 trueControlDependence
-  30:    7 ->   24 trueControlDependence
-  31:    7 ->   25 trueControlDependence
-  32:    7 ->   26 trueControlDependence
-  33:    7 ->   29 falseControlDependence
-  34:   10 ->    7 loopIndependentDefUseDependence it$2.!hasNext( )
-  35:   11 ->   11 defOrderDependence tile$3
-  36:   11 ->   19 declaration
-  37:   11 ->   19 loopIndependentDefUseDependence tile$3
-  38:   11 ->   23 declaration
-  39:   11 ->   23 loopIndependentDefUseDependence tile$3
-  40:   14 ->   11 loopIndependentDefUseDependence it$2.!next( )
-  41:   14 ->   14 defOrderDependence it$2.!next( )
-  42:   15 ->    7 falseControlDependence
-  43:   15 ->   27 trueControlDependence
-  44:   21 ->   18 loopIndependentDefUseDependence tile$3.!getPosX( )
-  45:   21 ->   21 defOrderDependence tile$3.!getPosX( )
-  46:   25 ->   22 loopIndependentDefUseDependence tile$3.!getPosY( )
-  47:   25 ->   25 defOrderDependence tile$3.!getPosY( )
-  48:   26 ->   15 loopIndependentDefUseDependence this.!canTake( int int )
-  49:   26 ->   26 defOrderDependence this.!canTake( int int )
-  50:   27 ->    7 fallThroughControlDependence
-  51:   27 ->   31 loopIndependentDefUseDependence $_
-  52:   29 ->   31 loopIndependentDefUseDependence $_
-  53: * ->    3 loopIndependentDefUseDependence this.tiles.!iterator( )
+   6:    0 ->   31 trueControlDependence
+   7:    0 -> * trueControlDependence
+   8:    1 ->   18 loopIndependentDefUseDependence dx$0
+   9:    2 ->   22 loopIndependentDefUseDependence dy$1
+  10:    3 ->    8 declaration
+  11:    3 ->    8 loopIndependentDefUseDependence it$2
+  12:    3 ->   12 declaration
+  13:    3 ->   12 loopIndependentDefUseDependence it$2
+  14:    7 ->   11 trueControlDependence
+  15:    7 ->   12 trueControlDependence
+  16:    7 ->   13 trueControlDependence
+  17:    7 ->   14 trueControlDependence
+  18:    7 ->   15 trueControlDependence
+  19:    7 ->   16 trueControlDependence
+  20:    7 ->   17 trueControlDependence
+  21:    7 ->   18 trueControlDependence
+  22:    7 ->   19 trueControlDependence
+  23:    7 ->   20 trueControlDependence
+  24:    7 ->   21 trueControlDependence
+  25:    7 ->   22 trueControlDependence
+  26:    7 ->   23 trueControlDependence
+  27:    7 ->   24 trueControlDependence
+  28:    7 ->   25 trueControlDependence
+  29:    7 ->   26 trueControlDependence
+  30:    7 ->   29 falseControlDependence
+  31:   10 ->    7 loopCarriedDefUseDependence it$2.!hasNext( ) (LC = 7)
+  32:   10 ->   10 defOrderDependence it$2.!hasNext( )
+  33:   11 ->   11 defOrderDependence tile$3
+  34:   11 ->   19 declaration
+  35:   11 ->   19 loopIndependentDefUseDependence tile$3
+  36:   11 ->   23 declaration
+  37:   11 ->   23 loopIndependentDefUseDependence tile$3
+  38:   14 ->   11 loopIndependentDefUseDependence it$2.!next( )
+  39:   14 ->   14 defOrderDependence it$2.!next( )
+  40:   15 ->    7 falseControlDependence
+  41:   15 ->    8 falseControlDependence
+  42:   15 ->    9 falseControlDependence
+  43:   15 ->   10 falseControlDependence
+  44:   15 ->   27 trueControlDependence
+  45:   21 ->   18 loopIndependentDefUseDependence tile$3.!getPosX( )
+  46:   21 ->   21 defOrderDependence tile$3.!getPosX( )
+  47:   25 ->   22 loopIndependentDefUseDependence tile$3.!getPosY( )
+  48:   25 ->   25 defOrderDependence tile$3.!getPosY( )
+  49:   26 ->   15 loopIndependentDefUseDependence this.!canTake( int int )
+  50:   26 ->   26 defOrderDependence this.!canTake( int int )
+  51:   27 ->    7 fallThroughControlDependence
+  52:   27 ->    8 fallThroughControlDependence
+  53:   27 ->    9 fallThroughControlDependence
+  54:   27 ->   10 fallThroughControlDependence
+  55:   27 ->   31 loopIndependentDefUseDependence $_
+  56:   29 ->   31 loopIndependentDefUseDependence $_
+  57: * ->    3 loopIndependentDefUseDependence this.tiles.!iterator( )
 --
    0: setPit( Pit )
    1:    0 ->    1 trueControlDependence
@@ -1144,15 +1177,15 @@ Class Name = Block
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    5 trueControlDependence
-   5:    0 ->    6 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 ->   27 trueControlDependence
-   9:    0 -> * trueControlDependence
-  10:    1 ->    6 declaration
-  11:    1 ->    6 loopIndependentDefUseDependence it$0
-  12:    1 ->   10 declaration
-  13:    1 ->   10 loopIndependentDefUseDependence it$0
+   5:    0 ->   27 trueControlDependence
+   6:    0 -> * trueControlDependence
+   7:    1 ->    6 declaration
+   8:    1 ->    6 loopIndependentDefUseDependence it$0
+   9:    1 ->   10 declaration
+  10:    1 ->   10 loopIndependentDefUseDependence it$0
+  11:    5 ->    6 trueControlDependence
+  12:    5 ->    7 trueControlDependence
+  13:    5 ->    8 trueControlDependence
   14:    5 ->    9 trueControlDependence
   15:    5 ->   10 trueControlDependence
   16:    5 ->   11 trueControlDependence
@@ -1171,24 +1204,25 @@ Class Name = Block
   29:    5 ->   24 trueControlDependence
   30:    5 ->   25 trueControlDependence
   31:    5 -> * trueControlDependence
-  32:    8 ->    5 loopIndependentDefUseDependence it$0.!hasNext( )
-  33:    9 ->    9 defOrderDependence tile$1
-  34:    9 ->   17 declaration
-  35:    9 ->   17 loopIndependentDefUseDependence tile$1
-  36:    9 ->   21 declaration
-  37:    9 ->   21 loopIndependentDefUseDependence tile$1
-  38:    9 ->   24 declaration
-  39:    9 ->   24 loopIndependentDefUseDependence tile$1
-  40:   12 ->    9 loopIndependentDefUseDependence it$0.!next( )
-  41:   12 ->   12 defOrderDependence it$0.!next( )
-  42:   19 ->   16 loopIndependentDefUseDependence tile$1.!getPosX( )
-  43:   19 ->   19 defOrderDependence tile$1.!getPosX( )
-  44:   23 ->   20 loopIndependentDefUseDependence tile$1.!getPosY( )
-  45:   23 ->   23 defOrderDependence tile$1.!getPosY( )
-  46:   25 ->   13 loopIndependentDefUseDependence this.pit.!setBox( int int Tile )
-  47:   25 ->   25 defOrderDependence this.pit.!setBox( int int Tile )
-  48: * ->    1 loopIndependentDefUseDependence this.tiles.!iterator( )
-  49: * -> * outputDependence this.pit.box
+  32:    8 ->    5 loopCarriedDefUseDependence it$0.!hasNext( ) (LC = 5)
+  33:    8 ->    8 defOrderDependence it$0.!hasNext( )
+  34:    9 ->    9 defOrderDependence tile$1
+  35:    9 ->   17 declaration
+  36:    9 ->   17 loopIndependentDefUseDependence tile$1
+  37:    9 ->   21 declaration
+  38:    9 ->   21 loopIndependentDefUseDependence tile$1
+  39:    9 ->   24 declaration
+  40:    9 ->   24 loopIndependentDefUseDependence tile$1
+  41:   12 ->    9 loopIndependentDefUseDependence it$0.!next( )
+  42:   12 ->   12 defOrderDependence it$0.!next( )
+  43:   19 ->   16 loopIndependentDefUseDependence tile$1.!getPosX( )
+  44:   19 ->   19 defOrderDependence tile$1.!getPosX( )
+  45:   23 ->   20 loopIndependentDefUseDependence tile$1.!getPosY( )
+  46:   23 ->   23 defOrderDependence tile$1.!getPosY( )
+  47:   25 ->   13 loopIndependentDefUseDependence this.pit.!setBox( int int Tile )
+  48:   25 ->   25 defOrderDependence this.pit.!setBox( int int Tile )
+  49: * ->    1 loopIndependentDefUseDependence this.tiles.!iterator( )
+  50: * -> * outputDependence this.pit.box
 --
    0: paint( java.awt.Graphics )
    1:    0 ->    1 trueControlDependence
@@ -1196,16 +1230,16 @@ Class Name = Block
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    6 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 ->   20 trueControlDependence
-  10:    0 -> * trueControlDependence
-  11:    1 ->   17 loopIndependentDefUseDependence g$0
-  12:    2 ->    7 declaration
-  13:    2 ->    7 loopIndependentDefUseDependence it$1
-  14:    2 ->   11 declaration
-  15:    2 ->   11 loopIndependentDefUseDependence it$1
+   6:    0 ->   20 trueControlDependence
+   7:    0 -> * trueControlDependence
+   8:    1 ->   17 loopIndependentDefUseDependence g$0
+   9:    2 ->    7 declaration
+  10:    2 ->    7 loopIndependentDefUseDependence it$1
+  11:    2 ->   11 declaration
+  12:    2 ->   11 loopIndependentDefUseDependence it$1
+  13:    6 ->    7 trueControlDependence
+  14:    6 ->    8 trueControlDependence
+  15:    6 ->    9 trueControlDependence
   16:    6 ->   10 trueControlDependence
   17:    6 ->   11 trueControlDependence
   18:    6 ->   12 trueControlDependence
@@ -1215,20 +1249,21 @@ Class Name = Block
   22:    6 ->   16 trueControlDependence
   23:    6 ->   17 trueControlDependence
   24:    6 -> * trueControlDependence
-  25:    9 ->    6 loopIndependentDefUseDependence it$1.!hasNext( )
-  26:   10 ->   10 defOrderDependence tile$2
-  27:   10 ->   15 declaration
-  28:   10 ->   15 loopIndependentDefUseDependence tile$2
-  29:   13 ->   10 loopIndependentDefUseDependence it$1.!next( )
-  30:   13 ->   13 defOrderDependence it$1.!next( )
-  31: * ->    2 loopIndependentDefUseDependence this.tiles.!iterator( )
-  32: * ->   14 loopIndependentDefUseDependence tile$2.!paint( java.awt.Graphics )
-  33: * -> * defOrderDependence this.color.!java.awt.Color.cs
-  34: * -> * defOrderDependence this.color.!java.awt.Color.falpha
-  35: * -> * defOrderDependence this.color.!java.awt.Color.frgbvalue
-  36: * -> * defOrderDependence this.color.!java.awt.Color.fvalue
-  37: * -> * defOrderDependence this.color.!java.awt.Color.value
-  38: * -> * defOrderDependence tile$2.!paint( java.awt.Graphics )
+  25:    9 ->    6 loopCarriedDefUseDependence it$1.!hasNext( ) (LC = 6)
+  26:    9 ->    9 defOrderDependence it$1.!hasNext( )
+  27:   10 ->   10 defOrderDependence tile$2
+  28:   10 ->   15 declaration
+  29:   10 ->   15 loopIndependentDefUseDependence tile$2
+  30:   13 ->   10 loopIndependentDefUseDependence it$1.!next( )
+  31:   13 ->   13 defOrderDependence it$1.!next( )
+  32: * ->    2 loopIndependentDefUseDependence this.tiles.!iterator( )
+  33: * ->   14 loopIndependentDefUseDependence tile$2.!paint( java.awt.Graphics )
+  34: * -> * defOrderDependence this.color.!java.awt.Color.cs
+  35: * -> * defOrderDependence this.color.!java.awt.Color.falpha
+  36: * -> * defOrderDependence this.color.!java.awt.Color.frgbvalue
+  37: * -> * defOrderDependence this.color.!java.awt.Color.fvalue
+  38: * -> * defOrderDependence this.color.!java.awt.Color.value
+  39: * -> * defOrderDependence tile$2.!paint( java.awt.Graphics )
 --
    0: posY
    1:    0 ->    1 trueControlDependence
@@ -1329,16 +1364,16 @@ Class Name = Block
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    6 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 ->   22 trueControlDependence
-  10:    0 -> * trueControlDependence
-  11:    1 ->   17 loopIndependentDefUseDependence g$0
-  12:    2 ->    7 declaration
-  13:    2 ->    7 loopIndependentDefUseDependence it$1
-  14:    2 ->   11 declaration
-  15:    2 ->   11 loopIndependentDefUseDependence it$1
+   6:    0 ->   22 trueControlDependence
+   7:    0 -> * trueControlDependence
+   8:    1 ->   17 loopIndependentDefUseDependence g$0
+   9:    2 ->    7 declaration
+  10:    2 ->    7 loopIndependentDefUseDependence it$1
+  11:    2 ->   11 declaration
+  12:    2 ->   11 loopIndependentDefUseDependence it$1
+  13:    6 ->    7 trueControlDependence
+  14:    6 ->    8 trueControlDependence
+  15:    6 ->    9 trueControlDependence
   16:    6 ->   10 trueControlDependence
   17:    6 ->   11 trueControlDependence
   18:    6 ->   12 trueControlDependence
@@ -1350,20 +1385,21 @@ Class Name = Block
   24:    6 ->   18 trueControlDependence
   25:    6 ->   19 trueControlDependence
   26:    6 -> * trueControlDependence
-  27:    9 ->    6 loopIndependentDefUseDependence it$1.!hasNext( )
-  28:   10 ->   10 defOrderDependence tile$2
-  29:   10 ->   15 declaration
-  30:   10 ->   15 loopIndependentDefUseDependence tile$2
-  31:   13 ->   10 loopIndependentDefUseDependence it$1.!next( )
-  32:   13 ->   13 defOrderDependence it$1.!next( )
-  33: * ->    2 loopIndependentDefUseDependence this.tiles.!iterator( )
-  34: * ->   14 loopIndependentDefUseDependence tile$2.!paint( java.awt.Graphics int int )
-  35: * -> * defOrderDependence tile$2.!paint( java.awt.Graphics int int )
-  36: * -> * defOrderDependence tile$2.color.!java.awt.Color.cs
-  37: * -> * defOrderDependence tile$2.color.!java.awt.Color.falpha
-  38: * -> * defOrderDependence tile$2.color.!java.awt.Color.frgbvalue
-  39: * -> * defOrderDependence tile$2.color.!java.awt.Color.fvalue
-  40: * -> * defOrderDependence tile$2.color.!java.awt.Color.value
+  27:    9 ->    6 loopCarriedDefUseDependence it$1.!hasNext( ) (LC = 6)
+  28:    9 ->    9 defOrderDependence it$1.!hasNext( )
+  29:   10 ->   10 defOrderDependence tile$2
+  30:   10 ->   15 declaration
+  31:   10 ->   15 loopIndependentDefUseDependence tile$2
+  32:   13 ->   10 loopIndependentDefUseDependence it$1.!next( )
+  33:   13 ->   13 defOrderDependence it$1.!next( )
+  34: * ->    2 loopIndependentDefUseDependence this.tiles.!iterator( )
+  35: * ->   14 loopIndependentDefUseDependence tile$2.!paint( java.awt.Graphics int int )
+  36: * -> * defOrderDependence tile$2.!paint( java.awt.Graphics int int )
+  37: * -> * defOrderDependence tile$2.color.!java.awt.Color.cs
+  38: * -> * defOrderDependence tile$2.color.!java.awt.Color.falpha
+  39: * -> * defOrderDependence tile$2.color.!java.awt.Color.frgbvalue
+  40: * -> * defOrderDependence tile$2.color.!java.awt.Color.fvalue
+  41: * -> * defOrderDependence tile$2.color.!java.awt.Color.value
 --
    0: canPlace( )
    1:    0 ->    1 trueControlDependence

@@ -1105,9 +1105,9 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
   19:    4 ->    9 trueControlDependence
   20:    8 ->    5 loopIndependentDefUseDependence cb$0.!addItem( java.lang.Object )
   21:    8 ->    8 defOrderDependence cb$0.!addItem( java.lang.Object )
-  22:    9 ->    4 loopCarriedDefUseDependence i$2 (LC =    4)
-  23:    9 ->    7 loopCarriedDefUseDependence i$2 (LC =    4)
-  24:    9 ->    9 loopCarriedDefUseDependence i$2 (LC =    4)
+  22:    9 ->    4 loopCarriedDefUseDependence i$2 (LC = 4)
+  23:    9 ->    7 loopCarriedDefUseDependence i$2 (LC = 4)
+  24:    9 ->    9 loopCarriedDefUseDependence i$2 (LC = 4)
 --
    0: getShape( )
    1:    0 ->    1 trueControlDependence

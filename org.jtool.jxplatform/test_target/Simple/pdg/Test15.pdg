@@ -38,8 +38,8 @@ Class Name = Test15
   15:    2 ->    3 trueControlDependence
   16:    2 ->    4 trueControlDependence
   17:    2 ->    5 trueControlDependence
-  18:    3 ->    2 loopCarriedDefUseDependence a$0 (LC =    2)
-  19:    3 ->    3 loopCarriedDefUseDependence a$0 (LC =    2)
+  18:    3 ->    2 loopCarriedDefUseDependence a$0 (LC = 2)
+  19:    3 ->    3 loopCarriedDefUseDependence a$0 (LC = 2)
   20:    3 ->    6 loopIndependentDefUseDependence a$0
   21:    3 ->   10 loopIndependentDefUseDependence a$0
   22:    4 ->    4 defOrderDependence i$1
@@ -49,13 +49,13 @@ Class Name = Test15
   26:    4 ->    7 loopIndependentDefUseDependence i$1
   27:    5 ->    6 trueControlDependence
   28:    5 ->    7 trueControlDependence
-  29:    6 ->    2 loopCarriedDefUseDependence a$0 (LC =    2)
-  30:    6 ->    3 loopCarriedDefUseDependence a$0 (LC =    2)
-  31:    6 ->    6 loopCarriedDefUseDependence a$0 (LC =    5)
+  29:    6 ->    2 loopCarriedDefUseDependence a$0 (LC = 2)
+  30:    6 ->    3 loopCarriedDefUseDependence a$0 (LC = 2)
+  31:    6 ->    6 loopCarriedDefUseDependence a$0 (LC = 5)
   32:    6 ->   10 loopIndependentDefUseDependence a$0
   33:    7 ->    4 outputDependence i$1
-  34:    7 ->    5 loopCarriedDefUseDependence i$1 (LC =    5)
-  35:    7 ->    7 loopCarriedDefUseDependence i$1 (LC =    5)
+  34:    7 ->    5 loopCarriedDefUseDependence i$1 (LC = 5)
+  35:    7 ->    7 loopCarriedDefUseDependence i$1 (LC = 5)
   36: * ->    8 loopIndependentDefUseDependence System.out.!println( int )
 --
 ----- ClDG (to here) -----
