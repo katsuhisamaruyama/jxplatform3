@@ -13,13 +13,14 @@ import org.jtool.pdg.PDGNode;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
+import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Set;
-import java.util.Stack;
 import java.util.HashSet;
-import java.util.Collection;
+import java.util.Stack;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 /**
  * Finds data dependences of a PDG from its CFG.
@@ -88,8 +89,8 @@ public class DDFinder {
                         edge.setLIDD();
                     
                     } else {
-                        PDGNode lc = getLoopCarried(pdg, cfg, anchor, candidate);
                         edge = new DD(anchor.getPDGNode(), candidate.getPDGNode(), jvar);
+                        PDGNode lc = getLoopCarried(pdg, cfg, anchor, candidate);
                         
                         if (lc != null) {
                             edge.setLCDD();
@@ -114,18 +115,18 @@ public class DDFinder {
                 }
             }
             
-            node.getOutgoingFlows().stream()
-                .filter(flow -> !flow.isFallThrough())
-                .map(flow -> flow.getDstNode())
-                .forEach(succ -> nodeStack.push(succ));
+            List<ControlFlow> edges = ControlFlow.sortEdges(node.getOutgoingFlows());
+            Collections.reverse(edges);
+            edges.stream().filter(flow -> !flow.isFallThrough())
+                    .forEach(flow -> nodeStack.push(flow.getDstNode()));
         }
     }
     
     private static PDGNode getLoopCarried(PDG pdg, CFG cfg, CFGNode defnode, CFGNode usenode) {
-        List<PDGNode> defancestors = new ArrayList<>();
-        collectAncestors(pdg, defnode.getPDGNode(), defancestors, new HashSet<>());
-        List<PDGNode> useancestors = new ArrayList<>();
-        collectAncestors(pdg, usenode.getPDGNode(), useancestors, new HashSet<>());
+        List<PDGNode> defancestors = CDFinder.getCDAncestors(pdg, defnode.getPDGNode()).stream()
+                .filter(node -> node.isLoop()).collect(Collectors.toList());
+        List<PDGNode> useancestors = CDFinder.getCDAncestors(pdg, usenode.getPDGNode()).stream()
+                .filter(node -> node.isLoop()).collect(Collectors.toList());
         
         Set<CFGNode> nodesBetween = null;
         for (PDGNode defancestor : defancestors) {
@@ -143,29 +144,10 @@ public class DDFinder {
         return null;
     }
     
-    private static void collectAncestors(PDG pdg, PDGNode node, Collection<PDGNode> ancestors, Set<PDGNode> track) {
-        if (node == null || track.contains(node)) {
-            return;
-        }
-        
-        track.add(node);
-        if (node.isLoop()) {
-            ancestors.add(node);
-        }
-        
-        pdg.getIncomingCDEdges(node).stream().filter(edge -> edge.isTrue() || edge.isFalse())
-                .forEach(edge -> collectAncestors(pdg, edge.getSrcNode(), ancestors, track));
-    }
-    
     private static Set<CFGNode> getNodesBetween(CFG cfg, CFGNode defnode, CFGNode usenode) {
-        Set<CFGNode> nodes;
-        if (defnode.equals(usenode)) {
-            nodes = new HashSet<>();
-            for (CFGNode succ : defnode.getSuccessors()) {
-                nodes.addAll(cfg.reachableNodes(succ, usenode, true, false));
-            }
-        } else {
-            nodes = cfg.reachableNodes(defnode, usenode, true, false);
+        Set<CFGNode> nodes = new HashSet<>();
+        for (CFGNode succ : defnode.getSuccessors()) {
+            nodes.addAll(cfg.reachableNodes(succ, usenode, true, false));
         }
         return nodes;
     }
@@ -184,11 +166,6 @@ public class DDFinder {
     private static boolean isDefOrder(PDG pdg, DD dd) {
         PDGNode src = dd.getSrcNode();
         PDGNode dst = dd.getDstNode();
-        
-//        if (pdg.getQualifiedName().getClassName().equals("Test09")) {
-//            System.err.println("SRC = " + pdg.getIncomingCDEdges(src).size());
-//            System.err.println("DST = " + pdg.getIncomingCDEdges(dst).size());
-//        }
         
         CD srcCD = pdg.getIncomingCDEdges(src).iterator().next();
         CD dstCD = pdg.getIncomingCDEdges(dst).iterator().next();
