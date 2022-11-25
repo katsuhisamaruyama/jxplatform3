@@ -327,7 +327,6 @@ public class PDGTestUtil {
             return;
         }
         
-        System.out.println("Create PDG data in the directory: " + pdgPath);
         try {
             Files.createDirectories(pdgPath);
             
@@ -340,6 +339,7 @@ public class PDGTestUtil {
         } catch (IOException e) {
             System.err.println("Cannot create the directory: " + pdgPath);
         }
+        System.out.println("Wrote PDG data in the directory: " + pdgPath);
     }
     
     public static void writePDG(Path path, String content) {

@@ -152,6 +152,7 @@ public class CFGNode extends GraphNode {
         formalOut,                  // CFGParameter
         actualIn,                   // CFGParameter
         actualOut,                  // CFGParameter
+        actualOutByFieldAccess,     // CFGParameter
         receiver,                   // CFGStatement
         
         merge,                      // CFGMerge (for merge)
@@ -718,7 +719,7 @@ public class CFGNode extends GraphNode {
      * @return {@code true} if this is an actual-out argument node, otherwise {@code false}
      */
     public boolean isActualOut() {
-        return kind == Kind.actualOut;
+        return kind == Kind.actualOut || kind == Kind.actualOutByFieldAccess;
     }
     
     /**

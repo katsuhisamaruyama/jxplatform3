@@ -17,6 +17,7 @@ import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGEntry;
 import org.jtool.cfg.BasicBlock;
 import org.jtool.cfg.CFGStatement;
+import org.jtool.cfg.CFGParameter;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CCFGEntry;
 import org.jtool.cfg.CFGMethodEntry;
@@ -249,7 +250,6 @@ public class CFGTestUtil {
             return;
         }
         
-        System.out.println("Create CFG data in the directory: " + cfgPath);
         try {
             Files.createDirectories(cfgPath);
             
@@ -261,6 +261,7 @@ public class CFGTestUtil {
         } catch (IOException e) {
             System.err.println("Cannot create the directory: " + cfgPath);
         }
+        System.out.println("Wrote CFG data in the directory: " + cfgPath);
     }
     
     public static void writeCFG(Path path, String content) {
@@ -331,18 +332,18 @@ public class CFGTestUtil {
     }
     
     public static String getIdString(CFG cfg, CFGNode node) {
-        long id = getId(cfg, node);
-        if (id < 0) {
-            return "*";
+        if (node.getKind() == CFGNode.Kind.actualOutByFieldAccess) {
+            CFGParameter actualOut = (CFGParameter)node;
+            long id = getId(cfg, actualOut.getParent());
+            return GraphElement.getIdString(id) + "+";
+        } else {
+            long id = getId(cfg, node);
+            return GraphElement.getIdString(id);
         }
-        return GraphElement.getIdString(id);
     }
     
     public static long getId(CFG cfg, CFGNode node) {
-        if (shouldBeWritten(node)) {
-            return node.getId() - cfg.getEntryNode().getId();
-        }
-        return -1;
+        return node.getId() - cfg.getEntryNode().getId();
     }
     
     static String getDetails(CFG cfg, CFGNode node) {
@@ -370,14 +371,5 @@ public class CFGTestUtil {
         String defStr = st.getDefVariables().stream().map(e -> e.getReferenceForm()).sorted().collect(Collectors.joining(", "));
         String useStr = st.getUseVariables().stream().map(e -> e.getReferenceForm()).sorted().collect(Collectors.joining(", "));
         return " D = { " + defStr + " } U = { " + useStr + " }";
-    }
-    
-    static boolean shouldBeWritten(CFGNode node) {
-        if (!node.isActualOut()) {
-            return true;
-        }
-        
-        CFGStatement actualOut = (CFGStatement)node;
-        return actualOut.getDefVariables().stream().filter(v -> v.isUncoveredFieldReference()).count() == 0;
     }
 }
