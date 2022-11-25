@@ -6,19 +6,19 @@ Class Name = Sample109FX
    3 assignment D = {  } U = { stage$0.!setTitle( java.lang.String ) }
    4 receiver D = {  } U = { stage$0 }
    5 methodCall D = {  } U = { $java.lang.String, stage$0.!javafx.stage.Stage.title } TO = javafx.stage.Stage#setTitle( java.lang.String )
-* actualOut D = { stage$0.!javafx.stage.Stage.title, stage$0.!setTitle( java.lang.String ) } U = { stage$0.!javafx.stage.Stage.title }
+   6 actualOut D = { stage$0.!javafx.stage.Stage.title, stage$0.!setTitle( java.lang.String ) } U = { stage$0.!javafx.stage.Stage.title }
    7 assignment D = {  } U = { stage$0.!setWidth( double ) }
    8 receiver D = {  } U = { stage$0 }
    9 methodCall D = {  } U = { stage$0.!javafx.beans.property.DoublePropertyBase.value, stage$0.!javafx.stage.Window.peerBoundsConfigurator, stage$0.!javafx.stage.Window.width } TO = javafx.stage.Window#setWidth( double )
-* actualOut D = { stage$0.!javafx.beans.property.DoublePropertyBase.value, stage$0.!javafx.stage.Window$TKBoundsConfigurator.windowWidth, stage$0.!javafx.stage.Window.widthExplicit, stage$0.!setWidth( double ) } U = { stage$0.!javafx.beans.property.DoublePropertyBase.value, stage$0.!javafx.stage.Window.peerBoundsConfigurator, stage$0.!javafx.stage.Window.width }
+  10 actualOut D = { stage$0.!javafx.beans.property.DoublePropertyBase.value, stage$0.!javafx.stage.Window$TKBoundsConfigurator.windowWidth, stage$0.!javafx.stage.Window.widthExplicit, stage$0.!setWidth( double ) } U = { stage$0.!javafx.beans.property.DoublePropertyBase.value, stage$0.!javafx.stage.Window.peerBoundsConfigurator, stage$0.!javafx.stage.Window.width }
   11 assignment D = {  } U = { stage$0.!setHeight( double ) }
   12 receiver D = {  } U = { stage$0 }
   13 methodCall D = {  } U = { stage$0.!javafx.beans.property.DoublePropertyBase.value, stage$0.!javafx.stage.Window.height, stage$0.!javafx.stage.Window.peerBoundsConfigurator } TO = javafx.stage.Window#setHeight( double )
-* actualOut D = { stage$0.!javafx.beans.property.DoublePropertyBase.value, stage$0.!javafx.stage.Window$TKBoundsConfigurator.windowHeight, stage$0.!javafx.stage.Window.heightExplicit, stage$0.!setHeight( double ) } U = { stage$0.!javafx.beans.property.DoublePropertyBase.value, stage$0.!javafx.stage.Window.height, stage$0.!javafx.stage.Window.peerBoundsConfigurator }
+  14 actualOut D = { stage$0.!javafx.beans.property.DoublePropertyBase.value, stage$0.!javafx.stage.Window$TKBoundsConfigurator.windowHeight, stage$0.!javafx.stage.Window.heightExplicit, stage$0.!setHeight( double ) } U = { stage$0.!javafx.beans.property.DoublePropertyBase.value, stage$0.!javafx.stage.Window.height, stage$0.!javafx.stage.Window.peerBoundsConfigurator }
   15 localDeclaration D = { menuBar$1 } U = { javafx.scene.control.MenuBar.!MenuBar( ) }
   16 receiver D = {  } U = {  }
   17 constructorCall D = {  } U = { javafx.scene.control.MenuBar.!java.lang.Boolean.FALSE, javafx.scene.control.MenuBar.!javafx.scene.AccessibleRole.MENU_BAR } TO = javafx.scene.control.MenuBar#MenuBar( )
-* actualOut D = { javafx.scene.control.MenuBar.!MenuBar( ), javafx.scene.control.MenuBar.!javafx.scene.control.MenuBar.menus } U = { javafx.scene.control.MenuBar.!java.lang.Boolean.FALSE, javafx.scene.control.MenuBar.!javafx.scene.AccessibleRole.MENU_BAR }
+  18 actualOut D = { javafx.scene.control.MenuBar.!MenuBar( ), javafx.scene.control.MenuBar.!javafx.scene.control.MenuBar.menus } U = { javafx.scene.control.MenuBar.!java.lang.Boolean.FALSE, javafx.scene.control.MenuBar.!javafx.scene.AccessibleRole.MENU_BAR }
   19 localDeclaration D = { fileMenu$2 } U = { javafx.scene.control.Menu.!Menu( java.lang.String ) }
   20 receiver D = {  } U = {  }
   21 constructorCall D = {  } U = { $java.lang.String } TO = javafx.scene.control.Menu#Menu( java.lang.String )
@@ -33,19 +33,19 @@ Class Name = Sample109FX
   30 localDeclaration D = { openItem$3 } U = { javafx.scene.control.MenuItem.!MenuItem( java.lang.String ) }
   31 receiver D = {  } U = {  }
   32 constructorCall D = {  } U = { $java.lang.String, javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass } TO = javafx.scene.control.MenuItem#MenuItem( java.lang.String )
-* actualOut D = { javafx.scene.control.MenuItem.!MenuItem( java.lang.String ), javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.eventHandlerManager, javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass } U = { javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass }
+  33 actualOut D = { javafx.scene.control.MenuItem.!MenuItem( java.lang.String ), javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.eventHandlerManager, javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass } U = { javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass }
   34 localDeclaration D = { saveItem$4 } U = { javafx.scene.control.MenuItem.!MenuItem( java.lang.String ) }
   35 receiver D = {  } U = {  }
   36 constructorCall D = {  } U = { $java.lang.String, javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass } TO = javafx.scene.control.MenuItem#MenuItem( java.lang.String )
-* actualOut D = { javafx.scene.control.MenuItem.!MenuItem( java.lang.String ), javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.eventHandlerManager, javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass } U = { javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass }
+  37 actualOut D = { javafx.scene.control.MenuItem.!MenuItem( java.lang.String ), javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.eventHandlerManager, javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass } U = { javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass }
   38 localDeclaration D = { sp$5 } U = { javafx.scene.control.SeparatorMenuItem.!SeparatorMenuItem( ) }
   39 receiver D = {  } U = {  }
   40 constructorCall D = {  } U = { javafx.scene.control.SeparatorMenuItem.!java.lang.Boolean.FALSE, javafx.scene.control.SeparatorMenuItem.!javafx.geometry.Orientation.HORIZONTAL, javafx.scene.control.SeparatorMenuItem.!javafx.geometry.Orientation.VERTICAL, javafx.scene.control.SeparatorMenuItem.!javafx.scene.control.MenuItem.styleClass, javafx.scene.control.SeparatorMenuItem.!javafx.scene.control.Separator.HORIZONTAL_PSEUDOCLASS_STATE, javafx.scene.control.SeparatorMenuItem.!javafx.scene.control.Separator.VERTICAL_PSEUDOCLASS_STATE } TO = javafx.scene.control.SeparatorMenuItem#SeparatorMenuItem( )
-* actualOut D = { javafx.scene.control.SeparatorMenuItem.!SeparatorMenuItem( ), javafx.scene.control.SeparatorMenuItem.!javafx.scene.control.Separator.orientation } U = { javafx.scene.control.SeparatorMenuItem.!java.lang.Boolean.FALSE, javafx.scene.control.SeparatorMenuItem.!javafx.geometry.Orientation.HORIZONTAL, javafx.scene.control.SeparatorMenuItem.!javafx.geometry.Orientation.VERTICAL, javafx.scene.control.SeparatorMenuItem.!javafx.scene.control.MenuItem.styleClass, javafx.scene.control.SeparatorMenuItem.!javafx.scene.control.Separator.HORIZONTAL_PSEUDOCLASS_STATE, javafx.scene.control.SeparatorMenuItem.!javafx.scene.control.Separator.VERTICAL_PSEUDOCLASS_STATE }
+  41 actualOut D = { javafx.scene.control.SeparatorMenuItem.!SeparatorMenuItem( ), javafx.scene.control.SeparatorMenuItem.!javafx.scene.control.Separator.orientation } U = { javafx.scene.control.SeparatorMenuItem.!java.lang.Boolean.FALSE, javafx.scene.control.SeparatorMenuItem.!javafx.geometry.Orientation.HORIZONTAL, javafx.scene.control.SeparatorMenuItem.!javafx.geometry.Orientation.VERTICAL, javafx.scene.control.SeparatorMenuItem.!javafx.scene.control.MenuItem.styleClass, javafx.scene.control.SeparatorMenuItem.!javafx.scene.control.Separator.HORIZONTAL_PSEUDOCLASS_STATE, javafx.scene.control.SeparatorMenuItem.!javafx.scene.control.Separator.VERTICAL_PSEUDOCLASS_STATE }
   42 localDeclaration D = { exitItem$6 } U = { javafx.scene.control.MenuItem.!MenuItem( java.lang.String ) }
   43 receiver D = {  } U = {  }
   44 constructorCall D = {  } U = { $java.lang.String, javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass } TO = javafx.scene.control.MenuItem#MenuItem( java.lang.String )
-* actualOut D = { javafx.scene.control.MenuItem.!MenuItem( java.lang.String ), javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.eventHandlerManager, javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass } U = { javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass }
+  45 actualOut D = { javafx.scene.control.MenuItem.!MenuItem( java.lang.String ), javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.eventHandlerManager, javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass } U = { javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass }
   46 assignment D = {  } U = { fileMenu$2.!getItems( ).!addAll( java.lang.Object[] ) }
   47 receiver D = {  } U = { fileMenu$2.!getItems( ) }
   48 receiver D = {  } U = { fileMenu$2 }
@@ -60,11 +60,11 @@ Class Name = Sample109FX
   57 receiver D = {  } U = {  }
   58 methodCall D = {  } U = { this.!com.sun.javafx.application.PlatformImpl.platformExit } TO = javafx.application.Platform#exit( )
   59 actualOut D = { this.!exit( ) } U = { this.!com.sun.javafx.application.PlatformImpl.platformExit }
-* actualOut D = { exitItem$6.!javafx.scene.control.MenuItem.onAction, exitItem$6.!setOnAction( javafx.event.EventHandler ) } U = { exitItem$6.!javafx.scene.control.MenuItem.onAction, javafx.scene.control.MenuItem.!MenuItem( java.lang.String ).!javafx.scene.control.MenuItem.onAction }
+  60 actualOut D = { exitItem$6.!javafx.scene.control.MenuItem.onAction, exitItem$6.!setOnAction( javafx.event.EventHandler ) } U = { exitItem$6.!javafx.scene.control.MenuItem.onAction, javafx.scene.control.MenuItem.!MenuItem( java.lang.String ).!javafx.scene.control.MenuItem.onAction }
   61 localDeclaration D = { menuArea$8 } U = { javafx.scene.layout.VBox.!VBox( ) }
   62 receiver D = {  } U = {  }
   63 constructorCall D = {  } U = {  } TO = javafx.scene.layout.VBox#VBox( )
-* actualOut D = { javafx.scene.layout.VBox.!VBox( ), javafx.scene.layout.VBox.!javafx.scene.layout.VBox.biasDirty, javafx.scene.layout.VBox.!javafx.scene.layout.VBox.performingLayout } U = {  }
+  64 actualOut D = { javafx.scene.layout.VBox.!VBox( ), javafx.scene.layout.VBox.!javafx.scene.layout.VBox.biasDirty, javafx.scene.layout.VBox.!javafx.scene.layout.VBox.performingLayout } U = {  }
   65 assignment D = {  } U = { menuArea$8.!getChildren( ).!addAll( java.lang.Object[] ) }
   66 receiver D = {  } U = { menuArea$8.!getChildren( ) }
   67 receiver D = {  } U = { menuArea$8 }
@@ -75,11 +75,11 @@ Class Name = Sample109FX
   72 localDeclaration D = { scene$9 } U = { javafx.scene.Scene.!Scene( javafx.scene.Parent ) }
   73 receiver D = {  } U = {  }
   74 constructorCall D = {  } U = { javafx.scene.Scene.!javafx.application.ConditionalFeature.SCENE3D, javafx.scene.Scene.!javafx.scene.SceneAntialiasing.DISABLED, javafx.scene.Scene.!javafx.scene.paint.Color.WHITE, menuArea$8 } TO = javafx.scene.Scene#Scene( javafx.scene.Parent )
-* actualOut D = { javafx.scene.Scene.!Scene( javafx.scene.Parent ), javafx.scene.Scene.!javafx.scene.Scene.acc, javafx.scene.Scene.!javafx.scene.Scene.antiAliasing, javafx.scene.Scene.!javafx.scene.Scene.depthBuffer, javafx.scene.Scene.!javafx.scene.Scene.dndGesture, javafx.scene.Scene.!javafx.scene.Scene.focusDirty, javafx.scene.Scene.!javafx.scene.Scene.focusOwner, javafx.scene.Scene.!javafx.scene.Scene.heightSetByUser, javafx.scene.Scene.!javafx.scene.Scene.keyHandler, javafx.scene.Scene.!javafx.scene.Scene.lights, javafx.scene.Scene.!javafx.scene.Scene.nextTouchEvent, javafx.scene.Scene.!javafx.scene.Scene.rotateGesture, javafx.scene.Scene.!javafx.scene.Scene.scenePulseListener, javafx.scene.Scene.!javafx.scene.Scene.scrollGesture, javafx.scene.Scene.!javafx.scene.Scene.sizeInitialized, javafx.scene.Scene.!javafx.scene.Scene.stylesheets, javafx.scene.Scene.!javafx.scene.Scene.swipeGesture, javafx.scene.Scene.!javafx.scene.Scene.testPulseListener, javafx.scene.Scene.!javafx.scene.Scene.tmpTargetWrapper, javafx.scene.Scene.!javafx.scene.Scene.touchEventSetId, javafx.scene.Scene.!javafx.scene.Scene.touchMap, javafx.scene.Scene.!javafx.scene.Scene.touchPointIndex, javafx.scene.Scene.!javafx.scene.Scene.touchPoints, javafx.scene.Scene.!javafx.scene.Scene.touchTargets, javafx.scene.Scene.!javafx.scene.Scene.traversalEngine, javafx.scene.Scene.!javafx.scene.Scene.userAgentStylesheet, javafx.scene.Scene.!javafx.scene.Scene.widthSetByUser, javafx.scene.Scene.!javafx.scene.Scene.zoomGesture } U = { javafx.scene.Scene.!javafx.application.ConditionalFeature.SCENE3D, javafx.scene.Scene.!javafx.scene.SceneAntialiasing.DISABLED, javafx.scene.Scene.!javafx.scene.paint.Color.WHITE }
+  75 actualOut D = { javafx.scene.Scene.!Scene( javafx.scene.Parent ), javafx.scene.Scene.!javafx.scene.Scene.acc, javafx.scene.Scene.!javafx.scene.Scene.antiAliasing, javafx.scene.Scene.!javafx.scene.Scene.depthBuffer, javafx.scene.Scene.!javafx.scene.Scene.dndGesture, javafx.scene.Scene.!javafx.scene.Scene.focusDirty, javafx.scene.Scene.!javafx.scene.Scene.focusOwner, javafx.scene.Scene.!javafx.scene.Scene.heightSetByUser, javafx.scene.Scene.!javafx.scene.Scene.keyHandler, javafx.scene.Scene.!javafx.scene.Scene.lights, javafx.scene.Scene.!javafx.scene.Scene.nextTouchEvent, javafx.scene.Scene.!javafx.scene.Scene.rotateGesture, javafx.scene.Scene.!javafx.scene.Scene.scenePulseListener, javafx.scene.Scene.!javafx.scene.Scene.scrollGesture, javafx.scene.Scene.!javafx.scene.Scene.sizeInitialized, javafx.scene.Scene.!javafx.scene.Scene.stylesheets, javafx.scene.Scene.!javafx.scene.Scene.swipeGesture, javafx.scene.Scene.!javafx.scene.Scene.testPulseListener, javafx.scene.Scene.!javafx.scene.Scene.tmpTargetWrapper, javafx.scene.Scene.!javafx.scene.Scene.touchEventSetId, javafx.scene.Scene.!javafx.scene.Scene.touchMap, javafx.scene.Scene.!javafx.scene.Scene.touchPointIndex, javafx.scene.Scene.!javafx.scene.Scene.touchPoints, javafx.scene.Scene.!javafx.scene.Scene.touchTargets, javafx.scene.Scene.!javafx.scene.Scene.traversalEngine, javafx.scene.Scene.!javafx.scene.Scene.userAgentStylesheet, javafx.scene.Scene.!javafx.scene.Scene.widthSetByUser, javafx.scene.Scene.!javafx.scene.Scene.zoomGesture } U = { javafx.scene.Scene.!javafx.application.ConditionalFeature.SCENE3D, javafx.scene.Scene.!javafx.scene.SceneAntialiasing.DISABLED, javafx.scene.Scene.!javafx.scene.paint.Color.WHITE }
   76 assignment D = {  } U = { stage$0.!setScene( javafx.scene.Scene ) }
   77 receiver D = {  } U = { stage$0 }
   78 methodCall D = {  } U = { scene$9, stage$0.!com.sun.javafx.tk.Toolkit.TOOLKIT, stage$0.!com.sun.javafx.tk.Toolkit.tk, stage$0.!java.lang.System.err, stage$0.!javafx.stage.Window.scene } TO = javafx.stage.Stage#setScene( javafx.scene.Scene )
-* actualOut D = { stage$0.!com.sun.javafx.tk.Toolkit.TOOLKIT, stage$0.!setScene( javafx.scene.Scene ) } U = { stage$0.!com.sun.javafx.tk.Toolkit.TOOLKIT, stage$0.!com.sun.javafx.tk.Toolkit.tk, stage$0.!java.lang.System.err, stage$0.!javafx.stage.Window.scene }
+  79 actualOut D = { stage$0.!com.sun.javafx.tk.Toolkit.TOOLKIT, stage$0.!setScene( javafx.scene.Scene ) } U = { stage$0.!com.sun.javafx.tk.Toolkit.TOOLKIT, stage$0.!com.sun.javafx.tk.Toolkit.tk, stage$0.!java.lang.System.err, stage$0.!javafx.stage.Window.scene }
   80 assignment D = {  } U = { stage$0.!show( ) }
   81 receiver D = {  } U = { stage$0 }
   82 methodCall D = {  } U = {  } TO = javafx.stage.Stage#show( )
@@ -103,146 +103,146 @@ Class Name = Sample109FX
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 ->   11 trueControlDependence
-  10:    0 ->   12 trueControlDependence
-  11:    0 ->   13 trueControlDependence
-  12:    0 ->   15 trueControlDependence
-  13:    0 ->   16 trueControlDependence
-  14:    0 ->   17 trueControlDependence
-  15:    0 ->   19 trueControlDependence
-  16:    0 ->   20 trueControlDependence
-  17:    0 ->   21 trueControlDependence
-  18:    0 ->   22 trueControlDependence
-  19:    0 ->   23 trueControlDependence
-  20:    0 ->   24 trueControlDependence
-  21:    0 ->   25 trueControlDependence
-  22:    0 ->   26 trueControlDependence
-  23:    0 ->   27 trueControlDependence
-  24:    0 ->   28 trueControlDependence
-  25:    0 ->   29 trueControlDependence
-  26:    0 ->   30 trueControlDependence
-  27:    0 ->   31 trueControlDependence
-  28:    0 ->   32 trueControlDependence
-  29:    0 ->   34 trueControlDependence
-  30:    0 ->   35 trueControlDependence
-  31:    0 ->   36 trueControlDependence
-  32:    0 ->   38 trueControlDependence
-  33:    0 ->   39 trueControlDependence
-  34:    0 ->   40 trueControlDependence
-  35:    0 ->   42 trueControlDependence
-  36:    0 ->   43 trueControlDependence
-  37:    0 ->   44 trueControlDependence
-  38:    0 ->   46 trueControlDependence
-  39:    0 ->   47 trueControlDependence
-  40:    0 ->   48 trueControlDependence
-  41:    0 ->   49 trueControlDependence
-  42:    0 ->   50 trueControlDependence
-  43:    0 ->   51 trueControlDependence
-  44:    0 ->   52 trueControlDependence
-  45:    0 ->   53 trueControlDependence
-  46:    0 ->   54 trueControlDependence
-  47:    0 ->   55 trueControlDependence
-  48:    0 ->   56 trueControlDependence
-  49:    0 ->   57 trueControlDependence
-  50:    0 ->   58 trueControlDependence
-  51:    0 ->   59 trueControlDependence
-  52:    0 ->   61 trueControlDependence
-  53:    0 ->   62 trueControlDependence
-  54:    0 ->   63 trueControlDependence
-  55:    0 ->   65 trueControlDependence
-  56:    0 ->   66 trueControlDependence
-  57:    0 ->   67 trueControlDependence
-  58:    0 ->   68 trueControlDependence
-  59:    0 ->   69 trueControlDependence
-  60:    0 ->   70 trueControlDependence
-  61:    0 ->   71 trueControlDependence
-  62:    0 ->   72 trueControlDependence
-  63:    0 ->   73 trueControlDependence
-  64:    0 ->   74 trueControlDependence
-  65:    0 ->   76 trueControlDependence
-  66:    0 ->   77 trueControlDependence
-  67:    0 ->   78 trueControlDependence
-  68:    0 ->   80 trueControlDependence
-  69:    0 ->   81 trueControlDependence
-  70:    0 ->   82 trueControlDependence
-  71:    0 ->   83 trueControlDependence
-  72:    0 ->   85 trueControlDependence
-  73:    0 -> * trueControlDependence
-  74:    0 -> * trueControlDependence
-  75:    0 -> * trueControlDependence
-  76:    0 -> * trueControlDependence
-  77:    0 -> * trueControlDependence
-  78:    0 -> * trueControlDependence
-  79:    0 -> * trueControlDependence
-  80:    0 -> * trueControlDependence
-  81:    0 -> * trueControlDependence
-  82:    0 -> * trueControlDependence
-  83:    0 -> * trueControlDependence
-  84:    0 -> * trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   27 trueControlDependence
+  28:    0 ->   28 trueControlDependence
+  29:    0 ->   29 trueControlDependence
+  30:    0 ->   30 trueControlDependence
+  31:    0 ->   31 trueControlDependence
+  32:    0 ->   32 trueControlDependence
+  33:    0 ->   33 trueControlDependence
+  34:    0 ->   34 trueControlDependence
+  35:    0 ->   35 trueControlDependence
+  36:    0 ->   36 trueControlDependence
+  37:    0 ->   37 trueControlDependence
+  38:    0 ->   38 trueControlDependence
+  39:    0 ->   39 trueControlDependence
+  40:    0 ->   40 trueControlDependence
+  41:    0 ->   41 trueControlDependence
+  42:    0 ->   42 trueControlDependence
+  43:    0 ->   43 trueControlDependence
+  44:    0 ->   44 trueControlDependence
+  45:    0 ->   45 trueControlDependence
+  46:    0 ->   46 trueControlDependence
+  47:    0 ->   47 trueControlDependence
+  48:    0 ->   48 trueControlDependence
+  49:    0 ->   49 trueControlDependence
+  50:    0 ->   50 trueControlDependence
+  51:    0 ->   51 trueControlDependence
+  52:    0 ->   52 trueControlDependence
+  53:    0 ->   53 trueControlDependence
+  54:    0 ->   54 trueControlDependence
+  55:    0 ->   55 trueControlDependence
+  56:    0 ->   56 trueControlDependence
+  57:    0 ->   57 trueControlDependence
+  58:    0 ->   58 trueControlDependence
+  59:    0 ->   59 trueControlDependence
+  60:    0 ->   60 trueControlDependence
+  61:    0 ->   61 trueControlDependence
+  62:    0 ->   62 trueControlDependence
+  63:    0 ->   63 trueControlDependence
+  64:    0 ->   64 trueControlDependence
+  65:    0 ->   65 trueControlDependence
+  66:    0 ->   66 trueControlDependence
+  67:    0 ->   67 trueControlDependence
+  68:    0 ->   68 trueControlDependence
+  69:    0 ->   69 trueControlDependence
+  70:    0 ->   70 trueControlDependence
+  71:    0 ->   71 trueControlDependence
+  72:    0 ->   72 trueControlDependence
+  73:    0 ->   73 trueControlDependence
+  74:    0 ->   74 trueControlDependence
+  75:    0 ->   75 trueControlDependence
+  76:    0 ->   76 trueControlDependence
+  77:    0 ->   77 trueControlDependence
+  78:    0 ->   78 trueControlDependence
+  79:    0 ->   79 trueControlDependence
+  80:    0 ->   80 trueControlDependence
+  81:    0 ->   81 trueControlDependence
+  82:    0 ->   82 trueControlDependence
+  83:    0 ->   83 trueControlDependence
+  84:    0 ->   85 trueControlDependence
   85:    2 ->    4 loopIndependentDefUseDependence stage$0
   86:    2 ->    8 loopIndependentDefUseDependence stage$0
   87:    2 ->   12 loopIndependentDefUseDependence stage$0
   88:    2 ->   77 loopIndependentDefUseDependence stage$0
   89:    2 ->   81 loopIndependentDefUseDependence stage$0
-  90:   15 ->   25 declaration
-  91:   15 ->   25 loopIndependentDefUseDependence menuBar$1
-  92:   15 ->   70 declaration
-  93:   15 ->   70 loopIndependentDefUseDependence menuBar$1
-  94:   19 ->   28 declaration
-  95:   19 ->   28 loopIndependentDefUseDependence fileMenu$2
-  96:   19 ->   48 declaration
-  97:   19 ->   48 loopIndependentDefUseDependence fileMenu$2
-  98:   22 ->   19 loopIndependentDefUseDependence javafx.scene.control.Menu.!Menu( java.lang.String )
-  99:   27 ->   24 loopIndependentDefUseDependence menuBar$1.!getMenus( )
- 100:   29 ->   23 loopIndependentDefUseDependence menuBar$1.!getMenus( ).!addAll( java.lang.Object[] )
- 101:   30 ->   51 declaration
- 102:   30 ->   51 loopIndependentDefUseDependence openItem$3
- 103:   34 ->   51 declaration
- 104:   34 ->   51 loopIndependentDefUseDependence saveItem$4
- 105:   38 ->   51 declaration
- 106:   38 ->   51 loopIndependentDefUseDependence sp$5
- 107:   42 ->   51 declaration
- 108:   42 ->   51 loopIndependentDefUseDependence exitItem$6
- 109:   42 ->   54 declaration
- 110:   42 ->   54 loopIndependentDefUseDependence exitItem$6
- 111:   50 ->   47 loopIndependentDefUseDependence fileMenu$2.!getItems( )
- 112:   52 ->   46 loopIndependentDefUseDependence fileMenu$2.!getItems( ).!addAll( java.lang.Object[] )
- 113:   56 ->   55 loopIndependentDefUseDependence $LAMBDA
- 114:   59 ->   56 loopIndependentDefUseDependence this.!exit( )
- 115:   61 ->   67 declaration
- 116:   61 ->   67 loopIndependentDefUseDependence menuArea$8
- 117:   61 ->   74 declaration
- 118:   61 ->   74 loopIndependentDefUseDependence menuArea$8
- 119:   69 ->   66 loopIndependentDefUseDependence menuArea$8.!getChildren( )
- 120:   71 ->   65 loopIndependentDefUseDependence menuArea$8.!getChildren( ).!addAll( java.lang.Object[] )
- 121:   72 ->   78 declaration
- 122:   72 ->   78 loopIndependentDefUseDependence scene$9
- 123:   83 ->   80 loopIndependentDefUseDependence stage$0.!show( )
- 124: * ->    3 loopIndependentDefUseDependence stage$0.!setTitle( java.lang.String )
- 125: * ->    7 loopIndependentDefUseDependence stage$0.!setWidth( double )
- 126: * ->   11 loopIndependentDefUseDependence stage$0.!setHeight( double )
- 127: * ->   13 loopIndependentDefUseDependence stage$0.!javafx.beans.property.DoublePropertyBase.value
- 128: * ->   15 loopIndependentDefUseDependence javafx.scene.control.MenuBar.!MenuBar( )
- 129: * ->   30 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!MenuItem( java.lang.String )
- 130: * ->   34 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!MenuItem( java.lang.String )
- 131: * ->   36 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass
- 132: * ->   38 loopIndependentDefUseDependence javafx.scene.control.SeparatorMenuItem.!SeparatorMenuItem( )
- 133: * ->   42 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!MenuItem( java.lang.String )
- 134: * ->   44 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass
- 135: * ->   53 loopIndependentDefUseDependence exitItem$6.!setOnAction( javafx.event.EventHandler )
- 136: * ->   61 loopIndependentDefUseDependence javafx.scene.layout.VBox.!VBox( )
- 137: * ->   72 loopIndependentDefUseDependence javafx.scene.Scene.!Scene( javafx.scene.Parent )
- 138: * ->   76 loopIndependentDefUseDependence stage$0.!setScene( javafx.scene.Scene )
- 139: * -> * loopIndependentDefUseDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass
- 140: * -> * loopIndependentDefUseDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass
- 141: * -> * loopIndependentDefUseDependence stage$0.!javafx.beans.property.DoublePropertyBase.value
- 142: * -> * outputDependence javafx.scene.control.MenuItem.!MenuItem( java.lang.String )
- 143: * -> * outputDependence javafx.scene.control.MenuItem.!MenuItem( java.lang.String )
- 144: * -> * outputDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.eventHandlerManager
- 145: * -> * outputDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.eventHandlerManager
+  90:    6 ->    3 loopIndependentDefUseDependence stage$0.!setTitle( java.lang.String )
+  91:   10 ->    7 loopIndependentDefUseDependence stage$0.!setWidth( double )
+  92:   10 ->   13 loopIndependentDefUseDependence stage$0.!javafx.beans.property.DoublePropertyBase.value
+  93:   10 ->   14 loopIndependentDefUseDependence stage$0.!javafx.beans.property.DoublePropertyBase.value
+  94:   14 ->   11 loopIndependentDefUseDependence stage$0.!setHeight( double )
+  95:   15 ->   25 declaration
+  96:   15 ->   25 loopIndependentDefUseDependence menuBar$1
+  97:   15 ->   70 declaration
+  98:   15 ->   70 loopIndependentDefUseDependence menuBar$1
+  99:   18 ->   15 loopIndependentDefUseDependence javafx.scene.control.MenuBar.!MenuBar( )
+ 100:   19 ->   28 declaration
+ 101:   19 ->   28 loopIndependentDefUseDependence fileMenu$2
+ 102:   19 ->   48 declaration
+ 103:   19 ->   48 loopIndependentDefUseDependence fileMenu$2
+ 104:   22 ->   19 loopIndependentDefUseDependence javafx.scene.control.Menu.!Menu( java.lang.String )
+ 105:   27 ->   24 loopIndependentDefUseDependence menuBar$1.!getMenus( )
+ 106:   29 ->   23 loopIndependentDefUseDependence menuBar$1.!getMenus( ).!addAll( java.lang.Object[] )
+ 107:   30 ->   51 declaration
+ 108:   30 ->   51 loopIndependentDefUseDependence openItem$3
+ 109:   33 ->   30 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!MenuItem( java.lang.String )
+ 110:   33 ->   36 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass
+ 111:   33 ->   37 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass
+ 112:   33 ->   37 outputDependence javafx.scene.control.MenuItem.!MenuItem( java.lang.String )
+ 113:   33 ->   37 outputDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.eventHandlerManager
+ 114:   34 ->   51 declaration
+ 115:   34 ->   51 loopIndependentDefUseDependence saveItem$4
+ 116:   37 ->   34 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!MenuItem( java.lang.String )
+ 117:   37 ->   44 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass
+ 118:   37 ->   45 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.styleClass
+ 119:   37 ->   45 outputDependence javafx.scene.control.MenuItem.!MenuItem( java.lang.String )
+ 120:   37 ->   45 outputDependence javafx.scene.control.MenuItem.!javafx.scene.control.MenuItem.eventHandlerManager
+ 121:   38 ->   51 declaration
+ 122:   38 ->   51 loopIndependentDefUseDependence sp$5
+ 123:   41 ->   38 loopIndependentDefUseDependence javafx.scene.control.SeparatorMenuItem.!SeparatorMenuItem( )
+ 124:   42 ->   51 declaration
+ 125:   42 ->   51 loopIndependentDefUseDependence exitItem$6
+ 126:   42 ->   54 declaration
+ 127:   42 ->   54 loopIndependentDefUseDependence exitItem$6
+ 128:   45 ->   42 loopIndependentDefUseDependence javafx.scene.control.MenuItem.!MenuItem( java.lang.String )
+ 129:   50 ->   47 loopIndependentDefUseDependence fileMenu$2.!getItems( )
+ 130:   52 ->   46 loopIndependentDefUseDependence fileMenu$2.!getItems( ).!addAll( java.lang.Object[] )
+ 131:   56 ->   55 loopIndependentDefUseDependence $LAMBDA
+ 132:   59 ->   56 loopIndependentDefUseDependence this.!exit( )
+ 133:   60 ->   53 loopIndependentDefUseDependence exitItem$6.!setOnAction( javafx.event.EventHandler )
+ 134:   61 ->   67 declaration
+ 135:   61 ->   67 loopIndependentDefUseDependence menuArea$8
+ 136:   61 ->   74 declaration
+ 137:   61 ->   74 loopIndependentDefUseDependence menuArea$8
+ 138:   64 ->   61 loopIndependentDefUseDependence javafx.scene.layout.VBox.!VBox( )
+ 139:   69 ->   66 loopIndependentDefUseDependence menuArea$8.!getChildren( )
+ 140:   71 ->   65 loopIndependentDefUseDependence menuArea$8.!getChildren( ).!addAll( java.lang.Object[] )
+ 141:   72 ->   78 declaration
+ 142:   72 ->   78 loopIndependentDefUseDependence scene$9
+ 143:   75 ->   72 loopIndependentDefUseDependence javafx.scene.Scene.!Scene( javafx.scene.Parent )
+ 144:   79 ->   76 loopIndependentDefUseDependence stage$0.!setScene( javafx.scene.Scene )
+ 145:   83 ->   80 loopIndependentDefUseDependence stage$0.!show( )
 --
    0: Sample109FX( )
    1:    0 ->    2 trueControlDependence

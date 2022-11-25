@@ -5,7 +5,7 @@ Class Name = Sample1
    2 assignment D = {  } U = { System.out.!println( java.lang.String ) }
    3 receiver D = {  } U = { System.out }
    4 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut } TO = java.io.PrintStream#println( java.lang.String )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+   5 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
    7 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Sample1#Sample1( ) ]
@@ -16,9 +16,9 @@ Class Name = Sample1
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    7 trueControlDependence
-   6:    0 -> * trueControlDependence
-   7: * ->    2 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    5 ->    2 loopIndependentDefUseDependence System.out.!println( java.lang.String )
 --
    0: Sample1( )
    1:    0 ->    2 trueControlDependence

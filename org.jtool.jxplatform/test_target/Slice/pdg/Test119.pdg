@@ -30,8 +30,8 @@ Class Name = Test119
   27 methodCall D = {  } U = { this.p } TO = Test119#getP( )
   28 actualOut D = { this.!getP( ) } U = { this.p }
   30 formalOut D = {  } U = { $_ }
-* actualOut D = { a$0.x } U = {  }
-* actualOut D = { a$0.x } U = {  }
+   8+ actualOutByFieldAccess D = { a$0.x } U = {  }
+  17+ actualOutByFieldAccess D = { a$0.x } U = {  }
 --
    0 fieldEntry [ Test119#p ]
    1 fieldDeclaration D = { this.p } U = { this.p }
@@ -61,29 +61,29 @@ Class Name = Test119
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
    8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   25 trueControlDependence
-  26:    0 ->   26 trueControlDependence
-  27:    0 ->   27 trueControlDependence
-  28:    0 ->   28 trueControlDependence
-  29:    0 ->   30 trueControlDependence
-  30:    0 -> * trueControlDependence
-  31:    0 -> * trueControlDependence
+   9:    0 ->    8+ trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   12 trueControlDependence
+  14:    0 ->   13 trueControlDependence
+  15:    0 ->   14 trueControlDependence
+  16:    0 ->   15 trueControlDependence
+  17:    0 ->   16 trueControlDependence
+  18:    0 ->   17 trueControlDependence
+  19:    0 ->   17+ trueControlDependence
+  20:    0 ->   18 trueControlDependence
+  21:    0 ->   19 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   25 trueControlDependence
+  28:    0 ->   26 trueControlDependence
+  29:    0 ->   27 trueControlDependence
+  30:    0 ->   28 trueControlDependence
+  31:    0 ->   30 trueControlDependence
   32:    1 ->   24 loopIndependentDefUseDependence this.p
   33:    1 ->   27 loopIndependentDefUseDependence this.p
   34:    1 ->   28 loopIndependentDefUseDependence this.p
@@ -98,19 +98,19 @@ Class Name = Test119
   43:    2 ->   24 declaration
   44:    2 ->   24 loopIndependentDefUseDependence a$0
   45:    5 ->    2 loopIndependentDefUseDependence A119.!A119( )
-  46:   10 ->    6 loopIndependentDefUseDependence a$0.!setX( int )
-  47:   10 ->   19 outputDependence a$0.!setX( int )
-  48:   14 ->   11 loopIndependentDefUseDependence a$0.!getX( )
-  49:   14 ->   23 outputDependence a$0.!getX( )
-  50:   19 ->   15 loopIndependentDefUseDependence a$0.!setX( int )
-  51:   23 ->   20 loopIndependentDefUseDependence a$0.!getX( )
-  52:   28 ->   25 loopIndependentDefUseDependence this.!getP( )
-  53: * ->   13 loopIndependentDefUseDependence a$0.x
-  54: * ->   14 loopIndependentDefUseDependence a$0.x
-  55: * ->   22 loopIndependentDefUseDependence a$0.x
-  56: * ->   23 loopIndependentDefUseDependence a$0.x
-  57: * ->   24 loopIndependentDefUseDependence a$0.x
-  58: * -> * outputDependence a$0.x
+  46:    8+ ->   13 loopIndependentDefUseDependence a$0.x
+  47:    8+ ->   14 loopIndependentDefUseDependence a$0.x
+  48:    8+ ->   17+ outputDependence a$0.x
+  49:   10 ->    6 loopIndependentDefUseDependence a$0.!setX( int )
+  50:   10 ->   19 outputDependence a$0.!setX( int )
+  51:   14 ->   11 loopIndependentDefUseDependence a$0.!getX( )
+  52:   14 ->   23 outputDependence a$0.!getX( )
+  53:   17+ ->   22 loopIndependentDefUseDependence a$0.x
+  54:   17+ ->   23 loopIndependentDefUseDependence a$0.x
+  55:   17+ ->   24 loopIndependentDefUseDependence a$0.x
+  56:   19 ->   15 loopIndependentDefUseDependence a$0.!setX( int )
+  57:   23 ->   20 loopIndependentDefUseDependence a$0.!getX( )
+  58:   28 ->   25 loopIndependentDefUseDependence this.!getP( )
 --
    0: p
    1:    0 ->    1 trueControlDependence

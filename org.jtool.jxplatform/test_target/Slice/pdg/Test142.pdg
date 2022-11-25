@@ -19,8 +19,8 @@ Class Name = Test142
   13 methodCall D = {  } U = { this.p.key, this.p.key.!java.lang.String.COMPACT_STRINGS, this.p.key.!java.lang.String.coder, this.p.key.!java.lang.String.value, this.p.value } TO = P142#getValue( )
   14 actualOut D = { this.p.!getValue( ) } U = { this.p.key, this.p.key.!java.lang.String.COMPACT_STRINGS, this.p.key.!java.lang.String.coder, this.p.key.!java.lang.String.value, this.p.value }
   16 formalOut D = {  } U = { $_ }
-* actualOut D = { this.p.key } U = {  }
-* actualOut D = { this.p.value } U = {  }
+   3+ actualOutByFieldAccess D = { this.p.key } U = {  }
+   3+ actualOutByFieldAccess D = { this.p.value } U = {  }
 --
    0 fieldEntry [ Test142#p ]
    1 fieldDeclaration D = { this.p } U = { P142.!P142( ), this.p }
@@ -35,29 +35,29 @@ Class Name = Test142
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   16 trueControlDependence
-  16:    0 -> * trueControlDependence
-  17:    0 -> * trueControlDependence
-  18:    6 ->    1 loopIndependentDefUseDependence this.p.!set( java.lang.String java.lang.String )
-  19:   10 ->    7 loopIndependentDefUseDependence this.p.!getKey( )
-  20:   14 ->   11 loopIndependentDefUseDependence this.p.!getValue( )
-  21: * ->    9 loopIndependentDefUseDependence this.p.key
-  22: * ->   10 loopIndependentDefUseDependence this.p.key
-  23: * ->   13 loopIndependentDefUseDependence this.p.key
-  24: * ->   13 loopIndependentDefUseDependence this.p.value
-  25: * ->   14 loopIndependentDefUseDependence this.p.key
-  26: * ->   14 loopIndependentDefUseDependence this.p.value
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   11 trueControlDependence
+  14:    0 ->   12 trueControlDependence
+  15:    0 ->   13 trueControlDependence
+  16:    0 ->   14 trueControlDependence
+  17:    0 ->   16 trueControlDependence
+  18:    3+ ->    9 loopIndependentDefUseDependence this.p.key
+  19:    3+ ->   10 loopIndependentDefUseDependence this.p.key
+  20:    3+ ->   13 loopIndependentDefUseDependence this.p.key
+  21:    3+ ->   13 loopIndependentDefUseDependence this.p.value
+  22:    3+ ->   14 loopIndependentDefUseDependence this.p.key
+  23:    3+ ->   14 loopIndependentDefUseDependence this.p.value
+  24:    6 ->    1 loopIndependentDefUseDependence this.p.!set( java.lang.String java.lang.String )
+  25:   10 ->    7 loopIndependentDefUseDependence this.p.!getKey( )
+  26:   14 ->   11 loopIndependentDefUseDependence this.p.!getValue( )
 --
    0: p
    1:    0 ->    1 trueControlDependence

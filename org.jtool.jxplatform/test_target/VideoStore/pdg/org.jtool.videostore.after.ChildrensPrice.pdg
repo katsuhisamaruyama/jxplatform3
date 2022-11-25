@@ -8,7 +8,7 @@ Class Name = org.jtool.videostore.after.ChildrensPrice
    5 actualIn D = {  } U = { priceCode$0 }
    6 actualOut D = { super.!Price( org.jtool.videostore.after.Movie.PriceCode ) } U = {  }
    8 formalOut D = {  } U = { $_ }
-* actualOut D = { super.priceCode } U = {  }
+   4+ actualOutByFieldAccess D = { super.priceCode } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.after.ChildrensPrice#getCharge( int ) ]
    1 formalIn D = { daysRented$0 } U = {  }
@@ -23,10 +23,10 @@ Class Name = org.jtool.videostore.after.ChildrensPrice
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    8 trueControlDependence
    9:    1 ->    5 loopIndependentDefUseDependence priceCode$0
   10:    6 ->    2 loopIndependentDefUseDependence super.!Price( org.jtool.videostore.after.Movie.PriceCode )
 --

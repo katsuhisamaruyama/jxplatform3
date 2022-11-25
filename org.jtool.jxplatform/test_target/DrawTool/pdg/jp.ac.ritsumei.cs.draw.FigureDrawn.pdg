@@ -11,7 +11,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureDrawn
    2 assignment D = {  } U = { super.!undo( ) }
    3 receiver D = {  } U = {  }
    4 methodCall D = {  } U = { super.super.!javax.swing.undo.AbstractUndoableEdit.alive, super.super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone } TO = jp.ac.ritsumei.cs.draw.FigureEdit#undo( )
-* actualOut D = { super.!undo( ), super.super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone } U = { super.super.!javax.swing.undo.AbstractUndoableEdit.alive, super.super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone }
+   5 actualOut D = { super.!undo( ), super.super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone } U = { super.super.!javax.swing.undo.AbstractUndoableEdit.alive, super.super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone }
    6 localDeclaration D = { fmanager$0 } U = { this.canvas.!getFigureManager( ) }
    7 receiver D = {  } U = { this.canvas }
    8 methodCall D = {  } U = { this.canvas.figureManager, this.figureManager.figures, this.figureManager.filename } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#getFigureManager( )
@@ -33,7 +33,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureDrawn
    3 assignment D = {  } U = { super.!redo( ) }
    4 receiver D = {  } U = {  }
    5 methodCall D = {  } U = { super.super.!javax.swing.undo.AbstractUndoableEdit.alive, super.super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone } TO = jp.ac.ritsumei.cs.draw.FigureEdit#redo( )
-* actualOut D = { super.!redo( ), super.super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone } U = { super.super.!javax.swing.undo.AbstractUndoableEdit.alive, super.super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone }
+   6 actualOut D = { super.!redo( ), super.super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone } U = { super.super.!javax.swing.undo.AbstractUndoableEdit.alive, super.super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone }
    7 localDeclaration D = { fmanager$0 } U = { this.canvas.!getFigureManager( ) }
    8 receiver D = {  } U = { this.canvas }
    9 methodCall D = {  } U = { this.canvas.figureManager, this.figureManager.figures, this.figureManager.filename } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#getFigureManager( )
@@ -59,8 +59,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureDrawn
    7 actualIn D = {  } U = { figure$1, figure$1.color, figure$1.endX, figure$1.endY, figure$1.outlineWidth, figure$1.startX, figure$1.startY }
    8 actualOut D = { super.!FigureEdit( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure ) } U = { canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, figure$1.color, figure$1.endX, figure$1.endY, figure$1.outlineWidth, figure$1.startX, figure$1.startY }
   10 formalOut D = {  } U = { $_ }
-* actualOut D = { super.canvas } U = {  }
-* actualOut D = { super.figure } U = {  }
+   5+ actualOutByFieldAccess D = { super.canvas } U = {  }
+   5+ actualOutByFieldAccess D = { super.figure } U = {  }
 --
    0: serialVersionUID
    1:    0 ->    1 trueControlDependence
@@ -74,27 +74,27 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureDrawn
    3:    4 ->    1 exceptionCatch
    4:    4 ->    1 exceptionCatch
    5:    4 ->    2 trueControlDependence
-   6:    4 ->    6 trueControlDependence
-   7:    4 ->    7 trueControlDependence
-   8:    4 ->    8 trueControlDependence
-   9:    4 ->    9 trueControlDependence
-  10:    4 ->   10 trueControlDependence
-  11:    4 ->   11 trueControlDependence
-  12:    4 ->   12 trueControlDependence
-  13:    4 ->   13 trueControlDependence
-  14:    4 ->   14 trueControlDependence
-  15:    4 ->   15 trueControlDependence
-  16:    4 ->   16 trueControlDependence
-  17:    4 ->   17 trueControlDependence
-  18:    4 ->   18 trueControlDependence
-  19:    4 ->   20 trueControlDependence
-  20:    4 -> * trueControlDependence
-  21:    6 ->   11 declaration
-  22:    6 ->   11 loopIndependentDefUseDependence fmanager$0
-  23:    9 ->    6 loopIndependentDefUseDependence this.canvas.!getFigureManager( )
-  24:   14 ->   10 loopIndependentDefUseDependence fmanager$0.!remove( jp.ac.ritsumei.cs.draw.Figure )
-  25:   18 ->   15 loopIndependentDefUseDependence this.canvas.!repaint( )
-  26: * ->    2 loopIndependentDefUseDependence super.!undo( )
+   6:    4 ->    5 trueControlDependence
+   7:    4 ->    6 trueControlDependence
+   8:    4 ->    7 trueControlDependence
+   9:    4 ->    8 trueControlDependence
+  10:    4 ->    9 trueControlDependence
+  11:    4 ->   10 trueControlDependence
+  12:    4 ->   11 trueControlDependence
+  13:    4 ->   12 trueControlDependence
+  14:    4 ->   13 trueControlDependence
+  15:    4 ->   14 trueControlDependence
+  16:    4 ->   15 trueControlDependence
+  17:    4 ->   16 trueControlDependence
+  18:    4 ->   17 trueControlDependence
+  19:    4 ->   18 trueControlDependence
+  20:    4 ->   20 trueControlDependence
+  21:    5 ->    2 loopIndependentDefUseDependence super.!undo( )
+  22:    6 ->   11 declaration
+  23:    6 ->   11 loopIndependentDefUseDependence fmanager$0
+  24:    9 ->    6 loopIndependentDefUseDependence this.canvas.!getFigureManager( )
+  25:   14 ->   10 loopIndependentDefUseDependence fmanager$0.!remove( jp.ac.ritsumei.cs.draw.Figure )
+  26:   18 ->   15 loopIndependentDefUseDependence this.canvas.!repaint( )
 --
    0: redo( )
    1:    0 ->    4 trueControlDependence
@@ -102,27 +102,27 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureDrawn
    3:    5 ->    1 exceptionCatch
    4:    5 ->    2 exceptionCatch
    5:    5 ->    3 trueControlDependence
-   6:    5 ->    7 trueControlDependence
-   7:    5 ->    8 trueControlDependence
-   8:    5 ->    9 trueControlDependence
-   9:    5 ->   10 trueControlDependence
-  10:    5 ->   11 trueControlDependence
-  11:    5 ->   12 trueControlDependence
-  12:    5 ->   13 trueControlDependence
-  13:    5 ->   14 trueControlDependence
-  14:    5 ->   15 trueControlDependence
-  15:    5 ->   16 trueControlDependence
-  16:    5 ->   17 trueControlDependence
-  17:    5 ->   18 trueControlDependence
-  18:    5 ->   19 trueControlDependence
-  19:    5 ->   21 trueControlDependence
-  20:    5 -> * trueControlDependence
-  21:    7 ->   12 declaration
-  22:    7 ->   12 loopIndependentDefUseDependence fmanager$0
-  23:   10 ->    7 loopIndependentDefUseDependence this.canvas.!getFigureManager( )
-  24:   15 ->   11 loopIndependentDefUseDependence fmanager$0.!add( jp.ac.ritsumei.cs.draw.Figure )
-  25:   19 ->   16 loopIndependentDefUseDependence this.canvas.!repaint( )
-  26: * ->    3 loopIndependentDefUseDependence super.!redo( )
+   6:    5 ->    6 trueControlDependence
+   7:    5 ->    7 trueControlDependence
+   8:    5 ->    8 trueControlDependence
+   9:    5 ->    9 trueControlDependence
+  10:    5 ->   10 trueControlDependence
+  11:    5 ->   11 trueControlDependence
+  12:    5 ->   12 trueControlDependence
+  13:    5 ->   13 trueControlDependence
+  14:    5 ->   14 trueControlDependence
+  15:    5 ->   15 trueControlDependence
+  16:    5 ->   16 trueControlDependence
+  17:    5 ->   17 trueControlDependence
+  18:    5 ->   18 trueControlDependence
+  19:    5 ->   19 trueControlDependence
+  20:    5 ->   21 trueControlDependence
+  21:    6 ->    3 loopIndependentDefUseDependence super.!redo( )
+  22:    7 ->   12 declaration
+  23:    7 ->   12 loopIndependentDefUseDependence fmanager$0
+  24:   10 ->    7 loopIndependentDefUseDependence this.canvas.!getFigureManager( )
+  25:   15 ->   11 loopIndependentDefUseDependence fmanager$0.!add( jp.ac.ritsumei.cs.draw.Figure )
+  26:   19 ->   16 loopIndependentDefUseDependence this.canvas.!repaint( )
 --
    0: FigureDrawn( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlDependence
@@ -130,12 +130,12 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureDrawn
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 -> * trueControlDependence
-  11:    0 -> * trueControlDependence
+   6:    0 ->    5+ trueControlDependence
+   7:    0 ->    5+ trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->   10 trueControlDependence
   12:    1 ->    6 loopIndependentDefUseDependence canvas$0
   13:    2 ->    7 loopIndependentDefUseDependence figure$1
   14:    8 ->    3 loopIndependentDefUseDependence super.!FigureEdit( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure )

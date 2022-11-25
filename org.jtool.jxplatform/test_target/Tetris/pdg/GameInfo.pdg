@@ -28,7 +28,7 @@ Class Name = GameInfo
    9 assignment D = { this.font } U = { java.awt.Font.!Font( java.lang.String int int ) }
   10 receiver D = {  } U = {  }
   11 constructorCall D = {  } U = { $java.lang.String, Font.BOLD } TO = java.awt.Font#Font( java.lang.String int int )
-* actualOut D = { java.awt.Font.!Font( java.lang.String int int ), java.awt.Font.!java.awt.Font.createdFont, java.awt.Font.!java.awt.Font.fontSerializedDataVersion, java.awt.Font.!java.awt.Font.name, java.awt.Font.!java.awt.Font.pointSize, java.awt.Font.!java.awt.Font.size, java.awt.Font.!java.awt.Font.style } U = {  }
+  12 actualOut D = { java.awt.Font.!Font( java.lang.String int int ), java.awt.Font.!java.awt.Font.createdFont, java.awt.Font.!java.awt.Font.fontSerializedDataVersion, java.awt.Font.!java.awt.Font.name, java.awt.Font.!java.awt.Font.pointSize, java.awt.Font.!java.awt.Font.size, java.awt.Font.!java.awt.Font.style } U = {  }
   14 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ GameInfo#addLines( int ) ]
@@ -46,8 +46,8 @@ Class Name = GameInfo
   12 actualIn D = {  } U = {  }
   13 actualOut D = { this.!addLevel( int ) } U = { this.level }
   16 formalOut D = {  } U = { $_ }
-* actualOut D = { this.score } U = {  }
-* actualOut D = { this.level } U = {  }
+   5+ actualOutByFieldAccess D = { this.score } U = {  }
+  11+ actualOutByFieldAccess D = { this.level } U = {  }
 --
    0 fieldEntry [ GameInfo#level ]
    1 fieldDeclaration D = { this.level } U = { this.level }
@@ -134,7 +134,7 @@ Class Name = GameInfo
   32 receiver D = {  } U = { nextBlock$0 }
   33 methodCall D = {  } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, nextBlock$0.offsetX, nextBlock$0.offsetY, nextBlock$0.tile$2.color, nextBlock$0.tile$2.posX, nextBlock$0.tile$2.posY, nextBlock$0.tiles, nextBlock$0.tiles.!java.util.HashMap.keySet, nextBlock$0.tiles.!java.util.HashSet.map } TO = Block#paintNext( java.awt.Graphics )
   34 actualIn D = {  } U = { this.offg }
-* actualOut D = { nextBlock$0.!paintNext( java.awt.Graphics ), nextBlock$0.tile$2.color.!java.awt.Color.cs, nextBlock$0.tile$2.color.!java.awt.Color.falpha, nextBlock$0.tile$2.color.!java.awt.Color.frgbvalue, nextBlock$0.tile$2.color.!java.awt.Color.fvalue, nextBlock$0.tile$2.color.!java.awt.Color.value, nextBlock$0.tiles.!java.util.HashMap.keySet } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, nextBlock$0.offsetX, nextBlock$0.offsetY, nextBlock$0.tile$2.color, nextBlock$0.tile$2.posX, nextBlock$0.tile$2.posY, nextBlock$0.tiles, nextBlock$0.tiles.!java.util.HashMap.keySet, nextBlock$0.tiles.!java.util.HashSet.map }
+  35 actualOut D = { nextBlock$0.!paintNext( java.awt.Graphics ), nextBlock$0.tile$2.color.!java.awt.Color.cs, nextBlock$0.tile$2.color.!java.awt.Color.falpha, nextBlock$0.tile$2.color.!java.awt.Color.frgbvalue, nextBlock$0.tile$2.color.!java.awt.Color.fvalue, nextBlock$0.tile$2.color.!java.awt.Color.value, nextBlock$0.tiles.!java.util.HashMap.keySet } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, nextBlock$0.offsetX, nextBlock$0.offsetY, nextBlock$0.tile$2.color, nextBlock$0.tile$2.posX, nextBlock$0.tile$2.posY, nextBlock$0.tiles, nextBlock$0.tiles.!java.util.HashMap.keySet, nextBlock$0.tiles.!java.util.HashSet.map }
   37 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
   38 receiver D = {  } U = { this.offg }
   39 methodCall D = {  } U = { Color.white } TO = java.awt.Graphics#setColor( java.awt.Color )
@@ -206,12 +206,12 @@ Class Name = GameInfo
    9:    0 ->    9 trueControlDependence
   10:    0 ->   10 trueControlDependence
   11:    0 ->   11 trueControlDependence
-  12:    0 ->   14 trueControlDependence
-  13:    0 -> * trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   14 trueControlDependence
   14:    1 ->    6 loopIndependentDefUseDependence this.offImage
   15:    4 ->    1 loopIndependentDefUseDependence this.!createImage( int int )
   16:    8 ->    5 loopIndependentDefUseDependence this.offImage.!getGraphics( )
-  17: * ->    9 loopIndependentDefUseDependence java.awt.Font.!Font( java.lang.String int int )
+  17:   12 ->    9 loopIndependentDefUseDependence java.awt.Font.!Font( java.lang.String int int )
 --
    0: addLines( int )
    1:    0 ->    1 trueControlDependence
@@ -219,24 +219,24 @@ Class Name = GameInfo
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->   16 trueControlDependence
-  10:    0 -> * trueControlDependence
+   6:    0 ->    5+ trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->   16 trueControlDependence
   11:    1 ->    2 loopIndependentDefUseDependence add$0
   12:    1 ->    6 loopIndependentDefUseDependence add$0
   13:    2 ->    8 loopIndependentDefUseDependence this.lines
-  14:    7 ->    3 loopIndependentDefUseDependence this.!addScore( int )
-  15:    8 ->    9 trueControlDependence
-  16:    8 ->   10 trueControlDependence
-  17:    8 ->   11 trueControlDependence
-  18:    8 ->   12 trueControlDependence
-  19:    8 ->   13 trueControlDependence
-  20:    8 -> * trueControlDependence
-  21:   13 ->    9 loopIndependentDefUseDependence this.!addLevel( int )
-  22: * ->    7 loopIndependentDefUseDependence this.score
-  23: * ->   13 loopIndependentDefUseDependence this.level
+  14:    5+ ->    7 loopIndependentDefUseDependence this.score
+  15:    7 ->    3 loopIndependentDefUseDependence this.!addScore( int )
+  16:    8 ->    9 trueControlDependence
+  17:    8 ->   10 trueControlDependence
+  18:    8 ->   11 trueControlDependence
+  19:    8 ->   11+ trueControlDependence
+  20:    8 ->   12 trueControlDependence
+  21:    8 ->   13 trueControlDependence
+  22:   11+ ->   13 loopIndependentDefUseDependence this.level
+  23:   13 ->    9 loopIndependentDefUseDependence this.!addLevel( int )
 --
    0: level
    1:    0 ->    1 trueControlDependence
@@ -363,15 +363,15 @@ Class Name = GameInfo
   67:   30 ->   32 trueControlDependence
   68:   30 ->   33 trueControlDependence
   69:   30 ->   34 trueControlDependence
-  70:   30 -> * trueControlDependence
-  71:   40 ->   37 loopIndependentDefUseDependence this.offg.!setColor( java.awt.Color )
-  72:   44 ->   41 loopIndependentDefUseDependence this.offg.!drawString( java.lang.String int int )
-  73:   44 ->   48 outputDependence this.offg.!drawString( java.lang.String int int )
-  74:   48 ->   45 loopIndependentDefUseDependence this.offg.!drawString( java.lang.String int int )
-  75:   48 ->   52 outputDependence this.offg.!drawString( java.lang.String int int )
-  76:   52 ->   49 loopIndependentDefUseDependence this.offg.!drawString( java.lang.String int int )
-  77:   56 ->   53 loopIndependentDefUseDependence this.!repaint( )
-  78: * ->   31 loopIndependentDefUseDependence nextBlock$0.!paintNext( java.awt.Graphics )
+  70:   30 ->   35 trueControlDependence
+  71:   35 ->   31 loopIndependentDefUseDependence nextBlock$0.!paintNext( java.awt.Graphics )
+  72:   40 ->   37 loopIndependentDefUseDependence this.offg.!setColor( java.awt.Color )
+  73:   44 ->   41 loopIndependentDefUseDependence this.offg.!drawString( java.lang.String int int )
+  74:   44 ->   48 outputDependence this.offg.!drawString( java.lang.String int int )
+  75:   48 ->   45 loopIndependentDefUseDependence this.offg.!drawString( java.lang.String int int )
+  76:   48 ->   52 outputDependence this.offg.!drawString( java.lang.String int int )
+  77:   52 ->   49 loopIndependentDefUseDependence this.offg.!drawString( java.lang.String int int )
+  78:   56 ->   53 loopIndependentDefUseDependence this.!repaint( )
 --
    0: lines
    1:    0 ->    1 trueControlDependence

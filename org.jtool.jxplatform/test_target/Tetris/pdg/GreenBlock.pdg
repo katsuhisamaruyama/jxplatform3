@@ -39,20 +39,20 @@ Class Name = GreenBlock
   36 actualOut D = { this.!addTile( int int java.awt.Color ) } U = { this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
   37 assignment D = { this.offsetY } U = { this.offsetY, this.offsetY.SIZE }
   39 formalOut D = {  } U = { $_ }
-* actualOut D = { super.posX } U = {  }
-* actualOut D = { super.posY } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).color } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).posX } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).posY } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).color } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).posX } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).posY } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).color } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).posX } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).posY } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).color } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).posX } U = {  }
-* actualOut D = { this.!addTile( int int java.awt.Color ).posY } U = {  }
+   5+ actualOutByFieldAccess D = { super.posX } U = {  }
+   5+ actualOutByFieldAccess D = { super.posY } U = {  }
+  11+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).color } U = {  }
+  11+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).posX } U = {  }
+  11+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).posY } U = {  }
+  18+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).color } U = {  }
+  18+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).posX } U = {  }
+  18+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).posY } U = {  }
+  25+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).color } U = {  }
+  25+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).posX } U = {  }
+  25+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).posY } U = {  }
+  32+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).color } U = {  }
+  32+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).posX } U = {  }
+  32+ actualOutByFieldAccess D = { this.!addTile( int int java.awt.Color ).posY } U = {  }
 --
    0 fieldEntry [ GreenBlock#COLOR ]
    1 fieldDeclaration D = { GreenBlock.COLOR } U = { GreenBlock.COLOR, GreenBlock.COLOR.green }
@@ -63,72 +63,72 @@ Class Name = GreenBlock
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   25 trueControlDependence
-  26:    0 ->   26 trueControlDependence
-  27:    0 ->   27 trueControlDependence
-  28:    0 ->   28 trueControlDependence
-  29:    0 ->   29 trueControlDependence
-  30:    0 ->   30 trueControlDependence
-  31:    0 ->   31 trueControlDependence
-  32:    0 ->   32 trueControlDependence
-  33:    0 ->   33 trueControlDependence
-  34:    0 ->   34 trueControlDependence
-  35:    0 ->   35 trueControlDependence
-  36:    0 ->   36 trueControlDependence
-  37:    0 ->   37 trueControlDependence
-  38:    0 ->   39 trueControlDependence
-  39:    0 -> * trueControlDependence
-  40:    0 -> * trueControlDependence
-  41:    0 -> * trueControlDependence
-  42:    0 -> * trueControlDependence
-  43:    0 -> * trueControlDependence
-  44:    0 -> * trueControlDependence
-  45:    0 -> * trueControlDependence
-  46:    0 -> * trueControlDependence
-  47:    0 -> * trueControlDependence
-  48:    0 -> * trueControlDependence
-  49:    0 -> * trueControlDependence
-  50:    0 -> * trueControlDependence
-  51:    0 -> * trueControlDependence
-  52:    0 -> * trueControlDependence
+   6:    0 ->    5+ trueControlDependence
+   7:    0 ->    5+ trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   11 trueControlDependence
+  14:    0 ->   11+ trueControlDependence
+  15:    0 ->   11+ trueControlDependence
+  16:    0 ->   11+ trueControlDependence
+  17:    0 ->   12 trueControlDependence
+  18:    0 ->   13 trueControlDependence
+  19:    0 ->   14 trueControlDependence
+  20:    0 ->   15 trueControlDependence
+  21:    0 ->   16 trueControlDependence
+  22:    0 ->   17 trueControlDependence
+  23:    0 ->   18 trueControlDependence
+  24:    0 ->   18+ trueControlDependence
+  25:    0 ->   18+ trueControlDependence
+  26:    0 ->   18+ trueControlDependence
+  27:    0 ->   19 trueControlDependence
+  28:    0 ->   20 trueControlDependence
+  29:    0 ->   21 trueControlDependence
+  30:    0 ->   22 trueControlDependence
+  31:    0 ->   23 trueControlDependence
+  32:    0 ->   24 trueControlDependence
+  33:    0 ->   25 trueControlDependence
+  34:    0 ->   25+ trueControlDependence
+  35:    0 ->   25+ trueControlDependence
+  36:    0 ->   25+ trueControlDependence
+  37:    0 ->   26 trueControlDependence
+  38:    0 ->   27 trueControlDependence
+  39:    0 ->   28 trueControlDependence
+  40:    0 ->   29 trueControlDependence
+  41:    0 ->   30 trueControlDependence
+  42:    0 ->   31 trueControlDependence
+  43:    0 ->   32 trueControlDependence
+  44:    0 ->   32+ trueControlDependence
+  45:    0 ->   32+ trueControlDependence
+  46:    0 ->   32+ trueControlDependence
+  47:    0 ->   33 trueControlDependence
+  48:    0 ->   34 trueControlDependence
+  49:    0 ->   35 trueControlDependence
+  50:    0 ->   36 trueControlDependence
+  51:    0 ->   37 trueControlDependence
+  52:    0 ->   39 trueControlDependence
   53:    1 ->    6 loopIndependentDefUseDependence x$0
   54:    2 ->    7 loopIndependentDefUseDependence y$1
   55:    8 ->    3 loopIndependentDefUseDependence super.!Block( int int )
-  56:   15 ->    9 loopIndependentDefUseDependence this.!addTile( int int java.awt.Color )
-  57:   15 ->   22 outputDependence this.!addTile( int int java.awt.Color )
-  58:   22 ->   16 loopIndependentDefUseDependence this.!addTile( int int java.awt.Color )
-  59:   22 ->   29 outputDependence this.!addTile( int int java.awt.Color )
-  60:   29 ->   23 loopIndependentDefUseDependence this.!addTile( int int java.awt.Color )
-  61:   29 ->   36 outputDependence this.!addTile( int int java.awt.Color )
-  62:   36 ->   30 loopIndependentDefUseDependence this.!addTile( int int java.awt.Color )
-  63: * -> * outputDependence this.!addTile( int int java.awt.Color ).color
-  64: * -> * outputDependence this.!addTile( int int java.awt.Color ).color
-  65: * -> * outputDependence this.!addTile( int int java.awt.Color ).color
-  66: * -> * outputDependence this.!addTile( int int java.awt.Color ).posX
-  67: * -> * outputDependence this.!addTile( int int java.awt.Color ).posX
-  68: * -> * outputDependence this.!addTile( int int java.awt.Color ).posX
-  69: * -> * outputDependence this.!addTile( int int java.awt.Color ).posY
-  70: * -> * outputDependence this.!addTile( int int java.awt.Color ).posY
-  71: * -> * outputDependence this.!addTile( int int java.awt.Color ).posY
+  56:   11+ ->   18+ outputDependence this.!addTile( int int java.awt.Color ).color
+  57:   11+ ->   18+ outputDependence this.!addTile( int int java.awt.Color ).posX
+  58:   11+ ->   18+ outputDependence this.!addTile( int int java.awt.Color ).posY
+  59:   15 ->    9 loopIndependentDefUseDependence this.!addTile( int int java.awt.Color )
+  60:   15 ->   22 outputDependence this.!addTile( int int java.awt.Color )
+  61:   18+ ->   25+ outputDependence this.!addTile( int int java.awt.Color ).color
+  62:   18+ ->   25+ outputDependence this.!addTile( int int java.awt.Color ).posX
+  63:   18+ ->   25+ outputDependence this.!addTile( int int java.awt.Color ).posY
+  64:   22 ->   16 loopIndependentDefUseDependence this.!addTile( int int java.awt.Color )
+  65:   22 ->   29 outputDependence this.!addTile( int int java.awt.Color )
+  66:   25+ ->   32+ outputDependence this.!addTile( int int java.awt.Color ).color
+  67:   25+ ->   32+ outputDependence this.!addTile( int int java.awt.Color ).posX
+  68:   25+ ->   32+ outputDependence this.!addTile( int int java.awt.Color ).posY
+  69:   29 ->   23 loopIndependentDefUseDependence this.!addTile( int int java.awt.Color )
+  70:   29 ->   36 outputDependence this.!addTile( int int java.awt.Color )
+  71:   36 ->   30 loopIndependentDefUseDependence this.!addTile( int int java.awt.Color )
 --
    0: COLOR
    1:    0 ->    1 trueControlDependence

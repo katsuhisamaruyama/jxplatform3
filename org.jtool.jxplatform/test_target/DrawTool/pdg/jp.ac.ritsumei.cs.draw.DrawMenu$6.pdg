@@ -32,8 +32,8 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$6
   26 actualOut D = { canvas$1.!clearFigure( ) } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY }
   28 catchClause D = { e$3 } U = {  }
   30 formalOut D = {  } U = { $_ }
-* actualOut D = { this.currentFigure } U = {  }
-* actualOut D = { canvas$1.grabbedFigure } U = {  }
+  25+ actualOutByFieldAccess D = { this.currentFigure } U = {  }
+  25+ actualOutByFieldAccess D = { canvas$1.grabbedFigure } U = {  }
 --
    0: serialVersionUID
    1:    0 ->    1 trueControlDependence
@@ -74,10 +74,10 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$6
   33:   13 ->   23 trueControlDependence
   34:   13 ->   24 trueControlDependence
   35:   13 ->   25 trueControlDependence
-  36:   13 ->   26 trueControlDependence
-  37:   13 ->   28 exceptionCatch
-  38:   13 -> * trueControlDependence
-  39:   13 -> * trueControlDependence
+  36:   13 ->   25+ trueControlDependence
+  37:   13 ->   25+ trueControlDependence
+  38:   13 ->   26 trueControlDependence
+  39:   13 ->   28 exceptionCatch
   40:   14 ->   11 loopIndependentDefUseDependence undoManager$2.!undo( )
   41:   18 ->   15 loopIndependentDefUseDependence this.!updateUndoState( )
   42:   22 ->   19 loopIndependentDefUseDependence this.!updateRedoState( )

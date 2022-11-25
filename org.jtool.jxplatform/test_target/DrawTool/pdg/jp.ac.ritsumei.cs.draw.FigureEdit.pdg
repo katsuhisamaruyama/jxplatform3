@@ -11,7 +11,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureEdit
    2 assignment D = {  } U = { super.!undo( ) }
    3 receiver D = {  } U = {  }
    4 methodCall D = {  } U = { super.!javax.swing.undo.AbstractUndoableEdit.alive, super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone } TO = javax.swing.undo.AbstractUndoableEdit#undo( )
-* actualOut D = { super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone, super.!undo( ) } U = { super.!javax.swing.undo.AbstractUndoableEdit.alive, super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone }
+   5 actualOut D = { super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone, super.!undo( ) } U = { super.!javax.swing.undo.AbstractUndoableEdit.alive, super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone }
    7 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureEdit#redo( ) ]
@@ -20,7 +20,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureEdit
    3 assignment D = {  } U = { super.!redo( ) }
    4 receiver D = {  } U = {  }
    5 methodCall D = {  } U = { super.!javax.swing.undo.AbstractUndoableEdit.alive, super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone } TO = javax.swing.undo.AbstractUndoableEdit#redo( )
-* actualOut D = { super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone, super.!redo( ) } U = { super.!javax.swing.undo.AbstractUndoableEdit.alive, super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone }
+   6 actualOut D = { super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone, super.!redo( ) } U = { super.!javax.swing.undo.AbstractUndoableEdit.alive, super.!javax.swing.undo.AbstractUndoableEdit.hasBeenDone }
    8 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ jp.ac.ritsumei.cs.draw.FigureEdit#FigureEdit( ) ]
@@ -47,9 +47,9 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureEdit
    2:    0 ->    4 trueControlDependence
    3:    4 ->    1 exceptionCatch
    4:    4 ->    2 trueControlDependence
-   5:    4 ->    7 trueControlDependence
-   6:    4 -> * trueControlDependence
-   7: * ->    2 loopIndependentDefUseDependence super.!undo( )
+   5:    4 ->    5 trueControlDependence
+   6:    4 ->    7 trueControlDependence
+   7:    5 ->    2 loopIndependentDefUseDependence super.!undo( )
 --
    0: redo( )
    1:    0 ->    1 trueControlDependence
@@ -57,9 +57,9 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureEdit
    3:    0 ->    5 trueControlDependence
    4:    5 ->    2 exceptionCatch
    5:    5 ->    3 trueControlDependence
-   6:    5 ->    8 trueControlDependence
-   7:    5 -> * trueControlDependence
-   8: * ->    3 loopIndependentDefUseDependence super.!redo( )
+   6:    5 ->    6 trueControlDependence
+   7:    5 ->    8 trueControlDependence
+   8:    6 ->    3 loopIndependentDefUseDependence super.!redo( )
 --
    0: FigureEdit( )
    1:    0 ->    2 trueControlDependence

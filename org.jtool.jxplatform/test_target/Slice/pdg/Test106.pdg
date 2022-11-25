@@ -19,7 +19,7 @@ Class Name = Test106
    7 localDeclaration D = { y$1 } U = { x$0 }
    8 localDeclaration D = { z$2 } U = { this.a }
   10 formalOut D = {  } U = { $_ }
-* actualOut D = { this.a } U = {  }
+   4+ actualOutByFieldAccess D = { this.a } U = {  }
 --
    0 constructorEntry [ Test106#Test106( ) ]
    2 formalOut D = {  } U = { $_ }
@@ -41,18 +41,18 @@ Class Name = Test106
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->   10 trueControlDependence
   11:    1 ->    2 declaration
   12:    1 ->    2 outputDependence x$0
   13:    1 ->    7 declaration
   14:    2 ->    7 loopIndependentDefUseDependence x$0
-  15:    6 ->    2 loopIndependentDefUseDependence this.!setA( int )
-  16: * ->    8 loopIndependentDefUseDependence this.a
+  15:    4+ ->    8 loopIndependentDefUseDependence this.a
+  16:    6 ->    2 loopIndependentDefUseDependence this.!setA( int )
 --
    0: Test106( )
    1:    0 ->    2 trueControlDependence

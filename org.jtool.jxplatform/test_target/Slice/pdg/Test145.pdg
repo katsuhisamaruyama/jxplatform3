@@ -4,7 +4,7 @@ Class Name = Test145
    1 fieldDeclaration D = { this.list } U = { java.util.ArrayList.!ArrayList( ), this.list }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
-* actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   4 actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
 --
    0 methodEntry [ Test145#m( ) ]
    1 assignment D = {  } U = { this.list.!add( java.lang.Object ) }
@@ -14,7 +14,7 @@ Class Name = Test145
    5 constructorCall D = {  } U = {  } TO = T145#T145( int )
    6 actualIn D = {  } U = {  }
    7 actualOut D = { T145.!T145( int ) } U = {  }
-* actualOut D = { this.list.!add( java.lang.Object ), this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size } U = { this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size }
+   8 actualOut D = { this.list.!add( java.lang.Object ), this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size } U = { this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size }
    9 localDeclaration D = { t$0 } U = { this.list.!get( int ) }
   10 receiver D = {  } U = { this.list }
   11 methodCall D = {  } U = { this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.size } TO = java.util.List#get( int )
@@ -32,7 +32,7 @@ Class Name = Test145
   23 methodCall D = {  } U = { this.list } TO = Test145#getList( )
   24 actualOut D = { this.!getList( ) } U = { this.list }
   26 formalOut D = {  } U = { $_ }
-* actualOut D = { T145.!T145( int ).a } U = {  }
+   5+ actualOutByFieldAccess D = { T145.!T145( int ).a } U = {  }
 --
    0 methodEntry [ Test145#getList( ) ]
    1 returnSt D = { $_ } U = { this.list }
@@ -45,8 +45,8 @@ Class Name = Test145
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 -> * trueControlDependence
-   5: * ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
 --
    0: m( )
    1:    0 ->    1 trueControlDependence
@@ -54,39 +54,39 @@ Class Name = Test145
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 ->   11 trueControlDependence
-  11:    0 ->   12 trueControlDependence
-  12:    0 ->   13 trueControlDependence
-  13:    0 ->   14 trueControlDependence
-  14:    0 ->   15 trueControlDependence
-  15:    0 ->   16 trueControlDependence
-  16:    0 ->   17 trueControlDependence
-  17:    0 ->   18 trueControlDependence
-  18:    0 ->   19 trueControlDependence
-  19:    0 ->   20 trueControlDependence
-  20:    0 ->   21 trueControlDependence
-  21:    0 ->   22 trueControlDependence
-  22:    0 ->   23 trueControlDependence
-  23:    0 ->   24 trueControlDependence
-  24:    0 ->   26 trueControlDependence
-  25:    0 -> * trueControlDependence
-  26:    0 -> * trueControlDependence
+   6:    0 ->    5+ trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   12 trueControlDependence
+  14:    0 ->   13 trueControlDependence
+  15:    0 ->   14 trueControlDependence
+  16:    0 ->   15 trueControlDependence
+  17:    0 ->   16 trueControlDependence
+  18:    0 ->   17 trueControlDependence
+  19:    0 ->   18 trueControlDependence
+  20:    0 ->   19 trueControlDependence
+  21:    0 ->   20 trueControlDependence
+  22:    0 ->   21 trueControlDependence
+  23:    0 ->   22 trueControlDependence
+  24:    0 ->   23 trueControlDependence
+  25:    0 ->   24 trueControlDependence
+  26:    0 ->   26 trueControlDependence
   27:    7 ->    3 loopIndependentDefUseDependence T145.!T145( int )
-  28:    9 ->   14 declaration
-  29:    9 ->   14 loopIndependentDefUseDependence t$0
-  30:    9 ->   18 declaration
-  31:    9 ->   18 loopIndependentDefUseDependence t$0
-  32:   12 ->    9 loopIndependentDefUseDependence this.list.!get( int )
-  33:   16 ->   13 loopIndependentDefUseDependence t$0.!getA( )
-  34:   20 ->   17 loopIndependentDefUseDependence t$0.!hashCode( )
-  35:   24 ->   21 loopIndependentDefUseDependence this.!getList( )
-  36: * ->    1 loopIndependentDefUseDependence this.list.!add( java.lang.Object )
-  37: * ->   11 loopIndependentDefUseDependence this.list.!java.util.ArrayList.size
-  38: * ->   12 loopIndependentDefUseDependence this.list.!java.util.ArrayList.size
+  28:    8 ->    1 loopIndependentDefUseDependence this.list.!add( java.lang.Object )
+  29:    8 ->   11 loopIndependentDefUseDependence this.list.!java.util.ArrayList.size
+  30:    8 ->   12 loopIndependentDefUseDependence this.list.!java.util.ArrayList.size
+  31:    9 ->   14 declaration
+  32:    9 ->   14 loopIndependentDefUseDependence t$0
+  33:    9 ->   18 declaration
+  34:    9 ->   18 loopIndependentDefUseDependence t$0
+  35:   12 ->    9 loopIndependentDefUseDependence this.list.!get( int )
+  36:   16 ->   13 loopIndependentDefUseDependence t$0.!getA( )
+  37:   20 ->   17 loopIndependentDefUseDependence t$0.!hashCode( )
+  38:   24 ->   21 loopIndependentDefUseDependence this.!getList( )
 --
    0: getList( )
    1:    0 ->    1 trueControlDependence

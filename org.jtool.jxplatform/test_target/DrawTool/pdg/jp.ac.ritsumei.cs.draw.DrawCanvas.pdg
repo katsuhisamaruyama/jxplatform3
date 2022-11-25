@@ -20,7 +20,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   18 receiver D = {  } U = { this.menu }
   19 methodCall D = {  } U = { System.err, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, this.!java.lang.String.COMPACT_STRINGS, this.figureManager.figures, this.figureManager.filename, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.autoFlush, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.charOut, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.out, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.textOut, this.menu.canvas$0.!getFigureManager( ).figure$4.color.!java.awt.Color.value, this.menu.canvas$0.!getFigureManager( ).figures, this.menu.canvas$0.!getFigureManager( ).filename, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, this.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.lock, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.coder, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.String.COMPACT_STRINGS, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.count, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.value, this.menu.canvas$0.figureManager } TO = jp.ac.ritsumei.cs.draw.DrawMenu#saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
   20 actualIn D = {  } U = { this }
-* actualOut D = { this.menu.!saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas ), this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nextChar, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out, this.menu.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble, this.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder, this.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count } U = { System.err, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, this.!java.lang.String.COMPACT_STRINGS, this.figureManager.figures, this.figureManager.filename, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.autoFlush, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.charOut, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.out, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.textOut, this.menu.canvas$0.!getFigureManager( ).figure$4.color.!java.awt.Color.value, this.menu.canvas$0.!getFigureManager( ).figures, this.menu.canvas$0.!getFigureManager( ).filename, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, this.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.lock, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.coder, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.String.COMPACT_STRINGS, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.count, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.value, this.menu.canvas$0.figureManager }
+  21 actualOut D = { this.menu.!saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas ), this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nextChar, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out, this.menu.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut, this.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble, this.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder, this.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count } U = { System.err, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, this.!java.lang.String.COMPACT_STRINGS, this.figureManager.figures, this.figureManager.filename, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.autoFlush, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.charOut, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.out, this.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.textOut, this.menu.canvas$0.!getFigureManager( ).figure$4.color.!java.awt.Color.value, this.menu.canvas$0.!getFigureManager( ).figures, this.menu.canvas$0.!getFigureManager( ).filename, this.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, this.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.lock, this.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.coder, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.String.COMPACT_STRINGS, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.count, this.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.value, this.menu.canvas$0.figureManager }
   25 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#mouseEntered( java.awt.event.MouseEvent ) ]
@@ -38,11 +38,11 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    8 receiver D = {  } U = {  }
    9 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.FigureManager#FigureManager( java.lang.String )
   10 actualIn D = {  } U = { filename$2 }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( java.lang.String ), jp.ac.ritsumei.cs.draw.FigureManager.java.util.LinkedList.!java.util.LinkedList.size } U = {  }
+  11 actualOut D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( java.lang.String ), jp.ac.ritsumei.cs.draw.FigureManager.java.util.LinkedList.!java.util.LinkedList.size } U = {  }
   12 assignment D = { this.figureManager } U = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( ) }
   13 receiver D = {  } U = {  }
   14 constructorCall D = {  } U = { jp.ac.ritsumei.cs.draw.FigureManager.UNTITLED } TO = jp.ac.ritsumei.cs.draw.FigureManager#FigureManager( )
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( ), jp.ac.ritsumei.cs.draw.FigureManager.java.util.LinkedList.!java.util.LinkedList.size } U = { jp.ac.ritsumei.cs.draw.FigureManager.UNTITLED }
+  15 actualOut D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( ), jp.ac.ritsumei.cs.draw.FigureManager.java.util.LinkedList.!java.util.LinkedList.size } U = { jp.ac.ritsumei.cs.draw.FigureManager.UNTITLED }
   17 assignment D = {  } U = { this.!setChanged( boolean ) }
   18 receiver D = {  } U = {  }
   19 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#setChanged( boolean )
@@ -51,28 +51,28 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   22 assignment D = {  } U = { this.!setBackground( java.awt.Color ) }
   23 receiver D = {  } U = {  }
   24 methodCall D = {  } U = { Color.white, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width } TO = javax.swing.JComponent#setBackground( java.awt.Color )
-* actualOut D = { this.!java.awt.Component.background, this.!setBackground( java.awt.Color ) } U = { this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width }
+  25 actualOut D = { this.!java.awt.Component.background, this.!setBackground( java.awt.Color ) } U = { this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width }
   26 assignment D = {  } U = { this.!setPreferredSize( java.awt.Dimension ) }
   27 receiver D = {  } U = {  }
   28 methodCall D = {  } U = { java.awt.Dimension.!Dimension( int int ), this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet } TO = javax.swing.JComponent#setPreferredSize( java.awt.Dimension )
   29 receiver D = {  } U = {  }
   30 constructorCall D = {  } U = {  } TO = java.awt.Dimension#Dimension( int int )
-* actualOut D = { java.awt.Dimension.!Dimension( int int ), java.awt.Dimension.!java.awt.Dimension.height, java.awt.Dimension.!java.awt.Dimension.width } U = {  }
-* actualOut D = { this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!setPreferredSize( java.awt.Dimension ) } U = { this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet }
+  31 actualOut D = { java.awt.Dimension.!Dimension( int int ), java.awt.Dimension.!java.awt.Dimension.height, java.awt.Dimension.!java.awt.Dimension.width } U = {  }
+  32 actualOut D = { this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!setPreferredSize( java.awt.Dimension ) } U = { this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet }
   33 assignment D = {  } U = { this.!addMouseListener( java.awt.event.MouseListener ) }
   34 receiver D = {  } U = {  }
   35 methodCall D = {  } U = { this, this.!java.awt.Component.mouseListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer } TO = java.awt.Component#addMouseListener( java.awt.event.MouseListener )
-* actualOut D = { this.!addMouseListener( java.awt.event.MouseListener ), this.!java.awt.Component.mouseListener, this.!java.awt.Component.newEventsOnly } U = { this.!java.awt.Component.mouseListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer }
+  36 actualOut D = { this.!addMouseListener( java.awt.event.MouseListener ), this.!java.awt.Component.mouseListener, this.!java.awt.Component.newEventsOnly } U = { this.!java.awt.Component.mouseListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer }
   37 assignment D = {  } U = { this.!addMouseMotionListener( java.awt.event.MouseMotionListener ) }
   38 receiver D = {  } U = {  }
   39 methodCall D = {  } U = { this, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer } TO = java.awt.Component#addMouseMotionListener( java.awt.event.MouseMotionListener )
-* actualOut D = { this.!addMouseMotionListener( java.awt.event.MouseMotionListener ), this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.newEventsOnly } U = { this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer }
+  40 actualOut D = { this.!addMouseMotionListener( java.awt.event.MouseMotionListener ), this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.newEventsOnly } U = { this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer }
   42 formalOut D = {  } U = { $_ }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( java.lang.String ).figures } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( java.lang.String ).filename } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( ).figures } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( ).filename } U = {  }
-* actualOut D = { this.changed } U = {  }
+   9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( java.lang.String ).figures } U = {  }
+   9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( java.lang.String ).filename } U = {  }
+  14+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( ).figures } U = {  }
+  14+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( ).filename } U = {  }
+  19+ actualOutByFieldAccess D = { this.changed } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#paintComponent( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
@@ -226,12 +226,12 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
  100 actualOut D = { this.!getCurrentFigure( ) } U = { this.currentFigure, this.currentFigure.color, this.currentFigure.endX, this.currentFigure.endY, this.currentFigure.outlineWidth, this.currentFigure.startX, this.currentFigure.startY }
  101 actualOut D = { this.!drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) } U = { this.!java.awt.Component.background, this.!java.awt.Component.parent }
  104 formalOut D = {  } U = { $_ }
-* actualOut D = { this.currentFigure } U = {  }
-* actualOut D = { this.currentFigure } U = {  }
-* actualOut D = { this.!getCurrentFigure( ).startX } U = {  }
-* actualOut D = { this.!getCurrentFigure( ).startY } U = {  }
-* actualOut D = { this.!getCurrentFigure( ).endX } U = {  }
-* actualOut D = { this.!getCurrentFigure( ).endY } U = {  }
+  13+ actualOutByFieldAccess D = { this.currentFigure } U = {  }
+  57+ actualOutByFieldAccess D = { this.currentFigure } U = {  }
+  68+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).startX } U = {  }
+  68+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).startY } U = {  }
+  83+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).endX } U = {  }
+  83+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).endY } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#drawOutline( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { g$0 } U = {  }
@@ -266,7 +266,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    2 assignment D = {  } U = { this.support.!removeUndoableEditListener( javax.swing.event.UndoableEditListener ) }
    3 receiver D = {  } U = { this.support }
    4 methodCall D = {  } U = { listener$0, this.support.!java.util.Vector.modCount, this.support.!javax.swing.undo.UndoableEditSupport.listeners } TO = javax.swing.undo.UndoableEditSupport#removeUndoableEditListener( javax.swing.event.UndoableEditListener )
-* actualOut D = { this.support.!java.util.Vector.modCount, this.support.!removeUndoableEditListener( javax.swing.event.UndoableEditListener ) } U = { this.support.!java.util.Vector.modCount, this.support.!javax.swing.undo.UndoableEditSupport.listeners }
+   5 actualOut D = { this.support.!java.util.Vector.modCount, this.support.!removeUndoableEditListener( javax.swing.event.UndoableEditListener ) } U = { this.support.!java.util.Vector.modCount, this.support.!javax.swing.undo.UndoableEditSupport.listeners }
    7 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#clearFigure( ) ]
@@ -277,7 +277,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    5 actualOut D = { this.!setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure ) } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY }
    6 assignment D = { this.grabbedFigure } U = {  }
    8 formalOut D = {  } U = { $_ }
-* actualOut D = { this.currentFigure } U = {  }
+   3+ actualOutByFieldAccess D = { this.currentFigure } U = {  }
 --
    0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#isGrabMode ]
    1 fieldDeclaration D = { this.isGrabMode } U = { this.isGrabMode }
@@ -335,7 +335,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    2 assignment D = {  } U = { this.support.!addUndoableEditListener( javax.swing.event.UndoableEditListener ) }
    3 receiver D = {  } U = { this.support }
    4 methodCall D = {  } U = { listener$0, this.support.!java.util.Vector.elementCount, this.support.!java.util.Vector.elementData, this.support.!java.util.Vector.modCount, this.support.!javax.swing.undo.UndoableEditSupport.listeners } TO = javax.swing.undo.UndoableEditSupport#addUndoableEditListener( javax.swing.event.UndoableEditListener )
-* actualOut D = { this.support.!addUndoableEditListener( javax.swing.event.UndoableEditListener ), this.support.!java.util.Vector.modCount } U = { this.support.!java.util.Vector.elementCount, this.support.!java.util.Vector.elementData, this.support.!java.util.Vector.modCount, this.support.!javax.swing.undo.UndoableEditSupport.listeners }
+   5 actualOut D = { this.support.!addUndoableEditListener( javax.swing.event.UndoableEditListener ), this.support.!java.util.Vector.modCount } U = { this.support.!java.util.Vector.elementCount, this.support.!java.util.Vector.elementData, this.support.!java.util.Vector.modCount, this.support.!javax.swing.undo.UndoableEditSupport.listeners }
    7 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) ]
@@ -469,12 +469,12 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   91 actualOut D = { this.!getCurrentFigure( ) } U = { this.currentFigure, this.currentFigure.color, this.currentFigure.endX, this.currentFigure.endY, this.currentFigure.outlineWidth, this.currentFigure.startX, this.currentFigure.startY }
   92 actualOut D = { this.!drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure ) } U = { this.!java.awt.Component.background, this.!java.awt.Component.parent }
   96 formalOut D = {  } U = { $_ }
-* actualOut D = { this.!getCurrentFigure( ).endX } U = {  }
-* actualOut D = { this.!getCurrentFigure( ).endY } U = {  }
-* actualOut D = { this.!getCurrentFigure( ).startX } U = {  }
-* actualOut D = { this.!getCurrentFigure( ).startY } U = {  }
-* actualOut D = { this.!getCurrentFigure( ).endX } U = {  }
-* actualOut D = { this.!getCurrentFigure( ).endY } U = {  }
+  32+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).endX } U = {  }
+  32+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).endY } U = {  }
+  32+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).startX } U = {  }
+  32+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).startY } U = {  }
+  74+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).endX } U = {  }
+  74+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).endY } U = {  }
 --
    0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#grabbedFigure ]
    1 fieldDeclaration D = { this.grabbedFigure } U = { this.grabbedFigure }
@@ -609,15 +609,15 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   51 methodCall D = {  } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y } TO = java.awt.Component#repaint( )
   52 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
   54 formalOut D = {  } U = { $_ }
-* actualOut D = { super.canvas } U = {  }
-* actualOut D = { super.figure } U = {  }
-* actualOut D = { figure$0.endX } U = {  }
-* actualOut D = { figure$0.endY } U = {  }
-* actualOut D = { figure$0.startX } U = {  }
-* actualOut D = { figure$0.startY } U = {  }
-* actualOut D = { this.changed } U = {  }
-* actualOut D = { this.currentFigure } U = {  }
-* actualOut D = { this.grabbedFigure } U = {  }
+   6+ actualOutByFieldAccess D = { super.canvas } U = {  }
+   6+ actualOutByFieldAccess D = { super.figure } U = {  }
+  31+ actualOutByFieldAccess D = { figure$0.endX } U = {  }
+  31+ actualOutByFieldAccess D = { figure$0.endY } U = {  }
+  31+ actualOutByFieldAccess D = { figure$0.startX } U = {  }
+  31+ actualOutByFieldAccess D = { figure$0.startY } U = {  }
+  42+ actualOutByFieldAccess D = { this.changed } U = {  }
+  47+ actualOutByFieldAccess D = { this.currentFigure } U = {  }
+  47+ actualOutByFieldAccess D = { this.grabbedFigure } U = {  }
 --
    0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#figureManager ]
    1 fieldDeclaration D = { this.figureManager } U = { this.figureManager }
@@ -626,7 +626,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    1 fieldDeclaration D = { this.support } U = { javax.swing.undo.UndoableEditSupport.!UndoableEditSupport( ), this.support }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = javax.swing.undo.UndoableEditSupport#UndoableEditSupport( )
-* actualOut D = { javax.swing.undo.UndoableEditSupport.!UndoableEditSupport( ), javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.compoundEdit, javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.listeners, javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.realSource, javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.updateLevel } U = {  }
+   4 actualOut D = { javax.swing.undo.UndoableEditSupport.!UndoableEditSupport( ), javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.compoundEdit, javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.listeners, javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.realSource, javax.swing.undo.UndoableEditSupport.!javax.swing.undo.UndoableEditSupport.updateLevel } U = {  }
 --
    0 fieldEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#selector ]
    1 fieldDeclaration D = { this.selector } U = { this.selector }
@@ -676,11 +676,11 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   42 methodCall D = {  } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y } TO = java.awt.Component#repaint( )
   43 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
   45 formalOut D = {  } U = { $_ }
-* actualOut D = { super.canvas } U = {  }
-* actualOut D = { super.figure } U = {  }
-* actualOut D = { this.changed } U = {  }
-* actualOut D = { this.currentFigure } U = {  }
-* actualOut D = { this.grabbedFigure } U = {  }
+   5+ actualOutByFieldAccess D = { super.canvas } U = {  }
+   5+ actualOutByFieldAccess D = { super.figure } U = {  }
+  33+ actualOutByFieldAccess D = { this.changed } U = {  }
+  38+ actualOutByFieldAccess D = { this.currentFigure } U = {  }
+  38+ actualOutByFieldAccess D = { this.grabbedFigure } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawCanvas#getGrabbedFigure( ) ]
    1 returnSt D = { $_ } U = { this.grabbedFigure, this.grabbedFigure.color, this.grabbedFigure.endX, this.grabbedFigure.endY, this.grabbedFigure.outlineWidth, this.grabbedFigure.startX, this.grabbedFigure.startY }
@@ -859,18 +859,18 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
  166 actualOut D = { this.!setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure ) } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY }
  167 assignment D = { this.grabbedFigure } U = {  }
  171 formalOut D = {  } U = { $_ }
-* actualOut D = { super.canvas } U = {  }
-* actualOut D = { super.figure } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureMoved.!FigureMoved( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure jp.ac.ritsumei.cs.draw.Figure ).redoFigure } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.FigureMoved.!FigureMoved( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure jp.ac.ritsumei.cs.draw.Figure ).undoFigure } U = {  }
-* actualOut D = { this.changed } U = {  }
-* actualOut D = { this.currentFigure } U = {  }
-* actualOut D = { super.canvas } U = {  }
-* actualOut D = { super.figure } U = {  }
-* actualOut D = { this.!getCurrentFigure( ).endX } U = {  }
-* actualOut D = { this.!getCurrentFigure( ).endY } U = {  }
-* actualOut D = { this.changed } U = {  }
-* actualOut D = { this.currentFigure } U = {  }
+  34+ actualOutByFieldAccess D = { super.canvas } U = {  }
+  34+ actualOutByFieldAccess D = { super.figure } U = {  }
+  34+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureMoved.!FigureMoved( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure jp.ac.ritsumei.cs.draw.Figure ).redoFigure } U = {  }
+  34+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureMoved.!FigureMoved( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure jp.ac.ritsumei.cs.draw.Figure ).undoFigure } U = {  }
+  53+ actualOutByFieldAccess D = { this.changed } U = {  }
+  58+ actualOutByFieldAccess D = { this.currentFigure } U = {  }
+ 104+ actualOutByFieldAccess D = { super.canvas } U = {  }
+ 104+ actualOutByFieldAccess D = { super.figure } U = {  }
+ 125+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).endX } U = {  }
+ 125+ actualOutByFieldAccess D = { this.!getCurrentFigure( ).endY } U = {  }
+ 154+ actualOutByFieldAccess D = { this.changed } U = {  }
+ 164+ actualOutByFieldAccess D = { this.currentFigure } U = {  }
 --
    0: autoSave( )
    1:    0 ->    1 trueControlDependence
@@ -899,9 +899,9 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   24:   13 ->   18 trueControlDependence
   25:   13 ->   19 trueControlDependence
   26:   13 ->   20 trueControlDependence
-  27:   13 -> * trueControlDependence
+  27:   13 ->   21 trueControlDependence
   28:   16 ->   13 loopIndependentDefUseDependence this.!hasChanged( )
-  29: * ->   17 loopIndependentDefUseDependence this.menu.!saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
+  29:   21 ->   17 loopIndependentDefUseDependence this.menu.!saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
 --
    0: mouseEntered( java.awt.event.MouseEvent )
    1:    0 ->    1 trueControlDependence
@@ -917,29 +917,29 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    7:    0 ->   17 trueControlDependence
    8:    0 ->   18 trueControlDependence
    9:    0 ->   19 trueControlDependence
-  10:    0 ->   20 trueControlDependence
-  11:    0 ->   21 trueControlDependence
-  12:    0 ->   22 trueControlDependence
-  13:    0 ->   23 trueControlDependence
-  14:    0 ->   24 trueControlDependence
-  15:    0 ->   26 trueControlDependence
-  16:    0 ->   27 trueControlDependence
-  17:    0 ->   28 trueControlDependence
-  18:    0 ->   29 trueControlDependence
-  19:    0 ->   30 trueControlDependence
-  20:    0 ->   33 trueControlDependence
-  21:    0 ->   34 trueControlDependence
-  22:    0 ->   35 trueControlDependence
-  23:    0 ->   37 trueControlDependence
-  24:    0 ->   38 trueControlDependence
-  25:    0 ->   39 trueControlDependence
-  26:    0 ->   42 trueControlDependence
-  27:    0 -> * trueControlDependence
-  28:    0 -> * trueControlDependence
-  29:    0 -> * trueControlDependence
-  30:    0 -> * trueControlDependence
-  31:    0 -> * trueControlDependence
-  32:    0 -> * trueControlDependence
+  10:    0 ->   19+ trueControlDependence
+  11:    0 ->   20 trueControlDependence
+  12:    0 ->   21 trueControlDependence
+  13:    0 ->   22 trueControlDependence
+  14:    0 ->   23 trueControlDependence
+  15:    0 ->   24 trueControlDependence
+  16:    0 ->   25 trueControlDependence
+  17:    0 ->   26 trueControlDependence
+  18:    0 ->   27 trueControlDependence
+  19:    0 ->   28 trueControlDependence
+  20:    0 ->   29 trueControlDependence
+  21:    0 ->   30 trueControlDependence
+  22:    0 ->   31 trueControlDependence
+  23:    0 ->   32 trueControlDependence
+  24:    0 ->   33 trueControlDependence
+  25:    0 ->   34 trueControlDependence
+  26:    0 ->   35 trueControlDependence
+  27:    0 ->   36 trueControlDependence
+  28:    0 ->   37 trueControlDependence
+  29:    0 ->   38 trueControlDependence
+  30:    0 ->   39 trueControlDependence
+  31:    0 ->   40 trueControlDependence
+  32:    0 ->   42 trueControlDependence
   33:    1 ->    4 loopIndependentDefUseDependence menu$0
   34:    2 ->    5 loopIndependentDefUseDependence selector$1
   35:    3 ->    6 loopIndependentDefUseDependence filename$2
@@ -947,25 +947,25 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   37:    6 ->    7 trueControlDependence
   38:    6 ->    8 trueControlDependence
   39:    6 ->    9 trueControlDependence
-  40:    6 ->   10 trueControlDependence
-  41:    6 ->   12 falseControlDependence
-  42:    6 ->   13 falseControlDependence
-  43:    6 ->   14 falseControlDependence
-  44:    6 -> * falseControlDependence
-  45:    6 -> * falseControlDependence
-  46:    6 -> * falseControlDependence
-  47:    6 -> * trueControlDependence
-  48:    6 -> * trueControlDependence
-  49:    6 -> * trueControlDependence
-  50:   21 ->   17 loopIndependentDefUseDependence this.!setChanged( boolean )
-  51: * ->    7 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( java.lang.String )
-  52: * ->   12 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( )
-  53: * ->   22 loopIndependentDefUseDependence this.!setBackground( java.awt.Color )
-  54: * ->   26 loopIndependentDefUseDependence this.!setPreferredSize( java.awt.Dimension )
-  55: * ->   28 loopIndependentDefUseDependence java.awt.Dimension.!Dimension( int int )
-  56: * ->   33 loopIndependentDefUseDependence this.!addMouseListener( java.awt.event.MouseListener )
-  57: * ->   37 loopIndependentDefUseDependence this.!addMouseMotionListener( java.awt.event.MouseMotionListener )
-  58: * -> * outputDependence this.!java.awt.Component.newEventsOnly
+  40:    6 ->    9+ trueControlDependence
+  41:    6 ->    9+ trueControlDependence
+  42:    6 ->   10 trueControlDependence
+  43:    6 ->   11 trueControlDependence
+  44:    6 ->   12 falseControlDependence
+  45:    6 ->   13 falseControlDependence
+  46:    6 ->   14 falseControlDependence
+  47:    6 ->   14+ falseControlDependence
+  48:    6 ->   14+ falseControlDependence
+  49:    6 ->   15 falseControlDependence
+  50:   11 ->    7 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( java.lang.String )
+  51:   15 ->   12 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureManager.!FigureManager( )
+  52:   21 ->   17 loopIndependentDefUseDependence this.!setChanged( boolean )
+  53:   25 ->   22 loopIndependentDefUseDependence this.!setBackground( java.awt.Color )
+  54:   31 ->   28 loopIndependentDefUseDependence java.awt.Dimension.!Dimension( int int )
+  55:   32 ->   26 loopIndependentDefUseDependence this.!setPreferredSize( java.awt.Dimension )
+  56:   36 ->   33 loopIndependentDefUseDependence this.!addMouseListener( java.awt.event.MouseListener )
+  57:   36 ->   40 outputDependence this.!java.awt.Component.newEventsOnly
+  58:   40 ->   37 loopIndependentDefUseDependence this.!addMouseMotionListener( java.awt.event.MouseMotionListener )
 --
    0: paintComponent( java.awt.Graphics )
    1:    0 ->    1 trueControlDependence
@@ -1062,138 +1062,138 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   27:   10 ->   11 trueControlDependence
   28:   10 ->   12 trueControlDependence
   29:   10 ->   13 trueControlDependence
-  30:   10 ->   14 trueControlDependence
-  31:   10 ->   15 trueControlDependence
-  32:   10 ->   16 trueControlDependence
-  33:   10 ->   17 trueControlDependence
-  34:   10 ->   18 trueControlDependence
-  35:   10 ->   19 trueControlDependence
-  36:   10 ->   20 trueControlDependence
-  37:   10 ->   21 trueControlDependence
-  38:   10 ->   22 trueControlDependence
-  39:   10 ->   23 trueControlDependence
-  40:   10 ->   24 trueControlDependence
-  41:   10 ->   25 trueControlDependence
-  42:   10 ->   26 trueControlDependence
-  43:   10 ->   27 trueControlDependence
-  44:   10 ->   28 trueControlDependence
-  45:   10 ->   29 trueControlDependence
-  46:   10 ->   30 trueControlDependence
-  47:   10 ->   55 falseControlDependence
-  48:   10 ->   56 falseControlDependence
-  49:   10 ->   57 falseControlDependence
-  50:   10 ->   58 falseControlDependence
-  51:   10 ->   59 falseControlDependence
-  52:   10 ->   60 falseControlDependence
-  53:   10 ->   61 falseControlDependence
-  54:   10 ->   62 falseControlDependence
-  55:   10 ->   63 falseControlDependence
-  56:   10 ->   64 falseControlDependence
-  57:   10 ->   65 falseControlDependence
-  58:   10 ->   66 falseControlDependence
-  59:   10 ->   67 falseControlDependence
-  60:   10 ->   68 falseControlDependence
-  61:   10 ->   69 falseControlDependence
-  62:   10 ->   70 falseControlDependence
-  63:   10 ->   71 falseControlDependence
-  64:   10 ->   72 falseControlDependence
-  65:   10 ->   73 falseControlDependence
-  66:   10 ->   74 falseControlDependence
-  67:   10 ->   75 falseControlDependence
-  68:   10 ->   76 falseControlDependence
-  69:   10 ->   77 falseControlDependence
-  70:   10 ->   78 falseControlDependence
-  71:   10 ->   79 falseControlDependence
-  72:   10 ->   80 falseControlDependence
-  73:   10 ->   81 falseControlDependence
-  74:   10 ->   82 falseControlDependence
-  75:   10 ->   83 falseControlDependence
-  76:   10 ->   84 falseControlDependence
-  77:   10 ->   85 falseControlDependence
-  78:   10 ->   86 falseControlDependence
-  79:   10 ->   87 falseControlDependence
-  80:   10 ->   88 falseControlDependence
-  81:   10 ->   89 falseControlDependence
-  82:   10 ->   90 falseControlDependence
-  83:   10 ->   91 falseControlDependence
-  84:   10 ->   92 falseControlDependence
-  85:   10 ->   93 falseControlDependence
-  86:   10 ->   94 falseControlDependence
-  87:   10 ->   95 falseControlDependence
-  88:   10 ->   96 falseControlDependence
-  89:   10 ->   97 falseControlDependence
-  90:   10 ->   98 falseControlDependence
-  91:   10 ->   99 falseControlDependence
-  92:   10 ->  100 falseControlDependence
-  93:   10 ->  101 falseControlDependence
-  94:   10 -> * falseControlDependence
-  95:   10 -> * falseControlDependence
-  96:   10 -> * falseControlDependence
-  97:   10 -> * falseControlDependence
-  98:   10 -> * falseControlDependence
-  99:   10 -> * trueControlDependence
- 100:   20 ->   17 loopIndependentDefUseDependence e$0.!getX( )
- 101:   20 ->   49 outputDependence e$0.!getX( )
- 102:   24 ->   21 loopIndependentDefUseDependence e$0.!getY( )
- 103:   24 ->   53 outputDependence e$0.!getY( )
- 104:   25 ->   14 loopIndependentDefUseDependence this.!getGrabbedFigure( int int )
- 105:   26 ->   11 loopIndependentDefUseDependence this.!setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure )
- 106:   27 ->   31 trueControlDependence
- 107:   27 ->   46 trueControlDependence
- 108:   27 ->   47 trueControlDependence
- 109:   27 ->   48 trueControlDependence
- 110:   27 ->   49 trueControlDependence
- 111:   27 ->   50 trueControlDependence
- 112:   27 ->   51 trueControlDependence
- 113:   27 ->   52 trueControlDependence
- 114:   27 ->   53 trueControlDependence
- 115:   30 ->   27 loopIndependentDefUseDependence this.!getCurrentFigure( )
- 116:   30 ->   36 outputDependence this.!getCurrentFigure( )
- 117:   31 ->   32 trueControlDependence
- 118:   31 ->   33 trueControlDependence
- 119:   31 ->   34 trueControlDependence
- 120:   31 ->   35 trueControlDependence
- 121:   31 ->   36 trueControlDependence
- 122:   31 ->   37 trueControlDependence
- 123:   31 ->   38 trueControlDependence
- 124:   31 ->   39 trueControlDependence
- 125:   31 ->   40 trueControlDependence
- 126:   31 ->   41 trueControlDependence
- 127:   31 ->   42 trueControlDependence
- 128:   31 ->   43 trueControlDependence
- 129:   31 ->   44 trueControlDependence
- 130:   32 ->   43 loopIndependentDefUseDependence this.grabbedFigure
- 131:   36 ->   33 loopIndependentDefUseDependence this.!getCurrentFigure( )
- 132:   38 ->   32 loopIndependentDefUseDependence this.!getCurrentFigure( ).!createClone( )
- 133:   44 ->   39 loopIndependentDefUseDependence this.!drawGrabbedFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
- 134:   49 ->   46 loopIndependentDefUseDependence e$0.!getX( )
- 135:   53 ->   50 loopIndependentDefUseDependence e$0.!getY( )
- 136:   61 ->   58 loopIndependentDefUseDependence this.selector.!createFigure( )
- 137:   62 ->   55 loopIndependentDefUseDependence this.!setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure )
- 138:   67 ->   64 loopIndependentDefUseDependence this.!getCurrentFigure( )
- 139:   67 ->   82 outputDependence this.!getCurrentFigure( )
- 140:   72 ->   69 loopIndependentDefUseDependence e$0.!getX( )
- 141:   72 ->   87 outputDependence e$0.!getX( )
- 142:   76 ->   73 loopIndependentDefUseDependence e$0.!getY( )
- 143:   76 ->   91 outputDependence e$0.!getY( )
- 144:   77 ->   63 loopIndependentDefUseDependence this.!getCurrentFigure( ).!setStart( int int )
- 145:   82 ->   79 loopIndependentDefUseDependence this.!getCurrentFigure( )
- 146:   82 ->  100 outputDependence this.!getCurrentFigure( )
- 147:   87 ->   84 loopIndependentDefUseDependence e$0.!getX( )
- 148:   91 ->   88 loopIndependentDefUseDependence e$0.!getY( )
- 149:   92 ->   78 loopIndependentDefUseDependence this.!getCurrentFigure( ).!setEnd( int int )
- 150:  100 ->   97 loopIndependentDefUseDependence this.!getCurrentFigure( )
- 151:  101 ->   93 loopIndependentDefUseDependence this.!drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
- 152: * ->   29 loopIndependentDefUseDependence this.currentFigure
- 153: * ->   30 loopIndependentDefUseDependence this.currentFigure
- 154: * ->   35 loopIndependentDefUseDependence this.currentFigure
- 155: * ->   36 loopIndependentDefUseDependence this.currentFigure
- 156: * ->   66 loopIndependentDefUseDependence this.currentFigure
- 157: * ->   67 loopIndependentDefUseDependence this.currentFigure
- 158: * ->   81 loopIndependentDefUseDependence this.currentFigure
- 159: * ->   82 loopIndependentDefUseDependence this.currentFigure
- 160: * ->   99 loopIndependentDefUseDependence this.currentFigure
- 161: * ->  100 loopIndependentDefUseDependence this.currentFigure
+  30:   10 ->   13+ trueControlDependence
+  31:   10 ->   14 trueControlDependence
+  32:   10 ->   15 trueControlDependence
+  33:   10 ->   16 trueControlDependence
+  34:   10 ->   17 trueControlDependence
+  35:   10 ->   18 trueControlDependence
+  36:   10 ->   19 trueControlDependence
+  37:   10 ->   20 trueControlDependence
+  38:   10 ->   21 trueControlDependence
+  39:   10 ->   22 trueControlDependence
+  40:   10 ->   23 trueControlDependence
+  41:   10 ->   24 trueControlDependence
+  42:   10 ->   25 trueControlDependence
+  43:   10 ->   26 trueControlDependence
+  44:   10 ->   27 trueControlDependence
+  45:   10 ->   28 trueControlDependence
+  46:   10 ->   29 trueControlDependence
+  47:   10 ->   30 trueControlDependence
+  48:   10 ->   55 falseControlDependence
+  49:   10 ->   56 falseControlDependence
+  50:   10 ->   57 falseControlDependence
+  51:   10 ->   57+ falseControlDependence
+  52:   10 ->   58 falseControlDependence
+  53:   10 ->   59 falseControlDependence
+  54:   10 ->   60 falseControlDependence
+  55:   10 ->   61 falseControlDependence
+  56:   10 ->   62 falseControlDependence
+  57:   10 ->   63 falseControlDependence
+  58:   10 ->   64 falseControlDependence
+  59:   10 ->   65 falseControlDependence
+  60:   10 ->   66 falseControlDependence
+  61:   10 ->   67 falseControlDependence
+  62:   10 ->   68 falseControlDependence
+  63:   10 ->   68+ falseControlDependence
+  64:   10 ->   68+ falseControlDependence
+  65:   10 ->   69 falseControlDependence
+  66:   10 ->   70 falseControlDependence
+  67:   10 ->   71 falseControlDependence
+  68:   10 ->   72 falseControlDependence
+  69:   10 ->   73 falseControlDependence
+  70:   10 ->   74 falseControlDependence
+  71:   10 ->   75 falseControlDependence
+  72:   10 ->   76 falseControlDependence
+  73:   10 ->   77 falseControlDependence
+  74:   10 ->   78 falseControlDependence
+  75:   10 ->   79 falseControlDependence
+  76:   10 ->   80 falseControlDependence
+  77:   10 ->   81 falseControlDependence
+  78:   10 ->   82 falseControlDependence
+  79:   10 ->   83 falseControlDependence
+  80:   10 ->   83+ falseControlDependence
+  81:   10 ->   83+ falseControlDependence
+  82:   10 ->   84 falseControlDependence
+  83:   10 ->   85 falseControlDependence
+  84:   10 ->   86 falseControlDependence
+  85:   10 ->   87 falseControlDependence
+  86:   10 ->   88 falseControlDependence
+  87:   10 ->   89 falseControlDependence
+  88:   10 ->   90 falseControlDependence
+  89:   10 ->   91 falseControlDependence
+  90:   10 ->   92 falseControlDependence
+  91:   10 ->   93 falseControlDependence
+  92:   10 ->   94 falseControlDependence
+  93:   10 ->   95 falseControlDependence
+  94:   10 ->   96 falseControlDependence
+  95:   10 ->   97 falseControlDependence
+  96:   10 ->   98 falseControlDependence
+  97:   10 ->   99 falseControlDependence
+  98:   10 ->  100 falseControlDependence
+  99:   10 ->  101 falseControlDependence
+ 100:   13+ ->   29 loopIndependentDefUseDependence this.currentFigure
+ 101:   13+ ->   30 loopIndependentDefUseDependence this.currentFigure
+ 102:   13+ ->   35 loopIndependentDefUseDependence this.currentFigure
+ 103:   13+ ->   36 loopIndependentDefUseDependence this.currentFigure
+ 104:   20 ->   17 loopIndependentDefUseDependence e$0.!getX( )
+ 105:   20 ->   49 outputDependence e$0.!getX( )
+ 106:   24 ->   21 loopIndependentDefUseDependence e$0.!getY( )
+ 107:   24 ->   53 outputDependence e$0.!getY( )
+ 108:   25 ->   14 loopIndependentDefUseDependence this.!getGrabbedFigure( int int )
+ 109:   26 ->   11 loopIndependentDefUseDependence this.!setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure )
+ 110:   27 ->   31 trueControlDependence
+ 111:   27 ->   46 trueControlDependence
+ 112:   27 ->   47 trueControlDependence
+ 113:   27 ->   48 trueControlDependence
+ 114:   27 ->   49 trueControlDependence
+ 115:   27 ->   50 trueControlDependence
+ 116:   27 ->   51 trueControlDependence
+ 117:   27 ->   52 trueControlDependence
+ 118:   27 ->   53 trueControlDependence
+ 119:   30 ->   27 loopIndependentDefUseDependence this.!getCurrentFigure( )
+ 120:   30 ->   36 outputDependence this.!getCurrentFigure( )
+ 121:   31 ->   32 trueControlDependence
+ 122:   31 ->   33 trueControlDependence
+ 123:   31 ->   34 trueControlDependence
+ 124:   31 ->   35 trueControlDependence
+ 125:   31 ->   36 trueControlDependence
+ 126:   31 ->   37 trueControlDependence
+ 127:   31 ->   38 trueControlDependence
+ 128:   31 ->   39 trueControlDependence
+ 129:   31 ->   40 trueControlDependence
+ 130:   31 ->   41 trueControlDependence
+ 131:   31 ->   42 trueControlDependence
+ 132:   31 ->   43 trueControlDependence
+ 133:   31 ->   44 trueControlDependence
+ 134:   32 ->   43 loopIndependentDefUseDependence this.grabbedFigure
+ 135:   36 ->   33 loopIndependentDefUseDependence this.!getCurrentFigure( )
+ 136:   38 ->   32 loopIndependentDefUseDependence this.!getCurrentFigure( ).!createClone( )
+ 137:   44 ->   39 loopIndependentDefUseDependence this.!drawGrabbedFigure( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
+ 138:   49 ->   46 loopIndependentDefUseDependence e$0.!getX( )
+ 139:   53 ->   50 loopIndependentDefUseDependence e$0.!getY( )
+ 140:   57+ ->   66 loopIndependentDefUseDependence this.currentFigure
+ 141:   57+ ->   67 loopIndependentDefUseDependence this.currentFigure
+ 142:   57+ ->   81 loopIndependentDefUseDependence this.currentFigure
+ 143:   57+ ->   82 loopIndependentDefUseDependence this.currentFigure
+ 144:   57+ ->   99 loopIndependentDefUseDependence this.currentFigure
+ 145:   57+ ->  100 loopIndependentDefUseDependence this.currentFigure
+ 146:   61 ->   58 loopIndependentDefUseDependence this.selector.!createFigure( )
+ 147:   62 ->   55 loopIndependentDefUseDependence this.!setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure )
+ 148:   67 ->   64 loopIndependentDefUseDependence this.!getCurrentFigure( )
+ 149:   67 ->   82 outputDependence this.!getCurrentFigure( )
+ 150:   72 ->   69 loopIndependentDefUseDependence e$0.!getX( )
+ 151:   72 ->   87 outputDependence e$0.!getX( )
+ 152:   76 ->   73 loopIndependentDefUseDependence e$0.!getY( )
+ 153:   76 ->   91 outputDependence e$0.!getY( )
+ 154:   77 ->   63 loopIndependentDefUseDependence this.!getCurrentFigure( ).!setStart( int int )
+ 155:   82 ->   79 loopIndependentDefUseDependence this.!getCurrentFigure( )
+ 156:   82 ->  100 outputDependence this.!getCurrentFigure( )
+ 157:   87 ->   84 loopIndependentDefUseDependence e$0.!getX( )
+ 158:   91 ->   88 loopIndependentDefUseDependence e$0.!getY( )
+ 159:   92 ->   78 loopIndependentDefUseDependence this.!getCurrentFigure( ).!setEnd( int int )
+ 160:  100 ->   97 loopIndependentDefUseDependence this.!getCurrentFigure( )
+ 161:  101 ->   93 loopIndependentDefUseDependence this.!drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
 --
    0: drawOutline( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlDependence
@@ -1240,20 +1240,20 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    7 trueControlDependence
-   6:    0 -> * trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
    7:    1 ->    4 loopIndependentDefUseDependence listener$0
-   8: * ->    2 loopIndependentDefUseDependence this.support.!removeUndoableEditListener( javax.swing.event.UndoableEditListener )
+   8:    5 ->    2 loopIndependentDefUseDependence this.support.!removeUndoableEditListener( javax.swing.event.UndoableEditListener )
 --
    0: clearFigure( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    8 trueControlDependence
    9:    5 ->    1 loopIndependentDefUseDependence this.!setCurrentFigure( jp.ac.ritsumei.cs.draw.Figure )
 --
    0: isGrabMode
@@ -1329,10 +1329,10 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    7 trueControlDependence
-   6:    0 -> * trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
    7:    1 ->    4 loopIndependentDefUseDependence listener$0
-   8: * ->    2 loopIndependentDefUseDependence this.support.!addUndoableEditListener( javax.swing.event.UndoableEditListener )
+   8:    5 ->    2 loopIndependentDefUseDependence this.support.!addUndoableEditListener( javax.swing.event.UndoableEditListener )
 --
    0: drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlDependence
@@ -1440,26 +1440,26 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   51:   10 ->   72 falseControlDependence
   52:   10 ->   73 falseControlDependence
   53:   10 ->   74 falseControlDependence
-  54:   10 ->   75 falseControlDependence
-  55:   10 ->   76 falseControlDependence
-  56:   10 ->   77 falseControlDependence
-  57:   10 ->   78 falseControlDependence
-  58:   10 ->   79 falseControlDependence
-  59:   10 ->   80 falseControlDependence
-  60:   10 ->   81 falseControlDependence
-  61:   10 ->   82 falseControlDependence
-  62:   10 ->   83 falseControlDependence
-  63:   10 ->   84 falseControlDependence
-  64:   10 ->   85 falseControlDependence
-  65:   10 ->   86 falseControlDependence
-  66:   10 ->   87 falseControlDependence
-  67:   10 ->   88 falseControlDependence
-  68:   10 ->   89 falseControlDependence
-  69:   10 ->   90 falseControlDependence
-  70:   10 ->   91 falseControlDependence
-  71:   10 ->   92 falseControlDependence
-  72:   10 -> * falseControlDependence
-  73:   10 -> * falseControlDependence
+  54:   10 ->   74+ falseControlDependence
+  55:   10 ->   74+ falseControlDependence
+  56:   10 ->   75 falseControlDependence
+  57:   10 ->   76 falseControlDependence
+  58:   10 ->   77 falseControlDependence
+  59:   10 ->   78 falseControlDependence
+  60:   10 ->   79 falseControlDependence
+  61:   10 ->   80 falseControlDependence
+  62:   10 ->   81 falseControlDependence
+  63:   10 ->   82 falseControlDependence
+  64:   10 ->   83 falseControlDependence
+  65:   10 ->   84 falseControlDependence
+  66:   10 ->   85 falseControlDependence
+  67:   10 ->   86 falseControlDependence
+  68:   10 ->   87 falseControlDependence
+  69:   10 ->   88 falseControlDependence
+  70:   10 ->   89 falseControlDependence
+  71:   10 ->   90 falseControlDependence
+  72:   10 ->   91 falseControlDependence
+  73:   10 ->   92 falseControlDependence
   74:   11 ->   18 trueControlDependence
   75:   11 ->   19 trueControlDependence
   76:   11 ->   20 trueControlDependence
@@ -1475,36 +1475,36 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   86:   11 ->   30 trueControlDependence
   87:   11 ->   31 trueControlDependence
   88:   11 ->   32 trueControlDependence
-  89:   11 ->   33 trueControlDependence
-  90:   11 ->   34 trueControlDependence
-  91:   11 ->   35 trueControlDependence
-  92:   11 ->   36 trueControlDependence
-  93:   11 ->   37 trueControlDependence
-  94:   11 ->   38 trueControlDependence
-  95:   11 ->   39 trueControlDependence
-  96:   11 ->   40 trueControlDependence
-  97:   11 ->   41 trueControlDependence
-  98:   11 ->   42 trueControlDependence
-  99:   11 ->   43 trueControlDependence
- 100:   11 ->   44 trueControlDependence
- 101:   11 ->   45 trueControlDependence
- 102:   11 ->   46 trueControlDependence
- 103:   11 ->   47 trueControlDependence
- 104:   11 ->   48 trueControlDependence
- 105:   11 ->   49 trueControlDependence
- 106:   11 ->   50 trueControlDependence
- 107:   11 ->   51 trueControlDependence
- 108:   11 ->   52 trueControlDependence
- 109:   11 ->   53 trueControlDependence
- 110:   11 ->   54 trueControlDependence
- 111:   11 ->   55 trueControlDependence
- 112:   11 ->   56 trueControlDependence
- 113:   11 ->   57 trueControlDependence
- 114:   11 ->   58 trueControlDependence
- 115:   11 -> * trueControlDependence
- 116:   11 -> * trueControlDependence
- 117:   11 -> * trueControlDependence
- 118:   11 -> * trueControlDependence
+  89:   11 ->   32+ trueControlDependence
+  90:   11 ->   32+ trueControlDependence
+  91:   11 ->   32+ trueControlDependence
+  92:   11 ->   32+ trueControlDependence
+  93:   11 ->   33 trueControlDependence
+  94:   11 ->   34 trueControlDependence
+  95:   11 ->   35 trueControlDependence
+  96:   11 ->   36 trueControlDependence
+  97:   11 ->   37 trueControlDependence
+  98:   11 ->   38 trueControlDependence
+  99:   11 ->   39 trueControlDependence
+ 100:   11 ->   40 trueControlDependence
+ 101:   11 ->   41 trueControlDependence
+ 102:   11 ->   42 trueControlDependence
+ 103:   11 ->   43 trueControlDependence
+ 104:   11 ->   44 trueControlDependence
+ 105:   11 ->   45 trueControlDependence
+ 106:   11 ->   46 trueControlDependence
+ 107:   11 ->   47 trueControlDependence
+ 108:   11 ->   48 trueControlDependence
+ 109:   11 ->   49 trueControlDependence
+ 110:   11 ->   50 trueControlDependence
+ 111:   11 ->   51 trueControlDependence
+ 112:   11 ->   52 trueControlDependence
+ 113:   11 ->   53 trueControlDependence
+ 114:   11 ->   54 trueControlDependence
+ 115:   11 ->   55 trueControlDependence
+ 116:   11 ->   56 trueControlDependence
+ 117:   11 ->   57 trueControlDependence
+ 118:   11 ->   58 trueControlDependence
  119:   14 ->   11 loopIndependentDefUseDependence e$0.!getX( )
  120:   14 ->   36 outputDependence e$0.!getX( )
  121:   17 ->   11 loopIndependentDefUseDependence e$0.!getY( )
@@ -1515,30 +1515,30 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
  126:   26 ->   58 outputDependence this.!drawOutline( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
  127:   31 ->   28 loopIndependentDefUseDependence this.!getCurrentFigure( )
  128:   31 ->   57 outputDependence this.!getCurrentFigure( )
- 129:   36 ->   33 loopIndependentDefUseDependence e$0.!getX( )
- 130:   36 ->   45 outputDependence e$0.!getX( )
- 131:   40 ->   37 loopIndependentDefUseDependence e$0.!getY( )
- 132:   40 ->   49 outputDependence e$0.!getY( )
- 133:   41 ->   27 loopIndependentDefUseDependence this.!getCurrentFigure( ).!move( int int )
- 134:   45 ->   42 loopIndependentDefUseDependence e$0.!getX( )
- 135:   49 ->   46 loopIndependentDefUseDependence e$0.!getY( )
- 136:   57 ->   54 loopIndependentDefUseDependence this.!getCurrentFigure( )
- 137:   58 ->   50 loopIndependentDefUseDependence this.!drawOutline( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
- 138:   67 ->   64 loopIndependentDefUseDependence this.!getCurrentFigure( )
- 139:   67 ->   73 outputDependence this.!getCurrentFigure( )
- 140:   68 ->   60 loopIndependentDefUseDependence this.!drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
- 141:   68 ->   92 outputDependence this.!drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
- 142:   73 ->   70 loopIndependentDefUseDependence this.!getCurrentFigure( )
- 143:   73 ->   91 outputDependence this.!getCurrentFigure( )
- 144:   78 ->   75 loopIndependentDefUseDependence e$0.!getX( )
- 145:   82 ->   79 loopIndependentDefUseDependence e$0.!getY( )
- 146:   83 ->   69 loopIndependentDefUseDependence this.!getCurrentFigure( ).!setEnd( int int )
- 147:   91 ->   88 loopIndependentDefUseDependence this.!getCurrentFigure( )
- 148:   92 ->   84 loopIndependentDefUseDependence this.!drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
- 149: * ->   41 loopIndependentDefUseDependence this.!getCurrentFigure( ).endX
- 150: * ->   41 loopIndependentDefUseDependence this.!getCurrentFigure( ).endY
- 151: * ->   41 loopIndependentDefUseDependence this.!getCurrentFigure( ).startX
- 152: * ->   41 loopIndependentDefUseDependence this.!getCurrentFigure( ).startY
+ 129:   32+ ->   41 loopIndependentDefUseDependence this.!getCurrentFigure( ).endX
+ 130:   32+ ->   41 loopIndependentDefUseDependence this.!getCurrentFigure( ).endY
+ 131:   32+ ->   41 loopIndependentDefUseDependence this.!getCurrentFigure( ).startX
+ 132:   32+ ->   41 loopIndependentDefUseDependence this.!getCurrentFigure( ).startY
+ 133:   36 ->   33 loopIndependentDefUseDependence e$0.!getX( )
+ 134:   36 ->   45 outputDependence e$0.!getX( )
+ 135:   40 ->   37 loopIndependentDefUseDependence e$0.!getY( )
+ 136:   40 ->   49 outputDependence e$0.!getY( )
+ 137:   41 ->   27 loopIndependentDefUseDependence this.!getCurrentFigure( ).!move( int int )
+ 138:   45 ->   42 loopIndependentDefUseDependence e$0.!getX( )
+ 139:   49 ->   46 loopIndependentDefUseDependence e$0.!getY( )
+ 140:   57 ->   54 loopIndependentDefUseDependence this.!getCurrentFigure( )
+ 141:   58 ->   50 loopIndependentDefUseDependence this.!drawOutline( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
+ 142:   67 ->   64 loopIndependentDefUseDependence this.!getCurrentFigure( )
+ 143:   67 ->   73 outputDependence this.!getCurrentFigure( )
+ 144:   68 ->   60 loopIndependentDefUseDependence this.!drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
+ 145:   68 ->   92 outputDependence this.!drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
+ 146:   73 ->   70 loopIndependentDefUseDependence this.!getCurrentFigure( )
+ 147:   73 ->   91 outputDependence this.!getCurrentFigure( )
+ 148:   78 ->   75 loopIndependentDefUseDependence e$0.!getX( )
+ 149:   82 ->   79 loopIndependentDefUseDependence e$0.!getY( )
+ 150:   83 ->   69 loopIndependentDefUseDependence this.!getCurrentFigure( ).!setEnd( int int )
+ 151:   91 ->   88 loopIndependentDefUseDependence this.!getCurrentFigure( )
+ 152:   92 ->   84 loopIndependentDefUseDependence this.!drawRubber( java.awt.Graphics jp.ac.ritsumei.cs.draw.Figure )
 --
    0: grabbedFigure
    1:    0 ->    1 trueControlDependence
@@ -1684,48 +1684,48 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   35 trueControlDependence
-  26:    0 ->   36 trueControlDependence
-  27:    0 ->   37 trueControlDependence
-  28:    0 ->   38 trueControlDependence
-  29:    0 ->   39 trueControlDependence
-  30:    0 ->   40 trueControlDependence
-  31:    0 ->   41 trueControlDependence
-  32:    0 ->   42 trueControlDependence
-  33:    0 ->   43 trueControlDependence
-  34:    0 ->   44 trueControlDependence
-  35:    0 ->   45 trueControlDependence
-  36:    0 ->   46 trueControlDependence
-  37:    0 ->   47 trueControlDependence
-  38:    0 ->   48 trueControlDependence
-  39:    0 ->   49 trueControlDependence
-  40:    0 ->   50 trueControlDependence
-  41:    0 ->   51 trueControlDependence
-  42:    0 ->   52 trueControlDependence
-  43:    0 ->   54 trueControlDependence
-  44:    0 -> * trueControlDependence
-  45:    0 -> * trueControlDependence
-  46:    0 -> * trueControlDependence
-  47:    0 -> * trueControlDependence
-  48:    0 -> * trueControlDependence
+   7:    0 ->    6+ trueControlDependence
+   8:    0 ->    6+ trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   11 trueControlDependence
+  14:    0 ->   12 trueControlDependence
+  15:    0 ->   13 trueControlDependence
+  16:    0 ->   14 trueControlDependence
+  17:    0 ->   15 trueControlDependence
+  18:    0 ->   16 trueControlDependence
+  19:    0 ->   17 trueControlDependence
+  20:    0 ->   18 trueControlDependence
+  21:    0 ->   19 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   35 trueControlDependence
+  28:    0 ->   36 trueControlDependence
+  29:    0 ->   37 trueControlDependence
+  30:    0 ->   38 trueControlDependence
+  31:    0 ->   39 trueControlDependence
+  32:    0 ->   40 trueControlDependence
+  33:    0 ->   41 trueControlDependence
+  34:    0 ->   42 trueControlDependence
+  35:    0 ->   42+ trueControlDependence
+  36:    0 ->   43 trueControlDependence
+  37:    0 ->   44 trueControlDependence
+  38:    0 ->   45 trueControlDependence
+  39:    0 ->   46 trueControlDependence
+  40:    0 ->   47 trueControlDependence
+  41:    0 ->   47+ trueControlDependence
+  42:    0 ->   47+ trueControlDependence
+  43:    0 ->   48 trueControlDependence
+  44:    0 ->   49 trueControlDependence
+  45:    0 ->   50 trueControlDependence
+  46:    0 ->   51 trueControlDependence
+  47:    0 ->   52 trueControlDependence
+  48:    0 ->   54 trueControlDependence
   49:    1 ->    8 loopIndependentDefUseDependence figure$0
   50:    1 ->   27 loopIndependentDefUseDependence figure$0
   51:    1 ->   30 loopIndependentDefUseDependence figure$0
@@ -1742,57 +1742,57 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   62:   24 ->   29 trueControlDependence
   63:   24 ->   30 trueControlDependence
   64:   24 ->   31 trueControlDependence
-  65:   24 ->   32 trueControlDependence
-  66:   24 ->   33 trueControlDependence
-  67:   24 ->   34 trueControlDependence
-  68:   24 -> * trueControlDependence
-  69:   24 -> * trueControlDependence
-  70:   24 -> * trueControlDependence
-  71:   24 -> * trueControlDependence
+  65:   24 ->   31+ trueControlDependence
+  66:   24 ->   31+ trueControlDependence
+  67:   24 ->   31+ trueControlDependence
+  68:   24 ->   31+ trueControlDependence
+  69:   24 ->   32 trueControlDependence
+  70:   24 ->   33 trueControlDependence
+  71:   24 ->   34 trueControlDependence
   72:   28 ->   24 loopCarriedDefUseDependence this.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure ) (LC = 24)
   73:   28 ->   28 defOrderDependence this.!isOverlapped( jp.ac.ritsumei.cs.draw.Figure )
-  74:   34 ->   29 loopIndependentDefUseDependence figure$0.!move( int int )
-  75:   34 ->   34 defOrderDependence figure$0.!move( int int )
-  76:   39 ->   35 loopIndependentDefUseDependence this.figureManager.!add( jp.ac.ritsumei.cs.draw.Figure )
-  77:   44 ->   40 loopIndependentDefUseDependence this.!setChanged( boolean )
-  78:   48 ->   45 loopIndependentDefUseDependence this.!clearFigure( )
-  79:   52 ->   49 loopIndependentDefUseDependence this.!repaint( )
-  80: * ->   27 loopIndependentDefUseDependence figure$0.endX
-  81: * ->   27 loopIndependentDefUseDependence figure$0.endY
-  82: * ->   27 loopIndependentDefUseDependence figure$0.startX
-  83: * ->   27 loopIndependentDefUseDependence figure$0.startY
-  84: * ->   31 loopCarriedDefUseDependence figure$0.endX (LC = 24)
-  85: * ->   31 loopCarriedDefUseDependence figure$0.endY (LC = 24)
-  86: * ->   31 loopCarriedDefUseDependence figure$0.startX (LC = 24)
-  87: * ->   31 loopCarriedDefUseDependence figure$0.startY (LC = 24)
-  88: * ->   34 loopIndependentDefUseDependence figure$0.endX
-  89: * ->   34 loopIndependentDefUseDependence figure$0.endY
-  90: * ->   34 loopIndependentDefUseDependence figure$0.startX
-  91: * ->   34 loopIndependentDefUseDependence figure$0.startY
-  92: * ->   37 loopIndependentDefUseDependence figure$0.endX
-  93: * ->   37 loopIndependentDefUseDependence figure$0.endY
-  94: * ->   37 loopIndependentDefUseDependence figure$0.startX
-  95: * ->   37 loopIndependentDefUseDependence figure$0.startY
-  96: * ->   38 loopIndependentDefUseDependence figure$0.endX
-  97: * ->   38 loopIndependentDefUseDependence figure$0.endY
-  98: * ->   38 loopIndependentDefUseDependence figure$0.startX
-  99: * ->   38 loopIndependentDefUseDependence figure$0.startY
- 100: * ->   39 loopIndependentDefUseDependence figure$0.endX
- 101: * ->   39 loopIndependentDefUseDependence figure$0.endY
- 102: * ->   39 loopIndependentDefUseDependence figure$0.startX
- 103: * ->   39 loopIndependentDefUseDependence figure$0.startY
- 104: * ->   47 loopIndependentDefUseDependence figure$0.endX
- 105: * ->   47 loopIndependentDefUseDependence figure$0.endY
- 106: * ->   47 loopIndependentDefUseDependence figure$0.startX
- 107: * ->   47 loopIndependentDefUseDependence figure$0.startY
- 108: * ->   48 loopIndependentDefUseDependence figure$0.endX
- 109: * ->   48 loopIndependentDefUseDependence figure$0.endY
- 110: * ->   48 loopIndependentDefUseDependence figure$0.startX
- 111: * ->   48 loopIndependentDefUseDependence figure$0.startY
- 112: * -> * defOrderDependence figure$0.endX
- 113: * -> * defOrderDependence figure$0.endY
- 114: * -> * defOrderDependence figure$0.startX
- 115: * -> * defOrderDependence figure$0.startY
+  74:   31+ ->   27 loopIndependentDefUseDependence figure$0.endX
+  75:   31+ ->   27 loopIndependentDefUseDependence figure$0.endY
+  76:   31+ ->   27 loopIndependentDefUseDependence figure$0.startX
+  77:   31+ ->   27 loopIndependentDefUseDependence figure$0.startY
+  78:   31+ ->   31 loopCarriedDefUseDependence figure$0.endX (LC = 24)
+  79:   31+ ->   31 loopCarriedDefUseDependence figure$0.endY (LC = 24)
+  80:   31+ ->   31 loopCarriedDefUseDependence figure$0.startX (LC = 24)
+  81:   31+ ->   31 loopCarriedDefUseDependence figure$0.startY (LC = 24)
+  82:   31+ ->   31+ defOrderDependence figure$0.endX
+  83:   31+ ->   31+ defOrderDependence figure$0.endY
+  84:   31+ ->   31+ defOrderDependence figure$0.startX
+  85:   31+ ->   31+ defOrderDependence figure$0.startY
+  86:   31+ ->   34 loopIndependentDefUseDependence figure$0.endX
+  87:   31+ ->   34 loopIndependentDefUseDependence figure$0.endY
+  88:   31+ ->   34 loopIndependentDefUseDependence figure$0.startX
+  89:   31+ ->   34 loopIndependentDefUseDependence figure$0.startY
+  90:   31+ ->   37 loopIndependentDefUseDependence figure$0.endX
+  91:   31+ ->   37 loopIndependentDefUseDependence figure$0.endY
+  92:   31+ ->   37 loopIndependentDefUseDependence figure$0.startX
+  93:   31+ ->   37 loopIndependentDefUseDependence figure$0.startY
+  94:   31+ ->   38 loopIndependentDefUseDependence figure$0.endX
+  95:   31+ ->   38 loopIndependentDefUseDependence figure$0.endY
+  96:   31+ ->   38 loopIndependentDefUseDependence figure$0.startX
+  97:   31+ ->   38 loopIndependentDefUseDependence figure$0.startY
+  98:   31+ ->   39 loopIndependentDefUseDependence figure$0.endX
+  99:   31+ ->   39 loopIndependentDefUseDependence figure$0.endY
+ 100:   31+ ->   39 loopIndependentDefUseDependence figure$0.startX
+ 101:   31+ ->   39 loopIndependentDefUseDependence figure$0.startY
+ 102:   31+ ->   47 loopIndependentDefUseDependence figure$0.endX
+ 103:   31+ ->   47 loopIndependentDefUseDependence figure$0.endY
+ 104:   31+ ->   47 loopIndependentDefUseDependence figure$0.startX
+ 105:   31+ ->   47 loopIndependentDefUseDependence figure$0.startY
+ 106:   31+ ->   48 loopIndependentDefUseDependence figure$0.endX
+ 107:   31+ ->   48 loopIndependentDefUseDependence figure$0.endY
+ 108:   31+ ->   48 loopIndependentDefUseDependence figure$0.startX
+ 109:   31+ ->   48 loopIndependentDefUseDependence figure$0.startY
+ 110:   34 ->   29 loopIndependentDefUseDependence figure$0.!move( int int )
+ 111:   34 ->   34 defOrderDependence figure$0.!move( int int )
+ 112:   39 ->   35 loopIndependentDefUseDependence this.figureManager.!add( jp.ac.ritsumei.cs.draw.Figure )
+ 113:   44 ->   40 loopIndependentDefUseDependence this.!setChanged( boolean )
+ 114:   48 ->   45 loopIndependentDefUseDependence this.!clearFigure( )
+ 115:   52 ->   49 loopIndependentDefUseDependence this.!repaint( )
 --
    0: figureManager
    1:    0 ->    1 trueControlDependence
@@ -1801,8 +1801,8 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 -> * trueControlDependence
-   5: * ->    1 loopIndependentDefUseDependence javax.swing.undo.UndoableEditSupport.!UndoableEditSupport( )
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence javax.swing.undo.UndoableEditSupport.!UndoableEditSupport( )
 --
    0: selector
    1:    0 ->    1 trueControlDependence
@@ -1813,50 +1813,50 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   25 trueControlDependence
-  26:    0 ->   26 trueControlDependence
-  27:    0 ->   27 trueControlDependence
-  28:    0 ->   28 trueControlDependence
-  29:    0 ->   29 trueControlDependence
-  30:    0 ->   30 trueControlDependence
-  31:    0 ->   31 trueControlDependence
-  32:    0 ->   32 trueControlDependence
-  33:    0 ->   33 trueControlDependence
-  34:    0 ->   34 trueControlDependence
-  35:    0 ->   35 trueControlDependence
-  36:    0 ->   36 trueControlDependence
-  37:    0 ->   37 trueControlDependence
-  38:    0 ->   38 trueControlDependence
-  39:    0 ->   39 trueControlDependence
-  40:    0 ->   40 trueControlDependence
-  41:    0 ->   41 trueControlDependence
-  42:    0 ->   42 trueControlDependence
-  43:    0 ->   43 trueControlDependence
-  44:    0 ->   45 trueControlDependence
-  45:    0 -> * trueControlDependence
-  46:    0 -> * trueControlDependence
-  47:    0 -> * trueControlDependence
-  48:    0 -> * trueControlDependence
-  49:    0 -> * trueControlDependence
+   6:    0 ->    5+ trueControlDependence
+   7:    0 ->    5+ trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   11 trueControlDependence
+  14:    0 ->   12 trueControlDependence
+  15:    0 ->   13 trueControlDependence
+  16:    0 ->   14 trueControlDependence
+  17:    0 ->   15 trueControlDependence
+  18:    0 ->   16 trueControlDependence
+  19:    0 ->   17 trueControlDependence
+  20:    0 ->   18 trueControlDependence
+  21:    0 ->   19 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   25 trueControlDependence
+  28:    0 ->   26 trueControlDependence
+  29:    0 ->   27 trueControlDependence
+  30:    0 ->   28 trueControlDependence
+  31:    0 ->   29 trueControlDependence
+  32:    0 ->   30 trueControlDependence
+  33:    0 ->   31 trueControlDependence
+  34:    0 ->   32 trueControlDependence
+  35:    0 ->   33 trueControlDependence
+  36:    0 ->   33+ trueControlDependence
+  37:    0 ->   34 trueControlDependence
+  38:    0 ->   35 trueControlDependence
+  39:    0 ->   36 trueControlDependence
+  40:    0 ->   37 trueControlDependence
+  41:    0 ->   38 trueControlDependence
+  42:    0 ->   38+ trueControlDependence
+  43:    0 ->   38+ trueControlDependence
+  44:    0 ->   39 trueControlDependence
+  45:    0 ->   40 trueControlDependence
+  46:    0 ->   41 trueControlDependence
+  47:    0 ->   42 trueControlDependence
+  48:    0 ->   43 trueControlDependence
+  49:    0 ->   45 trueControlDependence
   50:    8 ->    3 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureDeleted.!FigureDeleted( jp.ac.ritsumei.cs.draw.DrawCanvas jp.ac.ritsumei.cs.draw.Figure )
   51:    9 ->    1 loopIndependentDefUseDependence this.support.!postEdit( javax.swing.undo.UndoableEdit )
   52:   13 ->   10 loopIndependentDefUseDependence this.menu.!updateUndoState( )
@@ -1953,57 +1953,57 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
   71:   10 ->  162 falseControlDependence
   72:   10 ->  163 falseControlDependence
   73:   10 ->  164 falseControlDependence
-  74:   10 ->  165 falseControlDependence
-  75:   10 ->  166 falseControlDependence
-  76:   10 ->  167 falseControlDependence
-  77:   10 -> * falseControlDependence
+  74:   10 ->  164+ falseControlDependence
+  75:   10 ->  165 falseControlDependence
+  76:   10 ->  166 falseControlDependence
+  77:   10 ->  167 falseControlDependence
   78:   11 ->   30 trueControlDependence
   79:   11 ->   31 trueControlDependence
   80:   11 ->   32 trueControlDependence
   81:   11 ->   33 trueControlDependence
   82:   11 ->   34 trueControlDependence
-  83:   11 ->   35 trueControlDependence
-  84:   11 ->   36 trueControlDependence
-  85:   11 ->   37 trueControlDependence
-  86:   11 ->   38 trueControlDependence
-  87:   11 ->   39 trueControlDependence
-  88:   11 ->   40 trueControlDependence
-  89:   11 ->   41 trueControlDependence
-  90:   11 ->   42 trueControlDependence
-  91:   11 ->   43 trueControlDependence
-  92:   11 ->   44 trueControlDependence
-  93:   11 ->   45 trueControlDependence
-  94:   11 ->   46 trueControlDependence
-  95:   11 ->   47 trueControlDependence
-  96:   11 ->   48 trueControlDependence
-  97:   11 ->   49 trueControlDependence
-  98:   11 ->   50 trueControlDependence
-  99:   11 ->   51 trueControlDependence
- 100:   11 ->   52 trueControlDependence
- 101:   11 ->   53 trueControlDependence
- 102:   11 ->   54 trueControlDependence
- 103:   11 ->   55 trueControlDependence
- 104:   11 ->   56 trueControlDependence
- 105:   11 ->   57 trueControlDependence
- 106:   11 ->   58 trueControlDependence
- 107:   11 ->   59 trueControlDependence
- 108:   11 ->   60 trueControlDependence
- 109:   11 ->   61 trueControlDependence
- 110:   11 ->   62 trueControlDependence
- 111:   11 ->   63 trueControlDependence
- 112:   11 ->   64 trueControlDependence
- 113:   11 ->   65 trueControlDependence
- 114:   11 ->   66 falseControlDependence
- 115:   11 ->   67 falseControlDependence
- 116:   11 ->   68 falseControlDependence
- 117:   11 ->   69 falseControlDependence
- 118:   11 ->   70 falseControlDependence
- 119:   11 -> * trueControlDependence
- 120:   11 -> * trueControlDependence
- 121:   11 -> * trueControlDependence
- 122:   11 -> * trueControlDependence
- 123:   11 -> * trueControlDependence
- 124:   11 -> * trueControlDependence
+  83:   11 ->   34+ trueControlDependence
+  84:   11 ->   34+ trueControlDependence
+  85:   11 ->   34+ trueControlDependence
+  86:   11 ->   34+ trueControlDependence
+  87:   11 ->   35 trueControlDependence
+  88:   11 ->   36 trueControlDependence
+  89:   11 ->   37 trueControlDependence
+  90:   11 ->   38 trueControlDependence
+  91:   11 ->   39 trueControlDependence
+  92:   11 ->   40 trueControlDependence
+  93:   11 ->   41 trueControlDependence
+  94:   11 ->   42 trueControlDependence
+  95:   11 ->   43 trueControlDependence
+  96:   11 ->   44 trueControlDependence
+  97:   11 ->   45 trueControlDependence
+  98:   11 ->   46 trueControlDependence
+  99:   11 ->   47 trueControlDependence
+ 100:   11 ->   48 trueControlDependence
+ 101:   11 ->   49 trueControlDependence
+ 102:   11 ->   50 trueControlDependence
+ 103:   11 ->   51 trueControlDependence
+ 104:   11 ->   52 trueControlDependence
+ 105:   11 ->   53 trueControlDependence
+ 106:   11 ->   53+ trueControlDependence
+ 107:   11 ->   54 trueControlDependence
+ 108:   11 ->   55 trueControlDependence
+ 109:   11 ->   56 trueControlDependence
+ 110:   11 ->   57 trueControlDependence
+ 111:   11 ->   58 trueControlDependence
+ 112:   11 ->   58+ trueControlDependence
+ 113:   11 ->   59 trueControlDependence
+ 114:   11 ->   60 trueControlDependence
+ 115:   11 ->   61 trueControlDependence
+ 116:   11 ->   62 trueControlDependence
+ 117:   11 ->   63 trueControlDependence
+ 118:   11 ->   64 trueControlDependence
+ 119:   11 ->   65 trueControlDependence
+ 120:   11 ->   66 falseControlDependence
+ 121:   11 ->   67 falseControlDependence
+ 122:   11 ->   68 falseControlDependence
+ 123:   11 ->   69 falseControlDependence
+ 124:   11 ->   70 falseControlDependence
  125:   15 ->   12 loopIndependentDefUseDependence this.!getCurrentFigure( )
  126:   15 ->   24 outputDependence this.!getCurrentFigure( )
  127:   17 ->   11 loopIndependentDefUseDependence this.!getCurrentFigure( ).!getLeft( )
@@ -2029,67 +2029,67 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
  147:   81 ->  102 trueControlDependence
  148:   81 ->  103 trueControlDependence
  149:   81 ->  104 trueControlDependence
- 150:   81 ->  105 trueControlDependence
- 151:   81 ->  106 trueControlDependence
- 152:   81 ->  107 trueControlDependence
- 153:   81 ->  108 trueControlDependence
- 154:   81 ->  109 trueControlDependence
- 155:   81 ->  110 trueControlDependence
- 156:   81 ->  111 trueControlDependence
- 157:   81 ->  112 trueControlDependence
- 158:   81 ->  113 trueControlDependence
- 159:   81 ->  114 trueControlDependence
- 160:   81 ->  115 trueControlDependence
- 161:   81 ->  116 trueControlDependence
- 162:   81 ->  117 trueControlDependence
- 163:   81 ->  118 trueControlDependence
- 164:   81 ->  119 trueControlDependence
- 165:   81 ->  120 trueControlDependence
- 166:   81 ->  121 trueControlDependence
- 167:   81 ->  122 trueControlDependence
- 168:   81 ->  123 trueControlDependence
- 169:   81 ->  124 trueControlDependence
- 170:   81 ->  125 trueControlDependence
- 171:   81 ->  126 trueControlDependence
- 172:   81 ->  127 trueControlDependence
- 173:   81 ->  128 trueControlDependence
- 174:   81 ->  129 trueControlDependence
- 175:   81 ->  130 trueControlDependence
- 176:   81 ->  131 trueControlDependence
- 177:   81 ->  132 trueControlDependence
- 178:   81 ->  133 trueControlDependence
- 179:   81 ->  134 trueControlDependence
- 180:   81 ->  135 trueControlDependence
- 181:   81 ->  136 trueControlDependence
- 182:   81 ->  137 trueControlDependence
- 183:   81 ->  138 trueControlDependence
- 184:   81 ->  139 trueControlDependence
- 185:   81 ->  140 trueControlDependence
- 186:   81 ->  141 trueControlDependence
- 187:   81 ->  142 trueControlDependence
- 188:   81 ->  143 trueControlDependence
- 189:   81 ->  144 trueControlDependence
- 190:   81 ->  145 trueControlDependence
- 191:   81 ->  146 trueControlDependence
- 192:   81 ->  147 trueControlDependence
- 193:   81 ->  148 trueControlDependence
- 194:   81 ->  149 trueControlDependence
- 195:   81 ->  150 trueControlDependence
- 196:   81 ->  151 trueControlDependence
- 197:   81 ->  152 trueControlDependence
- 198:   81 ->  153 trueControlDependence
- 199:   81 ->  154 trueControlDependence
- 200:   81 ->  155 trueControlDependence
- 201:   81 ->  156 trueControlDependence
- 202:   81 ->  157 trueControlDependence
- 203:   81 ->  158 trueControlDependence
- 204:   81 ->  159 trueControlDependence
- 205:   81 ->  160 trueControlDependence
- 206:   81 -> * trueControlDependence
- 207:   81 -> * trueControlDependence
- 208:   81 -> * trueControlDependence
- 209:   81 -> * trueControlDependence
- 210:   81 -> * trueControlDependence
+ 150:   81 ->  104+ trueControlDependence
+ 151:   81 ->  104+ trueControlDependence
+ 152:   81 ->  105 trueControlDependence
+ 153:   81 ->  106 trueControlDependence
+ 154:   81 ->  107 trueControlDependence
+ 155:   81 ->  108 trueControlDependence
+ 156:   81 ->  109 trueControlDependence
+ 157:   81 ->  110 trueControlDependence
+ 158:   81 ->  111 trueControlDependence
+ 159:   81 ->  112 trueControlDependence
+ 160:   81 ->  113 trueControlDependence
+ 161:   81 ->  114 trueControlDependence
+ 162:   81 ->  115 trueControlDependence
+ 163:   81 ->  116 trueControlDependence
+ 164:   81 ->  117 trueControlDependence
+ 165:   81 ->  118 trueControlDependence
+ 166:   81 ->  119 trueControlDependence
+ 167:   81 ->  120 trueControlDependence
+ 168:   81 ->  121 trueControlDependence
+ 169:   81 ->  122 trueControlDependence
+ 170:   81 ->  123 trueControlDependence
+ 171:   81 ->  124 trueControlDependence
+ 172:   81 ->  125 trueControlDependence
+ 173:   81 ->  125+ trueControlDependence
+ 174:   81 ->  125+ trueControlDependence
+ 175:   81 ->  126 trueControlDependence
+ 176:   81 ->  127 trueControlDependence
+ 177:   81 ->  128 trueControlDependence
+ 178:   81 ->  129 trueControlDependence
+ 179:   81 ->  130 trueControlDependence
+ 180:   81 ->  131 trueControlDependence
+ 181:   81 ->  132 trueControlDependence
+ 182:   81 ->  133 trueControlDependence
+ 183:   81 ->  134 trueControlDependence
+ 184:   81 ->  135 trueControlDependence
+ 185:   81 ->  136 trueControlDependence
+ 186:   81 ->  137 trueControlDependence
+ 187:   81 ->  138 trueControlDependence
+ 188:   81 ->  139 trueControlDependence
+ 189:   81 ->  140 trueControlDependence
+ 190:   81 ->  141 trueControlDependence
+ 191:   81 ->  142 trueControlDependence
+ 192:   81 ->  143 trueControlDependence
+ 193:   81 ->  144 trueControlDependence
+ 194:   81 ->  145 trueControlDependence
+ 195:   81 ->  146 trueControlDependence
+ 196:   81 ->  147 trueControlDependence
+ 197:   81 ->  148 trueControlDependence
+ 198:   81 ->  149 trueControlDependence
+ 199:   81 ->  150 trueControlDependence
+ 200:   81 ->  151 trueControlDependence
+ 201:   81 ->  152 trueControlDependence
+ 202:   81 ->  153 trueControlDependence
+ 203:   81 ->  154 trueControlDependence
+ 204:   81 ->  154+ trueControlDependence
+ 205:   81 ->  155 trueControlDependence
+ 206:   81 ->  156 trueControlDependence
+ 207:   81 ->  157 trueControlDependence
+ 208:   81 ->  158 trueControlDependence
+ 209:   81 ->  159 trueControlDependence
+ 210:   81 ->  160 trueControlDependence
  211:   85 ->   82 loopIndependentDefUseDependence this.!getCurrentFigure( )
  212:   85 ->   94 outputDependence this.!getCurrentFigure( )
  213:   87 ->   81 loopIndependentDefUseDependence this.!getCurrentFigure( ).!getLeft( )

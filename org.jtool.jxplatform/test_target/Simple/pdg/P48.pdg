@@ -12,7 +12,7 @@ Class Name = P48
    1 returnSt D = { $_ } U = { java.util.ArrayList.!ArrayList( ) }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
-* actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   4 actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
    6 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ P48#ss ]
@@ -62,10 +62,10 @@ Class Name = P48
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    6 trueControlDependence
-   5:    0 -> * trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
    6:    1 ->    6 loopIndependentDefUseDependence $_
-   7: * ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+   7:    4 ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
 --
    0: ss
    1:    0 ->    1 trueControlDependence

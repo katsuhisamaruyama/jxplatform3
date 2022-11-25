@@ -11,8 +11,8 @@ Class Name = S140
    5 actualOut D = { this.!S140( int ) } U = { super.x }
    6 localDeclaration D = { xx$0 } U = { this.x }
    8 formalOut D = {  } U = { $_ }
-* actualOut D = { this.x } U = {  }
-* actualOut D = { super.x } U = {  }
+   3+ actualOutByFieldAccess D = { this.x } U = {  }
+   3+ actualOutByFieldAccess D = { super.x } U = {  }
 --
    0 constructorEntry [ S140#S140( int ) ]
    1 formalIn D = { x$0 } U = {  }
@@ -24,7 +24,7 @@ Class Name = S140
    7 assignment D = { this.x } U = { x$0 }
    8 localDeclaration D = { xx$1 } U = { super.x }
   10 formalOut D = {  } U = { $_ }
-* actualOut D = { super.x } U = {  }
+   4+ actualOutByFieldAccess D = { super.x } U = {  }
 --
    0 methodEntry [ S140#m( ) ]
    1 assignment D = { super.x } U = {  }
@@ -42,31 +42,31 @@ Class Name = S140
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 -> * trueControlDependence
-   9:    0 -> * trueControlDependence
-  10:    5 ->    1 loopIndependentDefUseDependence this.!S140( int )
-  11: * ->    5 loopIndependentDefUseDependence super.x
-  12: * ->    6 loopIndependentDefUseDependence this.x
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    3+ ->    5 loopIndependentDefUseDependence super.x
+  11:    3+ ->    6 loopIndependentDefUseDependence this.x
+  12:    5 ->    1 loopIndependentDefUseDependence this.!S140( int )
 --
    0: S140( int )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->   10 trueControlDependence
   11:    1 ->    5 loopIndependentDefUseDependence x$0
   12:    1 ->    7 loopIndependentDefUseDependence x$0
-  13:    6 ->    2 loopIndependentDefUseDependence super.!Test140( int )
-  14: * ->    8 loopIndependentDefUseDependence super.x
+  13:    4+ ->    8 loopIndependentDefUseDependence super.x
+  14:    6 ->    2 loopIndependentDefUseDependence super.!Test140( int )
 --
    0: m( )
    1:    0 ->    1 trueControlDependence

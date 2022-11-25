@@ -7,11 +7,11 @@ Class Name = Test141
    1 assignment D = {  } U = { this.map1.!put( java.lang.Object java.lang.Object ) }
    2 receiver D = {  } U = { this.map1 }
    3 methodCall D = {  } U = { $java.lang.String, this.map1.!java.util.HashMap$Node.hash, this.map1.!java.util.HashMap$Node.key, this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!java.util.HashMap.table, this.map1.!java.util.HashMap.threshold } TO = java.util.Map#put( java.lang.Object java.lang.Object )
-* actualOut D = { this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!put( java.lang.Object java.lang.Object ) } U = { this.map1.!java.util.HashMap$Node.hash, this.map1.!java.util.HashMap$Node.key, this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!java.util.HashMap.table, this.map1.!java.util.HashMap.threshold }
+   4 actualOut D = { this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!put( java.lang.Object java.lang.Object ) } U = { this.map1.!java.util.HashMap$Node.hash, this.map1.!java.util.HashMap$Node.key, this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!java.util.HashMap.table, this.map1.!java.util.HashMap.threshold }
    5 assignment D = {  } U = { this.map2.!put( java.lang.Object java.lang.Object ) }
    6 receiver D = {  } U = { this.map2 }
    7 methodCall D = {  } U = { $java.lang.String, this.map2.!java.util.HashMap$Node.hash, this.map2.!java.util.HashMap$Node.key, this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.modCount, this.map2.!java.util.HashMap.size, this.map2.!java.util.HashMap.table, this.map2.!java.util.HashMap.threshold } TO = java.util.Map#put( java.lang.Object java.lang.Object )
-* actualOut D = { this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.modCount, this.map2.!java.util.HashMap.size, this.map2.!put( java.lang.Object java.lang.Object ) } U = { this.map2.!java.util.HashMap$Node.hash, this.map2.!java.util.HashMap$Node.key, this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.modCount, this.map2.!java.util.HashMap.size, this.map2.!java.util.HashMap.table, this.map2.!java.util.HashMap.threshold }
+   8 actualOut D = { this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.modCount, this.map2.!java.util.HashMap.size, this.map2.!put( java.lang.Object java.lang.Object ) } U = { this.map2.!java.util.HashMap$Node.hash, this.map2.!java.util.HashMap$Node.key, this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.modCount, this.map2.!java.util.HashMap.size, this.map2.!java.util.HashMap.table, this.map2.!java.util.HashMap.threshold }
    9 localDeclaration D = { v1$0 } U = { this.map1.!get( java.lang.Object ) }
   10 receiver D = {  } U = { this.map1 }
   11 methodCall D = {  } U = { $java.lang.String, this.map1.!java.util.HashMap$Node.hash, this.map1.!java.util.HashMap$Node.key, this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.table } TO = java.util.Map#get( java.lang.Object )
@@ -26,11 +26,11 @@ Class Name = Test141
    1 assignment D = {  } U = { this.map1.!put( java.lang.Object java.lang.Object ) }
    2 receiver D = {  } U = { this.map1 }
    3 methodCall D = {  } U = { $java.lang.String, this.map1.!java.util.HashMap$Node.hash, this.map1.!java.util.HashMap$Node.key, this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!java.util.HashMap.table, this.map1.!java.util.HashMap.threshold } TO = java.util.Map#put( java.lang.Object java.lang.Object )
-* actualOut D = { this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!put( java.lang.Object java.lang.Object ) } U = { this.map1.!java.util.HashMap$Node.hash, this.map1.!java.util.HashMap$Node.key, this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!java.util.HashMap.table, this.map1.!java.util.HashMap.threshold }
+   4 actualOut D = { this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!put( java.lang.Object java.lang.Object ) } U = { this.map1.!java.util.HashMap$Node.hash, this.map1.!java.util.HashMap$Node.key, this.map1.!java.util.HashMap$Node.next, this.map1.!java.util.HashMap$Node.value, this.map1.!java.util.HashMap.modCount, this.map1.!java.util.HashMap.size, this.map1.!java.util.HashMap.table, this.map1.!java.util.HashMap.threshold }
    5 assignment D = {  } U = { this.map2.!put( java.lang.Object java.lang.Object ) }
    6 receiver D = {  } U = { this.map2 }
    7 methodCall D = {  } U = { $java.lang.String, this.map2.!java.util.HashMap$Node.hash, this.map2.!java.util.HashMap$Node.key, this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.modCount, this.map2.!java.util.HashMap.size, this.map2.!java.util.HashMap.table, this.map2.!java.util.HashMap.threshold } TO = java.util.Map#put( java.lang.Object java.lang.Object )
-* actualOut D = { this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.modCount, this.map2.!java.util.HashMap.size, this.map2.!put( java.lang.Object java.lang.Object ) } U = { this.map2.!java.util.HashMap$Node.hash, this.map2.!java.util.HashMap$Node.key, this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.modCount, this.map2.!java.util.HashMap.size, this.map2.!java.util.HashMap.table, this.map2.!java.util.HashMap.threshold }
+   8 actualOut D = { this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.modCount, this.map2.!java.util.HashMap.size, this.map2.!put( java.lang.Object java.lang.Object ) } U = { this.map2.!java.util.HashMap$Node.hash, this.map2.!java.util.HashMap$Node.key, this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.modCount, this.map2.!java.util.HashMap.size, this.map2.!java.util.HashMap.table, this.map2.!java.util.HashMap.threshold }
    9 localDeclaration D = { v2$0 } U = { this.map2.!get( java.lang.Object ) }
   10 receiver D = {  } U = { this.map2 }
   11 methodCall D = {  } U = { $java.lang.String, this.map2.!java.util.HashMap$Node.hash, this.map2.!java.util.HashMap$Node.key, this.map2.!java.util.HashMap$Node.next, this.map2.!java.util.HashMap$Node.value, this.map2.!java.util.HashMap.table } TO = java.util.Map#get( java.lang.Object )
@@ -45,13 +45,13 @@ Class Name = Test141
    1 fieldDeclaration D = { this.map1 } U = { java.util.HashMap.!HashMap( ), this.map1 }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )
-* actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
+   4 actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
 --
    0 fieldEntry [ Test141#map2 ]
    1 fieldDeclaration D = { this.map2 } U = { java.util.HashMap.!HashMap( ), this.map2 }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )
-* actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
+   4 actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
 --
    0: Test141( )
    1:    0 ->    2 trueControlDependence
@@ -60,77 +60,77 @@ Class Name = Test141
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    5 trueControlDependence
-   5:    0 ->    6 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    9 trueControlDependence
-   8:    0 ->   10 trueControlDependence
-   9:    0 ->   11 trueControlDependence
-  10:    0 ->   12 trueControlDependence
-  11:    0 ->   13 trueControlDependence
-  12:    0 ->   14 trueControlDependence
-  13:    0 ->   15 trueControlDependence
-  14:    0 ->   16 trueControlDependence
-  15:    0 ->   18 trueControlDependence
-  16:    0 -> * trueControlDependence
-  17:    0 -> * trueControlDependence
-  18:   12 ->    9 loopIndependentDefUseDependence this.map1.!get( java.lang.Object )
-  19:   16 ->   13 loopIndependentDefUseDependence this.map2.!get( java.lang.Object )
-  20: * ->    1 loopIndependentDefUseDependence this.map1.!put( java.lang.Object java.lang.Object )
-  21: * ->    5 loopIndependentDefUseDependence this.map2.!put( java.lang.Object java.lang.Object )
-  22: * ->   11 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.next
-  23: * ->   11 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.value
-  24: * ->   12 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.next
-  25: * ->   12 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.value
-  26: * ->   15 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.next
-  27: * ->   15 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.value
-  28: * ->   16 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.next
-  29: * ->   16 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.value
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    4 ->    1 loopIndependentDefUseDependence this.map1.!put( java.lang.Object java.lang.Object )
+  19:    4 ->   11 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.next
+  20:    4 ->   11 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.value
+  21:    4 ->   12 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.next
+  22:    4 ->   12 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.value
+  23:    8 ->    5 loopIndependentDefUseDependence this.map2.!put( java.lang.Object java.lang.Object )
+  24:    8 ->   15 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.next
+  25:    8 ->   15 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.value
+  26:    8 ->   16 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.next
+  27:    8 ->   16 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.value
+  28:   12 ->    9 loopIndependentDefUseDependence this.map1.!get( java.lang.Object )
+  29:   16 ->   13 loopIndependentDefUseDependence this.map2.!get( java.lang.Object )
 --
    0: m2( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    5 trueControlDependence
-   5:    0 ->    6 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    9 trueControlDependence
-   8:    0 ->   10 trueControlDependence
-   9:    0 ->   11 trueControlDependence
-  10:    0 ->   12 trueControlDependence
-  11:    0 ->   13 trueControlDependence
-  12:    0 ->   14 trueControlDependence
-  13:    0 ->   15 trueControlDependence
-  14:    0 ->   16 trueControlDependence
-  15:    0 ->   18 trueControlDependence
-  16:    0 -> * trueControlDependence
-  17:    0 -> * trueControlDependence
-  18:   12 ->    9 loopIndependentDefUseDependence this.map2.!get( java.lang.Object )
-  19:   16 ->   13 loopIndependentDefUseDependence this.map1.!get( java.lang.Object )
-  20: * ->    1 loopIndependentDefUseDependence this.map1.!put( java.lang.Object java.lang.Object )
-  21: * ->    5 loopIndependentDefUseDependence this.map2.!put( java.lang.Object java.lang.Object )
-  22: * ->   11 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.next
-  23: * ->   11 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.value
-  24: * ->   12 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.next
-  25: * ->   12 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.value
-  26: * ->   15 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.next
-  27: * ->   15 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.value
-  28: * ->   16 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.next
-  29: * ->   16 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.value
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    4 ->    1 loopIndependentDefUseDependence this.map1.!put( java.lang.Object java.lang.Object )
+  19:    4 ->   15 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.next
+  20:    4 ->   15 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.value
+  21:    4 ->   16 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.next
+  22:    4 ->   16 loopIndependentDefUseDependence this.map1.!java.util.HashMap$Node.value
+  23:    8 ->    5 loopIndependentDefUseDependence this.map2.!put( java.lang.Object java.lang.Object )
+  24:    8 ->   11 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.next
+  25:    8 ->   11 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.value
+  26:    8 ->   12 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.next
+  27:    8 ->   12 loopIndependentDefUseDependence this.map2.!java.util.HashMap$Node.value
+  28:   12 ->    9 loopIndependentDefUseDependence this.map2.!get( java.lang.Object )
+  29:   16 ->   13 loopIndependentDefUseDependence this.map1.!get( java.lang.Object )
 --
    0: map1
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 -> * trueControlDependence
-   5: * ->    1 loopIndependentDefUseDependence java.util.HashMap.!HashMap( )
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence java.util.HashMap.!HashMap( )
 --
    0: map2
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 -> * trueControlDependence
-   5: * ->    1 loopIndependentDefUseDependence java.util.HashMap.!HashMap( )
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence java.util.HashMap.!HashMap( )
 --
 ----- ClDG (to here) -----
 

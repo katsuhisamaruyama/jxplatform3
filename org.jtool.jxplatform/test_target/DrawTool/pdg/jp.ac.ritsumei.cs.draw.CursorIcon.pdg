@@ -7,7 +7,7 @@ Class Name = jp.ac.ritsumei.cs.draw.CursorIcon
    4 actualIn D = {  } U = {  }
    5 actualOut D = { super.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
    7 formalOut D = {  } U = { $_ }
-* actualOut D = { super.figure } U = {  }
+   3+ actualOutByFieldAccess D = { super.figure } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.CursorIcon#paintIcon( java.awt.Component java.awt.Graphics int int ) ]
    1 formalIn D = { c$0 } U = {  }
@@ -44,10 +44,10 @@ Class Name = jp.ac.ritsumei.cs.draw.CursorIcon
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    7 trueControlDependence
    8:    5 ->    1 loopIndependentDefUseDependence super.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
 --
    0: paintIcon( java.awt.Component java.awt.Graphics int int )

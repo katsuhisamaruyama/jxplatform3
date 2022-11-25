@@ -11,7 +11,7 @@ Class Name = Test130
    5 actualIn D = {  } U = { x$0 }
    6 actualOut D = { S130.!S130( int ) } U = {  }
    8 formalOut D = {  } U = { $_ }
-* actualOut D = { S130.!S130( int ).x } U = {  }
+   4+ actualOutByFieldAccess D = { S130.!S130( int ).x } U = {  }
 --
    0 methodEntry [ Test130#m( ) ]
    1 localDeclaration D = { p$0 } U = {  }
@@ -25,7 +25,7 @@ Class Name = Test130
    9 actualOut D = { this.!n( int ).!getX( ) } U = { this.!n( int ).x }
   10 localDeclaration D = { r$2 } U = { q$1 }
   12 formalOut D = {  } U = { $_ }
-* actualOut D = { this.!n( int ).x } U = {  }
+   5+ actualOutByFieldAccess D = { this.!n( int ).x } U = {  }
 --
    0: Test130( )
    1:    0 ->    2 trueControlDependence
@@ -35,14 +35,14 @@ Class Name = Test130
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    8 trueControlDependence
    9:    1 ->    5 loopIndependentDefUseDependence x$0
   10:    2 ->    8 loopIndependentDefUseDependence $_
-  11:    6 ->    2 loopIndependentDefUseDependence S130.!S130( int )
-  12: * ->    2 loopIndependentDefUseDependence S130.!S130( int ).x
+  11:    4+ ->    2 loopIndependentDefUseDependence S130.!S130( int ).x
+  12:    6 ->    2 loopIndependentDefUseDependence S130.!S130( int )
 --
    0: m( )
    1:    0 ->    1 trueControlDependence
@@ -50,19 +50,19 @@ Class Name = Test130
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   12 trueControlDependence
-  12:    0 -> * trueControlDependence
+   6:    0 ->    5+ trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   12 trueControlDependence
   13:    2 ->   10 declaration
   14:    2 ->   10 loopIndependentDefUseDependence q$1
-  15:    7 ->    3 loopIndependentDefUseDependence this.!n( int )
-  16:    9 ->    2 loopIndependentDefUseDependence this.!n( int ).!getX( )
-  17: * ->    8 loopIndependentDefUseDependence this.!n( int ).x
-  18: * ->    9 loopIndependentDefUseDependence this.!n( int ).x
+  15:    5+ ->    8 loopIndependentDefUseDependence this.!n( int ).x
+  16:    5+ ->    9 loopIndependentDefUseDependence this.!n( int ).x
+  17:    7 ->    3 loopIndependentDefUseDependence this.!n( int )
+  18:    9 ->    2 loopIndependentDefUseDependence this.!n( int ).!getX( )
 --
 ----- ClDG (to here) -----
 

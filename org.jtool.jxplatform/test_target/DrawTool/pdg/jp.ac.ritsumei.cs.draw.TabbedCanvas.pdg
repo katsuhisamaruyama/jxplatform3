@@ -21,9 +21,9 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
   18 assignment D = {  } U = { this.!remove( int ) }
   19 receiver D = {  } U = {  }
   20 methodCall D = {  } U = { this.!javax.accessibility.AccessibleState.SELECTED, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.pages, this.!javax.swing.JTabbedPane.visComp, this.selectedTab } TO = javax.swing.JTabbedPane#remove( int )
-* actualOut D = { this.!javax.swing.JTabbedPane.visComp, this.!remove( int ) } U = { this.!javax.accessibility.AccessibleState.SELECTED, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.pages, this.!javax.swing.JTabbedPane.visComp }
+  21 actualOut D = { this.!javax.swing.JTabbedPane.visComp, this.!remove( int ) } U = { this.!javax.accessibility.AccessibleState.SELECTED, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.pages, this.!javax.swing.JTabbedPane.visComp }
   23 formalOut D = {  } U = { $_ }
-* actualOut D = { this.selectedTab } U = {  }
+   4+ actualOutByFieldAccess D = { this.selectedTab } U = {  }
 --
    0 fieldEntry [ jp.ac.ritsumei.cs.draw.TabbedCanvas#serialVersionUID ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.TabbedCanvas.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.TabbedCanvas.serialVersionUID }
@@ -33,12 +33,12 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    2 assignment D = {  } U = { super.!JTabbedPane( int ) }
    3 receiver D = {  } U = {  }
    4 constructorCall D = {  } U = { JTabbedPane.TOP } TO = javax.swing.JTabbedPane#JTabbedPane( int )
-* actualOut D = { super.!JTabbedPane( int ), super.!javax.swing.JTabbedPane.changeEvent, super.!javax.swing.JTabbedPane.changeListener, super.!javax.swing.JTabbedPane.pages, super.!javax.swing.JTabbedPane.tabPlacement, super.!javax.swing.JTabbedPane.visComp } U = {  }
+   5 actualOut D = { super.!JTabbedPane( int ), super.!javax.swing.JTabbedPane.changeEvent, super.!javax.swing.JTabbedPane.changeListener, super.!javax.swing.JTabbedPane.pages, super.!javax.swing.JTabbedPane.tabPlacement, super.!javax.swing.JTabbedPane.visComp } U = {  }
    6 assignment D = { this.selector } U = { selector$0, selector$0.colorCombo, selector$0.shapeCombo, selector$0.widthCombo }
    7 assignment D = { this.canvases } U = { java.util.ArrayList.!ArrayList( ) }
    8 receiver D = {  } U = {  }
    9 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
-* actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+  10 actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
   12 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.TabbedCanvas#getAllCanvases( ) ]
@@ -51,19 +51,19 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    3 receiver D = {  } U = {  }
    4 methodCall D = {  } U = { Color.white, File.separator, canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, canvas$1.changed, canvas$1.curX, canvas$1.curY, canvas$1.currentFigure, canvas$1.figureManager, canvas$1.grabbedFigure, canvas$1.isGrabMode, canvas$1.menu, canvas$1.selector, canvas$1.support, canvas$1.undoManager, jp.ac.ritsumei.cs.draw.FigureManager.UNTITLED, menu$0.autoSave, menu$0.clipboard, menu$0.copyAction, menu$0.cutAction, menu$0.deleteAction, menu$0.directory, menu$0.fileListMenu, menu$0.fileListener, menu$0.menuBar, menu$0.newAction, menu$0.openAction, menu$0.pasteAction, menu$0.recentFiles, menu$0.redoAction, menu$0.saveAction, menu$0.tabbedCanvas, menu$0.tool, menu$0.toolBar, menu$0.undoAction, menu$0.windowListener, selector$1.colorCombo, selector$1.shapeCombo, selector$1.widthCombo, this, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!java.awt.Component.width, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.haveRegistered, this.!javax.swing.JTabbedPane.model, this.!javax.swing.JTabbedPane.pages, this.canvas$1.figureManager, this.canvas$1.support, this.canvas$1.support.!java.util.Vector.elementCount, this.canvas$1.support.!java.util.Vector.elementData, this.canvas$1.support.!java.util.Vector.modCount, this.canvas$1.support.!javax.swing.undo.UndoableEditSupport.listeners, this.canvases, this.figureManager.figures, this.figureManager.filename, this.fmanager$3.filename, this.fmanager$3.filename.!java.lang.String.COMPACT_STRINGS, this.fmanager$3.filename.!java.lang.String.coder, this.fmanager$3.filename.!java.lang.String.value, this.javax.swing.undo.UndoManager.!java.util.Vector.elementData, this.javax.swing.undo.UndoManager.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.edits, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit, this.menu, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener, this.selector, this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#newTab( java.lang.String )
    5 actualIn D = {  } U = { filename$0 }
-* actualOut D = { this.!java.awt.Component.background, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.newEventsOnly, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!javax.swing.JTabbedPane.haveRegistered, this.!newTab( java.lang.String ), this.canvas$1.support.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.edits, this.javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.inProgress, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.indexOfNextAdd, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit, this.jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.height, this.jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.width, this.jp.ac.ritsumei.cs.draw.DrawCanvas.jp.ac.ritsumei.cs.draw.FigureManager.java.util.LinkedList.!java.util.LinkedList.size } U = { Color.white, File.separator, canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, canvas$1.changed, canvas$1.curX, canvas$1.curY, canvas$1.currentFigure, canvas$1.figureManager, canvas$1.grabbedFigure, canvas$1.isGrabMode, canvas$1.menu, canvas$1.selector, canvas$1.support, canvas$1.undoManager, jp.ac.ritsumei.cs.draw.FigureManager.UNTITLED, menu$0.autoSave, menu$0.clipboard, menu$0.copyAction, menu$0.cutAction, menu$0.deleteAction, menu$0.directory, menu$0.fileListMenu, menu$0.fileListener, menu$0.menuBar, menu$0.newAction, menu$0.openAction, menu$0.pasteAction, menu$0.recentFiles, menu$0.redoAction, menu$0.saveAction, menu$0.tabbedCanvas, menu$0.tool, menu$0.toolBar, menu$0.undoAction, menu$0.windowListener, selector$1.colorCombo, selector$1.shapeCombo, selector$1.widthCombo, this, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!java.awt.Component.width, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.haveRegistered, this.!javax.swing.JTabbedPane.model, this.!javax.swing.JTabbedPane.pages, this.canvas$1.figureManager, this.canvas$1.support, this.canvas$1.support.!java.util.Vector.elementCount, this.canvas$1.support.!java.util.Vector.elementData, this.canvas$1.support.!java.util.Vector.modCount, this.canvas$1.support.!javax.swing.undo.UndoableEditSupport.listeners, this.canvases, this.figureManager.figures, this.figureManager.filename, this.fmanager$3.filename, this.fmanager$3.filename.!java.lang.String.COMPACT_STRINGS, this.fmanager$3.filename.!java.lang.String.coder, this.fmanager$3.filename.!java.lang.String.value, this.javax.swing.undo.UndoManager.!java.util.Vector.elementData, this.javax.swing.undo.UndoManager.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.edits, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit, this.menu, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener, this.selector, this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo }
+   6 actualOut D = { this.!java.awt.Component.background, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.newEventsOnly, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!javax.swing.JTabbedPane.haveRegistered, this.!newTab( java.lang.String ), this.canvas$1.support.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.edits, this.javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.inProgress, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.indexOfNextAdd, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit, this.jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.height, this.jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.width, this.jp.ac.ritsumei.cs.draw.DrawCanvas.jp.ac.ritsumei.cs.draw.FigureManager.java.util.LinkedList.!java.util.LinkedList.size } U = { Color.white, File.separator, canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, canvas$1.changed, canvas$1.curX, canvas$1.curY, canvas$1.currentFigure, canvas$1.figureManager, canvas$1.grabbedFigure, canvas$1.isGrabMode, canvas$1.menu, canvas$1.selector, canvas$1.support, canvas$1.undoManager, jp.ac.ritsumei.cs.draw.FigureManager.UNTITLED, menu$0.autoSave, menu$0.clipboard, menu$0.copyAction, menu$0.cutAction, menu$0.deleteAction, menu$0.directory, menu$0.fileListMenu, menu$0.fileListener, menu$0.menuBar, menu$0.newAction, menu$0.openAction, menu$0.pasteAction, menu$0.recentFiles, menu$0.redoAction, menu$0.saveAction, menu$0.tabbedCanvas, menu$0.tool, menu$0.toolBar, menu$0.undoAction, menu$0.windowListener, selector$1.colorCombo, selector$1.shapeCombo, selector$1.widthCombo, this, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!java.awt.Component.width, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.haveRegistered, this.!javax.swing.JTabbedPane.model, this.!javax.swing.JTabbedPane.pages, this.canvas$1.figureManager, this.canvas$1.support, this.canvas$1.support.!java.util.Vector.elementCount, this.canvas$1.support.!java.util.Vector.elementData, this.canvas$1.support.!java.util.Vector.modCount, this.canvas$1.support.!javax.swing.undo.UndoableEditSupport.listeners, this.canvases, this.figureManager.figures, this.figureManager.filename, this.fmanager$3.filename, this.fmanager$3.filename.!java.lang.String.COMPACT_STRINGS, this.fmanager$3.filename.!java.lang.String.coder, this.fmanager$3.filename.!java.lang.String.value, this.javax.swing.undo.UndoManager.!java.util.Vector.elementData, this.javax.swing.undo.UndoManager.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.edits, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit, this.menu, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener, this.selector, this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo }
    8 formalOut D = {  } U = { $_ }
-* actualOut D = { this.changed } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).figureManager } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).figureManager } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).menu } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).selector } U = {  }
-* actualOut D = { this.canvas$1.undoManager } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).figures } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).figures } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).filename } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).filename } U = {  }
-* actualOut D = { this.selectedTab } U = {  }
+   4+ actualOutByFieldAccess D = { this.changed } U = {  }
+   4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figureManager } U = {  }
+   4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figureManager } U = {  }
+   4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).menu } U = {  }
+   4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).selector } U = {  }
+   4+ actualOutByFieldAccess D = { this.canvas$1.undoManager } U = {  }
+   4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figures } U = {  }
+   4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figures } U = {  }
+   4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).filename } U = {  }
+   4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).filename } U = {  }
+   4+ actualOutByFieldAccess D = { this.selectedTab } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.TabbedCanvas#selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas ) ]
    1 formalIn D = { canvas$0 } U = {  }
@@ -82,23 +82,23 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    2 receiver D = {  } U = {  }
    3 methodCall D = {  } U = { Color.white, File.separator, canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, canvas$1.changed, canvas$1.curX, canvas$1.curY, canvas$1.currentFigure, canvas$1.figureManager, canvas$1.grabbedFigure, canvas$1.isGrabMode, canvas$1.menu, canvas$1.selector, canvas$1.support, canvas$1.undoManager, jp.ac.ritsumei.cs.draw.FigureManager.UNTITLED, menu$0.autoSave, menu$0.clipboard, menu$0.copyAction, menu$0.cutAction, menu$0.deleteAction, menu$0.directory, menu$0.fileListMenu, menu$0.fileListener, menu$0.menuBar, menu$0.newAction, menu$0.openAction, menu$0.pasteAction, menu$0.recentFiles, menu$0.redoAction, menu$0.saveAction, menu$0.tabbedCanvas, menu$0.tool, menu$0.toolBar, menu$0.undoAction, menu$0.windowListener, selector$1.colorCombo, selector$1.shapeCombo, selector$1.widthCombo, this, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!java.awt.Component.width, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.haveRegistered, this.!javax.swing.JTabbedPane.model, this.!javax.swing.JTabbedPane.pages, this.canvas$1.figureManager, this.canvas$1.support, this.canvas$1.support.!java.util.Vector.elementCount, this.canvas$1.support.!java.util.Vector.elementData, this.canvas$1.support.!java.util.Vector.modCount, this.canvas$1.support.!javax.swing.undo.UndoableEditSupport.listeners, this.canvases, this.figureManager.figures, this.figureManager.filename, this.fmanager$3.filename, this.fmanager$3.filename.!java.lang.String.COMPACT_STRINGS, this.fmanager$3.filename.!java.lang.String.coder, this.fmanager$3.filename.!java.lang.String.value, this.javax.swing.undo.UndoManager.!java.util.Vector.elementData, this.javax.swing.undo.UndoManager.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.edits, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit, this.menu, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener, this.selector, this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#newTab( java.lang.String )
    4 actualIn D = {  } U = {  }
-* actualOut D = { this.!java.awt.Component.background, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.newEventsOnly, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!javax.swing.JTabbedPane.haveRegistered, this.!newTab( java.lang.String ), this.canvas$1.support.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.edits, this.javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.inProgress, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.indexOfNextAdd, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit, this.jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.height, this.jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.width, this.jp.ac.ritsumei.cs.draw.DrawCanvas.jp.ac.ritsumei.cs.draw.FigureManager.java.util.LinkedList.!java.util.LinkedList.size } U = { Color.white, File.separator, canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, canvas$1.changed, canvas$1.curX, canvas$1.curY, canvas$1.currentFigure, canvas$1.figureManager, canvas$1.grabbedFigure, canvas$1.isGrabMode, canvas$1.menu, canvas$1.selector, canvas$1.support, canvas$1.undoManager, jp.ac.ritsumei.cs.draw.FigureManager.UNTITLED, menu$0.autoSave, menu$0.clipboard, menu$0.copyAction, menu$0.cutAction, menu$0.deleteAction, menu$0.directory, menu$0.fileListMenu, menu$0.fileListener, menu$0.menuBar, menu$0.newAction, menu$0.openAction, menu$0.pasteAction, menu$0.recentFiles, menu$0.redoAction, menu$0.saveAction, menu$0.tabbedCanvas, menu$0.tool, menu$0.toolBar, menu$0.undoAction, menu$0.windowListener, selector$1.colorCombo, selector$1.shapeCombo, selector$1.widthCombo, this, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!java.awt.Component.width, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.haveRegistered, this.!javax.swing.JTabbedPane.model, this.!javax.swing.JTabbedPane.pages, this.canvas$1.figureManager, this.canvas$1.support, this.canvas$1.support.!java.util.Vector.elementCount, this.canvas$1.support.!java.util.Vector.elementData, this.canvas$1.support.!java.util.Vector.modCount, this.canvas$1.support.!javax.swing.undo.UndoableEditSupport.listeners, this.canvases, this.figureManager.figures, this.figureManager.filename, this.fmanager$3.filename, this.fmanager$3.filename.!java.lang.String.COMPACT_STRINGS, this.fmanager$3.filename.!java.lang.String.coder, this.fmanager$3.filename.!java.lang.String.value, this.javax.swing.undo.UndoManager.!java.util.Vector.elementData, this.javax.swing.undo.UndoManager.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.edits, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit, this.menu, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener, this.selector, this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo }
+   5 actualOut D = { this.!java.awt.Component.background, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.newEventsOnly, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!javax.swing.JTabbedPane.haveRegistered, this.!newTab( java.lang.String ), this.canvas$1.support.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.edits, this.javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.inProgress, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.indexOfNextAdd, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit, this.jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.height, this.jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.width, this.jp.ac.ritsumei.cs.draw.DrawCanvas.jp.ac.ritsumei.cs.draw.FigureManager.java.util.LinkedList.!java.util.LinkedList.size } U = { Color.white, File.separator, canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, canvas$1.changed, canvas$1.curX, canvas$1.curY, canvas$1.currentFigure, canvas$1.figureManager, canvas$1.grabbedFigure, canvas$1.isGrabMode, canvas$1.menu, canvas$1.selector, canvas$1.support, canvas$1.undoManager, jp.ac.ritsumei.cs.draw.FigureManager.UNTITLED, menu$0.autoSave, menu$0.clipboard, menu$0.copyAction, menu$0.cutAction, menu$0.deleteAction, menu$0.directory, menu$0.fileListMenu, menu$0.fileListener, menu$0.menuBar, menu$0.newAction, menu$0.openAction, menu$0.pasteAction, menu$0.recentFiles, menu$0.redoAction, menu$0.saveAction, menu$0.tabbedCanvas, menu$0.tool, menu$0.toolBar, menu$0.undoAction, menu$0.windowListener, selector$1.colorCombo, selector$1.shapeCombo, selector$1.widthCombo, this, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!java.awt.Component.width, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.haveRegistered, this.!javax.swing.JTabbedPane.model, this.!javax.swing.JTabbedPane.pages, this.canvas$1.figureManager, this.canvas$1.support, this.canvas$1.support.!java.util.Vector.elementCount, this.canvas$1.support.!java.util.Vector.elementData, this.canvas$1.support.!java.util.Vector.modCount, this.canvas$1.support.!javax.swing.undo.UndoableEditSupport.listeners, this.canvases, this.figureManager.figures, this.figureManager.filename, this.fmanager$3.filename, this.fmanager$3.filename.!java.lang.String.COMPACT_STRINGS, this.fmanager$3.filename.!java.lang.String.coder, this.fmanager$3.filename.!java.lang.String.value, this.javax.swing.undo.UndoManager.!java.util.Vector.elementData, this.javax.swing.undo.UndoManager.!java.util.Vector.modCount, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.edits, this.javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit, this.menu, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener, this.selector, this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo }
    6 assignment D = {  } U = { this.!addChangeListener( javax.swing.event.ChangeListener ) }
    7 receiver D = {  } U = {  }
    8 methodCall D = {  } U = { this, this.!javax.swing.JTabbedPane.listenerList, this.!javax.swing.event.EventListenerList.NULL_ARRAY, this.!javax.swing.event.EventListenerList.listenerList } TO = javax.swing.JTabbedPane#addChangeListener( javax.swing.event.ChangeListener )
-* actualOut D = { this.!addChangeListener( javax.swing.event.ChangeListener ), this.!javax.swing.event.EventListenerList.listenerList } U = { this.!javax.swing.JTabbedPane.listenerList, this.!javax.swing.event.EventListenerList.NULL_ARRAY, this.!javax.swing.event.EventListenerList.listenerList }
+   9 actualOut D = { this.!addChangeListener( javax.swing.event.ChangeListener ), this.!javax.swing.event.EventListenerList.listenerList } U = { this.!javax.swing.JTabbedPane.listenerList, this.!javax.swing.event.EventListenerList.NULL_ARRAY, this.!javax.swing.event.EventListenerList.listenerList }
   11 formalOut D = {  } U = { $_ }
-* actualOut D = { this.changed } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).figureManager } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).figureManager } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).menu } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).selector } U = {  }
-* actualOut D = { this.canvas$1.undoManager } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).figures } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).figures } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).filename } U = {  }
-* actualOut D = { this.!newTab( java.lang.String ).filename } U = {  }
-* actualOut D = { this.selectedTab } U = {  }
+   3+ actualOutByFieldAccess D = { this.changed } U = {  }
+   3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figureManager } U = {  }
+   3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figureManager } U = {  }
+   3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).menu } U = {  }
+   3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).selector } U = {  }
+   3+ actualOutByFieldAccess D = { this.canvas$1.undoManager } U = {  }
+   3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figures } U = {  }
+   3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figures } U = {  }
+   3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).filename } U = {  }
+   3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).filename } U = {  }
+   3+ actualOutByFieldAccess D = { this.selectedTab } U = {  }
 --
    0 fieldEntry [ jp.ac.ritsumei.cs.draw.TabbedCanvas#canvases ]
    1 fieldDeclaration D = { this.canvases } U = { this.canvases }
@@ -153,16 +153,16 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    5 actualIn D = {  } U = { this.menu, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener }
    6 actualIn D = {  } U = { this.selector, this.selector.colorCombo, this.selector.shapeCombo, this.selector.widthCombo }
    7 actualIn D = {  } U = { filename$0 }
-* actualOut D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ), jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.height, jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.width, jp.ac.ritsumei.cs.draw.DrawCanvas.jp.ac.ritsumei.cs.draw.FigureManager.java.util.LinkedList.!java.util.LinkedList.size, this.!java.awt.Component.background, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.newEventsOnly, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet } U = { Color.white, jp.ac.ritsumei.cs.draw.FigureManager.UNTITLED, menu$0.autoSave, menu$0.clipboard, menu$0.copyAction, menu$0.cutAction, menu$0.deleteAction, menu$0.directory, menu$0.fileListMenu, menu$0.fileListener, menu$0.menuBar, menu$0.newAction, menu$0.openAction, menu$0.pasteAction, menu$0.recentFiles, menu$0.redoAction, menu$0.saveAction, menu$0.tabbedCanvas, menu$0.tool, menu$0.toolBar, menu$0.undoAction, menu$0.windowListener, selector$1.colorCombo, selector$1.shapeCombo, selector$1.widthCombo, this, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!java.awt.Component.width, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer }
+   8 actualOut D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ), jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.height, jp.ac.ritsumei.cs.draw.DrawCanvas.java.awt.Dimension.!java.awt.Dimension.width, jp.ac.ritsumei.cs.draw.DrawCanvas.jp.ac.ritsumei.cs.draw.FigureManager.java.util.LinkedList.!java.util.LinkedList.size, this.!java.awt.Component.background, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.newEventsOnly, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet } U = { Color.white, jp.ac.ritsumei.cs.draw.FigureManager.UNTITLED, menu$0.autoSave, menu$0.clipboard, menu$0.copyAction, menu$0.cutAction, menu$0.deleteAction, menu$0.directory, menu$0.fileListMenu, menu$0.fileListener, menu$0.menuBar, menu$0.newAction, menu$0.openAction, menu$0.pasteAction, menu$0.recentFiles, menu$0.redoAction, menu$0.saveAction, menu$0.tabbedCanvas, menu$0.tool, menu$0.toolBar, menu$0.undoAction, menu$0.windowListener, selector$1.colorCombo, selector$1.shapeCombo, selector$1.widthCombo, this, this.!java.awt.Component.background, this.!java.awt.Component.height, this.!java.awt.Component.mouseListener, this.!java.awt.Component.mouseMotionListener, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.prefSize, this.!java.awt.Component.prefSizeSet, this.!java.awt.Component.width, this.!java.awt.Container.dispatcher, this.!java.awt.Container.parent, this.!java.awt.Container.peer }
    9 localDeclaration D = { undoManager$2 } U = { javax.swing.undo.UndoManager.!UndoManager( ) }
   10 receiver D = {  } U = {  }
   11 constructorCall D = {  } U = { javax.swing.undo.UndoManager.!java.util.Vector.elementData, javax.swing.undo.UndoManager.!java.util.Vector.modCount, javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.edits, javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit } TO = javax.swing.undo.UndoManager#UndoManager( )
-* actualOut D = { javax.swing.undo.UndoManager.!UndoManager( ), javax.swing.undo.UndoManager.!java.util.Vector.modCount, javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.edits, javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.inProgress, javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.indexOfNextAdd, javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit } U = { javax.swing.undo.UndoManager.!java.util.Vector.elementData, javax.swing.undo.UndoManager.!java.util.Vector.modCount, javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.edits, javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit }
+  12 actualOut D = { javax.swing.undo.UndoManager.!UndoManager( ), javax.swing.undo.UndoManager.!java.util.Vector.modCount, javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.edits, javax.swing.undo.UndoManager.!javax.swing.undo.CompoundEdit.inProgress, javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.indexOfNextAdd, javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit } U = { javax.swing.undo.UndoManager.!java.util.Vector.elementData, javax.swing.undo.UndoManager.!java.util.Vector.modCount, javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.edits, javax.swing.undo.UndoManager.!javax.swing.undo.UndoManager.limit }
   13 assignment D = {  } U = { canvas$1.!addUndoableEditListener( javax.swing.event.UndoableEditListener ) }
   14 receiver D = {  } U = { canvas$1 }
   15 methodCall D = {  } U = { canvas$1.support, canvas$1.support.!java.util.Vector.elementCount, canvas$1.support.!java.util.Vector.elementData, canvas$1.support.!java.util.Vector.modCount, canvas$1.support.!javax.swing.undo.UndoableEditSupport.listeners, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!java.util.Vector.elementCount, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!java.util.Vector.elementData, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!java.util.Vector.modCount, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!javax.swing.undo.UndoableEditSupport.listeners } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#addUndoableEditListener( javax.swing.event.UndoableEditListener )
   16 actualIn D = {  } U = { undoManager$2 }
-* actualOut D = { canvas$1.!addUndoableEditListener( javax.swing.event.UndoableEditListener ), canvas$1.support.!java.util.Vector.modCount } U = { canvas$1.support, canvas$1.support.!java.util.Vector.elementCount, canvas$1.support.!java.util.Vector.elementData, canvas$1.support.!java.util.Vector.modCount, canvas$1.support.!javax.swing.undo.UndoableEditSupport.listeners, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!java.util.Vector.elementCount, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!java.util.Vector.elementData, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!java.util.Vector.modCount, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!javax.swing.undo.UndoableEditSupport.listeners }
+  17 actualOut D = { canvas$1.!addUndoableEditListener( javax.swing.event.UndoableEditListener ), canvas$1.support.!java.util.Vector.modCount } U = { canvas$1.support, canvas$1.support.!java.util.Vector.elementCount, canvas$1.support.!java.util.Vector.elementData, canvas$1.support.!java.util.Vector.modCount, canvas$1.support.!javax.swing.undo.UndoableEditSupport.listeners, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!java.util.Vector.elementCount, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!java.util.Vector.elementData, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!java.util.Vector.modCount, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support.!javax.swing.undo.UndoableEditSupport.listeners }
   18 assignment D = {  } U = { canvas$1.!setUndoManager( javax.swing.undo.UndoManager ) }
   19 receiver D = {  } U = { canvas$1 }
   20 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#setUndoManager( javax.swing.undo.UndoManager )
@@ -181,7 +181,7 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
   33 receiver D = {  } U = { fmanager$3 }
   34 methodCall D = {  } U = { canvas$1.!getFigureManager( ).filename, fmanager$3.filename } TO = jp.ac.ritsumei.cs.draw.FigureManager#getFilename( )
   35 actualOut D = { fmanager$3.!getFilename( ) } U = { canvas$1.!getFigureManager( ).filename, fmanager$3.filename }
-* actualOut D = { this.!addTab( java.lang.String javax.swing.Icon java.awt.Component java.lang.String ), this.!javax.swing.JTabbedPane.haveRegistered } U = { this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.haveRegistered, this.!javax.swing.JTabbedPane.pages }
+  36 actualOut D = { this.!addTab( java.lang.String javax.swing.Icon java.awt.Component java.lang.String ), this.!javax.swing.JTabbedPane.haveRegistered } U = { this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.haveRegistered, this.!javax.swing.JTabbedPane.pages }
   37 assignment D = {  } U = { this.canvases.!add( java.lang.Object ) }
   38 receiver D = {  } U = { this.canvases }
   39 methodCall D = {  } U = { canvas$1, canvas$1.changed, canvas$1.curX, canvas$1.curY, canvas$1.currentFigure, canvas$1.figureManager, canvas$1.grabbedFigure, canvas$1.isGrabMode, canvas$1.menu, canvas$1.selector, canvas$1.support, canvas$1.undoManager, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).changed, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).curX, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).curY, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).currentFigure, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).grabbedFigure, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).isGrabMode, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).undoManager } TO = java.util.List#add( java.lang.Object )
@@ -193,17 +193,17 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
   45 actualOut D = { this.!selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas ) } U = { canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, this.!javax.swing.JTabbedPane.model }
   46 returnSt D = { $_ } U = { canvas$1, canvas$1.changed, canvas$1.curX, canvas$1.curY, canvas$1.currentFigure, canvas$1.figureManager, canvas$1.grabbedFigure, canvas$1.isGrabMode, canvas$1.menu, canvas$1.selector, canvas$1.support, canvas$1.support.!java.util.Vector.modCount, canvas$1.undoManager, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).changed, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).curX, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).curY, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).currentFigure, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).grabbedFigure, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).isGrabMode, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).support, jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).undoManager }
   48 formalOut D = {  } U = { $_ }
-* actualOut D = { this.changed } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figures } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figures } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).filename } U = {  }
-* actualOut D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).filename } U = {  }
-* actualOut D = { canvas$1.undoManager } U = {  }
-* actualOut D = { this.selectedTab } U = {  }
+   4+ actualOutByFieldAccess D = { this.changed } U = {  }
+   4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager } U = {  }
+   4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager } U = {  }
+   4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu } U = {  }
+   4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector } U = {  }
+   4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figures } U = {  }
+   4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figures } U = {  }
+   4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).filename } U = {  }
+   4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).filename } U = {  }
+  20+ actualOutByFieldAccess D = { canvas$1.undoManager } U = {  }
+  43+ actualOutByFieldAccess D = { this.selectedTab } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.TabbedCanvas#getOpenFileNum( ) ]
    1 returnSt D = { $_ } U = { this.canvases.!size( ) }
@@ -223,7 +223,7 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    8 actualOut D = { canvas$0.!getFigureManager( ) } U = {  }
    9 methodCall D = {  } U = { File.separator, canvas$0.!getFigureManager( ).filename, canvas$0.!getFigureManager( ).filename.!java.lang.String.COMPACT_STRINGS, canvas$0.!getFigureManager( ).filename.!java.lang.String.coder, canvas$0.!getFigureManager( ).filename.!java.lang.String.value } TO = jp.ac.ritsumei.cs.draw.FigureManager#getTitle( )
   10 actualOut D = { canvas$0.!getFigureManager( ).!getTitle( ) } U = { File.separator, canvas$0.!getFigureManager( ).filename, canvas$0.!getFigureManager( ).filename.!java.lang.String.COMPACT_STRINGS, canvas$0.!getFigureManager( ).filename.!java.lang.String.coder, canvas$0.!getFigureManager( ).filename.!java.lang.String.value }
-* actualOut D = { this.!javax.swing.JTabbedPane$Page.title, this.!setTitleAt( int java.lang.String ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.width, this.!java.lang.String.value, this.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.!javax.swing.JComponent.revalidateRunnableScheduled, this.!javax.swing.JTabbedPane$Page.title, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.pages }
+  11 actualOut D = { this.!javax.swing.JTabbedPane$Page.title, this.!setTitleAt( int java.lang.String ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.width, this.!java.lang.String.value, this.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.!javax.swing.JComponent.revalidateRunnableScheduled, this.!javax.swing.JTabbedPane$Page.title, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.pages }
   12 assignment D = {  } U = { this.!setToolTipTextAt( int java.lang.String ) }
   13 receiver D = {  } U = {  }
   14 methodCall D = {  } U = { canvas$0.!getFigureManager( ).!getFilename( ), this.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.!javax.swing.JTabbedPane$Page.tip, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.haveRegistered, this.!javax.swing.JTabbedPane.pages, this.!javax.swing.ToolTipManager.TOOL_TIP_MANAGER_KEY, this.!javax.swing.ToolTipManager.accessibilityKeyListener, this.!javax.swing.ToolTipManager.moveBeforeEnterListener, this.selectedTab } TO = javax.swing.JTabbedPane#setToolTipTextAt( int java.lang.String )
@@ -233,7 +233,7 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
   18 actualOut D = { canvas$0.!getFigureManager( ) } U = {  }
   19 methodCall D = {  } U = { canvas$0.!getFigureManager( ).filename } TO = jp.ac.ritsumei.cs.draw.FigureManager#getFilename( )
   20 actualOut D = { canvas$0.!getFigureManager( ).!getFilename( ) } U = { canvas$0.!getFigureManager( ).filename }
-* actualOut D = { this.!javax.swing.JTabbedPane$Page.tip, this.!javax.swing.JTabbedPane.haveRegistered, this.!setToolTipTextAt( int java.lang.String ) } U = { this.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.!javax.swing.JTabbedPane$Page.tip, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.haveRegistered, this.!javax.swing.JTabbedPane.pages, this.!javax.swing.ToolTipManager.TOOL_TIP_MANAGER_KEY, this.!javax.swing.ToolTipManager.accessibilityKeyListener, this.!javax.swing.ToolTipManager.moveBeforeEnterListener }
+  21 actualOut D = { this.!javax.swing.JTabbedPane$Page.tip, this.!javax.swing.JTabbedPane.haveRegistered, this.!setToolTipTextAt( int java.lang.String ) } U = { this.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.!javax.swing.JTabbedPane$Page.tip, this.!javax.swing.JTabbedPane.accessibleContext, this.!javax.swing.JTabbedPane.haveRegistered, this.!javax.swing.JTabbedPane.pages, this.!javax.swing.ToolTipManager.TOOL_TIP_MANAGER_KEY, this.!javax.swing.ToolTipManager.accessibilityKeyListener, this.!javax.swing.ToolTipManager.moveBeforeEnterListener }
   23 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.TabbedCanvas#getCanvas( java.lang.String ) ]
@@ -261,34 +261,34 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   23 trueControlDependence
-  22:    0 -> * trueControlDependence
-  23:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   12 trueControlDependence
+  14:    0 ->   13 trueControlDependence
+  15:    0 ->   14 trueControlDependence
+  16:    0 ->   15 trueControlDependence
+  17:    0 ->   16 trueControlDependence
+  18:    0 ->   17 trueControlDependence
+  19:    0 ->   18 trueControlDependence
+  20:    0 ->   19 trueControlDependence
+  21:    0 ->   20 trueControlDependence
+  22:    0 ->   21 trueControlDependence
+  23:    0 ->   23 trueControlDependence
   24:    1 ->    5 loopIndependentDefUseDependence canvas$0
   25:    1 ->    9 loopIndependentDefUseDependence canvas$0
-  26:    6 ->    2 loopIndependentDefUseDependence this.!selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas )
-  27:   11 ->    8 loopIndependentDefUseDependence canvas$0.!getFigureManager( )
-  28:   13 ->    7 loopIndependentDefUseDependence canvas$0.!getFigureManager( ).!clear( )
-  29:   17 ->   14 loopIndependentDefUseDependence this.canvases.!remove( int )
-  30: * ->   16 loopIndependentDefUseDependence this.selectedTab
-  31: * ->   18 loopIndependentDefUseDependence this.!remove( int )
-  32: * ->   20 loopIndependentDefUseDependence this.selectedTab
+  26:    4+ ->   16 loopIndependentDefUseDependence this.selectedTab
+  27:    4+ ->   20 loopIndependentDefUseDependence this.selectedTab
+  28:    6 ->    2 loopIndependentDefUseDependence this.!selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas )
+  29:   11 ->    8 loopIndependentDefUseDependence canvas$0.!getFigureManager( )
+  30:   13 ->    7 loopIndependentDefUseDependence canvas$0.!getFigureManager( ).!clear( )
+  31:   17 ->   14 loopIndependentDefUseDependence this.canvases.!remove( int )
+  32:   21 ->   18 loopIndependentDefUseDependence this.!remove( int )
 --
    0: serialVersionUID
    1:    0 ->    1 trueControlDependence
@@ -298,16 +298,16 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    6 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 ->   12 trueControlDependence
-  10:    0 -> * trueControlDependence
-  11:    0 -> * trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   12 trueControlDependence
   12:    1 ->    6 loopIndependentDefUseDependence selector$0
-  13: * ->    2 loopIndependentDefUseDependence super.!JTabbedPane( int )
-  14: * ->    7 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+  13:    5 ->    2 loopIndependentDefUseDependence super.!JTabbedPane( int )
+  14:   10 ->    7 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
 --
    0: getAllCanvases( )
    1:    0 ->    1 trueControlDependence
@@ -319,31 +319,31 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    8 trueControlDependence
-   7:    0 -> * trueControlDependence
-   8:    0 -> * trueControlDependence
-   9:    0 -> * trueControlDependence
-  10:    0 -> * trueControlDependence
-  11:    0 -> * trueControlDependence
-  12:    0 -> * trueControlDependence
-  13:    0 -> * trueControlDependence
-  14:    0 -> * trueControlDependence
-  15:    0 -> * trueControlDependence
-  16:    0 -> * trueControlDependence
-  17:    0 -> * trueControlDependence
-  18:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    4+ trueControlDependence
+   7:    0 ->    4+ trueControlDependence
+   8:    0 ->    4+ trueControlDependence
+   9:    0 ->    4+ trueControlDependence
+  10:    0 ->    4+ trueControlDependence
+  11:    0 ->    4+ trueControlDependence
+  12:    0 ->    4+ trueControlDependence
+  13:    0 ->    4+ trueControlDependence
+  14:    0 ->    4+ trueControlDependence
+  15:    0 ->    4+ trueControlDependence
+  16:    0 ->    5 trueControlDependence
+  17:    0 ->    6 trueControlDependence
+  18:    0 ->    8 trueControlDependence
   19:    1 ->    5 loopIndependentDefUseDependence filename$0
   20:    2 ->    8 loopIndependentDefUseDependence $_
-  21: * ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String )
-  22: * ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).figureManager
-  23: * ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).figures
-  24: * ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).filename
-  25: * ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).menu
-  26: * ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).selector
-  27: * -> * outputDependence this.!newTab( java.lang.String ).figureManager
-  28: * -> * outputDependence this.!newTab( java.lang.String ).figures
-  29: * -> * outputDependence this.!newTab( java.lang.String ).filename
+  21:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).figureManager
+  22:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).figures
+  23:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).filename
+  24:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).menu
+  25:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).selector
+  26:    4+ ->    4+ outputDependence this.!newTab( java.lang.String ).figureManager
+  27:    4+ ->    4+ outputDependence this.!newTab( java.lang.String ).figures
+  28:    4+ ->    4+ outputDependence this.!newTab( java.lang.String ).filename
+  29:    6 ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String )
 --
    0: selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas )
    1:    0 ->    1 trueControlDependence
@@ -364,29 +364,29 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    6 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 ->   11 trueControlDependence
-   9:    0 -> * trueControlDependence
-  10:    0 -> * trueControlDependence
-  11:    0 -> * trueControlDependence
-  12:    0 -> * trueControlDependence
-  13:    0 -> * trueControlDependence
-  14:    0 -> * trueControlDependence
-  15:    0 -> * trueControlDependence
-  16:    0 -> * trueControlDependence
-  17:    0 -> * trueControlDependence
-  18:    0 -> * trueControlDependence
-  19:    0 -> * trueControlDependence
-  20:    0 -> * trueControlDependence
-  21:    0 -> * trueControlDependence
-  22: * ->    1 loopIndependentDefUseDependence this.!newTab( java.lang.String )
-  23: * ->    6 loopIndependentDefUseDependence this.!addChangeListener( javax.swing.event.ChangeListener )
-  24: * -> * outputDependence this.!newTab( java.lang.String ).figureManager
-  25: * -> * outputDependence this.!newTab( java.lang.String ).figures
-  26: * -> * outputDependence this.!newTab( java.lang.String ).filename
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    3+ trueControlDependence
+   7:    0 ->    3+ trueControlDependence
+   8:    0 ->    3+ trueControlDependence
+   9:    0 ->    3+ trueControlDependence
+  10:    0 ->    3+ trueControlDependence
+  11:    0 ->    3+ trueControlDependence
+  12:    0 ->    3+ trueControlDependence
+  13:    0 ->    3+ trueControlDependence
+  14:    0 ->    3+ trueControlDependence
+  15:    0 ->    4 trueControlDependence
+  16:    0 ->    5 trueControlDependence
+  17:    0 ->    6 trueControlDependence
+  18:    0 ->    7 trueControlDependence
+  19:    0 ->    8 trueControlDependence
+  20:    0 ->    9 trueControlDependence
+  21:    0 ->   11 trueControlDependence
+  22:    3+ ->    3+ outputDependence this.!newTab( java.lang.String ).figureManager
+  23:    3+ ->    3+ outputDependence this.!newTab( java.lang.String ).figures
+  24:    3+ ->    3+ outputDependence this.!newTab( java.lang.String ).filename
+  25:    5 ->    1 loopIndependentDefUseDependence this.!newTab( java.lang.String )
+  26:    9 ->    6 loopIndependentDefUseDependence this.!addChangeListener( javax.swing.event.ChangeListener )
 --
    0: canvases
    1:    0 ->    1 trueControlDependence
@@ -451,60 +451,60 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 ->   11 trueControlDependence
-  11:    0 ->   13 trueControlDependence
-  12:    0 ->   14 trueControlDependence
-  13:    0 ->   15 trueControlDependence
-  14:    0 ->   16 trueControlDependence
-  15:    0 ->   18 trueControlDependence
-  16:    0 ->   19 trueControlDependence
-  17:    0 ->   20 trueControlDependence
-  18:    0 ->   21 trueControlDependence
-  19:    0 ->   22 trueControlDependence
-  20:    0 ->   23 trueControlDependence
-  21:    0 ->   24 trueControlDependence
-  22:    0 ->   25 trueControlDependence
-  23:    0 ->   26 trueControlDependence
-  24:    0 ->   27 trueControlDependence
-  25:    0 ->   28 trueControlDependence
-  26:    0 ->   29 trueControlDependence
-  27:    0 ->   30 trueControlDependence
-  28:    0 ->   31 trueControlDependence
-  29:    0 ->   32 trueControlDependence
-  30:    0 ->   33 trueControlDependence
-  31:    0 ->   34 trueControlDependence
-  32:    0 ->   35 trueControlDependence
-  33:    0 ->   37 trueControlDependence
-  34:    0 ->   38 trueControlDependence
-  35:    0 ->   39 trueControlDependence
-  36:    0 ->   40 trueControlDependence
-  37:    0 ->   41 trueControlDependence
-  38:    0 ->   42 trueControlDependence
-  39:    0 ->   43 trueControlDependence
-  40:    0 ->   44 trueControlDependence
-  41:    0 ->   45 trueControlDependence
-  42:    0 ->   46 trueControlDependence
-  43:    0 ->   48 trueControlDependence
-  44:    0 -> * trueControlDependence
-  45:    0 -> * trueControlDependence
-  46:    0 -> * trueControlDependence
-  47:    0 -> * trueControlDependence
-  48:    0 -> * trueControlDependence
-  49:    0 -> * trueControlDependence
-  50:    0 -> * trueControlDependence
-  51:    0 -> * trueControlDependence
-  52:    0 -> * trueControlDependence
-  53:    0 -> * trueControlDependence
-  54:    0 -> * trueControlDependence
-  55:    0 -> * trueControlDependence
-  56:    0 -> * trueControlDependence
-  57:    0 -> * trueControlDependence
-  58:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    4+ trueControlDependence
+   7:    0 ->    4+ trueControlDependence
+   8:    0 ->    4+ trueControlDependence
+   9:    0 ->    4+ trueControlDependence
+  10:    0 ->    4+ trueControlDependence
+  11:    0 ->    4+ trueControlDependence
+  12:    0 ->    4+ trueControlDependence
+  13:    0 ->    4+ trueControlDependence
+  14:    0 ->    5 trueControlDependence
+  15:    0 ->    6 trueControlDependence
+  16:    0 ->    7 trueControlDependence
+  17:    0 ->    8 trueControlDependence
+  18:    0 ->    9 trueControlDependence
+  19:    0 ->   10 trueControlDependence
+  20:    0 ->   11 trueControlDependence
+  21:    0 ->   12 trueControlDependence
+  22:    0 ->   13 trueControlDependence
+  23:    0 ->   14 trueControlDependence
+  24:    0 ->   15 trueControlDependence
+  25:    0 ->   16 trueControlDependence
+  26:    0 ->   17 trueControlDependence
+  27:    0 ->   18 trueControlDependence
+  28:    0 ->   19 trueControlDependence
+  29:    0 ->   20 trueControlDependence
+  30:    0 ->   20+ trueControlDependence
+  31:    0 ->   21 trueControlDependence
+  32:    0 ->   22 trueControlDependence
+  33:    0 ->   23 trueControlDependence
+  34:    0 ->   24 trueControlDependence
+  35:    0 ->   25 trueControlDependence
+  36:    0 ->   26 trueControlDependence
+  37:    0 ->   27 trueControlDependence
+  38:    0 ->   28 trueControlDependence
+  39:    0 ->   29 trueControlDependence
+  40:    0 ->   30 trueControlDependence
+  41:    0 ->   31 trueControlDependence
+  42:    0 ->   32 trueControlDependence
+  43:    0 ->   33 trueControlDependence
+  44:    0 ->   34 trueControlDependence
+  45:    0 ->   35 trueControlDependence
+  46:    0 ->   36 trueControlDependence
+  47:    0 ->   37 trueControlDependence
+  48:    0 ->   38 trueControlDependence
+  49:    0 ->   39 trueControlDependence
+  50:    0 ->   40 trueControlDependence
+  51:    0 ->   41 trueControlDependence
+  52:    0 ->   42 trueControlDependence
+  53:    0 ->   43 trueControlDependence
+  54:    0 ->   43+ trueControlDependence
+  55:    0 ->   44 trueControlDependence
+  56:    0 ->   45 trueControlDependence
+  57:    0 ->   46 trueControlDependence
+  58:    0 ->   48 trueControlDependence
   59:    1 ->    7 loopIndependentDefUseDependence filename$0
   60:    2 ->   14 declaration
   61:    2 ->   14 loopIndependentDefUseDependence canvas$1
@@ -520,47 +520,47 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
   71:    2 ->   44 loopIndependentDefUseDependence canvas$1
   72:    2 ->   46 declaration
   73:    2 ->   46 loopIndependentDefUseDependence canvas$1
-  74:    9 ->   16 declaration
-  75:    9 ->   16 loopIndependentDefUseDependence undoManager$2
-  76:    9 ->   21 declaration
-  77:    9 ->   21 loopIndependentDefUseDependence undoManager$2
-  78:   22 ->   18 loopIndependentDefUseDependence canvas$1.!setUndoManager( javax.swing.undo.UndoManager )
-  79:   23 ->   30 declaration
-  80:   23 ->   30 loopIndependentDefUseDependence fmanager$3
-  81:   23 ->   33 declaration
-  82:   23 ->   33 loopIndependentDefUseDependence fmanager$3
-  83:   26 ->   23 loopIndependentDefUseDependence canvas$1.!getFigureManager( )
-  84:   32 ->   29 loopIndependentDefUseDependence fmanager$3.!getTitle( )
-  85:   35 ->   29 loopIndependentDefUseDependence fmanager$3.!getFilename( )
-  86:   40 ->   37 loopIndependentDefUseDependence this.canvases.!add( java.lang.Object )
-  87:   45 ->   41 loopIndependentDefUseDependence this.!selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas )
-  88:   46 ->   48 loopIndependentDefUseDependence $_
-  89: * ->    2 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String )
-  90: * ->    9 loopIndependentDefUseDependence javax.swing.undo.UndoManager.!UndoManager( )
-  91: * ->   13 loopIndependentDefUseDependence canvas$1.!addUndoableEditListener( javax.swing.event.UndoableEditListener )
-  92: * ->   25 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
-  93: * ->   26 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
-  94: * ->   27 loopIndependentDefUseDependence this.!addTab( java.lang.String javax.swing.Icon java.awt.Component java.lang.String )
-  95: * ->   29 loopIndependentDefUseDependence canvas$1.undoManager
-  96: * ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
-  97: * ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
-  98: * ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
-  99: * ->   39 loopIndependentDefUseDependence canvas$1.undoManager
- 100: * ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
- 101: * ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
- 102: * ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
- 103: * ->   44 loopIndependentDefUseDependence canvas$1.undoManager
- 104: * ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
- 105: * ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
- 106: * ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
- 107: * ->   46 loopIndependentDefUseDependence canvas$1.support.!java.util.Vector.modCount
- 108: * ->   46 loopIndependentDefUseDependence canvas$1.undoManager
- 109: * ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
- 110: * ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
- 111: * ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
- 112: * -> * outputDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
- 113: * -> * outputDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figures
- 114: * -> * outputDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).filename
+  74:    4+ ->    4+ outputDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  75:    4+ ->    4+ outputDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figures
+  76:    4+ ->    4+ outputDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).filename
+  77:    4+ ->   25 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  78:    4+ ->   26 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  79:    4+ ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  80:    4+ ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
+  81:    4+ ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
+  82:    4+ ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  83:    4+ ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
+  84:    4+ ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
+  85:    4+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  86:    4+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
+  87:    4+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
+  88:    4+ ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  89:    4+ ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
+  90:    4+ ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
+  91:    8 ->    2 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String )
+  92:    9 ->   16 declaration
+  93:    9 ->   16 loopIndependentDefUseDependence undoManager$2
+  94:    9 ->   21 declaration
+  95:    9 ->   21 loopIndependentDefUseDependence undoManager$2
+  96:   12 ->    9 loopIndependentDefUseDependence javax.swing.undo.UndoManager.!UndoManager( )
+  97:   17 ->   13 loopIndependentDefUseDependence canvas$1.!addUndoableEditListener( javax.swing.event.UndoableEditListener )
+  98:   17 ->   46 loopIndependentDefUseDependence canvas$1.support.!java.util.Vector.modCount
+  99:   20+ ->   29 loopIndependentDefUseDependence canvas$1.undoManager
+ 100:   20+ ->   39 loopIndependentDefUseDependence canvas$1.undoManager
+ 101:   20+ ->   44 loopIndependentDefUseDependence canvas$1.undoManager
+ 102:   20+ ->   46 loopIndependentDefUseDependence canvas$1.undoManager
+ 103:   22 ->   18 loopIndependentDefUseDependence canvas$1.!setUndoManager( javax.swing.undo.UndoManager )
+ 104:   23 ->   30 declaration
+ 105:   23 ->   30 loopIndependentDefUseDependence fmanager$3
+ 106:   23 ->   33 declaration
+ 107:   23 ->   33 loopIndependentDefUseDependence fmanager$3
+ 108:   26 ->   23 loopIndependentDefUseDependence canvas$1.!getFigureManager( )
+ 109:   32 ->   29 loopIndependentDefUseDependence fmanager$3.!getTitle( )
+ 110:   35 ->   29 loopIndependentDefUseDependence fmanager$3.!getFilename( )
+ 111:   36 ->   27 loopIndependentDefUseDependence this.!addTab( java.lang.String javax.swing.Icon java.awt.Component java.lang.String )
+ 112:   40 ->   37 loopIndependentDefUseDependence this.canvases.!add( java.lang.Object )
+ 113:   45 ->   41 loopIndependentDefUseDependence this.!selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas )
+ 114:   46 ->   48 loopIndependentDefUseDependence $_
 --
    0: getOpenFileNum( )
    1:    0 ->    1 trueControlDependence
@@ -582,27 +582,27 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    8:    0 ->    8 trueControlDependence
    9:    0 ->    9 trueControlDependence
   10:    0 ->   10 trueControlDependence
-  11:    0 ->   12 trueControlDependence
-  12:    0 ->   13 trueControlDependence
-  13:    0 ->   14 trueControlDependence
-  14:    0 ->   15 trueControlDependence
-  15:    0 ->   16 trueControlDependence
-  16:    0 ->   17 trueControlDependence
-  17:    0 ->   18 trueControlDependence
-  18:    0 ->   19 trueControlDependence
-  19:    0 ->   20 trueControlDependence
-  20:    0 ->   23 trueControlDependence
-  21:    0 -> * trueControlDependence
-  22:    0 -> * trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   23 trueControlDependence
   23:    1 ->    6 loopIndependentDefUseDependence canvas$0
   24:    1 ->   16 loopIndependentDefUseDependence canvas$0
   25:    8 ->    5 loopIndependentDefUseDependence canvas$0.!getFigureManager( )
   26:    8 ->   18 outputDependence canvas$0.!getFigureManager( )
   27:   10 ->    4 loopIndependentDefUseDependence canvas$0.!getFigureManager( ).!getTitle( )
-  28:   18 ->   15 loopIndependentDefUseDependence canvas$0.!getFigureManager( )
-  29:   20 ->   14 loopIndependentDefUseDependence canvas$0.!getFigureManager( ).!getFilename( )
-  30: * ->    2 loopIndependentDefUseDependence this.!setTitleAt( int java.lang.String )
-  31: * ->   12 loopIndependentDefUseDependence this.!setToolTipTextAt( int java.lang.String )
+  28:   11 ->    2 loopIndependentDefUseDependence this.!setTitleAt( int java.lang.String )
+  29:   18 ->   15 loopIndependentDefUseDependence canvas$0.!getFigureManager( )
+  30:   20 ->   14 loopIndependentDefUseDependence canvas$0.!getFigureManager( ).!getFilename( )
+  31:   21 ->   12 loopIndependentDefUseDependence this.!setToolTipTextAt( int java.lang.String )
 --
    0: getCanvas( java.lang.String )
    1:    0 ->    1 trueControlDependence

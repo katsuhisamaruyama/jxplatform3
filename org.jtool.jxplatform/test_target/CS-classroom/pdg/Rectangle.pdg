@@ -14,16 +14,16 @@ Class Name = Rectangle
   11 actualIn D = {  } U = { y2$3 }
   12 actualOut D = { super.!Shape( int int int int ) } U = {  }
   14 formalOut D = {  } U = { $_ }
-* actualOut D = { super.x1 } U = {  }
-* actualOut D = { super.x2 } U = {  }
-* actualOut D = { super.y1 } U = {  }
-* actualOut D = { super.y2 } U = {  }
+   7+ actualOutByFieldAccess D = { super.x1 } U = {  }
+   7+ actualOutByFieldAccess D = { super.x2 } U = {  }
+   7+ actualOutByFieldAccess D = { super.y1 } U = {  }
+   7+ actualOutByFieldAccess D = { super.y2 } U = {  }
 --
    0 methodEntry [ Rectangle#draw( ) ]
    1 assignment D = {  } U = { System.out.!println( java.lang.String ) }
    2 receiver D = {  } U = { System.out }
    3 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut } TO = java.io.PrintStream#println( java.lang.String )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+   4 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
    6 formalOut D = {  } U = { $_ }
 --
    0: Rectangle( int int int int )
@@ -34,16 +34,16 @@ Class Name = Rectangle
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   14 trueControlDependence
-  14:    0 -> * trueControlDependence
-  15:    0 -> * trueControlDependence
-  16:    0 -> * trueControlDependence
-  17:    0 -> * trueControlDependence
+   8:    0 ->    7+ trueControlDependence
+   9:    0 ->    7+ trueControlDependence
+  10:    0 ->    7+ trueControlDependence
+  11:    0 ->    7+ trueControlDependence
+  12:    0 ->    8 trueControlDependence
+  13:    0 ->    9 trueControlDependence
+  14:    0 ->   10 trueControlDependence
+  15:    0 ->   11 trueControlDependence
+  16:    0 ->   12 trueControlDependence
+  17:    0 ->   14 trueControlDependence
   18:    1 ->    8 loopIndependentDefUseDependence x1$0
   19:    2 ->    9 loopIndependentDefUseDependence y1$1
   20:    3 ->   10 loopIndependentDefUseDependence x2$2
@@ -54,9 +54,9 @@ Class Name = Rectangle
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    6 trueControlDependence
-   5:    0 -> * trueControlDependence
-   6: * ->    1 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence System.out.!println( java.lang.String )
 --
 ----- ClDG (to here) -----
 

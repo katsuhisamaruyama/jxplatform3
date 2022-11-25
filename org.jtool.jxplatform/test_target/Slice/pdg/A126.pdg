@@ -30,7 +30,7 @@ Class Name = A126
   10 actualOut D = { ret$1.!setY( int ) } U = {  }
   11 returnSt D = { $_ } U = { A126.!A126( ).y, ret$1, ret$1.y }
   13 formalOut D = {  } U = { $_ }
-* actualOut D = { ret$1.y } U = {  }
+   8+ actualOutByFieldAccess D = { ret$1.y } U = {  }
 --
    0 methodEntry [ A126#setY( int ) ]
    1 formalIn D = { y$0 } U = {  }
@@ -75,20 +75,20 @@ Class Name = A126
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
    8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   13 trueControlDependence
-  13:    0 -> * trueControlDependence
+   9:    0 ->    8+ trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   13 trueControlDependence
   14:    1 ->    9 loopIndependentDefUseDependence x$0
   15:    2 ->    7 declaration
   16:    2 ->    7 loopIndependentDefUseDependence ret$1
   17:    2 ->   11 declaration
   18:    2 ->   11 loopIndependentDefUseDependence ret$1
   19:    5 ->    2 loopIndependentDefUseDependence A126.!A126( )
-  20:   10 ->    6 loopIndependentDefUseDependence ret$1.!setY( int )
-  21:   11 ->   13 loopIndependentDefUseDependence $_
-  22: * ->   11 loopIndependentDefUseDependence ret$1.y
+  20:    8+ ->   11 loopIndependentDefUseDependence ret$1.y
+  21:   10 ->    6 loopIndependentDefUseDependence ret$1.!setY( int )
+  22:   11 ->   13 loopIndependentDefUseDependence $_
 --
    0: setY( int )
    1:    0 ->    1 trueControlDependence

@@ -14,9 +14,9 @@ Class Name = Circle
    8 actualIn D = {  } U = {  }
    9 actualOut D = { this.!Circle( int int int ) } U = {  }
   11 formalOut D = {  } U = { $_ }
-* actualOut D = { this.radius } U = {  }
-* actualOut D = { this.x } U = {  }
-* actualOut D = { this.y } U = {  }
+   5+ actualOutByFieldAccess D = { this.radius } U = {  }
+   5+ actualOutByFieldAccess D = { this.x } U = {  }
+   5+ actualOutByFieldAccess D = { this.y } U = {  }
 --
    0 methodEntry [ Circle#getY( ) ]
    1 returnSt D = { $_ } U = { this.y }
@@ -39,7 +39,7 @@ Class Name = Circle
    1 assignment D = {  } U = { System.out.!println( java.lang.String ) }
    2 receiver D = {  } U = { System.out }
    3 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, this.radius, this.x, this.y } TO = java.io.PrintStream#println( java.lang.String )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+   4 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
    6 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ Circle#y ]
@@ -66,14 +66,14 @@ Class Name = Circle
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   11 trueControlDependence
-  11:    0 -> * trueControlDependence
-  12:    0 -> * trueControlDependence
-  13:    0 -> * trueControlDependence
+   6:    0 ->    5+ trueControlDependence
+   7:    0 ->    5+ trueControlDependence
+   8:    0 ->    5+ trueControlDependence
+   9:    0 ->    6 trueControlDependence
+  10:    0 ->    7 trueControlDependence
+  11:    0 ->    8 trueControlDependence
+  12:    0 ->    9 trueControlDependence
+  13:    0 ->   11 trueControlDependence
   14:    1 ->    6 loopIndependentDefUseDependence x$0
   15:    2 ->    7 loopIndependentDefUseDependence y$1
   16:    9 ->    3 loopIndependentDefUseDependence this.!Circle( int int int )
@@ -103,9 +103,9 @@ Class Name = Circle
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    6 trueControlDependence
-   5:    0 -> * trueControlDependence
-   6: * ->    1 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence System.out.!println( java.lang.String )
 --
    0: y
    1:    0 ->    1 trueControlDependence

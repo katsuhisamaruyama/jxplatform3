@@ -7,8 +7,8 @@ Class Name = org.jtool.videostore.before.RentalTest
    4 actualIn D = {  } U = { $java.lang.String }
    5 actualIn D = {  } U = { Movie.PriceCode.CHILDRENS }
    6 actualOut D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ) } U = {  }
-* actualOut D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).priceCode } U = {  }
-* actualOut D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).title } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).title } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.before.RentalTest#testRegularMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ) }
@@ -38,8 +38,8 @@ Class Name = org.jtool.videostore.before.RentalTest
   25 actualOut D = { rental$0.!getMovie( ).!getPriceCode( ) } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).!getMovie( ).priceCode, rental$0.!getMovie( ).priceCode }
   26 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   28 formalOut D = {  } U = { $_ }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
 --
    0 fieldEntry [ org.jtool.videostore.before.RentalTest#RegularMovie ]
    1 fieldDeclaration D = { org.jtool.videostore.before.RentalTest.RegularMovie } U = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ), org.jtool.videostore.before.RentalTest.RegularMovie }
@@ -48,8 +48,8 @@ Class Name = org.jtool.videostore.before.RentalTest
    4 actualIn D = {  } U = { $java.lang.String }
    5 actualIn D = {  } U = { Movie.PriceCode.REGULAR }
    6 actualOut D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ) } U = {  }
-* actualOut D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).priceCode } U = {  }
-* actualOut D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).title } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).title } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.before.RentalTest#testDaysRentedOfRegularMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ) }
@@ -66,8 +66,8 @@ Class Name = org.jtool.videostore.before.RentalTest
   12 actualOut D = { rental$0.!getDaysRented( ) } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented, rental$0.daysRented }
   13 actualOut D = { this.!assertEquals( long long ) } U = {  }
   15 formalOut D = {  } U = { $_ }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.before.RentalTest#testChildrensMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ) }
@@ -97,8 +97,8 @@ Class Name = org.jtool.videostore.before.RentalTest
   25 actualOut D = { rental$0.!getMovie( ).!getPriceCode( ) } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).!getMovie( ).priceCode, rental$0.!getMovie( ).priceCode }
   26 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   28 formalOut D = {  } U = { $_ }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.before.RentalTest#testDaysRentedOfChildrensMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ) }
@@ -115,8 +115,8 @@ Class Name = org.jtool.videostore.before.RentalTest
   12 actualOut D = { rental$0.!getDaysRented( ) } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented, rental$0.daysRented }
   13 actualOut D = { this.!assertEquals( long long ) } U = {  }
   15 formalOut D = {  } U = { $_ }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.before.RentalTest#testNewReleaseMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ) }
@@ -146,8 +146,8 @@ Class Name = org.jtool.videostore.before.RentalTest
   25 actualOut D = { rental$0.!getMovie( ).!getPriceCode( ) } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).!getMovie( ).priceCode, rental$0.!getMovie( ).priceCode }
   26 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   28 formalOut D = {  } U = { $_ }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.before.RentalTest#testDaysRentedOfNewReleaseMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ) }
@@ -164,8 +164,8 @@ Class Name = org.jtool.videostore.before.RentalTest
   12 actualOut D = { rental$0.!getDaysRented( ) } U = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented, rental$0.daysRented }
   13 actualOut D = { this.!assertEquals( long long ) } U = {  }
   15 formalOut D = {  } U = { $_ }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
-* actualOut D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie } U = {  }
 --
    0 fieldEntry [ org.jtool.videostore.before.RentalTest#NewReleaseMovie ]
    1 fieldDeclaration D = { org.jtool.videostore.before.RentalTest.NewReleaseMovie } U = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ), org.jtool.videostore.before.RentalTest.NewReleaseMovie }
@@ -174,8 +174,8 @@ Class Name = org.jtool.videostore.before.RentalTest
    4 actualIn D = {  } U = { $java.lang.String }
    5 actualIn D = {  } U = { Movie.PriceCode.NEW_RELEASE }
    6 actualOut D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ) } U = {  }
-* actualOut D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).priceCode } U = {  }
-* actualOut D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).title } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode ).title } U = {  }
 --
    0 constructorEntry [ org.jtool.videostore.before.RentalTest#RentalTest( ) ]
    2 formalOut D = {  } U = { $_ }
@@ -184,252 +184,252 @@ Class Name = org.jtool.videostore.before.RentalTest
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 -> * trueControlDependence
-   8:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
    9:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode )
 --
    0: testRegularMovie( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   25 trueControlDependence
-  26:    0 ->   26 trueControlDependence
-  27:    0 ->   28 trueControlDependence
-  28:    0 -> * trueControlDependence
-  29:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   11 trueControlDependence
+  14:    0 ->   12 trueControlDependence
+  15:    0 ->   13 trueControlDependence
+  16:    0 ->   14 trueControlDependence
+  17:    0 ->   15 trueControlDependence
+  18:    0 ->   16 trueControlDependence
+  19:    0 ->   17 trueControlDependence
+  20:    0 ->   18 trueControlDependence
+  21:    0 ->   19 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   25 trueControlDependence
+  28:    0 ->   26 trueControlDependence
+  29:    0 ->   28 trueControlDependence
   30:    1 ->   11 declaration
   31:    1 ->   11 loopIndependentDefUseDependence rental$0
   32:    1 ->   21 declaration
   33:    1 ->   21 loopIndependentDefUseDependence rental$0
-  34:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
-  35:   13 ->   10 loopIndependentDefUseDependence rental$0.!getMovie( )
-  36:   13 ->   23 outputDependence rental$0.!getMovie( )
-  37:   15 ->    9 loopIndependentDefUseDependence rental$0.!getMovie( ).!getTitle( )
-  38:   16 ->    7 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
-  39:   16 ->   26 outputDependence this.!assertEquals( java.lang.Object java.lang.Object )
-  40:   23 ->   20 loopIndependentDefUseDependence rental$0.!getMovie( )
-  41:   25 ->   19 loopIndependentDefUseDependence rental$0.!getMovie( ).!getPriceCode( )
-  42:   26 ->   17 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
-  43: * ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
-  44: * ->   13 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
-  45: * ->   22 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
-  46: * ->   23 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  34:    3+ ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  35:    3+ ->   13 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  36:    3+ ->   22 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  37:    3+ ->   23 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  38:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
+  39:   13 ->   10 loopIndependentDefUseDependence rental$0.!getMovie( )
+  40:   13 ->   23 outputDependence rental$0.!getMovie( )
+  41:   15 ->    9 loopIndependentDefUseDependence rental$0.!getMovie( ).!getTitle( )
+  42:   16 ->    7 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
+  43:   16 ->   26 outputDependence this.!assertEquals( java.lang.Object java.lang.Object )
+  44:   23 ->   20 loopIndependentDefUseDependence rental$0.!getMovie( )
+  45:   25 ->   19 loopIndependentDefUseDependence rental$0.!getMovie( ).!getPriceCode( )
+  46:   26 ->   17 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
 --
    0: RegularMovie
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 -> * trueControlDependence
-   8:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
    9:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode )
 --
    0: testDaysRentedOfRegularMovie( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   15 trueControlDependence
-  15:    0 -> * trueControlDependence
-  16:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   11 trueControlDependence
+  14:    0 ->   12 trueControlDependence
+  15:    0 ->   13 trueControlDependence
+  16:    0 ->   15 trueControlDependence
   17:    1 ->   10 declaration
   18:    1 ->   10 loopIndependentDefUseDependence rental$0
-  19:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
-  20:   12 ->    9 loopIndependentDefUseDependence rental$0.!getDaysRented( )
-  21:   13 ->    7 loopIndependentDefUseDependence this.!assertEquals( long long )
-  22: * ->   11 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
-  23: * ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
+  19:    3+ ->   11 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
+  20:    3+ ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
+  21:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
+  22:   12 ->    9 loopIndependentDefUseDependence rental$0.!getDaysRented( )
+  23:   13 ->    7 loopIndependentDefUseDependence this.!assertEquals( long long )
 --
    0: testChildrensMovie( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   25 trueControlDependence
-  26:    0 ->   26 trueControlDependence
-  27:    0 ->   28 trueControlDependence
-  28:    0 -> * trueControlDependence
-  29:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   11 trueControlDependence
+  14:    0 ->   12 trueControlDependence
+  15:    0 ->   13 trueControlDependence
+  16:    0 ->   14 trueControlDependence
+  17:    0 ->   15 trueControlDependence
+  18:    0 ->   16 trueControlDependence
+  19:    0 ->   17 trueControlDependence
+  20:    0 ->   18 trueControlDependence
+  21:    0 ->   19 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   25 trueControlDependence
+  28:    0 ->   26 trueControlDependence
+  29:    0 ->   28 trueControlDependence
   30:    1 ->   11 declaration
   31:    1 ->   11 loopIndependentDefUseDependence rental$0
   32:    1 ->   21 declaration
   33:    1 ->   21 loopIndependentDefUseDependence rental$0
-  34:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
-  35:   13 ->   10 loopIndependentDefUseDependence rental$0.!getMovie( )
-  36:   13 ->   23 outputDependence rental$0.!getMovie( )
-  37:   15 ->    9 loopIndependentDefUseDependence rental$0.!getMovie( ).!getTitle( )
-  38:   16 ->    7 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
-  39:   16 ->   26 outputDependence this.!assertEquals( java.lang.Object java.lang.Object )
-  40:   23 ->   20 loopIndependentDefUseDependence rental$0.!getMovie( )
-  41:   25 ->   19 loopIndependentDefUseDependence rental$0.!getMovie( ).!getPriceCode( )
-  42:   26 ->   17 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
-  43: * ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
-  44: * ->   13 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
-  45: * ->   22 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
-  46: * ->   23 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  34:    3+ ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  35:    3+ ->   13 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  36:    3+ ->   22 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  37:    3+ ->   23 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  38:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
+  39:   13 ->   10 loopIndependentDefUseDependence rental$0.!getMovie( )
+  40:   13 ->   23 outputDependence rental$0.!getMovie( )
+  41:   15 ->    9 loopIndependentDefUseDependence rental$0.!getMovie( ).!getTitle( )
+  42:   16 ->    7 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
+  43:   16 ->   26 outputDependence this.!assertEquals( java.lang.Object java.lang.Object )
+  44:   23 ->   20 loopIndependentDefUseDependence rental$0.!getMovie( )
+  45:   25 ->   19 loopIndependentDefUseDependence rental$0.!getMovie( ).!getPriceCode( )
+  46:   26 ->   17 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
 --
    0: testDaysRentedOfChildrensMovie( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   15 trueControlDependence
-  15:    0 -> * trueControlDependence
-  16:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   11 trueControlDependence
+  14:    0 ->   12 trueControlDependence
+  15:    0 ->   13 trueControlDependence
+  16:    0 ->   15 trueControlDependence
   17:    1 ->   10 declaration
   18:    1 ->   10 loopIndependentDefUseDependence rental$0
-  19:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
-  20:   12 ->    9 loopIndependentDefUseDependence rental$0.!getDaysRented( )
-  21:   13 ->    7 loopIndependentDefUseDependence this.!assertEquals( long long )
-  22: * ->   11 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
-  23: * ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
+  19:    3+ ->   11 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
+  20:    3+ ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
+  21:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
+  22:   12 ->    9 loopIndependentDefUseDependence rental$0.!getDaysRented( )
+  23:   13 ->    7 loopIndependentDefUseDependence this.!assertEquals( long long )
 --
    0: testNewReleaseMovie( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   25 trueControlDependence
-  26:    0 ->   26 trueControlDependence
-  27:    0 ->   28 trueControlDependence
-  28:    0 -> * trueControlDependence
-  29:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   11 trueControlDependence
+  14:    0 ->   12 trueControlDependence
+  15:    0 ->   13 trueControlDependence
+  16:    0 ->   14 trueControlDependence
+  17:    0 ->   15 trueControlDependence
+  18:    0 ->   16 trueControlDependence
+  19:    0 ->   17 trueControlDependence
+  20:    0 ->   18 trueControlDependence
+  21:    0 ->   19 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   25 trueControlDependence
+  28:    0 ->   26 trueControlDependence
+  29:    0 ->   28 trueControlDependence
   30:    1 ->   11 declaration
   31:    1 ->   11 loopIndependentDefUseDependence rental$0
   32:    1 ->   21 declaration
   33:    1 ->   21 loopIndependentDefUseDependence rental$0
-  34:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
-  35:   13 ->   10 loopIndependentDefUseDependence rental$0.!getMovie( )
-  36:   13 ->   23 outputDependence rental$0.!getMovie( )
-  37:   15 ->    9 loopIndependentDefUseDependence rental$0.!getMovie( ).!getTitle( )
-  38:   16 ->    7 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
-  39:   16 ->   26 outputDependence this.!assertEquals( java.lang.Object java.lang.Object )
-  40:   23 ->   20 loopIndependentDefUseDependence rental$0.!getMovie( )
-  41:   25 ->   19 loopIndependentDefUseDependence rental$0.!getMovie( ).!getPriceCode( )
-  42:   26 ->   17 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
-  43: * ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
-  44: * ->   13 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
-  45: * ->   22 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
-  46: * ->   23 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  34:    3+ ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  35:    3+ ->   13 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  36:    3+ ->   22 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  37:    3+ ->   23 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).movie
+  38:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
+  39:   13 ->   10 loopIndependentDefUseDependence rental$0.!getMovie( )
+  40:   13 ->   23 outputDependence rental$0.!getMovie( )
+  41:   15 ->    9 loopIndependentDefUseDependence rental$0.!getMovie( ).!getTitle( )
+  42:   16 ->    7 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
+  43:   16 ->   26 outputDependence this.!assertEquals( java.lang.Object java.lang.Object )
+  44:   23 ->   20 loopIndependentDefUseDependence rental$0.!getMovie( )
+  45:   25 ->   19 loopIndependentDefUseDependence rental$0.!getMovie( ).!getPriceCode( )
+  46:   26 ->   17 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
 --
    0: testDaysRentedOfNewReleaseMovie( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   15 trueControlDependence
-  15:    0 -> * trueControlDependence
-  16:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   11 trueControlDependence
+  14:    0 ->   12 trueControlDependence
+  15:    0 ->   13 trueControlDependence
+  16:    0 ->   15 trueControlDependence
   17:    1 ->   10 declaration
   18:    1 ->   10 loopIndependentDefUseDependence rental$0
-  19:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
-  20:   12 ->    9 loopIndependentDefUseDependence rental$0.!getDaysRented( )
-  21:   13 ->    7 loopIndependentDefUseDependence this.!assertEquals( long long )
-  22: * ->   11 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
-  23: * ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
+  19:    3+ ->   11 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
+  20:    3+ ->   12 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int ).daysRented
+  21:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Rental.!Rental( org.jtool.videostore.before.Movie int )
+  22:   12 ->    9 loopIndependentDefUseDependence rental$0.!getDaysRented( )
+  23:   13 ->    7 loopIndependentDefUseDependence this.!assertEquals( long long )
 --
    0: NewReleaseMovie
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 -> * trueControlDependence
-   8:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
    9:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.before.Movie.!Movie( java.lang.String org.jtool.videostore.before.Movie.PriceCode )
 --
    0: RentalTest( )

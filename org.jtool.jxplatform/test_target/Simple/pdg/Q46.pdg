@@ -4,7 +4,7 @@ Class Name = Q46
    1 fieldDeclaration D = { this.map } U = { java.util.HashMap.!HashMap( ), this.map }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )
-* actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
+   4 actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
 --
    0 methodEntry [ Q46#get( java.lang.String ) ]
    1 formalIn D = { key$0 } U = {  }
@@ -23,15 +23,15 @@ Class Name = Q46
    3 assignment D = {  } U = { this.map.!put( java.lang.Object java.lang.Object ) }
    4 receiver D = {  } U = { this.map }
    5 methodCall D = {  } U = { key$0, this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!java.util.HashMap.table, this.map.!java.util.HashMap.threshold, value$1 } TO = java.util.Map#put( java.lang.Object java.lang.Object )
-* actualOut D = { this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!put( java.lang.Object java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!java.util.HashMap.table, this.map.!java.util.HashMap.threshold }
+   6 actualOut D = { this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!put( java.lang.Object java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!java.util.HashMap.table, this.map.!java.util.HashMap.threshold }
    8 formalOut D = {  } U = { $_ }
 --
    0: map
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 -> * trueControlDependence
-   5: * ->    1 loopIndependentDefUseDependence java.util.HashMap.!HashMap( )
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence java.util.HashMap.!HashMap( )
 --
    0: get( java.lang.String )
    1:    0 ->    1 trueControlDependence
@@ -53,11 +53,11 @@ Class Name = Q46
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    8 trueControlDependence
-   7:    0 -> * trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
    8:    1 ->    5 loopIndependentDefUseDependence key$0
    9:    2 ->    5 loopIndependentDefUseDependence value$1
-  10: * ->    3 loopIndependentDefUseDependence this.map.!put( java.lang.Object java.lang.Object )
+  10:    6 ->    3 loopIndependentDefUseDependence this.map.!put( java.lang.Object java.lang.Object )
 --
 ----- ClDG (to here) -----
 

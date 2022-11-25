@@ -27,14 +27,14 @@ Class Name = org.jtool.videostore.after.Customer
    2 assignment D = {  } U = { this.rentals.!add( java.lang.Object ) }
    3 receiver D = {  } U = { this.rentals }
    4 methodCall D = {  } U = { rental$0, rental$0.daysRented, rental$0.movie, this.rentals.!java.util.ArrayList.elementData, this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size } TO = java.util.List#add( java.lang.Object )
-* actualOut D = { this.rentals.!add( java.lang.Object ), this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size } U = { this.rentals.!java.util.ArrayList.elementData, this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size }
+   5 actualOut D = { this.rentals.!add( java.lang.Object ), this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size } U = { this.rentals.!java.util.ArrayList.elementData, this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size }
    7 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ org.jtool.videostore.after.Customer#rentals ]
    1 fieldDeclaration D = { this.rentals } U = { java.util.ArrayList.!ArrayList( ), this.rentals }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
-* actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   4 actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
 --
    0 methodEntry [ org.jtool.videostore.after.Customer#statement( ) ]
    1 localDeclaration D = { result$0 } U = { $java.lang.String, this.!getName( ) }
@@ -122,17 +122,17 @@ Class Name = org.jtool.videostore.after.Customer
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    7 trueControlDependence
-   6:    0 -> * trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
    7:    1 ->    4 loopIndependentDefUseDependence rental$0
-   8: * ->    2 loopIndependentDefUseDependence this.rentals.!add( java.lang.Object )
+   8:    5 ->    2 loopIndependentDefUseDependence this.rentals.!add( java.lang.Object )
 --
    0: rentals
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 -> * trueControlDependence
-   5: * ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
 --
    0: statement( )
    1:    0 ->    1 trueControlDependence

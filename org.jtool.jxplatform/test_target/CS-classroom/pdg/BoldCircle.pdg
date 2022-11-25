@@ -25,9 +25,9 @@ Class Name = BoldCircle
   11 actualOut D = { super.!Circle( int int int ) } U = {  }
   12 assignment D = { this.width } U = { w$3 }
   14 formalOut D = {  } U = { $_ }
-* actualOut D = { super.radius } U = {  }
-* actualOut D = { super.x } U = {  }
-* actualOut D = { super.y } U = {  }
+   7+ actualOutByFieldAccess D = { super.radius } U = {  }
+   7+ actualOutByFieldAccess D = { super.x } U = {  }
+   7+ actualOutByFieldAccess D = { super.y } U = {  }
 --
    0: getWidth( )
    1:    0 ->    1 trueControlDependence
@@ -50,15 +50,15 @@ Class Name = BoldCircle
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   14 trueControlDependence
-  14:    0 -> * trueControlDependence
-  15:    0 -> * trueControlDependence
-  16:    0 -> * trueControlDependence
+   8:    0 ->    7+ trueControlDependence
+   9:    0 ->    7+ trueControlDependence
+  10:    0 ->    7+ trueControlDependence
+  11:    0 ->    8 trueControlDependence
+  12:    0 ->    9 trueControlDependence
+  13:    0 ->   10 trueControlDependence
+  14:    0 ->   11 trueControlDependence
+  15:    0 ->   12 trueControlDependence
+  16:    0 ->   14 trueControlDependence
   17:    1 ->    8 loopIndependentDefUseDependence x$0
   18:    2 ->    9 loopIndependentDefUseDependence y$1
   19:    3 ->   10 loopIndependentDefUseDependence r$2

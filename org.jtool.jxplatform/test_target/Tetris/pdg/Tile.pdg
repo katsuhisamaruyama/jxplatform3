@@ -77,7 +77,7 @@ Class Name = Tile
   41 methodCall D = {  } U = { this.color.!darker( ) } TO = java.awt.Graphics#setColor( java.awt.Color )
   42 receiver D = {  } U = { this.color }
   43 methodCall D = {  } U = {  } TO = java.awt.Color#darker( )
-* actualOut D = { this.color.!darker( ), this.color.!java.awt.Color.cs, this.color.!java.awt.Color.falpha, this.color.!java.awt.Color.frgbvalue, this.color.!java.awt.Color.fvalue, this.color.!java.awt.Color.value } U = {  }
+  44 actualOut D = { this.color.!darker( ), this.color.!java.awt.Color.cs, this.color.!java.awt.Color.falpha, this.color.!java.awt.Color.frgbvalue, this.color.!java.awt.Color.fvalue, this.color.!java.awt.Color.value } U = {  }
   45 actualOut D = { g$0.!setColor( java.awt.Color ) } U = {  }
   46 localDeclaration D = { i$8 } U = {  }
   47 forSt D = {  } U = { Tile.BORDER, i$8 }
@@ -124,7 +124,7 @@ Class Name = Tile
    5 actualIn D = {  } U = { g$0 }
    6 actualIn D = {  } U = {  }
    7 actualIn D = {  } U = {  }
-* actualOut D = { this.!paint( java.awt.Graphics int int ), this.color.!java.awt.Color.cs, this.color.!java.awt.Color.falpha, this.color.!java.awt.Color.frgbvalue, this.color.!java.awt.Color.fvalue, this.color.!java.awt.Color.value } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.posX, this.posY }
+   8 actualOut D = { this.!paint( java.awt.Graphics int int ), this.color.!java.awt.Color.cs, this.color.!java.awt.Color.falpha, this.color.!java.awt.Color.frgbvalue, this.color.!java.awt.Color.fvalue, this.color.!java.awt.Color.value } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.posX, this.posY }
   10 formalOut D = {  } U = { $_ }
 --
    0: setPosX( int )
@@ -202,19 +202,19 @@ Class Name = Tile
   32:    0 ->   41 trueControlDependence
   33:    0 ->   42 trueControlDependence
   34:    0 ->   43 trueControlDependence
-  35:    0 ->   45 trueControlDependence
-  36:    0 ->   46 trueControlDependence
-  37:    0 ->   47 trueControlDependence
-  38:    0 ->   57 trueControlDependence
-  39:    0 ->   58 trueControlDependence
-  40:    0 ->   59 trueControlDependence
-  41:    0 ->   60 trueControlDependence
-  42:    0 ->   61 trueControlDependence
-  43:    0 ->   62 trueControlDependence
-  44:    0 ->   63 trueControlDependence
-  45:    0 ->   64 trueControlDependence
-  46:    0 ->   66 trueControlDependence
-  47:    0 -> * trueControlDependence
+  35:    0 ->   44 trueControlDependence
+  36:    0 ->   45 trueControlDependence
+  37:    0 ->   46 trueControlDependence
+  38:    0 ->   47 trueControlDependence
+  39:    0 ->   57 trueControlDependence
+  40:    0 ->   58 trueControlDependence
+  41:    0 ->   59 trueControlDependence
+  42:    0 ->   60 trueControlDependence
+  43:    0 ->   61 trueControlDependence
+  44:    0 ->   62 trueControlDependence
+  45:    0 ->   63 trueControlDependence
+  46:    0 ->   64 trueControlDependence
+  47:    0 ->   66 trueControlDependence
   48:    1 ->    9 loopIndependentDefUseDependence g$0
   49:    1 ->   13 loopIndependentDefUseDependence g$0
   50:    1 ->   17 loopIndependentDefUseDependence g$0
@@ -302,36 +302,36 @@ Class Name = Tile
  132:   34 ->   45 outputDependence g$0.!setColor( java.awt.Color )
  133:   38 ->   35 loopIndependentDefUseDependence g$0.!drawLine( int int int int )
  134:   38 ->   51 outputDependence g$0.!drawLine( int int int int )
- 135:   45 ->   39 loopIndependentDefUseDependence g$0.!setColor( java.awt.Color )
- 136:   45 ->   60 outputDependence g$0.!setColor( java.awt.Color )
- 137:   46 ->   47 declaration
- 138:   46 ->   47 loopIndependentDefUseDependence i$8
- 139:   46 ->   50 declaration
- 140:   46 ->   50 loopIndependentDefUseDependence i$8
- 141:   46 ->   54 declaration
- 142:   46 ->   54 loopIndependentDefUseDependence i$8
- 143:   46 ->   56 declaration
- 144:   46 ->   56 loopIndependentDefUseDependence i$8
- 145:   47 ->   48 trueControlDependence
- 146:   47 ->   49 trueControlDependence
- 147:   47 ->   50 trueControlDependence
- 148:   47 ->   51 trueControlDependence
- 149:   47 ->   52 trueControlDependence
- 150:   47 ->   53 trueControlDependence
- 151:   47 ->   54 trueControlDependence
- 152:   47 ->   55 trueControlDependence
- 153:   47 ->   56 trueControlDependence
- 154:   51 ->   48 loopIndependentDefUseDependence g$0.!drawLine( int int int int )
- 155:   51 ->   55 outputDependence g$0.!drawLine( int int int int )
- 156:   55 ->   51 outputDependence g$0.!drawLine( int int int int )
- 157:   55 ->   52 loopIndependentDefUseDependence g$0.!drawLine( int int int int )
- 158:   56 ->   47 loopCarriedDefUseDependence i$8 (LC = 47)
- 159:   56 ->   50 loopCarriedDefUseDependence i$8 (LC = 47)
- 160:   56 ->   54 loopCarriedDefUseDependence i$8 (LC = 47)
- 161:   56 ->   56 loopCarriedDefUseDependence i$8 (LC = 47)
- 162:   60 ->   57 loopIndependentDefUseDependence g$0.!setColor( java.awt.Color )
- 163:   64 ->   61 loopIndependentDefUseDependence g$0.!drawRect( int int int int )
- 164: * ->   41 loopIndependentDefUseDependence this.color.!darker( )
+ 135:   44 ->   41 loopIndependentDefUseDependence this.color.!darker( )
+ 136:   45 ->   39 loopIndependentDefUseDependence g$0.!setColor( java.awt.Color )
+ 137:   45 ->   60 outputDependence g$0.!setColor( java.awt.Color )
+ 138:   46 ->   47 declaration
+ 139:   46 ->   47 loopIndependentDefUseDependence i$8
+ 140:   46 ->   50 declaration
+ 141:   46 ->   50 loopIndependentDefUseDependence i$8
+ 142:   46 ->   54 declaration
+ 143:   46 ->   54 loopIndependentDefUseDependence i$8
+ 144:   46 ->   56 declaration
+ 145:   46 ->   56 loopIndependentDefUseDependence i$8
+ 146:   47 ->   48 trueControlDependence
+ 147:   47 ->   49 trueControlDependence
+ 148:   47 ->   50 trueControlDependence
+ 149:   47 ->   51 trueControlDependence
+ 150:   47 ->   52 trueControlDependence
+ 151:   47 ->   53 trueControlDependence
+ 152:   47 ->   54 trueControlDependence
+ 153:   47 ->   55 trueControlDependence
+ 154:   47 ->   56 trueControlDependence
+ 155:   51 ->   48 loopIndependentDefUseDependence g$0.!drawLine( int int int int )
+ 156:   51 ->   55 outputDependence g$0.!drawLine( int int int int )
+ 157:   55 ->   51 outputDependence g$0.!drawLine( int int int int )
+ 158:   55 ->   52 loopIndependentDefUseDependence g$0.!drawLine( int int int int )
+ 159:   56 ->   47 loopCarriedDefUseDependence i$8 (LC = 47)
+ 160:   56 ->   50 loopCarriedDefUseDependence i$8 (LC = 47)
+ 161:   56 ->   54 loopCarriedDefUseDependence i$8 (LC = 47)
+ 162:   56 ->   56 loopCarriedDefUseDependence i$8 (LC = 47)
+ 163:   60 ->   57 loopIndependentDefUseDependence g$0.!setColor( java.awt.Color )
+ 164:   64 ->   61 loopIndependentDefUseDependence g$0.!drawRect( int int int int )
 --
    0: posX
    1:    0 ->    1 trueControlDependence
@@ -359,10 +359,10 @@ Class Name = Tile
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
-   8:    0 ->   10 trueControlDependence
-   9:    0 -> * trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->   10 trueControlDependence
   10:    1 ->    5 loopIndependentDefUseDependence g$0
-  11: * ->    2 loopIndependentDefUseDependence this.!paint( java.awt.Graphics int int )
+  11:    8 ->    2 loopIndependentDefUseDependence this.!paint( java.awt.Graphics int int )
 --
 ----- ClDG (to here) -----
 

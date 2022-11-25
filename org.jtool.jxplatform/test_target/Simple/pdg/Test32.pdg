@@ -10,7 +10,7 @@ Class Name = Test32
    4 throwSt D = {  } U = { java.lang.Exception.!Exception( ) }
    5 receiver D = {  } U = {  }
    6 constructorCall D = {  } U = { java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK } TO = java.lang.Exception#Exception( )
-* actualOut D = { java.lang.Exception.!Exception( ), java.lang.Exception.!java.lang.Throwable.cause, java.lang.Exception.!java.lang.Throwable.stackTrace, java.lang.Exception.!java.lang.Throwable.suppressedExceptions } U = { java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK }
+   7 actualOut D = { java.lang.Exception.!Exception( ), java.lang.Exception.!java.lang.Throwable.cause, java.lang.Exception.!java.lang.Throwable.stackTrace, java.lang.Exception.!java.lang.Throwable.suppressedExceptions } U = { java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK }
    9 returnSt D = { $_ } U = { x$0 }
   11 formalOut D = {  } U = { $_ }
 --
@@ -22,7 +22,7 @@ Class Name = Test32
    5 receiver D = {  } U = {  }
    6 methodCall D = {  } U = { this.java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, this.java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK } TO = Test32#n( int )
    7 actualIn D = {  } U = { a$0 }
-* actualOut D = { this.!n( int ), this.java.lang.Exception.!java.lang.Throwable.cause, this.java.lang.Exception.!java.lang.Throwable.stackTrace, this.java.lang.Exception.!java.lang.Throwable.suppressedExceptions } U = { this.java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, this.java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK }
+   8 actualOut D = { this.!n( int ), this.java.lang.Exception.!java.lang.Throwable.cause, this.java.lang.Exception.!java.lang.Throwable.stackTrace, this.java.lang.Exception.!java.lang.Throwable.suppressedExceptions } U = { this.java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, this.java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK }
   10 catchClause D = { e$3 } U = {  }
   11 localDeclaration D = { f$4 } U = { e$3 }
   12 finallyClause D = {  } U = {  }
@@ -40,14 +40,14 @@ Class Name = Test32
    5:    3 ->    4 trueControlDependence
    6:    3 ->    5 trueControlDependence
    7:    3 ->    6 trueControlDependence
-   8:    3 ->    9 falseControlDependence
-   9:    3 ->   11 falseControlDependence
-  10:    3 -> * trueControlDependence
+   8:    3 ->    7 trueControlDependence
+   9:    3 ->    9 falseControlDependence
+  10:    3 ->   11 falseControlDependence
   11:    4 ->    1 trueControlDependence
   12:    4 ->    9 fallThroughControlDependence
   13:    4 ->   11 fallThroughControlDependence
-  14:    9 ->   11 loopIndependentDefUseDependence $_
-  15: * ->    4 loopIndependentDefUseDependence java.lang.Exception.!Exception( )
+  14:    7 ->    4 loopIndependentDefUseDependence java.lang.Exception.!Exception( )
+  15:    9 ->   11 loopIndependentDefUseDependence $_
 --
    0: m( )
    1:    0 ->    1 trueControlDependence
@@ -69,12 +69,12 @@ Class Name = Test32
   17:    3 ->   12 trueControlDependence
   18:    4 ->   13 outputDependence b$1
   19:    6 ->    4 trueControlDependence
-  20:    6 ->   10 exceptionCatch
-  21:    6 -> * trueControlDependence
-  22:   10 ->   11 loopIndependentDefUseDependence e$3
-  23:   10 ->   11 trueControlDependence
-  24:   12 ->   13 trueControlDependence
-  25: * ->    4 loopIndependentDefUseDependence this.!n( int )
+  20:    6 ->    8 trueControlDependence
+  21:    6 ->   10 exceptionCatch
+  22:    8 ->    4 loopIndependentDefUseDependence this.!n( int )
+  23:   10 ->   11 loopIndependentDefUseDependence e$3
+  24:   10 ->   11 trueControlDependence
+  25:   12 ->   13 trueControlDependence
 --
 ----- ClDG (to here) -----
 

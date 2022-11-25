@@ -8,35 +8,35 @@ Class Name = Sample6
    2 localDeclaration D = { list$1 } U = { java.util.ArrayList.!ArrayList( ) }
    3 receiver D = {  } U = {  }
    4 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
-* actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   5 actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
    6 assignment D = {  } U = { list$1.!add( java.lang.Object ) }
    7 receiver D = {  } U = { list$1 }
    8 methodCall D = {  } U = { java.lang.String.!String( java.lang.String ), java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#add( java.lang.Object )
    9 receiver D = {  } U = {  }
   10 constructorCall D = {  } U = { $java.lang.String, java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value } TO = java.lang.String#String( java.lang.String )
-* actualOut D = { java.lang.String.!String( java.lang.String ), java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value } U = { java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value }
-* actualOut D = { list$1.!add( java.lang.Object ), list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size }
+  11 actualOut D = { java.lang.String.!String( java.lang.String ), java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value } U = { java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value }
+  12 actualOut D = { list$1.!add( java.lang.Object ), list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size }
   13 assignment D = {  } U = { list$1.!add( java.lang.Object ) }
   14 receiver D = {  } U = { list$1 }
   15 methodCall D = {  } U = { java.lang.String.!String( java.lang.String ), java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#add( java.lang.Object )
   16 receiver D = {  } U = {  }
   17 constructorCall D = {  } U = { $java.lang.String, java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value } TO = java.lang.String#String( java.lang.String )
-* actualOut D = { java.lang.String.!String( java.lang.String ), java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value } U = { java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value }
-* actualOut D = { list$1.!add( java.lang.Object ), list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size }
+  18 actualOut D = { java.lang.String.!String( java.lang.String ), java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value } U = { java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value }
+  19 actualOut D = { list$1.!add( java.lang.Object ), list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size }
   20 assignment D = {  } U = { list$1.!add( java.lang.Object ) }
   21 receiver D = {  } U = { list$1 }
   22 methodCall D = {  } U = { java.lang.String.!String( java.lang.String ), java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#add( java.lang.Object )
   23 receiver D = {  } U = {  }
   24 constructorCall D = {  } U = { $java.lang.String, java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value } TO = java.lang.String#String( java.lang.String )
-* actualOut D = { java.lang.String.!String( java.lang.String ), java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value } U = { java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value }
-* actualOut D = { list$1.!add( java.lang.Object ), list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size }
+  25 actualOut D = { java.lang.String.!String( java.lang.String ), java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value } U = { java.lang.String.!java.lang.String.coder, java.lang.String.!java.lang.String.hash, java.lang.String.!java.lang.String.value }
+  26 actualOut D = { list$1.!add( java.lang.Object ), list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size }
   27 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   28 receiver D = {  } U = { System.out }
   29 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, list$1.!size( ) } TO = java.io.PrintStream#println( java.lang.String )
   30 receiver D = {  } U = { list$1 }
   31 methodCall D = {  } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#size( )
   32 actualOut D = { list$1.!size( ) } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.size }
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  33 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   34 localDeclaration D = { first$2 } U = { list$1.!get( int ) }
   35 receiver D = {  } U = { list$1 }
   36 methodCall D = {  } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#get( int )
@@ -44,14 +44,14 @@ Class Name = Sample6
   38 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   39 receiver D = {  } U = { System.out }
   40 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, first$2 } TO = java.io.PrintStream#println( java.lang.String )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  41 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   42 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   43 receiver D = {  } U = { System.out }
   44 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, list$1.!size( ) } TO = java.io.PrintStream#println( java.lang.String )
   45 receiver D = {  } U = { list$1 }
   46 methodCall D = {  } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#size( )
   47 actualOut D = { list$1.!size( ) } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.size }
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  48 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   49 localDeclaration D = { i$3 } U = {  }
   50 forSt D = {  } U = { i$3, list$1.!size( ) }
   51 receiver D = {  } U = { list$1 }
@@ -63,19 +63,19 @@ Class Name = Sample6
   57 receiver D = {  } U = { list$1 }
   58 methodCall D = {  } U = { i$3, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#get( int )
   59 actualOut D = { list$1.!get( int ) } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.size }
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  60 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   61 assignment D = { i$3 } U = { i$3 }
   62 assignment D = {  } U = { list$1.!remove( int ) }
   63 receiver D = {  } U = { list$1 }
   64 methodCall D = {  } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#remove( int )
-* actualOut D = { list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size, list$1.!remove( int ) } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size }
+  65 actualOut D = { list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size, list$1.!remove( int ) } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.modCount, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.modCount, list$1.!java.util.ArrayList.size }
   66 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   67 receiver D = {  } U = { System.out }
   68 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, list$1.!size( ) } TO = java.io.PrintStream#println( java.lang.String )
   69 receiver D = {  } U = { list$1 }
   70 methodCall D = {  } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#size( )
   71 actualOut D = { list$1.!size( ) } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.size }
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  72 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   73 localDeclaration D = { i$4 } U = {  }
   74 forSt D = {  } U = { i$4, list$1.!size( ) }
   75 receiver D = {  } U = { list$1 }
@@ -87,7 +87,7 @@ Class Name = Sample6
   81 receiver D = {  } U = { list$1 }
   82 methodCall D = {  } U = { i$4, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.size } TO = java.util.ArrayList#get( int )
   83 actualOut D = { list$1.!get( int ) } U = { java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.elementData, java.util.ArrayList.!ArrayList( ).!java.util.ArrayList.size, list$1.!java.util.ArrayList.elementData, list$1.!java.util.ArrayList.size }
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  84 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   85 assignment D = { i$4 } U = { i$4 }
   87 formalOut D = {  } U = { $_ }
 --
@@ -99,66 +99,66 @@ Class Name = Sample6
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    6 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 ->   13 trueControlDependence
-  11:    0 ->   14 trueControlDependence
-  12:    0 ->   15 trueControlDependence
-  13:    0 ->   16 trueControlDependence
-  14:    0 ->   17 trueControlDependence
-  15:    0 ->   20 trueControlDependence
-  16:    0 ->   21 trueControlDependence
-  17:    0 ->   22 trueControlDependence
-  18:    0 ->   23 trueControlDependence
-  19:    0 ->   24 trueControlDependence
-  20:    0 ->   27 trueControlDependence
-  21:    0 ->   28 trueControlDependence
-  22:    0 ->   29 trueControlDependence
-  23:    0 ->   30 trueControlDependence
-  24:    0 ->   31 trueControlDependence
-  25:    0 ->   32 trueControlDependence
-  26:    0 ->   34 trueControlDependence
-  27:    0 ->   35 trueControlDependence
-  28:    0 ->   36 trueControlDependence
-  29:    0 ->   37 trueControlDependence
-  30:    0 ->   38 trueControlDependence
-  31:    0 ->   39 trueControlDependence
-  32:    0 ->   40 trueControlDependence
-  33:    0 ->   42 trueControlDependence
-  34:    0 ->   43 trueControlDependence
-  35:    0 ->   44 trueControlDependence
-  36:    0 ->   45 trueControlDependence
-  37:    0 ->   46 trueControlDependence
-  38:    0 ->   47 trueControlDependence
-  39:    0 ->   49 trueControlDependence
-  40:    0 ->   50 trueControlDependence
-  41:    0 ->   62 trueControlDependence
-  42:    0 ->   63 trueControlDependence
-  43:    0 ->   64 trueControlDependence
-  44:    0 ->   66 trueControlDependence
-  45:    0 ->   67 trueControlDependence
-  46:    0 ->   68 trueControlDependence
-  47:    0 ->   69 trueControlDependence
-  48:    0 ->   70 trueControlDependence
-  49:    0 ->   71 trueControlDependence
-  50:    0 ->   73 trueControlDependence
-  51:    0 ->   74 trueControlDependence
-  52:    0 ->   87 trueControlDependence
-  53:    0 -> * trueControlDependence
-  54:    0 -> * trueControlDependence
-  55:    0 -> * trueControlDependence
-  56:    0 -> * trueControlDependence
-  57:    0 -> * trueControlDependence
-  58:    0 -> * trueControlDependence
-  59:    0 -> * trueControlDependence
-  60:    0 -> * trueControlDependence
-  61:    0 -> * trueControlDependence
-  62:    0 -> * trueControlDependence
-  63:    0 -> * trueControlDependence
-  64:    0 -> * trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   27 trueControlDependence
+  28:    0 ->   28 trueControlDependence
+  29:    0 ->   29 trueControlDependence
+  30:    0 ->   30 trueControlDependence
+  31:    0 ->   31 trueControlDependence
+  32:    0 ->   32 trueControlDependence
+  33:    0 ->   33 trueControlDependence
+  34:    0 ->   34 trueControlDependence
+  35:    0 ->   35 trueControlDependence
+  36:    0 ->   36 trueControlDependence
+  37:    0 ->   37 trueControlDependence
+  38:    0 ->   38 trueControlDependence
+  39:    0 ->   39 trueControlDependence
+  40:    0 ->   40 trueControlDependence
+  41:    0 ->   41 trueControlDependence
+  42:    0 ->   42 trueControlDependence
+  43:    0 ->   43 trueControlDependence
+  44:    0 ->   44 trueControlDependence
+  45:    0 ->   45 trueControlDependence
+  46:    0 ->   46 trueControlDependence
+  47:    0 ->   47 trueControlDependence
+  48:    0 ->   48 trueControlDependence
+  49:    0 ->   49 trueControlDependence
+  50:    0 ->   50 trueControlDependence
+  51:    0 ->   62 trueControlDependence
+  52:    0 ->   63 trueControlDependence
+  53:    0 ->   64 trueControlDependence
+  54:    0 ->   65 trueControlDependence
+  55:    0 ->   66 trueControlDependence
+  56:    0 ->   67 trueControlDependence
+  57:    0 ->   68 trueControlDependence
+  58:    0 ->   69 trueControlDependence
+  59:    0 ->   70 trueControlDependence
+  60:    0 ->   71 trueControlDependence
+  61:    0 ->   72 trueControlDependence
+  62:    0 ->   73 trueControlDependence
+  63:    0 ->   74 trueControlDependence
+  64:    0 ->   87 trueControlDependence
   65:    2 ->    7 declaration
   66:    2 ->    7 loopIndependentDefUseDependence list$1
   67:    2 ->   14 declaration
@@ -183,141 +183,141 @@ Class Name = Sample6
   86:    2 ->   75 loopIndependentDefUseDependence list$1
   87:    2 ->   81 declaration
   88:    2 ->   81 loopIndependentDefUseDependence list$1
-  89:   32 ->   29 loopIndependentDefUseDependence list$1.!size( )
-  90:   32 ->   47 outputDependence list$1.!size( )
-  91:   34 ->   40 declaration
-  92:   34 ->   40 loopIndependentDefUseDependence first$2
-  93:   37 ->   34 loopIndependentDefUseDependence list$1.!get( int )
-  94:   37 ->   59 outputDependence list$1.!get( int )
-  95:   37 ->   83 outputDependence list$1.!get( int )
-  96:   47 ->   44 loopIndependentDefUseDependence list$1.!size( )
-  97:   47 ->   53 outputDependence list$1.!size( )
-  98:   49 ->   50 declaration
-  99:   49 ->   50 loopIndependentDefUseDependence i$3
- 100:   49 ->   58 declaration
- 101:   49 ->   58 loopIndependentDefUseDependence i$3
- 102:   49 ->   61 declaration
- 103:   49 ->   61 loopIndependentDefUseDependence i$3
- 104:   50 ->   51 trueControlDependence
- 105:   50 ->   52 trueControlDependence
- 106:   50 ->   53 trueControlDependence
- 107:   50 ->   54 trueControlDependence
- 108:   50 ->   55 trueControlDependence
- 109:   50 ->   56 trueControlDependence
- 110:   50 ->   57 trueControlDependence
- 111:   50 ->   58 trueControlDependence
- 112:   50 ->   59 trueControlDependence
- 113:   50 ->   61 trueControlDependence
- 114:   50 -> * trueControlDependence
- 115:   53 ->   50 loopCarriedDefUseDependence list$1.!size( ) (LC = 50)
- 116:   53 ->   53 defOrderDependence list$1.!size( )
- 117:   53 ->   71 outputDependence list$1.!size( )
- 118:   59 ->   56 loopIndependentDefUseDependence list$1.!get( int )
- 119:   59 ->   59 defOrderDependence list$1.!get( int )
- 120:   59 ->   83 outputDependence list$1.!get( int )
- 121:   61 ->   50 loopCarriedDefUseDependence i$3 (LC = 50)
- 122:   61 ->   58 loopCarriedDefUseDependence i$3 (LC = 50)
- 123:   61 ->   61 loopCarriedDefUseDependence i$3 (LC = 50)
- 124:   71 ->   68 loopIndependentDefUseDependence list$1.!size( )
- 125:   71 ->   77 outputDependence list$1.!size( )
- 126:   73 ->   74 declaration
- 127:   73 ->   74 loopIndependentDefUseDependence i$4
- 128:   73 ->   82 declaration
- 129:   73 ->   82 loopIndependentDefUseDependence i$4
- 130:   73 ->   85 declaration
- 131:   73 ->   85 loopIndependentDefUseDependence i$4
- 132:   74 ->   75 trueControlDependence
- 133:   74 ->   76 trueControlDependence
- 134:   74 ->   77 trueControlDependence
- 135:   74 ->   78 trueControlDependence
- 136:   74 ->   79 trueControlDependence
- 137:   74 ->   80 trueControlDependence
- 138:   74 ->   81 trueControlDependence
- 139:   74 ->   82 trueControlDependence
- 140:   74 ->   83 trueControlDependence
- 141:   74 ->   85 trueControlDependence
- 142:   74 -> * trueControlDependence
- 143:   77 ->   74 loopCarriedDefUseDependence list$1.!size( ) (LC = 74)
- 144:   77 ->   77 defOrderDependence list$1.!size( )
- 145:   83 ->   80 loopIndependentDefUseDependence list$1.!get( int )
- 146:   83 ->   83 defOrderDependence list$1.!get( int )
- 147:   85 ->   74 loopCarriedDefUseDependence i$4 (LC = 74)
- 148:   85 ->   82 loopCarriedDefUseDependence i$4 (LC = 74)
- 149:   85 ->   85 loopCarriedDefUseDependence i$4 (LC = 74)
- 150: * ->    2 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
- 151: * ->    6 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
- 152: * ->    8 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
- 153: * ->   13 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
- 154: * ->   15 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
- 155: * ->   15 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 156: * ->   15 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 157: * ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
- 158: * ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
- 159: * ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
- 160: * ->   20 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
- 161: * ->   22 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
- 162: * ->   22 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 163: * ->   22 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 164: * ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
- 165: * ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
- 166: * ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
- 167: * ->   27 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 168: * ->   31 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 169: * ->   32 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 170: * ->   36 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 171: * ->   37 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 172: * ->   38 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 173: * ->   42 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 174: * ->   46 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 175: * ->   47 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 176: * ->   52 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 177: * ->   53 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 178: * ->   54 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 179: * ->   58 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 180: * ->   59 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 181: * ->   62 loopIndependentDefUseDependence list$1.!remove( int )
- 182: * ->   64 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 183: * ->   64 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 184: * ->   66 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 185: * ->   70 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 186: * ->   71 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 187: * ->   76 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 188: * ->   77 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 189: * ->   78 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 190: * ->   82 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 191: * ->   83 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 192: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
- 193: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
- 194: * -> * defOrderDependence System.out.!println( java.lang.String )
- 195: * -> * defOrderDependence System.out.!println( java.lang.String )
- 196: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
- 197: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
- 198: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
- 199: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
- 200: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
- 201: * -> * loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
- 202: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 203: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 204: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
- 205: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 206: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 207: * -> * loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
- 208: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 209: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 210: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 211: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 212: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 213: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 214: * -> * outputDependence System.out.!println( java.lang.String )
- 215: * -> * outputDependence System.out.!println( java.lang.String )
- 216: * -> * outputDependence System.out.!println( java.lang.String )
- 217: * -> * outputDependence System.out.!println( java.lang.String )
- 218: * -> * outputDependence System.out.!println( java.lang.String )
- 219: * -> * outputDependence System.out.!println( java.lang.String )
- 220: * -> * outputDependence java.lang.String.!String( java.lang.String )
- 221: * -> * outputDependence java.lang.String.!String( java.lang.String )
- 222: * -> * outputDependence list$1.!add( java.lang.Object )
- 223: * -> * outputDependence list$1.!add( java.lang.Object )
+  89:    5 ->    2 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+  90:   11 ->    8 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
+  91:   11 ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
+  92:   11 ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
+  93:   11 ->   17 loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
+  94:   11 ->   18 loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
+  95:   11 ->   18 loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
+  96:   11 ->   18 loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
+  97:   11 ->   18 outputDependence java.lang.String.!String( java.lang.String )
+  98:   12 ->    6 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
+  99:   12 ->   15 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 100:   12 ->   15 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 101:   12 ->   19 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 102:   12 ->   19 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 103:   12 ->   19 outputDependence list$1.!add( java.lang.Object )
+ 104:   18 ->   15 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
+ 105:   18 ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
+ 106:   18 ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
+ 107:   18 ->   24 loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
+ 108:   18 ->   25 loopIndependentDefUseDependence java.lang.String.!java.lang.String.coder
+ 109:   18 ->   25 loopIndependentDefUseDependence java.lang.String.!java.lang.String.hash
+ 110:   18 ->   25 loopIndependentDefUseDependence java.lang.String.!java.lang.String.value
+ 111:   18 ->   25 outputDependence java.lang.String.!String( java.lang.String )
+ 112:   19 ->   13 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
+ 113:   19 ->   22 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 114:   19 ->   22 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 115:   19 ->   26 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 116:   19 ->   26 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 117:   19 ->   26 outputDependence list$1.!add( java.lang.Object )
+ 118:   25 ->   22 loopIndependentDefUseDependence java.lang.String.!String( java.lang.String )
+ 119:   26 ->   20 loopIndependentDefUseDependence list$1.!add( java.lang.Object )
+ 120:   26 ->   31 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 121:   26 ->   32 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 122:   26 ->   36 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 123:   26 ->   37 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 124:   26 ->   46 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 125:   26 ->   47 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 126:   26 ->   52 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 127:   26 ->   53 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 128:   26 ->   58 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 129:   26 ->   59 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 130:   26 ->   64 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 131:   26 ->   64 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 132:   26 ->   65 loopIndependentDefUseDependence list$1.!java.util.ArrayList.modCount
+ 133:   26 ->   65 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 134:   32 ->   29 loopIndependentDefUseDependence list$1.!size( )
+ 135:   32 ->   47 outputDependence list$1.!size( )
+ 136:   33 ->   27 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 137:   33 ->   41 outputDependence System.out.!java.io.PrintStream.trouble
+ 138:   33 ->   41 outputDependence System.out.!println( java.lang.String )
+ 139:   34 ->   40 declaration
+ 140:   34 ->   40 loopIndependentDefUseDependence first$2
+ 141:   37 ->   34 loopIndependentDefUseDependence list$1.!get( int )
+ 142:   37 ->   59 outputDependence list$1.!get( int )
+ 143:   37 ->   83 outputDependence list$1.!get( int )
+ 144:   41 ->   38 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 145:   41 ->   48 outputDependence System.out.!java.io.PrintStream.trouble
+ 146:   41 ->   48 outputDependence System.out.!println( java.lang.String )
+ 147:   47 ->   44 loopIndependentDefUseDependence list$1.!size( )
+ 148:   47 ->   53 outputDependence list$1.!size( )
+ 149:   48 ->   42 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 150:   48 ->   60 outputDependence System.out.!java.io.PrintStream.trouble
+ 151:   48 ->   60 outputDependence System.out.!println( java.lang.String )
+ 152:   48 ->   72 outputDependence System.out.!java.io.PrintStream.trouble
+ 153:   48 ->   72 outputDependence System.out.!println( java.lang.String )
+ 154:   49 ->   50 declaration
+ 155:   49 ->   50 loopIndependentDefUseDependence i$3
+ 156:   49 ->   58 declaration
+ 157:   49 ->   58 loopIndependentDefUseDependence i$3
+ 158:   49 ->   61 declaration
+ 159:   49 ->   61 loopIndependentDefUseDependence i$3
+ 160:   50 ->   51 trueControlDependence
+ 161:   50 ->   52 trueControlDependence
+ 162:   50 ->   53 trueControlDependence
+ 163:   50 ->   54 trueControlDependence
+ 164:   50 ->   55 trueControlDependence
+ 165:   50 ->   56 trueControlDependence
+ 166:   50 ->   57 trueControlDependence
+ 167:   50 ->   58 trueControlDependence
+ 168:   50 ->   59 trueControlDependence
+ 169:   50 ->   60 trueControlDependence
+ 170:   50 ->   61 trueControlDependence
+ 171:   53 ->   50 loopCarriedDefUseDependence list$1.!size( ) (LC = 50)
+ 172:   53 ->   53 defOrderDependence list$1.!size( )
+ 173:   53 ->   71 outputDependence list$1.!size( )
+ 174:   59 ->   56 loopIndependentDefUseDependence list$1.!get( int )
+ 175:   59 ->   59 defOrderDependence list$1.!get( int )
+ 176:   59 ->   83 outputDependence list$1.!get( int )
+ 177:   60 ->   54 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 178:   60 ->   60 defOrderDependence System.out.!java.io.PrintStream.trouble
+ 179:   60 ->   60 defOrderDependence System.out.!println( java.lang.String )
+ 180:   60 ->   72 outputDependence System.out.!java.io.PrintStream.trouble
+ 181:   60 ->   72 outputDependence System.out.!println( java.lang.String )
+ 182:   61 ->   50 loopCarriedDefUseDependence i$3 (LC = 50)
+ 183:   61 ->   58 loopCarriedDefUseDependence i$3 (LC = 50)
+ 184:   61 ->   61 loopCarriedDefUseDependence i$3 (LC = 50)
+ 185:   65 ->   62 loopIndependentDefUseDependence list$1.!remove( int )
+ 186:   65 ->   70 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 187:   65 ->   71 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 188:   65 ->   76 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 189:   65 ->   77 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 190:   65 ->   82 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 191:   65 ->   83 loopIndependentDefUseDependence list$1.!java.util.ArrayList.size
+ 192:   71 ->   68 loopIndependentDefUseDependence list$1.!size( )
+ 193:   71 ->   77 outputDependence list$1.!size( )
+ 194:   72 ->   66 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 195:   72 ->   84 outputDependence System.out.!java.io.PrintStream.trouble
+ 196:   72 ->   84 outputDependence System.out.!println( java.lang.String )
+ 197:   73 ->   74 declaration
+ 198:   73 ->   74 loopIndependentDefUseDependence i$4
+ 199:   73 ->   82 declaration
+ 200:   73 ->   82 loopIndependentDefUseDependence i$4
+ 201:   73 ->   85 declaration
+ 202:   73 ->   85 loopIndependentDefUseDependence i$4
+ 203:   74 ->   75 trueControlDependence
+ 204:   74 ->   76 trueControlDependence
+ 205:   74 ->   77 trueControlDependence
+ 206:   74 ->   78 trueControlDependence
+ 207:   74 ->   79 trueControlDependence
+ 208:   74 ->   80 trueControlDependence
+ 209:   74 ->   81 trueControlDependence
+ 210:   74 ->   82 trueControlDependence
+ 211:   74 ->   83 trueControlDependence
+ 212:   74 ->   84 trueControlDependence
+ 213:   74 ->   85 trueControlDependence
+ 214:   77 ->   74 loopCarriedDefUseDependence list$1.!size( ) (LC = 74)
+ 215:   77 ->   77 defOrderDependence list$1.!size( )
+ 216:   83 ->   80 loopIndependentDefUseDependence list$1.!get( int )
+ 217:   83 ->   83 defOrderDependence list$1.!get( int )
+ 218:   84 ->   78 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 219:   84 ->   84 defOrderDependence System.out.!java.io.PrintStream.trouble
+ 220:   84 ->   84 defOrderDependence System.out.!println( java.lang.String )
+ 221:   85 ->   74 loopCarriedDefUseDependence i$4 (LC = 74)
+ 222:   85 ->   82 loopCarriedDefUseDependence i$4 (LC = 74)
+ 223:   85 ->   85 loopCarriedDefUseDependence i$4 (LC = 74)
 --
 ----- ClDG (to here) -----
 

@@ -10,7 +10,7 @@ Class Name = Test34
    4 actualIn D = {  } U = {  }
    5 actualOut D = { this.!add( int ) } U = { this, this.v }
    7 formalOut D = {  } U = { $_ }
-* actualOut D = { this.v } U = {  }
+   3+ actualOutByFieldAccess D = { this.v } U = {  }
 --
    0 methodEntry [ Test34#add( int ) ]
    1 formalIn D = { x$0 } U = {  }
@@ -30,12 +30,12 @@ Class Name = Test34
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 -> * trueControlDependence
-   8:    5 ->    1 loopIndependentDefUseDependence this.!add( int )
-   9: * ->    5 loopIndependentDefUseDependence this.v
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    3+ ->    5 loopIndependentDefUseDependence this.v
+   9:    5 ->    1 loopIndependentDefUseDependence this.!add( int )
 --
    0: add( int )
    1:    0 ->    1 trueControlDependence

@@ -5,7 +5,7 @@ Class Name = Test27
    2 localDeclaration D = { numbers$1 } U = { java.util.ArrayList.!ArrayList( ) }
    3 receiver D = {  } U = {  }
    4 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
-* actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   5 actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
    6 enhancedForSt D = { num$2 } U = { numbers$1 }
    7 assignment D = { sum$0 } U = { num$2, sum$0 }
    9 formalOut D = {  } U = { $_ }
@@ -34,18 +34,18 @@ Class Name = Test27
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    6 trueControlDependence
-   6:    0 ->    9 trueControlDependence
-   7:    0 -> * trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    9 trueControlDependence
    8:    1 ->    7 declaration
    9:    1 ->    7 loopIndependentDefUseDependence sum$0
   10:    2 ->    6 declaration
   11:    2 ->    6 loopIndependentDefUseDependence numbers$1
-  12:    6 ->    6 defOrderDependence num$2
-  13:    6 ->    7 loopIndependentDefUseDependence num$2
-  14:    6 ->    7 trueControlDependence
-  15:    7 ->    7 loopCarriedDefUseDependence sum$0 (LC = 6)
-  16: * ->    2 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+  12:    5 ->    2 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+  13:    6 ->    6 defOrderDependence num$2
+  14:    6 ->    7 loopIndependentDefUseDependence num$2
+  15:    6 ->    7 trueControlDependence
+  16:    7 ->    7 loopCarriedDefUseDependence sum$0 (LC = 6)
 --
    0: x
    1:    0 ->    1 trueControlDependence

@@ -9,7 +9,7 @@ Class Name = Sample18
    3 localDeclaration D = { frame$1 } U = { javax.swing.JFrame.!JFrame( java.lang.String ) }
    4 receiver D = {  } U = {  }
    5 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JFrame#JFrame( java.lang.String )
-* actualOut D = { javax.swing.JFrame.!JFrame( java.lang.String ), javax.swing.JFrame.!java.awt.Frame.frameSerializedDataVersion, javax.swing.JFrame.!java.awt.Frame.mbManagement, javax.swing.JFrame.!java.awt.Frame.resizable, javax.swing.JFrame.!java.awt.Frame.state, javax.swing.JFrame.!java.awt.Frame.title, javax.swing.JFrame.!java.awt.Frame.undecorated, javax.swing.JFrame.!javax.swing.JFrame.accessibleContext, javax.swing.JFrame.!javax.swing.JFrame.defaultCloseOperation, javax.swing.JFrame.!javax.swing.JFrame.rootPaneCheckingEnabled } U = {  }
+   6 actualOut D = { javax.swing.JFrame.!JFrame( java.lang.String ), javax.swing.JFrame.!java.awt.Frame.frameSerializedDataVersion, javax.swing.JFrame.!java.awt.Frame.mbManagement, javax.swing.JFrame.!java.awt.Frame.resizable, javax.swing.JFrame.!java.awt.Frame.state, javax.swing.JFrame.!java.awt.Frame.title, javax.swing.JFrame.!java.awt.Frame.undecorated, javax.swing.JFrame.!javax.swing.JFrame.accessibleContext, javax.swing.JFrame.!javax.swing.JFrame.defaultCloseOperation, javax.swing.JFrame.!javax.swing.JFrame.rootPaneCheckingEnabled } U = {  }
    7 localDeclaration D = { contentPane$2 } U = { frame$1.!getContentPane( ) }
    8 receiver D = {  } U = { frame$1 }
    9 methodCall D = {  } U = { frame$1.!javax.swing.JFrame.rootPane, frame$1.!javax.swing.JRootPane.contentPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JFrame.rootPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JRootPane.contentPane } TO = javax.swing.JFrame#getContentPane( )
@@ -17,15 +17,15 @@ Class Name = Sample18
   11 localDeclaration D = { menubar$3 } U = { javax.swing.JMenuBar.!JMenuBar( ) }
   12 receiver D = {  } U = {  }
   13 constructorCall D = {  } U = { javax.swing.JMenuBar.!java.awt.Component.focusTraversalKeysEnabled, javax.swing.JMenuBar.!javax.swing.JMenuBar.selectionModel } TO = javax.swing.JMenuBar#JMenuBar( )
-* actualOut D = { javax.swing.JMenuBar.!JMenuBar( ), javax.swing.JMenuBar.!java.awt.Component.focusTraversalKeysEnabled, javax.swing.JMenuBar.!javax.swing.DefaultSingleSelectionModel.changeEvent, javax.swing.JMenuBar.!javax.swing.DefaultSingleSelectionModel.index, javax.swing.JMenuBar.!javax.swing.DefaultSingleSelectionModel.listenerList, javax.swing.JMenuBar.!javax.swing.JComponent.inputVerifier, javax.swing.JMenuBar.!javax.swing.JComponent.listenerList, javax.swing.JMenuBar.!javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JMenuBar.!javax.swing.JComponent.verifyInputWhenFocusTarget, javax.swing.JMenuBar.!javax.swing.JMenuBar.margin, javax.swing.JMenuBar.!javax.swing.JMenuBar.paintBorder, javax.swing.JMenuBar.!javax.swing.JMenuBar.selectionModel } U = { javax.swing.JMenuBar.!java.awt.Component.focusTraversalKeysEnabled, javax.swing.JMenuBar.!javax.swing.JMenuBar.selectionModel }
+  14 actualOut D = { javax.swing.JMenuBar.!JMenuBar( ), javax.swing.JMenuBar.!java.awt.Component.focusTraversalKeysEnabled, javax.swing.JMenuBar.!javax.swing.DefaultSingleSelectionModel.changeEvent, javax.swing.JMenuBar.!javax.swing.DefaultSingleSelectionModel.index, javax.swing.JMenuBar.!javax.swing.DefaultSingleSelectionModel.listenerList, javax.swing.JMenuBar.!javax.swing.JComponent.inputVerifier, javax.swing.JMenuBar.!javax.swing.JComponent.listenerList, javax.swing.JMenuBar.!javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JMenuBar.!javax.swing.JComponent.verifyInputWhenFocusTarget, javax.swing.JMenuBar.!javax.swing.JMenuBar.margin, javax.swing.JMenuBar.!javax.swing.JMenuBar.paintBorder, javax.swing.JMenuBar.!javax.swing.JMenuBar.selectionModel } U = { javax.swing.JMenuBar.!java.awt.Component.focusTraversalKeysEnabled, javax.swing.JMenuBar.!javax.swing.JMenuBar.selectionModel }
   15 assignment D = {  } U = { frame$1.!setJMenuBar( javax.swing.JMenuBar ) }
   16 receiver D = {  } U = { frame$1 }
   17 methodCall D = {  } U = { frame$1.!javax.swing.JFrame.rootPane, frame$1.!javax.swing.JLayeredPane.FRAME_CONTENT_LAYER, frame$1.!javax.swing.JRootPane.layeredPane, frame$1.!javax.swing.JRootPane.menuBar, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JFrame.rootPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JLayeredPane.FRAME_CONTENT_LAYER, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JRootPane.layeredPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JRootPane.menuBar, menubar$3 } TO = javax.swing.JFrame#setJMenuBar( javax.swing.JMenuBar )
-* actualOut D = { frame$1.!javax.swing.JRootPane.menuBar, frame$1.!setJMenuBar( javax.swing.JMenuBar ) } U = { frame$1.!javax.swing.JFrame.rootPane, frame$1.!javax.swing.JLayeredPane.FRAME_CONTENT_LAYER, frame$1.!javax.swing.JRootPane.layeredPane, frame$1.!javax.swing.JRootPane.menuBar, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JFrame.rootPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JLayeredPane.FRAME_CONTENT_LAYER, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JRootPane.layeredPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JRootPane.menuBar }
+  18 actualOut D = { frame$1.!javax.swing.JRootPane.menuBar, frame$1.!setJMenuBar( javax.swing.JMenuBar ) } U = { frame$1.!javax.swing.JFrame.rootPane, frame$1.!javax.swing.JLayeredPane.FRAME_CONTENT_LAYER, frame$1.!javax.swing.JRootPane.layeredPane, frame$1.!javax.swing.JRootPane.menuBar, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JFrame.rootPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JLayeredPane.FRAME_CONTENT_LAYER, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JRootPane.layeredPane, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JRootPane.menuBar }
   19 localDeclaration D = { fileMenu$4 } U = { javax.swing.JMenu.!JMenu( java.lang.String ) }
   20 receiver D = {  } U = {  }
   21 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JMenu#JMenu( java.lang.String )
-* actualOut D = { javax.swing.JMenu.!JMenu( java.lang.String ), javax.swing.JMenu.!javax.swing.JMenu.customMenuLocation, javax.swing.JMenu.!javax.swing.JMenu.menuChangeListener, javax.swing.JMenu.!javax.swing.JMenu.menuEvent } U = {  }
+  22 actualOut D = { javax.swing.JMenu.!JMenu( java.lang.String ), javax.swing.JMenu.!javax.swing.JMenu.customMenuLocation, javax.swing.JMenu.!javax.swing.JMenu.menuChangeListener, javax.swing.JMenu.!javax.swing.JMenu.menuEvent } U = {  }
   23 assignment D = {  } U = { menubar$3.!add( javax.swing.JMenu ) }
   24 receiver D = {  } U = { menubar$3 }
   25 methodCall D = {  } U = { fileMenu$4 } TO = javax.swing.JMenuBar#add( javax.swing.JMenu )
@@ -33,38 +33,38 @@ Class Name = Sample18
   27 localDeclaration D = { openItem$5 } U = { javax.swing.JMenuItem.!JMenuItem( java.lang.String ) }
   28 receiver D = {  } U = {  }
   29 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JMenuItem#JMenuItem( java.lang.String )
-* actualOut D = { javax.swing.JMenuItem.!JMenuItem( java.lang.String ), javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged } U = {  }
+  30 actualOut D = { javax.swing.JMenuItem.!JMenuItem( java.lang.String ), javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged } U = {  }
   31 assignment D = {  } U = { fileMenu$4.!add( javax.swing.JMenuItem ) }
   32 receiver D = {  } U = { fileMenu$4 }
   33 methodCall D = {  } U = { fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu, openItem$5 } TO = javax.swing.JMenu#add( javax.swing.JMenuItem )
-* actualOut D = { fileMenu$4.!add( javax.swing.JMenuItem ), fileMenu$4.!javax.swing.JMenu.popupListener, fileMenu$4.!javax.swing.JMenu.popupMenu } U = { fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu }
+  34 actualOut D = { fileMenu$4.!add( javax.swing.JMenuItem ), fileMenu$4.!javax.swing.JMenu.popupListener, fileMenu$4.!javax.swing.JMenu.popupMenu } U = { fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu }
   35 localDeclaration D = { saveItem$6 } U = { javax.swing.JMenuItem.!JMenuItem( java.lang.String ) }
   36 receiver D = {  } U = {  }
   37 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JMenuItem#JMenuItem( java.lang.String )
-* actualOut D = { javax.swing.JMenuItem.!JMenuItem( java.lang.String ), javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged } U = {  }
+  38 actualOut D = { javax.swing.JMenuItem.!JMenuItem( java.lang.String ), javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged } U = {  }
   39 assignment D = {  } U = { fileMenu$4.!add( javax.swing.JMenuItem ) }
   40 receiver D = {  } U = { fileMenu$4 }
   41 methodCall D = {  } U = { fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu, saveItem$6 } TO = javax.swing.JMenu#add( javax.swing.JMenuItem )
-* actualOut D = { fileMenu$4.!add( javax.swing.JMenuItem ), fileMenu$4.!javax.swing.JMenu.popupListener, fileMenu$4.!javax.swing.JMenu.popupMenu } U = { fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu }
+  42 actualOut D = { fileMenu$4.!add( javax.swing.JMenuItem ), fileMenu$4.!javax.swing.JMenu.popupListener, fileMenu$4.!javax.swing.JMenu.popupMenu } U = { fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu }
   43 assignment D = {  } U = { fileMenu$4.!addSeparator( ) }
   44 receiver D = {  } U = { fileMenu$4 }
   45 methodCall D = {  } U = { fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu } TO = javax.swing.JMenu#addSeparator( )
-* actualOut D = { fileMenu$4.!addSeparator( ), fileMenu$4.!javax.swing.JMenu.popupListener, fileMenu$4.!javax.swing.JMenu.popupMenu } U = { fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu }
+  46 actualOut D = { fileMenu$4.!addSeparator( ), fileMenu$4.!javax.swing.JMenu.popupListener, fileMenu$4.!javax.swing.JMenu.popupMenu } U = { fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu }
   47 localDeclaration D = { exitItem$7 } U = { javax.swing.JMenuItem.!JMenuItem( java.lang.String ) }
   48 receiver D = {  } U = {  }
   49 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JMenuItem#JMenuItem( java.lang.String )
-* actualOut D = { javax.swing.JMenuItem.!JMenuItem( java.lang.String ), javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged } U = {  }
+  50 actualOut D = { javax.swing.JMenuItem.!JMenuItem( java.lang.String ), javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged } U = {  }
   51 assignment D = {  } U = { fileMenu$4.!add( javax.swing.JMenuItem ) }
   52 receiver D = {  } U = { fileMenu$4 }
   53 methodCall D = {  } U = { exitItem$7, fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu } TO = javax.swing.JMenu#add( javax.swing.JMenuItem )
-* actualOut D = { fileMenu$4.!add( javax.swing.JMenuItem ), fileMenu$4.!javax.swing.JMenu.popupListener, fileMenu$4.!javax.swing.JMenu.popupMenu } U = { fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu }
+  54 actualOut D = { fileMenu$4.!add( javax.swing.JMenuItem ), fileMenu$4.!javax.swing.JMenu.popupListener, fileMenu$4.!javax.swing.JMenu.popupMenu } U = { fileMenu$4.!javax.swing.JMenu.popupMenu, javax.swing.JMenu.!JMenu( java.lang.String ).!javax.swing.JMenu.popupMenu }
   55 assignment D = {  } U = { exitItem$7.!addActionListener( java.awt.event.ActionListener ) }
   56 receiver D = {  } U = { exitItem$7 }
   57 methodCall D = {  } U = { .!ActionListener( ), exitItem$7.!javax.swing.AbstractButton.listenerList, exitItem$7.!javax.swing.event.EventListenerList.NULL_ARRAY, exitItem$7.!javax.swing.event.EventListenerList.listenerList, javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.event.EventListenerList.listenerList } TO = javax.swing.AbstractButton#addActionListener( java.awt.event.ActionListener )
   58 receiver D = {  } U = {  }
   59 constructorCall D = {  } U = {  } TO = java.awt.event.ActionListener#ActionListener( )
   60 actualOut D = { .!ActionListener( ) } U = {  }
-* actualOut D = { exitItem$7.!addActionListener( java.awt.event.ActionListener ), exitItem$7.!javax.swing.event.EventListenerList.listenerList } U = { exitItem$7.!javax.swing.AbstractButton.listenerList, exitItem$7.!javax.swing.event.EventListenerList.NULL_ARRAY, exitItem$7.!javax.swing.event.EventListenerList.listenerList, javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.event.EventListenerList.listenerList }
+  61 actualOut D = { exitItem$7.!addActionListener( java.awt.event.ActionListener ), exitItem$7.!javax.swing.event.EventListenerList.listenerList } U = { exitItem$7.!javax.swing.AbstractButton.listenerList, exitItem$7.!javax.swing.event.EventListenerList.NULL_ARRAY, exitItem$7.!javax.swing.event.EventListenerList.listenerList, javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JMenuItem.!JMenuItem( java.lang.String ).!javax.swing.event.EventListenerList.listenerList }
   62 localDeclaration D = { panel$9 } U = { javax.swing.JPanel.!JPanel( ) }
   63 receiver D = {  } U = {  }
   64 constructorCall D = {  } U = {  } TO = javax.swing.JPanel#JPanel( )
@@ -72,15 +72,15 @@ Class Name = Sample18
   66 assignment D = {  } U = { panel$9.!setBackground( java.awt.Color ) }
   67 receiver D = {  } U = { panel$9 }
   68 methodCall D = {  } U = { Color.white, javax.swing.JPanel.!JPanel( ).!java.awt.Component.background, javax.swing.JPanel.!JPanel( ).!java.awt.Component.height, javax.swing.JPanel.!JPanel( ).!java.awt.Component.parent, javax.swing.JPanel.!JPanel( ).!java.awt.Component.peer, javax.swing.JPanel.!JPanel( ).!java.awt.Component.width, panel$9.!java.awt.Component.background, panel$9.!java.awt.Component.height, panel$9.!java.awt.Component.parent, panel$9.!java.awt.Component.peer, panel$9.!java.awt.Component.width } TO = javax.swing.JComponent#setBackground( java.awt.Color )
-* actualOut D = { panel$9.!java.awt.Component.background, panel$9.!setBackground( java.awt.Color ) } U = { javax.swing.JPanel.!JPanel( ).!java.awt.Component.background, javax.swing.JPanel.!JPanel( ).!java.awt.Component.height, javax.swing.JPanel.!JPanel( ).!java.awt.Component.parent, javax.swing.JPanel.!JPanel( ).!java.awt.Component.peer, javax.swing.JPanel.!JPanel( ).!java.awt.Component.width, panel$9.!java.awt.Component.background, panel$9.!java.awt.Component.height, panel$9.!java.awt.Component.parent, panel$9.!java.awt.Component.peer, panel$9.!java.awt.Component.width }
+  69 actualOut D = { panel$9.!java.awt.Component.background, panel$9.!setBackground( java.awt.Color ) } U = { javax.swing.JPanel.!JPanel( ).!java.awt.Component.background, javax.swing.JPanel.!JPanel( ).!java.awt.Component.height, javax.swing.JPanel.!JPanel( ).!java.awt.Component.parent, javax.swing.JPanel.!JPanel( ).!java.awt.Component.peer, javax.swing.JPanel.!JPanel( ).!java.awt.Component.width, panel$9.!java.awt.Component.background, panel$9.!java.awt.Component.height, panel$9.!java.awt.Component.parent, panel$9.!java.awt.Component.peer, panel$9.!java.awt.Component.width }
   70 assignment D = {  } U = { contentPane$2.!add( java.awt.Component ) }
   71 receiver D = {  } U = { contentPane$2 }
   72 methodCall D = {  } U = { contentPane$2.!java.awt.Component.parent, contentPane$2.!java.awt.Container.component, contentPane$2.!java.awt.Container.containerListener, contentPane$2.!java.awt.Container.eventMask, contentPane$2.!java.awt.Container.layoutMgr, contentPane$2.!java.awt.Container.peer, frame$1.!getContentPane( ).!java.awt.Component.parent, frame$1.!getContentPane( ).!java.awt.Container.component, frame$1.!getContentPane( ).!java.awt.Container.containerListener, frame$1.!getContentPane( ).!java.awt.Container.eventMask, frame$1.!getContentPane( ).!java.awt.Container.layoutMgr, frame$1.!getContentPane( ).!java.awt.Container.peer, panel$9 } TO = java.awt.Container#add( java.awt.Component )
-* actualOut D = { contentPane$2.!add( java.awt.Component ), contentPane$2.!java.awt.Component.parent } U = { contentPane$2.!java.awt.Component.parent, contentPane$2.!java.awt.Container.component, contentPane$2.!java.awt.Container.containerListener, contentPane$2.!java.awt.Container.eventMask, contentPane$2.!java.awt.Container.layoutMgr, contentPane$2.!java.awt.Container.peer, frame$1.!getContentPane( ).!java.awt.Component.parent, frame$1.!getContentPane( ).!java.awt.Container.component, frame$1.!getContentPane( ).!java.awt.Container.containerListener, frame$1.!getContentPane( ).!java.awt.Container.eventMask, frame$1.!getContentPane( ).!java.awt.Container.layoutMgr, frame$1.!getContentPane( ).!java.awt.Container.peer }
+  73 actualOut D = { contentPane$2.!add( java.awt.Component ), contentPane$2.!java.awt.Component.parent } U = { contentPane$2.!java.awt.Component.parent, contentPane$2.!java.awt.Container.component, contentPane$2.!java.awt.Container.containerListener, contentPane$2.!java.awt.Container.eventMask, contentPane$2.!java.awt.Container.layoutMgr, contentPane$2.!java.awt.Container.peer, frame$1.!getContentPane( ).!java.awt.Component.parent, frame$1.!getContentPane( ).!java.awt.Container.component, frame$1.!getContentPane( ).!java.awt.Container.containerListener, frame$1.!getContentPane( ).!java.awt.Container.eventMask, frame$1.!getContentPane( ).!java.awt.Container.layoutMgr, frame$1.!getContentPane( ).!java.awt.Container.peer }
   74 assignment D = {  } U = { frame$1.!setDefaultCloseOperation( int ) }
   75 receiver D = {  } U = { frame$1 }
   76 methodCall D = {  } U = { JFrame.EXIT_ON_CLOSE, frame$1.!java.awt.Component.changeSupport, frame$1.!java.lang.System.security, frame$1.!javax.swing.JFrame.defaultCloseOperation, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Component.changeSupport, javax.swing.JFrame.!JFrame( java.lang.String ).!java.lang.System.security, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JFrame.defaultCloseOperation } TO = javax.swing.JFrame#setDefaultCloseOperation( int )
-* actualOut D = { frame$1.!javax.swing.JFrame.defaultCloseOperation, frame$1.!setDefaultCloseOperation( int ) } U = { frame$1.!java.awt.Component.changeSupport, frame$1.!java.lang.System.security, frame$1.!javax.swing.JFrame.defaultCloseOperation, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Component.changeSupport, javax.swing.JFrame.!JFrame( java.lang.String ).!java.lang.System.security, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JFrame.defaultCloseOperation }
+  77 actualOut D = { frame$1.!javax.swing.JFrame.defaultCloseOperation, frame$1.!setDefaultCloseOperation( int ) } U = { frame$1.!java.awt.Component.changeSupport, frame$1.!java.lang.System.security, frame$1.!javax.swing.JFrame.defaultCloseOperation, javax.swing.JFrame.!JFrame( java.lang.String ).!java.awt.Component.changeSupport, javax.swing.JFrame.!JFrame( java.lang.String ).!java.lang.System.security, javax.swing.JFrame.!JFrame( java.lang.String ).!javax.swing.JFrame.defaultCloseOperation }
   78 assignment D = {  } U = { frame$1.!setSize( int int ) }
   79 receiver D = {  } U = { frame$1 }
   80 methodCall D = {  } U = {  } TO = java.awt.Window#setSize( int int )
@@ -110,151 +110,151 @@ Class Name = Sample18
   13:    3 ->   83 loopIndependentDefUseDependence frame$1
   14:    5 ->    1 exceptionCatch
   15:    5 ->    3 trueControlDependence
-  16:    5 ->    7 trueControlDependence
-  17:    5 ->    8 trueControlDependence
-  18:    5 ->    9 trueControlDependence
-  19:    5 ->   10 trueControlDependence
-  20:    5 ->   11 trueControlDependence
-  21:    5 ->   12 trueControlDependence
-  22:    5 ->   13 trueControlDependence
-  23:    5 ->   15 trueControlDependence
-  24:    5 ->   16 trueControlDependence
-  25:    5 ->   17 trueControlDependence
-  26:    5 ->   19 trueControlDependence
-  27:    5 ->   20 trueControlDependence
-  28:    5 ->   21 trueControlDependence
-  29:    5 ->   23 trueControlDependence
-  30:    5 ->   24 trueControlDependence
-  31:    5 ->   25 trueControlDependence
-  32:    5 ->   26 trueControlDependence
-  33:    5 ->   27 trueControlDependence
-  34:    5 ->   28 trueControlDependence
-  35:    5 ->   29 trueControlDependence
-  36:    5 ->   31 trueControlDependence
-  37:    5 ->   32 trueControlDependence
-  38:    5 ->   33 trueControlDependence
-  39:    5 ->   35 trueControlDependence
-  40:    5 ->   36 trueControlDependence
-  41:    5 ->   37 trueControlDependence
-  42:    5 ->   39 trueControlDependence
-  43:    5 ->   40 trueControlDependence
-  44:    5 ->   41 trueControlDependence
-  45:    5 ->   43 trueControlDependence
-  46:    5 ->   44 trueControlDependence
-  47:    5 ->   45 trueControlDependence
-  48:    5 ->   47 trueControlDependence
-  49:    5 ->   48 trueControlDependence
-  50:    5 ->   49 trueControlDependence
-  51:    5 ->   51 trueControlDependence
-  52:    5 ->   52 trueControlDependence
-  53:    5 ->   53 trueControlDependence
-  54:    5 ->   55 trueControlDependence
-  55:    5 ->   56 trueControlDependence
-  56:    5 ->   57 trueControlDependence
-  57:    5 ->   58 trueControlDependence
-  58:    5 ->   59 trueControlDependence
-  59:    5 ->   60 trueControlDependence
-  60:    5 ->   62 trueControlDependence
-  61:    5 ->   63 trueControlDependence
-  62:    5 ->   64 trueControlDependence
-  63:    5 ->   65 trueControlDependence
-  64:    5 ->   66 trueControlDependence
-  65:    5 ->   67 trueControlDependence
-  66:    5 ->   68 trueControlDependence
-  67:    5 ->   70 trueControlDependence
-  68:    5 ->   71 trueControlDependence
-  69:    5 ->   72 trueControlDependence
-  70:    5 ->   74 trueControlDependence
-  71:    5 ->   75 trueControlDependence
-  72:    5 ->   76 trueControlDependence
-  73:    5 ->   78 trueControlDependence
-  74:    5 ->   79 trueControlDependence
-  75:    5 ->   80 trueControlDependence
-  76:    5 ->   81 trueControlDependence
-  77:    5 ->   82 trueControlDependence
-  78:    5 ->   83 trueControlDependence
-  79:    5 ->   84 trueControlDependence
-  80:    5 ->   85 trueControlDependence
-  81:    5 ->   87 trueControlDependence
-  82:    5 -> * trueControlDependence
-  83:    5 -> * trueControlDependence
-  84:    5 -> * trueControlDependence
-  85:    5 -> * trueControlDependence
-  86:    5 -> * trueControlDependence
-  87:    5 -> * trueControlDependence
-  88:    5 -> * trueControlDependence
-  89:    5 -> * trueControlDependence
-  90:    5 -> * trueControlDependence
-  91:    5 -> * trueControlDependence
-  92:    5 -> * trueControlDependence
-  93:    5 -> * trueControlDependence
-  94:    5 -> * trueControlDependence
-  95:    5 -> * trueControlDependence
-  96:    5 -> * trueControlDependence
-  97:    7 ->   71 declaration
-  98:    7 ->   71 loopIndependentDefUseDependence contentPane$2
-  99:   10 ->    7 loopIndependentDefUseDependence frame$1.!getContentPane( )
- 100:   11 ->   17 declaration
- 101:   11 ->   17 loopIndependentDefUseDependence menubar$3
- 102:   11 ->   24 declaration
- 103:   11 ->   24 loopIndependentDefUseDependence menubar$3
- 104:   19 ->   25 declaration
- 105:   19 ->   25 loopIndependentDefUseDependence fileMenu$4
- 106:   19 ->   32 declaration
- 107:   19 ->   32 loopIndependentDefUseDependence fileMenu$4
- 108:   19 ->   40 declaration
- 109:   19 ->   40 loopIndependentDefUseDependence fileMenu$4
- 110:   19 ->   44 declaration
- 111:   19 ->   44 loopIndependentDefUseDependence fileMenu$4
- 112:   19 ->   52 declaration
- 113:   19 ->   52 loopIndependentDefUseDependence fileMenu$4
- 114:   26 ->   23 loopIndependentDefUseDependence menubar$3.!add( javax.swing.JMenu )
- 115:   27 ->   33 declaration
- 116:   27 ->   33 loopIndependentDefUseDependence openItem$5
- 117:   35 ->   41 declaration
- 118:   35 ->   41 loopIndependentDefUseDependence saveItem$6
- 119:   47 ->   53 declaration
- 120:   47 ->   53 loopIndependentDefUseDependence exitItem$7
- 121:   47 ->   56 declaration
- 122:   47 ->   56 loopIndependentDefUseDependence exitItem$7
- 123:   60 ->   57 loopIndependentDefUseDependence .!ActionListener( )
- 124:   62 ->   67 declaration
- 125:   62 ->   67 loopIndependentDefUseDependence panel$9
- 126:   62 ->   72 declaration
- 127:   62 ->   72 loopIndependentDefUseDependence panel$9
- 128:   65 ->   62 loopIndependentDefUseDependence javax.swing.JPanel.!JPanel( )
- 129:   81 ->   78 loopIndependentDefUseDependence frame$1.!setSize( int int )
- 130:   85 ->   82 loopIndependentDefUseDependence frame$1.!setVisible( boolean )
- 131: * ->    3 loopIndependentDefUseDependence javax.swing.JFrame.!JFrame( java.lang.String )
- 132: * ->   11 loopIndependentDefUseDependence javax.swing.JMenuBar.!JMenuBar( )
- 133: * ->   15 loopIndependentDefUseDependence frame$1.!setJMenuBar( javax.swing.JMenuBar )
- 134: * ->   19 loopIndependentDefUseDependence javax.swing.JMenu.!JMenu( java.lang.String )
- 135: * ->   27 loopIndependentDefUseDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
- 136: * ->   31 loopIndependentDefUseDependence fileMenu$4.!add( javax.swing.JMenuItem )
- 137: * ->   35 loopIndependentDefUseDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
- 138: * ->   39 loopIndependentDefUseDependence fileMenu$4.!add( javax.swing.JMenuItem )
- 139: * ->   41 loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
- 140: * ->   43 loopIndependentDefUseDependence fileMenu$4.!addSeparator( )
- 141: * ->   45 loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
- 142: * ->   47 loopIndependentDefUseDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
- 143: * ->   51 loopIndependentDefUseDependence fileMenu$4.!add( javax.swing.JMenuItem )
- 144: * ->   53 loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
- 145: * ->   55 loopIndependentDefUseDependence exitItem$7.!addActionListener( java.awt.event.ActionListener )
- 146: * ->   66 loopIndependentDefUseDependence panel$9.!setBackground( java.awt.Color )
- 147: * ->   70 loopIndependentDefUseDependence contentPane$2.!add( java.awt.Component )
- 148: * ->   74 loopIndependentDefUseDependence frame$1.!setDefaultCloseOperation( int )
- 149: * -> * loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
- 150: * -> * loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
- 151: * -> * loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
- 152: * -> * outputDependence fileMenu$4.!add( javax.swing.JMenuItem )
- 153: * -> * outputDependence fileMenu$4.!add( javax.swing.JMenuItem )
- 154: * -> * outputDependence fileMenu$4.!javax.swing.JMenu.popupListener
- 155: * -> * outputDependence fileMenu$4.!javax.swing.JMenu.popupListener
- 156: * -> * outputDependence fileMenu$4.!javax.swing.JMenu.popupListener
- 157: * -> * outputDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
- 158: * -> * outputDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
- 159: * -> * outputDependence javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged
- 160: * -> * outputDependence javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged
+  16:    5 ->    6 trueControlDependence
+  17:    5 ->    7 trueControlDependence
+  18:    5 ->    8 trueControlDependence
+  19:    5 ->    9 trueControlDependence
+  20:    5 ->   10 trueControlDependence
+  21:    5 ->   11 trueControlDependence
+  22:    5 ->   12 trueControlDependence
+  23:    5 ->   13 trueControlDependence
+  24:    5 ->   14 trueControlDependence
+  25:    5 ->   15 trueControlDependence
+  26:    5 ->   16 trueControlDependence
+  27:    5 ->   17 trueControlDependence
+  28:    5 ->   18 trueControlDependence
+  29:    5 ->   19 trueControlDependence
+  30:    5 ->   20 trueControlDependence
+  31:    5 ->   21 trueControlDependence
+  32:    5 ->   22 trueControlDependence
+  33:    5 ->   23 trueControlDependence
+  34:    5 ->   24 trueControlDependence
+  35:    5 ->   25 trueControlDependence
+  36:    5 ->   26 trueControlDependence
+  37:    5 ->   27 trueControlDependence
+  38:    5 ->   28 trueControlDependence
+  39:    5 ->   29 trueControlDependence
+  40:    5 ->   30 trueControlDependence
+  41:    5 ->   31 trueControlDependence
+  42:    5 ->   32 trueControlDependence
+  43:    5 ->   33 trueControlDependence
+  44:    5 ->   34 trueControlDependence
+  45:    5 ->   35 trueControlDependence
+  46:    5 ->   36 trueControlDependence
+  47:    5 ->   37 trueControlDependence
+  48:    5 ->   38 trueControlDependence
+  49:    5 ->   39 trueControlDependence
+  50:    5 ->   40 trueControlDependence
+  51:    5 ->   41 trueControlDependence
+  52:    5 ->   42 trueControlDependence
+  53:    5 ->   43 trueControlDependence
+  54:    5 ->   44 trueControlDependence
+  55:    5 ->   45 trueControlDependence
+  56:    5 ->   46 trueControlDependence
+  57:    5 ->   47 trueControlDependence
+  58:    5 ->   48 trueControlDependence
+  59:    5 ->   49 trueControlDependence
+  60:    5 ->   50 trueControlDependence
+  61:    5 ->   51 trueControlDependence
+  62:    5 ->   52 trueControlDependence
+  63:    5 ->   53 trueControlDependence
+  64:    5 ->   54 trueControlDependence
+  65:    5 ->   55 trueControlDependence
+  66:    5 ->   56 trueControlDependence
+  67:    5 ->   57 trueControlDependence
+  68:    5 ->   58 trueControlDependence
+  69:    5 ->   59 trueControlDependence
+  70:    5 ->   60 trueControlDependence
+  71:    5 ->   61 trueControlDependence
+  72:    5 ->   62 trueControlDependence
+  73:    5 ->   63 trueControlDependence
+  74:    5 ->   64 trueControlDependence
+  75:    5 ->   65 trueControlDependence
+  76:    5 ->   66 trueControlDependence
+  77:    5 ->   67 trueControlDependence
+  78:    5 ->   68 trueControlDependence
+  79:    5 ->   69 trueControlDependence
+  80:    5 ->   70 trueControlDependence
+  81:    5 ->   71 trueControlDependence
+  82:    5 ->   72 trueControlDependence
+  83:    5 ->   73 trueControlDependence
+  84:    5 ->   74 trueControlDependence
+  85:    5 ->   75 trueControlDependence
+  86:    5 ->   76 trueControlDependence
+  87:    5 ->   77 trueControlDependence
+  88:    5 ->   78 trueControlDependence
+  89:    5 ->   79 trueControlDependence
+  90:    5 ->   80 trueControlDependence
+  91:    5 ->   81 trueControlDependence
+  92:    5 ->   82 trueControlDependence
+  93:    5 ->   83 trueControlDependence
+  94:    5 ->   84 trueControlDependence
+  95:    5 ->   85 trueControlDependence
+  96:    5 ->   87 trueControlDependence
+  97:    6 ->    3 loopIndependentDefUseDependence javax.swing.JFrame.!JFrame( java.lang.String )
+  98:    7 ->   71 declaration
+  99:    7 ->   71 loopIndependentDefUseDependence contentPane$2
+ 100:   10 ->    7 loopIndependentDefUseDependence frame$1.!getContentPane( )
+ 101:   11 ->   17 declaration
+ 102:   11 ->   17 loopIndependentDefUseDependence menubar$3
+ 103:   11 ->   24 declaration
+ 104:   11 ->   24 loopIndependentDefUseDependence menubar$3
+ 105:   14 ->   11 loopIndependentDefUseDependence javax.swing.JMenuBar.!JMenuBar( )
+ 106:   18 ->   15 loopIndependentDefUseDependence frame$1.!setJMenuBar( javax.swing.JMenuBar )
+ 107:   19 ->   25 declaration
+ 108:   19 ->   25 loopIndependentDefUseDependence fileMenu$4
+ 109:   19 ->   32 declaration
+ 110:   19 ->   32 loopIndependentDefUseDependence fileMenu$4
+ 111:   19 ->   40 declaration
+ 112:   19 ->   40 loopIndependentDefUseDependence fileMenu$4
+ 113:   19 ->   44 declaration
+ 114:   19 ->   44 loopIndependentDefUseDependence fileMenu$4
+ 115:   19 ->   52 declaration
+ 116:   19 ->   52 loopIndependentDefUseDependence fileMenu$4
+ 117:   22 ->   19 loopIndependentDefUseDependence javax.swing.JMenu.!JMenu( java.lang.String )
+ 118:   26 ->   23 loopIndependentDefUseDependence menubar$3.!add( javax.swing.JMenu )
+ 119:   27 ->   33 declaration
+ 120:   27 ->   33 loopIndependentDefUseDependence openItem$5
+ 121:   30 ->   27 loopIndependentDefUseDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
+ 122:   30 ->   38 outputDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
+ 123:   30 ->   38 outputDependence javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged
+ 124:   34 ->   31 loopIndependentDefUseDependence fileMenu$4.!add( javax.swing.JMenuItem )
+ 125:   34 ->   41 loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
+ 126:   34 ->   42 loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
+ 127:   34 ->   42 outputDependence fileMenu$4.!add( javax.swing.JMenuItem )
+ 128:   34 ->   42 outputDependence fileMenu$4.!javax.swing.JMenu.popupListener
+ 129:   35 ->   41 declaration
+ 130:   35 ->   41 loopIndependentDefUseDependence saveItem$6
+ 131:   38 ->   35 loopIndependentDefUseDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
+ 132:   38 ->   50 outputDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
+ 133:   38 ->   50 outputDependence javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged
+ 134:   42 ->   39 loopIndependentDefUseDependence fileMenu$4.!add( javax.swing.JMenuItem )
+ 135:   42 ->   45 loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
+ 136:   42 ->   46 loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
+ 137:   42 ->   46 outputDependence fileMenu$4.!javax.swing.JMenu.popupListener
+ 138:   42 ->   54 outputDependence fileMenu$4.!add( javax.swing.JMenuItem )
+ 139:   46 ->   43 loopIndependentDefUseDependence fileMenu$4.!addSeparator( )
+ 140:   46 ->   53 loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
+ 141:   46 ->   54 loopIndependentDefUseDependence fileMenu$4.!javax.swing.JMenu.popupMenu
+ 142:   46 ->   54 outputDependence fileMenu$4.!javax.swing.JMenu.popupListener
+ 143:   47 ->   53 declaration
+ 144:   47 ->   53 loopIndependentDefUseDependence exitItem$7
+ 145:   47 ->   56 declaration
+ 146:   47 ->   56 loopIndependentDefUseDependence exitItem$7
+ 147:   50 ->   47 loopIndependentDefUseDependence javax.swing.JMenuItem.!JMenuItem( java.lang.String )
+ 148:   54 ->   51 loopIndependentDefUseDependence fileMenu$4.!add( javax.swing.JMenuItem )
+ 149:   60 ->   57 loopIndependentDefUseDependence .!ActionListener( )
+ 150:   61 ->   55 loopIndependentDefUseDependence exitItem$7.!addActionListener( java.awt.event.ActionListener )
+ 151:   62 ->   67 declaration
+ 152:   62 ->   67 loopIndependentDefUseDependence panel$9
+ 153:   62 ->   72 declaration
+ 154:   62 ->   72 loopIndependentDefUseDependence panel$9
+ 155:   65 ->   62 loopIndependentDefUseDependence javax.swing.JPanel.!JPanel( )
+ 156:   69 ->   66 loopIndependentDefUseDependence panel$9.!setBackground( java.awt.Color )
+ 157:   73 ->   70 loopIndependentDefUseDependence contentPane$2.!add( java.awt.Component )
+ 158:   77 ->   74 loopIndependentDefUseDependence frame$1.!setDefaultCloseOperation( int )
+ 159:   81 ->   78 loopIndependentDefUseDependence frame$1.!setSize( int int )
+ 160:   85 ->   82 loopIndependentDefUseDependence frame$1.!setVisible( boolean )
 --
 ----- ClDG (to here) -----
 

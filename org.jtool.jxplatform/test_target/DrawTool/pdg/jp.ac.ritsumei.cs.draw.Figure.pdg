@@ -50,8 +50,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    5 actualIn D = {  } U = {  }
    6 actualOut D = { this.!Figure( java.awt.Color float ) } U = {  }
    8 formalOut D = {  } U = { $_ }
-* actualOut D = { this.color } U = {  }
-* actualOut D = { this.outlineWidth } U = {  }
+   3+ actualOutByFieldAccess D = { this.color } U = {  }
+   3+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
 --
    0 constructorEntry [ jp.ac.ritsumei.cs.draw.Figure#Figure( float ) ]
    1 formalIn D = { w$0 } U = {  }
@@ -62,8 +62,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    6 actualIn D = {  } U = { w$0 }
    7 actualOut D = { this.!Figure( java.awt.Color float ) } U = {  }
    9 formalOut D = {  } U = { $_ }
-* actualOut D = { this.color } U = {  }
-* actualOut D = { this.outlineWidth } U = {  }
+   4+ actualOutByFieldAccess D = { this.color } U = {  }
+   4+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#getTop( ) ]
    1 returnSt D = { $_ } U = { this.!min( int int ) }
@@ -172,7 +172,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.Figure.dotted } U = { java.awt.BasicStroke.!BasicStroke( float int int float float[] float ), jp.ac.ritsumei.cs.draw.Figure.dotted }
    2 receiver D = {  } U = {  }
    3 constructorCall D = {  } U = { BasicStroke.CAP_SQUARE, BasicStroke.CAP_SQUARE.JOIN_MITER } TO = java.awt.BasicStroke#BasicStroke( float int int float float[] float )
-* actualOut D = { java.awt.BasicStroke.!BasicStroke( float int int float float[] float ), java.awt.BasicStroke.!java.awt.BasicStroke.cap, java.awt.BasicStroke.!java.awt.BasicStroke.dash, java.awt.BasicStroke.!java.awt.BasicStroke.dash_phase, java.awt.BasicStroke.!java.awt.BasicStroke.join, java.awt.BasicStroke.!java.awt.BasicStroke.miterlimit, java.awt.BasicStroke.!java.awt.BasicStroke.width } U = {  }
+   4 actualOut D = { java.awt.BasicStroke.!BasicStroke( float int int float float[] float ), java.awt.BasicStroke.!java.awt.BasicStroke.cap, java.awt.BasicStroke.!java.awt.BasicStroke.dash, java.awt.BasicStroke.!java.awt.BasicStroke.dash_phase, java.awt.BasicStroke.!java.awt.BasicStroke.join, java.awt.BasicStroke.!java.awt.BasicStroke.miterlimit, java.awt.BasicStroke.!java.awt.BasicStroke.width } U = {  }
 --
    0 fieldEntry [ jp.ac.ritsumei.cs.draw.Figure#startX ]
    1 fieldDeclaration D = { this.startX } U = { this.startX }
@@ -275,8 +275,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    6 actualIn D = {  } U = {  }
    7 actualOut D = { this.!Figure( java.awt.Color float ) } U = {  }
    9 formalOut D = {  } U = { $_ }
-* actualOut D = { this.color } U = {  }
-* actualOut D = { this.outlineWidth } U = {  }
+   4+ actualOutByFieldAccess D = { this.color } U = {  }
+   4+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#replace( jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { figure$0 } U = {  }
@@ -366,12 +366,12 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 -> * trueControlDependence
-   9:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    8 trueControlDependence
   10:    6 ->    1 loopIndependentDefUseDependence this.!Figure( java.awt.Color float )
 --
    0: Figure( float )
@@ -379,12 +379,12 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 -> * trueControlDependence
-  10:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    4+ trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    9 trueControlDependence
   11:    1 ->    6 loopIndependentDefUseDependence w$0
   12:    7 ->    2 loopIndependentDefUseDependence this.!Figure( java.awt.Color float )
 --
@@ -528,8 +528,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 -> * trueControlDependence
-   5: * ->    1 loopIndependentDefUseDependence java.awt.BasicStroke.!BasicStroke( float int int float float[] float )
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence java.awt.BasicStroke.!BasicStroke( float int int float float[] float )
 --
    0: startX
    1:    0 ->    1 trueControlDependence
@@ -649,12 +649,12 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 -> * trueControlDependence
-  10:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    4+ trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    9 trueControlDependence
   11:    1 ->    5 loopIndependentDefUseDependence c$0
   12:    7 ->    2 loopIndependentDefUseDependence this.!Figure( java.awt.Color float )
 --

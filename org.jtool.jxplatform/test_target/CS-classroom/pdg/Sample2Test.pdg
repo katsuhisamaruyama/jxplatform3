@@ -19,9 +19,9 @@ Class Name = Sample2Test
   13 actualOut D = { circle$0.!getX( ) } U = { Circle.!Circle( int int int ).x, circle$0.x }
   14 actualOut D = { this.!assertEquals( long long ) } U = {  }
   16 formalOut D = {  } U = { $_ }
-* actualOut D = { Circle.!Circle( int int int ).radius } U = {  }
-* actualOut D = { Circle.!Circle( int int int ).x } U = {  }
-* actualOut D = { Circle.!Circle( int int int ).y } U = {  }
+   3+ actualOutByFieldAccess D = { Circle.!Circle( int int int ).radius } U = {  }
+   3+ actualOutByFieldAccess D = { Circle.!Circle( int int int ).x } U = {  }
+   3+ actualOutByFieldAccess D = { Circle.!Circle( int int int ).y } U = {  }
 --
    0 methodEntry [ Sample2Test#test2( ) ]
    1 localDeclaration D = { circle$0 } U = { Circle.!Circle( int int int ) }
@@ -39,9 +39,9 @@ Class Name = Sample2Test
   13 actualOut D = { circle$0.!getY( ) } U = { Circle.!Circle( int int int ).y, circle$0.y }
   14 actualOut D = { this.!assertEquals( long long ) } U = {  }
   16 formalOut D = {  } U = { $_ }
-* actualOut D = { Circle.!Circle( int int int ).radius } U = {  }
-* actualOut D = { Circle.!Circle( int int int ).x } U = {  }
-* actualOut D = { Circle.!Circle( int int int ).y } U = {  }
+   3+ actualOutByFieldAccess D = { Circle.!Circle( int int int ).radius } U = {  }
+   3+ actualOutByFieldAccess D = { Circle.!Circle( int int int ).x } U = {  }
+   3+ actualOutByFieldAccess D = { Circle.!Circle( int int int ).y } U = {  }
 --
    0: Sample2Test( )
    1:    0 ->    2 trueControlDependence
@@ -50,55 +50,55 @@ Class Name = Sample2Test
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   16 trueControlDependence
-  16:    0 -> * trueControlDependence
-  17:    0 -> * trueControlDependence
-  18:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    3+ trueControlDependence
+   7:    0 ->    4 trueControlDependence
+   8:    0 ->    5 trueControlDependence
+   9:    0 ->    6 trueControlDependence
+  10:    0 ->    7 trueControlDependence
+  11:    0 ->    8 trueControlDependence
+  12:    0 ->    9 trueControlDependence
+  13:    0 ->   10 trueControlDependence
+  14:    0 ->   11 trueControlDependence
+  15:    0 ->   12 trueControlDependence
+  16:    0 ->   13 trueControlDependence
+  17:    0 ->   14 trueControlDependence
+  18:    0 ->   16 trueControlDependence
   19:    1 ->   11 declaration
   20:    1 ->   11 loopIndependentDefUseDependence circle$0
-  21:    7 ->    1 loopIndependentDefUseDependence Circle.!Circle( int int int )
-  22:   13 ->   10 loopIndependentDefUseDependence circle$0.!getX( )
-  23:   14 ->    8 loopIndependentDefUseDependence this.!assertEquals( long long )
-  24: * ->   12 loopIndependentDefUseDependence Circle.!Circle( int int int ).x
-  25: * ->   13 loopIndependentDefUseDependence Circle.!Circle( int int int ).x
+  21:    3+ ->   12 loopIndependentDefUseDependence Circle.!Circle( int int int ).x
+  22:    3+ ->   13 loopIndependentDefUseDependence Circle.!Circle( int int int ).x
+  23:    7 ->    1 loopIndependentDefUseDependence Circle.!Circle( int int int )
+  24:   13 ->   10 loopIndependentDefUseDependence circle$0.!getX( )
+  25:   14 ->    8 loopIndependentDefUseDependence this.!assertEquals( long long )
 --
    0: test2( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   16 trueControlDependence
-  16:    0 -> * trueControlDependence
-  17:    0 -> * trueControlDependence
-  18:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    3+ trueControlDependence
+   7:    0 ->    4 trueControlDependence
+   8:    0 ->    5 trueControlDependence
+   9:    0 ->    6 trueControlDependence
+  10:    0 ->    7 trueControlDependence
+  11:    0 ->    8 trueControlDependence
+  12:    0 ->    9 trueControlDependence
+  13:    0 ->   10 trueControlDependence
+  14:    0 ->   11 trueControlDependence
+  15:    0 ->   12 trueControlDependence
+  16:    0 ->   13 trueControlDependence
+  17:    0 ->   14 trueControlDependence
+  18:    0 ->   16 trueControlDependence
   19:    1 ->   11 declaration
   20:    1 ->   11 loopIndependentDefUseDependence circle$0
-  21:    7 ->    1 loopIndependentDefUseDependence Circle.!Circle( int int int )
-  22:   13 ->   10 loopIndependentDefUseDependence circle$0.!getY( )
-  23:   14 ->    8 loopIndependentDefUseDependence this.!assertEquals( long long )
-  24: * ->   12 loopIndependentDefUseDependence Circle.!Circle( int int int ).y
-  25: * ->   13 loopIndependentDefUseDependence Circle.!Circle( int int int ).y
+  21:    3+ ->   12 loopIndependentDefUseDependence Circle.!Circle( int int int ).y
+  22:    3+ ->   13 loopIndependentDefUseDependence Circle.!Circle( int int int ).y
+  23:    7 ->    1 loopIndependentDefUseDependence Circle.!Circle( int int int )
+  24:   13 ->   10 loopIndependentDefUseDependence circle$0.!getY( )
+  25:   14 ->    8 loopIndependentDefUseDependence this.!assertEquals( long long )
 --
 ----- ClDG (to here) -----
 

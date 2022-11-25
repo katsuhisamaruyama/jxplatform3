@@ -13,7 +13,7 @@ Class Name = Test16
   11 assignment D = {  } U = { System.out.!println( int ) }
   12 receiver D = {  } U = { System.out }
   13 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, a$0 } TO = java.io.PrintStream#println( int )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  14 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   16 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Test16#Test16( ) ]
@@ -25,8 +25,8 @@ Class Name = Test16
    3:    0 ->   11 trueControlDependence
    4:    0 ->   12 trueControlDependence
    5:    0 ->   13 trueControlDependence
-   6:    0 ->   16 trueControlDependence
-   7:    0 -> * trueControlDependence
+   6:    0 ->   14 trueControlDependence
+   7:    0 ->   16 trueControlDependence
    8:    1 ->    5 declaration
    9:    1 ->    5 loopIndependentDefUseDependence a$0
   10:    1 ->    6 declaration
@@ -59,7 +59,7 @@ Class Name = Test16
   37:   10 ->    3 loopCarriedDefUseDependence i$1 (LC = 3)
   38:   10 ->    4 loopCarriedDefUseDependence i$1 (LC = 3)
   39:   10 ->   10 loopCarriedDefUseDependence i$1 (LC = 3)
-  40: * ->   11 loopIndependentDefUseDependence System.out.!println( int )
+  40:   14 ->   11 loopIndependentDefUseDependence System.out.!println( int )
 --
    0: Test16( )
    1:    0 ->    2 trueControlDependence

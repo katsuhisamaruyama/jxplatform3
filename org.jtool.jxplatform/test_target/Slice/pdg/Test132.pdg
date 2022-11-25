@@ -6,7 +6,7 @@ Class Name = Test132
    3 methodCall D = {  } U = { p$0.x } TO = Test132#n( )
    4 actualOut D = { this.!n( ) } U = { p$0.x }
    6 formalOut D = {  } U = { $_ }
-* actualOut D = { p$0.x } U = {  }
+   3+ actualOutByFieldAccess D = { p$0.x } U = {  }
 --
    0 methodEntry [ Test132#n( ) ]
    1 localDeclaration D = { p$0 } U = { P132.!P132( ) }
@@ -24,11 +24,11 @@ Class Name = Test132
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    6 trueControlDependence
-   6:    0 -> * trueControlDependence
-   7:    4 ->    1 loopIndependentDefUseDependence this.!n( )
-   8: * ->    4 loopIndependentDefUseDependence p$0.x
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    3+ ->    4 loopIndependentDefUseDependence p$0.x
+   8:    4 ->    1 loopIndependentDefUseDependence this.!n( )
 --
    0: n( )
    1:    0 ->    1 trueControlDependence

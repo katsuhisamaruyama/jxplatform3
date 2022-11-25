@@ -55,7 +55,7 @@ Class Name = Test47
    8 actualIn D = {  } U = { $java.lang.String }
    9 actualOut D = { P47.!P47( java.lang.String ) } U = {  }
   11 formalOut D = {  } U = { $_ }
-* actualOut D = { P47.!P47( java.lang.String ).value } U = {  }
+   7+ actualOutByFieldAccess D = { P47.!P47( java.lang.String ).value } U = {  }
 --
    0 methodEntry [ Test47#m2( ) ]
    1 localDeclaration D = { name$0 } U = { $java.lang.Class.!getName( ) }
@@ -86,7 +86,7 @@ Class Name = Test47
    8 actualIn D = {  } U = { $java.lang.String }
    9 actualOut D = { p$0.!set( java.lang.String ) } U = {  }
   11 formalOut D = {  } U = { $_ }
-* actualOut D = { p$0.value } U = {  }
+   7+ actualOutByFieldAccess D = { p$0.value } U = {  }
 --
    0 constructorEntry [ Test47#Test47( ) ]
    2 formalOut D = {  } U = { $_ }
@@ -157,10 +157,10 @@ Class Name = Test47
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   11 trueControlDependence
-  11:    0 -> * trueControlDependence
+   8:    0 ->    7+ trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   11 trueControlDependence
   12:    4 ->    1 loopIndependentDefUseDependence P47.!P47( )
   13:    9 ->    5 loopIndependentDefUseDependence P47.!P47( java.lang.String )
 --
@@ -196,10 +196,10 @@ Class Name = Test47
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   11 trueControlDependence
-  11:    0 -> * trueControlDependence
+   8:    0 ->    7+ trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   11 trueControlDependence
   12:    1 ->    6 declaration
   13:    1 ->    6 loopIndependentDefUseDependence p$0
   14:    4 ->    1 loopIndependentDefUseDependence P47.!P47( )

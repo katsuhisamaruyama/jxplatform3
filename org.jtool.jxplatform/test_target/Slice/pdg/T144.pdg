@@ -11,7 +11,7 @@ Class Name = T144
    5 methodCall D = {  } U = { this.p.map, this.p.map.!java.util.HashMap$Node.hash, this.p.map.!java.util.HashMap$Node.key, this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.modCount, this.p.map.!java.util.HashMap.size, this.p.map.!java.util.HashMap.table, this.p.map.!java.util.HashMap.threshold } TO = P144#put( java.lang.String java.lang.String )
    6 actualIn D = {  } U = { key$0 }
    7 actualIn D = {  } U = { value$1 }
-* actualOut D = { this.p.!put( java.lang.String java.lang.String ), this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.modCount, this.p.map.!java.util.HashMap.size } U = { this.p.map, this.p.map.!java.util.HashMap$Node.hash, this.p.map.!java.util.HashMap$Node.key, this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.modCount, this.p.map.!java.util.HashMap.size, this.p.map.!java.util.HashMap.table, this.p.map.!java.util.HashMap.threshold }
+   8 actualOut D = { this.p.!put( java.lang.String java.lang.String ), this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.modCount, this.p.map.!java.util.HashMap.size } U = { this.p.map, this.p.map.!java.util.HashMap$Node.hash, this.p.map.!java.util.HashMap$Node.key, this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.modCount, this.p.map.!java.util.HashMap.size, this.p.map.!java.util.HashMap.table, this.p.map.!java.util.HashMap.threshold }
   10 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ T144#get( java.lang.String ) ]
@@ -40,11 +40,11 @@ Class Name = T144
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
-   8:    0 ->   10 trueControlDependence
-   9:    0 -> * trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->   10 trueControlDependence
   10:    1 ->    6 loopIndependentDefUseDependence key$0
   11:    2 ->    7 loopIndependentDefUseDependence value$1
-  12: * ->    3 loopIndependentDefUseDependence this.p.!put( java.lang.String java.lang.String )
+  12:    8 ->    3 loopIndependentDefUseDependence this.p.!put( java.lang.String java.lang.String )
 --
    0: get( java.lang.String )
    1:    0 ->    1 trueControlDependence

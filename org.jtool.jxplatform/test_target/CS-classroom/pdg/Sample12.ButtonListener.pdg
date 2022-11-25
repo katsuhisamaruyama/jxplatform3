@@ -6,12 +6,12 @@ Class Name = Sample12.ButtonListener
    3 assignment D = {  } U = { this.label.!setText( java.lang.String ) }
    4 receiver D = {  } U = { this.label }
    5 methodCall D = {  } U = { $java.lang.String, this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text } TO = javax.swing.JLabel#setText( java.lang.String )
-* actualOut D = { this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text, this.label.!setText( java.lang.String ) } U = { this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text }
+   6 actualOut D = { this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text, this.label.!setText( java.lang.String ) } U = { this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text }
    7 assignment D = { this.flag } U = {  }
    8 assignment D = {  } U = { this.label.!setText( java.lang.String ) }
    9 receiver D = {  } U = { this.label }
   10 methodCall D = {  } U = { $java.lang.String, this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text } TO = javax.swing.JLabel#setText( java.lang.String )
-* actualOut D = { this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text, this.label.!setText( java.lang.String ) } U = { this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text }
+  11 actualOut D = { this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text, this.label.!setText( java.lang.String ) } U = { this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text }
   12 assignment D = { this.flag } U = {  }
   15 formalOut D = {  } U = { $_ }
 --
@@ -33,15 +33,15 @@ Class Name = Sample12.ButtonListener
    4:    2 ->    3 trueControlDependence
    5:    2 ->    4 trueControlDependence
    6:    2 ->    5 trueControlDependence
-   7:    2 ->    7 trueControlDependence
-   8:    2 ->    8 falseControlDependence
-   9:    2 ->    9 falseControlDependence
-  10:    2 ->   10 falseControlDependence
-  11:    2 ->   12 falseControlDependence
-  12:    2 -> * falseControlDependence
-  13:    2 -> * trueControlDependence
-  14: * ->    3 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
-  15: * ->    8 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
+   7:    2 ->    6 trueControlDependence
+   8:    2 ->    7 trueControlDependence
+   9:    2 ->    8 falseControlDependence
+  10:    2 ->    9 falseControlDependence
+  11:    2 ->   10 falseControlDependence
+  12:    2 ->   11 falseControlDependence
+  13:    2 ->   12 falseControlDependence
+  14:    6 ->    3 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
+  15:   11 ->    8 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
 --
    0: flag
    1:    0 ->    1 trueControlDependence

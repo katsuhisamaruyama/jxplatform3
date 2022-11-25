@@ -25,7 +25,7 @@ Class Name = Test42
    3 constructorCall D = {  } U = {  } TO = P42#P42( int )
    4 actualIn D = {  } U = {  }
    5 actualOut D = { P42.!P42( int ) } U = {  }
-* actualOut D = { P42.!P42( int ).x } U = {  }
+   3+ actualOutByFieldAccess D = { P42.!P42( int ).x } U = {  }
 --
    0 fieldEntry [ Test42#b ]
    1 fieldDeclaration D = { this.b } U = { this.a, this.a.x, this.b }
@@ -55,9 +55,9 @@ Class Name = Test42
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    0 ->    5 trueControlDependence
    7:    5 ->    1 loopIndependentDefUseDependence P42.!P42( int )
 --
    0: b

@@ -37,9 +37,9 @@ Class Name = Test20
   18 assignment D = {  } U = { System.out.!println( java.lang.Object ) }
   19 receiver D = {  } U = { System.out }
   20 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, Test20.!Test20( int ).priVar, Test20.!Test20( int ).priVar2, t20$1, t20$1.priVar, t20$1.priVar2 } TO = java.io.PrintStream#println( java.lang.Object )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.Object ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  21 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.Object ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   23 formalOut D = {  } U = { $_ }
-* actualOut D = { Test20.!Test20( int ).priVar } U = {  }
+   4+ actualOutByFieldAccess D = { Test20.!Test20( int ).priVar } U = {  }
 --
    0 fieldEntry [ Test20#priVar ]
    1 fieldDeclaration D = { this.priVar } U = { this.priVar }
@@ -70,39 +70,39 @@ Class Name = Test20
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   18 trueControlDependence
-  13:    0 ->   19 trueControlDependence
-  14:    0 ->   20 trueControlDependence
-  15:    0 ->   23 trueControlDependence
-  16:    0 -> * trueControlDependence
-  17:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   18 trueControlDependence
+  14:    0 ->   19 trueControlDependence
+  15:    0 ->   20 trueControlDependence
+  16:    0 ->   21 trueControlDependence
+  17:    0 ->   23 trueControlDependence
   18:    2 ->    8 declaration
   19:    2 ->    8 loopIndependentDefUseDependence t20$1
   20:    2 ->   13 declaration
   21:    2 ->   13 loopIndependentDefUseDependence t20$1
   22:    2 ->   20 declaration
   23:    2 ->   20 loopIndependentDefUseDependence t20$1
-  24:    6 ->    2 loopIndependentDefUseDependence Test20.!Test20( int )
-  25:    7 ->   11 declaration
-  26:    7 ->   11 loopIndependentDefUseDependence a$2
-  27:    7 ->   15 declaration
-  28:    7 ->   15 loopIndependentDefUseDependence a$2
-  29:   10 ->    7 loopIndependentDefUseDependence t20$1.!get( )
-  30:   11 ->   12 trueControlDependence
-  31:   11 ->   13 trueControlDependence
-  32:   11 ->   14 trueControlDependence
-  33:   11 ->   15 trueControlDependence
-  34:   11 ->   16 trueControlDependence
-  35:   16 ->   12 loopIndependentDefUseDependence t20$1.!calc( int )
-  36: * ->   18 loopIndependentDefUseDependence System.out.!println( java.lang.Object )
-  37: * ->   20 loopIndependentDefUseDependence Test20.!Test20( int ).priVar
+  24:    4+ ->   20 loopIndependentDefUseDependence Test20.!Test20( int ).priVar
+  25:    6 ->    2 loopIndependentDefUseDependence Test20.!Test20( int )
+  26:    7 ->   11 declaration
+  27:    7 ->   11 loopIndependentDefUseDependence a$2
+  28:    7 ->   15 declaration
+  29:    7 ->   15 loopIndependentDefUseDependence a$2
+  30:   10 ->    7 loopIndependentDefUseDependence t20$1.!get( )
+  31:   11 ->   12 trueControlDependence
+  32:   11 ->   13 trueControlDependence
+  33:   11 ->   14 trueControlDependence
+  34:   11 ->   15 trueControlDependence
+  35:   11 ->   16 trueControlDependence
+  36:   16 ->   12 loopIndependentDefUseDependence t20$1.!calc( int )
+  37:   21 ->   18 loopIndependentDefUseDependence System.out.!println( java.lang.Object )
 --
    0: priVar
    1:    0 ->    1 trueControlDependence

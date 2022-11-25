@@ -9,7 +9,7 @@ Class Name = Test137
    6 receiver D = {  } U = { s1$0 }
    7 methodCall D = {  } U = { P137.!P137( ).list, P137.!P137( ).list.!java.util.ArrayList.elementData, P137.!P137( ).list.!java.util.ArrayList.modCount, P137.!P137( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size } TO = P137#add( java.lang.String )
    8 actualIn D = {  } U = { $java.lang.String }
-* actualOut D = { s1$0.!add( java.lang.String ), s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size } U = { P137.!P137( ).list, P137.!P137( ).list.!java.util.ArrayList.elementData, P137.!P137( ).list.!java.util.ArrayList.modCount, P137.!P137( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size }
+   9 actualOut D = { s1$0.!add( java.lang.String ), s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size } U = { P137.!P137( ).list, P137.!P137( ).list.!java.util.ArrayList.elementData, P137.!P137( ).list.!java.util.ArrayList.modCount, P137.!P137( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.modCount, s1$0.list.!java.util.ArrayList.size }
   10 localDeclaration D = { s$1 } U = { s1$0.!get( int ) }
   11 receiver D = {  } U = { s1$0 }
   12 methodCall D = {  } U = { P137.!P137( ).list, P137.!P137( ).list.!java.util.ArrayList.elementData, P137.!P137( ).list.!java.util.ArrayList.size, s1$0.list, s1$0.list.!java.util.ArrayList.elementData, s1$0.list.!java.util.ArrayList.size } TO = P137#get( int )
@@ -29,22 +29,22 @@ Class Name = Test137
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
    8:    0 ->    8 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 ->   11 trueControlDependence
-  11:    0 ->   12 trueControlDependence
-  12:    0 ->   13 trueControlDependence
-  13:    0 ->   14 trueControlDependence
-  14:    0 ->   16 trueControlDependence
-  15:    0 -> * trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   16 trueControlDependence
   16:    1 ->    6 declaration
   17:    1 ->    6 loopIndependentDefUseDependence s1$0
   18:    1 ->   11 declaration
   19:    1 ->   11 loopIndependentDefUseDependence s1$0
   20:    4 ->    1 loopIndependentDefUseDependence P137.!P137( )
-  21:   14 ->   10 loopIndependentDefUseDependence s1$0.!get( int )
-  22: * ->    5 loopIndependentDefUseDependence s1$0.!add( java.lang.String )
-  23: * ->   12 loopIndependentDefUseDependence s1$0.list.!java.util.ArrayList.size
-  24: * ->   14 loopIndependentDefUseDependence s1$0.list.!java.util.ArrayList.size
+  21:    9 ->    5 loopIndependentDefUseDependence s1$0.!add( java.lang.String )
+  22:    9 ->   12 loopIndependentDefUseDependence s1$0.list.!java.util.ArrayList.size
+  23:    9 ->   14 loopIndependentDefUseDependence s1$0.list.!java.util.ArrayList.size
+  24:   14 ->   10 loopIndependentDefUseDependence s1$0.!get( int )
 --
    0: Test137( )
    1:    0 ->    2 trueControlDependence

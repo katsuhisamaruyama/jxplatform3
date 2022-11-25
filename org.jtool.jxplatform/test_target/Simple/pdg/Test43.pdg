@@ -29,8 +29,8 @@ Class Name = Test43
   23 methodCall D = {  } U = { P43.!P43( int ).x, a$0.x } TO = P43#getX( )
   24 actualOut D = { a$0.!getX( ) } U = { P43.!P43( int ).x, a$0.x }
   26 formalOut D = {  } U = { $_ }
-* actualOut D = { P43.!P43( int ).x } U = {  }
-* actualOut D = { P43.!P43( int ).x } U = {  }
+   3+ actualOutByFieldAccess D = { P43.!P43( int ).x } U = {  }
+  17+ actualOutByFieldAccess D = { P43.!P43( int ).x } U = {  }
 --
    0 methodEntry [ Test43#m1( ) ]
    1 localDeclaration D = { a$0 } U = { P43.!P43( int ) }
@@ -67,8 +67,8 @@ Class Name = Test43
   32 methodCall D = {  } U = { P43.!P43( int ).x, a$0.x, d$5.x } TO = P43#getX( )
   33 actualOut D = { d$5.!getX( ) } U = { P43.!P43( int ).x, a$0.x, d$5.x }
   35 formalOut D = {  } U = { $_ }
-* actualOut D = { P43.!P43( int ).x } U = {  }
-* actualOut D = { P43.!P43( int ).x } U = {  }
+   3+ actualOutByFieldAccess D = { P43.!P43( int ).x } U = {  }
+  18+ actualOutByFieldAccess D = { P43.!P43( int ).x } U = {  }
 --
    0: Test43( )
    1:    0 ->    2 trueControlDependence
@@ -77,96 +77,96 @@ Class Name = Test43
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   26 trueControlDependence
-  26:    0 -> * trueControlDependence
-  27:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   12 trueControlDependence
+  14:    0 ->   13 trueControlDependence
+  15:    0 ->   14 trueControlDependence
+  16:    0 ->   15 trueControlDependence
+  17:    0 ->   16 trueControlDependence
+  18:    0 ->   17 trueControlDependence
+  19:    0 ->   17+ trueControlDependence
+  20:    0 ->   18 trueControlDependence
+  21:    0 ->   19 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   26 trueControlDependence
   28:    1 ->    6 declaration
   29:    1 ->    6 loopIndependentDefUseDependence a$0
   30:    1 ->    8 declaration
   31:    1 ->    8 loopIndependentDefUseDependence a$0
   32:    1 ->   22 declaration
   33:    1 ->   22 loopIndependentDefUseDependence a$0
-  34:    5 ->    1 loopIndependentDefUseDependence P43.!P43( int )
-  35:    5 ->   19 outputDependence P43.!P43( int )
-  36:    6 ->   12 declaration
-  37:    6 ->   12 loopIndependentDefUseDependence b$1
-  38:    6 ->   20 declaration
-  39:    6 ->   20 outputDependence b$1
-  40:   10 ->    7 loopIndependentDefUseDependence a$0.!getX( )
-  41:   10 ->   24 outputDependence a$0.!getX( )
-  42:   14 ->   11 loopIndependentDefUseDependence b$1.!getX( )
-  43:   15 ->   20 declaration
-  44:   15 ->   20 loopIndependentDefUseDependence c$4
-  45:   19 ->   15 loopIndependentDefUseDependence P43.!P43( int )
-  46:   24 ->   21 loopIndependentDefUseDependence a$0.!getX( )
-  47: * ->    6 loopIndependentDefUseDependence P43.!P43( int ).x
-  48: * ->    9 loopIndependentDefUseDependence P43.!P43( int ).x
-  49: * ->   10 loopIndependentDefUseDependence P43.!P43( int ).x
-  50: * ->   13 loopIndependentDefUseDependence P43.!P43( int ).x
-  51: * ->   14 loopIndependentDefUseDependence P43.!P43( int ).x
-  52: * ->   20 loopIndependentDefUseDependence P43.!P43( int ).x
-  53: * ->   23 loopIndependentDefUseDependence P43.!P43( int ).x
-  54: * ->   24 loopIndependentDefUseDependence P43.!P43( int ).x
-  55: * -> * outputDependence P43.!P43( int ).x
+  34:    3+ ->    6 loopIndependentDefUseDependence P43.!P43( int ).x
+  35:    3+ ->    9 loopIndependentDefUseDependence P43.!P43( int ).x
+  36:    3+ ->   10 loopIndependentDefUseDependence P43.!P43( int ).x
+  37:    3+ ->   13 loopIndependentDefUseDependence P43.!P43( int ).x
+  38:    3+ ->   14 loopIndependentDefUseDependence P43.!P43( int ).x
+  39:    3+ ->   17+ outputDependence P43.!P43( int ).x
+  40:    5 ->    1 loopIndependentDefUseDependence P43.!P43( int )
+  41:    5 ->   19 outputDependence P43.!P43( int )
+  42:    6 ->   12 declaration
+  43:    6 ->   12 loopIndependentDefUseDependence b$1
+  44:    6 ->   20 declaration
+  45:    6 ->   20 outputDependence b$1
+  46:   10 ->    7 loopIndependentDefUseDependence a$0.!getX( )
+  47:   10 ->   24 outputDependence a$0.!getX( )
+  48:   14 ->   11 loopIndependentDefUseDependence b$1.!getX( )
+  49:   15 ->   20 declaration
+  50:   15 ->   20 loopIndependentDefUseDependence c$4
+  51:   17+ ->   20 loopIndependentDefUseDependence P43.!P43( int ).x
+  52:   17+ ->   23 loopIndependentDefUseDependence P43.!P43( int ).x
+  53:   17+ ->   24 loopIndependentDefUseDependence P43.!P43( int ).x
+  54:   19 ->   15 loopIndependentDefUseDependence P43.!P43( int )
+  55:   24 ->   21 loopIndependentDefUseDependence a$0.!getX( )
 --
    0: m1( )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   25 trueControlDependence
-  26:    0 ->   26 trueControlDependence
-  27:    0 ->   27 trueControlDependence
-  28:    0 ->   28 trueControlDependence
-  29:    0 ->   29 trueControlDependence
-  30:    0 ->   30 trueControlDependence
-  31:    0 ->   31 trueControlDependence
-  32:    0 ->   32 trueControlDependence
-  33:    0 ->   33 trueControlDependence
-  34:    0 ->   35 trueControlDependence
-  35:    0 -> * trueControlDependence
-  36:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   12 trueControlDependence
+  14:    0 ->   13 trueControlDependence
+  15:    0 ->   14 trueControlDependence
+  16:    0 ->   15 trueControlDependence
+  17:    0 ->   16 trueControlDependence
+  18:    0 ->   17 trueControlDependence
+  19:    0 ->   18 trueControlDependence
+  20:    0 ->   18+ trueControlDependence
+  21:    0 ->   19 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   25 trueControlDependence
+  28:    0 ->   26 trueControlDependence
+  29:    0 ->   27 trueControlDependence
+  30:    0 ->   28 trueControlDependence
+  31:    0 ->   29 trueControlDependence
+  32:    0 ->   30 trueControlDependence
+  33:    0 ->   31 trueControlDependence
+  34:    0 ->   32 trueControlDependence
+  35:    0 ->   33 trueControlDependence
+  36:    0 ->   35 trueControlDependence
   37:    1 ->    6 declaration
   38:    1 ->    6 loopIndependentDefUseDependence a$0
   39:    1 ->    7 declaration
@@ -176,39 +176,39 @@ Class Name = Test43
   43:    1 ->   21 declaration
   44:    1 ->   21 outputDependence a$0
   45:    1 ->   23 declaration
-  46:    5 ->    1 loopIndependentDefUseDependence P43.!P43( int )
-  47:    5 ->   20 outputDependence P43.!P43( int )
-  48:    6 ->    7 declaration
-  49:    6 ->    7 loopIndependentDefUseDependence b$1
-  50:    6 ->   13 declaration
-  51:    6 ->   13 loopIndependentDefUseDependence b$1
-  52:    6 ->   27 declaration
-  53:    6 ->   27 loopIndependentDefUseDependence b$1
-  54:   11 ->    8 loopIndependentDefUseDependence a$0.!getX( )
-  55:   11 ->   25 outputDependence a$0.!getX( )
-  56:   15 ->   12 loopIndependentDefUseDependence b$1.!getX( )
-  57:   15 ->   29 outputDependence b$1.!getX( )
-  58:   16 ->   21 declaration
-  59:   16 ->   21 loopIndependentDefUseDependence d$5
-  60:   16 ->   31 declaration
-  61:   16 ->   31 loopIndependentDefUseDependence d$5
-  62:   20 ->   16 loopIndependentDefUseDependence P43.!P43( int )
-  63:   21 ->   23 loopIndependentDefUseDependence a$0
-  64:   25 ->   22 loopIndependentDefUseDependence a$0.!getX( )
-  65:   29 ->   26 loopIndependentDefUseDependence b$1.!getX( )
-  66:   33 ->   30 loopIndependentDefUseDependence d$5.!getX( )
-  67: * ->    6 loopIndependentDefUseDependence P43.!P43( int ).x
-  68: * ->    7 loopIndependentDefUseDependence P43.!P43( int ).x
-  69: * ->   10 loopIndependentDefUseDependence P43.!P43( int ).x
-  70: * ->   11 loopIndependentDefUseDependence P43.!P43( int ).x
-  71: * ->   14 loopIndependentDefUseDependence P43.!P43( int ).x
-  72: * ->   15 loopIndependentDefUseDependence P43.!P43( int ).x
-  73: * ->   21 loopIndependentDefUseDependence P43.!P43( int ).x
-  74: * ->   24 loopIndependentDefUseDependence P43.!P43( int ).x
-  75: * ->   25 loopIndependentDefUseDependence P43.!P43( int ).x
-  76: * ->   32 loopIndependentDefUseDependence P43.!P43( int ).x
-  77: * ->   33 loopIndependentDefUseDependence P43.!P43( int ).x
-  78: * -> * outputDependence P43.!P43( int ).x
+  46:    3+ ->    6 loopIndependentDefUseDependence P43.!P43( int ).x
+  47:    3+ ->    7 loopIndependentDefUseDependence P43.!P43( int ).x
+  48:    3+ ->   10 loopIndependentDefUseDependence P43.!P43( int ).x
+  49:    3+ ->   11 loopIndependentDefUseDependence P43.!P43( int ).x
+  50:    3+ ->   14 loopIndependentDefUseDependence P43.!P43( int ).x
+  51:    3+ ->   15 loopIndependentDefUseDependence P43.!P43( int ).x
+  52:    3+ ->   18+ outputDependence P43.!P43( int ).x
+  53:    5 ->    1 loopIndependentDefUseDependence P43.!P43( int )
+  54:    5 ->   20 outputDependence P43.!P43( int )
+  55:    6 ->    7 declaration
+  56:    6 ->    7 loopIndependentDefUseDependence b$1
+  57:    6 ->   13 declaration
+  58:    6 ->   13 loopIndependentDefUseDependence b$1
+  59:    6 ->   27 declaration
+  60:    6 ->   27 loopIndependentDefUseDependence b$1
+  61:   11 ->    8 loopIndependentDefUseDependence a$0.!getX( )
+  62:   11 ->   25 outputDependence a$0.!getX( )
+  63:   15 ->   12 loopIndependentDefUseDependence b$1.!getX( )
+  64:   15 ->   29 outputDependence b$1.!getX( )
+  65:   16 ->   21 declaration
+  66:   16 ->   21 loopIndependentDefUseDependence d$5
+  67:   16 ->   31 declaration
+  68:   16 ->   31 loopIndependentDefUseDependence d$5
+  69:   18+ ->   21 loopIndependentDefUseDependence P43.!P43( int ).x
+  70:   18+ ->   24 loopIndependentDefUseDependence P43.!P43( int ).x
+  71:   18+ ->   25 loopIndependentDefUseDependence P43.!P43( int ).x
+  72:   18+ ->   32 loopIndependentDefUseDependence P43.!P43( int ).x
+  73:   18+ ->   33 loopIndependentDefUseDependence P43.!P43( int ).x
+  74:   20 ->   16 loopIndependentDefUseDependence P43.!P43( int )
+  75:   21 ->   23 loopIndependentDefUseDependence a$0
+  76:   25 ->   22 loopIndependentDefUseDependence a$0.!getX( )
+  77:   29 ->   26 loopIndependentDefUseDependence b$1.!getX( )
+  78:   33 ->   30 loopIndependentDefUseDependence d$5.!getX( )
 --
 ----- ClDG (to here) -----
 

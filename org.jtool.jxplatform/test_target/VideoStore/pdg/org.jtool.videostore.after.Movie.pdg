@@ -25,9 +25,9 @@ Class Name = org.jtool.videostore.after.Movie
   22 actualOut D = { org.jtool.videostore.after.ChildrensPrice.!ChildrensPrice( org.jtool.videostore.after.Movie.PriceCode ) } U = {  }
   23 breakSt D = {  } U = {  }
   26 formalOut D = {  } U = { $_ }
-* actualOut D = { super.priceCode } U = {  }
-* actualOut D = { super.priceCode } U = {  }
-* actualOut D = { super.priceCode } U = {  }
+   6+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+  13+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+  20+ actualOutByFieldAccess D = { super.priceCode } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.after.Movie#getPriceCode( ) ]
    1 returnSt D = { $_ } U = { this.price.!getPriceCode( ) }
@@ -47,10 +47,10 @@ Class Name = org.jtool.videostore.after.Movie
    8 actualIn D = {  } U = { priceCode$1 }
    9 actualOut D = { this.!setPriceCode( org.jtool.videostore.after.Movie.PriceCode ) } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR }
   11 formalOut D = {  } U = { $_ }
-* actualOut D = { this.price } U = {  }
-* actualOut D = { this.price } U = {  }
-* actualOut D = { this.price } U = {  }
-* actualOut D = { super.priceCode } U = {  }
+   7+ actualOutByFieldAccess D = { this.price } U = {  }
+   7+ actualOutByFieldAccess D = { this.price } U = {  }
+   7+ actualOutByFieldAccess D = { this.price } U = {  }
+   7+ actualOutByFieldAccess D = { super.priceCode } U = {  }
 --
    0 fieldEntry [ org.jtool.videostore.after.Movie#price ]
    1 fieldDeclaration D = { this.price } U = { this.price }
@@ -95,30 +95,30 @@ Class Name = org.jtool.videostore.after.Movie
   12:    3 ->    4 trueControlDependence
   13:    3 ->    5 trueControlDependence
   14:    3 ->    6 trueControlDependence
-  15:    3 ->    7 trueControlDependence
-  16:    3 ->    8 trueControlDependence
-  17:    3 ->    9 trueControlDependence
-  18:    3 ->   10 falseControlDependence
-  19:    3 -> * trueControlDependence
+  15:    3 ->    6+ trueControlDependence
+  16:    3 ->    7 trueControlDependence
+  17:    3 ->    8 trueControlDependence
+  18:    3 ->    9 trueControlDependence
+  19:    3 ->   10 falseControlDependence
   20:    8 ->    4 loopIndependentDefUseDependence org.jtool.videostore.after.RegularPrice.!RegularPrice( org.jtool.videostore.after.Movie.PriceCode )
   21:    9 ->   10 fallThroughControlDependence
   22:   10 ->   11 trueControlDependence
   23:   10 ->   12 trueControlDependence
   24:   10 ->   13 trueControlDependence
-  25:   10 ->   14 trueControlDependence
-  26:   10 ->   15 trueControlDependence
-  27:   10 ->   16 trueControlDependence
-  28:   10 ->   17 falseControlDependence
-  29:   10 -> * trueControlDependence
+  25:   10 ->   13+ trueControlDependence
+  26:   10 ->   14 trueControlDependence
+  27:   10 ->   15 trueControlDependence
+  28:   10 ->   16 trueControlDependence
+  29:   10 ->   17 falseControlDependence
   30:   15 ->   11 loopIndependentDefUseDependence org.jtool.videostore.after.NewReleasePrice.!NewReleasePrice( org.jtool.videostore.after.Movie.PriceCode )
   31:   16 ->   17 fallThroughControlDependence
   32:   17 ->   18 trueControlDependence
   33:   17 ->   19 trueControlDependence
   34:   17 ->   20 trueControlDependence
-  35:   17 ->   21 trueControlDependence
-  36:   17 ->   22 trueControlDependence
-  37:   17 ->   23 trueControlDependence
-  38:   17 -> * trueControlDependence
+  35:   17 ->   20+ trueControlDependence
+  36:   17 ->   21 trueControlDependence
+  37:   17 ->   22 trueControlDependence
+  38:   17 ->   23 trueControlDependence
   39:   22 ->   18 loopIndependentDefUseDependence org.jtool.videostore.after.ChildrensPrice.!ChildrensPrice( org.jtool.videostore.after.Movie.PriceCode )
 --
    0: getPriceCode( )
@@ -138,19 +138,19 @@ Class Name = org.jtool.videostore.after.Movie
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   11 trueControlDependence
-  11:    0 -> * trueControlDependence
-  12:    0 -> * trueControlDependence
-  13:    0 -> * trueControlDependence
-  14:    0 -> * trueControlDependence
+   8:    0 ->    7+ trueControlDependence
+   9:    0 ->    7+ trueControlDependence
+  10:    0 ->    7+ trueControlDependence
+  11:    0 ->    7+ trueControlDependence
+  12:    0 ->    8 trueControlDependence
+  13:    0 ->    9 trueControlDependence
+  14:    0 ->   11 trueControlDependence
   15:    1 ->    3 loopIndependentDefUseDependence title$0
   16:    1 ->    4 loopIndependentDefUseDependence title$0
   17:    2 ->    8 loopIndependentDefUseDependence priceCode$1
-  18:    9 ->    5 loopIndependentDefUseDependence this.!setPriceCode( org.jtool.videostore.after.Movie.PriceCode )
-  19: * -> * outputDependence this.price
-  20: * -> * outputDependence this.price
+  18:    7+ ->    7+ outputDependence this.price
+  19:    7+ ->    7+ outputDependence this.price
+  20:    9 ->    5 loopIndependentDefUseDependence this.!setPriceCode( org.jtool.videostore.after.Movie.PriceCode )
 --
    0: price
    1:    0 ->    1 trueControlDependence

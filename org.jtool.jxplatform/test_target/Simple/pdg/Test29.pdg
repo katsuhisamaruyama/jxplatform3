@@ -14,7 +14,7 @@ Class Name = Test29
    8 receiver D = {  } U = {  }
    9 constructorCall D = {  } U = {  } TO = Test29$1MyActionListener#MyActionListener( )
   10 actualOut D = { .!MyActionListener( ) } U = {  }
-* actualOut D = { button$1.!addActionListener( java.awt.event.ActionListener ), button$1.!javax.swing.event.EventListenerList.listenerList } U = { button$1.!javax.swing.AbstractButton.listenerList, button$1.!javax.swing.event.EventListenerList.NULL_ARRAY, button$1.!javax.swing.event.EventListenerList.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.listenerList }
+  11 actualOut D = { button$1.!addActionListener( java.awt.event.ActionListener ), button$1.!javax.swing.event.EventListenerList.listenerList } U = { button$1.!javax.swing.AbstractButton.listenerList, button$1.!javax.swing.event.EventListenerList.NULL_ARRAY, button$1.!javax.swing.event.EventListenerList.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.listenerList }
   13 formalOut D = {  } U = { $_ }
 --
    0: Test29( )
@@ -31,13 +31,13 @@ Class Name = Test29
    8:    0 ->    8 trueControlDependence
    9:    0 ->    9 trueControlDependence
   10:    0 ->   10 trueControlDependence
-  11:    0 ->   13 trueControlDependence
-  12:    0 -> * trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   13 trueControlDependence
   13:    1 ->    6 declaration
   14:    1 ->    6 loopIndependentDefUseDependence button$1
   15:    4 ->    1 loopIndependentDefUseDependence javax.swing.JButton.!JButton( java.lang.String )
   16:   10 ->    7 loopIndependentDefUseDependence .!MyActionListener( )
-  17: * ->    5 loopIndependentDefUseDependence button$1.!addActionListener( java.awt.event.ActionListener )
+  17:   11 ->    5 loopIndependentDefUseDependence button$1.!addActionListener( java.awt.event.ActionListener )
 --
 ----- ClDG (to here) -----
 

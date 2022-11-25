@@ -10,7 +10,7 @@ Class Name = Enum60
    2 constructorCall D = {  } U = {  } TO = Enum60#Enum60( int )
    3 actualIn D = {  } U = {  }
    4 actualOut D = { Enum60.!Enum60( int ) } U = {  }
-* actualOut D = { Enum60.!Enum60( int ).x } U = {  }
+   2+ actualOutByFieldAccess D = { Enum60.!Enum60( int ).x } U = {  }
 --
    0 fieldEntry [ Enum60#x ]
    1 fieldDeclaration D = { this.x } U = { this.x }
@@ -20,7 +20,7 @@ Class Name = Enum60
    2 constructorCall D = {  } U = {  } TO = Enum60#Enum60( int )
    3 actualIn D = {  } U = {  }
    4 actualOut D = { Enum60.!Enum60( int ) } U = {  }
-* actualOut D = { Enum60.!Enum60( int ).x } U = {  }
+   2+ actualOutByFieldAccess D = { Enum60.!Enum60( int ).x } U = {  }
 --
    0: Enum60( int )
    1:    0 ->    1 trueControlDependence
@@ -31,9 +31,9 @@ Class Name = Enum60
    0: X
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
-   3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 -> * trueControlDependence
+   3:    0 ->    2+ trueControlDependence
+   4:    0 ->    3 trueControlDependence
+   5:    0 ->    4 trueControlDependence
    6:    4 ->    1 loopIndependentDefUseDependence Enum60.!Enum60( int )
 --
    0: x
@@ -42,9 +42,9 @@ Class Name = Enum60
    0: Y
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
-   3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 -> * trueControlDependence
+   3:    0 ->    2+ trueControlDependence
+   4:    0 ->    3 trueControlDependence
+   5:    0 ->    4 trueControlDependence
    6:    4 ->    1 loopIndependentDefUseDependence Enum60.!Enum60( int )
 --
 ----- ClDG (to here) -----

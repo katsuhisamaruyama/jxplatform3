@@ -9,7 +9,7 @@ Class Name = ThreadB
    3 assignment D = {  } U = { System.out.!println( java.lang.String ) }
    4 receiver D = {  } U = { System.out }
    5 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, i$0 } TO = java.io.PrintStream#println( java.lang.String )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+   6 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
    7 assignment D = { i$0 } U = { i$0 }
    9 formalOut D = {  } U = { $_ }
 --
@@ -29,14 +29,14 @@ Class Name = ThreadB
   10:    2 ->    3 trueControlDependence
   11:    2 ->    4 trueControlDependence
   12:    2 ->    5 trueControlDependence
-  13:    2 ->    7 trueControlDependence
-  14:    2 -> * trueControlDependence
-  15:    7 ->    2 loopCarriedDefUseDependence i$0 (LC = 2)
-  16:    7 ->    5 loopCarriedDefUseDependence i$0 (LC = 2)
-  17:    7 ->    7 loopCarriedDefUseDependence i$0 (LC = 2)
-  18: * ->    3 loopIndependentDefUseDependence System.out.!println( java.lang.String )
-  19: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
-  20: * -> * defOrderDependence System.out.!println( java.lang.String )
+  13:    2 ->    6 trueControlDependence
+  14:    2 ->    7 trueControlDependence
+  15:    6 ->    3 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+  16:    6 ->    6 defOrderDependence System.out.!java.io.PrintStream.trouble
+  17:    6 ->    6 defOrderDependence System.out.!println( java.lang.String )
+  18:    7 ->    2 loopCarriedDefUseDependence i$0 (LC = 2)
+  19:    7 ->    5 loopCarriedDefUseDependence i$0 (LC = 2)
+  20:    7 ->    7 loopCarriedDefUseDependence i$0 (LC = 2)
 --
 ----- ClDG (to here) -----
 

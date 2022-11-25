@@ -17,7 +17,7 @@ Class Name = Sample5
   11 assignment D = {  } U = { line$2.!draw( ) }
   12 receiver D = {  } U = { line$2 }
   13 methodCall D = {  } U = { Line.!Line( int int int int ).System.out.!java.io.PrintStream.autoFlush, Line.!Line( int int int int ).System.out.!java.io.PrintStream.charOut, Line.!Line( int int int int ).System.out.!java.io.PrintStream.out, Line.!Line( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, line$2.System.out.!java.io.PrintStream.autoFlush, line$2.System.out.!java.io.PrintStream.charOut, line$2.System.out.!java.io.PrintStream.out, line$2.System.out.!java.io.PrintStream.textOut } TO = Line#draw( )
-* actualOut D = { line$2.!draw( ), line$2.System.out.!java.io.PrintStream.trouble } U = { Line.!Line( int int int int ).System.out.!java.io.PrintStream.autoFlush, Line.!Line( int int int int ).System.out.!java.io.PrintStream.charOut, Line.!Line( int int int int ).System.out.!java.io.PrintStream.out, Line.!Line( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, line$2.System.out.!java.io.PrintStream.autoFlush, line$2.System.out.!java.io.PrintStream.charOut, line$2.System.out.!java.io.PrintStream.out, line$2.System.out.!java.io.PrintStream.textOut }
+  14 actualOut D = { line$2.!draw( ), line$2.System.out.!java.io.PrintStream.trouble } U = { Line.!Line( int int int int ).System.out.!java.io.PrintStream.autoFlush, Line.!Line( int int int int ).System.out.!java.io.PrintStream.charOut, Line.!Line( int int int int ).System.out.!java.io.PrintStream.out, Line.!Line( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, line$2.System.out.!java.io.PrintStream.autoFlush, line$2.System.out.!java.io.PrintStream.charOut, line$2.System.out.!java.io.PrintStream.out, line$2.System.out.!java.io.PrintStream.textOut }
   15 localDeclaration D = { rectangle$3 } U = { Rectangle.!Rectangle( int int int int ) }
   16 receiver D = {  } U = {  }
   17 constructorCall D = {  } U = {  } TO = Rectangle#Rectangle( int int int int )
@@ -29,26 +29,26 @@ Class Name = Sample5
   23 assignment D = {  } U = { rectangle$3.!draw( ) }
   24 receiver D = {  } U = { rectangle$3 }
   25 methodCall D = {  } U = { Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.autoFlush, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.charOut, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.out, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, rectangle$3.System.out.!java.io.PrintStream.autoFlush, rectangle$3.System.out.!java.io.PrintStream.charOut, rectangle$3.System.out.!java.io.PrintStream.out, rectangle$3.System.out.!java.io.PrintStream.textOut } TO = Rectangle#draw( )
-* actualOut D = { rectangle$3.!draw( ), rectangle$3.System.out.!java.io.PrintStream.trouble } U = { Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.autoFlush, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.charOut, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.out, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, rectangle$3.System.out.!java.io.PrintStream.autoFlush, rectangle$3.System.out.!java.io.PrintStream.charOut, rectangle$3.System.out.!java.io.PrintStream.out, rectangle$3.System.out.!java.io.PrintStream.textOut }
+  26 actualOut D = { rectangle$3.!draw( ), rectangle$3.System.out.!java.io.PrintStream.trouble } U = { Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.autoFlush, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.charOut, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.out, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, rectangle$3.System.out.!java.io.PrintStream.autoFlush, rectangle$3.System.out.!java.io.PrintStream.charOut, rectangle$3.System.out.!java.io.PrintStream.out, rectangle$3.System.out.!java.io.PrintStream.textOut }
   27 assignment D = { shape$1 } U = { line$2 }
   28 assignment D = {  } U = { shape$1.!draw( ) }
   29 receiver D = {  } U = { line$2, shape$1 }
   30 methodCall D = {  } U = { Line.!Line( int int int int ).System.out.!java.io.PrintStream.autoFlush, Line.!Line( int int int int ).System.out.!java.io.PrintStream.charOut, Line.!Line( int int int int ).System.out.!java.io.PrintStream.out, Line.!Line( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, line$2.System.out.!java.io.PrintStream.autoFlush, line$2.System.out.!java.io.PrintStream.charOut, line$2.System.out.!java.io.PrintStream.out, line$2.System.out.!java.io.PrintStream.textOut, shape$1.System.out.!java.io.PrintStream.autoFlush, shape$1.System.out.!java.io.PrintStream.charOut, shape$1.System.out.!java.io.PrintStream.out, shape$1.System.out.!java.io.PrintStream.textOut } TO = Shape#draw( )
-* actualOut D = { shape$1.!draw( ), shape$1.System.out.!java.io.PrintStream.trouble } U = { Line.!Line( int int int int ).System.out.!java.io.PrintStream.autoFlush, Line.!Line( int int int int ).System.out.!java.io.PrintStream.charOut, Line.!Line( int int int int ).System.out.!java.io.PrintStream.out, Line.!Line( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, line$2.System.out.!java.io.PrintStream.autoFlush, line$2.System.out.!java.io.PrintStream.charOut, line$2.System.out.!java.io.PrintStream.out, line$2.System.out.!java.io.PrintStream.textOut, shape$1.System.out.!java.io.PrintStream.autoFlush, shape$1.System.out.!java.io.PrintStream.charOut, shape$1.System.out.!java.io.PrintStream.out, shape$1.System.out.!java.io.PrintStream.textOut }
+  31 actualOut D = { shape$1.!draw( ), shape$1.System.out.!java.io.PrintStream.trouble } U = { Line.!Line( int int int int ).System.out.!java.io.PrintStream.autoFlush, Line.!Line( int int int int ).System.out.!java.io.PrintStream.charOut, Line.!Line( int int int int ).System.out.!java.io.PrintStream.out, Line.!Line( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, line$2.System.out.!java.io.PrintStream.autoFlush, line$2.System.out.!java.io.PrintStream.charOut, line$2.System.out.!java.io.PrintStream.out, line$2.System.out.!java.io.PrintStream.textOut, shape$1.System.out.!java.io.PrintStream.autoFlush, shape$1.System.out.!java.io.PrintStream.charOut, shape$1.System.out.!java.io.PrintStream.out, shape$1.System.out.!java.io.PrintStream.textOut }
   32 assignment D = { shape$1 } U = { rectangle$3 }
   33 assignment D = {  } U = { shape$1.!draw( ) }
   34 receiver D = {  } U = { rectangle$3, shape$1 }
   35 methodCall D = {  } U = { Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.autoFlush, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.charOut, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.out, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, rectangle$3.System.out.!java.io.PrintStream.autoFlush, rectangle$3.System.out.!java.io.PrintStream.charOut, rectangle$3.System.out.!java.io.PrintStream.out, rectangle$3.System.out.!java.io.PrintStream.textOut, shape$1.System.out.!java.io.PrintStream.autoFlush, shape$1.System.out.!java.io.PrintStream.charOut, shape$1.System.out.!java.io.PrintStream.out, shape$1.System.out.!java.io.PrintStream.textOut } TO = Shape#draw( )
-* actualOut D = { shape$1.!draw( ), shape$1.System.out.!java.io.PrintStream.trouble } U = { Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.autoFlush, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.charOut, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.out, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, rectangle$3.System.out.!java.io.PrintStream.autoFlush, rectangle$3.System.out.!java.io.PrintStream.charOut, rectangle$3.System.out.!java.io.PrintStream.out, rectangle$3.System.out.!java.io.PrintStream.textOut, shape$1.System.out.!java.io.PrintStream.autoFlush, shape$1.System.out.!java.io.PrintStream.charOut, shape$1.System.out.!java.io.PrintStream.out, shape$1.System.out.!java.io.PrintStream.textOut }
+  36 actualOut D = { shape$1.!draw( ), shape$1.System.out.!java.io.PrintStream.trouble } U = { Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.autoFlush, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.charOut, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.out, Rectangle.!Rectangle( int int int int ).System.out.!java.io.PrintStream.textOut, System.out, rectangle$3.System.out.!java.io.PrintStream.autoFlush, rectangle$3.System.out.!java.io.PrintStream.charOut, rectangle$3.System.out.!java.io.PrintStream.out, rectangle$3.System.out.!java.io.PrintStream.textOut, shape$1.System.out.!java.io.PrintStream.autoFlush, shape$1.System.out.!java.io.PrintStream.charOut, shape$1.System.out.!java.io.PrintStream.out, shape$1.System.out.!java.io.PrintStream.textOut }
   38 formalOut D = {  } U = { $_ }
-* actualOut D = { super.x1 } U = {  }
-* actualOut D = { super.x2 } U = {  }
-* actualOut D = { super.y1 } U = {  }
-* actualOut D = { super.y2 } U = {  }
-* actualOut D = { super.x1 } U = {  }
-* actualOut D = { super.x2 } U = {  }
-* actualOut D = { super.y1 } U = {  }
-* actualOut D = { super.y2 } U = {  }
+   5+ actualOutByFieldAccess D = { super.x1 } U = {  }
+   5+ actualOutByFieldAccess D = { super.x2 } U = {  }
+   5+ actualOutByFieldAccess D = { super.y1 } U = {  }
+   5+ actualOutByFieldAccess D = { super.y2 } U = {  }
+  17+ actualOutByFieldAccess D = { super.x1 } U = {  }
+  17+ actualOutByFieldAccess D = { super.x2 } U = {  }
+  17+ actualOutByFieldAccess D = { super.y1 } U = {  }
+  17+ actualOutByFieldAccess D = { super.y2 } U = {  }
 --
    0: Sample5( )
    1:    0 ->    2 trueControlDependence
@@ -59,46 +59,46 @@ Class Name = Sample5
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   15 trueControlDependence
-  15:    0 ->   16 trueControlDependence
-  16:    0 ->   17 trueControlDependence
-  17:    0 ->   18 trueControlDependence
-  18:    0 ->   19 trueControlDependence
-  19:    0 ->   20 trueControlDependence
-  20:    0 ->   21 trueControlDependence
-  21:    0 ->   22 trueControlDependence
-  22:    0 ->   23 trueControlDependence
-  23:    0 ->   24 trueControlDependence
-  24:    0 ->   25 trueControlDependence
-  25:    0 ->   27 trueControlDependence
-  26:    0 ->   28 trueControlDependence
-  27:    0 ->   29 trueControlDependence
-  28:    0 ->   30 trueControlDependence
-  29:    0 ->   32 trueControlDependence
-  30:    0 ->   33 trueControlDependence
-  31:    0 ->   34 trueControlDependence
-  32:    0 ->   35 trueControlDependence
-  33:    0 ->   38 trueControlDependence
-  34:    0 -> * trueControlDependence
-  35:    0 -> * trueControlDependence
-  36:    0 -> * trueControlDependence
-  37:    0 -> * trueControlDependence
-  38:    0 -> * trueControlDependence
-  39:    0 -> * trueControlDependence
-  40:    0 -> * trueControlDependence
-  41:    0 -> * trueControlDependence
-  42:    0 -> * trueControlDependence
-  43:    0 -> * trueControlDependence
-  44:    0 -> * trueControlDependence
-  45:    0 -> * trueControlDependence
+   6:    0 ->    5+ trueControlDependence
+   7:    0 ->    5+ trueControlDependence
+   8:    0 ->    5+ trueControlDependence
+   9:    0 ->    5+ trueControlDependence
+  10:    0 ->    6 trueControlDependence
+  11:    0 ->    7 trueControlDependence
+  12:    0 ->    8 trueControlDependence
+  13:    0 ->    9 trueControlDependence
+  14:    0 ->   10 trueControlDependence
+  15:    0 ->   11 trueControlDependence
+  16:    0 ->   12 trueControlDependence
+  17:    0 ->   13 trueControlDependence
+  18:    0 ->   14 trueControlDependence
+  19:    0 ->   15 trueControlDependence
+  20:    0 ->   16 trueControlDependence
+  21:    0 ->   17 trueControlDependence
+  22:    0 ->   17+ trueControlDependence
+  23:    0 ->   17+ trueControlDependence
+  24:    0 ->   17+ trueControlDependence
+  25:    0 ->   17+ trueControlDependence
+  26:    0 ->   18 trueControlDependence
+  27:    0 ->   19 trueControlDependence
+  28:    0 ->   20 trueControlDependence
+  29:    0 ->   21 trueControlDependence
+  30:    0 ->   22 trueControlDependence
+  31:    0 ->   23 trueControlDependence
+  32:    0 ->   24 trueControlDependence
+  33:    0 ->   25 trueControlDependence
+  34:    0 ->   26 trueControlDependence
+  35:    0 ->   27 trueControlDependence
+  36:    0 ->   28 trueControlDependence
+  37:    0 ->   29 trueControlDependence
+  38:    0 ->   30 trueControlDependence
+  39:    0 ->   31 trueControlDependence
+  40:    0 ->   32 trueControlDependence
+  41:    0 ->   33 trueControlDependence
+  42:    0 ->   34 trueControlDependence
+  43:    0 ->   35 trueControlDependence
+  44:    0 ->   36 trueControlDependence
+  45:    0 ->   38 trueControlDependence
   46:    2 ->   27 declaration
   47:    2 ->   27 outputDependence shape$1
   48:    2 ->   29 declaration
@@ -110,27 +110,27 @@ Class Name = Sample5
   54:    3 ->   27 loopIndependentDefUseDependence line$2
   55:    3 ->   29 declaration
   56:    3 ->   29 loopIndependentDefUseDependence line$2
-  57:   10 ->    3 loopIndependentDefUseDependence Line.!Line( int int int int )
-  58:   15 ->   24 declaration
-  59:   15 ->   24 loopIndependentDefUseDependence rectangle$3
-  60:   15 ->   32 declaration
-  61:   15 ->   32 loopIndependentDefUseDependence rectangle$3
-  62:   15 ->   34 declaration
-  63:   15 ->   34 loopIndependentDefUseDependence rectangle$3
-  64:   22 ->   15 loopIndependentDefUseDependence Rectangle.!Rectangle( int int int int )
-  65:   27 ->   29 loopIndependentDefUseDependence shape$1
-  66:   27 ->   32 outputDependence shape$1
-  67:   32 ->   34 loopIndependentDefUseDependence shape$1
-  68: * ->   11 loopIndependentDefUseDependence line$2.!draw( )
-  69: * ->   23 loopIndependentDefUseDependence rectangle$3.!draw( )
-  70: * ->   28 loopIndependentDefUseDependence shape$1.!draw( )
-  71: * ->   33 loopIndependentDefUseDependence shape$1.!draw( )
-  72: * -> * outputDependence shape$1.!draw( )
-  73: * -> * outputDependence shape$1.System.out.!java.io.PrintStream.trouble
-  74: * -> * outputDependence super.x1
-  75: * -> * outputDependence super.x2
-  76: * -> * outputDependence super.y1
-  77: * -> * outputDependence super.y2
+  57:    5+ ->   17+ outputDependence super.x1
+  58:    5+ ->   17+ outputDependence super.x2
+  59:    5+ ->   17+ outputDependence super.y1
+  60:    5+ ->   17+ outputDependence super.y2
+  61:   10 ->    3 loopIndependentDefUseDependence Line.!Line( int int int int )
+  62:   14 ->   11 loopIndependentDefUseDependence line$2.!draw( )
+  63:   15 ->   24 declaration
+  64:   15 ->   24 loopIndependentDefUseDependence rectangle$3
+  65:   15 ->   32 declaration
+  66:   15 ->   32 loopIndependentDefUseDependence rectangle$3
+  67:   15 ->   34 declaration
+  68:   15 ->   34 loopIndependentDefUseDependence rectangle$3
+  69:   22 ->   15 loopIndependentDefUseDependence Rectangle.!Rectangle( int int int int )
+  70:   26 ->   23 loopIndependentDefUseDependence rectangle$3.!draw( )
+  71:   27 ->   29 loopIndependentDefUseDependence shape$1
+  72:   27 ->   32 outputDependence shape$1
+  73:   31 ->   28 loopIndependentDefUseDependence shape$1.!draw( )
+  74:   31 ->   36 outputDependence shape$1.!draw( )
+  75:   31 ->   36 outputDependence shape$1.System.out.!java.io.PrintStream.trouble
+  76:   32 ->   34 loopIndependentDefUseDependence shape$1
+  77:   36 ->   33 loopIndependentDefUseDependence shape$1.!draw( )
 --
 ----- ClDG (to here) -----
 

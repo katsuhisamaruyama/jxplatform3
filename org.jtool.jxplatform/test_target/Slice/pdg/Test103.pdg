@@ -39,10 +39,10 @@ Class Name = Test103
   33 methodCall D = {  } U = { this.a } TO = Test103#getA( )
   34 actualOut D = { this.!getA( ) } U = { this.a }
   36 formalOut D = {  } U = { $_ }
-* actualOut D = { this.a } U = {  }
-* actualOut D = { this.a } U = {  }
-* actualOut D = { this.a } U = {  }
-* actualOut D = { this.a } U = {  }
+   6+ actualOutByFieldAccess D = { this.a } U = {  }
+  11+ actualOutByFieldAccess D = { this.a } U = {  }
+  25+ actualOutByFieldAccess D = { this.a } U = {  }
+  29+ actualOutByFieldAccess D = { this.a } U = {  }
 --
    0 methodEntry [ Test103#getA( ) ]
    1 returnSt D = { $_ } U = { this.a }
@@ -70,67 +70,67 @@ Class Name = Test103
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   25 trueControlDependence
-  26:    0 ->   26 trueControlDependence
-  27:    0 ->   27 trueControlDependence
-  28:    0 ->   28 trueControlDependence
-  29:    0 ->   29 trueControlDependence
-  30:    0 ->   30 trueControlDependence
-  31:    0 ->   31 trueControlDependence
-  32:    0 ->   32 trueControlDependence
-  33:    0 ->   33 trueControlDependence
-  34:    0 ->   34 trueControlDependence
-  35:    0 ->   36 trueControlDependence
-  36:    0 -> * trueControlDependence
-  37:    0 -> * trueControlDependence
-  38:    0 -> * trueControlDependence
-  39:    0 -> * trueControlDependence
+   7:    0 ->    6+ trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   11+ trueControlDependence
+  14:    0 ->   12 trueControlDependence
+  15:    0 ->   13 trueControlDependence
+  16:    0 ->   14 trueControlDependence
+  17:    0 ->   15 trueControlDependence
+  18:    0 ->   16 trueControlDependence
+  19:    0 ->   17 trueControlDependence
+  20:    0 ->   18 trueControlDependence
+  21:    0 ->   19 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   25 trueControlDependence
+  28:    0 ->   25+ trueControlDependence
+  29:    0 ->   26 trueControlDependence
+  30:    0 ->   27 trueControlDependence
+  31:    0 ->   28 trueControlDependence
+  32:    0 ->   29 trueControlDependence
+  33:    0 ->   29+ trueControlDependence
+  34:    0 ->   30 trueControlDependence
+  35:    0 ->   31 trueControlDependence
+  36:    0 ->   32 trueControlDependence
+  37:    0 ->   33 trueControlDependence
+  38:    0 ->   34 trueControlDependence
+  39:    0 ->   36 trueControlDependence
   40:    1 ->    2 outputDependence this.a
   41:    2 ->    3 loopIndependentDefUseDependence this.a
-  42:    2 -> * outputDependence this.a
-  43:    8 ->    4 loopIndependentDefUseDependence this.!setA( int )
-  44:    8 ->   13 outputDependence this.!setA( int )
-  45:   13 ->    9 loopIndependentDefUseDependence this.!setA( int )
-  46:   18 ->   15 loopIndependentDefUseDependence this.!getA( )
-  47:   18 ->   22 outputDependence this.!getA( )
-  48:   22 ->   19 loopIndependentDefUseDependence this.!getA( )
-  49:   22 ->   34 outputDependence this.!getA( )
-  50:   26 ->   23 loopIndependentDefUseDependence this.!incA( )
-  51:   26 ->   30 outputDependence this.!incA( )
-  52:   30 ->   27 loopIndependentDefUseDependence this.!incA( )
-  53:   34 ->   31 loopIndependentDefUseDependence this.!getA( )
-  54: * ->   14 loopIndependentDefUseDependence this.a
-  55: * ->   17 loopIndependentDefUseDependence this.a
-  56: * ->   18 loopIndependentDefUseDependence this.a
-  57: * ->   21 loopIndependentDefUseDependence this.a
-  58: * ->   22 loopIndependentDefUseDependence this.a
-  59: * ->   25 loopIndependentDefUseDependence this.a
-  60: * ->   26 loopIndependentDefUseDependence this.a
-  61: * ->   29 loopIndependentDefUseDependence this.a
-  62: * ->   30 loopIndependentDefUseDependence this.a
-  63: * ->   33 loopIndependentDefUseDependence this.a
-  64: * ->   34 loopIndependentDefUseDependence this.a
-  65: * -> * outputDependence this.a
-  66: * -> * outputDependence this.a
-  67: * -> * outputDependence this.a
+  42:    2 ->    6+ outputDependence this.a
+  43:    6+ ->   11+ outputDependence this.a
+  44:    8 ->    4 loopIndependentDefUseDependence this.!setA( int )
+  45:    8 ->   13 outputDependence this.!setA( int )
+  46:   11+ ->   14 loopIndependentDefUseDependence this.a
+  47:   11+ ->   17 loopIndependentDefUseDependence this.a
+  48:   11+ ->   18 loopIndependentDefUseDependence this.a
+  49:   11+ ->   21 loopIndependentDefUseDependence this.a
+  50:   11+ ->   22 loopIndependentDefUseDependence this.a
+  51:   11+ ->   25 loopIndependentDefUseDependence this.a
+  52:   11+ ->   25+ outputDependence this.a
+  53:   13 ->    9 loopIndependentDefUseDependence this.!setA( int )
+  54:   18 ->   15 loopIndependentDefUseDependence this.!getA( )
+  55:   18 ->   22 outputDependence this.!getA( )
+  56:   22 ->   19 loopIndependentDefUseDependence this.!getA( )
+  57:   22 ->   34 outputDependence this.!getA( )
+  58:   25+ ->   26 loopIndependentDefUseDependence this.a
+  59:   25+ ->   29 loopIndependentDefUseDependence this.a
+  60:   25+ ->   29+ outputDependence this.a
+  61:   26 ->   23 loopIndependentDefUseDependence this.!incA( )
+  62:   26 ->   30 outputDependence this.!incA( )
+  63:   29+ ->   30 loopIndependentDefUseDependence this.a
+  64:   29+ ->   33 loopIndependentDefUseDependence this.a
+  65:   29+ ->   34 loopIndependentDefUseDependence this.a
+  66:   30 ->   27 loopIndependentDefUseDependence this.!incA( )
+  67:   34 ->   31 loopIndependentDefUseDependence this.!getA( )
 --
    0: getA( )
    1:    0 ->    1 trueControlDependence

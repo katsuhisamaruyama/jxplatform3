@@ -15,9 +15,9 @@ Class Name = org.jtool.videostore.use.CustomerUse
    9 receiver D = {  } U = { customer$0 }
   10 methodCall D = {  } U = { customer$0.name, org.jtool.videostore.after.Customer.!Customer( java.lang.String ).name } TO = org.jtool.videostore.after.Customer#getName( )
   11 actualOut D = { customer$0.!getName( ) } U = { customer$0.name, org.jtool.videostore.after.Customer.!Customer( java.lang.String ).name }
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  12 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   14 formalOut D = {  } U = { $_ }
-* actualOut D = { org.jtool.videostore.after.Customer.!Customer( java.lang.String ).name } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Customer.!Customer( java.lang.String ).name } U = {  }
 --
    0: CustomerUse( )
    1:    0 ->    2 trueControlDependence
@@ -26,24 +26,24 @@ Class Name = org.jtool.videostore.use.CustomerUse
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   14 trueControlDependence
-  13:    0 -> * trueControlDependence
-  14:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   12 trueControlDependence
+  14:    0 ->   14 trueControlDependence
   15:    1 ->    9 declaration
   16:    1 ->    9 loopIndependentDefUseDependence customer$0
-  17:    5 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Customer.!Customer( java.lang.String )
-  18:   11 ->    8 loopIndependentDefUseDependence customer$0.!getName( )
-  19: * ->    6 loopIndependentDefUseDependence System.out.!println( java.lang.String )
-  20: * ->   10 loopIndependentDefUseDependence org.jtool.videostore.after.Customer.!Customer( java.lang.String ).name
-  21: * ->   11 loopIndependentDefUseDependence org.jtool.videostore.after.Customer.!Customer( java.lang.String ).name
+  17:    3+ ->   10 loopIndependentDefUseDependence org.jtool.videostore.after.Customer.!Customer( java.lang.String ).name
+  18:    3+ ->   11 loopIndependentDefUseDependence org.jtool.videostore.after.Customer.!Customer( java.lang.String ).name
+  19:    5 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Customer.!Customer( java.lang.String )
+  20:   11 ->    8 loopIndependentDefUseDependence customer$0.!getName( )
+  21:   12 ->    6 loopIndependentDefUseDependence System.out.!println( java.lang.String )
 --
 ----- ClDG (to here) -----
 

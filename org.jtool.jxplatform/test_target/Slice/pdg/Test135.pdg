@@ -42,10 +42,10 @@ Class Name = Test135
   24 actualOut D = { this.s2.!get2( java.lang.String ) } U = { this.s2.key, this.s2.key$0.!java.lang.String.COMPACT_STRINGS, this.s2.key$0.!java.lang.String.coder, this.s2.key$0.!java.lang.String.value, this.s2.value }
   25 assignment D = { this.s1.value } U = { $java.lang.String, this.s1, this.s1.key, this.s1.value }
   27 formalOut D = {  } U = { $_ }
-* actualOut D = { this.s1.key } U = {  }
-* actualOut D = { this.s1.value } U = {  }
-* actualOut D = { this.s2.key } U = {  }
-* actualOut D = { this.s2.value } U = {  }
+   4+ actualOutByFieldAccess D = { this.s1.key } U = {  }
+   4+ actualOutByFieldAccess D = { this.s1.value } U = {  }
+  10+ actualOutByFieldAccess D = { this.s2.key } U = {  }
+  10+ actualOutByFieldAccess D = { this.s2.value } U = {  }
 --
    0: Test135( )
    1:    0 ->    2 trueControlDependence
@@ -69,48 +69,48 @@ Class Name = Test135
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   25 trueControlDependence
-  26:    0 ->   27 trueControlDependence
-  27:    0 -> * trueControlDependence
-  28:    0 -> * trueControlDependence
-  29:    0 -> * trueControlDependence
-  30:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    4+ trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   10+ trueControlDependence
+  14:    0 ->   10+ trueControlDependence
+  15:    0 ->   11 trueControlDependence
+  16:    0 ->   12 trueControlDependence
+  17:    0 ->   13 trueControlDependence
+  18:    0 ->   14 trueControlDependence
+  19:    0 ->   15 trueControlDependence
+  20:    0 ->   16 trueControlDependence
+  21:    0 ->   17 trueControlDependence
+  22:    0 ->   18 trueControlDependence
+  23:    0 ->   19 trueControlDependence
+  24:    0 ->   20 trueControlDependence
+  25:    0 ->   21 trueControlDependence
+  26:    0 ->   22 trueControlDependence
+  27:    0 ->   23 trueControlDependence
+  28:    0 ->   24 trueControlDependence
+  29:    0 ->   25 trueControlDependence
+  30:    0 ->   27 trueControlDependence
   31:    1 ->   14 declaration
   32:    1 ->   14 loopIndependentDefUseDependence a$0
-  33:    7 ->    2 loopIndependentDefUseDependence this.s1.!set2( java.lang.String java.lang.String )
-  34:   13 ->    8 loopIndependentDefUseDependence this.s2.!set2( java.lang.String java.lang.String )
-  35:   19 ->   15 loopIndependentDefUseDependence this.s1.!get2( java.lang.String )
-  36:   24 ->   20 loopIndependentDefUseDependence this.s2.!get2( java.lang.String )
-  37: * ->   17 loopIndependentDefUseDependence this.s1.key
-  38: * ->   17 loopIndependentDefUseDependence this.s1.value
-  39: * ->   19 loopIndependentDefUseDependence this.s1.key
-  40: * ->   19 loopIndependentDefUseDependence this.s1.value
-  41: * ->   22 loopIndependentDefUseDependence this.s2.key
-  42: * ->   22 loopIndependentDefUseDependence this.s2.value
-  43: * ->   24 loopIndependentDefUseDependence this.s2.key
-  44: * ->   24 loopIndependentDefUseDependence this.s2.value
-  45: * ->   25 loopIndependentDefUseDependence this.s1.key
-  46: * ->   25 loopIndependentDefUseDependence this.s1.value
+  33:    4+ ->   17 loopIndependentDefUseDependence this.s1.key
+  34:    4+ ->   17 loopIndependentDefUseDependence this.s1.value
+  35:    4+ ->   19 loopIndependentDefUseDependence this.s1.key
+  36:    4+ ->   19 loopIndependentDefUseDependence this.s1.value
+  37:    4+ ->   25 loopIndependentDefUseDependence this.s1.key
+  38:    4+ ->   25 loopIndependentDefUseDependence this.s1.value
+  39:    7 ->    2 loopIndependentDefUseDependence this.s1.!set2( java.lang.String java.lang.String )
+  40:   10+ ->   22 loopIndependentDefUseDependence this.s2.key
+  41:   10+ ->   22 loopIndependentDefUseDependence this.s2.value
+  42:   10+ ->   24 loopIndependentDefUseDependence this.s2.key
+  43:   10+ ->   24 loopIndependentDefUseDependence this.s2.value
+  44:   13 ->    8 loopIndependentDefUseDependence this.s2.!set2( java.lang.String java.lang.String )
+  45:   19 ->   15 loopIndependentDefUseDependence this.s1.!get2( java.lang.String )
+  46:   24 ->   20 loopIndependentDefUseDependence this.s2.!get2( java.lang.String )
 --
 ----- ClDG (to here) -----
 

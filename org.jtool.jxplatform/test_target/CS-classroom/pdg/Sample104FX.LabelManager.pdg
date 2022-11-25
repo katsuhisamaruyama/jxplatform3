@@ -5,12 +5,12 @@ Class Name = Sample104FX.LabelManager
    2 assignment D = {  } U = { this.label.!setText( java.lang.String ) }
    3 receiver D = {  } U = { this.label }
    4 methodCall D = {  } U = { $java.lang.String, this.label.!javafx.scene.control.Labeled.text } TO = javafx.scene.control.Labeled#setText( java.lang.String )
-* actualOut D = { this.label.!javafx.scene.control.Labeled.text, this.label.!setText( java.lang.String ) } U = { this.label.!javafx.scene.control.Labeled.text }
+   5 actualOut D = { this.label.!javafx.scene.control.Labeled.text, this.label.!setText( java.lang.String ) } U = { this.label.!javafx.scene.control.Labeled.text }
    6 assignment D = { this.flag } U = {  }
    7 assignment D = {  } U = { this.label.!setText( java.lang.String ) }
    8 receiver D = {  } U = { this.label }
    9 methodCall D = {  } U = { $java.lang.String, this.label.!javafx.scene.control.Labeled.text } TO = javafx.scene.control.Labeled#setText( java.lang.String )
-* actualOut D = { this.label.!javafx.scene.control.Labeled.text, this.label.!setText( java.lang.String ) } U = { this.label.!javafx.scene.control.Labeled.text }
+  10 actualOut D = { this.label.!javafx.scene.control.Labeled.text, this.label.!setText( java.lang.String ) } U = { this.label.!javafx.scene.control.Labeled.text }
   11 assignment D = { this.flag } U = {  }
   14 formalOut D = {  } U = { $_ }
 --
@@ -31,15 +31,15 @@ Class Name = Sample104FX.LabelManager
    3:    1 ->    2 trueControlDependence
    4:    1 ->    3 trueControlDependence
    5:    1 ->    4 trueControlDependence
-   6:    1 ->    6 trueControlDependence
-   7:    1 ->    7 falseControlDependence
-   8:    1 ->    8 falseControlDependence
-   9:    1 ->    9 falseControlDependence
-  10:    1 ->   11 falseControlDependence
-  11:    1 -> * falseControlDependence
-  12:    1 -> * trueControlDependence
-  13: * ->    2 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
-  14: * ->    7 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
+   6:    1 ->    5 trueControlDependence
+   7:    1 ->    6 trueControlDependence
+   8:    1 ->    7 falseControlDependence
+   9:    1 ->    8 falseControlDependence
+  10:    1 ->    9 falseControlDependence
+  11:    1 ->   10 falseControlDependence
+  12:    1 ->   11 falseControlDependence
+  13:    5 ->    2 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
+  14:   10 ->    7 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
 --
    0: flag
    1:    0 ->    1 trueControlDependence

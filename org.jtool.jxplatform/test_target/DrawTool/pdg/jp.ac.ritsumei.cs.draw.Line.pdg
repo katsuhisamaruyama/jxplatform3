@@ -48,8 +48,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    7 actualIn D = {  } U = { w$1 }
    8 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) } U = {  }
   10 formalOut D = {  } U = { $_ }
-* actualOut D = { super.color } U = {  }
-* actualOut D = { super.outlineWidth } U = {  }
+   5+ actualOutByFieldAccess D = { super.color } U = {  }
+   5+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
 --
    0 constructorEntry [ jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color ) ]
    1 formalIn D = { c$0 } U = {  }
@@ -59,8 +59,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    5 actualIn D = {  } U = { c$0 }
    6 actualOut D = { super.!Figure( java.awt.Color ) } U = {  }
    8 formalOut D = {  } U = { $_ }
-* actualOut D = { this.color } U = {  }
-* actualOut D = { this.outlineWidth } U = {  }
+   4+ actualOutByFieldAccess D = { this.color } U = {  }
+   4+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#createClone( ) ]
    1 localDeclaration D = { figure$0 } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) }
@@ -83,12 +83,12 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
   18 actualOut D = { figure$0.!setEnd( int int ) } U = {  }
   19 returnSt D = { $_ } U = { figure$0, figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).endX, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).endY, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).startX, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).startY }
   21 formalOut D = {  } U = { $_ }
-* actualOut D = { super.color } U = {  }
-* actualOut D = { super.outlineWidth } U = {  }
-* actualOut D = { figure$0.startX } U = {  }
-* actualOut D = { figure$0.startY } U = {  }
-* actualOut D = { figure$0.endX } U = {  }
-* actualOut D = { figure$0.endY } U = {  }
+   3+ actualOutByFieldAccess D = { super.color } U = {  }
+   3+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
+   9+ actualOutByFieldAccess D = { figure$0.startX } U = {  }
+   9+ actualOutByFieldAccess D = { figure$0.startY } U = {  }
+  15+ actualOutByFieldAccess D = { figure$0.endX } U = {  }
+  15+ actualOutByFieldAccess D = { figure$0.endY } U = {  }
 --
    0 constructorEntry [ jp.ac.ritsumei.cs.draw.Line#Line( int ) ]
    1 formalIn D = { w$0 } U = {  }
@@ -98,8 +98,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    5 actualIn D = {  } U = { w$0 }
    6 actualOut D = { super.!Figure( float ) } U = { Color.black }
    8 formalOut D = {  } U = { $_ }
-* actualOut D = { this.color } U = {  }
-* actualOut D = { this.outlineWidth } U = {  }
+   4+ actualOutByFieldAccess D = { this.color } U = {  }
+   4+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
 --
    0 constructorEntry [ jp.ac.ritsumei.cs.draw.Line#Line( ) ]
    1 assignment D = {  } U = { super.!Figure( ) }
@@ -107,8 +107,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    3 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( )
    4 actualOut D = { super.!Figure( ) } U = { Color.black }
    6 formalOut D = {  } U = { $_ }
-* actualOut D = { this.color } U = {  }
-* actualOut D = { this.outlineWidth } U = {  }
+   3+ actualOutByFieldAccess D = { this.color } U = {  }
+   3+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#drawRubber( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
@@ -133,8 +133,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    7 actualIn D = {  } U = { w$1 }
    8 actualOut D = { super.!Figure( java.awt.Color float ) } U = {  }
   10 formalOut D = {  } U = { $_ }
-* actualOut D = { super.color } U = {  }
-* actualOut D = { super.outlineWidth } U = {  }
+   5+ actualOutByFieldAccess D = { super.color } U = {  }
+   5+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#paintIcon( java.awt.Graphics int int int int ) ]
    1 formalIn D = { g$0 } U = {  }
@@ -191,7 +191,7 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    9 methodCall D = {  } U = { java.awt.BasicStroke.!BasicStroke( float ) } TO = java.awt.Graphics2D#setStroke( java.awt.Stroke )
   10 receiver D = {  } U = {  }
   11 constructorCall D = {  } U = { this.outlineWidth } TO = java.awt.BasicStroke#BasicStroke( float )
-* actualOut D = { java.awt.BasicStroke.!BasicStroke( float ), java.awt.BasicStroke.!java.awt.BasicStroke.cap, java.awt.BasicStroke.!java.awt.BasicStroke.dash, java.awt.BasicStroke.!java.awt.BasicStroke.dash_phase, java.awt.BasicStroke.!java.awt.BasicStroke.join, java.awt.BasicStroke.!java.awt.BasicStroke.miterlimit, java.awt.BasicStroke.!java.awt.BasicStroke.width } U = {  }
+  12 actualOut D = { java.awt.BasicStroke.!BasicStroke( float ), java.awt.BasicStroke.!java.awt.BasicStroke.cap, java.awt.BasicStroke.!java.awt.BasicStroke.dash, java.awt.BasicStroke.!java.awt.BasicStroke.dash_phase, java.awt.BasicStroke.!java.awt.BasicStroke.join, java.awt.BasicStroke.!java.awt.BasicStroke.miterlimit, java.awt.BasicStroke.!java.awt.BasicStroke.width } U = {  }
   13 actualOut D = { g2$1.!setStroke( java.awt.Stroke ) } U = {  }
   14 assignment D = {  } U = { g2$1.!drawLine( int int int int ) }
   15 receiver D = {  } U = { g2$1 }
@@ -272,12 +272,12 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 -> * trueControlDependence
-  11:    0 -> * trueControlDependence
+   6:    0 ->    5+ trueControlDependence
+   7:    0 ->    5+ trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->   10 trueControlDependence
   12:    1 ->    6 loopIndependentDefUseDependence c$0
   13:    2 ->    7 loopIndependentDefUseDependence w$1
   14:    3 ->   10 loopIndependentDefUseDependence $_
@@ -288,11 +288,11 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 -> * trueControlDependence
-   9:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    4+ trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    8 trueControlDependence
   10:    1 ->    5 loopIndependentDefUseDependence c$0
   11:    6 ->    2 loopIndependentDefUseDependence super.!Figure( java.awt.Color )
 --
@@ -300,29 +300,29 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   21 trueControlDependence
-  21:    0 -> * trueControlDependence
-  22:    0 -> * trueControlDependence
-  23:    0 -> * trueControlDependence
-  24:    0 -> * trueControlDependence
-  25:    0 -> * trueControlDependence
-  26:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->    9+ trueControlDependence
+  13:    0 ->    9+ trueControlDependence
+  14:    0 ->   10 trueControlDependence
+  15:    0 ->   11 trueControlDependence
+  16:    0 ->   12 trueControlDependence
+  17:    0 ->   13 trueControlDependence
+  18:    0 ->   14 trueControlDependence
+  19:    0 ->   15 trueControlDependence
+  20:    0 ->   15+ trueControlDependence
+  21:    0 ->   15+ trueControlDependence
+  22:    0 ->   16 trueControlDependence
+  23:    0 ->   17 trueControlDependence
+  24:    0 ->   18 trueControlDependence
+  25:    0 ->   19 trueControlDependence
+  26:    0 ->   21 trueControlDependence
   27:    1 ->    8 declaration
   28:    1 ->    8 loopIndependentDefUseDependence figure$0
   29:    1 ->   14 declaration
@@ -330,24 +330,24 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
   31:    1 ->   19 declaration
   32:    1 ->   19 loopIndependentDefUseDependence figure$0
   33:    6 ->    1 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float )
-  34:   12 ->    7 loopIndependentDefUseDependence figure$0.!setStart( int int )
-  35:   18 ->   13 loopIndependentDefUseDependence figure$0.!setEnd( int int )
-  36:   19 ->   21 loopIndependentDefUseDependence $_
-  37: * ->   19 loopIndependentDefUseDependence figure$0.endX
-  38: * ->   19 loopIndependentDefUseDependence figure$0.endY
-  39: * ->   19 loopIndependentDefUseDependence figure$0.startX
-  40: * ->   19 loopIndependentDefUseDependence figure$0.startY
+  34:    9+ ->   19 loopIndependentDefUseDependence figure$0.startX
+  35:    9+ ->   19 loopIndependentDefUseDependence figure$0.startY
+  36:   12 ->    7 loopIndependentDefUseDependence figure$0.!setStart( int int )
+  37:   15+ ->   19 loopIndependentDefUseDependence figure$0.endX
+  38:   15+ ->   19 loopIndependentDefUseDependence figure$0.endY
+  39:   18 ->   13 loopIndependentDefUseDependence figure$0.!setEnd( int int )
+  40:   19 ->   21 loopIndependentDefUseDependence $_
 --
    0: Line( int )
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    8 trueControlDependence
-   8:    0 -> * trueControlDependence
-   9:    0 -> * trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    4+ trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    8 trueControlDependence
   10:    1 ->    5 loopIndependentDefUseDependence w$0
   11:    6 ->    2 loopIndependentDefUseDependence super.!Figure( float )
 --
@@ -355,10 +355,10 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    6 trueControlDependence
-   6:    0 -> * trueControlDependence
-   7:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    3+ trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    6 trueControlDependence
    8:    4 ->    1 loopIndependentDefUseDependence super.!Figure( )
 --
    0: drawRubber( java.awt.Graphics )
@@ -387,12 +387,12 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 -> * trueControlDependence
-  11:    0 -> * trueControlDependence
+   6:    0 ->    5+ trueControlDependence
+   7:    0 ->    5+ trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->   10 trueControlDependence
   12:    1 ->    6 loopIndependentDefUseDependence c$0
   13:    2 ->    7 loopIndependentDefUseDependence w$1
   14:    8 ->    3 loopIndependentDefUseDependence super.!Figure( java.awt.Color float )
@@ -504,13 +504,13 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    9:    0 ->    9 trueControlDependence
   10:    0 ->   10 trueControlDependence
   11:    0 ->   11 trueControlDependence
-  12:    0 ->   13 trueControlDependence
-  13:    0 ->   14 trueControlDependence
-  14:    0 ->   15 trueControlDependence
-  15:    0 ->   16 trueControlDependence
-  16:    0 ->   17 trueControlDependence
-  17:    0 ->   19 trueControlDependence
-  18:    0 -> * trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   19 trueControlDependence
   19:    1 ->    2 loopIndependentDefUseDependence g$0
   20:    2 ->    4 declaration
   21:    2 ->    4 loopIndependentDefUseDependence g2$1
@@ -519,9 +519,9 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
   24:    2 ->   15 declaration
   25:    2 ->   15 loopIndependentDefUseDependence g2$1
   26:    6 ->    3 loopIndependentDefUseDependence g2$1.!setColor( java.awt.Color )
-  27:   13 ->    7 loopIndependentDefUseDependence g2$1.!setStroke( java.awt.Stroke )
-  28:   17 ->   14 loopIndependentDefUseDependence g2$1.!drawLine( int int int int )
-  29: * ->    9 loopIndependentDefUseDependence java.awt.BasicStroke.!BasicStroke( float )
+  27:   12 ->    9 loopIndependentDefUseDependence java.awt.BasicStroke.!BasicStroke( float )
+  28:   13 ->    7 loopIndependentDefUseDependence g2$1.!setStroke( java.awt.Stroke )
+  29:   17 ->   14 loopIndependentDefUseDependence g2$1.!drawLine( int int int int )
 --
    0: drawOutline( java.awt.Graphics )
    1:    0 ->    1 trueControlDependence

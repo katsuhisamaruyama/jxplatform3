@@ -19,7 +19,7 @@ Class Name = P31
    4 actualIn D = {  } U = {  }
    5 actualOut D = { this.!P31( int ) } U = {  }
    7 formalOut D = {  } U = { $_ }
-* actualOut D = { this.x } U = {  }
+   3+ actualOutByFieldAccess D = { this.x } U = {  }
 --
    0 constructorEntry [ P31#P31( int ) ]
    1 formalIn D = { x$0 } U = {  }
@@ -39,7 +39,7 @@ Class Name = P31
    7 actualOut D = { super.!Test31( int ) } U = {  }
    8 assignment D = { this.x } U = { y$1 }
   10 formalOut D = {  } U = { $_ }
-* actualOut D = { super.x } U = {  }
+   5+ actualOutByFieldAccess D = { super.x } U = {  }
 --
    0: m( )
    1:    0 ->    1 trueControlDependence
@@ -58,10 +58,10 @@ Class Name = P31
    1:    0 ->    1 trueControlDependence
    2:    0 ->    2 trueControlDependence
    3:    0 ->    3 trueControlDependence
-   4:    0 ->    4 trueControlDependence
-   5:    0 ->    5 trueControlDependence
-   6:    0 ->    7 trueControlDependence
-   7:    0 -> * trueControlDependence
+   4:    0 ->    3+ trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    7 trueControlDependence
    8:    5 ->    1 loopIndependentDefUseDependence this.!P31( int )
 --
    0: P31( int )
@@ -79,11 +79,11 @@ Class Name = P31
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    6 trueControlDependence
-   7:    0 ->    7 trueControlDependence
-   8:    0 ->    8 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 -> * trueControlDependence
+   6:    0 ->    5+ trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->   10 trueControlDependence
   11:    1 ->    6 loopIndependentDefUseDependence x$0
   12:    2 ->    8 loopIndependentDefUseDependence y$1
   13:    7 ->    3 loopIndependentDefUseDependence super.!Test31( int )

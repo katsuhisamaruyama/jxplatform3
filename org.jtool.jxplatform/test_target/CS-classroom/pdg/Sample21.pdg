@@ -12,17 +12,17 @@ Class Name = Sample21
    6 localDeclaration D = { thread$2 } U = { java.lang.Thread.!Thread( java.lang.Runnable ) }
    7 receiver D = {  } U = {  }
    8 constructorCall D = {  } U = { java.lang.Thread.!java.lang.StringBuilder.count, java.lang.Thread.!java.lang.StringBuilder.value, java.lang.Thread.!java.lang.Thread.threadInitNumber, th$1 } TO = java.lang.Thread#Thread( java.lang.Runnable )
-* actualOut D = { java.lang.Thread.!Thread( java.lang.Runnable ), java.lang.Thread.!java.lang.Thread.threadInitNumber } U = { java.lang.Thread.!java.lang.StringBuilder.count, java.lang.Thread.!java.lang.StringBuilder.value, java.lang.Thread.!java.lang.Thread.threadInitNumber }
+   9 actualOut D = { java.lang.Thread.!Thread( java.lang.Runnable ), java.lang.Thread.!java.lang.Thread.threadInitNumber } U = { java.lang.Thread.!java.lang.StringBuilder.count, java.lang.Thread.!java.lang.StringBuilder.value, java.lang.Thread.!java.lang.Thread.threadInitNumber }
   10 assignment D = {  } U = { thread$2.!start( ) }
   11 receiver D = {  } U = { thread$2 }
   12 methodCall D = {  } U = { java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.group, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.threadStatus, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.destroyed, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.nUnstartedThreads, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.nthreads, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.threads, thread$2.!java.lang.Thread.group, thread$2.!java.lang.Thread.threadStatus, thread$2.!java.lang.ThreadGroup.destroyed, thread$2.!java.lang.ThreadGroup.nUnstartedThreads, thread$2.!java.lang.ThreadGroup.nthreads, thread$2.!java.lang.ThreadGroup.threads } TO = java.lang.Thread#start( )
-* actualOut D = { thread$2.!java.lang.ThreadGroup.nUnstartedThreads, thread$2.!java.lang.ThreadGroup.nthreads, thread$2.!java.lang.ThreadGroup.threads, thread$2.!start( ) } U = { java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.group, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.threadStatus, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.destroyed, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.nUnstartedThreads, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.nthreads, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.threads, thread$2.!java.lang.Thread.group, thread$2.!java.lang.Thread.threadStatus, thread$2.!java.lang.ThreadGroup.destroyed, thread$2.!java.lang.ThreadGroup.nUnstartedThreads, thread$2.!java.lang.ThreadGroup.nthreads, thread$2.!java.lang.ThreadGroup.threads }
+  13 actualOut D = { thread$2.!java.lang.ThreadGroup.nUnstartedThreads, thread$2.!java.lang.ThreadGroup.nthreads, thread$2.!java.lang.ThreadGroup.threads, thread$2.!start( ) } U = { java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.group, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.threadStatus, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.destroyed, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.nUnstartedThreads, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.nthreads, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.threads, thread$2.!java.lang.Thread.group, thread$2.!java.lang.Thread.threadStatus, thread$2.!java.lang.ThreadGroup.destroyed, thread$2.!java.lang.ThreadGroup.nUnstartedThreads, thread$2.!java.lang.ThreadGroup.nthreads, thread$2.!java.lang.ThreadGroup.threads }
   14 localDeclaration D = { i$3 } U = {  }
   15 forSt D = {  } U = { i$3 }
   16 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   17 receiver D = {  } U = { System.out }
   18 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, i$3 } TO = java.io.PrintStream#println( java.lang.String )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  19 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   20 assignment D = { i$3 } U = { i$3 }
   22 formalOut D = {  } U = { $_ }
 --
@@ -38,38 +38,38 @@ Class Name = Sample21
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
    8:    0 ->    8 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 ->   11 trueControlDependence
-  11:    0 ->   12 trueControlDependence
-  12:    0 ->   14 trueControlDependence
-  13:    0 ->   15 trueControlDependence
-  14:    0 ->   22 trueControlDependence
-  15:    0 -> * trueControlDependence
-  16:    0 -> * trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   22 trueControlDependence
   17:    2 ->    8 declaration
   18:    2 ->    8 loopIndependentDefUseDependence th$1
   19:    5 ->    2 loopIndependentDefUseDependence ThreadB.!ThreadB( )
   20:    6 ->   11 declaration
   21:    6 ->   11 loopIndependentDefUseDependence thread$2
-  22:   14 ->   15 declaration
-  23:   14 ->   15 loopIndependentDefUseDependence i$3
-  24:   14 ->   18 declaration
-  25:   14 ->   18 loopIndependentDefUseDependence i$3
-  26:   14 ->   20 declaration
-  27:   14 ->   20 loopIndependentDefUseDependence i$3
-  28:   15 ->   16 trueControlDependence
-  29:   15 ->   17 trueControlDependence
-  30:   15 ->   18 trueControlDependence
-  31:   15 ->   20 trueControlDependence
-  32:   15 -> * trueControlDependence
-  33:   20 ->   15 loopCarriedDefUseDependence i$3 (LC = 15)
-  34:   20 ->   18 loopCarriedDefUseDependence i$3 (LC = 15)
-  35:   20 ->   20 loopCarriedDefUseDependence i$3 (LC = 15)
-  36: * ->    6 loopIndependentDefUseDependence java.lang.Thread.!Thread( java.lang.Runnable )
-  37: * ->   10 loopIndependentDefUseDependence thread$2.!start( )
-  38: * ->   16 loopIndependentDefUseDependence System.out.!println( java.lang.String )
-  39: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
-  40: * -> * defOrderDependence System.out.!println( java.lang.String )
+  22:    9 ->    6 loopIndependentDefUseDependence java.lang.Thread.!Thread( java.lang.Runnable )
+  23:   13 ->   10 loopIndependentDefUseDependence thread$2.!start( )
+  24:   14 ->   15 declaration
+  25:   14 ->   15 loopIndependentDefUseDependence i$3
+  26:   14 ->   18 declaration
+  27:   14 ->   18 loopIndependentDefUseDependence i$3
+  28:   14 ->   20 declaration
+  29:   14 ->   20 loopIndependentDefUseDependence i$3
+  30:   15 ->   16 trueControlDependence
+  31:   15 ->   17 trueControlDependence
+  32:   15 ->   18 trueControlDependence
+  33:   15 ->   19 trueControlDependence
+  34:   15 ->   20 trueControlDependence
+  35:   19 ->   16 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+  36:   19 ->   19 defOrderDependence System.out.!java.io.PrintStream.trouble
+  37:   19 ->   19 defOrderDependence System.out.!println( java.lang.String )
+  38:   20 ->   15 loopCarriedDefUseDependence i$3 (LC = 15)
+  39:   20 ->   18 loopCarriedDefUseDependence i$3 (LC = 15)
+  40:   20 ->   20 loopCarriedDefUseDependence i$3 (LC = 15)
 --
 ----- ClDG (to here) -----
 

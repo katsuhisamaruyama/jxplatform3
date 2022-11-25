@@ -6,7 +6,7 @@ Class Name = S137
    3 receiver D = {  } U = { this.p }
    4 methodCall D = {  } U = { this.p.list, this.p.list.!java.util.ArrayList.elementData, this.p.list.!java.util.ArrayList.modCount, this.p.list.!java.util.ArrayList.size } TO = P137#add( java.lang.String )
    5 actualIn D = {  } U = { elem$0 }
-* actualOut D = { this.p.!add( java.lang.String ), this.p.list.!java.util.ArrayList.modCount, this.p.list.!java.util.ArrayList.size } U = { this.p.list, this.p.list.!java.util.ArrayList.elementData, this.p.list.!java.util.ArrayList.modCount, this.p.list.!java.util.ArrayList.size }
+   6 actualOut D = { this.p.!add( java.lang.String ), this.p.list.!java.util.ArrayList.modCount, this.p.list.!java.util.ArrayList.size } U = { this.p.list, this.p.list.!java.util.ArrayList.elementData, this.p.list.!java.util.ArrayList.modCount, this.p.list.!java.util.ArrayList.size }
    8 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ S137#p ]
@@ -33,10 +33,10 @@ Class Name = S137
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    8 trueControlDependence
-   7:    0 -> * trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
    8:    1 ->    5 loopIndependentDefUseDependence elem$0
-   9: * ->    2 loopIndependentDefUseDependence this.p.!add( java.lang.String )
+   9:    6 ->    2 loopIndependentDefUseDependence this.p.!add( java.lang.String )
 --
    0: p
    1:    0 ->    1 trueControlDependence

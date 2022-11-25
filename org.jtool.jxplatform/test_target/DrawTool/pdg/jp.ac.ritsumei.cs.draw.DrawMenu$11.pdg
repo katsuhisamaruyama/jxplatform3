@@ -22,11 +22,11 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$11
   16 methodCall D = {  } U = { canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, this.canvas$0.undoManager, this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoManager$1.!javax.swing.undo.UndoManager.edits, this.undoManager$1.!javax.swing.undo.UndoManager.inProgress, this.undoManager$1.!javax.swing.undo.UndoManager.indexOfNextAdd } TO = jp.ac.ritsumei.cs.draw.DrawMenu#updateRedoState( )
   17 actualOut D = { this.!updateRedoState( ) } U = { canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, this.canvas$0.undoManager, this.redoAction, this.tabbedCanvas, this.tabbedCanvas.canvases, this.tabbedCanvas.selectedTab, this.undoManager$1.!javax.swing.undo.UndoManager.edits, this.undoManager$1.!javax.swing.undo.UndoManager.inProgress, this.undoManager$1.!javax.swing.undo.UndoManager.indexOfNextAdd }
   19 formalOut D = {  } U = { $_ }
-* actualOut D = { this.changed } U = {  }
-* actualOut D = { this.currentFigure } U = {  }
-* actualOut D = { this.grabbedFigure } U = {  }
-* actualOut D = { super.canvas } U = {  }
-* actualOut D = { super.figure } U = {  }
+   8+ actualOutByFieldAccess D = { this.changed } U = {  }
+   8+ actualOutByFieldAccess D = { this.currentFigure } U = {  }
+   8+ actualOutByFieldAccess D = { this.grabbedFigure } U = {  }
+   8+ actualOutByFieldAccess D = { super.canvas } U = {  }
+   8+ actualOutByFieldAccess D = { super.figure } U = {  }
 --
    0: serialVersionUID
    1:    0 ->    1 trueControlDependence
@@ -40,28 +40,28 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$11
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
    8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   19 trueControlDependence
-  19:    0 -> * trueControlDependence
-  20:    0 -> * trueControlDependence
-  21:    0 -> * trueControlDependence
-  22:    0 -> * trueControlDependence
-  23:    0 -> * trueControlDependence
+   9:    0 ->    8+ trueControlDependence
+  10:    0 ->    8+ trueControlDependence
+  11:    0 ->    8+ trueControlDependence
+  12:    0 ->    8+ trueControlDependence
+  13:    0 ->    8+ trueControlDependence
+  14:    0 ->    9 trueControlDependence
+  15:    0 ->   10 trueControlDependence
+  16:    0 ->   11 trueControlDependence
+  17:    0 ->   12 trueControlDependence
+  18:    0 ->   13 trueControlDependence
+  19:    0 ->   14 trueControlDependence
+  20:    0 ->   15 trueControlDependence
+  21:    0 ->   16 trueControlDependence
+  22:    0 ->   17 trueControlDependence
+  23:    0 ->   19 trueControlDependence
   24:    2 ->    7 declaration
   25:    2 ->    7 loopIndependentDefUseDependence canvas$25
   26:    5 ->    2 loopIndependentDefUseDependence this.tabbedCanvas.!getCurrentCanvas( )
-  27:    9 ->    6 loopIndependentDefUseDependence canvas$25.!deleteFigure( )
-  28:   13 ->   10 loopIndependentDefUseDependence this.!updateUndoState( )
-  29:   17 ->   14 loopIndependentDefUseDependence this.!updateRedoState( )
-  30: * ->    9 loopIndependentDefUseDependence this.currentFigure
+  27:    8+ ->    9 loopIndependentDefUseDependence this.currentFigure
+  28:    9 ->    6 loopIndependentDefUseDependence canvas$25.!deleteFigure( )
+  29:   13 ->   10 loopIndependentDefUseDependence this.!updateUndoState( )
+  30:   17 ->   14 loopIndependentDefUseDependence this.!updateRedoState( )
 --
 ----- ClDG (to here) -----
 

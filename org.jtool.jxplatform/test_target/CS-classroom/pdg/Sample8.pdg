@@ -12,9 +12,9 @@ Class Name = Sample8
   10 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   11 receiver D = {  } U = { System.out }
   12 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut } TO = java.io.PrintStream#println( java.lang.String )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  13 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   15 formalOut D = {  } U = { $_ }
-* actualOut D = { Circle2.!Circle2( int ).radius } U = {  }
+   5+ actualOutByFieldAccess D = { Circle2.!Circle2( int ).radius } U = {  }
 --
    0 constructorEntry [ Sample8#Sample8( ) ]
    2 formalOut D = {  } U = { $_ }
@@ -28,15 +28,15 @@ Class Name = Sample8
    6:    0 ->   15 trueControlDependence
    7:    2 ->    9 trueControlDependence
    8:    5 ->    3 trueControlDependence
-   9:    5 ->    7 trueControlDependence
-  10:    5 ->    9 exceptionCatch
-  11:    5 -> * trueControlDependence
+   9:    5 ->    5+ trueControlDependence
+  10:    5 ->    7 trueControlDependence
+  11:    5 ->    9 exceptionCatch
   12:    7 ->    3 loopIndependentDefUseDependence Circle2.!Circle2( int )
   13:    9 ->   10 trueControlDependence
   14:    9 ->   11 trueControlDependence
   15:    9 ->   12 trueControlDependence
-  16:    9 -> * trueControlDependence
-  17: * ->   10 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+  16:    9 ->   13 trueControlDependence
+  17:   13 ->   10 loopIndependentDefUseDependence System.out.!println( java.lang.String )
 --
    0: Sample8( )
    1:    0 ->    2 trueControlDependence

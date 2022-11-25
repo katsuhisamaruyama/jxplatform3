@@ -125,7 +125,7 @@ Class Name = Test48
    5 localDeclaration D = { l$1 } U = { p$0.!getArrayList( ) }
    6 receiver D = {  } U = { p$0 }
    7 methodCall D = {  } U = { P48.!P48( ).java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA, p$0.java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = P48#getArrayList( )
-* actualOut D = { p$0.!getArrayList( ), p$0.java.util.ArrayList.!java.util.AbstractList.modCount, p$0.java.util.ArrayList.!java.util.ArrayList.elementData } U = { P48.!P48( ).java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA, p$0.java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   8 actualOut D = { p$0.!getArrayList( ), p$0.java.util.ArrayList.!java.util.AbstractList.modCount, p$0.java.util.ArrayList.!java.util.ArrayList.elementData } U = { P48.!P48( ).java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA, p$0.java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
    9 assignment D = {  } U = { l$1.!size( ) }
   10 receiver D = {  } U = { l$1 }
   11 methodCall D = {  } U = { l$1.!java.util.ArrayList.size, p$0.!getArrayList( ).!java.util.ArrayList.size } TO = java.util.ArrayList#size( )
@@ -516,19 +516,19 @@ Class Name = Test48
    5:    0 ->    5 trueControlDependence
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
-   8:    0 ->    9 trueControlDependence
-   9:    0 ->   10 trueControlDependence
-  10:    0 ->   11 trueControlDependence
-  11:    0 ->   12 trueControlDependence
-  12:    0 ->   14 trueControlDependence
-  13:    0 -> * trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   14 trueControlDependence
   14:    1 ->    6 declaration
   15:    1 ->    6 loopIndependentDefUseDependence p$0
   16:    4 ->    1 loopIndependentDefUseDependence P48.!P48( )
   17:    5 ->   10 declaration
   18:    5 ->   10 loopIndependentDefUseDependence l$1
-  19:   12 ->    9 loopIndependentDefUseDependence l$1.!size( )
-  20: * ->    5 loopIndependentDefUseDependence p$0.!getArrayList( )
+  19:    8 ->    5 loopIndependentDefUseDependence p$0.!getArrayList( )
+  20:   12 ->    9 loopIndependentDefUseDependence l$1.!size( )
 --
    0: m4( )
    1:    0 ->    1 trueControlDependence

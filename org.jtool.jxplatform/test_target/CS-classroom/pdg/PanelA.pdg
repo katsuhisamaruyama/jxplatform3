@@ -6,12 +6,12 @@ Class Name = PanelA
    3 assignment D = {  } U = { this.label.!setText( java.lang.String ) }
    4 receiver D = {  } U = { this.label }
    5 methodCall D = {  } U = { $java.lang.String, this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text } TO = javax.swing.JLabel#setText( java.lang.String )
-* actualOut D = { this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text, this.label.!setText( java.lang.String ) } U = { this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text }
+   6 actualOut D = { this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text, this.label.!setText( java.lang.String ) } U = { this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text }
    7 assignment D = { this.flag } U = {  }
    8 assignment D = {  } U = { this.label.!setText( java.lang.String ) }
    9 receiver D = {  } U = { this.label }
   10 methodCall D = {  } U = { $java.lang.String, this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text } TO = javax.swing.JLabel#setText( java.lang.String )
-* actualOut D = { this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text, this.label.!setText( java.lang.String ) } U = { this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text }
+  11 actualOut D = { this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text, this.label.!setText( java.lang.String ) } U = { this.label.!java.awt.Component.changeSupport, this.label.!java.awt.Component.height, this.label.!java.awt.Component.width, this.label.!java.lang.String.value, this.label.!javax.accessibility.AccessibleContext.accessibleChangeSupport, this.label.!javax.accessibility.AccessibleContext.accessibleName, this.label.!javax.swing.JComponent.revalidateRunnableScheduled, this.label.!javax.swing.JLabel.accessibleContext, this.label.!javax.swing.JLabel.mnemonic, this.label.!javax.swing.JLabel.mnemonicIndex, this.label.!javax.swing.JLabel.text }
   12 assignment D = { this.flag } U = {  }
   15 formalOut D = {  } U = { $_ }
 --
@@ -27,16 +27,16 @@ Class Name = PanelA
    3 methodCall D = {  } U = { java.awt.BorderLayout.!BorderLayout( ) } TO = java.awt.Container#setLayout( java.awt.LayoutManager )
    4 receiver D = {  } U = {  }
    5 constructorCall D = {  } U = {  } TO = java.awt.BorderLayout#BorderLayout( )
-* actualOut D = { java.awt.BorderLayout.!BorderLayout( ), java.awt.BorderLayout.!java.awt.BorderLayout.hgap, java.awt.BorderLayout.!java.awt.BorderLayout.vgap } U = {  }
-* actualOut D = { this.!java.awt.Container.layoutMgr, this.!setLayout( java.awt.LayoutManager ) } U = {  }
+   6 actualOut D = { java.awt.BorderLayout.!BorderLayout( ), java.awt.BorderLayout.!java.awt.BorderLayout.hgap, java.awt.BorderLayout.!java.awt.BorderLayout.vgap } U = {  }
+   7 actualOut D = { this.!java.awt.Container.layoutMgr, this.!setLayout( java.awt.LayoutManager ) } U = {  }
    8 assignment D = { this.label } U = { javax.swing.JLabel.!JLabel( java.lang.String ) }
    9 receiver D = {  } U = {  }
   10 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JLabel#JLabel( java.lang.String )
-* actualOut D = { javax.swing.JLabel.!JLabel( java.lang.String ), javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, javax.swing.JLabel.!javax.swing.JLabel.labelFor, javax.swing.JLabel.!javax.swing.JLabel.mnemonic, javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, javax.swing.JLabel.!javax.swing.JLabel.text, javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = {  }
+  11 actualOut D = { javax.swing.JLabel.!JLabel( java.lang.String ), javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, javax.swing.JLabel.!javax.swing.JLabel.labelFor, javax.swing.JLabel.!javax.swing.JLabel.mnemonic, javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, javax.swing.JLabel.!javax.swing.JLabel.text, javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = {  }
   12 assignment D = {  } U = { this.!add( java.awt.Component java.lang.Object ) }
   13 receiver D = {  } U = {  }
   14 methodCall D = {  } U = { javax.swing.JLabel.!JLabel( java.lang.String ).NORTH, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.label, this.label.NORTH } TO = java.awt.Container#add( java.awt.Component java.lang.Object )
-* actualOut D = { this.!add( java.awt.Component java.lang.Object ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  15 actualOut D = { this.!add( java.awt.Component java.lang.Object ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
   16 localDeclaration D = { button$0 } U = { javax.swing.JButton.!JButton( java.lang.String ) }
   17 receiver D = {  } U = {  }
   18 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JButton#JButton( java.lang.String )
@@ -44,11 +44,11 @@ Class Name = PanelA
   20 assignment D = {  } U = { this.!add( java.awt.Component java.lang.Object ) }
   21 receiver D = {  } U = {  }
   22 methodCall D = {  } U = { button$0, button$0.CENTER, javax.swing.JButton.!JButton( java.lang.String ).CENTER, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer } TO = java.awt.Container#add( java.awt.Component java.lang.Object )
-* actualOut D = { this.!add( java.awt.Component java.lang.Object ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  23 actualOut D = { this.!add( java.awt.Component java.lang.Object ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
   24 assignment D = {  } U = { button$0.!addActionListener( java.awt.event.ActionListener ) }
   25 receiver D = {  } U = { button$0 }
   26 methodCall D = {  } U = { button$0.!javax.swing.AbstractButton.listenerList, button$0.!javax.swing.event.EventListenerList.NULL_ARRAY, button$0.!javax.swing.event.EventListenerList.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.listenerList, this } TO = javax.swing.AbstractButton#addActionListener( java.awt.event.ActionListener )
-* actualOut D = { button$0.!addActionListener( java.awt.event.ActionListener ), button$0.!javax.swing.event.EventListenerList.listenerList } U = { button$0.!javax.swing.AbstractButton.listenerList, button$0.!javax.swing.event.EventListenerList.NULL_ARRAY, button$0.!javax.swing.event.EventListenerList.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.listenerList }
+  27 actualOut D = { button$0.!addActionListener( java.awt.event.ActionListener ), button$0.!javax.swing.event.EventListenerList.listenerList } U = { button$0.!javax.swing.AbstractButton.listenerList, button$0.!javax.swing.event.EventListenerList.NULL_ARRAY, button$0.!javax.swing.event.EventListenerList.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.listenerList }
   29 formalOut D = {  } U = { $_ }
 --
    0: actionPerformed( java.awt.event.ActionEvent )
@@ -58,15 +58,15 @@ Class Name = PanelA
    4:    2 ->    3 trueControlDependence
    5:    2 ->    4 trueControlDependence
    6:    2 ->    5 trueControlDependence
-   7:    2 ->    7 trueControlDependence
-   8:    2 ->    8 falseControlDependence
-   9:    2 ->    9 falseControlDependence
-  10:    2 ->   10 falseControlDependence
-  11:    2 ->   12 falseControlDependence
-  12:    2 -> * falseControlDependence
-  13:    2 -> * trueControlDependence
-  14: * ->    3 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
-  15: * ->    8 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
+   7:    2 ->    6 trueControlDependence
+   8:    2 ->    7 trueControlDependence
+   9:    2 ->    8 falseControlDependence
+  10:    2 ->    9 falseControlDependence
+  11:    2 ->   10 falseControlDependence
+  12:    2 ->   11 falseControlDependence
+  13:    2 ->   12 falseControlDependence
+  14:    6 ->    3 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
+  15:   11 ->    8 loopIndependentDefUseDependence this.label.!setText( java.lang.String )
 --
    0: flag
    1:    0 ->    1 trueControlDependence
@@ -80,48 +80,48 @@ Class Name = PanelA
    3:    0 ->    3 trueControlDependence
    4:    0 ->    4 trueControlDependence
    5:    0 ->    5 trueControlDependence
-   6:    0 ->    8 trueControlDependence
-   7:    0 ->    9 trueControlDependence
-   8:    0 ->   10 trueControlDependence
-   9:    0 ->   12 trueControlDependence
-  10:    0 ->   13 trueControlDependence
-  11:    0 ->   14 trueControlDependence
-  12:    0 ->   16 trueControlDependence
-  13:    0 ->   17 trueControlDependence
-  14:    0 ->   18 trueControlDependence
-  15:    0 ->   19 trueControlDependence
-  16:    0 ->   20 trueControlDependence
-  17:    0 ->   21 trueControlDependence
-  18:    0 ->   22 trueControlDependence
-  19:    0 ->   24 trueControlDependence
-  20:    0 ->   25 trueControlDependence
-  21:    0 ->   26 trueControlDependence
-  22:    0 ->   29 trueControlDependence
-  23:    0 -> * trueControlDependence
-  24:    0 -> * trueControlDependence
-  25:    0 -> * trueControlDependence
-  26:    0 -> * trueControlDependence
-  27:    0 -> * trueControlDependence
-  28:    0 -> * trueControlDependence
-  29:    8 ->   14 loopIndependentDefUseDependence this.label
-  30:   16 ->   22 declaration
-  31:   16 ->   22 loopIndependentDefUseDependence button$0
-  32:   16 ->   25 declaration
-  33:   16 ->   25 loopIndependentDefUseDependence button$0
-  34:   19 ->   16 loopIndependentDefUseDependence javax.swing.JButton.!JButton( java.lang.String )
-  35: * ->    1 loopIndependentDefUseDependence this.!setLayout( java.awt.LayoutManager )
-  36: * ->    3 loopIndependentDefUseDependence java.awt.BorderLayout.!BorderLayout( )
-  37: * ->    8 loopIndependentDefUseDependence javax.swing.JLabel.!JLabel( java.lang.String )
-  38: * ->   12 loopIndependentDefUseDependence this.!add( java.awt.Component java.lang.Object )
-  39: * ->   14 loopIndependentDefUseDependence this.!java.awt.Container.layoutMgr
-  40: * ->   20 loopIndependentDefUseDependence this.!add( java.awt.Component java.lang.Object )
-  41: * ->   22 loopIndependentDefUseDependence this.!java.awt.Component.parent
-  42: * ->   22 loopIndependentDefUseDependence this.!java.awt.Container.layoutMgr
-  43: * ->   24 loopIndependentDefUseDependence button$0.!addActionListener( java.awt.event.ActionListener )
-  44: * -> * loopIndependentDefUseDependence this.!java.awt.Component.parent
-  45: * -> * loopIndependentDefUseDependence this.!java.awt.Container.layoutMgr
-  46: * -> * loopIndependentDefUseDependence this.!java.awt.Container.layoutMgr
-  47: * -> * outputDependence this.!add( java.awt.Component java.lang.Object )
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   27 trueControlDependence
+  28:    0 ->   29 trueControlDependence
+  29:    6 ->    3 loopIndependentDefUseDependence java.awt.BorderLayout.!BorderLayout( )
+  30:    7 ->    1 loopIndependentDefUseDependence this.!setLayout( java.awt.LayoutManager )
+  31:    7 ->   14 loopIndependentDefUseDependence this.!java.awt.Container.layoutMgr
+  32:    7 ->   15 loopIndependentDefUseDependence this.!java.awt.Container.layoutMgr
+  33:    7 ->   22 loopIndependentDefUseDependence this.!java.awt.Container.layoutMgr
+  34:    7 ->   23 loopIndependentDefUseDependence this.!java.awt.Container.layoutMgr
+  35:    8 ->   14 loopIndependentDefUseDependence this.label
+  36:   11 ->    8 loopIndependentDefUseDependence javax.swing.JLabel.!JLabel( java.lang.String )
+  37:   15 ->   12 loopIndependentDefUseDependence this.!add( java.awt.Component java.lang.Object )
+  38:   15 ->   22 loopIndependentDefUseDependence this.!java.awt.Component.parent
+  39:   15 ->   23 loopIndependentDefUseDependence this.!java.awt.Component.parent
+  40:   15 ->   23 outputDependence this.!add( java.awt.Component java.lang.Object )
+  41:   16 ->   22 declaration
+  42:   16 ->   22 loopIndependentDefUseDependence button$0
+  43:   16 ->   25 declaration
+  44:   16 ->   25 loopIndependentDefUseDependence button$0
+  45:   19 ->   16 loopIndependentDefUseDependence javax.swing.JButton.!JButton( java.lang.String )
+  46:   23 ->   20 loopIndependentDefUseDependence this.!add( java.awt.Component java.lang.Object )
+  47:   27 ->   24 loopIndependentDefUseDependence button$0.!addActionListener( java.awt.event.ActionListener )
 --
 ----- ClDG (to here) -----
 

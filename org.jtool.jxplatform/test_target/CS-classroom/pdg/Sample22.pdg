@@ -19,14 +19,14 @@ Class Name = Sample22
   16 assignment D = {  } U = { producer$2.!start( ) }
   17 receiver D = {  } U = { producer$2 }
   18 methodCall D = {  } U = { Producer.!Producer( Storage ).!java.lang.Thread.group, Producer.!Producer( Storage ).!java.lang.Thread.threadStatus, Producer.!Producer( Storage ).!java.lang.ThreadGroup.destroyed, Producer.!Producer( Storage ).!java.lang.ThreadGroup.nUnstartedThreads, Producer.!Producer( Storage ).!java.lang.ThreadGroup.nthreads, Producer.!Producer( Storage ).!java.lang.ThreadGroup.threads, producer$2.!java.lang.Thread.group, producer$2.!java.lang.Thread.threadStatus, producer$2.!java.lang.ThreadGroup.destroyed, producer$2.!java.lang.ThreadGroup.nUnstartedThreads, producer$2.!java.lang.ThreadGroup.nthreads, producer$2.!java.lang.ThreadGroup.threads } TO = java.lang.Thread#start( )
-* actualOut D = { producer$2.!java.lang.ThreadGroup.nUnstartedThreads, producer$2.!java.lang.ThreadGroup.nthreads, producer$2.!java.lang.ThreadGroup.threads, producer$2.!start( ) } U = { Producer.!Producer( Storage ).!java.lang.Thread.group, Producer.!Producer( Storage ).!java.lang.Thread.threadStatus, Producer.!Producer( Storage ).!java.lang.ThreadGroup.destroyed, Producer.!Producer( Storage ).!java.lang.ThreadGroup.nUnstartedThreads, Producer.!Producer( Storage ).!java.lang.ThreadGroup.nthreads, Producer.!Producer( Storage ).!java.lang.ThreadGroup.threads, producer$2.!java.lang.Thread.group, producer$2.!java.lang.Thread.threadStatus, producer$2.!java.lang.ThreadGroup.destroyed, producer$2.!java.lang.ThreadGroup.nUnstartedThreads, producer$2.!java.lang.ThreadGroup.nthreads, producer$2.!java.lang.ThreadGroup.threads }
+  19 actualOut D = { producer$2.!java.lang.ThreadGroup.nUnstartedThreads, producer$2.!java.lang.ThreadGroup.nthreads, producer$2.!java.lang.ThreadGroup.threads, producer$2.!start( ) } U = { Producer.!Producer( Storage ).!java.lang.Thread.group, Producer.!Producer( Storage ).!java.lang.Thread.threadStatus, Producer.!Producer( Storage ).!java.lang.ThreadGroup.destroyed, Producer.!Producer( Storage ).!java.lang.ThreadGroup.nUnstartedThreads, Producer.!Producer( Storage ).!java.lang.ThreadGroup.nthreads, Producer.!Producer( Storage ).!java.lang.ThreadGroup.threads, producer$2.!java.lang.Thread.group, producer$2.!java.lang.Thread.threadStatus, producer$2.!java.lang.ThreadGroup.destroyed, producer$2.!java.lang.ThreadGroup.nUnstartedThreads, producer$2.!java.lang.ThreadGroup.nthreads, producer$2.!java.lang.ThreadGroup.threads }
   20 assignment D = {  } U = { consumer$3.!start( ) }
   21 receiver D = {  } U = { consumer$3 }
   22 methodCall D = {  } U = { Consumer.!Consumer( Storage ).!java.lang.Thread.group, Consumer.!Consumer( Storage ).!java.lang.Thread.threadStatus, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.destroyed, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.nUnstartedThreads, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.nthreads, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.threads, consumer$3.!java.lang.Thread.group, consumer$3.!java.lang.Thread.threadStatus, consumer$3.!java.lang.ThreadGroup.destroyed, consumer$3.!java.lang.ThreadGroup.nUnstartedThreads, consumer$3.!java.lang.ThreadGroup.nthreads, consumer$3.!java.lang.ThreadGroup.threads } TO = java.lang.Thread#start( )
-* actualOut D = { consumer$3.!java.lang.ThreadGroup.nUnstartedThreads, consumer$3.!java.lang.ThreadGroup.nthreads, consumer$3.!java.lang.ThreadGroup.threads, consumer$3.!start( ) } U = { Consumer.!Consumer( Storage ).!java.lang.Thread.group, Consumer.!Consumer( Storage ).!java.lang.Thread.threadStatus, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.destroyed, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.nUnstartedThreads, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.nthreads, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.threads, consumer$3.!java.lang.Thread.group, consumer$3.!java.lang.Thread.threadStatus, consumer$3.!java.lang.ThreadGroup.destroyed, consumer$3.!java.lang.ThreadGroup.nUnstartedThreads, consumer$3.!java.lang.ThreadGroup.nthreads, consumer$3.!java.lang.ThreadGroup.threads }
+  23 actualOut D = { consumer$3.!java.lang.ThreadGroup.nUnstartedThreads, consumer$3.!java.lang.ThreadGroup.nthreads, consumer$3.!java.lang.ThreadGroup.threads, consumer$3.!start( ) } U = { Consumer.!Consumer( Storage ).!java.lang.Thread.group, Consumer.!Consumer( Storage ).!java.lang.Thread.threadStatus, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.destroyed, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.nUnstartedThreads, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.nthreads, Consumer.!Consumer( Storage ).!java.lang.ThreadGroup.threads, consumer$3.!java.lang.Thread.group, consumer$3.!java.lang.Thread.threadStatus, consumer$3.!java.lang.ThreadGroup.destroyed, consumer$3.!java.lang.ThreadGroup.nUnstartedThreads, consumer$3.!java.lang.ThreadGroup.nthreads, consumer$3.!java.lang.ThreadGroup.threads }
   25 formalOut D = {  } U = { $_ }
-* actualOut D = { Producer.!Producer( Storage ).storage } U = {  }
-* actualOut D = { Consumer.!Consumer( Storage ).storage } U = {  }
+   8+ actualOutByFieldAccess D = { Producer.!Producer( Storage ).storage } U = {  }
+  13+ actualOutByFieldAccess D = { Consumer.!Consumer( Storage ).storage } U = {  }
 --
    0 constructorEntry [ Sample22#Sample22( ) ]
    2 formalOut D = {  } U = { $_ }
@@ -40,24 +40,24 @@ Class Name = Sample22
    6:    0 ->    6 trueControlDependence
    7:    0 ->    7 trueControlDependence
    8:    0 ->    8 trueControlDependence
-   9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   20 trueControlDependence
-  20:    0 ->   21 trueControlDependence
-  21:    0 ->   22 trueControlDependence
-  22:    0 ->   25 trueControlDependence
-  23:    0 -> * trueControlDependence
-  24:    0 -> * trueControlDependence
-  25:    0 -> * trueControlDependence
-  26:    0 -> * trueControlDependence
+   9:    0 ->    8+ trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   12 trueControlDependence
+  14:    0 ->   13 trueControlDependence
+  15:    0 ->   13+ trueControlDependence
+  16:    0 ->   14 trueControlDependence
+  17:    0 ->   15 trueControlDependence
+  18:    0 ->   16 trueControlDependence
+  19:    0 ->   17 trueControlDependence
+  20:    0 ->   18 trueControlDependence
+  21:    0 ->   19 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   25 trueControlDependence
   27:    2 ->    9 declaration
   28:    2 ->    9 loopIndependentDefUseDependence storage$1
   29:    2 ->   14 declaration
@@ -69,8 +69,8 @@ Class Name = Sample22
   35:   11 ->   21 declaration
   36:   11 ->   21 loopIndependentDefUseDependence consumer$3
   37:   15 ->   11 loopIndependentDefUseDependence Consumer.!Consumer( Storage )
-  38: * ->   16 loopIndependentDefUseDependence producer$2.!start( )
-  39: * ->   20 loopIndependentDefUseDependence consumer$3.!start( )
+  38:   19 ->   16 loopIndependentDefUseDependence producer$2.!start( )
+  39:   23 ->   20 loopIndependentDefUseDependence consumer$3.!start( )
 --
    0: Sample22( )
    1:    0 ->    2 trueControlDependence

@@ -23,19 +23,19 @@ Class Name = Test08
   19 assignment D = {  } U = { System.out.!println( int ) }
   20 receiver D = {  } U = { System.out }
   21 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, i$4 } TO = java.io.PrintStream#println( int )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  22 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   23 assignment D = {  } U = { System.out.!println( int ) }
   24 receiver D = {  } U = { System.out }
   25 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, a$0 } TO = java.io.PrintStream#println( int )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  26 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   27 assignment D = {  } U = { System.out.!println( int ) }
   28 receiver D = {  } U = { System.out }
   29 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, b$1 } TO = java.io.PrintStream#println( int )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  30 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   31 assignment D = {  } U = { System.out.!println( int ) }
   32 receiver D = {  } U = { System.out }
   33 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, c$2 } TO = java.io.PrintStream#println( int )
-* actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  34 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
   36 formalOut D = {  } U = { $_ }
 --
    0: Test08( )
@@ -50,16 +50,16 @@ Class Name = Test08
    6:    0 ->   23 trueControlDependence
    7:    0 ->   24 trueControlDependence
    8:    0 ->   25 trueControlDependence
-   9:    0 ->   27 trueControlDependence
-  10:    0 ->   28 trueControlDependence
-  11:    0 ->   29 trueControlDependence
-  12:    0 ->   31 trueControlDependence
-  13:    0 ->   32 trueControlDependence
-  14:    0 ->   33 trueControlDependence
-  15:    0 ->   36 trueControlDependence
-  16:    0 -> * trueControlDependence
-  17:    0 -> * trueControlDependence
-  18:    0 -> * trueControlDependence
+   9:    0 ->   26 trueControlDependence
+  10:    0 ->   27 trueControlDependence
+  11:    0 ->   28 trueControlDependence
+  12:    0 ->   29 trueControlDependence
+  13:    0 ->   30 trueControlDependence
+  14:    0 ->   31 trueControlDependence
+  15:    0 ->   32 trueControlDependence
+  16:    0 ->   33 trueControlDependence
+  17:    0 ->   34 trueControlDependence
+  18:    0 ->   36 trueControlDependence
   19:    1 ->    7 declaration
   20:    1 ->    7 loopIndependentDefUseDependence a$0
   21:    1 ->    9 declaration
@@ -100,7 +100,7 @@ Class Name = Test08
   56:    5 ->   19 trueControlDependence
   57:    5 ->   20 trueControlDependence
   58:    5 ->   21 trueControlDependence
-  59:    5 -> * trueControlDependence
+  59:    5 ->   22 trueControlDependence
   60:    6 ->    6 defOrderDependence i$4
   61:    6 ->   11 declaration
   62:    6 ->   11 loopIndependentDefUseDependence i$4
@@ -152,18 +152,18 @@ Class Name = Test08
  108:   16 ->   15 loopCarriedDefUseDependence b$1 (LC = 5)
  109:   16 ->   16 loopCarriedDefUseDependence b$1 (LC = 5)
  110:   16 ->   29 loopIndependentDefUseDependence b$1
- 111: * ->   19 loopIndependentDefUseDependence System.out.!println( int )
- 112: * ->   23 loopIndependentDefUseDependence System.out.!println( int )
- 113: * ->   27 loopIndependentDefUseDependence System.out.!println( int )
- 114: * ->   31 loopIndependentDefUseDependence System.out.!println( int )
- 115: * -> * defOrderDependence System.out.!java.io.PrintStream.trouble
- 116: * -> * defOrderDependence System.out.!println( int )
- 117: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 118: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 119: * -> * outputDependence System.out.!java.io.PrintStream.trouble
- 120: * -> * outputDependence System.out.!println( int )
- 121: * -> * outputDependence System.out.!println( int )
- 122: * -> * outputDependence System.out.!println( int )
+ 111:   22 ->   19 loopIndependentDefUseDependence System.out.!println( int )
+ 112:   22 ->   22 defOrderDependence System.out.!java.io.PrintStream.trouble
+ 113:   22 ->   22 defOrderDependence System.out.!println( int )
+ 114:   22 ->   26 outputDependence System.out.!java.io.PrintStream.trouble
+ 115:   22 ->   26 outputDependence System.out.!println( int )
+ 116:   26 ->   23 loopIndependentDefUseDependence System.out.!println( int )
+ 117:   26 ->   30 outputDependence System.out.!java.io.PrintStream.trouble
+ 118:   26 ->   30 outputDependence System.out.!println( int )
+ 119:   30 ->   27 loopIndependentDefUseDependence System.out.!println( int )
+ 120:   30 ->   34 outputDependence System.out.!java.io.PrintStream.trouble
+ 121:   30 ->   34 outputDependence System.out.!println( int )
+ 122:   34 ->   31 loopIndependentDefUseDependence System.out.!println( int )
 --
 ----- ClDG (to here) -----
 

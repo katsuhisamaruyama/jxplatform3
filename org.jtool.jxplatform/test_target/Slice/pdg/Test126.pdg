@@ -51,10 +51,10 @@ Class Name = Test126
   42 actualOut D = { a$0.!add2( int ) } U = { A126.!A126( ).y, a$0.y, ret$1.y }
   43 localDeclaration D = { t$8 } U = { a$0.!add( int ).y, a2$2, a2$2.y }
   45 formalOut D = {  } U = { $_ }
-* actualOut D = { a$0.ret$1.y } U = {  }
-* actualOut D = { a$0.ret$1.y } U = {  }
-* actualOut D = { a3$5.y } U = {  }
-* actualOut D = { ret$1.y } U = {  }
+   9+ actualOutByFieldAccess D = { a$0.ret$1.y } U = {  }
+  20+ actualOutByFieldAccess D = { a$0.ret$1.y } U = {  }
+  31+ actualOutByFieldAccess D = { a3$5.y } U = {  }
+  40+ actualOutByFieldAccess D = { ret$1.y } U = {  }
 --
    0: p
    1:    0 ->    1 trueControlDependence
@@ -72,45 +72,45 @@ Class Name = Test126
    7:    0 ->    7 trueControlDependence
    8:    0 ->    8 trueControlDependence
    9:    0 ->    9 trueControlDependence
-  10:    0 ->   10 trueControlDependence
-  11:    0 ->   11 trueControlDependence
-  12:    0 ->   12 trueControlDependence
-  13:    0 ->   13 trueControlDependence
-  14:    0 ->   14 trueControlDependence
-  15:    0 ->   15 trueControlDependence
-  16:    0 ->   16 trueControlDependence
-  17:    0 ->   17 trueControlDependence
-  18:    0 ->   18 trueControlDependence
-  19:    0 ->   19 trueControlDependence
-  20:    0 ->   20 trueControlDependence
-  21:    0 ->   21 trueControlDependence
-  22:    0 ->   22 trueControlDependence
-  23:    0 ->   23 trueControlDependence
-  24:    0 ->   24 trueControlDependence
-  25:    0 ->   25 trueControlDependence
-  26:    0 ->   26 trueControlDependence
-  27:    0 ->   27 trueControlDependence
-  28:    0 ->   28 trueControlDependence
-  29:    0 ->   29 trueControlDependence
-  30:    0 ->   30 trueControlDependence
-  31:    0 ->   31 trueControlDependence
-  32:    0 ->   32 trueControlDependence
-  33:    0 ->   33 trueControlDependence
-  34:    0 ->   34 trueControlDependence
-  35:    0 ->   35 trueControlDependence
-  36:    0 ->   36 trueControlDependence
-  37:    0 ->   37 trueControlDependence
-  38:    0 ->   38 trueControlDependence
-  39:    0 ->   39 trueControlDependence
-  40:    0 ->   40 trueControlDependence
-  41:    0 ->   41 trueControlDependence
-  42:    0 ->   42 trueControlDependence
-  43:    0 ->   43 trueControlDependence
-  44:    0 ->   45 trueControlDependence
-  45:    0 -> * trueControlDependence
-  46:    0 -> * trueControlDependence
-  47:    0 -> * trueControlDependence
-  48:    0 -> * trueControlDependence
+  10:    0 ->    9+ trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   12 trueControlDependence
+  14:    0 ->   13 trueControlDependence
+  15:    0 ->   14 trueControlDependence
+  16:    0 ->   15 trueControlDependence
+  17:    0 ->   16 trueControlDependence
+  18:    0 ->   17 trueControlDependence
+  19:    0 ->   18 trueControlDependence
+  20:    0 ->   19 trueControlDependence
+  21:    0 ->   20 trueControlDependence
+  22:    0 ->   20+ trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   25 trueControlDependence
+  28:    0 ->   26 trueControlDependence
+  29:    0 ->   27 trueControlDependence
+  30:    0 ->   28 trueControlDependence
+  31:    0 ->   29 trueControlDependence
+  32:    0 ->   30 trueControlDependence
+  33:    0 ->   31 trueControlDependence
+  34:    0 ->   31+ trueControlDependence
+  35:    0 ->   32 trueControlDependence
+  36:    0 ->   33 trueControlDependence
+  37:    0 ->   34 trueControlDependence
+  38:    0 ->   35 trueControlDependence
+  39:    0 ->   36 trueControlDependence
+  40:    0 ->   37 trueControlDependence
+  41:    0 ->   38 trueControlDependence
+  42:    0 ->   39 trueControlDependence
+  43:    0 ->   40 trueControlDependence
+  44:    0 ->   40+ trueControlDependence
+  45:    0 ->   41 trueControlDependence
+  46:    0 ->   42 trueControlDependence
+  47:    0 ->   43 trueControlDependence
+  48:    0 ->   45 trueControlDependence
   49:    1 ->    6 declaration
   50:    1 ->    6 loopIndependentDefUseDependence a$0
   51:    1 ->    8 declaration
@@ -139,26 +139,26 @@ Class Name = Test126
   74:    7 ->   14 loopIndependentDefUseDependence a2$2
   75:    7 ->   43 declaration
   76:    7 ->   43 loopIndependentDefUseDependence a2$2
-  77:   11 ->    7 loopIndependentDefUseDependence a$0.!add( int )
-  78:   11 ->   22 outputDependence a$0.!add( int )
-  79:   12 ->   15 loopIndependentDefUseDependence a2$2.y
-  80:   12 ->   16 loopIndependentDefUseDependence a2$2.y
-  81:   12 ->   43 loopIndependentDefUseDependence a2$2.y
-  82:   16 ->   13 loopIndependentDefUseDependence a2$2.!getY( )
-  83:   22 ->   18 loopIndependentDefUseDependence a$0.!add( int )
-  84:   24 ->   17 loopIndependentDefUseDependence a$0.!add( int ).!getY( )
-  85:   25 ->   30 declaration
-  86:   25 ->   30 loopIndependentDefUseDependence a3$5
-  87:   25 ->   35 declaration
-  88:   25 ->   35 loopIndependentDefUseDependence a3$5
-  89:   28 ->   25 loopIndependentDefUseDependence A126.!A126( )
-  90:   33 ->   29 loopIndependentDefUseDependence a3$5.!setY( int )
-  91:   37 ->   34 loopIndependentDefUseDependence a3$5.!getY( )
-  92:   42 ->   38 loopIndependentDefUseDependence a$0.!add2( int )
-  93: * ->   36 loopIndependentDefUseDependence a3$5.y
-  94: * ->   37 loopIndependentDefUseDependence a3$5.y
-  95: * ->   42 loopIndependentDefUseDependence ret$1.y
-  96: * -> * outputDependence a$0.ret$1.y
+  77:    9+ ->   20+ outputDependence a$0.ret$1.y
+  78:   11 ->    7 loopIndependentDefUseDependence a$0.!add( int )
+  79:   11 ->   22 outputDependence a$0.!add( int )
+  80:   12 ->   15 loopIndependentDefUseDependence a2$2.y
+  81:   12 ->   16 loopIndependentDefUseDependence a2$2.y
+  82:   12 ->   43 loopIndependentDefUseDependence a2$2.y
+  83:   16 ->   13 loopIndependentDefUseDependence a2$2.!getY( )
+  84:   22 ->   18 loopIndependentDefUseDependence a$0.!add( int )
+  85:   24 ->   17 loopIndependentDefUseDependence a$0.!add( int ).!getY( )
+  86:   25 ->   30 declaration
+  87:   25 ->   30 loopIndependentDefUseDependence a3$5
+  88:   25 ->   35 declaration
+  89:   25 ->   35 loopIndependentDefUseDependence a3$5
+  90:   28 ->   25 loopIndependentDefUseDependence A126.!A126( )
+  91:   31+ ->   36 loopIndependentDefUseDependence a3$5.y
+  92:   31+ ->   37 loopIndependentDefUseDependence a3$5.y
+  93:   33 ->   29 loopIndependentDefUseDependence a3$5.!setY( int )
+  94:   37 ->   34 loopIndependentDefUseDependence a3$5.!getY( )
+  95:   40+ ->   42 loopIndependentDefUseDependence ret$1.y
+  96:   42 ->   38 loopIndependentDefUseDependence a$0.!add2( int )
 --
 ----- ClDG (to here) -----
 
