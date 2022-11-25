@@ -112,12 +112,36 @@ public class StatementVisitor extends ASTVisitor {
     private Stack<CFGTry> tryNodeStack = new Stack<>();
     private Map<CFGTry, Set<ExceptionOccurrence>> exceptionOccurrences = new HashMap<>();
     
-    protected StatementVisitor(JavaProject jproject, CFG cfg, CFGNode prevNode, CFGNode nextNode) {
-         this.jproject = jproject;
+    private Stack<DominantStatement> dominantStatementStack = new Stack<>();
+    private DominantStatement entryStatement;
+    
+    protected StatementVisitor(JavaProject jproject, CFG cfg,
+            CFGNode prevNode, CFGNode nextNode, DominantStatement entryStatement) {
+        assert jproject != null;
+        assert cfg != null;
+        assert prevNode != null;
+        assert nextNode != null;
+        
+        this.jproject = jproject;
          this.cfg = cfg;
          
          this.prevNode = prevNode;
          this.nextNode = nextNode;
+         
+         this.entryStatement = entryStatement;
+         dominantStatementStack.push(entryStatement);
+    }
+    
+    protected JavaProject getProject() {
+        return jproject;
+    }
+    
+    protected CFG getCFG() {
+        return cfg;
+    }
+    
+    protected DominantStatement getStructuredStatement() {
+        return dominantStatementStack.peek();
     }
     
     protected CFGNode getNextCFGNode() {
@@ -155,6 +179,8 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement emptyNode = new CFGStatement(node, CFGNode.Kind.emptySt);
         reconnect(emptyNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(emptyNode);
+        
         ControlFlow edge = createFlow(emptyNode, nextNode);
         edge.setTrue();
         return false;
@@ -170,8 +196,10 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement expNode = new CFGStatement(node, CFGNode.Kind.assignment);
         reconnect(expNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(expNode);
+        
         Expression expression = node.getExpression();
-        ExpressionVisitor exprVisitor = new ExpressionVisitor(this, jproject, cfg, expNode);
+        ExpressionVisitor exprVisitor = new ExpressionVisitor(this, expNode);
         expression.accept(exprVisitor);
         CFGNode curNode = exprVisitor.getExitNode();
         
@@ -199,7 +227,9 @@ public class StatementVisitor extends ASTVisitor {
             CFGStatement declNode = new CFGStatement(node, CFGNode.Kind.assignment);
             reconnect(declNode);
             
-            ExpressionVisitor exprVisitor = new ExpressionVisitor(this, jproject, cfg, declNode);
+            dominantStatementStack.peek().addImmediatePostDominator(declNode);
+            
+            ExpressionVisitor exprVisitor = new ExpressionVisitor(this, declNode);
             frag.accept(exprVisitor);
             CFGNode curNode = exprVisitor.getExitNode();
             
@@ -213,7 +243,9 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement invNode = new CFGStatement(node, CFGNode.Kind.assignment);
         reconnect(invNode);
         
-        ExpressionVisitor prefixVisitor = new ExpressionVisitor(this, jproject, cfg, invNode);
+        dominantStatementStack.peek().addImmediatePostDominator(invNode);
+        
+        ExpressionVisitor prefixVisitor = new ExpressionVisitor(this, invNode);
         node.accept(prefixVisitor);
         CFGNode curNode = prefixVisitor.getExitNode();
         
@@ -227,7 +259,9 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement invNode = new CFGStatement(node, CFGNode.Kind.assignment);
         reconnect(invNode);
         
-        ExpressionVisitor prefixVisitor = new ExpressionVisitor(this, jproject, cfg, invNode);
+        dominantStatementStack.peek().addImmediatePostDominator(invNode);
+        
+        ExpressionVisitor prefixVisitor = new ExpressionVisitor(this, invNode);
         node.accept(prefixVisitor);
         CFGNode curNode = prefixVisitor.getExitNode();
         
@@ -241,27 +275,43 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement ifNode = new CFGStatement(node, CFGNode.Kind.ifSt);
         reconnect(ifNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(ifNode);
+        
         Expression condition = node.getExpression();
-        ExpressionVisitor condVisitor = new ExpressionVisitor(this, jproject, cfg, ifNode);
+        ExpressionVisitor condVisitor = new ExpressionVisitor(this, ifNode);
         condition.accept(condVisitor);
         
         ControlFlow trueEdge = createFlow(ifNode, nextNode);
         trueEdge.setTrue();
         
+        DominantStatement trueStatement = new DominantStatement();
+        dominantStatementStack.push(trueStatement);
+        
         Statement thenSt = node.getThenStatement();
         thenSt.accept(this);
+        
+        dominantStatementStack.pop();
+        cfg.registerDominantStatement(ifNode.getOutgoingTrueFlow(), trueStatement);
         
         ControlFlow trueMergeEdge = cfg.getFlow(prevNode, nextNode);
         ControlFlow falseEdge = createFlow(ifNode, nextNode);
         falseEdge.setFalse();
         
+        DominantStatement falseStatement = new DominantStatement();
+        dominantStatementStack.push(falseStatement);
+        
         Statement elseSt = node.getElseStatement();
         if (elseSt != null) {
             elseSt.accept(this);
+            
             if (trueMergeEdge != null) {
                 trueMergeEdge.setDstNode(nextNode);
             }
         }
+        
+        dominantStatementStack.pop();
+        cfg.registerDominantStatement(ifNode.getOutgoingFalseFlow(), falseStatement);
+        
         CFGMerge mergeNode = new CFGMerge(node, ifNode);
         reconnect(mergeNode);
         
@@ -276,8 +326,11 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement switchNode = new CFGStatement(node, CFGNode.Kind.switchSt);
         reconnect(switchNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(switchNode);
+        dominantStatementStack.peek().setNestStructure(false);
+        
         Expression condition = node.getExpression();
-        ExpressionVisitor condVisitor = new ExpressionVisitor(this, jproject, cfg, switchNode);
+        ExpressionVisitor condVisitor = new ExpressionVisitor(this, switchNode);
         condition.accept(condVisitor);
         
         ITypeBinding tbinding = condition.resolveTypeBinding();
@@ -325,18 +378,23 @@ public class StatementVisitor extends ASTVisitor {
             caseNode = new CFGStatement(caseLabel.getNode(), CFGNode.Kind.switchDefault);
             reconnect(caseNode);
             
+            dominantStatementStack.peek().addImmediatePostDominator(caseNode);
+            
             curNode = caseNode;
         } else {
             caseNode = new CFGStatement(caseLabel.getNode(), CFGNode.Kind.switchCase);
             reconnect(caseNode);
             
+            dominantStatementStack.peek().addImmediatePostDominator(caseNode);
+            
             curNode = caseNode;
+            
             for (Expression condition : (List<Expression>)caseLabel.getNode().expressions()) {
-                ExpressionVisitor condVisitor = new ExpressionVisitor(this, jproject, cfg, caseNode);
+                ExpressionVisitor condVisitor = new ExpressionVisitor(this, caseNode);
                 condition.accept(condVisitor);
+                
                 curNode = condVisitor.getExitNode();
             }
-            
             caseNode.addUseVariables(switchNode.getDefVariables());
         }
         
@@ -356,8 +414,13 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement whileNode = new CFGStatement(node, CFGNode.Kind.whileSt);
         reconnect(whileNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(whileNode);
+        
+        DominantStatement trueStatement = new DominantStatement();
+        dominantStatementStack.push(trueStatement);
+        
         Expression condition = node.getExpression();
-        ExpressionVisitor condVisitor = new ExpressionVisitor(this, jproject, cfg, whileNode);
+        ExpressionVisitor condVisitor = new ExpressionVisitor(this, whileNode);
         condition.accept(condVisitor);
         
         ControlFlow trueEdge = createFlow(whileNode, nextNode);
@@ -379,10 +442,15 @@ public class StatementVisitor extends ASTVisitor {
             loopbackEdge.setLoopBack(whileNode);
         }
         
+        dominantStatementStack.pop();
+        cfg.registerDominantStatement(whileNode.getOutgoingTrueFlow(), trueStatement);
+        
         ControlFlow falseEdge = createFlow(whileNode, nextNode);
         falseEdge.setFalse();
         prevNode = whileNode;
         nextNode.addIncomingEdges(exitNode.getIncomingEdges());
+        
+        cfg.registerDominantStatement(whileNode.getOutgoingFalseFlow(), new DominantStatement());
         
         blockEntries.pop();
         blockExits.pop();
@@ -391,6 +459,11 @@ public class StatementVisitor extends ASTVisitor {
     
     @Override
     public boolean visit(DoStatement node) {
+        DominantStatement outer = dominantStatementStack.peek();
+        
+        DominantStatement trueStatement = new DominantStatement();
+        dominantStatementStack.push(trueStatement);
+        
         CFGNode entryNode = new CFGNode();
         CFGNode exitNode = new CFGNode();
         blockEntries.push(entryNode);
@@ -403,20 +476,28 @@ public class StatementVisitor extends ASTVisitor {
         body.accept(this);
         
         nextNode.addIncomingEdges(entryNode.getIncomingEdges());
+        
         CFGStatement doNode = new CFGStatement(node, CFGNode.Kind.doSt);
         reconnect(doNode);
         
+        outer.addImmediatePostDominator(doNode);
+        
         Expression condition = node.getExpression();
-        ExpressionVisitor condVisitor = new ExpressionVisitor(this, jproject, cfg, doNode);
+        ExpressionVisitor condVisitor = new ExpressionVisitor(this, doNode);
         condition.accept(condVisitor);
         
         ControlFlow loopbackEdge = createFlow(doNode, entryEdge.getDstNode());
         loopbackEdge.setTrue();
         loopbackEdge.setLoopBack(doNode);
         
+        dominantStatementStack.pop();
+        cfg.registerDominantStatement(doNode.getOutgoingTrueFlow(), trueStatement);
+        
         ControlFlow falseEdge = createFlow(doNode, nextNode);
         falseEdge.setFalse();
         nextNode.addIncomingEdges(exitNode.getIncomingEdges());
+        
+        cfg.registerDominantStatement(doNode.getOutgoingFalseFlow(), new DominantStatement());
         
         blockEntries.pop();
         blockExits.pop();
@@ -431,10 +512,12 @@ public class StatementVisitor extends ASTVisitor {
                 initializer.accept(this);
             } else {
                 CFGStatement initNode = new CFGStatement(node, CFGNode.Kind.assignment);
-                ExpressionVisitor initVisitor = new ExpressionVisitor(this, jproject, cfg, initNode);
+                ExpressionVisitor initVisitor = new ExpressionVisitor(this, initNode);
                 initializer.accept(initVisitor);
                 CFGNode curNode = initVisitor.getExitNode();
                 reconnect(initNode);
+                
+                dominantStatementStack.peek().addImmediatePostDominator(initNode);
                 
                 ControlFlow edge = createFlow(curNode, nextNode);
                 edge.setTrue();
@@ -444,10 +527,15 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement forNode = new CFGStatement(node, CFGNode.Kind.forSt);
         reconnect(forNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(forNode);
+        
+        DominantStatement trueStatement = new DominantStatement();
+        dominantStatementStack.push(trueStatement);
+        
         CFGNode entryNode;
         Expression condition = node.getExpression();
         if (condition != null) {
-            ExpressionVisitor condVisitor = new ExpressionVisitor(this, jproject, cfg, forNode);
+            ExpressionVisitor condVisitor = new ExpressionVisitor(this, forNode);
             condition.accept(condVisitor);
             entryNode = condVisitor.getEntryNode();
         } else {
@@ -465,12 +553,16 @@ public class StatementVisitor extends ASTVisitor {
         
         Statement body = node.getBody();
         body.accept(this);
+        
         for (Expression update : (List<Expression>)node.updaters()) {
             CFGStatement updateNode = new CFGStatement(update, CFGNode.Kind.assignment);
-            ExpressionVisitor updateVisitor = new ExpressionVisitor(this, jproject, cfg, updateNode);
+            ExpressionVisitor updateVisitor = new ExpressionVisitor(this, updateNode);
             update.accept(updateVisitor);
+            
             CFGNode curNode = updateVisitor.getExitNode();
             reconnect(updateNode);
+            
+            dominantStatementStack.peek().addImmediatePostDominator(updateNode);
             
             ControlFlow edge = createFlow(curNode, nextNode);
             edge.setTrue();
@@ -482,10 +574,15 @@ public class StatementVisitor extends ASTVisitor {
             loopbackEdge.setLoopBack(forNode);
         }
         
+        dominantStatementStack.pop();
+        cfg.registerDominantStatement(forNode.getOutgoingTrueFlow(), trueStatement);
+        
         ControlFlow falseEdge = createFlow(forNode, nextNode);
         falseEdge.setFalse();
         prevNode = forNode;
         nextNode.addIncomingEdges(exitNode.getIncomingEdges());
+        
+        cfg.registerDominantStatement(forNode.getOutgoingFalseFlow(), new DominantStatement());
         
         blockEntries.pop();
         blockExits.pop();
@@ -497,11 +594,16 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement forNode = new CFGStatement(node, CFGNode.Kind.enhancedForSt);
         reconnect(forNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(forNode);
+        
+        DominantStatement trueStatement = new DominantStatement();
+        dominantStatementStack.push(trueStatement);
+        
         SingleVariableDeclaration param = node.getParameter();
-        ExpressionVisitor paramVisitor = new ExpressionVisitor(this, jproject, cfg, forNode);
+        ExpressionVisitor paramVisitor = new ExpressionVisitor(this, forNode);
         param.accept(paramVisitor);
         Expression expression = node.getExpression();
-        ExpressionVisitor exprVisitor = new ExpressionVisitor(this, jproject, cfg, forNode);
+        ExpressionVisitor exprVisitor = new ExpressionVisitor(this, forNode);
         expression.accept(exprVisitor);
         CFGNode entryNode = exprVisitor.getEntryNode();
         
@@ -523,10 +625,15 @@ public class StatementVisitor extends ASTVisitor {
             loopbackEdge.setLoopBack(forNode);
         }
         
+        dominantStatementStack.pop();
+        cfg.registerDominantStatement(forNode.getOutgoingTrueFlow(), trueStatement);
+        
         ControlFlow falseEdge = createFlow(forNode, nextNode);
         falseEdge.setFalse();
         prevNode = forNode;
         nextNode.addIncomingEdges(exitNode.getIncomingEdges());
+        
+        cfg.registerDominantStatement(forNode.getOutgoingFalseFlow(), new DominantStatement());
         
         blockEntries.pop();
         blockExits.pop();
@@ -538,12 +645,18 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement breakNode = new CFGStatement(node, CFGNode.Kind.breakSt);
         reconnect(breakNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(breakNode);
+        
         CFGNode jumpNode;
         if (node.getLabel() != null) {
             String name = node.getLabel().getFullyQualifiedName();
             jumpNode = getLabel(name).getEndNode();
+            
+            entryStatement.setNestStructure(false);
         } else {
             jumpNode = (CFGNode)blockExits.peek();
+            
+            dominantStatementStack.peek().setNestStructure(false);
         }
         if (jumpNode != null) {
             ControlFlow edge = createFlow(breakNode, jumpNode);
@@ -560,12 +673,18 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement continueNode = new CFGStatement(node, CFGNode.Kind.continueSt);
         reconnect(continueNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(continueNode);
+        
         CFGNode jumpNode;
         if (node.getLabel() != null) {
             String name = node.getLabel().getFullyQualifiedName();
             jumpNode = getLabel(name).getBeginNode();
+            
+            entryStatement.setNestStructure(false);
         } else {
             jumpNode = (CFGNode)blockEntries.peek();
+            
+            dominantStatementStack.peek().setNestStructure(false);
         }
         if (jumpNode != null) {
             ControlFlow edge = createFlow(continueNode, jumpNode);
@@ -591,7 +710,7 @@ public class StatementVisitor extends ASTVisitor {
                     StatementVisitor.RETURN_VALUE_SYMBOL, type, primitive);
             returnNode.addDefVariable(jvar);
             
-            ExpressionVisitor exprVisitor = new ExpressionVisitor(this, jproject, cfg, returnNode);
+            ExpressionVisitor exprVisitor = new ExpressionVisitor(this, returnNode);
             expression.accept(exprVisitor);
             
             curNode = exprVisitor.getExitNode();
@@ -602,6 +721,9 @@ public class StatementVisitor extends ASTVisitor {
         
         ControlFlow fallEdge = createFlow(curNode, nextNode);
         fallEdge.setFallThrough();
+        
+        entryStatement.setNestStructure(false);
+        
         return false;
     }
     
@@ -610,13 +732,15 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement assertNode = new CFGStatement(node, CFGNode.Kind.assertSt);
         reconnect(assertNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(assertNode);
+        
         Expression expression = node.getExpression();
-        ExpressionVisitor exprVisitor = new ExpressionVisitor(this, jproject, cfg, assertNode);
+        ExpressionVisitor exprVisitor = new ExpressionVisitor(this, assertNode);
         expression.accept(exprVisitor);
         CFGNode curNode = exprVisitor.getExitNode();
         Expression message = node.getMessage();
         if (message != null) {
-            ExpressionVisitor mesgVisitor = new ExpressionVisitor(this, jproject, cfg, assertNode);
+            ExpressionVisitor mesgVisitor = new ExpressionVisitor(this, assertNode);
             message.accept(mesgVisitor);
             curNode = mesgVisitor.getExitNode();
         }
@@ -644,8 +768,10 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement syncNode = new CFGStatement(node, CFGNode.Kind.synchronizedSt);
         reconnect(syncNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(syncNode);
+        
         Expression expression = node.getExpression();
-        ExpressionVisitor exprVisitor = new ExpressionVisitor(this, jproject, cfg, syncNode);
+        ExpressionVisitor exprVisitor = new ExpressionVisitor(this, syncNode);
         expression.accept(exprVisitor);
         CFGNode curNode = exprVisitor.getExitNode();
         
@@ -662,8 +788,10 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement throwNode = new CFGStatement(node, CFGNode.Kind.throwSt);
         reconnect(throwNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(throwNode);
+        
         Expression expression = node.getExpression();
-        ExpressionVisitor exprVisitor = new ExpressionVisitor(this, jproject, cfg, throwNode);
+        ExpressionVisitor exprVisitor = new ExpressionVisitor(this, throwNode);
         expression.accept(exprVisitor);
         CFGNode curNode = exprVisitor.getExitNode();
         
@@ -678,6 +806,9 @@ public class StatementVisitor extends ASTVisitor {
         
         ControlFlow fallEdge = createFlow(curNode, nextNode);
         fallEdge.setFallThrough();
+        
+        entryStatement.setNestStructure(false);
+        
         return false;
     }
     
@@ -686,8 +817,9 @@ public class StatementVisitor extends ASTVisitor {
     public boolean visit(TryStatement node) {
         CFGTry tryNode = new CFGTry(node);
         exceptionOccurrences.put(tryNode, new HashSet<ExceptionOccurrence>());
-        
         reconnect(tryNode);
+        
+        dominantStatementStack.peek().addImmediatePostDominator(tryNode);
         
         tryNodeStack.push(tryNode);
         
@@ -698,7 +830,9 @@ public class StatementVisitor extends ASTVisitor {
             CFGStatement resourceNode = new CFGStatement(resource, CFGNode.Kind.assignment);
             reconnect(resourceNode);
             
-            ExpressionVisitor resourceVisitor = new ExpressionVisitor(this, jproject, cfg, resourceNode);
+            dominantStatementStack.peek().addImmediatePostDominator(resourceNode);
+            
+            ExpressionVisitor resourceVisitor = new ExpressionVisitor(this, resourceNode);
             resource.accept(resourceVisitor);
             CFGNode curNode = resourceVisitor.getExitNode();
             
@@ -726,6 +860,8 @@ public class StatementVisitor extends ASTVisitor {
         
         catchClause(tryNode);
         
+        entryStatement.setNestStructure(false);
+        
         return false;
     }
     
@@ -752,6 +888,8 @@ public class StatementVisitor extends ASTVisitor {
             catchNode.setDefVariable(def);
             
             reconnect(catchNode);
+            
+            dominantStatementStack.peek().addImmediatePostDominator(catchNode);
         }
         
         ControlFlow trueEdge = createFlow(catchNode, nextNode);
@@ -760,6 +898,8 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow fallEdge = createFlow(catchNode, mergeNode);
         fallEdge.setFallThrough();
         
+        entryStatement.setNestStructure(false);
+        
         node.getBody().accept(this);
         reconnect(mergeNode);
     }
@@ -767,8 +907,9 @@ public class StatementVisitor extends ASTVisitor {
     private void visitFinallyBlock(CFGTry tryNode, Block block) {
         CFGStatement finallyNode = new CFGStatement(block, CFGNode.Kind.finallyClause);
         tryNode.setFinallyNode(finallyNode);
-        
         reconnect(finallyNode);
+        
+        dominantStatementStack.peek().addImmediatePostDominator(finallyNode);
         
         ControlFlow edge = createFlow(finallyNode, nextNode);
         edge.setTrue();
@@ -777,6 +918,8 @@ public class StatementVisitor extends ASTVisitor {
         
         ControlFlow fallEdge = createFlow(finallyNode, nextNode);
         fallEdge.setFallThrough();
+        
+        entryStatement.setNestStructure(false);
     }
     
     private void catchClause(CFGTry tryNode) {

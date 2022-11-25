@@ -77,12 +77,14 @@ class CFGMethodBuilder {
         cfg.setEntryNode(entry);
         cfg.add(entry);
         
+        DominantStatement entryStatement = new DominantStatement();
+        
         if (jmethod.isSynthetic()) {
             CFGExit exit = getExitNode(jmethod, mbinding);
             cfg.setExitNode(exit);
             cfg.add(exit);
             
-            CFGNode formalOut = createFormalOut(jmethod.getASTNode(), cfg, entry);
+            CFGNode formalOut = createFormalOut(jmethod.getASTNode(), cfg, entry, entryStatement);
             ControlFlow edge = new ControlFlow(entry, formalOut);
             edge.setTrue();
             cfg.add(edge);
@@ -90,30 +92,35 @@ class CFGMethodBuilder {
             ControlFlow exitEdge = new ControlFlow(formalOut, exit);
             exitEdge.setTrue();
             cfg.add(exitEdge);
+            
+            cfg.registerDominantStatement(cfg.getEntryNode().getOutgoingTrueFlow(), entryStatement);
+            
             return cfg;
         }
         
         CFGNode tmpExit = new CFGNode();
         cfg.setExitNode(tmpExit);
         
-        Set<CFGException> exceptionNodes = createExceptionNodes(jmethod, entry, cfg);
+        Set<CFGException> exceptionNodes = createExceptionNodes(jmethod, entry, cfg, entryStatement);
         
-        CFGNode formalIn = createFormalIn(params, cfg, entry, entry);
+        CFGNode formalIn = createFormalIn(params, cfg, entry, entry, entryStatement);
         CFGNode nextNode = new CFGNode();
         
         ControlFlow edge = new ControlFlow(formalIn, nextNode);
         edge.setTrue();
         cfg.add(edge);
         
-        StatementVisitor visitor = new StatementVisitor(jmethod.getJavaProject(), cfg, formalIn, nextNode);
+        StatementVisitor visitor = new StatementVisitor(jmethod.getJavaProject(), cfg,
+                formalIn, nextNode, entryStatement);
         jmethod.getASTNode().accept(visitor);
+        
         nextNode = visitor.getNextCFGNode();
         
         CFGExit exit = getExitNode(jmethod, mbinding);
         cfg.setExitNode(exit);
         cfg.add(exit);
         
-        CFGNode formalOut = createFormalOut(jmethod.getASTNode(), cfg, entry);
+        CFGNode formalOut = createFormalOut(jmethod.getASTNode(), cfg, entry, entryStatement);
         replace(cfg, nextNode, formalOut);
         replace(cfg, tmpExit, formalOut);
         
@@ -126,6 +133,8 @@ class CFGMethodBuilder {
             exceptionExitEdge.setTrue();
             cfg.add(exceptionExitEdge);
         }
+        
+        cfg.registerDominantStatement(cfg.getEntryNode().getOutgoingTrueFlow(), entryStatement);
         
         return cfg;
     }
@@ -149,11 +158,15 @@ class CFGMethodBuilder {
         }
     }
     
-    private static Set<CFGException> createExceptionNodes(JavaMethod jmethod, CFGMethodEntry entry, CFG cfg) {
+    private static Set<CFGException> createExceptionNodes(JavaMethod jmethod, CFGMethodEntry entry, CFG cfg,
+            DominantStatement entryStatement) {
         Set<CFGException> nodes = new HashSet<>();
         for (Type type : jmethod.getExceptionTypeNodes()) {
             CFGException exceptionNode = createExceptionNode(entry, cfg, type.resolveBinding().getTypeDeclaration());
             nodes.add(exceptionNode);
+            
+            entryStatement.addImmediatePostDominator(exceptionNode);
+            entryStatement.setNestStructure(false);
         }
         
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
@@ -163,6 +176,9 @@ class CFGMethodBuilder {
             if (!included) {
                 CFGException exceptionNode = createExceptionNode(entry, cfg, tbinding);
                 nodes.add(exceptionNode);
+                
+                entryStatement.addImmediatePostDominator(exceptionNode);
+                entryStatement.setNestStructure(false);
             }
         }
         
@@ -170,24 +186,27 @@ class CFGMethodBuilder {
     }
     
     private static CFGException createExceptionNode(CFGMethodEntry entry, CFG cfg, ITypeBinding tbinding) {
-        CFGException node = new CFGException(entry.getASTNode(), CFGNode.Kind.throwsClause, tbinding);
-        entry.addExceptionNode(node);
-        cfg.add(node);
+        CFGException exceptNode = new CFGException(entry.getASTNode(), CFGNode.Kind.throwsClause, tbinding);
+        entry.addExceptionNode(exceptNode);
+        cfg.add(exceptNode);
         
         JVariableReference jvar = new JVersatileReference(entry.getASTNode(),
                 "$" + tbinding.getErasure().getQualifiedName(), tbinding);
-        node.setUseVariable(jvar);
-        return node;
+        exceptNode.setUseVariable(jvar);
+        return exceptNode;
     }
     
     private static CFGNode createFormalIn(List<VariableDeclaration> params,
-            CFG cfg, CFGMethodEntry entry, CFGNode prevNode) {
+            CFG cfg, CFGMethodEntry entry, CFGNode prevNode,
+            DominantStatement entryStatement) {
         for (int ordinal = 0; ordinal < params.size(); ordinal++) {
             VariableDeclaration param = params.get(ordinal);
             CFGParameter formalIn = new CFGParameter(param, CFGNode.Kind.formalIn, ordinal);
             formalIn.setParent(entry);
             entry.addFormalIn(formalIn);
             cfg.add(formalIn);
+            
+            entryStatement.addImmediatePostDominator(formalIn);
             
             JVariableReference def = new JLocalVarReference(param.getName(), param.resolveBinding());
             formalIn.setDefVariable(def);
@@ -201,11 +220,14 @@ class CFGMethodBuilder {
         return prevNode;
     }
     
-    private static CFGNode createFormalOut(ASTNode node, CFG cfg, CFGMethodEntry entry) {
+    private static CFGNode createFormalOut(ASTNode node, CFG cfg, CFGMethodEntry entry,
+            DominantStatement entryStatement) {
         CFGParameter formalOut = new CFGParameter(node, CFGNode.Kind.formalOut, 0);
         formalOut.setParent(entry);
         entry.setFormalOut(formalOut);
         cfg.add(formalOut);
+        
+        entryStatement.addImmediatePostDominator(formalOut);
         
         String returnType = entry.getJavaMethod().getReturnType();
         boolean isPrimitiveType = entry.getJavaMethod().isPrimitiveReturnType();

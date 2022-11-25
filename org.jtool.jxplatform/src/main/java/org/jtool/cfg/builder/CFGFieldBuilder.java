@@ -46,22 +46,29 @@ class CFGFieldBuilder {
         cfg.setEntryNode(entry);
         cfg.add(entry);
         
+        DominantStatement entryStatement = new DominantStatement();
+        
         CFGStatement declNode = new CFGStatement(jfield.getASTNode(), CFGNode.Kind.fieldDeclaration);
         JVariableReference jvar = new JFieldReference(jfield.getASTNode(), jfield.getASTNode(), jfield.getName(), vbinding);
         declNode.addDefVariable(jvar);
         entry.setDeclarationNode(declNode);
         cfg.add(declNode);
         
+        entryStatement.addImmediatePostDominator(declNode);
+        
         ControlFlow edge = new ControlFlow(entry, declNode);
         edge.setTrue();
         cfg.add(edge);
+        
+        cfg.registerDominantStatement(cfg.getEntryNode().getOutgoingTrueFlow(), entryStatement);
         
         CFGNode curNode = declNode;
         if (vbinding.isEnumConstant()) {
             EnumConstantDeclaration decl = (EnumConstantDeclaration)jfield.getASTNode();
             if (decl.arguments().size() > 0 && decl.resolveConstructorBinding() != null) {
-                ExpressionVisitor visitor = new ExpressionVisitor(jfield.getJavaProject(), cfg, declNode);
+                ExpressionVisitor visitor = new ExpressionVisitor(jfield.getJavaProject(), cfg, entryStatement, declNode);
                 decl.accept(visitor);
+                
                 curNode = visitor.getExitNode();
             }
         } else {
@@ -70,8 +77,9 @@ class CFGFieldBuilder {
             VariableDeclarationFragment decl = (VariableDeclarationFragment)jfield.getASTNode();
             Expression initializer = decl.getInitializer();
             if (initializer != null) {
-                ExpressionVisitor visitor = new ExpressionVisitor(jfield.getJavaProject(), cfg, declNode);
+                ExpressionVisitor visitor = new ExpressionVisitor(jfield.getJavaProject(), cfg, entryStatement, declNode);
                 initializer.accept(visitor);
+                
                 curNode = visitor.getExitNode();
             }
         }

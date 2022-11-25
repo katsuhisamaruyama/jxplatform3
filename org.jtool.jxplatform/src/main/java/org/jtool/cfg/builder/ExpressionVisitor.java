@@ -143,14 +143,35 @@ public class ExpressionVisitor extends ASTVisitor {
     
     private Stack<Expression> receivers = new Stack<>();
     
-    protected ExpressionVisitor(JavaProject jproject, CFG cfg, CFGStatement node) {
-        this(null, jproject, cfg, node);
+    private DominantStatement dominantStatement;
+    
+    protected ExpressionVisitor(StatementVisitor visitor, CFGStatement node) {
+        assert visitor != null;
+        assert node != null;
+        
+        this.statementVisitor = visitor;
+        this.jproject = visitor.getProject();
+        this.cfg = visitor.getCFG();
+        this.dominantStatement = visitor.getStructuredStatement();
+        
+        curNode = node;
+        entryNode = node;
+        analysisMode.push(AnalysisMode.USE);
     }
     
-    protected ExpressionVisitor(StatementVisitor visitor, JavaProject jproject, CFG cfg, CFGStatement node) {
-        this.statementVisitor = visitor;
+    protected ExpressionVisitor(JavaProject jproject, CFGStatement node) {
+        this(jproject, new CFG(), new DominantStatement(), node);
+    }
+    
+    protected ExpressionVisitor(JavaProject jproject, CFG cfg, DominantStatement dominantStatement, CFGStatement node) {
+        assert jproject != null;
+        assert cfg != null;
+        assert dominantStatement != null;
+        assert node != null;
+        
         this.jproject = jproject;
         this.cfg = cfg;
+        this.dominantStatement = dominantStatement;
         
         curNode = node;
         entryNode = node;
@@ -417,6 +438,8 @@ public class ExpressionVisitor extends ASTVisitor {
         receiverNode.setName("this");
         entryNode = receiverNode;
         
+        dominantStatement.addImmediatePostDominator(receiverNode);
+        
         insertBeforeCurrentNode(receiverNode);
         
         JVariableReference prefix = null;
@@ -434,6 +457,8 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setReceiver(receiverNode);
         jcall.setExplicitReceiver(receiver != null);
         receiverNode.setMethodCall(callNode);
+        
+        dominantStatement.addImmediatePostDominator(callNode);
         
         createActualIn(callNode, node.arguments());
         JReturnValueReference ret = createActualOutForReturn(callNode, receiverNode.getName());
@@ -466,6 +491,8 @@ public class ExpressionVisitor extends ASTVisitor {
         }
         entryNode = receiverNode;
         
+        dominantStatement.addImmediatePostDominator(receiverNode);
+        
         insertBeforeCurrentNode(receiverNode);
         
         JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
@@ -473,6 +500,8 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setReceiver(receiverNode);
         jcall.setExplicitReceiver(true);
         receiverNode.setMethodCall(callNode);
+        
+        dominantStatement.addImmediatePostDominator(callNode);
         
         createActualIn(callNode, node.arguments());
         JReturnValueReference ret = createActualOutForReturn(callNode, receiverNode.getName());
@@ -500,6 +529,8 @@ public class ExpressionVisitor extends ASTVisitor {
         receiverNode.setName("this");
         entryNode = receiverNode;
         
+        dominantStatement.addImmediatePostDominator(receiverNode);
+        
         insertBeforeCurrentNode(receiverNode);
         
         JMethodReference jcall = new JMethodReference(node, node, mbinding, node.arguments());
@@ -507,6 +538,8 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setReceiver(receiverNode);
         jcall.setExplicitReceiver(false);
         receiverNode.setMethodCall(callNode);
+        
+        dominantStatement.addImmediatePostDominator(callNode);
         
         createActualIn(callNode, node.arguments());
         JReturnValueReference ret = createActualOutForReturn(callNode, receiverNode.getName());
@@ -535,6 +568,8 @@ public class ExpressionVisitor extends ASTVisitor {
         receiverNode.setName("super");
         entryNode = receiverNode;
         
+        dominantStatement.addImmediatePostDominator(receiverNode);
+        
         insertBeforeCurrentNode(receiverNode);
         
         if (receiver != null) {
@@ -551,6 +586,8 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setReceiver(receiverNode);
         jcall.setExplicitReceiver(receiver != null);
         receiverNode.setMethodCall(callNode);
+        
+        dominantStatement.addImmediatePostDominator(callNode);
         
         createActualIn(callNode, node.arguments());
         JReturnValueReference ret = createActualOutForReturn(callNode, receiverNode.getName());
@@ -581,6 +618,8 @@ public class ExpressionVisitor extends ASTVisitor {
         receiverNode.setName(className);
         entryNode = receiverNode;
         
+        dominantStatement.addImmediatePostDominator(receiverNode);
+        
         insertBeforeCurrentNode(receiverNode);
         
         JVariableReference prefix = null;
@@ -598,6 +637,8 @@ public class ExpressionVisitor extends ASTVisitor {
         jcall.setReceiver(receiverNode);
         jcall.setExplicitReceiver(receiver != null);
         receiverNode.setMethodCall(callNode);
+        
+        dominantStatement.addImmediatePostDominator(callNode);
         
         createActualIn(callNode, node.arguments());
         JReturnValueReference ret = createActualOutForReturn(callNode, receiverNode.getName());
@@ -624,6 +665,8 @@ public class ExpressionVisitor extends ASTVisitor {
         JMethodReference jcall = new JMethodReference(node, node.getName(), mbinding, node.arguments());
         CFGMethodCall callNode = new CFGMethodCall(node, CFGNode.Kind.constructorCall, jcall);
         entryNode = callNode;
+        
+        dominantStatement.addImmediatePostDominator(callNode);
         
         createActualIn(callNode, node.arguments());
         JReturnValueReference ret = createActualOutForReturn(callNode, mbinding.getName());
@@ -668,6 +711,8 @@ public class ExpressionVisitor extends ASTVisitor {
             actualInNode.setParent(callNode);
             callNode.addActualIn(actualInNode);
             
+            dominantStatement.addImmediatePostDominator(actualInNode);
+            
             insertBeforeCurrentNode(actualInNode);
             
             CFGStatement tmpNode = curNode;
@@ -694,6 +739,8 @@ public class ExpressionVisitor extends ASTVisitor {
         CFGParameter actualOutNode = new CFGParameter(callNode.getASTNode(), CFGNode.Kind.actualOut, 0);
         actualOutNode.setParent(callNode);
         callNode.setActualOut(actualOutNode);
+        
+        dominantStatement.addImmediatePostDominator(actualOutNode);
         
         insertBeforeCurrentNode(actualOutNode);
         
@@ -856,6 +903,8 @@ public class ExpressionVisitor extends ASTVisitor {
         CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
         entryNode = lambdaNode;
         
+        dominantStatement.addImmediatePostDominator(lambdaNode);
+        
         insertBeforeCurrentNode(lambdaNode);
         
         CFGStatement tmpNode = curNode;
@@ -918,6 +967,8 @@ public class ExpressionVisitor extends ASTVisitor {
         CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
         entryNode = lambdaNode;
         
+        dominantStatement.addImmediatePostDominator(lambdaNode);
+        
         insertBeforeCurrentNode(lambdaNode);
         
         JVariableReference jv = new JUnsupportedReference(node,
@@ -939,6 +990,8 @@ public class ExpressionVisitor extends ASTVisitor {
         
         CFGStatement lambdaNode = new CFGStatement(node, CFGNode.Kind.lambda);
         entryNode = lambdaNode;
+        
+        dominantStatement.addImmediatePostDominator(lambdaNode);
         
         insertBeforeCurrentNode(lambdaNode);
         
@@ -965,6 +1018,8 @@ public class ExpressionVisitor extends ASTVisitor {
     public boolean visit(SwitchExpression node) {
         CFGStatement switchExpNode = new CFGStatement(node, CFGNode.Kind.switchExpression);
         entryNode = switchExpNode;
+        
+        dominantStatement.addImmediatePostDominator(switchExpNode);
         
         insertBeforeCurrentNode(switchExpNode);
         

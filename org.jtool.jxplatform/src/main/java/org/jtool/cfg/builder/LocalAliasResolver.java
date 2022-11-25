@@ -78,11 +78,11 @@ class LocalAliasResolver {
         for (JavaField jfield : jmethod.getDeclaringClass().getFields()) {
             if (jfield.isField() && jfield.isFinal()) {
                 VariableDeclarationFragment decllaration = (VariableDeclarationFragment)jfield.getASTNode();
-                CFGStatement tmpNode = new CFGStatement(decllaration, CFGNode.Kind.dummy);
-                ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, new CFG(), tmpNode);
+                CFGStatement declNode = new CFGStatement(decllaration, CFGNode.Kind.dummy);
+                ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, declNode);
                 decllaration.accept(expressionVisitor);
                 
-                Alias alias = getAliasRelation(tmpNode, decllaration.getInitializer());
+                Alias alias = getAliasRelation(declNode, decllaration.getInitializer());
                 if (alias != null && isFinalField(alias.righthand)) {
                     cfg.getNodes().stream()
                             .filter(node -> node.isStatement() && !node.isFormal())
@@ -186,11 +186,11 @@ class LocalAliasResolver {
         
         for (Expression expr : exprs) {
             if (expr != null) {
-                CFGStatement tmpNode = new CFGStatement(expr, CFGNode.Kind.dummy);
-                ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, new CFG(), tmpNode);
+                CFGStatement exprNode = new CFGStatement(expr, CFGNode.Kind.dummy);
+                ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, exprNode);
                 expr.accept(expressionVisitor);
                 
-                collectAliasesInAssignment(expr, tmpNode, aliases);
+                collectAliasesInAssignment(expr, exprNode, aliases);
             }
         }
     }
@@ -206,11 +206,11 @@ class LocalAliasResolver {
                         aliases.add(alias);
                     }
                     
-                    CFGStatement tmpNode = new CFGStatement(righthand, CFGNode.Kind.dummy);
-                    ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, new CFG(), tmpNode);
+                    CFGStatement righthandNode = new CFGStatement(righthand, CFGNode.Kind.dummy);
+                    ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, righthandNode);
                     righthand.accept(expressionVisitor);
                     
-                    collectAliasesInAssignment(righthand, tmpNode, aliases);
+                    collectAliasesInAssignment(righthand, righthandNode, aliases);
                     
                 } else {
                     Alias alias = getAliasRelation((CFGStatement)node, assignment.getRightHandSide());
@@ -232,11 +232,11 @@ class LocalAliasResolver {
                     aliases.add(alias);
                 }
                 
-                CFGStatement tmpNode = new CFGStatement(initializer, CFGNode.Kind.dummy);
-                ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, new CFG(), tmpNode);
+                CFGStatement initializerNode = new CFGStatement(initializer, CFGNode.Kind.dummy);
+                ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, initializerNode);
                 initializer.accept(expressionVisitor);
                 
-                collectAliasesInAssignment(initializer, tmpNode, aliases);
+                collectAliasesInAssignment(initializer, initializerNode, aliases);
             } else {
                 Alias alias = getAliasRelation((CFGStatement)node, declaration.getInitializer());
                 if (alias != null) {

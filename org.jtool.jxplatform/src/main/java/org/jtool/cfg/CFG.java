@@ -6,12 +6,15 @@
 package org.jtool.cfg;
 
 import org.jtool.srcmodel.QualifiedName;
+import org.jtool.cfg.builder.DominantStatement;
 import org.jtool.graph.Graph;
 import org.jtool.graph.GraphElement;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Stack;
 import java.util.Comparator;
 import java.util.Collections;
@@ -537,6 +540,64 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
             }
         }
         return postDominator;
+    }
+    
+    /**
+     * A map stores information on dominant statements.
+     * This information is used to eliminate the calculation cost for immediate post-pominators collection.
+     */
+    private Map<String, DominantStatement> dominantStatementMap = new HashMap<>();
+    
+    /**
+     * Registers a control flow and a dominant statement having the flow.
+     * This method is not intended to be invoked by clients.
+     * @param flow a flow that dominates nodes
+     * @param statement a dominant statement having the flow
+     */
+    public void registerDominantStatement(ControlFlow flow, DominantStatement statement) {
+        dominantStatementMap.put(getStatementKey(flow), statement);
+    }
+    
+    /**
+     * Obtains the dominant statement having a given flow.
+     * This method is not intended to be invoked by clients.
+     * @return the found dominant statement, {@code null} if it was found
+     */
+    public DominantStatement getDominantStatement(ControlFlow flow) {
+        return dominantStatementMap.get(getStatementKey(flow));
+    }
+    
+    /**
+     * Creates and returns the key that identifies a control flow.
+     * @param flow the control flow
+     * @return the created key 
+     */
+    private String getStatementKey(ControlFlow flow) {
+        return String.valueOf(flow.getSrcNode().getId()) + ":" + flow.getKind().toString();
+    }
+    
+    /**
+     * Finds a statement that dominates a given node.
+     * @param node the node to be retrieved
+     * @return the found dominant statement
+     */
+    public DominantStatement findDominantStatement(CFGNode node) {
+        for (DominantStatement statement : dominantStatementMap.values()) {
+            if (statement.getImmediatePostDominators().contains(node)) {
+                return statement;
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Unregisters the dominant statements.
+     * This method is not intended to be invoked by clients.
+     */
+    public void unregisterStructuredStatements() {
+        dominantStatementMap.values().forEach(st -> st.clear());
+        dominantStatementMap.clear();
+        dominantStatementMap = null;
     }
     
     /**

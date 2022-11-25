@@ -16,6 +16,7 @@ import org.jtool.cfg.CFGTry;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.StopConditionOnReachablePath;
+import org.jtool.cfg.builder.DominantStatement;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
@@ -31,12 +32,42 @@ import java.util.stream.Collectors;
 public class CDFinder {
     
     public static void find(PDG pdg , CFG cfg) {
-        findCDs(pdg, cfg);
+        if (hasNestStructure(cfg)) {
+            findCDsOnNestStructure(pdg, cfg);
+            cfg.unregisterStructuredStatements();
+        } else {
+            findCDs(pdg, cfg);
+        }
         findCDsOnTryCatch(pdg, cfg);
         findCDsFromEntry(pdg, cfg);
         findCDsOnDeclarations(pdg, cfg);
         
         removeTransitiveCDs(pdg);
+    }
+    
+    private static boolean hasNestStructure(CFG cfg) {
+        DominantStatement statement = cfg.getDominantStatement(cfg.getEntryNode().getOutgoingTrueFlow());
+        return statement != null && statement.hasNestStructure();
+    }
+    
+    private static void findCDsOnNestStructure(PDG pdg, CFG cfg) {
+        for (CFGNode node : cfg.getNodes()) {
+            if (node.isBranch()) {
+                boolean hasNestStructure = node.getOutgoingFlows().stream()
+                        .map(flow -> cfg.getDominantStatement(flow)).allMatch(st -> (st != null && st.hasNestStructure()));
+                if (hasNestStructure) {
+                    for (ControlFlow flow : node.getOutgoingFlows()) {
+                        DominantStatement statement = cfg.getDominantStatement(flow);
+                        for (CFGNode postDominator : statement.getImmediatePostDominators()) {
+                            CD cd = createCD(node, flow, postDominator);
+                            pdg.add(cd);
+                        }
+                    }
+                } else {
+                    findCDs(pdg, cfg, node);
+                }
+            }
+        }
     }
     
     private static void findCDs(PDG pdg, CFG cfg) {

@@ -77,6 +77,8 @@ class FieldReferenceResolver {
                 .sorted(Comparator.comparing(DefUseField::getQualifiedName))
                 .collect(Collectors.toList());
         
+        DominantStatement dominantStatement = null;
+        
         for (DefUseField def : sortedDefs) {
             JVariableReference var = new JUncoveredFieldReference(callNode.getASTNode(),
                     def.getClassName(), def.getName(), def.getReferenceForm(),
@@ -84,11 +86,16 @@ class FieldReferenceResolver {
                     def.getHoldingNodes());
             
             if (def.isInProject()) {
-                CFGParameter actualOut =
-                        new CFGParameter(callNode.getASTNode(), CFGNode.Kind.actualOut, index);
+                CFGParameter actualOut = 
+                        new CFGParameter(callNode.getASTNode(), CFGNode.Kind.actualOutByFieldAccess, index);
                 actualOut.setParent(callNode);
                 actualOut.addDefVariable(var);
                 cfg.add(actualOut);
+                
+                if (dominantStatement == null) {
+                    dominantStatement = cfg.findDominantStatement(callNode);
+                }
+                dominantStatement.addImmediatePostDominator(actualOut);
                 
                 ControlFlow flow = new ControlFlow(curNode, actualOut);
                 flow.setTrue();
