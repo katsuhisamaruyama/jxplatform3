@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.plugin.internal;
+package org.jtool.jxplatform.plugin.internal;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResourceChangeListener;
@@ -13,7 +13,7 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.jtool.srcplatform.plugin.IFileChangeListener;
+import org.jtool.jxplatform.plugin.IFileChangeListener;
 
 import java.util.Set;
 import java.util.HashSet;

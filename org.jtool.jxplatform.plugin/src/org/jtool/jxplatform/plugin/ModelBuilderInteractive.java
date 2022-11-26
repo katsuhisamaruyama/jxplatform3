@@ -3,10 +3,10 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.plugin;
+package org.jtool.jxplatform.plugin;
 
-import org.jtool.srcplatform.plugin.internal.ModelBuilderInteractiveImpl;
 import org.jtool.jxplatform.builder.ModelBuilder;
+import org.jtool.jxplatform.plugin.internal.ModelBuilderInteractiveImpl;
 import org.jtool.srcmodel.JavaProject;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.core.resources.IFile;

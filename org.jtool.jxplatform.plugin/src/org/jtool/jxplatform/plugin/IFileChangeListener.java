@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.plugin;
+package org.jtool.jxplatform.plugin;
 
 import org.eclipse.core.resources.IFile;
 import java.util.Set;

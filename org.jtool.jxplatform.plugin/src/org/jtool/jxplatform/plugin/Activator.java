@@ -1,9 +1,9 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.srcplatform.plugin;
+package org.jtool.jxplatform.plugin;
 
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -25,7 +25,7 @@ public class Activator extends AbstractUIPlugin implements IStartup {
     /**
      * The plug-in identification.
      */
-    public static final String PLUGIN_ID = "org.jtool.srcplatform.plugin";
+    public static final String PLUGIN_ID = "org.jtool.jxplatform3.plugin";
     
     /**
      * A shared plug-in object.

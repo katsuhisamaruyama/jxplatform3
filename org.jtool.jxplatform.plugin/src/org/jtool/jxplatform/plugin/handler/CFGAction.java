@@ -3,13 +3,13 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
  
-package org.jtool.srcplatform.plugin.handler;
+package org.jtool.jxplatform.plugin.handler;
 
-import org.jtool.srcplatform.plugin.Activator;
-import org.jtool.srcplatform.plugin.ModelBuilderInteractive;
-import org.jtool.srcplatform.plugin.SrcPlatConsole;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.cfg.CCFG;
+import org.jtool.jxplatform.plugin.Activator;
+import org.jtool.jxplatform.plugin.ModelBuilderInteractive;
+import org.jtool.jxplatform.plugin.SrcPlatConsole;
 import org.jtool.srcmodel.JavaClass;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
