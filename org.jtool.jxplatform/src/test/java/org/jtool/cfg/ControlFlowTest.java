@@ -6,9 +6,9 @@
 package org.jtool.cfg;
 
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.cfg.internal.CallGraphBuilder;
 import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.jxplatform.util.CFGTestUtil;
-import org.jtool.cfg.builder.CallGraphBuilder;
 import java.util.Set;
 import org.junit.Test;
 import org.junit.BeforeClass;

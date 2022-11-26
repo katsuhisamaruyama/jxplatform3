@@ -6,8 +6,8 @@
 package org.jtool.srcmodel;
 
 import org.jtool.jxplatform.builder.Logger;
-import org.jtool.srcmodel.builder.FieldInitializerCollector;
-import org.jtool.srcmodel.builder.MethodCallCollector;
+import org.jtool.srcmodel.internal.FieldInitializerCollector;
+import org.jtool.srcmodel.internal.MethodCallCollector;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.EnumConstantDeclaration;
 import org.eclipse.jdt.core.dom.IVariableBinding;

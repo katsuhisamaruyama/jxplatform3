@@ -6,7 +6,7 @@
 package org.jtool.cfg;
 
 import org.jtool.srcmodel.QualifiedName;
-import org.jtool.cfg.builder.DominantStatement;
+import org.jtool.cfg.internal.DominantStatement;
 import org.jtool.graph.Graph;
 import org.jtool.graph.GraphElement;
 import java.util.List;

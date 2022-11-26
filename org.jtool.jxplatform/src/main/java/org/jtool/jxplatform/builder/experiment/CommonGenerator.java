@@ -8,10 +8,10 @@ package org.jtool.jxplatform.builder.experiment;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.cfg.CCFG;
-import org.jtool.cfg.builder.CFGStore;
+import org.jtool.cfg.internal.CFGStore;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.SDG;
-import org.jtool.pdg.builder.PDGStore;
+import org.jtool.pdg.internal.PDGStore;
 import org.jtool.jxplatform.builder.Logger;
 import org.jtool.jxplatform.builder.ModelBuilderBatch;
 import org.jtool.jxplatform.builder.TimeInfo;
@@ -129,7 +129,7 @@ public class CommonGenerator {
         }
         pm.done();
         
-        pdgStore.findConnection(sdg);
+        pdgStore.collectInterPDGEdges(sdg);
         return sdg;
     }
 }

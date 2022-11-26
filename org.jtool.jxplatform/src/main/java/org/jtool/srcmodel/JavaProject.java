@@ -5,11 +5,11 @@
 
 package org.jtool.srcmodel;
 
-import org.jtool.cfg.builder.CFGStore;
+import org.jtool.cfg.internal.CFGStore;
+import org.jtool.pdg.internal.PDGStore;
 import org.jtool.jxplatform.builder.ModelBuilder;
 import org.jtool.jxplatform.project.ModelBuilderImpl;
-import org.jtool.pdg.builder.PDGStore;
-import org.jtool.srcmodel.builder.ProjectStore;
+import org.jtool.srcmodel.internal.ProjectStore;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;

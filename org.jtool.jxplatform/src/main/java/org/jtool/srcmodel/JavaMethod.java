@@ -6,10 +6,10 @@
 package org.jtool.srcmodel;
 
 import org.jtool.jxplatform.builder.Logger;
-import org.jtool.srcmodel.builder.FieldAccessCollector;
-import org.jtool.srcmodel.builder.LambdaCollector;
-import org.jtool.srcmodel.builder.LocalDeclarationCollector;
-import org.jtool.srcmodel.builder.MethodCallCollector;
+import org.jtool.srcmodel.internal.FieldAccessCollector;
+import org.jtool.srcmodel.internal.LambdaCollector;
+import org.jtool.srcmodel.internal.LocalDeclarationCollector;
+import org.jtool.srcmodel.internal.MethodCallCollector;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Initializer;

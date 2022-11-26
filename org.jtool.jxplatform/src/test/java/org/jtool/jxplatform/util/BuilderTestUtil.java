@@ -5,8 +5,8 @@
 
 package org.jtool.jxplatform.util;
 
+import org.jtool.cfg.internal.refmodel.RefModelTestUtil;
 import org.jtool.jxplatform.builder.ModelBuilderBatch;
-import org.jtool.jxplatform.refmodel.RefModelTestUtil;
 import org.jtool.srcmodel.JavaProject;
 import java.io.File;
 

@@ -6,7 +6,7 @@
 package org.jtool.jxplatform.builder.experiment;
 
 import org.jtool.cfg.CCFG;
-import org.jtool.pdg.SDG;
+import org.jtool.pdg.DependencyGraph;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.builder.TimeInfo;
 import java.io.File;
@@ -25,7 +25,7 @@ public class PDGGenerator extends CommonGenerator {
     protected long timesecCFG;
     protected int bytecodenum;
     
-    protected List<SDG> sdgs;
+    protected List<DependencyGraph> sdgs;
     protected long timesecPDG;
     
     public static void main(String[] args) {
@@ -94,7 +94,7 @@ public class PDGGenerator extends CommonGenerator {
             timesecCFG = timesecCFG + getTimeSec(startTimeCFG, endTimeCFG);
             
             ZonedDateTime startTimePDG = TimeInfo.getCurrentTime();
-            SDG sdg = generateClDGs(jproject, pccfgs);
+            DependencyGraph sdg = generateClDGs(jproject, pccfgs);
             sdgs.add(sdg);
             ZonedDateTime endTimePDG = TimeInfo.getCurrentTime();
             timesecPDG = timesecPDG + getTimeSec(startTimePDG, endTimePDG);
@@ -105,7 +105,7 @@ public class PDGGenerator extends CommonGenerator {
         printTimeSec(startTime, endTime);
     }
     
-    static String getPDGInfo(List<SDG> sdgs) {
+    static String getPDGInfo(List<DependencyGraph> sdgs) {
         long nodes = sdgs.stream().flatMap(g -> g.getNodes().stream()).count();
         long edges = sdgs.stream().flatMap(g -> g.getEdges().stream()).count();
         

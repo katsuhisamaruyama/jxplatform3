@@ -5,8 +5,8 @@
 
 package org.jtool.cfg;
 
+import org.jtool.cfg.internal.refmodel.JClass;
 import org.jtool.srcmodel.QualifiedName;
-import org.jtool.jxplatform.refmodel.JClass;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.SuperMethodInvocation;
 import org.eclipse.jdt.core.dom.SuperConstructorInvocation;
