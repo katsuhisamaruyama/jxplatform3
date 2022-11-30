@@ -5,7 +5,6 @@
 
 package org.jtool.srcmodel;
 
-import org.jtool.jxplatform.builder.Logger;
 import org.jtool.srcmodel.internal.FieldInitializerCollector;
 import org.jtool.srcmodel.internal.MethodCallCollector;
 import org.eclipse.jdt.core.dom.ASTNode;
@@ -271,13 +270,14 @@ public class JavaField extends JavaVariable {
         }
         
         if (!resolveOk) {
-            Logger logger = getJavaProject().getModelBuilderImpl().getLogger();
+            String message;
             if (declaringClass != null) {
-                logger.printUnresolvedError("Field " + getQualifiedName() +
-                        " of " + declaringClass.getQualifiedName() + " in " + getFile().getPath());
+                message = "Field " + getQualifiedName() + " of " + declaringClass.getQualifiedName()
+                          + " in " + getFile().getPath();
             } else {
-                logger.printUnresolvedError("Field in " + getFile().getPath());
+                message = "Field in " + getFile().getPath();
             }
+            getJavaProject().getModelBuilderImpl().printUnresolvedError(message);
         }
         resolved = true;
     }

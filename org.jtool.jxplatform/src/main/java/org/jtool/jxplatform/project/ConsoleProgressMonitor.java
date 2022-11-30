@@ -6,7 +6,7 @@
 package org.jtool.jxplatform.project;
 
 /**
- * A progress monitor that displays information on the console (stdout).
+ * A progress monitor that displays information on the console (stdout and stderr).
  * 
  * @author Katsuhisa Maruyama
  */
@@ -43,8 +43,18 @@ public class ConsoleProgressMonitor {
         }
     }
     
-    private void display(char ch) {
+    public void display(char ch) {
         System.out.print(ch);
         System.out.flush();
+    }
+    
+    public void printMessage(String message) {
+        System.out.println(message);
+        System.out.flush();
+    }
+    
+    public void printError(String message) {
+        System.err.println(message);
+        System.err.flush();
     }
 }

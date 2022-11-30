@@ -8,10 +8,10 @@ package org.jtool.jxplatform.project;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaMethod;
+import org.jtool.srcmodel.JavaPackage;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.internal.JavaASTVisitor;
 import org.jtool.srcmodel.internal.ProjectStore;
-import org.jtool.jxplatform.builder.Logger;
 import org.jtool.jxplatform.builder.ModelBuilder;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.compiler.IProblem;
@@ -38,19 +38,29 @@ public class ModelBuilderImpl {
     protected int bytecodeAnalysisChain = 2;
     
     protected Logger logger;
+    protected boolean visible = true;
     protected boolean verbose = true;
+    
+    protected ConsoleProgressMonitor monitor;
+    protected static ConsoleProgressMonitor consoleProgressMonitor = new ConsoleProgressMonitor();
+    protected static ConsoleProgressMonitor nullConsoleProgressMonitor = new NullConsoleProgressMonitor();
     
     protected ModelBuilderImpl(ModelBuilder modelBuiler) {
         this.modelBuilder = modelBuiler;
-        this.logger = new Logger(true);
-    }
-    
-    public ModelBuilder getModelBuilder() {
-        return modelBuilder;
+        this.logger = new Logger();
+        this.monitor = getConsoleProgressMonitor();
     }
     
     public Logger getLogger() {
         return logger;
+    }
+    
+    public ConsoleProgressMonitor getConsoleProgressMonitor() {
+        return visible ? consoleProgressMonitor : nullConsoleProgressMonitor;
+    }
+    
+    public ModelBuilder getModelBuilder() {
+        return modelBuilder;
     }
     
     public void update(JavaProject jproject) {
@@ -88,16 +98,36 @@ public class ModelBuilderImpl {
         return bytecodeAnalysisChain;
     }
     
+    public void printMessage(String message) {
+        getConsoleProgressMonitor().printMessage(message);
+        logger.recordLog(message);
+    }
+    
+    public void printError(String message) {
+        getConsoleProgressMonitor().printError(message);
+        logger.recordLog(message);
+    }
+    
+    public void printUnresolvedError(String message) {
+        getConsoleProgressMonitor().printError(message);
+        logger.recordUnresolvedError(message);
+    }
+    
+    public void printCreationError(String message) {
+        getConsoleProgressMonitor().printError(message);
+        logger.recordCreationError(message);
+    }
+    
     public void unbuild() {
         ProjectStore.getInstance().clear();
     }
     
-    public void setLogVisible(boolean visible) {
-        logger.setVisible(visible);
+    public void setConsoleVisible(boolean visible) {
+        this.visible = visible;
     }
     
-    public boolean isLogVisible() {
-        return logger.isVisible();
+    public boolean isConsoleVisible() {
+        return visible;
     }
     
     public JavaFile copyJavaFile(JavaFile jfile) {
@@ -120,7 +150,9 @@ public class ModelBuilderImpl {
         if (cu != null) {
             JavaFile jfile = new JavaFile(cu, filepath, code, charset, jproject);
             if (getParseErrors(cu).size() != 0) {
-                logger.printError("Incomplete parse: " + filepath);
+                String message = "Incomplete parse: " + filepath;
+                monitor.printError(message);
+                logger.recordLog(message);
             }
             
             JavaASTVisitor visitor = new JavaASTVisitor(jfile);
@@ -180,7 +212,9 @@ public class ModelBuilderImpl {
         if (problems.length > 0) {
             for (IProblem problem : problems) {
                 if (problem.isError()) {
-                    logger.printError("Error: " + problem.getMessage());
+                    String message = "Error: " + problem.getMessage();
+                    monitor.printError(message);
+                    logger.recordLog(message);
                     errors.add(problem);
                 }
             }
@@ -254,5 +288,42 @@ public class ModelBuilderImpl {
         for (JavaMethod jm : jmethod.getCallingMethods()) {
             collectAllMethodsBackward(jm, methods);
         }
+    }
+    
+    public Set<JavaFile> collectDependentFiles(JavaProject jproject, String filepath) {
+        Set<JavaFile> files = new HashSet<>();
+        JavaFile jfile = jproject.getFile(filepath);
+        if (jfile == null) {
+            return files;
+        }
+        
+        files.add(jfile);
+        
+        Set<JavaClass> classes = new HashSet<>();
+        for (JavaClass jc : jfile.getClasses()) {
+            classes.addAll(jproject.collectClassesDependingOn(jc));
+        }
+        for (JavaClass jc : classes) {
+            files.add(jc.getFile());
+        }
+        return files;
+    }
+    
+    public void removeJavaFile(JavaProject jproject, String filepath) {
+        JavaFile jfile = jproject.getFile(filepath);
+        for (JavaClass jc : jfile.getClasses()) {
+            jproject.removeClass(jc);
+        }
+        jproject.removeFile(jfile.getPath());
+        
+        for (JavaPackage jpackage : jproject.getPackages()) {
+            if (jpackage.getClasses().size() == 0) {
+                jproject.removePackage(jpackage);
+            }
+        }
+    }
+    
+    public void removeJavaFiles(JavaProject jproject, Set<String> filepaths) {
+        filepaths.forEach(filepath -> removeJavaFile(jproject, filepath));
     }
 }

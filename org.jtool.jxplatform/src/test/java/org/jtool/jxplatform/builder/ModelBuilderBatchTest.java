@@ -33,7 +33,7 @@ public class ModelBuilderBatchTest {
         String target = BuilderTestUtil.getTarget(name);
         
         ModelBuilderBatch builder = new ModelBuilderBatch(false);
-        builder.setLogVisible(false);
+        builder.setConsoleVisible(false);
         JavaProject project = builder.build(name, target, target, target, target);
         
         assertEquals(54, project.getFiles().size());

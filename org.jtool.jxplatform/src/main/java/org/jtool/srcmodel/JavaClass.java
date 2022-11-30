@@ -5,7 +5,6 @@
 
 package org.jtool.srcmodel;
 
-import org.jtool.jxplatform.builder.Logger;
 import org.jtool.srcmodel.internal.TypeCollector;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
@@ -867,8 +866,7 @@ public class JavaClass extends JavaElement {
         }
         
         if (!resolveOk) {
-            Logger logger = jproject.getModelBuilderImpl().getLogger();
-            logger.printUnresolvedError("Class in " + jfile.getPath());
+            jproject.getModelBuilderImpl().printUnresolvedError("Class in " + jfile.getPath());
         }
         resolved = true;
     }

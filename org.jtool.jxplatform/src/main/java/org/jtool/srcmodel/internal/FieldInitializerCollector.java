@@ -8,7 +8,6 @@ package org.jtool.srcmodel.internal;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaElementUtil;
-import org.jtool.jxplatform.builder.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 import org.eclipse.jdt.core.dom.CreationReference;
@@ -85,8 +84,8 @@ public class FieldInitializerCollector extends ASTVisitor {
                         }
                     } else {
                         bindingOk = false;
-                        Logger logger = jproject.getModelBuilderImpl().getLogger();
-                        logger.printUnresolvedError(binding.getName() + " of " + vbinding.getDeclaringClass().getQualifiedName());
+                        String message = binding.getName() + " of " + vbinding.getDeclaringClass().getQualifiedName();
+                        jproject.getModelBuilderImpl().printUnresolvedError(message);
                     }
                 }
             }

@@ -8,7 +8,6 @@ package org.jtool.srcmodel.internal;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaElementUtil;
-import org.jtool.jxplatform.builder.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 import org.eclipse.jdt.core.dom.PrimitiveType;
@@ -84,11 +83,8 @@ public class TypeCollector extends ASTVisitor {
     
     private boolean bindingOk = true;
     
-    private Logger logger;
-    
     public TypeCollector(JavaClass jclass) {
         this.jproject = jclass.getJavaProject();
-        logger = jproject.getModelBuilderImpl().getLogger();
     }
     
     public Set<JavaClass> getTypes() {
@@ -116,7 +112,7 @@ public class TypeCollector extends ASTVisitor {
                 types.add(jc);
             } else {
                 bindingOk = false;
-                logger.printUnresolvedError(tbinding.getQualifiedName());
+                jproject.getModelBuilderImpl().printUnresolvedError(tbinding.getQualifiedName());
             }
         }
         return false;
@@ -172,7 +168,7 @@ public class TypeCollector extends ASTVisitor {
                 jc.addUsedClass(jc2);
             } else {
                 bindingOk = false;
-                logger.printUnresolvedError(tbinding.getQualifiedName());
+                jproject.getModelBuilderImpl().printUnresolvedError(tbinding.getQualifiedName());
             }
             
         } else if (tbinding.isParameterizedType()) {
@@ -184,7 +180,7 @@ public class TypeCollector extends ASTVisitor {
                 }
             } else {
                 bindingOk = false;
-                logger.printUnresolvedError(tbinding.getQualifiedName());
+                jproject.getModelBuilderImpl().printUnresolvedError(tbinding.getQualifiedName());
             }
         } else if (tbinding.isWildcardType()) {
             ITypeBinding b = tbinding.getBound();
@@ -194,7 +190,7 @@ public class TypeCollector extends ASTVisitor {
                     jc.addUsedClass(jc2);
                 } else {
                     bindingOk = false;
-                    logger.printUnresolvedError(b.getQualifiedName());
+                    jproject.getModelBuilderImpl().printUnresolvedError(b.getQualifiedName());
                 }
             }
         }

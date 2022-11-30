@@ -26,8 +26,8 @@ import java.util.Collection;
  */
 public class CFGStore {
     
-    private JavaProject jproject;
-    private BytecodeClassStore bcStore;
+    protected JavaProject jproject;
+    protected BytecodeClassStore bcStore;
     
     private Map<String, CFG> cfgs = new HashMap<>();
     private Map<String, CFG> ucfgs = new HashMap<>();
@@ -67,7 +67,7 @@ public class CFGStore {
         return bcStore;
     }
     
-    private void createBCStore() {
+    protected void createBCStore() {
         this.bcStore = new BytecodeClassStore(jproject);
         bcStore.create();
     }

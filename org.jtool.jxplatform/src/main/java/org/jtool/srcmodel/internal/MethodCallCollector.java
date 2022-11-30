@@ -8,7 +8,6 @@ package org.jtool.srcmodel.internal;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaElementUtil;
-import org.jtool.jxplatform.builder.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 import org.eclipse.jdt.core.dom.ClassInstanceCreation;
@@ -113,10 +112,9 @@ public class MethodCallCollector extends ASTVisitor {
                 }
             } else {
                 if (!mbinding.getDeclaringClass().isEnum() || !isImplicitMethodOfEnum(mbinding.getName())) {
-                    Logger logger = jproject.getModelBuilderImpl().getLogger();
-                    logger.printUnresolvedError(mbinding.getName() + " of " +
-                    mbinding.getDeclaringClass().getQualifiedName());
                     bindingOk = false;
+                    String message = mbinding.getName() + " of " + mbinding.getDeclaringClass().getQualifiedName();
+                    jproject.getModelBuilderImpl().printUnresolvedError(message);
                 }
             }
         }

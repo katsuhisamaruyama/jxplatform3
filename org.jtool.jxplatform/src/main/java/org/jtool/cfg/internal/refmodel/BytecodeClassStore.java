@@ -7,8 +7,6 @@ package org.jtool.cfg.internal.refmodel;
 
 import org.jtool.jxplatform.project.ConsoleProgressMonitor;
 import org.jtool.jxplatform.project.ModelBuilderImpl;
-import org.jtool.jxplatform.project.NullConsoleProgressMonitor;
-import org.jtool.jxplatform.builder.Logger;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaProject;
 import java.io.File;
@@ -113,11 +111,8 @@ public class BytecodeClassStore {
             internalClassMap.clear();
             externalClassMap.clear();
             
-            Logger logger = jproject.getModelBuilderImpl().getLogger();
-            ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
-            
             setClassHierarchy();
-            collectBytecodeClassInfo(logger, pm);
+            collectBytecodeClassInfo();
             
             writeBytecodeCache();
         }
@@ -437,46 +432,54 @@ public class BytecodeClassStore {
     }
     
     void loadBytecode() {
-        Logger logger = jproject.getModelBuilderImpl().getLogger();
-        ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
-        
-        buildBytecodeClass(logger, pm);
+        analyzedBytecodeNum = buildBytecodeClass();
         setClassHierarchy();
-        collectBytecodeClassInfo(logger, pm);
+        collectBytecodeClassInfo();
         
         writeBytecodeCache();
     }
     
-    private void buildBytecodeClass(Logger logger, ConsoleProgressMonitor pm) {
+    private int buildBytecodeClass() {
+        ConsoleProgressMonitor monitor = jproject.getModelBuilderImpl().getConsoleProgressMonitor();
+        
         Set<BytecodeName> names = getBytecodeNamesToBeLoaded();
-        analyzedBytecodeNum = names.size();
         if (names.size() > 0) {
+            String message = "** Ready to parse " + names.size() + " bytecode-classes used in " + jproject.getName();
+            jproject.getModelBuilderImpl().printMessage(message);
             
-            logger.printMessage("** Ready to parse " + names.size() + " bytecode-classes used in " + jproject.getName());
-            pm.begin(names.size());
-            for (BytecodeName bytecodeName : names) {
-                try {
-                    CtClass ctClass = classPool.get(bytecodeName.className);
-                    
-                    // javassist does not support multi-release JARs
-                    if (!ctClass.getName().startsWith("META-INF.")) {
-                        
-                        if (ctClass.isInterface() || ctClass.getModifiers() != Modifier.PRIVATE) {
-                            
-                            boolean bootModule = bytecodeName.cacheName.equals(BOOT_CACHE_FILENAME);
-                            BytecodeClassJavassist bclass = new BytecodeClassJavassist(ctClass, bytecodeName.cacheName, bootModule, this);
-                            if (bootModule) {
-                                bootModuleBytecodeClassMap.put(getCanonicalClassName(ctClass), bclass);
-                            } else {
-                                bytecodeClassMap.put(getCanonicalClassName(ctClass), bclass);
-                            }
-                        }
-                    }
-                } catch (Exception e) { /* empty */ }
-                pm.work(1);
-            }
-            pm.done();
+            parseBytecodeClass(monitor, names);
         }
+        return names.size();
+    }
+    
+    protected void parseBytecodeClass(ConsoleProgressMonitor monitor, Set<BytecodeName> names) {
+        monitor.begin(names.size());
+        for (BytecodeName bytecodeName : names) {
+            parseBytecodeClass(bytecodeName);
+            monitor.work(1);
+        }
+        monitor.done();
+    }
+    
+    protected void parseBytecodeClass(BytecodeName bytecodeName) {
+        try {
+            CtClass ctClass = classPool.get(bytecodeName.className);
+            
+            // javassist does not support multi-release JARs
+            if (!ctClass.getName().startsWith("META-INF.")) {
+                
+                if (ctClass.isInterface() || ctClass.getModifiers() != Modifier.PRIVATE) {
+                    
+                    boolean bootModule = bytecodeName.cacheName.equals(BOOT_CACHE_FILENAME);
+                    BytecodeClassJavassist bclass = new BytecodeClassJavassist(ctClass, bytecodeName.cacheName, bootModule, this);
+                    if (bootModule) {
+                        bootModuleBytecodeClassMap.put(getCanonicalClassName(ctClass), bclass);
+                    } else {
+                        bytecodeClassMap.put(getCanonicalClassName(ctClass), bclass);
+                    }
+                }
+            }
+        } catch (Exception e) { /* empty */ }
     }
     
     private void setClassHierarchy() {
@@ -491,19 +494,26 @@ public class BytecodeClassStore {
         addClassHierarchyForInternalClasses();
     }
     
-    private void collectBytecodeClassInfo(Logger logger, ConsoleProgressMonitor pm) {
+    private void collectBytecodeClassInfo() {
         Set<BytecodeClass> bclasses = new HashSet<>();
         bclasses.addAll(bootModuleBytecodeClassMap.values());
         bclasses.addAll(bytecodeClassMap.values());
         
-        logger.printMessage("** Ready to collect information on " +
-                                bclasses.size() + " non-private bytecode-classes");
-        pm.begin(bclasses.size());
+        ConsoleProgressMonitor monitor = jproject.getModelBuilderImpl().getConsoleProgressMonitor();
+        
+        String message = "** Ready to collect information on " + bclasses.size() + " non-private bytecode-classes";
+        jproject.getModelBuilderImpl().printMessage(message);
+        
+        collectBytecodeClassInfo(bclasses, monitor);
+    }
+    
+    protected void collectBytecodeClassInfo(Set<BytecodeClass> bclasses, ConsoleProgressMonitor monitor) {
+        monitor.begin(bclasses.size());
         for (BytecodeClass bclass : bclasses) {
             bclass.collectInfo();
-            pm.work(1);
+            monitor.work(1);
         }
-        pm.done();
+        monitor.done();
     }
     
     public JClass findInternalClass(String className) {

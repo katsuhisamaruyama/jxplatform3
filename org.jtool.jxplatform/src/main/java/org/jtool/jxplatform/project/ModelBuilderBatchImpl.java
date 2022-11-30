@@ -80,13 +80,13 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     }
     
     private ProjectEnv createTopProjectEnv(String name, String target) {
-        logger.printMessage("Checking development environment for " + target);
+        printMessage("Checking development environment for " + target);
         ProjectEnv env = createProjectEnv(name, target, null, null);
         try {
             env.setUpTopProject();
-            logger.printMessage("Found config file: " + env.getConfigFile());
+            printMessage("Found config file: " + env.getConfigFile());
         } catch (Exception e) {
-            logger.printError("Fail to collect dependent files.");
+            printError("Fail to collect dependent files.");
         }
         return env;
     }
@@ -104,7 +104,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     private List<JavaProject> buildMultiTargets(List<ProjectEnv> projectEnvs, ProjectEnv topProjectEnv) {
         List<JavaProject> projects = new ArrayList<>();
         for (ProjectEnv env : projectEnvs) {
-            logger.printMessage("Checking sub-project " + env.getName());
+            printMessage("Checking sub-project " + env.getName());
             
             JavaProject jproject = buildTarget(env);
             if (jproject != null) {
@@ -116,7 +116,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     
     private List<JavaProject> buildSingleTarget(ProjectEnv topProjectEnv) {
         List<JavaProject> projects = new ArrayList<>();
-        logger.printMessage("Checking project " + topProjectEnv.getName());
+        printMessage("Checking project " + topProjectEnv.getName());
         
         JavaProject jproject = buildTarget(topProjectEnv);
         if (jproject != null) {
@@ -129,7 +129,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         try {
             projectEnv.setUpEachProject();
         } catch (Exception e) {
-            logger.printError("Fail to collect dependent files.");
+            printError("Fail to collect dependent files.");
             return null;
         }
         
@@ -312,7 +312,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
             parse(jproject, paths, encodings, sources, charsets);
             collectInfo(jproject);
         } else {
-            logger.printError("Found no Java source files in " + jproject.getPath());
+            printError("Found no Java source files in " + jproject.getPath());
         }
     }
     
@@ -320,8 +320,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
             Map<String, String> sources, Map<String, String> charsets) {
         final int size = paths.length;
         
-        ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
-        pm.begin(size);
+        monitor.begin(size);
         FileASTRequestor requestor = new FileASTRequestor() {
             private int count = 0;
             
@@ -333,23 +332,23 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                     cu.accept(visitor);
                     visitor.terminate();
                 } else {
-                    logger.printError("Incomplete parse: " + filepath);
+                    printError("Incomplete parse: " + filepath);
                 }
                 
-                pm.work(1);
+                monitor.work(1);
                 count++;
                 logger.recordLog("-Parsed " +
                         filepath.substring(jproject.getPath().length() + 1) + " (" + count + "/" + size + ")");
             }
         };
         
-        logger.printMessage("Target = " + jproject.getPath() + " (" + jproject.getName() + ")");
-        logger.printMessage("** Ready to parse " + size + " files");
-        ASTParser parser = getParser(jproject);
+        printMessage("Target = " + jproject.getPath() + " (" + jproject.getName() + ")");
+        printMessage("** Ready to parse " + size + " files");
         
+        ASTParser parser = getParser(jproject);
         parser.setEnvironment(jproject.getClassPath(), null, null, true);
         parser.createASTs(paths, encodings, new String[]{ }, requestor, null);
-        pm.done();
+        monitor.done();
     }
     
     @Override
@@ -372,19 +371,18 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     
     protected void collectInfo(JavaProject jproject) {
         int size = jproject.getClasses().size();
-        logger.printMessage("** Ready to build java models of " + size + " classes");
-        ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
+        printMessage("** Ready to build java models of " + size + " classes");
         
-        pm.begin(size);
+        monitor.begin(size);
         int count = 0;
         for (JavaClass jclass : jproject.getClasses()) {
             jproject.collectInfo(jclass);
             
-            pm.work(1);
+            monitor.work(1);
             count++;
             logger.recordLog("-Built " + jclass.getQualifiedName() + " (" + count + "/" + size + ")");
         }
-        pm.done();
+        monitor.done();
     }
     
     private static boolean containJavaFile(Set<String> paths) {

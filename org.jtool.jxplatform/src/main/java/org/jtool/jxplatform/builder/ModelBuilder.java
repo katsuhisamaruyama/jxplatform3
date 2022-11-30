@@ -463,11 +463,11 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Sets whether the log information is displayed.
-     * @param visible {@code true} if the log information is displayed, otherwise {@code false}
+     * Sets whether information is displayed on console.
+     * @param visible {@code true} if the information is displayed, otherwise {@code false}
      */
-    public void setLogVisible(boolean visible) {
-        builderImpl.setLogVisible(visible);
+    public void setConsoleVisible(boolean visible) {
+        builderImpl.setConsoleVisible(visible);
     }
     
     /**

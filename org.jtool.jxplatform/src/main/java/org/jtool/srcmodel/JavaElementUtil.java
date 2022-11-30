@@ -7,7 +7,7 @@ package org.jtool.srcmodel;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
-import org.jtool.jxplatform.builder.Logger;
+import org.jtool.jxplatform.project.Logger;
 import org.eclipse.jdt.core.dom.EnumDeclaration;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Initializer;
@@ -92,7 +92,7 @@ public class JavaElementUtil {
                                 jclass.addMethod(jmethod);
                             } catch(JavaElementException e) {
                                 Logger logger = jproject.getModelBuilderImpl().getLogger();
-                                logger.printCreationError(e.getMessage());
+                                logger.recordCreationError(e.getMessage());
                             }
                         }
                         
@@ -103,7 +103,7 @@ public class JavaElementUtil {
                                     jclass.addField(jfield);
                                 } catch(JavaElementException e) {
                                     Logger logger = jproject.getModelBuilderImpl().getLogger();
-                                    logger.printCreationError(e.getMessage());
+                                    logger.recordCreationError(e.getMessage());
                                 }
                             }
                         }
@@ -137,8 +137,7 @@ public class JavaElementUtil {
                         try {
                             jmethod = new JavaMethod(mbinding, jclass);
                         } catch(JavaElementException e) {
-                            Logger logger = jproject.getModelBuilderImpl().getLogger();
-                            logger.printCreationError(e.getMessage());
+                            jproject.getModelBuilderImpl().printCreationError(e.getMessage());
                         }
                     }
                     return jmethod;
@@ -151,8 +150,7 @@ public class JavaElementUtil {
                     try {
                         jmethod = new JavaMethod(mbinding, jclass);
                     } catch(JavaElementException e) {
-                        Logger logger = jproject.getModelBuilderImpl().getLogger();
-                        logger.printCreationError(e.getMessage());
+                        jproject.getModelBuilderImpl().printCreationError(e.getMessage());
                     }
                 }
                 return jmethod;
@@ -184,8 +182,7 @@ public class JavaElementUtil {
                             jfield = new JavaField(vbinding, jclass);
                             jclass.addField(jfield);
                         } catch(JavaElementException e) {
-                            Logger logger = jproject.getModelBuilderImpl().getLogger();
-                            logger.printCreationError(e.getMessage());
+                            jproject.getModelBuilderImpl().printCreationError(e.getMessage());
                         }
                     }
                     return jfield;
@@ -198,8 +195,7 @@ public class JavaElementUtil {
                         jfield = new JavaField(vbinding, jclass);
                         jclass.addField(jfield);
                     } catch(JavaElementException e) {
-                        Logger logger = jproject.getModelBuilderImpl().getLogger();
-                        logger.printCreationError(e.getMessage());
+                        jproject.getModelBuilderImpl().printCreationError(e.getMessage());
                     }
                 }
                 return jfield;

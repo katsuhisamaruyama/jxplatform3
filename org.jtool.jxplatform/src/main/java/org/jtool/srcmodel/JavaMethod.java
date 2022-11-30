@@ -5,7 +5,6 @@
 
 package org.jtool.srcmodel;
 
-import org.jtool.jxplatform.builder.Logger;
 import org.jtool.srcmodel.internal.FieldAccessCollector;
 import org.jtool.srcmodel.internal.LambdaCollector;
 import org.jtool.srcmodel.internal.LocalDeclarationCollector;
@@ -764,13 +763,14 @@ public class JavaMethod extends JavaElement {
         }
         
         if (!resolveOk) {
-            Logger logger = getJavaProject().getModelBuilderImpl().getLogger();
+            String message;
             if (declaringClass != null) {
-                logger.printUnresolvedError("Method " + getSignature() + " of " +
-                    declaringClass.getQualifiedName() + " in " + getFile().getPath());
+                message = "Method " + getSignature() + " of " + declaringClass.getQualifiedName()
+                          + " in " + getFile().getPath();
             } else {
-                logger.printUnresolvedError("Method in " + getFile().getPath());
+                message = "Method in " + getFile().getPath();
             }
+            getJavaProject().getModelBuilderImpl().printUnresolvedError(message);
         }
         resolved = true;
     }
@@ -791,8 +791,7 @@ public class JavaMethod extends JavaElement {
                 exceptions.add(jc);
             } else {
                 resolveOk = false;
-                Logger logger = getJavaProject().getModelBuilderImpl().getLogger();
-                logger.printUnresolvedError("Exception type in " + getFile().getPath());
+                getJavaProject().getModelBuilderImpl().printUnresolvedError("Exception type in " + getFile().getPath());
             }
         }
         return resolveOk;

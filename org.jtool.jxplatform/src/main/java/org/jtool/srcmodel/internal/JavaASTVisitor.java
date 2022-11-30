@@ -11,7 +11,6 @@ import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaPackage;
-import org.jtool.jxplatform.builder.Logger;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.PackageDeclaration;
 import org.eclipse.jdt.core.dom.ImportDeclaration;
@@ -65,8 +64,7 @@ public class JavaASTVisitor extends ASTVisitor {
             createClass(jclass);
             return true;
         } catch (JavaElementException e) {
-            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
-            logger.printCreationError(e.getMessage());
+            jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
             return false;
         }
     }
@@ -83,8 +81,7 @@ public class JavaASTVisitor extends ASTVisitor {
             createClass(jclass);
             return true;
         } catch (JavaElementException e) {
-            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
-            logger.printCreationError(e.getMessage());
+            jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
             return false;
         }
     }
@@ -100,8 +97,7 @@ public class JavaASTVisitor extends ASTVisitor {
             createClass(jclass);
             return true;
         } catch (JavaElementException e) {
-            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
-            logger.printCreationError(e.getMessage());
+            jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
             return false;
         }
     }
@@ -118,8 +114,7 @@ public class JavaASTVisitor extends ASTVisitor {
             createClass(jclass);
             return true;
         } catch (JavaElementException e) {
-            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
-            logger.printCreationError(e.getMessage());
+            jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
             return false;
         }
     }
@@ -152,8 +147,7 @@ public class JavaASTVisitor extends ASTVisitor {
             new JavaMethod(node, jclass);
             return true;
         } catch (JavaElementException e) {
-            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
-            logger.printCreationError(e.getMessage());
+            jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
             return false;
         }
     }
@@ -182,8 +176,7 @@ public class JavaASTVisitor extends ASTVisitor {
             try {
                 new JavaField(fragment, jclass);
             } catch (JavaElementException e) {
-                Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
-                logger.printCreationError(e.getMessage());
+                jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
             }
         }
         return false;
@@ -199,8 +192,7 @@ public class JavaASTVisitor extends ASTVisitor {
         try {
             new JavaField(node, jclass);
         } catch (JavaElementException e) {
-            Logger logger = jfile.getJavaProject().getModelBuilderImpl().getLogger();
-            logger.printCreationError(e.getMessage());
+            jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
         }
         return true;
     }

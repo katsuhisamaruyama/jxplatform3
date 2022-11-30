@@ -12,12 +12,10 @@ import org.jtool.cfg.internal.CFGStore;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.SDG;
 import org.jtool.pdg.internal.PDGStore;
-import org.jtool.jxplatform.builder.Logger;
 import org.jtool.jxplatform.builder.ModelBuilderBatch;
 import org.jtool.jxplatform.builder.TimeInfo;
 import org.jtool.jxplatform.project.CommandLineOptions;
 import org.jtool.jxplatform.project.ConsoleProgressMonitor;
-import org.jtool.jxplatform.project.NullConsoleProgressMonitor;
 import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
@@ -76,7 +74,7 @@ public class CommonGenerator {
     
     protected void setModelBuilder() {
         builder = new ModelBuilderBatch(binanalysis, useCache);
-        builder.setLogVisible(logging);
+        builder.setConsoleVisible(logging);
     }
     
     protected void buildSrcModels(String name, String path) {
@@ -90,44 +88,44 @@ public class CommonGenerator {
     
     protected List<CCFG> generateCCFGs(JavaProject jproject, List<JavaClass> classes) {
         CFGStore cfgStore = jproject.getCFGStore();
-        
         int size = classes.size();
-        Logger logger = jproject.getModelBuilderImpl().getLogger();
-        logger.printMessage("** Generating CFGs of " + size + " classes");
-        ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
+        
+        jproject.getModelBuilderImpl().printMessage("** Generating CFGs of " + size + " classes");
+        ConsoleProgressMonitor monitor = jproject.getModelBuilderImpl().getConsoleProgressMonitor();
         
         List<CCFG> ccfgs = new ArrayList<>();
-        pm.begin(size);
+        
+        monitor.begin(size);
         for (JavaClass jclass : classes) {
             CCFG ccfg = cfgStore.generateUnregisteredCCFG(jclass, false);
             if (ccfg != null) {
                 ccfgs.add(ccfg);
             }
-            pm.work(1);
+            monitor.work(1);
         }
-        pm.done();
+        monitor.done();
         
         return ccfgs;
     }
     
     protected SDG generateClDGs(JavaProject jproject, List<CCFG> ccfgs) {
         PDGStore pdgStore = jproject.getPDGStore();
-        
         int size = ccfgs.size();
-        Logger logger = jproject.getModelBuilderImpl().getLogger();
-        logger.printMessage("** Generating ClDGs of " + size + " classes");
-        ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
+        
+        jproject.getModelBuilderImpl().printMessage("** Generating ClDGs of " + size + " classes");
+        ConsoleProgressMonitor monitor = jproject.getModelBuilderImpl().getConsoleProgressMonitor();
         
         SDG sdg = new SDG();
-        pm.begin(size);
+        
+        monitor.begin(size);
         for (CCFG ccfg : ccfgs) {
             ClDG cldg = pdgStore.generateUnregisteredClDG(ccfg);
             if (cldg != null) {
                 sdg.add(cldg);
             }
-            pm.work(1);
+            monitor.work(1);
         }
-        pm.done();
+        monitor.done();
         
         pdgStore.collectInterPDGEdges(sdg);
         return sdg;
