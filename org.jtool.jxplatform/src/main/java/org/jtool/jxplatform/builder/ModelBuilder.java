@@ -32,14 +32,14 @@ public abstract class ModelBuilder {
     /**
      * The implementation module of this model builder.
      */
-    protected ModelBuilderImpl impl;
+    protected ModelBuilderImpl builderImpl;
     
     /**
      * Obtains the implementation module of this model builder.
      * @return the implementation module.
      */
     protected ModelBuilderImpl getModelBuilderImpl() {
-        return impl;
+        return builderImpl;
     }
     
     /**
@@ -47,7 +47,7 @@ public abstract class ModelBuilder {
      * @param bytecodeAnalysisChain the maximum number of the chain
      */
     public void setBytecodeAnalysisLevel(int bytecodeAnalysisChain) {
-        impl.setBytecodeAnalysisChain(bytecodeAnalysisChain);
+        builderImpl.setBytecodeAnalysisChain(bytecodeAnalysisChain);
     }
     
     /**
@@ -55,7 +55,7 @@ public abstract class ModelBuilder {
      * @param bool {@code true} if byte-code analysis is performed, otherwise {@code false}
      */
     public void analyzeBytecode(boolean bool) {
-        impl.analyzeBytecode(bool);
+        builderImpl.analyzeBytecode(bool);
     }
     
     /**
@@ -63,7 +63,7 @@ public abstract class ModelBuilder {
      * @return {@code true} if byte-code analysis is performed, otherwise {@code false}
      */
     public boolean analyzeBytecode() {
-        return impl.analyzeBytecode();
+        return builderImpl.analyzeBytecode();
     }
     
     /**
@@ -71,7 +71,7 @@ public abstract class ModelBuilder {
      * @param bool {@code true} if byte-code analysis is performed, otherwise {@code false}
      */
     public void useCache(boolean bool) {
-        impl.useCache(bool);
+        builderImpl.useCache(bool);
     }
     
     /**
@@ -79,14 +79,14 @@ public abstract class ModelBuilder {
      * @return {@code true} if byte-code analysis is performed, otherwise {@code false}
      */
     public boolean useCache() {
-        return impl.useCache();
+        return builderImpl.useCache();
     }
     
     /**
      * Disposes the created models.
      */
     public void unbuild() {
-        impl.unbuild();
+        builderImpl.unbuild();
     }
     
     /**
@@ -97,7 +97,7 @@ public abstract class ModelBuilder {
     public JavaFile copyJavaFile(JavaFile jfile) {
         assert jfile != null;
         
-        return impl.copyJavaFile(jfile);
+        return builderImpl.copyJavaFile(jfile);
     }
     
     /**
@@ -110,7 +110,7 @@ public abstract class ModelBuilder {
     public JavaFile getUnregisteredJavaFile(String filepath, String code, JavaProject jproject) {
         assert jproject != null;
         
-        return impl.getUnregisteredJavaFile(filepath, code, jproject);
+        return builderImpl.getUnregisteredJavaFile(filepath, code, jproject);
     }
     
     /**
@@ -124,7 +124,7 @@ public abstract class ModelBuilder {
     public JavaFile getUnregisteredJavaFile(String filepath, String code, JavaProject jproject, String charset) {
         assert jproject != null;
         
-        return impl.getUnregisteredJavaFile(filepath, code, jproject, charset);
+        return builderImpl.getUnregisteredJavaFile(filepath, code, jproject, charset);
     }
     
     /**
@@ -467,7 +467,7 @@ public abstract class ModelBuilder {
      * @param visible {@code true} if the log information is displayed, otherwise {@code false}
      */
     public void setLogVisible(boolean visible) {
-        impl.setLogVisible(visible);
+        builderImpl.setLogVisible(visible);
     }
     
     /**
@@ -478,7 +478,7 @@ public abstract class ModelBuilder {
     public Set<JavaClass> getAllClassesForward(JavaClass jclass) {
         assert jclass != null;
         
-        return impl.getAllClassesForward(jclass);
+        return builderImpl.getAllClassesForward(jclass);
     }
     
     /**
@@ -489,7 +489,7 @@ public abstract class ModelBuilder {
     public Set<JavaClass> getAllClassesBackward(JavaClass jclass) {
         assert jclass != null;
         
-        return impl.getAllClassesBackward(jclass);
+        return builderImpl.getAllClassesBackward(jclass);
     }
     
     /**
@@ -500,7 +500,7 @@ public abstract class ModelBuilder {
     public Set<JavaMethod> getAllMethodsForward(JavaMethod jmethod) {
         assert jmethod != null;
         
-        return impl.getAllMethodsForward(jmethod);
+        return builderImpl.getAllMethodsForward(jmethod);
     }
     
     /**
@@ -511,6 +511,6 @@ public abstract class ModelBuilder {
     public Set<JavaMethod> getAllMethodsBackward(JavaMethod jmethod) {
         assert jmethod != null;
         
-        return impl.getAllMethodsBackward(jmethod);
+        return builderImpl.getAllMethodsBackward(jmethod);
     }
 }

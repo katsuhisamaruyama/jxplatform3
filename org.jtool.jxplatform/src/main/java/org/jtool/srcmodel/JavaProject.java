@@ -90,7 +90,7 @@ public class JavaProject {
     /**
      * The the version of the compiler target platform.
      */
-    protected String compilerTargetVersion = null;;
+    protected String compilerTargetVersion = null;
     
     /**
      * A CFG repository that stores CFGs for source files for this project.
@@ -137,6 +137,27 @@ public class JavaProject {
     }
     
     /**
+     * Creates a project that stores source files and their related information.
+     * @param name the name of this project
+     * @param wpath the absolute path that indicates the root directory of this project relative to the workspace
+     * @param path the absolute path that indicates the root directory of this project in the file system
+     * @param topPath the absolute path string that indicates the root directory of the top project enclosing this project
+     * @param cfgStore a CFG repository that stores CFGs for source files for this project
+     * @param pdgStore a PDG repository that stores PDGs for source files for this project.
+     */
+    public JavaProject(String name, String wpath, String path, String topPath, CFGStore cfgStore, PDGStore pdgStore) {
+        assert path != null;
+        
+        this.name = name;
+        this.pathInWorkspace = wpath;
+        this.path = path;
+        this.topPath = topPath;
+        
+        this.cfgStore = cfgStore;
+        this.pdgStore = pdgStore;
+    }
+    
+    /**
      * Sets a model builder implementation that creates Java models in this project.
      * @param modelBuilderImpl the model builder implementation
      */
@@ -160,14 +181,6 @@ public class JavaProject {
      */
     public ModelBuilder getModelBuilder() {
         return modelBuilderImpl.getModelBuilder();
-    }
-    
-    /**
-     * Tests if this project is under the workspace managed by an Eclipse's plug-in.
-     * @return {@code true} if this project is under the workspace, otherwise {@code false}
-     */
-    public boolean isManagedByPlugin() {
-        return modelBuilderImpl.isUnderPlugin();
     }
     
     /**
@@ -253,7 +266,7 @@ public class JavaProject {
      * This method is not intended to be invoked by clients.
      * @param path the path of a file to be removed
      */
-    void removeFile(String path) {
+    public void removeFile(String path) {
         JavaFile jfile = fileStore.get(path);
         if (jfile != null) {
             fileStore.remove(path);
@@ -301,7 +314,7 @@ public class JavaProject {
      * This method is not intended to be invoked by clients.
      * @param jpackage the package to be removed
      */
-    void removePackage(JavaPackage jpackage) {
+    public void removePackage(JavaPackage jpackage) {
         packageStore.remove(jpackage.getName());
     }
     
@@ -358,7 +371,7 @@ public class JavaProject {
      * This method is not intended to be invoked by clients.
      * @param jclass the class to be removed
      */
-    void removeClass(JavaClass jclass) {
+    public void removeClass(JavaClass jclass) {
         classStore.remove(jclass.getQualifiedName().fqn());
     }
     

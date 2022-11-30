@@ -37,16 +37,10 @@ import java.util.stream.Collectors;
  * 
  * @author Katsuhisa Maruyama
  */
-
 public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     
     public ModelBuilderBatchImpl(ModelBuilder modelBuiler) {
         super(modelBuiler);
-    }
-    
-    @Override
-    public boolean isUnderPlugin() {
-        return false;
     }
     
     public List<JavaProject> build(String name, String target) {
@@ -152,7 +146,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                 classpath, srcpath, binpath);
         jproject.setCompilerVersions(projectEnv.getCompilerSourceVersion(), projectEnv.getCompilerTargetVersion());
         
-        run(jproject, projectEnv.getExcludedSourceFiles());
+        build(jproject, projectEnv.getExcludedSourceFiles());
         
         logger.writeLog();
         return jproject;
@@ -195,7 +189,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     
     public JavaProject build(String name, Path basePath, Path topPath, String[] classpath, String[] srcpath, String[] binpath) {
         JavaProject jproject = createProject(name, basePath, topPath, classpath, srcpath, binpath);
-        run(jproject);
+        build(jproject);
         logger.writeLog();
         return jproject;
     }
@@ -282,19 +276,19 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                 jproject.getSourcePath(), jproject.getBinaryPath());
     }
     
-    private void run(JavaProject jproject) {
+    protected void build(JavaProject jproject) {
         List<File> sourceFiles = collectAllJavaFiles(jproject.getSourcePath());
-        run(jproject, sourceFiles);
+        build(jproject, sourceFiles);
     }
     
-    private void run(JavaProject jproject, Set<String> excludedSourceFiles) {
+    protected void build(JavaProject jproject, Set<String> excludedSourceFiles) {
         List<File> allFiles = collectAllJavaFiles(jproject.getSourcePath());
         List<File> sourceFiles = allFiles.stream()
                 .filter(f -> !excludedSourceFiles.contains(f.getAbsolutePath())).collect(Collectors.toList());
-        run(jproject, sourceFiles);
+        build(jproject, sourceFiles);
     }
     
-    private void run(JavaProject jproject, List<File> sourceFiles) {
+    protected void build(JavaProject jproject, List<File> sourceFiles) {
         if (sourceFiles.size() > 0) {
             String[] paths = new String[sourceFiles.size()];
             String[] encodings = new String[sourceFiles.size()];
@@ -322,14 +316,16 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         }
     }
     
-    private void parse(JavaProject jproject, String[] paths, String[] encodings, Map<String, String> sources, Map<String, String> charsets) {
+    private void parse(JavaProject jproject, String[] paths, String[] encodings,
+            Map<String, String> sources, Map<String, String> charsets) {
         final int size = paths.length;
         
-        ConsoleProgressMonitor pm = visible ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
+        ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
         pm.begin(size);
         FileASTRequestor requestor = new FileASTRequestor() {
             private int count = 0;
             
+            @Override
             public void acceptAST(String filepath, CompilationUnit cu) {
                 if (getParseErrors(cu).size() == 0) {
                     JavaFile jfile = new JavaFile(cu, filepath, sources.get(filepath), charsets.get(filepath), jproject);
@@ -377,7 +373,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     protected void collectInfo(JavaProject jproject) {
         int size = jproject.getClasses().size();
         logger.printMessage("** Ready to build java models of " + size + " classes");
-        ConsoleProgressMonitor pm = visible ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
+        ConsoleProgressMonitor pm = logger.isVisible() ? new ConsoleProgressMonitor() : new NullConsoleProgressMonitor();
         
         pm.begin(size);
         int count = 0;
@@ -391,7 +387,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         pm.done();
     }
     
-    protected static boolean containJavaFile(Set<String> paths) {
+    private static boolean containJavaFile(Set<String> paths) {
         return paths.stream().anyMatch(path -> containJavaFile(path));
     }
     
@@ -415,7 +411,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         return false;
     }
     
-    private static boolean isCompilableJavaFile(String path) {
+    protected static boolean isCompilableJavaFile(String path) {
         return path.endsWith(".java") &&
                 !path.endsWith(File.separator + "module-info.java") &&
                 !path.endsWith(File.separator + "package-info.java") &&
@@ -436,13 +432,13 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
             .collect(Collectors.toList());
     }
     
-    private static Set<File> collectAllJavaFileSet(String[] paths) {
+    protected static Set<File> collectAllJavaFileSet(String[] paths) {
         return Arrays.stream(paths)
             .flatMap(path -> collectAllJavaFileSet(path).stream())
             .collect(Collectors.toSet());
     }
     
-    private static Set<File> collectAllJavaFileSet(String path) {
+    protected static Set<File> collectAllJavaFileSet(String path) {
         Set<File> files = new HashSet<>();
         if (path == null) {
             return files;

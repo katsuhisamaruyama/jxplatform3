@@ -27,7 +27,7 @@ import java.util.HashSet;
  * 
  * @author Katsuhisa Maruyama
  */
-public abstract class ModelBuilderImpl {
+public class ModelBuilderImpl {
     
     protected ModelBuilder modelBuilder;
     
@@ -38,12 +38,11 @@ public abstract class ModelBuilderImpl {
     protected int bytecodeAnalysisChain = 2;
     
     protected Logger logger;
-    protected boolean visible = true;
     protected boolean verbose = true;
     
     protected ModelBuilderImpl(ModelBuilder modelBuiler) {
         this.modelBuilder = modelBuiler;
-        this.logger = new Logger(visible);
+        this.logger = new Logger(true);
     }
     
     public ModelBuilder getModelBuilder() {
@@ -54,9 +53,8 @@ public abstract class ModelBuilderImpl {
         return logger;
     }
     
-    public abstract boolean isUnderPlugin();
-    
-    public abstract void update(JavaProject jproject);
+    public void update(JavaProject jproject) {
+    }
     
     public void analyzeBytecode(boolean bool) {
         analyzeBytecode = bool;
@@ -95,12 +93,11 @@ public abstract class ModelBuilderImpl {
     }
     
     public void setLogVisible(boolean visible) {
-        this.visible = visible;
         logger.setVisible(visible);
     }
     
     public boolean isLogVisible() {
-        return visible;
+        return logger.isVisible();
     }
     
     public JavaFile copyJavaFile(JavaFile jfile) {

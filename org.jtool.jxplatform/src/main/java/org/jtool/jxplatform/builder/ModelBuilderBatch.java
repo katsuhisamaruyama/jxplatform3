@@ -17,21 +17,15 @@ import java.util.List;
 public class ModelBuilderBatch extends ModelBuilder {
     
     /**
-     * The implementation module of this model builder.
-     */
-    private final ModelBuilderBatchImpl builderImpl;
-    
-    /**
      * Creates a batch-mode model builder.
      * @param analyzingBytecode {@code true} if byte-code analysis is performed, otherwise {@code false}
      * @param useCache {@code true} if the cache is used, otherwise {@code false}
      */
     public ModelBuilderBatch(boolean analyzingBytecode, boolean useCache) {
-        this.builderImpl = new ModelBuilderBatchImpl(this);
-        impl = builderImpl;
+        builderImpl = new ModelBuilderBatchImpl(this);
         
-        impl.analyzeBytecode(analyzingBytecode);
-        impl.useCache(useCache);
+        builderImpl.analyzeBytecode(analyzingBytecode);
+        builderImpl.useCache(useCache);
     }
     
     /**
@@ -56,7 +50,7 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @return the collection of created project data
      */
     public List<JavaProject> build(String name, String target) {
-        return builderImpl.build(name, target);
+        return ((ModelBuilderBatchImpl)builderImpl).build(name, target);
     }
     
     /**
@@ -80,7 +74,7 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @return the created project data
      */
     public JavaProject build(String name, String target, String classpath, String srcpath, String binpath) {
-        return builderImpl.build(name, target, classpath, srcpath, binpath);
+        return ((ModelBuilderBatchImpl)builderImpl).build(name, target, classpath, srcpath, binpath);
     }
     
     /**
@@ -93,6 +87,6 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @return the created project data
      */
     public JavaProject build(String name, String target, String[] classpath, String[] srcpath, String[] binpath) {
-        return builderImpl.build(name, target, classpath, srcpath, binpath);
+        return ((ModelBuilderBatchImpl)builderImpl).build(name, target, classpath, srcpath, binpath);
     }
 }
