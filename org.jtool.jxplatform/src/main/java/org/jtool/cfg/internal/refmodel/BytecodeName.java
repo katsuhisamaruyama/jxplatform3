@@ -11,11 +11,19 @@ package org.jtool.cfg.internal.refmodel;
  * @author Katsuhisa Maruyama
  */
 public class BytecodeName {
-    public final String className;
-    public final String cacheName;
+    final String className;
+    final String cacheName;
     
     BytecodeName(String className, String cacheName) {
         this.className = className;
         this.cacheName = cacheName;
+    }
+    
+    public String getClassName() {
+        return className;
+    }
+    
+    public String cacheName() {
+        return cacheName;
     }
 }

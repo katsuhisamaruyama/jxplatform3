@@ -8,7 +8,6 @@ package org.jtool.jxplatform.project;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaMethod;
-import org.jtool.srcmodel.JavaPackage;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.internal.JavaASTVisitor;
 import org.jtool.srcmodel.internal.ProjectStore;
@@ -42,8 +41,8 @@ public class ModelBuilderImpl {
     protected boolean verbose = true;
     
     protected ConsoleProgressMonitor monitor;
-    protected static ConsoleProgressMonitor consoleProgressMonitor = new ConsoleProgressMonitor();
-    protected static ConsoleProgressMonitor nullConsoleProgressMonitor = new NullConsoleProgressMonitor();
+    protected static final ConsoleProgressMonitor consoleProgressMonitor = new ConsoleProgressMonitor();
+    protected static final ConsoleProgressMonitor nullConsoleProgressMonitor = new NullConsoleProgressMonitor();
     
     protected ModelBuilderImpl(ModelBuilder modelBuiler) {
         this.modelBuilder = modelBuiler;
@@ -206,7 +205,7 @@ public class ModelBuilderImpl {
         return JavaCore.VERSION_11;
     }
     
-    protected Set<IProblem> getParseErrors(CompilationUnit cu) {
+   Set<IProblem> getParseErrors(CompilationUnit cu) {
         Set<IProblem> errors = new HashSet<>();
         IProblem[] problems = cu.getProblems();
         if (problems.length > 0) {
@@ -288,42 +287,5 @@ public class ModelBuilderImpl {
         for (JavaMethod jm : jmethod.getCallingMethods()) {
             collectAllMethodsBackward(jm, methods);
         }
-    }
-    
-    public Set<JavaFile> collectDependentFiles(JavaProject jproject, String filepath) {
-        Set<JavaFile> files = new HashSet<>();
-        JavaFile jfile = jproject.getFile(filepath);
-        if (jfile == null) {
-            return files;
-        }
-        
-        files.add(jfile);
-        
-        Set<JavaClass> classes = new HashSet<>();
-        for (JavaClass jc : jfile.getClasses()) {
-            classes.addAll(jproject.collectClassesDependingOn(jc));
-        }
-        for (JavaClass jc : classes) {
-            files.add(jc.getFile());
-        }
-        return files;
-    }
-    
-    public void removeJavaFile(JavaProject jproject, String filepath) {
-        JavaFile jfile = jproject.getFile(filepath);
-        for (JavaClass jc : jfile.getClasses()) {
-            jproject.removeClass(jc);
-        }
-        jproject.removeFile(jfile.getPath());
-        
-        for (JavaPackage jpackage : jproject.getPackages()) {
-            if (jpackage.getClasses().size() == 0) {
-                jproject.removePackage(jpackage);
-            }
-        }
-    }
-    
-    public void removeJavaFiles(JavaProject jproject, Set<String> filepaths) {
-        filepaths.forEach(filepath -> removeJavaFile(jproject, filepath));
     }
 }

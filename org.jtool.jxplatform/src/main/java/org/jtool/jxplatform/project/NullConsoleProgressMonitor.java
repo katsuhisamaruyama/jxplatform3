@@ -26,4 +26,16 @@ public class NullConsoleProgressMonitor extends ConsoleProgressMonitor {
     @Override
     public void work(int done) {
     }
+    
+    @Override
+    public void display(char ch) {
+    }
+    
+    @Override
+    public void printMessage(String message) {
+    }
+    
+    @Override
+    public void printError(String message) {
+    }
 }

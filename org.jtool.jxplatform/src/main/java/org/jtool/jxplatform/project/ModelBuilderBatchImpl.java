@@ -194,7 +194,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         return jproject;
     }
     
-    public JavaProject createProject(String name, Path basePath, Path topPath,
+    JavaProject createProject(String name, Path basePath, Path topPath,
             String[] classpath, String[] srcpath, String[] binpath) {
         JavaProject jproject = new JavaProject(name, basePath.toString(), topPath.toString());
         jproject.setModelBuilderImpl(this);
@@ -276,47 +276,61 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
                 jproject.getSourcePath(), jproject.getBinaryPath());
     }
     
-    protected void build(JavaProject jproject) {
+    public void build(JavaProject jproject) {
         List<File> sourceFiles = collectAllJavaFiles(jproject.getSourcePath());
-        build(jproject, sourceFiles);
+        parseFile(jproject, sourceFiles);
+        collectInfo(jproject, jproject.getClasses());
     }
     
-    protected void build(JavaProject jproject, Set<String> excludedSourceFiles) {
+    public void build(JavaProject jproject, Set<String> excludedSourceFiles) {
         List<File> allFiles = collectAllJavaFiles(jproject.getSourcePath());
         List<File> sourceFiles = allFiles.stream()
                 .filter(f -> !excludedSourceFiles.contains(f.getAbsolutePath())).collect(Collectors.toList());
-        build(jproject, sourceFiles);
+        parseFile(jproject, sourceFiles);
+        collectInfo(jproject, jproject.getClasses());
     }
     
-    protected void build(JavaProject jproject, List<File> sourceFiles) {
-        if (sourceFiles.size() > 0) {
-            String[] paths = new String[sourceFiles.size()];
-            String[] encodings = new String[sourceFiles.size()];
+    void parseFile(JavaProject jproject, List<File> sourceFiles) {
+        List<FileContent> fileContents = new ArrayList<>();
+        for (File file : sourceFiles) {
+            try {
+                String path = file.getCanonicalPath();
+                String source = read(file);
+                FileContent fileContent = new FileContent(path, source);
+                fileContents.add(fileContent);
+            } catch (IOException e) {
+                printError("Cannot read file " + file.getPath());
+            }
+        }
+        parse(jproject, fileContents);
+    }
+    
+    void parse(JavaProject jproject, List<FileContent> fileContents) {
+        if (fileContents.size() > 0) {
+            String[] paths = new String[fileContents.size()];
+            String[] encodings = new String[fileContents.size()];
             Map<String, String> sources = new HashMap<>();
             Map<String, String> charsets = new HashMap<>();
             
             int count = 0;
-            for (File file : sourceFiles) {
-                try {
-                    String path = file.getCanonicalPath();
-                    String source = read(file);
-                    String charset = StandardCharsets.UTF_8.name();
-                    paths[count] = path;
-                    encodings[count] = charset;
-                    sources.put(path, source);
-                    charsets.put(path, charset);
-                    count++;
-                } catch (IOException e) { /* empty */ }
+            for (FileContent fileContent : fileContents) {
+                String path = fileContent.getPath();
+                String source = fileContent.getSource();
+                String charset = StandardCharsets.UTF_8.name();
+                paths[count] = path;
+                encodings[count] = charset;
+                sources.put(path, source);
+                charsets.put(path, charset);
+                count++;
             }
             
             parse(jproject, paths, encodings, sources, charsets);
-            collectInfo(jproject);
         } else {
             printError("Found no Java source files in " + jproject.getPath());
         }
     }
     
-    private void parse(JavaProject jproject, String[] paths, String[] encodings,
+    void parse(JavaProject jproject, String[] paths, String[] encodings,
             Map<String, String> sources, Map<String, String> charsets) {
         final int size = paths.length;
         
@@ -352,7 +366,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     }
     
     @Override
-    protected Set<IProblem> getParseErrors(CompilationUnit cu) {
+    Set<IProblem> getParseErrors(CompilationUnit cu) {
         if (verbose) {
             return super.getParseErrors(cu);
         }
@@ -369,18 +383,17 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         return errors;
     }
     
-    protected void collectInfo(JavaProject jproject) {
-        int size = jproject.getClasses().size();
-        printMessage("** Ready to build java models of " + size + " classes");
+    void collectInfo(JavaProject jproject, List<JavaClass> classes) {
+        printMessage("** Ready to build java models of " + classes.size() + " classes");
         
-        monitor.begin(size);
+        monitor.begin(classes.size());
         int count = 0;
-        for (JavaClass jclass : jproject.getClasses()) {
+        for (JavaClass jclass : classes) {
             jproject.collectInfo(jclass);
             
             monitor.work(1);
             count++;
-            logger.recordLog("-Built " + jclass.getQualifiedName() + " (" + count + "/" + size + ")");
+            logger.recordLog("-Built " + jclass.getQualifiedName() + " (" + count + "/" + classes.size() + ")");
         }
         monitor.done();
     }
@@ -409,34 +422,34 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         return false;
     }
     
-    protected static boolean isCompilableJavaFile(String path) {
+    static boolean isCompilableJavaFile(String path) {
         return path.endsWith(".java") &&
                 !path.endsWith(File.separator + "module-info.java") &&
                 !path.endsWith(File.separator + "package-info.java") &&
                 path.indexOf("archetypes" + File.separator) == -1;
     }
     
-    protected static List<File> collectAllJavaFiles(String[] paths) {
+    static List<File> collectAllJavaFiles(String[] paths) {
         Set<File> set = collectAllJavaFileSet(paths);
         return set.stream()
             .sorted(Comparator.comparing(File::getAbsolutePath))
             .collect(Collectors.toList());
     }
     
-    protected static List<File> collectAllJavaFiles(String path) {
+    static List<File> collectAllJavaFiles(String path) {
         Set<File> set = collectAllJavaFileSet(path);
         return set.stream()
             .sorted(Comparator.comparing(File::getAbsolutePath))
             .collect(Collectors.toList());
     }
     
-    protected static Set<File> collectAllJavaFileSet(String[] paths) {
+    static Set<File> collectAllJavaFileSet(String[] paths) {
         return Arrays.stream(paths)
             .flatMap(path -> collectAllJavaFileSet(path).stream())
             .collect(Collectors.toSet());
     }
     
-    protected static Set<File> collectAllJavaFileSet(String path) {
+    static Set<File> collectAllJavaFileSet(String path) {
         Set<File> files = new HashSet<>();
         if (path == null) {
             return files;
@@ -467,5 +480,24 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
             }
         }
         return content.toString();
+    }
+    
+    private class FileContent {
+        
+        private String path;
+        private String source;
+        
+        FileContent(String path, String source) {
+            this.path = path;
+            this.source = source;
+        }
+        
+        String getPath() {
+            return path;
+        }
+        
+        String getSource() {
+            return source;
+        }
     }
 }
