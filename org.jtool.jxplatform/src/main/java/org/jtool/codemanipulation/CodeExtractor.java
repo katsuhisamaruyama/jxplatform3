@@ -1254,7 +1254,7 @@ public class CodeExtractor extends ASTVisitor {
         }
         
         private String key(ASTNode node) {
-            return String.valueOf(node.getStartPosition() + "-" + node.getLength());
+            return String.valueOf(node.getNodeType() + "@" + node.getStartPosition() + "-" + node.getLength());
         }
         
         private boolean isCFGNode(ASTNode node) {
