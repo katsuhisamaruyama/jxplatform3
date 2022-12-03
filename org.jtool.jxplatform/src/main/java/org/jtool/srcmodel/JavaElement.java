@@ -28,7 +28,6 @@ public abstract class JavaElement {
      * Creates a new object of this model element.
      * This constructor is intended to be invoked by subclasses when creation their objects.
      * @param node an AST node corresponding to this model element
-     * @param jfile a file that declares this model element
      */
     protected JavaElement(ASTNode node) {
         this.astNode = node;
