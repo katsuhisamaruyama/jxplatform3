@@ -5,6 +5,7 @@
 
 package org.jtool.srcmodel;
 
+import org.jtool.jxplatform.builder.TimeInfo;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.Set;
@@ -12,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
+import java.time.ZonedDateTime;
 
 /**
  * An object representing a Java source file.
@@ -44,6 +46,11 @@ public class JavaFile {
      * The character set of the contents of this file.
      */
     private final String charset;
+    
+    /**
+     * Time when this file was created.
+     */
+    private ZonedDateTime createdTime;
     
     /**
      * The package declared in this file.
@@ -81,6 +88,8 @@ public class JavaFile {
         this.path = path;
         this.source = source;
         this.charset = charset;
+        this.createdTime = TimeInfo.getCurrentTime();
+        
         jproject.addFile(this);
     }
     
@@ -138,6 +147,14 @@ public class JavaFile {
      */
     public String getCharset() {
         return charset;
+    }
+    
+    /**
+     * Returns the time when this file was created.
+     * @return the created time
+     */
+    public ZonedDateTime getCreatedTime() {
+        return createdTime;
     }
     
     /**

@@ -290,7 +290,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         collectInfo(jproject, jproject.getClasses());
     }
     
-    void parseFile(JavaProject jproject, List<File> sourceFiles) {
+    public void parseFile(JavaProject jproject, List<File> sourceFiles) {
         List<FileContent> fileContents = new ArrayList<>();
         for (File file : sourceFiles) {
             try {
@@ -305,7 +305,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         parse(jproject, fileContents);
     }
     
-    void parse(JavaProject jproject, List<FileContent> fileContents) {
+    public void parse(JavaProject jproject, List<FileContent> fileContents) {
         if (fileContents.size() > 0) {
             String[] paths = new String[fileContents.size()];
             String[] encodings = new String[fileContents.size()];
@@ -383,7 +383,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         return errors;
     }
     
-    void collectInfo(JavaProject jproject, List<JavaClass> classes) {
+    public void collectInfo(JavaProject jproject, List<JavaClass> classes) {
         printMessage("** Ready to build java models of " + classes.size() + " classes");
         
         monitor.begin(classes.size());
@@ -422,14 +422,14 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         return false;
     }
     
-    static boolean isCompilableJavaFile(String path) {
+    public static boolean isCompilableJavaFile(String path) {
         return path.endsWith(".java") &&
                 !path.endsWith(File.separator + "module-info.java") &&
                 !path.endsWith(File.separator + "package-info.java") &&
                 path.indexOf("archetypes" + File.separator) == -1;
     }
     
-    static List<File> collectAllJavaFiles(String[] paths) {
+    public static List<File> collectAllJavaFiles(String[] paths) {
         Set<File> set = collectAllJavaFileSet(paths);
         return set.stream()
             .sorted(Comparator.comparing(File::getAbsolutePath))
@@ -443,7 +443,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
             .collect(Collectors.toList());
     }
     
-    static Set<File> collectAllJavaFileSet(String[] paths) {
+    public static Set<File> collectAllJavaFileSet(String[] paths) {
         return Arrays.stream(paths)
             .flatMap(path -> collectAllJavaFileSet(path).stream())
             .collect(Collectors.toSet());
