@@ -14,6 +14,7 @@ import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CallGraph;
 import org.jtool.cfg.internal.CallGraphBuilder;
+import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
 import org.jtool.jxplatform.project.ModelBuilderImpl;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDG;
@@ -27,12 +28,39 @@ import java.util.Set;
  * @author Katsuhisa Maruyama
  */
 
-public abstract class ModelBuilder {
+public class ModelBuilder {
     
     /**
      * The implementation module of this model builder.
      */
     protected ModelBuilderImpl builderImpl;
+    
+    /**
+     * Creates a model builder.
+     * @param analyzingBytecode {@code true} if byte-code analysis is performed, otherwise {@code false}
+     * @param useCache {@code true} if the cache is used, otherwise {@code false}
+     */
+    public ModelBuilder(boolean analyzingBytecode, boolean useCache) {
+        builderImpl = new ModelBuilderBatchImpl(this);
+        
+        builderImpl.analyzeBytecode(analyzingBytecode);
+        builderImpl.useCache(useCache);
+    }
+    
+    /**
+     * Creates a model builder.
+     * @param analyzingBytecode {@code true} if byte-code analysis is performed, otherwise {@code false}
+     */
+    public ModelBuilder(boolean analyzingBytecode) {
+        this(analyzingBytecode, true);
+    }
+    
+    /**
+     * Creates a model builder.
+     */
+    public ModelBuilder() {
+        this(true, true);
+    }
     
     /**
      * Obtains the implementation module of this model builder.
@@ -80,6 +108,43 @@ public abstract class ModelBuilder {
      */
     public boolean useCache() {
         return builderImpl.useCache();
+    }
+    
+    /**
+     * Builds a source code model for a target project.
+     * @param name the name of the created model
+     * @param target the directory storing the target project
+     * @param classpath the path where the needed class (or jar) files are located
+     * @return the created project data
+     */
+    public JavaProject build(String name, String target, String classpath) {
+        return build(name, target, classpath, (String)null, (String)null);
+    }
+    
+    /**
+     * Builds a source code model for a target project.
+     * @param name the name of the created model
+     * @param target the directory storing the target project
+     * @param classpath the path where the needed class (or jar) files are located
+     * @param srcpath the path where the source files are located
+     * @param binpath the path where the binary files are located
+     * @return the created project data
+     */
+    public JavaProject build(String name, String target, String classpath, String srcpath, String binpath) {
+        return builderImpl.build(name, target, classpath, srcpath, binpath);
+    }
+    
+    /**
+     * Builds a source code model for a target project.
+     * @param name the name of the created model
+     * @param target the directory storing the target project
+     * @param classpath the collection of the paths where the needed class (or jar) files are located
+     * @param srcpath the collection of the paths where the source files are located
+     * @param binpath the collection of the paths where the binary files are located
+     * @return the created project data
+     */
+    public JavaProject build(String name, String target, String[] classpath, String[] srcpath, String[] binpath) {
+        return builderImpl.build(name, target, classpath, srcpath, binpath);
     }
     
     /**

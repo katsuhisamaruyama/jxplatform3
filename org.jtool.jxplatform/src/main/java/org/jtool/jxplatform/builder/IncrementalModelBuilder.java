@@ -5,7 +5,7 @@
 
 package org.jtool.jxplatform.builder;
 
-import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
+import org.jtool.jxplatform.project.ModelBuilderImpl;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaPackage;
@@ -37,17 +37,17 @@ public class IncrementalModelBuilder {
     /**
      * A builder that actually builds models.
      */
-    protected ModelBuilderBatchImpl modelBuilderImpl;
+    protected ModelBuilderImpl builderImpl;
     
     /**
      * The collection of files whose contents are obsolete.
      */
-    private Set<JavaFile> obsoleteFiles = new HashSet<>();
+    protected Set<JavaFile> obsoleteFiles = new HashSet<>();
     
     /**
      * The collection of files that are newly added.
      */
-    private Set<Path> newFiles = new HashSet<>();
+    protected Set<Path> newFiles = new HashSet<>();
     
     /**
      * The project this builder is applied to.
@@ -55,35 +55,35 @@ public class IncrementalModelBuilder {
      */
     public IncrementalModelBuilder(JavaProject jproject) {
         this.jproject = jproject;
-        this.modelBuilderImpl = (ModelBuilderBatchImpl)jproject.getModelBuilderImpl();
+        this.builderImpl = jproject.getModelBuilderImpl();
     }
     
     /**
      * Invoked when the class path is changed.
      */
     public void changeClassPath() {
-        modelBuilderImpl.update(jproject);
+        builderImpl.update(jproject);
     }
     
     /**
      * Invoked when the source path is changed.
      */
     public void changeSourcePath() {
-        modelBuilderImpl.update(jproject);
+        builderImpl.update(jproject);
     }
     
     /**
      * Invoked when the binary path is changed.
      */
     public void changeBinPath() {
-        modelBuilderImpl.update(jproject);
+        builderImpl.update(jproject);
     }
     
     /**
      * Invoked when the library is changed.
      */
     public void changeLibrary() {
-        modelBuilderImpl.update(jproject);
+        builderImpl.update(jproject);
     }
     
     /**
@@ -107,7 +107,7 @@ public class IncrementalModelBuilder {
      * @param pathname the path name of the added file
      */
     public void addFile(String pathname) {
-        if (ModelBuilderBatchImpl.isCompilableJavaFile(pathname)) {
+        if (ModelBuilderImpl.isCompilableJavaFile(pathname)) {
             File file = new File(pathname);
             if (file.isFile()) {
                 addFile(file.toPath());
@@ -205,16 +205,29 @@ public class IncrementalModelBuilder {
     }
     
     /**
+     * Re-builds a source code model from all files.
+     */
+    public void rebuild() {
+        obsoleteFiles.clear();
+        newFiles.clear();
+        jproject.getFiles().forEach(jfile -> removeJavaFile(jfile));
+        
+        List<File> sourceFiles = ModelBuilderImpl.collectAllJavaFiles(jproject.getSourcePath());
+        builderImpl.parseFile(jproject, sourceFiles);
+        builderImpl.collectInfo(jproject, jproject.getClasses());
+    }
+    
+    /**
      * Builds a source code model based on added and removed files.
      */
-    public void build() {
+    public void incrementalBuild() {
         obsoleteFiles.forEach(jfile -> removeJavaFile(jfile));
         
         List<File> sourceFiles = new ArrayList<>();
         sourceFiles.addAll(obsoleteFiles.stream().map(jfile -> new File(jfile.getPath())).collect(Collectors.toSet()));
         sourceFiles.addAll(newFiles.stream().map(path -> path.toFile()).collect(Collectors.toSet()));
         
-        modelBuilderImpl.parseFile(jproject, sourceFiles);
+        builderImpl.parseFile(jproject, sourceFiles);
         
         List<JavaClass> classes = obsoleteFiles.stream()
                 .map(jfile -> jproject.getFile(jfile.getPath()))
@@ -222,14 +235,22 @@ public class IncrementalModelBuilder {
         classes.addAll(newFiles.stream()
                 .map(path -> jproject.getFile(path.toAbsolutePath().toString()))
                 .flatMap(jfile -> jfile.getClasses().stream()).collect(Collectors.toList()));
-        modelBuilderImpl.collectInfo(jproject, classes);
+        
+        builderImpl.collectInfo(jproject, classes);
+    }
+    
+    /**
+     * Disposes the created models.
+     */
+    public void unbuild() {
+        builderImpl.unbuild();
     }
     
     /**
      * Removes a file and its contents.
      * @param jfile the file to be removed
      */
-    private void removeJavaFile(JavaFile jfile) {
+    protected void removeJavaFile(JavaFile jfile) {
         for (JavaClass jc : jfile.getClasses()) {
             jproject.removeClass(jc);
         }
@@ -247,7 +268,7 @@ public class IncrementalModelBuilder {
      */
     public void buildByFileTime() {
         collectFilesByFileTime();
-        build();
+        incrementalBuild();
     }
     
     /**
@@ -256,7 +277,7 @@ public class IncrementalModelBuilder {
     void collectFilesByFileTime() {
         Set<String> analyzedFiles = jproject.getFiles().stream().map(jfile -> jfile.getPath()).collect(Collectors.toSet());
         
-        Set<File> sourceFiles = ModelBuilderBatchImpl.collectAllJavaFileSet(jproject.getSourcePath());
+        Set<File> sourceFiles = ModelBuilderImpl.collectAllJavaFileSet(jproject.getSourcePath());
         for (File file : sourceFiles) {
             Path path = file.toPath();
             analyzedFiles.remove(path.toAbsolutePath().toString());

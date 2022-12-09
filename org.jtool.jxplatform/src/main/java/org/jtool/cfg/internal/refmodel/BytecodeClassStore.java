@@ -510,10 +510,14 @@ public class BytecodeClassStore {
     protected void collectBytecodeClassInfo(Set<BytecodeClass> bclasses, ConsoleProgressMonitor monitor) {
         monitor.begin(bclasses.size());
         for (BytecodeClass bclass : bclasses) {
-            bclass.collectInfo();
+            collectBytecodeClassInfo(bclass);
             monitor.work(1);
         }
         monitor.done();
+    }
+    
+    protected void collectBytecodeClassInfo(BytecodeClass bclass) {
+        bclass.collectInfo();
     }
     
     public JClass findInternalClass(String className) {

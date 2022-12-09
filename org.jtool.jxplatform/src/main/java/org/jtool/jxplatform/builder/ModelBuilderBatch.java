@@ -22,10 +22,7 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @param useCache {@code true} if the cache is used, otherwise {@code false}
      */
     public ModelBuilderBatch(boolean analyzingBytecode, boolean useCache) {
-        builderImpl = new ModelBuilderBatchImpl(this);
-        
-        builderImpl.analyzeBytecode(analyzingBytecode);
-        builderImpl.useCache(useCache);
+        super(analyzingBytecode, useCache);
     }
     
     /**
@@ -51,42 +48,5 @@ public class ModelBuilderBatch extends ModelBuilder {
      */
     public List<JavaProject> build(String name, String target) {
         return ((ModelBuilderBatchImpl)builderImpl).build(name, target);
-    }
-    
-    /**
-     * Builds a source code model for a target project.
-     * @param name the name of the created model
-     * @param target the directory storing the target project
-     * @param classpath the path where the needed class (or jar) files are located
-     * @return the created project data
-     */
-    public JavaProject build(String name, String target, String classpath) {
-        return build(name, target, classpath, (String)null, (String)null);
-    }
-    
-    /**
-     * Builds a source code model for a target project.
-     * @param name the name of the created model
-     * @param target the directory storing the target project
-     * @param classpath the path where the needed class (or jar) files are located
-     * @param srcpath the path where the source files are located
-     * @param binpath the path where the binary files are located
-     * @return the created project data
-     */
-    public JavaProject build(String name, String target, String classpath, String srcpath, String binpath) {
-        return ((ModelBuilderBatchImpl)builderImpl).build(name, target, classpath, srcpath, binpath);
-    }
-    
-    /**
-     * Builds a source code model for a target project.
-     * @param name the name of the created model
-     * @param target the directory storing the target project
-     * @param classpath the collection of the paths where the needed class (or jar) files are located
-     * @param srcpath the collection of the paths where the source files are located
-     * @param binpath the collection of the paths where the binary files are located
-     * @return the created project data
-     */
-    public JavaProject build(String name, String target, String[] classpath, String[] srcpath, String[] binpath) {
-        return ((ModelBuilderBatchImpl)builderImpl).build(name, target, classpath, srcpath, binpath);
     }
 }
