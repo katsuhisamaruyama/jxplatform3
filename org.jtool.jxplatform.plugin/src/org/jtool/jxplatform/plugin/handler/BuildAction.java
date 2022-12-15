@@ -1,12 +1,13 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
  
 package org.jtool.jxplatform.plugin.handler;
 
 import org.jtool.jxplatform.plugin.Activator;
-import org.jtool.jxplatform.plugin.ModelBuilderInteractive;
+import org.jtool.jxplatform.plugin.ModelBuilderPluginManager;
+import org.jtool.jxplatform.plugin.JxConsole;
 import org.jtool.srcmodel.JavaProject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -30,11 +31,11 @@ public class BuildAction extends AbstractHandler {
     }
     
     /**
-     * Executes the action.
+     * Executes the action for building source code model.
      * @param event an event containing information on execution
      * @throws ExecutionException if an exception occurred during execution
      */
-    @SuppressWarnings("unused")
+    @Override
     public Object execute(ExecutionEvent event) throws ExecutionException {
         ISelection selection = HandlerUtil.getActiveMenuSelection(event);
         if (selection instanceof IStructuredSelection) {
@@ -42,10 +43,12 @@ public class BuildAction extends AbstractHandler {
             
             Object elem = structured.getFirstElement();
             if (elem instanceof IJavaProject) {
+                ModelBuilderPluginManager manager = Activator.getPlugin().getModelBuilder();
+                manager.setConsoleVisible(true);
+                JavaProject jproject = manager.build((IJavaProject)elem);
                 
-                ModelBuilderInteractive modelBuilder = Activator.getPlugin().getModelBuilder();
-                modelBuilder.setLogVisible(true);
-                JavaProject jproject = modelBuilder.build((IJavaProject)elem);
+                JxConsole console = Activator.getPlugin().getConsole();
+                console.println("Build a Java source code model: " + jproject.getPath());
             }
         }
         return null;

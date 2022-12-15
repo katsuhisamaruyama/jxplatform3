@@ -1,37 +1,38 @@
 /*
- *  Copyright 2021
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.jxplatform.plugin;
 
-import org.eclipse.ui.console.IConsoleManager;
 import org.eclipse.ui.console.IConsole;
-import org.eclipse.ui.console.MessageConsole;
+import org.eclipse.ui.console.IConsoleManager;
 import org.eclipse.ui.console.ConsolePlugin;
+import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
+import java.io.IOException;
 
 /**
- * Displays a message on the Eclipse console.
+ * Console in Eclipse to display a message.
  * 
  * @author Katsuhisa Maruyama
  */
-public class SrcPlatConsole {
+public class JxConsole {
     
     /**
-     * The name of this console.
+     * The name of this console, which is displayed in Eclipse
      */
-    private static final String CONSOLE_NAME = "SrcPlatConsole";
+    private static final String CONSOLE_NAME = "JxConsole";
     
     /**
-     * The stream for this console.
+     * The stream of this console.
      */
     private MessageConsoleStream consoleStream = null;
     
     /**
-     * Creates an object that displays a message on the Eclipse console.
+     * Creates a console that displays a message in Eclipse.
      */
-    public SrcPlatConsole() {
+    public JxConsole() {
         if (ConsolePlugin.getDefault() == null) {
             return;
         }
@@ -54,8 +55,18 @@ public class SrcPlatConsole {
     }
     
     /**
-     * Displays a message without a new-line.
-     * @param mesg the message to be displayed
+     * Prints a character.
+     * @param ch the character to be printed
+     */
+    public void print(char ch) {
+        if (consoleStream != null) {
+            consoleStream.print(String.valueOf(ch));
+        }
+    }
+    
+    /**
+     * Prints a string.
+     * @param mesg the string to be printed
      */
     public void print(String mesg) {
         if (consoleStream != null) {
@@ -64,8 +75,8 @@ public class SrcPlatConsole {
     }
     
     /**
-     * Displays a message with a new-line.
-     * @param mesg the message to be displayed
+     * Prints a string.
+     * @param mesg the string to be printed
      */
     public void println(String mesg) {
         if (consoleStream != null) {
@@ -74,11 +85,22 @@ public class SrcPlatConsole {
     }
     
     /**
-     * Displays a new-line.
+     * Prints a new line.
      */
     public void println() {
         if (consoleStream != null) {
             consoleStream.println();
+        }
+    }
+    
+    /**
+     * Flushes the stream.
+     */
+    public void flush() {
+        if (consoleStream != null) {
+            try {
+                consoleStream.flush();
+            } catch (IOException e) { /* empty */ }
         }
     }
 }

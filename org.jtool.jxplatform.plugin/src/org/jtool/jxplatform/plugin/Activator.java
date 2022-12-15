@@ -5,13 +5,11 @@
 
 package org.jtool.jxplatform.plugin;
 
-import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.IStartup;
 import org.eclipse.ui.IWorkbenchPage;
 import org.osgi.framework.BundleContext;
 
@@ -20,12 +18,14 @@ import org.osgi.framework.BundleContext;
  * 
  * @author Katsuhisa Maruyama
  */
-public class Activator extends AbstractUIPlugin implements IStartup {
+public class Activator extends AbstractUIPlugin {
     
     /**
      * The plug-in identification.
      */
     public static final String PLUGIN_ID = "org.jtool.jxplatform3.plugin";
+    
+    private JxConsole console;
     
     /**
      * A shared plug-in object.
@@ -35,22 +35,24 @@ public class Activator extends AbstractUIPlugin implements IStartup {
     /**
      * An interactive-mode builder.
      */
-    private ModelBuilderInteractive modelBuilder;
+    private ModelBuilderPluginManager builder;
     
     /**
      * Creates a plug-in runtime object.
      */
     public Activator() {
         super();
+        
+        console = new JxConsole();
+        builder = new ModelBuilderPluginManager();
     }
     
     /**
-     * Performs actions in a separate thread after the workbench initializes.
+     * Returns a console that displays a message in Eclipse.
+     * @return the console
      */
-    @Override
-    public void earlyStartup() {
-        modelBuilder = new ModelBuilderInteractive();
-        modelBuilder.start();
+    public JxConsole getConsole() {
+        return console;
     }
     
     /**
@@ -62,6 +64,8 @@ public class Activator extends AbstractUIPlugin implements IStartup {
     public void start(BundleContext context) throws Exception {
         super.start(context);
         plugin = this;
+        
+        builder.start();
     }
     
     /**
@@ -71,8 +75,9 @@ public class Activator extends AbstractUIPlugin implements IStartup {
      */
     @Override
     public void stop(BundleContext context) throws Exception {
-        modelBuilder.stop();
         super.stop(context);
+        
+        builder.stop();
     }
     
     /**
@@ -84,10 +89,10 @@ public class Activator extends AbstractUIPlugin implements IStartup {
     }
     
     /**
-     * Returns the interactive-mode builder.
+     * Returns the builder plug-in.
      */
-    public ModelBuilderInteractive getModelBuilder() {
-        return modelBuilder;
+    public ModelBuilderPluginManager getModelBuilder() {
+        return builder;
     }
     
     /**
@@ -108,12 +113,18 @@ public class Activator extends AbstractUIPlugin implements IStartup {
     }
     
     /**
+     * Obtains the root of the workspace.
+     * @return the workspace root
+     */
+    public static IWorkspaceRoot getWorkspaceRoot() {
+        return ResourcesPlugin.getWorkspace().getRoot();
+    }
+    
+    /**
      * Obtains the path of the workspace.
      * @return the workspace path
      */
     public static String getWorkspacePath() {
-        IWorkspace workspace = ResourcesPlugin.getWorkspace();
-        IWorkspaceRoot root = workspace.getRoot();
-        return root.getLocation().toFile().getAbsolutePath().toString();
+        return getWorkspaceRoot().getLocation().toFile().getAbsolutePath().toString();
     }
 }
