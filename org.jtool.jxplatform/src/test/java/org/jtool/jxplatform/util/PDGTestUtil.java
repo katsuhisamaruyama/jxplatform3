@@ -176,7 +176,7 @@ public class PDGTestUtil {
     }
     
     public static List<String> getIdList(DependencyGraph graph, Set<? extends PDGNode> set) {
-        long min = graph.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get();
+        long min = graph.getNodes().stream().map(n -> n.getId()).min(Comparator.naturalOrder()).get() - 1;
         return set.stream().map(e -> (e.getId() - min)).sorted().map(id -> String.valueOf(id))
             .collect(Collectors.toList());
     }
