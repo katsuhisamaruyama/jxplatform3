@@ -192,12 +192,7 @@ public class Slicer {
             return;
         }
         
-        System.err.println("*****NODE*** " + node);
-        //graph.getIncomingDependenceEdges(node).forEach(e -> System.err.println("  E = " + e));
-        
         nodesInSlice.add(node);
-        
-        //collectReachedMethodCalls(node);
         
         if (node.getCFGNode().isActualOut()) {
             PDGNode callNode = getCallNode((CFGParameter)node.getCFGNode());
@@ -207,7 +202,6 @@ public class Slicer {
             PDGNode receiverNode = getReceiverNode((CFGMethodCall)callNode.getCFGNode());
             traverseBackward(receiverNode);
             
-            System.err.println("*****CALLNODE1*** " + node + " " + callNode);
             traverseBackward(callNode);
         }
         
@@ -236,8 +230,6 @@ public class Slicer {
                     checkPendingNodes();
                 }
                 
-                System.err.println("CALL2 = " + src);
-                
                 if (reachedMethodCalls.contains(src)) {
                     PDGNode receiverNode = getReceiverNode((CFGMethodCall)src.getCFGNode());
                     traverseBackward(receiverNode);
@@ -248,15 +240,8 @@ public class Slicer {
             }
             
             if (edge.isDD()) {
-                
-                System.err.println("      *****EDGE*** " + edge);
-                
                 if (src.getCFGNode().isActualIn()) {
-                    System.err.println("*****PIN*** " + edge);
-                    reachedMethodCalls.forEach(c -> System.err.println("  " + c));
                     if (!traverseActualIn(src)) {
-                        
-                        System.err.println(" PENDING = " + src);
                         pendingNodes.add(src);
                     }
                     continue;
@@ -301,8 +286,6 @@ public class Slicer {
             
             PDGNode receiverNode = getReceiverNode((CFGMethodCall)callNode.getCFGNode());
             traverseBackward(receiverNode);
-            
-            System.err.println("*****CALLNODE*** " + callNode);
             traverseBackward(callNode);
             return true;
         }
