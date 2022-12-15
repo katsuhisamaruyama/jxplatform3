@@ -24,6 +24,7 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         super();
     }
     
+    @Override
     public List<JavaProject> build(ModelBuilder modelBuilder, String name, String target) {
         ProjectEnv topProjectEnv = createTopProjectEnv(name, target);
         
