@@ -71,8 +71,6 @@ public class BytecodeClassStore {
     
     public BytecodeClassStore(JavaProject jproject) {
         this.jproject = jproject;
-        analyzeBytecode = jproject.getModelBuilderImpl().analyzeBytecode();
-        useCache = jproject.getModelBuilderImpl().useCache();
     }
     
     public JavaProject getJavaProject() {
@@ -85,6 +83,8 @@ public class BytecodeClassStore {
     
     public void create() {
         ModelBuilderImpl builderImpl = jproject.getModelBuilderImpl();
+        analyzeBytecode = builderImpl.analyzeBytecode();
+        useCache = builderImpl.useCache();
         JCommon.maxNumberOfChainForSourcecode = builderImpl.getSourcecodeAnalysisChain();
         JCommon.maxNumberOfChainForBytecode = builderImpl.getBytecodeAnalysisChain();
         

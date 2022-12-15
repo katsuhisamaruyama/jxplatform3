@@ -5,8 +5,8 @@
 
 package org.jtool.jxplatform.project;
 
-import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.builder.ModelBuilder;
+import org.jtool.srcmodel.JavaProject;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
@@ -20,18 +20,18 @@ import java.nio.file.Path;
  */
 public class ModelBuilderBatchImpl extends ModelBuilderImpl {
     
-    public ModelBuilderBatchImpl(ModelBuilder modelBuiler) {
-        super(modelBuiler);
+    public ModelBuilderBatchImpl() {
+        super();
     }
     
-    public List<JavaProject> build(String name, String target) {
+    public List<JavaProject> build(ModelBuilder modelBuilder, String name, String target) {
         ProjectEnv topProjectEnv = createTopProjectEnv(name, target);
         
         List<ProjectEnv> projectEnvs = getSubProjects(topProjectEnv, topProjectEnv);
         if (projectEnvs.size() > 0) {
-            return buildMultiTargets(projectEnvs, topProjectEnv);
+            return buildMultiTargets(modelBuilder, projectEnvs, topProjectEnv);
         } else {
-            return buildSingleTarget(topProjectEnv);
+            return buildSingleTarget(modelBuilder, topProjectEnv);
         }
     }
     
@@ -82,12 +82,13 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         }
     }
     
-    private List<JavaProject> buildMultiTargets(List<ProjectEnv> projectEnvs, ProjectEnv topProjectEnv) {
+    private List<JavaProject> buildMultiTargets(ModelBuilder modelBuilder,
+            List<ProjectEnv> projectEnvs, ProjectEnv topProjectEnv) {
         List<JavaProject> projects = new ArrayList<>();
         for (ProjectEnv env : projectEnvs) {
             printMessage("Checking sub-project " + env.getName());
             
-            JavaProject jproject = buildTarget(env);
+            JavaProject jproject = buildTarget(modelBuilder, env);
             if (jproject != null) {
                 projects.add(jproject);
             }
@@ -95,18 +96,18 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
         return projects;
     }
     
-    private List<JavaProject> buildSingleTarget(ProjectEnv topProjectEnv) {
+    private List<JavaProject> buildSingleTarget(ModelBuilder modelBuilder, ProjectEnv topProjectEnv) {
         List<JavaProject> projects = new ArrayList<>();
         printMessage("Checking project " + topProjectEnv.getName());
         
-        JavaProject jproject = buildTarget(topProjectEnv);
+        JavaProject jproject = buildTarget(modelBuilder, topProjectEnv);
         if (jproject != null) {
             projects.add(jproject);
         }
         return projects;
     }
     
-    private JavaProject buildTarget(ProjectEnv projectEnv) {
+    private JavaProject buildTarget(ModelBuilder modelBuilder, ProjectEnv projectEnv) {
         try {
             projectEnv.setUpEachProject();
         } catch (Exception e) {
@@ -114,16 +115,16 @@ public class ModelBuilderBatchImpl extends ModelBuilderImpl {
             return null;
         }
         
-        JavaProject jproject = build(projectEnv);
+        JavaProject jproject = build(modelBuilder, projectEnv);
         return jproject;
     }
     
-    private JavaProject build(ProjectEnv projectEnv) {
+    private JavaProject build(ModelBuilder modelBuilder, ProjectEnv projectEnv) {
         String[] classpath = getClassPath(projectEnv.getClassPaths());
         String[] srcpath = getPath(projectEnv.getSourcePaths());
         String[] binpath = getPath(projectEnv.getBinaryPaths());
-        JavaProject jproject = createProject(projectEnv.getName(),
-                projectEnv.getBasePath(), projectEnv.getTopPath(),
+        JavaProject jproject = createProject(modelBuilder,
+                projectEnv.getName(), projectEnv.getBasePath(), projectEnv.getTopPath(),
                 classpath, srcpath, binpath);
         jproject.setCompilerVersions(projectEnv.getCompilerSourceVersion(), projectEnv.getCompilerTargetVersion());
         

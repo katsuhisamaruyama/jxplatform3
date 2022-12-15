@@ -5,13 +5,13 @@
 
 package org.jtool.jxplatform.project;
 
+import org.jtool.jxplatform.builder.ModelBuilder;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.internal.JavaASTVisitor;
 import org.jtool.srcmodel.internal.ProjectStore;
-import org.jtool.jxplatform.builder.ModelBuilder;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.compiler.IProblem;
 import org.eclipse.jdt.core.dom.AST;
@@ -42,8 +42,6 @@ import java.nio.file.Paths;
  */
 public class ModelBuilderImpl {
     
-    protected ModelBuilder modelBuilder;
-    
     protected boolean analyzeBytecode = true;
     protected boolean useCache = true;
     
@@ -58,8 +56,7 @@ public class ModelBuilderImpl {
     protected static final ConsoleProgressMonitor consoleProgressMonitor = new ConsoleProgressMonitor();
     protected static final ConsoleProgressMonitor nullConsoleProgressMonitor = new NullConsoleProgressMonitor();
     
-    protected ModelBuilderImpl(ModelBuilder modelBuiler) {
-        this.modelBuilder = modelBuiler;
+    protected ModelBuilderImpl() {
         this.logger = new Logger();
         this.monitor = getConsoleProgressMonitor();
     }
@@ -70,10 +67,6 @@ public class ModelBuilderImpl {
     
     public ConsoleProgressMonitor getConsoleProgressMonitor() {
         return visible ? consoleProgressMonitor : nullConsoleProgressMonitor;
-    }
-    
-    public ModelBuilder getModelBuilder() {
-        return modelBuilder;
     }
     
     public void analyzeBytecode(boolean bool) {
@@ -108,36 +101,46 @@ public class ModelBuilderImpl {
         return bytecodeAnalysisChain;
     }
     
-    public JavaProject build(String name, Path basePath, String classpath, String srcpath, String binpath) {
+    public List<JavaProject> build(ModelBuilder modelBuilder,
+            String name, String target) {
+        return new ArrayList<>();
+    }
+    
+    public JavaProject build(ModelBuilder modelBuilder,
+            String name, String target, String classpath, String srcpath, String binpath) {
+        String cdir = new File(".").getAbsoluteFile().getParent();
+        Path basePath = Paths.get(getFullPath(target, cdir));
+        return build(modelBuilder, name, basePath, classpath, srcpath, binpath);
+    }
+    
+    public JavaProject build(ModelBuilder modelBuilder,
+            String name, Path basePath, String classpath, String srcpath, String binpath) {
         String[] classpaths = getClassPath(classpath);
         String[] srcpaths = getPath(srcpath, basePath, "src");
         String[] binpaths = getPath(srcpath, basePath, "bin");
-        return build(name, basePath, basePath, classpaths, srcpaths, binpaths);
+        return build(modelBuilder, name, basePath, basePath, classpaths, srcpaths, binpaths);
     }
     
-    public JavaProject build(String name, String target, String classpath, String srcpath, String binpath) {
+    public JavaProject build(ModelBuilder modelBuilder,
+            String name, String target, String[] classpath, String[] srcpath, String[] binpath) {
         String cdir = new File(".").getAbsoluteFile().getParent();
         Path basePath = Paths.get(getFullPath(target, cdir));
-        return build(name, basePath, classpath, srcpath, binpath);
+        return build(modelBuilder, name, basePath, basePath, classpath, srcpath, binpath);
     }
     
-    public JavaProject build(String name, String target, String[] classpath, String[] srcpath, String[] binpath) {
-        String cdir = new File(".").getAbsoluteFile().getParent();
-        Path basePath = Paths.get(getFullPath(target, cdir));
-        return build(name, basePath, basePath, classpath, srcpath, binpath);
-    }
-    
-    public JavaProject build(String name, Path basePath, Path topPath, String[] classpath, String[] srcpath, String[] binpath) {
-        JavaProject jproject = createProject(name, basePath, topPath, classpath, srcpath, binpath);
+    public JavaProject build(ModelBuilder modelBuilder,
+            String name, Path basePath, Path topPath, String[] classpath, String[] srcpath, String[] binpath) {
+        JavaProject jproject = createProject(modelBuilder, name, basePath, topPath, classpath, srcpath, binpath);
         build(jproject);
         logger.writeLog();
         return jproject;
     }
     
-    protected JavaProject createProject(String name, Path basePath, Path topPath,
+    protected JavaProject createProject(ModelBuilder modelBuilder,
+            String name, Path basePath, Path topPath,
             String[] classpath, String[] srcpath, String[] binpath) {
         JavaProject jproject = new JavaProject(name, basePath.toString(), topPath.toString());
-        jproject.setModelBuilderImpl(this);
+        jproject.setModelBuilder(modelBuilder);
         jproject.setClassPath(getClassPath(classpath));
         jproject.setSourceBinaryPaths(srcpath, binpath);
         jproject.getCFGStore().create(jproject);
@@ -419,7 +422,8 @@ public class ModelBuilderImpl {
     
     public void update(JavaProject jproject) {
         ProjectStore.getInstance().removeProject(jproject.getPath());
-        build(jproject.getName(), jproject.getPath(), jproject.getClassPath(),
+        build(jproject.getModelBuilder(), 
+                jproject.getName(), jproject.getPath(), jproject.getClassPath(),
                 jproject.getSourcePath(), jproject.getBinaryPath());
     }
     

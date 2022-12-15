@@ -27,17 +27,12 @@ import java.time.ZonedDateTime;
  * 
  * @author Katsuhisa Maruyama
  */
-public class IncrementalModelBuilder {
+public class IncrementalModelBuilder extends ModelBuilder {
     
     /**
      * A project that this builder is applied to.
      */
     protected JavaProject jproject;
-    
-    /**
-     * A builder that actually builds models.
-     */
-    protected ModelBuilderImpl builderImpl;
     
     /**
      * The collection of files whose contents are obsolete.
@@ -50,12 +45,61 @@ public class IncrementalModelBuilder {
     protected Set<Path> newFiles = new HashSet<>();
     
     /**
-     * The project this builder is applied to.
-     * @param jproject a project this builder is applied to.
+     * Creates an incremental-mode model builder.
+     * @param builderImpl the implementation module of this model builder
      */
-    public IncrementalModelBuilder(JavaProject jproject) {
-        this.jproject = jproject;
-        this.builderImpl = jproject.getModelBuilderImpl();
+    public IncrementalModelBuilder(ModelBuilderImpl builderImpl) {
+        this.builderImpl = builderImpl;
+    }
+    
+    /**
+     * Builds a source code model for target projects.
+     * @param name the name of the created model
+     * @param target the directory storing the target projects
+     * @return the collection of created project data
+     */
+    public JavaProject build(String name, String target) {
+        obsoleteFiles.clear();
+        newFiles.clear();
+        
+        jproject = super.build(name, target, target);
+        jproject.setModelBuilder(this);
+        return jproject;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JavaProject build(String name, String target, String classpath) {
+        jproject = super.build(name, target, classpath, (String)null, (String)null);
+        return jproject;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JavaProject build(String name, String target, String classpath, String srcpath, String binpath) {
+        jproject = super.build(name, target, classpath, srcpath, binpath);
+        return jproject;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JavaProject build(String name, String target, String[] classpath, String[] srcpath, String[] binpath) {
+        jproject = super.build(name, target, classpath, srcpath, binpath);
+        return jproject;
+    }
+    
+    /**
+     * Returns the project that this builder is applied to.
+     * @return project
+     */
+    public JavaProject getJavaProject() {
+        return jproject;
     }
     
     /**

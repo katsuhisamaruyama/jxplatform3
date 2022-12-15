@@ -14,7 +14,6 @@ import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CallGraph;
 import org.jtool.cfg.internal.CallGraphBuilder;
-import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
 import org.jtool.jxplatform.project.ModelBuilderImpl;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDG;
@@ -28,7 +27,7 @@ import java.util.Set;
  * @author Katsuhisa Maruyama
  */
 
-public class ModelBuilder {
+public abstract class ModelBuilder {
     
     /**
      * The implementation module of this model builder.
@@ -36,37 +35,10 @@ public class ModelBuilder {
     protected ModelBuilderImpl builderImpl;
     
     /**
-     * Creates a model builder.
-     * @param analyzingBytecode {@code true} if byte-code analysis is performed, otherwise {@code false}
-     * @param useCache {@code true} if the cache is used, otherwise {@code false}
-     */
-    public ModelBuilder(boolean analyzingBytecode, boolean useCache) {
-        builderImpl = new ModelBuilderBatchImpl(this);
-        
-        builderImpl.analyzeBytecode(analyzingBytecode);
-        builderImpl.useCache(useCache);
-    }
-    
-    /**
-     * Creates a model builder.
-     * @param analyzingBytecode {@code true} if byte-code analysis is performed, otherwise {@code false}
-     */
-    public ModelBuilder(boolean analyzingBytecode) {
-        this(analyzingBytecode, true);
-    }
-    
-    /**
-     * Creates a model builder.
-     */
-    public ModelBuilder() {
-        this(true, true);
-    }
-    
-    /**
      * Obtains the implementation module of this model builder.
      * @return the implementation module.
      */
-    protected ModelBuilderImpl getModelBuilderImpl() {
+    public ModelBuilderImpl getModelBuilderImpl() {
         return builderImpl;
     }
     
@@ -131,7 +103,8 @@ public class ModelBuilder {
      * @return the created project data
      */
     public JavaProject build(String name, String target, String classpath, String srcpath, String binpath) {
-        return builderImpl.build(name, target, classpath, srcpath, binpath);
+        JavaProject jproject = builderImpl.build(this, name, target, classpath, srcpath, binpath);
+        return jproject;
     }
     
     /**
@@ -144,7 +117,8 @@ public class ModelBuilder {
      * @return the created project data
      */
     public JavaProject build(String name, String target, String[] classpath, String[] srcpath, String[] binpath) {
-        return builderImpl.build(name, target, classpath, srcpath, binpath);
+        JavaProject jproject = builderImpl.build(this, name, target, classpath, srcpath, binpath);
+        return jproject;
     }
     
     /**

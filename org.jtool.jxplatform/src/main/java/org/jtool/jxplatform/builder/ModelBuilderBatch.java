@@ -22,7 +22,10 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @param useCache {@code true} if the cache is used, otherwise {@code false}
      */
     public ModelBuilderBatch(boolean analyzingBytecode, boolean useCache) {
-        super(analyzingBytecode, useCache);
+        builderImpl = new ModelBuilderBatchImpl();
+        
+        builderImpl.analyzeBytecode(analyzingBytecode);
+        builderImpl.useCache(useCache);
     }
     
     /**
@@ -47,6 +50,6 @@ public class ModelBuilderBatch extends ModelBuilder {
      * @return the collection of created project data
      */
     public List<JavaProject> build(String name, String target) {
-        return ((ModelBuilderBatchImpl)builderImpl).build(name, target);
+        return builderImpl.build(this, name, target);
     }
 }

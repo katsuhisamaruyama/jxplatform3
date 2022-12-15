@@ -105,7 +105,7 @@ public class JavaProject {
     /**
      * A model builder that creates Java models in this project.
      */
-    private ModelBuilderImpl modelBuilderImpl;
+    private ModelBuilder modelBuilder;
     
     /**
      * Creates a project that stores source files and their related information.
@@ -161,26 +161,26 @@ public class JavaProject {
      * Sets a model builder implementation that creates Java models in this project.
      * @param modelBuilderImpl the model builder implementation
      */
-    public void setModelBuilderImpl(ModelBuilderImpl modelBuilderImpl) {
-        assert modelBuilderImpl != null;
+    public void setModelBuilder(ModelBuilder modelBuilder) {
+        assert modelBuilder != null;
         
-        this.modelBuilderImpl = modelBuilderImpl;
+        this.modelBuilder = modelBuilder;
     }
     
     /**
-     * Return the model builder implementation that creates Java models in this project.
-     * @return the model builder
-     */
-    public ModelBuilderImpl getModelBuilderImpl() {
-        return modelBuilderImpl;
-    }
-    
-    /**
-     * Return the model builder implementation that creates Java models in this project.
+     * Return the model builder that creates Java models in this project.
      * @return the model builder
      */
     public ModelBuilder getModelBuilder() {
-        return modelBuilderImpl.getModelBuilder();
+        return modelBuilder;
+    }
+    
+    /**
+     * Return the model builder implementation that creates Java models in this project.
+     * @return the model builder implementation
+     */
+    public ModelBuilderImpl getModelBuilderImpl() {
+        return modelBuilder.getModelBuilderImpl();
     }
     
     /**
