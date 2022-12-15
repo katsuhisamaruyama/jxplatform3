@@ -5,6 +5,7 @@
 
 package org.jtool.slice;
 
+import org.jtool.slice.internal.Slicer;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;

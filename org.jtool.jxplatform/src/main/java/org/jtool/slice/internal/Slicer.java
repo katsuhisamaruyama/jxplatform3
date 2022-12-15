@@ -3,8 +3,9 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.slice;
+package org.jtool.slice.internal;
 
+import org.jtool.slice.SliceCriterion;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.DependencyGraph;
 import org.jtool.pdg.DependencyGraphEdge;
