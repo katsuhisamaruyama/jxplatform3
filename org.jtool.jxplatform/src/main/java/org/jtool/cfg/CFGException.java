@@ -5,7 +5,7 @@
 
 package org.jtool.cfg;
 
-import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.ASTNode; 
 import org.eclipse.jdt.core.dom.ITypeBinding;
 
 /**
@@ -25,7 +25,7 @@ public class CFGException extends CFGStatement {
      * This method is not intended to be invoked by clients.
      * @param node the AST node corresponding to this node
      * @param kind the kind of this node
-     * @param type type binding information on the type of the exception
+     * @param tbinding type binding information on the type of the exception
      */
     public CFGException(ASTNode node, CFGNode.Kind kind, ITypeBinding tbinding) {
         super(node, kind);
