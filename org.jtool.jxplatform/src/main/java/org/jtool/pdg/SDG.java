@@ -15,7 +15,6 @@ public class SDG extends DependencyGraph {
     /**
      * Creates a a system dependence graph.
      * This method is not intended to be invoked by clients.
-     * @param name the name to be set
      */
     public SDG() {
         super("SDG");

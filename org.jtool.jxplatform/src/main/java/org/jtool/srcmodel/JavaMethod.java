@@ -96,7 +96,7 @@ public class JavaMethod extends JavaElement {
      * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this method
      * @param jclass the class that declares this method
-     * @throws the exception occurs when the creation of a new object fails
+     * @throws JavaElementException the exception occurs when the creation of a new object fails
      */
     @SuppressWarnings("unchecked")
     public JavaMethod(MethodDeclaration node, JavaClass jclass) throws JavaElementException {

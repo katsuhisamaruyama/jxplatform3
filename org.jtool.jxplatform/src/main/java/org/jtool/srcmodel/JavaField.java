@@ -39,7 +39,7 @@ public class JavaField extends JavaVariable {
      * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this field
      * @param jclass the class that declares this field
-     * @throws the exception occurs when the creation of a new object fails
+     * @throws JavaElementException the exception occurs when the creation of a new object fails
      */
     public JavaField(VariableDeclaration node, JavaClass jclass) throws JavaElementException {
         this(node, node.resolveBinding(), jclass);
@@ -50,7 +50,7 @@ public class JavaField extends JavaVariable {
      * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this field
      * @param jclass the class that declares this field
-     * @throws the exception occurs when the creation of a new object fails
+     * @throws JavaElementException the exception occurs when the creation of a new object fails
      */
     public JavaField(VariableDeclarationFragment node, JavaClass jclass) throws JavaElementException {
         this(node, node.resolveBinding(), jclass);
@@ -61,7 +61,7 @@ public class JavaField extends JavaVariable {
      * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this enum constant
      * @param jclass the class that declares this field
-     * @throws the exception occurs when the creation of a new object fails
+     * @throws JavaElementException the exception occurs when the creation of a new object fails
      */
     public JavaField(EnumConstantDeclaration node, JavaClass jclass) throws JavaElementException {
         this(node, node.resolveVariable(), jclass);
@@ -72,7 +72,7 @@ public class JavaField extends JavaVariable {
      * @param node the AST node for this field
      * @param vbinding the variable binding of this field
      * @param jclass the class that declares this field
-     * @throws the exception occurs when the creation of a new object fails
+     * @throws JavaElementException the exception occurs when the creation of a new object fails
      */
     JavaField(ASTNode node, IVariableBinding vbinding, JavaClass jclass) throws JavaElementException {
         super(node, jclass.getFile());
@@ -101,7 +101,7 @@ public class JavaField extends JavaVariable {
      * This constructor is not intended to be invoked by clients.
      * @param vbinding the variable binding information on this field
      * @param jclass the class that declares this field
-     * @throws the exception occurs when the creation of a new object fails
+     * @throws JavaElementException the exception occurs when the creation of a new object fails
      */
     public JavaField(IVariableBinding vbinding, JavaClass jclass) throws JavaElementException {
         this(null, vbinding, jclass);

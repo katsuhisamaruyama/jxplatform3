@@ -124,7 +124,7 @@ public class JavaClass extends JavaElement {
      * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this class or interface
      * @param jfile the file that declares this class
-     * @throws the exception occurs when the creation of a new object fails
+     * @throws JavaElementException the exception occurs when the creation of a new object fails
      */
     public JavaClass(TypeDeclaration node, JavaFile jfile) throws JavaElementException {
         this(node, node.resolveBinding(), jfile);
@@ -135,7 +135,7 @@ public class JavaClass extends JavaElement {
      * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this anonymous class
      * @param jfile the file that declares this class
-     * @throws the exception occurs when the creation of a new object fails
+     * @throws JavaElementException the exception occurs when the creation of a new object fails
      */
     public JavaClass(AnonymousClassDeclaration node, JavaFile jfile) throws JavaElementException {
         this(node, node.resolveBinding(), jfile);
@@ -146,7 +146,7 @@ public class JavaClass extends JavaElement {
      * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this class holding the enum constant declarations
      * @param jfile the file that declares this class
-     * @throws the exception occurs when the creation of a new object fails
+     * @throws JavaElementException the exception occurs when the creation of a new object fails
      */
     public JavaClass(EnumDeclaration node, JavaFile jfile) throws JavaElementException {
         this(node, node.resolveBinding(), jfile);
@@ -157,7 +157,7 @@ public class JavaClass extends JavaElement {
      * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this annotation type
      * @param jfile the file that declares this class
-     * @throws the exception occurs when the creation of a new object fails
+     * @throws JavaElementException the exception occurs when the creation of a new object fails
      */
     public JavaClass(AnnotationTypeDeclaration node, JavaFile jfile) throws JavaElementException {
         this(node, node.resolveBinding(), jfile);
@@ -169,7 +169,7 @@ public class JavaClass extends JavaElement {
      * @param node an AST node for this class
      * @param tbinding type binding information on this class
      * @param jfile a file that declares this class
-     * @throws the exception occurs when the creation of a new object fails
+     * @throws JavaElementException the exception occurs when the creation of a new object fails
      */
     public JavaClass(ASTNode node, ITypeBinding tbinding, JavaFile jfile) throws JavaElementException {
         super(node);

@@ -220,9 +220,9 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * Registers files that were updated in the project.
      * @param pathnames the collection of path names of the updated files
      */
-    public void updateFile(Set<String> paths) {
-        addFiles(paths);
-        removeFiles(paths);
+    public void updateFile(Set<String> pathnames) {
+        addFiles(pathnames);
+        removeFiles(pathnames);
     }
     
     /**

@@ -167,7 +167,7 @@ public class DependencyGraph {
     
     /**
      * Finds a PDG corresponding to a given field from PDGs contained in this dependency graph.
-     * @param jmethod the field for the PDG to be retrieved
+     * @param jfield the field for the PDG to be retrieved
      * @return the found PDG, or {@code null} if the corresponding PDG is not found
      */
     public PDG getPDG(JavaField jfield) {
@@ -274,6 +274,7 @@ public class DependencyGraph {
     
     /**
      * Obtains data dependence edges incoming to this node.
+     * @param node the node
      * @return the collection of the incoming edges
      */
     public List<DependencyGraphEdge> getIncomingDDEdges(PDGNode node) {

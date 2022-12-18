@@ -274,7 +274,7 @@ public interface DependencyGraphEdge {
     
     /**
      * Sorts the list of edges.
-     * @param co the list of the edges to be sorted
+     * @param collection the list of the edges to be sorted
      * @return the sorted list of the edges
      */
     public static List<DependencyGraphEdge> sortEdges(Collection<? extends DependencyGraphEdge> collection) {
@@ -287,7 +287,7 @@ public interface DependencyGraphEdge {
     
     /**
      * Sorts the list of dependence edges in reverse order.
-     * @param co the list of the dependence edges to be sorted
+     * @param collection the list of the dependence edges to be sorted
      * @return the sorted list of the dependence edges
      */
     public static List<DependencyGraphEdge> sortEdgesReverse(Collection<? extends DependencyGraphEdge> collection) {

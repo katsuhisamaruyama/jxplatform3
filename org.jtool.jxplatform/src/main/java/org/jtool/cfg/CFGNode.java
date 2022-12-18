@@ -844,7 +844,7 @@ public class CFGNode extends GraphNode {
     
     /**
      * Sorts inversely the list of CFG nodes
-     * @param nodes the collection of the CFG nodes to be sorted
+     * @param collection the collection of the CFG nodes to be sorted
      * @return the sorted list of the CFG nodes
      */
     public static List<CFGNode> sortNodesInverse(Collection<? extends CFGNode> collection) {

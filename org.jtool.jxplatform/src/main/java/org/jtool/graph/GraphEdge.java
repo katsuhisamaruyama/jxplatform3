@@ -142,7 +142,7 @@ public abstract class GraphEdge extends GraphElement {
     
     /**
      * Sorts the list of edges
-     * @param co the list to be sorted
+     * @param collection the list to be sorted
      * @return the sorted list of the edges
      */
     protected static List<GraphEdge> sortGrapgEdge(Collection<? extends GraphEdge> collection) {

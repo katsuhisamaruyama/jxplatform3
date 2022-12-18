@@ -101,7 +101,7 @@ public class CallGraph {
     
     /**
      * Returns nodes corresponding to methods that a method for a given node calls.
-     * @param src the node for the caller site 
+     * @param caller the node for the caller site 
      * @return the collection of callee sites
      */
     public Set<CFGEntry> getCalleeNodes(CFGEntry caller) {
@@ -112,7 +112,7 @@ public class CallGraph {
     
     /**
      * Returns nodes corresponding to methods that calls a method for a given node.
-     * @param dst the node for the callee site 
+     * @param callee the node for the callee site 
      * @return the collection of caller sites
      */
     public Set<CFGEntry> getCallerNodes(CFGNode callee) {

@@ -460,7 +460,6 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param startnode the starting node to be traversed
      * @param loopbackOk {@code true} if loop-back edges can be traversed, otherwise {@code false}
      * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
-     * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the backward-traversed nodes
      */
     public List<CFGNode> backwardReachableNodes(CFGNode startnode, boolean loopbackOk, boolean fallthroughOk) {
@@ -561,6 +560,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     /**
      * Obtains the dominant statement having a given flow.
      * This method is not intended to be invoked by clients.
+     * @param flow the control flow
      * @return the found dominant statement, {@code null} if it was found
      */
     public DominantStatement getDominantStatement(ControlFlow flow) {

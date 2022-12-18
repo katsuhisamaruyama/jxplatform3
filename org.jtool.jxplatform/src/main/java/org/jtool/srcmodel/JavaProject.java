@@ -158,8 +158,8 @@ public class JavaProject {
     }
     
     /**
-     * Sets a model builder implementation that creates Java models in this project.
-     * @param modelBuilderImpl the model builder implementation
+     * Sets a model builder that creates Java models in this project.
+     * @param modelBuilder the model builder
      */
     public void setModelBuilder(ModelBuilder modelBuilder) {
         assert modelBuilder != null;

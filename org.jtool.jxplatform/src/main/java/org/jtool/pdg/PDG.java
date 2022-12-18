@@ -160,6 +160,7 @@ public class PDG extends Graph<PDGNode, Dependence> {
     
     /**
      * Obtains dependence edges outgoing from a given node.
+     * @param node the node
      * @return the collection of the outgoing dependence edges
      */
     public List<Dependence> getOutgoingEdges(PDGNode node) {
@@ -188,7 +189,8 @@ public class PDG extends Graph<PDGNode, Dependence> {
     }
     
     /**
-     * Tests if this node is dominated by any control flow.
+     * Tests if a given node is dominated by any control flow.
+     * @param node the node
      * @return {@code true} if this is a dominated node, otherwise {@code false}
      */
     public boolean isDominated(PDGNode node) {
@@ -197,7 +199,8 @@ public class PDG extends Graph<PDGNode, Dependence> {
     }
     
     /**
-     * Tests if this node is dominated by a true control flow.
+     * Tests if a given node is dominated by a true control flow.
+     * @param node the node
      * @return {@code true} if this is a true-dominated node, otherwise {@code false}
      */
     public boolean isTrueDominated(PDGNode node) {
@@ -205,7 +208,8 @@ public class PDG extends Graph<PDGNode, Dependence> {
     }
     
     /**
-     * Tests if this node is dominated by a false control flow.
+     * Tests if a given node is dominated by a false control flow.
+     * @param node the node
      * @return {@code true} if this is a false-dominated node, otherwise {@code false}
      */
     public boolean isFalseDominated(PDGNode node) {

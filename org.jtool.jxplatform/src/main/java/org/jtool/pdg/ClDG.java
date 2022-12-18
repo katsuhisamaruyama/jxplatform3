@@ -122,9 +122,9 @@ public class ClDG {
     }
     
     /**
-     * Adds a CFG to this CCFG.
+     * Adds a PDG to this ClDG.
      * This method is not intended to be invoked by clients.
-     * @param cfg the CFG to be added
+     * @param pdg the PDG to be added
      */
     public void add(PDG pdg) {
         assert pdg != null;

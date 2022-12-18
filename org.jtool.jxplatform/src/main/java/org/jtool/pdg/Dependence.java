@@ -130,7 +130,7 @@ public class Dependence extends GraphEdge implements DependencyGraphEdge {
     
     /**
      * Sorts the list of dependence edges.
-     * @param co the list of the dependence edges to be sorted
+     * @param collection the list of the dependence edges to be sorted
      * @return the sorted list of the dependence edges
      */
     public static List<Dependence> sortEdges(Collection<? extends Dependence> collection) {
