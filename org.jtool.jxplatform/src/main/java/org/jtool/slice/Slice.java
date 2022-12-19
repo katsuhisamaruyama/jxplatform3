@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 /**
- * An object storing information about a program slice.
+ * An object storing information on a program slice.
  * 
  * @author Katsuhisa Maruyama
  */
