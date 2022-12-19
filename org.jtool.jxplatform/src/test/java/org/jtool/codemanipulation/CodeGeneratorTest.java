@@ -7,10 +7,10 @@ package org.jtool.codemanipulation;
 
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaClass;
-import org.jtool.jxplatform.util.BuilderTestUtil;
-import org.jtool.jxplatform.util.PDGTestUtil;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDGNode;
+import org.jtool.pdg.PDGTestUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -9,7 +9,6 @@ import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
-import org.jtool.jxplatform.util.BuilderTestUtil;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

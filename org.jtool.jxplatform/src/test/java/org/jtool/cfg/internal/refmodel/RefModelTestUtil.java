@@ -5,8 +5,8 @@
 
 package org.jtool.cfg.internal.refmodel;
 
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.builder.ModelBuilderBatch;
-import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.srcmodel.JavaProject;
 import java.io.IOException;
 import java.nio.file.Path;

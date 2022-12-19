@@ -5,9 +5,8 @@
 
 package org.jtool.pdg;
 
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.util.BuilderTestUtil;
-import org.jtool.jxplatform.util.PDGTestUtil;
 import java.util.List;
 import java.util.Set;
 import org.junit.AfterClass;

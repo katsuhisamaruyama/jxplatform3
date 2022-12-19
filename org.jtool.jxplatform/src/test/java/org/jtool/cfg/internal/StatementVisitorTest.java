@@ -11,7 +11,7 @@ import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGMerge;
 import org.jtool.cfg.CFGException;
 import org.jtool.cfg.ControlFlow;
-import org.jtool.jxplatform.util.BuilderTestUtil;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import java.util.List;
 import org.eclipse.jdt.core.dom.EmptyStatement;
 import org.eclipse.jdt.core.dom.ExpressionStatement;

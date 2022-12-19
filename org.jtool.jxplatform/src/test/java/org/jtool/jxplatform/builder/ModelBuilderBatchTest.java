@@ -6,7 +6,6 @@
 package org.jtool.jxplatform.builder;
 
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.util.BuilderTestUtil;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;

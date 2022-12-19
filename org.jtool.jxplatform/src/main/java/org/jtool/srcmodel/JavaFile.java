@@ -5,7 +5,7 @@
 
 package org.jtool.srcmodel;
 
-import org.jtool.jxplatform.builder.TimeInfo;
+import org.jtool.jxplatform.project.TimeInfo;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.Set;

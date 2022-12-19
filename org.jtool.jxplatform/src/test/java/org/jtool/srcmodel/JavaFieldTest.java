@@ -5,7 +5,7 @@
 
 package org.jtool.srcmodel;
 
-import org.jtool.jxplatform.util.BuilderTestUtil;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.util.Set;
 import org.junit.Test;

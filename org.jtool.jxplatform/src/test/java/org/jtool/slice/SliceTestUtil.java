@@ -3,15 +3,14 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.util;
+package org.jtool.slice;
 
-import org.jtool.slice.Slice;
-import org.jtool.slice.SliceCriterion;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.pdg.DependencyGraph;
+import org.jtool.pdg.PDGTestUtil;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants;
 import java.util.Map;

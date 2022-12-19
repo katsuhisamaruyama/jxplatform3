@@ -6,10 +6,10 @@
 package org.jtool.pdg.internal;
 
 import org.jtool.pdg.ClDG;
+import org.jtool.pdg.PDGTestUtil;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.util.BuilderTestUtil;
-import org.jtool.jxplatform.util.PDGTestUtil;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

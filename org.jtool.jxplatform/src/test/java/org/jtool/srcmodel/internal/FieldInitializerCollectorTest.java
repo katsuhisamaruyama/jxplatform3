@@ -7,7 +7,7 @@ package org.jtool.srcmodel.internal;
 
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaField;
-import org.jtool.jxplatform.util.BuilderTestUtil;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.util.Set;
 import org.junit.Test;

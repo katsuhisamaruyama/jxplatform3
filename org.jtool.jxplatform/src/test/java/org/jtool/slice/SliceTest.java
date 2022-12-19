@@ -5,9 +5,8 @@
 
 package org.jtool.slice;
 
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.util.BuilderTestUtil;
-import org.jtool.jxplatform.util.SliceTestUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

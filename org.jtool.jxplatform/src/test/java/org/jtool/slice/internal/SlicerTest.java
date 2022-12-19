@@ -3,14 +3,14 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.slice;
+package org.jtool.slice.internal;
 
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.util.BuilderTestUtil;
-import org.jtool.jxplatform.util.PDGTestUtil;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
-import org.jtool.slice.internal.Slicer;
-import org.jtool.jxplatform.util.SliceTestUtil;
+import org.jtool.pdg.PDGTestUtil;
+import org.jtool.slice.SliceCriterion;
+import org.jtool.slice.SliceTestUtil;
 import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

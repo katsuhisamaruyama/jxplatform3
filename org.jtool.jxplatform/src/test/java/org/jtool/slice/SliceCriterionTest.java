@@ -6,12 +6,12 @@
 package org.jtool.slice;
 
 import org.jtool.pdg.DependencyGraph;
+import org.jtool.pdg.PDGTestUtil;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.util.BuilderTestUtil;
-import org.jtool.jxplatform.util.PDGTestUtil;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

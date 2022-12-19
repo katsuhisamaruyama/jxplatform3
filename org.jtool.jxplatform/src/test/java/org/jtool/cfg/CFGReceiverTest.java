@@ -6,7 +6,7 @@
 package org.jtool.cfg;
 
 import org.jtool.cfg.internal.CFGTestUtil;
-import org.jtool.jxplatform.util.BuilderTestUtil;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.srcmodel.JavaProject;
 import org.junit.Test;
 import org.junit.BeforeClass;

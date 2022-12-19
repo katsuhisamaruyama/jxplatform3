@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.builder;
+package org.jtool.jxplatform.project;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;

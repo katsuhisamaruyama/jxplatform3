@@ -5,7 +5,7 @@
 
 package org.jtool.jxplatform.project;
 
-import org.jtool.jxplatform.util.BuilderTestUtil;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.Test;

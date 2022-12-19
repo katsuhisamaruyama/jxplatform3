@@ -6,7 +6,7 @@
 package org.jtool.cfg.internal.refmodel;
 
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.builder.TimeInfo;
+import org.jtool.jxplatform.project.TimeInfo;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;

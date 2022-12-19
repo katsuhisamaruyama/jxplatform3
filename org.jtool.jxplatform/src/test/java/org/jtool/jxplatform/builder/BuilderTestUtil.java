@@ -3,10 +3,9 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.util;
+package org.jtool.jxplatform.builder;
 
 import org.jtool.cfg.internal.refmodel.RefModelTestUtil;
-import org.jtool.jxplatform.builder.ModelBuilderBatch;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaFile;
 import java.io.BufferedWriter;

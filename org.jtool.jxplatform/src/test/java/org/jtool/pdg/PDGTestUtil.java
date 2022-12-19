@@ -3,21 +3,12 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.util;
+package org.jtool.pdg;
 
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.pdg.SDG;
-import org.jtool.pdg.ClDG;
-import org.jtool.pdg.PDG;
-import org.jtool.pdg.DependencyGraph;
-import org.jtool.pdg.DependencyGraphEdge;
-import org.jtool.pdg.Dependence;
-import org.jtool.pdg.DD;
-import org.jtool.pdg.PDGNode;
-import org.jtool.pdg.PDGEntry;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.CFGMethodCall;

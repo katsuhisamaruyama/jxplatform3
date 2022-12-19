@@ -5,10 +5,10 @@
 
 package org.jtool.cfg.internal;
 
-import org.jtool.jxplatform.util.BuilderTestUtil;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.cfg.CCFG;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
