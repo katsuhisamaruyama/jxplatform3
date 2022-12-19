@@ -3,22 +3,23 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.cfg;
+package org.jtool.cfg.internal;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.Modifier;
+import org.jtool.cfg.JVariableReference;
 
 /**
  * A class that represents a versatile reference to either
- *   a variable storing the return value of the method call,
- *   a defined variable in a switch statement,
+ *   a variable storing the return value into a formal out node of the method call,
+ *   a defined variable in a switch statement mode,
  *   a thrown exception type, or
  *   a literal object.
  * 
  * @author Katsuhisa Maruyama
  */
-public class JVersatileReference extends JVariableReference {
+class JVersatileReference extends JVariableReference {
     
     /**
      * Creates a new object that represents an versatile reference to a variable invisible on source code.

@@ -6,9 +6,7 @@
 package org.jtool.cfg.internal;
 
 import org.jtool.srcmodel.JavaProject;
-
 import org.jtool.jxplatform.util.BuilderTestUtil;
-import org.jtool.jxplatform.util.CFGTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodCall;

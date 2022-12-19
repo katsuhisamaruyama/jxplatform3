@@ -3,14 +3,16 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.cfg;
+package org.jtool.cfg.internal;
+
+import org.jtool.cfg.JVariableReference;
 
 /**
  * A class that represents a reference to an alias variable.
  * 
  * @author Katsuhisa Maruyama
  */
-public class JAliasReference extends JVariableReference {
+class JAliasReference extends JVariableReference {
     
     /**
      * A reference to the original of an alias variable.
@@ -30,7 +32,7 @@ public class JAliasReference extends JVariableReference {
         assert original != null;
         
         this.original = original;
-        this.isPrimitiveType = jvar.isPrimitiveType;
+        this.isPrimitiveType = jvar.isPrimitiveType();
         this.modifiers = jvar.getModifiers();
         
         setProperties(jvar.getASTNode(), name, jvar.getType());

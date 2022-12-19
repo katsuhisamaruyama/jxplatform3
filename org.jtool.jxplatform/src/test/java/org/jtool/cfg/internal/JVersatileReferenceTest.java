@@ -3,10 +3,10 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.cfg;
+package org.jtool.cfg.internal;
 
+import org.jtool.cfg.CFG;
 import org.jtool.jxplatform.util.BuilderTestUtil;
-import org.jtool.jxplatform.util.CFGTestUtil;
 import org.jtool.srcmodel.JavaProject;
 import java.util.List;
 import org.junit.Test;
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertFalse;
 
 public class JVersatileReferenceTest {
     
-private static JavaProject SliceProject;
+    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

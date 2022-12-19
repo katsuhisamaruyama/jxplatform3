@@ -3,17 +3,18 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.cfg;
+package org.jtool.cfg.internal;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Modifier;
+import org.jtool.cfg.JVariableReference;
 
 /**
  * A class that represents a reference to a variable that stores the return value.
  * 
  * @author Katsuhisa Maruyama
  */
-public class JReturnValueReference extends JVariableReference {
+class JReturnValueReference extends JVariableReference {
     
     /**
      * The symbol indicating that a reference represents a variable that stores the return value.

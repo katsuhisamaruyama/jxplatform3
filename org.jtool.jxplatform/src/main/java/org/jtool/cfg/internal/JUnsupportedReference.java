@@ -3,10 +3,11 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.cfg;
+package org.jtool.cfg.internal;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Modifier;
+import org.jtool.cfg.JVariableReference;
 
 /**
  * A class that represents an unsupported reference to a node of 
@@ -16,7 +17,7 @@ import org.eclipse.jdt.core.dom.Modifier;
  * 
  * @author Katsuhisa Maruyama
  */
-public class JUnsupportedReference extends JVariableReference {
+class JUnsupportedReference extends JVariableReference {
     
     /**
      * Creates a new object that represents a reference to an unsupported program element.

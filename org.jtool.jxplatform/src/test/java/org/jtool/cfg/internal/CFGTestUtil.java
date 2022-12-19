@@ -3,7 +3,7 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.jxplatform.util;
+package org.jtool.cfg.internal;
 
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
@@ -24,15 +24,11 @@ import org.jtool.cfg.CFGMethodEntry;
 import org.jtool.cfg.CFGFieldEntry;
 import org.jtool.cfg.CFGMerge;
 import org.jtool.cfg.JReference;
+import org.jtool.cfg.JUncoveredFieldReference;
 import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
 import org.jtool.cfg.JVariableReference;
-import org.jtool.cfg.JVersatileReference;
-import org.jtool.cfg.JUncoveredFieldReference;
-import org.jtool.cfg.JAliasReference;
-import org.jtool.cfg.JReturnValueReference;
-import org.jtool.cfg.internal.BasicBlockBuilder;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -311,7 +307,7 @@ public class CFGTestUtil {
         return buf.toString();
     }
     
-    static String toString(CFG cfg, CFGNode node) {
+    public static String toString(CFG cfg, CFGNode node) {
         if (node.getKind() != null) {
             return getIdString(cfg, node) + " " + node.getKind().toString() + getDetails(cfg, node);
         } else {

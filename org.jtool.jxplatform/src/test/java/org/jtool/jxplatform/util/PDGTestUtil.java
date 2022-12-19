@@ -25,11 +25,11 @@ import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.JReference;
 import org.jtool.cfg.JVariableReference;
+import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.graph.GraphElement;
 import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
-import org.jtool.cfg.JVersatileReference;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -255,16 +255,6 @@ public class PDGTestUtil {
         List<PDGNode> nodes = getNodes(pdg, kind);
         nodes.forEach(e -> System.err.println(e.getId() + " " +
                 e.getCFGNode().getKind().toString() + " " + e.getClass().toString()));
-    }
-    
-    public static List<JVersatileReference> getDefExpedientialReference(PDG pdg) {
-        return getDefReference(pdg, "JExpedientialReference")
-                .map(n -> (JVersatileReference)n).collect(Collectors.toList());
-    }
-    
-    public static List<JVersatileReference> getUseExpedientialReference(PDG pdg) {
-        return getUseReference(pdg, "JExpedientialReference")
-                .map(n -> (JVersatileReference)n).collect(Collectors.toList());
     }
     
     public static List<JLocalVarReference> getDefLocalReference(PDG pdg) {

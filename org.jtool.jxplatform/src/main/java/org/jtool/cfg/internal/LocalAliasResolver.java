@@ -13,7 +13,6 @@ import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGReceiver;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.JFieldReference;
-import org.jtool.cfg.JAliasReference;
 import org.jtool.cfg.ControlFlow;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;

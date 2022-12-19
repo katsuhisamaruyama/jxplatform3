@@ -3,11 +3,13 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.cfg;
+package org.jtool.cfg.internal;
 
-import org.eclipse.jdt.core.dom.ASTNode;
+import org.jtool.cfg.CFGNode;
+import org.jtool.cfg.CFGStatement;
 import java.util.List;
 import java.util.ArrayList;
+import org.eclipse.jdt.core.dom.ASTNode;
 
 /**
  * A try node of a CFG.

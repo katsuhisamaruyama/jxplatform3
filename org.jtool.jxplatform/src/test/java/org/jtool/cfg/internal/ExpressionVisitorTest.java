@@ -11,9 +11,7 @@ import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.jxplatform.util.BuilderTestUtil;
-import org.jtool.jxplatform.util.CFGTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
-
 import java.util.List;
 import org.junit.Test;
 import org.junit.AfterClass;
