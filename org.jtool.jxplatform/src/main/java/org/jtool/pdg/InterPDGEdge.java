@@ -6,7 +6,7 @@
 package org.jtool.pdg;
 
 /**
- * An edge object that represents an edge connecting two nodes in different PDGs
+ * A dependence edge connecting two nodes in different PDGs.
  * 
  * @author Katsuhisa Maruyama
  */
@@ -15,7 +15,7 @@ public abstract class InterPDGEdge implements DependencyGraphEdge {
     /**
      * The kind of this edge.
      */
-    protected DependencyGraphEdgeKind kind = DependencyGraphEdgeKind.undefined;
+    protected DependencyGraphEdge.Kind kind = DependencyGraphEdge.Kind.undefined;
     
     /**
      * The source node of this edge.
@@ -84,7 +84,7 @@ public abstract class InterPDGEdge implements DependencyGraphEdge {
      * {@inheritDoc}
      */
     @Override
-    public void setKind(DependencyGraphEdgeKind kind) {
+    public void setKind(DependencyGraphEdge.Kind kind) {
         this.kind = kind;
     }
     
@@ -92,7 +92,7 @@ public abstract class InterPDGEdge implements DependencyGraphEdge {
      * {@inheritDoc}
      */
     @Override
-    public DependencyGraphEdgeKind getKind() {
+    public DependencyGraphEdge.Kind getKind() {
         return kind;
     }
     
@@ -100,56 +100,56 @@ public abstract class InterPDGEdge implements DependencyGraphEdge {
      * Sets as an edge between class and its member.
      */
     public void setClassMember() {
-        kind = DependencyGraphEdgeKind.classMember;
+        kind = DependencyGraphEdge.Kind.classMember;
     }
     
     /**
      * Sets as a call edge.
      */
     public void setCall() {
-        kind = DependencyGraphEdgeKind.call;
+        kind = DependencyGraphEdge.Kind.call;
     }
     
     /**
      * Sets as an exception catch edge.
      */
     public void setExceptionCatch() {
-        kind = DependencyGraphEdgeKind.exceptionCatch;
+        kind = DependencyGraphEdge.Kind.exceptionCatch;
     }
     
     /**
      * Sets as a parameter-in dependence.
      */
     public void setParameterIn() {
-        kind = DependencyGraphEdgeKind.parameterIn;
+        kind = DependencyGraphEdge.Kind.parameterIn;
     }
     
     /**
      * Sets as a parameter-out dependence.
      */
     public void setParameterOut() {
-        kind = DependencyGraphEdgeKind.parameterOut;
+        kind = DependencyGraphEdge.Kind.parameterOut;
     }
     
     /**
      * Sets as a field access dependence.
      */
     public void setFieldAccess() {
-        kind = DependencyGraphEdgeKind.fieldAccess;
+        kind = DependencyGraphEdge.Kind.fieldAccess;
     }
     
     /**
      * Sets as an uncovered field access dependence.
      */
     public void setUncoveredFieldAccess() {
-        kind = DependencyGraphEdgeKind.uncoveredFieldAccess;
+        kind = DependencyGraphEdge.Kind.uncoveredFieldAccess;
     }
     
     /**
      * Sets as a summary data dependence.
      */
     public void setSummary() {
-        kind = DependencyGraphEdgeKind.summary;
+        kind = DependencyGraphEdge.Kind.summary;
     }
     
     /**

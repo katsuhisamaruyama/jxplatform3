@@ -8,7 +8,7 @@ package org.jtool.pdg;
 import org.jtool.cfg.JVariableReference;
 
 /**
- * An edge object for a graph.
+ * A data dependence edge connecting two nodes in different PDGs.
  * 
  * @author Katsuhisa Maruyama
  */
@@ -52,7 +52,7 @@ public class InterPDGDD extends InterPDGEdge {
      */
     @Override
     public void setParameterIn() {
-        kind = DependencyGraphEdgeKind.parameterIn;
+        kind = DependencyGraphEdge.Kind.parameterIn;
     }
     
     /**
@@ -60,7 +60,7 @@ public class InterPDGDD extends InterPDGEdge {
      */
     @Override
     public void setParameterOut() {
-        kind = DependencyGraphEdgeKind.parameterOut;
+        kind = DependencyGraphEdge.Kind.parameterOut;
     }
     
     /**
@@ -68,7 +68,7 @@ public class InterPDGDD extends InterPDGEdge {
      */
     @Override
     public void setFieldAccess() {
-        kind = DependencyGraphEdgeKind.fieldAccess;
+        kind = DependencyGraphEdge.Kind.fieldAccess;
     }
     
     /**
@@ -76,7 +76,7 @@ public class InterPDGDD extends InterPDGEdge {
      */
     @Override
     public void setUncoveredFieldAccess() {
-        kind = DependencyGraphEdgeKind.uncoveredFieldAccess;
+        kind = DependencyGraphEdge.Kind.uncoveredFieldAccess;
     }
     
     /**
@@ -84,7 +84,7 @@ public class InterPDGDD extends InterPDGEdge {
      */
     @Override
     public void setSummary() {
-        kind = DependencyGraphEdgeKind.summary;
+        kind = DependencyGraphEdge.Kind.summary;
     }
     
     /**
@@ -94,15 +94,15 @@ public class InterPDGDD extends InterPDGEdge {
     public String toString() {
         StringBuilder buf = new StringBuilder();
         buf.append(super.toString());
-        if (kind == DependencyGraphEdgeKind.parameterIn) {
+        if (kind == DependencyGraphEdge.Kind.parameterIn) {
             buf.append(" PIN");
-        } else if (kind == DependencyGraphEdgeKind.parameterOut) {
+        } else if (kind == DependencyGraphEdge.Kind.parameterOut) {
             buf.append(" POUT");
-        } else if (kind == DependencyGraphEdgeKind.fieldAccess) {
+        } else if (kind == DependencyGraphEdge.Kind.fieldAccess) {
             buf.append(" FACC");
-        } else if (kind == DependencyGraphEdgeKind.uncoveredFieldAccess) {
+        } else if (kind == DependencyGraphEdge.Kind.uncoveredFieldAccess) {
             buf.append(" CFACC");
-        } else if (kind == DependencyGraphEdgeKind.summary) {
+        } else if (kind == DependencyGraphEdge.Kind.summary) {
             buf.append(" SUMM");
         }
         return buf.toString();

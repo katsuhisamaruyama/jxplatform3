@@ -85,28 +85,28 @@ public class DD extends Dependence {
      * Sets as a loop-independent data dependence.
      */
     public void setLIDD() {
-        kind = DependencyGraphEdgeKind.loopIndependentDefUseDependence;
+        kind = DependencyGraphEdge.Kind.loopIndependentDefUseDependence;
     }
     
     /**
      * Sets as a loop-carried data dependence.
      */
     public void setLCDD() {
-        kind = DependencyGraphEdgeKind.loopCarriedDefUseDependence;
+        kind = DependencyGraphEdge.Kind.loopCarriedDefUseDependence;
     }
     
     /**
      * Sets as a define-order dependence.
      */
     public void setDefOrder() {
-        kind = DependencyGraphEdgeKind.defOrderDependence;
+        kind = DependencyGraphEdge.Kind.defOrderDependence;
     }
     
     /**
      * Sets as an output dependence.
      */
     public void setOutput() {
-        kind = DependencyGraphEdgeKind.outputDependence;
+        kind = DependencyGraphEdge.Kind.outputDependence;
     }
     
     /**
@@ -153,23 +153,23 @@ public class DD extends Dependence {
             }
             buf.append(" ]");
         }
-        if (kind == DependencyGraphEdgeKind.loopIndependentDefUseDependence) {
+        if (kind == DependencyGraphEdge.Kind.loopIndependentDefUseDependence) {
             buf.append(" LIDD");
-        } else if (kind == DependencyGraphEdgeKind.loopCarriedDefUseDependence) {
+        } else if (kind == DependencyGraphEdge.Kind.loopCarriedDefUseDependence) {
             buf.append(" LCDD");
-        } else if (kind == DependencyGraphEdgeKind.defOrderDependence) {
+        } else if (kind == DependencyGraphEdge.Kind.defOrderDependence) {
             buf.append(" DO");
-        } else if (kind == DependencyGraphEdgeKind.outputDependence) {
+        } else if (kind == DependencyGraphEdge.Kind.outputDependence) {
             buf.append(" OD");
-        } else if (kind == DependencyGraphEdgeKind.parameterIn) {
+        } else if (kind == DependencyGraphEdge.Kind.parameterIn) {
             buf.append(" PIN");
-        } else if (kind == DependencyGraphEdgeKind.parameterOut) {
+        } else if (kind == DependencyGraphEdge.Kind.parameterOut) {
             buf.append(" POUT");
-        } else if (kind == DependencyGraphEdgeKind.fieldAccess) {
+        } else if (kind == DependencyGraphEdge.Kind.fieldAccess) {
             buf.append(" FACC");
-        } else if (kind == DependencyGraphEdgeKind.uncoveredFieldAccess) {
+        } else if (kind == DependencyGraphEdge.Kind.uncoveredFieldAccess) {
             buf.append(" CFACC");
-        } else if (kind == DependencyGraphEdgeKind.summary) {
+        } else if (kind == DependencyGraphEdge.Kind.summary) {
             buf.append(" SUMM");
         }
         return buf.toString();

@@ -25,35 +25,35 @@ public class CD extends Dependence {
      * Sets as a true control dependence.
      */
     public void setTrue() {
-        kind = DependencyGraphEdgeKind.trueControlDependence;
+        kind = DependencyGraphEdge.Kind.trueControlDependence;
     }
     
     /**
      * Sets as a false control dependence.
      */
     public void setFalse() {
-        kind = DependencyGraphEdgeKind.falseControlDependence;
+        kind = DependencyGraphEdge.Kind.falseControlDependence;
     }
     
     /**
      * Sets as a fall-through control dependence.
      */
     public void setFallThrough() {
-        kind = DependencyGraphEdgeKind.fallThroughControlDependence;
+        kind = DependencyGraphEdge.Kind.fallThroughControlDependence;
     }
     
     /**
      * Sets as a declaration edge.
      */
     public void setDeclaration() {
-        kind = DependencyGraphEdgeKind.declaration;
+        kind = DependencyGraphEdge.Kind.declaration;
     }
     
     /**
      * Sets as an exception catch edge.
      */
     public void setExceptionCatch() {
-        kind = DependencyGraphEdgeKind.exceptionCatch;
+        kind = DependencyGraphEdge.Kind.exceptionCatch;
     }
     
     /**
@@ -63,15 +63,15 @@ public class CD extends Dependence {
     public String toString() {
         StringBuilder buf = new StringBuilder();
         buf.append(super.toString());
-        if (kind == DependencyGraphEdgeKind.trueControlDependence) {
+        if (kind == DependencyGraphEdge.Kind.trueControlDependence) {
             buf.append(" T");
-        } else if (kind == DependencyGraphEdgeKind.falseControlDependence) {
+        } else if (kind == DependencyGraphEdge.Kind.falseControlDependence) {
             buf.append(" F");
-        } else if (kind == DependencyGraphEdgeKind.fallThroughControlDependence) {
+        } else if (kind == DependencyGraphEdge.Kind.fallThroughControlDependence) {
             buf.append(" FALL");
-        } else if (kind == DependencyGraphEdgeKind.declaration) {
+        } else if (kind == DependencyGraphEdge.Kind.declaration) {
             buf.append(" DECL");
-        } else if (kind == DependencyGraphEdgeKind.exceptionCatch) {
+        } else if (kind == DependencyGraphEdge.Kind.exceptionCatch) {
             buf.append(" EXCP");
         }
         return buf.toString();

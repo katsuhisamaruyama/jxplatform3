@@ -6,7 +6,7 @@
 package org.jtool.pdg;
 
 /**
- * An edge object for a graph.
+ * A control dependence edge connecting two nodes in different PDGs.
  * 
  * @author Katsuhisa Maruyama
  */
@@ -26,7 +26,7 @@ public class InterPDGCD extends InterPDGEdge {
      */
     @Override
     public void setClassMember() {
-        kind = DependencyGraphEdgeKind.classMember;
+        kind = DependencyGraphEdge.Kind.classMember;
     }
     
     /**
@@ -34,7 +34,7 @@ public class InterPDGCD extends InterPDGEdge {
      */
     @Override
     public void setCall() {
-        kind = DependencyGraphEdgeKind.call;
+        kind = DependencyGraphEdge.Kind.call;
     }
     
     /**
@@ -42,7 +42,7 @@ public class InterPDGCD extends InterPDGEdge {
      */
     @Override
     public void setExceptionCatch() {
-        kind = DependencyGraphEdgeKind.exceptionCatch;
+        kind = DependencyGraphEdge.Kind.exceptionCatch;
     }
     
     /**
@@ -52,13 +52,13 @@ public class InterPDGCD extends InterPDGEdge {
     public String toString() {
         StringBuilder buf = new StringBuilder();
         buf.append(super.toString());
-        if (kind == DependencyGraphEdgeKind.classMember) {
+        if (kind == DependencyGraphEdge.Kind.classMember) {
             buf.append(" MEMBER");
-        } else if (kind == DependencyGraphEdgeKind.call) {
+        } else if (kind == DependencyGraphEdge.Kind.call) {
             buf.append(" CALL");
-        } else if (kind == DependencyGraphEdgeKind.exceptionCatch) {
+        } else if (kind == DependencyGraphEdge.Kind.exceptionCatch) {
             buf.append(" EXCP");
-        } else if (kind == DependencyGraphEdgeKind.parameterIn) {
+        } else if (kind == DependencyGraphEdge.Kind.parameterIn) {
         }
         return buf.toString();
     }

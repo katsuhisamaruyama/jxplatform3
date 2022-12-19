@@ -14,7 +14,6 @@ import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.DependencyGraph;
 import org.jtool.pdg.DependencyGraphEdge;
-import org.jtool.pdg.DependencyGraphEdgeKind;
 import org.jtool.pdg.Dependence;
 import org.jtool.pdg.DD;
 import org.jtool.pdg.PDGNode;
@@ -146,7 +145,7 @@ public class PDGTestUtil {
             .filter(n -> n.getCFGNode().getKind() == kind).collect(Collectors.toList());
     }
     
-    public static List<Dependence> getEdges(PDG pdg, DependencyGraphEdgeKind kind) {
+    public static List<Dependence> getEdges(PDG pdg, DependencyGraphEdge.Kind kind) {
         return DependencyGraphEdge.sortEdges(pdg.getEdges()).stream().map(e -> (Dependence)e)
             .filter(e -> e.getKind() == kind).collect(Collectors.toList());
     }

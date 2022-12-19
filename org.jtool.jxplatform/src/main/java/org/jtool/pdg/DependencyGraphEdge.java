@@ -52,31 +52,58 @@ public interface DependencyGraphEdge {
     }
     
     /**
+     * The kind of a dependency graph edge.
+     * 
+     * @author Katsuhisa Maruyama
+     */
+    public enum Kind {
+        trueControlDependence,           // Control dependence with respect to a true-branch flow
+        falseControlDependence,          // Control dependence with respect to a false-branch flow
+        fallThroughControlDependence,    // Control dependence with respect to a fall-through flow
+        declaration,                     // Control dependence between declaration and its references
+        exceptionCatch,                  // Control dependence with respect to an exception-catch within a try statement
+        classMember,                     // Dependence between a class and its members
+        call,                            // Dependence between a caller and its callee
+        
+        loopIndependentDefUseDependence, // Data dependence with respect to a loop-independent variable
+        loopCarriedDefUseDependence,     // Data dependence with respect to a loop-carried variable
+        defOrderDependence,              // Data dependence based on the order of definitions of variables
+        outputDependence,                // Data dependence based on the order of outputs of variables
+        parameterIn,                     // Data dependence with respect to incoming parameter passing
+        parameterOut,                    // Data dependence with respect to outgoing parameter passing
+        summary,                         // Data dependence between actual-in and actual-out nodes
+        fieldAccess,                     // Data dependence with respect to a field access
+        uncoveredFieldAccess,            // Data dependence with respect to an uncovered field accesses
+        
+        undefined,
+    }
+    
+    /**
      * Sets the kind of this dependence edge.
      * This method is not intended to be invoked by clients.
      * @param kind the kind of the dependence edge
      */
-    public void setKind(DependencyGraphEdgeKind kind);
+    public void setKind(DependencyGraphEdge.Kind kind);
     
     /**
      * Returns the kind of this dependence edge.
      * @return the kind of the edge
      */
-    public DependencyGraphEdgeKind getKind();
+    public DependencyGraphEdge.Kind getKind();
     
     /**
      * Tests if this edge represents a control dependence.
      * @return {@code true} if this is a control dependence edge, otherwise {@code false}
      */
     default public boolean isCD() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.trueControlDependence ||
-               kind == DependencyGraphEdgeKind.falseControlDependence ||
-               kind == DependencyGraphEdgeKind.fallThroughControlDependence ||
-               kind == DependencyGraphEdgeKind.declaration ||
-               kind == DependencyGraphEdgeKind.exceptionCatch ||
-               kind == DependencyGraphEdgeKind.classMember ||
-               kind == DependencyGraphEdgeKind.call;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.trueControlDependence ||
+               kind == DependencyGraphEdge.Kind.falseControlDependence ||
+               kind == DependencyGraphEdge.Kind.fallThroughControlDependence ||
+               kind == DependencyGraphEdge.Kind.declaration ||
+               kind == DependencyGraphEdge.Kind.exceptionCatch ||
+               kind == DependencyGraphEdge.Kind.classMember ||
+               kind == DependencyGraphEdge.Kind.call;
     }
     
     /**
@@ -84,16 +111,16 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a data dependence edge, otherwise {@code false}
      */
     default public boolean isDD() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.loopIndependentDefUseDependence ||
-               kind == DependencyGraphEdgeKind.loopCarriedDefUseDependence ||
-               kind == DependencyGraphEdgeKind.defOrderDependence ||
-               kind == DependencyGraphEdgeKind.outputDependence ||
-               kind == DependencyGraphEdgeKind.parameterIn ||
-               kind == DependencyGraphEdgeKind.parameterOut ||
-               kind == DependencyGraphEdgeKind.fieldAccess ||
-               kind == DependencyGraphEdgeKind.uncoveredFieldAccess ||
-               kind == DependencyGraphEdgeKind.summary;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.loopIndependentDefUseDependence ||
+               kind == DependencyGraphEdge.Kind.loopCarriedDefUseDependence ||
+               kind == DependencyGraphEdge.Kind.defOrderDependence ||
+               kind == DependencyGraphEdge.Kind.outputDependence ||
+               kind == DependencyGraphEdge.Kind.parameterIn ||
+               kind == DependencyGraphEdge.Kind.parameterOut ||
+               kind == DependencyGraphEdge.Kind.fieldAccess ||
+               kind == DependencyGraphEdge.Kind.uncoveredFieldAccess ||
+               kind == DependencyGraphEdge.Kind.summary;
     }
     
     /**
@@ -117,8 +144,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a true control dependence edge, otherwise {@code false}
      */
     default public boolean isTrue() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.trueControlDependence;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.trueControlDependence;
     }
     
     /**
@@ -126,8 +153,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a false control dependence edge, otherwise {@code false}
      */
     default public boolean isFalse() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.falseControlDependence;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.falseControlDependence;
     }
     
     /**
@@ -135,8 +162,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a fall-through control dependence edge, otherwise {@code false}
      */
     default public boolean isFallThrough() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.fallThroughControlDependence;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.fallThroughControlDependence;
     }
     
     /**
@@ -145,8 +172,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a declaration dependence edge, otherwise {@code false}
      */
     default public boolean isDeclaration() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.declaration;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.declaration;
     }
     
     /**
@@ -155,8 +182,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is an exception dependence edge, otherwise {@code false}
      */
     default public boolean isExceptionCatch() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.exceptionCatch;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.exceptionCatch;
     }
     
     /**
@@ -164,8 +191,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a class-member dependence edge, otherwise {@code false}
      */
     default public boolean isClassMember() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.classMember;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.classMember;
     }
     
     /**
@@ -174,8 +201,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a method call dependence edge, otherwise {@code false}
      */
     default public boolean isCall() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.call;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.call;
     }
     
     /**
@@ -192,8 +219,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a loop-independent data dependence edge, otherwise {@code false}
      */
     default public boolean isLIDD() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.loopIndependentDefUseDependence;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.loopIndependentDefUseDependence;
     }
     
     /**
@@ -202,8 +229,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a loop-carried data dependence edge, otherwise {@code false}
      */
     default public boolean isLCDD() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.loopCarriedDefUseDependence;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.loopCarriedDefUseDependence;
     }
     
     /**
@@ -211,8 +238,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a define-order dependence edge, otherwise {@code false}
      */
     default public boolean isDefOrder() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.defOrderDependence;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.defOrderDependence;
     }
     
     /**
@@ -220,8 +247,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is an output dependence edge, otherwise {@code false}
      */
     default public boolean isOutput() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.outputDependence;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.outputDependence;
     }
     
     /**
@@ -230,8 +257,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a parameter-in dependence edge, otherwise {@code false}
      */
     default public boolean isParameterIn() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.parameterIn;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.parameterIn;
     }
     
     /**
@@ -240,8 +267,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a parameter-out dependence edge, otherwise {@code false}
      */
     default public boolean isParameterOut() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.parameterOut;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.parameterOut;
     }
     
     /**
@@ -249,8 +276,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a field access dependence edge, otherwise {@code false}
      */
     default public boolean isFieldAccess() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.fieldAccess;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.fieldAccess;
     }
     
     /**
@@ -259,8 +286,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is a summary data dependence edge, otherwise {@code false}
      */
     default public boolean isSummary() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.summary;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.summary;
     }
     
     /**
@@ -268,8 +295,8 @@ public interface DependencyGraphEdge {
      * @return {@code true} if this is an uncovered field access dependence edge, otherwise {@code false}
      */
     default public boolean isUncoveredFieldAccess() {
-        DependencyGraphEdgeKind kind = getKind();
-        return kind == DependencyGraphEdgeKind.uncoveredFieldAccess;
+        DependencyGraphEdge.Kind kind = getKind();
+        return kind == DependencyGraphEdge.Kind.uncoveredFieldAccess;
     }
     
     /**

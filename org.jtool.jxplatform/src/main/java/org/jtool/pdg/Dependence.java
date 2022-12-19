@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Comparator;
 
 /**
- * A dependence edge of PDGs, ClDGs, and SDGs.
+ * A dependence edge of PDGs.
  * 
  * @author Katsuhisa Maruyama
  */
@@ -21,7 +21,7 @@ public class Dependence extends GraphEdge implements DependencyGraphEdge {
     /**
      * The kind of this dependence edge.
      */
-    protected DependencyGraphEdgeKind kind = DependencyGraphEdgeKind.undefined;
+    protected DependencyGraphEdge.Kind kind = DependencyGraphEdge.Kind.undefined;
     
     /**
      * Creates a new object that represents a dependence edge.
@@ -79,7 +79,7 @@ public class Dependence extends GraphEdge implements DependencyGraphEdge {
      * {@inheritDoc}
      */
     @Override
-    public void setKind(DependencyGraphEdgeKind kind) {
+    public void setKind(DependencyGraphEdge.Kind kind) {
         this.kind = kind;
     }
     
@@ -87,7 +87,7 @@ public class Dependence extends GraphEdge implements DependencyGraphEdge {
      * {@inheritDoc}
      */
     @Override
-    public DependencyGraphEdgeKind getKind() {
+    public DependencyGraphEdge.Kind getKind() {
         return kind;
     }
     
