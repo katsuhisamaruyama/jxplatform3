@@ -9,7 +9,7 @@ import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.graph.GraphNode;
-import org.jtool.jxplatform.project.TimeInfo;
+import org.jtool.jxplatform.builder.TimeInfo;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;

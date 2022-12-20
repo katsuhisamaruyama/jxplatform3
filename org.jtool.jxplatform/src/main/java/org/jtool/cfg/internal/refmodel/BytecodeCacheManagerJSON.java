@@ -6,7 +6,7 @@
 package org.jtool.cfg.internal.refmodel;
 
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.project.TimeInfo;
+import org.jtool.jxplatform.builder.TimeInfo;
 import java.util.Collection;
 import java.util.Map;
 import java.util.HashMap;
