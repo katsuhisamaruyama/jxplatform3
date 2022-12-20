@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -103,31 +104,32 @@ public class IncrementalModelBuilder extends ModelBuilder {
     }
     
     /**
-     * Invoked when the class path is changed.
+     * Sets the class paths.
+     * @param classPath the absolute paths that store class files
      */
-    public void changeClassPath() {
-        builderImpl.update(jproject);
+    public void setClassPath(String[] classPath) {
+        String oldpath = Arrays.asList(classPath).stream().collect(Collectors.joining(";"));
+        String newpath = Arrays.asList(jproject.getClassPath()).stream().collect(Collectors.joining(";"));
+        if (!oldpath.equals(newpath)) {
+            jproject.setClassPath(classPath);
+            builderImpl.update(jproject);
+        }
     }
     
     /**
-     * Invoked when the source path is changed.
+     * Sets source paths and binary paths.
+     * @param sourcePath the absolute paths that store source files
+     * @param binaryPath the absolute paths that store binary files
      */
-    public void changeSourcePath() {
-        builderImpl.update(jproject);
-    }
-    
-    /**
-     * Invoked when the binary path is changed.
-     */
-    public void changeBinPath() {
-        builderImpl.update(jproject);
-    }
-    
-    /**
-     * Invoked when the library is changed.
-     */
-    public void changeLibrary() {
-        builderImpl.update(jproject);
+    public void setSourceBinaryPaths(String[] sourcePath, String[] binaryPath) {
+        String oldsrcpath = Arrays.asList(sourcePath).stream().collect(Collectors.joining(";"));
+        String newsrcpath = Arrays.asList(jproject.getSourcePath()).stream().collect(Collectors.joining(";"));
+        String oldbinpath = Arrays.asList(binaryPath).stream().collect(Collectors.joining(";"));
+        String newbinpath = Arrays.asList(jproject.getBinaryPath()).stream().collect(Collectors.joining(";"));
+        if (!oldsrcpath.equals(newsrcpath) || !oldbinpath.equals(newbinpath)) {
+            jproject.setSourceBinaryPaths(sourcePath, binaryPath);
+            builderImpl.update(jproject);
+        }
     }
     
     /**
