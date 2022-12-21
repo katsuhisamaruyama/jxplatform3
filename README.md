@@ -109,9 +109,9 @@ Alternatively, you can build jar files with the Gradle on your own environment.
 The above two jar files are created in the 'build/libs' directory. 
 
 ```
-    git clone https://github.com/katsuhisamaruyama/jxplatform3/
-    cd jxplatform3/org.jtool.jxplatform
-    ./gradlew jar shadowJar
+git clone https://github.com/katsuhisamaruyama/jxplatform3/
+cd jxplatform3/org.jtool.jxplatform
+./gradlew jar shadowJar
 ```
 
 ### As a Library
@@ -137,31 +137,31 @@ JxPlatform3 provides two types of model builders as follows:
 The code snippet building a source code model is describe below. 
 
 ```
-    // import org.jtool.jxplatform.builder.ModelBuilderBatch;
-    // import org.jtool.srcmodel.JavaProject;
-    // import org.jtool.srcmodel.JavaFile;
-    // import org.jtool.srcmodel.JavaClass;
-    // import org.jtool.srcmodel.JavaMethod;
-    // import org.jtool.srcmodel.JavaField;
-    
-    String name;  // an arbitrary project name
-    String path;  // the path of the root directory that contains Java source files in a target project
-    
-    ModelBuilderBatch builder = new ModelBuilderBatch();
-    builder.analyzeBytecode(true);
-    builder.useCache(true);
-    builder.setConsoleVisible(true);
-    
-    List<JavaProject> jprojects = builder.build(name, path);
-    // If a project has a single module, the resulting list has only one object corresponding to the target project. 
-    // If a project has multiple modules, objects stored in the list correspond to the underlying modules.
-    
-    List<JavaFile> files = jprojects.stream().flatMap(p -> p.getFiles().stream()).collect(Collectors.toList());
-    List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
-    List<JavaMethod> methods = classes.stream().flatMap(p -> p.getMethods().stream()).collect(Collectors.toList());
-    List<JavaField> fields = classes.stream().flatMap(p -> p.getFields().stream()).collect(Collectors.toList());
-    
-    builder.unbuild();
+// import org.jtool.jxplatform.builder.ModelBuilderBatch;
+// import org.jtool.srcmodel.JavaProject;
+// import org.jtool.srcmodel.JavaFile;
+// import org.jtool.srcmodel.JavaClass;
+// import org.jtool.srcmodel.JavaMethod;
+// import org.jtool.srcmodel.JavaField;
+
+String name;  // an arbitrary project name
+String path;  // the path of the root directory that contains Java source files in a target project
+
+ModelBuilderBatch builder = new ModelBuilderBatch();
+builder.analyzeBytecode(true);
+builder.useCache(true);
+builder.setConsoleVisible(true);
+
+List<JavaProject> jprojects = builder.build(name, path);
+// If a project has a single module, the resulting list has only one object corresponding to the target project. 
+// If a project has multiple modules, objects stored in the list correspond to the underlying modules.
+
+List<JavaFile> files = jprojects.stream().flatMap(p -> p.getFiles().stream()).collect(Collectors.toList());
+List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
+List<JavaMethod> methods = classes.stream().flatMap(p -> p.getMethods().stream()).collect(Collectors.toList());
+List<JavaField> fields = classes.stream().flatMap(p -> p.getFields().stream()).collect(Collectors.toList());
+
+builder.unbuild();
 ```
 
 ### Building a source code model under incrementally-processing applications
@@ -169,37 +169,37 @@ The code snippet building a source code model is describe below.
 The code snippet incrementally building a source code model is describe below. 
 
 ```
-    // import org.jtool.jxplatform.builder.IncrementalModelBuilder;
-    // import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
-    // import org.jtool.jxplatform.project.ModelBuilderImpl;
-    
-    String name;       // an arbitrary project name
-    String path;       // the path of the root directory that contains Java source files in a target project 
-    String classpath;  // the path of the root directory that contains class files and/or jar files
-    
-    ModelBuilderImpl builderImpl = new ModelBuilderBatchImpl();
-    builderImpl.analyzeBytecode(true);
-    builderImpl.useCache(true);
-    builderImpl.setConsoleVisible(true);
-    
-    IncrementalModelBuilder builder = new IncrementalModelBuilder(builderImpl);
-    JavaProject jproject = builder.build(name, path, classpath);
-    // One builder monitors just one project
-    
-    // Notifies the addition of a Java file
-    builder.addFile(path + File.separator + "Added.java");  
-    
-    // Re-builds the source code model from the added file and its related ones
-    builder.incrementalBuild();
-    
-    // Notifies the deletion and update of Java files
-    builder.removeFile(path + File.separator + "Deleled.java");
-    builder.updateFile(path + File.separator + "Updated.java");
-    
-    // Re-builds the source code model from the deleted and updated files and their related ones
-    builder.incrementalBuild();
-    
-    builder.unbuild();
+// import org.jtool.jxplatform.builder.IncrementalModelBuilder;
+// import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
+// import org.jtool.jxplatform.project.ModelBuilderImpl;
+
+String name;       // an arbitrary project name
+String path;       // the path of the root directory that contains Java source files in a target project 
+String classpath;  // the path of the root directory that contains class files and/or jar files
+
+ModelBuilderImpl builderImpl = new ModelBuilderBatchImpl();
+builderImpl.analyzeBytecode(true);
+builderImpl.useCache(true);
+builderImpl.setConsoleVisible(true);
+
+IncrementalModelBuilder builder = new IncrementalModelBuilder(builderImpl);
+JavaProject jproject = builder.build(name, path, classpath);
+// One builder monitors just one project
+
+// Notifies the addition of a Java file
+builder.addFile(path + File.separator + "Added.java");  
+
+// Re-builds the source code model from the added file and its related ones
+builder.incrementalBuild();
+
+// Notifies the deletion and update of Java files
+builder.removeFile(path + File.separator + "Deleled.java");
+builder.updateFile(path + File.separator + "Updated.java");
+
+// Re-builds the source code model from the deleted and updated files and their related ones
+builder.incrementalBuild();
+
+builder.unbuild();
 ```
 
 ### Creating CFGs
@@ -207,41 +207,41 @@ The code snippet incrementally building a source code model is describe below.
 The following code snippet builds CCFGs for all classes and CFGs for all methods and fields within a project.
 
 ```
-    // import org.jtool.cfg.CCFG;
-    // import org.jtool.cfg.CFG;
-    
-    ModelBuilderBatch builder = new ModelBuilderBatch();
-    List<JavaProject> jprojects = builder.build(name, path);
-    List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
-    
-    for (JavaClass jclass : classes) {
-        CCFG ccfg = builder.getCCFG(jclass);
-        for (CFG cfg : ccfg.getCFGs()) {
-            cfg.print();
-        }
+// import org.jtool.cfg.CCFG;
+// import org.jtool.cfg.CFG;
+
+ModelBuilderBatch builder = new ModelBuilderBatch();
+List<JavaProject> jprojects = builder.build(name, path);
+List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
+
+for (JavaClass jclass : classes) {
+    CCFG ccfg = builder.getCCFG(jclass);
+    for (CFG cfg : ccfg.getCFGs()) {
+        cfg.print();
     }
-    
-    builder.unbuild();
+}
+
+builder.unbuild();
 ```
 
 A CFG can be created from an object of JavaMethod or JavaField as described below.
 
 ```
-    JavaMethod jmethod;
-    JavaField jfield;
-    boolean force;       // whether the analyzer forces to create a CFG or allows to reuse it 
-    CFG cfg;
-    cfg = builder.getCFG(jmethod, force);
-    cfg = builder.getCFG(jmethod);  // force:false
-    cfg = builder.getCFG(jfield, force);
-    cfg = builder.getCFG(jfield);  // force:false
+JavaMethod jmethod;
+JavaField jfield;
+boolean force;       // whether the analyzer forces to create a CFG or allows to reuse it 
+CFG cfg;
+cfg = builder.getCFG(jmethod, force);
+cfg = builder.getCFG(jmethod);  // force:false
+cfg = builder.getCFG(jfield, force);
+cfg = builder.getCFG(jfield);  // force:false
 ```
 
 A call graph can be created within a project as described below.
 
 ```
-    JavaProject jproject;
-    CallGraph callGraph = build.getCallGraph(jproject);
+JavaProject jproject;
+CallGraph callGraph = build.getCallGraph(jproject);
 ```
 
 ### Creating PDGs
@@ -249,67 +249,67 @@ A call graph can be created within a project as described below.
 The following code builds ClDGs for all classes and PDGs for all methods and fields within a project.
 
 ```
-    // import org.jtool.pdg.ClDG;
-    // import org.jtool.pdg.PDG;
-    
-    ModelBuilderBatch builder = new ModelBuilderBatch();
-    List<JavaProject> jprojects = builder.build(name, path);
-    List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
-    
-    for (JavaClass jclass : classes) {
-        ClDG cldg = builder.getClDG(jclass);
-            for (PDG pdg : cldg.getPDGs()) {
-            pdg.print();
-        }
+// import org.jtool.pdg.ClDG;
+// import org.jtool.pdg.PDG;
+
+ModelBuilderBatch builder = new ModelBuilderBatch();
+List<JavaProject> jprojects = builder.build(name, path);
+List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
+
+for (JavaClass jclass : classes) {
+    ClDG cldg = builder.getClDG(jclass);
+        for (PDG pdg : cldg.getPDGs()) {
+        pdg.print();
     }
-    
-    builder.unbuild();
+}
+
+builder.unbuild();
 ```
 
 There are several ways to create PDGs, ClDGs, and SDGs. 
 
 ```
-    ModelBuilder builder;
-    boolean force;       // whether the analyzer forces to create a CFG or allows to reuse it 
-    boolean whole;       // whether a dependency graph will be created with the whole information 
-                         // related to calls to methods and accesses to fields of outside classes
-    JavaProject jproject;
-    JavaMethod jmethod;
-    JavaField jfield;
-    
-    CFG cfg;
-    PDG pdg;
-    pdg = builder.getPDG(jproject, cfg, force, whole);
-    pdg = builder.getPDG(jproject, cfg); // force:false, whole:true
-    
-    pdg = builder.getPDG(jmethod, force, whole);
-    pdg = builder.getPDG(jmethod);  // force:false, whole:true
-     
-    pdg = builder.getPDG(jfield, force, whole);
-    pdg = builder.getPDG(jfield);  // force:false, whole:true
-    
-    CCFG ccfg;
-    ClDG cldg;
-    cldg = builder.getClDG(jproject, ccfg, force, whole);
-    cldg = builder.getClDG(jproject, ccfg); // force:false, whole:true
-    
-    cldg = builder.getClDG(jclass, force, whole);
-    cldg = builder.getClDG(jclass);  // force:false, whole:true
-    
-    SDG sdg;
-    sdg = builder.getSDG(jproject, force);
-    sdg = builder.getSDG(jproject); // force:false
+ModelBuilder builder;
+boolean force;       // whether the analyzer forces to create a CFG or allows to reuse it 
+boolean whole;       // whether a dependency graph will be created with the whole information 
+                     // related to calls to methods and accesses to fields of outside classes
+JavaProject jproject;
+JavaMethod jmethod;
+JavaField jfield;
+
+CFG cfg;
+PDG pdg;
+pdg = builder.getPDG(jproject, cfg, force, whole);
+pdg = builder.getPDG(jproject, cfg); // force:false, whole:true
+
+pdg = builder.getPDG(jmethod, force, whole);
+pdg = builder.getPDG(jmethod);  // force:false, whole:true
+ 
+pdg = builder.getPDG(jfield, force, whole);
+pdg = builder.getPDG(jfield);  // force:false, whole:true
+
+CCFG ccfg;
+ClDG cldg;
+cldg = builder.getClDG(jproject, ccfg, force, whole);
+cldg = builder.getClDG(jproject, ccfg); // force:false, whole:true
+
+cldg = builder.getClDG(jclass, force, whole);
+cldg = builder.getClDG(jclass);  // force:false, whole:true
+
+SDG sdg;
+sdg = builder.getSDG(jproject, force);
+sdg = builder.getSDG(jproject); // force:false
 ```
 
 The `DependencyGraph` class is used to obtain sub-graphs of the SDG, consisting of ClDGs created from specific classes. 
 
 ```
-    DependencyGraph graph;
-    graph = builder.getDependencyGraph(jclass, force, whole);
-    graph = builder.getDependencyGraph(jclass); // force: false, whole: true
-    
-    graph = builder.getDependencyGraph(classes, force, whole);  // classes: Set<JavaClass>
-    graph = builder.getDependencyGraph(classes);  // force:false, whole:true
+DependencyGraph graph;
+graph = builder.getDependencyGraph(jclass, force, whole);
+graph = builder.getDependencyGraph(jclass); // force: false, whole: true
+
+graph = builder.getDependencyGraph(classes, force, whole);  // classes: Set<JavaClass>
+graph = builder.getDependencyGraph(classes);  // force:false, whole:true
 ```
 
 ### Extracting program slices
@@ -317,50 +317,50 @@ The `DependencyGraph` class is used to obtain sub-graphs of the SDG, consisting 
 A program slice can be created from an object of PDG as described below.
 
 ```
-    // import org.jtool.eclipse.pdg.PDGNode;
-    // import org.jtool.eclipse.cfg.JVariableReference;
-    // import org.jtool.eclipse.slice.Slice;
-    // import org.jtool.eclipse.slice.SliceCriterion;
-    
-    JavaClass jclass;        // a class to be sliced
-    PDGNode node;            // a node given as a slice criterion
-    JVariableReference var;  // a variable of interest given as a slice criterion
-    
-    DependencyGraph graph = builder.getDependencyGraph(jclass);
-    SliceCriterion criterion = new SliceCriterion(graph, node, var);
-    Slice slice = new Slice(criterion);
-    slice.print();
+// import org.jtool.eclipse.pdg.PDGNode;
+// import org.jtool.eclipse.cfg.JVariableReference;
+// import org.jtool.eclipse.slice.Slice;
+// import org.jtool.eclipse.slice.SliceCriterion;
+
+JavaClass jclass;        // a class to be sliced
+PDGNode node;            // a node given as a slice criterion
+JVariableReference var;  // a variable of interest given as a slice criterion
+
+DependencyGraph graph = builder.getDependencyGraph(jclass);
+SliceCriterion criterion = new SliceCriterion(graph, node, var);
+Slice slice = new Slice(criterion);
+slice.print();
 ```
 
 A convenient static method is also provided.
 
 ```
-    DependencyGraph graph;  // a dependency graph consisting of ClDGs, which is used when extracting a slice
-    JavaFile jfile;         // a file including a class to be sliced
-    JavaClass jclass;       // a class to be sliced
-    JavaMethod jmethod;     // a method to be sliced
-    JavaField jfield;       // a field to be sliced
-    int lineNumber:         // the line number corresponding to a variable of interest
-    int columnNumber:       // column number corresponding to the variable on the line
-    
-    SliceCriterion criterion;
-    criterion = SliceCriterion.find(graph, jfile, lineNumber, columnNumber);
-    criterion = SliceCriterion.find(graph, jclass, lineNumber, columnNumber);
-    criterion = SliceCriterion.find(graph, jmethod, lineNumber, columnNumber);
-    criterion = SliceCriterion.find(graph, jfield, lineNumber, columnNumber);
+DependencyGraph graph;  // a dependency graph consisting of ClDGs, which is used when extracting a slice
+JavaFile jfile;         // a file including a class to be sliced
+JavaClass jclass;       // a class to be sliced
+JavaMethod jmethod;     // a method to be sliced
+JavaField jfield;       // a field to be sliced
+int lineNumber:         // the line number corresponding to a variable of interest
+int columnNumber:       // column number corresponding to the variable on the line
+
+SliceCriterion criterion;
+criterion = SliceCriterion.find(graph, jfile, lineNumber, columnNumber);
+criterion = SliceCriterion.find(graph, jclass, lineNumber, columnNumber);
+criterion = SliceCriterion.find(graph, jmethod, lineNumber, columnNumber);
+criterion = SliceCriterion.find(graph, jfield, lineNumber, columnNumber);
 ```
 
 The following code snippet generates source code from a program slice.
 
 ```
-    JavaClass jclass;    // a class to be sliced
-    JavaMethod jmethod;  // a method to be sliced
-    JavaField jfield;    // a field to be sliced
-    
-    String code;
-    code = slice.getCode(jclass);
-    code = slice.getCode(jmethod);
-    code = slice.getCode(jfield);
+JavaClass jclass;    // a class to be sliced
+JavaMethod jmethod;  // a method to be sliced
+JavaField jfield;    // a field to be sliced
+
+String code;
+code = slice.getCode(jclass);
+code = slice.getCode(jmethod);
+code = slice.getCode(jfield);
 ```
 
 ## History
