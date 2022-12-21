@@ -145,7 +145,8 @@ The code snippet building a source code model is describe below.
 // import org.jtool.srcmodel.JavaField;
 
 String name;  // an arbitrary project name
-String path;  // the path of the root directory that contains Java source files in a target project
+String path;  // the path of the root directory
+              // that contains Java source files in a target project
 
 ModelBuilderBatch builder = new ModelBuilderBatch();
 builder.analyzeBytecode(true);
@@ -153,13 +154,23 @@ builder.useCache(true);
 builder.setConsoleVisible(true);
 
 List<JavaProject> jprojects = builder.build(name, path);
-// If a project has a single module, the resulting list has only one object corresponding to the target project. 
-// If a project has multiple modules, objects stored in the list correspond to the underlying modules.
+// If a project has a single module,
+// the resulting list has only one object corresponding to the target project 
+// If a project has multiple modules,
+// objects stored in the list correspond to the underlying modules 
 
-List<JavaFile> files = jprojects.stream().flatMap(p -> p.getFiles().stream()).collect(Collectors.toList());
-List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
-List<JavaMethod> methods = classes.stream().flatMap(p -> p.getMethods().stream()).collect(Collectors.toList());
-List<JavaField> fields = classes.stream().flatMap(p -> p.getFields().stream()).collect(Collectors.toList());
+List<JavaFile> files = jprojects.stream()
+                                .flatMap(p -> p.getFiles().stream())
+                                .collect(Collectors.toList());
+List<JavaClass> classes = jprojects.stream()
+                                   .flatMap(p -> p.getClasses().stream())
+                                   .collect(Collectors.toList());
+List<JavaMethod> methods = classes.stream()
+                                  .flatMap(p -> p.getMethods().stream())
+                                  .collect(Collectors.toList());
+List<JavaField> fields = classes.stream()
+                                .flatMap(p -> p.getFields().stream())
+                                .collect(Collectors.toList());
 
 builder.unbuild();
 ```
@@ -174,8 +185,8 @@ The code snippet incrementally building a source code model is describe below.
 // import org.jtool.jxplatform.project.ModelBuilderImpl;
 
 String name;       // an arbitrary project name
-String path;       // the path of the root directory that contains Java source files in a target project 
-String classpath;  // the path of the root directory that contains class files and/or jar files
+String path;       // the path of the root directory for a target project 
+String classpath;  // the path of the directory that contains class and/or jar files
 
 ModelBuilderImpl builderImpl = new ModelBuilderBatchImpl();
 builderImpl.analyzeBytecode(true);
@@ -212,7 +223,9 @@ The following code snippet builds CCFGs for all classes and CFGs for all methods
 
 ModelBuilderBatch builder = new ModelBuilderBatch();
 List<JavaProject> jprojects = builder.build(name, path);
-List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
+List<JavaClass> classes = jprojects.stream()
+                                   .flatMap(p -> p.getClasses().stream())
+                                   .collect(Collectors.toList());
 
 for (JavaClass jclass : classes) {
     CCFG ccfg = builder.getCCFG(jclass);
@@ -254,7 +267,9 @@ The following code builds ClDGs for all classes and PDGs for all methods and fie
 
 ModelBuilderBatch builder = new ModelBuilderBatch();
 List<JavaProject> jprojects = builder.build(name, path);
-List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
+List<JavaClass> classes = jprojects.stream()
+                                   .flatMap(p -> p.getClasses().stream())
+                                   .collect(Collectors.toList());
 
 for (JavaClass jclass : classes) {
     ClDG cldg = builder.getClDG(jclass);
@@ -335,7 +350,8 @@ slice.print();
 A convenient static method is also provided.
 
 ```
-DependencyGraph graph;  // a dependency graph consisting of ClDGs, which is used when extracting a slice
+DependencyGraph graph;  // a dependency graph consisting of ClDGs, 
+                        // which is used when extracting a slice
 JavaFile jfile;         // a file including a class to be sliced
 JavaClass jclass;       // a class to be sliced
 JavaMethod jmethod;     // a method to be sliced
