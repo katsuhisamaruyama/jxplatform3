@@ -35,13 +35,13 @@ eclipse {
 jar {
     archiveBaseName = 'jxplatform'
     classifier = 'core'
-    archiveVersion = '3.0'
+    archiveVersion = project.property('currentVersion')
 }
 
 shadowJar {
     archiveBaseName = 'jxplatform'
     classifier = 'all'
-    archiveVersion = '3.0'
+    archiveVersion = project.property('currentVersion')
 }
 test.enabled = false
 
