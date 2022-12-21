@@ -1,83 +1,96 @@
-# JxPlatform3 (JxPlatform version 3)
+# JxPlatform3 (JxPlatform v3)
 
-jSrcPlatform is a tool platform that provides three types of easy-to-use models of Java source code. It facilitates the development and maintenance of various kinds of software tools. 
+JxPlatform3 is a tool platform that provides three types of easy-to-use models of Java source code. 
+It facilitates the development and maintenance of various kinds of software tools. 
 
 ### Source Code Model 
 
 JxPlatform3 builds a Java source code model consisting of the following elements: 
 
-* JavaProject - Stores a collection of Java source files, packages, and classes 
+* JavaProject - Provides information on project resources such as Java source files, packages, and classes 
 * JavaFile - Provides information on a Java source file 
 * JavaPackage - Provides information on a package 
 * JavaClass - Provides information on a class, an interface, an enum, or an enum constant 
-* JavaMethod - Provides information on a method, a constructor, or an initializer 
-* JavaField (extends JavaVaraible) - Provides information on a field
-* JavaLocalVar (extends JavaVaraible) - Provides information on a local variable or a parameter 
+* JavaMethod - Provides information on a method, a constructor, or an initializer within a class
+* JavaVariable - Provides information on a variable
+* JavaField - Provides information on a field within a class
+* JavaLocalVar - Provides information on a local variable within a method or a parameter in a method call
 
 ### CFG (Control Flow Graph) 
 
 JxPlatform3 provides a CFG for each method existing in Java source code. 
 
-* CFGStore - Provides APIs to create CFGs from Java source code and stores them 
-* CFG (extends CommonCFG) - Provides information about a CFG of a method or a field 
-* CCFG (extends CommonCFG) - Provides information about a class control flow graph (CCFG) of a class 
-* BasicBlock - Provides information about a basic block of a CFG 
-* CallGraph - Provides information about a call graph
+* CFG - Provides information on a CFG of a method declaration or a field declaration (corresponding to JavaMethod or JavaField)
+* CCFG - Provides information on a class control flow graph (CCFG) of a class declaration (corresponding to JavaClass)
+* BasicBlock - Provides information on a basic block of a CFG 
+* CallGraph - Provides information on a call graph
 
 Each CFG consists of nodes and edges between two nodes. 
 
-* CFGNode - Represents a node of a CFG 
-* CFGClassEntry - Represents an entry node of a CFG for a class or an interface 
-* CFGMethodEntry- Represents an entry node of a CFG for a method or a constructor 
-* CFGFieldEntry - Represents an entry node of a CFG for a field declaration, or an enum-constant 
-* CFGExit - Represents an exit node of a CFG 
-* CFGStatement - Represents a statement node of a CFG 
-* CFGParameter - Represents a parameter node of a CFG 
-* CFGMerge - Represents a merge node of a CFG 
+* CFGNode - Represents a node of a CFG, which is a parent of all CFG nodes 
+* CFGEntry - Represents the entry of a CCF 
+* CFGMethodEntry- Represents the entry of a CFG for a method declaration or a constructor declaration
+* CFGFieldEntry - Represents the entry of a CFG for a field declaration or an enum-constant declaration
+* CCFGEntry - Represents the entry of a CCFG 
+* CFGExit - Represents the exit of a CFG 
+* CFGMerge - Represents a node where multiple control flows merge
+* CFGStatement - Represents a statement or an expression, which has defined and/or used variables 
+* CFGMethodCall - Represents a method call
+* CFGParameter - Represents a parameter for the method call
+* CFGReceiver - Represents a receiver for the method call
+* CFGException - Represents an exception 
 * ControlFlow - Represents control flow between CFG nodes 
 
-Each CFGStatement node holds a define-set and a use-set of references to fields, local variables, and method calls. The define-set contains fields and local variables defined in an expression corresponding to the node. The use-set contains fields and local variables used in the expression and method calls performed.
+Each CFGStatement node holds a define-set and a use-set of references to fields, local variables, and method calls. 
+The define-set contains fields and local variables defined in an expression corresponding to the node. 
+The use-set contains fields and local variables used in the expression and method calls performed. 
 
-* JReference - Represents a reference to a field, or a local variable, or a method 
-* JMethodReference - Represents reference to a called method or a called constructor 
+* JReference - Represents a reference to a called method or an accessed variable 
+* JMethodReference - Represents a reference to a called method or a called constructor 
+* JVariableReference - Represents a reference to an accessed variable 
 * JFieldReference - Represents a reference to an accessed field 
+* JUncoveredFieldReference - Represents a reference to an accessed field in a called method 
 * JLocalVarReference - Represents a reference to an accessed local variable 
-* JInvisibleReference - represents a reference to an invisible variable (that stores a return value or an argument value) 
 
 ### PDG (Program Dependence Graph) 
 
-JxPlatform3 provides a PDG from a CFG for each method existing in Java source code. Dependency analysis uses not only source code and byte-code.
+JxPlatform3 provides a PDG from a CFG for each method existing in Java source code. 
 
-* PDGStore - Stores a collection of PDGs created from CFGs 
-* PDG (extends CommonCFG) - Provides information about a PDG of a method or a field 
-* ClDG (extends CommonCFG)- Provides information about a class dependence graph (ClDG) a PDG of a method or a class 
-* SDG (extends CommonCFG) - Provides information about a system dependence graph (SDG) the whole source code
+* PDG - Provides information on a PDG of a method or a field 
+* ClDG - Provides information on a class dependence graph (ClDG) of a class 
+* DependencyGraph - Stores information on a dependency graph consisting of ClDGs.
+* SDG - Provides information about a system dependence graph (SDG) the whole source code
 
-Each PDG consists of nodes and edges between two nodes. 
+Each PDG or ClDG consists of nodes and edges between two nodes. 
 
-* PDGNode - Represents a node of a PDG 
-* PDGEntry-  Represents an entry node of a PDG for a method, a constructor, a field declaration, or an enum-constant 
-* PDGClassEntry - Represents an entry node of a ClDG for a class or an interface 
-* PDGStatement - Represents a statement node of a PDG 
-* DependenceEdge - Represents dependence between PDG nodes 
-* CD - Represents control dependence between PDG nodes 
-* DD - Represents data dependence between PDG nodes 
-* CallEdge - Represents a call edge in a ClDG 
-* ClassMemberEdge - Represents a class member edge in a ClDG 
+* PDGNode - Represents a node of a PDG, which is a parent of all PDG nodes. 
+The PDG node and its corresponding CFG node have the same identifier 
+* PDGEntry -  Represents the entry of a PDG 
+* ClDGEntry - Represents the entry of a ClDG 
+* PDGStatement - Represents a statement or an expression, which has defined and/or used variables 
+* DependencyGraphEdge - Represents a dependence edge appearing in PDGs, ClDGs, and SDGs 
+* Dependence - Represents a dependence edge appearing in PDGs 
+* CD - Represents a control dependence between PDG nodes 
+* DD - Represents a data dependence between PDG nodes 
+* InterPDGEdge - Represents a dependence edge connecting nodes in different PDGs 
+* InterPDGCD - Represents a control dependence edge connecting nodes in different PDGs 
+* InterPDGDD - Represents a data dependence edge connecting nodes in different PDGs 
 
 ### Program slice 
 
-JxPlatform3 provides a slice and its corresponding source code. Each slice consists PDG nodes that may affect the value of a variable of interest (called a slice criterion).
+JxPlatform3 provides a slice and its corresponding source code. 
+Each slice consists PDG nodes that may affect the value of a variable of interest (called a slice criterion). 
 
-* Slice - Stores information about a program slice 
+* Slice - Stores information on a program slice 
 * SliceCriterion - Represents a slicing criterion 
 
-A slice is constructed based on flow-sensitive dependency analysis. It traverses only the PDG nodes that reach a node given as a slice criterion. 
+A slice is constructed based on flow-sensitive analysis. 
+It traverses only the PDG nodes that reach a node given as a slice criterion. 
 
 ## Requirement
 
-JDK 1.11 
-[Eclipse](https://www.eclipse.org/) 2020-06 and later 
+* JDK 1.11 
+* [Eclipse](https://www.eclipse.org/) 2022-09 (4.25.0) and later 
 
 
 ## License 
@@ -86,109 +99,122 @@ JDK 1.11
 
 ## Installation
 
+You can use either of the following two jar file to develop applications using JxPlatform3 
+on [GitHub](https://github.com/katsuhisamaruyama/jxplatform3/tree/main/org.jtool.jxplatform/releases).
+
+* `jxplatform-3.X.X-all.jar`
+* `jxplatform-3.X.X.jar`
+
+Alternatively, you can build jar files with the Gradle on your own environment. 
+The above two jar files are created in the 'build/libs' directory. 
+
+```
+    git clone https://github.com/katsuhisamaruyama/jxplatform3/
+    cd jxplatform3/org.jtool.jxplatform
+    ./gradlew jar shadowJar
+```
+
 ### As a Library
 
-You can download a library file (`srcplatform-1.0.jar` or `srcplatform-1.0-all.jar`) for the batch-process application using SrcPlatform on [GitHub](https://github.com/katsuhisamaruyama/jxplatform3/tree/master/org.jtool.eclipse/releases). Alternatively, you build a library with the Gradle. The created jar file can be found in the 'build/libs' folder. 
-
-    git clone https://github.com/katsuhisamaruyama/srcplatform/
-    cd srcplatform/org.jtool.srcplatform
-    ./gradlew build jar shadowJar
-
-JxPlatform2 (`srcplatform-1.0.jar`) and the needed jar files must be included in the build path and the runtime classpath under your development environment. When using the Eclipse, see the "Build Path" settings of a project.
-
+You can deploy `jxplatform-3.X.X-all.jar` in the directory for library files (e.g., `libs`), 
+and specify the directory as the build path and the runtime classpath under your environment.
+When using the Eclipse, see the "Build Path" settings of a project.
 
 ### As an Eclipse plug-in
 
-When using the Eclipse update site, select menu items: "Help" -> "Install New Software..." ->  
-Input `https://katsuhisamaruyama.github.io/jxplatform2/org.jtool.eclipse.site/site.xml` in the text field of "Work with:" 
-
-If you prefer to manually install the plug-in, download the latest release of the jar file in the [plug-in directory](<https://github.com/katsuhisamaruyama/jxplatform2/tree/master/org.jtool.eclipse.site/plugins>) and put it into the 'plug-ins' directory under the installed Eclipse. Eclipse needs to be restarted. 
-
-The following plug-ins are listed on "Required plug-ins" of the plug-in configuration for your application. 
-
-* `org.eclipse.core.resources`
-* `org.eclipse.core.runtime`
-* `org.eclipse.jdt.core`
-* `org.eclipse.ui`
-* `org.eclipse.ui.console`
-* `org.eclipse.text`
-* `org.jtool.eclipse`
-
-For further information, see [Sample](https://github.com/katsuhisamaruyama/jxplatform2/tree/master/org.jtool.eclipse.plugin.sample).
-
-
-
-
-
-
+The plug-in implementation has not been tested yet.
+Please look forward to a release of the tested version.
 
 ## Usage
 
-### Building a Java model of source code under the batch-process application
+JxPlatform3 provides two types of model builders as follows:
 
-The code building a Java model of source code outside an Eclipse project is describe below. 
+* ModelBuilderBatch - Batch processing builder 
+* IncrementalModelBuilder - Incrementally processing builder 
 
-    // import org.jtool.eclipse.batch.ModelBuilderBatch;
-    // import org.jtool.eclipse.javamodel.JavaProject;
-    // import org.jtool.eclipse.javamodel.JavaClass;
-    // import org.jtool.eclipse.javamodel.JavaMethod;
-    // import org.jtool.eclipse.javamodel.JavaField;
+### Building a source code model under batch-processing applications
+
+The code snippet building a source code model is describe below. 
+
+```
+    // import org.jtool.jxplatform.builder.ModelBuilderBatch;
+    // import org.jtool.srcmodel.JavaProject;
+    // import org.jtool.srcmodel.JavaFile;
+    // import org.jtool.srcmodel.JavaClass;
+    // import org.jtool.srcmodel.JavaMethod;
+    // import org.jtool.srcmodel.JavaField;
+    
+    String name;  // an arbitrary project name
+    String path;  // the path of the root directory that contains Java source files in a target project
+    
+    ModelBuilderBatch builder = new ModelBuilderBatch();
+    builder.analyzeBytecode(true);
+    builder.useCache(true);
+    builder.setConsoleVisible(true);
+    
+    List<JavaProject> jprojects = builder.build(name, path);
+    // If a project has a single module, the resulting list has only one object corresponding to the target project. 
+    // If a project has multiple modules, objects stored in the list correspond to the underlying modules.
+    
+    List<JavaFile> files = jprojects.stream().flatMap(p -> p.getFiles().stream()).collect(Collectors.toList());
+    List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
+    List<JavaMethod> methods = classes.stream().flatMap(p -> p.getMethods().stream()).collect(Collectors.toList());
+    List<JavaField> fields = classes.stream().flatMap(p -> p.getFields().stream()).collect(Collectors.toList());
+    
+    builder.unbuild();
+```
+
+### Building a source code model under incrementally-processing applications
+
+The code snippet incrementally building a source code model is describe below. 
+
+```
+    // import org.jtool.jxplatform.builder.IncrementalModelBuilder;
+    // import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
+    // import org.jtool.jxplatform.project.ModelBuilderImpl;
     
     String name;       // an arbitrary project name
-    String target;     // the path of the top directory that contains Java source files in the project
-    String classpath;  // the path of the top directory that contains Java class files and/or jar files
+    String path;       // the path of the root directory that contains Java source files in a target project 
+    String classpath;  // the path of the root directory that contains class files and/or jar files
     
-    ModelBuilderBatch builder = new ModelBuilderBatch();
-    builder.setLogVisible(true);
-    JavaProject jproject = builder.build(name, target, classpath);
+    ModelBuilderImpl builderImpl = new ModelBuilderBatchImpl();
+    builderImpl.analyzeBytecode(true);
+    builderImpl.useCache(true);
+    builderImpl.setConsoleVisible(true);
     
-    for (JavaClass jclass : jproject.getClasses()) {
-        jclass.print();
-        for (JavaMethod jmethod : jclass.getMethods()) {
-            jmethod.print();
-        }
-        for (JavaField jfield : jclass.getFields()) {
-            jfield.print();
-        }
-    }
+    IncrementalModelBuilder builder = new IncrementalModelBuilder(builderImpl);
+    JavaProject jproject = builder.build(name, path, classpath);
+    // One builder monitors just one project
     
-    builder.unbuild();
-
-### Building a Java model of source code under the Eclipse workspace
-
-The following is the typical code for building a Java model of source code within an Eclipse project.
-
-    // import org.eclipse.jdt.core.IJavaProject;
-    // import org.jtool.eclipse.plugin.ModelBuilderPlugin;
-    // import org.jtool.eclipse.javamodel.JavaProject;
+    // Notifies the addition of a Java file
+    builder.addFile(path + File.separator + "Added.java");  
     
-    IJavaProject project;  // a Java project resource in Eclipse
+    // Re-builds the source code model from the added file and its related ones
+    builder.incrementalBuild();
     
-    ModelBuilderPlugin builder = new ModelBuilderPlugin();
-    builder.setLogVisible(true);
-    JavaProject jproject = builder.build(project);
+    // Notifies the deletion and update of Java files
+    builder.removeFile(path + File.separator + "Deleled.java");
+    builder.updateFile(path + File.separator + "Updated.java");
     
-    ...
+    // Re-builds the source code model from the deleted and updated files and their related ones
+    builder.incrementalBuild();
     
     builder.unbuild();
+```
 
-The plug-in automatically collects source files that was modified after the previous build.
-Thus, the dirty source files will be analyzed if your code will perform build.
-Use the `buildWhole(project)` method for clean re-build.  
+### Creating CFGs
 
+The following code snippet builds CCFGs for all classes and CFGs for all methods and fields within a project.
 
-### Building CFGs
-
-The following code builds CCFGs for all classes and CFGs for all methods and fields within a project.
-
-    // import org.jtool.eclipse.cfg.CCFG;
-    // import org.jtool.eclipse.cfg.CFG;
+```
+    // import org.jtool.cfg.CCFG;
+    // import org.jtool.cfg.CFG;
     
     ModelBuilderBatch builder = new ModelBuilderBatch();
-    builder.setLogVisible(true);
-    JavaProject jproject = builder.build(name, target, classpath);
+    List<JavaProject> jprojects = builder.build(name, path);
+    List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
     
-    for (JavaClass jclass : jproject.getClasses()) {
+    for (JavaClass jclass : classes) {
         CCFG ccfg = builder.getCCFG(jclass);
         for (CFG cfg : ccfg.getCFGs()) {
             cfg.print();
@@ -196,118 +222,153 @@ The following code builds CCFGs for all classes and CFGs for all methods and fie
     }
     
     builder.unbuild();
-
-To build a normal CFG, only the source code within the project is analyzed. If high-precision of dependency analysis is needed, the bytecode of library classes can be additionally analyzed using the following code:
-
-    ModelBuilderBatch builder = new ModelBuilderBatch(true);
-    // ModelBuilderPlugin builder = new ModelBuilderPlugin(true);
-
+```
 
 A CFG can be created from an object of JavaMethod or JavaField as described below.
 
-    JavaMethod jmethod;  // a representation of a method
-    JavaField jfield;    // a representation of a field
-    boolean force;       // whether the analyzer forces to create CFGs PDGs or allows to reuse them
-    CFG cfg = builder.getCFG(jmethod, force);
-    CFG cfg = builder.getCFG(jfield, force);
+```
+    JavaMethod jmethod;
+    JavaField jfield;
+    boolean force;       // whether the analyzer forces to create a CFG or allows to reuse it 
+    CFG cfg;
+    cfg = builder.getCFG(jmethod, force);
+    cfg = builder.getCFG(jmethod);  // force:false
+    cfg = builder.getCFG(jfield, force);
+    cfg = builder.getCFG(jfield);  // force:false
+```
 
-A call graph can be created within a project, a class, or a method as described below..
+A call graph can be created within a project as described below.
 
-    CallGraph callGraph;
-    callGraph = build.getCallGraph(JavaProject jproject);
-    callGraph = build.getCallGraph(JavaClass jclass);
-    callGraph = build.getCallGraph(JavaMethod jmethod);
+```
+    JavaProject jproject;
+    CallGraph callGraph = build.getCallGraph(jproject);
+```
 
-
-### Building PDGs
+### Creating PDGs
 
 The following code builds ClDGs for all classes and PDGs for all methods and fields within a project.
 
-    // import org.jtool.eclipse.pdg.ClDG;
-    // import org.jtool.eclipse.pdg.PDG;
+```
+    // import org.jtool.pdg.ClDG;
+    // import org.jtool.pdg.PDG;
     
     ModelBuilderBatch builder = new ModelBuilderBatch();
-    builder.setLogVisible(true);
-    JavaProject jproject = builder.build(name, target, classpath);
+    List<JavaProject> jprojects = builder.build(name, path);
+    List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
     
-    for (JavaClass jclass : jproject.getClasses()) {
+    for (JavaClass jclass : classes) {
         ClDG cldg = builder.getClDG(jclass);
-        for (PDG pdg : cldg.getPDGs()) {
+            for (PDG pdg : cldg.getPDGs()) {
             pdg.print();
         }
     }
     
     builder.unbuild();
+```
 
+There are several ways to create PDGs, ClDGs, and SDGs. 
 
-A PDG, ClDG, and SDG can be created from an object of JavaMethod, JavaField, or JavaClass as described below.
+```
+    ModelBuilder builder;
+    boolean force;       // whether the analyzer forces to create a CFG or allows to reuse it 
+    boolean whole;       // whether a dependency graph will be created with the whole information 
+                         // related to calls to methods and accesses to fields of outside classes
+    JavaProject jproject;
+    JavaMethod jmethod;
+    JavaField jfield;
     
+    CFG cfg;
     PDG pdg;
-    pdg = getPDG(cfg, force);
-    pdg = builder.getPDG(jmethod, force);
-    pdg = builder.getPDG(jfield, force);
-    pdg = builder.getPDGWithinSDG(jmethod, force);
-    pdg = builder.getPDGWithinSDG(jfield, force);
+    pdg = builder.getPDG(jproject, cfg, force, whole);
+    pdg = builder.getPDG(jproject, cfg); // force:false, whole:true
     
+    pdg = builder.getPDG(jmethod, force, whole);
+    pdg = builder.getPDG(jmethod);  // force:false, whole:true
+     
+    pdg = builder.getPDG(jfield, force, whole);
+    pdg = builder.getPDG(jfield);  // force:false, whole:true
+    
+    CCFG ccfg;
     ClDG cldg;
-    cldg = getClDG(ccfg, force);
-    cldg = builder.getClDG(jclass, force);
-    cldg = builder.getClDGWithinSDG(jclass, force);
+    cldg = builder.getClDG(jproject, ccfg, force, whole);
+    cldg = builder.getClDG(jproject, ccfg); // force:false, whole:true
+    
+    cldg = builder.getClDG(jclass, force, whole);
+    cldg = builder.getClDG(jclass);  // force:false, whole:true
     
     SDG sdg;
-    sdg = builder.getSDG(jclass, force);
-    sdg = builder.getSDG(classes, force);  // classes: Set<JavaClass>
-    sdg = builder.getSDG();
+    sdg = builder.getSDG(jproject, force);
+    sdg = builder.getSDG(jproject); // force:false
+```
 
+The `DependencyGraph` class is used to obtain sub-graphs of the SDG, consisting of ClDGs created from specific classes. 
+
+```
+    DependencyGraph graph;
+    graph = builder.getDependencyGraph(jclass, force, whole);
+    graph = builder.getDependencyGraph(jclass); // force: false, whole: true
+    
+    graph = builder.getDependencyGraph(classes, force, whole);  // classes: Set<JavaClass>
+    graph = builder.getDependencyGraph(classes);  // force:false, whole:true
+```
 
 ### Extracting program slices
 
 A program slice can be created from an object of PDG as described below.
 
+```
     // import org.jtool.eclipse.pdg.PDGNode;
-    // import org.jtool.eclipse.pdg.PDGStatement;
-    // import org.jtool.eclipse.cfg.JReference;
+    // import org.jtool.eclipse.cfg.JVariableReference;
     // import org.jtool.eclipse.slice.Slice;
     // import org.jtool.eclipse.slice.SliceCriterion;
     
-    JavaClass jclass;  // a class to be sliced
-    PDGNode node;      // a node given as a slice criterion
-    JReference var;    // a variable of interest given as a slice criterion
+    JavaClass jclass;        // a class to be sliced
+    PDGNode node;            // a node given as a slice criterion
+    JVariableReference var;  // a variable of interest given as a slice criterion
     
-    ModelBuilderBatch builder = new ModelBuilderBatch();
-    builder.setLogVisible(true);
-    JavaProject jproject = builder.build(name, target, classpath);
-    
-    Set<JavaClass> classes = builder.getAllClassesBackward(jclass);
-    SDG sdg = builder.getSDG(classes);
-    ClDG cldg = sdg.getClDG(jclass);
-    
-    SliceCriterion criterion = new SliceCriterion(cldg, node, var);
+    DependencyGraph graph = builder.getDependencyGraph(jclass);
+    SliceCriterion criterion = new SliceCriterion(graph, node, var);
     Slice slice = new Slice(criterion);
     slice.print();
-    
-    builder.unbuild();
+```
 
 A convenient static method is also provided.
- 
-    CommonPDG pdg;   // a PDG or ClDG
-    String code;     // the source code text of a class or a method corresponding to common PDG
-    int lineNumber:    // the line number corresponding to a variable of interest
-    int columnNumber:  // column number corresponding to the variable on the line
-    
-    SliceCriterion criterion = SliceCriterion.find(pdg, code, lineNumber, int columnNumber) {
 
-The following code snippet generates Java source code from a program slice.
-
-    ModelBuilderPlugin builder;  // model builder
-    JavaClass jclass;            // a class to be sliced
-    JavaMethod jmethod;          // a class to be sliced
-    Slice slice;                 // slice
+```
+    DependencyGraph graph;  // a dependency graph consisting of ClDGs, which is used when extracting a slice
+    JavaFile jfile;         // a file including a class to be sliced
+    JavaClass jclass;       // a class to be sliced
+    JavaMethod jmethod;     // a method to be sliced
+    JavaField jfield;       // a field to be sliced
+    int lineNumber:         // the line number corresponding to a variable of interest
+    int columnNumber:       // column number corresponding to the variable on the line
     
-    SliceExtractor extractor = new SliceExtractor(builder, slice.getNodes(), jclass);
-    // SliceExtractor extractor = new SliceExtractor(builder, slice.getNodes(), jmethods);
-    String code = extractor.extract();
+    SliceCriterion criterion;
+    criterion = SliceCriterion.find(graph, jfile, lineNumber, columnNumber);
+    criterion = SliceCriterion.find(graph, jclass, lineNumber, columnNumber);
+    criterion = SliceCriterion.find(graph, jmethod, lineNumber, columnNumber);
+    criterion = SliceCriterion.find(graph, jfield, lineNumber, columnNumber);
+```
+
+The following code snippet generates source code from a program slice.
+
+```
+    JavaClass jclass;    // a class to be sliced
+    JavaMethod jmethod;  // a method to be sliced
+    JavaField jfield;    // a field to be sliced
+    
+    String code;
+    code = slice.getCode(jclass);
+    code = slice.getCode(jmethod);
+    code = slice.getCode(jfield);
+```
+
+## History
+
+* [JxPlatform](https://github.com/katsuhisamaruyama/jxplatform) Apr 8, 2017 
+* [JxPlatfrom2](https://github.com/katsuhisamaruyama/jxplatform2) Nov 21, 2019 
 
 ## Author
 
-[Katsuhisa Maruyama](http://www.fse.cs.ritsumei.ac.jp/~maru/index.html)
+[Katsuhisa Maruyama](https://www.fse.cs.ritsumei.ac.jp/~maru/index.html)
+@Ritsumeikan Univ.
