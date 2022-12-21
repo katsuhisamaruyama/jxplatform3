@@ -22,7 +22,7 @@ import org.jtool.pdg.DependencyGraph;
 import java.util.Set;
 
 /**
- * A builder that builds models related to Java source code.
+ * A builder that builds models from Java source code.
  * 
  * @author Katsuhisa Maruyama
  */
@@ -473,7 +473,7 @@ public abstract class ModelBuilder {
      * @param jclass the class of interest
      * @return the created or found dependency graph
      */
-    public DependencyGraph getSDG(JavaClass jclass) {
+    public DependencyGraph getDependencyGraph(JavaClass jclass) {
         return getDependencyGraph(jclass, false, true);
     }
     
@@ -482,12 +482,14 @@ public abstract class ModelBuilder {
      * @param classes the collection of the classes of interest
      * @param force {@code true} if a dependency graph will be forcibly recreated,
      *        or {@code false} if a dependency graph stored in the repository will be reused
+     * @param whole {@code true} if a dependency graph will be created with the whole information related to
+     *        calls to methods and accesses to fields of outside classes
      * @return the created or found dependency graph
      */
-    public DependencyGraph getgetDependencyGraph(Set<JavaClass> classes, boolean force) {
+    public DependencyGraph getDependencyGraph(Set<JavaClass> classes, boolean force, boolean whole) {
         if (classes.size() > 0) {
             JavaClass jclass = classes.iterator().next();
-            return jclass.getJavaProject().getPDGStore().getDependencyGraph(classes, force, false);
+            return jclass.getJavaProject().getPDGStore().getDependencyGraph(classes, force, whole);
         }
         return new DependencyGraph("NoClass");
     }
@@ -498,7 +500,7 @@ public abstract class ModelBuilder {
      * @return the created or found dependency graph
      */
     public DependencyGraph getgetDependencyGraph(Set<JavaClass> classes) {
-        return getgetDependencyGraph(classes, false);
+        return getDependencyGraph(classes, false, true);
     }
     
     /**

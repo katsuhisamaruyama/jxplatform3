@@ -10,7 +10,7 @@ import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
 import java.util.List;
 
 /**
- * A batch processing builder that builds models related to Java source code.
+ * A batch processing builder that builds models from Java source code.
  * 
  * @author Katsuhisa Maruyama
  */

@@ -187,8 +187,12 @@ public class PDGStore {
     public DependencyGraph getDependencyGraph(Set<JavaClass> classes, boolean force, boolean whole) {
         assert classes.size() > 0;
         
-        JavaClass jclass = classes.iterator().next();
-        DependencyGraph graph = new DependencyGraph(jclass.getQualifiedName().fqn());
+        DependencyGraph graph = new DependencyGraph(classes.iterator().next().getQualifiedName().fqn());
+        if (whole) {
+            for (JavaClass jclass : classes) {
+                classes.addAll(getColleagues(jclass));
+            }
+        }
         createDependencyGraph(graph, classes, force, whole);
         return graph;
     }

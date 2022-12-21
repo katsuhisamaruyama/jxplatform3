@@ -24,7 +24,7 @@ import java.nio.file.attribute.FileTime;
 import java.time.ZonedDateTime;
 
 /**
- * A processing builder implementation that incrementally builds models related to Java source code.
+ * A builder that incrementally builds models from Java source code.
  * 
  * @author Katsuhisa Maruyama
  */
