@@ -64,6 +64,8 @@ import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.IMethodBinding;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
@@ -171,7 +173,11 @@ public class CodeExtractor extends ASTVisitor {
     }
     
     public String extract() {
-        return extract(null);
+        Map<String, String> options = new HashMap<String, String>();
+        options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
+        options.put(DefaultCodeFormatterConstants.FORMATTER_INDENTATION_SIZE, "4");
+        
+        return extract(options);
     }
     
     public String extract(Map<String, String> options) {
