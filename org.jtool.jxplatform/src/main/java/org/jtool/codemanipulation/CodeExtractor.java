@@ -176,8 +176,10 @@ public class CodeExtractor extends ASTVisitor {
         Map<String, String> options = new HashMap<String, String>();
         options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
         options.put(DefaultCodeFormatterConstants.FORMATTER_INDENTATION_SIZE, "4");
+        options.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_FORMAT_JAVADOC_COMMENT,
+                DefaultCodeFormatterConstants.FALSE);
         
-        return extract(options);
+        return extract(null);
     }
     
     public String extract(Map<String, String> options) {
