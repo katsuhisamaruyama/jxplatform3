@@ -3,23 +3,50 @@ name: Build and run unit-test on Push or Pull request
 on:
   push:
     tags:
-    - 'v*'
+    - 'v**'
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-12, windows-latest]
+    runs-on: ${{ matrix.os }}
     
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
+          distribution: 'adopt'
           java-version: '11'
+      - uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+      - uses: gradle/gradle-build-action@v2
       - run: ./gradlew jar
+        working-directory: org.jtool.jxplatform
       - run: ./gradlew shadowJar
+        working-directory: org.jtool.jxplatform
+      - run: ./gradlew test
+        working-directory: org.jtool.jxplatform
+        
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+      - uses: gradle/gradle-build-action@v2
       - run: ./gradlew javadoc
+        working-directory: org.jtool.jxplatform
       - run:  mkdir -p ./releases
               cp ./build/libs/* ./releases
-              cp ./build/docs/* ./releases
       - uses: actions/upload-artifact@v3
         with:
           name: latest-releases
