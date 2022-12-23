@@ -7,11 +7,7 @@ on:
 
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-12, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v3
@@ -29,8 +25,6 @@ jobs:
         working-directory: org.jtool.jxplatform
       - run: ./gradlew shadowJar
         working-directory: org.jtool.jxplatform
-      - run: ./gradlew test
-        working-directory: org.jtool.jxplatform
         
   release:
     runs-on: ubuntu-latest
@@ -45,29 +39,29 @@ jobs:
       - uses: gradle/gradle-build-action@v2
       - run: ./gradlew javadoc
         working-directory: org.jtool.jxplatform
-      - run:  mkdir -p ./releases
-              cp ./build/libs/* ./releases
+      - run: |
+          mkdir -p ./org.jtool.jxplatform/releases
+          cp ./org.jtool.jxplatform/build/libs/* ./org.jtool.jxplatform/releases
       - uses: actions/upload-artifact@v3
         with:
           name: latest-releases
-          path: ./releases
-      
+          path: ./org.jtool.jxplatform/releases
       - id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
       - id: get_commit_summary
         run: |
           PREVIOUS_TAG=$(git tag --sort=-creatordate | sed -n 2p)
           echo "PREVIOUS_TAG: $PREVIOUS_TAG"
           COMMIT_SUMMARY="$(git log --oneline --pretty=tformat:"%h %s" $PREVIOUS_TAG..${{ github.ref }})"
           COMMIT_SUMMARY="${COMMIT_SUMMARY//$'\n'/'%0A'}"
-          echo ::set-output name=COMMIT_SUMMARY::$COMMIT_SUMMARY
+          echo "COMMIT_SUMMARY=$COMMIT_SUMMARY" >> $GITHUB_OUTPUT
       - id: create_release
-        uses: actions/create-release@v2
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.get_version.outputs.VERSION }}
-          release_name: Release ${{ steps.get_version.outputs.VERSION }}
+          release_name: Version ${{ steps.get_version.outputs.VERSION }}
           body: |
             ${{ steps.get_commit_summary.outputs.COMMIT_SUMMARY }}
           draft: false
