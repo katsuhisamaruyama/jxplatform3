@@ -94,6 +94,9 @@ test {
 }
 
 task smokeTest(type: Test) {
+    minHeapSize = "4g"
+    maxHeapSize = "4g"
+    
     include '**/org/jtool/slice/*.class'
 }
 
