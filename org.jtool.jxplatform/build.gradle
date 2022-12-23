@@ -43,7 +43,6 @@ shadowJar {
     classifier = 'all'
     archiveVersion = project.property('currentVersion')
 }
-test.enabled = false
 
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
@@ -79,8 +78,23 @@ compileJava {
 shadowJar {
     manifest {
         attributes('Main-Class' : 'org.jtool.jxplatform.builder.JavaModelBuilder')
-        exclude '**/plugin/*'
     }
+}
+
+test {
+    minHeapSize = "8g"
+    maxHeapSize = "8g"
+    
+    //testLogging {
+    //    events 'standard_out', 'standard_error'
+    //}
+    
+    exclude '**/org/jtool/jxplatform/experiment/*'
+    exclude '**/org/jtool/jxplatform/util/*'
+}
+
+task smokeTest(type: Test) {
+    include '**/org/jtool/slice/*.class'
 }
 
 task copyJar(type:Copy) {
@@ -88,20 +102,14 @@ task copyJar(type:Copy) {
     into 'releases'
 }
 
-task copyJavadoc(type:Copy) {
-    from 'build/docs'
-    into 'releases'
-}
-
 task javadoc(type: Javadoc, overwrite: true) {
     description = 'Generates API documents.'
     source = sourceSets.main.allJava
-    //destinationDir = file("releases/javadoc")
+    destinationDir = file("releases/javadoc")
     include("**/org/jtool/srcmodel/*.java")
     include("**/org/jtool/cfg/*.java")
     include("**/org/jtool/pdg/*.java")
     include("**/org/jtool/graph/*.java")
     include("**/org/jtool/slice/*.java")
-    include("**/org/jtool/srcplatform/modelbuilder/*.java")
-    include("**/org/jtool/srcplatform/util/*.java")
+    include("**/org/jtool/jxplatform/builder/*.java")
 }
