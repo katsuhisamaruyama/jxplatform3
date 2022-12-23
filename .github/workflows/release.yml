@@ -2,8 +2,10 @@ name: Build and run unit-test on Push or Pull request
 
 on:
   push:
-    tags:
-    - 'v**'
+    branches:
+    - main
+  # tags:
+  # - 'v**'
 
 jobs:
   build:
@@ -31,17 +33,12 @@ jobs:
     needs: build
     
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '11'
+      - run:
+          mkdir -p ./org.jtool.jxplatform/releases
+          cp ./org.jtool.jxplatform/build/libs/* ./org.jtool.jxplatform/releases
       - uses: gradle/gradle-build-action@v2
       - run: ./gradlew javadoc
         working-directory: org.jtool.jxplatform
-      - run: |
-          mkdir -p ./org.jtool.jxplatform/releases
-          cp ./org.jtool.jxplatform/build/libs/* ./org.jtool.jxplatform/releases
       - uses: actions/upload-artifact@v3
         with:
           name: latest-releases

@@ -108,7 +108,6 @@ task copyJar(type:Copy) {
 task javadoc(type: Javadoc, overwrite: true) {
     description = 'Generates API documents.'
     source = sourceSets.main.allJava
-    destinationDir = file("releases/javadoc")
     include("**/org/jtool/srcmodel/*.java")
     include("**/org/jtool/cfg/*.java")
     include("**/org/jtool/pdg/*.java")
