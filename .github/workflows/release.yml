@@ -27,6 +27,8 @@ jobs:
         working-directory: org.jtool.jxplatform
       - run: ./gradlew shadowJar
         working-directory: org.jtool.jxplatform
+      - run: ./gradlew javadoc
+        working-directory: org.jtool.jxplatform
         
   release:
     runs-on: ubuntu-latest
@@ -36,9 +38,6 @@ jobs:
       - run:
           mkdir -p ./org.jtool.jxplatform/releases
           cp ./org.jtool.jxplatform/build/libs/* ./org.jtool.jxplatform/releases
-      - uses: gradle/gradle-build-action@v2
-      - run: ./gradlew javadoc
-        working-directory: org.jtool.jxplatform
       - uses: actions/upload-artifact@v3
         with:
           name: latest-releases
