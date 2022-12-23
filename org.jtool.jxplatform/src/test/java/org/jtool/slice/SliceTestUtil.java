@@ -38,8 +38,12 @@ public class SliceTestUtil {
             
             slice.print();
             
+            Map<String, String> options = new HashMap<String, String>();
+            options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
+            options.put(DefaultCodeFormatterConstants.FORMATTER_INDENTATION_SIZE, "4");
+            
             JavaClass jclass = jproject.getClass(cname);
-            String code = slice.getCode(jclass);
+            String code = slice.getCode(jclass, options);
             
             System.out.println(code);
             return code;
