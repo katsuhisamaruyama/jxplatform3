@@ -114,4 +114,5 @@ task javadoc(type: Javadoc, overwrite: true) {
     include("**/org/jtool/graph/*.java")
     include("**/org/jtool/slice/*.java")
     include("**/org/jtool/jxplatform/builder/*.java")
+    options.overview = "src/resources/overview.html"
 }
