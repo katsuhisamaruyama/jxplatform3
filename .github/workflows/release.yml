@@ -3,7 +3,7 @@ name: Release artifacts on Push tags
 on:
   push:
     tags:
-    - 'v2.[0-9]+.[0-9]+'
+    - 'v3.[0-9]+.[0-9]+'
 
 jobs:
   release:
@@ -28,10 +28,6 @@ jobs:
           
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
-        
-      #- name: Build and run test
-      #  run: ./gradlew test
-      #  working-directory: org.jtool.jxplatform
         
       - name: Generate jar files
         run: ./gradlew jar shadowJar

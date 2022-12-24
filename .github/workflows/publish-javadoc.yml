@@ -1,9 +1,9 @@
-name: Deploy Javadoc
+name: Publish Javadoc
 
 on:
   push:
-    branches:
-      - main
+    tags:
+    - 'v3.[0-9]+.[0-9]+'
   
   workflow_dispatch:
 
@@ -42,7 +42,7 @@ jobs:
         with:
           path: org.jtool.jxplatform/build/docs/javadoc/
         
-      - name: Deploy to GitHub pages
+      - name: Deploy javadoc to GitHub pages
         id: deployment
         uses: actions/deploy-pages@v1
         
