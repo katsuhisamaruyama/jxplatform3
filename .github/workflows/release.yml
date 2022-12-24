@@ -1,64 +1,95 @@
-name: Build and run unit-test on Push or Pull request
+name: Release artifacts on Push tags
 
 on:
   push:
-    branches:
-    - main
-  # tags:
-  # - 'v**'
+    tags:
+    - 'v3.[0-9]+.[0-9]+'
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
+      - name: Checkout from Git
+        uses: actions/checkout@v3
+        
+      - name: Set up Java
+        uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: '11'
-      - uses: actions/cache@v3
+          
+      - name: Cache Gradle packages
+        uses: actions/cache@v3
         with:
           path: ~/.gradle/caches
           key: ${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-      - uses: gradle/gradle-build-action@v2
-      - run: ./gradlew jar
-        working-directory: org.jtool.jxplatform
-      - run: ./gradlew shadowJar
-        working-directory: org.jtool.jxplatform
-      - run: ./gradlew javadoc
-        working-directory: org.jtool.jxplatform
+          
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
         
-  release:
-    runs-on: ubuntu-latest
-    needs: build
-    
-    steps:
-      - run:
-          mkdir -p ./org.jtool.jxplatform/releases
-          cp ./org.jtool.jxplatform/build/libs/* ./org.jtool.jxplatform/releases
-      - uses: actions/upload-artifact@v3
-        with:
-          name: latest-releases
-          path: ./org.jtool.jxplatform/releases
-      - id: get_version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-      - id: get_commit_summary
+      #- name: Build and run test
+      #  run: ./gradlew test
+      #  working-directory: org.jtool.jxplatform
+        
+      - name: Generate artifacts (jar, shadowJar, and javadoc files)
+        run: ./gradlew jar shadowJar javadoc
+        working-directory: org.jtool.jxplatform
+      
+      - name: Get version
+        id: get_version
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          VERSION=$(echo $TAG | sed -e 's/^v3/3/')
+          echo "TAG=$TAG" >> $GITHUB_OUTPUT
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          
+      - name: Get commit summary
+        id: get_commit_summary
         run: |
           PREVIOUS_TAG=$(git tag --sort=-creatordate | sed -n 2p)
           echo "PREVIOUS_TAG: $PREVIOUS_TAG"
           COMMIT_SUMMARY="$(git log --oneline --pretty=tformat:"%h %s" $PREVIOUS_TAG..${{ github.ref }})"
           COMMIT_SUMMARY="${COMMIT_SUMMARY//$'\n'/'%0A'}"
           echo "COMMIT_SUMMARY=$COMMIT_SUMMARY" >> $GITHUB_OUTPUT
-      - id: create_release
+          
+      - name: Prepare artifacts
+        run: |
+          mkdir -p releases
+          cp org.jtool.jxplatform/build/libs/* releases
+          mv releases/jxplatform-SNAPSHOT-all.jar releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-all.jar
+          mv releases/jxplatform-SNAPSHOT-core.jar releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-core.jar
+      
+      - name: Create release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.get_version.outputs.VERSION }}
+          tag_name: ${{ steps.get_version.outputs.TAG }}
           release_name: Version ${{ steps.get_version.outputs.VERSION }}
-          body: |
-            ${{ steps.get_commit_summary.outputs.COMMIT_SUMMARY }}
+          body: ${{ steps.get_commit_summary.outputs.COMMIT_SUMMARY }}
           draft: false
           prerelease: false
+          
+      - name: Upload artifact-1
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-all.jar
+          asset_name: jxplatform-${{ steps.get_version.outputs.VERSION }}-all.jar
+          asset_content_type: application/java-archive
+          
+      - name: Upload artifact-2
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-core.jar
+          asset_name: jxplatform-${{ steps.get_version.outputs.VERSION }}-core.jar
+          asset_content_type: application/java-archive
+          
