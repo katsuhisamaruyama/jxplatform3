@@ -3,6 +3,8 @@
 JxPlatform3 is a tool platform that provides three types of easy-to-use models of Java source code. 
 It facilitates the development and maintenance of various kinds of software tools. 
 
+See [API reference](https://katsuhisamaruyama.github.io/jxplatform3/) when you write code with JxPlatform3.
+
 ### Source Code Model 
 
 JxPlatform3 builds a Java source code model consisting of the following elements: 
@@ -18,7 +20,7 @@ JxPlatform3 builds a Java source code model consisting of the following elements
 
 ### CFG (Control Flow Graph) 
 
-JxPlatform3 provides a CFG for each method existing in Java source code. 
+JxPlatform3 provides a CFG for each method/field existing in Java source code. 
 
 * CFG - Provides information on a CFG of a method declaration or a field declaration (corresponding to JavaMethod or JavaField)
 * CCFG - Provides information on a class control flow graph (CCFG) of a class declaration (corresponding to JavaClass)
@@ -54,7 +56,7 @@ The use-set contains fields and local variables used in the expression and metho
 
 ### PDG (Program Dependence Graph) 
 
-JxPlatform3 provides a PDG from a CFG for each method existing in Java source code. 
+JxPlatform3 provides a PDG from a CFG for each method/field existing in Java source code. 
 
 * PDG - Provides information on a PDG of a method or a field 
 * ClDG - Provides information on a class dependence graph (ClDG) of a class 
@@ -99,8 +101,8 @@ It traverses only the PDG nodes that reach a node given as a slice criterion.
 
 ## Installation
 
-You can use either of the following two jar file to develop applications using JxPlatform3 
-on [GitHub](https://github.com/katsuhisamaruyama/jxplatform3/tree/main/org.jtool.jxplatform/releases).
+You can download the latest jar files from [Releases](https://github.com/katsuhisamaruyama/jxplatform3/releases/latest) 
+and use either of them to develop applications using JxPlatform3.
 
 * `jxplatform-3.X.X-all.jar`
 * `jxplatform-3.X.X.jar`
