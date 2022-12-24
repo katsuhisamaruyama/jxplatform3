@@ -2,41 +2,36 @@ name: Release artifacts on Push tags
 
 on:
   push:
-    branches:
-    - main
+    tags:
+    - 'v3.[0-9]+.[0-9]+'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout from Git
         uses: actions/checkout@v3
-        
+
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: '11'
-          
-      - name: Cache Gradle packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.gradle/caches
-          key: ${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
-          
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-        
-      - name: Generate jar files
-        run: ./gradlew jar shadowJar
+          cache: 'gradle'
+
+      - name: Generate jar
+        run: ./gradlew jar
         working-directory: org.jtool.jxplatform
-      
-      - name: Generate javadoc
-        run: ./gradlew javadoc
+
+      - name: Generate shadowJar
+        run: ./gradlew shadowJar
         working-directory: org.jtool.jxplatform
-        
+
       - name: Get version
         id: get_version
         run: |
@@ -44,7 +39,7 @@ jobs:
           VERSION=$(echo $TAG | sed -e 's/^v3/3/')
           echo "TAG=$TAG" >> $GITHUB_OUTPUT
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-          
+
       - name: Get commit summary
         id: get_commit_summary
         run: |
@@ -53,14 +48,14 @@ jobs:
           COMMIT_SUMMARY="$(git log --oneline --pretty=tformat:"%h %s" $PREVIOUS_TAG..${{ github.ref }})"
           COMMIT_SUMMARY="${COMMIT_SUMMARY//$'\n'/'%0A'}"
           echo "COMMIT_SUMMARY=$COMMIT_SUMMARY" >> $GITHUB_OUTPUT
-          
+
       - name: Prepare artifacts
         run: |
           mkdir -p releases
           cp org.jtool.jxplatform/build/libs/* releases
           mv releases/jxplatform-SNAPSHOT-all.jar releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-all.jar
           mv releases/jxplatform-SNAPSHOT-core.jar releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-core.jar
-      
+
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
@@ -72,8 +67,8 @@ jobs:
           body: ${{ steps.get_commit_summary.outputs.COMMIT_SUMMARY }}
           draft: false
           prerelease: false
-          
-      - name: Upload all-jar
+
+      - name: Upload shadowJar
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -82,8 +77,8 @@ jobs:
           asset_path: releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-all.jar
           asset_name: jxplatform-${{ steps.get_version.outputs.VERSION }}-all.jar
           asset_content_type: application/java-archive
-          
-      - name: Upload core-jar
+
+      - name: Upload jar
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -92,4 +87,4 @@ jobs:
           asset_path: releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-core.jar
           asset_name: jxplatform-${{ steps.get_version.outputs.VERSION }}-core.jar
           asset_content_type: application/java-archive
-          
+
