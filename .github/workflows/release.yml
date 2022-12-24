@@ -3,7 +3,7 @@ name: Release artifacts on Push tags
 on:
   push:
     tags:
-    - 'v3.[0-9]+.[0-9]+'
+    - 'v2.[0-9]+.[0-9]+'
 
 jobs:
   release:
@@ -33,10 +33,14 @@ jobs:
       #  run: ./gradlew test
       #  working-directory: org.jtool.jxplatform
         
-      - name: Generate artifacts (jar, shadowJar, and javadoc files)
-        run: ./gradlew jar shadowJar javadoc
+      - name: Generate jar files
+        run: ./gradlew jar shadowJar
         working-directory: org.jtool.jxplatform
       
+      - name: Generate javadoc
+        run: ./gradlew javadoc
+        working-directory: org.jtool.jxplatform
+        
       - name: Get version
         id: get_version
         run: |
@@ -73,7 +77,7 @@ jobs:
           draft: false
           prerelease: false
           
-      - name: Upload artifact-1
+      - name: Upload all-jar
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -83,7 +87,7 @@ jobs:
           asset_name: jxplatform-${{ steps.get_version.outputs.VERSION }}-all.jar
           asset_content_type: application/java-archive
           
-      - name: Upload artifact-2
+      - name: Upload core-jar
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}

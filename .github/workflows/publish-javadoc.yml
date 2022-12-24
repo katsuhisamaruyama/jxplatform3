@@ -1,0 +1,48 @@
+name: Deploy Javadoc
+
+on:
+  push:
+    branches:
+      - main
+  
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+  
+jobs:
+  publish:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout from Git
+        uses: actions/checkout@v3
+        
+      - name: Setup pages
+        uses: actions/configure-pages@v2
+        
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        
+      - name: Generate javadoc
+        run: ./gradlew javadoc
+        working-directory: org.jtool.jxplatform
+        
+      - name: Upload javadoc
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: org.jtool.jxplatform/build/docs/javadoc/
+        
+      - name: Deploy to GitHub pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+        
