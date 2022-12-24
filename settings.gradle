@@ -2,6 +2,6 @@
  *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
- 
-currentVersion = SNAPSHOT
-plugin.name = org.jtool.jxplatform.core
+
+rootProject.name = 'jxplatform-v3'
+include("org.jtool.jxplatform")
