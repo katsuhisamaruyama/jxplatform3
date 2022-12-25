@@ -91,7 +91,7 @@ It traverses only the PDG nodes that reach a node given as a slice criterion.
 
 ## Requirement
 
-* JDK 1.11 
+* JDK 11 
 * [Eclipse](https://www.eclipse.org/) 2022-09 (4.25.0) and later 
 
 
@@ -101,24 +101,21 @@ It traverses only the PDG nodes that reach a node given as a slice criterion.
 
 ## Installation
 
-You can download the latest jar files from [Releases](https://github.com/katsuhisamaruyama/jxplatform3/releases/latest) 
-and use either of them to develop applications using JxPlatform3.
-
-* `jxplatform-3.X.X-all.jar`
-* `jxplatform-3.X.X.jar`
+You can download the latest jar file (`jxplatform-3.x.x.jar`) 
+from the [Releases](https://github.com/katsuhisamaruyama/jxplatform3/releases/latest) page.
 
 Alternatively, you can build jar files with the Gradle on your own environment. 
-The above two jar files are created in the 'build/libs' directory. 
 
 ```
 git clone https://github.com/katsuhisamaruyama/jxplatform3/
 cd jxplatform3/org.jtool.jxplatform
 ./gradlew jar shadowJar
 ```
+The jar file (`jxplatform-3-SNAPSHOT.jar`) exists in the 'build/libs' directory. 
 
 ### As a Library
 
-You can deploy `jxplatform-3.X.X-all.jar` in the directory for library files (e.g., `libs`), 
+You can deploy `jxplatform-X.jar` in the directory for library files (e.g., `libs`), 
 and specify the directory as the build path and the runtime classpath under your environment.
 When using the Eclipse, see the "Build Path" settings of a project.
 
