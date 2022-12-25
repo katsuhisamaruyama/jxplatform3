@@ -24,11 +24,7 @@ jobs:
           java-version: '11'
           cache: 'gradle'
 
-      - name: Generate jar
-        run: ./gradlew jar
-        working-directory: org.jtool.jxplatform
-
-      - name: Generate shadowJar
+      - name: Generate jar file
         run: ./gradlew shadowJar
         working-directory: org.jtool.jxplatform
 
@@ -53,8 +49,7 @@ jobs:
         run: |
           mkdir -p releases
           cp org.jtool.jxplatform/build/libs/* releases
-          mv releases/jxplatform-SNAPSHOT-all.jar releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-all.jar
-          mv releases/jxplatform-SNAPSHOT-core.jar releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-core.jar
+          mv releases/jxplatform-3-SNAPSHOT.jar releases/jxplatform-${{ steps.get_version.outputs.VERSION }}.jar
 
       - name: Create release
         id: create_release
@@ -74,17 +69,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-all.jar
-          asset_name: jxplatform-${{ steps.get_version.outputs.VERSION }}-all.jar
-          asset_content_type: application/java-archive
-
-      - name: Upload jar
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: releases/jxplatform-${{ steps.get_version.outputs.VERSION }}-core.jar
-          asset_name: jxplatform-${{ steps.get_version.outputs.VERSION }}-core.jar
+          asset_path: releases/jxplatform-${{ steps.get_version.outputs.VERSION }}.jar
+          asset_name: jxplatform-${{ steps.get_version.outputs.VERSION }}.jar
           asset_content_type: application/java-archive
 

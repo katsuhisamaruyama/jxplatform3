@@ -32,15 +32,13 @@ eclipse {
     }
 }
 
-jar {
-    archiveBaseName = 'jxplatform'
-    classifier = 'core'
-    archiveVersion = project.property('currentVersion')
-}
-
 shadowJar {
+    manifest {
+        attributes('Main-Class' : 'org.jtool.jxplatform.builder.JavaModelBuilder')
+    }
+    
     archiveBaseName = 'jxplatform'
-    classifier = 'all'
+    classifier = 'SNAPSHOT'
     archiveVersion = project.property('currentVersion')
 }
 
@@ -75,12 +73,6 @@ compileJava {
     options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
 }
 
-shadowJar {
-    manifest {
-        attributes('Main-Class' : 'org.jtool.jxplatform.builder.JavaModelBuilder')
-    }
-}
-
 test {
     minHeapSize = "8g"
     maxHeapSize = "8g"
@@ -98,11 +90,6 @@ task smokeTest(type: Test) {
     maxHeapSize = "8g"
     
     include '**/org/jtool/slice/*.class'
-}
-
-task copyJar(type:Copy) {
-    from 'build/libs'
-    into 'releases'
 }
 
 task javadoc(type: Javadoc, overwrite: true) {
