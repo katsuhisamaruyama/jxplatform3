@@ -5,9 +5,11 @@
 
 package org.jtool.cfg.internal.refmodel;
 
-import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.jxplatform.util.TestUtil;
+import org.jtool.jxplatform.util.FlakyByExternalLib;
 import java.util.List;
+import org.junit.experimental.categories.Category;
 import org.junit.Test;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -64,16 +66,19 @@ public class JClassCacheLibTest {
         assertTrue(regularPriceClass instanceof JClassInternal);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testInstanceOf4() {
         assertTrue(listClass instanceof JClassCache);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testInstanceOf5() {
         assertTrue(arrayListClass instanceof JClassCache);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testInstanceOf6() {
         assertTrue(assertClass instanceof JClassCache);
@@ -93,16 +98,20 @@ public class JClassCacheLibTest {
     public void testGetQualifiedName3() {
         assertEquals("org.jtool.videostore.after.RegularPrice", regularPriceClass.getQualifiedName().fqn());
     }
+    
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetQualifiedName4() {
         assertEquals("java.util.List", listClass.getQualifiedName().fqn());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetQualifiedName5() {
         assertEquals("java.util.ArrayList", arrayListClass.getQualifiedName().fqn());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetQualifiedName6() {
         assertEquals("org.junit.Assert", assertClass.getQualifiedName().fqn());
@@ -123,16 +132,20 @@ public class JClassCacheLibTest {
         assertEquals("org.jtool.videostore.after.RegularPrice", regularPriceClass.getName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetName4() {
         
         assertEquals("java.util.List", listClass.getName());
     }
+    
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetName5() {
         assertEquals("java.util.ArrayList", arrayListClass.getName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetName6() {
         assertEquals("org.junit.Assert", assertClass.getName());
@@ -153,16 +166,19 @@ public class JClassCacheLibTest {
         assertEquals("RegularPrice", regularPriceClass.getSimpleName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSimpleName4() {
         assertEquals("List", listClass.getSimpleName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSimpleName5() {
         assertEquals("ArrayList", arrayListClass.getSimpleName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSimpleName6() {
         assertEquals("Assert", assertClass.getSimpleName());
@@ -183,16 +199,19 @@ public class JClassCacheLibTest {
         assertEquals(2, regularPriceClass.getMethods().size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetMethods4() {
         assertEquals(41, listClass.getMethods().size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetMethods5() {
         assertEquals(63, arrayListClass.getMethods().size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetMethods6() {
         assertEquals(67, assertClass.getMethods().size());
@@ -219,6 +238,7 @@ public class JClassCacheLibTest {
                 .getQualifiedName().fqn());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetMethod4() {
         assertEquals("java.util.List#get( int )",
@@ -226,6 +246,7 @@ public class JClassCacheLibTest {
                 .getQualifiedName().fqn());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetMethod5() {
         assertEquals("java.util.ArrayList#contains( java.lang.Object )",
@@ -238,6 +259,7 @@ public class JClassCacheLibTest {
         assertNull(customerClass.getMethod("addRental( org.jtool.videostore.after.Movie )"));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetMethodReturningNull2() {
         assertNull(arrayListClass.getMethod("indexOf( java.lang.String )"));
@@ -258,11 +280,13 @@ public class JClassCacheLibTest {
         assertEquals(0, regularPriceClass.getFields().size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetFields4() {
         assertEquals(7, arrayListClass.getFields().size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetFields5() {
         assertEquals(0, assertClass.getFields().size());
@@ -280,6 +304,7 @@ public class JClassCacheLibTest {
                 priceClass.getField("priceCode").getQualifiedName().fqn());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetField3() {
         assertEquals("java.util.ArrayList#size",
@@ -291,6 +316,7 @@ public class JClassCacheLibTest {
         assertNull(priceClass.getField("title"));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetFieldRetuningNull2() {
         assertNull(arrayListClass.getField("length"));
@@ -311,16 +337,19 @@ public class JClassCacheLibTest {
         assertEquals("org.jtool.videostore.after.Price", regularPriceClass.getSuperClass());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperClass4() {
         assertNull(listClass.getSuperClass());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperClass5() {
         assertEquals("java.util.AbstractList", arrayListClass.getSuperClass());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperClass6() {
         assertEquals("java.lang.Object", assertClass.getSuperClass());
@@ -341,6 +370,7 @@ public class JClassCacheLibTest {
         assertEquals(0, regularPriceClass.getSuperInterfaces().size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperInterfaces4() {
         List<String> result = TestUtil.asSortedList(listClass.getSuperInterfaces());
@@ -349,6 +379,7 @@ public class JClassCacheLibTest {
         assertEquals("java.util.Collection", result.get(0));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperInterfaces5() {
         List<String> result = TestUtil.asSortedList(arrayListClass.getSuperInterfaces());
@@ -359,6 +390,8 @@ public class JClassCacheLibTest {
         assertEquals("java.util.List", result.get(2));
         assertEquals("java.util.RandomAccess", result.get(3));
     }
+    
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperInterfaces6() {
         assertEquals(0, assertClass.getSuperInterfaces().size());
@@ -377,11 +410,13 @@ public class JClassCacheLibTest {
         assertEquals("java.lang.Object", regularPriceClass.getSuperClassChain().get(1).getName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperClassChain3() {
         assertEquals(0, listClass.getSuperClassChain().size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperClassChain4() {
         assertEquals(3, arrayListClass.getSuperClassChain().size());
@@ -390,6 +425,7 @@ public class JClassCacheLibTest {
         assertEquals("java.lang.Object", arrayListClass.getSuperClassChain().get(2).getName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperClassChain5() {
         assertEquals(1, assertClass.getSuperClassChain().size());
@@ -411,16 +447,19 @@ public class JClassCacheLibTest {
         assertFalse(regularPriceClass.isInterface());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInterface4() {
         assertTrue(listClass.isInterface());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInterface5() {
         assertFalse(arrayListClass.isInterface());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInterface6() {
         assertFalse(assertClass.isInterface());
@@ -441,16 +480,19 @@ public class JClassCacheLibTest {
         assertTrue(regularPriceClass.isInProject());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInProject4() {
         assertFalse(listClass.isInProject());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInProject5() {
         assertFalse(arrayListClass.isInProject());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInProject6() {
         assertFalse(assertClass.isInProject());
@@ -484,11 +526,13 @@ public class JClassCacheLibTest {
         assertEquals("org.jtool.videostore.after.Price", result.get(1));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetAncestorClasses4() {
         assertEquals(0, listClass.getAncestorClasses().size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetAncestorClasses5() {
         List<String> result = TestUtil.asSortedList(arrayListClass.getAncestorClasses().stream()
@@ -500,6 +544,7 @@ public class JClassCacheLibTest {
         assertEquals("java.util.AbstractList", result.get(2));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetAncestorClasses6() {
         List<String> result = TestUtil.asSortedList(assertClass.getAncestorClasses().stream()
@@ -524,6 +569,7 @@ public class JClassCacheLibTest {
         assertEquals("org.jtool.videostore.after.RegularPrice", result.get(2));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetDescendantClasses3() {
         List<String> result = TestUtil.asSortedList(listClass.getDescendantClasses().stream()
@@ -533,6 +579,7 @@ public class JClassCacheLibTest {
         assertEquals("com.sun.java.util.jar.pack.ConstantPool.Index", result.get(0));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetDescendantClasses4() {
         List<String> result = TestUtil.asSortedList(arrayListClass.getDescendantClasses().stream()
@@ -542,6 +589,7 @@ public class JClassCacheLibTest {
         assertEquals("com.sun.tools.jdi.EventSetImpl", result.get(0));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetDescendantClasses5() {
         assertEquals(0, assertClass.getDescendantClasses().size());

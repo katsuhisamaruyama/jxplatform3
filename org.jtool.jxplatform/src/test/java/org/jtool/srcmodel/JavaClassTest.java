@@ -7,8 +7,10 @@ package org.jtool.srcmodel;
 
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
+import org.jtool.jxplatform.util.FlakyByExternalLib;
 import java.util.List;
 import java.util.Set;
+import org.junit.experimental.categories.Category;
 import org.junit.Test;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
@@ -107,6 +109,7 @@ public class JavaClassTest {
         assertEquals("org.jtool.videostore.after.Rental", result.fqn());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetQualifiedName3() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -155,6 +158,7 @@ public class JavaClassTest {
         assertEquals("R134", result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetClassName3() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -171,6 +175,7 @@ public class JavaClassTest {
         assertTrue(result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInProject2() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -243,6 +248,7 @@ public class JavaClassTest {
         assertEquals("(default)", result.getName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetPackage3() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -267,6 +273,7 @@ public class JavaClassTest {
         assertFalse(result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsClass3() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -291,6 +298,7 @@ public class JavaClassTest {
         assertTrue(result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInterface3() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.List");
@@ -355,6 +363,7 @@ public class JavaClassTest {
         assertTrue(result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsPublic3() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -435,6 +444,7 @@ public class JavaClassTest {
         assertTrue(result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsFinal3() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.lang.String");
@@ -510,6 +520,7 @@ public class JavaClassTest {
         assertEquals("Test24.P24;Test24.Q24", TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetInnerClasses4() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -563,6 +574,7 @@ public class JavaClassTest {
         assertNull(result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperClassName6() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -611,6 +623,7 @@ public class JavaClassTest {
         assertNull(result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperClass6() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -654,6 +667,7 @@ public class JavaClassTest {
         assertEquals("java.awt.event.KeyListener;java.lang.Runnable", TestUtil.asSortedStr(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperInterfaceNames5() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -702,6 +716,7 @@ public class JavaClassTest {
         assertEquals("java.awt.event.KeyListener;java.lang.Runnable", TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetSuperInterfaces5() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -741,6 +756,7 @@ public class JavaClassTest {
         assertEquals(0, result.size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetFields4() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -781,6 +797,7 @@ public class JavaClassTest {
         assertNull(result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetField4() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -824,6 +841,7 @@ public class JavaClassTest {
         assertEquals("I134#f( int )", TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetMethods4() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -868,6 +886,7 @@ public class JavaClassTest {
         assertNull(result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetMethod4() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -932,6 +951,7 @@ public class JavaClassTest {
         assertEquals("org.jtool.videostore.after.Customer", TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetUsedClasses6() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -969,6 +989,7 @@ public class JavaClassTest {
         assertEquals("Q134", TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetChildren4() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -977,6 +998,7 @@ public class JavaClassTest {
         assertEquals(0, result.size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetChildren5() {
         JavaClass jc = TetrisProject.getExternalClass("java.awt.Canvas");
@@ -1013,6 +1035,7 @@ public class JavaClassTest {
         assertTrue(result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsChildOf4() {
         JavaClass jc = TetrisProject.getClass("Pit");
@@ -1022,6 +1045,7 @@ public class JavaClassTest {
         assertTrue(result);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsChildOf5() {
         JavaClass jc = TetrisProject.getExternalClass("java.awt.Canvas");
@@ -1067,6 +1091,7 @@ public class JavaClassTest {
         assertEquals("P134;Q134;java.lang.Object", TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetAllSuperClasses5() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -1117,6 +1142,7 @@ public class JavaClassTest {
             TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetAllSuperInterfaces5() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -1168,6 +1194,7 @@ public class JavaClassTest {
         assertEquals("I134;P134;Q134;java.lang.Object", TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetAncestors5() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -1186,6 +1213,7 @@ public class JavaClassTest {
             TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetAncestors6() {
         JavaClass jc = TetrisProject.getExternalClass("java.awt.Canvas");
@@ -1227,6 +1255,7 @@ public class JavaClassTest {
         assertEquals("Q134;R134", TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetDescendants4() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -1235,6 +1264,7 @@ public class JavaClassTest {
         assertEquals(0, result.size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetDescendants5() {
         JavaClass jc = TetrisProject.getExternalClass("java.awt.Canvas");
@@ -1304,6 +1334,7 @@ public class JavaClassTest {
             TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetEfferentClasses6() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -1364,6 +1395,7 @@ public class JavaClassTest {
         assertEquals("org.jtool.videostore.after.Customer", TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetEfferentClassesInProject6() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -1430,6 +1462,7 @@ public class JavaClassTest {
         assertEquals(0, result.size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetAfferentClasses6() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -1499,6 +1532,7 @@ public class JavaClassTest {
         assertEquals(0, result.size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetAfferentClassesInProject6() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
@@ -1580,6 +1614,7 @@ public class JavaClassTest {
         assertEquals(1, result.size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetObsoleteClasses6() {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");

@@ -7,9 +7,11 @@ package org.jtool.srcmodel;
 
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
+import org.jtool.jxplatform.util.FlakyByExternalLib;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.junit.experimental.categories.Category;
 import org.junit.Test;
 import org.junit.BeforeClass;
 import org.junit.AfterClass;
@@ -107,6 +109,7 @@ public class JavaPackageTest {
             TestUtil.asSortedStrOf(result));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetClasses3() {
         JavaPackage jp = VideoStoreProject.getPackage("java.lang");

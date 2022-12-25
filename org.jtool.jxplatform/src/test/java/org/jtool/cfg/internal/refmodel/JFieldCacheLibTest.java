@@ -6,6 +6,8 @@
 package org.jtool.cfg.internal.refmodel;
 
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.jxplatform.util.FlakyByExternalLib;
+import org.junit.experimental.categories.Category;
 import org.junit.Test;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -55,11 +57,13 @@ public class JFieldCacheLibTest {
         assertTrue(rentalsField instanceof JFieldInternal);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testInstanceOf3() {
         assertTrue(valueField instanceof JFieldCache);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testInstanceOf4() {
         assertTrue(runnersField instanceof JFieldCache);
@@ -95,11 +99,13 @@ public class JFieldCacheLibTest {
         assertEquals("org.jtool.videostore.after.Customer", rentalsField.getDeclaringClass().getClassName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetDeclaringClass3() {
         assertEquals("java.lang.String", valueField.getDeclaringClass().getClassName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetDeclaringClass4() {
         assertEquals("org.junit.runners.Suite", runnersField.getDeclaringClass().getClassName());
@@ -115,11 +121,13 @@ public class JFieldCacheLibTest {
         assertTrue(rentalsField.isInProject());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInProject3() {
         assertFalse(valueField.isInProject());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInProject4() {
         assertFalse(runnersField.isInProject());

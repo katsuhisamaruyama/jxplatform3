@@ -10,13 +10,16 @@ import org.jtool.pdg.PDGTestUtil;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
+import org.jtool.jxplatform.util.FlakyByExternalLib;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import org.junit.experimental.categories.Category;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
+@Category(FlakyByExternalLib.class)
 public class PDGBuilderTest {
     
     @Test

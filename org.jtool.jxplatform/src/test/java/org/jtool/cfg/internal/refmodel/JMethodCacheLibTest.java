@@ -5,9 +5,11 @@
 
 package org.jtool.cfg.internal.refmodel;
 
-import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.jxplatform.util.TestUtil;
+import org.jtool.jxplatform.util.FlakyByExternalLib;
 import java.util.List;
+import org.junit.experimental.categories.Category;
 import org.junit.Test;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -69,11 +71,13 @@ public class JMethodCacheLibTest {
         assertTrue(statementMethod instanceof JMethodInternal);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testInstanceOf4() {
         assertTrue(indexOfMethod instanceof JMethodCache);
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testInstanceOf5() {
         assertTrue(expectedMethod instanceof JMethodCache);
@@ -97,12 +101,14 @@ public class JMethodCacheLibTest {
                 statementMethod.getQualifiedName().fqn());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetQualifiedName4() {
         assertEquals("java.lang.String#indexOf( byte[] byte int java.lang.String int )",
                 indexOfMethod.getQualifiedName().fqn());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetQualifiedName5() {
         assertEquals("org.junit.Test#expected( )",
@@ -127,12 +133,14 @@ public class JMethodCacheLibTest {
                 statementMethod.getDeclaringClass().getClassName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetDeclaringClass4() {
         assertEquals("java.lang.String",
                 indexOfMethod.getDeclaringClass().getClassName());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetDeclaringClass5() {
         assertEquals("org.junit.Test",
@@ -154,11 +162,13 @@ public class JMethodCacheLibTest {
         assertTrue(statementMethod.isInProject());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInProject4() {
         assertFalse(indexOfMethod.isInProject());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testIsInProject5() {
         assertFalse(expectedMethod.isInProject());
@@ -188,11 +198,13 @@ public class JMethodCacheLibTest {
         assertEquals(0, statementMethod.getDefFields().size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetDefFields4() {
         assertEquals(0, indexOfMethod.getDefFields().size());
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetDefFields5() {
         assertEquals(0, expectedMethod.getDefFields().size());
@@ -263,6 +275,7 @@ public class JMethodCacheLibTest {
         assertEquals("org.jtool.videostore.after.Rental%movie%this.each$1.movie", result.get(34));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetUseFields4() {
         List<String> result = TestUtil.asSortedList(indexOfMethod.getUseFields().stream()
@@ -272,6 +285,7 @@ public class JMethodCacheLibTest {
         assertEquals("java.lang.String%value%!java.lang.String.value", result.get(0));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetUseFields5() {
         assertEquals(0, expectedMethod.getUseFields().size());
@@ -307,6 +321,7 @@ public class JMethodCacheLibTest {
         assertEquals("org.jtool.videostore.after.Rental#getMovie( )", result.get(7));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetAccessedMethods4() {
         List<String> result = TestUtil.asSortedList(indexOfMethod.getAccessedMethods().stream()
@@ -320,6 +335,7 @@ public class JMethodCacheLibTest {
         assertEquals("java.lang.StringUTF16#indexOfLatin1( byte[] int byte[] int int )", result.get(4));
     }
     
+    @Category(FlakyByExternalLib.class)
     @Test
     public void testGetAccessedMethods5() {
         assertEquals(0, expectedMethod.getAccessedMethods().size());
