@@ -1,4 +1,4 @@
-name: Release artifacts on Push tags
+name: Do full test on Push tags
 
 on:
   push:
