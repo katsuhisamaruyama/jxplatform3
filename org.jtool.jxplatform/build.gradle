@@ -75,28 +75,23 @@ compileJava {
 }
 
 test {
-    minHeapSize = "8g"
-    maxHeapSize = "8g"
-    
     useJUnit {
         excludeCategories 'org.jtool.jxplatform.util.FlakyByExternalLib'
+        excludeCategories 'org.jtool.jxplatform.util.LongByRealProject'
     }
-    
-    //testLogging {
-    //    events 'standard_out', 'standard_error'
-    //}
 }
 
 task smokeTest(type: Test) {
-    minHeapSize = "8g"
-    maxHeapSize = "8g"
-    
     include '**/org/jtool/slice/*.class'
 }
 
 task allTest(type: Test) {
     minHeapSize = "8g"
     maxHeapSize = "8g"
+    
+    //testLogging {
+    //    events 'standard_out', 'standard_error'
+    //}
 }
 
 task javadoc(type: Javadoc, overwrite: true) {
