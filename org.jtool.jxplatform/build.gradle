@@ -75,6 +75,9 @@ compileJava {
 }
 
 test {
+    minHeapSize = "6g"
+    maxHeapSize = "6g"
+    
     useJUnit {
         excludeCategories 'org.jtool.jxplatform.util.FlakyByExternalLib'
         excludeCategories 'org.jtool.jxplatform.util.LongByRealProject'
@@ -82,6 +85,9 @@ test {
 }
 
 task smokeTest(type: Test) {
+	minHeapSize = "6g"
+    maxHeapSize = "6g"
+    
     include '**/org/jtool/slice/*.class'
 }
 
