@@ -20,7 +20,7 @@ import org.eclipse.jdt.core.dom.ITypeBinding;
 
 public class TestUtil {
     
-public static <T> List<String> asSortedList(Set<T> set) {
+    public static <T> List<String> asSortedList(Set<T> set) {
         return set.stream().map(o -> o.toString()).sorted().collect(Collectors.toList());
     }
     
