@@ -9,7 +9,6 @@ import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.srcmodel.JavaProject;
 import java.util.List;
 import java.util.Set;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,7 @@ public class ClDGTest {
     
     @BeforeClass
     public static void setUp() {
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SliceProject.getModelBuilder().unbuild();
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @Test

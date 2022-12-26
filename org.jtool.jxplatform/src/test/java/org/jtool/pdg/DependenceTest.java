@@ -20,14 +20,15 @@ public class DependenceTest {
     
     @BeforeClass
     public static void setUp() {
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
+        BuilderTestUtil.clearProject();
+        
+        SimpleProject = BuilderTestUtil.getProject("Simple");
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @AfterClass
     public static void tearDown() {
-        SimpleProject.getModelBuilder().unbuild();
-        SliceProject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -322,6 +323,8 @@ public class DependenceTest {
         PDGNode src = pdg.getNode(16);
         PDGNode dst = pdg.getNode(7);
         List<Dependence> result = PDGTestUtil.getDependence(pdg, src, dst);
+        
+        pdg.print();
         
         assertTrue(result.get(0).isDD());
     }

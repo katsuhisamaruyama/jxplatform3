@@ -8,7 +8,6 @@ package org.jtool.srcmodel;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -20,16 +19,9 @@ public class JavaElementTest {
     
     @BeforeClass
     public static void setUp() {
-        DrawToolProject = BuilderTestUtil.createProject("DrawTool", "", "/src");
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-        VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        DrawToolProject.getModelBuilder().unbuild();
-        SliceProject.getModelBuilder().unbuild();
-        VideoStoreProject.getModelBuilder().unbuild();
+        DrawToolProject = BuilderTestUtil.getProject("DrawTool");
+        SliceProject = BuilderTestUtil.getProject("Slice");
+        VideoStoreProject = BuilderTestUtil.getProject("VideoStore");
     }
     
     @Test

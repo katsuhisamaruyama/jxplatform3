@@ -23,12 +23,14 @@ public class SlicerTest {
     
     @BeforeClass
     public static void setUp() {
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
+        BuilderTestUtil.clearProject();
+        
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @AfterClass
     public static void tearDown() {
-        SliceProject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test

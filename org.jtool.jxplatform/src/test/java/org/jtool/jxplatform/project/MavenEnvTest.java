@@ -37,7 +37,7 @@ public class MavenEnvTest {
         ProjectEnv env = new MavenEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target, env.getBasePath().toString());
+        assertEquals(BuilderTestUtil.commonPath(target), env.getBasePath().toString());
     }
     
     @Test
@@ -49,7 +49,7 @@ public class MavenEnvTest {
         ProjectEnv env = new MavenEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target, env.getTopPath().toString());
+        assertEquals(BuilderTestUtil.commonPath(target), env.getTopPath().toString());
     }
     
     @Test
@@ -61,7 +61,7 @@ public class MavenEnvTest {
         ProjectEnv env = new MavenEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target + "/pom.xml", env.configFile.toString());
+        assertEquals(BuilderTestUtil.commonPath(target + "/pom.xml"), env.configFile.toString());
     }
     
     @Test
@@ -88,7 +88,7 @@ public class MavenEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
         assertEquals(1, paths.size());
-        assertEquals(target + "/src", paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/src"), paths.get(0));
     }
     
     @Test
@@ -102,7 +102,7 @@ public class MavenEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
         assertEquals(1, paths.size());
-        assertEquals(target + "/bin", paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/bin"), paths.get(0));
     }
     
     @Test
@@ -116,7 +116,7 @@ public class MavenEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
         assertEquals(1, paths.size());
-        assertEquals(target + "/lib", paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/lib"), paths.get(0));
     }
     
     @Test
@@ -164,7 +164,7 @@ public class MavenEnvTest {
         ProjectEnv env = new MavenEnv(name, basePath, basePath.getParent());
         assertTrue(env.isApplicable());
         
-        assertEquals(target, env.getBasePath().toString());
+        assertEquals(BuilderTestUtil.commonPath(target), env.getBasePath().toString());
     }
     
     @Test
@@ -177,7 +177,7 @@ public class MavenEnvTest {
         assertTrue(env.isApplicable());
         
         String cdir = target.replace("/" + name, "/");
-        assertEquals(cdir + "guava-31.0.1", env.getTopPath().toString());
+        assertEquals(BuilderTestUtil.commonPath(cdir + "guava-31.0.1"), env.getTopPath().toString());
     }
     
     @Test
@@ -189,7 +189,7 @@ public class MavenEnvTest {
         ProjectEnv env = new MavenEnv(name, basePath, basePath.getParent());
         assertTrue(env.isApplicable());
         
-        assertEquals(target + "/pom.xml", env.configFile.toString());
+        assertEquals(BuilderTestUtil.commonPath(target + "/pom.xml"), env.configFile.toString());
     }
     
     @Test
@@ -215,8 +215,8 @@ public class MavenEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
         assertEquals(2, paths.size());
-        assertEquals(target + "/src", paths.get(0));
-        assertEquals(target + "/target/generated-sources", paths.get(1));
+        assertEquals(BuilderTestUtil.commonPath(target + "/src"), paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/target/generated-sources"), paths.get(1));
     }
     
     @Test
@@ -230,8 +230,8 @@ public class MavenEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
         assertEquals(2, paths.size());
-        assertEquals(target + "/target/classes", paths.get(0));
-        assertEquals(target + "/target/test-classes", paths.get(1));
+        assertEquals(BuilderTestUtil.commonPath(target + "/target/classes"), paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/target/test-classes"), paths.get(1));
     }
     
     @Test
@@ -245,8 +245,8 @@ public class MavenEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
         assertEquals(2, paths.size());
-        assertEquals(target + "/lib", paths.get(0));
-        assertEquals(target + "/lib-copied", paths.get(1));
+        assertEquals(BuilderTestUtil.commonPath(target + "/lib"), paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/lib-copied"), paths.get(1));
     }
     
     @Test
@@ -260,7 +260,7 @@ public class MavenEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getIncludedSourceFiles());
         assertEquals(1, paths.size());
-        assertEquals(target + "/src/com/google/dummy/IncludedDummy.java", paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/src/com/google/dummy/IncludedDummy.java"), paths.get(0));
     }
     
     @Test
@@ -274,7 +274,7 @@ public class MavenEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getExcludedSourceFiles());
         assertEquals(1, paths.size());
-        assertEquals(target + "/src/com/google/dummy/ExcludedDummy.java", paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/src/com/google/dummy/ExcludedDummy.java"), paths.get(0));
     }
     
     @Test

@@ -14,7 +14,6 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import java.util.Set;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 
 public class LambdaCollectorTest {
@@ -24,14 +23,8 @@ public class LambdaCollectorTest {
     
     @BeforeClass
     public static void setUp() {
-        CSclassroomProject = BuilderTestUtil.createProject("CS-classroom", "/lib/*", "/src");
-        LambdaProject = BuilderTestUtil.createProject("Lambda", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        CSclassroomProject.getModelBuilder().unbuild();
-        LambdaProject.getModelBuilder().unbuild();
+        CSclassroomProject = BuilderTestUtil.getProject("CS-classroom");
+        LambdaProject = BuilderTestUtil.getProject("Lambda");
     }
     
     @Test

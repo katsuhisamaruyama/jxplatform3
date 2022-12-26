@@ -5,6 +5,7 @@
 
 package org.jtool.cfg.internal;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
@@ -271,12 +272,12 @@ public class CFGTestUtil {
     
     public static String getCCFGData(CCFG ccfg) {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- CCFG (from here) -----\n");
+        buf.append("----- CCFG (from here) -----" + br);
         buf.append("Class Name = " + ccfg.getQualifiedName());
-        buf.append("\n");
-        ccfg.getCFGs().forEach(cfg -> buf.append(toStringForNodes(cfg) + "--\n"));
-        ccfg.getCFGs().forEach(cfg -> buf.append(toStringForEdges(cfg) + "--\n"));
-        buf.append("----- CCFG (to here) -----\n");
+        buf.append(br);
+        ccfg.getCFGs().forEach(cfg -> buf.append(toStringForNodes(cfg) + "--" + br));
+        ccfg.getCFGs().forEach(cfg -> buf.append(toStringForEdges(cfg) + "--" + br));
+        buf.append("----- CCFG (to here) -----" + br);
         return buf.toString();
     }
     
@@ -284,7 +285,7 @@ public class CFGTestUtil {
         StringBuilder buf = new StringBuilder();
         CFGNode.sortNodes(cfg.getNodes()).forEach(node -> {
             buf.append(toString(cfg, node));
-            buf.append("\n");
+            buf.append(br);
         });
         return buf.toString();
     }
@@ -294,14 +295,14 @@ public class CFGTestUtil {
         buf.append(GraphElement.getIdString(0));
         buf.append(": ");
         buf.append(cfg.getEntryNode().getSignature());
-        buf.append("\n");
+        buf.append(br);
         
         long index = 1;
         for (ControlFlow edge : ControlFlow.sortEdges(cfg.getEdges())) {
             buf.append(GraphElement.getIdString(index));
             buf.append(": ");
             buf.append(toString(cfg, edge));
-            buf.append("\n");
+            buf.append(br);
             index++;
         }
         return buf.toString();

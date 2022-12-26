@@ -37,7 +37,7 @@ public class EclipseEnvTest {
         ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target, env.getBasePath().toString());
+        assertEquals(BuilderTestUtil.commonPath(target), env.getBasePath().toString());
     }
     
     @Test
@@ -49,7 +49,7 @@ public class EclipseEnvTest {
         ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target, env.getTopPath().toString());
+        assertEquals(BuilderTestUtil.commonPath(target), env.getTopPath().toString());
     }
     
     @Test
@@ -61,7 +61,7 @@ public class EclipseEnvTest {
         ProjectEnv env = new EclipseEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target + "/.classpath", env.configFile.toString());
+        assertEquals(BuilderTestUtil.commonPath(target + "/.classpath"), env.configFile.toString());
     }
     
     @Test
@@ -87,7 +87,7 @@ public class EclipseEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
         assertEquals(1, paths.size());
-        assertEquals(target + "/src", paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/src"), paths.get(0));
     }
     
     @Test
@@ -101,7 +101,7 @@ public class EclipseEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
         assertEquals(1, paths.size());
-        assertEquals(target + "/bin", paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/bin"), paths.get(0));
     }
     
     @Test
@@ -115,7 +115,7 @@ public class EclipseEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
         assertEquals(1, paths.size());
-        assertEquals(target + "/lib", paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/lib"), paths.get(0));
     }
     
     @Test

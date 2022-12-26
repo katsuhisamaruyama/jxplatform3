@@ -13,7 +13,6 @@ import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGTestUtil;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -47,12 +46,7 @@ public class CodeExtractorTest {
     
     @BeforeClass
     public static void setUp() {
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SimpleProject.getModelBuilder().unbuild();
+        SimpleProject = BuilderTestUtil.getProject("Simple");
     }
     
     @Test
@@ -62,7 +56,7 @@ public class CodeExtractorTest {
         String expected = 
                 "public class Test01 {\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -72,7 +66,7 @@ public class CodeExtractorTest {
         String expected = 
                 "interface I47 {\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -82,7 +76,7 @@ public class CodeExtractorTest {
         String expected = 
                 "enum PriceCode {\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -92,7 +86,7 @@ public class CodeExtractorTest {
         String expected = 
                 "public class Test01 {\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -104,7 +98,7 @@ public class CodeExtractorTest {
                 "    P42() {\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -116,7 +110,7 @@ public class CodeExtractorTest {
                 "    P42(int x) {\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -129,7 +123,7 @@ public class CodeExtractorTest {
                 "        this.x = x;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -141,7 +135,7 @@ public class CodeExtractorTest {
                 "    public void m() {\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -153,7 +147,7 @@ public class CodeExtractorTest {
                 "    {\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -166,7 +160,7 @@ public class CodeExtractorTest {
                 "        int c = 1;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -179,7 +173,7 @@ public class CodeExtractorTest {
                 "    PriceCode() {\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -193,7 +187,7 @@ public class CodeExtractorTest {
                 "        priceCode = code;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -205,7 +199,7 @@ public class CodeExtractorTest {
                 "    ;\n" +
                 "    private int priceCode;\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -216,7 +210,7 @@ public class CodeExtractorTest {
                 "enum PriceCode {\n" +
                 "    CHILDRENS(100)\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -227,7 +221,7 @@ public class CodeExtractorTest {
                 "enum PriceCode {\n" +
                 "    REGULAR(200)\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -238,7 +232,7 @@ public class CodeExtractorTest {
                 "enum PriceCode {\n" +
                 "    CHILDRENS(100), REGULAR(200)\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -249,7 +243,7 @@ public class CodeExtractorTest {
                 "enum PriceCode {\n" +
                 "    REGULAR(200), NEW_RELEASE(300)\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -260,7 +254,7 @@ public class CodeExtractorTest {
                 "public class Test01 {\n" +
                 "    public static int ABC = 0;\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -271,7 +265,7 @@ public class CodeExtractorTest {
                 "public class Test42 {\n" +
                 "    private final P42 a = new P42(1);\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -282,7 +276,7 @@ public class CodeExtractorTest {
                 "public class Test42 {\n" +
                 "    private final P42 a = new P42(1);\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -293,7 +287,7 @@ public class CodeExtractorTest {
                 "public class Test42 {\n" +
                 "    private final P42 a = new P42(1);\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -306,7 +300,7 @@ public class CodeExtractorTest {
                 "        int a;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -319,7 +313,7 @@ public class CodeExtractorTest {
                 "        int a;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -332,7 +326,7 @@ public class CodeExtractorTest {
                 "        int b = 0;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -345,7 +339,7 @@ public class CodeExtractorTest {
                 "        a = 0;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -359,7 +353,7 @@ public class CodeExtractorTest {
                 "        a = 0;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -374,7 +368,7 @@ public class CodeExtractorTest {
                 "        int b = 0;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -389,7 +383,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -404,7 +398,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -419,7 +413,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -434,7 +428,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -450,7 +444,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -466,7 +460,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -483,7 +477,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -499,7 +493,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -516,7 +510,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -534,7 +528,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -556,7 +550,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -570,7 +564,7 @@ public class CodeExtractorTest {
                 "            y++;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -586,7 +580,7 @@ public class CodeExtractorTest {
                 "            z = x + 2;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -603,7 +597,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -621,7 +615,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -640,7 +634,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -660,7 +654,7 @@ public class CodeExtractorTest {
                 "        System.out.println(a);\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -675,7 +669,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -688,7 +682,7 @@ public class CodeExtractorTest {
                 "        System.out.println(a);\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -701,7 +695,7 @@ public class CodeExtractorTest {
                 "        doReturn();\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -714,7 +708,7 @@ public class CodeExtractorTest {
                 "        System.out.println(out);\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -728,7 +722,7 @@ public class CodeExtractorTest {
                 "            return in;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -741,7 +735,7 @@ public class CodeExtractorTest {
                 "        return 0;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -756,7 +750,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -769,7 +763,7 @@ public class CodeExtractorTest {
                 "        int a = 0;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -782,7 +776,7 @@ public class CodeExtractorTest {
                 "        ;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -795,7 +789,7 @@ public class CodeExtractorTest {
                 "        int b = 0;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -810,7 +804,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -825,7 +819,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -841,7 +835,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -859,7 +853,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -878,7 +872,7 @@ public class CodeExtractorTest {
                 "        System.out.println(d);\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -899,7 +893,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -920,7 +914,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -942,7 +936,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -964,7 +958,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -978,7 +972,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -994,7 +988,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     @Test
     public void testExtractIfWhileStatement3() {
@@ -1010,7 +1004,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1027,7 +1021,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1045,7 +1039,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1059,7 +1053,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1081,7 +1075,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1103,7 +1097,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1126,7 +1120,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1140,7 +1134,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1154,7 +1148,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1168,7 +1162,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1183,7 +1177,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1197,7 +1191,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1213,7 +1207,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1227,7 +1221,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1241,7 +1235,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     @Test
     public void testExtractDoStatement1() {
@@ -1254,7 +1248,7 @@ public class CodeExtractorTest {
                 "        } while (a < 19);\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1269,7 +1263,7 @@ public class CodeExtractorTest {
                 "        } while (a < 19);\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1283,7 +1277,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1298,7 +1292,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1311,7 +1305,7 @@ public class CodeExtractorTest {
                 "        assert x > 0;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1325,7 +1319,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1340,7 +1334,7 @@ public class CodeExtractorTest {
                 "        }\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1353,7 +1347,7 @@ public class CodeExtractorTest {
                 " */\n" +
                 "public class Test60 {\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1373,7 +1367,7 @@ public class CodeExtractorTest {
                 "    public Test60(int x) {\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1393,7 +1387,7 @@ public class CodeExtractorTest {
                 "    public void m() {\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1414,7 +1408,7 @@ public class CodeExtractorTest {
                 "        a = x + 2;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1431,7 +1425,7 @@ public class CodeExtractorTest {
                 "     */\n" +
                 "    private int a;\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1444,7 +1438,7 @@ public class CodeExtractorTest {
                 " */\n" +
                 "enum Enum60 {\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1466,7 +1460,7 @@ public class CodeExtractorTest {
                 "        this.x = x;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1483,7 +1477,7 @@ public class CodeExtractorTest {
                 "     */\n" +
                 "    X(100)\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1500,7 +1494,7 @@ public class CodeExtractorTest {
                 "     */\n" +
                 "    Y(100)\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1518,7 +1512,7 @@ public class CodeExtractorTest {
                 "     */\n" +
                 "    private int x;\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1531,7 +1525,7 @@ public class CodeExtractorTest {
                 " */\n" +
                 "public class Test61 {\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1549,7 +1543,7 @@ public class CodeExtractorTest {
                 "    public void m() {\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1566,7 +1560,7 @@ public class CodeExtractorTest {
                 "     */\n" +
                 "    private int p;\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1580,7 +1574,7 @@ public class CodeExtractorTest {
                 "public class Test61 {\n" +
                 "    private int q; // Field Comment 2\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1597,7 +1591,7 @@ public class CodeExtractorTest {
                 "        int a = x + 2; // Comment 6\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1614,7 +1608,7 @@ public class CodeExtractorTest {
                 "        int b = x + 2;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1633,7 +1627,7 @@ public class CodeExtractorTest {
                 "        int c = a;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1653,6 +1647,6 @@ public class CodeExtractorTest {
                 "        int a = x + 2; // Comment 6\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
 }

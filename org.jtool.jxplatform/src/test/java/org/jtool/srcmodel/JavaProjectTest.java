@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.junit.Test;
-import org.junit.BeforeClass;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -23,14 +23,15 @@ public class JavaProjectTest {
     
     @BeforeClass
     public static void setUp() {
-        TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
-        VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
+        BuilderTestUtil.clearProject();
+        
+        TetrisProject = BuilderTestUtil.getProject("Tetris");
+        VideoStoreProject = BuilderTestUtil.getProject("VideoStore");
     }
     
     @AfterClass
     public static void tearDown() {
-        TetrisProject.getModelBuilder().unbuild();
-        VideoStoreProject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test

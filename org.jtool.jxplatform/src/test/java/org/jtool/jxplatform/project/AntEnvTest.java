@@ -37,7 +37,7 @@ public class AntEnvTest {
         ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target, env.getBasePath().toString());
+        assertEquals(BuilderTestUtil.commonPath(target), env.getBasePath().toString());
     }
     
     @Test
@@ -49,7 +49,7 @@ public class AntEnvTest {
         ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target, env.getTopPath().toString());
+        assertEquals(BuilderTestUtil.commonPath(target), env.getTopPath().toString());
     }
     
     @Test
@@ -61,7 +61,7 @@ public class AntEnvTest {
         ProjectEnv env = new AntEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target + "/build.xml", env.configFile.toString());
+        assertEquals(BuilderTestUtil.commonPath(target + "/build.xml"), env.configFile.toString());
     }
     
     @Test
@@ -87,8 +87,8 @@ public class AntEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
         assertEquals(2, paths.size());
-        assertEquals(target + "/src/main", paths.get(0));
-        assertEquals(target + "/src/tests/junit", paths.get(1));
+        assertEquals(BuilderTestUtil.commonPath(target + "/src/main"), paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/src/tests/junit"), paths.get(1));
     }
     
     @Test
@@ -102,7 +102,7 @@ public class AntEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
         assertEquals(1, paths.size());
-        assertEquals(target + "/bin", paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/bin"), paths.get(0));
     }
     
     @Test
@@ -116,8 +116,8 @@ public class AntEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
         assertEquals(2, paths.size());
-        assertEquals(target + "/build/lib", paths.get(0));
-        assertEquals(target + "/lib", paths.get(1));
+        assertEquals(BuilderTestUtil.commonPath(target + "/build/lib"), paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/lib"), paths.get(1));
     }
     
     @Test

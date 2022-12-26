@@ -9,7 +9,6 @@ import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.QualifiedName;
 import org.jtool.cfg.CCFGEntry;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,7 @@ public class ClDGEntryTest {
     
     @BeforeClass
     public static void setUp() {
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SliceProject.getModelBuilder().unbuild();
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @Test

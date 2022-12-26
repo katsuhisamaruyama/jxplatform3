@@ -13,7 +13,6 @@ import org.jtool.jxplatform.util.TestUtil;
 import java.util.Set;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 
 public class MethodCallCollectorTest {
@@ -24,16 +23,9 @@ public class MethodCallCollectorTest {
     
     @BeforeClass
     public static void setUp() {
-        DrawToolProject = BuilderTestUtil.createProject("DrawTool", "", "/src");
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-        TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        DrawToolProject.getModelBuilder().unbuild();
-        SliceProject.getModelBuilder().unbuild();
-        TetrisProject.getModelBuilder().unbuild();
+        DrawToolProject = BuilderTestUtil.getProject("DrawTool");
+        SliceProject = BuilderTestUtil.getProject("Slice");
+        TetrisProject = BuilderTestUtil.getProject("Tetris");
     }
     
     @Test

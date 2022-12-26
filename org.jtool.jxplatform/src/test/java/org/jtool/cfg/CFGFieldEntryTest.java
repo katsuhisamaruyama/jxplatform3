@@ -12,29 +12,17 @@ import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.util.List;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class CFGFieldEntryTest {
     
-    private static JavaProject SimpleProject;
     private static JavaProject SliceProject;
-    private static JavaProject VideoStoreProject;
     
     @BeforeClass
     public static void setUp() {
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-        VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SliceProject.getModelBuilder().unbuild();
-        VideoStoreProject.getModelBuilder().unbuild();
-        SimpleProject.getModelBuilder().unbuild();
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @Test

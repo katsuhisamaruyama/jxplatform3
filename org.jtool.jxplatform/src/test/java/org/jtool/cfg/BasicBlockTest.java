@@ -12,7 +12,6 @@ import org.jtool.jxplatform.util.TestUtil;
 import java.util.List;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 
 public class BasicBlockTest {
@@ -22,14 +21,8 @@ public class BasicBlockTest {
     
     @BeforeClass
     public static void setUp() {
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SliceProject.getModelBuilder().unbuild();
-        SimpleProject.getModelBuilder().unbuild();
+        SliceProject = BuilderTestUtil.getProject("Slice");
+        SimpleProject = BuilderTestUtil.getProject("Simple");
     }
     
     @Test

@@ -11,7 +11,6 @@ import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGTestUtil;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -37,12 +36,7 @@ public class CodeGeneratorTest {
     
     @BeforeClass
     public static void setUp() {
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SimpleProject.getModelBuilder().unbuild();
+        SimpleProject = BuilderTestUtil.getProject("Simple");
     }
     
     @Test
@@ -71,7 +65,7 @@ public class CodeGeneratorTest {
                 "        System.out.println(b);\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -100,7 +94,7 @@ public class CodeGeneratorTest {
                 "        System.out.println(b);\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -121,7 +115,7 @@ public class CodeGeneratorTest {
                 "        int c = a;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -145,7 +139,7 @@ public class CodeGeneratorTest {
                 "        int c = a;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -169,7 +163,7 @@ public class CodeGeneratorTest {
                 "        int c = a;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -190,7 +184,7 @@ public class CodeGeneratorTest {
                 "        int c = a;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -212,7 +206,7 @@ public class CodeGeneratorTest {
                 "        int c = a;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -234,7 +228,7 @@ public class CodeGeneratorTest {
                 "        int c = a;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -258,7 +252,7 @@ public class CodeGeneratorTest {
                 "        int c = a;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -283,6 +277,6 @@ public class CodeGeneratorTest {
                 "        int c = a;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
 }

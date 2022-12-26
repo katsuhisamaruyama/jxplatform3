@@ -15,7 +15,6 @@ import org.jtool.cfg.JVariableReference;
 import java.util.List;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 
 public class FieldReferenceResolverTest {
@@ -24,12 +23,7 @@ public class FieldReferenceResolverTest {
     
     @BeforeClass
     public static void setUp() {
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SimpleProject.getModelBuilder().unbuild();
+        SimpleProject = BuilderTestUtil.getProject("Simple");
     }
     
     @Test

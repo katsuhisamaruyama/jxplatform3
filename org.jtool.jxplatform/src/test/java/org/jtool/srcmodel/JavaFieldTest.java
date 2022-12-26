@@ -10,7 +10,6 @@ import org.jtool.jxplatform.util.TestUtil;
 import java.util.Set;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -23,16 +22,9 @@ public class JavaFieldTest {
     
     @BeforeClass
     public static void setUp() {
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-        TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
-        VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SimpleProject.getModelBuilder().unbuild();
-        TetrisProject.getModelBuilder().unbuild();
-        VideoStoreProject.getModelBuilder().unbuild();
+        SimpleProject = BuilderTestUtil.getProject("Simple");
+        TetrisProject = BuilderTestUtil.getProject("Tetris");
+        VideoStoreProject = BuilderTestUtil.getProject("VideoStore");
     }
     
     @Test

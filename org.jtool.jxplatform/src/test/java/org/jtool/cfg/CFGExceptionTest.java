@@ -10,7 +10,6 @@ import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 
 public class CFGExceptionTest {
@@ -19,12 +18,7 @@ public class CFGExceptionTest {
     
     @BeforeClass
     public static void setUp() {
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SliceProject.getModelBuilder().unbuild();
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @Test

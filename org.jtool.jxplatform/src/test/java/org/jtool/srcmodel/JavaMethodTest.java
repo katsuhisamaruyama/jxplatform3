@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -27,18 +26,10 @@ public class JavaMethodTest {
     
     @BeforeClass
     public static void setUp() {
-        CSclassroomProject = BuilderTestUtil.createProject("CS-classroom", "/lib/*", "/src");
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-        TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
-        VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        CSclassroomProject.getModelBuilder().unbuild();
-        SimpleProject.getModelBuilder().unbuild();
-        TetrisProject.getModelBuilder().unbuild();
-        VideoStoreProject.getModelBuilder().unbuild();
+        CSclassroomProject = BuilderTestUtil.getProject("CS-classroom");
+        SimpleProject = BuilderTestUtil.getProject("Simple");
+        TetrisProject = BuilderTestUtil.getProject("Tetris");
+        VideoStoreProject = BuilderTestUtil.getProject("VideoStore");
     }
     
     @Test

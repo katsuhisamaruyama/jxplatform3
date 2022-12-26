@@ -11,7 +11,6 @@ import org.jtool.srcmodel.JavaProject;
 import java.util.List;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -22,12 +21,7 @@ public class JVersatileReferenceTest {
     
     @BeforeClass
     public static void setUp() {
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SliceProject.getModelBuilder().unbuild();
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @Test

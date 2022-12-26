@@ -5,6 +5,7 @@
 
 package org.jtool.pdg.internal;
 
+import org.jtool.jxplatform.builder.ModelBuilder;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDGTestUtil;
 import org.jtool.srcmodel.JavaClass;
@@ -24,57 +25,81 @@ public class PDGBuilderTest {
     
     @Test
     public void testCSclassroomProject() {
+        BuilderTestUtil.clearProject();
+        
         JavaProject jproject = BuilderTestUtil.createProject("CS-classroom", "/lib/*", "/src");
         boolean result = check(jproject);
         assertTrue(result);
+        
         jproject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
     public void testDrawToolProject() {
+        BuilderTestUtil.clearProject();
+        
         JavaProject jproject = BuilderTestUtil.createProject("DrawTool", "", "/src");
         boolean result = check(jproject);
         assertTrue(result);
+        
         jproject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
     public void testSimpleProject() {
+        BuilderTestUtil.clearProject();
+        
         JavaProject jproject = BuilderTestUtil.createProject("Simple", "", "");
         boolean result = check(jproject);
         assertTrue(result);
+        
         jproject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
     public void testSliceProject() {
+        BuilderTestUtil.clearProject();
+        
         JavaProject jproject = BuilderTestUtil.createProject("Slice", "", "");
         boolean result = check(jproject);
         assertTrue(result);
+        
         jproject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
     public void testTetrisProject() {
+        BuilderTestUtil.clearProject();
+        
         JavaProject jproject = BuilderTestUtil.createProject("Tetris", "", "");
         boolean result = check(jproject);
         assertTrue(result);
+        
         jproject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
     public void testVideoStoreProject() {
+        BuilderTestUtil.clearProject();
+        
         JavaProject jproject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
         boolean result = check(jproject);
         assertTrue(result);
+        
         jproject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     private boolean check(JavaProject jproject) {
         boolean result = true;
         for (JavaClass jclass : jproject.getClasses()) {
             ClDG cldg = PDGTestUtil.createClDG(jproject, jclass.getQualifiedName().fqn());
-            String actual = PDGTestUtil.getClDGData(cldg) + "\n";
+            String actual = PDGTestUtil.getClDGData(cldg) + ModelBuilder.br;
             
             try {
                 Path pdgPath = Paths.get(jproject.getPath(), "pdg");

@@ -34,7 +34,6 @@ import org.eclipse.jdt.core.dom.SynchronizedStatement;
 import org.eclipse.jdt.core.dom.ThrowStatement;
 import org.eclipse.jdt.core.dom.TryStatement;
 import org.eclipse.jdt.core.dom.CatchClause;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -46,12 +45,7 @@ public class StatementVisitorTest {
     
     @BeforeClass
     public static void setUp() {
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SimpleProject.getModelBuilder().unbuild();
+        SimpleProject = BuilderTestUtil.getProject("Simple");
     }
     
     @Test
@@ -1010,8 +1004,6 @@ public class StatementVisitorTest {
         List<CFGNode> nodes = CFGTestUtil.getNodes(cfg, "ContinueStatement");
         CFGNode node = nodes.get(0);
         assert (node.getASTNode() instanceof ContinueStatement);
-        
-        cfg.print();
         
         assertEquals(2, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() + 4);

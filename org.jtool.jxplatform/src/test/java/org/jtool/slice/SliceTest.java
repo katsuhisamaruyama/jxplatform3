@@ -7,7 +7,6 @@ package org.jtool.slice;
 
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.srcmodel.JavaProject;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -18,12 +17,7 @@ public class SliceTest {
     
     @BeforeClass
     public static void setUp() {
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SliceProject.getModelBuilder().unbuild();
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @Test
@@ -36,7 +30,7 @@ public class SliceTest {
                 "        int x = 10;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -47,7 +41,7 @@ public class SliceTest {
                 "public void m() {\n" + 
                 "    int x = 10;\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -56,7 +50,7 @@ public class SliceTest {
         
         String expected = 
                 "private int p = 1;\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -70,7 +64,7 @@ public class SliceTest {
                 "        int y = x + 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -85,7 +79,7 @@ public class SliceTest {
                 "        int z = x + p;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -102,7 +96,7 @@ public class SliceTest {
                 "        return n + 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -116,7 +110,7 @@ public class SliceTest {
                 "        int q = y;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -134,7 +128,7 @@ public class SliceTest {
                 "        return n + 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -151,7 +145,7 @@ public class SliceTest {
                 "        return n + 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -166,7 +160,7 @@ public class SliceTest {
                 "        int p = a;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -184,7 +178,7 @@ public class SliceTest {
                 "        this.a = a;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -205,7 +199,7 @@ public class SliceTest {
                 "        return a;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -226,7 +220,7 @@ public class SliceTest {
                 "        return a;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -252,7 +246,7 @@ public class SliceTest {
                 "        a++;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -266,7 +260,7 @@ public class SliceTest {
                 "        x = 10;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -280,7 +274,7 @@ public class SliceTest {
                 "        y = 20;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -294,7 +288,7 @@ public class SliceTest {
                 "        z = 30;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -310,7 +304,7 @@ public class SliceTest {
                 "        int p = y + z;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -325,7 +319,7 @@ public class SliceTest {
                 "        y = x + 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -340,7 +334,7 @@ public class SliceTest {
                 "        z = x + 2;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -357,7 +351,7 @@ public class SliceTest {
                 "        return a;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -376,7 +370,7 @@ public class SliceTest {
                 "        return 0;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -394,7 +388,7 @@ public class SliceTest {
                 "        return a;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -413,7 +407,7 @@ public class SliceTest {
                 "        return 0;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -428,7 +422,7 @@ public class SliceTest {
                 "        int j = i;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -444,7 +438,7 @@ public class SliceTest {
                 "        int y = a[0];\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -462,7 +456,7 @@ public class SliceTest {
                 "        int p = y;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -481,7 +475,7 @@ public class SliceTest {
                 "        int q = z;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -498,7 +492,7 @@ public class SliceTest {
                 "        int p = y;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -517,7 +511,7 @@ public class SliceTest {
                 "        int q = z;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -534,7 +528,7 @@ public class SliceTest {
                 "        int p = x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -548,7 +542,7 @@ public class SliceTest {
                 "        int q = y;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -564,7 +558,7 @@ public class SliceTest {
                 "        }\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -586,7 +580,7 @@ public class SliceTest {
                 "        int p = y;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -608,7 +602,7 @@ public class SliceTest {
                 "        int q = z;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -631,7 +625,7 @@ public class SliceTest {
                 "        int p = y;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -654,7 +648,7 @@ public class SliceTest {
                 "        int q = z;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -676,7 +670,7 @@ public class SliceTest {
                 "        int r = x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -695,7 +689,7 @@ public class SliceTest {
                 "        int p = x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -713,7 +707,7 @@ public class SliceTest {
                 "        int q = y;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -731,7 +725,7 @@ public class SliceTest {
                 "        int p = x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -750,7 +744,7 @@ public class SliceTest {
                 "        int q = y;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -768,7 +762,7 @@ public class SliceTest {
                 "        int p = x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -786,7 +780,7 @@ public class SliceTest {
                 "        int q = y;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -806,7 +800,7 @@ public class SliceTest {
                 "        int p = x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -826,7 +820,7 @@ public class SliceTest {
                 "        int q = y;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -842,7 +836,7 @@ public class SliceTest {
                 "        int p = x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -859,7 +853,7 @@ public class SliceTest {
                 "        int q = y;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -875,7 +869,7 @@ public class SliceTest {
                 "        return 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -891,7 +885,7 @@ public class SliceTest {
                 "        return a + 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -907,7 +901,7 @@ public class SliceTest {
                 "        return b + 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -923,7 +917,7 @@ public class SliceTest {
                 "        return c + 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -939,7 +933,7 @@ public class SliceTest {
                 "        return a + b;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -955,7 +949,7 @@ public class SliceTest {
                 "        return b + c;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -971,7 +965,7 @@ public class SliceTest {
                 "        return a + c;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -987,7 +981,7 @@ public class SliceTest {
                 "        return a + b + c;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1003,7 +997,7 @@ public class SliceTest {
                 "        return 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1018,7 +1012,7 @@ public class SliceTest {
                 "        int b = a.getX();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1032,7 +1026,7 @@ public class SliceTest {
                 "        a.setX(1);\n" +
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1047,7 +1041,7 @@ public class SliceTest {
                 "        int c = a.getX();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1061,7 +1055,7 @@ public class SliceTest {
                 "        a.setX(1);\n" +
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1078,7 +1072,7 @@ public class SliceTest {
                 "        int d = a.x + p;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1093,7 +1087,7 @@ public class SliceTest {
                 "        a.setX(2);\n" +
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1107,7 +1101,7 @@ public class SliceTest {
                 "        a.setX(2);\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1125,7 +1119,7 @@ public class SliceTest {
                 "        return p;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1141,7 +1135,7 @@ public class SliceTest {
                 "        return 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1158,7 +1152,7 @@ public class SliceTest {
                 "        return a + 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1175,7 +1169,7 @@ public class SliceTest {
                 "        return b + 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1192,7 +1186,7 @@ public class SliceTest {
                 "        return a + b;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1206,7 +1200,7 @@ public class SliceTest {
                 "        return 0;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1220,7 +1214,7 @@ public class SliceTest {
                 "        return 0;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1238,7 +1232,7 @@ public class SliceTest {
                 "        return q;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1263,7 +1257,7 @@ public class SliceTest {
                 "        return 10 / x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1288,7 +1282,7 @@ public class SliceTest {
                 "        return 10 / x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1312,7 +1306,7 @@ public class SliceTest {
                 "        return 0;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1338,7 +1332,7 @@ public class SliceTest {
                 "        return 10 / x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1361,7 +1355,7 @@ public class SliceTest {
                 "        return 0;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1386,7 +1380,7 @@ public class SliceTest {
                 "        return 10 / x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1411,7 +1405,7 @@ public class SliceTest {
                 "        return 10 / x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1435,7 +1429,7 @@ public class SliceTest {
                 "        return 0;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1461,7 +1455,7 @@ public class SliceTest {
                 "        return 10 / x;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1484,7 +1478,7 @@ public class SliceTest {
                 "        return 0;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1497,7 +1491,7 @@ public class SliceTest {
                 "        A124 a = new A124(0);\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1512,7 +1506,7 @@ public class SliceTest {
                 "        int b = a.getX();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1528,7 +1522,7 @@ public class SliceTest {
                 "        int c = a.inc(q);\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1545,7 +1539,7 @@ public class SliceTest {
                 "        return x + 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1565,7 +1559,7 @@ public class SliceTest {
                 "        return x + 2;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1581,7 +1575,7 @@ public class SliceTest {
                 "        A126 a2 = a.add(p);\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1599,7 +1593,7 @@ public class SliceTest {
                 "        int q = a2.getY();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1615,7 +1609,7 @@ public class SliceTest {
                 "        int r = a.add(p).getY();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1630,7 +1624,7 @@ public class SliceTest {
                 "        int p = a.getY();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1644,7 +1638,7 @@ public class SliceTest {
                 "        int q = A127.z;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1660,7 +1654,7 @@ public class SliceTest {
                 "        int r = a.getY();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1677,7 +1671,7 @@ public class SliceTest {
                 "        int s = a.add(p).getY();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1697,7 +1691,7 @@ public class SliceTest {
                 "        return y + 4;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1712,7 +1706,7 @@ public class SliceTest {
                 "        String v1 = s1.getP().get1(\"A\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1728,7 +1722,7 @@ public class SliceTest {
                 "        String v2 = s3.getP().get2(\"B\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1743,7 +1737,7 @@ public class SliceTest {
                 "        String v3 = t.get1(\"C\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1758,7 +1752,7 @@ public class SliceTest {
                 "        String v4 = u.get1(\"D\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1774,7 +1768,7 @@ public class SliceTest {
                 "        return new S130(x);\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1789,7 +1783,7 @@ public class SliceTest {
                 "        String x = map.get(\"A\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1807,7 +1801,7 @@ public class SliceTest {
                 "        return p;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1821,7 +1815,7 @@ public class SliceTest {
                 "        int p1 = a;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1834,7 +1828,7 @@ public class SliceTest {
                 "        int x = 1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1849,7 +1843,7 @@ public class SliceTest {
                 "        String v1 = s1.get2(\"A\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1864,7 +1858,7 @@ public class SliceTest {
                 "        String v2 = s2.get2(\"B\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1879,7 +1873,7 @@ public class SliceTest {
                 "        String v1 = s1.get(\"A\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1894,7 +1888,7 @@ public class SliceTest {
                 "        String v2 = s2.get(\"B\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1909,7 +1903,7 @@ public class SliceTest {
                 "        String s = s1.get(0);\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1925,7 +1919,7 @@ public class SliceTest {
                 "        s1.add(\"B\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1942,7 +1936,7 @@ public class SliceTest {
                 "        P138 s3 = s1;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1959,7 +1953,7 @@ public class SliceTest {
                 "        List<String> l1 = s1.getList();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1977,7 +1971,7 @@ public class SliceTest {
                 "        List<String> l3 = s3.getList();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -1992,7 +1986,7 @@ public class SliceTest {
                 "        List<String> l2 = s2.getList();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2005,7 +1999,7 @@ public class SliceTest {
                 "        int priceCode = PriceCode.REGULAR.getPriceCode();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2019,7 +2013,7 @@ public class SliceTest {
                 "        this.priceCode = priceCode;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2037,7 +2031,7 @@ public class SliceTest {
                 "        this.x = x;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2051,7 +2045,7 @@ public class SliceTest {
                 "        int xx = super.x;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2065,7 +2059,7 @@ public class SliceTest {
                 "        int xx = super.x;\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2080,7 +2074,7 @@ public class SliceTest {
                 "        String v1 = map1.get(\"A\");\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2095,7 +2089,7 @@ public class SliceTest {
                 "        String v2 = map2.get(\"B\");\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2110,7 +2104,7 @@ public class SliceTest {
                 "        String v2 = map2.get(\"B\");\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2125,7 +2119,7 @@ public class SliceTest {
                 "        String v1 = map1.get(\"A\");\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2140,7 +2134,7 @@ public class SliceTest {
                 "        String k = p.getKey();\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2155,7 +2149,7 @@ public class SliceTest {
                 "        String v = p.getValue();\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2170,7 +2164,7 @@ public class SliceTest {
                 "        String v = p.get(\"A\");\n" +
                 "    }\n" +
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2185,7 +2179,7 @@ public class SliceTest {
                 "        String v1 = a.get(\"A\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2200,7 +2194,7 @@ public class SliceTest {
                 "        String v2 = p.get(\"B\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2215,7 +2209,7 @@ public class SliceTest {
                 "        String v3 = t.get(\"C\");\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2230,7 +2224,7 @@ public class SliceTest {
                 "        T145 t = list.get(0);\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2246,7 +2240,7 @@ public class SliceTest {
                 "        int a = t.getA();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2262,7 +2256,7 @@ public class SliceTest {
                 "        int h = t.hashCode();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2280,7 +2274,7 @@ public class SliceTest {
                 "        return list;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2293,7 +2287,7 @@ public class SliceTest {
                 "        List<String> strings = new ArrayList<>();\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2308,7 +2302,7 @@ public class SliceTest {
                 "        }\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2325,7 +2319,7 @@ public class SliceTest {
                 "        }\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2343,7 +2337,7 @@ public class SliceTest {
                 "        int result = total;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2363,7 +2357,7 @@ public class SliceTest {
                 "        int a = x + 2; // Comment 6\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2383,7 +2377,7 @@ public class SliceTest {
                 "        int b = x + 2;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2407,7 +2401,7 @@ public class SliceTest {
                 "        int c = a;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2435,7 +2429,7 @@ public class SliceTest {
                 "        return amount;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2448,7 +2442,7 @@ public class SliceTest {
                 "        return 0;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2462,7 +2456,7 @@ public class SliceTest {
                 "        return 0;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2478,7 +2472,7 @@ public class SliceTest {
                 "        return null;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2495,7 +2489,7 @@ public class SliceTest {
                 "        return null;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2513,7 +2507,7 @@ public class SliceTest {
                 "        return 0;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2528,7 +2522,7 @@ public class SliceTest {
                 "        order.addRental(r1);\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2544,7 +2538,7 @@ public class SliceTest {
                 "        Order order2 = order;\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
     
     @Test
@@ -2561,6 +2555,6 @@ public class SliceTest {
                 "        order.addRental(r2);\n" + 
                 "    }\n" + 
                 "}\n";
-        assertEquals(expected, result);
+        assertEquals(BuilderTestUtil.getContent(expected), result);
     }
 }

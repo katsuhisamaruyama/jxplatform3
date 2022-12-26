@@ -11,26 +11,17 @@ import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.junit.Test;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class PDGNodeTest {
     
-    private static JavaProject SimpleProject;
     private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SimpleProject.getModelBuilder().unbuild();
-        SliceProject.getModelBuilder().unbuild();
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @Test

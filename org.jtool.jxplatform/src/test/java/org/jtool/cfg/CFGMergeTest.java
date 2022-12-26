@@ -8,7 +8,6 @@ package org.jtool.cfg;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -19,12 +18,7 @@ public class CFGMergeTest {
     
     @BeforeClass
     public static void setUp() {
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SliceProject.getModelBuilder().unbuild();
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @Test

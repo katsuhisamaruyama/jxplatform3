@@ -37,7 +37,7 @@ public class GradleEnvTest {
         ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target, env.getBasePath().toString());
+        assertEquals(BuilderTestUtil.commonPath(target), env.getBasePath().toString());
     }
     
     @Test
@@ -49,7 +49,7 @@ public class GradleEnvTest {
         ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target, env.getTopPath().toString());
+        assertEquals(BuilderTestUtil.commonPath(target), env.getTopPath().toString());
     }
     
     @Test
@@ -61,7 +61,7 @@ public class GradleEnvTest {
         ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target + "/build.gradle", env.configFile.toString());
+        assertEquals(BuilderTestUtil.commonPath(target + "/build.gradle"), env.configFile.toString());
     }
     
     @Test
@@ -87,8 +87,8 @@ public class GradleEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
         assertEquals(2, paths.size());
-        assertEquals(target + "/src/main/java", paths.get(0));
-        assertEquals(target + "/src/test/java", paths.get(1));
+        assertEquals(BuilderTestUtil.commonPath(target + "/src/main/java"), paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/src/test/java"), paths.get(1));
     }
     
     @Test
@@ -102,8 +102,8 @@ public class GradleEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
         assertEquals(2, paths.size());
-        assertEquals(target + "/bin/main", paths.get(0));
-        assertEquals(target + "/bin/test", paths.get(1));
+        assertEquals(BuilderTestUtil.commonPath(target + "/bin/main"), paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/bin/test"), paths.get(1));
     }
     
     @Test
@@ -117,8 +117,8 @@ public class GradleEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
         assertEquals(2, paths.size());
-        assertEquals(target + "/lib", paths.get(0));
-        assertEquals(target + "/lib-copied", paths.get(1));
+        assertEquals(BuilderTestUtil.commonPath(target + "/lib"), paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/lib-copied"), paths.get(1));
     }
     
     @Test

@@ -37,7 +37,7 @@ public class SimpleEnvTest {
         ProjectEnv env = new SimpleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target, env.getBasePath().toString());
+        assertEquals(BuilderTestUtil.commonPath(target), env.getBasePath().toString());
     }
     
     @Test
@@ -49,7 +49,7 @@ public class SimpleEnvTest {
         ProjectEnv env = new SimpleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals(target, env.getTopPath().toString());
+        assertEquals(BuilderTestUtil.commonPath(target), env.getTopPath().toString());
     }
     
     @Test
@@ -87,8 +87,8 @@ public class SimpleEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
         assertEquals(2, paths.size());
-        assertEquals(target, paths.get(0));
-        assertEquals(target + "/src", paths.get(1));
+        assertEquals(BuilderTestUtil.commonPath(target), paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/src"), paths.get(1));
     }
     
     @Test
@@ -102,7 +102,7 @@ public class SimpleEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
         assertEquals(1, paths.size());
-        assertEquals(target + "/bin", paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/bin"), paths.get(0));
     }
     
     @Test
@@ -116,8 +116,8 @@ public class SimpleEnvTest {
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
         assertEquals(2, paths.size());
-        assertEquals(target + "/lib", paths.get(0));
-        assertEquals(target + "/lib-copied", paths.get(1));
+        assertEquals(BuilderTestUtil.commonPath(target + "/lib"), paths.get(0));
+        assertEquals(BuilderTestUtil.commonPath(target + "/lib-copied"), paths.get(1));
     }
     
     @Test

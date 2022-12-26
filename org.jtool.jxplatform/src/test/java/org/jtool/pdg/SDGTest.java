@@ -9,6 +9,7 @@ import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.srcmodel.JavaProject;
 import java.util.List;
 import java.util.Set;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,22 +26,19 @@ public class SDGTest {
     
     @BeforeClass
     public static void setUp() {
-        CSclassroomProject = BuilderTestUtil.createProject("CS-classroom", "/lib/*", "/src");
-        DrawToolProject = BuilderTestUtil.createProject("DrawTool", "", "/src");
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-        TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
-        VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
+        BuilderTestUtil.clearProject();
+        
+        CSclassroomProject = BuilderTestUtil.getProject("CS-classroom");
+        DrawToolProject = BuilderTestUtil.getProject("DrawTool");
+        SimpleProject = BuilderTestUtil.getProject("Simple");
+        SliceProject = BuilderTestUtil.getProject("Slice");
+        TetrisProject = BuilderTestUtil.getProject("Tetris");
+        VideoStoreProject = BuilderTestUtil.getProject("VideoStore");
     }
     
     @AfterClass
     public static void tearDown() {
-        CSclassroomProject.getModelBuilder().unbuild();
-        DrawToolProject.getModelBuilder().unbuild();
-        SimpleProject.getModelBuilder().unbuild();
-        SliceProject.getModelBuilder().unbuild();
-        TetrisProject.getModelBuilder().unbuild();
-        VideoStoreProject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test

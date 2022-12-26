@@ -10,6 +10,9 @@ import java.io.File;
 
 /**
  * Test to build source models from open-source Java programs.
+ * The two directory names are specific to macOS and Linux.
+ *   macOS and Linux: /xxx/yyy/zzzz/
+ *   Windows: C:¥xxx¥yyy¥zzz¥
  * 
  * @author Katsuhisa Maruyama
  */

@@ -6,6 +6,7 @@
 package org.jtool.cfg.internal.refmodel;
 
 import org.jtool.srcmodel.JavaProject;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.FlakyByExternalLib;
 import org.junit.experimental.categories.Category;
 import org.junit.Test;
@@ -28,6 +29,8 @@ public class JFieldExternalTest {
     
     @BeforeClass
     public static void setUp() {
+        BuilderTestUtil.clearProject();
+        
         project = RefModelTestUtil.createProjectFromSourceWithoutLibCache("VideoStore", "/lib/*", "");
         bcStore = project.getCFGStore().getBCStore();
         
@@ -47,6 +50,7 @@ public class JFieldExternalTest {
     @AfterClass
     public static void tearDown() {
         project.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test

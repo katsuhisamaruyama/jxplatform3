@@ -12,7 +12,6 @@ import org.jtool.jxplatform.util.TestUtil;
 import java.util.Set;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 
 public class TypeCollectorTest {
@@ -24,18 +23,10 @@ public class TypeCollectorTest {
     
     @BeforeClass
     public static void setUp() {
-        DrawToolProject = BuilderTestUtil.createProject("DrawTool", "", "/src");
-        LambdaProject = BuilderTestUtil.createProject("Lambda", "", "");
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-        TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        DrawToolProject.getModelBuilder().unbuild();
-        LambdaProject.getModelBuilder().unbuild();
-        SliceProject.getModelBuilder().unbuild();
-        TetrisProject.getModelBuilder().unbuild();
+        DrawToolProject = BuilderTestUtil.getProject("DrawTool");
+        LambdaProject = BuilderTestUtil.getProject("Lambda");
+        SliceProject = BuilderTestUtil.getProject("Slice");
+        TetrisProject = BuilderTestUtil.getProject("Tetris");
     }
     
     @Test

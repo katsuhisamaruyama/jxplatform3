@@ -7,6 +7,7 @@ package org.jtool.cfg.internal.refmodel;
 
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.util.TestUtil;
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.FlakyByExternalLib;
 import java.util.List;
 import org.junit.experimental.categories.Category;
@@ -31,6 +32,8 @@ public class JMethodCacheLibTest {
     
     @BeforeClass
     public static void setUp() {
+        BuilderTestUtil.clearProject();
+        
         project = RefModelTestUtil.createProjectFromSourceWithLibCache("VideoStore", "/lib/*", "");
         bcStore = project.getCFGStore().getBCStore();
         
@@ -54,6 +57,7 @@ public class JMethodCacheLibTest {
     @AfterClass
     public static void tearDown() {
         project.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test

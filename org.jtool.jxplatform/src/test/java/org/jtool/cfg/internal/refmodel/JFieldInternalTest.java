@@ -5,6 +5,7 @@
 
 package org.jtool.cfg.internal.refmodel;
 
+import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.srcmodel.JavaProject;
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -27,6 +28,8 @@ public class JFieldInternalTest {
     
     @BeforeClass
     public static void setUp() {
+        BuilderTestUtil.clearProject();
+        
         project = RefModelTestUtil.createProjectFromSourceWithoutLibCache("VideoStore", "/lib/*", "");
         bcStore = project.getCFGStore().getBCStore();
         
@@ -50,6 +53,7 @@ public class JFieldInternalTest {
     @AfterClass
     public static void tearDown() {
         project.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test

@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import org.junit.experimental.categories.Category;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -26,14 +25,8 @@ public class JavaPackageTest {
     
     @BeforeClass
     public static void setUp() {
-        TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
-        VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        TetrisProject.getModelBuilder().unbuild();
-        VideoStoreProject.getModelBuilder().unbuild();
+        TetrisProject = BuilderTestUtil.getProject("Tetris");
+        VideoStoreProject = BuilderTestUtil.getProject("VideoStore");
     }
     
     @Test

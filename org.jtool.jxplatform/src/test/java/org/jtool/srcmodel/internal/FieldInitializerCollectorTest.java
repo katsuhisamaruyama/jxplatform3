@@ -12,7 +12,6 @@ import org.jtool.jxplatform.util.TestUtil;
 import java.util.Set;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 
 public class FieldInitializerCollectorTest {
@@ -22,14 +21,8 @@ public class FieldInitializerCollectorTest {
     
     @BeforeClass
     public static void setUp() {
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-        TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        SliceProject.getModelBuilder().unbuild();
-        TetrisProject.getModelBuilder().unbuild();
+        SliceProject = BuilderTestUtil.getProject("Slice");
+        TetrisProject = BuilderTestUtil.getProject("Tetris");
     }
     
     @Test

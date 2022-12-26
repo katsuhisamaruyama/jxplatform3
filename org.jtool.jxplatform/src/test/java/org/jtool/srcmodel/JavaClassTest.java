@@ -13,7 +13,6 @@ import java.util.Set;
 import org.junit.experimental.categories.Category;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -29,20 +28,11 @@ public class JavaClassTest {
     
     @BeforeClass
     public static void setUp() {
-        CSclassroomProject = BuilderTestUtil.createProject("CS-classroom", "/lib/*", "/src");
-        SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-        TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
-        VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        CSclassroomProject.getModelBuilder().unbuild();
-        SimpleProject.getModelBuilder().unbuild();
-        SliceProject.getModelBuilder().unbuild();
-        TetrisProject.getModelBuilder().unbuild();
-        VideoStoreProject.getModelBuilder().unbuild();
+        CSclassroomProject = BuilderTestUtil.getProject("CS-classroom");
+        SimpleProject = BuilderTestUtil.getProject("Simple");
+        SliceProject = BuilderTestUtil.getProject("Slice");
+        TetrisProject = BuilderTestUtil.getProject("Tetris");
+        VideoStoreProject = BuilderTestUtil.getProject("VideoStore");
     }
     
     @Test

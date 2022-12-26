@@ -25,18 +25,19 @@ import static org.junit.Assert.assertFalse;
 public class IncrementalModelBuilderTest {
     
     private void createFile(String target) {
-        String content =
+        String code =
                 "class New {\n" +
                 "    private int x = 1;\n" +
                 "    public void m() {\n" +
                 "        int y = 1;\n" +
                 "  }\n" +
                 "}";
-        BuilderTestUtil.createFile(Paths.get(target + File.separator + "New.java"), content);
+        BuilderTestUtil.createFile(Paths.get(target + File.separator + "New.java"),
+                BuilderTestUtil.getContent(code));
     }
     
     private void modifyFile(String target) {
-        String content =
+        String code =
                 "class New {\n" +
                 "    private int a = 1;\n" +
                 "    public void b() {\n" +
@@ -44,7 +45,8 @@ public class IncrementalModelBuilderTest {
                 "  }\n" +
                 "}";
         deleteFile(target);
-        BuilderTestUtil.createFile(Paths.get(target + File.separator + "New.java"), content);
+        BuilderTestUtil.createFile(Paths.get(target + File.separator + "New.java"),
+                BuilderTestUtil.getContent(code));
     }
     
     private void deleteFile(String target) {
@@ -79,6 +81,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -95,6 +98,7 @@ public class IncrementalModelBuilderTest {
         deleteFile(target);
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -102,6 +106,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -114,6 +119,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("", BuilderTestUtil.asStrOfFiles(result2));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -121,6 +127,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -133,6 +140,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("Customer.java;CustomerTest.java", BuilderTestUtil.asStrOfFiles(result2));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -142,6 +150,7 @@ public class IncrementalModelBuilderTest {
         
         createFile(target);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -156,6 +165,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("New.java", BuilderTestUtil.asStrOfFiles(result2));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -163,6 +173,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -175,6 +186,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("", BuilderTestUtil.asStrOfFiles(result2));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -182,6 +194,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -194,6 +207,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("", BuilderTestUtil.asStrOfFiles(result2));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -203,6 +217,7 @@ public class IncrementalModelBuilderTest {
         
         createFile(target);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -219,6 +234,7 @@ public class IncrementalModelBuilderTest {
         deleteFile(target);
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -226,6 +242,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -238,6 +255,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("", BuilderTestUtil.asStrOfFiles(result2));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -245,6 +263,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -257,6 +276,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("Customer.java;CustomerTest.java", BuilderTestUtil.asStrOfFiles(result2));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -264,6 +284,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -272,6 +293,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("Customer.java;CustomerTest.java", BuilderTestUtil.asStrOfFiles(result));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -279,6 +301,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -287,6 +310,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("Customer.java;CustomerTest.java;Order.java;Rental.java", BuilderTestUtil.asStrOfFiles(result));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -294,6 +318,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -302,6 +327,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("Customer.java;CustomerTest.java;Order.java", BuilderTestUtil.asStrOfFiles(result));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -309,6 +335,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -317,6 +344,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("CustomerTest.java", BuilderTestUtil.asStrOfFiles(result));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -326,6 +354,7 @@ public class IncrementalModelBuilderTest {
         
         createFile(target);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -340,6 +369,7 @@ public class IncrementalModelBuilderTest {
         deleteFile(target);
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -347,6 +377,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -363,6 +394,7 @@ public class IncrementalModelBuilderTest {
         deleteFile(target);
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -372,6 +404,7 @@ public class IncrementalModelBuilderTest {
         
         createFile(target);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -388,6 +421,7 @@ public class IncrementalModelBuilderTest {
         deleteFile(target);
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -397,6 +431,7 @@ public class IncrementalModelBuilderTest {
         
         createFile(target);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -411,6 +446,7 @@ public class IncrementalModelBuilderTest {
         assertEquals("New.java", BuilderTestUtil.asStrOfFiles(result2));
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -418,6 +454,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         builder.build(name, target, target);
         
@@ -434,6 +471,7 @@ public class IncrementalModelBuilderTest {
         revertFile(target, "Customer.java", originalTime);
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -443,6 +481,7 @@ public class IncrementalModelBuilderTest {
         
         createFile(target);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         JavaProject jproject = builder.build(name, target, target);
         
@@ -474,6 +513,7 @@ public class IncrementalModelBuilderTest {
         deleteFile(target);
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -483,6 +523,7 @@ public class IncrementalModelBuilderTest {
         
         createFile(target);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         JavaProject jproject = builder.build(name, target, target);
         
@@ -514,6 +555,7 @@ public class IncrementalModelBuilderTest {
         deleteFile(target);
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -523,6 +565,7 @@ public class IncrementalModelBuilderTest {
         
         createFile(target);
         
+        BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
         JavaProject jproject = builder.build(name, target, target);
         
@@ -550,5 +593,6 @@ public class IncrementalModelBuilderTest {
         deleteFile(target);
         
         builder.unbuild();
+        BuilderTestUtil.clearProject();
     }
 }

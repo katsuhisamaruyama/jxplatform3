@@ -13,7 +13,6 @@ import org.eclipse.jdt.core.dom.ITypeBinding;
 import java.util.List;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 
 public class UncaughtExceptionTypeCollectorTest {
@@ -24,16 +23,9 @@ public class UncaughtExceptionTypeCollectorTest {
     
     @BeforeClass
     public static void setUp() {
-        CSclassroomProject = BuilderTestUtil.createProject("CS-classroom", "/lib/*", "/src");
-        DrawToolProject = BuilderTestUtil.createProject("DrawTool", "", "/src");
-        SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-    }
-    
-    @AfterClass
-    public static void tearDown() {
-        CSclassroomProject.getModelBuilder().unbuild();
-        DrawToolProject.getModelBuilder().unbuild();
-        SliceProject.getModelBuilder().unbuild();
+        CSclassroomProject = BuilderTestUtil.getProject("CS-classroom");
+        DrawToolProject = BuilderTestUtil.getProject("DrawTool");
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @Test
