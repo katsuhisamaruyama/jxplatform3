@@ -5,6 +5,7 @@
 
 package org.jtool.pdg;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.srcmodel.QualifiedName;
 import org.jtool.cfg.CCFG;
 import org.jtool.cfg.CCFGEntry;
@@ -190,12 +191,12 @@ public class ClDG {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- ClDG (from here) -----\n");
+        buf.append("----- ClDG (from here) -----" + br);
         buf.append("Class Name = " + getQualifiedName());
-        buf.append("\n");
-        pdgs.values().forEach(cfg -> buf.append(cfg.toStringForNodes() + "--\n"));
-        pdgs.values().forEach(cfg -> buf.append(cfg.toStringForEdges() + "--\n"));
-        buf.append("----- ClDG (to here) -----\n");
+        buf.append(br);
+        pdgs.values().forEach(cfg -> buf.append(cfg.toStringForNodes() + "--" + br));
+        pdgs.values().forEach(cfg -> buf.append(cfg.toStringForEdges() + "--" + br));
+        buf.append("----- ClDG (to here) -----" + br);
         return buf.toString();
     }
 }

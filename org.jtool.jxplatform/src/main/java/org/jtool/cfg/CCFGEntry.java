@@ -7,7 +7,6 @@ package org.jtool.cfg;
 
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.QualifiedName;
-
 import java.util.Set;
 import java.util.HashSet;
 

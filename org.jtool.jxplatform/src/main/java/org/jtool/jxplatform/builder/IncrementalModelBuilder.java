@@ -122,10 +122,10 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * @param binaryPath the absolute paths that store binary files
      */
     public void setSourceBinaryPaths(String[] sourcePath, String[] binaryPath) {
-        String oldsrcpath = Arrays.asList(sourcePath).stream().collect(Collectors.joining(";"));
-        String newsrcpath = Arrays.asList(jproject.getSourcePath()).stream().collect(Collectors.joining(";"));
-        String oldbinpath = Arrays.asList(binaryPath).stream().collect(Collectors.joining(";"));
-        String newbinpath = Arrays.asList(jproject.getBinaryPath()).stream().collect(Collectors.joining(";"));
+        String oldsrcpath = Arrays.asList(sourcePath).stream().collect(Collectors.joining(File.pathSeparator));
+        String newsrcpath = Arrays.asList(jproject.getSourcePath()).stream().collect(Collectors.joining(File.pathSeparator));
+        String oldbinpath = Arrays.asList(binaryPath).stream().collect(Collectors.joining(File.pathSeparator));
+        String newbinpath = Arrays.asList(jproject.getBinaryPath()).stream().collect(Collectors.joining(File.pathSeparator));
         if (!oldsrcpath.equals(newsrcpath) || !oldbinpath.equals(newbinpath)) {
             jproject.setSourceBinaryPaths(sourcePath, binaryPath);
             builderImpl.update(jproject);

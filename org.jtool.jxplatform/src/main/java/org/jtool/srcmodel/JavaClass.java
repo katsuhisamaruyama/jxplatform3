@@ -5,6 +5,7 @@
 
 package org.jtool.srcmodel;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.srcmodel.internal.TypeCollector;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
@@ -732,16 +733,16 @@ public class JavaClass extends JavaElement {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("\n");
+        buf.append(br);
         buf.append(getKindLabel() + ": ");
         buf.append(getQualifiedName());
-        buf.append("\n");
+        buf.append(br);
         if (getSuperClassName() != null && getSuperClassName().length() > 0) {
             buf.append(" EXTENDS: ");
             buf.append(getSuperClassName());
         }
         if (getSuperInterfaceNames().size() != 0) {
-            buf.append("\n");
+            buf.append(br);
             buf.append(" IMPLEMENTS:");
             for (String name : getSuperInterfaceNames()) {
                 buf.append(" " + name);

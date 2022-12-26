@@ -5,6 +5,7 @@
 
 package org.jtool.cfg;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.srcmodel.QualifiedName;
 import java.util.Map;
 import java.util.HashMap;
@@ -156,12 +157,12 @@ public class CCFG {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- CCFG (from here) -----\n");
+        buf.append("----- CCFG (from here) -----" +br);
         buf.append("Class Name = " + getQualifiedName());
-        buf.append("\n");
-        cfgs.values().forEach(cfg -> buf.append(cfg.toStringForNodes() + "--\n"));
-        cfgs.values().forEach(cfg -> buf.append(cfg.toStringForEdges() + "--\n"));
-        buf.append("----- CCFG (to here) -----\n");
+        buf.append(br);
+        cfgs.values().forEach(cfg -> buf.append(cfg.toStringForNodes() + "--" + br));
+        cfgs.values().forEach(cfg -> buf.append(cfg.toStringForEdges() + "--" + br));
+        buf.append("----- CCFG (to here) -----" + br);
         return buf.toString();
     }
 }

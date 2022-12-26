@@ -5,6 +5,7 @@
 
 package org.jtool.srcmodel;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.jxplatform.builder.TimeInfo;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.ASTNode;
@@ -245,7 +246,7 @@ public class JavaFile {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("\n");
+        buf.append(br);
         buf.append("FILE: ");
         buf.append(getPath());
         return buf.toString();

@@ -5,6 +5,7 @@
 
 package org.jtool.codemanipulation;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.JavaCore;
@@ -202,7 +203,7 @@ public class CodeGenerator {
                 int end = start + comment.getLength();
                 
                 if (pos <= start && end < node.getStartPosition()) {
-                    String fragment = contents.substring(start, end) + "\n";
+                    String fragment = contents.substring(start, end) + br;
                     buffer.append(fragment);
                     pos = end;
                     
@@ -224,8 +225,8 @@ public class CodeGenerator {
                 if (nend < start) {
                     String text = contents.substring(nend, start);
                     if (containsOnlyWhiteSpaces(text.toCharArray())) {
-                        String fragment = contents.substring(start, end) + "\n";
-                        if (buffer.charAt(buffer.length() - 1) == '\n') {
+                        String fragment = contents.substring(start, end) + br;
+                        if (buffer.charAt(buffer.length() - 1) == br.charAt(0)) {
                             buffer.deleteCharAt(buffer.length() - 1);
                             buffer.append("  ");
                         }

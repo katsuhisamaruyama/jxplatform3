@@ -5,6 +5,7 @@
 
 package org.jtool.srcmodel;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.IVariableBinding;
 import org.eclipse.jdt.core.dom.ITypeBinding;
@@ -143,7 +144,7 @@ public class JavaLocalVar extends JavaVariable {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("\n");
+        buf.append(br);
         buf.append("LOCAL: ");
         buf.append(getName());
         buf.append("@");

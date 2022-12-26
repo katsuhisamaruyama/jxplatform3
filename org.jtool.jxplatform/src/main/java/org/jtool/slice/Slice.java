@@ -5,6 +5,7 @@
 
 package org.jtool.slice;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.slice.internal.Slicer;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
@@ -154,10 +155,10 @@ public class Slice {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- Slice (from here) -----\n");
+        buf.append("----- Slice (from here) -----" + br);
         buf.append(criterion.toString());
         buf.append(getNodeInfo());
-        buf.append("----- Slice (to here) -----\n");
+        buf.append("----- Slice (to here) -----" + br);
         return buf.toString();
     }
     
@@ -173,7 +174,7 @@ public class Slice {
             if (pdgnode.getCFGNode().getASTNode() != null) {
                 buf.append(" offset=" + pdgnode.getCFGNode().getASTNode().getStartPosition());
             }
-            buf.append("\n");
+            buf.append(br);
         });
         return buf.toString();
     }

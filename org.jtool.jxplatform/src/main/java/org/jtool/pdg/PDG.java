@@ -5,6 +5,7 @@
 
 package org.jtool.pdg;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.cfg.CFG;
 import org.jtool.graph.Graph;
 import org.jtool.srcmodel.QualifiedName;
@@ -255,12 +256,12 @@ public class PDG extends Graph<PDGNode, Dependence> {
      */
     public String toString(String kindName) {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- " + kindName + " (from here) -----\n");
+        buf.append("----- " + kindName + " (from here) -----" + br);
         buf.append("Name = " + getQualifiedName());
-        buf.append("\n");
+        buf.append(br);
         buf.append(toStringForNodes()); 
         buf.append(toStringForEdges());
-        buf.append("----- " + kindName + " (to here) -----\n");
+        buf.append("----- " + kindName + " (to here) -----" + br);
         return buf.toString();
     }
     
@@ -284,7 +285,7 @@ public class PDG extends Graph<PDGNode, Dependence> {
             buf.append(String.valueOf(index));
             buf.append(": ");
             buf.append(edge.toString());
-            buf.append("\n");
+            buf.append(br);
             index++;
         }
         return buf.toString();
@@ -299,7 +300,7 @@ public class PDG extends Graph<PDGNode, Dependence> {
         for (DependencyGraphEdge edge : DependencyGraphEdge.sortEdges(getEdges())) {
             if (edge.isCD()) {
                 buf.append(edge.toString());
-                buf.append("\n");
+                buf.append(br);
             }
         }
         return buf.toString();
@@ -314,7 +315,7 @@ public class PDG extends Graph<PDGNode, Dependence> {
         for (DependencyGraphEdge edge : DependencyGraphEdge.sortEdges(getEdges())) {
             if (edge.isDD()) {
                 buf.append(edge.toString());
-                buf.append("\n");
+                buf.append(br);
             }
         }
         return buf.toString();

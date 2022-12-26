@@ -5,6 +5,7 @@
 
 package org.jtool.cfg;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -103,9 +104,9 @@ public class BasicBlock {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- Basic Block (from here) -----\n");
+        buf.append("----- Basic Block (from here) -----" + br);
         buf.append(toStringForNodes());
-        buf.append("----- Basic Block (to here) -----\n");
+        buf.append("----- Basic Block (to here) -----" + br);
         return buf.toString();
     }
     
@@ -117,7 +118,7 @@ public class BasicBlock {
         StringBuilder buf = new StringBuilder();
         getNodes().forEach(node -> {
             buf.append(node.toString());
-            buf.append("\n");
+            buf.append(br);
         });
         return buf.toString();
     }

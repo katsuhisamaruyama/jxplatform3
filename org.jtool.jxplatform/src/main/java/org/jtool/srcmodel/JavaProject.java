@@ -5,6 +5,7 @@
 
 package org.jtool.srcmodel;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.cfg.internal.CFGStore;
 import org.jtool.pdg.internal.PDGStore;
 import org.jtool.jxplatform.builder.ModelBuilder;
@@ -608,7 +609,7 @@ public class JavaProject {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("\n");
+        buf.append(br);
         buf.append("JPROJECT: ");
         buf.append(getName());
         buf.append(" [");

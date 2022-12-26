@@ -5,6 +5,7 @@
 
 package org.jtool.cfg;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.srcmodel.QualifiedName;
 import org.jtool.cfg.internal.DominantStatement;
 import org.jtool.graph.Graph;
@@ -639,10 +640,10 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- CFG of " + getQualifiedName() + "-----\n");
+        buf.append("----- CFG of " + getQualifiedName() + "-----" + br);
         buf.append(toStringForNodes()); 
         buf.append(toStringForEdges());
-        buf.append("-----------------------------------\n");
+        buf.append("-----------------------------------" + br);
         return buf.toString();
     }
     
@@ -654,7 +655,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
         StringBuilder buf = new StringBuilder();
         CFGNode.sortNodes(getNodes()).forEach(node -> {
             buf.append(node.toString());
-            buf.append("\n");
+            buf.append(br);
         });
         return buf.toString();
     }
@@ -668,14 +669,14 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
         buf.append(GraphElement.getIdString(0));
         buf.append(": ");
         buf.append(entry.getSignature());
-        buf.append("\n");
+        buf.append(br);
         
         long index = 1;
         for (ControlFlow edge : ControlFlow.sortEdges(getEdges())) {
             buf.append(GraphElement.getIdString(index));
             buf.append(": ");
             buf.append(edge.toString());
-            buf.append("\n");
+            buf.append(br);
             index++;
         }
         return buf.toString();

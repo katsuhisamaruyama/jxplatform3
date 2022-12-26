@@ -5,6 +5,7 @@
 
 package org.jtool.jxplatform.project;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -246,23 +247,23 @@ class GradleEnv extends ProjectEnv {
     
     private String getConfiguration(String taskName, String[] dependencies) throws IOException {
         StringBuilder str = new StringBuilder();
-        str.append("\n");
-        str.append("//THESE SETTINGS AND TASK WERE ADDED BY JxPlatform\n");
+        str.append(br);
+        str.append("//THESE SETTINGS AND TASK WERE ADDED BY JxPlatform" + br);
         for (int index = 0; index < dependencies.length; index++) {
             str.append("configurations.");
             str.append(dependencies[index]);
-            str.append(".setCanBeResolved(true)\n");
+            str.append(".setCanBeResolved(true)" + br);
         }
         str.append("task ");
         str.append(taskName);
-        str.append("(type: Copy) {\n");
+        str.append("(type: Copy) {" + br);
         for (int index = 0; index < dependencies.length; index++) {
             str.append("  from ");
             str.append("configurations.");
             str.append(dependencies[index]);
-            str.append(" into '" + COPIED_CLASSPATH + "'\n");
+            str.append(" into '" + COPIED_CLASSPATH + "'" + br);
         }
-        str.append("}\n");
+        str.append("}" + br);
         return str.toString();
     }
     

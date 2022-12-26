@@ -5,6 +5,7 @@
 
 package org.jtool.pdg;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
@@ -382,12 +383,12 @@ public class DependencyGraph {
      */
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- (from here) -----\n");
+        buf.append("----- (from here) -----"  + br);
         buf.append("Name = " + getName());
-        buf.append("\n");
+        buf.append(br);
         buf.append(toStringForNodes()); 
         buf.append(toStringForEdges());
-        buf.append("----- (to here) -----\n");
+        buf.append("----- (to here) -----" + br);
         return buf.toString();
     }
     
@@ -399,7 +400,7 @@ public class DependencyGraph {
         StringBuilder buf = new StringBuilder();
         GraphNode.sortGraphNode(getNodes()).forEach(node -> {
             buf.append(node.toString());
-            buf.append("\n");
+            buf.append(br);
         });
         return buf.toString();
     }
@@ -415,7 +416,7 @@ public class DependencyGraph {
             buf.append(String.valueOf(index));
             buf.append(": ");
             buf.append(edge.toString());
-            buf.append("\n");
+            buf.append(br);
             index++;
         }
         return buf.toString();

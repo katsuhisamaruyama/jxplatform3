@@ -5,6 +5,7 @@
 
 package org.jtool.cfg;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.graph.GraphElement;
 import java.util.HashSet;
 import java.util.Set;
@@ -146,9 +147,9 @@ public class CallGraph {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- CallGraph of " + getName() + "-----\n");
+        buf.append("----- CallGraph of " + getName() + "-----" + br);
         buf.append(toStringForEdges());
-        buf.append("-----------------------------------\n");
+        buf.append("-----------------------------------" +br);
         return buf.toString();
     }
     
@@ -163,7 +164,7 @@ public class CallGraph {
             buf.append(GraphElement.getIdString(index));
             buf.append(": ");
             buf.append(edge.toString());
-            buf.append("\n");
+            buf.append(br);
             index++;
         }
         return buf.toString();

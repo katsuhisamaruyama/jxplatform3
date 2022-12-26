@@ -5,6 +5,7 @@
 
 package org.jtool.srcmodel;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.eclipse.jdt.core.dom.PackageDeclaration;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.IPackageBinding;
@@ -213,7 +214,7 @@ public class JavaPackage {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("\n");
+        buf.append(br);
         buf.append("PACKAGE: ");
         buf.append(getName());
         return buf.toString();

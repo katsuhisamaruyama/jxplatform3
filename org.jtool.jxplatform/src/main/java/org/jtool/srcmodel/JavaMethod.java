@@ -5,6 +5,7 @@
 
 package org.jtool.srcmodel;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.srcmodel.internal.FieldAccessCollector;
 import org.jtool.srcmodel.internal.LambdaCollector;
 import org.jtool.srcmodel.internal.LocalDeclarationCollector;
@@ -658,7 +659,7 @@ public class JavaMethod extends JavaElement {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("\n");
+        buf.append(br);
         buf.append("METHOD: ");
         buf.append(getSignature());
         buf.append("@");
@@ -674,7 +675,7 @@ public class JavaMethod extends JavaElement {
     public String toStringForParameters() {
         StringBuilder buf = new StringBuilder();
         for (JavaLocalVar param : parameters) {
-            buf.append("\n");
+            buf.append(br);
             buf.append(" PARAMETER : ");
             buf.append(param.getName());
             buf.append("@");
@@ -690,7 +691,7 @@ public class JavaMethod extends JavaElement {
     String toStringCalledMethods() {
         StringBuilder buf = new StringBuilder();
         for (JavaMethod jm : getCalledMethods()) {
-            buf.append("\n");
+            buf.append(br);
             buf.append(" THIS METHOD CALLS : ");
             buf.append(jm.getSignature());
         }

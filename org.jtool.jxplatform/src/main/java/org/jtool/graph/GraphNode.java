@@ -193,14 +193,19 @@ public abstract class GraphNode extends GraphElement {
      */
     public String toString() {
         StringBuilder buf = new StringBuilder(); 
-        buf.append("Node: " + GraphElement.getIdString(getId()) + "\n");
+        buf.append("Node: " + GraphElement.getIdString(getId()));
+        buf.append(System.getProperty("line.separator"));
+        
         List<GraphEdge> outgoing = getOutgoingEdges();
         buf.append("  Outgoing :");
         outgoing.forEach(edge -> buf.append("  " + edge.getDstNode().getId()));
-        buf.append("\n");
+        buf.append(System.getProperty("line.separator"));
+        
         List<GraphEdge> incoming = getIncomingEdges();
         buf.append("  Incoming :");
         incoming.forEach(edge -> buf.append("  " + edge.getSrcNode().getId()));
+        buf.append(System.getProperty("line.separator"));
+        
         return buf.toString();
     }
     

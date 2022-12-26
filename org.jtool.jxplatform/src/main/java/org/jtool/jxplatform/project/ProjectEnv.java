@@ -158,7 +158,7 @@ abstract class ProjectEnv {
     }
     
     protected String toAbsolutePath(String path) {
-        if (path.charAt(0) == '/') {
+        if (Paths.get(path).isAbsolute()) {
             return path;
         } else {
              return basePath.toAbsolutePath() + File.separator + path;
@@ -174,8 +174,8 @@ abstract class ProjectEnv {
     
     protected static String findCommandPath(String command, String option) {
         if (System.getProperty("os.name").toLowerCase().startsWith("windows")) {
-            System.err.println("This method is not available on Windows.");
-            return null;
+            System.err.println("The 'mvn' command may not be available on Windows.");
+            return "mvn";
         }
         
         String[] paths = { userHome, "/usr/local/bin", "/usr/bin" };

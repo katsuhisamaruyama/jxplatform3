@@ -5,6 +5,7 @@
 
 package org.jtool.jxplatform.project;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
@@ -54,7 +55,7 @@ public class Logger {
         StringBuilder buf = new StringBuilder();
         for (String mesg : logMessages) {
             buf.append(mesg);
-            buf.append("\n");
+            buf.append(br);
         }
         
         try {

@@ -152,10 +152,10 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- Graph (from here) -----\n");
+        buf.append("----- Graph (from here) -----" + System.getProperty("line.separator"));
         buf.append(toStringForNodes());
         buf.append(toStringForEdges());
-        buf.append("----- Graph (to here) -----\n");
+        buf.append("----- Graph (to here) -----" + System.getProperty("line.separator"));
         return buf.toString();
     }
     
@@ -167,7 +167,7 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
         StringBuilder buf = new StringBuilder();
         GraphNode.sortGraphNode(getNodes()).forEach(node -> {
             buf.append(node.toString());
-            buf.append("\n");
+            buf.append(System.getProperty("line.separator"));
         });
         return buf.toString();
     }
@@ -180,7 +180,7 @@ public class Graph<N extends GraphNode, E extends GraphEdge> {
         StringBuilder buf = new StringBuilder();
         GraphEdge.sortGrapgEdge(getEdges()).forEach(edge -> {
             buf.append(edge.toString());
-            buf.append("\n");
+            buf.append(System.getProperty("line.separator"));
         });
         return buf.toString();
     }

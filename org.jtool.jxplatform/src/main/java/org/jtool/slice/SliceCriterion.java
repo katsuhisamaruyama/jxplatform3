@@ -5,6 +5,7 @@
 
 package org.jtool.slice;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.pdg.DependencyGraph;
 import org.jtool.pdg.PDGNode;
 import org.jtool.pdg.PDGStatement;
@@ -233,7 +234,7 @@ public class SliceCriterion {
         buf.append(";");
         buf.append(" Variable =" + getVariableNames(variables));
         buf.append(" on " + graph.getName());
-        buf.append("\n");
+        buf.append(br);
         return buf.toString();
     }
     
