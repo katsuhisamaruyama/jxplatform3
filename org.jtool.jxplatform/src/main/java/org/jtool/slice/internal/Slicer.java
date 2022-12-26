@@ -252,13 +252,6 @@ public class Slicer {
                     if (getDominantNode(src).getCFGNode().isFieldEntry()) {
                         traverseBackward(src);
                         
-                    } else {
-                        //for (PDGNode callNode : getCallsToMethodOf(src)) {
-                        //    collectReachedMethodCalls(src);
-                        //    if (reachedMethodCalls.contains(callNode)) {
-                        //        traverseBackward(src);
-                        //    }
-                        //}
                     }
                     continue;
                 }

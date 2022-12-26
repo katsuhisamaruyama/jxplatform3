@@ -39,6 +39,7 @@ class JUnsupportedReference extends JVariableReference {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isUnsupportedReference() {
         return true;
     }

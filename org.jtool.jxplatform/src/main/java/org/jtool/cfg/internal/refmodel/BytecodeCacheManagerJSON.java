@@ -66,7 +66,7 @@ class BytecodeCacheManagerJSON extends BytecodeCacheManager {
             parseJSONProject(jproject, cacheName, bootModule, reader);
             return true;
         } catch (IOException e) {
-            System.err.println("IO error2 " + e.getMessage());
+            System.err.println("IO error " + e.getMessage());
             return false;
         }
     }
