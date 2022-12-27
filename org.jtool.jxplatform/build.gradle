@@ -90,7 +90,7 @@ task ciTest(type: Test) {
 }
 
 task smokeTest(type: Test) {
-	minHeapSize = "6g"
+    minHeapSize = "6g"
     maxHeapSize = "6g"
     
     include '**/org/jtool/slice/CFGTest.class'
@@ -99,8 +99,8 @@ task smokeTest(type: Test) {
 }
 
 test {
-    minHeapSize = "8g"
-    maxHeapSize = "8g"
+    minHeapSize = "16g"
+    maxHeapSize = "16g"
     
     //testLogging {
     //    events 'standard_out', 'standard_error'
