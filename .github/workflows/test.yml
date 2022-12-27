@@ -14,8 +14,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: ['11', '17']
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        #java: ['11', '17']
+        os: [ubuntu-latest, macos-latest]
         #os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
@@ -28,10 +28,14 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          #java-version: ${{ matrix.java }}
           java-version: 11
+          #java-version: ${{ matrix.java }}
           cache: 'gradle'
 
+      - name: Clean reposiory
+        run: ./gradlew clean
+        working-directory: org.jtool.jxplatform
+        
       - name: Do test
-        run: ./gradlew test
+        run: ./gradlew ciTest
         working-directory: org.jtool.jxplatform

@@ -26,7 +26,7 @@ public class CFGBuilderTest {
     public void testCSclassroomProject() {
         BuilderTestUtil.clearProject();
         
-        JavaProject jproject = BuilderTestUtil.createProject("CS-classroom", "/lib/*", "/src");
+        JavaProject jproject = BuilderTestUtil.getProject("CS-classroom");
         boolean result = check(jproject);
         assertTrue(result);
         
@@ -38,7 +38,7 @@ public class CFGBuilderTest {
     public void testDrawToolProject() {
         BuilderTestUtil.clearProject();
         
-        JavaProject jproject = BuilderTestUtil.createProject("DrawTool", "", "/src");
+        JavaProject jproject = BuilderTestUtil.getProject("DrawTool");
         boolean result = check(jproject);
         assertTrue(result);
         
@@ -50,7 +50,7 @@ public class CFGBuilderTest {
     public void testSimpleProject() {
         BuilderTestUtil.clearProject();
         
-        JavaProject jproject = BuilderTestUtil.createProject("Simple", "", "");
+        JavaProject jproject = BuilderTestUtil.getProject("Simple");
         boolean result = check(jproject);
         assertTrue(result);
         
@@ -62,7 +62,7 @@ public class CFGBuilderTest {
     public void testSliceProject() {
         BuilderTestUtil.clearProject();
         
-        JavaProject jproject = BuilderTestUtil.createProject("Slice", "", "");
+        JavaProject jproject = BuilderTestUtil.getProject("Slice");
         boolean result = check(jproject);
         assertTrue(result);
         
@@ -74,7 +74,7 @@ public class CFGBuilderTest {
     public void testTetrisProject() {
         BuilderTestUtil.clearProject();
         
-        JavaProject jproject = BuilderTestUtil.createProject("Tetris", "", "");
+        JavaProject jproject = BuilderTestUtil.getProject("Tetris");
         boolean result = check(jproject);
         assertTrue(result);
         
@@ -86,7 +86,7 @@ public class CFGBuilderTest {
     public void testVideoStoreProject() {
         BuilderTestUtil.clearProject();
         
-        JavaProject jproject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
+        JavaProject jproject = BuilderTestUtil.getProject("VideoStore");
         boolean result = check(jproject);
         assertTrue(result);
         
@@ -123,18 +123,28 @@ public class CFGBuilderTest {
      * Creates CFG information as expected data when testing.
      */
     public static void main(String[] args) {
-        JavaProject CSclassroomProject = BuilderTestUtil.createProject("CS-classroom", "/lib/*", "/src");
-        JavaProject DrawToolProject = BuilderTestUtil.createProject("DrawTool", "", "/src");
-        JavaProject SimpleProject = BuilderTestUtil.createProject("Simple", "", "");
-        JavaProject SliceProject = BuilderTestUtil.createProject("Slice", "", "");
-        JavaProject TetrisProject = BuilderTestUtil.createProject("Tetris", "", "");
-        JavaProject VideoStoreProject = BuilderTestUtil.createProject("VideoStore", "/lib/*", "");
-        
+        BuilderTestUtil.clearProject();
+        JavaProject CSclassroomProject = BuilderTestUtil.getProject("CS-classroom");
         CFGTestUtil.writeCFGs(CSclassroomProject, false);
+        
+        BuilderTestUtil.clearProject();
+        JavaProject DrawToolProject = BuilderTestUtil.getProject("DrawTool");
         CFGTestUtil.writeCFGs(DrawToolProject, false);
+        
+        BuilderTestUtil.clearProject();
+        JavaProject SimpleProject = BuilderTestUtil.getProject("Simple");
         CFGTestUtil.writeCFGs(SimpleProject, false);
+        
+        BuilderTestUtil.clearProject();
+        JavaProject SliceProject = BuilderTestUtil.getProject("Slice");
         CFGTestUtil.writeCFGs(SliceProject, false);
+        
+        BuilderTestUtil.clearProject();
+        JavaProject TetrisProject = BuilderTestUtil.getProject("Tetris");
         CFGTestUtil.writeCFGs(TetrisProject, false);
+        
+        BuilderTestUtil.clearProject();
+        JavaProject VideoStoreProject = BuilderTestUtil.getProject("VideoStore");
         CFGTestUtil.writeCFGs(VideoStoreProject, false);
     }
 }

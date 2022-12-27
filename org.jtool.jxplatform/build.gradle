@@ -74,13 +74,18 @@ compileJava {
     options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
 }
 
-test {
+task ciTest(type: Test) {
     minHeapSize = "6g"
     maxHeapSize = "6g"
     
+    include '**/org/jtool/srcmodel/AllSrcTests.class'
+    include '**/org/jtool/cfg/AllCFGTests.class'
+    include '**/org/jtool/pdg/AllPDGTests.class'
+    include '**/org/jtool/slice/AllSliceTests.class'
+    include '**/org/jtool/codemanipulation/AllCodeManipulationTests.class'
+    
     useJUnit {
         excludeCategories 'org.jtool.jxplatform.util.FlakyByExternalLib'
-        excludeCategories 'org.jtool.jxplatform.util.LongByRealProject'
     }
 }
 
@@ -88,10 +93,12 @@ task smokeTest(type: Test) {
 	minHeapSize = "6g"
     maxHeapSize = "6g"
     
-    include '**/org/jtool/slice/*.class'
+    include '**/org/jtool/slice/CFGTest.class'
+    include '**/org/jtool/slice/PDGTest.class'
+    include '**/org/jtool/slice/SliceTest.class'
 }
 
-task allTest(type: Test) {
+test {
     minHeapSize = "8g"
     maxHeapSize = "8g"
     
