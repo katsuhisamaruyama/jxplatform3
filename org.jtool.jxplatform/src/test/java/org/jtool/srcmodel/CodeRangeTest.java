@@ -5,16 +5,15 @@
 
 package org.jtool.srcmodel;
 
+import static org.jtool.srcmodel.AllSrcTests.DrawToolProject;
+import static org.jtool.srcmodel.AllSrcTests.SliceProject;
+import static org.jtool.srcmodel.AllSrcTests.VideoStoreProject;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.junit.Test;
 import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 
 public class CodeRangeTest {
-    
-    private static JavaProject DrawToolProject;
-    private static JavaProject SliceProject;
-    private static JavaProject VideoStoreProject;
     
     @BeforeClass
     public static void setUp() {

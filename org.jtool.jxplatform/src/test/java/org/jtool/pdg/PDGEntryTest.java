@@ -5,7 +5,8 @@
 
 package org.jtool.pdg;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.pdg.AllPDGTests.SliceProject;
+import org.jtool.pdg.internal.PDGTestUtil;
 import org.jtool.srcmodel.QualifiedName;
 import org.jtool.cfg.CFGEntry;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
@@ -19,8 +20,6 @@ import static org.junit.Assert.assertEquals;
  * @author Katsuhisa Maruyama
  */
 public class PDGEntryTest {
-    
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

@@ -5,7 +5,9 @@
 
 package org.jtool.srcmodel.internal;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.srcmodel.AllSrcTests.DrawToolProject;
+import static org.jtool.srcmodel.AllSrcTests.SliceProject;
+import static org.jtool.srcmodel.AllSrcTests.TetrisProject;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.srcmodel.JavaMethod;
 import org.junit.Test;
@@ -13,10 +15,6 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 
 public class StatementCollectorTest {
-    
-    private static JavaProject DrawToolProject;
-    private static JavaProject SliceProject;
-    private static JavaProject TetrisProject;
     
     @BeforeClass
     public static void setUp() {

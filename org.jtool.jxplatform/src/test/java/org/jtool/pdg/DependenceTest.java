@@ -5,8 +5,10 @@
 
 package org.jtool.pdg;
 
+import static org.jtool.pdg.AllPDGTests.SimpleProject;
+import static org.jtool.pdg.AllPDGTests.SliceProject;
+import org.jtool.pdg.internal.PDGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
-import org.jtool.srcmodel.JavaProject;
 import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -14,9 +16,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
 public class DependenceTest {
-    
-    private static JavaProject SimpleProject;
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {
@@ -323,8 +322,6 @@ public class DependenceTest {
         PDGNode src = pdg.getNode(16);
         PDGNode dst = pdg.getNode(7);
         List<Dependence> result = PDGTestUtil.getDependence(pdg, src, dst);
-        
-        pdg.print();
         
         assertTrue(result.get(0).isDD());
     }

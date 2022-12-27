@@ -5,7 +5,7 @@
 
 package org.jtool.cfg.internal;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.cfg.AllCFGTests.SimpleProject;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGMethodCall;
 import org.jtool.cfg.CFGStatement;
@@ -19,8 +19,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ExpressionVisitorTest {
-    
-    private static JavaProject SimpleProject;
     
     @BeforeClass
     public static void setUp() {

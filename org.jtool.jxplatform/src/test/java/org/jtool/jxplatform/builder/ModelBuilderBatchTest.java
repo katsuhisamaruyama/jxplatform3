@@ -6,10 +6,8 @@
 package org.jtool.jxplatform.builder;
 
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.util.LongByRealProject;
 import java.io.File;
 import java.util.List;
-import org.junit.experimental.categories.Category;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -196,7 +194,6 @@ public class ModelBuilderBatchTest {
         BuilderTestUtil.clearProject();
     }
     
-    @Category(LongByRealProject.class)
     @Test
     public void testAnt() {
         String name = "ant-1.10.12";
@@ -214,7 +211,6 @@ public class ModelBuilderBatchTest {
         BuilderTestUtil.clearProject();
     }
     
-    @Category(LongByRealProject.class)
     @Test
     public void testGuava() {
         String name = "guava-31.0.1";
@@ -238,7 +234,6 @@ public class ModelBuilderBatchTest {
         BuilderTestUtil.clearProject();
     }
     
-    @Category(LongByRealProject.class)
     @Test
     public void testMockito() {
         String name = "mockito-4.2.0";

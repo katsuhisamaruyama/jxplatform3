@@ -5,12 +5,12 @@
 
 package org.jtool.slice;
 
+import static org.jtool.slice.AllSliceTests.SliceProject;
 import org.jtool.pdg.DependencyGraph;
-import org.jtool.pdg.PDGTestUtil;
+import org.jtool.pdg.internal.PDGTestUtil;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
-import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import org.junit.BeforeClass;
@@ -19,8 +19,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class SliceCriterionTest {
-    
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

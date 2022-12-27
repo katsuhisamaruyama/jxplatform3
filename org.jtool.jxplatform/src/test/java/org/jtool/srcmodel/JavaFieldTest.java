@@ -5,6 +5,9 @@
 
 package org.jtool.srcmodel;
 
+import static org.jtool.srcmodel.AllSrcTests.SimpleProject;
+import static org.jtool.srcmodel.AllSrcTests.TetrisProject;
+import static org.jtool.srcmodel.AllSrcTests.VideoStoreProject;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.util.Set;
@@ -15,10 +18,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 public class JavaFieldTest {
-    
-    private static JavaProject SimpleProject;
-    private static JavaProject TetrisProject;
-    private static JavaProject VideoStoreProject;
     
     @BeforeClass
     public static void setUp() {

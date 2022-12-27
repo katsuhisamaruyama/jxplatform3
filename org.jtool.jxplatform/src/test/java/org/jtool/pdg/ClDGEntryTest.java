@@ -5,8 +5,9 @@
 
 package org.jtool.pdg;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.pdg.AllPDGTests.SliceProject;
 import org.jtool.srcmodel.QualifiedName;
+import org.jtool.pdg.internal.PDGTestUtil;
 import org.jtool.cfg.CCFGEntry;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.junit.BeforeClass;
@@ -14,8 +15,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class ClDGEntryTest {
-    
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

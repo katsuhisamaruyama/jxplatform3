@@ -5,20 +5,18 @@
 
 package org.jtool.cfg;
 
+import static org.jtool.cfg.AllCFGTests.SliceProject;
 import org.jtool.srcmodel.JavaField;
-import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.QualifiedName;
 import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.util.List;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 
 public class CFGFieldEntryTest {
-    
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

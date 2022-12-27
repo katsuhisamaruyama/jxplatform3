@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.junit.experimental.categories.Category;
 import org.junit.Test;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -25,8 +26,15 @@ public class JavaPackageTest {
     
     @BeforeClass
     public static void setUp() {
+        BuilderTestUtil.clearProject();
+        
         TetrisProject = BuilderTestUtil.getProject("Tetris");
         VideoStoreProject = BuilderTestUtil.getProject("VideoStore");
+    }
+    
+    @AfterClass
+    public static void tearDown() {
+        BuilderTestUtil.clearProject();
     }
     
     @Test

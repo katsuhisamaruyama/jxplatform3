@@ -5,16 +5,15 @@
 
 package org.jtool.pdg;
 
+import static org.jtool.pdg.AllPDGTests.SliceProject;
+import org.jtool.pdg.internal.PDGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
-import org.jtool.srcmodel.JavaProject;
 import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
 public class InterPDGCDTest {
-    
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

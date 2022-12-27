@@ -5,21 +5,19 @@
 
 package org.jtool.cfg;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.cfg.AllCFGTests.SimpleProject;
+import static org.jtool.cfg.AllCFGTests.SliceProject;
+import static org.jtool.cfg.AllCFGTests.VideoStoreProject;
 import org.jtool.srcmodel.QualifiedName;
 import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.util.Set;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 
 public class CCFGEntryTest {
-    
-    private static JavaProject SimpleProject;
-    private static JavaProject SliceProject;
-    private static JavaProject VideoStoreProject;
     
     @BeforeClass
     public static void setUp() {

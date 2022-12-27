@@ -5,7 +5,7 @@
 
 package org.jtool.cfg;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.cfg.AllCFGTests.SliceProject;
 import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.junit.Test;
@@ -13,8 +13,6 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 
 public class CFGExceptionTest {
-    
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

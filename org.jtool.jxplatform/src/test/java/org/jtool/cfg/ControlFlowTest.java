@@ -5,7 +5,8 @@
 
 package org.jtool.cfg;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.cfg.AllCFGTests.SimpleProject;
+import static org.jtool.cfg.AllCFGTests.SliceProject;
 import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.cfg.internal.CallGraphBuilder;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
@@ -16,9 +17,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ControlFlowTest {
-    
-    private static JavaProject SimpleProject;
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

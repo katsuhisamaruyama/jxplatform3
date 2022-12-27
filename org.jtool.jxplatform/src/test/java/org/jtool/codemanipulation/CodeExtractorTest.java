@@ -5,6 +5,7 @@
 
 package org.jtool.codemanipulation;
 
+import static org.jtool.codemanipulation.AllCodeManipulationTests.SimpleProject;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.QualifiedName;
@@ -12,15 +13,13 @@ import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.PDGNode;
-import org.jtool.pdg.PDGTestUtil;
+import org.jtool.pdg.internal.PDGTestUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import java.util.Set;
 
 public class CodeExtractorTest {
-    
-    private static JavaProject SimpleProject;
     
     private static String getCode(JavaProject jproject, String cname, int[] indices) {
         JavaClass jclass = jproject.getClass(cname);

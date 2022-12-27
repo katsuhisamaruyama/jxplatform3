@@ -5,9 +5,9 @@
 
 package org.jtool.cfg;
 
+import static org.jtool.cfg.AllCFGTests.SliceProject;
 import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
-import org.jtool.srcmodel.JavaProject;
 import java.util.List;
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -16,8 +16,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 public class JFieldReferenceTest {
-    
-private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

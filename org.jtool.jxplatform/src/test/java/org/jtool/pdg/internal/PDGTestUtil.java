@@ -3,8 +3,17 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.pdg;
+package org.jtool.pdg.internal;
 
+import org.jtool.pdg.PDG;
+import org.jtool.pdg.ClDG;
+import org.jtool.pdg.SDG;
+import org.jtool.pdg.DependencyGraph;
+import org.jtool.pdg.PDGNode;
+import org.jtool.pdg.PDGEntry;
+import org.jtool.pdg.Dependence;
+import org.jtool.pdg.DD;
+import org.jtool.pdg.DependencyGraphEdge;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
@@ -16,10 +25,10 @@ import org.jtool.cfg.CFG;
 import org.jtool.cfg.JReference;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.cfg.internal.CFGTestUtil;
-import org.jtool.graph.GraphElement;
 import org.jtool.cfg.JMethodReference;
 import org.jtool.cfg.JFieldReference;
 import org.jtool.cfg.JLocalVarReference;
+import org.jtool.graph.GraphElement;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;

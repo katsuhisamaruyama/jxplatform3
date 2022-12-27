@@ -5,9 +5,9 @@
 
 package org.jtool.cfg.internal;
 
+import static org.jtool.cfg.AllCFGTests.SliceProject;
 import org.jtool.cfg.CFG;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
-import org.jtool.srcmodel.JavaProject;
 import java.util.List;
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -17,8 +17,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 
 public class JReturnValueReferenceTest {
-    
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

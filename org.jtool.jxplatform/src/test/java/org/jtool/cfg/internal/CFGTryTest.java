@@ -3,11 +3,11 @@
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-package org.jtool.cfg;
+package org.jtool.cfg.internal;
 
-import org.jtool.srcmodel.JavaProject;
-import org.jtool.cfg.internal.CFGTestUtil;
-import org.jtool.cfg.internal.CFGTry;
+import static org.jtool.cfg.AllCFGTests.SliceProject;
+import org.jtool.cfg.CFG;
+import org.jtool.cfg.CFGNode;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.util.List;
@@ -22,8 +22,6 @@ import static org.junit.Assert.assertNull;
  * @author Katsuhisa Maruyama
  */
 public class CFGTryTest {
-    
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

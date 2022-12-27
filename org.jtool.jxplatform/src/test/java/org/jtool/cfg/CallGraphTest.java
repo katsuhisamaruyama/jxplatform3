@@ -5,7 +5,7 @@
 
 package org.jtool.cfg;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.cfg.AllCFGTests.SliceProject;
 import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.cfg.internal.CallGraphBuilder;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
@@ -18,12 +18,12 @@ import static org.junit.Assert.assertTrue;
 
 public class CallGraphTest {
     
-    private static JavaProject SliceProject;
     private static CallGraph callGraph;
     
     @BeforeClass
     public static void setUp() {
         SliceProject = BuilderTestUtil.getProject("Slice");
+        
         callGraph = CallGraphBuilder.getCallGraph(SliceProject);
     }
     

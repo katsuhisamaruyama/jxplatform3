@@ -25,7 +25,7 @@ import static org.junit.Assert.assertFalse;
 public class IncrementalModelBuilderTest {
     
     private void createFile(String target) {
-        String code =
+        String code = 
                 "class New {\n" +
                 "    private int x = 1;\n" +
                 "    public void m() {\n" +
@@ -37,7 +37,7 @@ public class IncrementalModelBuilderTest {
     }
     
     private void modifyFile(String target) {
-        String code =
+        String code = 
                 "class New {\n" +
                 "    private int a = 1;\n" +
                 "    public void b() {\n" +

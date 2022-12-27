@@ -5,15 +5,13 @@
 
 package org.jtool.slice;
 
+import static org.jtool.slice.AllSliceTests.SliceProject;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
-import org.jtool.srcmodel.JavaProject;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class SliceTest {
-    
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

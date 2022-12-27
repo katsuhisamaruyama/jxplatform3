@@ -5,7 +5,7 @@
 
 package org.jtool.cfg.internal;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.cfg.AllCFGTests.SimpleProject;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import org.jtool.cfg.CFG;
@@ -16,8 +16,6 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 
 public class ReceiverTypeResolverTest {
-    
-    private static JavaProject SimpleProject;
     
     @BeforeClass
     public static void setUp() {

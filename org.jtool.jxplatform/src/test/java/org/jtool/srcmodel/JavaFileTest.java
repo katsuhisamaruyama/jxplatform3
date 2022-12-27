@@ -5,6 +5,9 @@
 
 package org.jtool.srcmodel;
 
+import static org.jtool.srcmodel.AllSrcTests.CSclassroomProject;
+import static org.jtool.srcmodel.AllSrcTests.TetrisProject;
+import static org.jtool.srcmodel.AllSrcTests.VideoStoreProject;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import org.eclipse.jdt.core.dom.CompilationUnit;
@@ -18,10 +21,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class JavaFileTest {
-    
-    private static JavaProject CSclassroomProject;
-    private static JavaProject TetrisProject;
-    private static JavaProject VideoStoreProject;
     
     @BeforeClass
     public static void setUp() {

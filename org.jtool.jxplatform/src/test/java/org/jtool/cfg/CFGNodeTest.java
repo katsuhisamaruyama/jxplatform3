@@ -5,7 +5,8 @@
 
 package org.jtool.cfg;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.cfg.AllCFGTests.SimpleProject;
+import static org.jtool.cfg.AllCFGTests.SliceProject;
 import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
@@ -22,9 +23,6 @@ import static org.junit.Assert.assertFalse;
  * @author Katsuhisa Maruyama
  */
 public class CFGNodeTest {
-    
-    private static JavaProject SimpleProject;
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

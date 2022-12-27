@@ -27,6 +27,9 @@ public class BuilderTestUtil {
     
     public static void clearProject() {
         ProjectStore store = ProjectStore.getInstance();
+        for (JavaProject project : store.getProjects()) {
+            project.getModelBuilder().unbuild();
+        }
         store.clear();
     }
     
@@ -46,7 +49,6 @@ public class BuilderTestUtil {
     private static JavaProject getProject(String name, String lib, String src) {
         ProjectStore store = ProjectStore.getInstance();
         JavaProject jproject = store.getProject(BuilderTestUtil.getTarget(name));
-        
         if (jproject == null) {
             jproject = BuilderTestUtil.createProject(name, lib, src);
         }

@@ -5,7 +5,10 @@
 
 package org.jtool.srcmodel.internal;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.srcmodel.AllSrcTests.DrawToolProject;
+import static org.jtool.srcmodel.AllSrcTests.LambdaProject;
+import static org.jtool.srcmodel.AllSrcTests.SliceProject;
+import static org.jtool.srcmodel.AllSrcTests.TetrisProject;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
@@ -15,11 +18,6 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 
 public class TypeCollectorTest {
-    
-    private static JavaProject DrawToolProject;
-    private static JavaProject LambdaProject;
-    private static JavaProject SliceProject;
-    private static JavaProject TetrisProject;
     
     @BeforeClass
     public static void setUp() {

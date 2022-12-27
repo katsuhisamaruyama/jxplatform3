@@ -5,7 +5,9 @@
 
 package org.jtool.srcmodel.internal;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.srcmodel.AllSrcTests.CSclassroomProject;
+import static org.jtool.srcmodel.AllSrcTests.DrawToolProject;
+import static org.jtool.srcmodel.AllSrcTests.SliceProject;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
@@ -16,10 +18,6 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 
 public class UncaughtExceptionTypeCollectorTest {
-    
-    private static JavaProject CSclassroomProject;
-    private static JavaProject DrawToolProject;
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

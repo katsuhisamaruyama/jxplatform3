@@ -6,10 +6,10 @@
 package org.jtool.pdg;
 
 import org.jtool.jxplatform.builder.BuilderTestUtil;
+import org.jtool.pdg.internal.PDGTestUtil;
 import org.jtool.srcmodel.JavaProject;
 import java.util.List;
 import java.util.Set;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

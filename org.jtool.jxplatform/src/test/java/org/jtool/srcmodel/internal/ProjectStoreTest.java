@@ -37,13 +37,7 @@ public class ProjectStoreTest {
     
     @AfterClass
     public static void tearDown() {
-        CSclassroomProject.getModelBuilder().unbuild();
-        DrawToolProject.getModelBuilder().unbuild();
-        LambdaProject.getModelBuilder().unbuild();
-        SimpleProject.getModelBuilder().unbuild();
-        SliceProject.getModelBuilder().unbuild();
-        TetrisProject.getModelBuilder().unbuild();
-        VideoStoreProject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test

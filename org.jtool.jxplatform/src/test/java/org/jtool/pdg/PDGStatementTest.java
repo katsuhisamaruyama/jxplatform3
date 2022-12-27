@@ -5,7 +5,8 @@
 
 package org.jtool.pdg;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.pdg.AllPDGTests.SliceProject;
+import org.jtool.pdg.internal.PDGTestUtil;
 import org.jtool.cfg.JVariableReference;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
@@ -15,8 +16,6 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 
 public class PDGStatementTest {
-    
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

@@ -5,24 +5,22 @@
 
 package org.jtool.cfg;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.cfg.AllCFGTests.SimpleProject;
+import static org.jtool.cfg.AllCFGTests.SliceProject;
 import org.jtool.cfg.internal.CFGTestUtil;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
 import java.util.List;
-import org.junit.Test;
 import org.junit.BeforeClass;
+import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class BasicBlockTest {
     
-    private static JavaProject SliceProject;
-    private static JavaProject SimpleProject;
-    
     @BeforeClass
     public static void setUp() {
-        SliceProject = BuilderTestUtil.getProject("Slice");
         SimpleProject = BuilderTestUtil.getProject("Simple");
+        SliceProject = BuilderTestUtil.getProject("Slice");
     }
     
     @Test

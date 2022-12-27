@@ -5,7 +5,8 @@
 
 package org.jtool.pdg;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.pdg.AllPDGTests.SliceProject;
+import org.jtool.pdg.internal.PDGTestUtil;
 import org.jtool.cfg.CFG;
 import org.jtool.cfg.CFGNode;
 import org.jtool.cfg.internal.CFGTestUtil;
@@ -16,8 +17,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class PDGNodeTest {
-    
-    private static JavaProject SliceProject;
     
     @BeforeClass
     public static void setUp() {

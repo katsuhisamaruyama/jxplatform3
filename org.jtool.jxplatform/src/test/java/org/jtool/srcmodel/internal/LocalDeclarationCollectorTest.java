@@ -5,7 +5,9 @@
 
 package org.jtool.srcmodel.internal;
 
-import org.jtool.srcmodel.JavaProject;
+import static org.jtool.srcmodel.AllSrcTests.SimpleProject;
+import static org.jtool.srcmodel.AllSrcTests.SliceProject;
+import static org.jtool.srcmodel.AllSrcTests.TetrisProject;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaLocalVar;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
@@ -18,10 +20,6 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 
 public class LocalDeclarationCollectorTest {
-    
-    private static JavaProject SimpleProject;
-    private static JavaProject SliceProject;
-    private static JavaProject TetrisProject;
     
     @BeforeClass
     public static void setUp() {

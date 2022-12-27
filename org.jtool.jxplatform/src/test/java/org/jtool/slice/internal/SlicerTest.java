@@ -8,7 +8,7 @@ package org.jtool.slice.internal;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
-import org.jtool.pdg.PDGTestUtil;
+import org.jtool.pdg.internal.PDGTestUtil;
 import org.jtool.slice.SliceCriterion;
 import org.jtool.slice.SliceTestUtil;
 import java.util.List;

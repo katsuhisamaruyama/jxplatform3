@@ -10,7 +10,7 @@ import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.pdg.DependencyGraph;
-import org.jtool.pdg.PDGTestUtil;
+import org.jtool.pdg.internal.PDGTestUtil;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants;
 import java.util.Map;
@@ -36,7 +36,7 @@ public class SliceTestUtil {
         Slice slice = getSlice(jproject, cname, lineNumber, offset);
         if (slice != null) {
             
-            slice.print();
+            //slice.print();
             
             Map<String, String> options = new HashMap<String, String>();
             options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
@@ -45,7 +45,7 @@ public class SliceTestUtil {
             JavaClass jclass = jproject.getClass(cname);
             String code = slice.getCode(jclass, options);
             
-            System.out.println(code);
+            //System.out.println(code);
             return code;
         }
         return "Failed";
