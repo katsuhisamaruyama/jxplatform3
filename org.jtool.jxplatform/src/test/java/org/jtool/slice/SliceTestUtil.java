@@ -67,7 +67,7 @@ public class SliceTestUtil {
         return "Failed";
     }
     
-    public static String getSlicedCodeByField(JavaProject jproject, String cname, String sig,
+    public static String getSlicedCodeByField(JavaProject jproject, String cname, String name,
             int lineNumber, int offset) {
         Slice slice = getSlice(jproject, cname, lineNumber, offset);
         if (slice != null) {
@@ -76,7 +76,7 @@ public class SliceTestUtil {
             options.put(DefaultCodeFormatterConstants.FORMATTER_INDENTATION_SIZE, "4");
             
             JavaClass jclass = jproject.getClass(cname);
-            JavaField jfield = jclass.getField(sig);
+            JavaField jfield = jclass.getField(name);
             String code = slice.getCode(jfield, options);
             return code;
         }

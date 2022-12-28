@@ -21,13 +21,13 @@ import org.junit.runners.Suite;
 })
 public class AllSliceTests {
     
-    //static JavaProject CSclassroomProject;
-    //static JavaProject DrawToolProject;
-    //static JavaProject LambdaProject;
-    //static JavaProject SimpleProject;
-    static JavaProject SliceProject;
-    //static JavaProject TetrisProject;
-    //static JavaProject VideoStoreProject;
+    //public static JavaProject CSclassroomProject;
+    //public static JavaProject DrawToolProject;
+    //public static JavaProject LambdaProject;
+    //public static JavaProject SimpleProject;
+    public static JavaProject SliceProject;
+    //public static JavaProject TetrisProject;
+    //public static JavaProject VideoStoreProject;
     
     @ClassRule
     public static ExternalResource testRule = new ExternalResource() {

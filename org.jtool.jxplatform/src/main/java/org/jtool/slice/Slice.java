@@ -141,6 +141,7 @@ public class Slice {
         CodeExtractor extractor = new CodeExtractor(jfield, nodes);
         return extractor.extract(options);
     }
+    
     /**
      * Displays information on this slice.
      */

@@ -17,11 +17,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-/**
- * Tests a class that builds a CFG.
- * 
- * @author Katsuhisa Maruyama
- */
 public class CFGNodeTest {
     
     @BeforeClass
