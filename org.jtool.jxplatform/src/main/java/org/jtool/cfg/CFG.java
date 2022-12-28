@@ -592,16 +592,6 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     }
     
     /**
-     * Unregisters the dominant statements.
-     * This method is not intended to be invoked by clients.
-     */
-    public void unregisterStructuredStatements() {
-        dominantStatementMap.values().forEach(st -> st.clear());
-        dominantStatementMap.clear();
-        dominantStatementMap = null;
-    }
-    
-    /**
      * {@inheritDoc}
      */
     @Override

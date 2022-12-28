@@ -34,7 +34,6 @@ public class CDFinder {
     public static void find(PDG pdg , CFG cfg) {
         if (hasNestStructure(cfg)) {
             findCDsOnNestStructure(pdg, cfg);
-            cfg.unregisterStructuredStatements();
         } else {
             findCDs(pdg, cfg);
         }
