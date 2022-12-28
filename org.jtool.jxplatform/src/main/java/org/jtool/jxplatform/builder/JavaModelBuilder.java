@@ -6,7 +6,6 @@
 package org.jtool.jxplatform.builder;
 
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.project.CommandLineOptions;
 import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
 import java.util.List;
 import java.util.ArrayList;

@@ -5,7 +5,7 @@
 
 package org.jtool.cfg.internal.refmodel;
 
-import org.jtool.jxplatform.project.ConsoleProgressMonitor;
+import org.jtool.jxplatform.builder.ConsoleProgressMonitor;
 import org.jtool.jxplatform.project.ModelBuilderImpl;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaProject;

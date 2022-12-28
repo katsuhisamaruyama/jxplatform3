@@ -6,7 +6,7 @@
 package org.jtool.jxplatform.plugin.internal;
 
 import org.jtool.jxplatform.plugin.Activator;
-import org.jtool.jxplatform.project.ConsoleProgressMonitor;
+import org.jtool.jxplatform.builder.ConsoleProgressMonitor;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.cfg.internal.refmodel.BytecodeClass;
 import org.jtool.cfg.internal.refmodel.BytecodeName;

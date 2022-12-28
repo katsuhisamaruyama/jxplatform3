@@ -6,9 +6,9 @@
 package org.jtool.jxplatform.plugin.internal;
 
 import org.jtool.jxplatform.plugin.Activator;
-import org.jtool.jxplatform.project.ConsoleProgressMonitor;
 import org.jtool.jxplatform.project.ModelBuilderImpl;
-import org.jtool.jxplatform.project.NullConsoleProgressMonitor;
+import org.jtool.jxplatform.builder.ConsoleProgressMonitor;
+import org.jtool.jxplatform.builder.NullConsoleProgressMonitor;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaClass;

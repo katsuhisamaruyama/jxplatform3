@@ -6,6 +6,8 @@
 package org.jtool.jxplatform.project;
 
 import org.jtool.jxplatform.builder.ModelBuilder;
+import org.jtool.jxplatform.builder.ConsoleProgressMonitor;
+import org.jtool.jxplatform.builder.NullConsoleProgressMonitor;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaMethod;

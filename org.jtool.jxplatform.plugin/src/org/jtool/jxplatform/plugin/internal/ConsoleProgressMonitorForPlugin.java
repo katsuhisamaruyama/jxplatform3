@@ -7,7 +7,7 @@ package org.jtool.jxplatform.plugin.internal;
 
 import org.jtool.jxplatform.plugin.Activator;
 import org.jtool.jxplatform.plugin.JxConsole;
-import org.jtool.jxplatform.project.ConsoleProgressMonitor;
+import org.jtool.jxplatform.builder.ConsoleProgressMonitor;
 
 /**
  * A progress monitor that displays information on the console.
