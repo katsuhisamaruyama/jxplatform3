@@ -40,7 +40,7 @@ public class CommonGenerator {
     protected long timesecSrcModel;
     
     protected static String getCommandMessage(String generatorName) {
-       return "java -Xms32G -Xmx32G -cp jxplatform-3.0.1-all.jar org.jtool.jxplatform.experiment." + generatorName + "\n" +
+       return "java -cp jxplatform-3-SNAPSHOT.jar org.jtool.jxplatform.experiment." + generatorName + "\n" +
               "   -target target_path [-name target_name]\n" +
               "   [-logging on/off] [-binanalysis on/off] [-cache on/off]";
     }
