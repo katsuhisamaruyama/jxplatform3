@@ -474,7 +474,7 @@ public class ModelBuilderImpl {
         String sourceVersion = getCompilerVersion(jproject.getCompilerSourceVersion());
         String targetVersion = getCompilerVersion(jproject.getCompilerTargetVersion());
         
-        ASTParser parser = ASTParser.newParser(AST.JLS18);
+        ASTParser parser = ASTParser.newParser(AST.JLS19);
         Map<String, String> options = JavaCore.getOptions();
         options.put(JavaCore.COMPILER_SOURCE, sourceVersion);
         options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
