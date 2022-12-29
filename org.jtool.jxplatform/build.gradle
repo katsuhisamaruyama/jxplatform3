@@ -6,7 +6,7 @@
 buildscript {
     repositories {
         maven {
-	    mavenCentral()
+	        mavenCentral()
             url "https://plugins.gradle.org/m2/"
         }
     }
@@ -16,13 +16,11 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'java'
+    id 'eclipse'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'maven-publish'
 }
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'com.github.johnrengelman.shadow'
 
 group = 'org.jtool.jxplatform'
 
@@ -120,4 +118,22 @@ task javadoc(type: Javadoc, overwrite: true) {
     options.overview = "src/main/javadoc/overview.html"
     options.docTitle = "JxPlatform3 API Specification"
     options.windowTitle="JxPlatform3"
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+wrapper {
+    gradleVersion = "7.5.1"
+    distributionType = Wrapper.DistributionType.ALL
 }
