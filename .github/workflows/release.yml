@@ -31,15 +31,13 @@ jobs:
       - name: Get version
         id: get_version
         run: |
-          TAG=${GITHUB_REF#refs/tags/}
-          VERSION=$(echo $TAG | sed -e 's/^v3/3/')
-          echo "TAG=$TAG" >> $GITHUB_OUTPUT
+          VERSION=${GITHUB_REF#refs/tags/}
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Get commit summary
         id: get_commit_summary
         run: |
-          PREVIOUS_TAG=$(git tag --sort=-creatordate | sed -n 2p)
+          PREVIOUS_TAG=$(git tag --sort=-creatordate | grep "^3" | sed -n 2p)
           echo "PREVIOUS_TAG: $PREVIOUS_TAG"
           COMMIT_SUMMARY="$(git log --oneline --pretty=tformat:"%h %s" $PREVIOUS_TAG..${{ github.ref }})"
           COMMIT_SUMMARY="${COMMIT_SUMMARY//$'\n'/'%0A'}"
@@ -57,7 +55,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.get_version.outputs.TAG }}
+          tag_name: ${{ steps.get_version.outputs.VERSION }}
           release_name: Version ${{ steps.get_version.outputs.VERSION }}
           body: ${{ steps.get_commit_summary.outputs.COMMIT_SUMMARY }}
           draft: false
