@@ -79,7 +79,7 @@ public class ConsoleProgressMonitor {
     
     /**
      * Displays a message on the console (<code>stdout</code> only).
-     * @param message
+     * @param message the message to be displayed
      */
     public void printMessage(String message) {
         System.out.println(message);
@@ -88,7 +88,7 @@ public class ConsoleProgressMonitor {
     
     /**
      * Displays a message on the console (<code>stderr</code> only).
-     * @param message
+     * @param message the message to be displayed
      */
     public void printError(String message) {
         System.err.println(message);
