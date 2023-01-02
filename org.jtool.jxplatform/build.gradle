@@ -115,7 +115,7 @@ task javadoc(type: Javadoc, overwrite: true) {
     include("**/org/jtool/slice/*.java")
     include("**/org/jtool/jxplatform/builder/*.java")
     
-    options.overview = "src/main/javadoc/overview.html"
+    options.overview = "src/javadoc/overview.html"
     options.docTitle = "JxPlatform3 API Specification"
     options.windowTitle="JxPlatform3"
 }
