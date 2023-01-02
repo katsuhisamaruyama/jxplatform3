@@ -130,6 +130,10 @@ class MavenEnv extends ProjectEnv {
         binaryPaths = new HashSet<>();
         classPaths = new HashSet<>();
         
+        Properties properties = new Properties(model.getProperties());
+        model.getProfiles().stream().flatMap(p -> p.getProperties().entrySet().stream()).
+            forEach(e -> properties.setProperty((String)e.getKey(), (String)e.getValue()));
+        
         String sourceDirectory = null;
         for (BuildBase buildBase : builds) {
             if (buildBase instanceof Build) {
@@ -137,7 +141,10 @@ class MavenEnv extends ProjectEnv {
                 
                 sourceDirectory = build.getSourceDirectory();
                 if (sourceDirectory != null) {
-                    break;
+                    sourceDirectory = replaceDirectoryName(properties, sourceDirectory);
+                    if (sourceDirectory != null) {
+                        break;
+                    }
                 }
             }
         }
@@ -149,6 +156,7 @@ class MavenEnv extends ProjectEnv {
                 
                 testSourceDirectory = build.getTestSourceDirectory();
                 if (testSourceDirectory != null) {
+                    testSourceDirectory = replaceDirectoryName(properties, testSourceDirectory);
                     break;
                 }
             }
@@ -182,20 +190,24 @@ class MavenEnv extends ProjectEnv {
         for (BuildBase buildBase : builds) {
             buildDirectory = buildBase.getDirectory();
             if (buildDirectory != null) {
-                break;
+                buildDirectory = replaceDirectoryName(properties, buildDirectory);
+                if (buildDirectory != null) {
+                    break;
+                }
             }
         }
-        
-        String generatedSourceDirectoryCandidates[] = { "generated-sources", "generated" };
-        String generatedTestSourceDirectoryCandidates[] = { "generated-test-sources", "generated" };
-        
         if (buildDirectory == null) {
             buildDirectory = basePath.resolve("target").toString();
         }
         Path buildPath = Paths.get(buildDirectory);
         
+        String generatedSourceDirectoryCandidates[] = { "generated-sources", "generated" };
+        String generatedTestSourceDirectoryCandidates[] = { "generated-test-sources", "generated" };
+        
+        
         List<String> generatedSourceDirectories = getGeneratedSourceDirectories(buildPath,
                 generatedSourceDirectoryCandidates);
+        
         sourcePaths.addAll(generatedSourceDirectories);
         List<String> generatedTestSourceDirectories = getGeneratedSourceDirectories(buildPath,
                 generatedTestSourceDirectoryCandidates);
@@ -283,6 +295,26 @@ class MavenEnv extends ProjectEnv {
         Set<String> excludes = new HashSet<>();
         configurations.forEach(dom -> collectFileNames(dom, excludes, "exclude", "testExclude"));
         excludedSourceFiles = collectFileNames(excludes);
+    }
+    
+    private String replaceDirectoryName(Properties properties, String value) {
+        int beginIndex = value.indexOf("${", 0);
+        while (beginIndex != -1) {
+            int endIndex = value.indexOf("}", beginIndex + 1);
+            if (endIndex == -1) {
+                return null;
+            }
+            
+            String key = value.substring(beginIndex + 2, endIndex);
+            String cvalue = (String)properties.get(key);
+            if (cvalue != null) {
+                value = value.substring(0, beginIndex) + cvalue + value.substring(endIndex + 1);
+            } else {
+                return null;
+            }
+            beginIndex = value.indexOf("${", 0);
+        }
+        return value;
     }
     
     private String getSourceDirectory(String dir, String[][] names) {
