@@ -87,7 +87,7 @@ public class PDGGenerator extends CommonGenerator {
         timesecPDG = 0;
         
         ZonedDateTime startTime = TimeInfo.getCurrentTime();
-        for (JavaProject jproject: jprojects) {
+        for (JavaProject jproject : jprojects) {
             ZonedDateTime startTimeCFG = TimeInfo.getCurrentTime();
             List<CCFG> pccfgs = generateCCFGs(jproject, jproject.getClasses());
             ccfgs.addAll(pccfgs);

@@ -45,7 +45,7 @@ public class CommonGenerator {
               "   [-logging on/off] [-binanalysis on/off] [-cache on/off]";
     }
     
-    protected void setOptions(String[] args) {
+    protected CommandLineOptions setOptions(String[] args) {
         CommandLineOptions options = new CommandLineOptions(args);
         String target = options.get("-target", ".");
         name = options.get("-name", target);
@@ -58,6 +58,8 @@ public class CommonGenerator {
         logging = options.get("-logging", "on").equals("on") ? true : false;
         binaryAnalysis = options.get("-binanalysis", "on").equals("on") ? true : false;
         useCache = options.get("-cache", "on").equals("on") ? true : false;
+        
+        return options;
     }
     
     static long getTimeSec(ZonedDateTime startTime, ZonedDateTime endTime) {
