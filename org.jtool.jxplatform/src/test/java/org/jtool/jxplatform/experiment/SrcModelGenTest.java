@@ -62,7 +62,7 @@ public class SrcModelGenTest {
 //        tester.run("apollo-2.0.1");                     // Maven
 //        tester.run("arthas-3.6.6");                     // Maven
 //        tester.run("avro-1.11.0/lang/java");            // Maven
-//        tester.run("camel-3.14.0");                     // Maven
+//        tester.run("camel-3.14.0");                     // Maven  java.io.FileNotFoundException: Too many open files
 //        tester.run("canal-1.1.6");                      // Maven
 //        tester.run("checkstyle-9.2");                   // Maven
 //        tester.run("commons-bcel-6.5.0");               // Maven

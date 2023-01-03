@@ -68,7 +68,6 @@ public class CFGGenTest {
 //      tester.run("apollo-2.0.1");
 //      tester.run("arthas-3.6.6");
 //      tester.run("avro-1.11.0/lang/java");
-//      tester.run("camel-3.14.0");
 //      tester.run("canal-1.1.6");
 //      tester.run("checkstyle-9.2");
 //      tester.run("commons-bcel-6.5.0");
@@ -88,7 +87,6 @@ public class CFGGenTest {
 //      tester.run("gwt-core-1.0.0");
 //      tester.run("hadoop-3.3.1");
 //      tester.run("HikariCP-5.0.1");
-//      tester.run("hsqldb-2.7.0");
 //      tester.run("httpclient-5.1.2");
 //      tester.run("jackson-core-2.14");
 //      tester.run("jackson-databind-2.14");
