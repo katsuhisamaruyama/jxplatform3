@@ -7,6 +7,7 @@ package org.jtool.srcmodel;
 
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.TestUtil;
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -101,21 +102,27 @@ public class JavaProjectTest {
     
     @Test
     public void testGetFile1() {
-        JavaFile result = TetrisProject.getFile(TetrisProject.getPath() + "/Block.java");
+        String path = TetrisProject.getPath() + "/Block.java";
+        String filepath = path.replace('/', File.separatorChar);
+        JavaFile result = TetrisProject.getFile(filepath);
         
         assertEquals("Block.java", result.getName());
     }
     
     @Test
     public void testGetFile2() {
-        JavaFile result = VideoStoreProject.getFile(VideoStoreProject.getPath() + "/org/jtool/videostore/after/Customer.java");
+        String path = VideoStoreProject.getPath() + "/org/jtool/videostore/after/Customer.java";
+        String filepath = path.replace('/', File.separatorChar);
+        JavaFile result = VideoStoreProject.getFile(filepath);
         
         assertEquals("Customer.java", result.getName());
     }
     
     @Test
     public void testGetFile3() {
-        JavaFile result = VideoStoreProject.getFile(VideoStoreProject.getPath() + "/org/jtool/videostore/after/Customer1.java");
+        String path = VideoStoreProject.getPath() + "/org/jtool/videostore/after/Customer1.java";
+        String filepath = path.replace('/', File.separatorChar);
+        JavaFile result = VideoStoreProject.getFile(filepath);
         
         assertNull(result);
     }
