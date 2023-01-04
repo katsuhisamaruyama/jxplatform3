@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -26,7 +26,7 @@ public class CallGraphBuilder {
         Set<JavaMethod> methods = jproject.getClasses().stream()
                                           .flatMap(jclass -> jclass.getMethods().stream())
                                           .collect(Collectors.toSet());
-        methods.forEach(jmethod -> jproject.getCFGStore().getCFG(jmethod, false));
+        methods.forEach(jmethod -> jproject.getCFGStore().getCFG(jmethod));
         methods.forEach(jmethod -> createCallGraph(jmethod, graph));
         return graph;
     }

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -16,6 +16,7 @@ import org.jtool.srcmodel.JavaProject;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.Stack;
 import java.util.HashSet;
 import java.util.Collection;
 
@@ -46,6 +47,14 @@ public class CFGStore {
     public void create(JavaProject jproject) {
         this.jproject = jproject;
         createBCStore();
+    }
+    
+    public void clear() {
+        cfgs.clear();
+        ucfgs.clear();
+        ccfgs.clear();
+        CFGsForVisit.clear();
+        updateBCStore();
     }
     
     public void cleanup() {
@@ -84,8 +93,12 @@ public class CFGStore {
         return jproject;
     }
     
-    public Collection<CCFG> getCCFG() {
+    public Collection<CCFG> getCCFGs() {
         return ccfgs.values();
+    }
+    
+    public Collection<CFG> getCCFs() {
+        return cfgs.values();
     }
     
     public CFG findCFG(String fqn) {
@@ -101,20 +114,38 @@ public class CFGStore {
             updateBCStore();
             removeCFGs(jclass);
         }
-        
+        return getCCFG(jclass);
+    }
+    
+    public CCFG getCCFG(JavaClass jclass) {
         CCFG ccfg = ccfgs.get(jclass.getQualifiedName().fqn());
         if (ccfg != null) {
             return ccfg;
         }
         
-        ccfg = CCFGBuilder.build(jclass, force);
+        Set<CFG> existingCFGs = new HashSet<>();
+        for (JavaMethod jm : jclass.getMethods()) {
+            CFG cfg = cfgs.get(jm.getQualifiedName().fqn());
+            if (cfg != null) {
+                existingCFGs.add(cfg);
+            }
+        }
+        for (JavaField  jf: jclass.getFields()) {
+            CFG cfg = cfgs.get(jf.getQualifiedName().fqn());
+            if (cfg != null) {
+                existingCFGs.add(cfg);
+            }
+        }
+        
+        ccfg = CCFGBuilder.build(jclass, existingCFGs);
         ccfgs.put(ccfg.getQualifiedName().fqn(), ccfg);
         ccfg.getCFGs().forEach(cfg -> cfgs.put(cfg.getQualifiedName().fqn(), cfg));
+        
         return ccfg;
     }
     
-    public CCFG generateUnregisteredCCFG(JavaClass jclass, boolean force) {
-        return CCFGBuilder.build(jclass, force);
+    public CCFG generateUnregisteredCCFG(JavaClass jclass) {
+        return CCFGBuilder.build(jclass);
     }
     
     private CFG findRegisteredCFG(String fqn) {
@@ -127,25 +158,34 @@ public class CFGStore {
     }
     
     private void removeCFGs(JavaClass jclass) {
-        jclass.getObsoleteClasses().forEach(jc -> {
-            ccfgs.remove(jclass.getQualifiedName().fqn());
-            jc.getMethods().forEach(jmethod -> {
-                cfgs.remove(jmethod.getQualifiedName().fqn());
-                ucfgs.remove(jmethod.getQualifiedName().fqn());
-            });
-        });
+        Set<JavaClass> classes = CFGStore.getColleagues(jclass);
+        for (JavaClass jc : classes) {
+            ccfgs.remove(jc.getQualifiedName().fqn());
+            for (JavaClass jc2 : jc.getObsoleteClasses()) {
+                jc2.getMethods().forEach(jm -> {
+                    cfgs.remove(jm.getQualifiedName().fqn());
+                    ucfgs.remove(jm.getQualifiedName().fqn());
+                });
+                jc2.getFields().forEach(jf -> {
+                    cfgs.remove(jf.getQualifiedName().fqn());
+                    ucfgs.remove(jf.getQualifiedName().fqn());
+                });
+            }
+        }
     }
     
     public CFG getCFG(JavaMethod jmethod, boolean force) {
-        String fqn = jmethod.getQualifiedName().fqn();
-        
-        if (CFGsForVisit.contains(fqn)) {
-            return findRegisteredCFG(fqn);
-        }
-        
         if (force) {
             updateBCStore();
             removeCFGs(jmethod.getDeclaringClass());
+        }
+        return getCFG(jmethod);
+    }
+    
+    public CFG getCFG(JavaMethod jmethod) {
+        String fqn = jmethod.getQualifiedName().fqn();
+        if (CFGsForVisit.contains(fqn)) {
+            return findRegisteredCFG(fqn);
         }
         
         CFG cfg = cfgs.get(fqn);
@@ -171,15 +211,17 @@ public class CFGStore {
     }
     
     public CFG getCFG(JavaField jfield, boolean force) {
-        String fqn = jfield.getQualifiedName().fqn();
-        
-        if (CFGsForVisit.contains(fqn)) {
-            return findRegisteredCFG(fqn);
-        }
-        
         if (force) {
             updateBCStore();
             removeCFGs(jfield.getDeclaringClass());
+        }
+        return getCFG(jfield);
+    }
+    
+    public CFG getCFG(JavaField jfield) {
+        String fqn = jfield.getQualifiedName().fqn();
+        if (CFGsForVisit.contains(fqn)) {
+            return findRegisteredCFG(fqn);
         }
         
         CFG cfg = cfgs.get(fqn);
@@ -201,6 +243,35 @@ public class CFGStore {
         ucfgs.remove(fqn);
         cfgs.put(fqn, cfg);
         return cfg;
+    }
+    
+    public static Set<JavaClass> getColleague(Set<JavaClass> classes) {
+        Set<JavaClass> allClasses = new HashSet<>();
+        for (JavaClass jclass : classes) {
+            allClasses.addAll(CFGStore.getColleagues(jclass));
+        }
+        return allClasses;
+    }
+    
+    public static Set<JavaClass> getColleagues(JavaClass jclass) {
+        assert jclass != null;
+        
+        Set<JavaClass> classes = new HashSet<>();
+        
+        Stack<JavaClass> classStack = new Stack<>();
+        classStack.push(jclass);
+        
+        while (!classStack.isEmpty()) {
+            JavaClass jc = classStack.pop();
+            
+            if (classes.contains(jc)) {
+                continue;
+            }
+            classes.add(jc);
+            
+            jc.getEfferentClassesInProject().stream() .forEach(c -> classStack.push(c));
+        }
+        return classes;
     }
     
     CFG getUnresolvedCFG(JavaMethod jmethod) {

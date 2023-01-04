@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -38,10 +38,12 @@ import org.jtool.cfg.CallGraph;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
+import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.QualifiedName;
 import org.eclipse.jdt.core.dom.ITypeBinding;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
@@ -59,25 +61,42 @@ public class PDGStore {
     
     private CFGStore cfgStore;
     
-    private Map<String, PDG> pdgMap = new HashMap<>();
-    private Map<String, ClDG> cldgMap = new HashMap<>();
+    private Map<String, PDG> pdgs = new HashMap<>();
+    private Map<String, ClDG> cldgs = new HashMap<>();
     
     public PDGStore(CFGStore cfgStore) {
         this.cfgStore = cfgStore;
     }
     
+    public void clear() {
+        pdgs.clear();
+        cldgs.clear();
+    }
+    
     public void destroy() {
-        pdgMap.clear();
-        cldgMap.clear();
+        pdgs.clear();
+        cldgs.clear();
         cfgStore.destroy();
     }
     
+    public JavaProject getJavaProject() {
+        return cfgStore.getJavaProject();
+    }
+    
+    public Collection<ClDG> getClDGs() {
+        return cldgs.values();
+    }
+    
+    public Collection<PDG> getPDGs() {
+        return pdgs.values();
+    }
+    
     public PDG findPDG(String fqn) {
-        return pdgMap.get(fqn);
+        return pdgs.get(fqn);
     }
     
     public ClDG findClDG(String fqn) {
-        return cldgMap.get(fqn);
+        return cldgs.get(fqn);
     }
     
     public PDG getPDG(JavaField jfield, boolean force, boolean whole) {
@@ -100,7 +119,7 @@ public class PDGStore {
     
     private PDG getPDG(String fqn, JavaClass jclass, boolean force, boolean whole) {
         if (!force) {
-            PDG pdg = pdgMap.get(fqn);
+            PDG pdg = pdgs.get(fqn);
             if (pdg != null) {
                 return pdg;
             }
@@ -125,15 +144,15 @@ public class PDGStore {
     private ClDG getClDG(String fqn, JavaClass jclass, boolean force, boolean whole) {
         assert jclass != null;
         
-        if (!force) {
-            ClDG cldg = cldgMap.get(fqn);
+        if (force) {
+            cldgs.remove(jclass.getQualifiedName().fqn());
+            jclass.getMethods().forEach(jmethod -> pdgs.remove(jmethod.getQualifiedName().fqn()));
+            jclass.getFields().forEach(jfield -> pdgs.remove(jfield.getQualifiedName().fqn()));
+        } else {
+            ClDG cldg = cldgs.get(fqn);
             if (cldg != null) {
                 return cldg;
             }
-        } else {
-            cldgMap.remove(jclass.getQualifiedName().fqn());
-            jclass.getMethods().forEach(jmethod -> pdgMap.remove(jmethod.getQualifiedName().fqn()));
-            jclass.getFields().forEach(jfield -> pdgMap.remove(jfield.getQualifiedName().fqn()));
         }
         
         CCFG ccfg = cfgStore.getCCFG(jclass, force);
@@ -143,12 +162,12 @@ public class PDGStore {
         
         if (whole) {
             DependencyGraph graph = new DependencyGraph(jclass.getQualifiedName().fqn());
-            Set<JavaClass> classes = getColleagues(jclass);
-            createDependencyGraph(graph, classes, force, true);
+            Set<JavaClass> classes = CFGStore.getColleagues(jclass);
+            createDependencyGraph(graph, classes, force, whole);
             ClDG cldg = graph.getClDG(fqn);
             if (cldg != null) {
-                cldgMap.put(cldg.getQualifiedName().fqn(), cldg);
-                cldg.getPDGs().forEach(pdg -> pdgMap.put(pdg.getQualifiedName().fqn(), pdg));
+                cldgs.put(cldg.getQualifiedName().fqn(), cldg);
+                cldg.getPDGs().forEach(pdg -> pdgs.put(pdg.getQualifiedName().fqn(), pdg));
             }
             return cldg;
         } else {
@@ -173,13 +192,13 @@ public class PDGStore {
         
         DependencyGraph graph = new DependencyGraph(jclass.getQualifiedName().fqn());
         if (whole) {
-            Set<JavaClass> classes = getColleagues(jclass);
-            createDependencyGraph(graph, classes, force, true);
+            Set<JavaClass> classes = CFGStore.getColleagues(jclass);
+            createDependencyGraph(graph, classes, force, whole);
             return graph;
         } else {
             Set<JavaClass> classes = new HashSet<>();
             classes.add(jclass);
-            createDependencyGraph(graph, classes, force, true);
+            createDependencyGraph(graph, classes, force, whole);
         }
         return graph;
     }
@@ -190,7 +209,7 @@ public class PDGStore {
         DependencyGraph graph = new DependencyGraph(classes.iterator().next().getQualifiedName().fqn());
         if (whole) {
             for (JavaClass jclass : classes) {
-                classes.addAll(getColleagues(jclass));
+                classes.addAll(CFGStore.getColleagues(jclass));
             }
         }
         createDependencyGraph(graph, classes, force, whole);
@@ -199,27 +218,25 @@ public class PDGStore {
     
     private void createDependencyGraph(DependencyGraph graph,
             Set<JavaClass> classes, boolean force, boolean whole) {
+        if (force) {
+            removePDGs(classes);
+        }
+        
         for (JavaClass jclass : classes) {
-            if (!force) {
-                ClDG cldg = cldgMap.get(jclass.getQualifiedName().fqn());
-                if (cldg != null) {
-                    graph.add(cldg);
-                    continue;
-                } else {
-                    cldgMap.remove(jclass.getQualifiedName().fqn());
-                    jclass.getMethods().forEach(jmethod -> pdgMap.remove(jmethod.getQualifiedName().fqn()));
-                    jclass.getFields().forEach(jfield -> pdgMap.remove(jfield.getQualifiedName().fqn()));
-                }
+            ClDG cldg = cldgs.get(jclass.getQualifiedName().fqn());
+            if (cldg != null) {
+                graph.add(cldg);
+                continue;
             }
             
             CCFG ccfg = cfgStore.getCCFG(jclass, force);
             if (ccfg != null) {
-                ClDG cldg = PDGBuilder.buildClDG(ccfg);
+                cldg = PDGBuilder.buildClDG(ccfg);
                 if (cldg != null) {
                     graph.add(cldg);
                     if (whole) {
-                        cldgMap.put(cldg.getQualifiedName().fqn(), cldg);
-                        cldg.getPDGs().forEach(pdg -> pdgMap.put(pdg.getQualifiedName().fqn(), pdg));
+                        cldgs.put(cldg.getQualifiedName().fqn(), cldg);
+                        cldg.getPDGs().forEach(pdg -> pdgs.put(pdg.getQualifiedName().fqn(), pdg));
                     }
                 }
             }
@@ -228,33 +245,14 @@ public class PDGStore {
         collectInterPDGEdges(graph);
     }
     
-    private Set<JavaClass> getColleague(Set<JavaClass> classes) {
-        Set<JavaClass> allClasses = new HashSet<>();
-        for (JavaClass jclass : classes) {
-            allClasses.addAll(getColleagues(jclass));
-        }
-        return allClasses;
-    }
-    
-    private Set<JavaClass> getColleagues(JavaClass jclass) {
-        assert jclass != null;
-        
-        Set<JavaClass> classes = new HashSet<>();
-        
-        Stack<JavaClass> classStack = new Stack<>();
-        classStack.push(jclass);
-        
-        while (!classStack.isEmpty()) {
-            JavaClass jc = classStack.pop();
-            
-            if (classes.contains(jc)) {
-                continue;
+    private void removePDGs(Set<JavaClass> classes) {
+        for (JavaClass jc : classes) {
+            cldgs.remove(jc.getQualifiedName().fqn());
+            for (JavaClass jc2 : jc.getObsoleteClasses()) {
+                jc2.getMethods().forEach(jmethod -> pdgs.remove(jmethod.getQualifiedName().fqn()));
+                jc2.getFields().forEach(jfield -> pdgs.remove(jfield.getQualifiedName().fqn()));
             }
-            classes.add(jc);
-            
-            jc.getEfferentClassesInProject().stream() .forEach(c -> classStack.push(c));
         }
-        return classes;
     }
     
     public void collectInterPDGEdges(DependencyGraph graph) {

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -49,7 +49,7 @@ public class PDGGenTest {
             System.out.print("(" + count + "/" + size + ")");
             count++;
             
-            CCFG ccfg = jproject.getCFGStore().generateUnregisteredCCFG(jclass, false);
+            CCFG ccfg = jproject.getCFGStore().generateUnregisteredCCFG(jclass);
             jproject.getPDGStore().generateUnregisteredClDG(ccfg);
             System.out.println(" - " + jclass.getQualifiedName());
         }

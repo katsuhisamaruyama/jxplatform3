@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -13,6 +13,8 @@ import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaProject;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * Builds a CCFG that corresponds to a class.
@@ -21,19 +23,27 @@ import org.jtool.srcmodel.JavaProject;
  */
 class CCFGBuilder {
     
-    static CCFG build(JavaProject jproject, boolean force) {
+    static CCFG build(JavaProject jproject) {
         CCFG ccfg = new CCFG();
-        jproject.getClasses().forEach(jclass -> build(ccfg, jclass, force));
+        jproject.getClasses().forEach(jclass -> build(ccfg, jclass, new HashSet<>()));
         return ccfg;
     }
     
-    static CCFG build(JavaClass jclass, boolean force) {
+    static CCFG build(JavaClass jclass) {
+        return build(jclass, new HashSet<>());
+    }
+    
+    static CCFG build(JavaClass jclass, Set<CFG> cfgs) {
         CCFG ccfg = new CCFG();
-        build(ccfg, jclass, force);
+        build(ccfg, jclass, cfgs);
         return ccfg;
     }
     
-    private static void build(CCFG ccfg, JavaClass jclass, boolean force) {
+    private static CFG getExistingCFG(String fqn, Set<CFG> cfgs) {
+        return cfgs.stream().filter(cfg -> cfg.getQualifiedName().fqn().equals(fqn)).findFirst().orElse(null);
+    }
+    
+    private static void build(CCFG ccfg, JavaClass jclass, Set<CFG> cfgs) {
         CCFGEntry entry;
         if (jclass.isEnum()) {
             entry = new CCFGEntry(jclass, CFGNode.Kind.enumEntry);
@@ -46,7 +56,11 @@ class CCFGBuilder {
         
         CFGStore cfgStore = jclass.getJavaProject().getCFGStore();
         for (JavaMethod jmethod : jclass.getMethods()) {
-            CFG cfg = cfgStore.getCFG(jmethod, force);
+            CFG cfg = getExistingCFG(jmethod.getQualifiedName().fqn(), cfgs);
+            if (cfg == null) {
+                cfg = cfgStore.getCFG(jmethod);
+            }
+            
             if (cfg != null) {
                 ccfg.add(cfg);
                 entry.addMethod(cfg);
@@ -54,7 +68,11 @@ class CCFGBuilder {
         }
         
         for (JavaField jfield : jclass.getFields()) {
-            CFG cfg = cfgStore.getCFG(jfield, force);
+            CFG cfg = getExistingCFG(jfield.getQualifiedName().fqn(), cfgs);
+            if (cfg == null) {
+                cfg = cfgStore.getCFG(jfield);
+            }
+            
             if (cfg != null) {
                 ccfg.add(cfg);
                 entry.addField(cfg);
@@ -62,7 +80,7 @@ class CCFGBuilder {
         }
         
         for (JavaClass jc : jclass.getInnerClasses()) {
-            CCFG ccfg2 = build(jc, force);
+            CCFG ccfg2 = build(jc);
             entry.addClass(ccfg2);
         }
     }

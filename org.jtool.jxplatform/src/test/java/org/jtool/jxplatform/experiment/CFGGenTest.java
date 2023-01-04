@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -47,7 +47,7 @@ public class CFGGenTest {
         for (JavaClass jclass : jproject.getClasses()) {
             System.out.print("(" + count + "/" + size + ")");
             count++;
-            jproject.getCFGStore().generateUnregisteredCCFG(jclass, false);
+            jproject.getCFGStore().generateUnregisteredCCFG(jclass);
             System.out.println(" - " + jclass.getQualifiedName());
         }
         jproject.getCFGStore().cleanup();
