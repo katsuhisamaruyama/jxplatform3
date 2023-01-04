@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -26,7 +26,6 @@ import java.util.Set;
  * 
  * @author Katsuhisa Maruyama
  */
-
 public abstract class ModelBuilder {
     
     /**
