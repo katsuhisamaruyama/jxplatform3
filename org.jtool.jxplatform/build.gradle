@@ -5,10 +5,7 @@
 
 buildscript {
     repositories {
-        maven {
-	        mavenCentral()
-            url "https://plugins.gradle.org/m2/"
-        }
+        gradlePluginPortal()
     }
     dependencies {
         classpath "gradle.plugin.com.github.johnrengelman:shadow:7.1.2"
@@ -28,16 +25,6 @@ eclipse {
     classpath {
         containers 'org.eclipse.pde.core.requiredPlugins'
     }
-}
-
-shadowJar {
-    manifest {
-        attributes('Main-Class' : 'org.jtool.jxplatform.builder.JavaModelBuilder')
-    }
-    
-    archiveBaseName = 'jxplatform'
-    classifier = 'SNAPSHOT'
-    archiveVersion = project.property('currentVersion')
 }
 
 compileJava.options.encoding = 'UTF-8'
@@ -68,7 +55,6 @@ dependencies {
 }
 
 compileJava {
-    exclude '**/plugin/*'
     options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
 }
 
@@ -123,6 +109,18 @@ task javadoc(type: Javadoc, overwrite: true) {
 java {
     withSourcesJar()
     withJavadocJar()
+}
+
+shadowJar {
+    manifest {
+        attributes('Main-Class' : 'org.jtool.jxplatform.builder.JavaModelBuilder')
+    }
+    
+    archiveBaseName = 'jxplatform'
+    classifier = 'SNAPSHOT'
+    archiveVersion = project.property('currentVersion')
+    
+    from sourceSets.main.allJava
 }
 
 publishing {
