@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -68,7 +68,7 @@ public class PDGTestUtil {
     
     public static DependencyGraph createDependencyGraph(JavaProject jproject, String cname) {
         JavaClass jclass = jproject.getClass(cname);
-        return jproject.getPDGStore().getDependencyGraph(jclass, false);
+        return jproject.getPDGStore().getDependencyGraph(jclass, false, true);
     }
     
     public static DependencyGraph createDependencyGraph(JavaProject jproject, String cname, boolean whole) {

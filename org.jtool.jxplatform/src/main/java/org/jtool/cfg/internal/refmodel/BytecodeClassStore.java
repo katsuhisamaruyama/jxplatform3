@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -113,8 +113,6 @@ public class BytecodeClassStore {
             
             setClassHierarchy();
             collectBytecodeClassInfo();
-            
-            writeBytecodeCache();
         }
     }
     

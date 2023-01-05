@@ -1,13 +1,18 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.jxplatform.builder;
 
 import org.jtool.cfg.internal.refmodel.RefModelTestUtil;
+import org.jtool.cfg.CCFG;
+import org.jtool.pdg.ClDG;
+import org.jtool.pdg.DependencyGraph;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.internal.ProjectStore;
+import org.jtool.srcmodel.JavaClass;
+import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaFile;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -97,6 +102,26 @@ public class BuilderTestUtil {
     
     public static String asStrOfFiles(Set<JavaFile> paths) {
         return paths.stream().map(jfile -> jfile.getName()).sorted().collect(Collectors.joining(";"));
+    }
+    
+    public static String asStrOfCCFG(CCFG ccfg) {
+        return ccfg.getCFGs().stream().map(cfg -> cfg.getQualifiedName().fqn()).sorted().collect(Collectors.joining(";"));
+    }
+    
+    public static String asStrOfClDG(ClDG cldg) {
+        return cldg.getPDGs().stream().map(pdg -> pdg.getQualifiedName().fqn()).sorted().collect(Collectors.joining(";"));
+    }
+    
+    public static String asStrOfDependencyGraph(DependencyGraph graph) {
+        return graph.getPDGs().stream().map(pdg -> pdg.getQualifiedName().fqn()).sorted().collect(Collectors.joining(";"));
+    }
+    
+    public static String asStrOfClasses(Set<JavaClass> classes) {
+        return classes.stream().map(jc -> jc.getQualifiedName().fqn()).sorted().collect(Collectors.joining(";"));
+    }
+    
+    public static String asStrOfMethods(Set<JavaMethod> methods) {
+        return methods.stream().map(jc -> jc.getQualifiedName().fqn()).sorted().collect(Collectors.joining(";"));
     }
     
     public static String getContent(String code) {

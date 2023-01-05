@@ -16,9 +16,9 @@ import org.jtool.srcmodel.JavaProject;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
-import java.util.Stack;
 import java.util.HashSet;
 import java.util.Collection;
+import java.util.Arrays;
 
 /**
  * A repository that stores information on CFGs in the project.
@@ -53,7 +53,6 @@ public class CFGStore {
         cfgs.clear();
         ucfgs.clear();
         ccfgs.clear();
-        CFGsForVisit.clear();
         updateBCStore();
     }
     
@@ -109,15 +108,55 @@ public class CFGStore {
         return ccfgs.get(fqn);
     }
     
-    public CCFG getCCFG(JavaClass jclass, boolean force) {
+    public void removeCFGs(JavaClass jclass) {
+        removeCFGs(new HashSet<>(Arrays.asList(jclass)));
+    }
+    
+    public void removeCFGs(Set<JavaClass> classes) {
+        for (JavaClass jclass : classes) {
+            ccfgs.remove(jclass.getQualifiedName().fqn());
+            for (JavaClass jc : jclass.getObsoleteClasses()) {
+                jc.getMethods().forEach(jm -> {
+                    cfgs.remove(jm.getQualifiedName().fqn());
+                    ucfgs.remove(jm.getQualifiedName().fqn());
+                });
+                jc.getFields().forEach(jf -> {
+                    cfgs.remove(jf.getQualifiedName().fqn());
+                    ucfgs.remove(jf.getQualifiedName().fqn());
+                });
+            }
+        }
+    }
+    
+    /*
+    public Set<CCFG> getCCFGs(Set<JavaClass> classes, boolean force) {
         if (force) {
+            removeCFGs(classes);
             updateBCStore();
+        }
+        return getCCFGs(classes);
+    }
+    
+    public Set<CCFG> getCCFGs(Set<JavaClass> classes) {
+        return classes.stream()
+                .map(jclass -> getCCFG(jclass))
+                .filter(ccfg -> ccfg != null).collect(Collectors.toSet());
+    }
+    */
+    
+    public CCFG getCCFG(JavaClass jclass, boolean force) {
+        assert jclass != null;
+        
+        if (force) {
             removeCFGs(jclass);
+            updateBCStore();
         }
         return getCCFG(jclass);
     }
     
     public CCFG getCCFG(JavaClass jclass) {
+        assert jclass != null;
+        
         CCFG ccfg = ccfgs.get(jclass.getQualifiedName().fqn());
         if (ccfg != null) {
             return ccfg;
@@ -144,45 +183,19 @@ public class CFGStore {
         return ccfg;
     }
     
-    public CCFG generateUnregisteredCCFG(JavaClass jclass) {
-        return CCFGBuilder.build(jclass);
-    }
-    
-    private CFG findRegisteredCFG(String fqn) {
-        CFG cfg = cfgs.get(fqn);
-        if (cfg != null) {
-            return cfg;
-        }
-        
-        return ucfgs.get(fqn);
-    }
-    
-    private void removeCFGs(JavaClass jclass) {
-        Set<JavaClass> classes = CFGStore.getColleagues(jclass);
-        for (JavaClass jc : classes) {
-            ccfgs.remove(jc.getQualifiedName().fqn());
-            for (JavaClass jc2 : jc.getObsoleteClasses()) {
-                jc2.getMethods().forEach(jm -> {
-                    cfgs.remove(jm.getQualifiedName().fqn());
-                    ucfgs.remove(jm.getQualifiedName().fqn());
-                });
-                jc2.getFields().forEach(jf -> {
-                    cfgs.remove(jf.getQualifiedName().fqn());
-                    ucfgs.remove(jf.getQualifiedName().fqn());
-                });
-            }
-        }
-    }
-    
     public CFG getCFG(JavaMethod jmethod, boolean force) {
+        assert jmethod != null;
+        
         if (force) {
-            updateBCStore();
             removeCFGs(jmethod.getDeclaringClass());
+            updateBCStore();
         }
         return getCFG(jmethod);
     }
     
     public CFG getCFG(JavaMethod jmethod) {
+        assert jmethod != null;
+        
         String fqn = jmethod.getQualifiedName().fqn();
         if (CFGsForVisit.contains(fqn)) {
             return findRegisteredCFG(fqn);
@@ -211,14 +224,18 @@ public class CFGStore {
     }
     
     public CFG getCFG(JavaField jfield, boolean force) {
+        assert jfield != null;
+        
         if (force) {
-            updateBCStore();
             removeCFGs(jfield.getDeclaringClass());
+            updateBCStore();
         }
         return getCFG(jfield);
     }
     
     public CFG getCFG(JavaField jfield) {
+        assert jfield != null;
+        
         String fqn = jfield.getQualifiedName().fqn();
         if (CFGsForVisit.contains(fqn)) {
             return findRegisteredCFG(fqn);
@@ -245,36 +262,22 @@ public class CFGStore {
         return cfg;
     }
     
-    public static Set<JavaClass> getColleague(Set<JavaClass> classes) {
-        Set<JavaClass> allClasses = new HashSet<>();
-        for (JavaClass jclass : classes) {
-            allClasses.addAll(CFGStore.getColleagues(jclass));
-        }
-        return allClasses;
+    public CCFG generateUnregisteredCCFG(JavaClass jclass) {
+        return CCFGBuilder.build(jclass);
     }
     
-    public static Set<JavaClass> getColleagues(JavaClass jclass) {
-        assert jclass != null;
-        
-        Set<JavaClass> classes = new HashSet<>();
-        
-        Stack<JavaClass> classStack = new Stack<>();
-        classStack.push(jclass);
-        
-        while (!classStack.isEmpty()) {
-            JavaClass jc = classStack.pop();
-            
-            if (classes.contains(jc)) {
-                continue;
-            }
-            classes.add(jc);
-            
-            jc.getEfferentClassesInProject().stream() .forEach(c -> classStack.push(c));
+    private CFG findRegisteredCFG(String fqn) {
+        CFG cfg = cfgs.get(fqn);
+        if (cfg != null) {
+            return cfg;
         }
-        return classes;
+        
+        return ucfgs.get(fqn);
     }
     
     CFG getUnresolvedCFG(JavaMethod jmethod) {
+        assert jmethod != null;
+        
         String fqn = jmethod.getQualifiedName().fqn();
         
         CFG cfg = findRegisteredCFG(fqn);
@@ -290,6 +293,8 @@ public class CFGStore {
     }
     
     CFG getUnresolvedCFG(JavaField jfield) {
+        assert jfield != null;
+        
         String fqn = jfield.getQualifiedName().fqn();
         
         CFG cfg = findRegisteredCFG(fqn);
