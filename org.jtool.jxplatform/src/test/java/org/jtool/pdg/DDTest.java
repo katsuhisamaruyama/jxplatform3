@@ -81,7 +81,7 @@ public class DDTest {
     @Test
     public void testIsLIDD8() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "S140", "S140( int )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 16, 8);
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 6, 2);
         
         assertTrue(result.get(0).isLIDD());
     }
@@ -89,7 +89,7 @@ public class DDTest {
     @Test
     public void testIsLIDD9() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "S140", "S140( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 26, 6);
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 21, 6);
         
         assertTrue(result.get(0).isLIDD());
     }
@@ -97,7 +97,7 @@ public class DDTest {
     @Test
     public void testIsLIDD10() {
         PDG pdg = PDGTestUtil.createPDG(SliceProject, "S140", "S140( )");
-        List<Dependence> result = PDGTestUtil.getDependence(pdg, 27, 5);
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 22, 5);
         
         assertTrue(result.get(0).isLIDD());
     }
