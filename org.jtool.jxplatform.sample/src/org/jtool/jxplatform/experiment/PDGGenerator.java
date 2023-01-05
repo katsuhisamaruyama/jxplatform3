@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -24,7 +24,6 @@ public class PDGGenerator extends CommonGenerator {
     
     protected List<CCFG> ccfgs;
     protected long timesecCFG;
-    protected int bytecodenum;
     
     protected List<DependencyGraph> sdgs;
     protected long timesecPDG;
@@ -93,6 +92,7 @@ public class PDGGenerator extends CommonGenerator {
             ccfgs.addAll(pccfgs);
             ZonedDateTime endTimeCFG = TimeInfo.getCurrentTime();
             timesecCFG = timesecCFG + getTimeSec(startTimeCFG, endTimeCFG);
+            bytecodenum = bytecodenum + jproject.getCFGStore().getBCStore().getAnalyzedBytecodeNum();
             
             ZonedDateTime startTimePDG = TimeInfo.getCurrentTime();
             DependencyGraph sdg = generateClDGs(jproject, pccfgs);

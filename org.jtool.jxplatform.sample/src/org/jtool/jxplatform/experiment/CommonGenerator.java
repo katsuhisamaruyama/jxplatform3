@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -34,6 +34,7 @@ public class CommonGenerator {
     protected boolean logging;
     protected boolean binaryAnalysis;
     protected boolean useCache;
+    protected int bytecodenum;
     
     protected ModelBuilderBatch builder;
     protected List<JavaProject> jprojects;
@@ -99,7 +100,7 @@ public class CommonGenerator {
         
         monitor.begin(size);
         for (JavaClass jclass : classes) {
-            CCFG ccfg = cfgStore.generateUnregisteredCCFG(jclass, false);
+            CCFG ccfg = cfgStore.generateUnregisteredCCFG(jclass);
             if (ccfg != null) {
                 ccfgs.add(ccfg);
             }

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -24,7 +24,6 @@ public class CFGGenerator extends CommonGenerator {
     
     protected List<CCFG> ccfgs;
     protected long timesecCFG;
-    protected int bytecodenum;
     
     public static void main(String[] args) {
         if (args.length == 0) {
