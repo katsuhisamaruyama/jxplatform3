@@ -698,6 +698,8 @@ public class StatementVisitor extends ASTVisitor {
         CFGStatement returnNode = new CFGStatement(node, CFGNode.Kind.returnSt);
         reconnect(returnNode);
         
+        dominantStatementStack.peek().addImmediatePostDominator(returnNode);
+        
         CFGNode curNode = returnNode;
         Expression expression = node.getExpression();
         if (expression != null) {
