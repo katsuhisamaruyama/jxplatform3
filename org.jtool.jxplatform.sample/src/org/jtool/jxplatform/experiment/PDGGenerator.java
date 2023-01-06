@@ -24,6 +24,7 @@ public class PDGGenerator extends CommonGenerator {
     
     protected List<CCFG> ccfgs;
     protected long timesecCFG;
+    protected int bytecodenum;
     
     protected List<DependencyGraph> sdgs;
     protected long timesecPDG;

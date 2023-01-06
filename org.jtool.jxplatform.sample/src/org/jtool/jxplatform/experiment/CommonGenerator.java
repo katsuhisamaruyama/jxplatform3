@@ -34,7 +34,6 @@ public class CommonGenerator {
     protected boolean logging;
     protected boolean binaryAnalysis;
     protected boolean useCache;
-    protected int bytecodenum;
     
     protected ModelBuilderBatch builder;
     protected List<JavaProject> jprojects;
