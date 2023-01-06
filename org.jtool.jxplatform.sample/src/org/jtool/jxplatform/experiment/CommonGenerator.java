@@ -68,6 +68,11 @@ public class CommonGenerator {
         return timesec;
     }
     
+    static long getTimeMilliSec(ZonedDateTime startTime, ZonedDateTime endTime) {
+        long timesec = ChronoUnit.MILLIS.between(startTime, endTime);
+        return timesec;
+    }
+    
     public static void printTimeSec(ZonedDateTime startTime, ZonedDateTime endTime) {
         long timesec = getTimeSec(startTime, endTime);
         System.out.println("Time: " + timesec + " (" +

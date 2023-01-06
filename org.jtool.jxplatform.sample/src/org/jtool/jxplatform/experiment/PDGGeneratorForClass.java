@@ -60,7 +60,7 @@ public class PDGGeneratorForClass extends CommonGenerator {
         ZonedDateTime startTime = TimeInfo.getCurrentTime();
         jprojects = builder.build(name, path);
         ZonedDateTime endTime = TimeInfo.getCurrentTime();
-        timesecSrcModel = getTimeSec(startTime, endTime);
+        timesecSrcModel = getTimeMilliSec(startTime, endTime);
         System.out.print("**** , ");
         System.out.print(name + " , ");
         System.out.print(timesecSrcModel + " , ");
@@ -80,12 +80,12 @@ public class PDGGeneratorForClass extends CommonGenerator {
             ZonedDateTime startTimeCFG = TimeInfo.getCurrentTime();
             CCFG ccfg = builder.getCCFG(selectedClass, true);
             ZonedDateTime endTimeCFG = TimeInfo.getCurrentTime();
-            long timesecCFG = getTimeSec(startTimeCFG, endTimeCFG);
+            long timesecCFG = getTimeMilliSec(startTimeCFG, endTimeCFG);
             
             ZonedDateTime startTimePDG = TimeInfo.getCurrentTime();
             builder.getClDG(selectedClass.getJavaProject(), ccfg, true, false);
             ZonedDateTime endTimePDG = TimeInfo.getCurrentTime();
-            long timesecPDG = getTimeSec(startTimePDG, endTimePDG);
+            long timesecPDG = getTimeMilliSec(startTimePDG, endTimePDG);
             
             System.out.print("**** , ");
             System.out.print(name + " , ");
