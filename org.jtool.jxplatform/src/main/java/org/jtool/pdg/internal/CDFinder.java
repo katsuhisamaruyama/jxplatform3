@@ -191,7 +191,6 @@ public class CDFinder {
                 pdg.remove(edge);
             }
         }
-        
     }
     
     public static List<PDGNode> getCDAncestors(PDG pdg, PDGNode anchor) {
