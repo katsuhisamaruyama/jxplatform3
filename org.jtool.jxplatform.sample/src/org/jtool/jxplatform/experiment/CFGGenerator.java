@@ -24,6 +24,7 @@ public class CFGGenerator extends CommonGenerator {
     
     protected List<CCFG> ccfgs;
     protected long timesecCFG;
+    protected int bytecodenum;
     
     public static void main(String[] args) {
         if (args.length == 0) {

@@ -285,9 +285,19 @@ public class DependenceTest {
     }
     
     @Test
-    public void testIsDD_Customer_1() {
+    public void testIsDD_Test02_1() {
         PDG pdg = PDGTestUtil.createPDG(SimpleProject, "Test02", "m( )");
         List<Dependence> result = PDGTestUtil.getDependence(pdg, 7, 7);
+        
+        pdg.print();
+        
+        assertTrue(result.get(0).isDD());
+    }
+    
+    @Test
+    public void testIsDD_Test02_2() {
+        PDG pdg = PDGTestUtil.createPDG(SimpleProject, "Test02", "m( )");
+        List<Dependence> result = PDGTestUtil.getDependence(pdg, 8, 8);
         
         assertTrue(result.get(0).isDD());
     }

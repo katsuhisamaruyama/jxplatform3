@@ -128,22 +128,6 @@ public class CFGStore {
         }
     }
     
-    /*
-    public Set<CCFG> getCCFGs(Set<JavaClass> classes, boolean force) {
-        if (force) {
-            removeCFGs(classes);
-            updateBCStore();
-        }
-        return getCCFGs(classes);
-    }
-    
-    public Set<CCFG> getCCFGs(Set<JavaClass> classes) {
-        return classes.stream()
-                .map(jclass -> getCCFG(jclass))
-                .filter(ccfg -> ccfg != null).collect(Collectors.toSet());
-    }
-    */
-    
     public CCFG getCCFG(JavaClass jclass, boolean force) {
         assert jclass != null;
         

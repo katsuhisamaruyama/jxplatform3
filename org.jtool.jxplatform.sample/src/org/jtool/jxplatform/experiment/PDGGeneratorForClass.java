@@ -6,6 +6,8 @@
 package org.jtool.jxplatform.experiment;
 
 import org.jtool.cfg.CCFG;
+import org.jtool.cfg.internal.CFGStore;
+import org.jtool.pdg.internal.PDGStore;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.jxplatform.builder.CommandLineOptions;
 import org.jtool.jxplatform.builder.TimeInfo;
@@ -76,14 +78,19 @@ public class PDGGeneratorForClass extends CommonGenerator {
         ZonedDateTime startTime = TimeInfo.getCurrentTime();
         for (int classNumber : classNumbers) {
             JavaClass selectedClass = classes.get(classNumber);
+            System.out.print("#### " + classNumber + " ");
+            System.out.print(selectedClass.getQualifiedName().fqn());
+            System.out.println();
             
+            CFGStore cfgStore = selectedClass.getJavaProject().getCFGStore();
             ZonedDateTime startTimeCFG = TimeInfo.getCurrentTime();
-            CCFG ccfg = builder.getCCFG(selectedClass, true);
+            CCFG ccfg = cfgStore.generateUnregisteredCCFG(selectedClass);
             ZonedDateTime endTimeCFG = TimeInfo.getCurrentTime();
             long timesecCFG = getTimeMilliSec(startTimeCFG, endTimeCFG);
             
+            PDGStore pdgStore = selectedClass.getJavaProject().getPDGStore();
             ZonedDateTime startTimePDG = TimeInfo.getCurrentTime();
-            builder.getClDG(selectedClass.getJavaProject(), ccfg, true, false);
+            pdgStore.generateUnregisteredClDG(ccfg);
             ZonedDateTime endTimePDG = TimeInfo.getCurrentTime();
             long timesecPDG = getTimeMilliSec(startTimePDG, endTimePDG);
             
