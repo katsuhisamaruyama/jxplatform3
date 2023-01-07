@@ -50,7 +50,7 @@ public class PDGGenTest {
             count++;
             
             CCFG ccfg = jproject.getCFGStore().generateUnregisteredCCFG(jclass);
-            jproject.getPDGStore().generateUnregisteredClDG(ccfg);
+            jproject.getPDGStore().generateUnregisteredClDG(jclass, ccfg);
             System.out.println(" - " + jclass.getQualifiedName());
         }
     }

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022-2023
+ *  Copyright 2022
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -12,12 +12,6 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Collection;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 /**
  * Concise information on a method.
@@ -85,31 +79,7 @@ abstract public class JMethod extends JCommon {
         return allUseFields;
     }
     
-    public void findDefUseFields(final String returnValue, final String prefix) {
-        Runnable task = new Runnable() {
-            
-            @Override
-            public void run() {
-                findDefUseFields0(returnValue, prefix);
-            }
-        };
-        
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        try {
-            Future<?> future = executor.submit(task);
-            try {
-                future.get(60, TimeUnit.SECONDS);
-            } catch (InterruptedException | ExecutionException e) {
-                /* catches as a timeout exception */
-            } catch (TimeoutException e) {
-                System.err.println("TIMEOUT = " + this.getClassName() + "#" + this.getSignature());
-            }
-        } finally {
-            executor.shutdown();
-        }
-    }
-    
-    public void findDefUseFields0(String returnValue, String prefix) {
+    public void findDefUseFields(String returnValue, String prefix) {
         collectDefUseFieldsInThisMethod();
         
         allDefFields.clear();

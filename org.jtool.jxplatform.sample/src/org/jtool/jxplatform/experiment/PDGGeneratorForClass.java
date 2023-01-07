@@ -5,9 +5,9 @@
 
 package org.jtool.jxplatform.experiment;
 
-import org.jtool.cfg.CCFG;
 import org.jtool.cfg.internal.CFGStore;
 import org.jtool.pdg.internal.PDGStore;
+import org.jtool.cfg.CCFG;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.jxplatform.builder.CommandLineOptions;
 import org.jtool.jxplatform.builder.TimeInfo;
@@ -61,50 +61,43 @@ public class PDGGeneratorForClass extends CommonGenerator {
         System.out.print("Target: " + name + " (" + path + ")");
         ZonedDateTime startTime = TimeInfo.getCurrentTime();
         jprojects = builder.build(name, path);
+        List<JavaClass> allClasses = jprojects.stream()
+                .flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
+        buildPDGs(allClasses);
         ZonedDateTime endTime = TimeInfo.getCurrentTime();
-        timesecSrcModel = getTimeMilliSec(startTime, endTime);
+        long timeSec = getTimeMilliSec(startTime, endTime);
+        
         System.out.print("**** , ");
         System.out.print(name + " , ");
-        System.out.print(timesecSrcModel + " , ");
+        System.out.print(timeSec + " , ");
         System.out.print("BYTECODE=" + binaryAnalysis + " , ");
         System.out.print("CACHE=" + useCache + " , ");
         System.out.println();
         
-        List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
-        buildPDGs(classes);
-    }
-    
-    private void buildPDGs(List<JavaClass> classes) {
-        ZonedDateTime startTime = TimeInfo.getCurrentTime();
-        for (int classNumber : classNumbers) {
-            JavaClass selectedClass = classes.get(classNumber);
-            System.out.print("#### " + classNumber + " ");
-            System.out.print(selectedClass.getQualifiedName().fqn());
-            System.out.println();
-            
-            CFGStore cfgStore = selectedClass.getJavaProject().getCFGStore();
-            ZonedDateTime startTimeCFG = TimeInfo.getCurrentTime();
-            CCFG ccfg = cfgStore.generateUnregisteredCCFG(selectedClass);
-            ZonedDateTime endTimeCFG = TimeInfo.getCurrentTime();
-            long timesecCFG = getTimeMilliSec(startTimeCFG, endTimeCFG);
-            
-            PDGStore pdgStore = selectedClass.getJavaProject().getPDGStore();
-            ZonedDateTime startTimePDG = TimeInfo.getCurrentTime();
-            pdgStore.generateUnregisteredClDG(ccfg);
-            ZonedDateTime endTimePDG = TimeInfo.getCurrentTime();
-            long timesecPDG = getTimeMilliSec(startTimePDG, endTimePDG);
-            
-            System.out.print("**** , ");
-            System.out.print(name + " , ");
-            System.out.print(selectedClass.getQualifiedName().fqn() + " , ");
-            System.out.print(selectedClass.getCodeRange().getLoc() + " , ");
-            System.out.print(timesecCFG + " , ");
-            System.out.print(timesecPDG + " , ");
-            System.out.println();
-            
-        }
-        ZonedDateTime endTime = TimeInfo.getCurrentTime();
         printTimeSec(startTime, endTime);
         System.out.println();
+    }
+    
+    private void buildPDGs(List<JavaClass> allClasses) {
+        List<JavaClass> classes = new ArrayList<>();
+        for (int classNumber : classNumbers) {
+            JavaClass jclass = allClasses.get(classNumber);
+            if (jclass != null) {
+                classes.add(jclass);
+            }
+        }
+        System.out.println("CLASSES = " + classes.size());
+        
+        List<CCFG> ccfgs = new ArrayList<>();
+        for (JavaClass jclass : classes) {
+            CFGStore cfgStore = jclass.getJavaProject().getCFGStore();
+            CCFG ccfg = cfgStore.getCCFG(jclass);
+            ccfgs.add(ccfg);
+        }
+        
+        for (JavaClass jclass : classes) {
+            PDGStore pdgStore = jclass.getJavaProject().getPDGStore();
+            pdgStore.getClDG(jclass, false);
+        }
     }
 }

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -29,6 +29,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.stream.Collectors;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -427,6 +433,20 @@ public class ModelBuilderImpl {
         build(jproject.getModelBuilder(), 
                 jproject.getName(), jproject.getPath(), jproject.getClassPath(),
                 jproject.getSourcePath(), jproject.getBinaryPath());
+    }
+    
+    public void performTaskWithTimeout(Runnable task, int timeoutSec) throws TimeoutException {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        try {
+            Future<?> future = executor.submit(task);
+            try {
+                future.get(timeoutSec, TimeUnit.SECONDS);
+            } catch (InterruptedException | ExecutionException e) {
+                /* catches as a timeout exception */
+            }
+        } finally {
+            executor.shutdown();
+        }
     }
     
     public void setConsoleVisible(boolean visible) {

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -37,6 +37,10 @@ public class Logger {
     
     public void recordCreationError(String message) {
         recordLog("**Creation Error : " + message);
+    }
+    
+    public void recordTimeoutError(String message) {
+        recordLog("**Timeout occurred : " + message);
     }
     
     public void setLogFile(String logfile) {

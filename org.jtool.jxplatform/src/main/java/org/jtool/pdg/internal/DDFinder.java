@@ -1,10 +1,11 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.pdg.internal;
 
+import org.jtool.srcmodel.JavaProject;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.Dependence;
 import org.jtool.pdg.CD;
@@ -21,6 +22,7 @@ import java.util.HashSet;
 import java.util.Stack;
 import java.util.Collections;
 import java.util.stream.Collectors;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Finds data dependences of a PDG from its CFG.
@@ -30,7 +32,25 @@ import java.util.stream.Collectors;
  */
 public class DDFinder {
     
-    public static void find(PDG pdg, CFG cfg) {
+    private static final int TIMEOUT_SEC = 180;
+    
+    public static void find(final JavaProject jproject, final PDG pdg, final CFG cfg) {
+        Runnable task = new Runnable() {
+            
+            @Override
+            public void run() {
+                find0(pdg, cfg);
+            }
+        };
+        
+        try {
+            jproject.getModelBuilderImpl().performTaskWithTimeout(task, TIMEOUT_SEC);
+        } catch (TimeoutException e) {
+            jproject.getModelBuilderImpl().getLogger().recordTimeoutError(cfg.getQualifiedName().fqn());
+        }
+    }
+    
+    public static void find0(PDG pdg, CFG cfg) {
         findDDs(pdg, cfg);
         findDefOrderDDs(pdg, cfg);
     }

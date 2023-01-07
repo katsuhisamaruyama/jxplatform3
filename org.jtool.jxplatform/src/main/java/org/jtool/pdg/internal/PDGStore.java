@@ -145,7 +145,7 @@ public class PDGStore {
         if (ccfg == null) {
             return null;
         }
-        return PDGBuilder.buildClDG(ccfg);
+        return PDGBuilder.buildClDG(jclass, ccfg);
     }
     
     public PDG getPDG(CFG cfg, boolean force, boolean whole) {
@@ -206,12 +206,11 @@ public class PDGStore {
         
         DependencyGraph graph = new DependencyGraph(classes.iterator().next().getQualifiedName().fqn());
         if (whole) {
-            for (JavaClass jclass : classes) {
-                classes.addAll(getColleagues(jclass));
-            }
+            Set<JavaClass> wholeClasses = getColleague(classes);
+            createDependencyGraph(graph, wholeClasses, whole);
+        } else {
+            createDependencyGraph(graph, classes, whole);
         }
-        
-        createDependencyGraph(graph, classes, whole);
         return graph;
     }
     
@@ -223,7 +222,7 @@ public class PDGStore {
             } else {
                 CCFG ccfg = cfgStore.getCCFG(jclass);
                 if (ccfg != null) {
-                    cldg = PDGBuilder.buildClDG(ccfg);
+                    cldg = PDGBuilder.buildClDG(jclass, ccfg);
                     if (cldg != null) {
                         graph.add(cldg);
                     }
@@ -265,12 +264,10 @@ public class PDGStore {
             }
             classes.add(jc);
             
-            jc.getEfferentClassesInProject().stream() .forEach(c -> classStack.push(c));
+            jc.getEfferentClassesInProject().forEach(c -> classStack.push(c));
         }
         return classes;
     }
-    
-    
     
     public void collectInterPDGEdges(DependencyGraph graph) {
         Set<CFGMethodCall> callers = new HashSet<>();
@@ -416,9 +413,6 @@ public class PDGStore {
         if (fvar.isUncoveredFieldReference()) {
             JUncoveredFieldReference jvar = (JUncoveredFieldReference)fvar;
             jvar.getHoldingNodes().forEach(n -> {
-                if (n.getPDGNode() == null) {
-                    System.err.println("SRC = " + n);
-                }
                 addUncoveredFieldAccessEdge(graph, n.getPDGNode(), node.getPDGNode(), jvar);
             });
         }
@@ -444,11 +438,11 @@ public class PDGStore {
         }
     }
     
-    public ClDG generateUnregisteredClDG(CCFG ccfg) {
-        return PDGBuilder.buildClDG(ccfg);
+    public ClDG generateUnregisteredClDG(JavaClass jclass, CCFG ccfg) {
+        return PDGBuilder.buildClDG(jclass, ccfg);
     }
     
-    public PDG generateUnregisteredPDG(CFG cfg) {
-        return PDGBuilder.buildPDG(cfg);
+    public PDG generateUnregisteredPDG(JavaClass jclass, CFG cfg) {
+        return PDGBuilder.buildPDG(jclass, cfg);
     }
 }

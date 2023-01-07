@@ -1,10 +1,11 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.pdg.internal;
 
+import org.jtool.srcmodel.JavaClass;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.InterPDGCD;
@@ -25,13 +26,13 @@ import org.jtool.cfg.CFGStatement;
  */
 public class PDGBuilder {
     
-    static ClDG buildClDG(CCFG ccfg) {
+    static ClDG buildClDG(JavaClass jclass, CCFG ccfg) {
         ClDG cldg = new ClDG();
         ClDGEntry entry = new ClDGEntry(ccfg.getEntryNode());
         cldg.setEntryNode(entry);
         
         for (CFG cfg : ccfg.getCFGs()) {
-            PDG pdg = buildPDG(cfg);
+            PDG pdg = buildPDG(jclass, cfg);
             cldg.add(pdg);
             
             InterPDGCD edge = new InterPDGCD(entry, pdg.getEntryNode());
@@ -41,7 +42,7 @@ public class PDGBuilder {
         return cldg;
     }
     
-    static PDG buildPDG(CFG cfg) {
+    static PDG buildPDG(JavaClass jclass, CFG cfg) {
         PDG pdg = new PDG(cfg);
         createNodes(pdg, cfg);
         
@@ -49,8 +50,8 @@ public class PDGBuilder {
                 .filter(node -> node.isEntry()).findFirst().orElse(null);
         pdg.setEntryNode(entry);
         
-        CDFinder.find(pdg, cfg);
-        DDFinder.find(pdg, cfg);
+        CDFinder.find(jclass.getJavaProject(), pdg, cfg);
+        DDFinder.find(jclass.getJavaProject(), pdg, cfg);
         return pdg;
     }
     

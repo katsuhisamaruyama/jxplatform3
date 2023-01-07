@@ -126,7 +126,8 @@ public class CommonGenerator {
         
         monitor.begin(size);
         for (CCFG ccfg : ccfgs) {
-            ClDG cldg = pdgStore.generateUnregisteredClDG(ccfg);
+            JavaClass jclass = jproject.getClass(ccfg.getQualifiedName().fqn());
+            ClDG cldg = pdgStore.generateUnregisteredClDG(jclass, ccfg);
             if (cldg != null) {
                 sdg.add(cldg);
             }
