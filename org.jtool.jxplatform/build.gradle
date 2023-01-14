@@ -12,12 +12,10 @@ buildscript {
     }
 }
 
-plugins {
-    id 'java'
-    id 'eclipse'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
-    id 'maven-publish'
-}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'maven-publish'
 
 group = 'org.jtool.jxplatform'
 
