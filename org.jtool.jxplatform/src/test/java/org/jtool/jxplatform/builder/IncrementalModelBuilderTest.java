@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -8,7 +8,6 @@ package org.jtool.jxplatform.builder;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaProject;
-import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -82,7 +81,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         createFile(target);
@@ -107,7 +106,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         builder.addFile(target + File.separator + "New1.java");
@@ -128,7 +127,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         builder.addFile(target + File.separator + "Customer.java");
@@ -151,7 +150,7 @@ public class IncrementalModelBuilderTest {
         createFile(target);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         deleteFile(target);
@@ -174,7 +173,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         builder.removeFile(target + File.separator + "New1.java");
@@ -195,7 +194,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         builder.removeFile(target + File.separator + "Customer.java");
@@ -218,7 +217,7 @@ public class IncrementalModelBuilderTest {
         createFile(target);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         modifyFile(target);
@@ -243,7 +242,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         builder.updateFile(target + File.separator + "New1.java");
@@ -264,7 +263,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         builder.updateFile(target + File.separator + "Customer.java");
@@ -285,7 +284,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         Set<JavaFile> result = builder.collectDependentFiles(target + File.separator + "Customer.java");
@@ -302,7 +301,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         Set<JavaFile> result = builder.collectDependentFiles(target + File.separator + "Rental.java");
@@ -319,7 +318,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         Set<JavaFile> result = builder.collectDependentFiles(target + File.separator + "Order.java");
@@ -336,7 +335,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         Set<JavaFile> result = builder.collectDependentFiles(target + File.separator + "CustomerTest.java");
@@ -355,7 +354,7 @@ public class IncrementalModelBuilderTest {
         createFile(target);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         builder.collectFilesByFileTime();
@@ -378,7 +377,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         createFile(target);
@@ -405,7 +404,7 @@ public class IncrementalModelBuilderTest {
         createFile(target);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         touchFile(target, "New.java");
@@ -432,7 +431,7 @@ public class IncrementalModelBuilderTest {
         createFile(target);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         deleteFile(target);
@@ -455,7 +454,7 @@ public class IncrementalModelBuilderTest {
         String target = BuilderTestUtil.getTarget(name);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
         FileTime originalTime = touchFile(target, "Customer.java");
@@ -482,7 +481,7 @@ public class IncrementalModelBuilderTest {
         createFile(target);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         JavaProject jproject = builder.build(name, target, target);
         
         JavaFile jfileBefore = jproject.getFile(target + File.separator + "New.java");
@@ -524,7 +523,7 @@ public class IncrementalModelBuilderTest {
         createFile(target);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         JavaProject jproject = builder.build(name, target, target);
         
         JavaFile jfileBefore = jproject.getFile(target + File.separator + "New.java");
@@ -566,7 +565,7 @@ public class IncrementalModelBuilderTest {
         createFile(target);
         
         BuilderTestUtil.clearProject();
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(new ModelBuilderBatchImpl());
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
         JavaProject jproject = builder.build(name, target, target);
         
         JavaFile jfileBefore = jproject.getFile(target + File.separator + "New.java");

@@ -243,7 +243,7 @@ public class DependencyGraph {
      * Obtains edges that connect nodes in different PDGs.
      * @return the collection of the edges
      */
-    List<DependencyGraphEdge> getInterPDGEdges() {
+    public List<DependencyGraphEdge> getInterPDGEdges() {
         return new ArrayList<DependencyGraphEdge>(interPDGEdgeMapWithSrcKey.values());
     }
     

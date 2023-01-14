@@ -194,8 +194,8 @@ public class ClDG {
         buf.append("----- ClDG (from here) -----" + br);
         buf.append("Class Name = " + getQualifiedName());
         buf.append(br);
-        pdgs.values().forEach(cfg -> buf.append(cfg.toStringForNodes() + "--" + br));
-        pdgs.values().forEach(cfg -> buf.append(cfg.toStringForEdges() + "--" + br));
+        pdgs.values().forEach(pdg -> buf.append(pdg.toStringForNodes() + "--" + br));
+        pdgs.values().forEach(pdg -> buf.append(pdg.toStringForEdges() + "--" + br));
         buf.append("----- ClDG (to here) -----" + br);
         return buf.toString();
     }

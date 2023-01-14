@@ -1,11 +1,12 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.jxplatform.builder;
 
 import org.jtool.jxplatform.project.ModelBuilderImpl;
+import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaPackage;
@@ -51,6 +52,13 @@ public class IncrementalModelBuilder extends ModelBuilder {
      */
     public IncrementalModelBuilder(ModelBuilderImpl builderImpl) {
         this.builderImpl = builderImpl;
+    }
+    
+    /**
+     * Creates an incremental-mode model builder.
+     */
+    public IncrementalModelBuilder() {
+        this(new ModelBuilderBatchImpl());
     }
     
     /**
