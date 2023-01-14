@@ -37,7 +37,6 @@ public class SrcModePrinterSample {
         run(name, target);
     }
     
-    @SuppressWarnings("unused")
     private static void run(String name, String target) {
         ModelBuilderBatch builder = new ModelBuilderBatch();
         builder.analyzeBytecode(true);
