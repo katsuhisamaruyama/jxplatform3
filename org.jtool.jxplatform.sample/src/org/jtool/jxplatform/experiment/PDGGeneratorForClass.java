@@ -50,17 +50,17 @@ public class PDGGeneratorForClass extends CommonGenerator {
     }
     
     private void run() {
-        File dir = new File(path);
+        File dir = new File(target);
         if (!dir.exists()) {
-            System.err.println("Not found project " + path);
+            System.err.println("Not found project " + target);
             return;
         }
         
         setModelBuilder();
         
-        System.out.print("Target: " + name + " (" + path + ")");
+        System.out.print("Target: " + name + " (" + target + ")");
         ZonedDateTime startTime = TimeInfo.getCurrentTime();
-        jprojects = builder.build(name, path);
+        jprojects = builder.build(name, target);
         List<JavaClass> allClasses = jprojects.stream()
                 .flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
         buildPDGs(allClasses);

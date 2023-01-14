@@ -9,7 +9,6 @@ import org.jtool.cfg.CCFG;
 import org.jtool.pdg.DependencyGraph;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.builder.TimeInfo;
-
 import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
@@ -42,20 +41,20 @@ public class PDGGenerator extends CommonGenerator {
     }
     
     private void run() {
-        File dir = new File(path);
+        File dir = new File(target);
         if (!dir.exists()) {
-            System.err.println("Not found project " + path);
+            System.err.println("Not found project " + target);
             return;
         }
         
         setModelBuilder();
         
         System.out.println("-SrcModel Generator");
-        System.out.println("Target: " + name + " (" + path + ")");
-        buildSrcModels(name, path);
+        System.out.println("Target: " + name + " (" + target + ")");
+        buildSrcModels();
         
         System.out.println("-CFG/PDG Generator");
-        System.out.println("Target: " + name + " (" + path + ")");
+        System.out.println("Target: " + name + " (" + target + ")");
         buildPDGs(jprojects);
         
         String srcinfo = SrcModelGenerator.getSrcModelInfo(name, jprojects);

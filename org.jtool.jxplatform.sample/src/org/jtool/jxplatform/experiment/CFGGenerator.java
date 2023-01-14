@@ -39,20 +39,20 @@ public class CFGGenerator extends CommonGenerator {
     }
     
     private void run() {
-        File dir = new File(path);
+        File dir = new File(target);
         if (!dir.exists()) {
-            System.err.println("Not found project " + path);
+            System.err.println("Not found project " + target);
             return;
         }
         
         setModelBuilder();
         
         System.out.println("-SrcModel Generator");
-        System.out.println("Target: " + name + " (" + path + ")");
-        buildSrcModels(name, path);
+        System.out.println("Target: " + name + " (" + target + ")");
+        buildSrcModels();
         
         System.out.println("-CFG Generator");
-        System.out.println("Target: " + name + " (" + path + ")");
+        System.out.println("Target: " + name + " (" + target + ")");
         buildCFGs(jprojects);
         
         String srcinfo = SrcModelGenerator.getSrcModelInfo(name, jprojects);

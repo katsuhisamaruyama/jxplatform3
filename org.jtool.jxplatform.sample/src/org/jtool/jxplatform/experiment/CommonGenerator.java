@@ -29,8 +29,8 @@ import java.time.temporal.ChronoUnit;
  */
 public class CommonGenerator {
     
-    protected String path;
     protected String name;
+    protected String target;
     protected boolean logging;
     protected boolean binaryAnalysis;
     protected boolean useCache;
@@ -47,13 +47,11 @@ public class CommonGenerator {
     
     protected CommandLineOptions setOptions(String[] args) {
         CommandLineOptions options = new CommandLineOptions(args);
-        String target = options.get("-target", ".");
+        target = options.get("-target", ".");
         name = options.get("-name", target);
-        if (!target.startsWith("/")) {
+        if (!target.startsWith(File.separator)) {
             String cdir = new File(".").getAbsoluteFile().getParent();
-            path = cdir + File.separatorChar + target;
-        } else {
-            path = target;
+            target = cdir + File.separatorChar + target;
         }
         logging = options.get("-logging", "on").equals("on") ? true : false;
         binaryAnalysis = options.get("-binanalysis", "on").equals("on") ? true : false;
@@ -84,9 +82,9 @@ public class CommonGenerator {
         builder.setConsoleVisible(logging);
     }
     
-    protected void buildSrcModels(String name, String path) {
+    protected void buildSrcModels() {
         ZonedDateTime startTime = TimeInfo.getCurrentTime();
-        jprojects = builder.build(name, path);
+        jprojects = builder.build(name, target);
         ZonedDateTime endTime = TimeInfo.getCurrentTime();
         timesecSrcModel = getTimeSec(startTime, endTime);
         
