@@ -273,7 +273,7 @@ public class CFGTestUtil {
     public static String getCCFGData(CCFG ccfg) {
         StringBuilder buf = new StringBuilder();
         buf.append("----- CCFG (from here) -----" + br);
-        buf.append("Class Name = " + ccfg.getQualifiedName());
+        buf.append("Class Name = " + ccfg.getQualifiedName().fqn());
         buf.append(br);
         ccfg.getCFGs().forEach(cfg -> buf.append(toStringForNodes(cfg) + "--" + br));
         ccfg.getCFGs().forEach(cfg -> buf.append(toStringForEdges(cfg) + "--" + br));

@@ -5,6 +5,7 @@
 
 package org.jtool.pdg.internal;
 
+import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.ClDG;
 import org.jtool.pdg.SDG;
@@ -342,12 +343,12 @@ public class PDGTestUtil {
     
     public static String getClDGData(ClDG cldg) {
         StringBuilder buf = new StringBuilder();
-        buf.append("----- ClDG (from here) -----\n");
-        buf.append("Class Name = " + cldg.getQualifiedName());
-        buf.append("\n");
-        cldg.getPDGs().forEach(pdg -> buf.append(toStringForNodes(pdg) + "--\n"));
-        cldg.getPDGs().forEach(pdg -> buf.append(toStringForEdges(pdg) + "--\n"));
-        buf.append("----- ClDG (to here) -----\n");
+        buf.append("----- ClDG (from here) -----" + br);
+        buf.append("Class Name = " + cldg.getQualifiedName().fqn());
+        buf.append(br);
+        cldg.getPDGs().forEach(pdg -> buf.append(toStringForNodes(pdg) + "--" + br));
+        cldg.getPDGs().forEach(pdg -> buf.append(toStringForEdges(pdg) + "--" + br));
+        buf.append("----- ClDG (to here) -----" + br);
         return buf.toString();
     }
     
@@ -356,7 +357,7 @@ public class PDGTestUtil {
         StringBuilder buf = new StringBuilder();
         PDGNode.sortNodes(pdg.getNodes()).forEach(node -> {
             buf.append(CFGTestUtil.toString(cfg, node.getCFGNode()));
-            buf.append("\n");
+            buf.append(br);
         });
         return buf.toString();
     }
@@ -367,7 +368,7 @@ public class PDGTestUtil {
         buf.append(GraphElement.getIdString(0));
         buf.append(": ");
         buf.append(pdg.getEntryNode().getSignature());
-        buf.append("\n");
+        buf.append(br);
         
         List<String> edgesInfo = Dependence.sortEdges(pdg.getEdges()).stream()
                 .map(e -> toString(cfg, e)).sorted().collect(Collectors.toList());
@@ -376,7 +377,7 @@ public class PDGTestUtil {
             buf.append(GraphElement.getIdString(index));
             buf.append(": ");
             buf.append(edgeInfo);
-            buf.append("\n");
+            buf.append(br);
             index++;
         }
         return buf.toString();
