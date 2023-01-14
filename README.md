@@ -12,11 +12,10 @@ JxPlatform3 builds a Java source code model consisting of the following elements
 * JavaProject - Provides information on project resources such as Java source files, packages, and classes 
 * JavaFile - Provides information on a Java source file 
 * JavaPackage - Provides information on a package 
-* JavaClass - Provides information on a class, an interface, an enum, or an enum constant 
+* JavaClass - Provides information on a class, an interface, or an enum
 * JavaMethod - Provides information on a method, a constructor, or an initializer within a class
-* JavaVariable - Provides information on a variable
-* JavaField - Provides information on a field within a class
-* JavaLocalVar - Provides information on a local variable within a method or a parameter in a method call
+* JavaField - Provides information on a field or an enum constant within a class
+* JavaLocalVar - Provides information on a local or a parameter variable within a method
 
 ### CFG (Control Flow Graph) 
 
@@ -94,7 +93,6 @@ It traverses only the PDG nodes that reach a node given as a slice criterion.
 * JDK 11 
 * [Eclipse](https://www.eclipse.org/) 2022-09 (4.25.0) and later 
 
-
 ## License 
 
 [Eclipse Public License 1.0 (EPL-1.0)](<https://opensource.org/licenses/eclipse-1.0.php>) 
@@ -104,7 +102,7 @@ It traverses only the PDG nodes that reach a node given as a slice criterion.
 You can download the latest jar file (`jxplatform-3.x.x.jar`) 
 from the [Releases](https://github.com/katsuhisamaruyama/jxplatform3/releases/latest) page.
 
-Alternatively, you can build jar files with the Gradle on your own environment. 
+Alternatively, you can build a jar file with the Gradle on your own environment. 
 
 ```
 git clone https://github.com/katsuhisamaruyama/jxplatform3/
@@ -112,64 +110,95 @@ cd jxplatform3/org.jtool.jxplatform
 ./gradlew jar shadowJar
 ```
 The jar file (`jxplatform-3-SNAPSHOT.jar`) exists in the 'build/libs' directory. 
-
-### As a Library
-
-You can deploy `jxplatform-X.jar` in the directory for library files (e.g., `libs`), 
+Please deploy it in the directory for library files (e.g., `libs`), 
 and specify the directory as the build path and the runtime classpath under your environment.
 When using the Eclipse, see the "Build Path" settings of a project.
 
-### As an Eclipse plug-in
+A easier way is to adopt Gradle (or Maven). 
+You can import a jar file from Jitpack [site](https://jitpack.io/#katsuhisamaruyama/jxplatform3).
 
-The plug-in implementation has not been tested yet.
-Please look forward to a release of the tested version.
+1. Please add the JitPack repository in your `build.gradle` file at the end of repositories. 
+
+```
+repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+}
+```
+
+2. You add the dependency as follows:
+
+```
+dependencies {
+    ...
+    implementation 'com.github.katsuhisamaruyama:jxplatform3:Tag'
+}
+```
+
+Please replace `Tag` with the latest version number (e.g., `3.0.8`).
+
+If you write code using JxPlatform3 in Eclipse, running the `./gradlew eclipse` command helps your configuration.
+
 
 ## Usage
 
-JxPlatform3 provides two types of model builders as follows:
+### Creating a builder
+
+Using JxPlatform3, you first create a model builder instance (as a facade) that builds source code models, CFGs, and PDGs.
+The following two model builders are prepared.
 
 * ModelBuilderBatch - Batch processing builder 
 * IncrementalModelBuilder - Incrementally processing builder 
 
+The both builder provides simple APIs described as follows:
+
+```java
+JavaProject build(String name, String target, String classpath)
+JavaProject build(String name, String target, String classpath, String srcpath, String binpath)
+JavaProject build(String name, String target, String[] classpath, String[] srcpath, String[] binpath)
+
+  name - an arbitrary project name
+  target - the path of the root directory for a target project
+  classpath - the path(s) of the directory that contains class and/or jar files
+  srcpath - the path(s) where the source files are located
+  binpath - the path(s) where the binary files are located
+```
+
 ### Building a source code model under batch-processing applications
+
+You can use a convenient API provided by the ModelBuilderBatch class, without specifying classpath etc. 
+This API automatically collects needed information from configuration files of Ant, Gradle, and Maven projects.
 
 The code snippet building a source code model is describe below. 
 
-```
-// import org.jtool.jxplatform.builder.ModelBuilderBatch;
-// import org.jtool.srcmodel.JavaProject;
-// import org.jtool.srcmodel.JavaFile;
-// import org.jtool.srcmodel.JavaClass;
-// import org.jtool.srcmodel.JavaMethod;
-// import org.jtool.srcmodel.JavaField;
-
-String name;  // an arbitrary project name
-String path;  // the path of the root directory
-              // that contains Java source files in a target project
-
+```java
 ModelBuilderBatch builder = new ModelBuilderBatch();
-builder.analyzeBytecode(true);
-builder.useCache(true);
-builder.setConsoleVisible(true);
+builder.analyzeBytecode(true);    // whether analyzing bytecode files or not 
+builder.useCache(true);           // whether using a cache of already analyzed data
+builder.setConsoleVisible(true);  // whether displaying messages on console
 
-List<JavaProject> jprojects = builder.build(name, path);
-// If a project has a single module,
-// the resulting list has only one object corresponding to the target project 
-// If a project has multiple modules,
-// objects stored in the list correspond to the underlying modules 
+List<JavaProject> jprojects = builder.build(name, target);
+  // If a project has a single module,
+  // the resulting list has only one object corresponding to the target project 
+  // If a project has multiple modules,
+  // objects stored in the list correspond to the underlying modules 
 
-List<JavaFile> files = jprojects.stream()
-                                .flatMap(p -> p.getFiles().stream())
-                                .collect(Collectors.toList());
-List<JavaClass> classes = jprojects.stream()
-                                   .flatMap(p -> p.getClasses().stream())
-                                   .collect(Collectors.toList());
-List<JavaMethod> methods = classes.stream()
-                                  .flatMap(p -> p.getMethods().stream())
-                                  .collect(Collectors.toList());
-List<JavaField> fields = classes.stream()
-                                .flatMap(p -> p.getFields().stream())
-                                .collect(Collectors.toList());
+for (JavaProject jproject : jprojects) {
+    List<JavaFile> files = jproject.getFiles();
+    List<JavaClass> classes = jproject.getClasses();
+    
+    for (JavaClass jclass : classes) {
+        JavaPackage jpackage = jclass.getPackage();
+        List<JavaMethod> methods = jclass.getMethods();
+        
+        for (JavaMethod jmethod : methods) {
+            List<JavaLocalVar> locals = jmethod.getLocalVariables();
+            List<JavaLocalVar> params = jmethod.getParameters();
+        }
+        
+        List<JavaField> fields = jclass.getFields();
+    }
+}
 
 builder.unbuild();
 ```
@@ -178,22 +207,13 @@ builder.unbuild();
 
 The code snippet incrementally building a source code model is describe below. 
 
-```
-// import org.jtool.jxplatform.builder.IncrementalModelBuilder;
-// import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
-// import org.jtool.jxplatform.project.ModelBuilderImpl;
+```java
+IncrementalModelBuilder builder = new IncrementalModelBuilder();
+builder.analyzeBytecode(true);
+builder.useCache(true);
+builder.setConsoleVisible(true);
 
-String name;       // an arbitrary project name
-String path;       // the path of the root directory for a target project 
-String classpath;  // the path of the directory that contains class and/or jar files
-
-ModelBuilderImpl builderImpl = new ModelBuilderBatchImpl();
-builderImpl.analyzeBytecode(true);
-builderImpl.useCache(true);
-builderImpl.setConsoleVisible(true);
-
-IncrementalModelBuilder builder = new IncrementalModelBuilder(builderImpl);
-JavaProject jproject = builder.build(name, path, classpath);
+JavaProject jproject = builder.build(name, target, classpath);
 // One builder monitors just one project
 
 // Notifies the addition of a Java file
@@ -216,12 +236,9 @@ builder.unbuild();
 
 The following code snippet builds CCFGs for all classes and CFGs for all methods and fields within a project.
 
-```
-// import org.jtool.cfg.CCFG;
-// import org.jtool.cfg.CFG;
-
+```java
 ModelBuilderBatch builder = new ModelBuilderBatch();
-List<JavaProject> jprojects = builder.build(name, path);
+List<JavaProject> jprojects = builder.build(name, target);
 List<JavaClass> classes = jprojects.stream()
                                    .flatMap(p -> p.getClasses().stream())
                                    .collect(Collectors.toList());
@@ -238,10 +255,10 @@ builder.unbuild();
 
 A CFG can be created from an object of JavaMethod or JavaField as described below.
 
-```
+```java
 JavaMethod jmethod;
 JavaField jfield;
-boolean force;       // whether the analyzer forces to create a CFG or allows to reuse it 
+boolean force;  // whether forcibly creating a CFG or allowing to reuse it 
 CFG cfg;
 cfg = builder.getCFG(jmethod, force);
 cfg = builder.getCFG(jmethod);  // force:false
@@ -251,7 +268,7 @@ cfg = builder.getCFG(jfield);  // force:false
 
 A call graph can be created within a project as described below.
 
-```
+```java
 JavaProject jproject;
 CallGraph callGraph = build.getCallGraph(jproject);
 ```
@@ -260,12 +277,9 @@ CallGraph callGraph = build.getCallGraph(jproject);
 
 The following code builds ClDGs for all classes and PDGs for all methods and fields within a project.
 
-```
-// import org.jtool.pdg.ClDG;
-// import org.jtool.pdg.PDG;
-
+```java
 ModelBuilderBatch builder = new ModelBuilderBatch();
-List<JavaProject> jprojects = builder.build(name, path);
+List<JavaProject> jprojects = builder.build(name, target);
 List<JavaClass> classes = jprojects.stream()
                                    .flatMap(p -> p.getClasses().stream())
                                    .collect(Collectors.toList());
@@ -282,11 +296,11 @@ builder.unbuild();
 
 There are several ways to create PDGs, ClDGs, and SDGs. 
 
-```
+```java
 ModelBuilder builder;
-boolean force;       // whether the analyzer forces to create a CFG or allows to reuse it 
-boolean whole;       // whether a dependency graph will be created with the whole information 
-                     // related to calls to methods and accesses to fields of outside classes
+boolean force;  // whether forcibly creating a PDG or allowing to reuse it 
+boolean whole;  // whether a dependency graph will be created by using the whole information 
+                //   related to calls to methods and accesses to fields of outside classes
 JavaProject jproject;
 JavaMethod jmethod;
 JavaField jfield;
@@ -317,7 +331,7 @@ sdg = builder.getSDG(jproject); // force:false
 
 The `DependencyGraph` class is used to obtain sub-graphs of the SDG, consisting of ClDGs created from specific classes. 
 
-```
+```java
 DependencyGraph graph;
 graph = builder.getDependencyGraph(jclass, force, whole);
 graph = builder.getDependencyGraph(jclass); // force: false, whole: true
@@ -330,12 +344,7 @@ graph = builder.getDependencyGraph(classes);  // force:false, whole:true
 
 A program slice can be created from an object of PDG as described below.
 
-```
-// import org.jtool.eclipse.pdg.PDGNode;
-// import org.jtool.eclipse.cfg.JVariableReference;
-// import org.jtool.eclipse.slice.Slice;
-// import org.jtool.eclipse.slice.SliceCriterion;
-
+```java
 JavaClass jclass;        // a class to be sliced
 PDGNode node;            // a node given as a slice criterion
 JVariableReference var;  // a variable of interest given as a slice criterion
@@ -348,7 +357,7 @@ slice.print();
 
 A convenient static method is also provided.
 
-```
+```java
 DependencyGraph graph;  // a dependency graph consisting of ClDGs, 
                         // which is used when extracting a slice
 JavaFile jfile;         // a file including a class to be sliced
@@ -367,7 +376,7 @@ criterion = SliceCriterion.find(graph, jfield, lineNumber, columnNumber);
 
 The following code snippet generates source code from a program slice.
 
-```
+```java
 JavaClass jclass;    // a class to be sliced
 JavaMethod jmethod;  // a method to be sliced
 JavaField jfield;    // a field to be sliced
