@@ -110,13 +110,14 @@ cd jxplatform3/org.jtool.jxplatform
 ./gradlew jar shadowJar
 ```
 The jar file (`jxplatform-3-SNAPSHOT.jar`) exists in the 'build/libs' directory. 
-Please deploy it in the directory for library files (e.g., `libs`), 
+Please deploy it in the directory for library files (e.g., 'lib' or 'libs'), 
 and specify the directory as the build path and the runtime classpath under your environment.
 When using the Eclipse, see the "Build Path" settings of a project.
 
-A easier way is to adopt Gradle (or Maven). 
-You can import a jar file from Jitpack [site](https://jitpack.io/#katsuhisamaruyama/jxplatform3).
+A easier way is to adopt Gradle or Maven. 
+You can import a jar file from JitPack [site](https://jitpack.io/#katsuhisamaruyama/jxplatform3).
 
+For Gradle,
 1. Please add the JitPack repository in your `build.gradle` file at the end of repositories. 
 
 ```
@@ -135,9 +136,9 @@ dependencies {
 }
 ```
 
-Please replace `Tag` with the latest version number (e.g., `3.0.8`).
+Please replace `Tag` with the latest version number (e.g., `3.x.x`).
 
-If you write code using JxPlatform3 in Eclipse, running the `./gradlew eclipse` command helps your configuration.
+If you write code using JxPlatform3 in Eclipse, the command execution of `./gradlew eclipse` helps your configuration.
 
 
 ## Usage
@@ -256,21 +257,19 @@ builder.unbuild();
 A CFG can be created from an object of JavaMethod or JavaField as described below.
 
 ```java
-JavaMethod jmethod;
-JavaField jfield;
 boolean force;  // whether forcibly creating a CFG or allowing to reuse it 
-CFG cfg;
-cfg = builder.getCFG(jmethod, force);
-cfg = builder.getCFG(jmethod);  // force:false
-cfg = builder.getCFG(jfield, force);
-cfg = builder.getCFG(jfield);  // force:false
+
+CFG cfg = builder.getCFG(jmethod, force);
+CFG cfg = builder.getCFG(jmethod);  // force:false
+
+CFG cfg = builder.getCFG(jfield, force);
+CFG cfg = builder.getCFG(jfield);  // force:false
 ```
 
 A call graph can be created within a project as described below.
 
 ```java
-JavaProject jproject;
-CallGraph callGraph = build.getCallGraph(jproject);
+CallGraph callGraph = builder.getCallGraph(jproject);
 ```
 
 ### Creating PDGs
@@ -297,47 +296,39 @@ builder.unbuild();
 There are several ways to create PDGs, ClDGs, and SDGs. 
 
 ```java
-ModelBuilder builder;
+CFG cfg;        // a CFG from which a PDG is created 
+CCFG ccfg;      // a CCFG from which a ClDG is created 
 boolean force;  // whether forcibly creating a PDG or allowing to reuse it 
 boolean whole;  // whether a dependency graph will be created by using the whole information 
                 //   related to calls to methods and accesses to fields of outside classes
-JavaProject jproject;
-JavaMethod jmethod;
-JavaField jfield;
 
-CFG cfg;
-PDG pdg;
-pdg = builder.getPDG(jproject, cfg, force, whole);
-pdg = builder.getPDG(jproject, cfg); // force:false, whole:true
+PDG pdg = builder.getPDG(jproject, cfg, force, whole);
+PDG pdg = builder.getPDG(jproject, cfg); // force:false, whole:true
 
-pdg = builder.getPDG(jmethod, force, whole);
-pdg = builder.getPDG(jmethod);  // force:false, whole:true
+PDG pdg = builder.getPDG(jmethod, force, whole);
+PDG pdg = builder.getPDG(jmethod);  // force:false, whole:true
  
-pdg = builder.getPDG(jfield, force, whole);
-pdg = builder.getPDG(jfield);  // force:false, whole:true
+PDG pdg = builder.getPDG(jfield, force, whole);
+PDG pdg = builder.getPDG(jfield);  // force:false, whole:true
 
-CCFG ccfg;
-ClDG cldg;
-cldg = builder.getClDG(jproject, ccfg, force, whole);
-cldg = builder.getClDG(jproject, ccfg); // force:false, whole:true
+ClDG cldg = builder.getClDG(jproject, ccfg, force, whole);
+ClDG cldg = builder.getClDG(jproject, ccfg); // force:false, whole:true
 
-cldg = builder.getClDG(jclass, force, whole);
-cldg = builder.getClDG(jclass);  // force:false, whole:true
+ClDG cldg = builder.getClDG(jclass, force, whole);
+ClDG cldg = builder.getClDG(jclass);  // force:false, whole:true
 
-SDG sdg;
-sdg = builder.getSDG(jproject, force);
-sdg = builder.getSDG(jproject); // force:false
+SDG sdg = builder.getSDG(jproject, force);
+SDG sdg = builder.getSDG(jproject); // force:false
 ```
 
 The `DependencyGraph` class is used to obtain sub-graphs of the SDG, consisting of ClDGs created from specific classes. 
 
 ```java
-DependencyGraph graph;
-graph = builder.getDependencyGraph(jclass, force, whole);
-graph = builder.getDependencyGraph(jclass); // force: false, whole: true
+DependencyGraph graph = builder.getDependencyGraph(jclass, force, whole);
+DependencyGraph graph = builder.getDependencyGraph(jclass); // force:false, whole:true
 
-graph = builder.getDependencyGraph(classes, force, whole);  // classes: Set<JavaClass>
-graph = builder.getDependencyGraph(classes);  // force:false, whole:true
+DependencyGraph graph = builder.getDependencyGraph(classes, force, whole);  // classes:Set<JavaClass>
+DependencyGraph graph = builder.getDependencyGraph(classes);  // force:false, whole:true
 ```
 
 ### Extracting program slices
@@ -355,7 +346,7 @@ Slice slice = new Slice(criterion);
 slice.print();
 ```
 
-A convenient static method is also provided.
+To find the slice criterion, convenient static methods are also provided.
 
 ```java
 DependencyGraph graph;  // a dependency graph consisting of ClDGs, 
@@ -367,24 +358,18 @@ JavaField jfield;       // a field to be sliced
 int lineNumber:         // the line number corresponding to a variable of interest
 int columnNumber:       // column number corresponding to the variable on the line
 
-SliceCriterion criterion;
-criterion = SliceCriterion.find(graph, jfile, lineNumber, columnNumber);
-criterion = SliceCriterion.find(graph, jclass, lineNumber, columnNumber);
-criterion = SliceCriterion.find(graph, jmethod, lineNumber, columnNumber);
-criterion = SliceCriterion.find(graph, jfield, lineNumber, columnNumber);
+SliceCriterion criterion = SliceCriterion.find(graph, jfile, lineNumber, columnNumber);
+SliceCriterion criterion = SliceCriterion.find(graph, jclass, lineNumber, columnNumber);
+SliceCriterioncriterion = SliceCriterion.find(graph, jmethod, lineNumber, columnNumber);
+SliceCriterioncriterion = SliceCriterion.find(graph, jfield, lineNumber, columnNumber);
 ```
 
 The following code snippet generates source code from a program slice.
 
 ```java
-JavaClass jclass;    // a class to be sliced
-JavaMethod jmethod;  // a method to be sliced
-JavaField jfield;    // a field to be sliced
-
-String code;
-code = slice.getCode(jclass);
-code = slice.getCode(jmethod);
-code = slice.getCode(jfield);
+String code = slice.getCode(jclass);
+String code = slice.getCode(jmethod);
+String code = slice.getCode(jfield);
 ```
 
 ## History
