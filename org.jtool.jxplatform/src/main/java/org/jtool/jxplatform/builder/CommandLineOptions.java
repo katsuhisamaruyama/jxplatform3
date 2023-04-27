@@ -38,8 +38,9 @@ public class CommandLineOptions {
                         options.put(key, "yes");
                     }
                 }
+            } else {
+                count++;
             }
-            count++;
         }
     }
     
