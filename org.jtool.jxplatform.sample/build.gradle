@@ -6,6 +6,7 @@
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
 
 group = 'com.jtool.jxplatform.sample'
 
@@ -21,4 +22,12 @@ dependencies {
 
 jar {
     archiveBaseName = 'jxplatform-exp'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
 }
