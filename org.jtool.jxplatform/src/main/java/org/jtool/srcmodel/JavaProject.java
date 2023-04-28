@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.stream.Collectors;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * An object representing a project that contains source files to be analyzed.
@@ -36,17 +38,17 @@ public class JavaProject {
     /**
      * The absolute path string that indicates the root directory of this project relative to the workspace.
      */
-    protected final String pathInWorkspace;
+    protected String pathInWorkspace;
     
     /**
      * The absolute path string that indicates the root directory of this project in the file system.
      */
-    protected final String path;
+    protected String path;
     
     /**
      * The absolute path string that indicates the root directory of the top project enclosing this project in the file system.
      */
-    protected final String topPath;
+    protected String topPath;
     
     /**
      * The map paths and source files corresponding to the paths.
@@ -129,9 +131,21 @@ public class JavaProject {
         assert path != null;
         
         this.name = name;
-        this.pathInWorkspace = wpath;
-        this.path = path;
-        this.topPath = topPath;
+        try {
+            this.pathInWorkspace = new File(wpath).getCanonicalPath();
+        } catch (IOException e) {
+            this.pathInWorkspace = wpath;
+        }
+        try {
+            this.path = new File(path).getCanonicalPath();
+        } catch (IOException e) {
+            this.path = path;
+        }
+        try {
+            this.topPath = new File(topPath).getCanonicalPath();
+        } catch (IOException e) {
+            this.topPath = topPath;
+        }
         
         cfgStore = new CFGStore();
         pdgStore = new PDGStore(cfgStore);
@@ -150,9 +164,21 @@ public class JavaProject {
         assert path != null;
         
         this.name = name;
-        this.pathInWorkspace = wpath;
-        this.path = path;
-        this.topPath = topPath;
+        try {
+            this.pathInWorkspace = new File(wpath).getCanonicalPath();
+        } catch (IOException e) {
+            this.pathInWorkspace = wpath;
+        }
+        try {
+            this.path = new File(path).getCanonicalPath();
+        } catch (IOException e) {
+            this.path = path;
+        }
+        try {
+            this.topPath = new File(topPath).getCanonicalPath();
+        } catch (IOException e) {
+            this.topPath = topPath;
+        }
         
         this.cfgStore = cfgStore;
         this.pdgStore = pdgStore;
