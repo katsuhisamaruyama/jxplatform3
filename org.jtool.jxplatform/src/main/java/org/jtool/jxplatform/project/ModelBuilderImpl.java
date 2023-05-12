@@ -320,9 +320,13 @@ public class ModelBuilderImpl {
         printMessage("Target = " + jproject.getPath() + " (" + jproject.getName() + ")");
         printMessage("** Ready to parse " + size + " files");
         
-        ASTParser parser = getParser(jproject);
-        parser.setEnvironment(jproject.getClassPath(), null, null, true);
-        parser.createASTs(paths, encodings, new String[]{ }, requestor, null);
+        try {
+            ASTParser parser = getParser(jproject);
+            parser.setEnvironment(jproject.getClassPath(), null, null, true);
+            parser.createASTs(paths, encodings, new String[]{ }, requestor, null);
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            /* Skip parsing */
+        }
         monitor.done();
     }
     
