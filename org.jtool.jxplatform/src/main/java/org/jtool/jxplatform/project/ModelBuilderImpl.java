@@ -42,6 +42,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.Files;
 
 /**
  * A builder implementation that builds models related to Java source code.
@@ -349,19 +350,14 @@ public class ModelBuilderImpl {
             return false;
         }
         
-        File res = new File(path);
-        if (res.isFile()) {
-            if (isCompilableJavaFile(path)) {
-                return true;
-            }
-        } else if (res.isDirectory()) {
-            for (File r : res.listFiles()) {
-                if (containJavaFile(r.getPath())) {
-                    return true;
-                }
-            }
+        try {
+            Set<Path> paths = Files.walk(Paths.get(path))
+                    .filter(p -> isCompilableJavaFile(p.toString()) == true)
+                    .collect(Collectors.toSet());
+            return paths.size() > 0;
+        } catch (IOException e) {
+            return false;
         }
-        return false;
     }
     
     public static boolean isCompilableJavaFile(String path) {
@@ -392,22 +388,18 @@ public class ModelBuilderImpl {
     }
     
     protected static Set<File> collectAllJavaFileSet(String path) {
-        Set<File> files = new HashSet<>();
         if (path == null) {
-            return files;
+            return new HashSet<>();
         }
         
-        File res = new File(path);
-        if (res.isFile()) {
-            if (isCompilableJavaFile(path)) {
-                files.add(res);
-            }
-        } else if (res.isDirectory()) {
-            for (File r : res.listFiles()) {
-                files.addAll(collectAllJavaFiles(r.getPath()));
-            }
+        try {
+            return Files.walk(Paths.get(path))
+                    .filter(p -> isCompilableJavaFile(p.toString()) == true)
+                    .map(p -> p.toFile())
+                    .collect(Collectors.toSet());
+        } catch (IOException e) {
+            return new HashSet<>();
         }
-        return files;
     }
     
     private String read(File file) throws IOException {
