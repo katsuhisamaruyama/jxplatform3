@@ -205,11 +205,14 @@ public class ModelBuilderImpl {
                             path = path.substring(0, path.length() - 1);
                             File dir = new File(path);
                             if (dir != null && dir.exists()) {
-                                for (File file : dir.listFiles()) {
-                                    if (file.getName().endsWith(".jar")) {
-                                        classpaths.add(file.getCanonicalPath());
-                                    }
-                                }
+                                Files.list(Paths.get(path))
+                                    .filter(p -> p.toString().endsWith(".jar"))
+                                    .forEach(p -> {
+                                        try {
+                                            String cpath = p.toFile().getCanonicalPath();
+                                            classpaths.add(cpath);
+                                        } catch (IOException e) { /* empty */ }
+                                    });
                             }
                         } else {
                             File file = new File(path);

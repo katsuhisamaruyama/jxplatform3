@@ -33,23 +33,25 @@ class AARFile {
             return;
         }
         
-        File dir = libpath.toFile();
-        if (dir != null && dir.exists()) {
-            for (File file : dir.listFiles()) {
-                if (file.getName().endsWith(".aar")) {
-                    String name = file.getName().substring(0, file.getName().length() - ".aar".length());
-                    Path aarname = libpath.resolve(name + ".aar");
-                    Path jarname = libpath.resolve(name + ".jar");
-                    if (!jarname.toFile().exists()) {
-                        decompress(tmppath, aarname);
-                        rename(tmppath, jarname);
-                    }
-                }
-            }
-        }
         try {
+            File dir = libpath.toFile();
+            if (dir != null && dir.exists()) {
+                Files.list(libpath).forEach(p -> {
+                    String filename = p.toString();
+                    if (filename.endsWith(".aar")) {
+                        String name = filename.substring(0, filename.length() - ".aar".length());
+                        Path aarname = libpath.resolve(name + ".aar");
+                        Path jarname = libpath.resolve(name + ".jar");
+                        if (!jarname.toFile().exists()) {
+                            decompress(tmppath, aarname);
+                            rename(tmppath, jarname);
+                        }
+                    }
+                });
+            }
+            
             Files.delete(tmppath);
-        } catch (IOException ie) {  /* empty */ }
+        } catch (IOException ie) { /* empty */ }
     }
     
     private static void decompress(Path tmpdir, Path aarname) {

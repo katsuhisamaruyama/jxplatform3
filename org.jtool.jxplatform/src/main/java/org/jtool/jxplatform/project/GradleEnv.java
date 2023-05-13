@@ -187,8 +187,12 @@ class GradleEnv extends ProjectEnv {
         if (path.toString().equals(basePath.toString()) || !path.toFile().isDirectory()) {
             return false;
         }
-        File[] files = path.toFile().listFiles((file, name) -> name.endsWith(GradleEnv.configName));
-        return files.length > 0;
+        try {
+            return Files.list(path)
+                    .filter(p -> !Files.isDirectory(p) && p.toString().endsWith(GradleEnv.configName)).count() > 0;
+        } catch (IOException e) {
+            return false;
+        }
     }
     
     private void copyDependentLibrariesByCommandExecutor() throws Exception {

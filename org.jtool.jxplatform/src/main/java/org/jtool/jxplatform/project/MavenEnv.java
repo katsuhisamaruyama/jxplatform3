@@ -167,9 +167,8 @@ class MavenEnv extends ProjectEnv {
         sourceDirectory = getSourceDirectory(sourceDirectory, sourceDirectoryCandidates);
         testSourceDirectory = getSourceDirectory(testSourceDirectory, testSourceDirectoryCandidates);
         if (sourceDirectory == null && testSourceDirectory == null) {
-            File dir = new File(basePath.toString());
-            boolean sourceDirExists = Arrays.asList(dir.listFiles()).stream()
-                    .anyMatch(file -> file.isFile() && file.getName().endsWith(".java"));
+            boolean sourceDirExists = Files.list(basePath)
+                    .anyMatch(p -> !Files.isDirectory(p) && p.toString().endsWith(".java"));
             if (sourceDirExists) {
                 sourceDirectory = basePath.toString();
                 testSourceDirectory = basePath.toString();
