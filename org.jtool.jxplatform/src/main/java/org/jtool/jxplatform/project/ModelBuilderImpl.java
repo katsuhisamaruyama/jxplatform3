@@ -6,6 +6,7 @@
 package org.jtool.jxplatform.project;
 
 import org.jtool.jxplatform.builder.ModelBuilder;
+import org.jtool.jxplatform.builder.ModelBuilderBatch;
 import org.jtool.jxplatform.builder.ConsoleProgressMonitor;
 import org.jtool.jxplatform.builder.NullConsoleProgressMonitor;
 import org.jtool.srcmodel.JavaClass;
@@ -35,6 +36,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.stream.Stream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -194,37 +196,34 @@ public class ModelBuilderImpl {
     
     protected String[] getClassPath(String classpath) {
         List<String> classpaths = new ArrayList<>();
-        try {
-            String cdir = new File(".").getAbsoluteFile().getParent();
-            if (classpath != null && classpath.length() != 0) {
-                String[] paths = classpath.split(File.pathSeparator);
-                if (paths != null) {
-                    for (int i = 0; i < paths.length; i++) {
-                        String path = getFullPath(paths[i], cdir); 
-                        if (path.endsWith(File.separator + "*")) {
-                            path = path.substring(0, path.length() - 1);
-                            File dir = new File(path);
-                            if (dir != null && dir.exists()) {
-                                Files.list(Paths.get(path))
-                                    .filter(p -> p.toString().endsWith(".jar"))
-                                    .forEach(p -> {
-                                        try {
-                                            String cpath = p.toFile().getCanonicalPath();
-                                            classpaths.add(cpath);
-                                        } catch (IOException e) { /* empty */ }
-                                    });
-                            }
-                        } else {
-                            File file = new File(path);
-                            if (file != null && file.exists()) {
-                                classpaths.add(path);
-                            }
+        String cdir = new File(".").getAbsoluteFile().getParent();
+        if (classpath != null && classpath.length() != 0) {
+            String[] paths = classpath.split(File.pathSeparator);
+            if (paths != null) {
+                for (int i = 0; i < paths.length; i++) {
+                    String path = getFullPath(paths[i], cdir); 
+                    if (path.endsWith(File.separator + "*")) {
+                        path = path.substring(0, path.length() - 1);
+                        File dir = new File(path);
+                        if (dir != null && dir.exists()) {
+                            try (Stream<Path> stream = Files.list(Paths.get(path))) {
+                                stream.filter(p -> !Files.isDirectory(p) && p.toString().endsWith(".jar"))
+                                .forEach(p -> {
+                                    try {
+                                        String cpath = p.toFile().getCanonicalPath();
+                                        classpaths.add(cpath);
+                                    } catch (IOException e) { /* empty */ }
+                                });
+                            } catch (IOException e) { /* empty */ }
+                        }
+                    } else {
+                        File file = new File(path);
+                        if (file != null && file.exists()) {
+                            classpaths.add(path);
                         }
                     }
                 }
             }
-        } catch (IOException e) {
-            return new String[0];
         }
         return classpaths.toArray(new String[classpaths.size()]);
     }
@@ -357,11 +356,8 @@ public class ModelBuilderImpl {
             return false;
         }
         
-        try {
-            Set<Path> paths = Files.walk(Paths.get(path))
-                    .filter(p -> isCompilableJavaFile(p.toString()) == true)
-                    .collect(Collectors.toSet());
-            return paths.size() > 0;
+        try (Stream<Path> stream = Files.walk(Paths.get(path))) {
+            return stream.filter(p -> isCompilableJavaFile(p.toString())).count() > 0;
         } catch (IOException e) {
             return false;
         }
@@ -399,9 +395,8 @@ public class ModelBuilderImpl {
             return new HashSet<>();
         }
         
-        try {
-            return Files.walk(Paths.get(path))
-                    .filter(p -> isCompilableJavaFile(p.toString()) == true)
+        try (Stream<Path> stream = Files.walk(Paths.get(path))) {
+            return stream.filter(p -> isCompilableJavaFile(p.toString()))
                     .map(p -> p.toFile())
                     .collect(Collectors.toSet());
         } catch (IOException e) {
@@ -655,5 +650,11 @@ public class ModelBuilderImpl {
         String getSource() {
             return source;
         }
+    }
+    
+    public static void main(String[] args) {
+        ModelBuilderBatch builder1 = new ModelBuilderBatch(false, false);
+        builder1.setConsoleVisible(true);
+        builder1.build(args[0], args[1]);
     }
 }

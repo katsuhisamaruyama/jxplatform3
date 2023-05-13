@@ -177,19 +177,18 @@ class GradleEnv extends ProjectEnv {
     }
     
     private void collectModulesForUnknownModel() {
-        try (Stream<Path> paths = Files.list(basePath)) {
-            paths.filter(path -> isProject(path))
+        try (Stream<Path> stream = Files.list(basePath)) {
+            stream.filter(path -> isProject(path))
                  .forEach(path -> modules.add(path.toString().substring(basePath.toString().length() + 1)));
-        } catch (Exception e2) { /* empty */ }
+        } catch (Exception e) { /* empty */ }
     }
     
     private boolean isProject(Path path) {
         if (path.toString().equals(basePath.toString()) || !path.toFile().isDirectory()) {
             return false;
         }
-        try {
-            return Files.list(path)
-                    .filter(p -> !Files.isDirectory(p) && p.toString().endsWith(GradleEnv.configName)).count() > 0;
+        try (Stream<Path> stream = Files.list(path)) {
+            return stream.filter(p -> !Files.isDirectory(p) && p.toString().endsWith(GradleEnv.configName)).count() > 0;
         } catch (IOException e) {
             return false;
         }

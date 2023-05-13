@@ -9,6 +9,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.io.File;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
@@ -29,6 +31,7 @@ import org.apache.maven.shared.invoker.DefaultInvocationRequest;
 import org.apache.maven.shared.invoker.Invoker;
 import org.apache.maven.shared.invoker.DefaultInvoker;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.eclipse.jdt.core.JavaCore;
 
 /**
@@ -66,7 +69,9 @@ class MavenEnv extends ProjectEnv {
     private List<Model> getModels(Path configPath) throws Exception {
         List<Model> models = new ArrayList<>();
         Model model = getModel(configPath);
-        models.add(model);
+        if (model != null) {
+            models.add(model);
+        }
         
         Path curpath = basePath;
         while (model != null) {
@@ -75,26 +80,34 @@ class MavenEnv extends ProjectEnv {
                 break;
             }
             
-            try {
-                String pomname = File.separatorChar + configName;
-                String relpath = parent.getRelativePath();
-                String filename = relpath.endsWith(pomname) ? relpath : relpath + pomname;
-                Path filepath = curpath.resolve(Paths.get(filename)).normalize();
-                curpath = filepath.getParent();
-                model = getModel(filepath);
-                models.add(model);
-            } catch (Exception e) {
+            String pomname = File.separatorChar + configName;
+            String relpath = parent.getRelativePath();
+            String filename = relpath.endsWith(pomname) ? relpath : relpath + pomname;
+            Path filepath = curpath.resolve(Paths.get(filename)).normalize();
+            curpath = filepath.getParent();
+            model = getModel(filepath);
+            
+            if (model == null || contains(models, model)) {
                 break;
             }
+            models.add(model);
         }
         return models;
     }
     
-    private Model getModel(Path path) throws Exception {
+    private boolean contains(List<Model> models, Model model) {
+        return models.stream().anyMatch(m -> m.getId().equals(model.getId()));
+    }
+    
+    private Model getModel(Path path) {
         MavenXpp3Reader reader = new MavenXpp3Reader();
-        Model model = reader.read(Files.newBufferedReader(path));
-        model.setPomFile(path.toFile());
-        return model;
+        try (BufferedReader br = Files.newBufferedReader(path)) {
+            Model model = reader.read(br);
+            model.setPomFile(path.toFile());
+            return model;
+        } catch (IOException | XmlPullParserException e) {
+            return null;
+        }
     }
     
     private List<BuildBase> getBuilds(List<Model> models) {
@@ -167,8 +180,12 @@ class MavenEnv extends ProjectEnv {
         sourceDirectory = getSourceDirectory(sourceDirectory, sourceDirectoryCandidates);
         testSourceDirectory = getSourceDirectory(testSourceDirectory, testSourceDirectoryCandidates);
         if (sourceDirectory == null && testSourceDirectory == null) {
-            boolean sourceDirExists = Files.list(basePath)
-                    .anyMatch(p -> !Files.isDirectory(p) && p.toString().endsWith(".java"));
+            boolean sourceDirExists;
+            try (Stream<Path> stream = Files.list(basePath)) {
+                sourceDirExists = stream.anyMatch(p -> !Files.isDirectory(p) && p.toString().endsWith(".java"));
+            } catch(IOException e) {
+                sourceDirExists = false;
+            }
             if (sourceDirExists) {
                 sourceDirectory = basePath.toString();
                 testSourceDirectory = basePath.toString();

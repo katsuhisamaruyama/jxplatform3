@@ -14,6 +14,7 @@ import java.time.Instant;
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.model.FileHeader;
 import java.nio.file.StandardCopyOption;
+import java.util.stream.Stream;
 
 /**
  * Extracts a jar file stored to the library from an AAR (Android Studio) file.
@@ -33,10 +34,10 @@ class AARFile {
             return;
         }
         
-        try {
-            File dir = libpath.toFile();
-            if (dir != null && dir.exists()) {
-                Files.list(libpath).forEach(p -> {
+        File dir = libpath.toFile();
+        if (dir != null && dir.exists()) {
+            try (Stream<Path> stream = Files.list(libpath)) {
+                stream.forEach(p -> {
                     String filename = p.toString();
                     if (filename.endsWith(".aar")) {
                         String name = filename.substring(0, filename.length() - ".aar".length());
@@ -48,9 +49,11 @@ class AARFile {
                         }
                     }
                 });
-            }
-            
-            Files.delete(tmppath);
+            } catch(IOException e) { /* empty */ }
+        }
+        
+        try {
+        Files.delete(tmppath);
         } catch (IOException ie) { /* empty */ }
     }
     
