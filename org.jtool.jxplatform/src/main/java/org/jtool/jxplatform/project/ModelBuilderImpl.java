@@ -112,6 +112,10 @@ public class ModelBuilderImpl {
         return bytecodeAnalysisChain;
     }
     
+    public void printErrorOnMonitor(String messgae) {
+        monitor.printError(messgae);
+    }
+    
     public List<JavaProject> build(ModelBuilder modelBuilder,
             String name, String target) {
         return new ArrayList<>();
@@ -472,7 +476,7 @@ public class ModelBuilderImpl {
             JavaFile jfile = new JavaFile(cu, filepath, code, charset, jproject);
             if (getParseErrors(cu).size() != 0) {
                 String message = "Incomplete parse: " + filepath;
-                monitor.printError(message);
+                printErrorOnMonitor(message);
                 logger.recordLog(message);
             }
             
@@ -535,7 +539,7 @@ public class ModelBuilderImpl {
                 if (problem.isError()) {
                     if (verbose) {
                         String message = "Error: " + problem.getMessage();
-                        monitor.printError(message);
+                        printErrorOnMonitor(message);
                         logger.recordLog(message);
                     }
                     errors.add(problem);
