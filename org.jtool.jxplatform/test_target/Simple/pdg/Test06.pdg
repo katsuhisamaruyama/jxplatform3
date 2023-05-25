@@ -86,34 +86,31 @@ Class Name = Test06
   44:    5 ->    7 trueControlDependence
   45:    5 ->    8 falseControlDependence
   46:    6 ->   32 loopIndependentDefUseDependence b$1
-  47:    7 ->    8 fallThroughControlDependence
-  48:    8 ->    9 trueControlDependence
-  49:    8 ->   10 trueControlDependence
-  50:    8 ->   11 falseControlDependence
-  51:    9 ->   32 loopIndependentDefUseDependence b$1
-  52:   10 ->   11 fallThroughControlDependence
-  53:   11 ->   12 trueControlDependence
-  54:   11 ->   13 trueControlDependence
-  55:   12 ->   32 loopIndependentDefUseDependence b$1
-  56:   15 ->   16 loopIndependentDefUseDependence $SwitchDef
-  57:   15 ->   18 loopIndependentDefUseDependence $SwitchDef
-  58:   15 ->   21 loopIndependentDefUseDependence $SwitchDef
-  59:   16 ->   17 trueControlDependence
-  60:   17 ->   19 loopIndependentDefUseDependence a$0
-  61:   17 ->   22 loopIndependentDefUseDependence a$0
-  62:   17 ->   28 loopIndependentDefUseDependence a$0
-  63:   18 ->   19 trueControlDependence
-  64:   18 ->   20 trueControlDependence
-  65:   18 ->   21 falseControlDependence
-  66:   19 ->   28 loopIndependentDefUseDependence a$0
-  67:   20 ->   21 fallThroughControlDependence
-  68:   21 ->   22 trueControlDependence
-  69:   21 ->   23 trueControlDependence
-  70:   22 ->   28 loopIndependentDefUseDependence a$0
-  71:   29 ->   26 loopIndependentDefUseDependence System.out.!println( int )
-  72:   29 ->   33 outputDependence System.out.!java.io.PrintStream.trouble
-  73:   29 ->   33 outputDependence System.out.!println( int )
-  74:   33 ->   30 loopIndependentDefUseDependence System.out.!println( int )
+  47:    8 ->    9 trueControlDependence
+  48:    8 ->   10 trueControlDependence
+  49:    8 ->   11 falseControlDependence
+  50:    9 ->   32 loopIndependentDefUseDependence b$1
+  51:   11 ->   12 trueControlDependence
+  52:   11 ->   13 trueControlDependence
+  53:   12 ->   32 loopIndependentDefUseDependence b$1
+  54:   15 ->   16 loopIndependentDefUseDependence $SwitchDef
+  55:   15 ->   18 loopIndependentDefUseDependence $SwitchDef
+  56:   15 ->   21 loopIndependentDefUseDependence $SwitchDef
+  57:   16 ->   17 trueControlDependence
+  58:   17 ->   19 loopIndependentDefUseDependence a$0
+  59:   17 ->   22 loopIndependentDefUseDependence a$0
+  60:   17 ->   28 loopIndependentDefUseDependence a$0
+  61:   18 ->   19 trueControlDependence
+  62:   18 ->   20 trueControlDependence
+  63:   18 ->   21 falseControlDependence
+  64:   19 ->   28 loopIndependentDefUseDependence a$0
+  65:   21 ->   22 trueControlDependence
+  66:   21 ->   23 trueControlDependence
+  67:   22 ->   28 loopIndependentDefUseDependence a$0
+  68:   29 ->   26 loopIndependentDefUseDependence System.out.!println( int )
+  69:   29 ->   33 outputDependence System.out.!java.io.PrintStream.trouble
+  70:   29 ->   33 outputDependence System.out.!println( int )
+  71:   33 ->   30 loopIndependentDefUseDependence System.out.!println( int )
 --
 ----- ClDG (to here) -----
 

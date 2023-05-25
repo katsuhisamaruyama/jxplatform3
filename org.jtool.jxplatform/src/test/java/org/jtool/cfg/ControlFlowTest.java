@@ -136,17 +136,6 @@ public class ControlFlowTest {
     
     @Test
     public void testIsFallThrough2() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test111", "m( )");
-        CFGNode node = CFGTestUtil.getNode(cfg, 7);
-        assert node.isBreak();
-        ControlFlow result = cfg.getFallThroughFlowFrom(node);
-        
-        assertTrue(result.isFallThrough());
-        assertEquals("7->8", CFGTestUtil.asStrOfEdge(cfg, result));
-    }
-    
-    @Test
-    public void testIsFallThrough3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test122", "n( int )");
         CFGNode node = CFGTestUtil.getNode(cfg, 4);
         assert node.isThrow();
@@ -157,7 +146,7 @@ public class ControlFlowTest {
     }
     
     @Test
-    public void testIsFallThrough4() {
+    public void testIsFallThrough3() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "S135", "get2( java.lang.String )");
         CFGNode node = CFGTestUtil.getNode(cfg, 6);
         assert node.isReturn();
@@ -168,7 +157,7 @@ public class ControlFlowTest {
     }
     
     @Test
-    public void testIsFallThrough5() {
+    public void testIsFallThrough4() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test35", "m1( )");
         CFGNode node = CFGTestUtil.getNode(cfg, 4);
         assert node.isBreak();
@@ -179,7 +168,7 @@ public class ControlFlowTest {
     }
     
     @Test
-    public void testIsFallThrough6() {
+    public void testIsFallThrough5() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test35", "m2( )");
         CFGNode node = CFGTestUtil.getNode(cfg, 5);
         assert node.isContinue();

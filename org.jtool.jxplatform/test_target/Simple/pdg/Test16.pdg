@@ -40,26 +40,27 @@ Class Name = Test16
   18:    2 ->   10 declaration
   19:    2 ->   10 loopIndependentDefUseDependence i$1
   20:    3 ->    4 trueControlDependence
-  21:    4 ->    3 trueControlDependence
-  22:    4 ->    5 trueControlDependence
-  23:    4 ->    6 trueControlDependence
-  24:    4 ->    8 falseControlDependence
-  25:    4 ->   10 trueControlDependence
-  26:    5 ->    5 loopCarriedDefUseDependence a$0 (LC = 3)
-  27:    5 ->    6 loopIndependentDefUseDependence a$0
-  28:    5 ->    7 loopIndependentDefUseDependence a$0
-  29:    5 ->   13 loopIndependentDefUseDependence a$0
-  30:    6 ->    7 trueControlDependence
-  31:    7 ->    5 loopCarriedDefUseDependence a$0 (LC = 3)
-  32:    7 ->    6 loopCarriedDefUseDependence a$0 (LC = 6)
-  33:    7 ->    7 loopCarriedDefUseDependence a$0 (LC = 6)
-  34:    7 ->   13 loopIndependentDefUseDependence a$0
-  35:    8 ->    3 fallThroughControlDependence
-  36:    8 ->   10 fallThroughControlDependence
-  37:   10 ->    3 loopCarriedDefUseDependence i$1 (LC = 3)
-  38:   10 ->    4 loopCarriedDefUseDependence i$1 (LC = 3)
-  39:   10 ->   10 loopCarriedDefUseDependence i$1 (LC = 3)
-  40:   14 ->   11 loopIndependentDefUseDependence System.out.!println( int )
+  21:    3 ->   10 trueControlDependence
+  22:    4 ->    3 trueControlDependence
+  23:    4 ->    5 trueControlDependence
+  24:    4 ->    6 trueControlDependence
+  25:    4 ->    8 falseControlDependence
+  26:    4 ->   10 trueControlDependence
+  27:    5 ->    5 loopCarriedDefUseDependence a$0 (LC = 3)
+  28:    5 ->    6 loopIndependentDefUseDependence a$0
+  29:    5 ->    7 loopIndependentDefUseDependence a$0
+  30:    5 ->   13 loopIndependentDefUseDependence a$0
+  31:    6 ->    7 trueControlDependence
+  32:    7 ->    5 loopCarriedDefUseDependence a$0 (LC = 3)
+  33:    7 ->    6 loopCarriedDefUseDependence a$0 (LC = 6)
+  34:    7 ->    7 loopCarriedDefUseDependence a$0 (LC = 6)
+  35:    7 ->   13 loopIndependentDefUseDependence a$0
+  36:    8 ->    3 fallThroughControlDependence
+  37:    8 ->   10 fallThroughControlDependence
+  38:   10 ->    3 loopCarriedDefUseDependence i$1 (LC = 3)
+  39:   10 ->    4 loopCarriedDefUseDependence i$1 (LC = 3)
+  40:   10 ->   10 loopCarriedDefUseDependence i$1 (LC = 3)
+  41:   14 ->   11 loopIndependentDefUseDependence System.out.!println( int )
 --
    0: Test16( )
    1:    0 ->    2 trueControlDependence

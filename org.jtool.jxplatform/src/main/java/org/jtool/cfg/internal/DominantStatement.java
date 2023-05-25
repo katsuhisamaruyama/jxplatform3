@@ -18,7 +18,7 @@ public class DominantStatement {
     
     private List<CFGNode> immediatePostDominators = new ArrayList<>();
     
-    private boolean hasNest = true;
+    private boolean breakNestedStructure = false;
     
     public DominantStatement() {
     }
@@ -38,11 +38,11 @@ public class DominantStatement {
         return immediatePostDominators;
     }
     
-    void setNestStructure(boolean bool) {
-        this.hasNest = bool;
+    void breakNestedStructure(boolean bool) {
+        this.breakNestedStructure = bool;
     }
     
-    public boolean hasNestStructure() {
-        return hasNest;
+    public boolean breakNestedStructure() {
+        return breakNestedStructure;
     }
 }

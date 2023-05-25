@@ -165,7 +165,7 @@ class CFGMethodBuilder {
             nodes.add(exceptionNode);
             
             entryStatement.addImmediatePostDominator(exceptionNode);
-            entryStatement.setNestStructure(false);
+            entryStatement.breakNestedStructure(true);
         }
         
         UncaughtExceptionTypeCollector collector = new UncaughtExceptionTypeCollector();
@@ -177,7 +177,7 @@ class CFGMethodBuilder {
                 nodes.add(exceptionNode);
                 
                 entryStatement.addImmediatePostDominator(exceptionNode);
-                entryStatement.setNestStructure(false);
+                entryStatement.breakNestedStructure(true);
             }
         }
         

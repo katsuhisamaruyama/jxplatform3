@@ -74,13 +74,14 @@ Class Name = Test21
    5:    1 ->    6 declaration
    6:    1 ->    6 loopIndependentDefUseDependence i$0
    7:    2 ->    3 trueControlDependence
-   8:    3 ->    2 falseControlDependence
-   9:    3 ->    4 trueControlDependence
-  10:    3 ->    6 falseControlDependence
-  11:    4 ->    2 fallThroughControlDependence
-  12:    4 ->    6 fallThroughControlDependence
-  13:    6 ->    3 loopCarriedDefUseDependence i$0 (LC = 2)
-  14:    6 ->    6 loopCarriedDefUseDependence i$0 (LC = 2)
+   8:    2 ->    6 trueControlDependence
+   9:    3 ->    2 falseControlDependence
+  10:    3 ->    4 trueControlDependence
+  11:    3 ->    6 falseControlDependence
+  12:    4 ->    2 fallThroughControlDependence
+  13:    4 ->    6 fallThroughControlDependence
+  14:    6 ->    3 loopCarriedDefUseDependence i$0 (LC = 2)
+  15:    6 ->    6 loopCarriedDefUseDependence i$0 (LC = 2)
 --
    0: Test21( )
    1:    0 ->    2 trueControlDependence

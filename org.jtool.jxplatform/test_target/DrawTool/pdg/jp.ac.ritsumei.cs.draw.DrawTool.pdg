@@ -346,12 +346,13 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawTool
    1:    0 ->    2 trueControlDependence
    2:    2 ->    4 trueControlDependence
    3:    2 ->    5 trueControlDependence
-   4:    5 ->    1 exceptionCatch
-   5:    5 ->    3 trueControlDependence
-   6:    5 ->    5+ trueControlDependence
-   7:    5 ->    6 trueControlDependence
-   8:    5 ->    9 trueControlDependence
-   9:    6 ->    3 loopIndependentDefUseDependence this.menu.!closeFile( )
+   4:    2 ->    9 falseControlDependence
+   5:    5 ->    1 exceptionCatch
+   6:    5 ->    3 trueControlDependence
+   7:    5 ->    5+ trueControlDependence
+   8:    5 ->    6 trueControlDependence
+   9:    5 ->    9 trueControlDependence
+  10:    6 ->    3 loopIndependentDefUseDependence this.menu.!closeFile( )
 --
    0: DrawTool( java.lang.String )
    1:    0 ->    2 trueControlDependence

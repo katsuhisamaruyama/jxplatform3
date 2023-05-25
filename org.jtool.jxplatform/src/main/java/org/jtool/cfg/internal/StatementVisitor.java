@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -104,6 +104,8 @@ public class StatementVisitor extends ASTVisitor {
     
     private Stack<CFGNode> blockEntries = new Stack<>();
     private Stack<CFGNode> blockExits = new Stack<>();
+    
+    private boolean existsSwitchBreak = false;
     
     private Set<Label> labels = new HashSet<>();
     
@@ -325,7 +327,6 @@ public class StatementVisitor extends ASTVisitor {
         reconnect(switchNode);
         
         dominantStatementStack.peek().addImmediatePostDominator(switchNode);
-        dominantStatementStack.peek().setNestStructure(false);
         
         Expression condition = node.getExpression();
         ExpressionVisitor condVisitor = new ExpressionVisitor(this, switchNode);
@@ -353,9 +354,7 @@ public class StatementVisitor extends ASTVisitor {
             caseLabel.add(statement);
         }
         
-        for (SwitchCaseLabel label : caseLabels) {
-            switchCase(switchNode, label);
-        }
+        switchCase(switchNode, caseLabels);
         
         nextNode.addIncomingEdges(exitNode.getIncomingEdges());
         CFGMerge mergeNode = new CFGMerge(node, switchNode);
@@ -369,7 +368,13 @@ public class StatementVisitor extends ASTVisitor {
     }
     
     @SuppressWarnings("unchecked")
-    private void switchCase(CFGStatement switchNode, SwitchCaseLabel caseLabel) {
+    private void switchCase(CFGStatement switchNode, List<SwitchCaseLabel> caseLabels) {
+        if (caseLabels.size() == 0) {
+            return;
+        }
+        SwitchCaseLabel caseLabel = caseLabels.get(0);
+        caseLabels.remove(0);
+        
         CFGNode curNode = null;
         CFGStatement caseNode;
         if (caseLabel.getNode().isDefault()) {
@@ -399,12 +404,52 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow trueEdge = createFlow(curNode, nextNode);
         trueEdge.setTrue();
         
+        blockEntries.push(caseNode);
+        
+        DominantStatement trueStatement = new DominantStatement();
+        dominantStatementStack.push(trueStatement);
+        
+        existsSwitchBreak = false;
         for (Statement statement : caseLabel.statements()) {
+            if (statement instanceof BreakStatement) {
+                ASTNode parent = statement.getParent();
+                if (parent.equals(switchNode.getASTNode())) {
+                    BreakStatement breakSt = (BreakStatement)statement;
+                    if (breakSt.getLabel() == null) {
+                        existsSwitchBreak = true;
+                    }
+                }
+            }
             statement.accept(this);
         }
         
+        blockEntries.pop();
+        
         ControlFlow falseEdge = createFlow(curNode, nextNode);
         falseEdge.setFalse();
+        
+        dominantStatementStack.pop();
+        cfg.registerDominantStatement(caseNode.getOutgoingTrueFlow(), trueStatement);
+        
+        if (existsSwitchBreak) {
+            DominantStatement falseStatement = new DominantStatement();
+            dominantStatementStack.push(falseStatement);
+            
+            switchCase(switchNode, caseLabels);
+            
+            dominantStatementStack.pop();
+            cfg.registerDominantStatement(caseNode.getOutgoingFalseFlow(), falseStatement);
+            
+        } else { 
+            if (!prevNode.isReturn() && !prevNode.isContinue()) {
+                ControlFlow fallthroughEdge = createFlow(prevNode, nextNode);
+                fallthroughEdge.setFallThrough();
+            }
+            
+            switchCase(switchNode, caseLabels);
+            
+            cfg.registerDominantStatement(caseNode.getOutgoingFalseFlow(), new DominantStatement());
+        }
     }
     
     @Override
@@ -645,23 +690,32 @@ public class StatementVisitor extends ASTVisitor {
         
         dominantStatementStack.peek().addImmediatePostDominator(breakNode);
         
-        CFGNode jumpNode;
+        CFGNode jumpNode = null;
         if (node.getLabel() != null) {
             String name = node.getLabel().getFullyQualifiedName();
-            jumpNode = getLabel(name).getEndNode();
-            
-            entryStatement.setNestStructure(false);
+            Label label = getLabel(name);
+            if (label != null) {
+                jumpNode = label.getEndNode();
+                
+                entryStatement.breakNestedStructure(true);
+            }
         } else {
-            jumpNode = (CFGNode)blockExits.peek();
-            
-            dominantStatementStack.peek().setNestStructure(false);
+            if (blockExits != null) {
+                jumpNode = blockExits.peek();
+                
+                if (!(blockEntries.peek().getASTNode() instanceof SwitchCase)) {
+                    dominantStatementStack.peek().breakNestedStructure(true);
+                }
+            }
         }
         if (jumpNode != null) {
             ControlFlow edge = createFlow(breakNode, jumpNode);
             edge.setTrue();
             
-            edge = createFlow(breakNode, nextNode);
-            edge.setFallThrough();
+            if (!existsSwitchBreak) {
+                edge = createFlow(breakNode, nextNode);
+                edge.setFallThrough();
+            }
         }
         return false;
     }
@@ -673,20 +727,26 @@ public class StatementVisitor extends ASTVisitor {
         
         dominantStatementStack.peek().addImmediatePostDominator(continueNode);
         
-        CFGNode jumpNode;
+        CFGNode jumpNode = null;
         if (node.getLabel() != null) {
             String name = node.getLabel().getFullyQualifiedName();
-            jumpNode = getLabel(name).getBeginNode();
-            
-            entryStatement.setNestStructure(false);
+            Label label = getLabel(name);
+            if (label != null) {
+                jumpNode = label.getBeginNode();
+                
+                entryStatement.breakNestedStructure(true);
+            }
         } else {
-            jumpNode = (CFGNode)blockEntries.peek();
-            
-            dominantStatementStack.peek().setNestStructure(false);
+            if (blockEntries != null) {
+                jumpNode = blockEntries.peek();
+                
+                dominantStatementStack.peek().breakNestedStructure(true);
+            }
         }
         if (jumpNode != null) {
             ControlFlow edge = createFlow(continueNode, jumpNode);
             edge.setTrue();
+            
             edge = createFlow(continueNode, nextNode);
             edge.setFallThrough();
         }
@@ -722,7 +782,7 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow fallEdge = createFlow(curNode, nextNode);
         fallEdge.setFallThrough();
         
-        entryStatement.setNestStructure(false);
+        entryStatement.breakNestedStructure(true);
         
         return false;
     }
@@ -807,7 +867,7 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow fallEdge = createFlow(curNode, nextNode);
         fallEdge.setFallThrough();
         
-        entryStatement.setNestStructure(false);
+        entryStatement.breakNestedStructure(true);
         
         return false;
     }
@@ -860,7 +920,7 @@ public class StatementVisitor extends ASTVisitor {
         
         catchClause(tryNode);
         
-        entryStatement.setNestStructure(false);
+        entryStatement.breakNestedStructure(true);
         
         return false;
     }
@@ -898,7 +958,7 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow fallEdge = createFlow(catchNode, mergeNode);
         fallEdge.setFallThrough();
         
-        entryStatement.setNestStructure(false);
+        entryStatement.breakNestedStructure(true);
         
         node.getBody().accept(this);
         reconnect(mergeNode);
@@ -919,7 +979,7 @@ public class StatementVisitor extends ASTVisitor {
         ControlFlow fallEdge = createFlow(finallyNode, nextNode);
         fallEdge.setFallThrough();
         
-        entryStatement.setNestStructure(false);
+        entryStatement.breakNestedStructure(true);
     }
     
     private void catchClause(CFGTry tryNode) {

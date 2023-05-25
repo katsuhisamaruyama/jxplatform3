@@ -730,9 +730,8 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.breakSt);
         
-        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(1, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 14);
-        assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() - 1);
         
         assertEquals("break;", node.getASTNode().toString().trim());
     }
@@ -746,9 +745,8 @@ public class StatementVisitorTest {
         
         assertTrue(node.getKind() == CFGNode.Kind.breakSt);
         
-        assertEquals(2, node.getOutgoingEdges().size());
+        assertEquals(1, node.getOutgoingEdges().size());
         assertEquals(node.getId(), cfg.getTrueSuccessor(node).getId() - 4);
-        assertEquals(node.getId(), cfg.getFallThroughSuccessor(node).getId() - 1);
         
         assertEquals("break;", node.getASTNode().toString().trim());
     }

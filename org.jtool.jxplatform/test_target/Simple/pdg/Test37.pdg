@@ -86,10 +86,9 @@ Class Name = Test37
   17:    5 ->    6 trueControlDependence
   18:    5 ->    7 trueControlDependence
   19:    5 ->    8 falseControlDependence
-  20:    7 ->    8 fallThroughControlDependence
-  21:    8 ->    9 trueControlDependence
-  22:    8 ->   10 trueControlDependence
-  23:    9 ->   12 loopIndependentDefUseDependence y$1
+  20:    8 ->    9 trueControlDependence
+  21:    8 ->   10 trueControlDependence
+  22:    9 ->   12 loopIndependentDefUseDependence y$1
 --
    0: m1( )
    1:    0 ->    1 trueControlDependence
@@ -112,8 +111,7 @@ Class Name = Test37
   18:    5 ->    7 trueControlDependence
   19:    5 ->    8 falseControlDependence
   20:    6 ->   11 loopIndependentDefUseDependence y$1
-  21:    7 ->    8 fallThroughControlDependence
-  22:    8 ->    9 trueControlDependence
+  21:    8 ->    9 trueControlDependence
 --
    0: Test37( )
    1:    0 ->    2 trueControlDependence

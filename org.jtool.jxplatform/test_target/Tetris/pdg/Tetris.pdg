@@ -857,38 +857,35 @@ Class Name = Tetris
  160:   52 ->   58 falseControlDependence
  161:   55+ ->   56 loopIndependentDefUseDependence block$2.posX
  162:   56 ->   53 loopIndependentDefUseDependence block$2.!moveLeft( )
- 163:   57 ->   58 fallThroughControlDependence
- 164:   58 ->   59 trueControlDependence
- 165:   58 ->   60 trueControlDependence
- 166:   58 ->   61 trueControlDependence
+ 163:   58 ->   59 trueControlDependence
+ 164:   58 ->   60 trueControlDependence
+ 165:   58 ->   61 trueControlDependence
+ 166:   58 ->   61+ trueControlDependence
  167:   58 ->   61+ trueControlDependence
- 168:   58 ->   61+ trueControlDependence
- 169:   58 ->   62 trueControlDependence
- 170:   58 ->   63 trueControlDependence
- 171:   58 ->   64 falseControlDependence
- 172:   61+ ->   62 loopIndependentDefUseDependence block$2.posX
- 173:   62 ->   59 loopIndependentDefUseDependence block$2.!moveRight( )
- 174:   63 ->   64 fallThroughControlDependence
- 175:   64 ->   65 trueControlDependence
- 176:   64 ->   66 trueControlDependence
- 177:   64 ->   67 trueControlDependence
- 178:   64 ->   67+ trueControlDependence
- 179:   64 ->   67+ trueControlDependence
- 180:   64 ->   68 trueControlDependence
- 181:   64 ->   69 trueControlDependence
- 182:   64 ->   70 falseControlDependence
- 183:   68 ->   65 loopIndependentDefUseDependence block$2.!rotate( )
- 184:   69 ->   70 fallThroughControlDependence
- 185:   70 ->   71 trueControlDependence
- 186:   70 ->   72 trueControlDependence
- 187:   70 ->   73 trueControlDependence
- 188:   70 ->   73+ trueControlDependence
- 189:   70 ->   73+ trueControlDependence
- 190:   70 ->   74 trueControlDependence
- 191:   70 ->   75 trueControlDependence
- 192:   73+ ->   74 loopIndependentDefUseDependence block$2.posY
- 193:   74 ->   71 loopIndependentDefUseDependence block$2.!drop( )
- 194:   80 ->   77 loopIndependentDefUseDependence this.pit.!update( )
+ 168:   58 ->   62 trueControlDependence
+ 169:   58 ->   63 trueControlDependence
+ 170:   58 ->   64 falseControlDependence
+ 171:   61+ ->   62 loopIndependentDefUseDependence block$2.posX
+ 172:   62 ->   59 loopIndependentDefUseDependence block$2.!moveRight( )
+ 173:   64 ->   65 trueControlDependence
+ 174:   64 ->   66 trueControlDependence
+ 175:   64 ->   67 trueControlDependence
+ 176:   64 ->   67+ trueControlDependence
+ 177:   64 ->   67+ trueControlDependence
+ 178:   64 ->   68 trueControlDependence
+ 179:   64 ->   69 trueControlDependence
+ 180:   64 ->   70 falseControlDependence
+ 181:   68 ->   65 loopIndependentDefUseDependence block$2.!rotate( )
+ 182:   70 ->   71 trueControlDependence
+ 183:   70 ->   72 trueControlDependence
+ 184:   70 ->   73 trueControlDependence
+ 185:   70 ->   73+ trueControlDependence
+ 186:   70 ->   73+ trueControlDependence
+ 187:   70 ->   74 trueControlDependence
+ 188:   70 ->   75 trueControlDependence
+ 189:   73+ ->   74 loopIndependentDefUseDependence block$2.posY
+ 190:   74 ->   71 loopIndependentDefUseDependence block$2.!drop( )
+ 191:   80 ->   77 loopIndependentDefUseDependence this.pit.!update( )
 --
    0: startTimer( )
    1:    0 ->    1 trueControlDependence

@@ -876,32 +876,35 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawCanvas
    1:    0 ->    1 trueControlDependence
    2:    0 ->   25 trueControlDependence
    3:    1 ->    2 trueControlDependence
-   4:    1 ->   13 trueControlDependence
-   5:    1 ->   14 trueControlDependence
-   6:    1 ->   15 trueControlDependence
-   7:    1 ->   16 trueControlDependence
-   8:    2 ->    3 trueControlDependence
-   9:    2 ->    4 trueControlDependence
-  10:    2 ->    5 trueControlDependence
-  11:    2 ->    6 trueControlDependence
-  12:    2 ->    8 trueControlDependence
-  13:    2 ->    9 trueControlDependence
-  14:    5 ->    2 loopCarriedDefUseDependence this.!getCurrentFigure( ) (LC = 2)
-  15:    5 ->    5 defOrderDependence this.!getCurrentFigure( )
-  16:    6 ->   12 trueControlDependence
-  17:    9 ->    7 trueControlDependence
-  18:    9 ->   10 trueControlDependence
-  19:    9 ->   12 exceptionCatch
-  20:   10 ->    7 loopIndependentDefUseDependence this.!wait( )
-  21:   10 ->   10 defOrderDependence this.!wait( )
-  22:   12 ->   12 outputDependence e$0
-  23:   13 ->   17 trueControlDependence
-  24:   13 ->   18 trueControlDependence
-  25:   13 ->   19 trueControlDependence
-  26:   13 ->   20 trueControlDependence
-  27:   13 ->   21 trueControlDependence
-  28:   16 ->   13 loopIndependentDefUseDependence this.!hasChanged( )
-  29:   21 ->   17 loopIndependentDefUseDependence this.menu.!saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
+   4:    1 ->    3 trueControlDependence
+   5:    1 ->    4 trueControlDependence
+   6:    1 ->    5 trueControlDependence
+   7:    1 ->   13 trueControlDependence
+   8:    1 ->   14 trueControlDependence
+   9:    1 ->   15 trueControlDependence
+  10:    1 ->   16 trueControlDependence
+  11:    2 ->    3 trueControlDependence
+  12:    2 ->    4 trueControlDependence
+  13:    2 ->    5 trueControlDependence
+  14:    2 ->    6 trueControlDependence
+  15:    2 ->    8 trueControlDependence
+  16:    2 ->    9 trueControlDependence
+  17:    5 ->    2 loopCarriedDefUseDependence this.!getCurrentFigure( ) (LC = 2)
+  18:    5 ->    5 defOrderDependence this.!getCurrentFigure( )
+  19:    6 ->   12 trueControlDependence
+  20:    9 ->    7 trueControlDependence
+  21:    9 ->   10 trueControlDependence
+  22:    9 ->   12 exceptionCatch
+  23:   10 ->    7 loopIndependentDefUseDependence this.!wait( )
+  24:   10 ->   10 defOrderDependence this.!wait( )
+  25:   12 ->   12 outputDependence e$0
+  26:   13 ->   17 trueControlDependence
+  27:   13 ->   18 trueControlDependence
+  28:   13 ->   19 trueControlDependence
+  29:   13 ->   20 trueControlDependence
+  30:   13 ->   21 trueControlDependence
+  31:   16 ->   13 loopIndependentDefUseDependence this.!hasChanged( )
+  32:   21 ->   17 loopIndependentDefUseDependence this.menu.!saveTempFile( jp.ac.ritsumei.cs.draw.DrawCanvas )
 --
    0: mouseEntered( java.awt.event.MouseEvent )
    1:    0 ->    1 trueControlDependence

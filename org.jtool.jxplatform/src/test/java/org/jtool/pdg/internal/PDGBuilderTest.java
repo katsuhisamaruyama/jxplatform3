@@ -105,7 +105,7 @@ public class PDGBuilderTest {
                 Path path = pdgPath.resolve(cldg.getQualifiedName().fqn() + ".pdg");
                 
                 String expected = Files.readString(path);
-                boolean match = actual.equals(expected);
+                boolean match = actual.trim().equals(expected.trim());
                 if (!match) {
                     System.err.println("Incorrect PDG: " + cldg.getQualifiedName().fqn());
                     result = false;

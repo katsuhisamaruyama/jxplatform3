@@ -1,0 +1,901 @@
+----- CCFG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#getColor( ) ]
+   1 localDeclaration D = { icon$0 } U = { this.colorCombo.!getSelectedItem( ) }
+   2 receiver D = {  } U = { this.colorCombo }
+   3 methodCall D = {  } U = { this.colorCombo.!javax.swing.JComboBox.dataModel } TO = javax.swing.JComboBox#getSelectedItem( )
+   4 actualOut D = { this.colorCombo.!getSelectedItem( ) } U = { this.colorCombo.!javax.swing.JComboBox.dataModel }
+   5 returnSt D = { $_ } U = { icon$0.!getFigure( ).!getColor( ) }
+   6 receiver D = {  } U = { icon$0.!getFigure( ) }
+   7 receiver D = {  } U = { icon$0 }
+   8 methodCall D = {  } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#getFigure( )
+   9 actualOut D = { icon$0.!getFigure( ) } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY }
+  10 methodCall D = {  } U = { icon$0.!getFigure( ).color } TO = jp.ac.ritsumei.cs.draw.Figure#getColor( )
+  11 actualOut D = { icon$0.!getFigure( ).!getColor( ) } U = { icon$0.!getFigure( ).color }
+  12 methodExit
+  13 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#shapeComboIcons ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons } U = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ), jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+   4 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( ) }
+   5 receiver D = {  } U = {  }
+   6 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( )
+   7 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( ) } U = { Color.black }
+   8 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+   9 receiver D = {  } U = {  }
+  10 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  11 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ) }
+  12 receiver D = {  } U = {  }
+  13 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Rect#Rect( )
+  14 actualOut D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ) } U = { Color.black }
+  15 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  16 receiver D = {  } U = {  }
+  17 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  18 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ) }
+  19 receiver D = {  } U = {  }
+  20 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.FilledRect#FilledRect( )
+  21 actualOut D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ) } U = { Color.black }
+  22 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  23 receiver D = {  } U = {  }
+  24 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  25 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ) }
+  26 receiver D = {  } U = {  }
+  27 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Oval#Oval( )
+  28 actualOut D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ) } U = { Color.black }
+  29 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  30 receiver D = {  } U = {  }
+  31 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  32 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ) }
+  33 receiver D = {  } U = {  }
+  34 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.FilledOval#FilledOval( )
+  35 actualOut D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ) } U = { Color.black }
+  36 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  37 fieldExit
+   3+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+   6+ actualOutByFieldAccess D = { this.color } U = {  }
+   6+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  10+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  13+ actualOutByFieldAccess D = { this.color } U = {  }
+  13+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  17+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  24+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  27+ actualOutByFieldAccess D = { this.color } U = {  }
+  27+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  31+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#createFigure( ) ]
+   1 localDeclaration D = { shape$0 } U = { this.!getShape( ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.figure, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getShape( )
+   4 actualOut D = { this.!getShape( ) } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.figure, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel }
+   5 ifSt D = {  } U = { shape$0, shape$0.color, shape$0.endX, shape$0.endY, shape$0.outlineWidth, shape$0.startX, shape$0.startY, this.!getShape( ).color, this.!getShape( ).endX, this.!getShape( ).endY, this.!getShape( ).outlineWidth, this.!getShape( ).startX, this.!getShape( ).startY }
+   6 returnSt D = { $_ } U = { shape$0.!create( java.awt.Color float ) }
+   7 receiver D = {  } U = { shape$0 }
+   8 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#create( java.awt.Color float )
+   9 actualIn D = {  } U = { this.!getColor( ) }
+  10 receiver D = {  } U = {  }
+  11 methodCall D = {  } U = { this.colorCombo, this.colorCombo.!javax.swing.JComboBox.dataModel, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.!getFigure( ).color, this.icon$0.figure } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getColor( )
+  12 actualOut D = { this.!getColor( ) } U = { this.colorCombo, this.colorCombo.!javax.swing.JComboBox.dataModel, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.!getFigure( ).color, this.icon$0.figure }
+  13 actualIn D = {  } U = { this.!getLineWidth( ) }
+  14 receiver D = {  } U = {  }
+  15 methodCall D = {  } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.!getFigure( ).outlineWidth, this.icon$0.figure, this.widthCombo, this.widthCombo.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getLineWidth( )
+  16 actualOut D = { this.!getLineWidth( ) } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.!getFigure( ).outlineWidth, this.icon$0.figure, this.widthCombo, this.widthCombo.!javax.swing.JComboBox.dataModel }
+  17 actualOut D = { shape$0.!create( java.awt.Color float ) } U = {  }
+  18 merge ifSt(5)
+  19 returnSt D = { $_ } U = {  }
+  20 methodExit
+  21 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#FigureSelector( ) ]
+   1 assignment D = {  } U = { this.!setLayout( java.awt.LayoutManager ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { java.awt.FlowLayout.!FlowLayout( int ) } TO = java.awt.Container#setLayout( java.awt.LayoutManager )
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = {  } U = { FlowLayout.RIGHT } TO = java.awt.FlowLayout#FlowLayout( int )
+   6 actualOut D = { java.awt.FlowLayout.!FlowLayout( int ), java.awt.FlowLayout.!java.awt.FlowLayout.hgap, java.awt.FlowLayout.!java.awt.FlowLayout.serialVersionOnStream, java.awt.FlowLayout.!java.awt.FlowLayout.vgap } U = {  }
+   7 actualOut D = { this.!java.awt.Container.layoutMgr, this.!setLayout( java.awt.LayoutManager ) } U = {  }
+   8 assignment D = {  } U = { this.!createComboBoxes( ) }
+   9 receiver D = {  } U = {  }
+  10 methodCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY, icons$1.length, jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.cb$0.!javax.swing.JComboBox.dataModel, this.colorCombo, this.javax.swing.JComboBox.!java.lang.Boolean.TRUE, this.javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, this.javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel, this.widthCombo } TO = jp.ac.ritsumei.cs.draw.FigureSelector#createComboBoxes( )
+  11 actualOut D = { this.!createComboBoxes( ), this.!java.awt.Component.parent, this.javax.swing.JComboBox.!javax.swing.DefaultComboBoxModel.objects, this.javax.swing.JComboBox.!javax.swing.JComboBox.actionCommand, this.javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, this.javax.swing.JComboBox.!javax.swing.JComboBox.firingActionEvent, this.javax.swing.JComboBox.!javax.swing.JComboBox.isEditable, this.javax.swing.JComboBox.!javax.swing.JComboBox.keySelectionManager, this.javax.swing.JComboBox.!javax.swing.JComboBox.lightWeightPopupEnabled, this.javax.swing.JComboBox.!javax.swing.JComboBox.maximumRowCount, this.javax.swing.JComboBox.!javax.swing.JComboBox.selectedItemReminder, this.javax.swing.JComboBox.!javax.swing.JComboBox.selectingItem, this.javax.swing.JComboBox.!javax.swing.JComponent.inputVerifier, this.javax.swing.JComboBox.!javax.swing.JComponent.listenerList, this.javax.swing.JComboBox.!javax.swing.JComponent.revalidateRunnableScheduled, this.javax.swing.JComboBox.!javax.swing.JComponent.verifyInputWhenFocusTarget, this.javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, this.javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, this.javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, this.javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, this.javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, this.javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, this.javax.swing.JLabel.!javax.swing.JLabel.labelFor, this.javax.swing.JLabel.!javax.swing.JLabel.mnemonic, this.javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, this.javax.swing.JLabel.!javax.swing.JLabel.text, this.javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, this.javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY, icons$1.length, jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.cb$0.!javax.swing.JComboBox.dataModel, this.colorCombo, this.javax.swing.JComboBox.!java.lang.Boolean.TRUE, this.javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, this.javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel, this.widthCombo }
+  12 constructorExit
+  13 formalOut D = {  } U = { $_ }
+  10+ actualOutByFieldAccess D = { super.figure } U = {  }
+  10+ actualOutByFieldAccess D = { this.colorCombo } U = {  }
+  10+ actualOutByFieldAccess D = { this.shapeCombo } U = {  }
+  10+ actualOutByFieldAccess D = { this.widthCombo } U = {  }
+--
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#colorComboIcons ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons } U = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ), jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+   4 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+   5 receiver D = {  } U = {  }
+   6 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+   7 actualIn D = {  } U = { Color.black }
+   8 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+   9 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  10 receiver D = {  } U = {  }
+  11 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  12 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+  13 receiver D = {  } U = {  }
+  14 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+  15 actualIn D = {  } U = { Color.yellow }
+  16 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  17 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  18 receiver D = {  } U = {  }
+  19 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  20 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+  21 receiver D = {  } U = {  }
+  22 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+  23 actualIn D = {  } U = { Color.green }
+  24 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  25 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  26 receiver D = {  } U = {  }
+  27 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  28 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+  29 receiver D = {  } U = {  }
+  30 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+  31 actualIn D = {  } U = { Color.red }
+  32 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  33 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  34 receiver D = {  } U = {  }
+  35 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  36 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+  37 receiver D = {  } U = {  }
+  38 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+  39 actualIn D = {  } U = { Color.pink }
+  40 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  41 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  42 receiver D = {  } U = {  }
+  43 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  44 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+  45 receiver D = {  } U = {  }
+  46 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+  47 actualIn D = {  } U = { Color.blue }
+  48 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  49 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  50 receiver D = {  } U = {  }
+  51 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  52 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+  53 receiver D = {  } U = {  }
+  54 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+  55 actualIn D = {  } U = { Color.magenta }
+  56 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  57 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  58 receiver D = {  } U = {  }
+  59 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  60 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+  61 receiver D = {  } U = {  }
+  62 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+  63 actualIn D = {  } U = { Color.orange }
+  64 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  65 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  66 receiver D = {  } U = {  }
+  67 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  68 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+  69 receiver D = {  } U = {  }
+  70 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+  71 actualIn D = {  } U = { Color.gray }
+  72 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  73 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  74 receiver D = {  } U = {  }
+  75 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  76 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+  77 receiver D = {  } U = {  }
+  78 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+  79 actualIn D = {  } U = { Color.darkGray }
+  80 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  81 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  82 receiver D = {  } U = {  }
+  83 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  84 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+  85 receiver D = {  } U = {  }
+  86 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+  87 actualIn D = {  } U = { Color.lightGray }
+  88 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  89 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  90 receiver D = {  } U = {  }
+  91 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  92 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+  93 receiver D = {  } U = {  }
+  94 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+  95 actualIn D = {  } U = { Color.cyan }
+  96 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+  97 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  98 receiver D = {  } U = {  }
+  99 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+ 100 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) }
+ 101 receiver D = {  } U = {  }
+ 102 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color )
+ 103 actualIn D = {  } U = { Color.white }
+ 104 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
+ 105 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+ 106 fieldExit
+   3+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+   6+ actualOutByFieldAccess D = { this.color } U = {  }
+   6+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  11+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  14+ actualOutByFieldAccess D = { this.color } U = {  }
+  14+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  19+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  22+ actualOutByFieldAccess D = { this.color } U = {  }
+  22+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  27+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  30+ actualOutByFieldAccess D = { this.color } U = {  }
+  30+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  35+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  38+ actualOutByFieldAccess D = { this.color } U = {  }
+  38+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  43+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  46+ actualOutByFieldAccess D = { this.color } U = {  }
+  46+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  51+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  54+ actualOutByFieldAccess D = { this.color } U = {  }
+  54+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  59+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  62+ actualOutByFieldAccess D = { this.color } U = {  }
+  62+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  67+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  70+ actualOutByFieldAccess D = { this.color } U = {  }
+  70+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  75+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  78+ actualOutByFieldAccess D = { this.color } U = {  }
+  78+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  83+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  86+ actualOutByFieldAccess D = { this.color } U = {  }
+  86+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  91+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  94+ actualOutByFieldAccess D = { this.color } U = {  }
+  94+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  99+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+ 102+ actualOutByFieldAccess D = { this.color } U = {  }
+ 102+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+--
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#serialVersionUID ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.FigureSelector.serialVersionUID }
+   2 fieldExit
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#getLineWidth( ) ]
+   1 localDeclaration D = { icon$0 } U = { this.widthCombo.!getSelectedItem( ) }
+   2 receiver D = {  } U = { this.widthCombo }
+   3 methodCall D = {  } U = { this.widthCombo.!javax.swing.JComboBox.dataModel } TO = javax.swing.JComboBox#getSelectedItem( )
+   4 actualOut D = { this.widthCombo.!getSelectedItem( ) } U = { this.widthCombo.!javax.swing.JComboBox.dataModel }
+   5 returnSt D = { $_ } U = { icon$0.!getFigure( ).!getOutlineWidth( ) }
+   6 receiver D = {  } U = { icon$0.!getFigure( ) }
+   7 receiver D = {  } U = { icon$0 }
+   8 methodCall D = {  } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#getFigure( )
+   9 actualOut D = { icon$0.!getFigure( ) } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY }
+  10 methodCall D = {  } U = { icon$0.!getFigure( ).outlineWidth } TO = jp.ac.ritsumei.cs.draw.Figure#getOutlineWidth( )
+  11 actualOut D = { icon$0.!getFigure( ).!getOutlineWidth( ) } U = { icon$0.!getFigure( ).outlineWidth }
+  12 methodExit
+  13 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#widthComboIcons ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons } U = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ), jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+   4 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) }
+   5 receiver D = {  } U = {  }
+   6 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
+   7 actualIn D = {  } U = {  }
+   8 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) } U = { Color.black }
+   9 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  10 receiver D = {  } U = {  }
+  11 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  12 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) }
+  13 receiver D = {  } U = {  }
+  14 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
+  15 actualIn D = {  } U = {  }
+  16 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) } U = { Color.black }
+  17 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  18 receiver D = {  } U = {  }
+  19 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  20 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) }
+  21 receiver D = {  } U = {  }
+  22 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
+  23 actualIn D = {  } U = {  }
+  24 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) } U = { Color.black }
+  25 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  26 receiver D = {  } U = {  }
+  27 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  28 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) }
+  29 receiver D = {  } U = {  }
+  30 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( int )
+  31 actualIn D = {  } U = {  }
+  32 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) } U = { Color.black }
+  33 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  34 fieldExit
+   3+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+   6+ actualOutByFieldAccess D = { this.color } U = {  }
+   6+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  11+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  14+ actualOutByFieldAccess D = { this.color } U = {  }
+  14+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  19+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  22+ actualOutByFieldAccess D = { this.color } U = {  }
+  22+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  27+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
+  30+ actualOutByFieldAccess D = { this.color } U = {  }
+  30+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#createComboBoxes( ) ]
+   1 localDeclaration D = { shapeLabel$0 } U = { javax.swing.JLabel.!JLabel( java.lang.String ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JLabel#JLabel( java.lang.String )
+   4 actualOut D = { javax.swing.JLabel.!JLabel( java.lang.String ), javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, javax.swing.JLabel.!javax.swing.JLabel.labelFor, javax.swing.JLabel.!javax.swing.JLabel.mnemonic, javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, javax.swing.JLabel.!javax.swing.JLabel.text, javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = {  }
+   5 assignment D = {  } U = { this.!add( java.awt.Component ) }
+   6 receiver D = {  } U = {  }
+   7 methodCall D = {  } U = { shapeLabel$0, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer } TO = java.awt.Container#add( java.awt.Component )
+   8 actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+   9 assignment D = { this.shapeCombo } U = { javax.swing.JComboBox.!JComboBox( ) }
+  10 receiver D = {  } U = {  }
+  11 constructorCall D = {  } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey } TO = javax.swing.JComboBox#JComboBox( )
+  12 actualOut D = { javax.swing.JComboBox.!JComboBox( ), javax.swing.JComboBox.!javax.swing.DefaultComboBoxModel.objects, javax.swing.JComboBox.!javax.swing.JComboBox.actionCommand, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JComboBox.firingActionEvent, javax.swing.JComboBox.!javax.swing.JComboBox.isEditable, javax.swing.JComboBox.!javax.swing.JComboBox.keySelectionManager, javax.swing.JComboBox.!javax.swing.JComboBox.lightWeightPopupEnabled, javax.swing.JComboBox.!javax.swing.JComboBox.maximumRowCount, javax.swing.JComboBox.!javax.swing.JComboBox.selectedItemReminder, javax.swing.JComboBox.!javax.swing.JComboBox.selectingItem, javax.swing.JComboBox.!javax.swing.JComponent.inputVerifier, javax.swing.JComboBox.!javax.swing.JComponent.listenerList, javax.swing.JComboBox.!javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComboBox.!javax.swing.JComponent.verifyInputWhenFocusTarget } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey }
+  13 assignment D = {  } U = { this.!add( java.awt.Component ) }
+  14 receiver D = {  } U = {  }
+  15 methodCall D = {  } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.shapeCombo } TO = java.awt.Container#add( java.awt.Component )
+  16 actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  17 assignment D = {  } U = { this.shapeCombo.!addItem( java.lang.Object ) }
+  18 receiver D = {  } U = { this.shapeCombo }
+  19 methodCall D = {  } U = { javax.swing.JComboBox.!JComboBox( ).!javax.swing.JComboBox.dataModel, jp.ac.ritsumei.cs.draw.CursorIcon.!CursorIcon( ), this.shapeCombo.!javax.swing.JComboBox.dataModel } TO = javax.swing.JComboBox#addItem( java.lang.Object )
+  20 receiver D = {  } U = {  }
+  21 constructorCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY } TO = jp.ac.ritsumei.cs.draw.CursorIcon#CursorIcon( )
+  22 actualOut D = { jp.ac.ritsumei.cs.draw.CursorIcon.!CursorIcon( ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
+  23 actualOut D = { this.shapeCombo.!addItem( java.lang.Object ) } U = { javax.swing.JComboBox.!JComboBox( ).!javax.swing.JComboBox.dataModel, this.shapeCombo.!javax.swing.JComboBox.dataModel }
+  24 assignment D = {  } U = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) }
+  25 receiver D = {  } U = {  }
+  26 methodCall D = {  } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+  27 actualIn D = {  } U = { this.shapeCombo }
+  28 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons }
+  29 actualOut D = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel }
+  30 localDeclaration D = { colorLabel$1 } U = { javax.swing.JLabel.!JLabel( java.lang.String ) }
+  31 receiver D = {  } U = {  }
+  32 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JLabel#JLabel( java.lang.String )
+  33 actualOut D = { javax.swing.JLabel.!JLabel( java.lang.String ), javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, javax.swing.JLabel.!javax.swing.JLabel.labelFor, javax.swing.JLabel.!javax.swing.JLabel.mnemonic, javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, javax.swing.JLabel.!javax.swing.JLabel.text, javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = {  }
+  34 assignment D = {  } U = { this.!add( java.awt.Component ) }
+  35 receiver D = {  } U = {  }
+  36 methodCall D = {  } U = { colorLabel$1, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer } TO = java.awt.Container#add( java.awt.Component )
+  37 actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  38 assignment D = { this.colorCombo } U = { javax.swing.JComboBox.!JComboBox( ) }
+  39 receiver D = {  } U = {  }
+  40 constructorCall D = {  } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey } TO = javax.swing.JComboBox#JComboBox( )
+  41 actualOut D = { javax.swing.JComboBox.!JComboBox( ), javax.swing.JComboBox.!javax.swing.DefaultComboBoxModel.objects, javax.swing.JComboBox.!javax.swing.JComboBox.actionCommand, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JComboBox.firingActionEvent, javax.swing.JComboBox.!javax.swing.JComboBox.isEditable, javax.swing.JComboBox.!javax.swing.JComboBox.keySelectionManager, javax.swing.JComboBox.!javax.swing.JComboBox.lightWeightPopupEnabled, javax.swing.JComboBox.!javax.swing.JComboBox.maximumRowCount, javax.swing.JComboBox.!javax.swing.JComboBox.selectedItemReminder, javax.swing.JComboBox.!javax.swing.JComboBox.selectingItem, javax.swing.JComboBox.!javax.swing.JComponent.inputVerifier, javax.swing.JComboBox.!javax.swing.JComponent.listenerList, javax.swing.JComboBox.!javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComboBox.!javax.swing.JComponent.verifyInputWhenFocusTarget } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey }
+  42 assignment D = {  } U = { this.!add( java.awt.Component ) }
+  43 receiver D = {  } U = {  }
+  44 methodCall D = {  } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.colorCombo } TO = java.awt.Container#add( java.awt.Component )
+  45 actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  46 assignment D = {  } U = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) }
+  47 receiver D = {  } U = {  }
+  48 methodCall D = {  } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+  49 actualIn D = {  } U = { this.colorCombo }
+  50 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons }
+  51 actualOut D = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel }
+  52 localDeclaration D = { lineWidthLabel$2 } U = { javax.swing.JLabel.!JLabel( java.lang.String ) }
+  53 receiver D = {  } U = {  }
+  54 constructorCall D = {  } U = { $java.lang.String } TO = javax.swing.JLabel#JLabel( java.lang.String )
+  55 actualOut D = { javax.swing.JLabel.!JLabel( java.lang.String ), javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, javax.swing.JLabel.!javax.swing.JLabel.labelFor, javax.swing.JLabel.!javax.swing.JLabel.mnemonic, javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, javax.swing.JLabel.!javax.swing.JLabel.text, javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = {  }
+  56 assignment D = {  } U = { this.!add( java.awt.Component ) }
+  57 receiver D = {  } U = {  }
+  58 methodCall D = {  } U = { lineWidthLabel$2, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer } TO = java.awt.Container#add( java.awt.Component )
+  59 actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  60 assignment D = { this.widthCombo } U = { javax.swing.JComboBox.!JComboBox( ) }
+  61 receiver D = {  } U = {  }
+  62 constructorCall D = {  } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey } TO = javax.swing.JComboBox#JComboBox( )
+  63 actualOut D = { javax.swing.JComboBox.!JComboBox( ), javax.swing.JComboBox.!javax.swing.DefaultComboBoxModel.objects, javax.swing.JComboBox.!javax.swing.JComboBox.actionCommand, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JComboBox.firingActionEvent, javax.swing.JComboBox.!javax.swing.JComboBox.isEditable, javax.swing.JComboBox.!javax.swing.JComboBox.keySelectionManager, javax.swing.JComboBox.!javax.swing.JComboBox.lightWeightPopupEnabled, javax.swing.JComboBox.!javax.swing.JComboBox.maximumRowCount, javax.swing.JComboBox.!javax.swing.JComboBox.selectedItemReminder, javax.swing.JComboBox.!javax.swing.JComboBox.selectingItem, javax.swing.JComboBox.!javax.swing.JComponent.inputVerifier, javax.swing.JComboBox.!javax.swing.JComponent.listenerList, javax.swing.JComboBox.!javax.swing.JComponent.revalidateRunnableScheduled, javax.swing.JComboBox.!javax.swing.JComponent.verifyInputWhenFocusTarget } U = { javax.swing.JComboBox.!java.lang.Boolean.TRUE, javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey }
+  64 assignment D = {  } U = { this.!add( java.awt.Component ) }
+  65 receiver D = {  } U = {  }
+  66 methodCall D = {  } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.widthCombo } TO = java.awt.Container#add( java.awt.Component )
+  67 actualOut D = { this.!add( java.awt.Component ), this.!java.awt.Component.parent } U = { this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer }
+  68 assignment D = {  } U = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) }
+  69 receiver D = {  } U = {  }
+  70 methodCall D = {  } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+  71 actualIn D = {  } U = { this.widthCombo }
+  72 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons }
+  73 actualOut D = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel }
+  74 methodExit
+  75 formalOut D = {  } U = { $_ }
+  21+ actualOutByFieldAccess D = { super.figure } U = {  }
+--
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#colorCombo ]
+   1 fieldDeclaration D = { this.colorCombo } U = { this.colorCombo }
+   2 fieldExit
+--
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#shapeCombo ]
+   1 fieldDeclaration D = { this.shapeCombo } U = { this.shapeCombo }
+   2 fieldExit
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) ]
+   1 formalIn D = { cb$0 } U = {  }
+   2 formalIn D = { icons$1 } U = {  }
+   3 localDeclaration D = { i$2 } U = {  }
+   4 forSt D = {  } U = { i$2, icons$1, icons$1.length }
+   5 assignment D = {  } U = { cb$0.!addItem( java.lang.Object ) }
+   6 receiver D = {  } U = { cb$0 }
+   7 methodCall D = {  } U = { cb$0.!javax.swing.JComboBox.dataModel, i$2, icons$1 } TO = javax.swing.JComboBox#addItem( java.lang.Object )
+   8 actualOut D = { cb$0.!addItem( java.lang.Object ) } U = { cb$0.!javax.swing.JComboBox.dataModel }
+   9 assignment D = { i$2 } U = { i$2 }
+  10 methodExit
+  11 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#getShape( ) ]
+   1 localDeclaration D = { icon$0 } U = { this.shapeCombo.!getSelectedItem( ) }
+   2 receiver D = {  } U = { this.shapeCombo }
+   3 methodCall D = {  } U = { this.shapeCombo.!javax.swing.JComboBox.dataModel } TO = javax.swing.JComboBox#getSelectedItem( )
+   4 actualOut D = { this.shapeCombo.!getSelectedItem( ) } U = { this.shapeCombo.!javax.swing.JComboBox.dataModel }
+   5 returnSt D = { $_ } U = { icon$0.!getFigure( ) }
+   6 receiver D = {  } U = { icon$0 }
+   7 methodCall D = {  } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY } TO = jp.ac.ritsumei.cs.draw.FigureIcon#getFigure( )
+   8 actualOut D = { icon$0.!getFigure( ) } U = { icon$0.figure, this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY }
+   9 methodExit
+  10 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#isGrabMode( ) ]
+   1 returnSt D = { $_ } U = { this.!getShape( ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.figure, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel } TO = jp.ac.ritsumei.cs.draw.FigureSelector#getShape( )
+   4 actualOut D = { this.!getShape( ) } U = { this.figure.color, this.figure.endX, this.figure.endY, this.figure.outlineWidth, this.figure.startX, this.figure.startY, this.icon$0.figure, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel }
+   5 methodExit
+   6 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#widthCombo ]
+   1 fieldDeclaration D = { this.widthCombo } U = { this.widthCombo }
+   2 fieldExit
+--
+   0: getColor( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    7 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   13 fallThroughFlow
+   7:    5 ->   13 trueControlFlow
+   8:    6 ->   10 trueControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    9 trueControlFlow
+  11:    9 ->    6 trueControlFlow
+  12:   10 ->   11 trueControlFlow
+  13:   11 ->    5 trueControlFlow
+  14:   13 ->   12 trueControlFlow
+--
+   0: shapeComboIcons
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->   37 trueControlFlow
+   3:    2 ->    5 trueControlFlow
+   4:    3 ->    3+ trueControlFlow
+   5:    4 ->    3 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    6+ trueControlFlow
+   8:    7 ->    4 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    9 ->   12 trueControlFlow
+  11:   10 ->   10+ trueControlFlow
+  12:   11 ->   10 trueControlFlow
+  13:   12 ->   13 trueControlFlow
+  14:   13 ->   13+ trueControlFlow
+  15:   14 ->   11 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   19 trueControlFlow
+  18:   17 ->   17+ trueControlFlow
+  19:   18 ->   17 trueControlFlow
+  20:   19 ->   20 trueControlFlow
+  21:   20 ->   21 trueControlFlow
+  22:   21 ->   18 trueControlFlow
+  23:   22 ->   23 trueControlFlow
+  24:   23 ->   26 trueControlFlow
+  25:   24 ->   24+ trueControlFlow
+  26:   25 ->   24 trueControlFlow
+  27:   26 ->   27 trueControlFlow
+  28:   27 ->   27+ trueControlFlow
+  29:   28 ->   25 trueControlFlow
+  30:   29 ->   30 trueControlFlow
+  31:   30 ->   33 trueControlFlow
+  32:   31 ->   31+ trueControlFlow
+  33:   32 ->   31 trueControlFlow
+  34:   33 ->   34 trueControlFlow
+  35:   34 ->   35 trueControlFlow
+  36:   35 ->   32 trueControlFlow
+  37:   36 ->    1 trueControlFlow
+  38:    3+ ->    8 trueControlFlow
+  39:    6+ ->    6+ trueControlFlow
+  40:    6+ ->    7 trueControlFlow
+  41:   10+ ->   15 trueControlFlow
+  42:   13+ ->   13+ trueControlFlow
+  43:   13+ ->   14 trueControlFlow
+  44:   17+ ->   22 trueControlFlow
+  45:   24+ ->   29 trueControlFlow
+  46:   27+ ->   27+ trueControlFlow
+  47:   27+ ->   28 trueControlFlow
+  48:   31+ ->   36 trueControlFlow
+--
+   0: createFigure( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->    7 trueControlFlow
+   7:    5 ->   18 falseControlFlow
+   8:    6 ->   18 fallThroughFlow
+   9:    6 ->   21 trueControlFlow
+  10:    7 ->   10 trueControlFlow
+  11:    8 ->   17 trueControlFlow
+  12:    9 ->   14 trueControlFlow
+  13:   10 ->   11 trueControlFlow
+  14:   11 ->   12 trueControlFlow
+  15:   12 ->    9 trueControlFlow
+  16:   13 ->    8 trueControlFlow
+  17:   14 ->   15 trueControlFlow
+  18:   15 ->   16 trueControlFlow
+  19:   16 ->   13 trueControlFlow
+  20:   17 ->    6 trueControlFlow
+  21:   18 ->   19 trueControlFlow
+  22:   19 ->   21 fallThroughFlow
+  23:   19 ->   21 trueControlFlow
+  24:   21 ->   20 trueControlFlow
+--
+   0: FigureSelector( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    9 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    7 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    3 trueControlFlow
+   8:    7 ->    1 trueControlFlow
+   9:    8 ->   13 trueControlFlow
+  10:    9 ->   10 trueControlFlow
+  11:   10 ->   10+ trueControlFlow
+  12:   11 ->    8 trueControlFlow
+  13:   13 ->   12 trueControlFlow
+  14:   10+ ->   10+ trueControlFlow
+  15:   10+ ->   10+ trueControlFlow
+  16:   10+ ->   10+ trueControlFlow
+  17:   10+ ->   11 trueControlFlow
+--
+   0: colorComboIcons
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->  106 trueControlFlow
+   3:    2 ->    5 trueControlFlow
+   4:    3 ->    3+ trueControlFlow
+   5:    4 ->    3 trueControlFlow
+   6:    5 ->    7 trueControlFlow
+   7:    6 ->    6+ trueControlFlow
+   8:    7 ->    6 trueControlFlow
+   9:    8 ->    4 trueControlFlow
+  10:    9 ->   10 trueControlFlow
+  11:   10 ->   13 trueControlFlow
+  12:   11 ->   11+ trueControlFlow
+  13:   12 ->   11 trueControlFlow
+  14:   13 ->   15 trueControlFlow
+  15:   14 ->   14+ trueControlFlow
+  16:   15 ->   14 trueControlFlow
+  17:   16 ->   12 trueControlFlow
+  18:   17 ->   18 trueControlFlow
+  19:   18 ->   21 trueControlFlow
+  20:   19 ->   19+ trueControlFlow
+  21:   20 ->   19 trueControlFlow
+  22:   21 ->   23 trueControlFlow
+  23:   22 ->   22+ trueControlFlow
+  24:   23 ->   22 trueControlFlow
+  25:   24 ->   20 trueControlFlow
+  26:   25 ->   26 trueControlFlow
+  27:   26 ->   29 trueControlFlow
+  28:   27 ->   27+ trueControlFlow
+  29:   28 ->   27 trueControlFlow
+  30:   29 ->   31 trueControlFlow
+  31:   30 ->   30+ trueControlFlow
+  32:   31 ->   30 trueControlFlow
+  33:   32 ->   28 trueControlFlow
+  34:   33 ->   34 trueControlFlow
+  35:   34 ->   37 trueControlFlow
+  36:   35 ->   35+ trueControlFlow
+  37:   36 ->   35 trueControlFlow
+  38:   37 ->   39 trueControlFlow
+  39:   38 ->   38+ trueControlFlow
+  40:   39 ->   38 trueControlFlow
+  41:   40 ->   36 trueControlFlow
+  42:   41 ->   42 trueControlFlow
+  43:   42 ->   45 trueControlFlow
+  44:   43 ->   43+ trueControlFlow
+  45:   44 ->   43 trueControlFlow
+  46:   45 ->   47 trueControlFlow
+  47:   46 ->   46+ trueControlFlow
+  48:   47 ->   46 trueControlFlow
+  49:   48 ->   44 trueControlFlow
+  50:   49 ->   50 trueControlFlow
+  51:   50 ->   53 trueControlFlow
+  52:   51 ->   51+ trueControlFlow
+  53:   52 ->   51 trueControlFlow
+  54:   53 ->   55 trueControlFlow
+  55:   54 ->   54+ trueControlFlow
+  56:   55 ->   54 trueControlFlow
+  57:   56 ->   52 trueControlFlow
+  58:   57 ->   58 trueControlFlow
+  59:   58 ->   61 trueControlFlow
+  60:   59 ->   59+ trueControlFlow
+  61:   60 ->   59 trueControlFlow
+  62:   61 ->   63 trueControlFlow
+  63:   62 ->   62+ trueControlFlow
+  64:   63 ->   62 trueControlFlow
+  65:   64 ->   60 trueControlFlow
+  66:   65 ->   66 trueControlFlow
+  67:   66 ->   69 trueControlFlow
+  68:   67 ->   67+ trueControlFlow
+  69:   68 ->   67 trueControlFlow
+  70:   69 ->   71 trueControlFlow
+  71:   70 ->   70+ trueControlFlow
+  72:   71 ->   70 trueControlFlow
+  73:   72 ->   68 trueControlFlow
+  74:   73 ->   74 trueControlFlow
+  75:   74 ->   77 trueControlFlow
+  76:   75 ->   75+ trueControlFlow
+  77:   76 ->   75 trueControlFlow
+  78:   77 ->   79 trueControlFlow
+  79:   78 ->   78+ trueControlFlow
+  80:   79 ->   78 trueControlFlow
+  81:   80 ->   76 trueControlFlow
+  82:   81 ->   82 trueControlFlow
+  83:   82 ->   85 trueControlFlow
+  84:   83 ->   83+ trueControlFlow
+  85:   84 ->   83 trueControlFlow
+  86:   85 ->   87 trueControlFlow
+  87:   86 ->   86+ trueControlFlow
+  88:   87 ->   86 trueControlFlow
+  89:   88 ->   84 trueControlFlow
+  90:   89 ->   90 trueControlFlow
+  91:   90 ->   93 trueControlFlow
+  92:   91 ->   91+ trueControlFlow
+  93:   92 ->   91 trueControlFlow
+  94:   93 ->   95 trueControlFlow
+  95:   94 ->   94+ trueControlFlow
+  96:   95 ->   94 trueControlFlow
+  97:   96 ->   92 trueControlFlow
+  98:   97 ->   98 trueControlFlow
+  99:   98 ->  101 trueControlFlow
+ 100:   99 ->   99+ trueControlFlow
+ 101:  100 ->   99 trueControlFlow
+ 102:  101 ->  103 trueControlFlow
+ 103:  102 ->  102+ trueControlFlow
+ 104:  103 ->  102 trueControlFlow
+ 105:  104 ->  100 trueControlFlow
+ 106:  105 ->    1 trueControlFlow
+ 107:    3+ ->    9 trueControlFlow
+ 108:    6+ ->    6+ trueControlFlow
+ 109:    6+ ->    8 trueControlFlow
+ 110:   11+ ->   17 trueControlFlow
+ 111:   14+ ->   14+ trueControlFlow
+ 112:   14+ ->   16 trueControlFlow
+ 113:   19+ ->   25 trueControlFlow
+ 114:   22+ ->   22+ trueControlFlow
+ 115:   22+ ->   24 trueControlFlow
+ 116:   27+ ->   33 trueControlFlow
+ 117:   30+ ->   30+ trueControlFlow
+ 118:   30+ ->   32 trueControlFlow
+ 119:   35+ ->   41 trueControlFlow
+ 120:   38+ ->   38+ trueControlFlow
+ 121:   38+ ->   40 trueControlFlow
+ 122:   43+ ->   49 trueControlFlow
+ 123:   46+ ->   46+ trueControlFlow
+ 124:   46+ ->   48 trueControlFlow
+ 125:   51+ ->   57 trueControlFlow
+ 126:   54+ ->   54+ trueControlFlow
+ 127:   54+ ->   56 trueControlFlow
+ 128:   59+ ->   65 trueControlFlow
+ 129:   62+ ->   62+ trueControlFlow
+ 130:   62+ ->   64 trueControlFlow
+ 131:   67+ ->   73 trueControlFlow
+ 132:   70+ ->   70+ trueControlFlow
+ 133:   70+ ->   72 trueControlFlow
+ 134:   75+ ->   81 trueControlFlow
+ 135:   78+ ->   78+ trueControlFlow
+ 136:   78+ ->   80 trueControlFlow
+ 137:   83+ ->   89 trueControlFlow
+ 138:   86+ ->   86+ trueControlFlow
+ 139:   86+ ->   88 trueControlFlow
+ 140:   91+ ->   97 trueControlFlow
+ 141:   94+ ->   94+ trueControlFlow
+ 142:   94+ ->   96 trueControlFlow
+ 143:   99+ ->  105 trueControlFlow
+ 144:  102+ ->  102+ trueControlFlow
+ 145:  102+ ->  104 trueControlFlow
+--
+   0: serialVersionUID
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: getLineWidth( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    7 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   13 fallThroughFlow
+   7:    5 ->   13 trueControlFlow
+   8:    6 ->   10 trueControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    9 trueControlFlow
+  11:    9 ->    6 trueControlFlow
+  12:   10 ->   11 trueControlFlow
+  13:   11 ->    5 trueControlFlow
+  14:   13 ->   12 trueControlFlow
+--
+   0: widthComboIcons
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->   34 trueControlFlow
+   3:    2 ->    5 trueControlFlow
+   4:    3 ->    3+ trueControlFlow
+   5:    4 ->    3 trueControlFlow
+   6:    5 ->    7 trueControlFlow
+   7:    6 ->    6+ trueControlFlow
+   8:    7 ->    6 trueControlFlow
+   9:    8 ->    4 trueControlFlow
+  10:    9 ->   10 trueControlFlow
+  11:   10 ->   13 trueControlFlow
+  12:   11 ->   11+ trueControlFlow
+  13:   12 ->   11 trueControlFlow
+  14:   13 ->   15 trueControlFlow
+  15:   14 ->   14+ trueControlFlow
+  16:   15 ->   14 trueControlFlow
+  17:   16 ->   12 trueControlFlow
+  18:   17 ->   18 trueControlFlow
+  19:   18 ->   21 trueControlFlow
+  20:   19 ->   19+ trueControlFlow
+  21:   20 ->   19 trueControlFlow
+  22:   21 ->   23 trueControlFlow
+  23:   22 ->   22+ trueControlFlow
+  24:   23 ->   22 trueControlFlow
+  25:   24 ->   20 trueControlFlow
+  26:   25 ->   26 trueControlFlow
+  27:   26 ->   29 trueControlFlow
+  28:   27 ->   27+ trueControlFlow
+  29:   28 ->   27 trueControlFlow
+  30:   29 ->   31 trueControlFlow
+  31:   30 ->   30+ trueControlFlow
+  32:   31 ->   30 trueControlFlow
+  33:   32 ->   28 trueControlFlow
+  34:   33 ->    1 trueControlFlow
+  35:    3+ ->    9 trueControlFlow
+  36:    6+ ->    6+ trueControlFlow
+  37:    6+ ->    8 trueControlFlow
+  38:   11+ ->   17 trueControlFlow
+  39:   14+ ->   14+ trueControlFlow
+  40:   14+ ->   16 trueControlFlow
+  41:   19+ ->   25 trueControlFlow
+  42:   22+ ->   22+ trueControlFlow
+  43:   22+ ->   24 trueControlFlow
+  44:   27+ ->   33 trueControlFlow
+  45:   30+ ->   30+ trueControlFlow
+  46:   30+ ->   32 trueControlFlow
+--
+   0: createComboBoxes( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    5 trueControlFlow
+  10:    9 ->   14 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->    9 trueControlFlow
+  14:   13 ->   18 trueControlFlow
+  15:   14 ->   15 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   13 trueControlFlow
+  18:   17 ->   25 trueControlFlow
+  19:   18 ->   20 trueControlFlow
+  20:   19 ->   23 trueControlFlow
+  21:   20 ->   21 trueControlFlow
+  22:   21 ->   21+ trueControlFlow
+  23:   22 ->   19 trueControlFlow
+  24:   23 ->   17 trueControlFlow
+  25:   24 ->   31 trueControlFlow
+  26:   25 ->   27 trueControlFlow
+  27:   26 ->   29 trueControlFlow
+  28:   27 ->   28 trueControlFlow
+  29:   28 ->   26 trueControlFlow
+  30:   29 ->   24 trueControlFlow
+  31:   30 ->   35 trueControlFlow
+  32:   31 ->   32 trueControlFlow
+  33:   32 ->   33 trueControlFlow
+  34:   33 ->   30 trueControlFlow
+  35:   34 ->   39 trueControlFlow
+  36:   35 ->   36 trueControlFlow
+  37:   36 ->   37 trueControlFlow
+  38:   37 ->   34 trueControlFlow
+  39:   38 ->   43 trueControlFlow
+  40:   39 ->   40 trueControlFlow
+  41:   40 ->   41 trueControlFlow
+  42:   41 ->   38 trueControlFlow
+  43:   42 ->   47 trueControlFlow
+  44:   43 ->   44 trueControlFlow
+  45:   44 ->   45 trueControlFlow
+  46:   45 ->   42 trueControlFlow
+  47:   46 ->   53 trueControlFlow
+  48:   47 ->   49 trueControlFlow
+  49:   48 ->   51 trueControlFlow
+  50:   49 ->   50 trueControlFlow
+  51:   50 ->   48 trueControlFlow
+  52:   51 ->   46 trueControlFlow
+  53:   52 ->   57 trueControlFlow
+  54:   53 ->   54 trueControlFlow
+  55:   54 ->   55 trueControlFlow
+  56:   55 ->   52 trueControlFlow
+  57:   56 ->   61 trueControlFlow
+  58:   57 ->   58 trueControlFlow
+  59:   58 ->   59 trueControlFlow
+  60:   59 ->   56 trueControlFlow
+  61:   60 ->   65 trueControlFlow
+  62:   61 ->   62 trueControlFlow
+  63:   62 ->   63 trueControlFlow
+  64:   63 ->   60 trueControlFlow
+  65:   64 ->   69 trueControlFlow
+  66:   65 ->   66 trueControlFlow
+  67:   66 ->   67 trueControlFlow
+  68:   67 ->   64 trueControlFlow
+  69:   68 ->   75 trueControlFlow
+  70:   69 ->   71 trueControlFlow
+  71:   70 ->   73 trueControlFlow
+  72:   71 ->   72 trueControlFlow
+  73:   72 ->   70 trueControlFlow
+  74:   73 ->   68 trueControlFlow
+  75:   75 ->   74 trueControlFlow
+  76:   21+ ->   22 trueControlFlow
+--
+   0: colorCombo
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: shapeCombo
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    6 trueControlFlow
+   6:    4 ->   11 falseControlFlow
+   7:    5 ->    9 trueControlFlow
+   8:    6 ->    7 trueControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    5 trueControlFlow
+  11:    9 ->    4 trueControlFlow (L = 4)
+  12:   11 ->   10 trueControlFlow
+--
+   0: getShape( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 fallThroughFlow
+   7:    5 ->   10 trueControlFlow
+   8:    6 ->    7 trueControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    5 trueControlFlow
+  11:   10 ->    9 trueControlFlow
+--
+   0: isGrabMode( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 fallThroughFlow
+   3:    1 ->    6 trueControlFlow
+   4:    2 ->    3 trueControlFlow
+   5:    3 ->    4 trueControlFlow
+   6:    4 ->    1 trueControlFlow
+   7:    6 ->    5 trueControlFlow
+--
+   0: widthCombo
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+----- CCFG (to here) -----
+
+

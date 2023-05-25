@@ -65,44 +65,47 @@ Class Name = jp.ac.ritsumei.cs.draw.AutoSave
    6:    2 ->    5 trueControlDependence
    7:    2 ->    6 trueControlDependence
    8:    2 ->   10 trueControlDependence
-   9:    3 ->    9 trueControlDependence
-  10:    6 ->    4 trueControlDependence
-  11:    6 ->    7 trueControlDependence
-  12:    6 ->    9 exceptionCatch
-  13:    7 ->    4 loopIndependentDefUseDependence this.!sleep( long )
-  14:    7 ->    7 defOrderDependence this.!sleep( long )
-  15:    9 ->    9 outputDependence e$0
-  16:   10 ->   10 defOrderDependence canvas$1
-  17:   10 ->   10 defOrderDependence canvas$1
-  18:   10 ->   11 trueControlDependence
-  19:   10 ->   12 trueControlDependence
-  20:   10 ->   13 trueControlDependence
-  21:   10 ->   14 trueControlDependence
-  22:   10 ->   15 loopCarriedDefUseDependence canvas$1 (LC = 10)
-  23:   10 ->   15 trueControlDependence
-  24:   10 ->   16 trueControlDependence
-  25:   10 ->   17 trueControlDependence
-  26:   13 ->   10 loopCarriedDefUseDependence this.tabbedCanvas.!getAllCanvases( ) (LC = 10)
-  27:   13 ->   13 defOrderDependence this.tabbedCanvas.!getAllCanvases( )
-  28:   17 ->   14 loopIndependentDefUseDependence canvas$1.!autoSave( )
-  29:   17 ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC = 10)
-  30:   17 ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC = 10)
-  31:   17 ->   17 defOrderDependence canvas$1.!autoSave( )
-  32:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble
-  33:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb
-  34:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars
-  35:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nextChar
-  36:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out
-  37:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se
-  38:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush
-  39:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out
-  40:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut
-  41:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble
-  42:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder
-  43:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value
-  44:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble
-  45:   17 ->   17 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC = 10)
-  46:   17 ->   17 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC = 10)
+   9:    2 ->   11 trueControlDependence
+  10:    2 ->   12 trueControlDependence
+  11:    2 ->   13 trueControlDependence
+  12:    3 ->    9 trueControlDependence
+  13:    6 ->    4 trueControlDependence
+  14:    6 ->    7 trueControlDependence
+  15:    6 ->    9 exceptionCatch
+  16:    7 ->    4 loopIndependentDefUseDependence this.!sleep( long )
+  17:    7 ->    7 defOrderDependence this.!sleep( long )
+  18:    9 ->    9 outputDependence e$0
+  19:   10 ->   10 defOrderDependence canvas$1
+  20:   10 ->   10 defOrderDependence canvas$1
+  21:   10 ->   11 trueControlDependence
+  22:   10 ->   12 trueControlDependence
+  23:   10 ->   13 trueControlDependence
+  24:   10 ->   14 trueControlDependence
+  25:   10 ->   15 loopCarriedDefUseDependence canvas$1 (LC = 10)
+  26:   10 ->   15 trueControlDependence
+  27:   10 ->   16 trueControlDependence
+  28:   10 ->   17 trueControlDependence
+  29:   13 ->   10 loopCarriedDefUseDependence this.tabbedCanvas.!getAllCanvases( ) (LC = 10)
+  30:   13 ->   13 defOrderDependence this.tabbedCanvas.!getAllCanvases( )
+  31:   17 ->   14 loopIndependentDefUseDependence canvas$1.!autoSave( )
+  32:   17 ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC = 10)
+  33:   17 ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC = 10)
+  34:   17 ->   17 defOrderDependence canvas$1.!autoSave( )
+  35:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble
+  36:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb
+  37:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars
+  38:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nextChar
+  39:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out
+  40:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se
+  41:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush
+  42:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out
+  43:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut
+  44:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble
+  45:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder
+  46:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value
+  47:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble
+  48:   17 ->   17 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC = 10)
+  49:   17 ->   17 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC = 10)
 --
 ----- ClDG (to here) -----
 

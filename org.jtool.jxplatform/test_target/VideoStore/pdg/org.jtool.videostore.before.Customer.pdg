@@ -228,72 +228,70 @@ Class Name = org.jtool.videostore.before.Customer
  116:   22 ->   70 loopIndependentDefUseDependence thisAmount$5
  117:   25 ->   22 loopIndependentDefUseDependence each$3.!getDaysRented( )
  118:   25 ->   57 outputDependence each$3.!getDaysRented( )
- 119:   27 ->   28 fallThroughControlDependence
- 120:   28 ->   29 trueControlDependence
- 121:   28 ->   30 trueControlDependence
- 122:   28 ->   31 trueControlDependence
- 123:   28 ->   32 trueControlDependence
- 124:   28 ->   33 trueControlDependence
- 125:   28 ->   34 falseControlDependence
- 126:   29 ->    8 outputDependence thisAmount$5
- 127:   29 ->   68 loopIndependentDefUseDependence thisAmount$5
- 128:   29 ->   70 loopIndependentDefUseDependence thisAmount$5
- 129:   32 ->   29 loopIndependentDefUseDependence each$3.!getDaysRented( )
- 130:   32 ->   57 outputDependence each$3.!getDaysRented( )
- 131:   33 ->   34 fallThroughControlDependence
- 132:   34 ->   35 trueControlDependence
- 133:   34 ->   36 trueControlDependence
- 134:   34 ->   37 trueControlDependence
- 135:   34 ->   38 trueControlDependence
- 136:   34 ->   39 trueControlDependence
- 137:   34 ->   45 trueControlDependence
- 138:   35 ->    8 outputDependence thisAmount$5
- 139:   35 ->   40 loopIndependentDefUseDependence thisAmount$5
- 140:   35 ->   68 loopIndependentDefUseDependence thisAmount$5
- 141:   35 ->   70 loopIndependentDefUseDependence thisAmount$5
- 142:   36 ->   40 trueControlDependence
- 143:   36 ->   41 trueControlDependence
- 144:   36 ->   42 trueControlDependence
- 145:   36 ->   43 trueControlDependence
- 146:   39 ->   36 loopIndependentDefUseDependence each$3.!getDaysRented( )
- 147:   39 ->   43 outputDependence each$3.!getDaysRented( )
- 148:   39 ->   57 outputDependence each$3.!getDaysRented( )
- 149:   40 ->    8 outputDependence thisAmount$5
- 150:   40 ->   68 loopIndependentDefUseDependence thisAmount$5
- 151:   40 ->   70 loopIndependentDefUseDependence thisAmount$5
- 152:   43 ->   40 loopIndependentDefUseDependence each$3.!getDaysRented( )
- 153:   43 ->   57 outputDependence each$3.!getDaysRented( )
- 154:   47 ->   47 loopCarriedDefUseDependence frequentRenterPoints$1 (LC = 7)
- 155:   47 ->   58 loopIndependentDefUseDependence frequentRenterPoints$1
- 156:   47 ->   77 loopIndependentDefUseDependence frequentRenterPoints$1
- 157:   48 ->   58 trueControlDependence
- 158:   52 ->   49 loopIndependentDefUseDependence each$3.!getMovie( )
- 159:   52 ->   64 outputDependence each$3.!getMovie( )
- 160:   54 ->   15 outputDependence each$3.!getMovie( ).!getPriceCode( )
- 161:   54 ->   48 loopIndependentDefUseDependence each$3.!getMovie( ).!getPriceCode( )
- 162:   57 ->   21 outputDependence each$3.!getDaysRented( )
- 163:   57 ->   32 outputDependence each$3.!getDaysRented( )
- 164:   57 ->   39 outputDependence each$3.!getDaysRented( )
- 165:   57 ->   48 loopIndependentDefUseDependence each$3.!getDaysRented( )
- 166:   57 ->   57 defOrderDependence each$3.!getDaysRented( )
- 167:   58 ->   47 loopCarriedDefUseDependence frequentRenterPoints$1 (LC = 7)
- 168:   58 ->   77 loopIndependentDefUseDependence frequentRenterPoints$1
- 169:   60 ->   60 loopCarriedDefUseDependence result$2 (LC = 7)
- 170:   60 ->   71 loopIndependentDefUseDependence result$2
- 171:   64 ->   13 outputDependence each$3.!getMovie( )
- 172:   64 ->   61 loopIndependentDefUseDependence each$3.!getMovie( )
- 173:   66 ->   60 loopIndependentDefUseDependence each$3.!getMovie( ).!getTitle( )
- 174:   66 ->   66 defOrderDependence each$3.!getMovie( ).!getTitle( )
- 175:   69 ->   60 loopIndependentDefUseDependence this.!valueOf( double )
- 176:   69 ->   69 defOrderDependence this.!valueOf( double )
- 177:   69 ->   74 outputDependence this.!valueOf( double )
- 178:   70 ->   70 loopCarriedDefUseDependence totalAmount$0 (LC = 7)
- 179:   70 ->   73 loopIndependentDefUseDependence totalAmount$0
- 180:   71 ->   75 loopIndependentDefUseDependence result$2
- 181:   74 ->   71 loopIndependentDefUseDependence this.!valueOf( double )
- 182:   75 ->   79 loopIndependentDefUseDependence result$2
- 183:   78 ->   75 loopIndependentDefUseDependence this.!valueOf( int )
- 184:   79 ->   81 loopIndependentDefUseDependence $_
+ 119:   28 ->   29 trueControlDependence
+ 120:   28 ->   30 trueControlDependence
+ 121:   28 ->   31 trueControlDependence
+ 122:   28 ->   32 trueControlDependence
+ 123:   28 ->   33 trueControlDependence
+ 124:   28 ->   34 falseControlDependence
+ 125:   29 ->    8 outputDependence thisAmount$5
+ 126:   29 ->   68 loopIndependentDefUseDependence thisAmount$5
+ 127:   29 ->   70 loopIndependentDefUseDependence thisAmount$5
+ 128:   32 ->   29 loopIndependentDefUseDependence each$3.!getDaysRented( )
+ 129:   32 ->   57 outputDependence each$3.!getDaysRented( )
+ 130:   34 ->   35 trueControlDependence
+ 131:   34 ->   36 trueControlDependence
+ 132:   34 ->   37 trueControlDependence
+ 133:   34 ->   38 trueControlDependence
+ 134:   34 ->   39 trueControlDependence
+ 135:   34 ->   45 trueControlDependence
+ 136:   35 ->    8 outputDependence thisAmount$5
+ 137:   35 ->   40 loopIndependentDefUseDependence thisAmount$5
+ 138:   35 ->   68 loopIndependentDefUseDependence thisAmount$5
+ 139:   35 ->   70 loopIndependentDefUseDependence thisAmount$5
+ 140:   36 ->   40 trueControlDependence
+ 141:   36 ->   41 trueControlDependence
+ 142:   36 ->   42 trueControlDependence
+ 143:   36 ->   43 trueControlDependence
+ 144:   39 ->   36 loopIndependentDefUseDependence each$3.!getDaysRented( )
+ 145:   39 ->   43 outputDependence each$3.!getDaysRented( )
+ 146:   39 ->   57 outputDependence each$3.!getDaysRented( )
+ 147:   40 ->    8 outputDependence thisAmount$5
+ 148:   40 ->   68 loopIndependentDefUseDependence thisAmount$5
+ 149:   40 ->   70 loopIndependentDefUseDependence thisAmount$5
+ 150:   43 ->   40 loopIndependentDefUseDependence each$3.!getDaysRented( )
+ 151:   43 ->   57 outputDependence each$3.!getDaysRented( )
+ 152:   47 ->   47 loopCarriedDefUseDependence frequentRenterPoints$1 (LC = 7)
+ 153:   47 ->   58 loopIndependentDefUseDependence frequentRenterPoints$1
+ 154:   47 ->   77 loopIndependentDefUseDependence frequentRenterPoints$1
+ 155:   48 ->   58 trueControlDependence
+ 156:   52 ->   49 loopIndependentDefUseDependence each$3.!getMovie( )
+ 157:   52 ->   64 outputDependence each$3.!getMovie( )
+ 158:   54 ->   15 outputDependence each$3.!getMovie( ).!getPriceCode( )
+ 159:   54 ->   48 loopIndependentDefUseDependence each$3.!getMovie( ).!getPriceCode( )
+ 160:   57 ->   21 outputDependence each$3.!getDaysRented( )
+ 161:   57 ->   32 outputDependence each$3.!getDaysRented( )
+ 162:   57 ->   39 outputDependence each$3.!getDaysRented( )
+ 163:   57 ->   48 loopIndependentDefUseDependence each$3.!getDaysRented( )
+ 164:   57 ->   57 defOrderDependence each$3.!getDaysRented( )
+ 165:   58 ->   47 loopCarriedDefUseDependence frequentRenterPoints$1 (LC = 7)
+ 166:   58 ->   77 loopIndependentDefUseDependence frequentRenterPoints$1
+ 167:   60 ->   60 loopCarriedDefUseDependence result$2 (LC = 7)
+ 168:   60 ->   71 loopIndependentDefUseDependence result$2
+ 169:   64 ->   13 outputDependence each$3.!getMovie( )
+ 170:   64 ->   61 loopIndependentDefUseDependence each$3.!getMovie( )
+ 171:   66 ->   60 loopIndependentDefUseDependence each$3.!getMovie( ).!getTitle( )
+ 172:   66 ->   66 defOrderDependence each$3.!getMovie( ).!getTitle( )
+ 173:   69 ->   60 loopIndependentDefUseDependence this.!valueOf( double )
+ 174:   69 ->   69 defOrderDependence this.!valueOf( double )
+ 175:   69 ->   74 outputDependence this.!valueOf( double )
+ 176:   70 ->   70 loopCarriedDefUseDependence totalAmount$0 (LC = 7)
+ 177:   70 ->   73 loopIndependentDefUseDependence totalAmount$0
+ 178:   71 ->   75 loopIndependentDefUseDependence result$2
+ 179:   74 ->   71 loopIndependentDefUseDependence this.!valueOf( double )
+ 180:   75 ->   79 loopIndependentDefUseDependence result$2
+ 181:   78 ->   75 loopIndependentDefUseDependence this.!valueOf( int )
+ 182:   79 ->   81 loopIndependentDefUseDependence $_
 --
    0: addRental( org.jtool.videostore.before.Rental )
    1:    0 ->    1 trueControlDependence

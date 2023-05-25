@@ -340,14 +340,6 @@ public class CFGNodeTest {
     @Test
     public void testIsJoin4() {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test111", "m( )");
-        CFGNode node = CFGTestUtil.getNode(cfg, 8);
-        
-        assertTrue(node.isJoin());
-    }
-    
-    @Test
-    public void testIsJoin5() {
-        CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test111", "m( )");
         CFGNode node = CFGTestUtil.getNode(cfg, 11);
         
         assertTrue(node.isJoin());

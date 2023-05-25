@@ -54,10 +54,9 @@ Class Name = Test112
   30:    7 ->    9 trueControlDependence
   31:    7 ->   10 falseControlDependence
   32:    8 ->   14 loopIndependentDefUseDependence y$1
-  33:    9 ->   10 fallThroughControlDependence
-  34:   10 ->   11 trueControlDependence
-  35:   10 ->   12 trueControlDependence
-  36:   11 ->   15 loopIndependentDefUseDependence z$2
+  33:   10 ->   11 trueControlDependence
+  34:   10 ->   12 trueControlDependence
+  35:   11 ->   15 loopIndependentDefUseDependence z$2
 --
    0: Test112( )
    1:    0 ->    2 trueControlDependence

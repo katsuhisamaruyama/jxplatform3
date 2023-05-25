@@ -289,8 +289,6 @@ public class DependenceTest {
         PDG pdg = PDGTestUtil.createPDG(SimpleProject, "Test02", "m( )");
         List<Dependence> result = PDGTestUtil.getDependence(pdg, 7, 7);
         
-        pdg.print();
-        
         assertTrue(result.get(0).isDD());
     }
     

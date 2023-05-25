@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.concurrent.TimeoutException;
 
@@ -33,7 +34,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class CDFinder {
     
-    private static final int TIMEOUT_SEC = 180;
+    private static final int TIMEOUT_SEC = 60;
     
     public static void find(final JavaProject jproject, final PDG pdg, final CFG cfg) {
         Runnable task = new Runnable() {
@@ -47,12 +48,17 @@ public class CDFinder {
         try {
             jproject.getModelBuilderImpl().performTaskWithTimeout(task, TIMEOUT_SEC);
         } catch (TimeoutException e) {
+            new ArrayList<CD>(pdg.getCDEdges()).forEach(cd -> pdg.remove(cd));
+            simplyFindCDs(pdg, cfg);
+            
+            jproject.getModelBuilderImpl().printErrorOnMonitor(
+                    "**Timeout occurred in control dependency analysis: " + cfg.getQualifiedName().fqn());
             jproject.getModelBuilderImpl().getLogger().recordTimeoutError(cfg.getQualifiedName().fqn());
         }
     }
     
     public static void find0(PDG pdg, CFG cfg) {
-        if (hasNestStructure(cfg)) {
+        if (hasNestedStructure(cfg)) {
             findCDsOnNestStructure(pdg, cfg);
         } else {
             findCDs(pdg, cfg);
@@ -64,27 +70,40 @@ public class CDFinder {
         removeTransitiveCDs(pdg);
     }
     
-    private static boolean hasNestStructure(CFG cfg) {
+    private static boolean hasNestedStructure(CFG cfg) {
         DominantStatement statement = cfg.getDominantStatement(cfg.getEntryNode().getOutgoingTrueFlow());
-        return statement != null && statement.hasNestStructure();
+        return statement != null && !statement.breakNestedStructure();
     }
     
     private static void findCDsOnNestStructure(PDG pdg, CFG cfg) {
         for (CFGNode node : cfg.getNodes()) {
             if (node.isBranch()) {
-                boolean hasNestStructure = node.getOutgoingFlows().stream()
-                        .map(flow -> cfg.getDominantStatement(flow)).allMatch(st -> (st != null && st.hasNestStructure()));
-                if (hasNestStructure) {
-                    for (ControlFlow flow : node.getOutgoingFlows()) {
-                        DominantStatement statement = cfg.getDominantStatement(flow);
-                        for (CFGNode postDominator : statement.getImmediatePostDominators()) {
-                            CD cd = createCD(node, flow, postDominator);
-                            pdg.add(cd);
-                        }
-                    }
+                boolean hasNestedStructure = node.getOutgoingFlows().stream()
+                        .map(flow -> cfg.getDominantStatement(flow))
+                        .allMatch(st -> (st != null && !st.breakNestedStructure()));
+                if (hasNestedStructure) {
+                    simplyFindCDs(pdg, cfg, node);
                 } else {
                     findCDs(pdg, cfg, node);
                 }
+            }
+        }
+    }
+    
+    private static void simplyFindCDs(PDG pdg, CFG cfg) {
+        for (CFGNode node : cfg.getNodes()) {
+            if (node.isBranch()) {
+                simplyFindCDs(pdg, cfg, node);
+            }
+        }
+    }
+    
+    private static void simplyFindCDs(PDG pdg, CFG cfg, CFGNode node) {
+        for (ControlFlow flow : node.getOutgoingFlows()) {
+            DominantStatement statement = cfg.getDominantStatement(flow);
+            for (CFGNode postDominator : statement.getImmediatePostDominators()) {
+                CD cd = createCD(node, flow, postDominator);
+                pdg.add(cd);
             }
         }
     }
@@ -189,7 +208,9 @@ public class CDFinder {
     }
     
     private static void removeTransitiveCDs(PDG pdg) {
-        for (PDGNode node: pdg.getNodes()) {
+        List<PDGNode> nodes = pdg.getNodes().stream().sorted().collect(Collectors.toList());
+        Collections.reverse(nodes);
+        for (PDGNode node: nodes) {
             Set<CD> edges = pdg.getIncomingCDEdges(node).stream()
                     .filter(e -> e.isTrue() || e.isFalse()).collect(Collectors.toSet());
             Set<CD> removed = new HashSet<>();

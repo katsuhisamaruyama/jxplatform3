@@ -36,25 +36,27 @@ Class Name = Test33
    8:    4 ->    2 trueControlDependence
    9:    4 ->    5 trueControlDependence
   10:    4 ->    6 trueControlDependence
-  11:    4 ->   13 exceptionCatch
-  12:    5 ->    2 loopIndependentDefUseDependence java.io.FileInputStream.!FileInputStream( java.lang.String )
-  13:    6 ->    7 declaration
-  14:    6 ->    7 outputDependence c$3
-  15:    7 ->    7 outputDependence c$3
-  16:    7 ->    8 trueControlDependence
-  17:    7 ->    9 trueControlDependence
-  18:    7 ->   11 trueControlDependence
-  19:    9 ->    7 trueControlDependence
-  20:    9 ->   10 trueControlDependence
-  21:    9 ->   13 exceptionCatch
-  22:   10 ->    7 loopCarriedDefUseDependence in$2.!read( ) (LC = 7)
-  23:   10 ->   10 defOrderDependence in$2.!read( )
-  24:   13 ->   14 trueControlDependence
-  25:   13 ->   15 loopIndependentDefUseDependence e$4
-  26:   13 ->   15 trueControlDependence
-  27:   13 ->   16 trueControlDependence
-  28:   13 ->   17 trueControlDependence
-  29:   17 ->   14 loopIndependentDefUseDependence e$4.!printStackTrace( )
+  11:    4 ->    8 trueControlDependence
+  12:    4 ->    9 trueControlDependence
+  13:    4 ->   13 exceptionCatch
+  14:    5 ->    2 loopIndependentDefUseDependence java.io.FileInputStream.!FileInputStream( java.lang.String )
+  15:    6 ->    7 declaration
+  16:    6 ->    7 outputDependence c$3
+  17:    7 ->    7 outputDependence c$3
+  18:    7 ->    8 trueControlDependence
+  19:    7 ->    9 trueControlDependence
+  20:    7 ->   11 trueControlDependence
+  21:    9 ->    7 trueControlDependence
+  22:    9 ->   10 trueControlDependence
+  23:    9 ->   13 exceptionCatch
+  24:   10 ->    7 loopCarriedDefUseDependence in$2.!read( ) (LC = 7)
+  25:   10 ->   10 defOrderDependence in$2.!read( )
+  26:   13 ->   14 trueControlDependence
+  27:   13 ->   15 loopIndependentDefUseDependence e$4
+  28:   13 ->   15 trueControlDependence
+  29:   13 ->   16 trueControlDependence
+  30:   13 ->   17 trueControlDependence
+  31:   17 ->   14 loopIndependentDefUseDependence e$4.!printStackTrace( )
 --
 ----- ClDG (to here) -----
 

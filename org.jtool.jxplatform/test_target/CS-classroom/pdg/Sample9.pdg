@@ -128,45 +128,47 @@ Class Name = Sample9
   66:   33 ->   34 trueControlDependence
   67:   33 ->   35 trueControlDependence
   68:   33 ->   36 trueControlDependence
-  69:   33 ->   46 exceptionCatch
-  70:   33 ->   51 exceptionCatch
-  71:   34 ->   31 loopIndependentDefUseDependence java.io.FileReader.!FileReader( java.lang.String )
-  72:   35 ->   29 loopIndependentDefUseDependence java.io.BufferedReader.!BufferedReader( java.io.Reader )
-  73:   36 ->   37 declaration
-  74:   36 ->   37 outputDependence line$9
-  75:   36 ->   43 declaration
-  76:   37 ->   37 defOrderDependence line$9
-  77:   37 ->   38 trueControlDependence
-  78:   37 ->   39 trueControlDependence
-  79:   37 ->   41 trueControlDependence
-  80:   37 ->   42 trueControlDependence
-  81:   37 ->   43 loopIndependentDefUseDependence line$9
-  82:   37 ->   43 trueControlDependence
-  83:   37 ->   44 trueControlDependence
-  84:   39 ->   37 trueControlDependence
-  85:   39 ->   40 trueControlDependence
-  86:   39 ->   51 exceptionCatch
-  87:   40 ->   37 loopCarriedDefUseDependence br$8.!readLine( ) (LC = 37)
-  88:   40 ->   39 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.nextChar (LC = 37)
-  89:   40 ->   39 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.skipLF (LC = 37)
-  90:   40 ->   40 defOrderDependence br$8.!readLine( )
-  91:   40 ->   40 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.nextChar (LC = 37)
-  92:   40 ->   40 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.skipLF (LC = 37)
-  93:   44 ->   41 loopIndependentDefUseDependence System.out.!println( java.lang.String )
-  94:   44 ->   44 defOrderDependence System.out.!java.io.PrintStream.trouble
-  95:   44 ->   44 defOrderDependence System.out.!println( java.lang.String )
-  96:   44 ->   55 outputDependence System.out.!java.io.PrintStream.trouble
-  97:   44 ->   55 outputDependence System.out.!println( java.lang.String )
-  98:   46 ->   47 trueControlDependence
-  99:   46 ->   48 trueControlDependence
- 100:   46 ->   49 trueControlDependence
- 101:   46 ->   50 trueControlDependence
- 102:   50 ->   47 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 103:   51 ->   52 trueControlDependence
- 104:   51 ->   53 trueControlDependence
- 105:   51 ->   54 trueControlDependence
- 106:   51 ->   55 trueControlDependence
- 107:   55 ->   52 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+  69:   33 ->   38 trueControlDependence
+  70:   33 ->   39 trueControlDependence
+  71:   33 ->   46 exceptionCatch
+  72:   33 ->   51 exceptionCatch
+  73:   34 ->   31 loopIndependentDefUseDependence java.io.FileReader.!FileReader( java.lang.String )
+  74:   35 ->   29 loopIndependentDefUseDependence java.io.BufferedReader.!BufferedReader( java.io.Reader )
+  75:   36 ->   37 declaration
+  76:   36 ->   37 outputDependence line$9
+  77:   36 ->   43 declaration
+  78:   37 ->   37 defOrderDependence line$9
+  79:   37 ->   38 trueControlDependence
+  80:   37 ->   39 trueControlDependence
+  81:   37 ->   41 trueControlDependence
+  82:   37 ->   42 trueControlDependence
+  83:   37 ->   43 loopIndependentDefUseDependence line$9
+  84:   37 ->   43 trueControlDependence
+  85:   37 ->   44 trueControlDependence
+  86:   39 ->   37 trueControlDependence
+  87:   39 ->   40 trueControlDependence
+  88:   39 ->   51 exceptionCatch
+  89:   40 ->   37 loopCarriedDefUseDependence br$8.!readLine( ) (LC = 37)
+  90:   40 ->   39 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.nextChar (LC = 37)
+  91:   40 ->   39 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.skipLF (LC = 37)
+  92:   40 ->   40 defOrderDependence br$8.!readLine( )
+  93:   40 ->   40 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.nextChar (LC = 37)
+  94:   40 ->   40 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.skipLF (LC = 37)
+  95:   44 ->   41 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+  96:   44 ->   44 defOrderDependence System.out.!java.io.PrintStream.trouble
+  97:   44 ->   44 defOrderDependence System.out.!println( java.lang.String )
+  98:   44 ->   55 outputDependence System.out.!java.io.PrintStream.trouble
+  99:   44 ->   55 outputDependence System.out.!println( java.lang.String )
+ 100:   46 ->   47 trueControlDependence
+ 101:   46 ->   48 trueControlDependence
+ 102:   46 ->   49 trueControlDependence
+ 103:   46 ->   50 trueControlDependence
+ 104:   50 ->   47 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 105:   51 ->   52 trueControlDependence
+ 106:   51 ->   53 trueControlDependence
+ 107:   51 ->   54 trueControlDependence
+ 108:   51 ->   55 trueControlDependence
+ 109:   55 ->   52 loopIndependentDefUseDependence System.out.!println( java.lang.String )
 --
    0: Sample9( )
    1:    0 ->    2 trueControlDependence

@@ -101,25 +101,23 @@ Class Name = org.jtool.videostore.after.Movie
   18:    3 ->    9 trueControlDependence
   19:    3 ->   10 falseControlDependence
   20:    8 ->    4 loopIndependentDefUseDependence org.jtool.videostore.after.RegularPrice.!RegularPrice( org.jtool.videostore.after.Movie.PriceCode )
-  21:    9 ->   10 fallThroughControlDependence
-  22:   10 ->   11 trueControlDependence
-  23:   10 ->   12 trueControlDependence
-  24:   10 ->   13 trueControlDependence
-  25:   10 ->   13+ trueControlDependence
-  26:   10 ->   14 trueControlDependence
-  27:   10 ->   15 trueControlDependence
-  28:   10 ->   16 trueControlDependence
-  29:   10 ->   17 falseControlDependence
-  30:   15 ->   11 loopIndependentDefUseDependence org.jtool.videostore.after.NewReleasePrice.!NewReleasePrice( org.jtool.videostore.after.Movie.PriceCode )
-  31:   16 ->   17 fallThroughControlDependence
-  32:   17 ->   18 trueControlDependence
-  33:   17 ->   19 trueControlDependence
-  34:   17 ->   20 trueControlDependence
-  35:   17 ->   20+ trueControlDependence
-  36:   17 ->   21 trueControlDependence
-  37:   17 ->   22 trueControlDependence
-  38:   17 ->   23 trueControlDependence
-  39:   22 ->   18 loopIndependentDefUseDependence org.jtool.videostore.after.ChildrensPrice.!ChildrensPrice( org.jtool.videostore.after.Movie.PriceCode )
+  21:   10 ->   11 trueControlDependence
+  22:   10 ->   12 trueControlDependence
+  23:   10 ->   13 trueControlDependence
+  24:   10 ->   13+ trueControlDependence
+  25:   10 ->   14 trueControlDependence
+  26:   10 ->   15 trueControlDependence
+  27:   10 ->   16 trueControlDependence
+  28:   10 ->   17 falseControlDependence
+  29:   15 ->   11 loopIndependentDefUseDependence org.jtool.videostore.after.NewReleasePrice.!NewReleasePrice( org.jtool.videostore.after.Movie.PriceCode )
+  30:   17 ->   18 trueControlDependence
+  31:   17 ->   19 trueControlDependence
+  32:   17 ->   20 trueControlDependence
+  33:   17 ->   20+ trueControlDependence
+  34:   17 ->   21 trueControlDependence
+  35:   17 ->   22 trueControlDependence
+  36:   17 ->   23 trueControlDependence
+  37:   22 ->   18 loopIndependentDefUseDependence org.jtool.videostore.after.ChildrensPrice.!ChildrensPrice( org.jtool.videostore.after.Movie.PriceCode )
 --
    0: getPriceCode( )
    1:    0 ->    1 trueControlDependence

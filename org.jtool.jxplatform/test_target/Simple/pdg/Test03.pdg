@@ -86,31 +86,29 @@ Class Name = Test03
   43:    8 ->   28 outputDependence System.out.!java.io.PrintStream.trouble
   44:    8 ->   28 outputDependence System.out.!println( int )
   45:    9 ->   31 loopIndependentDefUseDependence b$1
-  46:   10 ->   11 fallThroughControlDependence
-  47:   11 ->   12 trueControlDependence
-  48:   11 ->   13 trueControlDependence
-  49:   11 ->   14 trueControlDependence
-  50:   11 ->   15 trueControlDependence
-  51:   11 ->   16 trueControlDependence
-  52:   11 ->   17 trueControlDependence
-  53:   11 ->   18 falseControlDependence
-  54:   15 ->   12 loopIndependentDefUseDependence System.out.!println( int )
-  55:   15 ->   28 outputDependence System.out.!java.io.PrintStream.trouble
-  56:   15 ->   28 outputDependence System.out.!println( int )
-  57:   16 ->   27 loopIndependentDefUseDependence a$0
-  58:   17 ->   18 fallThroughControlDependence
-  59:   18 ->   19 trueControlDependence
-  60:   18 ->   20 trueControlDependence
-  61:   18 ->   21 trueControlDependence
-  62:   18 ->   22 trueControlDependence
-  63:   18 ->   23 trueControlDependence
-  64:   22 ->   19 loopIndependentDefUseDependence System.out.!println( int )
-  65:   22 ->   28 outputDependence System.out.!java.io.PrintStream.trouble
-  66:   22 ->   28 outputDependence System.out.!println( int )
-  67:   28 ->   25 loopIndependentDefUseDependence System.out.!println( int )
-  68:   28 ->   32 outputDependence System.out.!java.io.PrintStream.trouble
-  69:   28 ->   32 outputDependence System.out.!println( int )
-  70:   32 ->   29 loopIndependentDefUseDependence System.out.!println( int )
+  46:   11 ->   12 trueControlDependence
+  47:   11 ->   13 trueControlDependence
+  48:   11 ->   14 trueControlDependence
+  49:   11 ->   15 trueControlDependence
+  50:   11 ->   16 trueControlDependence
+  51:   11 ->   17 trueControlDependence
+  52:   11 ->   18 falseControlDependence
+  53:   15 ->   12 loopIndependentDefUseDependence System.out.!println( int )
+  54:   15 ->   28 outputDependence System.out.!java.io.PrintStream.trouble
+  55:   15 ->   28 outputDependence System.out.!println( int )
+  56:   16 ->   27 loopIndependentDefUseDependence a$0
+  57:   18 ->   19 trueControlDependence
+  58:   18 ->   20 trueControlDependence
+  59:   18 ->   21 trueControlDependence
+  60:   18 ->   22 trueControlDependence
+  61:   18 ->   23 trueControlDependence
+  62:   22 ->   19 loopIndependentDefUseDependence System.out.!println( int )
+  63:   22 ->   28 outputDependence System.out.!java.io.PrintStream.trouble
+  64:   22 ->   28 outputDependence System.out.!println( int )
+  65:   28 ->   25 loopIndependentDefUseDependence System.out.!println( int )
+  66:   28 ->   32 outputDependence System.out.!java.io.PrintStream.trouble
+  67:   28 ->   32 outputDependence System.out.!println( int )
+  68:   32 ->   29 loopIndependentDefUseDependence System.out.!println( int )
 --
 ----- ClDG (to here) -----
 

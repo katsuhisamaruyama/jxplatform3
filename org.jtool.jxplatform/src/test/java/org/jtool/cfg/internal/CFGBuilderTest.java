@@ -104,7 +104,7 @@ public class CFGBuilderTest {
                 Path path = cfgPath.resolve(ccfg.getQualifiedName().fqn() + ".cfg");
                 
                 String expected = Files.readString(path);
-                boolean match = actual.equals(expected);
+                boolean match = actual.trim().equals(expected.trim());
                 if (!match) {
                     System.err.println("Incorrect CFG: " + ccfg.getQualifiedName().fqn());
                     result = false;
