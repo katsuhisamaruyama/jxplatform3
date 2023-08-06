@@ -1,0 +1,735 @@
+----- CCFG (from here) -----
+Class Name = Test48
+   0 methodEntry [ Test48#m10( S48 ) ]
+   1 formalIn D = { s$0 } U = {  }
+   2 assignment D = {  } U = { s$0.!m1( ) }
+   3 receiver D = {  } U = { s$0 }
+   4 methodCall D = {  } U = {  } TO = S48#m1( )
+   5 actualOut D = { s$0.!m1( ) } U = {  }
+   6 methodExit
+   7 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m11( S48 ) ]
+   1 formalIn D = { s$0 } U = {  }
+   2 assignment D = {  } U = { s$0.!m1( ) }
+   3 receiver D = {  } U = { s$0 }
+   4 methodCall D = {  } U = {  } TO = S48#m1( )
+   5 actualOut D = { s$0.!m1( ) } U = {  }
+   6 methodExit
+   7 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m7( ) ]
+   1 localDeclaration D = { t$0 } U = { T48.!T48( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = T48#T48( )
+   4 actualOut D = { T48.!T48( ) } U = {  }
+   5 assignment D = {  } U = { t$0.!m1( ) }
+   6 receiver D = {  } U = { t$0 }
+   7 methodCall D = {  } U = {  } TO = T48#m1( )
+   8 actualOut D = { t$0.!m1( ) } U = {  }
+   9 assignment D = {  } U = { t$0.!m2( ) }
+  10 receiver D = {  } U = { t$0 }
+  11 methodCall D = {  } U = {  } TO = S48#m2( )
+  12 actualOut D = { t$0.!m2( ) } U = {  }
+  13 assignment D = {  } U = { t$0.!m3( ) }
+  14 receiver D = {  } U = { t$0 }
+  15 methodCall D = {  } U = {  } TO = T48#m3( )
+  16 actualOut D = { t$0.!m3( ) } U = {  }
+  17 assignment D = {  } U = { t$0.!toString( ) }
+  18 receiver D = {  } U = { t$0 }
+  19 methodCall D = {  } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value } TO = java.lang.Object#toString( )
+  20 actualOut D = { t$0.!toString( ) } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value }
+  21 methodExit
+  22 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m12( S48 ) ]
+   1 formalIn D = { s$0 } U = {  }
+   2 assignment D = {  } U = { s$0.!m1( ) }
+   3 receiver D = {  } U = { s$0 }
+   4 methodCall D = {  } U = {  } TO = S48#m1( )
+   5 actualOut D = { s$0.!m1( ) } U = {  }
+   6 methodExit
+   7 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m15( ) ]
+   1 localDeclaration D = { str$0 } U = { $java.lang.String }
+   2 assignment D = {  } U = { str$0.!substring( int ).!length( ) }
+   3 receiver D = {  } U = { str$0.!substring( int ) }
+   4 receiver D = {  } U = { str$0 }
+   5 methodCall D = {  } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value } TO = java.lang.String#substring( int )
+   6 actualOut D = { str$0.!substring( int ) } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value }
+   7 methodCall D = {  } U = { str$0.!substring( int ).!java.lang.String.COMPACT_STRINGS, str$0.!substring( int ).!java.lang.String.coder, str$0.!substring( int ).!java.lang.String.value } TO = java.lang.String#length( )
+   8 actualOut D = { str$0.!substring( int ).!length( ) } U = { str$0.!substring( int ).!java.lang.String.COMPACT_STRINGS, str$0.!substring( int ).!java.lang.String.coder, str$0.!substring( int ).!java.lang.String.value }
+   9 trySt D = {  } U = {  }
+  10 assignment D = {  } U = { str$0.!substring( int ).!wait( ) }
+  11 receiver D = {  } U = { str$0.!substring( int ) }
+  12 receiver D = {  } U = { str$0 }
+  13 methodCall D = {  } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value } TO = java.lang.String#substring( int )
+  14 actualOut D = { str$0.!substring( int ) } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value }
+  15 methodCall D = {  } U = {  } TO = java.lang.Object#wait( )
+  16 actualOut D = { str$0.!substring( int ).!wait( ) } U = {  }
+  17 merge trySt(9)
+  18 catchClause D = { e$1 } U = {  }
+  19 methodExit
+  20 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#n10( ) ]
+   1 localDeclaration D = { s$0 } U = { S48.!S48( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = S48#S48( )
+   4 actualOut D = { S48.!S48( ) } U = {  }
+   5 assignment D = {  } U = { this.!m10( S48 ) }
+   6 receiver D = {  } U = {  }
+   7 methodCall D = {  } U = {  } TO = Test48#m10( S48 )
+   8 actualIn D = {  } U = { s$0 }
+   9 actualOut D = { this.!m10( S48 ) } U = {  }
+  10 methodExit
+  11 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m6( ) ]
+   1 localDeclaration D = { s$0 } U = { S48.!S48( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = S48#S48( )
+   4 actualOut D = { S48.!S48( ) } U = {  }
+   5 assignment D = {  } U = { s$0.!m1( ) }
+   6 receiver D = {  } U = { s$0 }
+   7 methodCall D = {  } U = {  } TO = S48#m1( )
+   8 actualOut D = { s$0.!m1( ) } U = {  }
+   9 assignment D = {  } U = { s$0.!m2( ) }
+  10 receiver D = {  } U = { s$0 }
+  11 methodCall D = {  } U = {  } TO = S48#m2( )
+  12 actualOut D = { s$0.!m2( ) } U = {  }
+  13 assignment D = {  } U = { s$0.!toString( ) }
+  14 receiver D = {  } U = { s$0 }
+  15 methodCall D = {  } U = { S48.!S48( ).!java.lang.Class.name, S48.!S48( ).!java.lang.StringBuilder.count, S48.!S48( ).!java.lang.StringBuilder.value, s$0.!java.lang.Class.name, s$0.!java.lang.StringBuilder.count, s$0.!java.lang.StringBuilder.value } TO = java.lang.Object#toString( )
+  16 actualOut D = { s$0.!toString( ) } U = { S48.!S48( ).!java.lang.Class.name, S48.!S48( ).!java.lang.StringBuilder.count, S48.!S48( ).!java.lang.StringBuilder.value, s$0.!java.lang.Class.name, s$0.!java.lang.StringBuilder.count, s$0.!java.lang.StringBuilder.value }
+  17 methodExit
+  18 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m8( ) ]
+   1 localDeclaration D = { t$0 } U = { T48.!T48( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = T48#T48( )
+   4 actualOut D = { T48.!T48( ) } U = {  }
+   5 assignment D = {  } U = { t$0.!m1( ) }
+   6 receiver D = {  } U = { t$0 }
+   7 methodCall D = {  } U = {  } TO = S48#m1( )
+   8 actualOut D = { t$0.!m1( ) } U = {  }
+   9 assignment D = {  } U = { t$0.!m2( ) }
+  10 receiver D = {  } U = { t$0 }
+  11 methodCall D = {  } U = {  } TO = S48#m2( )
+  12 actualOut D = { t$0.!m2( ) } U = {  }
+  13 assignment D = {  } U = { t$0.!toString( ) }
+  14 receiver D = {  } U = { t$0 }
+  15 methodCall D = {  } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value } TO = java.lang.Object#toString( )
+  16 actualOut D = { t$0.!toString( ) } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value }
+  17 methodExit
+  18 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m14( ) ]
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P48#P48( )
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 localDeclaration D = { l$1 } U = { p$0.!getArrayList( ) }
+   6 receiver D = {  } U = { p$0 }
+   7 methodCall D = {  } U = { P48.!P48( ).!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA, p$0.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = P48#getArrayList( )
+   8 actualOut D = { p$0.!getArrayList( ), p$0.!java.util.AbstractList.modCount, p$0.!java.util.ArrayList.elementData } U = { P48.!P48( ).!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA, p$0.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   9 assignment D = {  } U = { l$1.!size( ) }
+  10 receiver D = {  } U = { l$1 }
+  11 methodCall D = {  } U = { l$1.!java.util.ArrayList.size, p$0.!getArrayList( ).!java.util.ArrayList.size } TO = java.util.ArrayList#size( )
+  12 actualOut D = { l$1.!size( ) } U = { l$1.!java.util.ArrayList.size, p$0.!getArrayList( ).!java.util.ArrayList.size }
+  13 methodExit
+  14 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m4( ) ]
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P48#P48( )
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 assignment D = {  } U = { p$0.!getT( ).!m1( ) }
+   6 receiver D = {  } U = { p$0.!getT( ) }
+   7 receiver D = {  } U = { p$0 }
+   8 methodCall D = {  } U = { P48.!P48( ).t, p$0.t } TO = P48#getT( )
+   9 actualOut D = { p$0.!getT( ) } U = { P48.!P48( ).t, p$0.t }
+  10 methodCall D = {  } U = {  } TO = T48#m1( )
+  11 actualOut D = { p$0.!getT( ).!m1( ) } U = {  }
+  12 assignment D = {  } U = { p$0.!getT( ).!m2( ) }
+  13 receiver D = {  } U = { p$0.!getT( ) }
+  14 receiver D = {  } U = { p$0 }
+  15 methodCall D = {  } U = { P48.!P48( ).t, p$0.t } TO = P48#getT( )
+  16 actualOut D = { p$0.!getT( ) } U = { P48.!P48( ).t, p$0.t }
+  17 methodCall D = {  } U = {  } TO = S48#m2( )
+  18 actualOut D = { p$0.!getT( ).!m2( ) } U = {  }
+  19 assignment D = {  } U = { p$0.!getT( ).!m3( ) }
+  20 receiver D = {  } U = { p$0.!getT( ) }
+  21 receiver D = {  } U = { p$0 }
+  22 methodCall D = {  } U = { P48.!P48( ).t, p$0.t } TO = P48#getT( )
+  23 actualOut D = { p$0.!getT( ) } U = { P48.!P48( ).t, p$0.t }
+  24 methodCall D = {  } U = {  } TO = T48#m3( )
+  25 actualOut D = { p$0.!getT( ).!m3( ) } U = {  }
+  26 methodExit
+  27 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m5( ) ]
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P48#P48( )
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 localDeclaration D = { s$1 } U = { p$0.!getS( ) }
+   6 receiver D = {  } U = { p$0 }
+   7 methodCall D = {  } U = { P48.!P48( ).s, p$0.s } TO = P48#getS( )
+   8 actualOut D = { p$0.!getS( ) } U = { P48.!P48( ).s, p$0.s }
+   9 assignment D = {  } U = { s$1.!m1( ) }
+  10 receiver D = {  } U = { s$1 }
+  11 methodCall D = {  } U = {  } TO = S48#m1( )
+  12 actualOut D = { s$1.!m1( ) } U = {  }
+  13 assignment D = {  } U = { s$1.!m2( ) }
+  14 receiver D = {  } U = { s$1 }
+  15 methodCall D = {  } U = {  } TO = S48#m2( )
+  16 actualOut D = { s$1.!m2( ) } U = {  }
+  17 methodExit
+  18 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#l11( S48 ) ]
+   1 formalIn D = { s$0 } U = {  }
+   2 assignment D = {  } U = { this.!n11( S48 ) }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = Test48#n11( S48 )
+   5 actualIn D = {  } U = { S48.!S48( ) }
+   6 receiver D = {  } U = {  }
+   7 constructorCall D = {  } U = {  } TO = S48#S48( )
+   8 actualOut D = { S48.!S48( ) } U = {  }
+   9 actualOut D = { this.!n11( S48 ) } U = {  }
+  10 methodExit
+  11 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m3( ) ]
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P48#P48( )
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 assignment D = {  } U = { p$0.!getS( ).!m1( ) }
+   6 receiver D = {  } U = { p$0.!getS( ) }
+   7 receiver D = {  } U = { p$0 }
+   8 methodCall D = {  } U = { P48.!P48( ).s, p$0.s } TO = P48#getS( )
+   9 actualOut D = { p$0.!getS( ) } U = { P48.!P48( ).s, p$0.s }
+  10 methodCall D = {  } U = {  } TO = S48#m1( )
+  11 actualOut D = { p$0.!getS( ).!m1( ) } U = {  }
+  12 assignment D = {  } U = { p$0.!getSS( ).!m1( ) }
+  13 receiver D = {  } U = { p$0.!getSS( ) }
+  14 receiver D = {  } U = { p$0 }
+  15 methodCall D = {  } U = { P48.!P48( ).ss, p$0.ss } TO = P48#getSS( )
+  16 actualOut D = { p$0.!getSS( ) } U = { P48.!P48( ).ss, p$0.ss }
+  17 methodCall D = {  } U = {  } TO = S48#m1( )
+  18 actualOut D = { p$0.!getSS( ).!m1( ) } U = {  }
+  19 assignment D = {  } U = { p$0.!getStr( ).!length( ) }
+  20 receiver D = {  } U = { p$0.!getStr( ) }
+  21 receiver D = {  } U = { p$0 }
+  22 methodCall D = {  } U = { P48.!P48( ).str, p$0.str } TO = P48#getStr( )
+  23 actualOut D = { p$0.!getStr( ) } U = { P48.!P48( ).str, p$0.str }
+  24 methodCall D = {  } U = { P48.!P48( ).!getStr( ).!java.lang.String.COMPACT_STRINGS, P48.!P48( ).!getStr( ).!java.lang.String.coder, P48.!P48( ).!getStr( ).!java.lang.String.value, p$0.!getStr( ).!java.lang.String.COMPACT_STRINGS, p$0.!getStr( ).!java.lang.String.coder, p$0.!getStr( ).!java.lang.String.value } TO = java.lang.String#length( )
+  25 actualOut D = { p$0.!getStr( ).!length( ) } U = { P48.!P48( ).!getStr( ).!java.lang.String.COMPACT_STRINGS, P48.!P48( ).!getStr( ).!java.lang.String.coder, P48.!P48( ).!getStr( ).!java.lang.String.value, p$0.!getStr( ).!java.lang.String.COMPACT_STRINGS, p$0.!getStr( ).!java.lang.String.coder, p$0.!getStr( ).!java.lang.String.value }
+  26 methodExit
+  27 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m1( ) ]
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P48#P48( )
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 assignment D = {  } U = { p$0.s.!m1( ) }
+   6 receiver D = {  } U = { p$0, p$0.s }
+   7 methodCall D = {  } U = {  } TO = S48#m1( )
+   8 actualOut D = { p$0.s.!m1( ) } U = {  }
+   9 assignment D = {  } U = { p$0.ss.!m1( ) }
+  10 receiver D = {  } U = { p$0, p$0.ss }
+  11 methodCall D = {  } U = {  } TO = S48#m1( )
+  12 actualOut D = { p$0.ss.!m1( ) } U = {  }
+  13 assignment D = {  } U = { p$0.str.!length( ) }
+  14 receiver D = {  } U = { p$0, p$0.str }
+  15 methodCall D = {  } U = { P48.!P48( ).str.!java.lang.String.COMPACT_STRINGS, P48.!P48( ).str.!java.lang.String.coder, P48.!P48( ).str.!java.lang.String.value, p$0.str.!java.lang.String.COMPACT_STRINGS, p$0.str.!java.lang.String.coder, p$0.str.!java.lang.String.value } TO = java.lang.String#length( )
+  16 actualOut D = { p$0.str.!length( ) } U = { P48.!P48( ).str.!java.lang.String.COMPACT_STRINGS, P48.!P48( ).str.!java.lang.String.coder, P48.!P48( ).str.!java.lang.String.value, p$0.str.!java.lang.String.COMPACT_STRINGS, p$0.str.!java.lang.String.coder, p$0.str.!java.lang.String.value }
+  17 methodExit
+  18 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m2( ) ]
+   1 localDeclaration D = { p$0 } U = { P48.!P48( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P48#P48( )
+   4 actualOut D = { P48.!P48( ) } U = {  }
+   5 assignment D = {  } U = { p$0.t.!m1( ) }
+   6 receiver D = {  } U = { p$0, p$0.t }
+   7 methodCall D = {  } U = {  } TO = T48#m1( )
+   8 actualOut D = { p$0.t.!m1( ) } U = {  }
+   9 assignment D = {  } U = { p$0.t.!m2( ) }
+  10 receiver D = {  } U = { p$0, p$0.t }
+  11 methodCall D = {  } U = {  } TO = S48#m2( )
+  12 actualOut D = { p$0.t.!m2( ) } U = {  }
+  13 assignment D = {  } U = { p$0.t.!m3( ) }
+  14 receiver D = {  } U = { p$0, p$0.t }
+  15 methodCall D = {  } U = {  } TO = T48#m3( )
+  16 actualOut D = { p$0.t.!m3( ) } U = {  }
+  17 trySt D = {  } U = {  }
+  18 assignment D = {  } U = { p$0.str.!wait( ) }
+  19 receiver D = {  } U = { p$0, p$0.str }
+  20 methodCall D = {  } U = {  } TO = java.lang.Object#wait( )
+  21 actualOut D = { p$0.str.!wait( ) } U = {  }
+  22 merge trySt(17)
+  23 catchClause D = { e$1 } U = {  }
+  24 methodExit
+  25 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#n11( S48 ) ]
+   1 formalIn D = { s$0 } U = {  }
+   2 assignment D = {  } U = { this.!m11( S48 ) }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = Test48#m11( S48 )
+   5 actualIn D = {  } U = { s$0 }
+   6 actualOut D = { this.!m11( S48 ) } U = {  }
+   7 methodExit
+   8 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m16( S48 ) ]
+   1 formalIn D = { s$0 } U = {  }
+   2 assignment D = {  } U = { s$0.!m1( ) }
+   3 receiver D = {  } U = { s$0 }
+   4 methodCall D = {  } U = {  } TO = S48#m1( )
+   5 actualOut D = { s$0.!m1( ) } U = {  }
+   6 assignment D = {  } U = { s$0.!m2( ) }
+   7 receiver D = {  } U = { s$0 }
+   8 methodCall D = {  } U = {  } TO = S48#m2( )
+   9 actualOut D = { s$0.!m2( ) } U = {  }
+  10 methodExit
+  11 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m9( S48 ) ]
+   1 formalIn D = { s$0 } U = {  }
+   2 assignment D = {  } U = { s$0.!m1( ) }
+   3 receiver D = {  } U = { s$0 }
+   4 methodCall D = {  } U = {  } TO = S48#m1( )
+   5 actualOut D = { s$0.!m1( ) } U = {  }
+   6 methodExit
+   7 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#m13( S48 ) ]
+   1 formalIn D = { s$0 } U = {  }
+   2 assignment D = {  } U = { s$0.!m1( ) }
+   3 receiver D = {  } U = { s$0 }
+   4 methodCall D = {  } U = {  } TO = S48#m1( )
+   5 actualOut D = { s$0.!m1( ) } U = {  }
+   6 assignment D = {  } U = { s$0.!m2( ) }
+   7 receiver D = {  } U = { s$0 }
+   8 methodCall D = {  } U = {  } TO = S48#m2( )
+   9 actualOut D = { s$0.!m2( ) } U = {  }
+  10 methodExit
+  11 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#n13( ) ]
+   1 assignment D = {  } U = { this.!m13( S48 ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = {  } TO = Test48#m13( S48 )
+   4 actualIn D = {  } U = { T48.!T48( ) }
+   5 receiver D = {  } U = {  }
+   6 constructorCall D = {  } U = {  } TO = T48#T48( )
+   7 actualOut D = { T48.!T48( ) } U = {  }
+   8 actualOut D = { this.!m13( S48 ) } U = {  }
+   9 methodExit
+  10 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test48#Test48( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#n9( ) ]
+   1 assignment D = {  } U = { this.!m9( S48 ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = {  } TO = Test48#m9( S48 )
+   4 actualIn D = {  } U = { S48.!S48( ) }
+   5 receiver D = {  } U = {  }
+   6 constructorCall D = {  } U = {  } TO = S48#S48( )
+   7 actualOut D = { S48.!S48( ) } U = {  }
+   8 actualOut D = { this.!m9( S48 ) } U = {  }
+   9 methodExit
+  10 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test48#n12( S48 ) ]
+   1 formalIn D = { s$0 } U = {  }
+   2 assignment D = {  } U = { this.!m12( S48 ) }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = Test48#m12( S48 )
+   5 actualIn D = {  } U = { s$0 }
+   6 actualOut D = { this.!m12( S48 ) } U = {  }
+   7 methodExit
+   8 formalOut D = {  } U = { $_ }
+--
+   0: m10( S48 )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    7 ->    6 trueControlFlow
+--
+   0: m11( S48 )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    7 ->    6 trueControlFlow
+--
+   0: m7( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    5 trueControlFlow
+  10:    9 ->   14 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->    9 trueControlFlow
+  14:   13 ->   18 trueControlFlow
+  15:   14 ->   15 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   13 trueControlFlow
+  18:   17 ->   22 trueControlFlow
+  19:   18 ->   19 trueControlFlow
+  20:   19 ->   20 trueControlFlow
+  21:   20 ->   17 trueControlFlow
+  22:   22 ->   21 trueControlFlow
+--
+   0: m12( S48 )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    7 ->    6 trueControlFlow
+--
+   0: m15( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    4 trueControlFlow
+   3:    2 ->    9 trueControlFlow
+   4:    3 ->    7 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    3 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    2 trueControlFlow
+  10:    9 ->   12 trueControlFlow
+  11:   10 ->   17 trueControlFlow
+  12:   11 ->   15 trueControlFlow
+  13:   12 ->   13 trueControlFlow
+  14:   13 ->   14 trueControlFlow
+  15:   14 ->   11 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   15 ->   18 exceptionCatchFlow
+  18:   16 ->   10 trueControlFlow
+  19:   17 ->   20 trueControlFlow
+  20:   18 ->   17 fallThroughFlow
+  21:   18 ->   17 trueControlFlow
+  22:   20 ->   19 trueControlFlow
+--
+   0: n10( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   11 trueControlFlow
+   7:    6 ->    8 trueControlFlow
+   8:    7 ->    9 trueControlFlow
+   9:    8 ->    7 trueControlFlow
+  10:    9 ->    5 trueControlFlow
+  11:   11 ->   10 trueControlFlow
+--
+   0: m6( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    5 trueControlFlow
+  10:    9 ->   14 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->    9 trueControlFlow
+  14:   13 ->   18 trueControlFlow
+  15:   14 ->   15 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   13 trueControlFlow
+  18:   18 ->   17 trueControlFlow
+--
+   0: m8( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    5 trueControlFlow
+  10:    9 ->   14 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->    9 trueControlFlow
+  14:   13 ->   18 trueControlFlow
+  15:   14 ->   15 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   13 trueControlFlow
+  18:   18 ->   17 trueControlFlow
+--
+   0: m14( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    5 trueControlFlow
+  10:    9 ->   14 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->    9 trueControlFlow
+  14:   14 ->   13 trueControlFlow
+--
+   0: m4( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    7 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   14 trueControlFlow
+   7:    6 ->   10 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    9 ->    6 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->    5 trueControlFlow
+  13:   12 ->   21 trueControlFlow
+  14:   13 ->   17 trueControlFlow
+  15:   14 ->   15 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   13 trueControlFlow
+  18:   17 ->   18 trueControlFlow
+  19:   18 ->   12 trueControlFlow
+  20:   19 ->   27 trueControlFlow
+  21:   20 ->   24 trueControlFlow
+  22:   21 ->   22 trueControlFlow
+  23:   22 ->   23 trueControlFlow
+  24:   23 ->   20 trueControlFlow
+  25:   24 ->   25 trueControlFlow
+  26:   25 ->   19 trueControlFlow
+  27:   27 ->   26 trueControlFlow
+--
+   0: m5( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    5 trueControlFlow
+  10:    9 ->   14 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->    9 trueControlFlow
+  14:   13 ->   18 trueControlFlow
+  15:   14 ->   15 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   13 trueControlFlow
+  18:   18 ->   17 trueControlFlow
+--
+   0: l11( S48 )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->   11 trueControlFlow
+   4:    3 ->    6 trueControlFlow
+   5:    4 ->    9 trueControlFlow
+   6:    5 ->    4 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    5 trueControlFlow
+  10:    9 ->    2 trueControlFlow
+  11:   11 ->   10 trueControlFlow
+--
+   0: m3( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    7 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   14 trueControlFlow
+   7:    6 ->   10 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    9 ->    6 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->    5 trueControlFlow
+  13:   12 ->   21 trueControlFlow
+  14:   13 ->   17 trueControlFlow
+  15:   14 ->   15 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   13 trueControlFlow
+  18:   17 ->   18 trueControlFlow
+  19:   18 ->   12 trueControlFlow
+  20:   19 ->   27 trueControlFlow
+  21:   20 ->   24 trueControlFlow
+  22:   21 ->   22 trueControlFlow
+  23:   22 ->   23 trueControlFlow
+  24:   23 ->   20 trueControlFlow
+  25:   24 ->   25 trueControlFlow
+  26:   25 ->   19 trueControlFlow
+  27:   27 ->   26 trueControlFlow
+--
+   0: m1( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    5 trueControlFlow
+  10:    9 ->   14 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->    9 trueControlFlow
+  14:   13 ->   18 trueControlFlow
+  15:   14 ->   15 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   13 trueControlFlow
+  18:   18 ->   17 trueControlFlow
+--
+   0: m2( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    5 trueControlFlow
+  10:    9 ->   14 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->    9 trueControlFlow
+  14:   13 ->   17 trueControlFlow
+  15:   14 ->   15 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   13 trueControlFlow
+  18:   17 ->   19 trueControlFlow
+  19:   18 ->   22 trueControlFlow
+  20:   19 ->   20 trueControlFlow
+  21:   20 ->   21 trueControlFlow
+  22:   20 ->   23 exceptionCatchFlow
+  23:   21 ->   18 trueControlFlow
+  24:   22 ->   25 trueControlFlow
+  25:   23 ->   22 fallThroughFlow
+  26:   23 ->   22 trueControlFlow
+  27:   25 ->   24 trueControlFlow
+--
+   0: n11( S48 )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    8 trueControlFlow
+   4:    3 ->    5 trueControlFlow
+   5:    4 ->    6 trueControlFlow
+   6:    5 ->    4 trueControlFlow
+   7:    6 ->    2 trueControlFlow
+   8:    8 ->    7 trueControlFlow
+--
+   0: m16( S48 )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->   11 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    9 ->    6 trueControlFlow
+  11:   11 ->   10 trueControlFlow
+--
+   0: m9( S48 )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    7 ->    6 trueControlFlow
+--
+   0: m13( S48 )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->   11 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    9 ->    6 trueControlFlow
+  11:   11 ->   10 trueControlFlow
+--
+   0: n13( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->   10 trueControlFlow
+   3:    2 ->    5 trueControlFlow
+   4:    3 ->    8 trueControlFlow
+   5:    4 ->    3 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    4 trueControlFlow
+   9:    8 ->    1 trueControlFlow
+  10:   10 ->    9 trueControlFlow
+--
+   0: Test48( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+   0: n9( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->   10 trueControlFlow
+   3:    2 ->    5 trueControlFlow
+   4:    3 ->    8 trueControlFlow
+   5:    4 ->    3 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    4 trueControlFlow
+   9:    8 ->    1 trueControlFlow
+  10:   10 ->    9 trueControlFlow
+--
+   0: n12( S48 )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    8 trueControlFlow
+   4:    3 ->    5 trueControlFlow
+   5:    4 ->    6 trueControlFlow
+   6:    5 ->    4 trueControlFlow
+   7:    6 ->    2 trueControlFlow
+   8:    8 ->    7 trueControlFlow
+--
+----- CCFG (to here) -----
+
+

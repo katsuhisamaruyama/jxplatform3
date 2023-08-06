@@ -1,0 +1,51 @@
+----- CCFG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$1
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.DrawMenu$1#actionPerformed( java.awt.event.ActionEvent ) ]
+   1 formalIn D = { evt$4 } U = {  }
+   2 localDeclaration D = { wi$5 } U = { evt$4.!getSource( ) }
+   3 receiver D = {  } U = { evt$4 }
+   4 methodCall D = {  } U = { evt$4.!java.util.EventObject.source } TO = java.util.EventObject#getSource( )
+   5 actualOut D = { evt$4.!getSource( ) } U = { evt$4.!java.util.EventObject.source }
+   6 localDeclaration D = { canvas$6 } U = { this.tabbedCanvas.!getCanvas( java.lang.String ) }
+   7 receiver D = {  } U = { this.tabbedCanvas }
+   8 methodCall D = {  } U = { $$RN.canvas$1.canvas$1.!getFigureManager( ).filename, $$RN.canvas$1.figureManager, $$RN.canvases, canvas$1.changed, canvas$1.curX, canvas$1.curY, canvas$1.currentFigure, canvas$1.figureManager, canvas$1.grabbedFigure, canvas$1.isGrabMode, canvas$1.menu, canvas$1.selector, canvas$1.support, canvas$1.undoManager, this.figureManager.figures, this.figureManager.filename, this.tabbedCanvas.!java.lang.String.COMPACT_STRINGS, this.tabbedCanvas.!java.lang.String.coder, this.tabbedCanvas.!java.lang.String.value } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#getCanvas( java.lang.String )
+   9 actualIn D = {  } U = { wi$5.!getActionCommand( ) }
+  10 receiver D = {  } U = { wi$5 }
+  11 methodCall D = {  } U = { wi$5.!javax.swing.AbstractButton.model, wi$5.!javax.swing.AbstractButton.text } TO = javax.swing.AbstractButton#getActionCommand( )
+  12 actualOut D = { wi$5.!getActionCommand( ) } U = { wi$5.!javax.swing.AbstractButton.model, wi$5.!javax.swing.AbstractButton.text }
+  13 actualOut D = { this.tabbedCanvas.!getCanvas( java.lang.String ) } U = { $$RN.canvas$1.canvas$1.!getFigureManager( ).filename, $$RN.canvas$1.figureManager, $$RN.canvases, canvas$1.changed, canvas$1.curX, canvas$1.curY, canvas$1.currentFigure, canvas$1.figureManager, canvas$1.grabbedFigure, canvas$1.isGrabMode, canvas$1.menu, canvas$1.selector, canvas$1.support, canvas$1.undoManager, this.figureManager.figures, this.figureManager.filename, this.tabbedCanvas.!java.lang.String.COMPACT_STRINGS, this.tabbedCanvas.!java.lang.String.coder, this.tabbedCanvas.!java.lang.String.value }
+  14 assignment D = {  } U = { this.tabbedCanvas.!selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas ) }
+  15 receiver D = {  } U = { this.tabbedCanvas }
+  16 methodCall D = {  } U = { canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, this.tabbedCanvas.!javax.swing.JTabbedPane.model } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas )
+  17 actualIn D = {  } U = { canvas$6, canvas$6.changed, canvas$6.curX, canvas$6.curY, canvas$6.currentFigure, canvas$6.figureManager, canvas$6.grabbedFigure, canvas$6.isGrabMode, canvas$6.menu, canvas$6.selector, canvas$6.support, canvas$6.undoManager, this.tabbedCanvas.!getCanvas( java.lang.String ).changed, this.tabbedCanvas.!getCanvas( java.lang.String ).curX, this.tabbedCanvas.!getCanvas( java.lang.String ).curY, this.tabbedCanvas.!getCanvas( java.lang.String ).currentFigure, this.tabbedCanvas.!getCanvas( java.lang.String ).figureManager, this.tabbedCanvas.!getCanvas( java.lang.String ).grabbedFigure, this.tabbedCanvas.!getCanvas( java.lang.String ).isGrabMode, this.tabbedCanvas.!getCanvas( java.lang.String ).menu, this.tabbedCanvas.!getCanvas( java.lang.String ).selector, this.tabbedCanvas.!getCanvas( java.lang.String ).support, this.tabbedCanvas.!getCanvas( java.lang.String ).undoManager }
+  18 actualOut D = { this.tabbedCanvas.!selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas ) } U = { canvas$0.changed, canvas$0.curX, canvas$0.curY, canvas$0.currentFigure, canvas$0.figureManager, canvas$0.grabbedFigure, canvas$0.isGrabMode, canvas$0.menu, canvas$0.selector, canvas$0.support, canvas$0.undoManager, this.tabbedCanvas.!javax.swing.JTabbedPane.model }
+  19 methodExit
+  20 formalOut D = {  } U = { $_ }
+  16+ actualOutByFieldAccess D = { $$RN.selectedTab } U = {  }
+--
+   0: actionPerformed( java.awt.event.ActionEvent )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->   15 trueControlFlow
+   8:    7 ->   10 trueControlFlow
+   9:    8 ->   13 trueControlFlow
+  10:    9 ->    8 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->    9 trueControlFlow
+  14:   13 ->    6 trueControlFlow
+  15:   14 ->   20 trueControlFlow
+  16:   15 ->   17 trueControlFlow
+  17:   16 ->   16+ trueControlFlow
+  18:   17 ->   16 trueControlFlow
+  19:   18 ->   14 trueControlFlow
+  20:   20 ->   19 trueControlFlow
+  21:   16+ ->   18 trueControlFlow
+--
+----- CCFG (to here) -----
+
+

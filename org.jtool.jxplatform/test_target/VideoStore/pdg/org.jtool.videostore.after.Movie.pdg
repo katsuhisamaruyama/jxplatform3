@@ -25,9 +25,9 @@ Class Name = org.jtool.videostore.after.Movie
   22 actualOut D = { org.jtool.videostore.after.ChildrensPrice.!ChildrensPrice( org.jtool.videostore.after.Movie.PriceCode ) } U = {  }
   23 breakSt D = {  } U = {  }
   26 formalOut D = {  } U = { $_ }
-   6+ actualOutByFieldAccess D = { super.priceCode } U = {  }
-  13+ actualOutByFieldAccess D = { super.priceCode } U = {  }
-  20+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+   6+ actualOutByFieldAccess D = { org.jtool.videostore.after.RegularPrice.!RegularPrice( org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+  13+ actualOutByFieldAccess D = { org.jtool.videostore.after.NewReleasePrice.!NewReleasePrice( org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
+  20+ actualOutByFieldAccess D = { org.jtool.videostore.after.ChildrensPrice.!ChildrensPrice( org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.after.Movie#getPriceCode( ) ]
    1 returnSt D = { $_ } U = { this.price.!getPriceCode( ) }
@@ -50,7 +50,7 @@ Class Name = org.jtool.videostore.after.Movie
    7+ actualOutByFieldAccess D = { this.price } U = {  }
    7+ actualOutByFieldAccess D = { this.price } U = {  }
    7+ actualOutByFieldAccess D = { this.price } U = {  }
-   7+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+   7+ actualOutByFieldAccess D = { this.!setPriceCode( org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0 fieldEntry [ org.jtool.videostore.after.Movie#price ]
    1 fieldDeclaration D = { this.price } U = { this.price }

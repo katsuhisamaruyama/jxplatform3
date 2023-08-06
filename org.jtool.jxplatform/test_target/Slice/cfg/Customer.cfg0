@@ -1,0 +1,117 @@
+----- CCFG (from here) -----
+Class Name = Customer
+   0 methodEntry [ Customer#getAmount( Order ) ]
+   1 formalIn D = { order$0 } U = {  }
+   2 localDeclaration D = { amount$1 } U = {  }
+   3 enhancedForSt D = { rental$2 } U = { order$0, order$0.rentals }
+   4 assignment D = { amount$1 } U = { amount$1, rental$2.!getCharge( double ) }
+   5 receiver D = {  } U = { rental$2 }
+   6 methodCall D = {  } U = { $$RN.days, $$RN.price } TO = Rental#getCharge( double )
+   7 actualIn D = {  } U = { this.discount }
+   8 actualOut D = { rental$2.!getCharge( double ) } U = { $$RN.days, $$RN.price }
+   9 returnSt D = { $_ } U = { amount$1 }
+  10 methodExit
+  11 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Customer#statement( Order ) ]
+   1 formalIn D = { order$0 } U = {  }
+   2 ifSt D = {  } U = { order$0, order$0.rentals }
+   3 returnSt D = { $_ } U = { $java.lang.String }
+   4 merge ifSt(2)
+   5 ifSt D = {  } U = { order$0.!getSize( ), this.discount }
+   6 receiver D = {  } U = { order$0 }
+   7 methodCall D = {  } U = {  } TO = Order#getSize( )
+   8 actualOut D = { order$0.!getSize( ) } U = {  }
+   9 assignment D = { this.discount } U = { this.discount }
+  10 merge ifSt(5)
+  11 localDeclaration D = { amount$1 } U = { this.!getAmount( Order ) }
+  12 receiver D = {  } U = {  }
+  13 methodCall D = {  } U = { $$RN.discount, $$RN.rental$2.days, $$RN.rental$2.price, order$0.rentals } TO = Customer#getAmount( Order )
+  14 actualIn D = {  } U = { order$0, order$0.rentals }
+  15 actualOut D = { this.!getAmount( Order ) } U = { $$RN.discount, $$RN.rental$2.days, $$RN.rental$2.price, order$0.rentals }
+  16 returnSt D = { $_ } U = { $java.lang.String, amount$1, this.name }
+  17 methodExit
+  18 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Customer#setDiscount( double ) ]
+   1 formalIn D = { dis$0 } U = {  }
+   2 assignment D = { this.discount } U = { dis$0 }
+   3 methodExit
+   4 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Customer#discount ]
+   1 fieldDeclaration D = { this.discount } U = { this.discount }
+   2 fieldExit
+--
+   0 constructorEntry [ Customer#Customer( java.lang.String ) ]
+   1 formalIn D = { name$0 } U = {  }
+   2 assignment D = { this.name } U = { name$0 }
+   3 constructorExit
+   4 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Customer#name ]
+   1 fieldDeclaration D = { this.name } U = { $java.lang.String, this.name }
+   2 fieldExit
+--
+   0: getAmount( Order )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    5 trueControlFlow
+   5:    3 ->    9 falseControlFlow
+   6:    4 ->    3 trueControlFlow (L = 3)
+   7:    5 ->    7 trueControlFlow
+   8:    6 ->    8 trueControlFlow
+   9:    7 ->    6 trueControlFlow
+  10:    8 ->    4 trueControlFlow
+  11:    9 ->   11 fallThroughFlow
+  12:    9 ->   11 trueControlFlow
+  13:   11 ->   10 trueControlFlow
+--
+   0: statement( Order )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    2 ->    4 falseControlFlow
+   5:    3 ->    4 fallThroughFlow
+   6:    3 ->   18 trueControlFlow
+   7:    4 ->    6 trueControlFlow
+   8:    5 ->    9 trueControlFlow
+   9:    5 ->   10 falseControlFlow
+  10:    6 ->    7 trueControlFlow
+  11:    7 ->    8 trueControlFlow
+  12:    8 ->    5 trueControlFlow
+  13:    9 ->   10 trueControlFlow
+  14:   10 ->   12 trueControlFlow
+  15:   11 ->   16 trueControlFlow
+  16:   12 ->   14 trueControlFlow
+  17:   13 ->   15 trueControlFlow
+  18:   14 ->   13 trueControlFlow
+  19:   15 ->   11 trueControlFlow
+  20:   16 ->   18 fallThroughFlow
+  21:   16 ->   18 trueControlFlow
+  22:   18 ->   17 trueControlFlow
+--
+   0: setDiscount( double )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    4 ->    3 trueControlFlow
+--
+   0: discount
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: Customer( java.lang.String )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    4 ->    3 trueControlFlow
+--
+   0: name
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+----- CCFG (to here) -----
+
+

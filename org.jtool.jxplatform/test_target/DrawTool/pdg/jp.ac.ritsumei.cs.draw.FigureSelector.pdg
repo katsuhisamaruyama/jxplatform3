@@ -52,20 +52,20 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
   35 actualOut D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ) } U = { Color.black }
   36 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
    3+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-   6+ actualOutByFieldAccess D = { this.color } U = {  }
-   6+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+   6+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( ).color } U = {  }
+   6+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( ).outlineWidth } U = {  }
   10+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  13+ actualOutByFieldAccess D = { this.color } U = {  }
-  13+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  13+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ).color } U = {  }
+  13+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ).outlineWidth } U = {  }
   17+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  20+ actualOutByFieldAccess D = { this.color } U = {  }
-  20+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  20+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).color } U = {  }
+  20+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).outlineWidth } U = {  }
   24+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  27+ actualOutByFieldAccess D = { this.color } U = {  }
-  27+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  27+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ).color } U = {  }
+  27+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ).outlineWidth } U = {  }
   31+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  34+ actualOutByFieldAccess D = { this.color } U = {  }
-  34+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  34+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).color } U = {  }
+  34+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).outlineWidth } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#createFigure( ) ]
    1 localDeclaration D = { shape$0 } U = { this.!getShape( ) }
@@ -101,7 +101,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
   10 methodCall D = {  } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY, icons$1.length, jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.cb$0.!javax.swing.JComboBox.dataModel, this.colorCombo, this.javax.swing.JComboBox.!java.lang.Boolean.TRUE, this.javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, this.javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel, this.widthCombo } TO = jp.ac.ritsumei.cs.draw.FigureSelector#createComboBoxes( )
   11 actualOut D = { this.!createComboBoxes( ), this.!java.awt.Component.parent, this.javax.swing.JComboBox.!javax.swing.DefaultComboBoxModel.objects, this.javax.swing.JComboBox.!javax.swing.JComboBox.actionCommand, this.javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, this.javax.swing.JComboBox.!javax.swing.JComboBox.firingActionEvent, this.javax.swing.JComboBox.!javax.swing.JComboBox.isEditable, this.javax.swing.JComboBox.!javax.swing.JComboBox.keySelectionManager, this.javax.swing.JComboBox.!javax.swing.JComboBox.lightWeightPopupEnabled, this.javax.swing.JComboBox.!javax.swing.JComboBox.maximumRowCount, this.javax.swing.JComboBox.!javax.swing.JComboBox.selectedItemReminder, this.javax.swing.JComboBox.!javax.swing.JComboBox.selectingItem, this.javax.swing.JComboBox.!javax.swing.JComponent.inputVerifier, this.javax.swing.JComboBox.!javax.swing.JComponent.listenerList, this.javax.swing.JComboBox.!javax.swing.JComponent.revalidateRunnableScheduled, this.javax.swing.JComboBox.!javax.swing.JComponent.verifyInputWhenFocusTarget, this.javax.swing.JLabel.!javax.swing.JLabel.defaultIcon, this.javax.swing.JLabel.!javax.swing.JLabel.disabledIcon, this.javax.swing.JLabel.!javax.swing.JLabel.disabledIconSet, this.javax.swing.JLabel.!javax.swing.JLabel.horizontalAlignment, this.javax.swing.JLabel.!javax.swing.JLabel.horizontalTextPosition, this.javax.swing.JLabel.!javax.swing.JLabel.iconTextGap, this.javax.swing.JLabel.!javax.swing.JLabel.labelFor, this.javax.swing.JLabel.!javax.swing.JLabel.mnemonic, this.javax.swing.JLabel.!javax.swing.JLabel.mnemonicIndex, this.javax.swing.JLabel.!javax.swing.JLabel.text, this.javax.swing.JLabel.!javax.swing.JLabel.verticalAlignment, this.javax.swing.JLabel.!javax.swing.JLabel.verticalTextPosition } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY, icons$1.length, jp.ac.ritsumei.cs.draw.FigureSelector.colorComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.shapeComboIcons, jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons, this.!java.awt.Component.parent, this.!java.awt.Container.component, this.!java.awt.Container.containerListener, this.!java.awt.Container.eventMask, this.!java.awt.Container.layoutMgr, this.!java.awt.Container.peer, this.cb$0.!javax.swing.JComboBox.dataModel, this.colorCombo, this.javax.swing.JComboBox.!java.lang.Boolean.TRUE, this.javax.swing.JComboBox.!javax.swing.JComboBox.dataModel, this.javax.swing.JComboBox.!javax.swing.JPopupMenu.defaultLWPopupEnabledKey, this.shapeCombo, this.shapeCombo.!javax.swing.JComboBox.dataModel, this.widthCombo }
   13 formalOut D = {  } U = { $_ }
-  10+ actualOutByFieldAccess D = { super.figure } U = {  }
+  10+ actualOutByFieldAccess D = { this.!createComboBoxes( ).figure } U = {  }
   10+ actualOutByFieldAccess D = { this.colorCombo } U = {  }
   10+ actualOutByFieldAccess D = { this.shapeCombo } U = {  }
   10+ actualOutByFieldAccess D = { this.widthCombo } U = {  }
@@ -213,44 +213,44 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
  104 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ) } U = {  }
  105 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
    3+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-   6+ actualOutByFieldAccess D = { this.color } U = {  }
-   6+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+   6+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+   6+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   11+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  14+ actualOutByFieldAccess D = { this.color } U = {  }
-  14+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  14+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+  14+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   19+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  22+ actualOutByFieldAccess D = { this.color } U = {  }
-  22+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  22+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+  22+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   27+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  30+ actualOutByFieldAccess D = { this.color } U = {  }
-  30+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  30+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+  30+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   35+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  38+ actualOutByFieldAccess D = { this.color } U = {  }
-  38+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  38+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+  38+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   43+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  46+ actualOutByFieldAccess D = { this.color } U = {  }
-  46+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  46+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+  46+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   51+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  54+ actualOutByFieldAccess D = { this.color } U = {  }
-  54+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  54+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+  54+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   59+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  62+ actualOutByFieldAccess D = { this.color } U = {  }
-  62+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  62+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+  62+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   67+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  70+ actualOutByFieldAccess D = { this.color } U = {  }
-  70+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  70+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+  70+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   75+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  78+ actualOutByFieldAccess D = { this.color } U = {  }
-  78+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  78+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+  78+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   83+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  86+ actualOutByFieldAccess D = { this.color } U = {  }
-  86+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  86+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+  86+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   91+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  94+ actualOutByFieldAccess D = { this.color } U = {  }
-  94+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  94+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+  94+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
   99+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
- 102+ actualOutByFieldAccess D = { this.color } U = {  }
- 102+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+ 102+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color } U = {  }
+ 102+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth } U = {  }
 --
    0 fieldEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#serialVersionUID ]
    1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.FigureSelector.serialVersionUID } U = { jp.ac.ritsumei.cs.draw.FigureSelector.serialVersionUID }
@@ -304,17 +304,17 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
   32 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ) } U = { Color.black }
   33 actualOut D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ) } U = { f$0.color, f$0.endX, f$0.endY, f$0.outlineWidth, f$0.startX, f$0.startY }
    3+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-   6+ actualOutByFieldAccess D = { this.color } U = {  }
-   6+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+   6+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).color } U = {  }
+   6+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth } U = {  }
   11+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  14+ actualOutByFieldAccess D = { this.color } U = {  }
-  14+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  14+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).color } U = {  }
+  14+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth } U = {  }
   19+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  22+ actualOutByFieldAccess D = { this.color } U = {  }
-  22+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  22+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).color } U = {  }
+  22+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth } U = {  }
   27+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure } U = {  }
-  30+ actualOutByFieldAccess D = { this.color } U = {  }
-  30+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  30+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).color } U = {  }
+  30+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#createComboBoxes( ) ]
    1 localDeclaration D = { shapeLabel$0 } U = { javax.swing.JLabel.!JLabel( java.lang.String ) }
@@ -391,7 +391,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
   72 actualIn D = {  } U = { jp.ac.ritsumei.cs.draw.FigureSelector.widthComboIcons }
   73 actualOut D = { this.!addItems( javax.swing.JComboBox jp.ac.ritsumei.cs.draw.FigureIcon[] ) } U = { icons$1.length, this.cb$0.!javax.swing.JComboBox.dataModel }
   75 formalOut D = {  } U = { $_ }
-  21+ actualOutByFieldAccess D = { super.figure } U = {  }
+  21+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.CursorIcon.!CursorIcon( ).figure } U = {  }
 --
    0 fieldEntry [ jp.ac.ritsumei.cs.draw.FigureSelector#colorCombo ]
    1 fieldDeclaration D = { this.colorCombo } U = { this.colorCombo }
@@ -505,27 +505,19 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
   50:    0 ->   35 trueControlDependence
   51:    0 ->   36 trueControlDependence
   52:    3+ ->   10+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
-  53:    6+ ->   13+ outputDependence this.color
-  54:    6+ ->   13+ outputDependence this.outlineWidth
-  55:    7 ->    4 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( )
-  56:    8 ->   15 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  57:   10+ ->   17+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
-  58:   13+ ->   20+ outputDependence this.color
-  59:   13+ ->   20+ outputDependence this.outlineWidth
-  60:   14 ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Rect.!Rect( )
-  61:   15 ->   22 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  62:   17+ ->   24+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
-  63:   20+ ->   27+ outputDependence this.color
-  64:   20+ ->   27+ outputDependence this.outlineWidth
-  65:   21 ->   18 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( )
-  66:   22 ->   29 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  67:   24+ ->   31+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
-  68:   27+ ->   34+ outputDependence this.color
-  69:   27+ ->   34+ outputDependence this.outlineWidth
-  70:   28 ->   25 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Oval.!Oval( )
-  71:   29 ->   36 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
-  72:   35 ->   32 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( )
-  73:   36 ->    1 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  53:    7 ->    4 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( )
+  54:    8 ->   15 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  55:   10+ ->   17+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+  56:   14 ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Rect.!Rect( )
+  57:   15 ->   22 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  58:   17+ ->   24+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+  59:   21 ->   18 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( )
+  60:   22 ->   29 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  61:   24+ ->   31+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
+  62:   28 ->   25 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Oval.!Oval( )
+  63:   29 ->   36 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
+  64:   35 ->   32 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( )
+  65:   36 ->    1 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
 --
    0: createFigure( )
    1:    0 ->    1 trueControlDependence
@@ -731,74 +723,74 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
  143:    0 ->  104 trueControlDependence
  144:    0 ->  105 trueControlDependence
  145:    3+ ->   11+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 146:    6+ ->   14+ outputDependence this.color
- 147:    6+ ->   14+ outputDependence this.outlineWidth
+ 146:    6+ ->   14+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 147:    6+ ->   14+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  148:    8 ->    4 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  149:    8 ->   16 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  150:    9 ->   17 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
  151:   11+ ->   19+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 152:   14+ ->   22+ outputDependence this.color
- 153:   14+ ->   22+ outputDependence this.outlineWidth
+ 152:   14+ ->   22+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 153:   14+ ->   22+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  154:   16 ->   12 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  155:   16 ->   24 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  156:   17 ->   25 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
  157:   19+ ->   27+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 158:   22+ ->   30+ outputDependence this.color
- 159:   22+ ->   30+ outputDependence this.outlineWidth
+ 158:   22+ ->   30+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 159:   22+ ->   30+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  160:   24 ->   20 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  161:   24 ->   32 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  162:   25 ->   33 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
  163:   27+ ->   35+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 164:   30+ ->   38+ outputDependence this.color
- 165:   30+ ->   38+ outputDependence this.outlineWidth
+ 164:   30+ ->   38+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 165:   30+ ->   38+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  166:   32 ->   28 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  167:   32 ->   40 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  168:   33 ->   41 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
  169:   35+ ->   43+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 170:   38+ ->   46+ outputDependence this.color
- 171:   38+ ->   46+ outputDependence this.outlineWidth
+ 170:   38+ ->   46+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 171:   38+ ->   46+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  172:   40 ->   36 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  173:   40 ->   48 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  174:   41 ->   49 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
  175:   43+ ->   51+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 176:   46+ ->   54+ outputDependence this.color
- 177:   46+ ->   54+ outputDependence this.outlineWidth
+ 176:   46+ ->   54+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 177:   46+ ->   54+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  178:   48 ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  179:   48 ->   56 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  180:   49 ->   57 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
  181:   51+ ->   59+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 182:   54+ ->   62+ outputDependence this.color
- 183:   54+ ->   62+ outputDependence this.outlineWidth
+ 182:   54+ ->   62+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 183:   54+ ->   62+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  184:   56 ->   52 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  185:   56 ->   64 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  186:   57 ->   65 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
  187:   59+ ->   67+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 188:   62+ ->   70+ outputDependence this.color
- 189:   62+ ->   70+ outputDependence this.outlineWidth
+ 188:   62+ ->   70+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 189:   62+ ->   70+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  190:   64 ->   60 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  191:   64 ->   72 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  192:   65 ->   73 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
  193:   67+ ->   75+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 194:   70+ ->   78+ outputDependence this.color
- 195:   70+ ->   78+ outputDependence this.outlineWidth
+ 194:   70+ ->   78+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 195:   70+ ->   78+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  196:   72 ->   68 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  197:   72 ->   80 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  198:   73 ->   81 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
  199:   75+ ->   83+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 200:   78+ ->   86+ outputDependence this.color
- 201:   78+ ->   86+ outputDependence this.outlineWidth
+ 200:   78+ ->   86+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 201:   78+ ->   86+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  202:   80 ->   76 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  203:   80 ->   88 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  204:   81 ->   89 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
  205:   83+ ->   91+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 206:   86+ ->   94+ outputDependence this.color
- 207:   86+ ->   94+ outputDependence this.outlineWidth
+ 206:   86+ ->   94+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 207:   86+ ->   94+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  208:   88 ->   84 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  209:   88 ->   96 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  210:   89 ->   97 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
  211:   91+ ->   99+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
- 212:   94+ ->  102+ outputDependence this.color
- 213:   94+ ->  102+ outputDependence this.outlineWidth
+ 212:   94+ ->  102+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).color
+ 213:   94+ ->  102+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color ).outlineWidth
  214:   96 ->   92 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  215:   96 ->  104 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color )
  216:   97 ->  105 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
@@ -875,20 +867,20 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureSelector
   44:    0 ->   32 trueControlDependence
   45:    0 ->   33 trueControlDependence
   46:    3+ ->   11+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
-  47:    6+ ->   14+ outputDependence this.color
-  48:    6+ ->   14+ outputDependence this.outlineWidth
+  47:    6+ ->   14+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).color
+  48:    6+ ->   14+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth
   49:    8 ->    4 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
   50:    8 ->   16 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
   51:    9 ->   17 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
   52:   11+ ->   19+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
-  53:   14+ ->   22+ outputDependence this.color
-  54:   14+ ->   22+ outputDependence this.outlineWidth
+  53:   14+ ->   22+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).color
+  54:   14+ ->   22+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth
   55:   16 ->   12 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
   56:   16 ->   24 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
   57:   17 ->   25 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )
   58:   19+ ->   27+ outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure ).figure
-  59:   22+ ->   30+ outputDependence this.color
-  60:   22+ ->   30+ outputDependence this.outlineWidth
+  59:   22+ ->   30+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).color
+  60:   22+ ->   30+ outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int ).outlineWidth
   61:   24 ->   20 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
   62:   24 ->   32 outputDependence jp.ac.ritsumei.cs.draw.Line.!Line( int )
   63:   25 ->   33 outputDependence jp.ac.ritsumei.cs.draw.FigureIcon.!FigureIcon( jp.ac.ritsumei.cs.draw.Figure )

@@ -101,92 +101,92 @@ Class Name = Block
    5 switchCase D = {  } U = { $SwitchDef }
    6 returnSt D = { $_ } U = { YellowBlock.!YellowBlock( int int ), YellowBlock.!YellowBlock( int int ).color, YellowBlock.!YellowBlock( int int ).posX, YellowBlock.!YellowBlock( int int ).posY }
    7 receiver D = {  } U = {  }
-   8 constructorCall D = {  } U = { YellowBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = YellowBlock#YellowBlock( int int )
+   8 constructorCall D = {  } U = { YellowBlock.COLOR, YellowBlock.posX, YellowBlock.posY, YellowBlock.tiles, YellowBlock.tiles.!java.util.HashSet.PRESENT, YellowBlock.tiles.!java.util.HashSet.map, this.offsetY, this.offsetY.SIZE } TO = YellowBlock#YellowBlock( int int )
    9 actualIn D = {  } U = { x$1 }
   10 actualIn D = {  } U = { y$2 }
-  11 actualOut D = { YellowBlock.!YellowBlock( int int ) } U = { YellowBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
+  11 actualOut D = { YellowBlock.!YellowBlock( int int ) } U = { YellowBlock.COLOR, YellowBlock.posX, YellowBlock.posY, YellowBlock.tiles, YellowBlock.tiles.!java.util.HashSet.PRESENT, YellowBlock.tiles.!java.util.HashSet.map, this.offsetY, this.offsetY.SIZE }
   12 switchCase D = {  } U = { $SwitchDef }
   13 returnSt D = { $_ } U = { BlueBlock.!BlueBlock( int int ), BlueBlock.!BlueBlock( int int ).color, BlueBlock.!BlueBlock( int int ).posX, BlueBlock.!BlueBlock( int int ).posY }
   14 receiver D = {  } U = {  }
-  15 constructorCall D = {  } U = { BlueBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = BlueBlock#BlueBlock( int int )
+  15 constructorCall D = {  } U = { BlueBlock.COLOR, BlueBlock.posX, BlueBlock.posY, BlueBlock.tiles, BlueBlock.tiles.!java.util.HashSet.PRESENT, BlueBlock.tiles.!java.util.HashSet.map, this.offsetY, this.offsetY.SIZE } TO = BlueBlock#BlueBlock( int int )
   16 actualIn D = {  } U = { x$1 }
   17 actualIn D = {  } U = { y$2 }
-  18 actualOut D = { BlueBlock.!BlueBlock( int int ) } U = { BlueBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
+  18 actualOut D = { BlueBlock.!BlueBlock( int int ) } U = { BlueBlock.COLOR, BlueBlock.posX, BlueBlock.posY, BlueBlock.tiles, BlueBlock.tiles.!java.util.HashSet.PRESENT, BlueBlock.tiles.!java.util.HashSet.map, this.offsetY, this.offsetY.SIZE }
   19 switchCase D = {  } U = { $SwitchDef }
   20 returnSt D = { $_ } U = { GreenBlock.!GreenBlock( int int ), GreenBlock.!GreenBlock( int int ).color, GreenBlock.!GreenBlock( int int ).posX, GreenBlock.!GreenBlock( int int ).posY }
   21 receiver D = {  } U = {  }
-  22 constructorCall D = {  } U = { GreenBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = GreenBlock#GreenBlock( int int )
+  22 constructorCall D = {  } U = { GreenBlock.COLOR, GreenBlock.posX, GreenBlock.posY, GreenBlock.tiles, GreenBlock.tiles.!java.util.HashSet.PRESENT, GreenBlock.tiles.!java.util.HashSet.map, this.offsetY, this.offsetY.SIZE } TO = GreenBlock#GreenBlock( int int )
   23 actualIn D = {  } U = { x$1 }
   24 actualIn D = {  } U = { y$2 }
-  25 actualOut D = { GreenBlock.!GreenBlock( int int ) } U = { GreenBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
+  25 actualOut D = { GreenBlock.!GreenBlock( int int ) } U = { GreenBlock.COLOR, GreenBlock.posX, GreenBlock.posY, GreenBlock.tiles, GreenBlock.tiles.!java.util.HashSet.PRESENT, GreenBlock.tiles.!java.util.HashSet.map, this.offsetY, this.offsetY.SIZE }
   26 switchCase D = {  } U = { $SwitchDef }
   27 returnSt D = { $_ } U = { CyanBlock.!CyanBlock( int int ), CyanBlock.!CyanBlock( int int ).color, CyanBlock.!CyanBlock( int int ).posX, CyanBlock.!CyanBlock( int int ).posY }
   28 receiver D = {  } U = {  }
-  29 constructorCall D = {  } U = { CyanBlock.COLOR, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = CyanBlock#CyanBlock( int int )
+  29 constructorCall D = {  } U = { CyanBlock.COLOR, CyanBlock.posX, CyanBlock.posY, CyanBlock.tiles, CyanBlock.tiles.!java.util.HashSet.PRESENT, CyanBlock.tiles.!java.util.HashSet.map } TO = CyanBlock#CyanBlock( int int )
   30 actualIn D = {  } U = { x$1 }
   31 actualIn D = {  } U = { y$2 }
-  32 actualOut D = { CyanBlock.!CyanBlock( int int ) } U = { CyanBlock.COLOR, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
+  32 actualOut D = { CyanBlock.!CyanBlock( int int ) } U = { CyanBlock.COLOR, CyanBlock.posX, CyanBlock.posY, CyanBlock.tiles, CyanBlock.tiles.!java.util.HashSet.PRESENT, CyanBlock.tiles.!java.util.HashSet.map }
   33 switchCase D = {  } U = { $SwitchDef }
   34 returnSt D = { $_ } U = { RedBlock.!RedBlock( int int ), RedBlock.!RedBlock( int int ).color, RedBlock.!RedBlock( int int ).posX, RedBlock.!RedBlock( int int ).posY }
   35 receiver D = {  } U = {  }
-  36 constructorCall D = {  } U = { RedBlock.color, this.offsetX, this.offsetX.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = RedBlock#RedBlock( int int )
+  36 constructorCall D = {  } U = { RedBlock.color, RedBlock.posX, RedBlock.posY, RedBlock.tiles, RedBlock.tiles.!java.util.HashSet.PRESENT, RedBlock.tiles.!java.util.HashSet.map, this.offsetX, this.offsetX.SIZE } TO = RedBlock#RedBlock( int int )
   37 actualIn D = {  } U = { x$1 }
   38 actualIn D = {  } U = { y$2 }
-  39 actualOut D = { RedBlock.!RedBlock( int int ) } U = { RedBlock.color, this.offsetX, this.offsetX.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
+  39 actualOut D = { RedBlock.!RedBlock( int int ) } U = { RedBlock.color, RedBlock.posX, RedBlock.posY, RedBlock.tiles, RedBlock.tiles.!java.util.HashSet.PRESENT, RedBlock.tiles.!java.util.HashSet.map, this.offsetX, this.offsetX.SIZE }
   40 switchCase D = {  } U = { $SwitchDef }
   41 returnSt D = { $_ } U = { MagentaBlock.!MagentaBlock( int int ), MagentaBlock.!MagentaBlock( int int ).color, MagentaBlock.!MagentaBlock( int int ).posX, MagentaBlock.!MagentaBlock( int int ).posY }
   42 receiver D = {  } U = {  }
-  43 constructorCall D = {  } U = { MagentaBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = MagentaBlock#MagentaBlock( int int )
+  43 constructorCall D = {  } U = { MagentaBlock.COLOR, MagentaBlock.posX, MagentaBlock.posY, MagentaBlock.tiles, MagentaBlock.tiles.!java.util.HashSet.PRESENT, MagentaBlock.tiles.!java.util.HashSet.map, this.offsetY, this.offsetY.SIZE } TO = MagentaBlock#MagentaBlock( int int )
   44 actualIn D = {  } U = { x$1 }
   45 actualIn D = {  } U = { y$2 }
-  46 actualOut D = { MagentaBlock.!MagentaBlock( int int ) } U = { MagentaBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
+  46 actualOut D = { MagentaBlock.!MagentaBlock( int int ) } U = { MagentaBlock.COLOR, MagentaBlock.posX, MagentaBlock.posY, MagentaBlock.tiles, MagentaBlock.tiles.!java.util.HashSet.PRESENT, MagentaBlock.tiles.!java.util.HashSet.map, this.offsetY, this.offsetY.SIZE }
   47 switchCase D = {  } U = { $SwitchDef }
   48 returnSt D = { $_ } U = { OrangeBlock.!OrangeBlock( int int ), OrangeBlock.!OrangeBlock( int int ).color, OrangeBlock.!OrangeBlock( int int ).posX, OrangeBlock.!OrangeBlock( int int ).posY }
   49 receiver D = {  } U = {  }
-  50 constructorCall D = {  } U = { OrangeBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = OrangeBlock#OrangeBlock( int int )
+  50 constructorCall D = {  } U = { OrangeBlock.COLOR, OrangeBlock.posX, OrangeBlock.posY, OrangeBlock.tiles, OrangeBlock.tiles.!java.util.HashSet.PRESENT, OrangeBlock.tiles.!java.util.HashSet.map, this.offsetY, this.offsetY.SIZE } TO = OrangeBlock#OrangeBlock( int int )
   51 actualIn D = {  } U = { x$1 }
   52 actualIn D = {  } U = { y$2 }
-  53 actualOut D = { OrangeBlock.!OrangeBlock( int int ) } U = { OrangeBlock.COLOR, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
+  53 actualOut D = { OrangeBlock.!OrangeBlock( int int ) } U = { OrangeBlock.COLOR, OrangeBlock.posX, OrangeBlock.posY, OrangeBlock.tiles, OrangeBlock.tiles.!java.util.HashSet.PRESENT, OrangeBlock.tiles.!java.util.HashSet.map, this.offsetY, this.offsetY.SIZE }
   55 returnSt D = { $_ } U = {  }
   57 formalOut D = {  } U = { $_ }
    8+ actualOutByFieldAccess D = { this.offsetY } U = {  }
-   8+ actualOutByFieldAccess D = { super.posX } U = {  }
-   8+ actualOutByFieldAccess D = { super.posY } U = {  }
+   8+ actualOutByFieldAccess D = { YellowBlock.!YellowBlock( int int ).posX } U = {  }
+   8+ actualOutByFieldAccess D = { YellowBlock.!YellowBlock( int int ).posY } U = {  }
    8+ actualOutByFieldAccess D = { YellowBlock.!YellowBlock( int int ).color } U = {  }
    8+ actualOutByFieldAccess D = { YellowBlock.!YellowBlock( int int ).posX } U = {  }
    8+ actualOutByFieldAccess D = { YellowBlock.!YellowBlock( int int ).posY } U = {  }
   15+ actualOutByFieldAccess D = { this.offsetY } U = {  }
-  15+ actualOutByFieldAccess D = { super.posX } U = {  }
-  15+ actualOutByFieldAccess D = { super.posY } U = {  }
+  15+ actualOutByFieldAccess D = { BlueBlock.!BlueBlock( int int ).posX } U = {  }
+  15+ actualOutByFieldAccess D = { BlueBlock.!BlueBlock( int int ).posY } U = {  }
   15+ actualOutByFieldAccess D = { BlueBlock.!BlueBlock( int int ).color } U = {  }
   15+ actualOutByFieldAccess D = { BlueBlock.!BlueBlock( int int ).posX } U = {  }
   15+ actualOutByFieldAccess D = { BlueBlock.!BlueBlock( int int ).posY } U = {  }
   22+ actualOutByFieldAccess D = { this.offsetY } U = {  }
-  22+ actualOutByFieldAccess D = { super.posX } U = {  }
-  22+ actualOutByFieldAccess D = { super.posY } U = {  }
+  22+ actualOutByFieldAccess D = { GreenBlock.!GreenBlock( int int ).posX } U = {  }
+  22+ actualOutByFieldAccess D = { GreenBlock.!GreenBlock( int int ).posY } U = {  }
   22+ actualOutByFieldAccess D = { GreenBlock.!GreenBlock( int int ).color } U = {  }
   22+ actualOutByFieldAccess D = { GreenBlock.!GreenBlock( int int ).posX } U = {  }
   22+ actualOutByFieldAccess D = { GreenBlock.!GreenBlock( int int ).posY } U = {  }
-  29+ actualOutByFieldAccess D = { super.posX } U = {  }
-  29+ actualOutByFieldAccess D = { super.posY } U = {  }
+  29+ actualOutByFieldAccess D = { CyanBlock.!CyanBlock( int int ).posX } U = {  }
+  29+ actualOutByFieldAccess D = { CyanBlock.!CyanBlock( int int ).posY } U = {  }
   29+ actualOutByFieldAccess D = { CyanBlock.!CyanBlock( int int ).color } U = {  }
   29+ actualOutByFieldAccess D = { CyanBlock.!CyanBlock( int int ).posX } U = {  }
   29+ actualOutByFieldAccess D = { CyanBlock.!CyanBlock( int int ).posY } U = {  }
   36+ actualOutByFieldAccess D = { this.offsetX } U = {  }
-  36+ actualOutByFieldAccess D = { super.posX } U = {  }
-  36+ actualOutByFieldAccess D = { super.posY } U = {  }
+  36+ actualOutByFieldAccess D = { RedBlock.!RedBlock( int int ).posX } U = {  }
+  36+ actualOutByFieldAccess D = { RedBlock.!RedBlock( int int ).posY } U = {  }
   36+ actualOutByFieldAccess D = { RedBlock.!RedBlock( int int ).color } U = {  }
   36+ actualOutByFieldAccess D = { RedBlock.!RedBlock( int int ).posX } U = {  }
   36+ actualOutByFieldAccess D = { RedBlock.!RedBlock( int int ).posY } U = {  }
   43+ actualOutByFieldAccess D = { this.offsetY } U = {  }
-  43+ actualOutByFieldAccess D = { super.posX } U = {  }
-  43+ actualOutByFieldAccess D = { super.posY } U = {  }
+  43+ actualOutByFieldAccess D = { MagentaBlock.!MagentaBlock( int int ).posX } U = {  }
+  43+ actualOutByFieldAccess D = { MagentaBlock.!MagentaBlock( int int ).posY } U = {  }
   43+ actualOutByFieldAccess D = { MagentaBlock.!MagentaBlock( int int ).color } U = {  }
   43+ actualOutByFieldAccess D = { MagentaBlock.!MagentaBlock( int int ).posX } U = {  }
   43+ actualOutByFieldAccess D = { MagentaBlock.!MagentaBlock( int int ).posY } U = {  }
   50+ actualOutByFieldAccess D = { this.offsetY } U = {  }
-  50+ actualOutByFieldAccess D = { super.posX } U = {  }
-  50+ actualOutByFieldAccess D = { super.posY } U = {  }
+  50+ actualOutByFieldAccess D = { OrangeBlock.!OrangeBlock( int int ).posX } U = {  }
+  50+ actualOutByFieldAccess D = { OrangeBlock.!OrangeBlock( int int ).posY } U = {  }
   50+ actualOutByFieldAccess D = { OrangeBlock.!OrangeBlock( int int ).color } U = {  }
   50+ actualOutByFieldAccess D = { OrangeBlock.!OrangeBlock( int int ).posX } U = {  }
   50+ actualOutByFieldAccess D = { OrangeBlock.!OrangeBlock( int int ).posY } U = {  }
@@ -414,9 +414,9 @@ Class Name = Block
   13 actualOut D = { it$1.!next( ) } U = {  }
   14 assignment D = {  } U = { tile$2.!paint( java.awt.Graphics ) }
   15 receiver D = {  } U = { tile$2 }
-  16 methodCall D = {  } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.posX, this.posY } TO = Tile#paint( java.awt.Graphics )
+  16 methodCall D = {  } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, it$1.!next( ).color, it$1.!next( ).posX, it$1.!next( ).posY, tile$2.color, tile$2.posX, tile$2.posY } TO = Tile#paint( java.awt.Graphics )
   17 actualIn D = {  } U = { g$0 }
-  18 actualOut D = { this.color.!java.awt.Color.cs, this.color.!java.awt.Color.falpha, this.color.!java.awt.Color.frgbvalue, this.color.!java.awt.Color.fvalue, this.color.!java.awt.Color.value, tile$2.!paint( java.awt.Graphics ) } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.posX, this.posY }
+  18 actualOut D = { tile$2.!paint( java.awt.Graphics ), tile$2.color.!java.awt.Color.cs, tile$2.color.!java.awt.Color.falpha, tile$2.color.!java.awt.Color.frgbvalue, tile$2.color.!java.awt.Color.fvalue, tile$2.color.!java.awt.Color.value } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, it$1.!next( ).color, it$1.!next( ).posX, it$1.!next( ).posY, tile$2.color, tile$2.posX, tile$2.posY }
   20 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ Block#posY ]
@@ -742,127 +742,141 @@ Class Name = Block
   44:    8+ ->    6 loopIndependentDefUseDependence YellowBlock.!YellowBlock( int int ).color
   45:    8+ ->    6 loopIndependentDefUseDependence YellowBlock.!YellowBlock( int int ).posX
   46:    8+ ->    6 loopIndependentDefUseDependence YellowBlock.!YellowBlock( int int ).posY
-  47:    8+ ->   11 loopIndependentDefUseDependence this.offsetY
-  48:   11 ->    6 loopIndependentDefUseDependence YellowBlock.!YellowBlock( int int )
-  49:   12 ->   13 trueControlDependence
-  50:   12 ->   14 trueControlDependence
-  51:   12 ->   15 trueControlDependence
-  52:   12 ->   15+ trueControlDependence
-  53:   12 ->   15+ trueControlDependence
+  47:    8+ ->    8+ outputDependence YellowBlock.!YellowBlock( int int ).posX
+  48:    8+ ->    8+ outputDependence YellowBlock.!YellowBlock( int int ).posY
+  49:    8+ ->   11 loopIndependentDefUseDependence this.offsetY
+  50:   11 ->    6 loopIndependentDefUseDependence YellowBlock.!YellowBlock( int int )
+  51:   12 ->   13 trueControlDependence
+  52:   12 ->   14 trueControlDependence
+  53:   12 ->   15 trueControlDependence
   54:   12 ->   15+ trueControlDependence
   55:   12 ->   15+ trueControlDependence
   56:   12 ->   15+ trueControlDependence
   57:   12 ->   15+ trueControlDependence
-  58:   12 ->   16 trueControlDependence
-  59:   12 ->   17 trueControlDependence
-  60:   12 ->   18 trueControlDependence
-  61:   12 ->   19 falseControlDependence
-  62:   13 ->   19 fallThroughControlDependence
-  63:   13 ->   57 loopIndependentDefUseDependence $_
-  64:   15+ ->   13 loopIndependentDefUseDependence BlueBlock.!BlueBlock( int int ).color
-  65:   15+ ->   13 loopIndependentDefUseDependence BlueBlock.!BlueBlock( int int ).posX
-  66:   15+ ->   13 loopIndependentDefUseDependence BlueBlock.!BlueBlock( int int ).posY
-  67:   15+ ->   18 loopIndependentDefUseDependence this.offsetY
-  68:   18 ->   13 loopIndependentDefUseDependence BlueBlock.!BlueBlock( int int )
-  69:   19 ->   20 trueControlDependence
-  70:   19 ->   21 trueControlDependence
-  71:   19 ->   22 trueControlDependence
-  72:   19 ->   22+ trueControlDependence
-  73:   19 ->   22+ trueControlDependence
-  74:   19 ->   22+ trueControlDependence
-  75:   19 ->   22+ trueControlDependence
+  58:   12 ->   15+ trueControlDependence
+  59:   12 ->   15+ trueControlDependence
+  60:   12 ->   16 trueControlDependence
+  61:   12 ->   17 trueControlDependence
+  62:   12 ->   18 trueControlDependence
+  63:   12 ->   19 falseControlDependence
+  64:   13 ->   19 fallThroughControlDependence
+  65:   13 ->   57 loopIndependentDefUseDependence $_
+  66:   15+ ->   13 loopIndependentDefUseDependence BlueBlock.!BlueBlock( int int ).color
+  67:   15+ ->   13 loopIndependentDefUseDependence BlueBlock.!BlueBlock( int int ).posX
+  68:   15+ ->   13 loopIndependentDefUseDependence BlueBlock.!BlueBlock( int int ).posY
+  69:   15+ ->   15+ outputDependence BlueBlock.!BlueBlock( int int ).posX
+  70:   15+ ->   15+ outputDependence BlueBlock.!BlueBlock( int int ).posY
+  71:   15+ ->   18 loopIndependentDefUseDependence this.offsetY
+  72:   18 ->   13 loopIndependentDefUseDependence BlueBlock.!BlueBlock( int int )
+  73:   19 ->   20 trueControlDependence
+  74:   19 ->   21 trueControlDependence
+  75:   19 ->   22 trueControlDependence
   76:   19 ->   22+ trueControlDependence
   77:   19 ->   22+ trueControlDependence
-  78:   19 ->   23 trueControlDependence
-  79:   19 ->   24 trueControlDependence
-  80:   19 ->   25 trueControlDependence
-  81:   19 ->   26 falseControlDependence
-  82:   20 ->   26 fallThroughControlDependence
-  83:   20 ->   57 loopIndependentDefUseDependence $_
-  84:   22+ ->   20 loopIndependentDefUseDependence GreenBlock.!GreenBlock( int int ).color
-  85:   22+ ->   20 loopIndependentDefUseDependence GreenBlock.!GreenBlock( int int ).posX
-  86:   22+ ->   20 loopIndependentDefUseDependence GreenBlock.!GreenBlock( int int ).posY
-  87:   22+ ->   25 loopIndependentDefUseDependence this.offsetY
-  88:   25 ->   20 loopIndependentDefUseDependence GreenBlock.!GreenBlock( int int )
-  89:   26 ->   27 trueControlDependence
-  90:   26 ->   28 trueControlDependence
-  91:   26 ->   29 trueControlDependence
-  92:   26 ->   29+ trueControlDependence
-  93:   26 ->   29+ trueControlDependence
-  94:   26 ->   29+ trueControlDependence
-  95:   26 ->   29+ trueControlDependence
-  96:   26 ->   29+ trueControlDependence
-  97:   26 ->   30 trueControlDependence
-  98:   26 ->   31 trueControlDependence
-  99:   26 ->   32 trueControlDependence
- 100:   26 ->   33 falseControlDependence
- 101:   27 ->   33 fallThroughControlDependence
- 102:   27 ->   57 loopIndependentDefUseDependence $_
- 103:   29+ ->   27 loopIndependentDefUseDependence CyanBlock.!CyanBlock( int int ).color
- 104:   29+ ->   27 loopIndependentDefUseDependence CyanBlock.!CyanBlock( int int ).posX
- 105:   29+ ->   27 loopIndependentDefUseDependence CyanBlock.!CyanBlock( int int ).posY
- 106:   32 ->   27 loopIndependentDefUseDependence CyanBlock.!CyanBlock( int int )
- 107:   33 ->   34 trueControlDependence
- 108:   33 ->   35 trueControlDependence
- 109:   33 ->   36 trueControlDependence
- 110:   33 ->   36+ trueControlDependence
- 111:   33 ->   36+ trueControlDependence
- 112:   33 ->   36+ trueControlDependence
- 113:   33 ->   36+ trueControlDependence
- 114:   33 ->   36+ trueControlDependence
- 115:   33 ->   36+ trueControlDependence
- 116:   33 ->   37 trueControlDependence
- 117:   33 ->   38 trueControlDependence
- 118:   33 ->   39 trueControlDependence
- 119:   33 ->   40 falseControlDependence
- 120:   34 ->   40 fallThroughControlDependence
- 121:   34 ->   57 loopIndependentDefUseDependence $_
- 122:   36+ ->   34 loopIndependentDefUseDependence RedBlock.!RedBlock( int int ).color
- 123:   36+ ->   34 loopIndependentDefUseDependence RedBlock.!RedBlock( int int ).posX
- 124:   36+ ->   34 loopIndependentDefUseDependence RedBlock.!RedBlock( int int ).posY
- 125:   36+ ->   39 loopIndependentDefUseDependence this.offsetX
- 126:   39 ->   34 loopIndependentDefUseDependence RedBlock.!RedBlock( int int )
- 127:   40 ->   41 trueControlDependence
- 128:   40 ->   42 trueControlDependence
- 129:   40 ->   43 trueControlDependence
- 130:   40 ->   43+ trueControlDependence
- 131:   40 ->   43+ trueControlDependence
- 132:   40 ->   43+ trueControlDependence
- 133:   40 ->   43+ trueControlDependence
- 134:   40 ->   43+ trueControlDependence
- 135:   40 ->   43+ trueControlDependence
- 136:   40 ->   44 trueControlDependence
- 137:   40 ->   45 trueControlDependence
- 138:   40 ->   46 trueControlDependence
- 139:   40 ->   47 falseControlDependence
- 140:   41 ->   47 fallThroughControlDependence
- 141:   41 ->   57 loopIndependentDefUseDependence $_
- 142:   43+ ->   41 loopIndependentDefUseDependence MagentaBlock.!MagentaBlock( int int ).color
- 143:   43+ ->   41 loopIndependentDefUseDependence MagentaBlock.!MagentaBlock( int int ).posX
- 144:   43+ ->   41 loopIndependentDefUseDependence MagentaBlock.!MagentaBlock( int int ).posY
- 145:   43+ ->   46 loopIndependentDefUseDependence this.offsetY
- 146:   46 ->   41 loopIndependentDefUseDependence MagentaBlock.!MagentaBlock( int int )
- 147:   47 ->   48 trueControlDependence
- 148:   47 ->   49 trueControlDependence
- 149:   47 ->   50 trueControlDependence
- 150:   47 ->   50+ trueControlDependence
- 151:   47 ->   50+ trueControlDependence
- 152:   47 ->   50+ trueControlDependence
- 153:   47 ->   50+ trueControlDependence
- 154:   47 ->   50+ trueControlDependence
- 155:   47 ->   50+ trueControlDependence
- 156:   47 ->   51 trueControlDependence
- 157:   47 ->   52 trueControlDependence
- 158:   47 ->   53 trueControlDependence
- 159:   47 ->   55 falseControlDependence
- 160:   48 ->   55 fallThroughControlDependence
- 161:   48 ->   57 loopIndependentDefUseDependence $_
- 162:   50+ ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int ).color
- 163:   50+ ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int ).posX
- 164:   50+ ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int ).posY
- 165:   50+ ->   53 loopIndependentDefUseDependence this.offsetY
- 166:   53 ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int )
- 167:   55 ->   57 loopIndependentDefUseDependence $_
+  78:   19 ->   22+ trueControlDependence
+  79:   19 ->   22+ trueControlDependence
+  80:   19 ->   22+ trueControlDependence
+  81:   19 ->   22+ trueControlDependence
+  82:   19 ->   23 trueControlDependence
+  83:   19 ->   24 trueControlDependence
+  84:   19 ->   25 trueControlDependence
+  85:   19 ->   26 falseControlDependence
+  86:   20 ->   26 fallThroughControlDependence
+  87:   20 ->   57 loopIndependentDefUseDependence $_
+  88:   22+ ->   20 loopIndependentDefUseDependence GreenBlock.!GreenBlock( int int ).color
+  89:   22+ ->   20 loopIndependentDefUseDependence GreenBlock.!GreenBlock( int int ).posX
+  90:   22+ ->   20 loopIndependentDefUseDependence GreenBlock.!GreenBlock( int int ).posY
+  91:   22+ ->   22+ outputDependence GreenBlock.!GreenBlock( int int ).posX
+  92:   22+ ->   22+ outputDependence GreenBlock.!GreenBlock( int int ).posY
+  93:   22+ ->   25 loopIndependentDefUseDependence this.offsetY
+  94:   25 ->   20 loopIndependentDefUseDependence GreenBlock.!GreenBlock( int int )
+  95:   26 ->   27 trueControlDependence
+  96:   26 ->   28 trueControlDependence
+  97:   26 ->   29 trueControlDependence
+  98:   26 ->   29+ trueControlDependence
+  99:   26 ->   29+ trueControlDependence
+ 100:   26 ->   29+ trueControlDependence
+ 101:   26 ->   29+ trueControlDependence
+ 102:   26 ->   29+ trueControlDependence
+ 103:   26 ->   30 trueControlDependence
+ 104:   26 ->   31 trueControlDependence
+ 105:   26 ->   32 trueControlDependence
+ 106:   26 ->   33 falseControlDependence
+ 107:   27 ->   33 fallThroughControlDependence
+ 108:   27 ->   57 loopIndependentDefUseDependence $_
+ 109:   29+ ->   27 loopIndependentDefUseDependence CyanBlock.!CyanBlock( int int ).color
+ 110:   29+ ->   27 loopIndependentDefUseDependence CyanBlock.!CyanBlock( int int ).posX
+ 111:   29+ ->   27 loopIndependentDefUseDependence CyanBlock.!CyanBlock( int int ).posY
+ 112:   29+ ->   29+ outputDependence CyanBlock.!CyanBlock( int int ).posX
+ 113:   29+ ->   29+ outputDependence CyanBlock.!CyanBlock( int int ).posY
+ 114:   32 ->   27 loopIndependentDefUseDependence CyanBlock.!CyanBlock( int int )
+ 115:   33 ->   34 trueControlDependence
+ 116:   33 ->   35 trueControlDependence
+ 117:   33 ->   36 trueControlDependence
+ 118:   33 ->   36+ trueControlDependence
+ 119:   33 ->   36+ trueControlDependence
+ 120:   33 ->   36+ trueControlDependence
+ 121:   33 ->   36+ trueControlDependence
+ 122:   33 ->   36+ trueControlDependence
+ 123:   33 ->   36+ trueControlDependence
+ 124:   33 ->   37 trueControlDependence
+ 125:   33 ->   38 trueControlDependence
+ 126:   33 ->   39 trueControlDependence
+ 127:   33 ->   40 falseControlDependence
+ 128:   34 ->   40 fallThroughControlDependence
+ 129:   34 ->   57 loopIndependentDefUseDependence $_
+ 130:   36+ ->   34 loopIndependentDefUseDependence RedBlock.!RedBlock( int int ).color
+ 131:   36+ ->   34 loopIndependentDefUseDependence RedBlock.!RedBlock( int int ).posX
+ 132:   36+ ->   34 loopIndependentDefUseDependence RedBlock.!RedBlock( int int ).posY
+ 133:   36+ ->   36+ outputDependence RedBlock.!RedBlock( int int ).posX
+ 134:   36+ ->   36+ outputDependence RedBlock.!RedBlock( int int ).posY
+ 135:   36+ ->   39 loopIndependentDefUseDependence this.offsetX
+ 136:   39 ->   34 loopIndependentDefUseDependence RedBlock.!RedBlock( int int )
+ 137:   40 ->   41 trueControlDependence
+ 138:   40 ->   42 trueControlDependence
+ 139:   40 ->   43 trueControlDependence
+ 140:   40 ->   43+ trueControlDependence
+ 141:   40 ->   43+ trueControlDependence
+ 142:   40 ->   43+ trueControlDependence
+ 143:   40 ->   43+ trueControlDependence
+ 144:   40 ->   43+ trueControlDependence
+ 145:   40 ->   43+ trueControlDependence
+ 146:   40 ->   44 trueControlDependence
+ 147:   40 ->   45 trueControlDependence
+ 148:   40 ->   46 trueControlDependence
+ 149:   40 ->   47 falseControlDependence
+ 150:   41 ->   47 fallThroughControlDependence
+ 151:   41 ->   57 loopIndependentDefUseDependence $_
+ 152:   43+ ->   41 loopIndependentDefUseDependence MagentaBlock.!MagentaBlock( int int ).color
+ 153:   43+ ->   41 loopIndependentDefUseDependence MagentaBlock.!MagentaBlock( int int ).posX
+ 154:   43+ ->   41 loopIndependentDefUseDependence MagentaBlock.!MagentaBlock( int int ).posY
+ 155:   43+ ->   43+ outputDependence MagentaBlock.!MagentaBlock( int int ).posX
+ 156:   43+ ->   43+ outputDependence MagentaBlock.!MagentaBlock( int int ).posY
+ 157:   43+ ->   46 loopIndependentDefUseDependence this.offsetY
+ 158:   46 ->   41 loopIndependentDefUseDependence MagentaBlock.!MagentaBlock( int int )
+ 159:   47 ->   48 trueControlDependence
+ 160:   47 ->   49 trueControlDependence
+ 161:   47 ->   50 trueControlDependence
+ 162:   47 ->   50+ trueControlDependence
+ 163:   47 ->   50+ trueControlDependence
+ 164:   47 ->   50+ trueControlDependence
+ 165:   47 ->   50+ trueControlDependence
+ 166:   47 ->   50+ trueControlDependence
+ 167:   47 ->   50+ trueControlDependence
+ 168:   47 ->   51 trueControlDependence
+ 169:   47 ->   52 trueControlDependence
+ 170:   47 ->   53 trueControlDependence
+ 171:   47 ->   55 falseControlDependence
+ 172:   48 ->   55 fallThroughControlDependence
+ 173:   48 ->   57 loopIndependentDefUseDependence $_
+ 174:   50+ ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int ).color
+ 175:   50+ ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int ).posX
+ 176:   50+ ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int ).posY
+ 177:   50+ ->   50+ outputDependence OrangeBlock.!OrangeBlock( int int ).posX
+ 178:   50+ ->   50+ outputDependence OrangeBlock.!OrangeBlock( int int ).posY
+ 179:   50+ ->   53 loopIndependentDefUseDependence this.offsetY
+ 180:   53 ->   48 loopIndependentDefUseDependence OrangeBlock.!OrangeBlock( int int )
+ 181:   55 ->   57 loopIndependentDefUseDependence $_
 --
    0: fall( )
    1:    0 ->    1 trueControlDependence
@@ -1258,12 +1272,12 @@ Class Name = Block
   31:   13 ->   10 loopIndependentDefUseDependence it$1.!next( )
   32:   13 ->   13 defOrderDependence it$1.!next( )
   33:   18 ->   14 loopIndependentDefUseDependence tile$2.!paint( java.awt.Graphics )
-  34:   18 ->   18 defOrderDependence this.color.!java.awt.Color.cs
-  35:   18 ->   18 defOrderDependence this.color.!java.awt.Color.falpha
-  36:   18 ->   18 defOrderDependence this.color.!java.awt.Color.frgbvalue
-  37:   18 ->   18 defOrderDependence this.color.!java.awt.Color.fvalue
-  38:   18 ->   18 defOrderDependence this.color.!java.awt.Color.value
-  39:   18 ->   18 defOrderDependence tile$2.!paint( java.awt.Graphics )
+  34:   18 ->   18 defOrderDependence tile$2.!paint( java.awt.Graphics )
+  35:   18 ->   18 defOrderDependence tile$2.color.!java.awt.Color.cs
+  36:   18 ->   18 defOrderDependence tile$2.color.!java.awt.Color.falpha
+  37:   18 ->   18 defOrderDependence tile$2.color.!java.awt.Color.frgbvalue
+  38:   18 ->   18 defOrderDependence tile$2.color.!java.awt.Color.fvalue
+  39:   18 ->   18 defOrderDependence tile$2.color.!java.awt.Color.value
 --
    0: posY
    1:    0 ->    1 trueControlDependence

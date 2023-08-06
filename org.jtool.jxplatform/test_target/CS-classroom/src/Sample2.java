@@ -12,6 +12,8 @@ public class Sample2 {
         circle2.setRadius(80);
         System.out.println("Radius = " + circle2.getRadius());
         circle2.print();
+
+        Circle circle3 = new Circle(200);
     }
 }
 
@@ -27,6 +29,10 @@ class Circle {
     
     Circle(int x, int y) {
         this(x, y, 50);
+    }
+
+    Circle(int x) {
+        this(x, 100);
     }
     
     public int getX() {

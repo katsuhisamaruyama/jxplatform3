@@ -63,9 +63,9 @@ Class Name = Sample3
    4+ actualOutByFieldAccess D = { Circle.!Circle( int int int ).x } U = {  }
    4+ actualOutByFieldAccess D = { Circle.!Circle( int int int ).y } U = {  }
   22+ actualOutByFieldAccess D = { BoldCircle.!BoldCircle( int int int int ).width } U = {  }
-  22+ actualOutByFieldAccess D = { super.radius } U = {  }
-  22+ actualOutByFieldAccess D = { super.x } U = {  }
-  22+ actualOutByFieldAccess D = { super.y } U = {  }
+  22+ actualOutByFieldAccess D = { BoldCircle.!BoldCircle( int int int int ).radius } U = {  }
+  22+ actualOutByFieldAccess D = { BoldCircle.!BoldCircle( int int int int ).x } U = {  }
+  22+ actualOutByFieldAccess D = { BoldCircle.!BoldCircle( int int int int ).y } U = {  }
   44+ actualOutByFieldAccess D = { circle2$2.radius } U = {  }
 --
    0 constructorEntry [ Sample3#Sample3( ) ]
@@ -172,22 +172,28 @@ Class Name = Sample3
   98:   22+ ->   40 loopIndependentDefUseDependence BoldCircle.!BoldCircle( int int int int ).width
   99:   22+ ->   51 loopIndependentDefUseDependence BoldCircle.!BoldCircle( int int int int ).width
  100:   22+ ->   52 loopIndependentDefUseDependence BoldCircle.!BoldCircle( int int int int ).width
- 101:   27 ->   20 loopIndependentDefUseDependence BoldCircle.!BoldCircle( int int int int )
- 102:   33 ->   30 loopIndependentDefUseDependence circle2$2.!getWidth( )
- 103:   34 ->   28 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 104:   34 ->   41 outputDependence System.out.!java.io.PrintStream.trouble
- 105:   34 ->   41 outputDependence System.out.!println( java.lang.String )
- 106:   40 ->   37 loopIndependentDefUseDependence circle2$2.!getRadius( )
- 107:   40 ->   52 outputDependence circle2$2.!getRadius( )
- 108:   41 ->   35 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 109:   41 ->   53 outputDependence System.out.!java.io.PrintStream.trouble
- 110:   41 ->   53 outputDependence System.out.!println( java.lang.String )
- 111:   44+ ->   56 loopIndependentDefUseDependence circle2$2.radius
- 112:   44+ ->   57 loopIndependentDefUseDependence circle2$2.radius
- 113:   46 ->   42 loopIndependentDefUseDependence circle2$2.!setRadius( int )
- 114:   52 ->   49 loopIndependentDefUseDependence circle2$2.!getRadius( )
- 115:   53 ->   47 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 116:   57 ->   54 loopIndependentDefUseDependence circle2$2.!print( )
+ 101:   22+ ->   56 loopIndependentDefUseDependence BoldCircle.!BoldCircle( int int int int ).radius
+ 102:   22+ ->   56 loopIndependentDefUseDependence BoldCircle.!BoldCircle( int int int int ).x
+ 103:   22+ ->   56 loopIndependentDefUseDependence BoldCircle.!BoldCircle( int int int int ).y
+ 104:   22+ ->   57 loopIndependentDefUseDependence BoldCircle.!BoldCircle( int int int int ).radius
+ 105:   22+ ->   57 loopIndependentDefUseDependence BoldCircle.!BoldCircle( int int int int ).x
+ 106:   22+ ->   57 loopIndependentDefUseDependence BoldCircle.!BoldCircle( int int int int ).y
+ 107:   27 ->   20 loopIndependentDefUseDependence BoldCircle.!BoldCircle( int int int int )
+ 108:   33 ->   30 loopIndependentDefUseDependence circle2$2.!getWidth( )
+ 109:   34 ->   28 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 110:   34 ->   41 outputDependence System.out.!java.io.PrintStream.trouble
+ 111:   34 ->   41 outputDependence System.out.!println( java.lang.String )
+ 112:   40 ->   37 loopIndependentDefUseDependence circle2$2.!getRadius( )
+ 113:   40 ->   52 outputDependence circle2$2.!getRadius( )
+ 114:   41 ->   35 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 115:   41 ->   53 outputDependence System.out.!java.io.PrintStream.trouble
+ 116:   41 ->   53 outputDependence System.out.!println( java.lang.String )
+ 117:   44+ ->   56 loopIndependentDefUseDependence circle2$2.radius
+ 118:   44+ ->   57 loopIndependentDefUseDependence circle2$2.radius
+ 119:   46 ->   42 loopIndependentDefUseDependence circle2$2.!setRadius( int )
+ 120:   52 ->   49 loopIndependentDefUseDependence circle2$2.!getRadius( )
+ 121:   53 ->   47 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 122:   57 ->   54 loopIndependentDefUseDependence circle2$2.!print( )
 --
    0: Sample3( )
    1:    0 ->    2 trueControlDependence

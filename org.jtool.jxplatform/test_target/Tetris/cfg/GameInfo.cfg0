@@ -1,0 +1,394 @@
+----- CCFG (from here) -----
+Class Name = GameInfo
+   0 methodEntry [ GameInfo#getSpeed( ) ]
+   1 localDeclaration D = { speed$0 } U = {  }
+   2 ifSt D = {  } U = { this.level }
+   3 assignment D = { speed$0 } U = { this.level }
+   4 assignment D = { speed$0 } U = {  }
+   5 merge ifSt(2)
+   6 returnSt D = { $_ } U = { speed$0 }
+   7 methodExit
+   8 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ GameInfo#width ]
+   1 fieldDeclaration D = { this.width } U = { this.width }
+   2 fieldExit
+--
+   0 methodEntry [ GameInfo#addScore( int ) ]
+   1 formalIn D = { add$0 } U = {  }
+   2 assignment D = { this.score } U = { add$0, this.score }
+   3 methodExit
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ GameInfo#init( ) ]
+   1 assignment D = { this.offImage } U = { this.!createImage( int int ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.height, this.width } TO = java.awt.Component#createImage( int int )
+   4 actualOut D = { this.!createImage( int int ) } U = { this.!java.awt.Component.parent, this.!java.awt.Component.peer }
+   5 assignment D = { this.offg } U = { this.offImage.!getGraphics( ) }
+   6 receiver D = {  } U = { this.offImage }
+   7 methodCall D = {  } U = {  } TO = java.awt.Image#getGraphics( )
+   8 actualOut D = { this.offImage.!getGraphics( ) } U = {  }
+   9 assignment D = { this.font } U = { java.awt.Font.!Font( java.lang.String int int ) }
+  10 receiver D = {  } U = {  }
+  11 constructorCall D = {  } U = { $java.lang.String, Font.BOLD } TO = java.awt.Font#Font( java.lang.String int int )
+  12 actualOut D = { java.awt.Font.!Font( java.lang.String int int ), java.awt.Font.!java.awt.Font.createdFont, java.awt.Font.!java.awt.Font.fontSerializedDataVersion, java.awt.Font.!java.awt.Font.name, java.awt.Font.!java.awt.Font.pointSize, java.awt.Font.!java.awt.Font.size, java.awt.Font.!java.awt.Font.style } U = {  }
+  13 methodExit
+  14 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ GameInfo#addLines( int ) ]
+   1 formalIn D = { add$0 } U = {  }
+   2 assignment D = { this.lines } U = { add$0, this.lines }
+   3 assignment D = {  } U = { this.!addScore( int ) }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = {  } U = { this.score } TO = GameInfo#addScore( int )
+   6 actualIn D = {  } U = { add$0 }
+   7 actualOut D = { this.!addScore( int ) } U = { this.score }
+   8 ifSt D = {  } U = { this.level, this.lines }
+   9 assignment D = {  } U = { this.!addLevel( int ) }
+  10 receiver D = {  } U = {  }
+  11 methodCall D = {  } U = { this.level } TO = GameInfo#addLevel( int )
+  12 actualIn D = {  } U = {  }
+  13 actualOut D = { this.!addLevel( int ) } U = { this.level }
+  14 merge ifSt(8)
+  15 methodExit
+  16 formalOut D = {  } U = { $_ }
+   5+ actualOutByFieldAccess D = { this.score } U = {  }
+  11+ actualOutByFieldAccess D = { this.level } U = {  }
+--
+   0 fieldEntry [ GameInfo#level ]
+   1 fieldDeclaration D = { this.level } U = { this.level }
+   2 fieldExit
+--
+   0 fieldEntry [ GameInfo#score ]
+   1 fieldDeclaration D = { this.score } U = { this.score }
+   2 fieldExit
+--
+   0 fieldEntry [ GameInfo#height ]
+   1 fieldDeclaration D = { this.height } U = { this.height }
+   2 fieldExit
+--
+   0 fieldEntry [ GameInfo#offg ]
+   1 fieldDeclaration D = { this.offg } U = { this.offg }
+   2 fieldExit
+--
+   0 fieldEntry [ GameInfo#rows ]
+   1 fieldDeclaration D = { GameInfo.rows } U = { GameInfo.rows, GameInfo.rows.ROWS }
+   2 fieldExit
+--
+   0 methodEntry [ GameInfo#update( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 assignment D = {  } U = { this.!paint( java.awt.Graphics ) }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = { $$RN.offImage, this } TO = GameInfo#paint( java.awt.Graphics )
+   5 actualIn D = {  } U = { g$0 }
+   6 actualOut D = { this.!paint( java.awt.Graphics ) } U = { $$RN.offImage, this }
+   7 methodExit
+   8 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ GameInfo#font ]
+   1 fieldDeclaration D = { this.font } U = { this.font }
+   2 fieldExit
+--
+   0 methodEntry [ GameInfo#gameStart( ) ]
+   1 assignment D = { this.level } U = {  }
+   2 assignment D = { this.score } U = {  }
+   3 assignment D = { this.lines } U = {  }
+   4 methodExit
+   5 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ GameInfo#addLevel( int ) ]
+   1 formalIn D = { add$0 } U = {  }
+   2 assignment D = { this.level } U = { add$0, this.level }
+   3 methodExit
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ GameInfo#paint( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 ifSt D = {  } U = { this.offImage }
+   3 assignment D = {  } U = { g$0.!drawImage( java.awt.Image int int java.awt.image.ImageObserver ) }
+   4 receiver D = {  } U = { g$0 }
+   5 methodCall D = {  } U = { this, this.offImage } TO = java.awt.Graphics#drawImage( java.awt.Image int int java.awt.image.ImageObserver )
+   6 actualOut D = { g$0.!drawImage( java.awt.Image int int java.awt.image.ImageObserver ) } U = {  }
+   7 merge ifSt(2)
+   8 methodExit
+   9 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ GameInfo#offImage ]
+   1 fieldDeclaration D = { this.offImage } U = { this.offImage }
+   2 fieldExit
+--
+   0 methodEntry [ GameInfo#update( Block ) ]
+   1 formalIn D = { nextBlock$0 } U = {  }
+   2 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
+   3 receiver D = {  } U = { this.offg }
+   4 methodCall D = {  } U = { Color.gray } TO = java.awt.Graphics#setColor( java.awt.Color )
+   5 actualOut D = { this.offg.!setColor( java.awt.Color ) } U = {  }
+   6 assignment D = {  } U = { this.offg.!fillRect( int int int int ) }
+   7 receiver D = {  } U = { this.offg }
+   8 methodCall D = {  } U = { this.height, this.width } TO = java.awt.Graphics#fillRect( int int int int )
+   9 actualOut D = { this.offg.!fillRect( int int int int ) } U = {  }
+  10 assignment D = {  } U = { this.offg.!setFont( java.awt.Font ) }
+  11 receiver D = {  } U = { this.offg }
+  12 methodCall D = {  } U = { this.font } TO = java.awt.Graphics#setFont( java.awt.Font )
+  13 actualOut D = { this.offg.!setFont( java.awt.Font ) } U = {  }
+  14 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
+  15 receiver D = {  } U = { this.offg }
+  16 methodCall D = {  } U = { Color.black } TO = java.awt.Graphics#setColor( java.awt.Color )
+  17 actualOut D = { this.offg.!setColor( java.awt.Color ) } U = {  }
+  18 assignment D = {  } U = { this.offg.!fillRect( int int int int ) }
+  19 receiver D = {  } U = { this.offg }
+  20 methodCall D = {  } U = { Tile.SIZE, Tile.SIZE.SIZE } TO = java.awt.Graphics#fillRect( int int int int )
+  21 actualOut D = { this.offg.!fillRect( int int int int ) } U = {  }
+  22 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
+  23 receiver D = {  } U = { this.offg }
+  24 methodCall D = {  } U = { Color.white } TO = java.awt.Graphics#setColor( java.awt.Color )
+  25 actualOut D = { this.offg.!setColor( java.awt.Color ) } U = {  }
+  26 assignment D = {  } U = { this.offg.!drawString( java.lang.String int int ) }
+  27 receiver D = {  } U = { this.offg }
+  28 methodCall D = {  } U = { $java.lang.String, Tile.SIZE } TO = java.awt.Graphics#drawString( java.lang.String int int )
+  29 actualOut D = { this.offg.!drawString( java.lang.String int int ) } U = {  }
+  30 ifSt D = {  } U = { nextBlock$0, nextBlock$0.offsetX, nextBlock$0.offsetY, nextBlock$0.pit, nextBlock$0.posX, nextBlock$0.posY, nextBlock$0.tiles }
+  31 assignment D = {  } U = { nextBlock$0.!paintNext( java.awt.Graphics ) }
+  32 receiver D = {  } U = { nextBlock$0 }
+  33 methodCall D = {  } U = { $$RN.offsetX, $$RN.offsetY, $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$1.it$1.tile$2.color, $$RN.tiles.it$1.it$1.tile$2.posX, $$RN.tiles.it$1.it$1.tile$2.posY, Color.black, Color.white, Tile.BORDER, Tile.SIZE } TO = Block#paintNext( java.awt.Graphics )
+  34 actualIn D = {  } U = { this.offg }
+  35 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.it$1.it$1.tile$2.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.cs, $$RN.tiles.it$1.it$1.tile$2.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.falpha, $$RN.tiles.it$1.it$1.tile$2.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.frgbvalue, $$RN.tiles.it$1.it$1.tile$2.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.fvalue, $$RN.tiles.it$1.it$1.tile$2.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.value, nextBlock$0.!paintNext( java.awt.Graphics ) } U = { $$RN.offsetX, $$RN.offsetY, $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$1.it$1.tile$2.color, $$RN.tiles.it$1.it$1.tile$2.posX, $$RN.tiles.it$1.it$1.tile$2.posY, Color.black, Color.white, Tile.BORDER, Tile.SIZE }
+  36 merge ifSt(30)
+  37 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
+  38 receiver D = {  } U = { this.offg }
+  39 methodCall D = {  } U = { Color.white } TO = java.awt.Graphics#setColor( java.awt.Color )
+  40 actualOut D = { this.offg.!setColor( java.awt.Color ) } U = {  }
+  41 assignment D = {  } U = { this.offg.!drawString( java.lang.String int int ) }
+  42 receiver D = {  } U = { this.offg }
+  43 methodCall D = {  } U = { $java.lang.String, this.height, this.level } TO = java.awt.Graphics#drawString( java.lang.String int int )
+  44 actualOut D = { this.offg.!drawString( java.lang.String int int ) } U = {  }
+  45 assignment D = {  } U = { this.offg.!drawString( java.lang.String int int ) }
+  46 receiver D = {  } U = { this.offg }
+  47 methodCall D = {  } U = { $java.lang.String, this.height, this.lines } TO = java.awt.Graphics#drawString( java.lang.String int int )
+  48 actualOut D = { this.offg.!drawString( java.lang.String int int ) } U = {  }
+  49 assignment D = {  } U = { this.offg.!drawString( java.lang.String int int ) }
+  50 receiver D = {  } U = { this.offg }
+  51 methodCall D = {  } U = { $java.lang.String, this.height, this.score } TO = java.awt.Graphics#drawString( java.lang.String int int )
+  52 actualOut D = { this.offg.!drawString( java.lang.String int int ) } U = {  }
+  53 assignment D = {  } U = { this.!repaint( ) }
+  54 receiver D = {  } U = {  }
+  55 methodCall D = {  } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y } TO = java.awt.Component#repaint( )
+  56 actualOut D = { this.!repaint( ) } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y }
+  57 methodExit
+  58 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ GameInfo#lines ]
+   1 fieldDeclaration D = { this.lines } U = { this.lines }
+   2 fieldExit
+--
+   0 constructorEntry [ GameInfo#GameInfo( ) ]
+   1 assignment D = { this.width } U = { Tile.SIZE }
+   2 assignment D = { this.height } U = { GameInfo.rows, Tile.SIZE }
+   3 assignment D = {  } U = { this.!setSize( int int ) }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = {  } U = { this.!java.awt.Component.x, this.!java.awt.Component.y, this.height, this.width } TO = java.awt.Component#setSize( int int )
+   6 actualOut D = { this.!setSize( int int ) } U = { this.!java.awt.Component.x, this.!java.awt.Component.y }
+   7 constructorExit
+   8 formalOut D = {  } U = { $_ }
+--
+   0: getSpeed( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    2 ->    4 falseControlFlow
+   5:    3 ->    5 trueControlFlow
+   6:    4 ->    5 trueControlFlow
+   7:    5 ->    6 trueControlFlow
+   8:    6 ->    8 fallThroughFlow
+   9:    6 ->    8 trueControlFlow
+  10:    8 ->    7 trueControlFlow
+--
+   0: width
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: addScore( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    4 ->    3 trueControlFlow
+--
+   0: init( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    5 trueControlFlow
+  10:    9 ->   14 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->    9 trueControlFlow
+  14:   14 ->   13 trueControlFlow
+--
+   0: addLines( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    8 trueControlFlow
+   5:    4 ->    6 trueControlFlow
+   6:    5 ->    5+ trueControlFlow
+   7:    6 ->    5 trueControlFlow
+   8:    7 ->    3 trueControlFlow
+   9:    8 ->   10 trueControlFlow
+  10:    8 ->   14 falseControlFlow
+  11:    9 ->   14 trueControlFlow
+  12:   10 ->   12 trueControlFlow
+  13:   11 ->   11+ trueControlFlow
+  14:   12 ->   11 trueControlFlow
+  15:   13 ->    9 trueControlFlow
+  16:   14 ->   16 trueControlFlow
+  17:   16 ->   15 trueControlFlow
+  18:    5+ ->    7 trueControlFlow
+  19:   11+ ->   13 trueControlFlow
+--
+   0: level
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: score
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: height
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: offg
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: rows
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: update( java.awt.Graphics )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    8 trueControlFlow
+   4:    3 ->    5 trueControlFlow
+   5:    4 ->    6 trueControlFlow
+   6:    5 ->    4 trueControlFlow
+   7:    6 ->    2 trueControlFlow
+   8:    8 ->    7 trueControlFlow
+--
+   0: font
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: gameStart( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    5 trueControlFlow
+   5:    5 ->    4 trueControlFlow
+--
+   0: addLevel( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    4 ->    3 trueControlFlow
+--
+   0: paint( java.awt.Graphics )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    2 ->    7 falseControlFlow
+   5:    3 ->    7 trueControlFlow
+   6:    4 ->    5 trueControlFlow
+   7:    5 ->    6 trueControlFlow
+   8:    6 ->    3 trueControlFlow
+   9:    7 ->    9 trueControlFlow
+  10:    9 ->    8 trueControlFlow
+--
+   0: offImage
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: update( Block )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->   11 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    9 ->    6 trueControlFlow
+  11:   10 ->   15 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->   13 trueControlFlow
+  14:   13 ->   10 trueControlFlow
+  15:   14 ->   19 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   17 trueControlFlow
+  18:   17 ->   14 trueControlFlow
+  19:   18 ->   23 trueControlFlow
+  20:   19 ->   20 trueControlFlow
+  21:   20 ->   21 trueControlFlow
+  22:   21 ->   18 trueControlFlow
+  23:   22 ->   27 trueControlFlow
+  24:   23 ->   24 trueControlFlow
+  25:   24 ->   25 trueControlFlow
+  26:   25 ->   22 trueControlFlow
+  27:   26 ->   30 trueControlFlow
+  28:   27 ->   28 trueControlFlow
+  29:   28 ->   29 trueControlFlow
+  30:   29 ->   26 trueControlFlow
+  31:   30 ->   32 trueControlFlow
+  32:   30 ->   36 falseControlFlow
+  33:   31 ->   36 trueControlFlow
+  34:   32 ->   34 trueControlFlow
+  35:   33 ->   35 trueControlFlow
+  36:   34 ->   33 trueControlFlow
+  37:   35 ->   31 trueControlFlow
+  38:   36 ->   38 trueControlFlow
+  39:   37 ->   42 trueControlFlow
+  40:   38 ->   39 trueControlFlow
+  41:   39 ->   40 trueControlFlow
+  42:   40 ->   37 trueControlFlow
+  43:   41 ->   46 trueControlFlow
+  44:   42 ->   43 trueControlFlow
+  45:   43 ->   44 trueControlFlow
+  46:   44 ->   41 trueControlFlow
+  47:   45 ->   50 trueControlFlow
+  48:   46 ->   47 trueControlFlow
+  49:   47 ->   48 trueControlFlow
+  50:   48 ->   45 trueControlFlow
+  51:   49 ->   54 trueControlFlow
+  52:   50 ->   51 trueControlFlow
+  53:   51 ->   52 trueControlFlow
+  54:   52 ->   49 trueControlFlow
+  55:   53 ->   58 trueControlFlow
+  56:   54 ->   55 trueControlFlow
+  57:   55 ->   56 trueControlFlow
+  58:   56 ->   53 trueControlFlow
+  59:   58 ->   57 trueControlFlow
+--
+   0: lines
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: GameInfo( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    8 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    3 trueControlFlow
+   8:    8 ->    7 trueControlFlow
+--
+----- CCFG (to here) -----
+
+

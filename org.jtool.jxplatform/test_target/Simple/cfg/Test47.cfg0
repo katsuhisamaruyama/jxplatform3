@@ -1,0 +1,211 @@
+----- CCFG (from here) -----
+Class Name = Test47
+   0 methodEntry [ Test47#m5( ) ]
+   1 localDeclaration D = { max$0 } U = { this.!max( int int ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = {  } TO = java.lang.Math#max( int int )
+   4 actualOut D = { this.!max( int int ) } U = {  }
+   5 methodExit
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test47#m6( ) ]
+   1 assignment D = {  } U = { this.!m1( ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { $$RN.$java.lang.String.!java.lang.String.COMPACT_STRINGS, $$RN.$java.lang.String.!java.lang.String.coder, $$RN.$java.lang.String.!java.lang.String.value, this.!java.lang.String.value } TO = Test47#m1( )
+   4 actualOut D = { this.!m1( ) } U = { $$RN.$java.lang.String.!java.lang.String.COMPACT_STRINGS, $$RN.$java.lang.String.!java.lang.String.coder, $$RN.$java.lang.String.!java.lang.String.value, this.!java.lang.String.value }
+   5 methodExit
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test47#m7( ) ]
+   1 localDeclaration D = { d$0 } U = { Direction.UP }
+   2 localDeclaration D = { name1$1 } U = { d$0.!getName( ) }
+   3 receiver D = {  } U = { d$0 }
+   4 methodCall D = {  } U = { d$0.!java.lang.Enum.name } TO = Direction#getName( )
+   5 actualOut D = { d$0.!getName( ) } U = { d$0.!java.lang.Enum.name }
+   6 localDeclaration D = { name2$2 } U = { d$0.!name( ) }
+   7 receiver D = {  } U = { d$0 }
+   8 methodCall D = {  } U = { d$0.!java.lang.Enum.name } TO = java.lang.Enum#name( )
+   9 actualOut D = { d$0.!name( ) } U = { d$0.!java.lang.Enum.name }
+  10 methodExit
+  11 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test47#m1( ) ]
+   1 localDeclaration D = { len$0 } U = { $java.lang.String.!length( ) }
+   2 receiver D = {  } U = { $java.lang.String }
+   3 methodCall D = {  } U = { $java.lang.String.!java.lang.String.COMPACT_STRINGS, $java.lang.String.!java.lang.String.coder, $java.lang.String.!java.lang.String.value } TO = java.lang.String#length( )
+   4 actualOut D = { $java.lang.String.!length( ) } U = { $java.lang.String.!java.lang.String.COMPACT_STRINGS, $java.lang.String.!java.lang.String.coder, $java.lang.String.!java.lang.String.value }
+   5 trySt D = {  } U = {  }
+   6 assignment D = {  } U = { $java.lang.String.!wait( ) }
+   7 receiver D = {  } U = { $java.lang.String }
+   8 methodCall D = {  } U = {  } TO = java.lang.Object#wait( )
+   9 actualOut D = { $java.lang.String.!wait( ) } U = {  }
+  10 merge trySt(5)
+  11 catchClause D = { e$1 } U = {  }
+  12 localDeclaration D = { str$2 } U = { $java.lang.String }
+  13 assignment D = {  } U = { str$2.!length( ) }
+  14 receiver D = {  } U = { str$2 }
+  15 methodCall D = {  } U = { str$2.!java.lang.String.COMPACT_STRINGS, str$2.!java.lang.String.coder, str$2.!java.lang.String.value } TO = java.lang.String#length( )
+  16 actualOut D = { str$2.!length( ) } U = { str$2.!java.lang.String.COMPACT_STRINGS, str$2.!java.lang.String.coder, str$2.!java.lang.String.value }
+  17 methodExit
+  18 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test47#m4( ) ]
+   1 localDeclaration D = { p1$0 } U = { P47.!P47( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P47#P47( )
+   4 actualOut D = { P47.!P47( ) } U = {  }
+   5 localDeclaration D = { p2$1 } U = { P47.!P47( java.lang.String ) }
+   6 receiver D = {  } U = {  }
+   7 constructorCall D = {  } U = {  } TO = P47#P47( java.lang.String )
+   8 actualIn D = {  } U = { $java.lang.String }
+   9 actualOut D = { P47.!P47( java.lang.String ) } U = {  }
+  10 methodExit
+  11 formalOut D = {  } U = { $_ }
+   7+ actualOutByFieldAccess D = { P47.!P47( java.lang.String ).value } U = {  }
+--
+   0 methodEntry [ Test47#m2( ) ]
+   1 localDeclaration D = { name$0 } U = { $java.lang.Class.!getName( ) }
+   2 receiver D = {  } U = { $java.lang.Class }
+   3 methodCall D = {  } U = { $java.lang.Class.!java.lang.Class.name } TO = java.lang.Class#getName( )
+   4 actualOut D = { $java.lang.Class.!getName( ) } U = { $java.lang.Class.!java.lang.Class.name }
+   5 trySt D = {  } U = {  }
+   6 assignment D = {  } U = { $java.lang.Class.!wait( ) }
+   7 receiver D = {  } U = { $java.lang.Class }
+   8 methodCall D = {  } U = {  } TO = java.lang.Object#wait( )
+   9 actualOut D = { $java.lang.Class.!wait( ) } U = {  }
+  10 merge trySt(5)
+  11 catchClause D = { e$1 } U = {  }
+  12 localDeclaration D = { clazz$2 } U = { $java.lang.Class }
+  13 assignment D = {  } U = { clazz$2.!getName( ) }
+  14 receiver D = {  } U = { clazz$2 }
+  15 methodCall D = {  } U = { clazz$2.!java.lang.Class.name } TO = java.lang.Class#getName( )
+  16 actualOut D = { clazz$2.!getName( ) } U = { clazz$2.!java.lang.Class.name }
+  17 methodExit
+  18 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test47#m3( ) ]
+   1 localDeclaration D = { p$0 } U = { P47.!P47( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P47#P47( )
+   4 actualOut D = { P47.!P47( ) } U = {  }
+   5 assignment D = {  } U = { p$0.!set( java.lang.String ) }
+   6 receiver D = {  } U = { p$0 }
+   7 methodCall D = {  } U = {  } TO = P47#set( java.lang.String )
+   8 actualIn D = {  } U = { $java.lang.String }
+   9 actualOut D = { p$0.!set( java.lang.String ) } U = {  }
+  10 methodExit
+  11 formalOut D = {  } U = { $_ }
+   7+ actualOutByFieldAccess D = { p$0.value } U = {  }
+--
+   0 constructorEntry [ Test47#Test47( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m5( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    6 ->    5 trueControlFlow
+--
+   0: m6( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    6 ->    5 trueControlFlow
+--
+   0: m7( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->   11 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    9 ->    6 trueControlFlow
+  11:   11 ->   10 trueControlFlow
+--
+   0: m1( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->    7 trueControlFlow
+   7:    6 ->   10 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    8 ->   11 exceptionCatchFlow
+  11:    9 ->    6 trueControlFlow
+  12:   10 ->   12 trueControlFlow
+  13:   11 ->   10 fallThroughFlow
+  14:   11 ->   10 trueControlFlow
+  15:   12 ->   14 trueControlFlow
+  16:   13 ->   18 trueControlFlow
+  17:   14 ->   15 trueControlFlow
+  18:   15 ->   16 trueControlFlow
+  19:   16 ->   13 trueControlFlow
+  20:   18 ->   17 trueControlFlow
+--
+   0: m4( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   11 trueControlFlow
+   7:    6 ->    8 trueControlFlow
+   8:    7 ->    7+ trueControlFlow
+   9:    8 ->    7 trueControlFlow
+  10:    9 ->    5 trueControlFlow
+  11:   11 ->   10 trueControlFlow
+  12:    7+ ->    9 trueControlFlow
+--
+   0: m2( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->    7 trueControlFlow
+   7:    6 ->   10 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    8 ->   11 exceptionCatchFlow
+  11:    9 ->    6 trueControlFlow
+  12:   10 ->   12 trueControlFlow
+  13:   11 ->   10 fallThroughFlow
+  14:   11 ->   10 trueControlFlow
+  15:   12 ->   14 trueControlFlow
+  16:   13 ->   18 trueControlFlow
+  17:   14 ->   15 trueControlFlow
+  18:   15 ->   16 trueControlFlow
+  19:   16 ->   13 trueControlFlow
+  20:   18 ->   17 trueControlFlow
+--
+   0: m3( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   11 trueControlFlow
+   7:    6 ->    8 trueControlFlow
+   8:    7 ->    7+ trueControlFlow
+   9:    8 ->    7 trueControlFlow
+  10:    9 ->    5 trueControlFlow
+  11:   11 ->   10 trueControlFlow
+  12:    7+ ->    9 trueControlFlow
+--
+   0: Test47( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+----- CCFG (to here) -----
+
+

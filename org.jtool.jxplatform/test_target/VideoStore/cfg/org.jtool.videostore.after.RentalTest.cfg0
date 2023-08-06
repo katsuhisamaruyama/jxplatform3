@@ -27,10 +27,11 @@ Class Name = org.jtool.videostore.after.RentalTest
    5 actualIn D = {  } U = { Movie.PriceCode.CHILDRENS }
    6 actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR }
    7 fieldExit
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { $$RN.this.price } U = {  }
+   3+ actualOutByFieldAccess D = { $$RN.this.price } U = {  }
+   3+ actualOutByFieldAccess D = { $$RN.this.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0 constructorEntry [ org.jtool.videostore.after.RentalTest#RentalTest( ) ]
    1 constructorExit
@@ -79,8 +80,8 @@ Class Name = org.jtool.videostore.after.RentalTest
   21 receiver D = {  } U = { rental$0 }
   22 methodCall D = {  } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie, rental$0.movie, this.movie.price, this.movie.title } TO = org.jtool.videostore.after.Rental#getMovie( )
   23 actualOut D = { rental$0.!getMovie( ) } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie, rental$0.movie, this.movie.price, this.movie.title }
-  24 methodCall D = {  } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price, org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price.priceCode, rental$0.!getMovie( ).price, rental$0.!getMovie( ).price.priceCode } TO = org.jtool.videostore.after.Movie#getPriceCode( )
-  25 actualOut D = { rental$0.!getMovie( ).!getPriceCode( ) } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price, org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price.priceCode, rental$0.!getMovie( ).price, rental$0.!getMovie( ).price.priceCode }
+  24 methodCall D = {  } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).priceCode, rental$0.!getMovie( ), rental$0.!getMovie( ).priceCode } TO = org.jtool.videostore.after.Movie#getPriceCode( )
+  25 actualOut D = { rental$0.!getMovie( ).!getPriceCode( ) } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).priceCode, rental$0.!getMovie( ), rental$0.!getMovie( ).priceCode }
   26 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   27 methodExit
   28 formalOut D = {  } U = { $_ }
@@ -111,8 +112,8 @@ Class Name = org.jtool.videostore.after.RentalTest
   21 receiver D = {  } U = { rental$0 }
   22 methodCall D = {  } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie, rental$0.movie, this.movie.price, this.movie.title } TO = org.jtool.videostore.after.Rental#getMovie( )
   23 actualOut D = { rental$0.!getMovie( ) } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie, rental$0.movie, this.movie.price, this.movie.title }
-  24 methodCall D = {  } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price, org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price.priceCode, rental$0.!getMovie( ).price, rental$0.!getMovie( ).price.priceCode } TO = org.jtool.videostore.after.Movie#getPriceCode( )
-  25 actualOut D = { rental$0.!getMovie( ).!getPriceCode( ) } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price, org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price.priceCode, rental$0.!getMovie( ).price, rental$0.!getMovie( ).price.priceCode }
+  24 methodCall D = {  } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).priceCode, rental$0.!getMovie( ), rental$0.!getMovie( ).priceCode } TO = org.jtool.videostore.after.Movie#getPriceCode( )
+  25 actualOut D = { rental$0.!getMovie( ).!getPriceCode( ) } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).priceCode, rental$0.!getMovie( ), rental$0.!getMovie( ).priceCode }
   26 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   27 methodExit
   28 formalOut D = {  } U = { $_ }
@@ -127,10 +128,11 @@ Class Name = org.jtool.videostore.after.RentalTest
    5 actualIn D = {  } U = { Movie.PriceCode.REGULAR }
    6 actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR }
    7 fieldExit
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { $$RN.this.price } U = {  }
+   3+ actualOutByFieldAccess D = { $$RN.this.price } U = {  }
+   3+ actualOutByFieldAccess D = { $$RN.this.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.after.RentalTest#testRegularMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ) }
@@ -156,8 +158,8 @@ Class Name = org.jtool.videostore.after.RentalTest
   21 receiver D = {  } U = { rental$0 }
   22 methodCall D = {  } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie, rental$0.movie, this.movie.price, this.movie.title } TO = org.jtool.videostore.after.Rental#getMovie( )
   23 actualOut D = { rental$0.!getMovie( ) } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).movie, rental$0.movie, this.movie.price, this.movie.title }
-  24 methodCall D = {  } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price, org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price.priceCode, rental$0.!getMovie( ).price, rental$0.!getMovie( ).price.priceCode } TO = org.jtool.videostore.after.Movie#getPriceCode( )
-  25 actualOut D = { rental$0.!getMovie( ).!getPriceCode( ) } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price, org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).price.priceCode, rental$0.!getMovie( ).price, rental$0.!getMovie( ).price.priceCode }
+  24 methodCall D = {  } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).priceCode, rental$0.!getMovie( ), rental$0.!getMovie( ).priceCode } TO = org.jtool.videostore.after.Movie#getPriceCode( )
+  25 actualOut D = { rental$0.!getMovie( ).!getPriceCode( ) } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ).!getMovie( ).priceCode, rental$0.!getMovie( ), rental$0.!getMovie( ).priceCode }
   26 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   27 methodExit
   28 formalOut D = {  } U = { $_ }
@@ -191,10 +193,11 @@ Class Name = org.jtool.videostore.after.RentalTest
    5 actualIn D = {  } U = { Movie.PriceCode.NEW_RELEASE }
    6 actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR }
    7 fieldExit
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { $$RN.this.price } U = {  }
+   3+ actualOutByFieldAccess D = { $$RN.this.price } U = {  }
+   3+ actualOutByFieldAccess D = { $$RN.this.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0: testDaysRentedOfRegularMovie( )
    1:    0 ->    2 trueControlFlow
@@ -226,7 +229,8 @@ Class Name = org.jtool.videostore.after.RentalTest
    8:    3+ ->    3+ trueControlFlow
    9:    3+ ->    3+ trueControlFlow
   10:    3+ ->    3+ trueControlFlow
-  11:    3+ ->    6 trueControlFlow
+  11:    3+ ->    3+ trueControlFlow
+  12:    3+ ->    6 trueControlFlow
 --
    0: RentalTest( )
    1:    0 ->    2 trueControlFlow
@@ -326,7 +330,8 @@ Class Name = org.jtool.videostore.after.RentalTest
    8:    3+ ->    3+ trueControlFlow
    9:    3+ ->    3+ trueControlFlow
   10:    3+ ->    3+ trueControlFlow
-  11:    3+ ->    6 trueControlFlow
+  11:    3+ ->    3+ trueControlFlow
+  12:    3+ ->    6 trueControlFlow
 --
    0: testRegularMovie( )
    1:    0 ->    2 trueControlFlow
@@ -390,7 +395,8 @@ Class Name = org.jtool.videostore.after.RentalTest
    8:    3+ ->    3+ trueControlFlow
    9:    3+ ->    3+ trueControlFlow
   10:    3+ ->    3+ trueControlFlow
-  11:    3+ ->    6 trueControlFlow
+  11:    3+ ->    3+ trueControlFlow
+  12:    3+ ->    6 trueControlFlow
 --
 ----- CCFG (to here) -----
 

@@ -25,11 +25,11 @@ Class Name = org.jtool.videostore.after.RentalTest
    4 actualIn D = {  } U = { $java.lang.String }
    5 actualIn D = {  } U = { Movie.PriceCode.CHILDRENS }
    6 actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-   3+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0 constructorEntry [ org.jtool.videostore.after.RentalTest#RentalTest( ) ]
    2 formalOut D = {  } U = { $_ }
@@ -121,11 +121,11 @@ Class Name = org.jtool.videostore.after.RentalTest
    4 actualIn D = {  } U = { $java.lang.String }
    5 actualIn D = {  } U = { Movie.PriceCode.REGULAR }
    6 actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-   3+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.after.RentalTest#testRegularMovie( ) ]
    1 localDeclaration D = { rental$0 } U = { org.jtool.videostore.after.Rental.!Rental( org.jtool.videostore.after.Movie int ) }
@@ -183,11 +183,11 @@ Class Name = org.jtool.videostore.after.RentalTest
    4 actualIn D = {  } U = { $java.lang.String }
    5 actualIn D = {  } U = { Movie.PriceCode.NEW_RELEASE }
    6 actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-   3+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0: testDaysRentedOfRegularMovie( )
    1:    0 ->    1 trueControlDependence
@@ -226,8 +226,8 @@ Class Name = org.jtool.videostore.after.RentalTest
    9:    0 ->    4 trueControlDependence
   10:    0 ->    5 trueControlDependence
   11:    0 ->    6 trueControlDependence
-  12:    3+ ->    3+ outputDependence this.price
-  13:    3+ ->    3+ outputDependence this.price
+  12:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
+  13:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
   14:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
 --
    0: RentalTest( )
@@ -366,8 +366,8 @@ Class Name = org.jtool.videostore.after.RentalTest
    9:    0 ->    4 trueControlDependence
   10:    0 ->    5 trueControlDependence
   11:    0 ->    6 trueControlDependence
-  12:    3+ ->    3+ outputDependence this.price
-  13:    3+ ->    3+ outputDependence this.price
+  12:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
+  13:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
   14:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
 --
    0: testRegularMovie( )
@@ -455,8 +455,8 @@ Class Name = org.jtool.videostore.after.RentalTest
    9:    0 ->    4 trueControlDependence
   10:    0 ->    5 trueControlDependence
   11:    0 ->    6 trueControlDependence
-  12:    3+ ->    3+ outputDependence this.price
-  13:    3+ ->    3+ outputDependence this.price
+  12:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
+  13:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
   14:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
 --
 ----- ClDG (to here) -----

@@ -21,9 +21,9 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
    7 formalIn D = { w$6 } U = {  }
    8 localDeclaration D = { figure$7 } U = { this.!createFigure( java.lang.String ) }
    9 receiver D = {  } U = {  }
-  10 methodCall D = {  } U = { Color.black, FilledOval.name, FilledRect.name, Line.name, Oval.name, Rect.name, this.kind$0.!java.lang.String.COMPACT_STRINGS, this.kind$0.!java.lang.String.coder, this.kind$0.!java.lang.String.value } TO = jp.ac.ritsumei.cs.draw.FigureManager#createFigure( java.lang.String )
+  10 methodCall D = {  } U = { $$RN.kind$0.!java.lang.String.COMPACT_STRINGS, $$RN.kind$0.!java.lang.String.coder, $$RN.kind$0.!java.lang.String.value, $$RN.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.!java.lang.String.value, $$RN.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.!java.lang.String.value, $$RN.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.jp.ac.ritsumei.cs.draw.Oval.kind$0.!java.lang.String.value, $$RN.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.jp.ac.ritsumei.cs.draw.Oval.kind$0.jp.ac.ritsumei.cs.draw.FilledRect.kind$0.!java.lang.String.value, Color.black, FilledOval.name, FilledRect.name, Line.name, Oval.name, Rect.name } TO = jp.ac.ritsumei.cs.draw.FigureManager#createFigure( java.lang.String )
   11 actualIn D = {  } U = { kind$0 }
-  12 actualOut D = { this.!createFigure( java.lang.String ) } U = { Color.black, FilledOval.name, FilledRect.name, Line.name, Oval.name, Rect.name, this.kind$0.!java.lang.String.COMPACT_STRINGS, this.kind$0.!java.lang.String.coder, this.kind$0.!java.lang.String.value }
+  12 actualOut D = { this.!createFigure( java.lang.String ) } U = { $$RN.kind$0.!java.lang.String.COMPACT_STRINGS, $$RN.kind$0.!java.lang.String.coder, $$RN.kind$0.!java.lang.String.value, $$RN.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.!java.lang.String.value, $$RN.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.!java.lang.String.value, $$RN.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.jp.ac.ritsumei.cs.draw.Oval.kind$0.!java.lang.String.value, $$RN.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.jp.ac.ritsumei.cs.draw.Oval.kind$0.jp.ac.ritsumei.cs.draw.FilledRect.kind$0.!java.lang.String.value, Color.black, FilledOval.name, FilledRect.name, Line.name, Oval.name, Rect.name }
   13 ifSt D = {  } U = { figure$7, figure$7.color, figure$7.endX, figure$7.endY, figure$7.outlineWidth, figure$7.startX, figure$7.startY, this.!createFigure( java.lang.String ).color, this.!createFigure( java.lang.String ).endX, this.!createFigure( java.lang.String ).endY, this.!createFigure( java.lang.String ).outlineWidth, this.!createFigure( java.lang.String ).startX, this.!createFigure( java.lang.String ).startY }
   14 assignment D = {  } U = { figure$7.!setStart( int int ) }
   15 receiver D = {  } U = { figure$7 }
@@ -41,6 +41,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   27 returnSt D = { $_ } U = { figure$7, figure$7.color, figure$7.endX, figure$7.endY, figure$7.outlineWidth, figure$7.startX, figure$7.startY, this.!createFigure( java.lang.String ).color, this.!createFigure( java.lang.String ).endX, this.!createFigure( java.lang.String ).endY, this.!createFigure( java.lang.String ).outlineWidth, this.!createFigure( java.lang.String ).startX, this.!createFigure( java.lang.String ).startY }
   28 methodExit
   29 formalOut D = {  } U = { $_ }
+  10+ actualOutByFieldAccess D = { this.!createFigure( java.lang.String ).color } U = {  }
+  10+ actualOutByFieldAccess D = { this.!createFigure( java.lang.String ).outlineWidth } U = {  }
   16+ actualOutByFieldAccess D = { figure$7.startX } U = {  }
   16+ actualOutByFieldAccess D = { figure$7.startY } U = {  }
   22+ actualOutByFieldAccess D = { figure$7.endX } U = {  }
@@ -79,7 +81,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
    3 receiver D = {  } U = { kind$0 }
    4 methodCall D = {  } U = { Line.name, kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
    5 actualOut D = { kind$0.!equals( java.lang.Object ) } U = { kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value }
-   6 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Line.!Line( ) }
+   6 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Line.!Line( ), jp.ac.ritsumei.cs.draw.Line.!Line( ).color, jp.ac.ritsumei.cs.draw.Line.!Line( ).outlineWidth }
    7 receiver D = {  } U = {  }
    8 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( )
    9 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( ) } U = { Color.black }
@@ -87,7 +89,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   11 receiver D = {  } U = { kind$0 }
   12 methodCall D = {  } U = { Rect.name, kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
   13 actualOut D = { kind$0.!equals( java.lang.Object ) } U = { kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value }
-  14 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ) }
+  14 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ), jp.ac.ritsumei.cs.draw.Rect.!Rect( ).color, jp.ac.ritsumei.cs.draw.Rect.!Rect( ).outlineWidth }
   15 receiver D = {  } U = {  }
   16 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Rect#Rect( )
   17 actualOut D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ) } U = { Color.black }
@@ -95,7 +97,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   19 receiver D = {  } U = { kind$0 }
   20 methodCall D = {  } U = { Oval.name, kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
   21 actualOut D = { kind$0.!equals( java.lang.Object ) } U = { kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value }
-  22 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ) }
+  22 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ), jp.ac.ritsumei.cs.draw.Oval.!Oval( ).color, jp.ac.ritsumei.cs.draw.Oval.!Oval( ).outlineWidth }
   23 receiver D = {  } U = {  }
   24 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Oval#Oval( )
   25 actualOut D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ) } U = { Color.black }
@@ -103,7 +105,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   27 receiver D = {  } U = { kind$0 }
   28 methodCall D = {  } U = { FilledRect.name, kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
   29 actualOut D = { kind$0.!equals( java.lang.Object ) } U = { kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value }
-  30 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ) }
+  30 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ), jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).color, jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).outlineWidth }
   31 receiver D = {  } U = {  }
   32 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.FilledRect#FilledRect( )
   33 actualOut D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ) } U = { Color.black }
@@ -111,7 +113,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   35 receiver D = {  } U = { kind$0 }
   36 methodCall D = {  } U = { FilledOval.name, kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
   37 actualOut D = { kind$0.!equals( java.lang.Object ) } U = { kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value }
-  38 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ) }
+  38 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ), jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).color, jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).outlineWidth }
   39 receiver D = {  } U = {  }
   40 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.FilledOval#FilledOval( )
   41 actualOut D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ) } U = { Color.black }
@@ -123,12 +125,16 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   47 returnSt D = { $_ } U = {  }
   48 methodExit
   49 formalOut D = {  } U = { $_ }
-   8+ actualOutByFieldAccess D = { this.color } U = {  }
-   8+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
-  16+ actualOutByFieldAccess D = { this.color } U = {  }
-  16+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
-  24+ actualOutByFieldAccess D = { this.color } U = {  }
-  24+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+   8+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( ).color } U = {  }
+   8+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( ).outlineWidth } U = {  }
+  16+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ).color } U = {  }
+  16+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ).outlineWidth } U = {  }
+  24+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ).color } U = {  }
+  24+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ).outlineWidth } U = {  }
+  32+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).color } U = {  }
+  32+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).outlineWidth } U = {  }
+  40+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).color } U = {  }
+  40+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).outlineWidth } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureManager#remove( jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { figure$0 } U = {  }
@@ -235,7 +241,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   88 actualOut D = { this.!parseFloat( java.lang.String ) } U = {  }
   89 localDeclaration D = { figure$17 } U = { this.!createFigure( java.lang.String int int int int java.awt.Color float ) }
   90 receiver D = {  } U = {  }
-  91 methodCall D = {  } U = { FilledOval.name, FilledRect.name, Line.name, Oval.name, Rect.name, figure$7.color, figure$7.endX, figure$7.endY, figure$7.outlineWidth, figure$7.startX, figure$7.startY, this.kind$0.!java.lang.String.COMPACT_STRINGS, this.kind$0.!java.lang.String.coder, this.kind$0.!java.lang.String.value } TO = jp.ac.ritsumei.cs.draw.FigureManager#createFigure( java.lang.String int int int int java.awt.Color float )
+  91 methodCall D = {  } U = { $$RN.this.kind$0.!java.lang.String.COMPACT_STRINGS, $$RN.this.kind$0.!java.lang.String.coder, $$RN.this.kind$0.!java.lang.String.value, $$RN.this.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.!java.lang.String.value, $$RN.this.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.!java.lang.String.value, $$RN.this.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.jp.ac.ritsumei.cs.draw.Oval.kind$0.!java.lang.String.value, $$RN.this.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.jp.ac.ritsumei.cs.draw.Oval.kind$0.jp.ac.ritsumei.cs.draw.FilledRect.kind$0.!java.lang.String.value, Color.black, FilledOval.name, FilledRect.name, Line.name, Oval.name, Rect.name, figure$7.color, figure$7.endX, figure$7.endY, figure$7.outlineWidth, figure$7.startX, figure$7.startY } TO = jp.ac.ritsumei.cs.draw.FigureManager#createFigure( java.lang.String int int int int java.awt.Color float )
   92 actualIn D = {  } U = { name$7 }
   93 actualIn D = {  } U = { x1$8 }
   94 actualIn D = {  } U = { y1$9 }
@@ -243,12 +249,12 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   96 actualIn D = {  } U = { y2$11 }
   97 actualIn D = {  } U = { c$15 }
   98 actualIn D = {  } U = { w$16 }
-  99 actualOut D = { this.!createFigure( java.lang.String int int int int java.awt.Color float ) } U = { FilledOval.name, FilledRect.name, Line.name, Oval.name, Rect.name, figure$7.color, figure$7.endX, figure$7.endY, figure$7.outlineWidth, figure$7.startX, figure$7.startY, this.kind$0.!java.lang.String.COMPACT_STRINGS, this.kind$0.!java.lang.String.coder, this.kind$0.!java.lang.String.value }
+  99 actualOut D = { this.!createFigure( java.lang.String int int int int java.awt.Color float ) } U = { $$RN.this.kind$0.!java.lang.String.COMPACT_STRINGS, $$RN.this.kind$0.!java.lang.String.coder, $$RN.this.kind$0.!java.lang.String.value, $$RN.this.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.!java.lang.String.value, $$RN.this.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.!java.lang.String.value, $$RN.this.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.jp.ac.ritsumei.cs.draw.Oval.kind$0.!java.lang.String.value, $$RN.this.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.jp.ac.ritsumei.cs.draw.Oval.kind$0.jp.ac.ritsumei.cs.draw.FilledRect.kind$0.!java.lang.String.value, Color.black, FilledOval.name, FilledRect.name, Line.name, Oval.name, Rect.name, figure$7.color, figure$7.endX, figure$7.endY, figure$7.outlineWidth, figure$7.startX, figure$7.startY }
  100 assignment D = {  } U = { this.!add( jp.ac.ritsumei.cs.draw.Figure ) }
  101 receiver D = {  } U = {  }
- 102 methodCall D = {  } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY, this.figures } TO = jp.ac.ritsumei.cs.draw.FigureManager#add( jp.ac.ritsumei.cs.draw.Figure )
+ 102 methodCall D = {  } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY, this } TO = jp.ac.ritsumei.cs.draw.FigureManager#add( jp.ac.ritsumei.cs.draw.Figure )
  103 actualIn D = {  } U = { figure$17, figure$17.color, figure$17.endX, figure$17.endY, figure$17.outlineWidth, figure$17.startX, figure$17.startY, this.!createFigure( java.lang.String int int int int java.awt.Color float ).color, this.!createFigure( java.lang.String int int int int java.awt.Color float ).endX, this.!createFigure( java.lang.String int int int int java.awt.Color float ).endY, this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth, this.!createFigure( java.lang.String int int int int java.awt.Color float ).startX, this.!createFigure( java.lang.String int int int int java.awt.Color float ).startY }
- 104 actualOut D = { this.!add( jp.ac.ritsumei.cs.draw.Figure ) } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY, this.figures }
+ 104 actualOut D = { this.!add( jp.ac.ritsumei.cs.draw.Figure ) } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY, this }
  105 merge trySt(8)
  106 catchClause D = { e$18 } U = {  }
  107 assignment D = {  } U = { System.err.!println( java.lang.String ) }
@@ -277,10 +283,12 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
  130 returnSt D = { $_ } U = {  }
  131 methodExit
  132 formalOut D = {  } U = { $_ }
-  91+ actualOutByFieldAccess D = { this.figure$7.endX } U = {  }
-  91+ actualOutByFieldAccess D = { this.figure$7.endY } U = {  }
-  91+ actualOutByFieldAccess D = { this.figure$7.startX } U = {  }
-  91+ actualOutByFieldAccess D = { this.figure$7.startY } U = {  }
+  91+ actualOutByFieldAccess D = { this.!createFigure( java.lang.String int int int int java.awt.Color float ).color } U = {  }
+  91+ actualOutByFieldAccess D = { this.endX } U = {  }
+  91+ actualOutByFieldAccess D = { this.endY } U = {  }
+  91+ actualOutByFieldAccess D = { this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth } U = {  }
+  91+ actualOutByFieldAccess D = { $$RN.this.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.jp.ac.ritsumei.cs.draw.Oval.kind$0.jp.ac.ritsumei.cs.draw.FilledRect.kind$0.jp.ac.ritsumei.cs.draw.FilledOval.figure$7.startX } U = {  }
+  91+ actualOutByFieldAccess D = { $$RN.this.kind$0.jp.ac.ritsumei.cs.draw.Line.super.this.kind$0.jp.ac.ritsumei.cs.draw.Rect.kind$0.jp.ac.ritsumei.cs.draw.Oval.kind$0.jp.ac.ritsumei.cs.draw.FilledRect.kind$0.jp.ac.ritsumei.cs.draw.FilledOval.figure$7.startY } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureManager#add( jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { figure$0 } U = {  }
@@ -453,7 +461,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
    8:    7 ->    9 trueControlFlow
    9:    8 ->   13 trueControlFlow
   10:    9 ->   11 trueControlFlow
-  11:   10 ->   12 trueControlFlow
+  11:   10 ->   10+ trueControlFlow
   12:   11 ->   10 trueControlFlow
   13:   12 ->    8 trueControlFlow
   14:   13 ->   15 trueControlFlow
@@ -474,10 +482,12 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   29:   27 ->   29 fallThroughFlow
   30:   27 ->   29 trueControlFlow
   31:   29 ->   28 trueControlFlow
-  32:   16+ ->   16+ trueControlFlow
-  33:   16+ ->   19 trueControlFlow
-  34:   22+ ->   22+ trueControlFlow
-  35:   22+ ->   25 trueControlFlow
+  32:   10+ ->   10+ trueControlFlow
+  33:   10+ ->   12 trueControlFlow
+  34:   16+ ->   16+ trueControlFlow
+  35:   16+ ->   19 trueControlFlow
+  36:   22+ ->   22+ trueControlFlow
+  37:   22+ ->   25 trueControlFlow
 --
    0: figures
    1:    0 ->    1 trueControlFlow
@@ -547,7 +557,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   38:   30 ->   35 fallThroughFlow
   39:   30 ->   43 trueControlFlow
   40:   31 ->   32 trueControlFlow
-  41:   32 ->   33 trueControlFlow
+  41:   32 ->   32+ trueControlFlow
   42:   33 ->   30 trueControlFlow
   43:   34 ->   39 trueControlFlow
   44:   34 ->   42 falseControlFlow
@@ -557,7 +567,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   48:   38 ->   42 fallThroughFlow
   49:   38 ->   49 trueControlFlow
   50:   39 ->   40 trueControlFlow
-  51:   40 ->   41 trueControlFlow
+  51:   40 ->   40+ trueControlFlow
   52:   41 ->   38 trueControlFlow
   53:   42 ->   43 trueControlFlow
   54:   43 ->   44 trueControlFlow
@@ -573,6 +583,10 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   64:   16+ ->   17 trueControlFlow
   65:   24+ ->   24+ trueControlFlow
   66:   24+ ->   25 trueControlFlow
+  67:   32+ ->   32+ trueControlFlow
+  68:   32+ ->   33 trueControlFlow
+  69:   40+ ->   40+ trueControlFlow
+  70:   40+ ->   41 trueControlFlow
 --
    0: remove( jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlFlow
@@ -748,7 +762,9 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
  156:   91+ ->   91+ trueControlFlow
  157:   91+ ->   91+ trueControlFlow
  158:   91+ ->   91+ trueControlFlow
- 159:   91+ ->   99 trueControlFlow
+ 159:   91+ ->   91+ trueControlFlow
+ 160:   91+ ->   91+ trueControlFlow
+ 161:   91+ ->   99 trueControlFlow
 --
    0: add( jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlFlow

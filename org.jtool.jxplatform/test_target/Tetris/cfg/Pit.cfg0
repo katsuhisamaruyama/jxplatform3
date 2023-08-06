@@ -47,30 +47,30 @@ Class Name = Pit
   16 ifSt D = {  } U = { isLine$2 }
   17 assignment D = {  } U = { this.!eraseLine( int ) }
   18 receiver D = {  } U = {  }
-  19 methodCall D = {  } U = { Pit.columns, t$2.color, t$2.posX, t$2.posY, this.box, this.tile$4.posY, tile$4.color, tile$4.posX, tile$4.posY } TO = Pit#eraseLine( int )
+  19 methodCall D = {  } U = { $$RN.this.box, $$RN.this.tile$4.tile$4.posY, Pit.columns, t$2.color, t$2.posX, t$2.posY, tile$4.color, tile$4.posX, tile$4.posY } TO = Pit#eraseLine( int )
   20 actualIn D = {  } U = { y$1 }
-  21 actualOut D = { this.!eraseLine( int ) } U = { Pit.columns, t$2.color, t$2.posX, t$2.posY, this.box, this.tile$4.posY, tile$4.color, tile$4.posX, tile$4.posY }
+  21 actualOut D = { this.!eraseLine( int ) } U = { $$RN.this.box, $$RN.this.tile$4.tile$4.posY, Pit.columns, t$2.color, t$2.posX, t$2.posY, tile$4.color, tile$4.posX, tile$4.posY }
   22 assignment D = { lines$0 } U = { lines$0 }
   23 merge ifSt(16)
   24 assignment D = { y$1 } U = { y$1 }
   25 ifSt D = {  } U = { lines$0 }
   26 assignment D = {  } U = { this.info.!addLines( int ) }
   27 receiver D = {  } U = { this.info }
-  28 methodCall D = {  } U = { this.info.level, this.info.lines, this.level, this.score } TO = GameInfo#addLines( int )
+  28 methodCall D = {  } U = { $$RN.level, $$RN.lines, $$RN.this.score, this.info.level } TO = GameInfo#addLines( int )
   29 actualIn D = {  } U = { lines$0 }
-  30 actualOut D = { this.info.!addLines( int ) } U = { this.info.level, this.info.lines, this.level, this.score }
+  30 actualOut D = { this.info.!addLines( int ) } U = { $$RN.level, $$RN.lines, $$RN.this.score, this.info.level }
   31 assignment D = {  } U = { this.!update( ) }
   32 receiver D = {  } U = {  }
-  33 methodCall D = {  } U = { Color.black, Color.white, Pit.backgroundColor, Pit.columns, Pit.rows, Tile.BORDER, Tile.SIZE, this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y, this.box, this.color, this.currentBlock, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.height, this.offg, this.posX, this.posY, this.width, tile$2.color, tile$2.posX, tile$2.posY } TO = Pit#update( )
-  34 actualOut D = { this.!update( ), this.color.!java.awt.Color.cs, this.color.!java.awt.Color.falpha, this.color.!java.awt.Color.frgbvalue, this.color.!java.awt.Color.fvalue, this.color.!java.awt.Color.value, this.currentBlock.tiles.!java.util.HashMap.keySet } U = { Color.black, Color.white, Pit.backgroundColor, Pit.columns, Pit.rows, Tile.BORDER, Tile.SIZE, this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y, this.box, this.color, this.currentBlock, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.height, this.offg, this.posX, this.posY, this.width, tile$2.color, tile$2.posX, tile$2.posY }
+  33 methodCall D = {  } U = { $$RN.currentBlock, $$RN.height, $$RN.offg, $$RN.offg.offg.this.box, $$RN.offg.offg.this.tile$2.this.color, $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.g$0.g$0.g$0.g$0.currentBlock.tiles, $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.g$0.g$0.g$0.g$0.currentBlock.tiles.!java.util.HashMap.keySet, $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.g$0.g$0.g$0.g$0.currentBlock.tiles.!java.util.HashSet.map, $$RN.offg.offg.this.tile$2.this.posX, $$RN.offg.offg.this.tile$2.this.posY, $$RN.width, Color.black, Color.white, Pit.backgroundColor, Pit.columns, Pit.rows, Tile.BORDER, Tile.SIZE, this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles, tile$2.color, tile$2.posX, tile$2.posY } TO = Pit#update( )
+  34 actualOut D = { $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.cs, $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.falpha, $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.frgbvalue, $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.fvalue, $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.value, $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.g$0.g$0.g$0.g$0.currentBlock.tiles.!java.util.HashMap.keySet, this.!update( ) } U = { $$RN.currentBlock, $$RN.height, $$RN.offg, $$RN.offg.offg.this.box, $$RN.offg.offg.this.tile$2.this.color, $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.g$0.g$0.g$0.g$0.currentBlock.tiles, $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.g$0.g$0.g$0.g$0.currentBlock.tiles.!java.util.HashMap.keySet, $$RN.offg.offg.this.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.g$0.g$0.g$0.g$0.currentBlock.tiles.!java.util.HashSet.map, $$RN.offg.offg.this.tile$2.this.posX, $$RN.offg.offg.this.tile$2.this.posY, $$RN.width, Color.black, Color.white, Pit.backgroundColor, Pit.columns, Pit.rows, Tile.BORDER, Tile.SIZE, this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles, tile$2.color, tile$2.posX, tile$2.posY }
   35 merge ifSt(25)
   36 methodExit
   37 formalOut D = {  } U = { $_ }
   19+ actualOutByFieldAccess D = { this.box } U = {  }
-  19+ actualOutByFieldAccess D = { this.tile$4.posY } U = {  }
-  28+ actualOutByFieldAccess D = { this.level } U = {  }
-  28+ actualOutByFieldAccess D = { this.info.lines } U = {  }
-  28+ actualOutByFieldAccess D = { this.score } U = {  }
+  19+ actualOutByFieldAccess D = { $$RN.this.tile$4.posY } U = {  }
+  28+ actualOutByFieldAccess D = { this.info.level } U = {  }
+  28+ actualOutByFieldAccess D = { $$RN.lines } U = {  }
+  28+ actualOutByFieldAccess D = { $$RN.this.score } U = {  }
 --
    0 methodEntry [ Pit#update( ) ]
    1 assignment D = {  } U = { this.offg.!setColor( java.awt.Color ) }
@@ -94,18 +94,18 @@ Class Name = Pit
   19 ifSt D = {  } U = { this.!getBox( int int ).color, this.!getBox( int int ).posX, this.!getBox( int int ).posY, tile$2, tile$2.color, tile$2.posX, tile$2.posY }
   20 assignment D = {  } U = { tile$2.!paint( java.awt.Graphics ) }
   21 receiver D = {  } U = { tile$2 }
-  22 methodCall D = {  } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.posX, this.posY } TO = Tile#paint( java.awt.Graphics )
+  22 methodCall D = {  } U = { $$RN.this.color, $$RN.this.posX, $$RN.this.posY, Color.black, Color.white, Tile.BORDER, Tile.SIZE } TO = Tile#paint( java.awt.Graphics )
   23 actualIn D = {  } U = { this.offg }
-  24 actualOut D = { this.color.!java.awt.Color.cs, this.color.!java.awt.Color.falpha, this.color.!java.awt.Color.frgbvalue, this.color.!java.awt.Color.fvalue, this.color.!java.awt.Color.value, tile$2.!paint( java.awt.Graphics ) } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.posX, this.posY }
+  24 actualOut D = { $$RN.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.cs, $$RN.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.falpha, $$RN.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.frgbvalue, $$RN.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.fvalue, $$RN.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.value, tile$2.!paint( java.awt.Graphics ) } U = { $$RN.this.color, $$RN.this.posX, $$RN.this.posY, Color.black, Color.white, Tile.BORDER, Tile.SIZE }
   25 merge ifSt(19)
   26 assignment D = { x$1 } U = { x$1 }
   27 assignment D = { y$0 } U = { y$0 }
   28 ifSt D = {  } U = { this.currentBlock, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles }
   29 assignment D = {  } U = { this.currentBlock.!paint( java.awt.Graphics ) }
   30 receiver D = {  } U = { this.currentBlock }
-  31 methodCall D = {  } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.posX, this.posY } TO = Block#paint( java.awt.Graphics )
+  31 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$1.it$1.this.!getBox( int int ).this.color, $$RN.tiles.it$1.it$1.this.!getBox( int int ).this.posX, $$RN.tiles.it$1.it$1.this.!getBox( int int ).this.posY, $$RN.tiles.it$1.it$1.tile$2.this.color, $$RN.tiles.it$1.it$1.tile$2.this.posX, $$RN.tiles.it$1.it$1.tile$2.this.posY, Color.black, Color.white, Tile.BORDER, Tile.SIZE } TO = Block#paint( java.awt.Graphics )
   32 actualIn D = {  } U = { this.offg }
-  33 actualOut D = { this.color.!java.awt.Color.cs, this.color.!java.awt.Color.falpha, this.color.!java.awt.Color.frgbvalue, this.color.!java.awt.Color.fvalue, this.color.!java.awt.Color.value, this.currentBlock.!paint( java.awt.Graphics ), this.currentBlock.tiles.!java.util.HashMap.keySet } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.color, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.posX, this.posY }
+  33 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.it$1.it$1.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.cs, $$RN.tiles.it$1.it$1.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.falpha, $$RN.tiles.it$1.it$1.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.frgbvalue, $$RN.tiles.it$1.it$1.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.fvalue, $$RN.tiles.it$1.it$1.tile$2.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.value, this.currentBlock.!paint( java.awt.Graphics ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$1.it$1.this.!getBox( int int ).this.color, $$RN.tiles.it$1.it$1.this.!getBox( int int ).this.posX, $$RN.tiles.it$1.it$1.this.!getBox( int int ).this.posY, $$RN.tiles.it$1.it$1.tile$2.this.color, $$RN.tiles.it$1.it$1.tile$2.this.posX, $$RN.tiles.it$1.it$1.tile$2.this.posY, Color.black, Color.white, Tile.BORDER, Tile.SIZE }
   34 merge ifSt(28)
   35 assignment D = {  } U = { this.!repaint( ) }
   36 receiver D = {  } U = {  }
@@ -236,8 +236,8 @@ Class Name = Pit
   20 actualOut D = { this.offg.!fillRect( int int int int ) } U = {  }
   21 assignment D = {  } U = { this.!printStartPrompt( ) }
   22 receiver D = {  } U = {  }
-  23 methodCall D = {  } U = { Color.white, this.font, this.offg } TO = Pit#printStartPrompt( )
-  24 actualOut D = { this.!printStartPrompt( ) } U = { Color.white, this.font, this.offg }
+  23 methodCall D = {  } U = { $$RN.font, $$RN.offg, Color.white } TO = Pit#printStartPrompt( )
+  24 actualOut D = { this.!printStartPrompt( ) } U = { $$RN.font, $$RN.offg, Color.white }
   25 assignment D = {  } U = { this.!repaint( ) }
   26 receiver D = {  } U = {  }
   27 methodCall D = {  } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y } TO = java.awt.Component#repaint( )
@@ -303,8 +303,8 @@ Class Name = Pit
   20 actualOut D = { this.offg.!drawString( java.lang.String int int ) } U = {  }
   21 assignment D = {  } U = { this.!printStartPrompt( ) }
   22 receiver D = {  } U = {  }
-  23 methodCall D = {  } U = { Color.white, this.font, this.offg } TO = Pit#printStartPrompt( )
-  24 actualOut D = { this.!printStartPrompt( ) } U = { Color.white, this.font, this.offg }
+  23 methodCall D = {  } U = { $$RN.font, $$RN.offg, Color.white } TO = Pit#printStartPrompt( )
+  24 actualOut D = { this.!printStartPrompt( ) } U = { $$RN.font, $$RN.offg, Color.white }
   25 assignment D = {  } U = { this.!repaint( ) }
   26 receiver D = {  } U = {  }
   27 methodCall D = {  } U = { this.!java.awt.Component.height, this.!java.awt.Component.parent, this.!java.awt.Component.peer, this.!java.awt.Component.width, this.!java.awt.Component.x, this.!java.awt.Component.y } TO = java.awt.Component#repaint( )
@@ -349,10 +349,10 @@ Class Name = Pit
    2 assignment D = { this.currentBlock } U = { this.nextBlock, this.nextBlock.offsetX, this.nextBlock.offsetY, this.nextBlock.pit, this.nextBlock.posX, this.nextBlock.posY, this.nextBlock.tiles }
    3 assignment D = {  } U = { this.currentBlock.!setPosXY( int int ) }
    4 receiver D = {  } U = { this.currentBlock, this.nextBlock }
-   5 methodCall D = {  } U = { this.currentBlock.tile$3.posX, this.currentBlock.tile$3.posY, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.nextBlock.tile$3.posX, this.nextBlock.tile$3.posY, this.nextBlock.tiles, this.nextBlock.tiles.!java.util.HashMap.keySet, this.nextBlock.tiles.!java.util.HashSet.map } TO = Block#setPosXY( int int )
+   5 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.tile$3.tile$3.posX, this.currentBlock.posY, this.nextBlock.posY } TO = Block#setPosXY( int int )
    6 actualIn D = {  } U = { Pit.initPosX }
    7 actualIn D = {  } U = { Pit.initPosY }
-   8 actualOut D = { this.currentBlock.!setPosXY( int int ), this.currentBlock.tiles.!java.util.HashMap.keySet } U = { this.currentBlock.tile$3.posX, this.currentBlock.tile$3.posY, this.currentBlock.tiles, this.currentBlock.tiles.!java.util.HashMap.keySet, this.currentBlock.tiles.!java.util.HashSet.map, this.nextBlock.tile$3.posX, this.nextBlock.tile$3.posY, this.nextBlock.tiles, this.nextBlock.tiles.!java.util.HashMap.keySet, this.nextBlock.tiles.!java.util.HashSet.map }
+   8 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.currentBlock.!setPosXY( int int ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.tile$3.tile$3.posX, this.currentBlock.posY, this.nextBlock.posY }
    9 merge ifSt(1)
   10 localDeclaration D = { kind$0 } U = { this.rnd.!nextInt( int ) }
   11 receiver D = {  } U = { this.rnd }
@@ -360,11 +360,11 @@ Class Name = Pit
   13 actualOut D = { this.rnd.!nextInt( int ) } U = { this.rnd.!java.util.Random.seed }
   14 assignment D = { this.nextBlock } U = { this.!create( int int int ) }
   15 receiver D = {  } U = {  }
-  16 methodCall D = {  } U = { BlueBlock.COLOR, CyanBlock.COLOR, GreenBlock.COLOR, MagentaBlock.COLOR, OrangeBlock.COLOR, RedBlock.color, YellowBlock.COLOR, this.offsetX, this.offsetX.SIZE, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = Block#create( int int int )
+  16 methodCall D = {  } U = { $$RN.YellowBlock.super.this.posX, $$RN.YellowBlock.super.this.posY, $$RN.YellowBlock.super.this.tiles, $$RN.YellowBlock.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.YellowBlock.super.this.tiles.!java.util.HashSet.map, BlueBlock.COLOR, CyanBlock.COLOR, GreenBlock.COLOR, MagentaBlock.COLOR, OrangeBlock.COLOR, RedBlock.color, YellowBlock.COLOR, this.offsetX, this.offsetX.SIZE, this.offsetY, this.offsetY.SIZE } TO = Block#create( int int int )
   17 actualIn D = {  } U = { kind$0 }
   18 actualIn D = {  } U = {  }
   19 actualIn D = {  } U = {  }
-  20 actualOut D = { this.!create( int int int ) } U = { BlueBlock.COLOR, CyanBlock.COLOR, GreenBlock.COLOR, MagentaBlock.COLOR, OrangeBlock.COLOR, RedBlock.color, YellowBlock.COLOR, this.offsetX, this.offsetX.SIZE, this.offsetY, this.offsetY.SIZE, this.posX, this.posY, this.tiles, this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
+  20 actualOut D = { this.!create( int int int ) } U = { $$RN.YellowBlock.super.this.posX, $$RN.YellowBlock.super.this.posY, $$RN.YellowBlock.super.this.tiles, $$RN.YellowBlock.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.YellowBlock.super.this.tiles.!java.util.HashSet.map, BlueBlock.COLOR, CyanBlock.COLOR, GreenBlock.COLOR, MagentaBlock.COLOR, OrangeBlock.COLOR, RedBlock.color, YellowBlock.COLOR, this.offsetX, this.offsetX.SIZE, this.offsetY, this.offsetY.SIZE }
   21 assignment D = {  } U = { this.nextBlock.!setPit( Pit ) }
   22 receiver D = {  } U = { this.nextBlock }
   23 methodCall D = {  } U = { p$0.box, p$0.currentBlock, p$0.font, p$0.height, p$0.info, p$0.nextBlock, p$0.offImage, p$0.offg, p$0.rnd, p$0.width } TO = Block#setPit( Pit )
@@ -373,24 +373,27 @@ Class Name = Pit
   26 ifSt D = {  } U = { this.currentBlock, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles }
   27 returnSt D = { $_ } U = { this.currentBlock.!canPlace( ) }
   28 receiver D = {  } U = { this.currentBlock }
-  29 methodCall D = {  } U = { this.pit, this.tile$3.posX, this.tile$3.posY, this.tiles, this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map, x$0.COLUMNS, y$1.ROWS } TO = Block#canPlace( )
-  30 actualOut D = { this.currentBlock.!canPlace( ), this.tiles.!java.util.HashMap.keySet } U = { this.pit, this.tile$3.posX, this.tile$3.posY, this.tiles, this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map, x$0.COLUMNS, y$1.ROWS }
+  29 methodCall D = {  } U = { $$RN.this.tiles, $$RN.this.tiles.!java.util.HashMap.keySet, $$RN.this.tiles.!java.util.HashSet.map, $$RN.this.tiles.it$2.it$2.this.pit, $$RN.this.tiles.it$2.it$2.this.pit.box, $$RN.this.tiles.it$2.it$2.this.pit.tile$3.posX, this.currentBlock.posY, x$0.COLUMNS, y$1.ROWS } TO = Block#canPlace( )
+  30 actualOut D = { $$RN.this.tiles.!java.util.HashMap.keySet, this.currentBlock.!canPlace( ) } U = { $$RN.this.tiles, $$RN.this.tiles.!java.util.HashMap.keySet, $$RN.this.tiles.!java.util.HashSet.map, $$RN.this.tiles.it$2.it$2.this.pit, $$RN.this.tiles.it$2.it$2.this.pit.box, $$RN.this.tiles.it$2.it$2.this.pit.tile$3.posX, this.currentBlock.posY, x$0.COLUMNS, y$1.ROWS }
   31 merge ifSt(26)
   32 returnSt D = { $_ } U = {  }
   33 methodExit
   34 formalOut D = {  } U = { $_ }
-   5+ actualOutByFieldAccess D = { this.currentBlock.posX } U = {  }
-   5+ actualOutByFieldAccess D = { this.currentBlock.posY } U = {  }
-   5+ actualOutByFieldAccess D = { this.currentBlock.tile$3.posX } U = {  }
-   5+ actualOutByFieldAccess D = { this.currentBlock.tile$3.posY } U = {  }
+   5+ actualOutByFieldAccess D = { $$RN.posX } U = {  }
+   5+ actualOutByFieldAccess D = { $$RN.posY } U = {  }
+   5+ actualOutByFieldAccess D = { $$RN.tiles.it$2.it$2.tile$3.posX } U = {  }
+   5+ actualOutByFieldAccess D = { $$RN.tiles.it$2.it$2.tile$3.posY } U = {  }
   16+ actualOutByFieldAccess D = { this.offsetX } U = {  }
   16+ actualOutByFieldAccess D = { this.offsetY } U = {  }
   16+ actualOutByFieldAccess D = { this.offsetY } U = {  }
   16+ actualOutByFieldAccess D = { this.offsetY } U = {  }
   16+ actualOutByFieldAccess D = { this.offsetY } U = {  }
   16+ actualOutByFieldAccess D = { this.offsetY } U = {  }
-  16+ actualOutByFieldAccess D = { super.posX } U = {  }
-  16+ actualOutByFieldAccess D = { super.posY } U = {  }
+  16+ actualOutByFieldAccess D = { this.!create( int int int ).posX } U = {  }
+  16+ actualOutByFieldAccess D = { this.!create( int int int ).posY } U = {  }
+  16+ actualOutByFieldAccess D = { this.!create( int int int ).color } U = {  }
+  16+ actualOutByFieldAccess D = { this.!create( int int int ).posX } U = {  }
+  16+ actualOutByFieldAccess D = { this.!create( int int int ).posY } U = {  }
   23+ actualOutByFieldAccess D = { this.nextBlock.pit } U = {  }
 --
    0 fieldEntry [ Pit#nextBlock ]
@@ -413,9 +416,9 @@ Class Name = Pit
    1 formalIn D = { g$0 } U = {  }
    2 assignment D = {  } U = { this.!paint( java.awt.Graphics ) }
    3 receiver D = {  } U = {  }
-   4 methodCall D = {  } U = { this, this.offImage } TO = Pit#paint( java.awt.Graphics )
+   4 methodCall D = {  } U = { $$RN.offImage, this } TO = Pit#paint( java.awt.Graphics )
    5 actualIn D = {  } U = { g$0 }
-   6 actualOut D = { this.!paint( java.awt.Graphics ) } U = { this, this.offImage }
+   6 actualOut D = { this.!paint( java.awt.Graphics ) } U = { $$RN.offImage, this }
    7 methodExit
    8 formalOut D = {  } U = { $_ }
 --
@@ -837,8 +840,11 @@ Class Name = Pit
   47:   16+ ->   16+ trueControlFlow
   48:   16+ ->   16+ trueControlFlow
   49:   16+ ->   16+ trueControlFlow
-  50:   16+ ->   20 trueControlFlow
-  51:   23+ ->   25 trueControlFlow
+  50:   16+ ->   16+ trueControlFlow
+  51:   16+ ->   16+ trueControlFlow
+  52:   16+ ->   16+ trueControlFlow
+  53:   16+ ->   20 trueControlFlow
+  54:   23+ ->   25 trueControlFlow
 --
    0: nextBlock
    1:    0 ->    1 trueControlFlow

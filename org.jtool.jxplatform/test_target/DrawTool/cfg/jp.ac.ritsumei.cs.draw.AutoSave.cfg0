@@ -1,0 +1,97 @@
+----- CCFG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.AutoSave
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.AutoSave#SAVE_PERIOD ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.AutoSave.SAVE_PERIOD } U = { jp.ac.ritsumei.cs.draw.AutoSave.SAVE_PERIOD }
+   2 fieldExit
+--
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.AutoSave#tabbedCanvas ]
+   1 fieldDeclaration D = { this.tabbedCanvas } U = { this.tabbedCanvas }
+   2 fieldExit
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.AutoSave#terminate( ) ]
+   1 assignment D = { this.isRunning } U = {  }
+   2 methodExit
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.AutoSave#isRunning ]
+   1 fieldDeclaration D = { this.isRunning } U = { this.isRunning }
+   2 fieldExit
+--
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.AutoSave#AutoSave( jp.ac.ritsumei.cs.draw.TabbedCanvas ) ]
+   1 formalIn D = { tabbedCanvas$0 } U = {  }
+   2 assignment D = { this.tabbedCanvas } U = { tabbedCanvas$0, tabbedCanvas$0.canvases, tabbedCanvas$0.menu, tabbedCanvas$0.selectedTab, tabbedCanvas$0.selector }
+   3 constructorExit
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.AutoSave#run( ) ]
+   1 assignment D = { this.isRunning } U = {  }
+   2 whileSt D = {  } U = { this.isRunning }
+   3 trySt D = {  } U = {  }
+   4 assignment D = {  } U = { this.!sleep( long ) }
+   5 receiver D = {  } U = {  }
+   6 methodCall D = {  } U = { jp.ac.ritsumei.cs.draw.AutoSave.SAVE_PERIOD } TO = java.lang.Thread#sleep( long )
+   7 actualOut D = { this.!sleep( long ) } U = {  }
+   8 merge trySt(3)
+   9 catchClause D = { e$0 } U = {  }
+  10 enhancedForSt D = { canvas$1 } U = { this.tabbedCanvas.!getAllCanvases( ) }
+  11 receiver D = {  } U = { this.tabbedCanvas }
+  12 methodCall D = {  } U = { this.tabbedCanvas.canvases } TO = jp.ac.ritsumei.cs.draw.TabbedCanvas#getAllCanvases( )
+  13 actualOut D = { this.tabbedCanvas.!getAllCanvases( ) } U = { this.tabbedCanvas.canvases }
+  14 assignment D = {  } U = { canvas$1.!autoSave( ) }
+  15 receiver D = {  } U = { canvas$1 }
+  16 methodCall D = {  } U = { $$RN.menu, $$RN.this.currentFigure, $$RN.this.this.this.changed, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).figures, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.!java.lang.AbstractStringBuilder.count, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.!java.lang.String.COMPACT_STRINGS, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.!java.awt.Color.value, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.!java.io.PrintWriter.lock, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.!java.lang.AbstractStringBuilder.coder, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.!java.lang.String.COMPACT_STRINGS, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.!java.lang.StringBuilder.count, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.!java.lang.StringBuilder.value, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.System.err.!java.io.PrintStream.autoFlush, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.System.err.!java.io.PrintStream.charOut, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.System.err.!java.io.PrintStream.out, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.System.err.!java.io.PrintStream.textOut, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).filename, $$RN.this.this.this.menu.canvas$0.figureManager, System.err, canvas$1.!java.io.PrintWriter.lock, canvas$1.!java.io.PrintWriter.out, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, this, this.currentFigure.color, this.currentFigure.endX, this.currentFigure.endY, this.currentFigure.outlineWidth, this.currentFigure.startX, this.currentFigure.startY, this.figureManager.figures, this.figureManager.filename, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#autoSave( )
+  17 actualOut D = { $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.!java.io.BufferedWriter.cb, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.!java.io.BufferedWriter.nChars, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.!java.io.BufferedWriter.nextChar, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.!java.io.BufferedWriter.out, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.!java.io.OutputStreamWriter.se, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.!java.lang.AbstractStringBuilder.count, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.System.err.!java.io.PrintStream.trouble, canvas$1.!autoSave( ), canvas$1.!java.io.PrintWriter.out, canvas$1.!java.io.PrintWriter.trouble } U = { $$RN.menu, $$RN.this.currentFigure, $$RN.this.this.this.changed, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).figures, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.!java.lang.AbstractStringBuilder.count, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.!java.lang.String.COMPACT_STRINGS, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.!java.awt.Color.value, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.!java.io.PrintWriter.lock, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.!java.lang.AbstractStringBuilder.coder, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.!java.lang.String.COMPACT_STRINGS, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.!java.lang.StringBuilder.count, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.!java.lang.StringBuilder.value, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.System.err.!java.io.PrintStream.autoFlush, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.System.err.!java.io.PrintStream.charOut, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.System.err.!java.io.PrintStream.out, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).canvas$0.!getFigureManager( ).java.io.PrintWriter.java.io.BufferedWriter.java.io.FileWriter.java.lang.StringBuilder.sb$6.figure$4.sb$6.this.sb$6.this.sb$6.this.sb$6.this.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.figure$4.color.sb$6.this.pw$1.sb$6.System.err.!java.io.PrintStream.textOut, $$RN.this.this.this.menu.canvas$0.canvas$0.!getFigureManager( ).filename, $$RN.this.this.this.menu.canvas$0.figureManager, System.err, canvas$1.!java.io.PrintWriter.lock, canvas$1.!java.io.PrintWriter.out, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, this, this.currentFigure.color, this.currentFigure.endX, this.currentFigure.endY, this.currentFigure.outlineWidth, this.currentFigure.startX, this.currentFigure.startY, this.figureManager.figures, this.figureManager.filename, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener }
+  18 methodExit
+  19 formalOut D = {  } U = { $_ }
+--
+   0: SAVE_PERIOD
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: tabbedCanvas
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: terminate( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    3 ->    2 trueControlFlow
+--
+   0: isRunning
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: AutoSave( jp.ac.ritsumei.cs.draw.TabbedCanvas )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    4 ->    3 trueControlFlow
+--
+   0: run( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    2 ->   19 falseControlFlow
+   5:    3 ->    5 trueControlFlow
+   6:    4 ->    8 trueControlFlow
+   7:    5 ->    6 trueControlFlow
+   8:    6 ->    7 trueControlFlow
+   9:    6 ->    9 exceptionCatchFlow
+  10:    7 ->    4 trueControlFlow
+  11:    8 ->   11 trueControlFlow
+  12:    9 ->    8 fallThroughFlow
+  13:    9 ->    8 trueControlFlow
+  14:   10 ->    2 falseControlFlow (L = 2)
+  15:   10 ->   15 trueControlFlow
+  16:   11 ->   12 trueControlFlow
+  17:   12 ->   13 trueControlFlow
+  18:   13 ->   10 trueControlFlow
+  19:   14 ->   11 trueControlFlow (L = 10)
+  20:   15 ->   16 trueControlFlow
+  21:   16 ->   17 trueControlFlow
+  22:   17 ->   14 trueControlFlow
+  23:   19 ->   18 trueControlFlow
+--
+----- CCFG (to here) -----
+
+

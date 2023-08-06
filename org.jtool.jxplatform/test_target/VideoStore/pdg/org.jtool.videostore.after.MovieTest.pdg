@@ -18,11 +18,11 @@ Class Name = org.jtool.videostore.after.MovieTest
   12 actualOut D = { movie$0.!getPriceCode( ) } U = { movie$0.price, movie$0.price.priceCode, org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).price, org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).price.priceCode }
   13 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   15 formalOut D = {  } U = { $_ }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-   3+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.after.MovieTest#testTitleOfRegularMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
@@ -39,11 +39,11 @@ Class Name = org.jtool.videostore.after.MovieTest
   12 actualOut D = { movie$0.!getTitle( ) } U = { movie$0.title, org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title }
   13 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   15 formalOut D = {  } U = { $_ }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-   3+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.after.MovieTest#testTitleOfChildrensMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
@@ -60,11 +60,11 @@ Class Name = org.jtool.videostore.after.MovieTest
   12 actualOut D = { movie$0.!getTitle( ) } U = { movie$0.title, org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title }
   13 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   15 formalOut D = {  } U = { $_ }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-   3+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.after.MovieTest#testTitleOfNewReleaseMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
@@ -81,11 +81,11 @@ Class Name = org.jtool.videostore.after.MovieTest
   12 actualOut D = { movie$0.!getTitle( ) } U = { movie$0.title, org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title }
   13 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   15 formalOut D = {  } U = { $_ }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-   3+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.after.MovieTest#testPriceCodeOfRegularMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
@@ -102,11 +102,11 @@ Class Name = org.jtool.videostore.after.MovieTest
   12 actualOut D = { movie$0.!getPriceCode( ) } U = { movie$0.price, movie$0.price.priceCode, org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).price, org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).price.priceCode }
   13 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   15 formalOut D = {  } U = { $_ }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-   3+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0 methodEntry [ org.jtool.videostore.after.MovieTest#testPriceCodeOfChildrensMovie( ) ]
    1 localDeclaration D = { movie$0 } U = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) }
@@ -123,11 +123,11 @@ Class Name = org.jtool.videostore.after.MovieTest
   12 actualOut D = { movie$0.!getPriceCode( ) } U = { movie$0.price, movie$0.price.priceCode, org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).price, org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).price.priceCode }
   13 actualOut D = { this.!assertEquals( java.lang.Object java.lang.Object ) } U = {  }
   15 formalOut D = {  } U = { $_ }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
-   3+ actualOutByFieldAccess D = { this.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
-   3+ actualOutByFieldAccess D = { super.priceCode } U = {  }
+   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
    0: MovieTest( )
    1:    0 ->    2 trueControlDependence
@@ -154,8 +154,8 @@ Class Name = org.jtool.videostore.after.MovieTest
   19:    0 ->   15 trueControlDependence
   20:    1 ->   10 declaration
   21:    1 ->   10 loopIndependentDefUseDependence movie$0
-  22:    3+ ->    3+ outputDependence this.price
-  23:    3+ ->    3+ outputDependence this.price
+  22:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
+  23:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
   24:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
   25:   12 ->    9 loopIndependentDefUseDependence movie$0.!getPriceCode( )
   26:   13 ->    7 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
@@ -182,8 +182,8 @@ Class Name = org.jtool.videostore.after.MovieTest
   19:    0 ->   15 trueControlDependence
   20:    1 ->   10 declaration
   21:    1 ->   10 loopIndependentDefUseDependence movie$0
-  22:    3+ ->    3+ outputDependence this.price
-  23:    3+ ->    3+ outputDependence this.price
+  22:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
+  23:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
   24:    3+ ->   11 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title
   25:    3+ ->   12 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title
   26:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
@@ -212,8 +212,8 @@ Class Name = org.jtool.videostore.after.MovieTest
   19:    0 ->   15 trueControlDependence
   20:    1 ->   10 declaration
   21:    1 ->   10 loopIndependentDefUseDependence movie$0
-  22:    3+ ->    3+ outputDependence this.price
-  23:    3+ ->    3+ outputDependence this.price
+  22:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
+  23:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
   24:    3+ ->   11 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title
   25:    3+ ->   12 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title
   26:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
@@ -242,8 +242,8 @@ Class Name = org.jtool.videostore.after.MovieTest
   19:    0 ->   15 trueControlDependence
   20:    1 ->   10 declaration
   21:    1 ->   10 loopIndependentDefUseDependence movie$0
-  22:    3+ ->    3+ outputDependence this.price
-  23:    3+ ->    3+ outputDependence this.price
+  22:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
+  23:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
   24:    3+ ->   11 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title
   25:    3+ ->   12 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title
   26:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
@@ -272,8 +272,8 @@ Class Name = org.jtool.videostore.after.MovieTest
   19:    0 ->   15 trueControlDependence
   20:    1 ->   10 declaration
   21:    1 ->   10 loopIndependentDefUseDependence movie$0
-  22:    3+ ->    3+ outputDependence this.price
-  23:    3+ ->    3+ outputDependence this.price
+  22:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
+  23:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
   24:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
   25:   12 ->    9 loopIndependentDefUseDependence movie$0.!getPriceCode( )
   26:   13 ->    7 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )
@@ -300,8 +300,8 @@ Class Name = org.jtool.videostore.after.MovieTest
   19:    0 ->   15 trueControlDependence
   20:    1 ->   10 declaration
   21:    1 ->   10 loopIndependentDefUseDependence movie$0
-  22:    3+ ->    3+ outputDependence this.price
-  23:    3+ ->    3+ outputDependence this.price
+  22:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
+  23:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
   24:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
   25:   12 ->    9 loopIndependentDefUseDependence movie$0.!getPriceCode( )
   26:   13 ->    7 loopIndependentDefUseDependence this.!assertEquals( java.lang.Object java.lang.Object )

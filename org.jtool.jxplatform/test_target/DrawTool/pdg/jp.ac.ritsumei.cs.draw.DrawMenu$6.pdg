@@ -32,7 +32,7 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$6
   26 actualOut D = { canvas$1.!clearFigure( ) } U = { figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY }
   28 catchClause D = { e$3 } U = {  }
   30 formalOut D = {  } U = { $_ }
-  25+ actualOutByFieldAccess D = { this.currentFigure } U = {  }
+  25+ actualOutByFieldAccess D = { canvas$1.currentFigure } U = {  }
   25+ actualOutByFieldAccess D = { canvas$1.grabbedFigure } U = {  }
 --
    0: serialVersionUID

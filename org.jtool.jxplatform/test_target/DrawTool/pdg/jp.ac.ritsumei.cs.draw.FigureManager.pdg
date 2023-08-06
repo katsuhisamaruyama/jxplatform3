@@ -38,8 +38,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   25 actualOut D = { figure$7.!setEnd( int int ) } U = {  }
   27 returnSt D = { $_ } U = { figure$7, figure$7.color, figure$7.endX, figure$7.endY, figure$7.outlineWidth, figure$7.startX, figure$7.startY, this.!createFigure( java.lang.String ).color, this.!createFigure( java.lang.String ).endX, this.!createFigure( java.lang.String ).endY, this.!createFigure( java.lang.String ).outlineWidth, this.!createFigure( java.lang.String ).startX, this.!createFigure( java.lang.String ).startY }
   29 formalOut D = {  } U = { $_ }
-  10+ actualOutByFieldAccess D = { this.color } U = {  }
-  10+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  10+ actualOutByFieldAccess D = { this.!createFigure( java.lang.String ).color } U = {  }
+  10+ actualOutByFieldAccess D = { this.!createFigure( java.lang.String ).outlineWidth } U = {  }
   16+ actualOutByFieldAccess D = { figure$7.startX } U = {  }
   16+ actualOutByFieldAccess D = { figure$7.startY } U = {  }
   22+ actualOutByFieldAccess D = { figure$7.endX } U = {  }
@@ -73,7 +73,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
    3 receiver D = {  } U = { kind$0 }
    4 methodCall D = {  } U = { Line.name, kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
    5 actualOut D = { kind$0.!equals( java.lang.Object ) } U = { kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value }
-   6 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Line.!Line( ) }
+   6 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Line.!Line( ), jp.ac.ritsumei.cs.draw.Line.!Line( ).color, jp.ac.ritsumei.cs.draw.Line.!Line( ).outlineWidth }
    7 receiver D = {  } U = {  }
    8 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Line#Line( )
    9 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( ) } U = { Color.black }
@@ -81,7 +81,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   11 receiver D = {  } U = { kind$0 }
   12 methodCall D = {  } U = { Rect.name, kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
   13 actualOut D = { kind$0.!equals( java.lang.Object ) } U = { kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value }
-  14 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ) }
+  14 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ), jp.ac.ritsumei.cs.draw.Rect.!Rect( ).color, jp.ac.ritsumei.cs.draw.Rect.!Rect( ).outlineWidth }
   15 receiver D = {  } U = {  }
   16 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Rect#Rect( )
   17 actualOut D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ) } U = { Color.black }
@@ -89,7 +89,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   19 receiver D = {  } U = { kind$0 }
   20 methodCall D = {  } U = { Oval.name, kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
   21 actualOut D = { kind$0.!equals( java.lang.Object ) } U = { kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value }
-  22 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ) }
+  22 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ), jp.ac.ritsumei.cs.draw.Oval.!Oval( ).color, jp.ac.ritsumei.cs.draw.Oval.!Oval( ).outlineWidth }
   23 receiver D = {  } U = {  }
   24 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Oval#Oval( )
   25 actualOut D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ) } U = { Color.black }
@@ -97,7 +97,7 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   27 receiver D = {  } U = { kind$0 }
   28 methodCall D = {  } U = { FilledRect.name, kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
   29 actualOut D = { kind$0.!equals( java.lang.Object ) } U = { kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value }
-  30 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ) }
+  30 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ), jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).color, jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).outlineWidth }
   31 receiver D = {  } U = {  }
   32 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.FilledRect#FilledRect( )
   33 actualOut D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ) } U = { Color.black }
@@ -105,22 +105,22 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   35 receiver D = {  } U = { kind$0 }
   36 methodCall D = {  } U = { FilledOval.name, kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
   37 actualOut D = { kind$0.!equals( java.lang.Object ) } U = { kind$0.!java.lang.String.COMPACT_STRINGS, kind$0.!java.lang.String.coder, kind$0.!java.lang.String.value }
-  38 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ) }
+  38 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ), jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).color, jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).outlineWidth }
   39 receiver D = {  } U = {  }
   40 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.FilledOval#FilledOval( )
   41 actualOut D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ) } U = { Color.black }
   47 returnSt D = { $_ } U = {  }
   49 formalOut D = {  } U = { $_ }
-   8+ actualOutByFieldAccess D = { this.color } U = {  }
-   8+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
-  16+ actualOutByFieldAccess D = { this.color } U = {  }
-  16+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
-  24+ actualOutByFieldAccess D = { this.color } U = {  }
-  24+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
-  32+ actualOutByFieldAccess D = { this.color } U = {  }
-  32+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
-  40+ actualOutByFieldAccess D = { this.color } U = {  }
-  40+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+   8+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( ).color } U = {  }
+   8+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( ).outlineWidth } U = {  }
+  16+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ).color } U = {  }
+  16+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Rect.!Rect( ).outlineWidth } U = {  }
+  24+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ).color } U = {  }
+  24+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Oval.!Oval( ).outlineWidth } U = {  }
+  32+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).color } U = {  }
+  32+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).outlineWidth } U = {  }
+  40+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).color } U = {  }
+  40+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).outlineWidth } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureManager#remove( jp.ac.ritsumei.cs.draw.Figure ) ]
    1 formalIn D = { figure$0 } U = {  }
@@ -263,10 +263,10 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
  129 returnSt D = { $_ } U = {  }
  130 returnSt D = { $_ } U = {  }
  132 formalOut D = {  } U = { $_ }
-  91+ actualOutByFieldAccess D = { this.color } U = {  }
+  91+ actualOutByFieldAccess D = { this.!createFigure( java.lang.String int int int int java.awt.Color float ).color } U = {  }
   91+ actualOutByFieldAccess D = { this.figure$7.endX } U = {  }
   91+ actualOutByFieldAccess D = { this.figure$7.endY } U = {  }
-  91+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+  91+ actualOutByFieldAccess D = { this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth } U = {  }
   91+ actualOutByFieldAccess D = { this.figure$7.startX } U = {  }
   91+ actualOutByFieldAccess D = { this.figure$7.startY } U = {  }
 --
@@ -455,30 +455,34 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   28:    8 ->   21 loopIndependentDefUseDependence figure$7
   29:    8 ->   27 declaration
   30:    8 ->   27 loopIndependentDefUseDependence figure$7
-  31:   12 ->    8 loopIndependentDefUseDependence this.!createFigure( java.lang.String )
-  32:   13 ->   14 trueControlDependence
-  33:   13 ->   15 trueControlDependence
-  34:   13 ->   16 trueControlDependence
-  35:   13 ->   16+ trueControlDependence
-  36:   13 ->   16+ trueControlDependence
-  37:   13 ->   17 trueControlDependence
-  38:   13 ->   18 trueControlDependence
-  39:   13 ->   19 trueControlDependence
-  40:   13 ->   20 trueControlDependence
-  41:   13 ->   21 trueControlDependence
-  42:   13 ->   22 trueControlDependence
-  43:   13 ->   22+ trueControlDependence
-  44:   13 ->   22+ trueControlDependence
-  45:   13 ->   23 trueControlDependence
-  46:   13 ->   24 trueControlDependence
-  47:   13 ->   25 trueControlDependence
-  48:   16+ ->   27 loopIndependentDefUseDependence figure$7.startX
-  49:   16+ ->   27 loopIndependentDefUseDependence figure$7.startY
-  50:   19 ->   14 loopIndependentDefUseDependence figure$7.!setStart( int int )
-  51:   22+ ->   27 loopIndependentDefUseDependence figure$7.endX
-  52:   22+ ->   27 loopIndependentDefUseDependence figure$7.endY
-  53:   25 ->   20 loopIndependentDefUseDependence figure$7.!setEnd( int int )
-  54:   27 ->   29 loopIndependentDefUseDependence $_
+  31:   10+ ->   13 loopIndependentDefUseDependence this.!createFigure( java.lang.String ).color
+  32:   10+ ->   13 loopIndependentDefUseDependence this.!createFigure( java.lang.String ).outlineWidth
+  33:   10+ ->   27 loopIndependentDefUseDependence this.!createFigure( java.lang.String ).color
+  34:   10+ ->   27 loopIndependentDefUseDependence this.!createFigure( java.lang.String ).outlineWidth
+  35:   12 ->    8 loopIndependentDefUseDependence this.!createFigure( java.lang.String )
+  36:   13 ->   14 trueControlDependence
+  37:   13 ->   15 trueControlDependence
+  38:   13 ->   16 trueControlDependence
+  39:   13 ->   16+ trueControlDependence
+  40:   13 ->   16+ trueControlDependence
+  41:   13 ->   17 trueControlDependence
+  42:   13 ->   18 trueControlDependence
+  43:   13 ->   19 trueControlDependence
+  44:   13 ->   20 trueControlDependence
+  45:   13 ->   21 trueControlDependence
+  46:   13 ->   22 trueControlDependence
+  47:   13 ->   22+ trueControlDependence
+  48:   13 ->   22+ trueControlDependence
+  49:   13 ->   23 trueControlDependence
+  50:   13 ->   24 trueControlDependence
+  51:   13 ->   25 trueControlDependence
+  52:   16+ ->   27 loopIndependentDefUseDependence figure$7.startX
+  53:   16+ ->   27 loopIndependentDefUseDependence figure$7.startY
+  54:   19 ->   14 loopIndependentDefUseDependence figure$7.!setStart( int int )
+  55:   22+ ->   27 loopIndependentDefUseDependence figure$7.endX
+  56:   22+ ->   27 loopIndependentDefUseDependence figure$7.endY
+  57:   25 ->   20 loopIndependentDefUseDependence figure$7.!setEnd( int int )
+  58:   27 ->   29 loopIndependentDefUseDependence $_
 --
    0: figures
    1:    0 ->    1 trueControlDependence
@@ -534,76 +538,86 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   27:    6 ->   13 fallThroughControlDependence
   28:    6 ->   47 outputDependence $_
   29:    6 ->   47 trueControlDependence
-  30:    9 ->    6 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( )
-  31:   10 ->   14 trueControlDependence
-  32:   10 ->   15 trueControlDependence
-  33:   10 ->   16 trueControlDependence
-  34:   10 ->   16+ trueControlDependence
-  35:   10 ->   16+ trueControlDependence
-  36:   10 ->   17 trueControlDependence
-  37:   10 ->   18 falseControlDependence
-  38:   10 ->   19 falseControlDependence
-  39:   10 ->   20 falseControlDependence
-  40:   10 ->   21 falseControlDependence
-  41:   13 ->   10 loopIndependentDefUseDependence kind$0.!equals( java.lang.Object )
-  42:   13 ->   21 outputDependence kind$0.!equals( java.lang.Object )
-  43:   14 ->   18 fallThroughControlDependence
-  44:   14 ->   19 fallThroughControlDependence
-  45:   14 ->   20 fallThroughControlDependence
-  46:   14 ->   21 fallThroughControlDependence
-  47:   14 ->   47 outputDependence $_
-  48:   14 ->   47 trueControlDependence
-  49:   17 ->   14 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Rect.!Rect( )
-  50:   18 ->   22 trueControlDependence
-  51:   18 ->   23 trueControlDependence
-  52:   18 ->   24 trueControlDependence
-  53:   18 ->   24+ trueControlDependence
-  54:   18 ->   24+ trueControlDependence
-  55:   18 ->   25 trueControlDependence
-  56:   18 ->   26 falseControlDependence
-  57:   18 ->   27 falseControlDependence
-  58:   18 ->   28 falseControlDependence
-  59:   18 ->   29 falseControlDependence
-  60:   21 ->   18 loopIndependentDefUseDependence kind$0.!equals( java.lang.Object )
-  61:   21 ->   29 outputDependence kind$0.!equals( java.lang.Object )
-  62:   22 ->   26 fallThroughControlDependence
-  63:   22 ->   27 fallThroughControlDependence
-  64:   22 ->   28 fallThroughControlDependence
-  65:   22 ->   29 fallThroughControlDependence
-  66:   22 ->   47 outputDependence $_
-  67:   22 ->   47 trueControlDependence
-  68:   25 ->   22 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Oval.!Oval( )
-  69:   26 ->   30 trueControlDependence
-  70:   26 ->   31 trueControlDependence
-  71:   26 ->   32 trueControlDependence
-  72:   26 ->   32+ trueControlDependence
-  73:   26 ->   32+ trueControlDependence
-  74:   26 ->   33 trueControlDependence
-  75:   26 ->   34 falseControlDependence
-  76:   26 ->   35 falseControlDependence
-  77:   26 ->   36 falseControlDependence
-  78:   26 ->   37 falseControlDependence
-  79:   29 ->   26 loopIndependentDefUseDependence kind$0.!equals( java.lang.Object )
-  80:   29 ->   37 outputDependence kind$0.!equals( java.lang.Object )
-  81:   30 ->   34 fallThroughControlDependence
-  82:   30 ->   35 fallThroughControlDependence
-  83:   30 ->   36 fallThroughControlDependence
-  84:   30 ->   37 fallThroughControlDependence
-  85:   30 ->   47 outputDependence $_
-  86:   30 ->   47 trueControlDependence
-  87:   33 ->   30 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( )
-  88:   34 ->   38 trueControlDependence
-  89:   34 ->   39 trueControlDependence
-  90:   34 ->   40 trueControlDependence
-  91:   34 ->   40+ trueControlDependence
-  92:   34 ->   40+ trueControlDependence
-  93:   34 ->   41 trueControlDependence
-  94:   34 ->   47 falseControlDependence
-  95:   37 ->   34 loopIndependentDefUseDependence kind$0.!equals( java.lang.Object )
-  96:   38 ->   47 fallThroughControlDependence
-  97:   38 ->   49 loopIndependentDefUseDependence $_
-  98:   41 ->   38 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( )
-  99:   47 ->   49 loopIndependentDefUseDependence $_
+  30:    8+ ->    6 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( ).color
+  31:    8+ ->    6 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( ).outlineWidth
+  32:    9 ->    6 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( )
+  33:   10 ->   14 trueControlDependence
+  34:   10 ->   15 trueControlDependence
+  35:   10 ->   16 trueControlDependence
+  36:   10 ->   16+ trueControlDependence
+  37:   10 ->   16+ trueControlDependence
+  38:   10 ->   17 trueControlDependence
+  39:   10 ->   18 falseControlDependence
+  40:   10 ->   19 falseControlDependence
+  41:   10 ->   20 falseControlDependence
+  42:   10 ->   21 falseControlDependence
+  43:   13 ->   10 loopIndependentDefUseDependence kind$0.!equals( java.lang.Object )
+  44:   13 ->   21 outputDependence kind$0.!equals( java.lang.Object )
+  45:   14 ->   18 fallThroughControlDependence
+  46:   14 ->   19 fallThroughControlDependence
+  47:   14 ->   20 fallThroughControlDependence
+  48:   14 ->   21 fallThroughControlDependence
+  49:   14 ->   47 outputDependence $_
+  50:   14 ->   47 trueControlDependence
+  51:   16+ ->   14 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Rect.!Rect( ).color
+  52:   16+ ->   14 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Rect.!Rect( ).outlineWidth
+  53:   17 ->   14 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Rect.!Rect( )
+  54:   18 ->   22 trueControlDependence
+  55:   18 ->   23 trueControlDependence
+  56:   18 ->   24 trueControlDependence
+  57:   18 ->   24+ trueControlDependence
+  58:   18 ->   24+ trueControlDependence
+  59:   18 ->   25 trueControlDependence
+  60:   18 ->   26 falseControlDependence
+  61:   18 ->   27 falseControlDependence
+  62:   18 ->   28 falseControlDependence
+  63:   18 ->   29 falseControlDependence
+  64:   21 ->   18 loopIndependentDefUseDependence kind$0.!equals( java.lang.Object )
+  65:   21 ->   29 outputDependence kind$0.!equals( java.lang.Object )
+  66:   22 ->   26 fallThroughControlDependence
+  67:   22 ->   27 fallThroughControlDependence
+  68:   22 ->   28 fallThroughControlDependence
+  69:   22 ->   29 fallThroughControlDependence
+  70:   22 ->   47 outputDependence $_
+  71:   22 ->   47 trueControlDependence
+  72:   24+ ->   22 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Oval.!Oval( ).color
+  73:   24+ ->   22 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Oval.!Oval( ).outlineWidth
+  74:   25 ->   22 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Oval.!Oval( )
+  75:   26 ->   30 trueControlDependence
+  76:   26 ->   31 trueControlDependence
+  77:   26 ->   32 trueControlDependence
+  78:   26 ->   32+ trueControlDependence
+  79:   26 ->   32+ trueControlDependence
+  80:   26 ->   33 trueControlDependence
+  81:   26 ->   34 falseControlDependence
+  82:   26 ->   35 falseControlDependence
+  83:   26 ->   36 falseControlDependence
+  84:   26 ->   37 falseControlDependence
+  85:   29 ->   26 loopIndependentDefUseDependence kind$0.!equals( java.lang.Object )
+  86:   29 ->   37 outputDependence kind$0.!equals( java.lang.Object )
+  87:   30 ->   34 fallThroughControlDependence
+  88:   30 ->   35 fallThroughControlDependence
+  89:   30 ->   36 fallThroughControlDependence
+  90:   30 ->   37 fallThroughControlDependence
+  91:   30 ->   47 outputDependence $_
+  92:   30 ->   47 trueControlDependence
+  93:   32+ ->   30 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).color
+  94:   32+ ->   30 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( ).outlineWidth
+  95:   33 ->   30 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledRect.!FilledRect( )
+  96:   34 ->   38 trueControlDependence
+  97:   34 ->   39 trueControlDependence
+  98:   34 ->   40 trueControlDependence
+  99:   34 ->   40+ trueControlDependence
+ 100:   34 ->   40+ trueControlDependence
+ 101:   34 ->   41 trueControlDependence
+ 102:   34 ->   47 falseControlDependence
+ 103:   37 ->   34 loopIndependentDefUseDependence kind$0.!equals( java.lang.Object )
+ 104:   38 ->   47 fallThroughControlDependence
+ 105:   38 ->   49 loopIndependentDefUseDependence $_
+ 106:   40+ ->   38 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).color
+ 107:   40+ ->   38 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( ).outlineWidth
+ 108:   41 ->   38 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FilledOval.!FilledOval( )
+ 109:   47 ->   49 loopIndependentDefUseDependence $_
 --
    0: remove( jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlDependence
@@ -933,53 +947,55 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
  310:   89 ->   89 defOrderDependence figure$17
  311:   89 ->  103 declaration
  312:   89 ->  103 loopIndependentDefUseDependence figure$17
- 313:   91+ ->   91+ outputDependence this.color
- 314:   91+ ->   91+ outputDependence this.figure$7.endX
- 315:   91+ ->   91+ outputDependence this.figure$7.endY
- 316:   91+ ->   91+ outputDependence this.figure$7.startX
- 317:   91+ ->   91+ outputDependence this.figure$7.startY
- 318:   91+ ->   91+ outputDependence this.outlineWidth
- 319:   99 ->   89 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float )
- 320:   99 ->   99 defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float )
- 321:  104 ->  100 loopIndependentDefUseDependence this.!add( jp.ac.ritsumei.cs.draw.Figure )
- 322:  104 ->  104 defOrderDependence this.!add( jp.ac.ritsumei.cs.draw.Figure )
- 323:  106 ->  107 trueControlDependence
- 324:  106 ->  108 trueControlDependence
- 325:  106 ->  109 trueControlDependence
- 326:  106 ->  110 trueControlDependence
- 327:  106 ->  111 trueControlDependence
- 328:  106 ->  118 fallThroughControlDependence
- 329:  110 ->  107 loopIndependentDefUseDependence System.err.!println( java.lang.String )
- 330:  111 ->  118 fallThroughControlDependence
- 331:  111 ->  132 loopIndependentDefUseDependence $_
- 332:  112 ->  113 trueControlDependence
- 333:  112 ->  114 trueControlDependence
- 334:  112 ->  115 trueControlDependence
- 335:  112 ->  116 trueControlDependence
- 336:  112 ->  117 trueControlDependence
- 337:  112 ->  118 fallThroughControlDependence
- 338:  116 ->  113 loopIndependentDefUseDependence System.err.!println( java.lang.String )
- 339:  117 ->  118 fallThroughControlDependence
- 340:  117 ->  132 loopIndependentDefUseDependence $_
- 341:  118 ->  119 trueControlDependence
- 342:  118 ->  120 trueControlDependence
- 343:  118 ->  130 fallThroughControlDependence
- 344:  119 ->  128 trueControlDependence
- 345:  120 ->  122 trueControlDependence
- 346:  120 ->  123 trueControlDependence
- 347:  120 ->  125 falseControlDependence
- 348:  123 ->  121 trueControlDependence
- 349:  123 ->  124 trueControlDependence
- 350:  123 ->  128 exceptionCatch
- 351:  123 ->  130 trueControlDependence
- 352:  124 ->  121 loopIndependentDefUseDependence br$1.!close( )
- 353:  125 ->  130 fallThroughControlDependence
- 354:  125 ->  132 loopIndependentDefUseDependence $_
- 355:  128 ->  129 trueControlDependence
- 356:  128 ->  130 fallThroughControlDependence
- 357:  129 ->  130 fallThroughControlDependence
- 358:  129 ->  132 loopIndependentDefUseDependence $_
- 359:  130 ->  132 loopIndependentDefUseDependence $_
+ 313:   91+ ->   91+ defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).color
+ 314:   91+ ->   91+ defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth
+ 315:   91+ ->   91+ outputDependence this.figure$7.endX
+ 316:   91+ ->   91+ outputDependence this.figure$7.endY
+ 317:   91+ ->   91+ outputDependence this.figure$7.startX
+ 318:   91+ ->   91+ outputDependence this.figure$7.startY
+ 319:   91+ ->  103 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).color
+ 320:   91+ ->  103 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth
+ 321:   99 ->   89 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float )
+ 322:   99 ->   99 defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float )
+ 323:  104 ->  100 loopIndependentDefUseDependence this.!add( jp.ac.ritsumei.cs.draw.Figure )
+ 324:  104 ->  104 defOrderDependence this.!add( jp.ac.ritsumei.cs.draw.Figure )
+ 325:  106 ->  107 trueControlDependence
+ 326:  106 ->  108 trueControlDependence
+ 327:  106 ->  109 trueControlDependence
+ 328:  106 ->  110 trueControlDependence
+ 329:  106 ->  111 trueControlDependence
+ 330:  106 ->  118 fallThroughControlDependence
+ 331:  110 ->  107 loopIndependentDefUseDependence System.err.!println( java.lang.String )
+ 332:  111 ->  118 fallThroughControlDependence
+ 333:  111 ->  132 loopIndependentDefUseDependence $_
+ 334:  112 ->  113 trueControlDependence
+ 335:  112 ->  114 trueControlDependence
+ 336:  112 ->  115 trueControlDependence
+ 337:  112 ->  116 trueControlDependence
+ 338:  112 ->  117 trueControlDependence
+ 339:  112 ->  118 fallThroughControlDependence
+ 340:  116 ->  113 loopIndependentDefUseDependence System.err.!println( java.lang.String )
+ 341:  117 ->  118 fallThroughControlDependence
+ 342:  117 ->  132 loopIndependentDefUseDependence $_
+ 343:  118 ->  119 trueControlDependence
+ 344:  118 ->  120 trueControlDependence
+ 345:  118 ->  130 fallThroughControlDependence
+ 346:  119 ->  128 trueControlDependence
+ 347:  120 ->  122 trueControlDependence
+ 348:  120 ->  123 trueControlDependence
+ 349:  120 ->  125 falseControlDependence
+ 350:  123 ->  121 trueControlDependence
+ 351:  123 ->  124 trueControlDependence
+ 352:  123 ->  128 exceptionCatch
+ 353:  123 ->  130 trueControlDependence
+ 354:  124 ->  121 loopIndependentDefUseDependence br$1.!close( )
+ 355:  125 ->  130 fallThroughControlDependence
+ 356:  125 ->  132 loopIndependentDefUseDependence $_
+ 357:  128 ->  129 trueControlDependence
+ 358:  128 ->  130 fallThroughControlDependence
+ 359:  129 ->  130 fallThroughControlDependence
+ 360:  129 ->  132 loopIndependentDefUseDependence $_
+ 361:  130 ->  132 loopIndependentDefUseDependence $_
 --
    0: add( jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlDependence

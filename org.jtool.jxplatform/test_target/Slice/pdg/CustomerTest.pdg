@@ -28,9 +28,9 @@ Class Name = CustomerTest
   25 actualOut D = { order$1.!addRental( Rental ), order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size } U = { Order.!Order( ).rentals, Order.!Order( ).rentals.!java.util.ArrayList.elementData, Order.!Order( ).rentals.!java.util.ArrayList.modCount, Order.!Order( ).rentals.!java.util.ArrayList.size, order$1.rentals, order$1.rentals.!java.util.ArrayList.elementData, order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size, rental$0.days, rental$0.price }
   26 localDeclaration D = { message$3 } U = { customer$0.!statement( Order ) }
   27 receiver D = {  } U = { customer$0 }
-  28 methodCall D = {  } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, customer$0.discount, customer$0.name, order$0.rentals, this.discount, this.rental$2.days, this.rental$2.price } TO = Customer#statement( Order )
+  28 methodCall D = {  } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, Customer.!Customer( java.lang.String ).rental$2.days, Customer.!Customer( java.lang.String ).rental$2.price, customer$0.discount, customer$0.name, customer$0.rental$2.days, customer$0.rental$2.price, order$0.rentals } TO = Customer#statement( Order )
   29 actualIn D = {  } U = { Order.!Order( ).rentals, order$1, order$1.rentals }
-  30 actualOut D = { customer$0.!statement( Order ) } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, customer$0.discount, customer$0.name, order$0.rentals, this.discount, this.rental$2.days, this.rental$2.price }
+  30 actualOut D = { customer$0.!statement( Order ) } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, Customer.!Customer( java.lang.String ).rental$2.days, Customer.!Customer( java.lang.String ).rental$2.price, customer$0.discount, customer$0.name, customer$0.rental$2.days, customer$0.rental$2.price, order$0.rentals }
   31 localDeclaration D = { order2$4 } U = { Order.!Order( ).rentals, order$1, order$1.rentals }
   33 formalOut D = {  } U = { $_ }
    3+ actualOutByFieldAccess D = { Customer.!Customer( java.lang.String ).name } U = {  }
@@ -78,9 +78,9 @@ Class Name = CustomerTest
   36 actualOut D = { order$1.!addRental( Rental ), order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size } U = { Order.!Order( ).rentals, Order.!Order( ).rentals.!java.util.ArrayList.elementData, Order.!Order( ).rentals.!java.util.ArrayList.modCount, Order.!Order( ).rentals.!java.util.ArrayList.size, order$1.rentals, order$1.rentals.!java.util.ArrayList.elementData, order$1.rentals.!java.util.ArrayList.modCount, order$1.rentals.!java.util.ArrayList.size, rental$0.days, rental$0.price }
   37 localDeclaration D = { message$4 } U = { customer$0.!statement( Order ) }
   38 receiver D = {  } U = { customer$0 }
-  39 methodCall D = {  } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, customer$0.discount, customer$0.name, order$0.rentals, this.discount, this.rental$2.days, this.rental$2.price } TO = Customer#statement( Order )
+  39 methodCall D = {  } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, Customer.!Customer( java.lang.String ).rental$2.days, Customer.!Customer( java.lang.String ).rental$2.price, customer$0.discount, customer$0.name, customer$0.rental$2.days, customer$0.rental$2.price, order$0.rentals } TO = Customer#statement( Order )
   40 actualIn D = {  } U = { Order.!Order( ).rentals, order$1, order$1.rentals }
-  41 actualOut D = { customer$0.!statement( Order ) } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, customer$0.discount, customer$0.name, order$0.rentals, this.discount, this.rental$2.days, this.rental$2.price }
+  41 actualOut D = { customer$0.!statement( Order ) } U = { Customer.!Customer( java.lang.String ).discount, Customer.!Customer( java.lang.String ).name, Customer.!Customer( java.lang.String ).rental$2.days, Customer.!Customer( java.lang.String ).rental$2.price, customer$0.discount, customer$0.name, customer$0.rental$2.days, customer$0.rental$2.price, order$0.rentals }
   43 formalOut D = {  } U = { $_ }
    3+ actualOutByFieldAccess D = { Customer.!Customer( java.lang.String ).name } U = {  }
    8+ actualOutByFieldAccess D = { customer$0.discount } U = {  }

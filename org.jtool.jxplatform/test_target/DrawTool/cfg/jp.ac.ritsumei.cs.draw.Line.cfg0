@@ -1,0 +1,470 @@
+----- CCFG (from here) -----
+Class Name = jp.ac.ritsumei.cs.draw.Line
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#getName( ) ]
+   1 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Line.name }
+   2 methodExit
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#drawGrabbedFigure( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 assignment D = {  } U = { g$0.!setColor( java.awt.Color ) }
+   3 receiver D = {  } U = { g$0 }
+   4 methodCall D = {  } U = { this.color } TO = java.awt.Graphics#setColor( java.awt.Color )
+   5 actualOut D = { g$0.!setColor( java.awt.Color ) } U = {  }
+   6 assignment D = {  } U = { this.!drawGrabbedMark( java.awt.Graphics int int ) }
+   7 receiver D = {  } U = {  }
+   8 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#drawGrabbedMark( java.awt.Graphics int int )
+   9 actualIn D = {  } U = { g$0 }
+  10 actualIn D = {  } U = { this.!getLeft( ) }
+  11 receiver D = {  } U = {  }
+  12 methodCall D = {  } U = { $$RN.endX, $$RN.startX } TO = jp.ac.ritsumei.cs.draw.Figure#getLeft( )
+  13 actualOut D = { this.!getLeft( ) } U = { $$RN.endX, $$RN.startX }
+  14 actualIn D = {  } U = { this.!getTop( ) }
+  15 receiver D = {  } U = {  }
+  16 methodCall D = {  } U = { $$RN.endY, $$RN.startY } TO = jp.ac.ritsumei.cs.draw.Figure#getTop( )
+  17 actualOut D = { this.!getTop( ) } U = { $$RN.endY, $$RN.startY }
+  18 actualOut D = { this.!drawGrabbedMark( java.awt.Graphics int int ) } U = {  }
+  19 assignment D = {  } U = { this.!drawGrabbedMark( java.awt.Graphics int int ) }
+  20 receiver D = {  } U = {  }
+  21 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#drawGrabbedMark( java.awt.Graphics int int )
+  22 actualIn D = {  } U = { g$0 }
+  23 actualIn D = {  } U = { this.!getRight( ) }
+  24 receiver D = {  } U = {  }
+  25 methodCall D = {  } U = { $$RN.endX, $$RN.startX } TO = jp.ac.ritsumei.cs.draw.Figure#getRight( )
+  26 actualOut D = { this.!getRight( ) } U = { $$RN.endX, $$RN.startX }
+  27 actualIn D = {  } U = { this.!getBottom( ) }
+  28 receiver D = {  } U = {  }
+  29 methodCall D = {  } U = { $$RN.endY, $$RN.startY } TO = jp.ac.ritsumei.cs.draw.Figure#getBottom( )
+  30 actualOut D = { this.!getBottom( ) } U = { $$RN.endY, $$RN.startY }
+  31 actualOut D = { this.!drawGrabbedMark( java.awt.Graphics int int ) } U = {  }
+  32 methodExit
+  33 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#create( java.awt.Color float ) ]
+   1 formalIn D = { c$0 } U = {  }
+   2 formalIn D = { w$1 } U = {  }
+   3 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ), jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth }
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color float )
+   6 actualIn D = {  } U = { c$0 }
+   7 actualIn D = {  } U = { w$1 }
+   8 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) } U = {  }
+   9 methodExit
+  10 formalOut D = {  } U = { $_ }
+   5+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color } U = {  }
+   5+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth } U = {  }
+--
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color ) ]
+   1 formalIn D = { c$0 } U = {  }
+   2 assignment D = {  } U = { super.!Figure( java.awt.Color ) }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( java.awt.Color )
+   5 actualIn D = {  } U = { c$0 }
+   6 actualOut D = { super.!Figure( java.awt.Color ) } U = {  }
+   7 constructorExit
+   8 formalOut D = {  } U = { $_ }
+   4+ actualOutByFieldAccess D = { super.color } U = {  }
+   4+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#createClone( ) ]
+   1 localDeclaration D = { figure$0 } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color float )
+   4 actualIn D = {  } U = { this.color }
+   5 actualIn D = {  } U = { this.outlineWidth }
+   6 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) } U = {  }
+   7 assignment D = {  } U = { figure$0.!setStart( int int ) }
+   8 receiver D = {  } U = { figure$0 }
+   9 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#setStart( int int )
+  10 actualIn D = {  } U = { this.startX }
+  11 actualIn D = {  } U = { this.startY }
+  12 actualOut D = { figure$0.!setStart( int int ) } U = {  }
+  13 assignment D = {  } U = { figure$0.!setEnd( int int ) }
+  14 receiver D = {  } U = { figure$0 }
+  15 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#setEnd( int int )
+  16 actualIn D = {  } U = { this.endX }
+  17 actualIn D = {  } U = { this.endY }
+  18 actualOut D = { figure$0.!setEnd( int int ) } U = {  }
+  19 returnSt D = { $_ } U = { figure$0, figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).endX, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).endY, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).startX, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).startY }
+  20 methodExit
+  21 formalOut D = {  } U = { $_ }
+   3+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color } U = {  }
+   3+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth } U = {  }
+   9+ actualOutByFieldAccess D = { figure$0.startX } U = {  }
+   9+ actualOutByFieldAccess D = { figure$0.startY } U = {  }
+  15+ actualOutByFieldAccess D = { figure$0.endX } U = {  }
+  15+ actualOutByFieldAccess D = { figure$0.endY } U = {  }
+--
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Line#Line( int ) ]
+   1 formalIn D = { w$0 } U = {  }
+   2 assignment D = {  } U = { super.!Figure( float ) }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( float )
+   5 actualIn D = {  } U = { w$0 }
+   6 actualOut D = { super.!Figure( float ) } U = { Color.black }
+   7 constructorExit
+   8 formalOut D = {  } U = { $_ }
+   4+ actualOutByFieldAccess D = { super.color } U = {  }
+   4+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
+--
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Line#Line( ) ]
+   1 assignment D = {  } U = { super.!Figure( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( )
+   4 actualOut D = { super.!Figure( ) } U = { Color.black }
+   5 constructorExit
+   6 formalOut D = {  } U = { $_ }
+   3+ actualOutByFieldAccess D = { super.color } U = {  }
+   3+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#drawRubber( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 localDeclaration D = { g2$1 } U = { g$0 }
+   3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
+   4 receiver D = {  } U = { g2$1 }
+   5 methodCall D = {  } U = { this.color } TO = java.awt.Graphics#setColor( java.awt.Color )
+   6 actualOut D = { g2$1.!setColor( java.awt.Color ) } U = {  }
+   7 assignment D = {  } U = { g2$1.!drawLine( int int int int ) }
+   8 receiver D = {  } U = { g2$1 }
+   9 methodCall D = {  } U = { this.endX, this.endY, this.startX, this.startY } TO = java.awt.Graphics#drawLine( int int int int )
+  10 actualOut D = { g2$1.!drawLine( int int int int ) } U = {  }
+  11 methodExit
+  12 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color float ) ]
+   1 formalIn D = { c$0 } U = {  }
+   2 formalIn D = { w$1 } U = {  }
+   3 assignment D = {  } U = { super.!Figure( java.awt.Color float ) }
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( java.awt.Color float )
+   6 actualIn D = {  } U = { c$0 }
+   7 actualIn D = {  } U = { w$1 }
+   8 actualOut D = { super.!Figure( java.awt.Color float ) } U = {  }
+   9 constructorExit
+  10 formalOut D = {  } U = { $_ }
+   5+ actualOutByFieldAccess D = { super.color } U = {  }
+   5+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#paintIcon( java.awt.Graphics int int int int ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 formalIn D = { x$1 } U = {  }
+   3 formalIn D = { y$2 } U = {  }
+   4 formalIn D = { w$3 } U = {  }
+   5 formalIn D = { h$4 } U = {  }
+   6 assignment D = {  } U = { g$0.!drawLine( int int int int ) }
+   7 receiver D = {  } U = { g$0 }
+   8 methodCall D = {  } U = { h$4, w$3, x$1, y$2 } TO = java.awt.Graphics#drawLine( int int int int )
+   9 actualOut D = { g$0.!drawLine( int int int int ) } U = {  }
+  10 localDeclaration D = { i$5 } U = {  }
+  11 forSt D = {  } U = { i$5, this.outlineWidth }
+  12 assignment D = {  } U = { g$0.!drawLine( int int int int ) }
+  13 receiver D = {  } U = { g$0 }
+  14 methodCall D = {  } U = { h$4, i$5, w$3, x$1, y$2 } TO = java.awt.Graphics#drawLine( int int int int )
+  15 actualOut D = { g$0.!drawLine( int int int int ) } U = {  }
+  16 assignment D = {  } U = { g$0.!drawLine( int int int int ) }
+  17 receiver D = {  } U = { g$0 }
+  18 methodCall D = {  } U = { h$4, i$5, w$3, x$1, y$2 } TO = java.awt.Graphics#drawLine( int int int int )
+  19 actualOut D = { g$0.!drawLine( int int int int ) } U = {  }
+  20 assignment D = { i$5 } U = { i$5 }
+  21 methodExit
+  22 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#isGrabbed( int int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 formalIn D = { y$1 } U = {  }
+   3 localDeclaration D = { rx$2 } U = { this.startX, x$0 }
+   4 localDeclaration D = { ry$3 } U = { this.startY, y$1 }
+   5 localDeclaration D = { dx$4 } U = { this.endX, this.startX }
+   6 localDeclaration D = { dy$5 } U = { this.endY, this.startY }
+   7 localDeclaration D = { gap$6 } U = { this.!abs( int ), this.!sqrt( double ) }
+   8 receiver D = {  } U = {  }
+   9 methodCall D = {  } U = { dx$4, dy$5, rx$2, ry$3 } TO = java.lang.Math#abs( int )
+  10 actualOut D = { this.!abs( int ) } U = {  }
+  11 receiver D = {  } U = {  }
+  12 methodCall D = {  } U = { dx$4, dy$5 } TO = java.lang.Math#sqrt( double )
+  13 actualOut D = { this.!sqrt( double ) } U = {  }
+  14 returnSt D = { $_ } U = { gap$6, jp.ac.ritsumei.cs.draw.Figure.ALLOWABLE_GAP_WHEN_GRABBED }
+  15 methodExit
+  16 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ jp.ac.ritsumei.cs.draw.Line#name ]
+   1 fieldDeclaration D = { jp.ac.ritsumei.cs.draw.Line.name } U = { $java.lang.String, jp.ac.ritsumei.cs.draw.Line.name }
+   2 fieldExit
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#draw( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 localDeclaration D = { g2$1 } U = { g$0 }
+   3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
+   4 receiver D = {  } U = { g2$1 }
+   5 methodCall D = {  } U = { this.color } TO = java.awt.Graphics#setColor( java.awt.Color )
+   6 actualOut D = { g2$1.!setColor( java.awt.Color ) } U = {  }
+   7 assignment D = {  } U = { g2$1.!setStroke( java.awt.Stroke ) }
+   8 receiver D = {  } U = { g2$1 }
+   9 methodCall D = {  } U = { java.awt.BasicStroke.!BasicStroke( float ) } TO = java.awt.Graphics2D#setStroke( java.awt.Stroke )
+  10 receiver D = {  } U = {  }
+  11 constructorCall D = {  } U = { this.outlineWidth } TO = java.awt.BasicStroke#BasicStroke( float )
+  12 actualOut D = { java.awt.BasicStroke.!BasicStroke( float ), java.awt.BasicStroke.!java.awt.BasicStroke.cap, java.awt.BasicStroke.!java.awt.BasicStroke.dash, java.awt.BasicStroke.!java.awt.BasicStroke.dash_phase, java.awt.BasicStroke.!java.awt.BasicStroke.join, java.awt.BasicStroke.!java.awt.BasicStroke.miterlimit, java.awt.BasicStroke.!java.awt.BasicStroke.width } U = {  }
+  13 actualOut D = { g2$1.!setStroke( java.awt.Stroke ) } U = {  }
+  14 assignment D = {  } U = { g2$1.!drawLine( int int int int ) }
+  15 receiver D = {  } U = { g2$1 }
+  16 methodCall D = {  } U = { this.endX, this.endY, this.startX, this.startY } TO = java.awt.Graphics#drawLine( int int int int )
+  17 actualOut D = { g2$1.!drawLine( int int int int ) } U = {  }
+  18 methodExit
+  19 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#drawOutline( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 localDeclaration D = { g2$1 } U = { g$0 }
+   3 assignment D = {  } U = { g2$1.!setColor( java.awt.Color ) }
+   4 receiver D = {  } U = { g2$1 }
+   5 methodCall D = {  } U = { this.color } TO = java.awt.Graphics#setColor( java.awt.Color )
+   6 actualOut D = { g2$1.!setColor( java.awt.Color ) } U = {  }
+   7 assignment D = {  } U = { g2$1.!setStroke( java.awt.Stroke ) }
+   8 receiver D = {  } U = { g2$1 }
+   9 methodCall D = {  } U = { jp.ac.ritsumei.cs.draw.Figure.dotted } TO = java.awt.Graphics2D#setStroke( java.awt.Stroke )
+  10 actualOut D = { g2$1.!setStroke( java.awt.Stroke ) } U = {  }
+  11 assignment D = {  } U = { g2$1.!drawLine( int int int int ) }
+  12 receiver D = {  } U = { g2$1 }
+  13 methodCall D = {  } U = { this.endX, this.endY, this.startX, this.startY } TO = java.awt.Graphics#drawLine( int int int int )
+  14 actualOut D = { g2$1.!drawLine( int int int int ) } U = {  }
+  15 methodExit
+  16 formalOut D = {  } U = { $_ }
+--
+   0: getName( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 fallThroughFlow
+   3:    1 ->    3 trueControlFlow
+   4:    3 ->    2 trueControlFlow
+--
+   0: drawGrabbedFigure( java.awt.Graphics )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->   20 trueControlFlow
+   8:    7 ->    9 trueControlFlow
+   9:    8 ->   18 trueControlFlow
+  10:    9 ->   11 trueControlFlow
+  11:   10 ->   15 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->   13 trueControlFlow
+  14:   13 ->   10 trueControlFlow
+  15:   14 ->    8 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   17 trueControlFlow
+  18:   17 ->   14 trueControlFlow
+  19:   18 ->    6 trueControlFlow
+  20:   19 ->   33 trueControlFlow
+  21:   20 ->   22 trueControlFlow
+  22:   21 ->   31 trueControlFlow
+  23:   22 ->   24 trueControlFlow
+  24:   23 ->   28 trueControlFlow
+  25:   24 ->   25 trueControlFlow
+  26:   25 ->   26 trueControlFlow
+  27:   26 ->   23 trueControlFlow
+  28:   27 ->   21 trueControlFlow
+  29:   28 ->   29 trueControlFlow
+  30:   29 ->   30 trueControlFlow
+  31:   30 ->   27 trueControlFlow
+  32:   31 ->   19 trueControlFlow
+  33:   33 ->   32 trueControlFlow
+--
+   0: create( java.awt.Color float )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->   10 fallThroughFlow
+   5:    3 ->   10 trueControlFlow
+   6:    4 ->    6 trueControlFlow
+   7:    5 ->    5+ trueControlFlow
+   8:    6 ->    7 trueControlFlow
+   9:    7 ->    5 trueControlFlow
+  10:    8 ->    3 trueControlFlow
+  11:   10 ->    9 trueControlFlow
+  12:    5+ ->    5+ trueControlFlow
+  13:    5+ ->    8 trueControlFlow
+--
+   0: Line( java.awt.Color )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    8 trueControlFlow
+   4:    3 ->    5 trueControlFlow
+   5:    4 ->    4+ trueControlFlow
+   6:    5 ->    4 trueControlFlow
+   7:    6 ->    2 trueControlFlow
+   8:    8 ->    7 trueControlFlow
+   9:    4+ ->    4+ trueControlFlow
+  10:    4+ ->    6 trueControlFlow
+--
+   0: createClone( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    8 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    3+ trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    3 trueControlFlow
+   7:    6 ->    1 trueControlFlow
+   8:    7 ->   14 trueControlFlow
+   9:    8 ->   10 trueControlFlow
+  10:    9 ->    9+ trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->    9 trueControlFlow
+  13:   12 ->    7 trueControlFlow
+  14:   13 ->   19 trueControlFlow
+  15:   14 ->   16 trueControlFlow
+  16:   15 ->   15+ trueControlFlow
+  17:   16 ->   17 trueControlFlow
+  18:   17 ->   15 trueControlFlow
+  19:   18 ->   13 trueControlFlow
+  20:   19 ->   21 fallThroughFlow
+  21:   19 ->   21 trueControlFlow
+  22:   21 ->   20 trueControlFlow
+  23:    3+ ->    3+ trueControlFlow
+  24:    3+ ->    6 trueControlFlow
+  25:    9+ ->    9+ trueControlFlow
+  26:    9+ ->   12 trueControlFlow
+  27:   15+ ->   15+ trueControlFlow
+  28:   15+ ->   18 trueControlFlow
+--
+   0: Line( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    8 trueControlFlow
+   4:    3 ->    5 trueControlFlow
+   5:    4 ->    4+ trueControlFlow
+   6:    5 ->    4 trueControlFlow
+   7:    6 ->    2 trueControlFlow
+   8:    8 ->    7 trueControlFlow
+   9:    4+ ->    4+ trueControlFlow
+  10:    4+ ->    6 trueControlFlow
+--
+   0: Line( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    3+ trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    6 ->    5 trueControlFlow
+   7:    3+ ->    3+ trueControlFlow
+   8:    3+ ->    4 trueControlFlow
+--
+   0: drawRubber( java.awt.Graphics )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    8 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    3 trueControlFlow
+   8:    7 ->   12 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    9 ->   10 trueControlFlow
+  11:   10 ->    7 trueControlFlow
+  12:   12 ->   11 trueControlFlow
+--
+   0: Line( java.awt.Color float )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->   10 trueControlFlow
+   5:    4 ->    6 trueControlFlow
+   6:    5 ->    5+ trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    5 trueControlFlow
+   9:    8 ->    3 trueControlFlow
+  10:   10 ->    9 trueControlFlow
+  11:    5+ ->    5+ trueControlFlow
+  12:    5+ ->    8 trueControlFlow
+--
+   0: paintIcon( java.awt.Graphics int int int int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    7 trueControlFlow
+   7:    6 ->   10 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    9 ->    6 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   13 trueControlFlow
+  13:   11 ->   22 falseControlFlow
+  14:   12 ->   17 trueControlFlow
+  15:   13 ->   14 trueControlFlow
+  16:   14 ->   15 trueControlFlow
+  17:   15 ->   12 trueControlFlow
+  18:   16 ->   20 trueControlFlow
+  19:   17 ->   18 trueControlFlow
+  20:   18 ->   19 trueControlFlow
+  21:   19 ->   16 trueControlFlow
+  22:   20 ->   11 trueControlFlow (L = 11)
+  23:   22 ->   21 trueControlFlow
+--
+   0: isGrabbed( int int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    8 trueControlFlow
+   8:    7 ->   14 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    9 ->   10 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->   13 trueControlFlow
+  14:   13 ->    7 trueControlFlow
+  15:   14 ->   16 fallThroughFlow
+  16:   14 ->   16 trueControlFlow
+  17:   16 ->   15 trueControlFlow
+--
+   0: name
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: draw( java.awt.Graphics )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    8 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    3 trueControlFlow
+   8:    7 ->   15 trueControlFlow
+   9:    8 ->   10 trueControlFlow
+  10:    9 ->   13 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->   12 trueControlFlow
+  13:   12 ->    9 trueControlFlow
+  14:   13 ->    7 trueControlFlow
+  15:   14 ->   19 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   17 trueControlFlow
+  18:   17 ->   14 trueControlFlow
+  19:   19 ->   18 trueControlFlow
+--
+   0: drawOutline( java.awt.Graphics )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    8 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    3 trueControlFlow
+   8:    7 ->   12 trueControlFlow
+   9:    8 ->    9 trueControlFlow
+  10:    9 ->   10 trueControlFlow
+  11:   10 ->    7 trueControlFlow
+  12:   11 ->   16 trueControlFlow
+  13:   12 ->   13 trueControlFlow
+  14:   13 ->   14 trueControlFlow
+  15:   14 ->   11 trueControlFlow
+  16:   16 ->   15 trueControlFlow
+--
+----- CCFG (to here) -----
+
+

@@ -1,0 +1,1196 @@
+----- CCFG (from here) -----
+Class Name = Block
+   0 methodEntry [ Block#canRotate( ) ]
+   1 localDeclaration D = { it$0 } U = { this.tiles.!iterator( ) }
+   2 receiver D = {  } U = { this.tiles }
+   3 methodCall D = {  } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map } TO = java.util.Set#iterator( )
+   4 actualOut D = { this.tiles.!iterator( ), this.tiles.!java.util.HashMap.keySet } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map }
+   5 whileSt D = {  } U = { it$0.!hasNext( ) }
+   6 receiver D = {  } U = { it$0 }
+   7 methodCall D = {  } U = {  } TO = java.util.Iterator#hasNext( )
+   8 actualOut D = { it$0.!hasNext( ) } U = {  }
+   9 localDeclaration D = { tile$1 } U = { it$0.!next( ) }
+  10 receiver D = {  } U = { it$0 }
+  11 methodCall D = {  } U = {  } TO = java.util.Iterator#next( )
+  12 actualOut D = { it$0.!next( ) } U = {  }
+  13 ifSt D = {  } U = { this.!canTake( int int ) }
+  14 receiver D = {  } U = {  }
+  15 methodCall D = {  } U = { this, this.box, x$0.COLUMNS, y$1.ROWS } TO = Block#canTake( int int )
+  16 actualIn D = {  } U = { this.!getXByRotation( Tile ) }
+  17 receiver D = {  } U = {  }
+  18 methodCall D = {  } U = { this.posX, this.posY } TO = Block#getXByRotation( Tile )
+  19 actualIn D = {  } U = { it$0.!next( ).color, it$0.!next( ).posX, it$0.!next( ).posY, tile$1, tile$1.color, tile$1.posX, tile$1.posY }
+  20 actualOut D = { this.!getXByRotation( Tile ) } U = { this.posX, this.posY }
+  21 actualIn D = {  } U = { this.!getYByRotation( Tile ) }
+  22 receiver D = {  } U = {  }
+  23 methodCall D = {  } U = { this.posX, this.posY } TO = Block#getYByRotation( Tile )
+  24 actualIn D = {  } U = { it$0.!next( ).color, it$0.!next( ).posX, it$0.!next( ).posY, tile$1, tile$1.color, tile$1.posX, tile$1.posY }
+  25 actualOut D = { this.!getYByRotation( Tile ) } U = { this.posX, this.posY }
+  26 actualOut D = { this.!canTake( int int ) } U = { this, this.box, x$0.COLUMNS, y$1.ROWS }
+  27 returnSt D = { $_ } U = {  }
+  28 merge ifSt(13)
+  29 returnSt D = { $_ } U = {  }
+  30 methodExit
+  31 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Block#NUMBER_OF ]
+   1 fieldDeclaration D = { Block.NUMBER_OF } U = { Block.NUMBER_OF }
+   2 fieldExit
+--
+   0 methodEntry [ Block#setPosXY( int int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 formalIn D = { y$1 } U = {  }
+   3 assignment D = { this.posX } U = { x$0 }
+   4 assignment D = { this.posY } U = { y$1 }
+   5 localDeclaration D = { it$2 } U = { this.tiles.!iterator( ) }
+   6 receiver D = {  } U = { this.tiles }
+   7 methodCall D = {  } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map } TO = java.util.Set#iterator( )
+   8 actualOut D = { this.tiles.!iterator( ), this.tiles.!java.util.HashMap.keySet } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map }
+   9 whileSt D = {  } U = { it$2.!hasNext( ) }
+  10 receiver D = {  } U = { it$2 }
+  11 methodCall D = {  } U = {  } TO = java.util.Iterator#hasNext( )
+  12 actualOut D = { it$2.!hasNext( ) } U = {  }
+  13 localDeclaration D = { tile$3 } U = { it$2.!next( ) }
+  14 receiver D = {  } U = { it$2 }
+  15 methodCall D = {  } U = {  } TO = java.util.Iterator#next( )
+  16 actualOut D = { it$2.!next( ) } U = {  }
+  17 assignment D = {  } U = { tile$3.!setPosXY( int int ) }
+  18 receiver D = {  } U = { tile$3 }
+  19 methodCall D = {  } U = {  } TO = Tile#setPosXY( int int )
+  20 actualIn D = {  } U = { tile$3.!getPosX( ), x$0 }
+  21 receiver D = {  } U = { tile$3 }
+  22 methodCall D = {  } U = { it$2.!next( ).posX, tile$3.posX } TO = Tile#getPosX( )
+  23 actualOut D = { tile$3.!getPosX( ) } U = { it$2.!next( ).posX, tile$3.posX }
+  24 actualIn D = {  } U = { tile$3.!getPosY( ), y$1 }
+  25 receiver D = {  } U = { tile$3 }
+  26 methodCall D = {  } U = { it$2.!next( ).posY, tile$3.posY } TO = Tile#getPosY( )
+  27 actualOut D = { tile$3.!getPosY( ) } U = { it$2.!next( ).posY, tile$3.posY }
+  28 actualOut D = { tile$3.!setPosXY( int int ) } U = {  }
+  29 methodExit
+  30 formalOut D = {  } U = { $_ }
+  19+ actualOutByFieldAccess D = { tile$3.posX } U = {  }
+  19+ actualOutByFieldAccess D = { tile$3.posY } U = {  }
+--
+   0 methodEntry [ Block#moveLeft( ) ]
+   1 ifSt D = {  } U = { this.!canMove( int int ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.this.pit, $$RN.tiles.it$2.it$2.this.pit.box, $$RN.tiles.it$2.it$2.this.pit.tile$3.posX, this.posY, x$0.COLUMNS, y$1.ROWS } TO = Block#canMove( int int )
+   4 actualIn D = {  } U = {  }
+   5 actualIn D = {  } U = {  }
+   6 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!canMove( int int ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.this.pit, $$RN.tiles.it$2.it$2.this.pit.box, $$RN.tiles.it$2.it$2.this.pit.tile$3.posX, this.posY, x$0.COLUMNS, y$1.ROWS }
+   7 assignment D = { this.posX } U = { this.posX }
+   8 assignment D = {  } U = { this.!changeXPosition( int ) }
+   9 receiver D = {  } U = {  }
+  10 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, this.posX } TO = Block#changeXPosition( int )
+  11 actualIn D = {  } U = {  }
+  12 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!changeXPosition( int ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, this.posX }
+  13 merge ifSt(1)
+  14 methodExit
+  15 formalOut D = {  } U = { $_ }
+  10+ actualOutByFieldAccess D = { $$RN.tiles.it$1.it$1.tile$2.posX } U = {  }
+--
+   0 methodEntry [ Block#getXByRotation( Tile ) ]
+   1 formalIn D = { t$0 } U = {  }
+   2 localDeclaration D = { nx$1 } U = { t$0.!getPosY( ), this.posY }
+   3 receiver D = {  } U = { t$0 }
+   4 methodCall D = {  } U = {  } TO = Tile#getPosY( )
+   5 actualOut D = { t$0.!getPosY( ) } U = {  }
+   6 localDeclaration D = { x$2 } U = { nx$1, this.posX }
+   7 returnSt D = { $_ } U = { x$2 }
+   8 methodExit
+   9 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Block#create( int int int ) ]
+   1 formalIn D = { id$0 } U = {  }
+   2 formalIn D = { x$1 } U = {  }
+   3 formalIn D = { y$2 } U = {  }
+   4 switchSt D = { $SwitchDef } U = { id$0 }
+   5 switchCase D = {  } U = { $SwitchDef }
+   6 returnSt D = { $_ } U = { YellowBlock.!YellowBlock( int int ), YellowBlock.!YellowBlock( int int ).color, YellowBlock.!YellowBlock( int int ).posX, YellowBlock.!YellowBlock( int int ).posY }
+   7 receiver D = {  } U = {  }
+   8 constructorCall D = {  } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, YellowBlock.COLOR, this.offsetY, this.offsetY.SIZE } TO = YellowBlock#YellowBlock( int int )
+   9 actualIn D = {  } U = { x$1 }
+  10 actualIn D = {  } U = { y$2 }
+  11 actualOut D = { YellowBlock.!YellowBlock( int int ) } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, YellowBlock.COLOR, this.offsetY, this.offsetY.SIZE }
+  12 switchCase D = {  } U = { $SwitchDef }
+  13 returnSt D = { $_ } U = { BlueBlock.!BlueBlock( int int ), BlueBlock.!BlueBlock( int int ).color, BlueBlock.!BlueBlock( int int ).posX, BlueBlock.!BlueBlock( int int ).posY }
+  14 receiver D = {  } U = {  }
+  15 constructorCall D = {  } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, BlueBlock.COLOR, this.offsetY, this.offsetY.SIZE } TO = BlueBlock#BlueBlock( int int )
+  16 actualIn D = {  } U = { x$1 }
+  17 actualIn D = {  } U = { y$2 }
+  18 actualOut D = { BlueBlock.!BlueBlock( int int ) } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, BlueBlock.COLOR, this.offsetY, this.offsetY.SIZE }
+  19 switchCase D = {  } U = { $SwitchDef }
+  20 returnSt D = { $_ } U = { GreenBlock.!GreenBlock( int int ), GreenBlock.!GreenBlock( int int ).color, GreenBlock.!GreenBlock( int int ).posX, GreenBlock.!GreenBlock( int int ).posY }
+  21 receiver D = {  } U = {  }
+  22 constructorCall D = {  } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, GreenBlock.COLOR, this.offsetY, this.offsetY.SIZE } TO = GreenBlock#GreenBlock( int int )
+  23 actualIn D = {  } U = { x$1 }
+  24 actualIn D = {  } U = { y$2 }
+  25 actualOut D = { GreenBlock.!GreenBlock( int int ) } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, GreenBlock.COLOR, this.offsetY, this.offsetY.SIZE }
+  26 switchCase D = {  } U = { $SwitchDef }
+  27 returnSt D = { $_ } U = { CyanBlock.!CyanBlock( int int ), CyanBlock.!CyanBlock( int int ).color, CyanBlock.!CyanBlock( int int ).posX, CyanBlock.!CyanBlock( int int ).posY }
+  28 receiver D = {  } U = {  }
+  29 constructorCall D = {  } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, CyanBlock.COLOR } TO = CyanBlock#CyanBlock( int int )
+  30 actualIn D = {  } U = { x$1 }
+  31 actualIn D = {  } U = { y$2 }
+  32 actualOut D = { CyanBlock.!CyanBlock( int int ) } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, CyanBlock.COLOR }
+  33 switchCase D = {  } U = { $SwitchDef }
+  34 returnSt D = { $_ } U = { RedBlock.!RedBlock( int int ), RedBlock.!RedBlock( int int ).color, RedBlock.!RedBlock( int int ).posX, RedBlock.!RedBlock( int int ).posY }
+  35 receiver D = {  } U = {  }
+  36 constructorCall D = {  } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, RedBlock.color, this.offsetX, this.offsetX.SIZE } TO = RedBlock#RedBlock( int int )
+  37 actualIn D = {  } U = { x$1 }
+  38 actualIn D = {  } U = { y$2 }
+  39 actualOut D = { RedBlock.!RedBlock( int int ) } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, RedBlock.color, this.offsetX, this.offsetX.SIZE }
+  40 switchCase D = {  } U = { $SwitchDef }
+  41 returnSt D = { $_ } U = { MagentaBlock.!MagentaBlock( int int ), MagentaBlock.!MagentaBlock( int int ).color, MagentaBlock.!MagentaBlock( int int ).posX, MagentaBlock.!MagentaBlock( int int ).posY }
+  42 receiver D = {  } U = {  }
+  43 constructorCall D = {  } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, MagentaBlock.COLOR, this.offsetY, this.offsetY.SIZE } TO = MagentaBlock#MagentaBlock( int int )
+  44 actualIn D = {  } U = { x$1 }
+  45 actualIn D = {  } U = { y$2 }
+  46 actualOut D = { MagentaBlock.!MagentaBlock( int int ) } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, MagentaBlock.COLOR, this.offsetY, this.offsetY.SIZE }
+  47 switchCase D = {  } U = { $SwitchDef }
+  48 returnSt D = { $_ } U = { OrangeBlock.!OrangeBlock( int int ), OrangeBlock.!OrangeBlock( int int ).color, OrangeBlock.!OrangeBlock( int int ).posX, OrangeBlock.!OrangeBlock( int int ).posY }
+  49 receiver D = {  } U = {  }
+  50 constructorCall D = {  } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, OrangeBlock.COLOR, this.offsetY, this.offsetY.SIZE } TO = OrangeBlock#OrangeBlock( int int )
+  51 actualIn D = {  } U = { x$1 }
+  52 actualIn D = {  } U = { y$2 }
+  53 actualOut D = { OrangeBlock.!OrangeBlock( int int ) } U = { $$RN.super.this.posX, $$RN.super.this.posY, $$RN.super.this.tiles, $$RN.super.this.tiles.!java.util.HashSet.PRESENT, $$RN.super.this.tiles.!java.util.HashSet.map, OrangeBlock.COLOR, this.offsetY, this.offsetY.SIZE }
+  54 merge switchSt(4)
+  55 returnSt D = { $_ } U = {  }
+  56 methodExit
+  57 formalOut D = {  } U = { $_ }
+   8+ actualOutByFieldAccess D = { this.offsetY } U = {  }
+   8+ actualOutByFieldAccess D = { YellowBlock.!YellowBlock( int int ).posX } U = {  }
+   8+ actualOutByFieldAccess D = { YellowBlock.!YellowBlock( int int ).posY } U = {  }
+   8+ actualOutByFieldAccess D = { YellowBlock.!YellowBlock( int int ).color } U = {  }
+   8+ actualOutByFieldAccess D = { YellowBlock.!YellowBlock( int int ).posX } U = {  }
+   8+ actualOutByFieldAccess D = { YellowBlock.!YellowBlock( int int ).posY } U = {  }
+  15+ actualOutByFieldAccess D = { this.offsetY } U = {  }
+  15+ actualOutByFieldAccess D = { BlueBlock.!BlueBlock( int int ).posX } U = {  }
+  15+ actualOutByFieldAccess D = { BlueBlock.!BlueBlock( int int ).posY } U = {  }
+  15+ actualOutByFieldAccess D = { BlueBlock.!BlueBlock( int int ).color } U = {  }
+  15+ actualOutByFieldAccess D = { BlueBlock.!BlueBlock( int int ).posX } U = {  }
+  15+ actualOutByFieldAccess D = { BlueBlock.!BlueBlock( int int ).posY } U = {  }
+  22+ actualOutByFieldAccess D = { this.offsetY } U = {  }
+  22+ actualOutByFieldAccess D = { GreenBlock.!GreenBlock( int int ).posX } U = {  }
+  22+ actualOutByFieldAccess D = { GreenBlock.!GreenBlock( int int ).posY } U = {  }
+  22+ actualOutByFieldAccess D = { GreenBlock.!GreenBlock( int int ).color } U = {  }
+  22+ actualOutByFieldAccess D = { GreenBlock.!GreenBlock( int int ).posX } U = {  }
+  22+ actualOutByFieldAccess D = { GreenBlock.!GreenBlock( int int ).posY } U = {  }
+  29+ actualOutByFieldAccess D = { CyanBlock.!CyanBlock( int int ).posX } U = {  }
+  29+ actualOutByFieldAccess D = { CyanBlock.!CyanBlock( int int ).posY } U = {  }
+  29+ actualOutByFieldAccess D = { CyanBlock.!CyanBlock( int int ).color } U = {  }
+  29+ actualOutByFieldAccess D = { CyanBlock.!CyanBlock( int int ).posX } U = {  }
+  29+ actualOutByFieldAccess D = { CyanBlock.!CyanBlock( int int ).posY } U = {  }
+  36+ actualOutByFieldAccess D = { this.offsetX } U = {  }
+  36+ actualOutByFieldAccess D = { RedBlock.!RedBlock( int int ).posX } U = {  }
+  36+ actualOutByFieldAccess D = { RedBlock.!RedBlock( int int ).posY } U = {  }
+  36+ actualOutByFieldAccess D = { RedBlock.!RedBlock( int int ).color } U = {  }
+  36+ actualOutByFieldAccess D = { RedBlock.!RedBlock( int int ).posX } U = {  }
+  36+ actualOutByFieldAccess D = { RedBlock.!RedBlock( int int ).posY } U = {  }
+  43+ actualOutByFieldAccess D = { this.offsetY } U = {  }
+  43+ actualOutByFieldAccess D = { MagentaBlock.!MagentaBlock( int int ).posX } U = {  }
+  43+ actualOutByFieldAccess D = { MagentaBlock.!MagentaBlock( int int ).posY } U = {  }
+  43+ actualOutByFieldAccess D = { MagentaBlock.!MagentaBlock( int int ).color } U = {  }
+  43+ actualOutByFieldAccess D = { MagentaBlock.!MagentaBlock( int int ).posX } U = {  }
+  43+ actualOutByFieldAccess D = { MagentaBlock.!MagentaBlock( int int ).posY } U = {  }
+  50+ actualOutByFieldAccess D = { this.offsetY } U = {  }
+  50+ actualOutByFieldAccess D = { OrangeBlock.!OrangeBlock( int int ).posX } U = {  }
+  50+ actualOutByFieldAccess D = { OrangeBlock.!OrangeBlock( int int ).posY } U = {  }
+  50+ actualOutByFieldAccess D = { OrangeBlock.!OrangeBlock( int int ).color } U = {  }
+  50+ actualOutByFieldAccess D = { OrangeBlock.!OrangeBlock( int int ).posX } U = {  }
+  50+ actualOutByFieldAccess D = { OrangeBlock.!OrangeBlock( int int ).posY } U = {  }
+--
+   0 methodEntry [ Block#fall( ) ]
+   1 ifSt D = {  } U = { this.!canMove( int int ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.this.pit, $$RN.tiles.it$2.it$2.this.pit.box, $$RN.tiles.it$2.it$2.this.pit.tile$3.posX, this.posY, x$0.COLUMNS, y$1.ROWS } TO = Block#canMove( int int )
+   4 actualIn D = {  } U = {  }
+   5 actualIn D = {  } U = {  }
+   6 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!canMove( int int ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.this.pit, $$RN.tiles.it$2.it$2.this.pit.box, $$RN.tiles.it$2.it$2.this.pit.tile$3.posX, this.posY, x$0.COLUMNS, y$1.ROWS }
+   7 assignment D = { this.posY } U = { this.posY }
+   8 assignment D = {  } U = { this.!changeYPosition( int ) }
+   9 receiver D = {  } U = {  }
+  10 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, this.posY } TO = Block#changeYPosition( int )
+  11 actualIn D = {  } U = {  }
+  12 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!changeYPosition( int ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, this.posY }
+  13 returnSt D = { $_ } U = {  }
+  14 assignment D = {  } U = { this.!place( ) }
+  15 receiver D = {  } U = {  }
+  16 methodCall D = {  } U = { $$RN.pit, $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$0.it$0.pit.tile$1.posX, t$2.color, t$2.posX, t$2.posY, this.posY, tile$1.color, tile$1.posX, tile$1.posY } TO = Block#place( )
+  17 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!place( ) } U = { $$RN.pit, $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$0.it$0.pit.tile$1.posX, t$2.color, t$2.posX, t$2.posY, this.posY, tile$1.color, tile$1.posX, tile$1.posY }
+  18 returnSt D = { $_ } U = {  }
+  19 merge ifSt(1)
+  20 methodExit
+  21 formalOut D = {  } U = { $_ }
+  10+ actualOutByFieldAccess D = { $$RN.tiles.it$1.it$1.tile$2.posY } U = {  }
+  16+ actualOutByFieldAccess D = { $$RN.tiles.it$0.it$0.pit.box } U = {  }
+--
+   0 methodEntry [ Block#changeYPosition( int ) ]
+   1 formalIn D = { dy$0 } U = {  }
+   2 localDeclaration D = { it$1 } U = { this.tiles.!iterator( ) }
+   3 receiver D = {  } U = { this.tiles }
+   4 methodCall D = {  } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map } TO = java.util.Set#iterator( )
+   5 actualOut D = { this.tiles.!iterator( ), this.tiles.!java.util.HashMap.keySet } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map }
+   6 whileSt D = {  } U = { it$1.!hasNext( ) }
+   7 receiver D = {  } U = { it$1 }
+   8 methodCall D = {  } U = {  } TO = java.util.Iterator#hasNext( )
+   9 actualOut D = { it$1.!hasNext( ) } U = {  }
+  10 localDeclaration D = { tile$2 } U = { it$1.!next( ) }
+  11 receiver D = {  } U = { it$1 }
+  12 methodCall D = {  } U = {  } TO = java.util.Iterator#next( )
+  13 actualOut D = { it$1.!next( ) } U = {  }
+  14 assignment D = {  } U = { tile$2.!setPosY( int ) }
+  15 receiver D = {  } U = { tile$2 }
+  16 methodCall D = {  } U = {  } TO = Tile#setPosY( int )
+  17 actualIn D = {  } U = { dy$0, tile$2.!getPosY( ) }
+  18 receiver D = {  } U = { tile$2 }
+  19 methodCall D = {  } U = { it$1.!next( ).posY, tile$2.posY } TO = Tile#getPosY( )
+  20 actualOut D = { tile$2.!getPosY( ) } U = { it$1.!next( ).posY, tile$2.posY }
+  21 actualOut D = { tile$2.!setPosY( int ) } U = {  }
+  22 methodExit
+  23 formalOut D = {  } U = { $_ }
+  16+ actualOutByFieldAccess D = { tile$2.posY } U = {  }
+--
+   0 fieldEntry [ Block#tiles ]
+   1 fieldDeclaration D = { this.tiles } U = { java.util.HashSet.!HashSet( ), this.tiles }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = java.util.HashSet#HashSet( )
+   4 actualOut D = { java.util.HashSet.!HashSet( ), java.util.HashSet.!java.util.HashMap.loadFactor, java.util.HashSet.!java.util.HashSet.map } U = {  }
+   5 fieldExit
+--
+   0 fieldEntry [ Block#pit ]
+   1 fieldDeclaration D = { this.pit } U = { this.pit }
+   2 fieldExit
+--
+   0 methodEntry [ Block#changeXPosition( int ) ]
+   1 formalIn D = { dx$0 } U = {  }
+   2 localDeclaration D = { it$1 } U = { this.tiles.!iterator( ) }
+   3 receiver D = {  } U = { this.tiles }
+   4 methodCall D = {  } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map } TO = java.util.Set#iterator( )
+   5 actualOut D = { this.tiles.!iterator( ), this.tiles.!java.util.HashMap.keySet } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map }
+   6 whileSt D = {  } U = { it$1.!hasNext( ) }
+   7 receiver D = {  } U = { it$1 }
+   8 methodCall D = {  } U = {  } TO = java.util.Iterator#hasNext( )
+   9 actualOut D = { it$1.!hasNext( ) } U = {  }
+  10 localDeclaration D = { tile$2 } U = { it$1.!next( ) }
+  11 receiver D = {  } U = { it$1 }
+  12 methodCall D = {  } U = {  } TO = java.util.Iterator#next( )
+  13 actualOut D = { it$1.!next( ) } U = {  }
+  14 assignment D = {  } U = { tile$2.!setPosX( int ) }
+  15 receiver D = {  } U = { tile$2 }
+  16 methodCall D = {  } U = {  } TO = Tile#setPosX( int )
+  17 actualIn D = {  } U = { dx$0, tile$2.!getPosX( ) }
+  18 receiver D = {  } U = { tile$2 }
+  19 methodCall D = {  } U = { it$1.!next( ).posX, tile$2.posX } TO = Tile#getPosX( )
+  20 actualOut D = { tile$2.!getPosX( ) } U = { it$1.!next( ).posX, tile$2.posX }
+  21 actualOut D = { tile$2.!setPosX( int ) } U = {  }
+  22 methodExit
+  23 formalOut D = {  } U = { $_ }
+  16+ actualOutByFieldAccess D = { tile$2.posX } U = {  }
+--
+   0 methodEntry [ Block#addTile( int int java.awt.Color ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 formalIn D = { y$1 } U = {  }
+   3 formalIn D = { c$2 } U = {  }
+   4 assignment D = {  } U = { this.tiles.!add( java.lang.Object ) }
+   5 receiver D = {  } U = { this.tiles }
+   6 methodCall D = {  } U = { Tile.!Tile( int int java.awt.Color ), this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map } TO = java.util.Set#add( java.lang.Object )
+   7 receiver D = {  } U = {  }
+   8 constructorCall D = {  } U = {  } TO = Tile#Tile( int int java.awt.Color )
+   9 actualIn D = {  } U = { this.posX, x$0 }
+  10 actualIn D = {  } U = { this.posY, y$1 }
+  11 actualIn D = {  } U = { c$2 }
+  12 actualOut D = { Tile.!Tile( int int java.awt.Color ) } U = {  }
+  13 actualOut D = { this.tiles.!add( java.lang.Object ) } U = { this.tiles.!java.util.HashSet.PRESENT, this.tiles.!java.util.HashSet.map }
+  14 methodExit
+  15 formalOut D = {  } U = { $_ }
+   8+ actualOutByFieldAccess D = { Tile.!Tile( int int java.awt.Color ).color } U = {  }
+   8+ actualOutByFieldAccess D = { Tile.!Tile( int int java.awt.Color ).posX } U = {  }
+   8+ actualOutByFieldAccess D = { Tile.!Tile( int int java.awt.Color ).posY } U = {  }
+--
+   0 methodEntry [ Block#getYByRotation( Tile ) ]
+   1 formalIn D = { t$0 } U = {  }
+   2 localDeclaration D = { ny$1 } U = { t$0.!getPosX( ), this.posX }
+   3 receiver D = {  } U = { t$0 }
+   4 methodCall D = {  } U = {  } TO = Tile#getPosX( )
+   5 actualOut D = { t$0.!getPosX( ) } U = {  }
+   6 localDeclaration D = { y$2 } U = { ny$1, this.posY }
+   7 returnSt D = { $_ } U = { y$2 }
+   8 methodExit
+   9 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Block#changeXYPositionByRotation( ) ]
+   1 localDeclaration D = { it$0 } U = { this.tiles.!iterator( ) }
+   2 receiver D = {  } U = { this.tiles }
+   3 methodCall D = {  } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map } TO = java.util.Set#iterator( )
+   4 actualOut D = { this.tiles.!iterator( ), this.tiles.!java.util.HashMap.keySet } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map }
+   5 whileSt D = {  } U = { it$0.!hasNext( ) }
+   6 receiver D = {  } U = { it$0 }
+   7 methodCall D = {  } U = {  } TO = java.util.Iterator#hasNext( )
+   8 actualOut D = { it$0.!hasNext( ) } U = {  }
+   9 localDeclaration D = { tile$1 } U = { it$0.!next( ) }
+  10 receiver D = {  } U = { it$0 }
+  11 methodCall D = {  } U = {  } TO = java.util.Iterator#next( )
+  12 actualOut D = { it$0.!next( ) } U = {  }
+  13 assignment D = {  } U = { tile$1.!setPosXY( int int ) }
+  14 receiver D = {  } U = { tile$1 }
+  15 methodCall D = {  } U = {  } TO = Tile#setPosXY( int int )
+  16 actualIn D = {  } U = { this.!getXByRotation( Tile ) }
+  17 receiver D = {  } U = {  }
+  18 methodCall D = {  } U = { this.posX, this.posY } TO = Block#getXByRotation( Tile )
+  19 actualIn D = {  } U = { it$0.!next( ).color, it$0.!next( ).posX, it$0.!next( ).posY, tile$1, tile$1.color, tile$1.posX, tile$1.posY }
+  20 actualOut D = { this.!getXByRotation( Tile ) } U = { this.posX, this.posY }
+  21 actualIn D = {  } U = { this.!getYByRotation( Tile ) }
+  22 receiver D = {  } U = {  }
+  23 methodCall D = {  } U = { this.posX, this.posY } TO = Block#getYByRotation( Tile )
+  24 actualIn D = {  } U = { it$0.!next( ).color, it$0.!next( ).posX, it$0.!next( ).posY, tile$1, tile$1.color, tile$1.posX, tile$1.posY }
+  25 actualOut D = { this.!getYByRotation( Tile ) } U = { this.posX, this.posY }
+  26 actualOut D = { tile$1.!setPosXY( int int ) } U = {  }
+  27 methodExit
+  28 formalOut D = {  } U = { $_ }
+  15+ actualOutByFieldAccess D = { tile$1.posX } U = {  }
+  15+ actualOutByFieldAccess D = { tile$1.posY } U = {  }
+--
+   0 methodEntry [ Block#canMove( int int ) ]
+   1 formalIn D = { dx$0 } U = {  }
+   2 formalIn D = { dy$1 } U = {  }
+   3 localDeclaration D = { it$2 } U = { this.tiles.!iterator( ) }
+   4 receiver D = {  } U = { this.tiles }
+   5 methodCall D = {  } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map } TO = java.util.Set#iterator( )
+   6 actualOut D = { this.tiles.!iterator( ), this.tiles.!java.util.HashMap.keySet } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map }
+   7 whileSt D = {  } U = { it$2.!hasNext( ) }
+   8 receiver D = {  } U = { it$2 }
+   9 methodCall D = {  } U = {  } TO = java.util.Iterator#hasNext( )
+  10 actualOut D = { it$2.!hasNext( ) } U = {  }
+  11 localDeclaration D = { tile$3 } U = { it$2.!next( ) }
+  12 receiver D = {  } U = { it$2 }
+  13 methodCall D = {  } U = {  } TO = java.util.Iterator#next( )
+  14 actualOut D = { it$2.!next( ) } U = {  }
+  15 ifSt D = {  } U = { this.!canTake( int int ) }
+  16 receiver D = {  } U = {  }
+  17 methodCall D = {  } U = { this, this.box, x$0.COLUMNS, y$1.ROWS } TO = Block#canTake( int int )
+  18 actualIn D = {  } U = { dx$0, tile$3.!getPosX( ) }
+  19 receiver D = {  } U = { tile$3 }
+  20 methodCall D = {  } U = { it$2.!next( ).posX, tile$3.posX } TO = Tile#getPosX( )
+  21 actualOut D = { tile$3.!getPosX( ) } U = { it$2.!next( ).posX, tile$3.posX }
+  22 actualIn D = {  } U = { dy$1, tile$3.!getPosY( ) }
+  23 receiver D = {  } U = { tile$3 }
+  24 methodCall D = {  } U = { it$2.!next( ).posY, tile$3.posY } TO = Tile#getPosY( )
+  25 actualOut D = { tile$3.!getPosY( ) } U = { it$2.!next( ).posY, tile$3.posY }
+  26 actualOut D = { this.!canTake( int int ) } U = { this, this.box, x$0.COLUMNS, y$1.ROWS }
+  27 returnSt D = { $_ } U = {  }
+  28 merge ifSt(15)
+  29 returnSt D = { $_ } U = {  }
+  30 methodExit
+  31 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Block#setPit( Pit ) ]
+   1 formalIn D = { p$0 } U = {  }
+   2 assignment D = { this.pit } U = { p$0, p$0.box, p$0.currentBlock, p$0.font, p$0.height, p$0.info, p$0.nextBlock, p$0.offImage, p$0.offg, p$0.rnd, p$0.width }
+   3 methodExit
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Block#place( ) ]
+   1 localDeclaration D = { it$0 } U = { this.tiles.!iterator( ) }
+   2 receiver D = {  } U = { this.tiles }
+   3 methodCall D = {  } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map } TO = java.util.Set#iterator( )
+   4 actualOut D = { this.tiles.!iterator( ), this.tiles.!java.util.HashMap.keySet } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map }
+   5 whileSt D = {  } U = { it$0.!hasNext( ) }
+   6 receiver D = {  } U = { it$0 }
+   7 methodCall D = {  } U = {  } TO = java.util.Iterator#hasNext( )
+   8 actualOut D = { it$0.!hasNext( ) } U = {  }
+   9 localDeclaration D = { tile$1 } U = { it$0.!next( ) }
+  10 receiver D = {  } U = { it$0 }
+  11 methodCall D = {  } U = {  } TO = java.util.Iterator#next( )
+  12 actualOut D = { it$0.!next( ) } U = {  }
+  13 assignment D = {  } U = { this.pit.!setBox( int int Tile ) }
+  14 receiver D = {  } U = { this.pit }
+  15 methodCall D = {  } U = { t$2.color, t$2.posX, t$2.posY } TO = Pit#setBox( int int Tile )
+  16 actualIn D = {  } U = { tile$1.!getPosX( ) }
+  17 receiver D = {  } U = { tile$1 }
+  18 methodCall D = {  } U = { it$0.!next( ).posX, tile$1.posX } TO = Tile#getPosX( )
+  19 actualOut D = { tile$1.!getPosX( ) } U = { it$0.!next( ).posX, tile$1.posX }
+  20 actualIn D = {  } U = { tile$1.!getPosY( ) }
+  21 receiver D = {  } U = { tile$1 }
+  22 methodCall D = {  } U = { it$0.!next( ).posY, tile$1.posY } TO = Tile#getPosY( )
+  23 actualOut D = { tile$1.!getPosY( ) } U = { it$0.!next( ).posY, tile$1.posY }
+  24 actualIn D = {  } U = { it$0.!next( ).color, it$0.!next( ).posX, it$0.!next( ).posY, tile$1, tile$1.color, tile$1.posX, tile$1.posY }
+  25 actualOut D = { this.pit.!setBox( int int Tile ) } U = { t$2.color, t$2.posX, t$2.posY }
+  26 methodExit
+  27 formalOut D = {  } U = { $_ }
+  15+ actualOutByFieldAccess D = { this.pit.box } U = {  }
+--
+   0 methodEntry [ Block#paint( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 localDeclaration D = { it$1 } U = { this.tiles.!iterator( ) }
+   3 receiver D = {  } U = { this.tiles }
+   4 methodCall D = {  } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map } TO = java.util.Set#iterator( )
+   5 actualOut D = { this.tiles.!iterator( ), this.tiles.!java.util.HashMap.keySet } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map }
+   6 whileSt D = {  } U = { it$1.!hasNext( ) }
+   7 receiver D = {  } U = { it$1 }
+   8 methodCall D = {  } U = {  } TO = java.util.Iterator#hasNext( )
+   9 actualOut D = { it$1.!hasNext( ) } U = {  }
+  10 localDeclaration D = { tile$2 } U = { it$1.!next( ) }
+  11 receiver D = {  } U = { it$1 }
+  12 methodCall D = {  } U = {  } TO = java.util.Iterator#next( )
+  13 actualOut D = { it$1.!next( ) } U = {  }
+  14 assignment D = {  } U = { tile$2.!paint( java.awt.Graphics ) }
+  15 receiver D = {  } U = { tile$2 }
+  16 methodCall D = {  } U = { $$RN.this.color, $$RN.this.posX, $$RN.this.posY, Color.black, Color.white, Tile.BORDER, Tile.SIZE } TO = Tile#paint( java.awt.Graphics )
+  17 actualIn D = {  } U = { g$0 }
+  18 actualOut D = { $$RN.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.cs, $$RN.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.falpha, $$RN.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.frgbvalue, $$RN.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.fvalue, $$RN.this.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.value, tile$2.!paint( java.awt.Graphics ) } U = { $$RN.this.color, $$RN.this.posX, $$RN.this.posY, Color.black, Color.white, Tile.BORDER, Tile.SIZE }
+  19 methodExit
+  20 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Block#posY ]
+   1 fieldDeclaration D = { this.posY } U = { this.posY }
+   2 fieldExit
+--
+   0 fieldEntry [ Block#posX ]
+   1 fieldDeclaration D = { this.posX } U = { this.posX }
+   2 fieldExit
+--
+   0 methodEntry [ Block#rotate( ) ]
+   1 ifSt D = {  } U = { this.!canRotate( ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$0.it$0.this.pit, $$RN.tiles.it$0.it$0.this.pit.box, $$RN.tiles.it$0.it$0.this.pit.this.posX, $$RN.tiles.it$0.it$0.this.pit.this.posY, this.posX, this.posY, tile$1.color, tile$1.posX, tile$1.posY, x$0.COLUMNS, y$1.ROWS } TO = Block#canRotate( )
+   4 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!canRotate( ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$0.it$0.this.pit, $$RN.tiles.it$0.it$0.this.pit.box, $$RN.tiles.it$0.it$0.this.pit.this.posX, $$RN.tiles.it$0.it$0.this.pit.this.posY, this.posX, this.posY, tile$1.color, tile$1.posX, tile$1.posY, x$0.COLUMNS, y$1.ROWS }
+   5 assignment D = {  } U = { this.!changeXYPositionByRotation( ) }
+   6 receiver D = {  } U = {  }
+   7 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$0.it$0.tile$1.this.posX, $$RN.tiles.it$0.it$0.tile$1.this.posY, this.posX, this.posY, tile$1.color, tile$1.posX, tile$1.posY } TO = Block#changeXYPositionByRotation( )
+   8 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!changeXYPositionByRotation( ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$0.it$0.tile$1.this.posX, $$RN.tiles.it$0.it$0.tile$1.this.posY, this.posX, this.posY, tile$1.color, tile$1.posX, tile$1.posY }
+   9 merge ifSt(1)
+  10 methodExit
+  11 formalOut D = {  } U = { $_ }
+   7+ actualOutByFieldAccess D = { $$RN.tiles.it$0.it$0.tile$1.posX } U = {  }
+   7+ actualOutByFieldAccess D = { $$RN.tiles.it$0.it$0.tile$1.posY } U = {  }
+--
+   0 methodEntry [ Block#canTake( int int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 formalIn D = { y$1 } U = {  }
+   3 ifSt D = {  } U = { x$0, x$0.COLUMNS }
+   4 returnSt D = { $_ } U = {  }
+   5 merge ifSt(3)
+   6 ifSt D = {  } U = { y$1, y$1.ROWS }
+   7 returnSt D = { $_ } U = {  }
+   8 merge ifSt(6)
+   9 ifSt D = {  } U = { this.pit.!getBox( int int ) }
+  10 receiver D = {  } U = { this.pit }
+  11 methodCall D = {  } U = { this.pit.box } TO = Pit#getBox( int int )
+  12 actualIn D = {  } U = { x$0 }
+  13 actualIn D = {  } U = { y$1 }
+  14 actualOut D = { this.pit.!getBox( int int ) } U = { this.pit.box }
+  15 returnSt D = { $_ } U = {  }
+  16 merge ifSt(9)
+  17 returnSt D = { $_ } U = {  }
+  18 methodExit
+  19 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Block#offsetX ]
+   1 fieldDeclaration D = { this.offsetX } U = { this.offsetX }
+   2 fieldExit
+--
+   0 fieldEntry [ Block#offsetY ]
+   1 fieldDeclaration D = { this.offsetY } U = { this.offsetY }
+   2 fieldExit
+--
+   0 constructorEntry [ Block#Block( int int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 formalIn D = { y$1 } U = {  }
+   3 assignment D = { this.posX } U = { x$0 }
+   4 assignment D = { this.posY } U = { y$1 }
+   5 constructorExit
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Block#drop( ) ]
+   1 ifSt D = {  } U = { this.!canMove( int int ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.this.pit, $$RN.tiles.it$2.it$2.this.pit.box, $$RN.tiles.it$2.it$2.this.pit.tile$3.posX, this.posY, x$0.COLUMNS, y$1.ROWS } TO = Block#canMove( int int )
+   4 actualIn D = {  } U = {  }
+   5 actualIn D = {  } U = {  }
+   6 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!canMove( int int ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.this.pit, $$RN.tiles.it$2.it$2.this.pit.box, $$RN.tiles.it$2.it$2.this.pit.tile$3.posX, this.posY, x$0.COLUMNS, y$1.ROWS }
+   7 assignment D = { this.posY } U = { this.posY }
+   8 assignment D = {  } U = { this.!changeYPosition( int ) }
+   9 receiver D = {  } U = {  }
+  10 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, this.posY } TO = Block#changeYPosition( int )
+  11 actualIn D = {  } U = {  }
+  12 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!changeYPosition( int ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, this.posY }
+  13 merge ifSt(1)
+  14 methodExit
+  15 formalOut D = {  } U = { $_ }
+  10+ actualOutByFieldAccess D = { $$RN.tiles.it$1.it$1.tile$2.posY } U = {  }
+--
+   0 methodEntry [ Block#paintNext( java.awt.Graphics ) ]
+   1 formalIn D = { g$0 } U = {  }
+   2 localDeclaration D = { it$1 } U = { this.tiles.!iterator( ) }
+   3 receiver D = {  } U = { this.tiles }
+   4 methodCall D = {  } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map } TO = java.util.Set#iterator( )
+   5 actualOut D = { this.tiles.!iterator( ), this.tiles.!java.util.HashMap.keySet } U = { this.tiles.!java.util.HashMap.keySet, this.tiles.!java.util.HashSet.map }
+   6 whileSt D = {  } U = { it$1.!hasNext( ) }
+   7 receiver D = {  } U = { it$1 }
+   8 methodCall D = {  } U = {  } TO = java.util.Iterator#hasNext( )
+   9 actualOut D = { it$1.!hasNext( ) } U = {  }
+  10 localDeclaration D = { tile$2 } U = { it$1.!next( ) }
+  11 receiver D = {  } U = { it$1 }
+  12 methodCall D = {  } U = {  } TO = java.util.Iterator#next( )
+  13 actualOut D = { it$1.!next( ) } U = {  }
+  14 assignment D = {  } U = { tile$2.!paint( java.awt.Graphics int int ) }
+  15 receiver D = {  } U = { tile$2 }
+  16 methodCall D = {  } U = { $$RN.color, $$RN.posX, $$RN.posY, Color.black, Color.white, Tile.BORDER, Tile.SIZE } TO = Tile#paint( java.awt.Graphics int int )
+  17 actualIn D = {  } U = { g$0 }
+  18 actualIn D = {  } U = { this.offsetX }
+  19 actualIn D = {  } U = { this.offsetY }
+  20 actualOut D = { $$RN.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.cs, $$RN.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.falpha, $$RN.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.frgbvalue, $$RN.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.fvalue, $$RN.g$0.g$0.g$0.g$0.g$0.g$0.g$0.g$0.color.!java.awt.Color.value, tile$2.!paint( java.awt.Graphics int int ) } U = { $$RN.color, $$RN.posX, $$RN.posY, Color.black, Color.white, Tile.BORDER, Tile.SIZE }
+  21 methodExit
+  22 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Block#canPlace( ) ]
+   1 returnSt D = { $_ } U = { this.!canMove( int int ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.this.pit, $$RN.tiles.it$2.it$2.this.pit.box, $$RN.tiles.it$2.it$2.this.pit.tile$3.posX, this.posY, x$0.COLUMNS, y$1.ROWS } TO = Block#canMove( int int )
+   4 actualIn D = {  } U = {  }
+   5 actualIn D = {  } U = {  }
+   6 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!canMove( int int ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.this.pit, $$RN.tiles.it$2.it$2.this.pit.box, $$RN.tiles.it$2.it$2.this.pit.tile$3.posX, this.posY, x$0.COLUMNS, y$1.ROWS }
+   7 methodExit
+   8 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Block#moveRight( ) ]
+   1 ifSt D = {  } U = { this.!canMove( int int ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.this.pit, $$RN.tiles.it$2.it$2.this.pit.box, $$RN.tiles.it$2.it$2.this.pit.tile$3.posX, this.posY, x$0.COLUMNS, y$1.ROWS } TO = Block#canMove( int int )
+   4 actualIn D = {  } U = {  }
+   5 actualIn D = {  } U = {  }
+   6 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!canMove( int int ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, $$RN.tiles.it$2.it$2.this.pit, $$RN.tiles.it$2.it$2.this.pit.box, $$RN.tiles.it$2.it$2.this.pit.tile$3.posX, this.posY, x$0.COLUMNS, y$1.ROWS }
+   7 assignment D = { this.posX } U = { this.posX }
+   8 assignment D = {  } U = { this.!changeXPosition( int ) }
+   9 receiver D = {  } U = {  }
+  10 methodCall D = {  } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, this.posX } TO = Block#changeXPosition( int )
+  11 actualIn D = {  } U = {  }
+  12 actualOut D = { $$RN.tiles.!java.util.HashMap.keySet, this.!changeXPosition( int ) } U = { $$RN.tiles, $$RN.tiles.!java.util.HashMap.keySet, $$RN.tiles.!java.util.HashSet.map, this.posX }
+  13 merge ifSt(1)
+  14 methodExit
+  15 formalOut D = {  } U = { $_ }
+  10+ actualOutByFieldAccess D = { $$RN.tiles.it$1.it$1.tile$2.posX } U = {  }
+--
+   0: canRotate( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    5 ->   29 falseControlFlow
+   8:    6 ->    7 trueControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    5 trueControlFlow
+  11:    9 ->   14 trueControlFlow
+  12:   10 ->   11 trueControlFlow
+  13:   11 ->   12 trueControlFlow
+  14:   12 ->    9 trueControlFlow
+  15:   13 ->   27 trueControlFlow
+  16:   13 ->   28 falseControlFlow
+  17:   14 ->   17 trueControlFlow
+  18:   15 ->   26 trueControlFlow
+  19:   16 ->   22 trueControlFlow
+  20:   17 ->   19 trueControlFlow
+  21:   18 ->   20 trueControlFlow
+  22:   19 ->   18 trueControlFlow
+  23:   20 ->   16 trueControlFlow
+  24:   21 ->   15 trueControlFlow
+  25:   22 ->   24 trueControlFlow
+  26:   23 ->   25 trueControlFlow
+  27:   24 ->   23 trueControlFlow
+  28:   25 ->   21 trueControlFlow
+  29:   26 ->   13 trueControlFlow
+  30:   27 ->   28 fallThroughFlow
+  31:   27 ->   31 trueControlFlow
+  32:   28 ->    6 trueControlFlow (L = 5)
+  33:   29 ->   31 fallThroughFlow
+  34:   29 ->   31 trueControlFlow
+  35:   31 ->   30 trueControlFlow
+--
+   0: NUMBER_OF
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: setPosXY( int int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    6 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->    5 trueControlFlow
+  10:    9 ->   14 trueControlFlow
+  11:    9 ->   30 falseControlFlow
+  12:   10 ->   11 trueControlFlow
+  13:   11 ->   12 trueControlFlow
+  14:   12 ->    9 trueControlFlow
+  15:   13 ->   18 trueControlFlow
+  16:   14 ->   15 trueControlFlow
+  17:   15 ->   16 trueControlFlow
+  18:   16 ->   13 trueControlFlow
+  19:   17 ->   10 trueControlFlow (L = 9)
+  20:   18 ->   21 trueControlFlow
+  21:   19 ->   19+ trueControlFlow
+  22:   20 ->   25 trueControlFlow
+  23:   21 ->   22 trueControlFlow
+  24:   22 ->   23 trueControlFlow
+  25:   23 ->   20 trueControlFlow
+  26:   24 ->   19 trueControlFlow
+  27:   25 ->   26 trueControlFlow
+  28:   26 ->   27 trueControlFlow
+  29:   27 ->   24 trueControlFlow
+  30:   28 ->   17 trueControlFlow
+  31:   30 ->   29 trueControlFlow
+  32:   19+ ->   19+ trueControlFlow
+  33:   19+ ->   28 trueControlFlow
+--
+   0: moveLeft( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    7 trueControlFlow
+   3:    1 ->   13 falseControlFlow
+   4:    2 ->    4 trueControlFlow
+   5:    3 ->    6 trueControlFlow
+   6:    4 ->    5 trueControlFlow
+   7:    5 ->    3 trueControlFlow
+   8:    6 ->    1 trueControlFlow
+   9:    7 ->    9 trueControlFlow
+  10:    8 ->   13 trueControlFlow
+  11:    9 ->   11 trueControlFlow
+  12:   10 ->   10+ trueControlFlow
+  13:   11 ->   10 trueControlFlow
+  14:   12 ->    8 trueControlFlow
+  15:   13 ->   15 trueControlFlow
+  16:   15 ->   14 trueControlFlow
+  17:   10+ ->   12 trueControlFlow
+--
+   0: getXByRotation( Tile )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    6 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    9 fallThroughFlow
+   9:    7 ->    9 trueControlFlow
+  10:    9 ->    8 trueControlFlow
+--
+   0: create( int int int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    7 trueControlFlow
+   7:    5 ->   12 falseControlFlow
+   8:    6 ->   12 fallThroughFlow
+   9:    6 ->   57 trueControlFlow
+  10:    7 ->    9 trueControlFlow
+  11:    8 ->    8+ trueControlFlow
+  12:    9 ->   10 trueControlFlow
+  13:   10 ->    8 trueControlFlow
+  14:   11 ->    6 trueControlFlow
+  15:   12 ->   14 trueControlFlow
+  16:   12 ->   19 falseControlFlow
+  17:   13 ->   19 fallThroughFlow
+  18:   13 ->   57 trueControlFlow
+  19:   14 ->   16 trueControlFlow
+  20:   15 ->   15+ trueControlFlow
+  21:   16 ->   17 trueControlFlow
+  22:   17 ->   15 trueControlFlow
+  23:   18 ->   13 trueControlFlow
+  24:   19 ->   21 trueControlFlow
+  25:   19 ->   26 falseControlFlow
+  26:   20 ->   26 fallThroughFlow
+  27:   20 ->   57 trueControlFlow
+  28:   21 ->   23 trueControlFlow
+  29:   22 ->   22+ trueControlFlow
+  30:   23 ->   24 trueControlFlow
+  31:   24 ->   22 trueControlFlow
+  32:   25 ->   20 trueControlFlow
+  33:   26 ->   28 trueControlFlow
+  34:   26 ->   33 falseControlFlow
+  35:   27 ->   33 fallThroughFlow
+  36:   27 ->   57 trueControlFlow
+  37:   28 ->   30 trueControlFlow
+  38:   29 ->   29+ trueControlFlow
+  39:   30 ->   31 trueControlFlow
+  40:   31 ->   29 trueControlFlow
+  41:   32 ->   27 trueControlFlow
+  42:   33 ->   35 trueControlFlow
+  43:   33 ->   40 falseControlFlow
+  44:   34 ->   40 fallThroughFlow
+  45:   34 ->   57 trueControlFlow
+  46:   35 ->   37 trueControlFlow
+  47:   36 ->   36+ trueControlFlow
+  48:   37 ->   38 trueControlFlow
+  49:   38 ->   36 trueControlFlow
+  50:   39 ->   34 trueControlFlow
+  51:   40 ->   42 trueControlFlow
+  52:   40 ->   47 falseControlFlow
+  53:   41 ->   47 fallThroughFlow
+  54:   41 ->   57 trueControlFlow
+  55:   42 ->   44 trueControlFlow
+  56:   43 ->   43+ trueControlFlow
+  57:   44 ->   45 trueControlFlow
+  58:   45 ->   43 trueControlFlow
+  59:   46 ->   41 trueControlFlow
+  60:   47 ->   49 trueControlFlow
+  61:   47 ->   54 falseControlFlow
+  62:   48 ->   54 fallThroughFlow
+  63:   48 ->   57 trueControlFlow
+  64:   49 ->   51 trueControlFlow
+  65:   50 ->   50+ trueControlFlow
+  66:   51 ->   52 trueControlFlow
+  67:   52 ->   50 trueControlFlow
+  68:   53 ->   48 trueControlFlow
+  69:   54 ->   55 trueControlFlow
+  70:   55 ->   57 fallThroughFlow
+  71:   55 ->   57 trueControlFlow
+  72:   57 ->   56 trueControlFlow
+  73:    8+ ->    8+ trueControlFlow
+  74:    8+ ->    8+ trueControlFlow
+  75:    8+ ->    8+ trueControlFlow
+  76:    8+ ->    8+ trueControlFlow
+  77:    8+ ->    8+ trueControlFlow
+  78:    8+ ->   11 trueControlFlow
+  79:   15+ ->   15+ trueControlFlow
+  80:   15+ ->   15+ trueControlFlow
+  81:   15+ ->   15+ trueControlFlow
+  82:   15+ ->   15+ trueControlFlow
+  83:   15+ ->   15+ trueControlFlow
+  84:   15+ ->   18 trueControlFlow
+  85:   22+ ->   22+ trueControlFlow
+  86:   22+ ->   22+ trueControlFlow
+  87:   22+ ->   22+ trueControlFlow
+  88:   22+ ->   22+ trueControlFlow
+  89:   22+ ->   22+ trueControlFlow
+  90:   22+ ->   25 trueControlFlow
+  91:   29+ ->   29+ trueControlFlow
+  92:   29+ ->   29+ trueControlFlow
+  93:   29+ ->   29+ trueControlFlow
+  94:   29+ ->   29+ trueControlFlow
+  95:   29+ ->   32 trueControlFlow
+  96:   36+ ->   36+ trueControlFlow
+  97:   36+ ->   36+ trueControlFlow
+  98:   36+ ->   36+ trueControlFlow
+  99:   36+ ->   36+ trueControlFlow
+ 100:   36+ ->   36+ trueControlFlow
+ 101:   36+ ->   39 trueControlFlow
+ 102:   43+ ->   43+ trueControlFlow
+ 103:   43+ ->   43+ trueControlFlow
+ 104:   43+ ->   43+ trueControlFlow
+ 105:   43+ ->   43+ trueControlFlow
+ 106:   43+ ->   43+ trueControlFlow
+ 107:   43+ ->   46 trueControlFlow
+ 108:   50+ ->   50+ trueControlFlow
+ 109:   50+ ->   50+ trueControlFlow
+ 110:   50+ ->   50+ trueControlFlow
+ 111:   50+ ->   50+ trueControlFlow
+ 112:   50+ ->   50+ trueControlFlow
+ 113:   50+ ->   53 trueControlFlow
+--
+   0: fall( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    7 trueControlFlow
+   3:    1 ->   15 falseControlFlow
+   4:    2 ->    4 trueControlFlow
+   5:    3 ->    6 trueControlFlow
+   6:    4 ->    5 trueControlFlow
+   7:    5 ->    3 trueControlFlow
+   8:    6 ->    1 trueControlFlow
+   9:    7 ->    9 trueControlFlow
+  10:    8 ->   13 trueControlFlow
+  11:    9 ->   11 trueControlFlow
+  12:   10 ->   10+ trueControlFlow
+  13:   11 ->   10 trueControlFlow
+  14:   12 ->    8 trueControlFlow
+  15:   13 ->   15 fallThroughFlow
+  16:   13 ->   19 trueControlFlow
+  17:   14 ->   18 trueControlFlow
+  18:   15 ->   16 trueControlFlow
+  19:   16 ->   16+ trueControlFlow
+  20:   17 ->   14 trueControlFlow
+  21:   18 ->   19 fallThroughFlow
+  22:   18 ->   21 trueControlFlow
+  23:   19 ->   21 trueControlFlow
+  24:   21 ->   20 trueControlFlow
+  25:   10+ ->   12 trueControlFlow
+  26:   16+ ->   17 trueControlFlow
+--
+   0: changeYPosition( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->   11 trueControlFlow
+   8:    6 ->   23 falseControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    9 trueControlFlow
+  11:    9 ->    6 trueControlFlow
+  12:   10 ->   15 trueControlFlow
+  13:   11 ->   12 trueControlFlow
+  14:   12 ->   13 trueControlFlow
+  15:   13 ->   10 trueControlFlow
+  16:   14 ->    7 trueControlFlow (L = 6)
+  17:   15 ->   18 trueControlFlow
+  18:   16 ->   16+ trueControlFlow
+  19:   17 ->   16 trueControlFlow
+  20:   18 ->   19 trueControlFlow
+  21:   19 ->   20 trueControlFlow
+  22:   20 ->   17 trueControlFlow
+  23:   21 ->   14 trueControlFlow
+  24:   23 ->   22 trueControlFlow
+  25:   16+ ->   21 trueControlFlow
+--
+   0: tiles
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+--
+   0: pit
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: changeXPosition( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->   11 trueControlFlow
+   8:    6 ->   23 falseControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    9 trueControlFlow
+  11:    9 ->    6 trueControlFlow
+  12:   10 ->   15 trueControlFlow
+  13:   11 ->   12 trueControlFlow
+  14:   12 ->   13 trueControlFlow
+  15:   13 ->   10 trueControlFlow
+  16:   14 ->    7 trueControlFlow (L = 6)
+  17:   15 ->   18 trueControlFlow
+  18:   16 ->   16+ trueControlFlow
+  19:   17 ->   16 trueControlFlow
+  20:   18 ->   19 trueControlFlow
+  21:   19 ->   20 trueControlFlow
+  22:   20 ->   17 trueControlFlow
+  23:   21 ->   14 trueControlFlow
+  24:   23 ->   22 trueControlFlow
+  25:   16+ ->   21 trueControlFlow
+--
+   0: addTile( int int java.awt.Color )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    5 trueControlFlow
+   5:    4 ->   15 trueControlFlow
+   6:    5 ->    7 trueControlFlow
+   7:    6 ->   13 trueControlFlow
+   8:    7 ->    9 trueControlFlow
+   9:    8 ->    8+ trueControlFlow
+  10:    9 ->   10 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->    8 trueControlFlow
+  13:   12 ->    6 trueControlFlow
+  14:   13 ->    4 trueControlFlow
+  15:   15 ->   14 trueControlFlow
+  16:    8+ ->    8+ trueControlFlow
+  17:    8+ ->    8+ trueControlFlow
+  18:    8+ ->   12 trueControlFlow
+--
+   0: getYByRotation( Tile )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    6 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    9 fallThroughFlow
+   9:    7 ->    9 trueControlFlow
+  10:    9 ->    8 trueControlFlow
+--
+   0: changeXYPositionByRotation( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    5 ->   28 falseControlFlow
+   8:    6 ->    7 trueControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    5 trueControlFlow
+  11:    9 ->   14 trueControlFlow
+  12:   10 ->   11 trueControlFlow
+  13:   11 ->   12 trueControlFlow
+  14:   12 ->    9 trueControlFlow
+  15:   13 ->    6 trueControlFlow (L = 5)
+  16:   14 ->   17 trueControlFlow
+  17:   15 ->   15+ trueControlFlow
+  18:   16 ->   22 trueControlFlow
+  19:   17 ->   19 trueControlFlow
+  20:   18 ->   20 trueControlFlow
+  21:   19 ->   18 trueControlFlow
+  22:   20 ->   16 trueControlFlow
+  23:   21 ->   15 trueControlFlow
+  24:   22 ->   24 trueControlFlow
+  25:   23 ->   25 trueControlFlow
+  26:   24 ->   23 trueControlFlow
+  27:   25 ->   21 trueControlFlow
+  28:   26 ->   13 trueControlFlow
+  29:   28 ->   27 trueControlFlow
+  30:   15+ ->   15+ trueControlFlow
+  31:   15+ ->   26 trueControlFlow
+--
+   0: canMove( int int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    8 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    3 trueControlFlow
+   8:    7 ->   12 trueControlFlow
+   9:    7 ->   29 falseControlFlow
+  10:    8 ->    9 trueControlFlow
+  11:    9 ->   10 trueControlFlow
+  12:   10 ->    7 trueControlFlow
+  13:   11 ->   16 trueControlFlow
+  14:   12 ->   13 trueControlFlow
+  15:   13 ->   14 trueControlFlow
+  16:   14 ->   11 trueControlFlow
+  17:   15 ->   27 trueControlFlow
+  18:   15 ->   28 falseControlFlow
+  19:   16 ->   19 trueControlFlow
+  20:   17 ->   26 trueControlFlow
+  21:   18 ->   23 trueControlFlow
+  22:   19 ->   20 trueControlFlow
+  23:   20 ->   21 trueControlFlow
+  24:   21 ->   18 trueControlFlow
+  25:   22 ->   17 trueControlFlow
+  26:   23 ->   24 trueControlFlow
+  27:   24 ->   25 trueControlFlow
+  28:   25 ->   22 trueControlFlow
+  29:   26 ->   15 trueControlFlow
+  30:   27 ->   28 fallThroughFlow
+  31:   27 ->   31 trueControlFlow
+  32:   28 ->    8 trueControlFlow (L = 7)
+  33:   29 ->   31 fallThroughFlow
+  34:   29 ->   31 trueControlFlow
+  35:   31 ->   30 trueControlFlow
+--
+   0: setPit( Pit )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    4 ->    3 trueControlFlow
+--
+   0: place( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    5 ->   27 falseControlFlow
+   8:    6 ->    7 trueControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    5 trueControlFlow
+  11:    9 ->   14 trueControlFlow
+  12:   10 ->   11 trueControlFlow
+  13:   11 ->   12 trueControlFlow
+  14:   12 ->    9 trueControlFlow
+  15:   13 ->    6 trueControlFlow (L = 5)
+  16:   14 ->   17 trueControlFlow
+  17:   15 ->   15+ trueControlFlow
+  18:   16 ->   21 trueControlFlow
+  19:   17 ->   18 trueControlFlow
+  20:   18 ->   19 trueControlFlow
+  21:   19 ->   16 trueControlFlow
+  22:   20 ->   24 trueControlFlow
+  23:   21 ->   22 trueControlFlow
+  24:   22 ->   23 trueControlFlow
+  25:   23 ->   20 trueControlFlow
+  26:   24 ->   15 trueControlFlow
+  27:   25 ->   13 trueControlFlow
+  28:   27 ->   26 trueControlFlow
+  29:   15+ ->   25 trueControlFlow
+--
+   0: paint( java.awt.Graphics )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->   11 trueControlFlow
+   8:    6 ->   20 falseControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    9 trueControlFlow
+  11:    9 ->    6 trueControlFlow
+  12:   10 ->   15 trueControlFlow
+  13:   11 ->   12 trueControlFlow
+  14:   12 ->   13 trueControlFlow
+  15:   13 ->   10 trueControlFlow
+  16:   14 ->    7 trueControlFlow (L = 6)
+  17:   15 ->   17 trueControlFlow
+  18:   16 ->   18 trueControlFlow
+  19:   17 ->   16 trueControlFlow
+  20:   18 ->   14 trueControlFlow
+  21:   20 ->   19 trueControlFlow
+--
+   0: posY
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: posX
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: rotate( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    1 ->    9 falseControlFlow
+   4:    2 ->    3 trueControlFlow
+   5:    3 ->    4 trueControlFlow
+   6:    4 ->    1 trueControlFlow
+   7:    5 ->    9 trueControlFlow
+   8:    6 ->    7 trueControlFlow
+   9:    7 ->    7+ trueControlFlow
+  10:    8 ->    5 trueControlFlow
+  11:    9 ->   11 trueControlFlow
+  12:   11 ->   10 trueControlFlow
+  13:    7+ ->    7+ trueControlFlow
+  14:    7+ ->    8 trueControlFlow
+--
+   0: canTake( int int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    3 ->    5 falseControlFlow
+   6:    4 ->    5 fallThroughFlow
+   7:    4 ->   19 trueControlFlow
+   8:    5 ->    6 trueControlFlow
+   9:    6 ->    7 trueControlFlow
+  10:    6 ->    8 falseControlFlow
+  11:    7 ->    8 fallThroughFlow
+  12:    7 ->   19 trueControlFlow
+  13:    8 ->   10 trueControlFlow
+  14:    9 ->   15 trueControlFlow
+  15:    9 ->   16 falseControlFlow
+  16:   10 ->   12 trueControlFlow
+  17:   11 ->   14 trueControlFlow
+  18:   12 ->   13 trueControlFlow
+  19:   13 ->   11 trueControlFlow
+  20:   14 ->    9 trueControlFlow
+  21:   15 ->   16 fallThroughFlow
+  22:   15 ->   19 trueControlFlow
+  23:   16 ->   17 trueControlFlow
+  24:   17 ->   19 fallThroughFlow
+  25:   17 ->   19 trueControlFlow
+  26:   19 ->   18 trueControlFlow
+--
+   0: offsetX
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: offsetY
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: Block( int int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    6 trueControlFlow
+   6:    6 ->    5 trueControlFlow
+--
+   0: drop( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    7 trueControlFlow
+   3:    1 ->   13 falseControlFlow
+   4:    2 ->    4 trueControlFlow
+   5:    3 ->    6 trueControlFlow
+   6:    4 ->    5 trueControlFlow
+   7:    5 ->    3 trueControlFlow
+   8:    6 ->    1 trueControlFlow
+   9:    7 ->    9 trueControlFlow
+  10:    8 ->   13 trueControlFlow
+  11:    9 ->   11 trueControlFlow
+  12:   10 ->   10+ trueControlFlow
+  13:   11 ->   10 trueControlFlow
+  14:   12 ->    8 trueControlFlow
+  15:   13 ->   15 trueControlFlow
+  16:   15 ->   14 trueControlFlow
+  17:   10+ ->   12 trueControlFlow
+--
+   0: paintNext( java.awt.Graphics )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->   11 trueControlFlow
+   8:    6 ->   22 falseControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    9 trueControlFlow
+  11:    9 ->    6 trueControlFlow
+  12:   10 ->   15 trueControlFlow
+  13:   11 ->   12 trueControlFlow
+  14:   12 ->   13 trueControlFlow
+  15:   13 ->   10 trueControlFlow
+  16:   14 ->    7 trueControlFlow (L = 6)
+  17:   15 ->   17 trueControlFlow
+  18:   16 ->   20 trueControlFlow
+  19:   17 ->   18 trueControlFlow
+  20:   18 ->   19 trueControlFlow
+  21:   19 ->   16 trueControlFlow
+  22:   20 ->   14 trueControlFlow
+  23:   22 ->   21 trueControlFlow
+--
+   0: canPlace( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    8 fallThroughFlow
+   3:    1 ->    8 trueControlFlow
+   4:    2 ->    4 trueControlFlow
+   5:    3 ->    6 trueControlFlow
+   6:    4 ->    5 trueControlFlow
+   7:    5 ->    3 trueControlFlow
+   8:    6 ->    1 trueControlFlow
+   9:    8 ->    7 trueControlFlow
+--
+   0: moveRight( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    7 trueControlFlow
+   3:    1 ->   13 falseControlFlow
+   4:    2 ->    4 trueControlFlow
+   5:    3 ->    6 trueControlFlow
+   6:    4 ->    5 trueControlFlow
+   7:    5 ->    3 trueControlFlow
+   8:    6 ->    1 trueControlFlow
+   9:    7 ->    9 trueControlFlow
+  10:    8 ->   13 trueControlFlow
+  11:    9 ->   11 trueControlFlow
+  12:   10 ->   10+ trueControlFlow
+  13:   11 ->   10 trueControlFlow
+  14:   12 ->    8 trueControlFlow
+  15:   13 ->   15 trueControlFlow
+  16:   15 ->   14 trueControlFlow
+  17:   10+ ->   12 trueControlFlow
+--
+----- CCFG (to here) -----
+
+

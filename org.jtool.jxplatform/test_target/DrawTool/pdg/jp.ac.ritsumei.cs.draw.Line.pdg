@@ -41,15 +41,15 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#create( java.awt.Color float ) ]
    1 formalIn D = { c$0 } U = {  }
    2 formalIn D = { w$1 } U = {  }
-   3 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) }
+   3 returnSt D = { $_ } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ), jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth }
    4 receiver D = {  } U = {  }
    5 constructorCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color float )
    6 actualIn D = {  } U = { c$0 }
    7 actualIn D = {  } U = { w$1 }
    8 actualOut D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) } U = {  }
   10 formalOut D = {  } U = { $_ }
-   5+ actualOutByFieldAccess D = { super.color } U = {  }
-   5+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
+   5+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color } U = {  }
+   5+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth } U = {  }
 --
    0 constructorEntry [ jp.ac.ritsumei.cs.draw.Line#Line( java.awt.Color ) ]
    1 formalIn D = { c$0 } U = {  }
@@ -59,8 +59,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    5 actualIn D = {  } U = { c$0 }
    6 actualOut D = { super.!Figure( java.awt.Color ) } U = {  }
    8 formalOut D = {  } U = { $_ }
-   4+ actualOutByFieldAccess D = { this.color } U = {  }
-   4+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+   4+ actualOutByFieldAccess D = { super.color } U = {  }
+   4+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#createClone( ) ]
    1 localDeclaration D = { figure$0 } U = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ) }
@@ -83,8 +83,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
   18 actualOut D = { figure$0.!setEnd( int int ) } U = {  }
   19 returnSt D = { $_ } U = { figure$0, figure$0.color, figure$0.endX, figure$0.endY, figure$0.outlineWidth, figure$0.startX, figure$0.startY, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).endX, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).endY, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).startX, jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).startY }
   21 formalOut D = {  } U = { $_ }
-   3+ actualOutByFieldAccess D = { super.color } U = {  }
-   3+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
+   3+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color } U = {  }
+   3+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth } U = {  }
    9+ actualOutByFieldAccess D = { figure$0.startX } U = {  }
    9+ actualOutByFieldAccess D = { figure$0.startY } U = {  }
   15+ actualOutByFieldAccess D = { figure$0.endX } U = {  }
@@ -98,8 +98,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    5 actualIn D = {  } U = { w$0 }
    6 actualOut D = { super.!Figure( float ) } U = { Color.black }
    8 formalOut D = {  } U = { $_ }
-   4+ actualOutByFieldAccess D = { this.color } U = {  }
-   4+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+   4+ actualOutByFieldAccess D = { super.color } U = {  }
+   4+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
 --
    0 constructorEntry [ jp.ac.ritsumei.cs.draw.Line#Line( ) ]
    1 assignment D = {  } U = { super.!Figure( ) }
@@ -107,8 +107,8 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
    3 constructorCall D = {  } U = { Color.black } TO = jp.ac.ritsumei.cs.draw.Figure#Figure( )
    4 actualOut D = { super.!Figure( ) } U = { Color.black }
    6 formalOut D = {  } U = { $_ }
-   3+ actualOutByFieldAccess D = { this.color } U = {  }
-   3+ actualOutByFieldAccess D = { this.outlineWidth } U = {  }
+   3+ actualOutByFieldAccess D = { super.color } U = {  }
+   3+ actualOutByFieldAccess D = { super.outlineWidth } U = {  }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.Line#drawRubber( java.awt.Graphics ) ]
    1 formalIn D = { g$0 } U = {  }
@@ -281,7 +281,9 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
   12:    1 ->    6 loopIndependentDefUseDependence c$0
   13:    2 ->    7 loopIndependentDefUseDependence w$1
   14:    3 ->   10 loopIndependentDefUseDependence $_
-  15:    8 ->    3 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float )
+  15:    5+ ->    3 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color
+  16:    5+ ->    3 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth
+  17:    8 ->    3 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float )
 --
    0: Line( java.awt.Color )
    1:    0 ->    1 trueControlDependence
@@ -329,14 +331,16 @@ Class Name = jp.ac.ritsumei.cs.draw.Line
   30:    1 ->   14 loopIndependentDefUseDependence figure$0
   31:    1 ->   19 declaration
   32:    1 ->   19 loopIndependentDefUseDependence figure$0
-  33:    6 ->    1 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float )
-  34:    9+ ->   19 loopIndependentDefUseDependence figure$0.startX
-  35:    9+ ->   19 loopIndependentDefUseDependence figure$0.startY
-  36:   12 ->    7 loopIndependentDefUseDependence figure$0.!setStart( int int )
-  37:   15+ ->   19 loopIndependentDefUseDependence figure$0.endX
-  38:   15+ ->   19 loopIndependentDefUseDependence figure$0.endY
-  39:   18 ->   13 loopIndependentDefUseDependence figure$0.!setEnd( int int )
-  40:   19 ->   21 loopIndependentDefUseDependence $_
+  33:    3+ ->   19 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).color
+  34:    3+ ->   19 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float ).outlineWidth
+  35:    6 ->    1 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.Line.!Line( java.awt.Color float )
+  36:    9+ ->   19 loopIndependentDefUseDependence figure$0.startX
+  37:    9+ ->   19 loopIndependentDefUseDependence figure$0.startY
+  38:   12 ->    7 loopIndependentDefUseDependence figure$0.!setStart( int int )
+  39:   15+ ->   19 loopIndependentDefUseDependence figure$0.endX
+  40:   15+ ->   19 loopIndependentDefUseDependence figure$0.endY
+  41:   18 ->   13 loopIndependentDefUseDependence figure$0.!setEnd( int int )
+  42:   19 ->   21 loopIndependentDefUseDependence $_
 --
    0: Line( int )
    1:    0 ->    1 trueControlDependence

@@ -1,0 +1,197 @@
+----- CCFG (from here) -----
+Class Name = CustomerTest
+   0 methodEntry [ CustomerTest#testStatement1( ) ]
+   1 localDeclaration D = { customer$0 } U = { Customer.!Customer( java.lang.String ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = Customer#Customer( java.lang.String )
+   4 actualIn D = {  } U = { $java.lang.String }
+   5 actualOut D = { Customer.!Customer( java.lang.String ) } U = {  }
+   6 assignment D = {  } U = { customer$0.!setDiscount( double ) }
+   7 receiver D = {  } U = { customer$0 }
+   8 methodCall D = {  } U = {  } TO = Customer#setDiscount( double )
+   9 actualIn D = {  } U = {  }
+  10 actualOut D = { customer$0.!setDiscount( double ) } U = {  }
+  11 localDeclaration D = { order$1 } U = { Order.!Order( ) }
+  12 receiver D = {  } U = {  }
+  13 constructorCall D = {  } U = {  } TO = Order#Order( )
+  14 actualOut D = { Order.!Order( ) } U = {  }
+  15 localDeclaration D = { r1$2 } U = { Rental.!Rental( int int ) }
+  16 receiver D = {  } U = {  }
+  17 constructorCall D = {  } U = {  } TO = Rental#Rental( int int )
+  18 actualIn D = {  } U = {  }
+  19 actualIn D = {  } U = {  }
+  20 actualOut D = { Rental.!Rental( int int ) } U = {  }
+  21 assignment D = {  } U = { order$1.!addRental( Rental ) }
+  22 receiver D = {  } U = { order$1 }
+  23 methodCall D = {  } U = { Order.!Order( ).!java.util.ArrayList.elementData, Order.!Order( ).!java.util.ArrayList.modCount, Order.!Order( ).!java.util.ArrayList.size, order$1, order$1.!java.util.ArrayList.elementData, order$1.!java.util.ArrayList.modCount, order$1.!java.util.ArrayList.size, rental$0.days, rental$0.price } TO = Order#addRental( Rental )
+  24 actualIn D = {  } U = { Rental.!Rental( int int ).days, Rental.!Rental( int int ).price, r1$2, r1$2.days, r1$2.price }
+  25 actualOut D = { order$1.!addRental( Rental ), order$1.!java.util.ArrayList.modCount, order$1.!java.util.ArrayList.size } U = { Order.!Order( ).!java.util.ArrayList.elementData, Order.!Order( ).!java.util.ArrayList.modCount, Order.!Order( ).!java.util.ArrayList.size, order$1, order$1.!java.util.ArrayList.elementData, order$1.!java.util.ArrayList.modCount, order$1.!java.util.ArrayList.size, rental$0.days, rental$0.price }
+  26 localDeclaration D = { message$3 } U = { customer$0.!statement( Order ) }
+  27 receiver D = {  } U = { customer$0 }
+  28 methodCall D = {  } U = { $$RN.discount, $$RN.name, $$RN.this.discount, $$RN.this.rental$2.days, $$RN.this.rental$2.price, order$0.rentals } TO = Customer#statement( Order )
+  29 actualIn D = {  } U = { Order.!Order( ).rentals, order$1, order$1.rentals }
+  30 actualOut D = { customer$0.!statement( Order ) } U = { $$RN.discount, $$RN.name, $$RN.this.discount, $$RN.this.rental$2.days, $$RN.this.rental$2.price, order$0.rentals }
+  31 localDeclaration D = { order2$4 } U = { Order.!Order( ).rentals, order$1, order$1.rentals }
+  32 methodExit
+  33 formalOut D = {  } U = { $_ }
+   3+ actualOutByFieldAccess D = { Customer.!Customer( java.lang.String ).name } U = {  }
+   8+ actualOutByFieldAccess D = { customer$0.discount } U = {  }
+  17+ actualOutByFieldAccess D = { Rental.!Rental( int int ).days } U = {  }
+  17+ actualOutByFieldAccess D = { Rental.!Rental( int int ).price } U = {  }
+  28+ actualOutByFieldAccess D = { $$RN.discount } U = {  }
+--
+   0 methodEntry [ CustomerTest#testStatement2( ) ]
+   1 localDeclaration D = { customer$0 } U = { Customer.!Customer( java.lang.String ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = Customer#Customer( java.lang.String )
+   4 actualIn D = {  } U = { $java.lang.String }
+   5 actualOut D = { Customer.!Customer( java.lang.String ) } U = {  }
+   6 assignment D = {  } U = { customer$0.!setDiscount( double ) }
+   7 receiver D = {  } U = { customer$0 }
+   8 methodCall D = {  } U = {  } TO = Customer#setDiscount( double )
+   9 actualIn D = {  } U = {  }
+  10 actualOut D = { customer$0.!setDiscount( double ) } U = {  }
+  11 localDeclaration D = { order$1 } U = { Order.!Order( ) }
+  12 receiver D = {  } U = {  }
+  13 constructorCall D = {  } U = {  } TO = Order#Order( )
+  14 actualOut D = { Order.!Order( ) } U = {  }
+  15 localDeclaration D = { r1$2 } U = { Rental.!Rental( int int ) }
+  16 receiver D = {  } U = {  }
+  17 constructorCall D = {  } U = {  } TO = Rental#Rental( int int )
+  18 actualIn D = {  } U = {  }
+  19 actualIn D = {  } U = {  }
+  20 actualOut D = { Rental.!Rental( int int ) } U = {  }
+  21 localDeclaration D = { r2$3 } U = { Rental.!Rental( int int ) }
+  22 receiver D = {  } U = {  }
+  23 constructorCall D = {  } U = {  } TO = Rental#Rental( int int )
+  24 actualIn D = {  } U = {  }
+  25 actualIn D = {  } U = {  }
+  26 actualOut D = { Rental.!Rental( int int ) } U = {  }
+  27 assignment D = {  } U = { order$1.!addRental( Rental ) }
+  28 receiver D = {  } U = { order$1 }
+  29 methodCall D = {  } U = { Order.!Order( ).!java.util.ArrayList.elementData, Order.!Order( ).!java.util.ArrayList.modCount, Order.!Order( ).!java.util.ArrayList.size, order$1, order$1.!java.util.ArrayList.elementData, order$1.!java.util.ArrayList.modCount, order$1.!java.util.ArrayList.size, rental$0.days, rental$0.price } TO = Order#addRental( Rental )
+  30 actualIn D = {  } U = { Rental.!Rental( int int ).days, Rental.!Rental( int int ).price, r1$2, r1$2.days, r1$2.price }
+  31 actualOut D = { order$1.!addRental( Rental ), order$1.!java.util.ArrayList.modCount, order$1.!java.util.ArrayList.size } U = { Order.!Order( ).!java.util.ArrayList.elementData, Order.!Order( ).!java.util.ArrayList.modCount, Order.!Order( ).!java.util.ArrayList.size, order$1, order$1.!java.util.ArrayList.elementData, order$1.!java.util.ArrayList.modCount, order$1.!java.util.ArrayList.size, rental$0.days, rental$0.price }
+  32 assignment D = {  } U = { order$1.!addRental( Rental ) }
+  33 receiver D = {  } U = { order$1 }
+  34 methodCall D = {  } U = { Order.!Order( ).!java.util.ArrayList.elementData, Order.!Order( ).!java.util.ArrayList.modCount, Order.!Order( ).!java.util.ArrayList.size, order$1, order$1.!java.util.ArrayList.elementData, order$1.!java.util.ArrayList.modCount, order$1.!java.util.ArrayList.size, rental$0.days, rental$0.price } TO = Order#addRental( Rental )
+  35 actualIn D = {  } U = { Rental.!Rental( int int ).days, Rental.!Rental( int int ).price, r2$3, r2$3.days, r2$3.price }
+  36 actualOut D = { order$1.!addRental( Rental ), order$1.!java.util.ArrayList.modCount, order$1.!java.util.ArrayList.size } U = { Order.!Order( ).!java.util.ArrayList.elementData, Order.!Order( ).!java.util.ArrayList.modCount, Order.!Order( ).!java.util.ArrayList.size, order$1, order$1.!java.util.ArrayList.elementData, order$1.!java.util.ArrayList.modCount, order$1.!java.util.ArrayList.size, rental$0.days, rental$0.price }
+  37 localDeclaration D = { message$4 } U = { customer$0.!statement( Order ) }
+  38 receiver D = {  } U = { customer$0 }
+  39 methodCall D = {  } U = { $$RN.discount, $$RN.name, $$RN.this.discount, $$RN.this.rental$2.days, $$RN.this.rental$2.price, order$0.rentals } TO = Customer#statement( Order )
+  40 actualIn D = {  } U = { Order.!Order( ).rentals, order$1, order$1.rentals }
+  41 actualOut D = { customer$0.!statement( Order ) } U = { $$RN.discount, $$RN.name, $$RN.this.discount, $$RN.this.rental$2.days, $$RN.this.rental$2.price, order$0.rentals }
+  42 methodExit
+  43 formalOut D = {  } U = { $_ }
+   3+ actualOutByFieldAccess D = { Customer.!Customer( java.lang.String ).name } U = {  }
+   8+ actualOutByFieldAccess D = { customer$0.discount } U = {  }
+  17+ actualOutByFieldAccess D = { Rental.!Rental( int int ).days } U = {  }
+  17+ actualOutByFieldAccess D = { Rental.!Rental( int int ).price } U = {  }
+  23+ actualOutByFieldAccess D = { Rental.!Rental( int int ).days } U = {  }
+  23+ actualOutByFieldAccess D = { Rental.!Rental( int int ).price } U = {  }
+  39+ actualOutByFieldAccess D = { $$RN.discount } U = {  }
+--
+   0 constructorEntry [ CustomerTest#CustomerTest( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0: testStatement1( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    7 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    3+ trueControlFlow
+   5:    4 ->    3 trueControlFlow
+   6:    5 ->    1 trueControlFlow
+   7:    6 ->   12 trueControlFlow
+   8:    7 ->    9 trueControlFlow
+   9:    8 ->    8+ trueControlFlow
+  10:    9 ->    8 trueControlFlow
+  11:   10 ->    6 trueControlFlow
+  12:   11 ->   16 trueControlFlow
+  13:   12 ->   13 trueControlFlow
+  14:   13 ->   14 trueControlFlow
+  15:   14 ->   11 trueControlFlow
+  16:   15 ->   22 trueControlFlow
+  17:   16 ->   18 trueControlFlow
+  18:   17 ->   17+ trueControlFlow
+  19:   18 ->   19 trueControlFlow
+  20:   19 ->   17 trueControlFlow
+  21:   20 ->   15 trueControlFlow
+  22:   21 ->   27 trueControlFlow
+  23:   22 ->   24 trueControlFlow
+  24:   23 ->   25 trueControlFlow
+  25:   24 ->   23 trueControlFlow
+  26:   25 ->   21 trueControlFlow
+  27:   26 ->   31 trueControlFlow
+  28:   27 ->   29 trueControlFlow
+  29:   28 ->   28+ trueControlFlow
+  30:   29 ->   28 trueControlFlow
+  31:   30 ->   26 trueControlFlow
+  32:   31 ->   33 trueControlFlow
+  33:   33 ->   32 trueControlFlow
+  34:    3+ ->    5 trueControlFlow
+  35:    8+ ->   10 trueControlFlow
+  36:   17+ ->   17+ trueControlFlow
+  37:   17+ ->   20 trueControlFlow
+  38:   28+ ->   30 trueControlFlow
+--
+   0: testStatement2( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    7 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    3+ trueControlFlow
+   5:    4 ->    3 trueControlFlow
+   6:    5 ->    1 trueControlFlow
+   7:    6 ->   12 trueControlFlow
+   8:    7 ->    9 trueControlFlow
+   9:    8 ->    8+ trueControlFlow
+  10:    9 ->    8 trueControlFlow
+  11:   10 ->    6 trueControlFlow
+  12:   11 ->   16 trueControlFlow
+  13:   12 ->   13 trueControlFlow
+  14:   13 ->   14 trueControlFlow
+  15:   14 ->   11 trueControlFlow
+  16:   15 ->   22 trueControlFlow
+  17:   16 ->   18 trueControlFlow
+  18:   17 ->   17+ trueControlFlow
+  19:   18 ->   19 trueControlFlow
+  20:   19 ->   17 trueControlFlow
+  21:   20 ->   15 trueControlFlow
+  22:   21 ->   28 trueControlFlow
+  23:   22 ->   24 trueControlFlow
+  24:   23 ->   23+ trueControlFlow
+  25:   24 ->   25 trueControlFlow
+  26:   25 ->   23 trueControlFlow
+  27:   26 ->   21 trueControlFlow
+  28:   27 ->   33 trueControlFlow
+  29:   28 ->   30 trueControlFlow
+  30:   29 ->   31 trueControlFlow
+  31:   30 ->   29 trueControlFlow
+  32:   31 ->   27 trueControlFlow
+  33:   32 ->   38 trueControlFlow
+  34:   33 ->   35 trueControlFlow
+  35:   34 ->   36 trueControlFlow
+  36:   35 ->   34 trueControlFlow
+  37:   36 ->   32 trueControlFlow
+  38:   37 ->   43 trueControlFlow
+  39:   38 ->   40 trueControlFlow
+  40:   39 ->   39+ trueControlFlow
+  41:   40 ->   39 trueControlFlow
+  42:   41 ->   37 trueControlFlow
+  43:   43 ->   42 trueControlFlow
+  44:    3+ ->    5 trueControlFlow
+  45:    8+ ->   10 trueControlFlow
+  46:   17+ ->   17+ trueControlFlow
+  47:   17+ ->   20 trueControlFlow
+  48:   23+ ->   23+ trueControlFlow
+  49:   23+ ->   26 trueControlFlow
+  50:   39+ ->   41 trueControlFlow
+--
+   0: CustomerTest( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+----- CCFG (to here) -----
+
+

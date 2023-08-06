@@ -1,5 +1,18 @@
 ----- ClDG (from here) -----
 Class Name = Circle
+   0 constructorEntry [ Circle#Circle( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = {  } U = { this.!Circle( int int ) }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = Circle#Circle( int int )
+   5 actualIn D = {  } U = { x$0 }
+   6 actualIn D = {  } U = {  }
+   7 actualOut D = { this.!Circle( int int ) } U = {  }
+   9 formalOut D = {  } U = { $_ }
+   4+ actualOutByFieldAccess D = { this.radius } U = {  }
+   4+ actualOutByFieldAccess D = { this.x } U = {  }
+   4+ actualOutByFieldAccess D = { this.y } U = {  }
+--
    0 fieldEntry [ Circle#radius ]
    1 fieldDeclaration D = { this.radius } U = { this.radius }
 --
@@ -56,6 +69,21 @@ Class Name = Circle
    5 assignment D = { this.y } U = { y$1 }
    6 assignment D = { this.radius } U = { r$2 }
    8 formalOut D = {  } U = { $_ }
+--
+   0: Circle( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    4+ trueControlDependence
+   6:    0 ->    4+ trueControlDependence
+   7:    0 ->    4+ trueControlDependence
+   8:    0 ->    5 trueControlDependence
+   9:    0 ->    6 trueControlDependence
+  10:    0 ->    7 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    1 ->    5 loopIndependentDefUseDependence x$0
+  13:    7 ->    2 loopIndependentDefUseDependence this.!Circle( int int )
 --
    0: radius
    1:    0 ->    1 trueControlDependence
