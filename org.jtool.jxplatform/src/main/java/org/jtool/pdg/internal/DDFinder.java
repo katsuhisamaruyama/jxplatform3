@@ -32,7 +32,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class DDFinder {
     
-    private static final int TIMEOUT_SEC = 180;
+    private static final int TIMEOUT_SEC = 60;
     
     public static void find(final JavaProject jproject, final PDG pdg, final CFG cfg) {
         Runnable task = new Runnable() {
@@ -46,6 +46,8 @@ public class DDFinder {
         try {
             jproject.getModelBuilderImpl().performTaskWithTimeout(task, TIMEOUT_SEC);
         } catch (TimeoutException e) {
+            jproject.getModelBuilderImpl().printErrorOnMonitor(
+                    "**Timeout occurred in data dependency analysis: " + cfg.getQualifiedName().fqn());
             jproject.getModelBuilderImpl().getLogger().recordTimeoutError(cfg.getQualifiedName().fqn());
         }
     }
