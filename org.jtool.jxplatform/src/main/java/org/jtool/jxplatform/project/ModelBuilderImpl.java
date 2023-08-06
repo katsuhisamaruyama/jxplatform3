@@ -96,16 +96,16 @@ public class ModelBuilderImpl {
         return useCache;
     }
     
-    public void setSourcecodeAnalysisChain(int bytecodeAnalysisChain) {
-        this.sourcecodeAnalysisChain = bytecodeAnalysisChain;
+    public void setSourcecodeAnalysisChain(int analysisChain) {
+        this.sourcecodeAnalysisChain = analysisChain;
     }
     
     public int getSourcecodeAnalysisChain() {
         return sourcecodeAnalysisChain;
     }
     
-    public void setBytecodeAnalysisChain(int bytecodeAnalysisChain) {
-        this.bytecodeAnalysisChain = bytecodeAnalysisChain;
+    public void setBytecodeAnalysisChain(int analysisChain) {
+        this.bytecodeAnalysisChain = analysisChain;
     }
     
     public int getBytecodeAnalysisChain() {

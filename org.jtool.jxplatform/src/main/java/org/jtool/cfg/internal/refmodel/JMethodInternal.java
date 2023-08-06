@@ -14,6 +14,7 @@ import org.jtool.srcmodel.JavaMethod;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Concise information on a method inside the project.
@@ -40,9 +41,9 @@ class JMethodInternal extends JMethod {
     
     @Override
     protected void collectDefUseFieldsInThisMethod() {
-        if (!isDefUseCollected) {
+        if (!hasDefUseCollected) {
             collectDefUseFields();
-            isDefUseCollected = true;
+            hasDefUseCollected = true;
         }
     }
     
@@ -78,14 +79,14 @@ class JMethodInternal extends JMethod {
     
     @Override
     protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
-            String prefix, String returnValue, List<CFGMethodCall> callChain) {
+            InvocationForm prefix, String returnValue, List<CFGMethodCall> callChain) {
         for (DefUseField var : defFields) {
             if (!var.isUncovered()) {
                 DefUseField def = new DefUseField(var);
                 def.updateReferenceForm(getReferenceForm(var, prefix, returnValue));
                 def.addHoldingNodes(callChain);
                 
-                originMethod.allDefFields.add(def);
+                originMethod.defFieldsCache.add(def);
             }
         }
         
@@ -95,59 +96,69 @@ class JMethodInternal extends JMethod {
                 use.updateReferenceForm(getReferenceForm(var, prefix, returnValue));
                 use.addHoldingNodes(callChain);
                 
-                originMethod.allUseFields.add(use);
+                originMethod.useFieldsCache.add(use);
             }
         }
     }
     
-    private String getReferenceForm(DefUseField var, String prefix, String returnValue) {
-        if (jmethod.isConstructor()) {
-            if (var.getReferenceForm().startsWith("this.") && var.isThis()) {
+    private String getReferenceForm(DefUseField var, InvocationForm prefix, String returnValue) {
+        if (var.getReferenceForm().startsWith("this.") && var.isThis()) {
+            if (jmethod.isConstructor()) {
                 if (isThisInvocation(prefix)) {
-                    return var.getReferenceForm();
+                    return var.getReferenceForm().replace("this.", returnValue + ".");
                 } else if (isSuperInvocation(prefix)) {
-                    return var.getReferenceForm().replace("this.", "super.");
+                    if (chainConstructorInvocationOnly(prefix)) {
+                        return var.getReferenceForm().replace("this.", "super.");
+                    } else {
+                        return var.getReferenceForm().replace("this.", returnValue + ".");
+                    }
                 } else {
                     return var.getReferenceForm().replace("this.", returnValue + ".");
                 }
-            }
-        } else {
-            if (var.getReferenceForm().startsWith("this.") && var.isThis()) {
-                if (prefix.length() == 0) {
-                    return var.getReferenceForm();
-                } else {
-                    return var.getReferenceForm().replace("this.", prefix + ".");
-                }
+            } else {
+                return var.getReferenceForm().replace("this.", prefix.placeholder + ".");
             }
         }
         return var.getReferenceForm();
     }
     
-    private boolean isThisInvocation(String prefix) {
-        return prefix.endsWith("this");
+    private boolean chainConstructorInvocationOnly(InvocationForm prefix) {
+        List<String> names = Arrays.asList(prefix.original.split("\\."));
+        return names.stream().allMatch(name -> name.equals("this") || name.equals("super"));
     }
     
-    private boolean isSuperInvocation(String prefix) {
-        return prefix.endsWith("super");
+    private boolean isThisInvocation(InvocationForm prefix) {
+        return prefix.original.endsWith("this");
+    }
+    
+    private boolean isSuperInvocation(InvocationForm prefix) {
+        return prefix.original.endsWith("super");
     }
     
     @Override
     protected void traverseAccessedMethods(JMethod originMethod,
-            String prefix, String returnValue, List<CFGMethodCall> callChain,
+            InvocationForm prefix, String returnValue, List<CFGMethodCall> callChain,
             Set<JMethod> visitedMethods, int count) {
         for (CalledMethod cmethod : getCalledMethods()) {
             JMethod amethod = cmethod.method;
-            if (!amethod.isInProject() || !amethod.stopTraverse(visitedMethods, count + 1)) {
+            if (amethod.isInProject() && amethod.stopTraverse(visitedMethods, count + 1)) {
+                prefix.reusable = false;
+            } else {
                 visitedMethods.add(amethod);
                 
                 amethod.collectDefUseFieldsInThisMethod();
                 
                 String receiverName = cmethod.node.getReceiver().getName();
-                String newPrefix;
-                if (receiverName.startsWith("this")) {
-                    newPrefix = receiverName.replace("this.", prefix + ".");
+                InvocationForm newPrefix = new InvocationForm();
+                if (receiverName.equals("this")) {
+                    newPrefix.original = prefix.original;
+                    newPrefix.placeholder = prefix.placeholder;
+                } else if (receiverName.startsWith("this.")) {
+                    newPrefix.original = receiverName.replace("this.", prefix.original + ".");
+                    newPrefix.placeholder = receiverName.replace("this.", prefix.placeholder + ".");
                 } else {
-                    newPrefix = prefix + "." + receiverName;
+                    newPrefix.original = prefix.original + "." + receiverName;
+                    newPrefix.placeholder = prefix.placeholder+ "." + receiverName;
                 }
                 
                 List<CFGMethodCall> newCallChain = new ArrayList<>(callChain);
@@ -158,6 +169,8 @@ class JMethodInternal extends JMethod {
                 int nextCount = amethod.isInProject() ? count + 1 : 0;
                 amethod.traverseAccessedMethods(originMethod, newPrefix, returnValue, newCallChain,
                         visitedMethods, nextCount);
+                
+                prefix.reusable = newPrefix.reusable;
             }
         }
     }

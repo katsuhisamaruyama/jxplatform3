@@ -47,11 +47,19 @@ public abstract class ModelBuilder {
     }
     
     /**
-     * Sets the maximum number of a chain when analyzing byte-code classes.
-     * @param bytecodeAnalysisChain the maximum number of the chain
+     * Sets the maximum number of a chain when analyzing class defined in source-code.
+     * @param analysisChain the maximum number of the chain
      */
-    public void setBytecodeAnalysisLevel(int bytecodeAnalysisChain) {
-        builderImpl.setBytecodeAnalysisChain(bytecodeAnalysisChain);
+    public void setSourcecodeAnalysisChain(int analysisChain) {
+        builderImpl.setSourcecodeAnalysisChain(analysisChain);
+    }
+    
+    /**
+     * Sets the maximum number of a chain when analyzing byte-code classes.
+     * @param analysisChain the maximum number of the chain
+     */
+    public void setBytecodeAnalysisLevel(int analysisChain) {
+        builderImpl.setBytecodeAnalysisChain(analysisChain);
     }
     
     /**

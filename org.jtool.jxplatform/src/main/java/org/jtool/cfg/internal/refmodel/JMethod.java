@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -22,15 +22,21 @@ abstract public class JMethod extends JCommon {
     
     protected JClass declaringClass;
     
-    protected boolean isDefUseCollected = false;
+    protected boolean hasDefUseCollected = false;
+    protected boolean hasDefUseCached = false;
     
     protected List<DefUseField> defFields = new ArrayList<>();
     protected List<DefUseField> useFields = new ArrayList<>();
     protected Set<JMethod> accessedMethods = new HashSet<>();
     
+    protected List<DefUseField> defFieldsCache = new ArrayList<>();
+    protected List<DefUseField> useFieldsCache = new ArrayList<>();
+    
     protected List<DefUseField> allDefFields = new ArrayList<>();
     protected List<DefUseField> allUseFields = new ArrayList<>();
     
+    static final String RETURN_VALUE_PLACEHOLDER = "$$RV";
+    static final String RECEIVER_NAME_PLACEHOLDER = "$$RN";
     static final String OUTSIDE_FIELD_SYMBOL = "!";
     
     protected JMethod(QualifiedName qname, JClass declaringClass) {
@@ -46,6 +52,8 @@ abstract public class JMethod extends JCommon {
         defFields = null;
         useFields = null;
         accessedMethods= null;
+        defFieldsCache = null;
+        useFieldsCache = null;
         allDefFields = null;
         allUseFields = null;
     }
@@ -79,27 +87,68 @@ abstract public class JMethod extends JCommon {
         return allUseFields;
     }
     
-    public void findDefUseFields(String returnValue, String prefix) {
+    public void findDefUseFields(String receiverName, String returnValue) {
         collectDefUseFieldsInThisMethod();
         
+        InvocationForm prefix = new InvocationForm(receiverName, RECEIVER_NAME_PLACEHOLDER);
+        String cachedReturnValue = RETURN_VALUE_PLACEHOLDER;
+        
+        if (!hasDefUseCached) {
+            
+            defFieldsCache.clear();
+            useFieldsCache.clear();
+            
+            List<CFGMethodCall> callChain = new ArrayList<>();
+            Set<JMethod> visitedMethods = new HashSet<>();
+            
+            collectDefUseFieldsInAccessedMethods(this, prefix, cachedReturnValue, callChain);
+            
+            traverseAccessedMethods(this, prefix, cachedReturnValue, callChain, visitedMethods, 0);
+            
+            //hasDefUseCached = prefix.reusable;
+        }
+        
+        String placeholder = prefix.placeholder;
+        if (receiverName.length() == 0) {
+            placeholder = placeholder + ".";
+        }
+        
         allDefFields.clear();
+        for (DefUseField def : defFieldsCache) {
+            DefUseField newDef = new DefUseField(def);
+            newDef.updateReferenceForm(newDef.getReferenceForm().replace(cachedReturnValue, returnValue));
+            newDef.updateReferenceForm(newDef.getReferenceForm().replace(placeholder, receiverName));
+            newDef.updateReferenceForm(replace(receiverName, newDef.getReferenceForm()));
+            
+            allDefFields.add(newDef);
+        }
         allUseFields.clear();
-        
-        List<CFGMethodCall> callChain = new ArrayList<>();
-        Set<JMethod> visitedMethods = new HashSet<>();
-        
-        collectDefUseFieldsInAccessedMethods(this, prefix, returnValue, callChain);
-        
-        traverseAccessedMethods(this, prefix, returnValue, callChain, visitedMethods, 0);
+        for (DefUseField use : useFieldsCache) {
+            DefUseField newUse = new DefUseField(use);
+            newUse.updateReferenceForm(newUse.getReferenceForm().replace(cachedReturnValue, returnValue));
+            newUse.updateReferenceForm(newUse.getReferenceForm().replace(placeholder, receiverName));
+            newUse.updateReferenceForm(replace(receiverName, newUse.getReferenceForm()));
+            
+            allUseFields.add(newUse);
+        }
+    }
+    
+    private String replace(String receiverName, String form) {
+        if (receiverName.endsWith("this")) {
+            return form.replaceAll("^this\\.!" + declaringClass.getSimpleName() + "(.+)\\.", "this.");
+        } else if (receiverName.endsWith("super")) {
+            return form.replaceAll("^super\\.!" + declaringClass.getSimpleName() + "(.+)\\.", "super.");
+        }
+        return form;
     }
     
     abstract protected void collectDefUseFieldsInThisMethod();
     
     abstract protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
-            String prefix, String returnValue, List<CFGMethodCall> callChain);
+            InvocationForm prefix, String returnValue, List<CFGMethodCall> callChain);
     
     abstract protected void traverseAccessedMethods(JMethod originMethod,
-            String prefix, String returnValue, List<CFGMethodCall> callChain,
+            InvocationForm prefix, String returnValue, List<CFGMethodCall> callChain,
             Set<JMethod> visitedMethods, int count);
     
     abstract boolean stopTraverse(Set<JMethod> visitedMethods, int count);
@@ -125,5 +174,19 @@ abstract public class JMethod extends JCommon {
     public boolean equals(JMethod method) {
         return method != null &&
                (this == method || getQualifiedName().fqn().equals(method.getQualifiedName().fqn()));
+    }
+}
+
+class InvocationForm {
+    String original = "";
+    String placeholder = "";
+    boolean reusable = true;
+    
+    InvocationForm() {
+    }
+    
+    InvocationForm(String original, String placeholder) {
+        this.original = original;
+        this.placeholder = placeholder;
     }
 }

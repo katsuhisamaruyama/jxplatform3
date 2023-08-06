@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -34,10 +34,10 @@ class JMethodFrozen extends JMethod {
     
     @Override
     protected void collectDefUseFieldsInThisMethod() {
-        if (!isDefUseCollected) {
+        if (!hasDefUseCollected) {
             collectDefUseFields();
             collectAccessedMethods();
-            isDefUseCollected = true;
+            hasDefUseCollected = true;
         }
     }
     
@@ -70,24 +70,24 @@ class JMethodFrozen extends JMethod {
     
     @Override
     protected void collectDefUseFieldsInAccessedMethods(JMethod originMethod,
-            String prefix, String returnValue, List<CFGMethodCall> callChain) {
+            InvocationForm prefix, String returnValue, List<CFGMethodCall> callChain) {
         for (DefUseField var : defFields) {
             if (!var.isUncovered()) {
                 DefUseField def = new DefUseField(var);
-                def.updateReferenceForm(getReferenceForm(var, prefix));
+                def.updateReferenceForm(getReferenceForm(var, prefix.placeholder));
                 def.addHoldingNodes(callChain);
                 
-                originMethod.allDefFields.add(def);
+                originMethod.defFieldsCache.add(def);
             }
         }
         
         for (DefUseField var : useFields) {
             if (!var.isUncovered()) {
                 DefUseField use = new DefUseField(var);
-                use.updateReferenceForm(getReferenceForm(var, prefix));
+                use.updateReferenceForm(getReferenceForm(var, prefix.placeholder));
                 use.addHoldingNodes(callChain);
                 
-                originMethod.allUseFields.add(use);
+                originMethod.useFieldsCache.add(use);
             }
         }
     }
@@ -106,17 +106,20 @@ class JMethodFrozen extends JMethod {
     
     @Override
     protected void traverseAccessedMethods(JMethod originMethod,
-            String prefix, String returnValue, List<CFGMethodCall> callChain,
+            InvocationForm prefix, String returnValue, List<CFGMethodCall> callChain,
             Set<JMethod> visitedMethods, int count) {
         for (JMethod amethod : accessedMethods) {
-            if (!amethod.stopTraverse(visitedMethods, count + 1)) {
+            if (amethod.stopTraverse(visitedMethods, count + 1)) {
+                prefix.reusable = false;
+            } else {
                 visitedMethods.add(amethod);
                 
                 amethod.collectDefUseFieldsInThisMethod();
                 
                 amethod.collectDefUseFieldsInAccessedMethods(originMethod, prefix, returnValue, callChain);
                 
-                amethod.traverseAccessedMethods(originMethod, prefix, returnValue, callChain, visitedMethods, count + 1);
+                amethod.traverseAccessedMethods(originMethod, prefix, returnValue, callChain,
+                        visitedMethods, count + 1);
             }
         }
     }
