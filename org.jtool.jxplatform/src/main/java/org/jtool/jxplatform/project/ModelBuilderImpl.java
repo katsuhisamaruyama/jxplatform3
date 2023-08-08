@@ -263,8 +263,10 @@ public class ModelBuilderImpl {
             try {
                 String path = file.getCanonicalPath();
                 String source = read(file);
-                FileContent fileContent = new FileContent(path, source);
-                fileContents.add(fileContent);
+                if (!source.startsWith("#")) {
+                    FileContent fileContent = new FileContent(path, source);
+                    fileContents.add(fileContent);
+                }
             } catch (IOException e) {
                 printError("Cannot read file " + file.getPath());
             }
