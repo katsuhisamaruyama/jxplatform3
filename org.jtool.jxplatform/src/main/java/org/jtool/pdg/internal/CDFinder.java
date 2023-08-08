@@ -49,7 +49,7 @@ public class CDFinder {
             jproject.getModelBuilderImpl().performTaskWithTimeout(task, TIMEOUT_SEC);
         } catch (TimeoutException e) {
             new ArrayList<CD>(pdg.getCDEdges()).forEach(cd -> pdg.remove(cd));
-            simplyFindCDs(pdg, cfg);
+            simplyFindCDsOnTimeout(pdg, cfg);
             
             jproject.getModelBuilderImpl().printErrorOnMonitor(
                     "**Timeout occurred in control dependency analysis: " + cfg.getQualifiedName().fqn());
@@ -90,10 +90,18 @@ public class CDFinder {
         }
     }
     
-    private static void simplyFindCDs(PDG pdg, CFG cfg) {
+    private static void simplyFindCDsOnTimeout(PDG pdg, CFG cfg) {
         for (CFGNode node : cfg.getNodes()) {
             if (node.isBranch()) {
-                simplyFindCDs(pdg, cfg, node);
+                for (ControlFlow flow : node.getOutgoingFlows()) {
+                    DominantStatement statement = cfg.getDominantStatement(flow);
+                    if (statement != null) {
+                        for (CFGNode postDominator : statement.getImmediatePostDominators()) {
+                            CD cd = createCD(node, flow, postDominator);
+                            pdg.add(cd);
+                        }
+                    }
+                }
             }
         }
     }
