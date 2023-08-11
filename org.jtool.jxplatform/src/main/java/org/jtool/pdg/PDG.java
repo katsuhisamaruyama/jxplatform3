@@ -88,7 +88,8 @@ public class PDG extends Graph<PDGNode, Dependence> {
      * @return the collection of the nodes
      */
     public Set<PDGNode> getNodes() {
-        return super.getNodes().stream()
+        Set<PDGNode> nodes = super.getNodes();
+        return nodes.stream()
                 .map(node -> (PDGNode)node).collect(Collectors.toSet());
     }
     
@@ -97,7 +98,8 @@ public class PDG extends Graph<PDGNode, Dependence> {
      * @return the collection of the edges
      */
     public List<Dependence> getEdges() {
-        return super.getEdges().stream()
+        List<Dependence> edges = super.getEdges();
+        return edges.stream()
                 .map(edge -> (Dependence)edge).collect(Collectors.toList());
     }
     

@@ -90,8 +90,10 @@ public class DependencyGraph {
      */
     public void add(ClDG cldg) {
         if (!cldgs.values().contains(cldg)) {
-            cldg.getNodes().stream().forEach(node -> add(node));
-            cldg.getEdges().stream().forEach(edge -> add(edge));
+            Set<PDGNode> nodes = cldg.getNodes();
+            nodes.stream().forEach(node -> add(node));
+            List<DependencyGraphEdge> edges = cldg.getEdges();
+            edges.stream().forEach(edge -> add(edge));
             cldgs.put(cldg.getQualifiedName().fqn(), cldg);
             
             cldg.getPDGs().forEach(pdg -> pdgs.put(pdg.getQualifiedName().fqn(), pdg));
