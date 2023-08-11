@@ -34,7 +34,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class CDFinder {
     
-    private static final int TIMEOUT_SEC = 180;
+    private static final int TIMEOUT_SEC = 60 * 30;
     
     public static void find(final JavaProject jproject, final PDG pdg, final CFG cfg) {
         Runnable task = new Runnable() {
