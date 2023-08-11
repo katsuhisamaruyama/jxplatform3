@@ -75,7 +75,7 @@ class AntEnv extends ProjectEnv {
                 String name = attr.getValue("name");
                 String value = attr.getValue("value");
                 if (name != null && value != null) {
-                    String cvalue = replace(value);
+                    String cvalue = replace(value, value);
                     if (cvalue != null) {
                         properties.put(name, cvalue);
                     }
@@ -85,14 +85,14 @@ class AntEnv extends ProjectEnv {
                 isJavacElem = true;
                 String srcdir = attr.getValue("srcdir");
                 if (srcdir != null) {
-                    Path path = basePath.resolve(replace(srcdir));
+                    Path path = basePath.resolve(replace(srcdir, "src"));
                     if (path.toFile().exists()) {
                         srcpath.add(path.toString());
                     }
                 }
                 String destdir = attr.getValue("destdir");
                 if (destdir != null) {
-                    Path path = basePath.resolve(replace(destdir));
+                    Path path = basePath.resolve(replace(destdir, "bin"));
                     if (path.toFile().exists()) {
                         binpath.add(path.toString());
                     }
@@ -107,7 +107,7 @@ class AntEnv extends ProjectEnv {
             } else if (isClasspathElem && qname.contentEquals("fileset")) {
                 String classpathdir = attr.getValue("dir");
                 if (classpathdir != null) {
-                    Path path = basePath.resolve(replace(classpathdir));
+                    Path path = basePath.resolve(replace(classpathdir, "lib"));
                     if (path.toFile().exists()) {
                         classpath.add(path.toString());
                     }
@@ -116,7 +116,7 @@ class AntEnv extends ProjectEnv {
                 
             } else if (qname.equals("src") && attr != null) {
                 String srcdir = attr.getValue("path");
-                Path path = basePath.resolve(replace(srcdir));
+                Path path = basePath.resolve(replace(srcdir.concat(qname), "src"));
                 if (path.toFile().exists()) {
                     srcpath.add(path.toString());
                 }
@@ -132,12 +132,12 @@ class AntEnv extends ProjectEnv {
             }
         }
         
-        private String replace(String value) {
+        private String replace(String value, String defaultValue) {
             int beginIndex = value.indexOf("${", 0);
             while (beginIndex != -1) {
                 int endIndex = value.indexOf("}", beginIndex + 1);
                 if (endIndex == -1) {
-                    return null;
+                    return defaultValue;
                 }
                 
                 String key = value.substring(beginIndex + 2, endIndex);
@@ -145,7 +145,7 @@ class AntEnv extends ProjectEnv {
                 if (cvalue != null) {
                     value = value.substring(0, beginIndex) + cvalue + value.substring(endIndex + 1);
                 } else {
-                    return null;
+                    return defaultValue;
                 }
                 beginIndex = value.indexOf("${", 0);
             }
