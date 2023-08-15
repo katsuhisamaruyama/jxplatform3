@@ -32,7 +32,6 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$14
   31 formalOut D = {  } U = { $_ }
   14+ actualOutByFieldAccess D = { this.tabbedCanvas.jp.ac.ritsumei.cs.draw.DrawCanvas.changed } U = {  }
   14+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).figureManager } U = {  }
-  14+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).figureManager } U = {  }
   14+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).menu } U = {  }
   14+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).selector } U = {  }
   14+ actualOutByFieldAccess D = { this.tabbedCanvas.canvas$1.undoManager } U = {  }
@@ -41,8 +40,6 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$14
   14+ actualOutByFieldAccess D = { this.canvas$1.!getFigureManager( ).figure$7.startX } U = {  }
   14+ actualOutByFieldAccess D = { this.canvas$1.!getFigureManager( ).figure$7.startY } U = {  }
   14+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).figures } U = {  }
-  14+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).figures } U = {  }
-  14+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).filename } U = {  }
   14+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).filename } U = {  }
   14+ actualOutByFieldAccess D = { this.tabbedCanvas.selectedTab } U = {  }
 --
@@ -93,22 +90,16 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$14
   44:   14 ->   14+ trueControlDependence
   45:   14 ->   14+ trueControlDependence
   46:   14 ->   14+ trueControlDependence
-  47:   14 ->   14+ trueControlDependence
-  48:   14 ->   14+ trueControlDependence
-  49:   14 ->   14+ trueControlDependence
-  50:   14 ->   16 trueControlDependence
-  51:   14 ->   31 trueControlDependence
-  52:   14+ ->   14+ outputDependence this.!openFile( java.lang.String ).figureManager
-  53:   14+ ->   14+ outputDependence this.!openFile( java.lang.String ).figures
-  54:   14+ ->   14+ outputDependence this.!openFile( java.lang.String ).filename
-  55:   14+ ->   23 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
-  56:   14+ ->   24 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
-  57:   14+ ->   27 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
-  58:   14+ ->   28 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
-  59:   16 ->   12 loopIndependentDefUseDependence this.!openFile( java.lang.String )
-  60:   20 ->   17 loopIndependentDefUseDependence this.!buildRecentFileMenu( )
-  61:   24 ->   21 loopIndependentDefUseDependence this.!updateUndoState( )
-  62:   28 ->   25 loopIndependentDefUseDependence this.!updateRedoState( )
+  47:   14 ->   16 trueControlDependence
+  48:   14 ->   31 trueControlDependence
+  49:   14+ ->   23 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+  50:   14+ ->   24 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+  51:   14+ ->   27 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+  52:   14+ ->   28 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+  53:   16 ->   12 loopIndependentDefUseDependence this.!openFile( java.lang.String )
+  54:   20 ->   17 loopIndependentDefUseDependence this.!buildRecentFileMenu( )
+  55:   24 ->   21 loopIndependentDefUseDependence this.!updateUndoState( )
+  56:   28 ->   25 loopIndependentDefUseDependence this.!updateRedoState( )
 --
 ----- ClDG (to here) -----
 

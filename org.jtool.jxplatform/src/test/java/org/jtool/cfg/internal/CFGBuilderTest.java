@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -9,7 +9,6 @@ import org.jtool.jxplatform.builder.ModelBuilder;
 import org.jtool.srcmodel.JavaProject;
 import org.jtool.srcmodel.JavaClass;
 import org.jtool.cfg.CCFG;
-import org.jtool.cfg.CFG;
 import org.jtool.jxplatform.builder.BuilderTestUtil;
 import org.jtool.jxplatform.util.FlakyByExternalLib;
 import java.io.IOException;
@@ -25,12 +24,14 @@ public class CFGBuilderTest {
     
     @Test
     public void testTarget() {
-        JavaProject jproject = BuilderTestUtil.getProject("Tetris");
-        CFG cfg = CFGTestUtil.createCFG(jproject, "Tetris", "run( )");
+        BuilderTestUtil.clearProject();
         
-        cfg.print();
+        JavaProject jproject = BuilderTestUtil.getProject("Tetris");
+        boolean result = check(jproject);
+        assertTrue(result);
         
         jproject.getModelBuilder().unbuild();
+        BuilderTestUtil.clearProject();
     }
     
     @Test

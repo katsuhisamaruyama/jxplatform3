@@ -23,7 +23,6 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$4
   22 formalOut D = {  } U = { $_ }
    6+ actualOutByFieldAccess D = { this.canvas$1.changed } U = {  }
    6+ actualOutByFieldAccess D = { this.!openFile( ).figureManager } U = {  }
-   6+ actualOutByFieldAccess D = { this.!openFile( ).figureManager } U = {  }
    6+ actualOutByFieldAccess D = { this.!openFile( ).menu } U = {  }
    6+ actualOutByFieldAccess D = { this.!openFile( ).selector } U = {  }
    6+ actualOutByFieldAccess D = { this.tabbedCanvas.canvas$1.undoManager } U = {  }
@@ -67,20 +66,18 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$4
   27:    6 ->    6+ trueControlDependence
   28:    6 ->    6+ trueControlDependence
   29:    6 ->    6+ trueControlDependence
-  30:    6 ->    6+ trueControlDependence
-  31:    6 ->    7 trueControlDependence
-  32:    6 ->   22 trueControlDependence
-  33:    6+ ->    6+ outputDependence this.!openFile( ).figureManager
-  34:    6+ ->    7 loopIndependentDefUseDependence this.canvas$1.changed
-  35:    6+ ->    7 loopIndependentDefUseDependence this.directory
-  36:    6+ ->   14 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
-  37:    6+ ->   15 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
-  38:    6+ ->   18 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
-  39:    6+ ->   19 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
-  40:    7 ->    4 loopIndependentDefUseDependence this.!openFile( )
-  41:   11 ->    8 loopIndependentDefUseDependence this.!buildRecentFileMenu( )
-  42:   15 ->   12 loopIndependentDefUseDependence this.!updateUndoState( )
-  43:   19 ->   16 loopIndependentDefUseDependence this.!updateRedoState( )
+  30:    6 ->    7 trueControlDependence
+  31:    6 ->   22 trueControlDependence
+  32:    6+ ->    7 loopIndependentDefUseDependence this.canvas$1.changed
+  33:    6+ ->    7 loopIndependentDefUseDependence this.directory
+  34:    6+ ->   14 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+  35:    6+ ->   15 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+  36:    6+ ->   18 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+  37:    6+ ->   19 loopIndependentDefUseDependence this.tabbedCanvas.selectedTab
+  38:    7 ->    4 loopIndependentDefUseDependence this.!openFile( )
+  39:   11 ->    8 loopIndependentDefUseDependence this.!buildRecentFileMenu( )
+  40:   15 ->   12 loopIndependentDefUseDependence this.!updateUndoState( )
+  41:   19 ->   16 loopIndependentDefUseDependence this.!updateRedoState( )
 --
    0: serialVersionUID
    1:    0 ->    1 trueControlDependence

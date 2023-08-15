@@ -71,7 +71,6 @@ Class Name = Sample104FX
   69 formalOut D = {  } U = { $_ }
   45+ actualOutByFieldAccess D = { Sample104FX.LabelManager.!LabelManager( javafx.scene.control.Label ).label } U = {  }
   53+ actualOutByFieldAccess D = { lm$4.flag } U = {  }
-  53+ actualOutByFieldAccess D = { lm$4.flag } U = {  }
 --
    0 constructorEntry [ Sample104FX#Sample104FX( ) ]
    2 formalOut D = {  } U = { $_ }
@@ -140,73 +139,71 @@ Class Name = Sample104FX
   53:    0 ->   52 trueControlDependence
   54:    0 ->   53 trueControlDependence
   55:    0 ->   53+ trueControlDependence
-  56:    0 ->   53+ trueControlDependence
-  57:    0 ->   54 trueControlDependence
-  58:    0 ->   55 trueControlDependence
-  59:    0 ->   56 trueControlDependence
-  60:    0 ->   57 trueControlDependence
-  61:    0 ->   58 trueControlDependence
-  62:    0 ->   59 trueControlDependence
-  63:    0 ->   60 trueControlDependence
-  64:    0 ->   61 trueControlDependence
-  65:    0 ->   62 trueControlDependence
-  66:    0 ->   63 trueControlDependence
-  67:    0 ->   64 trueControlDependence
-  68:    0 ->   65 trueControlDependence
-  69:    0 ->   66 trueControlDependence
-  70:    0 ->   67 trueControlDependence
-  71:    0 ->   69 trueControlDependence
-  72:    2 ->    4 loopIndependentDefUseDependence stage$0
-  73:    2 ->    8 loopIndependentDefUseDependence stage$0
-  74:    2 ->   12 loopIndependentDefUseDependence stage$0
-  75:    2 ->   61 loopIndependentDefUseDependence stage$0
-  76:    2 ->   65 loopIndependentDefUseDependence stage$0
-  77:    6 ->    3 loopIndependentDefUseDependence stage$0.!setTitle( java.lang.String )
-  78:   10 ->    7 loopIndependentDefUseDependence stage$0.!setWidth( double )
-  79:   10 ->   13 loopIndependentDefUseDependence stage$0.!javafx.beans.property.DoublePropertyBase.value
-  80:   10 ->   14 loopIndependentDefUseDependence stage$0.!javafx.beans.property.DoublePropertyBase.value
-  81:   14 ->   11 loopIndependentDefUseDependence stage$0.!setHeight( double )
-  82:   15 ->   24 declaration
-  83:   15 ->   24 loopIndependentDefUseDependence pane$1
-  84:   15 ->   36 declaration
-  85:   15 ->   36 loopIndependentDefUseDependence pane$1
-  86:   15 ->   58 declaration
-  87:   15 ->   58 loopIndependentDefUseDependence pane$1
-  88:   18 ->   15 loopIndependentDefUseDependence javafx.scene.layout.BorderPane.!BorderPane( )
-  89:   19 ->   25 declaration
-  90:   19 ->   25 loopIndependentDefUseDependence label$2
-  91:   19 ->   29 declaration
-  92:   19 ->   29 loopIndependentDefUseDependence label$2
-  93:   19 ->   46 declaration
-  94:   19 ->   46 loopIndependentDefUseDependence label$2
-  95:   22 ->   19 loopIndependentDefUseDependence javafx.scene.control.Label.!Label( java.lang.String )
-  96:   26 ->   23 loopIndependentDefUseDependence pane$1.!setTop( javafx.scene.Node )
-  97:   30 ->   27 loopIndependentDefUseDependence this.!setAlignment( javafx.scene.Node javafx.geometry.Pos )
-  98:   30 ->   42 outputDependence this.!setAlignment( javafx.scene.Node javafx.geometry.Pos )
-  99:   31 ->   37 declaration
- 100:   31 ->   37 loopIndependentDefUseDependence button$3
- 101:   31 ->   41 declaration
- 102:   31 ->   41 loopIndependentDefUseDependence button$3
- 103:   31 ->   49 declaration
- 104:   31 ->   49 loopIndependentDefUseDependence button$3
- 105:   34 ->   31 loopIndependentDefUseDependence javafx.scene.control.Button.!Button( java.lang.String )
- 106:   38 ->   35 loopIndependentDefUseDependence pane$1.!setCenter( javafx.scene.Node )
- 107:   42 ->   39 loopIndependentDefUseDependence this.!setAlignment( javafx.scene.Node javafx.geometry.Pos )
- 108:   43 ->   52 declaration
- 109:   43 ->   52 loopIndependentDefUseDependence lm$4
- 110:   45+ ->   53 loopIndependentDefUseDependence Sample104FX.LabelManager.!LabelManager( javafx.scene.control.Label ).label
- 111:   45+ ->   54 loopIndependentDefUseDependence Sample104FX.LabelManager.!LabelManager( javafx.scene.control.Label ).label
- 112:   47 ->   43 loopIndependentDefUseDependence Sample104FX.LabelManager.!LabelManager( javafx.scene.control.Label )
- 113:   51 ->   50 loopIndependentDefUseDependence $LAMBDA
- 114:   53+ ->   53+ outputDependence lm$4.flag
- 115:   53+ ->   54 loopIndependentDefUseDependence lm$4.flag
- 116:   54 ->   51 loopIndependentDefUseDependence lm$4.!change( )
- 117:   55 ->   48 loopIndependentDefUseDependence button$3.!setOnAction( javafx.event.EventHandler )
- 118:   56 ->   62 declaration
- 119:   56 ->   62 loopIndependentDefUseDependence scene$6
- 120:   59 ->   56 loopIndependentDefUseDependence javafx.scene.Scene.!Scene( javafx.scene.Parent )
- 121:   63 ->   60 loopIndependentDefUseDependence stage$0.!setScene( javafx.scene.Scene )
- 122:   67 ->   64 loopIndependentDefUseDependence stage$0.!show( )
+  56:    0 ->   54 trueControlDependence
+  57:    0 ->   55 trueControlDependence
+  58:    0 ->   56 trueControlDependence
+  59:    0 ->   57 trueControlDependence
+  60:    0 ->   58 trueControlDependence
+  61:    0 ->   59 trueControlDependence
+  62:    0 ->   60 trueControlDependence
+  63:    0 ->   61 trueControlDependence
+  64:    0 ->   62 trueControlDependence
+  65:    0 ->   63 trueControlDependence
+  66:    0 ->   64 trueControlDependence
+  67:    0 ->   65 trueControlDependence
+  68:    0 ->   66 trueControlDependence
+  69:    0 ->   67 trueControlDependence
+  70:    0 ->   69 trueControlDependence
+  71:    2 ->    4 loopIndependentDefUseDependence stage$0
+  72:    2 ->    8 loopIndependentDefUseDependence stage$0
+  73:    2 ->   12 loopIndependentDefUseDependence stage$0
+  74:    2 ->   61 loopIndependentDefUseDependence stage$0
+  75:    2 ->   65 loopIndependentDefUseDependence stage$0
+  76:    6 ->    3 loopIndependentDefUseDependence stage$0.!setTitle( java.lang.String )
+  77:   10 ->    7 loopIndependentDefUseDependence stage$0.!setWidth( double )
+  78:   10 ->   13 loopIndependentDefUseDependence stage$0.!javafx.beans.property.DoublePropertyBase.value
+  79:   10 ->   14 loopIndependentDefUseDependence stage$0.!javafx.beans.property.DoublePropertyBase.value
+  80:   14 ->   11 loopIndependentDefUseDependence stage$0.!setHeight( double )
+  81:   15 ->   24 declaration
+  82:   15 ->   24 loopIndependentDefUseDependence pane$1
+  83:   15 ->   36 declaration
+  84:   15 ->   36 loopIndependentDefUseDependence pane$1
+  85:   15 ->   58 declaration
+  86:   15 ->   58 loopIndependentDefUseDependence pane$1
+  87:   18 ->   15 loopIndependentDefUseDependence javafx.scene.layout.BorderPane.!BorderPane( )
+  88:   19 ->   25 declaration
+  89:   19 ->   25 loopIndependentDefUseDependence label$2
+  90:   19 ->   29 declaration
+  91:   19 ->   29 loopIndependentDefUseDependence label$2
+  92:   19 ->   46 declaration
+  93:   19 ->   46 loopIndependentDefUseDependence label$2
+  94:   22 ->   19 loopIndependentDefUseDependence javafx.scene.control.Label.!Label( java.lang.String )
+  95:   26 ->   23 loopIndependentDefUseDependence pane$1.!setTop( javafx.scene.Node )
+  96:   30 ->   27 loopIndependentDefUseDependence this.!setAlignment( javafx.scene.Node javafx.geometry.Pos )
+  97:   30 ->   42 outputDependence this.!setAlignment( javafx.scene.Node javafx.geometry.Pos )
+  98:   31 ->   37 declaration
+  99:   31 ->   37 loopIndependentDefUseDependence button$3
+ 100:   31 ->   41 declaration
+ 101:   31 ->   41 loopIndependentDefUseDependence button$3
+ 102:   31 ->   49 declaration
+ 103:   31 ->   49 loopIndependentDefUseDependence button$3
+ 104:   34 ->   31 loopIndependentDefUseDependence javafx.scene.control.Button.!Button( java.lang.String )
+ 105:   38 ->   35 loopIndependentDefUseDependence pane$1.!setCenter( javafx.scene.Node )
+ 106:   42 ->   39 loopIndependentDefUseDependence this.!setAlignment( javafx.scene.Node javafx.geometry.Pos )
+ 107:   43 ->   52 declaration
+ 108:   43 ->   52 loopIndependentDefUseDependence lm$4
+ 109:   45+ ->   53 loopIndependentDefUseDependence Sample104FX.LabelManager.!LabelManager( javafx.scene.control.Label ).label
+ 110:   45+ ->   54 loopIndependentDefUseDependence Sample104FX.LabelManager.!LabelManager( javafx.scene.control.Label ).label
+ 111:   47 ->   43 loopIndependentDefUseDependence Sample104FX.LabelManager.!LabelManager( javafx.scene.control.Label )
+ 112:   51 ->   50 loopIndependentDefUseDependence $LAMBDA
+ 113:   53+ ->   54 loopIndependentDefUseDependence lm$4.flag
+ 114:   54 ->   51 loopIndependentDefUseDependence lm$4.!change( )
+ 115:   55 ->   48 loopIndependentDefUseDependence button$3.!setOnAction( javafx.event.EventHandler )
+ 116:   56 ->   62 declaration
+ 117:   56 ->   62 loopIndependentDefUseDependence scene$6
+ 118:   59 ->   56 loopIndependentDefUseDependence javafx.scene.Scene.!Scene( javafx.scene.Parent )
+ 119:   63 ->   60 loopIndependentDefUseDependence stage$0.!setScene( javafx.scene.Scene )
+ 120:   67 ->   64 loopIndependentDefUseDependence stage$0.!show( )
 --
    0: Sample104FX( )
    1:    0 ->    2 trueControlDependence

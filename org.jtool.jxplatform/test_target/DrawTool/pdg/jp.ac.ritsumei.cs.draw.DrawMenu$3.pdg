@@ -17,14 +17,11 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$3
   13 formalOut D = {  } U = { $_ }
    5+ actualOutByFieldAccess D = { this.tabbedCanvas.jp.ac.ritsumei.cs.draw.DrawCanvas.changed } U = {  }
    5+ actualOutByFieldAccess D = { this.!newFile( ).figureManager } U = {  }
-   5+ actualOutByFieldAccess D = { this.!newFile( ).figureManager } U = {  }
    5+ actualOutByFieldAccess D = { this.!newFile( ).menu } U = {  }
    5+ actualOutByFieldAccess D = { this.!newFile( ).selector } U = {  }
    5+ actualOutByFieldAccess D = { this.tabbedCanvas.canvas$1.undoManager } U = {  }
    5+ actualOutByFieldAccess D = { this.directory } U = {  }
    5+ actualOutByFieldAccess D = { this.!newFile( ).figures } U = {  }
-   5+ actualOutByFieldAccess D = { this.!newFile( ).figures } U = {  }
-   5+ actualOutByFieldAccess D = { this.!newFile( ).filename } U = {  }
    5+ actualOutByFieldAccess D = { this.!newFile( ).filename } U = {  }
    5+ actualOutByFieldAccess D = { this.tabbedCanvas.selectedTab } U = {  }
 --
@@ -50,17 +47,11 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$3
   16:    5 ->    5+ trueControlDependence
   17:    5 ->    5+ trueControlDependence
   18:    5 ->    5+ trueControlDependence
-  19:    5 ->    5+ trueControlDependence
-  20:    5 ->    5+ trueControlDependence
-  21:    5 ->    5+ trueControlDependence
-  22:    5 ->    6 trueControlDependence
-  23:    5 ->   13 trueControlDependence
-  24:    5+ ->    5+ outputDependence this.!newFile( ).figureManager
-  25:    5+ ->    5+ outputDependence this.!newFile( ).figures
-  26:    5+ ->    5+ outputDependence this.!newFile( ).filename
-  27:    5+ ->    6 loopIndependentDefUseDependence this.directory
-  28:    6 ->    3 loopIndependentDefUseDependence this.!newFile( )
-  29:   10 ->    7 loopIndependentDefUseDependence this.!buildRecentFileMenu( )
+  19:    5 ->    6 trueControlDependence
+  20:    5 ->   13 trueControlDependence
+  21:    5+ ->    6 loopIndependentDefUseDependence this.directory
+  22:    6 ->    3 loopIndependentDefUseDependence this.!newFile( )
+  23:   10 ->    7 loopIndependentDefUseDependence this.!buildRecentFileMenu( )
 --
 ----- ClDG (to here) -----
 

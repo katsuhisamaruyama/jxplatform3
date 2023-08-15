@@ -55,13 +55,10 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    8 formalOut D = {  } U = { $_ }
    4+ actualOutByFieldAccess D = { this.jp.ac.ritsumei.cs.draw.DrawCanvas.changed } U = {  }
    4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figureManager } U = {  }
-   4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figureManager } U = {  }
    4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).menu } U = {  }
    4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).selector } U = {  }
    4+ actualOutByFieldAccess D = { this.canvas$1.undoManager } U = {  }
    4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figures } U = {  }
-   4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figures } U = {  }
-   4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).filename } U = {  }
    4+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).filename } U = {  }
    4+ actualOutByFieldAccess D = { this.selectedTab } U = {  }
 --
@@ -90,13 +87,10 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
   11 formalOut D = {  } U = { $_ }
    3+ actualOutByFieldAccess D = { this.jp.ac.ritsumei.cs.draw.DrawCanvas.changed } U = {  }
    3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figureManager } U = {  }
-   3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figureManager } U = {  }
    3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).menu } U = {  }
    3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).selector } U = {  }
    3+ actualOutByFieldAccess D = { this.canvas$1.undoManager } U = {  }
    3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figures } U = {  }
-   3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).figures } U = {  }
-   3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).filename } U = {  }
    3+ actualOutByFieldAccess D = { this.!newTab( java.lang.String ).filename } U = {  }
    3+ actualOutByFieldAccess D = { this.selectedTab } U = {  }
 --
@@ -195,12 +189,9 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
   48 formalOut D = {  } U = { $_ }
    4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.changed } U = {  }
    4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager } U = {  }
-   4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager } U = {  }
    4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu } U = {  }
    4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector } U = {  }
    4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figures } U = {  }
-   4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figures } U = {  }
-   4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).filename } U = {  }
    4+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).filename } U = {  }
   20+ actualOutByFieldAccess D = { canvas$1.undoManager } U = {  }
   43+ actualOutByFieldAccess D = { this.selectedTab } U = {  }
@@ -327,23 +318,17 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
   10:    0 ->    4+ trueControlDependence
   11:    0 ->    4+ trueControlDependence
   12:    0 ->    4+ trueControlDependence
-  13:    0 ->    4+ trueControlDependence
-  14:    0 ->    4+ trueControlDependence
-  15:    0 ->    4+ trueControlDependence
-  16:    0 ->    5 trueControlDependence
-  17:    0 ->    6 trueControlDependence
-  18:    0 ->    8 trueControlDependence
-  19:    1 ->    5 loopIndependentDefUseDependence filename$0
-  20:    2 ->    8 loopIndependentDefUseDependence $_
-  21:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).figureManager
-  22:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).figures
-  23:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).filename
-  24:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).menu
-  25:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).selector
-  26:    4+ ->    4+ outputDependence this.!newTab( java.lang.String ).figureManager
-  27:    4+ ->    4+ outputDependence this.!newTab( java.lang.String ).figures
-  28:    4+ ->    4+ outputDependence this.!newTab( java.lang.String ).filename
-  29:    6 ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String )
+  13:    0 ->    5 trueControlDependence
+  14:    0 ->    6 trueControlDependence
+  15:    0 ->    8 trueControlDependence
+  16:    1 ->    5 loopIndependentDefUseDependence filename$0
+  17:    2 ->    8 loopIndependentDefUseDependence $_
+  18:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).figureManager
+  19:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).figures
+  20:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).filename
+  21:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).menu
+  22:    4+ ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String ).selector
+  23:    6 ->    2 loopIndependentDefUseDependence this.!newTab( java.lang.String )
 --
    0: selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas )
    1:    0 ->    1 trueControlDependence
@@ -372,21 +357,15 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    9:    0 ->    3+ trueControlDependence
   10:    0 ->    3+ trueControlDependence
   11:    0 ->    3+ trueControlDependence
-  12:    0 ->    3+ trueControlDependence
-  13:    0 ->    3+ trueControlDependence
-  14:    0 ->    3+ trueControlDependence
-  15:    0 ->    4 trueControlDependence
-  16:    0 ->    5 trueControlDependence
-  17:    0 ->    6 trueControlDependence
-  18:    0 ->    7 trueControlDependence
-  19:    0 ->    8 trueControlDependence
-  20:    0 ->    9 trueControlDependence
-  21:    0 ->   11 trueControlDependence
-  22:    3+ ->    3+ outputDependence this.!newTab( java.lang.String ).figureManager
-  23:    3+ ->    3+ outputDependence this.!newTab( java.lang.String ).figures
-  24:    3+ ->    3+ outputDependence this.!newTab( java.lang.String ).filename
-  25:    5 ->    1 loopIndependentDefUseDependence this.!newTab( java.lang.String )
-  26:    9 ->    6 loopIndependentDefUseDependence this.!addChangeListener( javax.swing.event.ChangeListener )
+  12:    0 ->    4 trueControlDependence
+  13:    0 ->    5 trueControlDependence
+  14:    0 ->    6 trueControlDependence
+  15:    0 ->    7 trueControlDependence
+  16:    0 ->    8 trueControlDependence
+  17:    0 ->    9 trueControlDependence
+  18:    0 ->   11 trueControlDependence
+  19:    5 ->    1 loopIndependentDefUseDependence this.!newTab( java.lang.String )
+  20:    9 ->    6 loopIndependentDefUseDependence this.!addChangeListener( javax.swing.event.ChangeListener )
 --
    0: canvases
    1:    0 ->    1 trueControlDependence
@@ -457,110 +436,104 @@ Class Name = jp.ac.ritsumei.cs.draw.TabbedCanvas
    8:    0 ->    4+ trueControlDependence
    9:    0 ->    4+ trueControlDependence
   10:    0 ->    4+ trueControlDependence
-  11:    0 ->    4+ trueControlDependence
-  12:    0 ->    4+ trueControlDependence
-  13:    0 ->    4+ trueControlDependence
-  14:    0 ->    5 trueControlDependence
-  15:    0 ->    6 trueControlDependence
-  16:    0 ->    7 trueControlDependence
-  17:    0 ->    8 trueControlDependence
-  18:    0 ->    9 trueControlDependence
-  19:    0 ->   10 trueControlDependence
-  20:    0 ->   11 trueControlDependence
-  21:    0 ->   12 trueControlDependence
-  22:    0 ->   13 trueControlDependence
-  23:    0 ->   14 trueControlDependence
-  24:    0 ->   15 trueControlDependence
-  25:    0 ->   16 trueControlDependence
-  26:    0 ->   17 trueControlDependence
-  27:    0 ->   18 trueControlDependence
-  28:    0 ->   19 trueControlDependence
-  29:    0 ->   20 trueControlDependence
-  30:    0 ->   20+ trueControlDependence
-  31:    0 ->   21 trueControlDependence
-  32:    0 ->   22 trueControlDependence
-  33:    0 ->   23 trueControlDependence
-  34:    0 ->   24 trueControlDependence
-  35:    0 ->   25 trueControlDependence
-  36:    0 ->   26 trueControlDependence
-  37:    0 ->   27 trueControlDependence
-  38:    0 ->   28 trueControlDependence
-  39:    0 ->   29 trueControlDependence
-  40:    0 ->   30 trueControlDependence
-  41:    0 ->   31 trueControlDependence
-  42:    0 ->   32 trueControlDependence
-  43:    0 ->   33 trueControlDependence
-  44:    0 ->   34 trueControlDependence
-  45:    0 ->   35 trueControlDependence
-  46:    0 ->   36 trueControlDependence
-  47:    0 ->   37 trueControlDependence
-  48:    0 ->   38 trueControlDependence
-  49:    0 ->   39 trueControlDependence
-  50:    0 ->   40 trueControlDependence
-  51:    0 ->   41 trueControlDependence
-  52:    0 ->   42 trueControlDependence
-  53:    0 ->   43 trueControlDependence
-  54:    0 ->   43+ trueControlDependence
-  55:    0 ->   44 trueControlDependence
-  56:    0 ->   45 trueControlDependence
-  57:    0 ->   46 trueControlDependence
-  58:    0 ->   48 trueControlDependence
-  59:    1 ->    7 loopIndependentDefUseDependence filename$0
-  60:    2 ->   14 declaration
-  61:    2 ->   14 loopIndependentDefUseDependence canvas$1
-  62:    2 ->   19 declaration
-  63:    2 ->   19 loopIndependentDefUseDependence canvas$1
-  64:    2 ->   24 declaration
-  65:    2 ->   24 loopIndependentDefUseDependence canvas$1
-  66:    2 ->   29 declaration
-  67:    2 ->   29 loopIndependentDefUseDependence canvas$1
-  68:    2 ->   39 declaration
-  69:    2 ->   39 loopIndependentDefUseDependence canvas$1
-  70:    2 ->   44 declaration
-  71:    2 ->   44 loopIndependentDefUseDependence canvas$1
-  72:    2 ->   46 declaration
-  73:    2 ->   46 loopIndependentDefUseDependence canvas$1
-  74:    4+ ->    4+ outputDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
-  75:    4+ ->    4+ outputDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figures
-  76:    4+ ->    4+ outputDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).filename
-  77:    4+ ->   25 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
-  78:    4+ ->   26 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
-  79:    4+ ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
-  80:    4+ ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
-  81:    4+ ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
-  82:    4+ ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
-  83:    4+ ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
-  84:    4+ ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
-  85:    4+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
-  86:    4+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
-  87:    4+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
-  88:    4+ ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
-  89:    4+ ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
-  90:    4+ ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
-  91:    8 ->    2 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String )
-  92:    9 ->   16 declaration
-  93:    9 ->   16 loopIndependentDefUseDependence undoManager$2
-  94:    9 ->   21 declaration
-  95:    9 ->   21 loopIndependentDefUseDependence undoManager$2
-  96:   12 ->    9 loopIndependentDefUseDependence javax.swing.undo.UndoManager.!UndoManager( )
-  97:   17 ->   13 loopIndependentDefUseDependence canvas$1.!addUndoableEditListener( javax.swing.event.UndoableEditListener )
-  98:   17 ->   46 loopIndependentDefUseDependence canvas$1.support.!java.util.Vector.modCount
-  99:   20+ ->   29 loopIndependentDefUseDependence canvas$1.undoManager
- 100:   20+ ->   39 loopIndependentDefUseDependence canvas$1.undoManager
- 101:   20+ ->   44 loopIndependentDefUseDependence canvas$1.undoManager
- 102:   20+ ->   46 loopIndependentDefUseDependence canvas$1.undoManager
- 103:   22 ->   18 loopIndependentDefUseDependence canvas$1.!setUndoManager( javax.swing.undo.UndoManager )
- 104:   23 ->   30 declaration
- 105:   23 ->   30 loopIndependentDefUseDependence fmanager$3
- 106:   23 ->   33 declaration
- 107:   23 ->   33 loopIndependentDefUseDependence fmanager$3
- 108:   26 ->   23 loopIndependentDefUseDependence canvas$1.!getFigureManager( )
- 109:   32 ->   29 loopIndependentDefUseDependence fmanager$3.!getTitle( )
- 110:   35 ->   29 loopIndependentDefUseDependence fmanager$3.!getFilename( )
- 111:   36 ->   27 loopIndependentDefUseDependence this.!addTab( java.lang.String javax.swing.Icon java.awt.Component java.lang.String )
- 112:   40 ->   37 loopIndependentDefUseDependence this.canvases.!add( java.lang.Object )
- 113:   45 ->   41 loopIndependentDefUseDependence this.!selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas )
- 114:   46 ->   48 loopIndependentDefUseDependence $_
+  11:    0 ->    5 trueControlDependence
+  12:    0 ->    6 trueControlDependence
+  13:    0 ->    7 trueControlDependence
+  14:    0 ->    8 trueControlDependence
+  15:    0 ->    9 trueControlDependence
+  16:    0 ->   10 trueControlDependence
+  17:    0 ->   11 trueControlDependence
+  18:    0 ->   12 trueControlDependence
+  19:    0 ->   13 trueControlDependence
+  20:    0 ->   14 trueControlDependence
+  21:    0 ->   15 trueControlDependence
+  22:    0 ->   16 trueControlDependence
+  23:    0 ->   17 trueControlDependence
+  24:    0 ->   18 trueControlDependence
+  25:    0 ->   19 trueControlDependence
+  26:    0 ->   20 trueControlDependence
+  27:    0 ->   20+ trueControlDependence
+  28:    0 ->   21 trueControlDependence
+  29:    0 ->   22 trueControlDependence
+  30:    0 ->   23 trueControlDependence
+  31:    0 ->   24 trueControlDependence
+  32:    0 ->   25 trueControlDependence
+  33:    0 ->   26 trueControlDependence
+  34:    0 ->   27 trueControlDependence
+  35:    0 ->   28 trueControlDependence
+  36:    0 ->   29 trueControlDependence
+  37:    0 ->   30 trueControlDependence
+  38:    0 ->   31 trueControlDependence
+  39:    0 ->   32 trueControlDependence
+  40:    0 ->   33 trueControlDependence
+  41:    0 ->   34 trueControlDependence
+  42:    0 ->   35 trueControlDependence
+  43:    0 ->   36 trueControlDependence
+  44:    0 ->   37 trueControlDependence
+  45:    0 ->   38 trueControlDependence
+  46:    0 ->   39 trueControlDependence
+  47:    0 ->   40 trueControlDependence
+  48:    0 ->   41 trueControlDependence
+  49:    0 ->   42 trueControlDependence
+  50:    0 ->   43 trueControlDependence
+  51:    0 ->   43+ trueControlDependence
+  52:    0 ->   44 trueControlDependence
+  53:    0 ->   45 trueControlDependence
+  54:    0 ->   46 trueControlDependence
+  55:    0 ->   48 trueControlDependence
+  56:    1 ->    7 loopIndependentDefUseDependence filename$0
+  57:    2 ->   14 declaration
+  58:    2 ->   14 loopIndependentDefUseDependence canvas$1
+  59:    2 ->   19 declaration
+  60:    2 ->   19 loopIndependentDefUseDependence canvas$1
+  61:    2 ->   24 declaration
+  62:    2 ->   24 loopIndependentDefUseDependence canvas$1
+  63:    2 ->   29 declaration
+  64:    2 ->   29 loopIndependentDefUseDependence canvas$1
+  65:    2 ->   39 declaration
+  66:    2 ->   39 loopIndependentDefUseDependence canvas$1
+  67:    2 ->   44 declaration
+  68:    2 ->   44 loopIndependentDefUseDependence canvas$1
+  69:    2 ->   46 declaration
+  70:    2 ->   46 loopIndependentDefUseDependence canvas$1
+  71:    4+ ->   25 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  72:    4+ ->   26 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  73:    4+ ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  74:    4+ ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
+  75:    4+ ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
+  76:    4+ ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  77:    4+ ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
+  78:    4+ ->   39 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
+  79:    4+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  80:    4+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
+  81:    4+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
+  82:    4+ ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).figureManager
+  83:    4+ ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).menu
+  84:    4+ ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String ).selector
+  85:    8 ->    2 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawCanvas.!DrawCanvas( jp.ac.ritsumei.cs.draw.DrawMenu jp.ac.ritsumei.cs.draw.FigureSelector java.lang.String )
+  86:    9 ->   16 declaration
+  87:    9 ->   16 loopIndependentDefUseDependence undoManager$2
+  88:    9 ->   21 declaration
+  89:    9 ->   21 loopIndependentDefUseDependence undoManager$2
+  90:   12 ->    9 loopIndependentDefUseDependence javax.swing.undo.UndoManager.!UndoManager( )
+  91:   17 ->   13 loopIndependentDefUseDependence canvas$1.!addUndoableEditListener( javax.swing.event.UndoableEditListener )
+  92:   17 ->   46 loopIndependentDefUseDependence canvas$1.support.!java.util.Vector.modCount
+  93:   20+ ->   29 loopIndependentDefUseDependence canvas$1.undoManager
+  94:   20+ ->   39 loopIndependentDefUseDependence canvas$1.undoManager
+  95:   20+ ->   44 loopIndependentDefUseDependence canvas$1.undoManager
+  96:   20+ ->   46 loopIndependentDefUseDependence canvas$1.undoManager
+  97:   22 ->   18 loopIndependentDefUseDependence canvas$1.!setUndoManager( javax.swing.undo.UndoManager )
+  98:   23 ->   30 declaration
+  99:   23 ->   30 loopIndependentDefUseDependence fmanager$3
+ 100:   23 ->   33 declaration
+ 101:   23 ->   33 loopIndependentDefUseDependence fmanager$3
+ 102:   26 ->   23 loopIndependentDefUseDependence canvas$1.!getFigureManager( )
+ 103:   32 ->   29 loopIndependentDefUseDependence fmanager$3.!getTitle( )
+ 104:   35 ->   29 loopIndependentDefUseDependence fmanager$3.!getFilename( )
+ 105:   36 ->   27 loopIndependentDefUseDependence this.!addTab( java.lang.String javax.swing.Icon java.awt.Component java.lang.String )
+ 106:   40 ->   37 loopIndependentDefUseDependence this.canvases.!add( java.lang.Object )
+ 107:   45 ->   41 loopIndependentDefUseDependence this.!selectTab( jp.ac.ritsumei.cs.draw.DrawCanvas )
+ 108:   46 ->   48 loopIndependentDefUseDependence $_
 --
    0: getOpenFileNum( )
    1:    0 ->    1 trueControlDependence

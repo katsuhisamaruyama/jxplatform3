@@ -26,8 +26,6 @@ Class Name = org.jtool.videostore.after.RentalTest
    5 actualIn D = {  } U = { Movie.PriceCode.CHILDRENS }
    6 actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
-   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
-   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
@@ -122,8 +120,6 @@ Class Name = org.jtool.videostore.after.RentalTest
    5 actualIn D = {  } U = { Movie.PriceCode.REGULAR }
    6 actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
-   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
-   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
@@ -184,8 +180,6 @@ Class Name = org.jtool.videostore.after.RentalTest
    5 actualIn D = {  } U = { Movie.PriceCode.NEW_RELEASE }
    6 actualOut D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ) } U = { org.jtool.videostore.after.Movie.PriceCode.CHILDRENS, org.jtool.videostore.after.Movie.PriceCode.NEW_RELEASE, org.jtool.videostore.after.Movie.PriceCode.REGULAR }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
-   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
-   3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.price } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).title } U = {  }
    3+ actualOutByFieldAccess D = { org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode ).priceCode } U = {  }
 --
@@ -221,14 +215,10 @@ Class Name = org.jtool.videostore.after.RentalTest
    4:    0 ->    3+ trueControlDependence
    5:    0 ->    3+ trueControlDependence
    6:    0 ->    3+ trueControlDependence
-   7:    0 ->    3+ trueControlDependence
-   8:    0 ->    3+ trueControlDependence
-   9:    0 ->    4 trueControlDependence
-  10:    0 ->    5 trueControlDependence
-  11:    0 ->    6 trueControlDependence
-  12:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
-  13:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
-  14:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
+   7:    0 ->    4 trueControlDependence
+   8:    0 ->    5 trueControlDependence
+   9:    0 ->    6 trueControlDependence
+  10:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
 --
    0: RentalTest( )
    1:    0 ->    2 trueControlDependence
@@ -361,14 +351,10 @@ Class Name = org.jtool.videostore.after.RentalTest
    4:    0 ->    3+ trueControlDependence
    5:    0 ->    3+ trueControlDependence
    6:    0 ->    3+ trueControlDependence
-   7:    0 ->    3+ trueControlDependence
-   8:    0 ->    3+ trueControlDependence
-   9:    0 ->    4 trueControlDependence
-  10:    0 ->    5 trueControlDependence
-  11:    0 ->    6 trueControlDependence
-  12:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
-  13:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
-  14:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
+   7:    0 ->    4 trueControlDependence
+   8:    0 ->    5 trueControlDependence
+   9:    0 ->    6 trueControlDependence
+  10:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
 --
    0: testRegularMovie( )
    1:    0 ->    1 trueControlDependence
@@ -450,14 +436,10 @@ Class Name = org.jtool.videostore.after.RentalTest
    4:    0 ->    3+ trueControlDependence
    5:    0 ->    3+ trueControlDependence
    6:    0 ->    3+ trueControlDependence
-   7:    0 ->    3+ trueControlDependence
-   8:    0 ->    3+ trueControlDependence
-   9:    0 ->    4 trueControlDependence
-  10:    0 ->    5 trueControlDependence
-  11:    0 ->    6 trueControlDependence
-  12:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
-  13:    3+ ->    3+ outputDependence org.jtool.videostore.after.Movie.price
-  14:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
+   7:    0 ->    4 trueControlDependence
+   8:    0 ->    5 trueControlDependence
+   9:    0 ->    6 trueControlDependence
+  10:    6 ->    1 loopIndependentDefUseDependence org.jtool.videostore.after.Movie.!Movie( java.lang.String org.jtool.videostore.after.Movie.PriceCode )
 --
 ----- ClDG (to here) -----
 

@@ -351,10 +351,6 @@ Class Name = Pit
    5+ actualOutByFieldAccess D = { this.currentBlock.tile$3.posY } U = {  }
   16+ actualOutByFieldAccess D = { this.offsetX } U = {  }
   16+ actualOutByFieldAccess D = { this.offsetY } U = {  }
-  16+ actualOutByFieldAccess D = { this.offsetY } U = {  }
-  16+ actualOutByFieldAccess D = { this.offsetY } U = {  }
-  16+ actualOutByFieldAccess D = { this.offsetY } U = {  }
-  16+ actualOutByFieldAccess D = { this.offsetY } U = {  }
   16+ actualOutByFieldAccess D = { this.!create( int int int ).posX } U = {  }
   16+ actualOutByFieldAccess D = { this.!create( int int int ).posY } U = {  }
   16+ actualOutByFieldAccess D = { this.!create( int int int ).color } U = {  }
@@ -956,70 +952,62 @@ Class Name = Pit
   13:    0 ->   16+ trueControlDependence
   14:    0 ->   16+ trueControlDependence
   15:    0 ->   16+ trueControlDependence
-  16:    0 ->   16+ trueControlDependence
-  17:    0 ->   16+ trueControlDependence
-  18:    0 ->   16+ trueControlDependence
-  19:    0 ->   16+ trueControlDependence
-  20:    0 ->   17 trueControlDependence
-  21:    0 ->   18 trueControlDependence
-  22:    0 ->   19 trueControlDependence
-  23:    0 ->   20 trueControlDependence
-  24:    0 ->   21 trueControlDependence
-  25:    0 ->   22 trueControlDependence
-  26:    0 ->   23 trueControlDependence
-  27:    0 ->   23+ trueControlDependence
-  28:    0 ->   24 trueControlDependence
-  29:    0 ->   25 trueControlDependence
-  30:    0 ->   26 trueControlDependence
-  31:    0 ->   34 trueControlDependence
-  32:    1 ->    2 trueControlDependence
-  33:    1 ->    3 trueControlDependence
-  34:    1 ->    4 trueControlDependence
-  35:    1 ->    5 trueControlDependence
-  36:    1 ->    5+ trueControlDependence
-  37:    1 ->    5+ trueControlDependence
-  38:    1 ->    5+ trueControlDependence
-  39:    1 ->    5+ trueControlDependence
-  40:    1 ->    6 trueControlDependence
-  41:    1 ->    7 trueControlDependence
-  42:    1 ->    8 trueControlDependence
-  43:    2 ->    4 loopIndependentDefUseDependence this.currentBlock
-  44:    2 ->   26 loopIndependentDefUseDependence this.currentBlock
-  45:    2 ->   28 loopIndependentDefUseDependence this.currentBlock
-  46:    5+ ->    8 loopIndependentDefUseDependence this.currentBlock.tile$3.posX
-  47:    5+ ->    8 loopIndependentDefUseDependence this.currentBlock.tile$3.posY
-  48:    5+ ->   26 loopIndependentDefUseDependence this.currentBlock.posX
-  49:    5+ ->   26 loopIndependentDefUseDependence this.currentBlock.posY
-  50:    5+ ->   29 loopIndependentDefUseDependence this.currentBlock.tile$3.posX
-  51:    5+ ->   29 loopIndependentDefUseDependence this.currentBlock.tile$3.posY
-  52:    5+ ->   30 loopIndependentDefUseDependence this.currentBlock.tile$3.posX
-  53:    5+ ->   30 loopIndependentDefUseDependence this.currentBlock.tile$3.posY
-  54:    8 ->    3 loopIndependentDefUseDependence this.currentBlock.!setPosXY( int int )
-  55:    8 ->   29 loopIndependentDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet
-  56:    8 ->   30 loopIndependentDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet
-  57:   10 ->   17 declaration
-  58:   10 ->   17 loopIndependentDefUseDependence kind$0
-  59:   13 ->   10 loopIndependentDefUseDependence this.rnd.!nextInt( int )
-  60:   14 ->   22 loopIndependentDefUseDependence this.nextBlock
-  61:   16+ ->   16+ outputDependence this.!create( int int int ).posX
-  62:   16+ ->   16+ outputDependence this.!create( int int int ).posY
-  63:   16+ ->   16+ outputDependence this.offsetY
-  64:   16+ ->   16+ outputDependence this.offsetY
-  65:   16+ ->   16+ outputDependence this.offsetY
-  66:   16+ ->   16+ outputDependence this.offsetY
-  67:   16+ ->   20 loopIndependentDefUseDependence this.offsetX
-  68:   16+ ->   20 loopIndependentDefUseDependence this.offsetY
-  69:   20 ->   14 loopIndependentDefUseDependence this.!create( int int int )
-  70:   25 ->   21 loopIndependentDefUseDependence this.nextBlock.!setPit( Pit )
-  71:   26 ->   27 trueControlDependence
-  72:   26 ->   28 trueControlDependence
-  73:   26 ->   29 trueControlDependence
-  74:   26 ->   30 trueControlDependence
-  75:   26 ->   32 falseControlDependence
-  76:   27 ->   32 fallThroughControlDependence
-  77:   27 ->   34 loopIndependentDefUseDependence $_
-  78:   30 ->   27 loopIndependentDefUseDependence this.currentBlock.!canPlace( )
-  79:   32 ->   34 loopIndependentDefUseDependence $_
+  16:    0 ->   17 trueControlDependence
+  17:    0 ->   18 trueControlDependence
+  18:    0 ->   19 trueControlDependence
+  19:    0 ->   20 trueControlDependence
+  20:    0 ->   21 trueControlDependence
+  21:    0 ->   22 trueControlDependence
+  22:    0 ->   23 trueControlDependence
+  23:    0 ->   23+ trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   34 trueControlDependence
+  28:    1 ->    2 trueControlDependence
+  29:    1 ->    3 trueControlDependence
+  30:    1 ->    4 trueControlDependence
+  31:    1 ->    5 trueControlDependence
+  32:    1 ->    5+ trueControlDependence
+  33:    1 ->    5+ trueControlDependence
+  34:    1 ->    5+ trueControlDependence
+  35:    1 ->    5+ trueControlDependence
+  36:    1 ->    6 trueControlDependence
+  37:    1 ->    7 trueControlDependence
+  38:    1 ->    8 trueControlDependence
+  39:    2 ->    4 loopIndependentDefUseDependence this.currentBlock
+  40:    2 ->   26 loopIndependentDefUseDependence this.currentBlock
+  41:    2 ->   28 loopIndependentDefUseDependence this.currentBlock
+  42:    5+ ->    8 loopIndependentDefUseDependence this.currentBlock.tile$3.posX
+  43:    5+ ->    8 loopIndependentDefUseDependence this.currentBlock.tile$3.posY
+  44:    5+ ->   26 loopIndependentDefUseDependence this.currentBlock.posX
+  45:    5+ ->   26 loopIndependentDefUseDependence this.currentBlock.posY
+  46:    5+ ->   29 loopIndependentDefUseDependence this.currentBlock.tile$3.posX
+  47:    5+ ->   29 loopIndependentDefUseDependence this.currentBlock.tile$3.posY
+  48:    5+ ->   30 loopIndependentDefUseDependence this.currentBlock.tile$3.posX
+  49:    5+ ->   30 loopIndependentDefUseDependence this.currentBlock.tile$3.posY
+  50:    8 ->    3 loopIndependentDefUseDependence this.currentBlock.!setPosXY( int int )
+  51:    8 ->   29 loopIndependentDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet
+  52:    8 ->   30 loopIndependentDefUseDependence this.currentBlock.tiles.!java.util.HashMap.keySet
+  53:   10 ->   17 declaration
+  54:   10 ->   17 loopIndependentDefUseDependence kind$0
+  55:   13 ->   10 loopIndependentDefUseDependence this.rnd.!nextInt( int )
+  56:   14 ->   22 loopIndependentDefUseDependence this.nextBlock
+  57:   16+ ->   16+ outputDependence this.!create( int int int ).posX
+  58:   16+ ->   16+ outputDependence this.!create( int int int ).posY
+  59:   16+ ->   20 loopIndependentDefUseDependence this.offsetX
+  60:   16+ ->   20 loopIndependentDefUseDependence this.offsetY
+  61:   20 ->   14 loopIndependentDefUseDependence this.!create( int int int )
+  62:   25 ->   21 loopIndependentDefUseDependence this.nextBlock.!setPit( Pit )
+  63:   26 ->   27 trueControlDependence
+  64:   26 ->   28 trueControlDependence
+  65:   26 ->   29 trueControlDependence
+  66:   26 ->   30 trueControlDependence
+  67:   26 ->   32 falseControlDependence
+  68:   27 ->   32 fallThroughControlDependence
+  69:   27 ->   34 loopIndependentDefUseDependence $_
+  70:   30 ->   27 loopIndependentDefUseDependence this.currentBlock.!canPlace( )
+  71:   32 ->   34 loopIndependentDefUseDependence $_
 --
    0: nextBlock
    1:    0 ->    1 trueControlDependence

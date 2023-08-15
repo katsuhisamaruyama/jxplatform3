@@ -332,13 +332,10 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu
    4+ actualOutByFieldAccess D = { this.directory } U = {  }
   23+ actualOutByFieldAccess D = { this.tabbedCanvas.jp.ac.ritsumei.cs.draw.DrawCanvas.changed } U = {  }
   23+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).figureManager } U = {  }
-  23+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).figureManager } U = {  }
   23+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).menu } U = {  }
   23+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).selector } U = {  }
   23+ actualOutByFieldAccess D = { this.tabbedCanvas.canvas$1.undoManager } U = {  }
   23+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).figures } U = {  }
-  23+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).figures } U = {  }
-  23+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).filename } U = {  }
   23+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).filename } U = {  }
   23+ actualOutByFieldAccess D = { this.tabbedCanvas.selectedTab } U = {  }
 --
@@ -428,7 +425,6 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu
    5+ actualOutByFieldAccess D = { this.directory } U = {  }
   13+ actualOutByFieldAccess D = { this.tabbedCanvas.jp.ac.ritsumei.cs.draw.DrawCanvas.changed } U = {  }
   13+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).figureManager } U = {  }
-  13+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).figureManager } U = {  }
   13+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).menu } U = {  }
   13+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).selector } U = {  }
   13+ actualOutByFieldAccess D = { this.tabbedCanvas.canvas$1.undoManager } U = {  }
@@ -437,8 +433,6 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu
   13+ actualOutByFieldAccess D = { this.canvas$1.!getFigureManager( ).figure$7.startX } U = {  }
   13+ actualOutByFieldAccess D = { this.canvas$1.!getFigureManager( ).figure$7.startY } U = {  }
   13+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).figures } U = {  }
-  13+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).figures } U = {  }
-  13+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).filename } U = {  }
   13+ actualOutByFieldAccess D = { this.!openFile( java.lang.String ).filename } U = {  }
   13+ actualOutByFieldAccess D = { this.tabbedCanvas.selectedTab } U = {  }
 --
@@ -1093,13 +1087,10 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu
   67 formalOut D = {  } U = { $_ }
   33+ actualOutByFieldAccess D = { this.tabbedCanvas.jp.ac.ritsumei.cs.draw.DrawCanvas.changed } U = {  }
   33+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).figureManager } U = {  }
-  33+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).figureManager } U = {  }
   33+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).menu } U = {  }
   33+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).selector } U = {  }
   33+ actualOutByFieldAccess D = { this.tabbedCanvas.canvas$1.undoManager } U = {  }
   33+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).figures } U = {  }
-  33+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).figures } U = {  }
-  33+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).filename } U = {  }
   33+ actualOutByFieldAccess D = { this.tabbedCanvas.!openTab( java.lang.String ).filename } U = {  }
   33+ actualOutByFieldAccess D = { this.tabbedCanvas.selectedTab } U = {  }
   42+ actualOutByFieldAccess D = { canvas$1.!getFigureManager( ).figure$7.endX } U = {  }
@@ -1870,74 +1861,65 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu
   46:   10 ->   23+ falseControlDependence
   47:   10 ->   23+ falseControlDependence
   48:   10 ->   23+ falseControlDependence
-  49:   10 ->   23+ falseControlDependence
-  50:   10 ->   23+ falseControlDependence
-  51:   10 ->   23+ falseControlDependence
-  52:   10 ->   24 falseControlDependence
-  53:   10 ->   25 falseControlDependence
-  54:   10 ->   26 falseControlDependence
-  55:   10 ->   27 falseControlDependence
-  56:   10 ->   28 falseControlDependence
-  57:   10 ->   29 falseControlDependence
-  58:   10 ->   30 falseControlDependence
-  59:   10 ->   31 falseControlDependence
-  60:   10 ->   32 falseControlDependence
-  61:   10 ->   33 falseControlDependence
-  62:   10 ->   34 falseControlDependence
-  63:   10 ->   35 falseControlDependence
-  64:   10 ->   36 falseControlDependence
-  65:   10 ->   37 falseControlDependence
-  66:   10 ->   38 falseControlDependence
-  67:   10 ->   39 falseControlDependence
-  68:   10 ->   41 falseControlDependence
-  69:   14 ->   10 loopIndependentDefUseDependence this.!fileExists( java.lang.String )
-  70:   17 ->    1 exceptionCatch
-  71:   17 ->   15 trueControlDependence
-  72:   17 ->   18 trueControlDependence
-  73:   17 ->   19 trueControlDependence
-  74:   17 ->   41 trueControlDependence
-  75:   18 ->   15 loopIndependentDefUseDependence this.!showMessageDialog( java.awt.Component java.lang.Object )
-  76:   19 ->   21 fallThroughControlDependence
-  77:   19 ->   22 fallThroughControlDependence
-  78:   19 ->   23 fallThroughControlDependence
+  49:   10 ->   24 falseControlDependence
+  50:   10 ->   25 falseControlDependence
+  51:   10 ->   26 falseControlDependence
+  52:   10 ->   27 falseControlDependence
+  53:   10 ->   28 falseControlDependence
+  54:   10 ->   29 falseControlDependence
+  55:   10 ->   30 falseControlDependence
+  56:   10 ->   31 falseControlDependence
+  57:   10 ->   32 falseControlDependence
+  58:   10 ->   33 falseControlDependence
+  59:   10 ->   34 falseControlDependence
+  60:   10 ->   35 falseControlDependence
+  61:   10 ->   36 falseControlDependence
+  62:   10 ->   37 falseControlDependence
+  63:   10 ->   38 falseControlDependence
+  64:   10 ->   39 falseControlDependence
+  65:   10 ->   41 falseControlDependence
+  66:   14 ->   10 loopIndependentDefUseDependence this.!fileExists( java.lang.String )
+  67:   17 ->    1 exceptionCatch
+  68:   17 ->   15 trueControlDependence
+  69:   17 ->   18 trueControlDependence
+  70:   17 ->   19 trueControlDependence
+  71:   17 ->   41 trueControlDependence
+  72:   18 ->   15 loopIndependentDefUseDependence this.!showMessageDialog( java.awt.Component java.lang.Object )
+  73:   19 ->   21 fallThroughControlDependence
+  74:   19 ->   22 fallThroughControlDependence
+  75:   19 ->   23 fallThroughControlDependence
+  76:   19 ->   23+ fallThroughControlDependence
+  77:   19 ->   23+ fallThroughControlDependence
+  78:   19 ->   23+ fallThroughControlDependence
   79:   19 ->   23+ fallThroughControlDependence
   80:   19 ->   23+ fallThroughControlDependence
   81:   19 ->   23+ fallThroughControlDependence
   82:   19 ->   23+ fallThroughControlDependence
   83:   19 ->   23+ fallThroughControlDependence
-  84:   19 ->   23+ fallThroughControlDependence
-  85:   19 ->   23+ fallThroughControlDependence
-  86:   19 ->   23+ fallThroughControlDependence
-  87:   19 ->   23+ fallThroughControlDependence
-  88:   19 ->   23+ fallThroughControlDependence
-  89:   19 ->   23+ fallThroughControlDependence
-  90:   19 ->   24 fallThroughControlDependence
-  91:   19 ->   25 fallThroughControlDependence
-  92:   19 ->   26 fallThroughControlDependence
-  93:   19 ->   27 fallThroughControlDependence
-  94:   19 ->   28 fallThroughControlDependence
-  95:   19 ->   29 fallThroughControlDependence
-  96:   19 ->   30 fallThroughControlDependence
-  97:   19 ->   31 fallThroughControlDependence
-  98:   19 ->   32 fallThroughControlDependence
-  99:   19 ->   33 fallThroughControlDependence
- 100:   19 ->   34 fallThroughControlDependence
- 101:   19 ->   35 fallThroughControlDependence
- 102:   19 ->   36 fallThroughControlDependence
- 103:   19 ->   37 fallThroughControlDependence
- 104:   19 ->   38 fallThroughControlDependence
- 105:   19 ->   39 fallThroughControlDependence
- 106:   19 ->   41 loopIndependentDefUseDependence $_
- 107:   21 ->   36 declaration
- 108:   21 ->   36 loopIndependentDefUseDependence canvas$1
- 109:   23+ ->   23+ outputDependence this.tabbedCanvas.!openTab( java.lang.String ).figureManager
- 110:   23+ ->   23+ outputDependence this.tabbedCanvas.!openTab( java.lang.String ).figures
- 111:   23+ ->   23+ outputDependence this.tabbedCanvas.!openTab( java.lang.String ).filename
- 112:   25 ->   21 loopIndependentDefUseDependence this.tabbedCanvas.!openTab( java.lang.String )
- 113:   30 ->   26 loopIndependentDefUseDependence this.!addRecentFile( java.lang.String )
- 114:   34 ->   31 loopIndependentDefUseDependence this.tool.!setTitle( java.lang.String )
- 115:   38 ->   35 loopIndependentDefUseDependence canvas$1.!repaint( )
- 116:   39 ->   41 loopIndependentDefUseDependence $_
+  84:   19 ->   24 fallThroughControlDependence
+  85:   19 ->   25 fallThroughControlDependence
+  86:   19 ->   26 fallThroughControlDependence
+  87:   19 ->   27 fallThroughControlDependence
+  88:   19 ->   28 fallThroughControlDependence
+  89:   19 ->   29 fallThroughControlDependence
+  90:   19 ->   30 fallThroughControlDependence
+  91:   19 ->   31 fallThroughControlDependence
+  92:   19 ->   32 fallThroughControlDependence
+  93:   19 ->   33 fallThroughControlDependence
+  94:   19 ->   34 fallThroughControlDependence
+  95:   19 ->   35 fallThroughControlDependence
+  96:   19 ->   36 fallThroughControlDependence
+  97:   19 ->   37 fallThroughControlDependence
+  98:   19 ->   38 fallThroughControlDependence
+  99:   19 ->   39 fallThroughControlDependence
+ 100:   19 ->   41 loopIndependentDefUseDependence $_
+ 101:   21 ->   36 declaration
+ 102:   21 ->   36 loopIndependentDefUseDependence canvas$1
+ 103:   25 ->   21 loopIndependentDefUseDependence this.tabbedCanvas.!openTab( java.lang.String )
+ 104:   30 ->   26 loopIndependentDefUseDependence this.!addRecentFile( java.lang.String )
+ 105:   34 ->   31 loopIndependentDefUseDependence this.tool.!setTitle( java.lang.String )
+ 106:   38 ->   35 loopIndependentDefUseDependence canvas$1.!repaint( )
+ 107:   39 ->   41 loopIndependentDefUseDependence $_
 --
    0: windowListener
    1:    0 ->    1 trueControlDependence
@@ -2107,15 +2089,9 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu
   37:   13 ->   13+ trueControlDependence
   38:   13 ->   13+ trueControlDependence
   39:   13 ->   13+ trueControlDependence
-  40:   13 ->   13+ trueControlDependence
-  41:   13 ->   13+ trueControlDependence
-  42:   13 ->   13+ trueControlDependence
-  43:   13 ->   15 trueControlDependence
-  44:   13 ->   17 trueControlDependence
-  45:   13+ ->   13+ outputDependence this.!openFile( java.lang.String ).figureManager
-  46:   13+ ->   13+ outputDependence this.!openFile( java.lang.String ).figures
-  47:   13+ ->   13+ outputDependence this.!openFile( java.lang.String ).filename
-  48:   15 ->   11 loopIndependentDefUseDependence this.!openFile( java.lang.String )
+  40:   13 ->   15 trueControlDependence
+  41:   13 ->   17 trueControlDependence
+  42:   15 ->   11 loopIndependentDefUseDependence this.!openFile( java.lang.String )
 --
    0: fileExists( java.lang.String )
    1:    0 ->    1 trueControlDependence
@@ -3252,126 +3228,120 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu
   43:    9 ->   33+ falseControlDependence
   44:    9 ->   33+ falseControlDependence
   45:    9 ->   33+ falseControlDependence
-  46:    9 ->   33+ falseControlDependence
-  47:    9 ->   33+ falseControlDependence
-  48:    9 ->   33+ falseControlDependence
-  49:    9 ->   34 falseControlDependence
-  50:    9 ->   35 falseControlDependence
-  51:    9 ->   38 falseControlDependence
-  52:    9 ->   39 falseControlDependence
-  53:    9 ->   40 falseControlDependence
-  54:    9 ->   41 falseControlDependence
-  55:    9 ->   42 falseControlDependence
-  56:    9 ->   43 falseControlDependence
-  57:   13 ->    9 loopIndependentDefUseDependence this.tabbedCanvas.!getCanvas( java.lang.String )
-  58:   14 ->   19 trueControlDependence
-  59:   14 ->   20 trueControlDependence
-  60:   14 ->   24 falseControlDependence
-  61:   14 ->   25 falseControlDependence
-  62:   17 ->   14 loopIndependentDefUseDependence canvas$1.!hasChanged( )
-  63:   20 ->    1 exceptionCatch
-  64:   20 ->   18 trueControlDependence
-  65:   20 ->   21 trueControlDependence
-  66:   20 ->   22 trueControlDependence
-  67:   21 ->   18 loopIndependentDefUseDependence this.!showMessageDialog( java.awt.Component java.lang.Object )
-  68:   21 ->   49 outputDependence this.!showMessageDialog( java.awt.Component java.lang.Object )
-  69:   22 ->   24 fallThroughControlDependence
-  70:   22 ->   25 fallThroughControlDependence
-  71:   22 ->   38 trueControlDependence
-  72:   22 ->   39 trueControlDependence
-  73:   22 ->   40 trueControlDependence
-  74:   22 ->   41 trueControlDependence
-  75:   22 ->   42 trueControlDependence
-  76:   22 ->   43 trueControlDependence
-  77:   22 ->   50 outputDependence $_
-  78:   22 ->   65 outputDependence $_
-  79:   23 ->   27 declaration
-  80:   23 ->   27 loopIndependentDefUseDependence confirm$2
-  81:   25 ->    1 exceptionCatch
-  82:   25 ->   23 trueControlDependence
-  83:   25 ->   26 trueControlDependence
-  84:   25 ->   27 trueControlDependence
-  85:   26 ->   23 loopIndependentDefUseDependence this.!showConfirmDialog( java.awt.Component java.lang.Object java.lang.String int )
-  86:   27 ->   28 trueControlDependence
-  87:   27 ->   38 falseControlDependence
-  88:   27 ->   39 falseControlDependence
-  89:   27 ->   40 falseControlDependence
-  90:   27 ->   41 falseControlDependence
-  91:   27 ->   42 falseControlDependence
-  92:   27 ->   43 falseControlDependence
-  93:   28 ->   38 fallThroughControlDependence
-  94:   28 ->   39 fallThroughControlDependence
-  95:   28 ->   40 fallThroughControlDependence
-  96:   28 ->   41 fallThroughControlDependence
-  97:   28 ->   42 fallThroughControlDependence
-  98:   28 ->   43 fallThroughControlDependence
-  99:   28 ->   67 loopIndependentDefUseDependence $_
- 100:   28 ->   67 trueControlDependence
- 101:   31 ->   39 loopIndependentDefUseDependence canvas$1
- 102:   31 ->   53 loopIndependentDefUseDependence canvas$1
- 103:   31 ->   62 loopIndependentDefUseDependence canvas$1
- 104:   33+ ->   33+ outputDependence this.tabbedCanvas.!openTab( java.lang.String ).figureManager
- 105:   33+ ->   33+ outputDependence this.tabbedCanvas.!openTab( java.lang.String ).figures
- 106:   33+ ->   33+ outputDependence this.tabbedCanvas.!openTab( java.lang.String ).filename
- 107:   33+ ->   40 loopIndependentDefUseDependence this.tabbedCanvas.!openTab( java.lang.String ).figureManager
- 108:   33+ ->   41 loopIndependentDefUseDependence this.tabbedCanvas.!openTab( java.lang.String ).figureManager
- 109:   35 ->   31 loopIndependentDefUseDependence this.tabbedCanvas.!openTab( java.lang.String )
- 110:   37 ->   45 declaration
- 111:   37 ->   45 loopIndependentDefUseDependence result$3
- 112:   41 ->   38 loopIndependentDefUseDependence canvas$1.!getFigureManager( )
- 113:   42 ->    2 exceptionCatch
- 114:   42 ->   37 trueControlDependence
- 115:   42 ->   42+ trueControlDependence
- 116:   42 ->   42+ trueControlDependence
- 117:   42 ->   42+ trueControlDependence
- 118:   42 ->   42+ trueControlDependence
- 119:   42 ->   44 trueControlDependence
- 120:   42 ->   45 trueControlDependence
- 121:   44 ->   37 loopIndependentDefUseDependence canvas$1.!getFigureManager( ).!load( java.lang.String )
- 122:   45 ->   47 trueControlDependence
- 123:   45 ->   48 trueControlDependence
- 124:   45 ->   52 falseControlDependence
- 125:   45 ->   53 falseControlDependence
- 126:   45 ->   54 falseControlDependence
- 127:   45 ->   54+ falseControlDependence
- 128:   45 ->   55 falseControlDependence
- 129:   45 ->   56 falseControlDependence
- 130:   45 ->   57 falseControlDependence
- 131:   45 ->   58 falseControlDependence
- 132:   45 ->   59 falseControlDependence
- 133:   45 ->   60 falseControlDependence
- 134:   45 ->   61 falseControlDependence
- 135:   45 ->   62 falseControlDependence
- 136:   45 ->   63 falseControlDependence
- 137:   45 ->   64 falseControlDependence
- 138:   45 ->   65 falseControlDependence
- 139:   45 ->   67 falseControlDependence
- 140:   48 ->    1 exceptionCatch
- 141:   48 ->   46 trueControlDependence
- 142:   48 ->   49 trueControlDependence
- 143:   48 ->   50 trueControlDependence
- 144:   48 ->   67 trueControlDependence
- 145:   49 ->   46 loopIndependentDefUseDependence this.!showMessageDialog( java.awt.Component java.lang.Object )
- 146:   50 ->   52 fallThroughControlDependence
- 147:   50 ->   53 fallThroughControlDependence
- 148:   50 ->   54 fallThroughControlDependence
- 149:   50 ->   54+ fallThroughControlDependence
- 150:   50 ->   55 fallThroughControlDependence
- 151:   50 ->   56 fallThroughControlDependence
- 152:   50 ->   57 fallThroughControlDependence
- 153:   50 ->   58 fallThroughControlDependence
- 154:   50 ->   59 fallThroughControlDependence
- 155:   50 ->   60 fallThroughControlDependence
- 156:   50 ->   61 fallThroughControlDependence
- 157:   50 ->   62 fallThroughControlDependence
- 158:   50 ->   63 fallThroughControlDependence
- 159:   50 ->   64 fallThroughControlDependence
- 160:   50 ->   65 fallThroughControlDependence
- 161:   50 ->   67 loopIndependentDefUseDependence $_
- 162:   56 ->   52 loopIndependentDefUseDependence canvas$1.!setChanged( boolean )
- 163:   60 ->   57 loopIndependentDefUseDependence this.tool.!setTitle( java.lang.String )
- 164:   64 ->   61 loopIndependentDefUseDependence canvas$1.!repaint( )
- 165:   65 ->   67 loopIndependentDefUseDependence $_
+  46:    9 ->   34 falseControlDependence
+  47:    9 ->   35 falseControlDependence
+  48:    9 ->   38 falseControlDependence
+  49:    9 ->   39 falseControlDependence
+  50:    9 ->   40 falseControlDependence
+  51:    9 ->   41 falseControlDependence
+  52:    9 ->   42 falseControlDependence
+  53:    9 ->   43 falseControlDependence
+  54:   13 ->    9 loopIndependentDefUseDependence this.tabbedCanvas.!getCanvas( java.lang.String )
+  55:   14 ->   19 trueControlDependence
+  56:   14 ->   20 trueControlDependence
+  57:   14 ->   24 falseControlDependence
+  58:   14 ->   25 falseControlDependence
+  59:   17 ->   14 loopIndependentDefUseDependence canvas$1.!hasChanged( )
+  60:   20 ->    1 exceptionCatch
+  61:   20 ->   18 trueControlDependence
+  62:   20 ->   21 trueControlDependence
+  63:   20 ->   22 trueControlDependence
+  64:   21 ->   18 loopIndependentDefUseDependence this.!showMessageDialog( java.awt.Component java.lang.Object )
+  65:   21 ->   49 outputDependence this.!showMessageDialog( java.awt.Component java.lang.Object )
+  66:   22 ->   24 fallThroughControlDependence
+  67:   22 ->   25 fallThroughControlDependence
+  68:   22 ->   38 trueControlDependence
+  69:   22 ->   39 trueControlDependence
+  70:   22 ->   40 trueControlDependence
+  71:   22 ->   41 trueControlDependence
+  72:   22 ->   42 trueControlDependence
+  73:   22 ->   43 trueControlDependence
+  74:   22 ->   50 outputDependence $_
+  75:   22 ->   65 outputDependence $_
+  76:   23 ->   27 declaration
+  77:   23 ->   27 loopIndependentDefUseDependence confirm$2
+  78:   25 ->    1 exceptionCatch
+  79:   25 ->   23 trueControlDependence
+  80:   25 ->   26 trueControlDependence
+  81:   25 ->   27 trueControlDependence
+  82:   26 ->   23 loopIndependentDefUseDependence this.!showConfirmDialog( java.awt.Component java.lang.Object java.lang.String int )
+  83:   27 ->   28 trueControlDependence
+  84:   27 ->   38 falseControlDependence
+  85:   27 ->   39 falseControlDependence
+  86:   27 ->   40 falseControlDependence
+  87:   27 ->   41 falseControlDependence
+  88:   27 ->   42 falseControlDependence
+  89:   27 ->   43 falseControlDependence
+  90:   28 ->   38 fallThroughControlDependence
+  91:   28 ->   39 fallThroughControlDependence
+  92:   28 ->   40 fallThroughControlDependence
+  93:   28 ->   41 fallThroughControlDependence
+  94:   28 ->   42 fallThroughControlDependence
+  95:   28 ->   43 fallThroughControlDependence
+  96:   28 ->   67 loopIndependentDefUseDependence $_
+  97:   28 ->   67 trueControlDependence
+  98:   31 ->   39 loopIndependentDefUseDependence canvas$1
+  99:   31 ->   53 loopIndependentDefUseDependence canvas$1
+ 100:   31 ->   62 loopIndependentDefUseDependence canvas$1
+ 101:   33+ ->   40 loopIndependentDefUseDependence this.tabbedCanvas.!openTab( java.lang.String ).figureManager
+ 102:   33+ ->   41 loopIndependentDefUseDependence this.tabbedCanvas.!openTab( java.lang.String ).figureManager
+ 103:   35 ->   31 loopIndependentDefUseDependence this.tabbedCanvas.!openTab( java.lang.String )
+ 104:   37 ->   45 declaration
+ 105:   37 ->   45 loopIndependentDefUseDependence result$3
+ 106:   41 ->   38 loopIndependentDefUseDependence canvas$1.!getFigureManager( )
+ 107:   42 ->    2 exceptionCatch
+ 108:   42 ->   37 trueControlDependence
+ 109:   42 ->   42+ trueControlDependence
+ 110:   42 ->   42+ trueControlDependence
+ 111:   42 ->   42+ trueControlDependence
+ 112:   42 ->   42+ trueControlDependence
+ 113:   42 ->   44 trueControlDependence
+ 114:   42 ->   45 trueControlDependence
+ 115:   44 ->   37 loopIndependentDefUseDependence canvas$1.!getFigureManager( ).!load( java.lang.String )
+ 116:   45 ->   47 trueControlDependence
+ 117:   45 ->   48 trueControlDependence
+ 118:   45 ->   52 falseControlDependence
+ 119:   45 ->   53 falseControlDependence
+ 120:   45 ->   54 falseControlDependence
+ 121:   45 ->   54+ falseControlDependence
+ 122:   45 ->   55 falseControlDependence
+ 123:   45 ->   56 falseControlDependence
+ 124:   45 ->   57 falseControlDependence
+ 125:   45 ->   58 falseControlDependence
+ 126:   45 ->   59 falseControlDependence
+ 127:   45 ->   60 falseControlDependence
+ 128:   45 ->   61 falseControlDependence
+ 129:   45 ->   62 falseControlDependence
+ 130:   45 ->   63 falseControlDependence
+ 131:   45 ->   64 falseControlDependence
+ 132:   45 ->   65 falseControlDependence
+ 133:   45 ->   67 falseControlDependence
+ 134:   48 ->    1 exceptionCatch
+ 135:   48 ->   46 trueControlDependence
+ 136:   48 ->   49 trueControlDependence
+ 137:   48 ->   50 trueControlDependence
+ 138:   48 ->   67 trueControlDependence
+ 139:   49 ->   46 loopIndependentDefUseDependence this.!showMessageDialog( java.awt.Component java.lang.Object )
+ 140:   50 ->   52 fallThroughControlDependence
+ 141:   50 ->   53 fallThroughControlDependence
+ 142:   50 ->   54 fallThroughControlDependence
+ 143:   50 ->   54+ fallThroughControlDependence
+ 144:   50 ->   55 fallThroughControlDependence
+ 145:   50 ->   56 fallThroughControlDependence
+ 146:   50 ->   57 fallThroughControlDependence
+ 147:   50 ->   58 fallThroughControlDependence
+ 148:   50 ->   59 fallThroughControlDependence
+ 149:   50 ->   60 fallThroughControlDependence
+ 150:   50 ->   61 fallThroughControlDependence
+ 151:   50 ->   62 fallThroughControlDependence
+ 152:   50 ->   63 fallThroughControlDependence
+ 153:   50 ->   64 fallThroughControlDependence
+ 154:   50 ->   65 fallThroughControlDependence
+ 155:   50 ->   67 loopIndependentDefUseDependence $_
+ 156:   56 ->   52 loopIndependentDefUseDependence canvas$1.!setChanged( boolean )
+ 157:   60 ->   57 loopIndependentDefUseDependence this.tool.!setTitle( java.lang.String )
+ 158:   64 ->   61 loopIndependentDefUseDependence canvas$1.!repaint( )
+ 159:   65 ->   67 loopIndependentDefUseDependence $_
 --
    0: openAction
    1:    0 ->    1 trueControlDependence

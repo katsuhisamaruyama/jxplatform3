@@ -38,7 +38,6 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawTool
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).tabbedCanvas } U = {  }
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.tabbedCanvas.jp.ac.ritsumei.cs.draw.DrawCanvas.changed } U = {  }
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).figureManager } U = {  }
-   9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).figureManager } U = {  }
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).menu } U = {  }
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).selector } U = {  }
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.tabbedCanvas.canvas$1.undoManager } U = {  }
@@ -67,8 +66,6 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawTool
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).tabbedCanvas } U = {  }
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).figure } U = {  }
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).figures } U = {  }
-   9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).figures } U = {  }
-   9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).filename } U = {  }
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).filename } U = {  }
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.FigureSelector.colorCombo } U = {  }
    9+ actualOutByFieldAccess D = { jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.FigureSelector.shapeCombo } U = {  }
@@ -194,13 +191,10 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawTool
   68+ actualOutByFieldAccess D = { this.tabbedCanvas.menu } U = {  }
   73+ actualOutByFieldAccess D = { this.tabbedCanvas.jp.ac.ritsumei.cs.draw.DrawCanvas.changed } U = {  }
   73+ actualOutByFieldAccess D = { this.tabbedCanvas.!init( ).figureManager } U = {  }
-  73+ actualOutByFieldAccess D = { this.tabbedCanvas.!init( ).figureManager } U = {  }
   73+ actualOutByFieldAccess D = { this.tabbedCanvas.!init( ).menu } U = {  }
   73+ actualOutByFieldAccess D = { this.tabbedCanvas.!init( ).selector } U = {  }
   73+ actualOutByFieldAccess D = { this.tabbedCanvas.canvas$1.undoManager } U = {  }
   73+ actualOutByFieldAccess D = { this.tabbedCanvas.!init( ).figures } U = {  }
-  73+ actualOutByFieldAccess D = { this.tabbedCanvas.!init( ).figures } U = {  }
-  73+ actualOutByFieldAccess D = { this.tabbedCanvas.!init( ).filename } U = {  }
   73+ actualOutByFieldAccess D = { this.tabbedCanvas.!init( ).filename } U = {  }
   73+ actualOutByFieldAccess D = { this.tabbedCanvas.selectedTab } U = {  }
 --
@@ -282,66 +276,60 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawTool
   56:    9 ->    9+ trueControlDependence
   57:    9 ->    9+ trueControlDependence
   58:    9 ->    9+ trueControlDependence
-  59:    9 ->    9+ trueControlDependence
-  60:    9 ->    9+ trueControlDependence
-  61:    9 ->    9+ trueControlDependence
-  62:    9 ->   11 trueControlDependence
-  63:    9 ->   12 trueControlDependence
-  64:    9 ->   13 trueControlDependence
-  65:    9 ->   14 trueControlDependence
-  66:    9 ->   15 trueControlDependence
-  67:    9 ->   16 trueControlDependence
-  68:    9 ->   17 trueControlDependence
-  69:    9 ->   18 trueControlDependence
-  70:    9 ->   19 trueControlDependence
-  71:    9 ->   20 trueControlDependence
-  72:    9 ->   21 trueControlDependence
-  73:    9 ->   22 trueControlDependence
-  74:    9 ->   23 trueControlDependence
-  75:    9 ->   24 trueControlDependence
-  76:    9 ->   25 trueControlDependence
-  77:    9 ->   26 trueControlDependence
-  78:    9 ->   27 trueControlDependence
-  79:    9 ->   28 trueControlDependence
-  80:    9 ->   29 trueControlDependence
-  81:    9 ->   30 trueControlDependence
-  82:    9 ->   32 trueControlDependence
-  83:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).figureManager
-  84:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).figures
-  85:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).filename
-  86:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).menu
-  87:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).selector
-  88:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).selector
-  89:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).tabbedCanvas
-  90:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).tabbedCanvas
-  91:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).autoSave
-  92:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).menu
-  93:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).menuBar
-  94:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).selector
-  95:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).tabbedCanvas
-  96:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).toolBar
-  97:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.copyAction
-  98:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.cutAction
-  99:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.deleteAction
- 100:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.fileListMenu
- 101:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.newAction
- 102:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.openAction
- 103:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.pasteAction
- 104:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.redoAction
- 105:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.saveAction
- 106:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.undoAction
- 107:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.FigureSelector.colorCombo
- 108:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.FigureSelector.shapeCombo
- 109:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.FigureSelector.widthCombo
- 110:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.tabbedCanvas.menu
- 111:   11 ->    7 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String )
- 112:   17 ->   14 loopIndependentDefUseDependence .!WindowAdapter( )
- 113:   18 ->   12 loopIndependentDefUseDependence main$1.!addWindowListener( java.awt.event.WindowListener )
- 114:   22 ->   19 loopIndependentDefUseDependence main$1.!pack( )
- 115:   22 ->   25 loopIndependentDefUseDependence main$1.!java.awt.Container.descendUnconditionallyWhenValidating
- 116:   22 ->   26 loopIndependentDefUseDependence main$1.!java.awt.Container.descendUnconditionallyWhenValidating
- 117:   26 ->   23 loopIndependentDefUseDependence main$1.!validate( )
- 118:   30 ->   27 loopIndependentDefUseDependence main$1.!setVisible( boolean )
+  59:    9 ->   11 trueControlDependence
+  60:    9 ->   12 trueControlDependence
+  61:    9 ->   13 trueControlDependence
+  62:    9 ->   14 trueControlDependence
+  63:    9 ->   15 trueControlDependence
+  64:    9 ->   16 trueControlDependence
+  65:    9 ->   17 trueControlDependence
+  66:    9 ->   18 trueControlDependence
+  67:    9 ->   19 trueControlDependence
+  68:    9 ->   20 trueControlDependence
+  69:    9 ->   21 trueControlDependence
+  70:    9 ->   22 trueControlDependence
+  71:    9 ->   23 trueControlDependence
+  72:    9 ->   24 trueControlDependence
+  73:    9 ->   25 trueControlDependence
+  74:    9 ->   26 trueControlDependence
+  75:    9 ->   27 trueControlDependence
+  76:    9 ->   28 trueControlDependence
+  77:    9 ->   29 trueControlDependence
+  78:    9 ->   30 trueControlDependence
+  79:    9 ->   32 trueControlDependence
+  80:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).menu
+  81:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).selector
+  82:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).selector
+  83:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).tabbedCanvas
+  84:    9+ ->    9+ outputDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).tabbedCanvas
+  85:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).autoSave
+  86:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).menu
+  87:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).menuBar
+  88:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).selector
+  89:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).tabbedCanvas
+  90:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String ).toolBar
+  91:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.copyAction
+  92:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.cutAction
+  93:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.deleteAction
+  94:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.fileListMenu
+  95:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.newAction
+  96:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.openAction
+  97:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.pasteAction
+  98:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.redoAction
+  99:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.saveAction
+ 100:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.DrawMenu.undoAction
+ 101:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.FigureSelector.colorCombo
+ 102:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.FigureSelector.shapeCombo
+ 103:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.jp.ac.ritsumei.cs.draw.FigureSelector.widthCombo
+ 104:    9+ ->   11 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.tabbedCanvas.menu
+ 105:   11 ->    7 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawTool.!DrawTool( java.lang.String )
+ 106:   17 ->   14 loopIndependentDefUseDependence .!WindowAdapter( )
+ 107:   18 ->   12 loopIndependentDefUseDependence main$1.!addWindowListener( java.awt.event.WindowListener )
+ 108:   22 ->   19 loopIndependentDefUseDependence main$1.!pack( )
+ 109:   22 ->   25 loopIndependentDefUseDependence main$1.!java.awt.Container.descendUnconditionallyWhenValidating
+ 110:   22 ->   26 loopIndependentDefUseDependence main$1.!java.awt.Container.descendUnconditionallyWhenValidating
+ 111:   26 ->   23 loopIndependentDefUseDependence main$1.!validate( )
+ 112:   30 ->   27 loopIndependentDefUseDependence main$1.!setVisible( boolean )
 --
    0: closeWindow( )
    1:    0 ->    2 trueControlDependence
@@ -467,121 +455,115 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawTool
  108:    5 ->   73+ trueControlDependence
  109:    5 ->   73+ trueControlDependence
  110:    5 ->   73+ trueControlDependence
- 111:    5 ->   73+ trueControlDependence
- 112:    5 ->   73+ trueControlDependence
- 113:    5 ->   73+ trueControlDependence
- 114:    5 ->   74 trueControlDependence
- 115:    5 ->   76 trueControlDependence
- 116:    6 ->    3 loopIndependentDefUseDependence super.!JFrame( java.lang.String )
- 117:    7 ->   12 declaration
- 118:    7 ->   12 loopIndependentDefUseDependence contentPane$1
- 119:    7 ->   26 declaration
- 120:    7 ->   26 loopIndependentDefUseDependence contentPane$1
- 121:    7 ->   43 declaration
- 122:    7 ->   43 loopIndependentDefUseDependence contentPane$1
- 123:   10 ->    7 loopIndependentDefUseDependence this.!getContentPane( )
- 124:   16 ->   13 loopIndependentDefUseDependence java.awt.BorderLayout.!BorderLayout( )
- 125:   16 ->   23 outputDependence java.awt.BorderLayout.!BorderLayout( )
- 126:   16 ->   23 outputDependence java.awt.BorderLayout.!java.awt.BorderLayout.hgap
- 127:   16 ->   23 outputDependence java.awt.BorderLayout.!java.awt.BorderLayout.vgap
- 128:   17 ->   11 loopIndependentDefUseDependence contentPane$1.!setLayout( java.awt.LayoutManager )
- 129:   17 ->   27 loopIndependentDefUseDependence contentPane$1.!java.awt.Container.layoutMgr
- 130:   17 ->   28 loopIndependentDefUseDependence contentPane$1.!java.awt.Container.layoutMgr
- 131:   17 ->   44 loopIndependentDefUseDependence contentPane$1.!java.awt.Container.layoutMgr
- 132:   17 ->   45 loopIndependentDefUseDependence contentPane$1.!java.awt.Container.layoutMgr
- 133:   18 ->   27 declaration
- 134:   18 ->   27 loopIndependentDefUseDependence panel$2
- 135:   18 ->   34 declaration
- 136:   18 ->   34 loopIndependentDefUseDependence panel$2
- 137:   18 ->   60 declaration
- 138:   18 ->   60 loopIndependentDefUseDependence panel$2
- 139:   23 ->   20 loopIndependentDefUseDependence java.awt.BorderLayout.!BorderLayout( )
- 140:   24 ->   18 loopIndependentDefUseDependence javax.swing.JPanel.!JPanel( java.awt.LayoutManager )
- 141:   28 ->   25 loopIndependentDefUseDependence contentPane$1.!add( java.awt.Component java.lang.Object )
- 142:   28 ->   44 loopIndependentDefUseDependence contentPane$1.!java.awt.Component.parent
- 143:   28 ->   45 loopIndependentDefUseDependence contentPane$1.!java.awt.Component.parent
- 144:   28 ->   45 outputDependence contentPane$1.!add( java.awt.Component java.lang.Object )
- 145:   29 ->   35 loopIndependentDefUseDependence this.selector
- 146:   29 ->   40 loopIndependentDefUseDependence this.selector
- 147:   31+ ->   32 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureSelector.colorCombo
- 148:   31+ ->   32 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureSelector.shapeCombo
- 149:   31+ ->   32 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureSelector.widthCombo
- 150:   32 ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureSelector.!FigureSelector( )
- 151:   36 ->   33 loopIndependentDefUseDependence panel$2.!add( java.awt.Component java.lang.Object )
- 152:   36 ->   61 loopIndependentDefUseDependence panel$2.!java.awt.Component.parent
- 153:   36 ->   65 loopIndependentDefUseDependence panel$2.!java.awt.Component.parent
- 154:   36 ->   65 outputDependence panel$2.!add( java.awt.Component java.lang.Object )
- 155:   37 ->   44 loopIndependentDefUseDependence this.tabbedCanvas
- 156:   37 ->   50 loopIndependentDefUseDependence this.tabbedCanvas
- 157:   37 ->   67 loopIndependentDefUseDependence this.tabbedCanvas
- 158:   37 ->   72 loopIndependentDefUseDependence this.tabbedCanvas
- 159:   39+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).canvases
- 160:   39+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).selector
- 161:   39+ ->   50 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).canvases
- 162:   39+ ->   50 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).selector
- 163:   39+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).canvases
- 164:   39+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).selector
- 165:   39+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).canvases
- 166:   39+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).selector
- 167:   41 ->   37 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector )
- 168:   45 ->   42 loopIndependentDefUseDependence contentPane$1.!add( java.awt.Component java.lang.Object )
- 169:   46 ->   55 loopIndependentDefUseDependence this.menu
- 170:   46 ->   62 loopIndependentDefUseDependence this.menu
- 171:   46 ->   69 loopIndependentDefUseDependence this.menu
- 172:   48+ ->   48+ outputDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tabbedCanvas
- 173:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).autoSave
- 174:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
- 175:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
- 176:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.copyAction
- 177:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.cutAction
- 178:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.deleteAction
- 179:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.fileListMenu
- 180:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.newAction
- 181:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.openAction
- 182:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.pasteAction
- 183:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.redoAction
- 184:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.saveAction
- 185:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.undoAction
- 186:   48+ ->   56 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
- 187:   48+ ->   57 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
- 188:   48+ ->   63 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
- 189:   48+ ->   64 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
- 190:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).autoSave
- 191:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).clipboard
- 192:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).directory
- 193:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
- 194:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).recentFiles
- 195:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tabbedCanvas
- 196:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tool
- 197:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
- 198:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).autoSave
- 199:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).clipboard
- 200:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).directory
- 201:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
- 202:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).recentFiles
- 203:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tabbedCanvas
- 204:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tool
- 205:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
- 206:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).autoSave
- 207:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).clipboard
- 208:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).directory
- 209:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
- 210:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).recentFiles
- 211:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tabbedCanvas
- 212:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tool
- 213:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
- 214:   51 ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas )
- 215:   57 ->   54 loopIndependentDefUseDependence this.menu.!getMenuBar( )
- 216:   58 ->   52 loopIndependentDefUseDependence this.!setJMenuBar( javax.swing.JMenuBar )
- 217:   64 ->   61 loopIndependentDefUseDependence this.menu.!getToolBar( )
- 218:   65 ->   59 loopIndependentDefUseDependence panel$2.!add( java.awt.Component java.lang.Object )
- 219:   68+ ->   73 loopIndependentDefUseDependence this.tabbedCanvas.menu
- 220:   68+ ->   74 loopIndependentDefUseDependence this.tabbedCanvas.menu
- 221:   70 ->   66 loopIndependentDefUseDependence this.tabbedCanvas.!setDrawMenu( jp.ac.ritsumei.cs.draw.DrawMenu )
- 222:   73+ ->   73+ outputDependence this.tabbedCanvas.!init( ).figureManager
- 223:   73+ ->   73+ outputDependence this.tabbedCanvas.!init( ).figures
- 224:   73+ ->   73+ outputDependence this.tabbedCanvas.!init( ).filename
- 225:   74 ->   71 loopIndependentDefUseDependence this.tabbedCanvas.!init( )
+ 111:    5 ->   74 trueControlDependence
+ 112:    5 ->   76 trueControlDependence
+ 113:    6 ->    3 loopIndependentDefUseDependence super.!JFrame( java.lang.String )
+ 114:    7 ->   12 declaration
+ 115:    7 ->   12 loopIndependentDefUseDependence contentPane$1
+ 116:    7 ->   26 declaration
+ 117:    7 ->   26 loopIndependentDefUseDependence contentPane$1
+ 118:    7 ->   43 declaration
+ 119:    7 ->   43 loopIndependentDefUseDependence contentPane$1
+ 120:   10 ->    7 loopIndependentDefUseDependence this.!getContentPane( )
+ 121:   16 ->   13 loopIndependentDefUseDependence java.awt.BorderLayout.!BorderLayout( )
+ 122:   16 ->   23 outputDependence java.awt.BorderLayout.!BorderLayout( )
+ 123:   16 ->   23 outputDependence java.awt.BorderLayout.!java.awt.BorderLayout.hgap
+ 124:   16 ->   23 outputDependence java.awt.BorderLayout.!java.awt.BorderLayout.vgap
+ 125:   17 ->   11 loopIndependentDefUseDependence contentPane$1.!setLayout( java.awt.LayoutManager )
+ 126:   17 ->   27 loopIndependentDefUseDependence contentPane$1.!java.awt.Container.layoutMgr
+ 127:   17 ->   28 loopIndependentDefUseDependence contentPane$1.!java.awt.Container.layoutMgr
+ 128:   17 ->   44 loopIndependentDefUseDependence contentPane$1.!java.awt.Container.layoutMgr
+ 129:   17 ->   45 loopIndependentDefUseDependence contentPane$1.!java.awt.Container.layoutMgr
+ 130:   18 ->   27 declaration
+ 131:   18 ->   27 loopIndependentDefUseDependence panel$2
+ 132:   18 ->   34 declaration
+ 133:   18 ->   34 loopIndependentDefUseDependence panel$2
+ 134:   18 ->   60 declaration
+ 135:   18 ->   60 loopIndependentDefUseDependence panel$2
+ 136:   23 ->   20 loopIndependentDefUseDependence java.awt.BorderLayout.!BorderLayout( )
+ 137:   24 ->   18 loopIndependentDefUseDependence javax.swing.JPanel.!JPanel( java.awt.LayoutManager )
+ 138:   28 ->   25 loopIndependentDefUseDependence contentPane$1.!add( java.awt.Component java.lang.Object )
+ 139:   28 ->   44 loopIndependentDefUseDependence contentPane$1.!java.awt.Component.parent
+ 140:   28 ->   45 loopIndependentDefUseDependence contentPane$1.!java.awt.Component.parent
+ 141:   28 ->   45 outputDependence contentPane$1.!add( java.awt.Component java.lang.Object )
+ 142:   29 ->   35 loopIndependentDefUseDependence this.selector
+ 143:   29 ->   40 loopIndependentDefUseDependence this.selector
+ 144:   31+ ->   32 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureSelector.colorCombo
+ 145:   31+ ->   32 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureSelector.shapeCombo
+ 146:   31+ ->   32 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureSelector.widthCombo
+ 147:   32 ->   29 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.FigureSelector.!FigureSelector( )
+ 148:   36 ->   33 loopIndependentDefUseDependence panel$2.!add( java.awt.Component java.lang.Object )
+ 149:   36 ->   61 loopIndependentDefUseDependence panel$2.!java.awt.Component.parent
+ 150:   36 ->   65 loopIndependentDefUseDependence panel$2.!java.awt.Component.parent
+ 151:   36 ->   65 outputDependence panel$2.!add( java.awt.Component java.lang.Object )
+ 152:   37 ->   44 loopIndependentDefUseDependence this.tabbedCanvas
+ 153:   37 ->   50 loopIndependentDefUseDependence this.tabbedCanvas
+ 154:   37 ->   67 loopIndependentDefUseDependence this.tabbedCanvas
+ 155:   37 ->   72 loopIndependentDefUseDependence this.tabbedCanvas
+ 156:   39+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).canvases
+ 157:   39+ ->   44 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).selector
+ 158:   39+ ->   50 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).canvases
+ 159:   39+ ->   50 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).selector
+ 160:   39+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).canvases
+ 161:   39+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).selector
+ 162:   39+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).canvases
+ 163:   39+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector ).selector
+ 164:   41 ->   37 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.TabbedCanvas.!TabbedCanvas( jp.ac.ritsumei.cs.draw.FigureSelector )
+ 165:   45 ->   42 loopIndependentDefUseDependence contentPane$1.!add( java.awt.Component java.lang.Object )
+ 166:   46 ->   55 loopIndependentDefUseDependence this.menu
+ 167:   46 ->   62 loopIndependentDefUseDependence this.menu
+ 168:   46 ->   69 loopIndependentDefUseDependence this.menu
+ 169:   48+ ->   48+ outputDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tabbedCanvas
+ 170:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).autoSave
+ 171:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
+ 172:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
+ 173:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.copyAction
+ 174:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.cutAction
+ 175:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.deleteAction
+ 176:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.fileListMenu
+ 177:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.newAction
+ 178:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.openAction
+ 179:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.pasteAction
+ 180:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.redoAction
+ 181:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.saveAction
+ 182:   48+ ->   51 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.undoAction
+ 183:   48+ ->   56 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
+ 184:   48+ ->   57 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
+ 185:   48+ ->   63 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
+ 186:   48+ ->   64 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
+ 187:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).autoSave
+ 188:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).clipboard
+ 189:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).directory
+ 190:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
+ 191:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).recentFiles
+ 192:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tabbedCanvas
+ 193:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tool
+ 194:   48+ ->   69 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
+ 195:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).autoSave
+ 196:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).clipboard
+ 197:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).directory
+ 198:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
+ 199:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).recentFiles
+ 200:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tabbedCanvas
+ 201:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tool
+ 202:   48+ ->   73 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
+ 203:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).autoSave
+ 204:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).clipboard
+ 205:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).directory
+ 206:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).menuBar
+ 207:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).recentFiles
+ 208:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tabbedCanvas
+ 209:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).tool
+ 210:   48+ ->   74 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas ).toolBar
+ 211:   51 ->   46 loopIndependentDefUseDependence jp.ac.ritsumei.cs.draw.DrawMenu.!DrawMenu( jp.ac.ritsumei.cs.draw.DrawTool jp.ac.ritsumei.cs.draw.TabbedCanvas )
+ 212:   57 ->   54 loopIndependentDefUseDependence this.menu.!getMenuBar( )
+ 213:   58 ->   52 loopIndependentDefUseDependence this.!setJMenuBar( javax.swing.JMenuBar )
+ 214:   64 ->   61 loopIndependentDefUseDependence this.menu.!getToolBar( )
+ 215:   65 ->   59 loopIndependentDefUseDependence panel$2.!add( java.awt.Component java.lang.Object )
+ 216:   68+ ->   73 loopIndependentDefUseDependence this.tabbedCanvas.menu
+ 217:   68+ ->   74 loopIndependentDefUseDependence this.tabbedCanvas.menu
+ 218:   70 ->   66 loopIndependentDefUseDependence this.tabbedCanvas.!setDrawMenu( jp.ac.ritsumei.cs.draw.DrawMenu )
+ 219:   74 ->   71 loopIndependentDefUseDependence this.tabbedCanvas.!init( )
 --
    0: menu
    1:    0 ->    1 trueControlDependence
