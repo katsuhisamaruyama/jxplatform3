@@ -159,6 +159,9 @@ class AntEnv extends ProjectEnv {
             if (properties.get("build.lib") != null) {
                 classpath.add(basePath.resolve(properties.get("build.lib")).toString());
             }
+            
+            classpath.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
+            classpath.add(libPath.toString());
         }
     }
     

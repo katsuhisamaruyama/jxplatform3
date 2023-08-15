@@ -115,7 +115,7 @@ public class AntEnvTest {
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getClassPaths());
-        assertEquals(2, paths.size());
+        assertEquals(3, paths.size());
         assertEquals(BuilderTestUtil.commonPath(target + "/build/lib"), paths.get(0));
         assertEquals(BuilderTestUtil.commonPath(target + "/lib"), paths.get(1));
     }
