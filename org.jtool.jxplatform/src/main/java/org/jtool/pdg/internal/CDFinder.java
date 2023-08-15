@@ -34,9 +34,27 @@ import java.util.concurrent.TimeoutException;
  */
 public class CDFinder {
     
-    private static final int TIMEOUT_SEC = 60 * 30;
+    private static final int TIMEOUT_SEC = 60 * 3;
+    private static final int SHRORT_TIMEOUT_SEC = 30;
+    
+    private static boolean hasManyCaseClauseInSwitchtatement(final CFG cfg) {
+        System.err.println("CFG = " + cfg.getQualifiedName().fqn());
+        
+        GetNestingDepth nesting = new GetNestingDepth();
+        int maxDepth = nesting.getMaximumNuberOfNestingDepth(cfg.getEntryNode());
+        if (maxDepth > 30) {
+            System.err.println("  NEST = " + maxDepth);
+            return true;
+        }
+        return false;
+    }
     
     public static void find(final JavaProject jproject, final PDG pdg, final CFG cfg) {
+        int timeout = TIMEOUT_SEC;
+        if (hasManyCaseClauseInSwitchtatement(cfg)) {
+            timeout = SHRORT_TIMEOUT_SEC;
+        }
+        
         Runnable task = new Runnable() {
             
             @Override
@@ -46,7 +64,7 @@ public class CDFinder {
         };
         
         try {
-            jproject.getModelBuilderImpl().performTaskWithTimeout(task, TIMEOUT_SEC);
+            jproject.getModelBuilderImpl().performTaskWithTimeout(task, timeout);
         } catch (TimeoutException e) {
             new ArrayList<CD>(pdg.getCDEdges()).forEach(cd -> pdg.remove(cd));
             simplyFindCDsOnTimeout(pdg, cfg);
