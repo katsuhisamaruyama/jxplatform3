@@ -156,7 +156,6 @@ public class BytecodeClassStore {
             cacheNames.add(BOOT_CACHE_FILENAME);
         }
         
-        cacheManager.makeCacheDirectory(jproject.getPath());
         bytecodeNames.addAll(classPaths.stream()
                 .flatMap(path -> collectClassNames(path).stream())
                 .collect(Collectors.toSet()));
