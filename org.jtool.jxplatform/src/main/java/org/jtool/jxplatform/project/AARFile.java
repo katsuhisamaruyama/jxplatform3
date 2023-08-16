@@ -61,8 +61,10 @@ class AARFile {
         try (ZipFile zipfile = new ZipFile(aarname.toString())) {
             FileHeader fheader = 
                     zipfile.getFileHeaders().stream()
-                    .filter(fh -> fh.getFileName().equals(CLASSES_FILE)).findFirst().get();
-            zipfile.extractFile(fheader, tmpdir.toString(), fheader.getFileName());
+                    .filter(fh -> fh.getFileName().equals(CLASSES_FILE)).findFirst().orElse(null);
+            if (fheader != null) {
+                zipfile.extractFile(fheader, tmpdir.toString(), fheader.getFileName());
+            }
         } catch (Exception e) { e.printStackTrace();}
     }
     
