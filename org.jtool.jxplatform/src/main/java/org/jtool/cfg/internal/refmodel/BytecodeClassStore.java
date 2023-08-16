@@ -444,6 +444,7 @@ public class BytecodeClassStore {
             String message = "** Ready to parse " + names.size() + " bytecode-classes used in " + jproject.getName();
             jproject.getModelBuilderImpl().printMessage(message);
             
+            analysisLevel = 3;
             parseBytecodeClass(monitor, names);
         }
         return names.size();
