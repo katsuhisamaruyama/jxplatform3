@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -131,6 +131,22 @@ class MavenEnv extends ProjectEnv {
         return plugins;
     }
     
+    private List<Xpp3Dom> getConfigurations(List<Plugin> plugins) {
+        List<Xpp3Dom> configurations = new ArrayList<>();
+        List<Xpp3Dom> pluginConfigurations = plugins.stream()
+                .filter(plugin -> plugin.getConfiguration() != null)
+                .map(p -> (Xpp3Dom)p.getConfiguration())
+                .collect(Collectors.toList());
+        List<Xpp3Dom> executionConfigurations = plugins.stream()
+                .flatMap(plugin -> plugin.getExecutions().stream())
+                .filter(execution -> execution.getConfiguration() != null)
+                .map(p -> (Xpp3Dom)p.getConfiguration())
+                .collect(Collectors.toList());
+        configurations.addAll(pluginConfigurations);
+        configurations.addAll(executionConfigurations);
+        return configurations;
+    }
+    
     private void setConfigParameters(Path cpath) throws Exception {
         List<Model> models = getModels(cpath);
         List<BuildBase> builds = getBuilds(models);
@@ -175,8 +191,8 @@ class MavenEnv extends ProjectEnv {
             }
         }
         
-        String sourceDirectoryCandidates[][] = { { "src", "main", "java" }, { "src" } };
-        String testSourceDirectoryCandidates[][] = { { "src", "test", "java" }, { "test" } };
+        String sourceDirectoryCandidates[][] = { { "src", "main", "java" }, { "src", "main" }, { "src" } };
+        String testSourceDirectoryCandidates[][] = { { "src", "test", "java" }, { "src", "test" }, { "test" } };
         sourceDirectory = getSourceDirectory(sourceDirectory, sourceDirectoryCandidates);
         testSourceDirectory = getSourceDirectory(testSourceDirectory, testSourceDirectoryCandidates);
         if (sourceDirectory == null && testSourceDirectory == null) {
@@ -212,28 +228,46 @@ class MavenEnv extends ProjectEnv {
                 }
             }
         }
+        
+        List<Path> generatedBaseDirectories = new ArrayList<>();
+        generatedBaseDirectories.add(Paths.get("src"));
+        generatedBaseDirectories.add(Paths.get("src", "main"));
+        generatedBaseDirectories.add(Paths.get("src", "test"));
+        
+        Path buildPath = null;
         if (buildDirectory == null) {
-            buildDirectory = basePath.resolve("target").toString();
+            buildPath = basePath.resolve("target");
+        } else {
+            buildPath = Paths.get(buildDirectory);
         }
-        Path buildPath = Paths.get(buildDirectory);
+        generatedBaseDirectories.add(buildPath);
         
-        String generatedSourceDirectoryCandidates[] = { "generated-sources", "generated" };
-        String generatedTestSourceDirectoryCandidates[] = { "generated-test-sources", "generated" };
-        
-        
-        List<String> generatedSourceDirectories = getGeneratedSourceDirectories(buildPath,
-                generatedSourceDirectoryCandidates);
-        
-        sourcePaths.addAll(generatedSourceDirectories);
-        List<String> generatedTestSourceDirectories = getGeneratedSourceDirectories(buildPath,
-                generatedTestSourceDirectoryCandidates);
-        sourcePaths.addAll(generatedTestSourceDirectories);
-        
-        Path srcPath = basePath.resolve("src");
-        if (srcPath != null) {
-            List<String> generatedDirectories = getGeneratedSourceDirectories(srcPath,
+        String generatedSourceDirectoryCandidates[] = {
+                "generated-sources", "generated-test-sources", "generated" };
+        for (Path basePath : generatedBaseDirectories) {
+            List<String> generatedSourceDirectories = getGeneratedSourceDirectories(basePath,
                     generatedSourceDirectoryCandidates);
-            sourcePaths.addAll(generatedDirectories);
+            for (String generatedSourceDirectory : generatedSourceDirectories) {
+                if (new File(generatedSourceDirectory).exists()) {
+                    sourcePaths.add(generatedSourceDirectory);
+                }
+            }
+        }
+        
+        List<Xpp3Dom> sourceDirectoryconfigurations = getConfigurations(plugins);
+        Set<String> additionalSrcDirs = new HashSet<>();
+        for (Xpp3Dom dom : sourceDirectoryconfigurations) {
+            additionalSrcDirs.addAll(getValues(dom, "sourceDirectory"));
+            additionalSrcDirs.addAll(getValues(dom, "testSourceDirectory"));
+        }
+        
+        for (String srcDir : additionalSrcDirs) {
+            if (srcDir.contains("${basedir}")) {
+                srcDir = srcDir.replace("${basedir}", basePath.toString());
+            }
+            if (new File(srcDir).exists()) {
+                sourcePaths.add(srcDir);
+            }
         }
         
         String outputDirectory = null;
@@ -272,15 +306,14 @@ class MavenEnv extends ProjectEnv {
         classPaths.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
         classPaths.add(libPath.toString());
         
-        List<Xpp3Dom> configurations = plugins.stream()
+        List<Plugin> compilerPlugins = plugins.stream()
                 .filter(plugin -> plugin.getArtifactId().equals("maven-compiler-plugin"))
-                .filter(plugin -> plugin.getConfiguration() != null)
-                .map(p -> (Xpp3Dom)p.getConfiguration())
                 .collect(Collectors.toList());
+        List<Xpp3Dom> compilerConfigurations = getConfigurations(compilerPlugins);
         
-        compilerSourceVersion = compilerVersion(models, "maven.compiler.source");
+        compilerSourceVersion = getProperty(models, "maven.compiler.source");
         if (compilerSourceVersion == null) {
-            for (Xpp3Dom dom : configurations) {
+            for (Xpp3Dom dom : compilerConfigurations) {
                 compilerSourceVersion = getValue(dom, "source");
                 if (compilerSourceVersion != null) {
                     break;
@@ -291,9 +324,9 @@ class MavenEnv extends ProjectEnv {
             compilerSourceVersion = JavaCore.VERSION_11;
         }
         
-        compilerTargetVersion = compilerVersion(models, "maven.compiler.target");
+        compilerTargetVersion = getProperty(models, "maven.compiler.target");
         if (compilerTargetVersion == null) {
-            for (Xpp3Dom dom : configurations) {
+            for (Xpp3Dom dom : compilerConfigurations) {
                 compilerTargetVersion = getValue(dom, "source");
                 if (compilerTargetVersion != null) {
                     break;
@@ -305,11 +338,11 @@ class MavenEnv extends ProjectEnv {
         }
         
         Set<String> includes = new HashSet<>();
-        configurations.forEach(dom -> collectFileNames(dom, includes, "include", "testInclude"));
+        compilerConfigurations.forEach(dom -> collectFileNames(dom, includes, "include", "testInclude"));
         includedSourceFiles = collectFileNames(includes);
         
         Set<String> excludes = new HashSet<>();
-        configurations.forEach(dom -> collectFileNames(dom, excludes, "exclude", "testExclude"));
+        compilerConfigurations.forEach(dom -> collectFileNames(dom, excludes, "exclude", "testExclude"));
         excludedSourceFiles = collectFileNames(excludes);
     }
     
@@ -350,10 +383,10 @@ class MavenEnv extends ProjectEnv {
         return null;
     }
     
-    private List<String> getGeneratedSourceDirectories(Path buildPath, String names[]) {
+    private List<String> getGeneratedSourceDirectories(Path dir, String names[]) {
         List<String> paths = new ArrayList<>();
         for (int index = 0; index < names.length; index++) {
-            Path path = buildPath.resolve(names[index]);
+            Path path = dir.resolve(names[index]);
             String resolvedPath = toAbsolutePath(path.toString());
             if (new File(resolvedPath).exists()) {
                 paths.add(resolvedPath);
@@ -362,15 +395,25 @@ class MavenEnv extends ProjectEnv {
         return paths;
     }
     
-    private String compilerVersion(List<Model> models, String key) throws Exception {
+    private String getProperty(List<Model> models, String key) throws Exception {
         for (Model model : models) {
             Properties properties = model.getProperties();
-            String version = properties.getProperty(key);
-            if (version != null) {
-                return version;
+            String value = properties.getProperty(key);
+            if (value != null) {
+                return value;
             }
         }
         return null;
+    }
+    
+    private Set<String> getValues(Xpp3Dom dom, String qname) {
+        Set<String> values = new HashSet<>();
+        for (Xpp3Dom child : dom.getChildren()) {
+            if (child.getName().equals(qname)) {
+                values.add(child.getValue());
+            }
+        }
+        return values;
     }
     
     private String getValue(Xpp3Dom dom, String qname) {
