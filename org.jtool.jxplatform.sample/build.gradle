@@ -8,7 +8,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-group = 'com.jtool.jxplatform.sample'
+group = 'org.jtool.jxplatform.sample'
 
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
@@ -20,8 +20,16 @@ dependencies {
     implementation files('../org.jtool.jxplatform/build/libs/jxplatform-3-SNAPSHOT.jar')
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+
 jar {
-    archiveBaseName = 'jxplatform-exp'
+    archiveBaseName = 'jxplatform-sample'
 }
 
 publishing {
