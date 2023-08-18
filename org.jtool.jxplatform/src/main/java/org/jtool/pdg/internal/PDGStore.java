@@ -412,9 +412,10 @@ public class PDGStore {
     private void connectDefFieldAccesses(DependencyGraph graph, CFGNode node, JFieldReference fvar) {
         if (fvar.isUncoveredFieldReference()) {
             JUncoveredFieldReference jvar = (JUncoveredFieldReference)fvar;
-            jvar.getHoldingNodes().forEach(n -> {
-                addUncoveredFieldAccessEdge(graph, n.getPDGNode(), node.getPDGNode(), jvar);
-            });
+            jvar.getHoldingNodes().stream()
+                    .map(n -> n.getPDGNode())
+                    .filter(n -> n != null)
+                    .forEach(n -> addUncoveredFieldAccessEdge(graph, n, node.getPDGNode(), jvar));
         }
     }
     

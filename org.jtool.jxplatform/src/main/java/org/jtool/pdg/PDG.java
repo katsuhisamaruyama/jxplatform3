@@ -10,7 +10,9 @@ import org.jtool.cfg.CFG;
 import org.jtool.graph.Graph;
 import org.jtool.srcmodel.QualifiedName;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 /**
@@ -88,9 +90,7 @@ public class PDG extends Graph<PDGNode, Dependence> {
      * @return the collection of the nodes
      */
     public Set<PDGNode> getNodes() {
-        Set<PDGNode> nodes = super.getNodes();
-        return nodes.stream()
-                .map(node -> (PDGNode)node).collect(Collectors.toSet());
+        return new HashSet<>(super.getNodes());
     }
     
     /**
@@ -98,9 +98,7 @@ public class PDG extends Graph<PDGNode, Dependence> {
      * @return the collection of the edges
      */
     public List<Dependence> getEdges() {
-        List<Dependence> edges = super.getEdges();
-        return edges.stream()
-                .map(edge -> (Dependence)edge).collect(Collectors.toList());
+        return new ArrayList<>(super.getEdges());
     }
     
     /**
