@@ -437,15 +437,16 @@ public class ModelBuilderImpl {
     
     public void performTaskWithTimeout(Runnable task, int timeoutSec) throws TimeoutException {
         ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<?> future = executor.submit(task);
+        
         try {
-            Future<?> future = executor.submit(task);
-            try {
-                future.get(timeoutSec, TimeUnit.SECONDS);
-            } catch (InterruptedException | ExecutionException e) {
-                /* catches as a timeout exception */
-            }
-        } finally {
             executor.shutdown();
+            future.get(timeoutSec, TimeUnit.SECONDS);
+        } catch (InterruptedException | ExecutionException e ) {
+            future.cancel(true);
+        } catch (TimeoutException e) {
+            future.cancel(true);
+            throw e;
         }
     }
     

@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Stack;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.concurrent.TimeoutException;
@@ -34,7 +35,7 @@ public class DDFinder {
     
     private static final int TIMEOUT_SEC = 60;
     
-    public static void find(final JavaProject jproject, final PDG pdg, final CFG cfg) {
+    public void find(final JavaProject jproject, final PDG pdg, final CFG cfg) {
         Runnable task = new Runnable() {
             
             @Override
@@ -52,29 +53,44 @@ public class DDFinder {
         }
     }
     
-    public static void find0(PDG pdg, CFG cfg) {
-        findDDs(pdg, cfg);
-        findDefOrderDDs(pdg, cfg);
+    public void find0(PDG pdg, CFG cfg) {
+        try {
+            findDDs(pdg, cfg);
+            findDefOrderDDs(pdg, cfg);
+        } catch (InterruptedException e) {
+            // executes workaround analysis if needed
+        }
     }
     
-    private static void findDDs(PDG pdg, CFG cfg) {
+    private void findDDs(PDG pdg, CFG cfg) throws InterruptedException {
         for (CFGNode node : cfg.getNodes()) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
             if (node.isStatement() && node.hasDefVariable()) {
                 CFGStatement anchor = (CFGStatement)node;
                 List<CFGNode> reachableNodes = cfg.forwardReachableNodes(anchor, true, false);
                 
                 for (JVariableReference jvar : anchor.getDefVariables()) {
                     if (needTraverse(jvar, reachableNodes)) {
-                        anchor.getOutgoingFlows().stream().filter(flow -> !flow.isFallThrough())
-                                .forEach(flow -> findDD(pdg, cfg, anchor, flow.getDstNode(), jvar));
+                        for (ControlFlow flow : anchor.getOutgoingFlows()) {
+                            if (!flow.isFallThrough()) {
+                                findDD(pdg, cfg, anchor, flow.getDstNode(), jvar);
+                            }
+                        }
                     }
                 }
             }
         }
     }
     
-    private static boolean needTraverse(JVariableReference jvar, List<CFGNode> nodes) {
+    private boolean needTraverse(JVariableReference jvar, List<CFGNode> nodes) throws InterruptedException {
         for (CFGNode node : nodes) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
             if (node.isStatement()) {
                 CFGStatement candidate = (CFGStatement)node;
                 if (candidate.defineVariable(jvar) || candidate.useVariable(jvar)) {
@@ -85,12 +101,17 @@ public class DDFinder {
         return false;
     }
     
-    private static void findDD(PDG pdg, CFG cfg, CFGNode anchor, CFGNode startnode, JVariableReference jvar) {
+    private void findDD(PDG pdg, CFG cfg,
+            CFGNode anchor, CFGNode startnode, JVariableReference jvar) throws InterruptedException {
         Set<CFGNode> track = new HashSet<>();
         Stack<CFGNode> nodeStack = new Stack<>();
         nodeStack.push(startnode);
         
         while (!nodeStack.isEmpty()) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
             CFGNode node = nodeStack.pop();
             
             if (track.contains(node)) {
@@ -144,7 +165,8 @@ public class DDFinder {
         }
     }
     
-    private static PDGNode getLoopCarried(PDG pdg, CFG cfg, CFGNode defnode, CFGNode usenode) {
+    private PDGNode getLoopCarried(PDG pdg, CFG cfg,
+            CFGNode defnode, CFGNode usenode) throws InterruptedException {
         List<PDGNode> defancestors = CDFinder.getCDAncestors(pdg, defnode.getPDGNode()).stream()
                 .filter(node -> node.isLoop()).collect(Collectors.toList());
         List<PDGNode> useancestors = CDFinder.getCDAncestors(pdg, usenode.getPDGNode()).stream()
@@ -153,6 +175,10 @@ public class DDFinder {
         Set<CFGNode> nodesBetween = null;
         for (PDGNode defancestor : defancestors) {
             for (PDGNode useancestor : useancestors) {
+                if (Thread.currentThread().isInterrupted()) {
+                    throw new InterruptedException();
+                }
+                
                 if (defancestor.equals(useancestor)) {
                     if (nodesBetween == null) {
                         nodesBetween = getNodesBetween(cfg, defnode, usenode);
@@ -166,7 +192,7 @@ public class DDFinder {
         return null;
     }
     
-    private static Set<CFGNode> getNodesBetween(CFG cfg, CFGNode defnode, CFGNode usenode) {
+    private Set<CFGNode> getNodesBetween(CFG cfg, CFGNode defnode, CFGNode usenode) {
         Set<CFGNode> nodes = new HashSet<>();
         for (CFGNode succ : defnode.getSuccessors()) {
             nodes.addAll(cfg.reachableNodes(succ, usenode, true, false));
@@ -174,8 +200,12 @@ public class DDFinder {
         return nodes;
     }
     
-    private static void findDefOrderDDs(PDG pdg, CFG cfg) {
+    private void findDefOrderDDs(PDG pdg, CFG cfg) throws InterruptedException {
         for (Dependence edge : pdg.getEdges()) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
             if (edge.isDD()) {
                 DD dd = (DD)edge;
                 if (dd.isOutput() && isDefOrder(pdg, dd)) {
@@ -185,7 +215,7 @@ public class DDFinder {
         }
     }
     
-    private static boolean isDefOrder(PDG pdg, DD dd) {
+    private boolean isDefOrder(PDG pdg, DD dd) throws InterruptedException {
         PDGNode src = dd.getSrcNode();
         PDGNode dst = dd.getDstNode();
         
@@ -199,6 +229,10 @@ public class DDFinder {
             if (srcDD.isLCDD() || srcDD.isLIDD()) {
                 for (DD dstDD : pdg.getOutgoingDDEdges(dst)) {
                     if (dstDD.isLCDD() || dstDD.isLIDD()) {
+                        if (Thread.currentThread().isInterrupted()) {
+                            throw new InterruptedException();
+                        }
+                        
                         if (srcDD.getDstNode().equals(dstDD.getDstNode())) {
                             return true;
                         }

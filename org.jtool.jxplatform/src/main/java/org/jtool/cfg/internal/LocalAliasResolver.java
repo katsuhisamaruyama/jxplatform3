@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -56,7 +56,7 @@ class LocalAliasResolver {
         this.jproject = jproject;
     }
     
-    void resolve(CFG cfg) {
+    void resolve(CFG cfg) throws InterruptedException {
         if (!cfg.isMethod()) {
             return;
         }
@@ -70,11 +70,15 @@ class LocalAliasResolver {
         }
     }
     
-    private void collectAliasesByFieldDeclations(CFG cfg) {
+    private void collectAliasesByFieldDeclations(CFG cfg) throws InterruptedException {
         CFGMethodEntry entry = (CFGMethodEntry)cfg.getEntryNode();
         JavaMethod jmethod = entry.getJavaMethod();
         
         for (JavaField jfield : jmethod.getDeclaringClass().getFields()) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
             if (jfield.isField() && jfield.isFinal()) {
                 VariableDeclarationFragment decllaration = (VariableDeclarationFragment)jfield.getASTNode();
                 CFGStatement declNode = new CFGStatement(decllaration, CFGNode.Kind.dummy);
@@ -142,8 +146,12 @@ class LocalAliasResolver {
         aliasMap.put(node, alias);
     }
     
-    private void collectAliases(CFG cfg) {
+    private void collectAliases(CFG cfg) throws InterruptedException {
         for (CFGNode node : CFGNode.sortNodes(cfg.getNodes())) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
             List<Alias> aliases = new ArrayList<>();
             collectAliases(node, aliases);
             aliases.forEach(a -> createAliasMap(node, a, new HashSet<>()));

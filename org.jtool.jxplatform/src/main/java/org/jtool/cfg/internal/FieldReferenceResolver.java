@@ -32,8 +32,12 @@ class FieldReferenceResolver {
     FieldReferenceResolver() {
     }
     
-    void findDefUseFields(CFG cfg) {
+    void findDefUseFields(CFG cfg) throws InterruptedException {
         for (CFGMethodCall callNode : cfg.getMethodCallNodes()) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
             findFieldsForCalledMethod(cfg, callNode);
         }
     }

@@ -50,18 +50,21 @@ public class PDGBuilder {
                 .filter(node -> node.isEntry()).findFirst().orElse(null);
         pdg.setEntryNode(entry);
         
-        CDFinder.find(jclass.getJavaProject(), pdg, cfg);
-        DDFinder.find(jclass.getJavaProject(), pdg, cfg);
+        CDFinder cdfinder = new CDFinder();
+        cdfinder.find(jclass.getJavaProject(), pdg, cfg);
+        
+        DDFinder ddfinder = new DDFinder();
+        ddfinder.find(jclass.getJavaProject(), pdg, cfg);
         return pdg;
     }
     
     private static void createNodes(PDG pdg, CFG cfg) {
-        cfg.getNodes().stream().map(cfgnode -> createNode(pdg, cfgnode))
+        cfg.getNodes().stream().map(cfgnode -> createNode(cfgnode))
                       .filter(pdgnode -> pdgnode != null)
                       .forEach(pdgnode -> pdg.add(pdgnode));
     }
     
-    private static PDGNode createNode(PDG bpdg, CFGNode node) {
+    private static PDGNode createNode(CFGNode node) {
         if (node.isMethodEntry() || node.isConstructorEntry() || node.isInitializerEntry() ||
                    node.isFieldEntry() || node.isEnumConstantEntry()) {
             PDGEntry pdgnode = new PDGEntry((CFGEntry)node);

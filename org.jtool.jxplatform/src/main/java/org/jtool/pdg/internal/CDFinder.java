@@ -34,10 +34,10 @@ import java.util.concurrent.TimeoutException;
  */
 public class CDFinder {
     
-    private static final int TIMEOUT_SEC = 60;
-    private static final int SHRORT_TIMEOUT_SEC = 30;
+    private static final int TIMEOUT_SEC = 5;
+    private static final int SHRORT_TIMEOUT_SEC = 2;
     
-    public static void find(final JavaProject jproject, final PDG pdg, final CFG cfg) {
+    public void find(final JavaProject jproject, final PDG pdg, final CFG cfg) {
         Runnable task = new Runnable() {
             
             @Override
@@ -47,19 +47,16 @@ public class CDFinder {
         };
         
         try {
-            int timeout = getTimeoutPeriod(cfg);
-            jproject.getModelBuilderImpl().performTaskWithTimeout(task, timeout);
+            int timeoutSec = getTimeoutPeriod(cfg);
+            jproject.getModelBuilderImpl().performTaskWithTimeout(task, timeoutSec);
         } catch (TimeoutException e) {
-            new ArrayList<CD>(pdg.getCDEdges()).forEach(cd -> pdg.remove(cd));
-            simplyFindCDsOnTimeout(pdg, cfg);
-            
             jproject.getModelBuilderImpl().printErrorOnMonitor(
                     "**Timeout occurred in control dependency analysis: " + cfg.getQualifiedName().fqn());
             jproject.getModelBuilderImpl().getLogger().recordTimeoutError(cfg.getQualifiedName().fqn());
         }
     }
-
-    private static int getTimeoutPeriod(final CFG cfg) {
+    
+    private int getTimeoutPeriod(final CFG cfg) {
         GetNestingDepth nesting = new GetNestingDepth();
         int maxDepth = nesting.getMaximumNuberOfNestingDepth(cfg.getEntryNode());
         if (maxDepth > 30) {
@@ -69,40 +66,26 @@ public class CDFinder {
         }
     }
     
-    public static void find0(PDG pdg, CFG cfg) {
-        if (hasNestedStructure(cfg)) {
-            findCDsOnNestStructure(pdg, cfg);
-        } else {
-            findCDs(pdg, cfg);
-        }
-        findCDsOnTryCatch(pdg, cfg);
-        findCDsFromEntry(pdg, cfg);
-        findCDsOnDeclarations(pdg, cfg);
-        
-        removeTransitiveCDs(pdg);
-    }
-    
-    private static boolean hasNestedStructure(CFG cfg) {
-        DominantStatement statement = cfg.getDominantStatement(cfg.getEntryNode().getOutgoingTrueFlow());
-        return statement != null && !statement.breakNestedStructure();
-    }
-    
-    private static void findCDsOnNestStructure(PDG pdg, CFG cfg) {
-        for (CFGNode node : cfg.getNodes()) {
-            if (node.isBranch()) {
-                boolean hasNestedStructure = node.getOutgoingFlows().stream()
-                        .map(flow -> cfg.getDominantStatement(flow))
-                        .allMatch(st -> (st != null && !st.breakNestedStructure()));
-                if (hasNestedStructure) {
-                    simplyFindCDs(pdg, cfg, node);
-                } else {
-                    findCDs(pdg, cfg, node);
-                }
+    private void find0(PDG pdg, CFG cfg) {
+        try {
+            if (hasNestedStructure(cfg)) {
+                findCDsOnNestStructure(pdg, cfg);
+            } else {
+                findCDs(pdg, cfg);
             }
+            
+            findCDsOnTryCatch(pdg, cfg);
+            findCDsFromEntry(pdg, cfg);
+            findCDsOnDeclarations(pdg, cfg);
+            
+            removeTransitiveCDs(pdg);
+        } catch (InterruptedException e) {
+            new ArrayList<CD>(pdg.getCDEdges()).forEach(cd -> pdg.remove(cd));
+            simplyFindCDsOnTimeout(pdg, cfg);
         }
     }
     
-    private static void simplyFindCDsOnTimeout(PDG pdg, CFG cfg) {
+    private void simplyFindCDsOnTimeout(PDG pdg, CFG cfg) {
         for (CFGNode node : cfg.getNodes()) {
             if (node.isBranch()) {
                 for (ControlFlow flow : node.getOutgoingFlows()) {
@@ -118,8 +101,36 @@ public class CDFinder {
         }
     }
     
-    private static void simplyFindCDs(PDG pdg, CFG cfg, CFGNode node) {
+    private boolean hasNestedStructure(CFG cfg) {
+        DominantStatement statement = cfg.getDominantStatement(cfg.getEntryNode().getOutgoingTrueFlow());
+        return statement != null && !statement.breakNestedStructure();
+    }
+    
+    private void findCDsOnNestStructure(PDG pdg, CFG cfg) throws InterruptedException {
+        for (CFGNode node : cfg.getNodes()) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
+            if (node.isBranch()) {
+                boolean hasNestedStructure = node.getOutgoingFlows().stream()
+                        .map(flow -> cfg.getDominantStatement(flow))
+                        .allMatch(st -> (st != null && !st.breakNestedStructure()));
+                if (hasNestedStructure) {
+                    simplyFindCDs(pdg, cfg, node);
+                } else {
+                    findCDs(pdg, cfg, node);
+                }
+            }
+        }
+    }
+    
+    private void simplyFindCDs(PDG pdg, CFG cfg, CFGNode node) throws InterruptedException {
         for (ControlFlow flow : node.getOutgoingFlows()) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
             DominantStatement statement = cfg.getDominantStatement(flow);
             for (CFGNode postDominator : statement.getImmediatePostDominators()) {
                 CD cd = createCD(node, flow, postDominator);
@@ -128,14 +139,26 @@ public class CDFinder {
         }
     }
     
-    private static void findCDs(PDG pdg, CFG cfg) {
-        cfg.getNodes().stream().filter(node -> node.isBranch()).forEach(node -> findCDs(pdg, cfg, node));
+    private void findCDs(PDG pdg, CFG cfg) throws InterruptedException {
+        for (CFGNode node :cfg.getNodes()) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
+            if (node.isBranch()) {
+                findCDs(pdg, cfg, node);
+            }
+        }
     }
     
-    private static void findCDs(PDG pdg, CFG cfg, CFGNode branchNode) {
+    private void findCDs(PDG pdg, CFG cfg, CFGNode branchNode) throws InterruptedException {
         Set<CFGNode> postDominator = cfg.postDominator(branchNode);
         
         for (ControlFlow flow : branchNode.getOutgoingFlows()) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
             CFGNode branchDstNode = flow.getDstNode();
             Set<CFGNode> postDominatorsForDstNode = cfg.postDominator(branchDstNode);
             postDominatorsForDstNode.add(branchDstNode);
@@ -149,7 +172,7 @@ public class CDFinder {
         }
     }
     
-    private static CD createCD(CFGNode branchNode, ControlFlow flow, CFGNode node) {
+    private CD createCD(CFGNode branchNode, ControlFlow flow, CFGNode node) {
         CD edge = new CD(branchNode.getPDGNode(), node.getPDGNode());
         if (flow.isTrue()) {
             edge.setTrue();
@@ -163,7 +186,7 @@ public class CDFinder {
         return edge;
     }
     
-    private static void findCDsOnTryCatch(PDG bpdg, CFG cfg) {
+    private void findCDsOnTryCatch(PDG bpdg, CFG cfg) {
         for (CFGNode cfgnode : cfg.getNodes()) {
             if (cfgnode.isTry()) {
                 CFGTry trynode = (CFGTry)cfgnode;
@@ -181,7 +204,7 @@ public class CDFinder {
         }
     }
     
-    private static void findCDsFromEntry(PDG pdg, CFG cfg) {
+    private void findCDsFromEntry(PDG pdg, CFG cfg) {
         CFGNode entryNode = cfg.getEntryNode();
         for (PDGNode pdgnode : pdg.getNodes()) {
             if (!pdgnode.isEntry() && pdg.getIncomingCDEdges(pdgnode).size() == 0) {
@@ -192,7 +215,7 @@ public class CDFinder {
         }
     }
     
-    private static void findCDsOnDeclarations(PDG pdg, CFG cfg) {
+    private void findCDsOnDeclarations(PDG pdg, CFG cfg) {
         for (CFGNode cfgnode : cfg.getNodes()) {
             if (cfgnode.isStatement()) {
                 findCDsOnDeclarations(pdg, cfg, (CFGStatement)cfgnode);
@@ -200,7 +223,7 @@ public class CDFinder {
         }
     }
     
-    private static void findCDsOnDeclarations(PDG pdg, CFG cfg, CFGStatement cfgnode) {
+    private void findCDsOnDeclarations(PDG pdg, CFG cfg, CFGStatement cfgnode) {
         Set<JVariableReference> vars = new HashSet<>();
         vars.addAll(cfgnode.getDefVariables());
         vars.addAll(cfgnode.getUseVariables());
@@ -227,7 +250,7 @@ public class CDFinder {
         }
     }
     
-    private static void removeTransitiveCDs(PDG pdg) {
+    private void removeTransitiveCDs(PDG pdg) {
         List<PDGNode> nodes = pdg.getNodes().stream().sorted().collect(Collectors.toList());
         Collections.reverse(nodes);
         for (PDGNode node: nodes) {
@@ -240,7 +263,7 @@ public class CDFinder {
                     for (CD edge2 : edges) {
                         PDGNode node2 = edge2.getSrcNode();
                         if (!node1.equals(node2) && !removed.contains(edge2)) {
-                            if (getCDAncestors(pdg, node2).contains(node1)) {
+                            if (CDFinder.getCDAncestors(pdg, node2).contains(node1)) {
                                 removed.add(edge1);
                                 break;
                             }

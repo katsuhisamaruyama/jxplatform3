@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -48,11 +48,23 @@ class ReceiverTypeResolver {
         this.bcStore = jproject.getCFGStore().getBCStore();
     }
     
-    void findReceiverTypes(CFG cfg) {
+    void findReceiverTypes(CFG cfg) throws InterruptedException {
         if (bcStore.analyzingBytecode()) {
-            cfg.getMethodCallNodes().forEach(node -> findReceiverTypes(node.getMethodCall(), cfg, new HashSet<>()));
+            for (CFGMethodCall node : cfg.getMethodCallNodes()) {
+                if (Thread.currentThread().isInterrupted()) {
+                    throw new InterruptedException();
+                }
+                
+                findReceiverTypes(node.getMethodCall(), cfg, new HashSet<>());
+            }
         } else {
-            cfg.getMethodCallNodes().forEach(node -> findReceiverTypesWithoutBytecode(node.getMethodCall()));
+            for (CFGMethodCall node : cfg.getMethodCallNodes()) {
+                if (Thread.currentThread().isInterrupted()) {
+                    throw new InterruptedException();
+                }
+                
+                findReceiverTypesWithoutBytecode(node.getMethodCall());
+            }
         }
     }
     

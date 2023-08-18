@@ -18,7 +18,7 @@ class Resolver {
     
     private static final int TIMEOUT_SEC = 60;
     
-    static void resolveReferences(final JavaProject jproject, final CFG cfg) {
+    void resolveReferences(final JavaProject jproject, final CFG cfg) {
         Runnable task = new Runnable() {
             
             @Override
@@ -29,19 +29,25 @@ class Resolver {
         try {
             jproject.getModelBuilderImpl().performTaskWithTimeout(task, TIMEOUT_SEC);
         } catch (TimeoutException e) {
+            jproject.getModelBuilderImpl().printErrorOnMonitor(
+                    "**Timeout occurred in resoving references: " + cfg.getQualifiedName().fqn());
             jproject.getModelBuilderImpl().getLogger().recordTimeoutError(cfg.getQualifiedName().fqn());
         }
     }
     
-    private static void resolveReferences0(JavaProject jproject, CFG cfg) {
-        ReceiverTypeResolver receiverTypeResolver = new ReceiverTypeResolver(jproject);
-        receiverTypeResolver.findReceiverTypes(cfg);
-        
-        FieldReferenceResolver referenceResolver = new FieldReferenceResolver();
-        referenceResolver.findDefUseFields(cfg);
+    private void resolveReferences0(JavaProject jproject, CFG cfg) {
+        try {
+            ReceiverTypeResolver receiverTypeResolver = new ReceiverTypeResolver(jproject);
+            receiverTypeResolver.findReceiverTypes(cfg);
+            
+            FieldReferenceResolver referenceResolver = new FieldReferenceResolver();
+            referenceResolver.findDefUseFields(cfg);
+        } catch (InterruptedException e) {
+            // Executes workaround resolution if needed
+        }
     }
     
-    static void resolveLocalAlias(JavaProject jproject, CFG cfg) {
+    void resolveLocalAlias(JavaProject jproject, CFG cfg) {
         Runnable task = new Runnable() {
             
             @Override
@@ -53,12 +59,18 @@ class Resolver {
         try {
             jproject.getModelBuilderImpl().performTaskWithTimeout(task, TIMEOUT_SEC);
         } catch (TimeoutException e) {
+            jproject.getModelBuilderImpl().printErrorOnMonitor(
+                    "**Timeout occurred in resoving alias relations: " + cfg.getQualifiedName().fqn());
             jproject.getModelBuilderImpl().getLogger().recordTimeoutError(cfg.getQualifiedName().fqn());
         }
     }
     
-    private static void resolveLocalAlias0(JavaProject jproject, CFG cfg) {
-        LocalAliasResolver localAliasResolver = new LocalAliasResolver(jproject);
-        localAliasResolver.resolve(cfg);
+    private void resolveLocalAlias0(JavaProject jproject, CFG cfg) {
+        try {
+            LocalAliasResolver localAliasResolver = new LocalAliasResolver(jproject);
+            localAliasResolver.resolve(cfg);
+        } catch (InterruptedException e) {
+            // Executes workaround resolution if needed
+        }
     }
 }

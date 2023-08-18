@@ -197,8 +197,9 @@ public class CFGStore {
         }
         
         CFGsForVisit.add(fqn);
-        Resolver.resolveReferences(jmethod.getJavaProject(), cfg);
-        Resolver.resolveLocalAlias(jmethod.getJavaProject(), cfg);
+        Resolver resolver = new Resolver();
+        resolver.resolveReferences(jmethod.getJavaProject(), cfg);
+        resolver.resolveLocalAlias(jmethod.getJavaProject(), cfg);
         CFGsForVisit.remove(fqn);
         CFGMethodBuilder.addUseVariablesForReturn(cfg);
         
@@ -237,8 +238,9 @@ public class CFGStore {
         }
         
         CFGsForVisit.add(fqn);
-        Resolver.resolveReferences(jfield.getJavaProject(), cfg);
-        Resolver.resolveLocalAlias(jfield.getJavaProject(), cfg);
+        Resolver resolver = new Resolver();
+        resolver.resolveReferences(jfield.getJavaProject(), cfg);
+        resolver.resolveLocalAlias(jfield.getJavaProject(), cfg);
         CFGsForVisit.remove(fqn);
         
         ucfgs.remove(fqn);
