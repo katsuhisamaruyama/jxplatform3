@@ -621,23 +621,23 @@ public class ModelBuilderImpl {
     }
     
     public void printMessage(String message) {
-        getConsoleProgressMonitor().printMessage(message);
+        getConsoleProgressMonitor().printMessage("MESSAGE: " + message);
         logger.recordLog(message);
     }
     
     public void printError(String message) {
-        getConsoleProgressMonitor().printError(message);
+        getConsoleProgressMonitor().printError("ERROR: " + message);
         logger.recordLog(message);
     }
     
     public void printUnresolvedError(String message) {
-        getConsoleProgressMonitor().printError(message);
+        getConsoleProgressMonitor().printError("UNRESOLVED: " + message);
         logger.recordUnresolvedError(message);
     }
     
     public void printCreationError(String message) {
         getConsoleProgressMonitor().printError(message);
-        logger.recordCreationError(message);
+        logger.recordCreationError("ERROR: " + message);
     }
     
     private class FileContent {
