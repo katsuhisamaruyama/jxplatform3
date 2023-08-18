@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -10,7 +10,8 @@ import org.jtool.cfg.CFGStatement;
 import org.jtool.cfg.CFGMethodCall;
 import org.eclipse.jdt.core.dom.Modifier;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * A class that represents a field defined or used.
@@ -31,7 +32,7 @@ public class DefUseField {
     private boolean isThis;
     private boolean isUncovered;
     private boolean isReturnValue;
-    private List<CFGStatement> holdingNodes = new ArrayList<>();
+    private Set<CFGStatement> holdingNodes = new HashSet<>();
     
     public DefUseField(JFieldReference fvar, CFGStatement node) {
         this(fvar.getDeclaringClassName(), fvar.getName(), fvar.getReferenceForm(),
@@ -47,7 +48,7 @@ public class DefUseField {
         this(var.className, var.name, var.referenceForm,
                 var.type, var.isPrimitive, var.modifiers, var.inProject, var.isThis(),
                 var.isUncovered, var.isReturnValue);
-        var.getHoldingNodes().forEach(node -> holdingNodes.add(node));
+        var.getHoldingNodes().stream().filter(node -> node != null).forEach(node -> holdingNodes.add(node));
     }
     
     public DefUseField(String className, String name, String referenceForm, String type,
@@ -129,10 +130,14 @@ public class DefUseField {
     }
     
     public void addHoldingNodes(List<CFGMethodCall> nodes) {
-        holdingNodes.addAll(nodes);
+        nodes.stream().filter(node -> node != null).forEach(node -> holdingNodes.add(node));
     }
     
-    public List<CFGStatement> getHoldingNodes() {
+    public void addHoldingNodes(Set<? extends CFGStatement> nodes) {
+        nodes.stream().filter(node -> node != null).forEach(node -> holdingNodes.add(node));
+    }
+    
+    public Set<CFGStatement> getHoldingNodes() {
         return holdingNodes;
     }
     

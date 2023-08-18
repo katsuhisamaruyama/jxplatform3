@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -94,7 +94,7 @@ public class SDGTest {
         SDG sdg = PDGTestUtil.createSDG(CSclassroomProject);
         List<DependencyGraphEdge> result = sdg.getEdges();
         
-        assertEquals(4928, result.size());
+        assertEquals(4929, result.size());
     }
     
     @Test
@@ -102,7 +102,7 @@ public class SDGTest {
         SDG sdg = PDGTestUtil.createSDG(DrawToolProject);
         List<DependencyGraphEdge> result = sdg.getEdges();
         
-        assertEquals(18157, result.size());
+        assertEquals(18282, result.size());
     }
     
     @Test
@@ -126,7 +126,7 @@ public class SDGTest {
         SDG sdg = PDGTestUtil.createSDG(TetrisProject);
         List<DependencyGraphEdge> result = sdg.getEdges();
         
-        assertEquals(6153, result.size());
+        assertEquals(6195, result.size());
     }
     
     @Test
@@ -134,7 +134,7 @@ public class SDGTest {
         DependencyGraph sdg = PDGTestUtil.createSDG(VideoStoreProject);
         List<DependencyGraphEdge> result = sdg.getEdges();
         
-        assertEquals(5372, result.size());
+        assertEquals(5400, result.size());
     }
     
     @Test
@@ -190,7 +190,7 @@ public class SDGTest {
         SDG sdg = PDGTestUtil.createSDG(CSclassroomProject);
         List<DependencyGraphEdge> result = sdg.getDDEdges();
         
-        assertEquals(1771, result.size());
+        assertEquals(1772, result.size());
     }
     
     @Test
@@ -198,7 +198,7 @@ public class SDGTest {
         SDG sdg = PDGTestUtil.createSDG(DrawToolProject);
         List<DependencyGraphEdge> result = sdg.getDDEdges();
         
-        assertEquals(11579, result.size());
+        assertEquals(11704, result.size());
     }
     
     @Test
@@ -222,7 +222,7 @@ public class SDGTest {
         DependencyGraph sdg = PDGTestUtil.createSDG(TetrisProject);
         List<DependencyGraphEdge> result = sdg.getDDEdges();
         
-        assertEquals(3995, result.size());
+        assertEquals(4037, result.size());
     }
     
     @Test
@@ -230,7 +230,7 @@ public class SDGTest {
         DependencyGraph sdg = PDGTestUtil.createSDG(VideoStoreProject);
         List<DependencyGraphEdge> result = sdg.getDDEdges();
         
-        assertEquals(2863, result.size());
+        assertEquals(2891, result.size());
     }
     
     @Test
@@ -238,7 +238,7 @@ public class SDGTest {
         SDG sdg = PDGTestUtil.createSDG(CSclassroomProject);
         List<DependencyGraphEdge> result = sdg.getInterPDGEdges();
         
-        assertEquals(718, result.size());
+        assertEquals(719, result.size());
     }
     
     @Test
@@ -246,7 +246,7 @@ public class SDGTest {
         SDG sdg = PDGTestUtil.createSDG(DrawToolProject);
         List<DependencyGraphEdge> result = sdg.getInterPDGEdges();
         
-        assertEquals(9604, result.size());
+        assertEquals(9729, result.size());
     }
     
     @Test
@@ -270,7 +270,7 @@ public class SDGTest {
         DependencyGraph sdg = PDGTestUtil.createSDG(TetrisProject);
         List<DependencyGraphEdge> result = sdg.getInterPDGEdges();
         
-        assertEquals(3143, result.size());
+        assertEquals(3185, result.size());
     }
     
     @Test
@@ -278,7 +278,7 @@ public class SDGTest {
         DependencyGraph sdg = PDGTestUtil.createSDG(VideoStoreProject);
         List<DependencyGraphEdge> result = sdg.getInterPDGEdges();
         
-        assertEquals(2446, result.size());
+        assertEquals(2474, result.size());
     }
     
     @Test

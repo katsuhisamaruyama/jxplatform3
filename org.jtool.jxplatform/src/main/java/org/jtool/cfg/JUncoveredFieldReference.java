@@ -1,13 +1,13 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.cfg;
 
 import org.eclipse.jdt.core.dom.ASTNode;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * An class that represents a reference to a field, which is uncovered in a called method.
@@ -19,7 +19,7 @@ public class JUncoveredFieldReference extends JFieldReference {
     /**
      * CFG nodes that hold this uncovered field reference.
      */
-    private List<CFGStatement> holdingNodes = new ArrayList<>();
+    private Set<CFGStatement> holdingNodes = new HashSet<>();
     
     /**
      * Creates a new object that represents a reference to a field.
@@ -35,7 +35,7 @@ public class JUncoveredFieldReference extends JFieldReference {
      * @param holdingNodes CFG nodes that hold this uncovered field reference
      */
     public JUncoveredFieldReference(ASTNode node, String className, String name, String referenceForm,
-            String type, boolean primitive, int modifiers, boolean inProject, List<CFGStatement> holdingNodes) {
+            String type, boolean primitive, int modifiers, boolean inProject, Set<CFGStatement> holdingNodes) {
         super(node, className, name, referenceForm, type, primitive, modifiers, inProject, false);
         this.holdingNodes = holdingNodes;
     }
@@ -44,7 +44,7 @@ public class JUncoveredFieldReference extends JFieldReference {
      * Returns the CFG nodes that hold this uncovered field reference.
      * @return the collection of the nodes
      */
-    public List<CFGStatement> getHoldingNodes() {
+    public Set<CFGStatement> getHoldingNodes() {
         return holdingNodes;
     }
     

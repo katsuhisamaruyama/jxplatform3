@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -15,9 +15,10 @@ import org.jtool.cfg.JUncoveredFieldReference;
 import org.jtool.cfg.internal.refmodel.DefUseField;
 import org.jtool.cfg.internal.refmodel.JClass;
 import org.jtool.cfg.internal.refmodel.JMethod;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -76,7 +77,7 @@ class FieldReferenceResolver {
         CFGNode curNode = callNode;
         int index = 1;
         
-        Set<DefUseField> defs = new HashSet<>(method.getAllDefFields());
+        Collection<DefUseField> defs = aggregateUncoveredFields(method.getAllDefFields());
         List<DefUseField> sortedDefs = defs.stream()
                 .sorted(Comparator.comparing(DefUseField::getQualifiedName))
                 .collect(Collectors.toList());
@@ -119,7 +120,7 @@ class FieldReferenceResolver {
     }
     
     private void insertUseVariables(CFGMethodCall callNode, JMethod method) {
-        Set<DefUseField> uses = new HashSet<>(method.getAllUseFields());
+        Collection<DefUseField> uses = aggregateUncoveredFields(method.getAllUseFields());
         List<DefUseField> sortedUses = uses.stream()
                 .sorted(Comparator.comparing(DefUseField::getQualifiedName))
                 .collect(Collectors.toList());
@@ -133,5 +134,18 @@ class FieldReferenceResolver {
             callNode.addUseVariable(var);
             callNode.getActualOut().addUseVariable(var);
         }
+    }
+    
+    private Collection<DefUseField> aggregateUncoveredFields(List<DefUseField> fields) {
+        Map<String, DefUseField> fmap = new HashMap<>();
+        for (DefUseField field : fields) {
+            DefUseField f = fmap.get(field.getQualifiedName());
+            if (f != null) {
+                f.addHoldingNodes(field.getHoldingNodes());
+            } else {
+                fmap.put(field.getQualifiedName(), field);
+            }
+        }
+        return fmap.values();
     }
 }

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -411,7 +411,7 @@ public class JUncoverFieldReferenceTest {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JUncoveredFieldReference> result = CFGTestUtil.getDefUncoveredFieldReference(cfg);
         
-        assertEquals("this.a", result.get(0).getHoldingNodes().get(0).getDefFirst().getReferenceForm());
+        assertEquals("this.a", result.get(0).getHoldingNodes().iterator().next().getDefFirst().getReferenceForm());
     }
     
     @Test
@@ -419,7 +419,8 @@ public class JUncoverFieldReferenceTest {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test103", "m( )");
         List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
-        assertEquals("this.a", result.get(0).getHoldingNodes().get(0).getUseFirst().getReferenceForm());
+        
+        assertEquals("this.a", result.get(0).getHoldingNodes().iterator().next().getUseFirst().getReferenceForm());
     }
     
     @Test
@@ -427,6 +428,6 @@ public class JUncoverFieldReferenceTest {
         CFG cfg = CFGTestUtil.createCFG(SliceProject, "Test119", "m( )");
         List<JUncoveredFieldReference> result = CFGTestUtil.getUseUncoveredFieldReference(cfg);
         
-        assertEquals("this.x", result.get(0).getHoldingNodes().get(0).getUseFirst().getReferenceForm());
+        assertEquals("this.x", result.get(0).getHoldingNodes().iterator().next().getUseFirst().getReferenceForm());
     }
 }
