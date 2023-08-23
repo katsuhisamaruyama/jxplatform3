@@ -121,6 +121,19 @@ public class JavaClass extends JavaElement {
     private JavaPackage jpackage;
     
     /**
+     * Create a new empty object for storing nothing.
+     */
+    protected JavaClass() {
+        super(null);
+        this.jfile = null;
+        this.binding = null;
+        this.qname = null;
+        this.modifiers = -1;
+        this.kind = null;
+        this.jproject = null;
+    }
+    
+    /**
      * Creates a new object representing a class.
      * This constructor is not intended to be invoked by clients.
      * @param node the AST node for this class or interface

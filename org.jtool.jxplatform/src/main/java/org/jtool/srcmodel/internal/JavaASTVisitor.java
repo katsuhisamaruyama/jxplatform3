@@ -1,16 +1,16 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.srcmodel.internal;
 
 import org.jtool.srcmodel.JavaClass;
-import org.jtool.srcmodel.JavaElementException;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaFile;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaPackage;
+import org.jtool.srcmodel.JavaElementException;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.PackageDeclaration;
 import org.eclipse.jdt.core.dom.ImportDeclaration;
@@ -81,6 +81,9 @@ public class JavaASTVisitor extends ASTVisitor {
             createClass(jclass);
             return true;
         } catch (JavaElementException e) {
+            JavaClass jclass = new DummyJavaClass();
+            outerClasses.push(jclass);
+            
             jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
             return false;
         }
@@ -127,7 +130,9 @@ public class JavaASTVisitor extends ASTVisitor {
     private void createClass(JavaClass jclass) {
         if (!outerClasses.empty()) {
             JavaClass jc = outerClasses.peek();
-            jc.addInnerClass(jclass);
+            if (!(jc instanceof DummyJavaClass)) {
+                jc.addInnerClass(jclass);
+            }
         }
         outerClasses.push(jclass);
     }
@@ -195,5 +200,12 @@ public class JavaASTVisitor extends ASTVisitor {
             jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
         }
         return true;
+    }
+    
+    private class DummyJavaClass extends JavaClass {
+        
+        DummyJavaClass() {
+            super();
+        }
     }
 }
