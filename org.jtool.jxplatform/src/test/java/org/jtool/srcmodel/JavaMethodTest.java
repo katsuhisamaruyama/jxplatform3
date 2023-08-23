@@ -152,7 +152,7 @@ public class JavaMethodTest {
     }
     
     @Test
-    public void testOsPrimitiveReturnType1() {
+    public void testIsPrimitiveReturnType1() {
         JavaMethod jm = VideoStoreProject.getClass("org.jtool.videostore.after.Customer").getMethod("statement( )");
         boolean result = jm.isPrimitiveReturnType();
         

@@ -90,7 +90,7 @@ public class JavaElementUtil {
                             try {
                                 JavaMethod jmethod = new JavaMethod(mbinding, jclass);
                                 jclass.addMethod(jmethod);
-                            } catch(JavaElementException e) {
+                            } catch (JavaElementException e) {
                                 Logger logger = jproject.getModelBuilderImpl().getLogger();
                                 logger.recordCreationError(e.getMessage());
                             }
@@ -136,7 +136,7 @@ public class JavaElementUtil {
                     if (jmethod == null) {
                         try {
                             jmethod = new JavaMethod(mbinding, jclass);
-                        } catch(JavaElementException e) {
+                        } catch (JavaElementException e) {
                             jproject.getModelBuilderImpl().printCreationError(e.getMessage());
                         }
                     }

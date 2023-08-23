@@ -53,7 +53,7 @@ class AARFile {
         }
         
         try {
-        Files.delete(tmppath);
+            Files.delete(tmppath);
         } catch (IOException ie) { /* empty */ }
     }
     
