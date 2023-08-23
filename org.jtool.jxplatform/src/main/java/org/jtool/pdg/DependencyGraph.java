@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -91,9 +91,9 @@ public class DependencyGraph {
     public void add(ClDG cldg) {
         if (!cldgs.values().contains(cldg)) {
             Set<PDGNode> nodes = cldg.getNodes();
-            nodes.stream().forEach(node -> add(node));
+            nodes.stream().filter(node -> node != null).forEach(node -> add(node));
             List<DependencyGraphEdge> edges = cldg.getEdges();
-            edges.stream().forEach(edge -> add(edge));
+            edges.stream().filter(edge -> edge != null).forEach(edge -> add(edge));
             cldgs.put(cldg.getQualifiedName().fqn(), cldg);
             
             cldg.getPDGs().forEach(pdg -> pdgs.put(pdg.getQualifiedName().fqn(), pdg));
@@ -106,8 +106,8 @@ public class DependencyGraph {
      */
     public void add(PDG pdg) {
         if (!pdgs.values().contains(pdg)) {
-            pdg.getNodes().stream().forEach(node -> add(node));
-            pdg.getEdges().stream().forEach(edge -> add(edge));
+            pdg.getNodes().stream().filter(node -> node != null).forEach(node -> add(node));
+            pdg.getEdges().stream().filter(edge -> edge != null).forEach(edge -> add(edge));
             pdgs.put(pdg.getQualifiedName().fqn(), pdg);
         }
     }
