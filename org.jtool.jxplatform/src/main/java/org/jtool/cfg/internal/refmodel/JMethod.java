@@ -104,8 +104,6 @@ abstract public class JMethod extends JCommon {
             collectDefUseFieldsInAccessedMethods(this, prefix, cachedReturnValue, callChain);
             
             traverseAccessedMethods(this, prefix, cachedReturnValue, callChain, visitedMethods, 0);
-            
-            //hasDefUseCached = prefix.reusable;
         }
         
         String placeholder = prefix.placeholder;
