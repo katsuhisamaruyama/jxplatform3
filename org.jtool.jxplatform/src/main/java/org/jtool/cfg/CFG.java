@@ -294,7 +294,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @return the collection of the method call nodes
      */
     public List<CFGMethodCall> getMethodCallNodes() {
-        return getNodes().stream()
+        return new ArrayList<>(getNodes()).stream()
                          .filter(node -> node.isMethodCall())
                          .map(node -> (CFGMethodCall)node)
                          .sorted(Comparator.comparing(CFGNode::getId))
@@ -306,7 +306,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @return the collection of the statement nodes
      */
     public List<CFGStatement> getStatementNodes() {
-        return getNodes().stream()
+        return new ArrayList<>(getNodes()).stream()
                          .filter(node -> node.isStatement())
                          .map(node -> (CFGStatement)node)
                          .sorted(Comparator.comparing(CFGNode::getId))
@@ -318,7 +318,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @return the collection of the field access nodes
      */
     public List<CFGStatement> getFieldAccessNodes() {
-        return getNodes().stream()
+        return new ArrayList<>(getNodes()).stream()
                          .filter(node -> hasFieldAccess(node))
                          .map(node -> (CFGStatement)node)
                          .sorted(Comparator.comparing(CFGNode::getId))
@@ -352,7 +352,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @return the collection of the return statement nodes
      */
     public Set<CFGStatement> getReturnNodes() {
-        return getNodes().stream()
+        return new ArrayList<>(getNodes()).stream()
                          .filter(node -> node.isReturn())
                          .map(node -> (CFGStatement)node)
                          .collect(Collectors.toSet());

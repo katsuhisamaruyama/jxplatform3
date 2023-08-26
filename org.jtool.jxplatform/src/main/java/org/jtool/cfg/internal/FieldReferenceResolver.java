@@ -42,7 +42,7 @@ class FieldReferenceResolver {
         }
     }
     
-    private void findFieldsForCalledMethod(CFG cfg, CFGMethodCall callNode) {
+    private void findFieldsForCalledMethod(CFG cfg, CFGMethodCall callNode) throws InterruptedException {
         if (callNode.getApproximatedTypes() == null) {
             return;
         }
@@ -57,6 +57,10 @@ class FieldReferenceResolver {
         }
         
         for (JClass type : callNode.getApproximatedTypes()) {
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
+            
             String sig = callNode.getSignature();
             if (callNode.isConstructorCall()) {
                 sig = type.getSimpleName() + sig.substring(sig.lastIndexOf('('));
@@ -72,7 +76,7 @@ class FieldReferenceResolver {
         }
     }
     
-    private void insertDefVariables(CFGMethodCall callNode, JMethod method, CFG cfg) {
+    private void insertDefVariables(CFGMethodCall callNode, JMethod method, CFG cfg) throws InterruptedException {
         ControlFlow removeFlow = callNode.getOutgoingTrueFlow();
         if (removeFlow != null) {
             cfg.remove(removeFlow);
@@ -93,6 +97,10 @@ class FieldReferenceResolver {
                     def.getClassName(), def.getName(), def.getReferenceForm(),
                     def.getType(), def.isPrimitive(), def.getModifiers(), def.isInProject(),
                     def.getHoldingNodes());
+            
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
             
             if (def.isInProject()) {
                 CFGParameter actualOut = 
@@ -123,7 +131,7 @@ class FieldReferenceResolver {
         cfg.add(flow);
     }
     
-    private void insertUseVariables(CFGMethodCall callNode, JMethod method) {
+    private void insertUseVariables(CFGMethodCall callNode, JMethod method) throws InterruptedException {
         Collection<DefUseField> uses = aggregateUncoveredFields(method.getAllUseFields());
         List<DefUseField> sortedUses = uses.stream()
                 .sorted(Comparator.comparing(DefUseField::getQualifiedName))
@@ -134,6 +142,10 @@ class FieldReferenceResolver {
                     use.getClassName(), use.getName(), use.getReferenceForm(),
                     use.getType(), use.isPrimitive(), use.getModifiers(), use.isInProject(),
                     use.getHoldingNodes());
+            
+            if (Thread.currentThread().isInterrupted()) {
+                throw new InterruptedException();
+            }
             
             callNode.addUseVariable(var);
             callNode.getActualOut().addUseVariable(var);
