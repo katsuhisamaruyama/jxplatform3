@@ -3,4 +3,6 @@
 
 # Ignore Gradle build output directory
 bin
-build
+build/classes
+build/generated
+build/tmp
