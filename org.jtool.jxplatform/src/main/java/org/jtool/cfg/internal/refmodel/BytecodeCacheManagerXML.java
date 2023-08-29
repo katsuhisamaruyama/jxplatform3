@@ -150,6 +150,7 @@ class BytecodeCacheManagerXML extends BytecodeCacheManager {
     
     @Override
     boolean writeCache(String rootPath, List<? extends BytecodeClassCache>classes, String cacheName) {
+        makeCacheDirectory(rootPath);
         Path path = Paths.get(rootPath, BYTECODE_CACHE_DIR, cacheName + "." + cacheExtension);
         
         try {
