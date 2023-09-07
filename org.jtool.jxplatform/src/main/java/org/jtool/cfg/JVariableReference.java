@@ -1,11 +1,12 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.cfg;
 
 import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.Modifier;
 import org.jtool.srcmodel.QualifiedName;
 
 /**
@@ -46,6 +47,14 @@ public class JVariableReference extends JReference {
         this.fqn = new QualifiedName(declaringClassName, declaringMethodName + "!" + name);
         this.referenceForm = name;
         this.inProject = true;
+    }
+    
+    /**
+     * Tests if this is a reference to a final method.
+     * @return {@code true} if this is a final method reference, otherwise {@code false}
+     */
+    public boolean isFinal() {
+        return Modifier.isFinal(modifiers);
     }
     
     /**
