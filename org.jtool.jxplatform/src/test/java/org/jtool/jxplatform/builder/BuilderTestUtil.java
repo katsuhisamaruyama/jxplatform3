@@ -87,9 +87,7 @@ public class BuilderTestUtil {
     public static void deleteFile(Path path) {
         try {
             Files.delete(path);
-        } catch (IOException e){
-            System.err.println("Cannot delete file: " + path);
-        }
+        } catch (IOException e) { /* empty */ }
     }
     
     public static String asStrOfNames(Set<String> names) {
@@ -101,7 +99,7 @@ public class BuilderTestUtil {
     }
     
     public static String asStrOfFiles(Set<JavaFile> paths) {
-        return paths.stream().map(jfile -> jfile.getName()).sorted().collect(Collectors.joining(";"));
+        return paths.stream().map(jfile -> jfile.getPath()).sorted().collect(Collectors.joining(";"));
     }
     
     public static String asStrOfCCFG(CCFG ccfg) {

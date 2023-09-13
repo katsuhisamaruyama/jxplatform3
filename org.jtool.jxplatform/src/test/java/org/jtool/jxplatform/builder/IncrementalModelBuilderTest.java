@@ -17,39 +17,63 @@ import java.nio.file.attribute.FileTime;
 import java.time.Instant;
 import java.util.Set;
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertFalse;
 
 public class IncrementalModelBuilderTest {
     
-    private void createFile(String target) {
+    private void createFile1(String target) {
         String code = 
-                "class New {\n" +
+                "class New1 {\n" +
                 "    private int x = 1;\n" +
                 "    public void m() {\n" +
                 "        int y = 1;\n" +
-                "  }\n" +
+                "    }\n" +
                 "}";
-        BuilderTestUtil.createFile(Paths.get(target + File.separator + "New.java"),
+        BuilderTestUtil.createFile(Paths.get(target + File.separator + "New1.java"),
                 BuilderTestUtil.getContent(code));
     }
     
-    private void modifyFile(String target) {
+    private void createFile2(String target) {
         String code = 
-                "class New {\n" +
+                "class New2 {\n" +
+                "    private New1 n = new New1();\n" +
+                "}";
+        BuilderTestUtil.createFile(Paths.get(target + File.separator + "New2.java"),
+                BuilderTestUtil.getContent(code));
+    }
+    
+    private void deleteFile1(String target) {
+        BuilderTestUtil.deleteFile(Paths.get(target + File.separator + "New1.java"));
+    }
+    
+    private void deleteFile2(String target) {
+        BuilderTestUtil.deleteFile(Paths.get(target + File.separator + "New2.java"));
+    }
+    
+    private void modifyFile1(String target) {
+        String code = 
+                "class New1 {\n" +
                 "    private int a = 1;\n" +
                 "    public void b() {\n" +
                 "        int c = 1;\n" +
-                "  }\n" +
+                "    }\n" +
                 "}";
-        deleteFile(target);
-        BuilderTestUtil.createFile(Paths.get(target + File.separator + "New.java"),
+        deleteFile1(target);
+        BuilderTestUtil.createFile(Paths.get(target + File.separator + "New1.java"),
                 BuilderTestUtil.getContent(code));
     }
     
-    private void deleteFile(String target) {
-        BuilderTestUtil.deleteFile(Paths.get(target + File.separator + "New.java"));
+    private void  modifyFile2(String target) {
+        String code = 
+                "class New2 {\n" +
+                "    private New1 m = new New1();\n" +
+                "}";
+        deleteFile2(target);
+        BuilderTestUtil.createFile(Paths.get(target + File.separator + "New2.java"),
+                BuilderTestUtil.getContent(code));
     }
     
     private FileTime touchFile(String target, String name) {
@@ -66,15 +90,6 @@ public class IncrementalModelBuilderTest {
         }
     }
     
-    private void revertFile(String target, String name, FileTime originalTime) {
-        try {
-            Path path = Paths.get(target + File.separator + name);
-            path = Files.setLastModifiedTime(path, originalTime);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-    
     @Test
     public void testAddFile1() {
         String name = "Slice";
@@ -82,22 +97,27 @@ public class IncrementalModelBuilderTest {
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        createFile(target);
+        createFile1(target);
         
-        builder.addFile(target + File.separator + "New.java");
+        builder.addFile(jproject, "New1.java");
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("New.java", BuilderTestUtil.asStrOfPaths(result1));
-        
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("", BuilderTestUtil.asStrOfFiles(result2));
-        
-        deleteFile(target);
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals(target + File.separator + "New1.java", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -107,18 +127,25 @@ public class IncrementalModelBuilderTest {
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        builder.addFile(target + File.separator + "New1.java");
+        builder.addFile(jproject, "New1.java");
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("", BuilderTestUtil.asStrOfPaths(result1));
-        
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("", BuilderTestUtil.asStrOfFiles(result2));
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result3));
+            
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -126,20 +153,62 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        createFile1(target);
+        createFile2(target);
+        
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        builder.addFile(target + File.separator + "Customer.java");
+        builder.addFile(jproject, "New1.java");
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("Customer.java", BuilderTestUtil.asStrOfPaths(result1));
-        
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("Customer.java;CustomerTest.java", BuilderTestUtil.asStrOfFiles(result2));
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals(target + File.separator + "New1.java;" +
+                         target + File.separator + "New2.java", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
+    }
+    
+    @Ignore("Not implemented yet")
+    @Test
+    public void testAddFile4() {
+        String name = "Slice";
+        String target = BuilderTestUtil.getTarget(name);
+        
+        createFile2(target);
+        
         BuilderTestUtil.clearProject();
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
+        JavaProject jproject = builder.build(name, target, target);
+        
+        createFile1(target);
+        
+        builder.addFile(jproject, "New1.java");
+        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals(target + File.separator + "New1.java", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals(target + File.separator + "New2.java", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
+        builder.unbuild();
     }
     
     @Test
@@ -147,24 +216,30 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
-        createFile(target);
+        createFile1(target);
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        deleteFile(target);
+        deleteFile1(target);
         
-        builder.removeFile(target + File.separator + "New.java");
+        builder.removeFile(jproject, "New1.java");
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("", BuilderTestUtil.asStrOfPaths(result1));
-        
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("New.java", BuilderTestUtil.asStrOfFiles(result2));
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals(target + File.separator + "New1.java", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -172,20 +247,29 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        createFile1(target);
+        
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        builder.removeFile(target + File.separator + "New1.java");
+        builder.removeFile(jproject, "New1.java");
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("", BuilderTestUtil.asStrOfPaths(result1));
-        
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("", BuilderTestUtil.asStrOfFiles(result2));
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -193,20 +277,63 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        createFile1(target);
+        createFile2(target);
+        
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        builder.removeFile(target + File.separator + "Customer.java");
+        deleteFile1(target);
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("", BuilderTestUtil.asStrOfPaths(result1));
+        builder.removeFile(jproject, "New1.java");
         
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("", BuilderTestUtil.asStrOfFiles(result2));
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals(target + File.separator + "New1.java", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals(target + File.separator + "New2.java", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
+    }
+    
+    @Test
+    public void testRemoveFile4() {
+        String name = "Slice";
+        String target = BuilderTestUtil.getTarget(name);
+        
+        createFile1(target);
+        createFile2(target);
+        
         BuilderTestUtil.clearProject();
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
+        JavaProject jproject = builder.build(name, target, target);
+        
+        deleteFile2(target);
+        
+        builder.removeFile(jproject, "New2.java");
+        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals(target + File.separator + "New2.java", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
+        builder.unbuild();
     }
     
     @Test
@@ -214,26 +341,30 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
-        createFile(target);
+        createFile1(target);
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        modifyFile(target);
+        modifyFile1(target);
         
-        builder.updateFile(target + File.separator + "New.java");
+        builder.updateFile(jproject, "New1.java");
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("New.java", BuilderTestUtil.asStrOfPaths(result1));
-        
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("New.java", BuilderTestUtil.asStrOfFiles(result2));
-        
-        deleteFile(target);
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals(target + File.separator + "New1.java", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -243,18 +374,26 @@ public class IncrementalModelBuilderTest {
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        builder.updateFile(target + File.separator + "New1.java");
+        modifyFile1(target);
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("", BuilderTestUtil.asStrOfPaths(result1));
+        builder.updateFile(jproject, "New1.java");
         
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("", BuilderTestUtil.asStrOfFiles(result2));
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -262,20 +401,64 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        createFile1(target);
+        createFile2(target);
+        
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        builder.updateFile(target + File.separator + "Customer.java");
+        modifyFile1(target);
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("Customer.java", BuilderTestUtil.asStrOfPaths(result1));
+        builder.updateFile(jproject, "New1.java");
         
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("Customer.java;CustomerTest.java", BuilderTestUtil.asStrOfFiles(result2));
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals(target + File.separator + "New1.java;" +
+                         target + File.separator + "New2.java", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
+    }
+    
+    @Test
+    public void testUpdateFile4() {
+        String name = "Slice";
+        String target = BuilderTestUtil.getTarget(name);
+        
+        createFile1(target);
+        createFile2(target);
+        
         BuilderTestUtil.clearProject();
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
+        JavaProject jproject = builder.build(name, target, target);
+        
+        modifyFile2(target);
+        
+        builder.updateFile(jproject, "New2.java");
+        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals(target + File.separator + "New2.java", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
+        builder.unbuild();
     }
     
     @Test
@@ -285,14 +468,15 @@ public class IncrementalModelBuilderTest {
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        Set<JavaFile> result = builder.collectDependentFiles(target + File.separator + "Customer.java");
+        JavaFile jfile = jproject.getFile(target + File.separator + "Customer.java");
+        Set<JavaFile> result = builder.collectDependentFiles(jfile);
         
-        assertEquals("Customer.java;CustomerTest.java", BuilderTestUtil.asStrOfFiles(result));
+        assertEquals(target + File.separator + "Customer.java;" +
+                     target + File.separator + "CustomerTest.java", BuilderTestUtil.asStrOfFiles(result));
         
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -302,14 +486,17 @@ public class IncrementalModelBuilderTest {
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        Set<JavaFile> result = builder.collectDependentFiles(target + File.separator + "Rental.java");
+        JavaFile jfile = jproject.getFile(target + File.separator + "Rental.java");
+        Set<JavaFile> result = builder.collectDependentFiles(jfile);
         
-        assertEquals("Customer.java;CustomerTest.java;Order.java;Rental.java", BuilderTestUtil.asStrOfFiles(result));
+        assertEquals(target + File.separator + "Customer.java;" +
+                     target + File.separator + "CustomerTest.java;" +
+                     target + File.separator + "Order.java;" +
+                     target + File.separator + "Rental.java", BuilderTestUtil.asStrOfFiles(result));
         
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -319,14 +506,16 @@ public class IncrementalModelBuilderTest {
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        Set<JavaFile> result = builder.collectDependentFiles(target + File.separator + "Order.java");
+        JavaFile jfile = jproject.getFile(target + File.separator + "Order.java");
+        Set<JavaFile> result = builder.collectDependentFiles(jfile);
         
-        assertEquals("Customer.java;CustomerTest.java;Order.java", BuilderTestUtil.asStrOfFiles(result));
+        assertEquals(target + File.separator + "Customer.java;" +
+                     target + File.separator + "CustomerTest.java;" +
+                     target + File.separator + "Order.java", BuilderTestUtil.asStrOfFiles(result));
         
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -336,14 +525,14 @@ public class IncrementalModelBuilderTest {
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
-        builder.build(name, target, target);
+        JavaProject jproject = builder.build(name, target, target);
         
-        Set<JavaFile> result = builder.collectDependentFiles(target + File.separator + "CustomerTest.java");
+        JavaFile jfile = jproject.getFile(target + File.separator + "CustomerTest.java");
+        Set<JavaFile> result = builder.collectDependentFiles(jfile);
         
-        assertEquals("CustomerTest.java", BuilderTestUtil.asStrOfFiles(result));
+        assertEquals(target + File.separator + "CustomerTest.java", BuilderTestUtil.asStrOfFiles(result));
         
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -351,7 +540,7 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
-        createFile(target);
+        createFile1(target);
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
@@ -359,16 +548,20 @@ public class IncrementalModelBuilderTest {
         
         builder.collectFilesByFileTime();
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("", BuilderTestUtil.asStrOfPaths(result1));
-        
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("", BuilderTestUtil.asStrOfFiles(result2));
-        
-        deleteFile(target);
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -380,20 +573,24 @@ public class IncrementalModelBuilderTest {
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
-        createFile(target);
+        createFile1(target);
         
         builder.collectFilesByFileTime();
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("New.java", BuilderTestUtil.asStrOfPaths(result1));
-        
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("", BuilderTestUtil.asStrOfFiles(result2));
-        
-        deleteFile(target);
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals(target + File.separator + "New1.java", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -401,26 +598,30 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
-        createFile(target);
+        createFile1(target);
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
-        touchFile(target, "New.java");
+        touchFile(target, "New1.java");
         
         builder.collectFilesByFileTime();
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("New.java", BuilderTestUtil.asStrOfPaths(result1));
-        
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("New.java", BuilderTestUtil.asStrOfFiles(result2));
-        
-        deleteFile(target);
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals(target + File.separator + "New1.java", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -428,24 +629,30 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
-        createFile(target);
+        createFile1(target);
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
-        deleteFile(target);
+        deleteFile1(target);
         
         builder.collectFilesByFileTime();
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("", BuilderTestUtil.asStrOfPaths(result1));
-        
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("New.java", BuilderTestUtil.asStrOfFiles(result2));
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals(target + File.separator + "New1.java", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -453,24 +660,64 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
+        createFile1(target);
+        createFile2(target);
+        
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
         builder.build(name, target, target);
         
-        FileTime originalTime = touchFile(target, "Customer.java");
+        touchFile(target, "New1.java");
         
         builder.collectFilesByFileTime();
         
-        Set<Path> result1 = builder.getNewFiles();
-        assertEquals("Customer.java", BuilderTestUtil.asStrOfPaths(result1));
-        
-        Set<JavaFile> result2 = builder.getObsoleteFiles();
-        assertEquals("Customer.java;CustomerTest.java", BuilderTestUtil.asStrOfFiles(result2));
-        
-        revertFile(target, "Customer.java", originalTime);
-        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals(target + File.separator + "New1.java;" +
+                         target + File.separator + "New2.java", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
+    }
+    
+    @Test
+    public void testCollectFilesByFileTime6() {
+        String name = "Slice";
+        String target = BuilderTestUtil.getTarget(name);
+        
+        createFile1(target);
+        createFile2(target);
+        
         BuilderTestUtil.clearProject();
+        IncrementalModelBuilder builder = new IncrementalModelBuilder();
+        builder.build(name, target, target);
+        
+        touchFile(target, "New2.java");
+        
+        builder.collectFilesByFileTime();
+        
+        try {
+            Set<String> result1 = builder.getAddedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result1));
+            
+            Set<String> result2 = builder.getRemovedFileNames();
+            assertEquals("", BuilderTestUtil.asStrOfNames(result2));
+            
+            Set<String> result3 = builder.getObsoleteFileNames();
+            assertEquals(target + File.separator + "New2.java", BuilderTestUtil.asStrOfNames(result3));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
+        builder.unbuild();
     }
     
     @Test
@@ -478,41 +725,40 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
-        createFile(target);
+        createFile1(target);
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
         JavaProject jproject = builder.build(name, target, target);
         
-        JavaFile jfileBefore = jproject.getFile(target + File.separator + "New.java");
+        JavaFile jfileBefore = jproject.getFile(target + File.separator + "New1.java");
         JavaClass jclassBefore = jfileBefore.getClasses().iterator().next();
         
-        modifyFile(target);
+        modifyFile1(target);
         
-        builder.updateFile(target + File.separator + "New.java");
+        builder.updateFile(jproject, target + File.separator + "New1.java");
+        
         builder.rebuild();
         
-        JavaFile jfileAfter = jproject.getFile(target + File.separator + "New.java");
+        JavaFile jfileAfter = jproject.getFile(target + File.separator + "New1.java");
         JavaClass jclassAfter = jfileAfter.getClasses().iterator().next();
         
-        System.out.println(jfileBefore);
-        System.out.println(jfileAfter);
-        
-        assertFalse(jfileBefore.getSource().equals(jfileAfter.getSource()));
-        
-        assertEquals("New", jclassBefore.getQualifiedName().toString());
-        assertEquals("New", jclassAfter.getQualifiedName().toString());
-        
-        assertNotNull(jclassBefore.getMethod("m( )"));
-        assertNotNull(jclassAfter.getMethod("b( )"));
-        
-        assertNotNull(jclassBefore.getField("x"));
-        assertNotNull(jclassAfter.getField("a"));
-        
-        deleteFile(target);
-        
+        try {
+            assertFalse(jfileBefore.getSource().equals(jfileAfter.getSource()));
+            
+            assertEquals("New1", jclassBefore.getQualifiedName().toString());
+            assertEquals("New1", jclassAfter.getQualifiedName().toString());
+            
+            assertNotNull(jclassBefore.getMethod("m( )"));
+            assertNotNull(jclassAfter.getMethod("b( )"));
+            
+            assertNotNull(jclassBefore.getField("x"));
+            assertNotNull(jclassAfter.getField("a"));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -520,41 +766,40 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
-        createFile(target);
+        createFile1(target);
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
         JavaProject jproject = builder.build(name, target, target);
         
-        JavaFile jfileBefore = jproject.getFile(target + File.separator + "New.java");
+        JavaFile jfileBefore = jproject.getFile(target + File.separator + "New1.java");
         JavaClass jclassBefore = jfileBefore.getClasses().iterator().next();
         
-        modifyFile(target);
+        modifyFile1(target);
         
-        builder.updateFile(target + File.separator + "New.java");
+        builder.updateFile(jproject, target + File.separator + "New1.java");
+        
         builder.incrementalBuild();
         
-        JavaFile jfileAfter = jproject.getFile(target + File.separator + "New.java");
+        JavaFile jfileAfter = jproject.getFile(target + File.separator + "New1.java");
         JavaClass jclassAfter = jfileAfter.getClasses().iterator().next();
         
-        System.out.println(jfileBefore);
-        System.out.println(jfileAfter);
-        
-        assertFalse(jfileBefore.getSource().equals(jfileAfter.getSource()));
-        
-        assertEquals("New", jclassBefore.getQualifiedName().toString());
-        assertEquals("New", jclassAfter.getQualifiedName().toString());
-        
-        assertNotNull(jclassBefore.getMethod("m( )"));
-        assertNotNull(jclassAfter.getMethod("b( )"));
-        
-        assertNotNull(jclassBefore.getField("x"));
-        assertNotNull(jclassAfter.getField("a"));
-        
-        deleteFile(target);
-        
+        try {
+            assertFalse(jfileBefore.getSource().equals(jfileAfter.getSource()));
+            
+            assertEquals("New1", jclassBefore.getQualifiedName().toString());
+            assertEquals("New1", jclassAfter.getQualifiedName().toString());
+            
+            assertNotNull(jclassBefore.getMethod("m( )"));
+            assertNotNull(jclassAfter.getMethod("b( )"));
+            
+            assertNotNull(jclassBefore.getField("x"));
+            assertNotNull(jclassAfter.getField("a"));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
     
     @Test
@@ -562,36 +807,37 @@ public class IncrementalModelBuilderTest {
         String name = "Slice";
         String target = BuilderTestUtil.getTarget(name);
         
-        createFile(target);
+        createFile1(target);
         
         BuilderTestUtil.clearProject();
         IncrementalModelBuilder builder = new IncrementalModelBuilder();
         JavaProject jproject = builder.build(name, target, target);
         
-        JavaFile jfileBefore = jproject.getFile(target + File.separator + "New.java");
+        JavaFile jfileBefore = jproject.getFile(target + File.separator + "New1.java");
         JavaClass jclassBefore = jfileBefore.getClasses().iterator().next();
         
-        modifyFile(target);
+        modifyFile1(target);
         
         builder.buildByFileTime();
         
-        JavaFile jfileAfter = jproject.getFile(target + File.separator + "New.java");
+        JavaFile jfileAfter = jproject.getFile(target + File.separator + "New1.java");
         JavaClass jclassAfter = jfileAfter.getClasses().iterator().next();
         
-        assertFalse(jfileBefore.getSource().equals(jfileAfter.getSource()));
-        
-        assertEquals("New", jclassBefore.getQualifiedName().toString());
-        assertEquals("New", jclassAfter.getQualifiedName().toString());
-        
-        assertNotNull(jclassBefore.getMethod("m( )"));
-        assertNotNull(jclassAfter.getMethod("b( )"));
-        
-        assertNotNull(jclassBefore.getField("x"));
-        assertNotNull(jclassAfter.getField("a"));
-        
-        deleteFile(target);
-        
+        try {
+            assertFalse(jfileBefore.getSource().equals(jfileAfter.getSource()));
+            
+            assertEquals("New1", jclassBefore.getQualifiedName().toString());
+            assertEquals("New1", jclassAfter.getQualifiedName().toString());
+            
+            assertNotNull(jclassBefore.getMethod("m( )"));
+            assertNotNull(jclassAfter.getMethod("b( )"));
+            
+            assertNotNull(jclassBefore.getField("x"));
+            assertNotNull(jclassAfter.getField("a"));
+        } finally {
+            deleteFile1(target);
+            deleteFile2(target);
+        }
         builder.unbuild();
-        BuilderTestUtil.clearProject();
     }
 }
