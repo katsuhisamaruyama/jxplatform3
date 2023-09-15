@@ -159,6 +159,14 @@ public class JavaFile {
     }
     
     /**
+     * Tests if a parse error occurred.
+     * @return {@code true} if a parse error occurred, otherwise {@code false}
+     */
+    public boolean hasParseErrors() {
+        return compilationUnit.getProblems().length != 0;
+    }
+    
+    /**
      * Sets a package declared in this file.
      * This method is not intended to be invoked by clients.
      * @param jpackage the package for this file
