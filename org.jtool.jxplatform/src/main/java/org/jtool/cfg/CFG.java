@@ -102,7 +102,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * Tests if the timeout occurred.
      * @return {@code true} if the timeout occurred, otherwise {@code false}
      */
-    public boolean getTimeoutOccurred() {
+    public boolean timeoutOccurred() {
         return timeoutOccuured;
     }
     

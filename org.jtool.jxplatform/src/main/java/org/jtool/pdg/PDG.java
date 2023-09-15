@@ -86,8 +86,8 @@ public class PDG extends Graph<PDGNode, Dependence> {
      * Tests if the timeout occurred.
      * @return {@code true} if the timeout occurred, otherwise {@code false}
      */
-    public boolean getTimeoutOccurred() {
-        return timeoutOccuured && cfg.getTimeoutOccurred();
+    public boolean timeoutOccurred() {
+        return timeoutOccuured && cfg.timeoutOccurred();
     }
     
     /**
