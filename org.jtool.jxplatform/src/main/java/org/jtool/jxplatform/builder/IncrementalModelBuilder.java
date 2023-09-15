@@ -103,7 +103,6 @@ public class IncrementalModelBuilder extends ModelBuilder {
      */
     @Override
     public JavaProject build(String name, String target, String classpath) {
-        build(name, target, classpath, (String)null, (String)null);
         obsoleteFiles.clear();
         addedFiles.clear();
         removedFiles.clear();
@@ -214,122 +213,11 @@ public class IncrementalModelBuilder extends ModelBuilder {
     }
     
     /**
-     * Registers a file that was added to the project.
-     * @param jproject a project that contains the added file
-     * @param pathname the path name of the added file
-     */
-    public void addFile(JavaProject jproject, String pathname) {
-        if (ModelBuilderImpl.isCompilableJavaFile(pathname)) {
-            pathname = getCanonicalPathName(jproject, pathname);
-            if (pathname == null) {
-                return;
-            }
-            
-            File file = new File(pathname);
-            System.out.println("FILENAME = " + file.isFile());
-            if (file.isFile()) {
-                JavaFile jfile = jproject.getFile(pathname);
-                if (jfile == null) {
-                    System.out.println("FILENAME = " + pathname);
-                    
-                    addedFiles.add(new FilePath(jproject, file.toPath()));
-                } else {
-                    obsoleteFiles.addAll(collectDependentFiles(jfile));
-                }
-            }
-        }
-    }
-    
-    /**
-     * Registers files that were added to the project.
-     * @param jproject a project that contains the added files
-     * @param pathnames the collection of path names of the added files
-     */
-    public void addFiles(JavaProject jproject, Set<String> pathnames) {
-        pathnames.forEach(pathname -> addFile(jproject, pathname));
-    }
-    
-    /**
-     * Registers a file that was removed from the project.
-     * @param jproject a project that contains the removed file
-     * @param pathname the path name of the removed file
-     */
-    public void removeFile(JavaProject jproject, String pathname) {
-        pathname = getCanonicalPathName(jproject, pathname);
-        if (pathname == null) {
-            return;
-        }
-        
-        File file = new File(pathname);
-        if (!file.exists()) {
-            JavaFile jfile = jproject.getFile(pathname);
-            if (jfile != null) {
-                obsoleteFiles.addAll(collectDependentFiles(jfile));
-                obsoleteFiles.remove(jfile);
-                removedFiles.add(jfile);
-            }
-        }
-    }
-    
-    /**
-     * Registers files that were removed from the project.
-     * @param jproject a project that contains the removed files
-     * @param pathnames the collection of path names of the removed files
-     */
-    public void removeFiles(JavaProject jproject, Set<String> pathnames) {
-        pathnames.forEach(pathname -> removeFile(jproject, pathname));
-    }
-    
-    /**
-     * Registers a file that was updated in the project.
-     * @param jproject a project that contains the updated file
-     * @param pathname the path name of the updated file
-     */
-    public void updateFile(JavaProject jproject, String pathname) {
-        pathname = getCanonicalPathName(jproject, pathname);
-        if (pathname == null) {
-            return;
-        }
-        
-        JavaFile jfile = jproject.getFile(pathname);
-        if (jfile != null) {
-            obsoleteFiles.addAll(collectDependentFiles(jfile));
-        }
-    }
-    
-    /**
-     * Registers files that were updated in the project.
-     * @param jproject a project that contains the updated files
-     * @param pathnames the collection of path names of the updated files
-     */
-    public void updateFiles(JavaProject jproject, Set<String> pathnames) {
-        pathnames.forEach(pathname -> updateFile(jproject, pathname));
-    }
-    
-    /**
-     * Obtains the path name of a file in the canonical form.
-     * @param jproject a project that contains the file
-     * @param pathname the path name of the file
-     * @return the canonical formed path name, {@code null} if the invalid path.
-     */
-    protected String getCanonicalPathName(JavaProject jproject, String pathname) {
-        if (!pathname.startsWith(File.separator)) {
-            pathname = jproject.getPath() + File.separator + pathname;
-        }
-        File file = new File(pathname);
-        try {
-            return file.getCanonicalPath();
-        } catch (IOException e) {
-            return null;
-        }
-    }
-    
-    /**
      * Collects files depending on a file that was added, removed or updated
      * @param jfile the added, removed or updated file
      * @return the collection of the depending files
      */
-    protected Set<JavaFile> collectDependentFiles(JavaFile jfile) {
+    Set<JavaFile> collectDependentFiles(JavaFile jfile) {
         JavaProject jproject = jfile.getJavaProject();
         Set<JavaFile> files = new HashSet<>();
         files.add(jfile);
@@ -365,6 +253,8 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * Builds a source code model based on added and removed files.
      */
     public void incrementalBuild() {
+        collectFilesByFileTime();
+        
         Multimap<JavaProject, File> map = HashMultimap.create();
         obsoleteFiles.forEach(jfile -> map.put(jfile.getJavaProject(), new File(jfile.getPath())));
         addedFiles.forEach(filepath-> map.put(filepath.jproject, filepath.path.toFile()));
@@ -399,7 +289,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * Removes a file and its contents.
      * @param jfile the file to be removed
      */
-    protected void removeJavaFile(JavaFile jfile) {
+    void removeJavaFile(JavaFile jfile) {
         JavaProject jproject = jfile.getJavaProject();
         for (JavaClass jc : jfile.getClasses()) {
             jproject.removeClass(jc);
@@ -414,17 +304,9 @@ public class IncrementalModelBuilder extends ModelBuilder {
     }
     
     /**
-     * Builds a source code model based on the last modified times of files in the project.
-     */
-    public void buildByFileTime() {
-        collectFilesByFileTime();
-        incrementalBuild();
-    }
-    
-    /**
      * Collects added and removed files based on the last modified times of files in the project.
      */
-    protected void collectFilesByFileTime() {
+    void collectFilesByFileTime() {
         for (JavaProject jproject : jprojects) {
             Set<String> addedFiles = new HashSet<>();
             Set<String> removedFiles = jproject.getFiles().stream()
@@ -440,6 +322,9 @@ public class IncrementalModelBuilder extends ModelBuilder {
                     
                     if (jfile == null) {
                         addedFiles.add(pathname);
+                        
+                        System.out.println("ADD = " + pathname);
+                        
                     } else {
                         ZonedDateTime jfileTime = jfile.getCreatedTime();
                         FileTime fileTimeOnFileSystem = Files.getLastModifiedTime(file.toPath());
@@ -454,6 +339,99 @@ public class IncrementalModelBuilder extends ModelBuilder {
             removeFiles(jproject, removedFiles);
             addFiles(jproject, addedFiles);
             updateFiles(jproject, updatedFiles);
+        }
+    }
+    
+    /**
+     * Registers a file that was added to the project.
+     * @param jproject a project that contains the added file
+     * @param pathname the path name of the added file
+     */
+    void addFile(JavaProject jproject, String pathname) {
+        if (ModelBuilderImpl.isCompilableJavaFile(pathname)) {
+            File file = new File(pathname);
+            if (file.isFile()) {
+                JavaFile jfile = jproject.getFile(pathname);
+                if (jfile == null) {
+                    addedFiles.add(new FilePath(jproject, file.toPath()));
+                } else {
+                    obsoleteFiles.addAll(collectDependentFiles(jfile));
+                }
+            }
+        }
+    }
+    
+    /**
+     * Registers files that were added to the project.
+     * @param jproject a project that contains the added files
+     * @param pathnames the collection of path names of the added files
+     */
+    void addFiles(JavaProject jproject, Set<String> pathnames) {
+        pathnames.forEach(pathname -> addFile(jproject, pathname));
+    }
+    
+    /**
+     * Registers a file that was removed from the project.
+     * @param jproject a project that contains the removed file
+     * @param pathname the path name of the removed file
+     */
+    void removeFile(JavaProject jproject, String pathname) {
+        File file = new File(pathname);
+        if (!file.exists()) {
+            JavaFile jfile = jproject.getFile(pathname);
+            if (jfile != null) {
+                obsoleteFiles.addAll(collectDependentFiles(jfile));
+                obsoleteFiles.remove(jfile);
+                removedFiles.add(jfile);
+            }
+        }
+    }
+    
+    /**
+     * Registers files that were removed from the project.
+     * @param jproject a project that contains the removed files
+     * @param pathnames the collection of path names of the removed files
+     */
+    void removeFiles(JavaProject jproject, Set<String> pathnames) {
+        pathnames.forEach(pathname -> removeFile(jproject, pathname));
+    }
+    
+    /**
+     * Registers a file that was updated in the project.
+     * @param jproject a project that contains the updated file
+     * @param pathname the path name of the updated file
+     */
+    void updateFile(JavaProject jproject, String pathname) {
+        JavaFile jfile = jproject.getFile(pathname);
+        if (jfile != null) {
+            obsoleteFiles.addAll(collectDependentFiles(jfile));
+        }
+    }
+    
+    /**
+     * Registers files that were updated in the project.
+     * @param jproject a project that contains the updated files
+     * @param pathnames the collection of path names of the updated files
+     */
+    void updateFiles(JavaProject jproject, Set<String> pathnames) {
+        pathnames.forEach(pathname -> updateFile(jproject, pathname));
+    }
+    
+    /**
+     * Obtains the path name of a file in the canonical form.
+     * @param jproject a project that contains the file
+     * @param pathname the path name of the file
+     * @return the canonical formed path name, {@code null} if the invalid path.
+     */
+    String getCanonicalPathName(JavaProject jproject, String pathname) {
+        if (!pathname.startsWith(File.separator)) {
+            pathname = jproject.getPath() + File.separator + pathname;
+        }
+        File file = new File(pathname);
+        try {
+            return file.getCanonicalPath();
+        } catch (IOException e) {
+            return null;
         }
     }
     
