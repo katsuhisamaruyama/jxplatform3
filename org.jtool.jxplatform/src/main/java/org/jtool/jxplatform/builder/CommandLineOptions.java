@@ -61,10 +61,10 @@ public class CommandLineOptions {
     }
     
     /**
-     * Obtains the <code>int</code> value for the option having a given key.
+     * Obtains the {@code int} value for the option having a given key.
      * @param key the key for the option
      * @param defaultValue the specified default value
-     * @return the <code>int</code> value of the option
+     * @return the {@code int} value of the option
      */
     public int get(String key, int defaultValue) {
         String value = options.get(key);
@@ -80,10 +80,10 @@ public class CommandLineOptions {
     }
     
     /**
-     * Obtains the <code>long</code> value for the option having a given key.
+     * Obtains the {@code long} value for the option having a given key.
      * @param key the key for the option
      * @param defaultValue the specified default value
-     * @return the <code>long</code> value of the option
+     * @return the {@code long} value of the option
      */
     public long get(String key, long defaultValue) {
         String value = options.get(key);
@@ -99,10 +99,10 @@ public class CommandLineOptions {
     }
     
     /**
-     * Obtains the <code>float</code> for the option having a given key.
+     * Obtains the {@code float} for the option having a given key.
      * @param key the key for the option
      * @param defaultValue the specified default value
-     * @return the <code>float</code> value of the option
+     * @return the {@code float}value of the option
      */
     public float get(String key, float defaultValue) {
         String value = options.get(key);
@@ -118,10 +118,10 @@ public class CommandLineOptions {
     }
     
     /**
-     * Obtains the <code>double</code> for the option having a given key.
+     * Obtains the {@code double} for the option having a given key.
      * @param key the key for the option
      * @param defaultValue the specified default value
-     * @return the <code>double</code> value of the option
+     * @return the {@code double} value of the option
      */
     public double get(String key, double defaultValue) {
         String value = options.get(key);

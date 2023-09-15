@@ -310,7 +310,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * Obtains the path name of a file in the canonical form.
      * @param jproject a project that contains the file
      * @param pathname the path name of the file
-     * @return the canonical formed path name, <code>null</code> if the invalid path.
+     * @return the canonical formed path name, {@code null} if the invalid path.
      */
     protected String getCanonicalPathName(JavaProject jproject, String pathname) {
         if (!pathname.startsWith(File.separator)) {

@@ -6,7 +6,7 @@
 package org.jtool.jxplatform.builder;
 
 /**
- * A monitor that displays the progress of the task on the console (<code>stdout</code> and <code>stderr</code>).
+ * A monitor that displays the progress of the task on the console ({@code stdout} and {@code stderr}).
  * 
  * @author Katsuhisa Maruyama
  */
@@ -69,7 +69,7 @@ public class ConsoleProgressMonitor {
     }
     
     /**
-     * Displays one character on the console (both <code>stdout</code> and <code>stderr</code>).
+     * Displays one character on the console (both {@code stdout} and {@code stderr}).
      * @param ch a character to be displayed
      */
     public void display(char ch) {
@@ -78,7 +78,7 @@ public class ConsoleProgressMonitor {
     }
     
     /**
-     * Displays a message on the console (<code>stdout</code> only).
+     * Displays a message on the console ({@code stdout} only).
      * @param message the message to be displayed
      */
     public void printMessage(String message) {
@@ -87,7 +87,7 @@ public class ConsoleProgressMonitor {
     }
     
     /**
-     * Displays a message on the console (<code>stderr</code> only).
+     * Displays a message on the console ({@code stderr} only).
      * @param message the message to be displayed
      */
     public void printError(String message) {
