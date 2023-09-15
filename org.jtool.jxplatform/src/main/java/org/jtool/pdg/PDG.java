@@ -33,6 +33,11 @@ public class PDG extends Graph<PDGNode, Dependence> {
     private CFG cfg;
     
     /**
+     * A flag that indicate whether the timeout occurred during the construction of this CFG.
+     */
+    private boolean timeoutOccuured = false;
+    
+    /**
      * Creates a new, empty object for storing a PDG information.
      * This method is not intended to be invoked by clients.
      * @param cfg the corresponding CFG
@@ -67,6 +72,22 @@ public class PDG extends Graph<PDGNode, Dependence> {
      */
     public PDGEntry getEntryNode() {
         return entry;
+    }
+    
+    /**
+     * Sets whether the timeout occurred.
+     * @param bool {@code true} if the timeout occurred, otherwise {@code false}
+     */
+    public void setTimeoutOccurred(boolean bool) {
+        timeoutOccuured = bool;
+    }
+    
+    /**
+     * Tests if the timeout occurred.
+     * @return {@code true} if the timeout occurred, otherwise {@code false}
+     */
+    public boolean getTimeoutOccurred() {
+        return timeoutOccuured && cfg.getTimeoutOccurred();
     }
     
     /**

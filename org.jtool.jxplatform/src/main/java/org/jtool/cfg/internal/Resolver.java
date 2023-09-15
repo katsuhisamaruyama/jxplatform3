@@ -29,6 +29,8 @@ class Resolver {
         try {
             jproject.getModelBuilderImpl().performTaskWithTimeout(task, TIMEOUT_SEC);
         } catch (TimeoutException e) {
+            cfg.setTimeoutOccurred(true);
+            
             jproject.getModelBuilderImpl().printErrorOnMonitor(
                     "**Timeout occurred in resoving references: " + cfg.getQualifiedName().fqn());
             jproject.getModelBuilderImpl().getLogger().recordTimeoutError(cfg.getQualifiedName().fqn());
@@ -59,6 +61,8 @@ class Resolver {
         try {
             jproject.getModelBuilderImpl().performTaskWithTimeout(task, TIMEOUT_SEC);
         } catch (TimeoutException e) {
+            cfg.setTimeoutOccurred(true);
+            
             jproject.getModelBuilderImpl().printErrorOnMonitor(
                     "**Timeout occurred in resoving alias relations: " + cfg.getQualifiedName().fqn());
             jproject.getModelBuilderImpl().getLogger().recordTimeoutError(cfg.getQualifiedName().fqn());

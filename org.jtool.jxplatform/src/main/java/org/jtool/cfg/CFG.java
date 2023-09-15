@@ -39,6 +39,11 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
     private CFGNode exit;
     
     /**
+     * A flag that indicate whether the timeout occurred during the construction of this CFG.
+     */
+    private boolean timeoutOccuured = false;
+    
+    /**
      * The collection of basic blocks existing in this CFG.
      */
     private List<BasicBlock> basicBlocks = new ArrayList<>();
@@ -83,6 +88,22 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      */
     public CFGNode getExitNode() {
         return exit;
+    }
+    
+    /**
+     * Sets whether the timeout occurred.
+     * @param bool {@code true} if the timeout occurred, otherwise {@code false}
+     */
+    public void setTimeoutOccurred(boolean bool) {
+        timeoutOccuured = bool;
+    }
+    
+    /**
+     * Tests if the timeout occurred.
+     * @return {@code true} if the timeout occurred, otherwise {@code false}
+     */
+    public boolean getTimeoutOccurred() {
+        return timeoutOccuured;
     }
     
     /**

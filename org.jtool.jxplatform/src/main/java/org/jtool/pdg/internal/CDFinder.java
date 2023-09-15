@@ -50,6 +50,8 @@ public class CDFinder {
             int timeoutSec = getTimeoutPeriod(cfg);
             jproject.getModelBuilderImpl().performTaskWithTimeout(task, timeoutSec);
         } catch (TimeoutException e) {
+            pdg.setTimeoutOccurred(true);
+            
             jproject.getModelBuilderImpl().printErrorOnMonitor(
                     "**Timeout occurred in control dependency analysis: " + cfg.getQualifiedName().fqn());
             jproject.getModelBuilderImpl().getLogger().recordTimeoutError(cfg.getQualifiedName().fqn());

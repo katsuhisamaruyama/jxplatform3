@@ -46,6 +46,8 @@ public class DDFinder {
         try {
             jproject.getModelBuilderImpl().performTaskWithTimeout(task, TIMEOUT_SEC);
         } catch (TimeoutException e) {
+            pdg.setTimeoutOccurred(true);
+            
             jproject.getModelBuilderImpl().printErrorOnMonitor(
                     "**Timeout occurred in data dependency analysis: " + cfg.getQualifiedName().fqn());
             jproject.getModelBuilderImpl().getLogger().recordTimeoutError(cfg.getQualifiedName().fqn());
