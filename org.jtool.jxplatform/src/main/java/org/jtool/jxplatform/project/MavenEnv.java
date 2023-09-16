@@ -191,8 +191,17 @@ class MavenEnv extends ProjectEnv {
             }
         }
         
-        String sourceDirectoryCandidates[][] = { { "src", "main", "java" }, { "src", "main" }, { "src" } };
-        String testSourceDirectoryCandidates[][] = { { "src", "test", "java" }, { "src", "test" }, { "test" } };
+        String sourceDirectoryCandidates[][] = {
+                    { "src", "main", "java" },
+                    { "src", "java" },
+                    { "src", "main" },
+                    { "src" }
+                };
+        String testSourceDirectoryCandidates[][] = {
+                    { "src", "test", "java" },
+                    { "src", "test" },
+                    { "test" }
+                };
         sourceDirectory = getSourceDirectory(sourceDirectory, sourceDirectoryCandidates);
         testSourceDirectory = getSourceDirectory(testSourceDirectory, testSourceDirectoryCandidates);
         if (sourceDirectory == null && testSourceDirectory == null) {
@@ -211,6 +220,7 @@ class MavenEnv extends ProjectEnv {
         if (sourceDirectory == null && testSourceDirectory == null) {
             return;
         }
+        
         if (sourceDirectory != null) {
             sourcePaths.add(sourceDirectory);
         }
@@ -258,12 +268,17 @@ class MavenEnv extends ProjectEnv {
         Set<String> additionalSrcDirs = new HashSet<>();
         for (Xpp3Dom dom : sourceDirectoryconfigurations) {
             additionalSrcDirs.addAll(getValues(dom, "sourceDirectory"));
+            additionalSrcDirs.addAll(getValues(dom, "source"));
             additionalSrcDirs.addAll(getValues(dom, "testSourceDirectory"));
         }
         
         for (String srcDir : additionalSrcDirs) {
             if (srcDir.contains("${basedir}")) {
                 srcDir = srcDir.replace("${basedir}", basePath.toString());
+            } else if (srcDir.contains("${project.build.directory}")) {
+                srcDir = srcDir.replace("${project.build.directory}", basePath.toString() + File.separator + "target");
+            } else {
+                srcDir = basePath.toString() + File.separator + srcDir;
             }
             if (new File(srcDir).exists()) {
                 sourcePaths.add(srcDir);
@@ -411,6 +426,8 @@ class MavenEnv extends ProjectEnv {
         for (Xpp3Dom child : dom.getChildren()) {
             if (child.getName().equals(qname)) {
                 values.add(child.getValue());
+            } else {
+                values.addAll(getValues(child, qname));
             }
         }
         return values;
