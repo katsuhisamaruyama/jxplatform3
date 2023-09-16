@@ -41,9 +41,9 @@ import javassist.NotFoundException;
  */
 public class BytecodeClassStore {
     
-    static final String BOOT_VERSION_FILENAME = "#boot.module.version";
-    static final String BOOT_CACHE_FILENAME = "#boot.module";
-    static final String NO_CACHE_LABEL = "#";
+    static final String BOOT_VERSION_FILENAME = "_boot.module.version";
+    static final String BOOT_CACHE_FILENAME = "_boot.module";
+    static final String NO_CACHE_LABEL = "_";
     
     private static final String BootModuleVersion = System.getProperty("java.vm.version");
     
