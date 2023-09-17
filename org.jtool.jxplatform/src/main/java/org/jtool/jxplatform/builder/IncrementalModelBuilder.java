@@ -72,8 +72,8 @@ public class IncrementalModelBuilder extends ModelBuilder {
     
     /**
      * Creates an incremental-mode model builder.
-     * @param builder a model builder
-     * @param jproject a project data
+     * @param builderImpl the implementation of a model builder
+     * @param jprojects the collection of project data
      */
     public IncrementalModelBuilder(ModelBuilderImpl builderImpl, List<JavaProject> jprojects) {
         this.builderImpl = builderImpl;
