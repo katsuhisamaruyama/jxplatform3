@@ -239,29 +239,20 @@ class MavenEnv extends ProjectEnv {
             }
         }
         
-        List<Path> generatedBaseDirectories = new ArrayList<>();
-        generatedBaseDirectories.add(Paths.get("src"));
-        generatedBaseDirectories.add(Paths.get("src", "main"));
-        generatedBaseDirectories.add(Paths.get("src", "test"));
-        
         Path buildPath = null;
         if (buildDirectory == null) {
             buildPath = basePath.resolve("target");
         } else {
             buildPath = Paths.get(buildDirectory);
         }
-        generatedBaseDirectories.add(buildPath);
         
         String generatedSourceDirectoryCandidates[] = {
                 "generated-sources", "generated-test-sources", "generated" };
-        for (Path basePath : generatedBaseDirectories) {
-            List<String> generatedSourceDirectories = getGeneratedSourceDirectories(basePath,
-                    generatedSourceDirectoryCandidates);
-            for (String generatedSourceDirectory : generatedSourceDirectories) {
-                if (new File(generatedSourceDirectory).exists()) {
-                    sourcePaths.add(generatedSourceDirectory);
-                }
-            }
+        List<String> generatedSourceBaseDirectories = getGeneratedSourceBaseDirectories(buildPath,
+                generatedSourceDirectoryCandidates);
+        for (String dir : generatedSourceBaseDirectories) {
+            sourcePaths.addAll(getGeneratedSourceDirectory(dir, sourceDirectoryCandidates));
+            sourcePaths.addAll(getGeneratedSourceDirectory(dir, testSourceDirectoryCandidates));
         }
         
         List<Xpp3Dom> sourceDirectoryconfigurations = getConfigurations(plugins);
@@ -382,29 +373,41 @@ class MavenEnv extends ProjectEnv {
     }
     
     private String getSourceDirectory(String dir, String[][] names) {
-        if (dir != null) {
-            String sourceDirectory = toAbsolutePath(dir);
-            if (new File(sourceDirectory).exists()) {
-                return sourceDirectory;
-            }
-        }
-        
         for (int index = 0; index < names.length; index++) {
             String sourceDirectory = resolvePath(names[index]);
             if (sourceDirectory != null) {
                 return sourceDirectory;
             }
         }
+        
+        if (dir != null) {
+            String sourceDirectory = toAbsolutePath(dir);
+            if (new File(sourceDirectory).exists()) {
+                return sourceDirectory;
+            }
+        }
         return null;
     }
     
-    private List<String> getGeneratedSourceDirectories(Path dir, String names[]) {
+    private List<String> getGeneratedSourceBaseDirectories(Path dir, String names[]) {
         List<String> paths = new ArrayList<>();
         for (int index = 0; index < names.length; index++) {
             Path path = dir.resolve(names[index]);
             String resolvedPath = toAbsolutePath(path.toString());
             if (new File(resolvedPath).exists()) {
                 paths.add(resolvedPath);
+            }
+        }
+        return paths;
+    }
+    
+    private List<String> getGeneratedSourceDirectory(String dir, String[][] names) {
+        List<String> paths = new ArrayList<>();
+        for (int index = 0; index < names.length; index++) {
+            String resolvedPath = resolvePath(dir, names[index]);
+            if (resolvedPath != null) {
+                paths.add(resolvedPath);
+                return paths;
             }
         }
         return paths;

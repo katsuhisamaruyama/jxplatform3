@@ -144,8 +144,15 @@ abstract class ProjectEnv {
         return compilerTargetVersion;
     }
     
+    protected String resolvePath(String dir, String names[]) {
+        return resolvePath(basePath.resolve(dir), names);
+    }
+    
     protected String resolvePath(String names[]) {
-        Path path = basePath;
+        return resolvePath(basePath, names);
+    }
+    
+    protected String resolvePath(Path path, String names[]) {
         for (int index = 0; index < names.length; index++) {
             path = path.resolve(names[index]);
         }
