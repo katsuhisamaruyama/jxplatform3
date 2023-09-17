@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -29,7 +29,6 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.io.File;
 
 /**
  * A builder implementation with interactive mode that builds models related to Java source code.
@@ -87,8 +86,11 @@ public class ModelBuilderPluginManager {
         jproject.getCFGStore().create(jproject);
         ProjectStore.getInstance().addProject(jproject);
         
+        List<JavaProject> jprojects = new ArrayList<>();
+        jprojects.add(jproject);
+        
         ModelBuilderPluginImpl modelBuilderImpl = new ModelBuilderPluginImpl(project.getProject());
-        IncrementalModelBuilder modelBuilder = new IncrementalModelBuilder(modelBuilderImpl);
+        IncrementalModelBuilder modelBuilder = new IncrementalModelBuilder(modelBuilderImpl, jprojects);
         modelBuilder.setConsoleVisible(visible);
         jproject.setModelBuilder(modelBuilder);
         
@@ -106,8 +108,7 @@ public class ModelBuilderPluginManager {
     public void rebuild(IJavaProject project) {
         String path = project.getProject().getLocation().toOSString();
         IncrementalModelBuilder incrementalBuilder = builders.get(path);
-        
-        incrementalBuilder.getJavaProject().setClassPath(getClassPath(project));
+        incrementalBuilder.getJavaProjects().get(0).setClassPath(getClassPath(project));
         incrementalBuilder.rebuild();
     }
     
@@ -119,7 +120,7 @@ public class ModelBuilderPluginManager {
         String path = project.getProject().getLocation().toOSString();
         IncrementalModelBuilder incrementalBuilder = builders.get(path);
         
-        incrementalBuilder.getJavaProject().setClassPath(getClassPath(project));
+        incrementalBuilder.getJavaProjects().get(0).setClassPath(getClassPath(project));
         incrementalBuilder.incrementalBuild();
     }
     
@@ -208,10 +209,6 @@ public class ModelBuilderPluginManager {
      * @param file the added file to be registered
      */
     public void addFile(IFile file) {
-        String path = file.getProject().getLocation().toOSString();
-        IncrementalModelBuilder incrementalBuilder = builders.get(path);
-        
-        incrementalBuilder.addFile(path + File.separator + file.getFullPath().toOSString());
     }
     
     /**
@@ -219,10 +216,6 @@ public class ModelBuilderPluginManager {
      * @param file the removed file to be registered
      */
     public void removeFile(IFile file) {
-        String path = file.getProject().getLocation().toOSString();
-        IncrementalModelBuilder incrementalBuilder = builders.get(path);
-        
-        incrementalBuilder.removeFile(path + File.separator + file.getFullPath().toOSString());
     }
     
     /**
@@ -230,7 +223,5 @@ public class ModelBuilderPluginManager {
      * @param file the change file to be registered
      */
     public void changeFile(IFile file) {
-        removeFile(file);
-        addFile(file);
     }
 }
