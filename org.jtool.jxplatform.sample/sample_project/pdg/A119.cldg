@@ -1,0 +1,49 @@
+Class Name = A119
+   0 methodEntry [ A119#getX( ) ]
+   1 returnSt D = { $_ } U = { this.x }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ A119#x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+--
+   0 fieldEntry [ A119#y ]
+   1 fieldDeclaration D = { this.y } U = { this.y }
+--
+   0 constructorEntry [ A119#A119( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A119#setX( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = { this.x } U = { x$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0: getX( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: x
+   1:    0 ->    1 trueControlDependence
+--
+   0: y
+   1:    0 ->    1 trueControlDependence
+--
+   0: A119( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: setX( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence x$0
+--
+   1: 1146 -> 1147 MEMBER
+   2: 1146 -> 1150 MEMBER
+   3: 1146 -> 1155 MEMBER
+   4: 1146 -> 1159 MEMBER
+   5: 1146 -> 1162 MEMBER
+   6: 1160 -> 1156 FACC
+   7: 1160 -> 1160 FACC
+   8: 1163 -> 1163 FACC
+--
+

@@ -1,0 +1,225 @@
+Class Name = Test119
+   0 methodEntry [ Test119#m( ) ]
+   1 assignment D = { this.p } U = {  }
+   2 localDeclaration D = { a$0 } U = { A119.!A119( ) }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = A119#A119( )
+   5 actualOut D = { A119.!A119( ) } U = {  }
+   6 assignment D = {  } U = { a$0.!setX( int ) }
+   7 receiver D = {  } U = { a$0 }
+   8 methodCall D = {  } U = {  } TO = A119#setX( int )
+   9 actualIn D = {  } U = {  }
+  10 actualOut D = { a$0.!setX( int ) } U = {  }
+  11 localDeclaration D = { b$1 } U = { a$0.!getX( ) }
+  12 receiver D = {  } U = { a$0 }
+  13 methodCall D = {  } U = { A119.!A119( ).x, a$0.x } TO = A119#getX( )
+  14 actualOut D = { a$0.!getX( ) } U = { A119.!A119( ).x, a$0.x }
+  15 assignment D = {  } U = { a$0.!setX( int ) }
+  16 receiver D = {  } U = { a$0 }
+  17 methodCall D = {  } U = {  } TO = A119#setX( int )
+  18 actualIn D = {  } U = {  }
+  19 actualOut D = { a$0.!setX( int ) } U = {  }
+  20 localDeclaration D = { c$2 } U = { a$0.!getX( ) }
+  21 receiver D = {  } U = { a$0 }
+  22 methodCall D = {  } U = { A119.!A119( ).x, a$0.x } TO = A119#getX( )
+  23 actualOut D = { a$0.!getX( ) } U = { A119.!A119( ).x, a$0.x }
+  24 localDeclaration D = { d$3 } U = { A119.!A119( ).x, A119.!A119( ).y, a$0, a$0.x, a$0.y, this.p }
+  25 localDeclaration D = { e$4 } U = { this.!getP( ) }
+  26 receiver D = {  } U = {  }
+  27 methodCall D = {  } U = { this.p } TO = Test119#getP( )
+  28 actualOut D = { this.!getP( ) } U = { this.p }
+  30 formalOut D = {  } U = { $_ }
+   8+2016 actualOutByFieldAccess D = { a$0.x } U = {  }
+  17+2017 actualOutByFieldAccess D = { a$0.x } U = {  }
+--
+   0 fieldEntry [ Test119#p ]
+   1 fieldDeclaration D = { this.p } U = { this.p }
+--
+   0 methodEntry [ A119#getX( ) ]
+   1 returnSt D = { $_ } U = { this.x }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ A119#x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+--
+   0 fieldEntry [ A119#y ]
+   1 fieldDeclaration D = { this.y } U = { this.y }
+--
+   0 constructorEntry [ A119#A119( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test119#Test119( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test119#getP( ) ]
+   1 returnSt D = { $_ } U = { this.p }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A119#setX( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = { this.x } U = { x$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test119#m2( ) ]
+   1 localDeclaration D = { a$0 } U = { A119.!A119( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = A119#A119( )
+   4 actualOut D = { A119.!A119( ) } U = {  }
+   5 assignment D = { a$0.x } U = { A119.!A119( ).x, A119.!A119( ).y, a$0, a$0.x, a$0.y }
+   6 assignment D = { a$0.y } U = { A119.!A119( ).x, A119.!A119( ).y, a$0, a$0.x, a$0.y }
+   8 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    8+2016 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   12 trueControlDependence
+  14:    0 ->   13 trueControlDependence
+  15:    0 ->   14 trueControlDependence
+  16:    0 ->   15 trueControlDependence
+  17:    0 ->   16 trueControlDependence
+  18:    0 ->   17 trueControlDependence
+  19:    0 ->   17+2017 trueControlDependence
+  20:    0 ->   18 trueControlDependence
+  21:    0 ->   19 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   25 trueControlDependence
+  28:    0 ->   26 trueControlDependence
+  29:    0 ->   27 trueControlDependence
+  30:    0 ->   28 trueControlDependence
+  31:    0 ->   30 trueControlDependence
+  32:    1 ->   24 loopIndependentDefUseDependence this.p
+  33:    1 ->   27 loopIndependentDefUseDependence this.p
+  34:    1 ->   28 loopIndependentDefUseDependence this.p
+  35:    2 ->    7 declaration
+  36:    2 ->    7 loopIndependentDefUseDependence a$0
+  37:    2 ->   12 declaration
+  38:    2 ->   12 loopIndependentDefUseDependence a$0
+  39:    2 ->   16 declaration
+  40:    2 ->   16 loopIndependentDefUseDependence a$0
+  41:    2 ->   21 declaration
+  42:    2 ->   21 loopIndependentDefUseDependence a$0
+  43:    2 ->   24 declaration
+  44:    2 ->   24 loopIndependentDefUseDependence a$0
+  45:    5 ->    2 loopIndependentDefUseDependence A119.!A119( )
+  46:    8+2016 ->   13 loopIndependentDefUseDependence a$0.x
+  47:    8+2016 ->   14 loopIndependentDefUseDependence a$0.x
+  48:    8+2016 ->   17+2017 outputDependence a$0.x
+  49:   10 ->    6 loopIndependentDefUseDependence a$0.!setX( int )
+  50:   10 ->   19 outputDependence a$0.!setX( int )
+  51:   14 ->   11 loopIndependentDefUseDependence a$0.!getX( )
+  52:   14 ->   23 outputDependence a$0.!getX( )
+  53:   17+2017 ->   22 loopIndependentDefUseDependence a$0.x
+  54:   17+2017 ->   23 loopIndependentDefUseDependence a$0.x
+  55:   17+2017 ->   24 loopIndependentDefUseDependence a$0.x
+  56:   19 ->   15 loopIndependentDefUseDependence a$0.!setX( int )
+  57:   23 ->   20 loopIndependentDefUseDependence a$0.!getX( )
+  58:   28 ->   25 loopIndependentDefUseDependence this.!getP( )
+--
+   0: p
+   1:    0 ->    1 trueControlDependence
+--
+   0: getX( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: x
+   1:    0 ->    1 trueControlDependence
+--
+   0: y
+   1:    0 ->    1 trueControlDependence
+--
+   0: A119( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: Test119( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: getP( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: setX( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence x$0
+--
+   0: m2( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    1 ->    5 declaration
+   9:    1 ->    5 loopIndependentDefUseDependence a$0
+  10:    1 ->    6 declaration
+  11:    1 ->    6 loopIndependentDefUseDependence a$0
+  12:    4 ->    1 loopIndependentDefUseDependence A119.!A119( )
+  13:    5 ->    6 loopIndependentDefUseDependence a$0.x
+--
+   1: 1146 -> 1147 MEMBER
+   2: 1146 -> 1150 MEMBER
+   3: 1146 -> 1155 MEMBER
+   4: 1146 -> 1159 MEMBER
+   5: 1146 -> 1162 MEMBER
+   6: 1149 -> 1990 POUT
+   7: 1149 -> 2026 POUT
+   8: 1152 -> 2016 CFACC
+   9: 1152 -> 2017 CFACC
+  10: 1154 -> 1995 POUT
+  11: 1154 -> 2004 POUT
+  12: 1158 -> 1999 POUT
+  13: 1158 -> 2008 POUT
+  14: 1160 -> 1156 FACC
+  15: 1160 -> 1160 FACC
+  16: 1160 -> 1998 FACC
+  17: 1160 -> 1999 FACC
+  18: 1160 -> 2007 FACC
+  19: 1160 -> 2008 FACC
+  20: 1160 -> 2009 FACC
+  21: 1160 -> 2027 FACC
+  22: 1160 -> 2028 FACC
+  23: 1163 -> 1163 FACC
+  24: 1163 -> 2009 FACC
+  25: 1163 -> 2027 FACC
+  26: 1163 -> 2028 FACC
+  27: 1981 -> 1982 MEMBER
+  28: 1981 -> 1985 MEMBER
+  29: 1981 -> 2018 MEMBER
+  30: 1981 -> 2022 MEMBER
+  31: 1981 -> 2031 MEMBER
+  32: 1989 -> 1147 CALL
+  33: 1993 -> 1150 CALL
+  34: 1994 -> 1151 PIN
+  35: 1998 -> 1155 CALL
+  36: 2002 -> 1150 CALL
+  37: 2003 -> 1151 PIN
+  38: 2007 -> 1155 CALL
+  39: 2012 -> 2018 CALL
+  40: 2021 -> 2013 POUT
+  41: 2025 -> 1147 CALL
+  42: 2032 -> 2009 FACC
+  43: 2032 -> 2012 FACC
+  44: 2032 -> 2013 FACC
+  45: 2032 -> 2019 FACC
+  46: 2032 -> 2032 FACC
+--
+

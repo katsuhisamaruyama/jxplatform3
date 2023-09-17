@@ -1,0 +1,49 @@
+Class Name = Test132
+   0 methodEntry [ Test132#m( ) ]
+   1 localDeclaration D = { y$0 } U = { this.!n( ), this.!n( ).x }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { p$0.x } TO = Test132#n( )
+   4 actualOut D = { this.!n( ) } U = { p$0.x }
+   5 methodExit
+   6 formalOut D = {  } U = { $_ }
+   3+1673 actualOutByFieldAccess D = { p$0.x } U = {  }
+--
+   0 methodEntry [ Test132#n( ) ]
+   1 localDeclaration D = { p$0 } U = { P132.!P132( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P132#P132( )
+   4 actualOut D = { P132.!P132( ) } U = {  }
+   5 assignment D = { p$0.x } U = { P132.!P132( ).x, p$0, p$0.x }
+   6 returnSt D = { $_ } U = { P132.!P132( ).x, p$0, p$0.x }
+   7 methodExit
+   8 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test132#Test132( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    3+1673 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    6 ->    5 trueControlFlow
+   7:    3+1673 ->    4 trueControlFlow
+--
+   0: n( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    8 fallThroughFlow
+   8:    6 ->    8 trueControlFlow
+   9:    8 ->    7 trueControlFlow
+--
+   0: Test132( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+

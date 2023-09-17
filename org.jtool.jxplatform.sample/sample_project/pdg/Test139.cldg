@@ -1,0 +1,138 @@
+Class Name = Test139
+   0 enumConstantEntry [ PriceCode#REGULAR ]
+   1 fieldDeclaration D = { PriceCode.REGULAR } U = { PriceCode.!PriceCode( int ) }
+   2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
+   3 actualIn D = {  } U = {  }
+   4 actualOut D = { PriceCode.!PriceCode( int ) } U = {  }
+   2+24 actualOutByFieldAccess D = { PriceCode.!PriceCode( int ).priceCode } U = {  }
+--
+   0 constructorEntry [ PriceCode#PriceCode( int ) ]
+   1 formalIn D = { priceCode$0 } U = {  }
+   2 assignment D = { this.priceCode } U = { priceCode$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test139#Test139( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ PriceCode#getPriceCode( ) ]
+   1 returnSt D = { $_ } U = { this.priceCode }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ PriceCode#priceCode ]
+   1 fieldDeclaration D = { this.priceCode } U = { this.priceCode }
+--
+   0 methodEntry [ Test139#m( ) ]
+   1 localDeclaration D = { c1$0 } U = { PriceCode.CHILDRENS }
+   2 localDeclaration D = { c2$1 } U = { PriceCode.REGULAR }
+   3 localDeclaration D = { priceCode$2 } U = { PriceCode.REGULAR.!getPriceCode( ) }
+   4 receiver D = {  } U = { PriceCode.REGULAR }
+   5 methodCall D = {  } U = { PriceCode.REGULAR.priceCode } TO = PriceCode#getPriceCode( )
+   6 actualOut D = { PriceCode.REGULAR.!getPriceCode( ) } U = { PriceCode.REGULAR.priceCode }
+   7 localDeclaration D = { movie$3 } U = { PriceCode.REGULAR.!name( ) }
+   8 receiver D = {  } U = { PriceCode.REGULAR }
+   9 methodCall D = {  } U = { PriceCode.REGULAR.!java.lang.Enum.name } TO = java.lang.Enum#name( )
+  10 actualOut D = { PriceCode.REGULAR.!name( ) } U = { PriceCode.REGULAR.!java.lang.Enum.name }
+  12 formalOut D = {  } U = { $_ }
+--
+   0 enumConstantEntry [ PriceCode#CHILDRENS ]
+   1 fieldDeclaration D = { PriceCode.CHILDRENS } U = { PriceCode.!PriceCode( int ) }
+   2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
+   3 actualIn D = {  } U = {  }
+   4 actualOut D = { PriceCode.!PriceCode( int ) } U = {  }
+   2+17 actualOutByFieldAccess D = { PriceCode.!PriceCode( int ).priceCode } U = {  }
+--
+   0 enumConstantEntry [ PriceCode#NEW_RELEASE ]
+   1 fieldDeclaration D = { PriceCode.NEW_RELEASE } U = { PriceCode.!PriceCode( int ) }
+   2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
+   3 actualIn D = {  } U = {  }
+   4 actualOut D = { PriceCode.!PriceCode( int ) } U = {  }
+   2+31 actualOutByFieldAccess D = { PriceCode.!PriceCode( int ).priceCode } U = {  }
+--
+   0: REGULAR
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    2+24 trueControlDependence
+   4:    0 ->    3 trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence PriceCode.!PriceCode( int )
+--
+   0: PriceCode( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence priceCode$0
+--
+   0: Test139( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: getPriceCode( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: priceCode
+   1:    0 ->    1 trueControlDependence
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   12 trueControlDependence
+  12:    6 ->    3 loopIndependentDefUseDependence PriceCode.REGULAR.!getPriceCode( )
+  13:   10 ->    7 loopIndependentDefUseDependence PriceCode.REGULAR.!name( )
+--
+   0: CHILDRENS
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    2+17 trueControlDependence
+   4:    0 ->    3 trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence PriceCode.!PriceCode( int )
+--
+   0: NEW_RELEASE
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    2+31 trueControlDependence
+   4:    0 ->    3 trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence PriceCode.!PriceCode( int )
+--
+   1: 1 -> 11 MEMBER
+   2: 1 -> 18 MEMBER
+   3: 1 -> 2 MEMBER
+   4: 1 -> 25 MEMBER
+   5: 1 -> 32 MEMBER
+   6: 1 -> 7 MEMBER
+   7: 10 -> 359 POUT
+   8: 12 -> 354 FACC
+   9: 13 -> 2 CALL
+  10: 14 -> 3 PIN
+  11: 19 -> 355 FACC
+  12: 19 -> 357 FACC
+  13: 19 -> 361 FACC
+  14: 20 -> 2 CALL
+  15: 21 -> 3 PIN
+  16: 27 -> 2 CALL
+  17: 28 -> 3 PIN
+  18: 33 -> 33 FACC
+  19: 33 -> 358 FACC
+  20: 33 -> 359 FACC
+  21: 33 -> 8 FACC
+  22: 349 -> 350 MEMBER
+  23: 349 -> 353 MEMBER
+  24: 358 -> 7 CALL
+  25: 4 -> 17 CFACC
+  26: 4 -> 24 CFACC
+  27: 4 -> 31 CFACC
+  28: 6 -> 15 POUT
+  29: 6 -> 22 POUT
+  30: 6 -> 29 POUT
+--
+

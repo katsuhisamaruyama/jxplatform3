@@ -1,0 +1,44 @@
+Class Name = T145
+   0 methodEntry [ T145#hashCode( ) ]
+   1 returnSt D = { $_ } U = {  }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ T145#getA( ) ]
+   1 returnSt D = { $_ } U = { this.a }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ T145#T145( int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 assignment D = { this.a } U = { a$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ T145#a ]
+   1 fieldDeclaration D = { this.a } U = { this.a }
+--
+   0: hashCode( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: getA( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: T145( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence a$0
+--
+   0: a
+   1:    0 ->    1 trueControlDependence
+--
+   1: 1827 -> 1828 MEMBER
+   2: 1827 -> 1833 MEMBER
+   3: 1827 -> 1837 MEMBER
+   4: 1827 -> 1841 MEMBER
+   5: 1842 -> 1834 FACC
+   6: 1842 -> 1842 FACC
+--
+

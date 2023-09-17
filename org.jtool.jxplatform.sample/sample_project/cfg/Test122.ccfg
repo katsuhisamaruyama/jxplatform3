@@ -1,0 +1,82 @@
+Class Name = Test122
+   0 methodEntry [ Test122#n( int ) ]
+   1 throwsClause D = {  } U = { $java.lang.Exception }
+   2 formalIn D = { x$0 } U = {  }
+   3 ifSt D = {  } U = { x$0 }
+   4 throwSt D = {  } U = { java.lang.Exception.!Exception( ) }
+   5 receiver D = {  } U = {  }
+   6 constructorCall D = {  } U = { java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK } TO = java.lang.Exception#Exception( )
+   7 actualOut D = { java.lang.Exception.!Exception( ), java.lang.Exception.!java.lang.Throwable.cause, java.lang.Exception.!java.lang.Throwable.stackTrace, java.lang.Exception.!java.lang.Throwable.suppressedExceptions } U = { java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK }
+   8 merge ifSt(3)
+   9 returnSt D = { $_ } U = { x$0 }
+  10 methodExit
+  11 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test122#Test122( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test122#m( ) ]
+   1 localDeclaration D = { a$0 } U = {  }
+   2 localDeclaration D = { b$1 } U = {  }
+   3 trySt D = {  } U = {  }
+   4 localDeclaration D = { p$4 } U = { a$0 }
+   5 assignment D = { b$1 } U = { this.!n( int ) }
+   6 receiver D = {  } U = {  }
+   7 methodCall D = {  } U = { this.java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, this.java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK } TO = Test122#n( int )
+   8 actualIn D = {  } U = { a$0 }
+   9 actualOut D = { this.!n( int ), this.java.lang.Exception.!java.lang.Throwable.cause, this.java.lang.Exception.!java.lang.Throwable.stackTrace, this.java.lang.Exception.!java.lang.Throwable.suppressedExceptions } U = { this.java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, this.java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK }
+  10 localDeclaration D = { q$5 } U = { b$1 }
+  11 merge trySt(3)
+  12 catchClause D = { e$6 } U = {  }
+  13 localDeclaration D = { f$7 } U = { e$6 }
+  14 finallyClause D = {  } U = {  }
+  15 localDeclaration D = { r$3 } U = { b$1 }
+  16 localDeclaration D = { c$8 } U = { b$1 }
+  17 methodExit
+  18 formalOut D = {  } U = { $_ }
+--
+   0: n( int )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->   10 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    5 trueControlFlow
+   5:    3 ->    8 falseControlFlow
+   6:    4 ->    1 trueControlFlow
+   7:    4 ->    8 fallThroughFlow
+   8:    5 ->    6 trueControlFlow
+   9:    6 ->    7 trueControlFlow
+  10:    7 ->    4 trueControlFlow
+  11:    8 ->    9 trueControlFlow
+  12:    9 ->   11 fallThroughFlow
+  13:    9 ->   11 trueControlFlow
+  14:   11 ->   10 trueControlFlow
+--
+   0: Test122( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+   0: m( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    6 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    8 trueControlFlow
+   8:    7 ->    9 trueControlFlow
+   9:    7 ->   12 exceptionCatchFlow
+  10:    8 ->    7 trueControlFlow
+  11:    9 ->    5 trueControlFlow
+  12:   10 ->   11 trueControlFlow
+  13:   11 ->   14 trueControlFlow
+  14:   12 ->   11 fallThroughFlow
+  15:   12 ->   13 trueControlFlow
+  16:   13 ->   11 trueControlFlow
+  17:   14 ->   15 trueControlFlow
+  18:   14 ->   16 fallThroughFlow
+  19:   15 ->   16 trueControlFlow
+  20:   16 ->   18 trueControlFlow
+  21:   18 ->   17 trueControlFlow
+--
+

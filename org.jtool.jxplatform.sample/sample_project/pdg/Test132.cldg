@@ -1,0 +1,80 @@
+Class Name = Test132
+   0 methodEntry [ Test132#m( ) ]
+   1 localDeclaration D = { y$0 } U = { this.!n( ), this.!n( ).x }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = { p$0.x } TO = Test132#n( )
+   4 actualOut D = { this.!n( ) } U = { p$0.x }
+   6 formalOut D = {  } U = { $_ }
+   3+1673 actualOutByFieldAccess D = { p$0.x } U = {  }
+--
+   0 methodEntry [ Test132#n( ) ]
+   1 localDeclaration D = { p$0 } U = { P132.!P132( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P132#P132( )
+   4 actualOut D = { P132.!P132( ) } U = {  }
+   5 assignment D = { p$0.x } U = { P132.!P132( ).x, p$0, p$0.x }
+   6 returnSt D = { $_ } U = { P132.!P132( ).x, p$0, p$0.x }
+   8 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ P132#P132( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test132#Test132( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ P132#x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    3+1673 trueControlDependence
+   5:    0 ->    4 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    3+1673 ->    4 loopIndependentDefUseDependence p$0.x
+   8:    4 ->    1 loopIndependentDefUseDependence this.!n( )
+--
+   0: n( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    1 ->    5 declaration
+   9:    1 ->    5 loopIndependentDefUseDependence p$0
+  10:    1 ->    6 declaration
+  11:    1 ->    6 loopIndependentDefUseDependence p$0
+  12:    4 ->    1 loopIndependentDefUseDependence P132.!P132( )
+  13:    5 ->    6 loopIndependentDefUseDependence p$0.x
+  14:    6 ->    8 loopIndependentDefUseDependence $_
+--
+   0: P132( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: Test132( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: x
+   1:    0 ->    1 trueControlDependence
+--
+   1: 1139 -> 1140 MEMBER
+   2: 1139 -> 1143 MEMBER
+   3: 1142 -> 1668 POUT
+   4: 1144 -> 1144 FACC
+   5: 1144 -> 1658 FACC
+   6: 1144 -> 1660 FACC
+   7: 1144 -> 1661 FACC
+   8: 1144 -> 1669 FACC
+   9: 1144 -> 1670 FACC
+  10: 1653 -> 1654 MEMBER
+  11: 1653 -> 1657 MEMBER
+  12: 1653 -> 1664 MEMBER
+  13: 1660 -> 1664 CALL
+  14: 1667 -> 1140 CALL
+  15: 1669 -> 1673 CFACC
+  16: 1672 -> 1661 POUT
+--
+

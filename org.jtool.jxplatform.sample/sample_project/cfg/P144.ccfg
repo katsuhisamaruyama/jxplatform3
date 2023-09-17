@@ -1,0 +1,63 @@
+Class Name = P144
+   0 methodEntry [ P144#get( java.lang.String ) ]
+   1 formalIn D = { key$0 } U = {  }
+   2 returnSt D = { $_ } U = { this.map.!get( java.lang.Object ) }
+   3 receiver D = {  } U = { this.map }
+   4 methodCall D = {  } U = { key$0, this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.table } TO = java.util.Map#get( java.lang.Object )
+   5 actualOut D = { this.map.!get( java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.table }
+   6 methodExit
+   7 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ P144#map ]
+   1 fieldDeclaration D = { this.map } U = { java.util.HashMap.!HashMap( ), this.map }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )
+   4 actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
+   5 fieldExit
+--
+   0 constructorEntry [ P144#P144( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ P144#put( java.lang.String java.lang.String ) ]
+   1 formalIn D = { key$0 } U = {  }
+   2 formalIn D = { value$1 } U = {  }
+   3 assignment D = {  } U = { this.map.!put( java.lang.Object java.lang.Object ) }
+   4 receiver D = {  } U = { this.map }
+   5 methodCall D = {  } U = { key$0, this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!java.util.HashMap.table, this.map.!java.util.HashMap.threshold, value$1 } TO = java.util.Map#put( java.lang.Object java.lang.Object )
+   6 actualOut D = { this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!put( java.lang.Object java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!java.util.HashMap.table, this.map.!java.util.HashMap.threshold }
+   7 methodExit
+   8 formalOut D = {  } U = { $_ }
+--
+   0: get( java.lang.String )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 fallThroughFlow
+   4:    2 ->    7 trueControlFlow
+   5:    3 ->    4 trueControlFlow
+   6:    4 ->    5 trueControlFlow
+   7:    5 ->    2 trueControlFlow
+   8:    7 ->    6 trueControlFlow
+--
+   0: map
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+--
+   0: P144( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+   0: put( java.lang.String java.lang.String )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    8 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    3 trueControlFlow
+   8:    8 ->    7 trueControlFlow
+--
+

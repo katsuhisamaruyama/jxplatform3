@@ -1,0 +1,55 @@
+Class Name = Test117
+   0 constructorEntry [ Test117#Test117( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test117#m( ) ]
+   1 localDeclaration D = { x$0 } U = {  }
+   2 localDeclaration D = { y$1 } U = {  }
+   3 localDeclaration D = { i$2 } U = {  }
+   4 localDeclaration D = { j$3 } U = {  }
+   5 forSt D = {  } U = { i$2 }
+   6 assignment D = { y$1 } U = { y$1 }
+   7 assignment D = { i$2 } U = { i$2 }
+   8 assignment D = { x$0 } U = { x$0 }
+   9 localDeclaration D = { p$4 } U = { x$0 }
+  10 localDeclaration D = { q$5 } U = { y$1 }
+  12 formalOut D = {  } U = { $_ }
+--
+   0: Test117( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    9 trueControlDependence
+   7:    0 ->   10 trueControlDependence
+   8:    0 ->   12 trueControlDependence
+   9:    1 ->    8 declaration
+  10:    1 ->    8 loopIndependentDefUseDependence x$0
+  11:    1 ->    9 declaration
+  12:    1 ->    9 loopIndependentDefUseDependence x$0
+  13:    2 ->    6 declaration
+  14:    2 ->    6 loopIndependentDefUseDependence y$1
+  15:    2 ->   10 declaration
+  16:    2 ->   10 loopIndependentDefUseDependence y$1
+  17:    3 ->    5 declaration
+  18:    3 ->    5 loopIndependentDefUseDependence i$2
+  19:    3 ->    7 declaration
+  20:    3 ->    7 loopIndependentDefUseDependence i$2
+  21:    5 ->    6 trueControlDependence
+  22:    5 ->    7 trueControlDependence
+  23:    5 ->    8 trueControlDependence
+  24:    6 ->    6 loopCarriedDefUseDependence y$1 (LC = 5)
+  25:    6 ->   10 loopIndependentDefUseDependence y$1
+  26:    7 ->    5 loopCarriedDefUseDependence i$2 (LC = 5)
+  27:    7 ->    7 loopCarriedDefUseDependence i$2 (LC = 5)
+  28:    8 ->    8 loopCarriedDefUseDependence x$0 (LC = 5)
+  29:    8 ->    9 loopIndependentDefUseDependence x$0
+--
+   1: 2055 -> 2056 MEMBER
+   2: 2055 -> 2059 MEMBER
+--
+

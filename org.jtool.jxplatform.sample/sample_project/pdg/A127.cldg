@@ -1,0 +1,49 @@
+Class Name = A127
+   0 methodEntry [ A127#setY( int ) ]
+   1 formalIn D = { y$0 } U = {  }
+   2 assignment D = { this.y } U = { y$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ A127#z ]
+   1 fieldDeclaration D = { A127.z } U = { A127.z }
+--
+   0 constructorEntry [ A127#A127( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A127#getY( ) ]
+   1 returnSt D = { $_ } U = { this.y }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ A127#y ]
+   1 fieldDeclaration D = { this.y } U = { this.y }
+--
+   0: setY( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence y$0
+--
+   0: z
+   1:    0 ->    1 trueControlDependence
+--
+   0: A127( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: getY( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: y
+   1:    0 ->    1 trueControlDependence
+--
+   1: 1289 -> 1273 MEMBER
+   2: 1289 -> 1276 MEMBER
+   3: 1289 -> 1282 MEMBER
+   4: 1289 -> 1290 MEMBER
+   5: 1289 -> 1293 MEMBER
+   6: 1291 -> 1291 FACC
+   7: 1294 -> 1283 FACC
+   8: 1294 -> 1294 FACC
+--
+

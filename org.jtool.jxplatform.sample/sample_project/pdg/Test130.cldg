@@ -1,0 +1,115 @@
+Class Name = Test130
+   0 constructorEntry [ Test130#Test130( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ S130#getX( ) ]
+   1 returnSt D = { $_ } U = { this.x }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test130#n( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 returnSt D = { $_ } U = { S130.!S130( int ), S130.!S130( int ).x }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = S130#S130( int )
+   5 actualIn D = {  } U = { x$0 }
+   6 actualOut D = { S130.!S130( int ) } U = {  }
+   8 formalOut D = {  } U = { $_ }
+   4+1791 actualOutByFieldAccess D = { S130.!S130( int ).x } U = {  }
+--
+   0 fieldEntry [ S130#x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+--
+   0 constructorEntry [ S130#S130( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = { this.x } U = { x$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test130#m( ) ]
+   1 localDeclaration D = { p$0 } U = {  }
+   2 localDeclaration D = { q$1 } U = { this.!n( int ).!getX( ) }
+   3 receiver D = {  } U = { this.!n( int ) }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = {  } U = {  } TO = Test130#n( int )
+   6 actualIn D = {  } U = {  }
+   7 actualOut D = { this.!n( int ) } U = {  }
+   8 methodCall D = {  } U = { this.!n( int ).x } TO = S130#getX( )
+   9 actualOut D = { this.!n( int ).!getX( ) } U = { this.!n( int ).x }
+  10 localDeclaration D = { r$2 } U = { q$1 }
+  12 formalOut D = {  } U = { $_ }
+   5+1796 actualOutByFieldAccess D = { this.!n( int ).x } U = {  }
+--
+   0: Test130( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: getX( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: n( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    4+1791 trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    1 ->    5 loopIndependentDefUseDependence x$0
+  10:    2 ->    8 loopIndependentDefUseDependence $_
+  11:    4+1791 ->    2 loopIndependentDefUseDependence S130.!S130( int ).x
+  12:    6 ->    2 loopIndependentDefUseDependence S130.!S130( int )
+--
+   0: x
+   1:    0 ->    1 trueControlDependence
+--
+   0: S130( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence x$0
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    5+1796 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    2 ->   10 declaration
+  14:    2 ->   10 loopIndependentDefUseDependence q$1
+  15:    5+1796 ->    8 loopIndependentDefUseDependence this.!n( int ).x
+  16:    5+1796 ->    9 loopIndependentDefUseDependence this.!n( int ).x
+  17:    7 ->    3 loopIndependentDefUseDependence this.!n( int )
+  18:    9 ->    2 loopIndependentDefUseDependence this.!n( int ).!getX( )
+--
+   1: 1760 -> 1761 MEMBER
+   2: 1760 -> 1764 MEMBER
+   3: 1760 -> 1777 MEMBER
+   4: 1769 -> 1777 CALL
+   5: 1770 -> 1778 PIN
+   6: 1772 -> 1797 CALL
+   7: 1781 -> 1786 CALL
+   8: 1781 -> 1796 CFACC
+   9: 1782 -> 1787 PIN
+  10: 1785 -> 1771 POUT
+  11: 1788 -> 1791 CFACC
+  12: 1788 -> 1796 CFACC
+  13: 1790 -> 1783 POUT
+  14: 1800 -> 1773 POUT
+  15: 1801 -> 1786 MEMBER
+  16: 1801 -> 1797 MEMBER
+  17: 1801 -> 1802 MEMBER
+  18: 1803 -> 1772 FACC
+  19: 1803 -> 1773 FACC
+  20: 1803 -> 1779 FACC
+  21: 1803 -> 1798 FACC
+  22: 1803 -> 1803 FACC
+--
+

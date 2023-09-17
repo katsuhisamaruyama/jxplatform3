@@ -1,0 +1,66 @@
+Class Name = P137
+   0 fieldEntry [ P137#list ]
+   1 fieldDeclaration D = { this.list } U = { java.util.ArrayList.!ArrayList( ), this.list }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
+   4 actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+--
+   0 methodEntry [ P137#add( java.lang.String ) ]
+   1 formalIn D = { elem$0 } U = {  }
+   2 assignment D = {  } U = { this.list.!add( java.lang.Object ) }
+   3 receiver D = {  } U = { this.list }
+   4 methodCall D = {  } U = { elem$0, this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size } TO = java.util.List#add( java.lang.Object )
+   5 actualOut D = { this.list.!add( java.lang.Object ), this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size } U = { this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.modCount, this.list.!java.util.ArrayList.size }
+   7 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ P137#get( int ) ]
+   1 formalIn D = { index$0 } U = {  }
+   2 returnSt D = { $_ } U = { this.list.!get( int ) }
+   3 receiver D = {  } U = { this.list }
+   4 methodCall D = {  } U = { index$0, this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.size } TO = java.util.List#get( int )
+   5 actualOut D = { this.list.!get( int ) } U = { this.list.!java.util.ArrayList.elementData, this.list.!java.util.ArrayList.size }
+   7 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ P137#P137( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: list
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+--
+   0: add( java.lang.String )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    1 ->    4 loopIndependentDefUseDependence elem$0
+   8:    5 ->    2 loopIndependentDefUseDependence this.list.!add( java.lang.Object )
+--
+   0: get( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    1 ->    4 loopIndependentDefUseDependence index$0
+   8:    2 ->    7 loopIndependentDefUseDependence $_
+   9:    5 ->    2 loopIndependentDefUseDependence this.list.!get( int )
+--
+   0: P137( )
+   1:    0 ->    2 trueControlDependence
+--
+   1: 67 -> 61 FACC
+   2: 67 -> 67 FACC
+   3: 67 -> 84 FACC
+   4: 99 -> 58 MEMBER
+   5: 99 -> 66 MEMBER
+   6: 99 -> 81 MEMBER
+   7: 99 -> 96 MEMBER
+--
+

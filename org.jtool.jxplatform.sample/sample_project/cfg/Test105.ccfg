@@ -1,0 +1,57 @@
+Class Name = Test105
+   0 fieldEntry [ Test105#a ]
+   1 fieldDeclaration D = { this.a } U = { this.a }
+   2 fieldExit
+--
+   0 methodEntry [ Test105#setA( int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 assignment D = { this.a } U = { a$0 }
+   3 returnSt D = { $_ } U = { a$0 }
+   4 methodExit
+   5 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test105#m( ) ]
+   1 localDeclaration D = { x$0 } U = { this.!setA( int ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = {  } TO = Test105#setA( int )
+   4 actualIn D = {  } U = {  }
+   5 actualOut D = { this.!setA( int ) } U = {  }
+   6 localDeclaration D = { y$1 } U = { x$0 }
+   7 localDeclaration D = { z$2 } U = { this.a }
+   8 methodExit
+   9 formalOut D = {  } U = { $_ }
+   3+2345 actualOutByFieldAccess D = { this.a } U = {  }
+--
+   0 constructorEntry [ Test105#Test105( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0: a
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: setA( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    5 fallThroughFlow
+   5:    3 ->    5 trueControlFlow
+   6:    5 ->    4 trueControlFlow
+--
+   0: m( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    3+2345 trueControlFlow
+   5:    4 ->    3 trueControlFlow
+   6:    5 ->    1 trueControlFlow
+   7:    6 ->    7 trueControlFlow
+   8:    7 ->    9 trueControlFlow
+   9:    9 ->    8 trueControlFlow
+  10:    3+2345 ->    5 trueControlFlow
+--
+   0: Test105( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+

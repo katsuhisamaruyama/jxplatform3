@@ -1,0 +1,98 @@
+Class Name = Test122
+   0 methodEntry [ Test122#n( int ) ]
+   1 throwsClause D = {  } U = { $java.lang.Exception }
+   2 formalIn D = { x$0 } U = {  }
+   3 ifSt D = {  } U = { x$0 }
+   4 throwSt D = {  } U = { java.lang.Exception.!Exception( ) }
+   5 receiver D = {  } U = {  }
+   6 constructorCall D = {  } U = { java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK } TO = java.lang.Exception#Exception( )
+   7 actualOut D = { java.lang.Exception.!Exception( ), java.lang.Exception.!java.lang.Throwable.cause, java.lang.Exception.!java.lang.Throwable.stackTrace, java.lang.Exception.!java.lang.Throwable.suppressedExceptions } U = { java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK }
+   9 returnSt D = { $_ } U = { x$0 }
+  11 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test122#Test122( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test122#m( ) ]
+   1 localDeclaration D = { a$0 } U = {  }
+   2 localDeclaration D = { b$1 } U = {  }
+   3 trySt D = {  } U = {  }
+   4 localDeclaration D = { p$4 } U = { a$0 }
+   5 assignment D = { b$1 } U = { this.!n( int ) }
+   6 receiver D = {  } U = {  }
+   7 methodCall D = {  } U = { this.java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, this.java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK } TO = Test122#n( int )
+   8 actualIn D = {  } U = { a$0 }
+   9 actualOut D = { this.!n( int ), this.java.lang.Exception.!java.lang.Throwable.cause, this.java.lang.Exception.!java.lang.Throwable.stackTrace, this.java.lang.Exception.!java.lang.Throwable.suppressedExceptions } U = { this.java.lang.Exception.!java.lang.Throwable.SUPPRESSED_SENTINEL, this.java.lang.Exception.!java.lang.Throwable.UNASSIGNED_STACK }
+  10 localDeclaration D = { q$5 } U = { b$1 }
+  12 catchClause D = { e$6 } U = {  }
+  13 localDeclaration D = { f$7 } U = { e$6 }
+  14 finallyClause D = {  } U = {  }
+  15 localDeclaration D = { r$3 } U = { b$1 }
+  16 localDeclaration D = { c$8 } U = { b$1 }
+  18 formalOut D = {  } U = { $_ }
+--
+   0: n( int )
+   1:    0 ->    2 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    2 ->    3 loopIndependentDefUseDependence x$0
+   4:    2 ->    9 loopIndependentDefUseDependence x$0
+   5:    3 ->    4 trueControlDependence
+   6:    3 ->    5 trueControlDependence
+   7:    3 ->    6 trueControlDependence
+   8:    3 ->    7 trueControlDependence
+   9:    3 ->    9 falseControlDependence
+  10:    3 ->   11 falseControlDependence
+  11:    4 ->    1 trueControlDependence
+  12:    4 ->    9 fallThroughControlDependence
+  13:    4 ->   11 fallThroughControlDependence
+  14:    7 ->    4 loopIndependentDefUseDependence java.lang.Exception.!Exception( )
+  15:    9 ->   11 loopIndependentDefUseDependence $_
+--
+   0: Test122( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    0 ->   16 trueControlDependence
+   9:    0 ->   18 trueControlDependence
+  10:    1 ->    4 declaration
+  11:    1 ->    4 loopIndependentDefUseDependence a$0
+  12:    1 ->    8 declaration
+  13:    1 ->    8 loopIndependentDefUseDependence a$0
+  14:    2 ->    5 declaration
+  15:    2 ->    5 outputDependence b$1
+  16:    2 ->   10 declaration
+  17:    2 ->   15 declaration
+  18:    2 ->   15 loopIndependentDefUseDependence b$1
+  19:    2 ->   16 declaration
+  20:    2 ->   16 loopIndependentDefUseDependence b$1
+  21:    3 ->   12 trueControlDependence
+  22:    3 ->   14 trueControlDependence
+  23:    5 ->   10 loopIndependentDefUseDependence b$1
+  24:    5 ->   15 loopIndependentDefUseDependence b$1
+  25:    5 ->   16 loopIndependentDefUseDependence b$1
+  26:    7 ->    5 trueControlDependence
+  27:    7 ->    9 trueControlDependence
+  28:    7 ->   10 trueControlDependence
+  29:    7 ->   12 exceptionCatch
+  30:    9 ->    5 loopIndependentDefUseDependence this.!n( int )
+  31:   12 ->   13 loopIndependentDefUseDependence e$6
+  32:   12 ->   13 trueControlDependence
+  33:   14 ->   15 trueControlDependence
+--
+   1: 2177 -> 2178 MEMBER
+   2: 2177 -> 2181 MEMBER
+   3: 2177 -> 2200 MEMBER
+   4: 2188 -> 2200 CALL
+   5: 2189 -> 2202 PIN
+   6: 2201 -> 2193 EXCP
+   7: 2206 -> 2190 CFACC
+   8: 2211 -> 2190 POUT
+--
+
