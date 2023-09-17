@@ -34,7 +34,10 @@ class SimpleEnv extends ProjectEnv {
     }
     
     private void setPaths() {
-        sourcePaths.add(basePath.resolve("src").toString());
+        String sourceDirectory = resolvePath(new String[]{ "src" });
+        if (sourceDirectory != null) {
+            sourcePaths.add(sourceDirectory);
+        }
         sourcePaths.add(basePath.toString());
         binaryPaths.add(basePath.resolve("bin").toString());
         classPaths.add(basePath.resolve("lib").toString());

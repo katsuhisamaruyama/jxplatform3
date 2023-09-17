@@ -251,8 +251,8 @@ class MavenEnv extends ProjectEnv {
         List<String> generatedSourceBaseDirectories = getGeneratedSourceBaseDirectories(buildPath,
                 generatedSourceDirectoryCandidates);
         for (String dir : generatedSourceBaseDirectories) {
-            sourcePaths.addAll(getGeneratedSourceDirectory(dir, sourceDirectoryCandidates));
-            sourcePaths.addAll(getGeneratedSourceDirectory(dir, testSourceDirectoryCandidates));
+            sourcePaths.add(getGeneratedSourceDirectory(dir, sourceDirectoryCandidates));
+            sourcePaths.add(getGeneratedSourceDirectory(dir, testSourceDirectoryCandidates));
         }
         
         List<Xpp3Dom> sourceDirectoryconfigurations = getConfigurations(plugins);
@@ -401,16 +401,14 @@ class MavenEnv extends ProjectEnv {
         return paths;
     }
     
-    private List<String> getGeneratedSourceDirectory(String dir, String[][] names) {
-        List<String> paths = new ArrayList<>();
+    private String getGeneratedSourceDirectory(String dir, String[][] names) {
         for (int index = 0; index < names.length; index++) {
             String resolvedPath = resolvePath(dir, names[index]);
             if (resolvedPath != null) {
-                paths.add(resolvedPath);
-                return paths;
+                return resolvedPath;
             }
         }
-        return paths;
+        return toAbsolutePath(dir);
     }
     
     private String getProperty(List<Model> models, String key) throws Exception {

@@ -7,3 +7,4 @@ build/classes
 build/libs
 build/generated
 build/tmp
+/build/
