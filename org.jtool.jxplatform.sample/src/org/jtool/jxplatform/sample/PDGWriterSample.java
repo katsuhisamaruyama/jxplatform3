@@ -44,26 +44,17 @@ public class PDGWriterSample {
     
     public static void main(String[] args) {
         PDGWriterSample writer = new PDGWriterSample();
-        writer.run(args[0]);
+        writer.run("sample", SrcModelGeneratorSample.SAMPLE_PROJECT_DIR);
     }
     
-    void run(String target) {
-        int index = target.lastIndexOf(br);
-        if (index == -1) {
-            index = 0;
-        }
-        String name = target.substring(index);
-        run(name, target);
-    }
-    
-    void run(String name, String target) {
+    private void run(String name, String target) {
         ModelBuilderBatch builder = new ModelBuilderBatch(true, false);
         List<JavaProject> jprojects = builder.build(name, target);
         jprojects.forEach(jproject -> buildPDGs(builder, jproject));
         builder.unbuild();
     }
     
-    void buildPDGs(ModelBuilderBatch builder, JavaProject jproject) {
+    private void buildPDGs(ModelBuilderBatch builder, JavaProject jproject) {
         int size = jproject.getClasses().size();
         System.out.println();
         System.out.println("** Building ClDGs of " + size + " classes in " + jproject.getName());

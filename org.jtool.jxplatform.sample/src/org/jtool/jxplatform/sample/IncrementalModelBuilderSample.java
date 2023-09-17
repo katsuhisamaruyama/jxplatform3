@@ -1,14 +1,14 @@
 /*
- *  Copyright 2022
+ *  Copyright 2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.jxplatform.sample;
 
+import org.jtool.jxplatform.builder.ModelBuilderBatch;
 import org.jtool.jxplatform.builder.IncrementalModelBuilder;
-import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
-import org.jtool.jxplatform.project.ModelBuilderImpl;
-import java.io.File;
+import org.jtool.srcmodel.JavaProject;
+import java.util.List;
 
 /**
  * Sample code for incrementally building a source code model.
@@ -18,29 +18,21 @@ import java.io.File;
 public class IncrementalModelBuilderSample {
     
     public static void main(String[] args) {
-        IncrementalModelBuilderSample generator = new IncrementalModelBuilderSample();
-        generator.run(SrcModelGeneratorSample.SAMPLE_PROJECT_DIR);
+        run("sample", SrcModelGeneratorSample.SAMPLE_PROJECT_DIR);
     }
     
-    private void run(String path) {
-        ModelBuilderImpl builderImpl = new ModelBuilderBatchImpl();
-        builderImpl.analyzeBytecode(true);
-        builderImpl.useCache(true);
-        builderImpl.setConsoleVisible(true);
-        IncrementalModelBuilder builder = new IncrementalModelBuilder(builderImpl);
+    private static void run(String name, String target) {
+        ModelBuilderBatch builder = new ModelBuilderBatch();
+        builder.analyzeBytecode(true);
+        builder.useCache(true);
+        builder.setConsoleVisible(true);
         
-        String name = path;
-        String classpath = path;
-        builder.build(name, path, classpath);
+        List<JavaProject> projects = builder.build(name, target);
+        IncrementalModelBuilder iBuilder = new IncrementalModelBuilder(builder.getModelBuilderImpl(), projects);
         
-        builder.addFile(path + File.separator + "Added.java");
+        // Add, remove, update files
         
-        builder.incrementalBuild();
-        
-        builder.removeFile(path + File.separator + "Deleled.java");
-        builder.updateFile(path + File.separator + "Updated.java");
-        
-        builder.incrementalBuild();
+        iBuilder.incrementalBuild();
         
         builder.unbuild();
     }

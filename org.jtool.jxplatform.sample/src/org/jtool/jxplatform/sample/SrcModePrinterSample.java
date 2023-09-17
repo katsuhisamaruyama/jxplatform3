@@ -13,7 +13,6 @@ import org.jtool.srcmodel.JavaClass;
 import org.jtool.srcmodel.JavaMethod;
 import org.jtool.srcmodel.JavaField;
 import org.jtool.srcmodel.JavaLocalVar;
-import static org.jtool.jxplatform.builder.ModelBuilder.br;
 import java.io.File;
 import java.util.List;
 
@@ -27,14 +26,7 @@ public class SrcModePrinterSample {
     final static String SAMPLE_PROJECT_DIR = new File(".").getAbsoluteFile().getParent() + "/sample_project";
     
     public static void main(String[] args) {
-        String target = args[0];
-        
-        int index = target.lastIndexOf(br);
-        if (index == -1) {
-            index = 0;
-        }
-        String name = target.substring(index);
-        run(name, target);
+        run("sample", SAMPLE_PROJECT_DIR);
     }
     
     private static void run(String name, String target) {

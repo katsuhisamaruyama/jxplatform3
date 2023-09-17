@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -21,18 +21,16 @@ import java.util.stream.Collectors;
 public class CFGGeneratorSample {
     
     public static void main(String[] args) {
-        CFGGeneratorSample generator = new CFGGeneratorSample();
-        generator.run(SrcModelGeneratorSample.SAMPLE_PROJECT_DIR);
+        run("sample", SrcModelGeneratorSample.SAMPLE_PROJECT_DIR);
     }
     
-    private void run(String path) {
+    private static void run(String name, String target) {
         ModelBuilderBatch builder = new ModelBuilderBatch();
         builder.analyzeBytecode(true);
         builder.useCache(true);
         builder.setConsoleVisible(true);
         
-        String name = path;
-        List<JavaProject> jprojects = builder.build(name, path);
+        List<JavaProject> jprojects = builder.build(name, target);
         
         List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
         for (JavaClass jclass : classes) {

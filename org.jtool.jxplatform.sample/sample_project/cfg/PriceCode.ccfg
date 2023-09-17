@@ -1,0 +1,81 @@
+Class Name = PriceCode
+   0 enumConstantEntry [ PriceCode#REGULAR ]
+   1 fieldDeclaration D = { PriceCode.REGULAR } U = { PriceCode.!PriceCode( int ) }
+   2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
+   3 actualIn D = {  } U = {  }
+   4 actualOut D = { PriceCode.!PriceCode( int ) } U = {  }
+   5 enumConstantExit
+   2+24 actualOutByFieldAccess D = { PriceCode.!PriceCode( int ).priceCode } U = {  }
+--
+   0 constructorEntry [ PriceCode#PriceCode( int ) ]
+   1 formalIn D = { priceCode$0 } U = {  }
+   2 assignment D = { this.priceCode } U = { priceCode$0 }
+   3 constructorExit
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ PriceCode#getPriceCode( ) ]
+   1 returnSt D = { $_ } U = { this.priceCode }
+   2 methodExit
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ PriceCode#priceCode ]
+   1 fieldDeclaration D = { this.priceCode } U = { this.priceCode }
+   2 fieldExit
+--
+   0 enumConstantEntry [ PriceCode#CHILDRENS ]
+   1 fieldDeclaration D = { PriceCode.CHILDRENS } U = { PriceCode.!PriceCode( int ) }
+   2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
+   3 actualIn D = {  } U = {  }
+   4 actualOut D = { PriceCode.!PriceCode( int ) } U = {  }
+   5 enumConstantExit
+   2+17 actualOutByFieldAccess D = { PriceCode.!PriceCode( int ).priceCode } U = {  }
+--
+   0 enumConstantEntry [ PriceCode#NEW_RELEASE ]
+   1 fieldDeclaration D = { PriceCode.NEW_RELEASE } U = { PriceCode.!PriceCode( int ) }
+   2 constructorCall D = {  } U = {  } TO = PriceCode#PriceCode( int )
+   3 actualIn D = {  } U = {  }
+   4 actualOut D = { PriceCode.!PriceCode( int ) } U = {  }
+   5 enumConstantExit
+   2+31 actualOutByFieldAccess D = { PriceCode.!PriceCode( int ).priceCode } U = {  }
+--
+   0: REGULAR
+   1:    0 ->    3 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    2+24 trueControlFlow
+   4:    3 ->    2 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    2+24 ->    4 trueControlFlow
+--
+   0: PriceCode( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    4 ->    3 trueControlFlow
+--
+   0: getPriceCode( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 fallThroughFlow
+   3:    1 ->    3 trueControlFlow
+   4:    3 ->    2 trueControlFlow
+--
+   0: priceCode
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: CHILDRENS
+   1:    0 ->    3 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    2+17 trueControlFlow
+   4:    3 ->    2 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    2+17 ->    4 trueControlFlow
+--
+   0: NEW_RELEASE
+   1:    0 ->    3 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    2+31 trueControlFlow
+   4:    3 ->    2 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    2+31 ->    4 trueControlFlow
+--
+

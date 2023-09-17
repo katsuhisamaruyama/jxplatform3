@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -25,24 +25,23 @@ public class SrcModelGeneratorSample {
     final static String SAMPLE_PROJECT_DIR = new File(".").getAbsoluteFile().getParent() + "/sample_project";
     
     public static void main(String[] args) {
-        SrcModelGeneratorSample generator = new SrcModelGeneratorSample();
-        generator.run(SrcModelGeneratorSample.SAMPLE_PROJECT_DIR);
+        run("sample", SAMPLE_PROJECT_DIR);
     }
     
-    private void run(String path) {
+    private static void run(String name, String target) {
         ModelBuilderBatch builder = new ModelBuilderBatch();
         builder.analyzeBytecode(true);
         builder.useCache(true);
         builder.setConsoleVisible(true);
         
-        String name = path;
-        List<JavaProject> jprojects = builder.build(name, path);
+        List<JavaProject> jprojects = builder.build(name, target);
         
         List<JavaFile> files = jprojects.stream().flatMap(p -> p.getFiles().stream()).collect(Collectors.toList());
         List<JavaClass> classes = jprojects.stream().flatMap(p -> p.getClasses().stream()).collect(Collectors.toList());
         List<JavaMethod> methods = classes.stream().flatMap(p -> p.getMethods().stream()).collect(Collectors.toList());
         List<JavaField> fields = classes.stream().flatMap(p -> p.getFields().stream()).collect(Collectors.toList());
         
+        System.out.println("#jprojects = " + jprojects.size());
         System.out.println("#files = " + files.size());
         System.out.println("#classes = " + classes.size());
         System.out.println("#methods = " + methods.size());
