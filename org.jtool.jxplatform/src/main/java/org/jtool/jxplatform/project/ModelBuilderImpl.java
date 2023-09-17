@@ -330,7 +330,7 @@ public class ModelBuilderImpl {
         
         try {
             ASTParser parser = getParser(jproject);
-            parser.setEnvironment(jproject.getClassPath(), null, null, true);
+            parser.setEnvironment(jproject.getClassPath(), jproject.getSourcePath(), null, true);
             parser.createASTs(paths, encodings, new String[]{ }, requestor, null);
         } catch (IllegalArgumentException | IllegalStateException e) {
             /* Skip parsing */
