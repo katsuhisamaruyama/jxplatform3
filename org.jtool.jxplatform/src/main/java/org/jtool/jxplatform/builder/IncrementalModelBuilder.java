@@ -322,9 +322,6 @@ public class IncrementalModelBuilder extends ModelBuilder {
                     
                     if (jfile == null) {
                         addedFiles.add(pathname);
-                        
-                        System.out.println("ADD = " + pathname);
-                        
                     } else {
                         ZonedDateTime jfileTime = jfile.getCreatedTime();
                         FileTime fileTimeOnFileSystem = Files.getLastModifiedTime(file.toPath());
