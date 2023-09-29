@@ -5,12 +5,18 @@
 
 package org.jtool.jxplatform.project;
 
+import org.eclipse.jdt.core.JavaCore;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
@@ -53,11 +59,32 @@ class AntEnv extends ProjectEnv {
         parser.postProcess();
         
         sourcePaths = parser.srcpath;
+        if (sourcePaths.isEmpty()) {
+            if (basePath.resolve(DEFAULT_SOURCEPATH).toFile().exists()) {
+                sourcePaths.add(basePath.resolve(DEFAULT_SOURCEPATH).toString());
+            }
+        }
         binaryPaths = parser.binpath;
+        if (binaryPaths.isEmpty()) {
+            if (basePath.resolve(DEFAULT_BINARYPATH).toFile().exists()) {
+                binaryPaths.add(basePath.resolve(DEFAULT_BINARYPATH).toString());
+            }
+        }
         classPaths = parser.classpath;
+        if (classPaths.isEmpty()) {
+            if (basePath.resolve(DEFAULT_CLASSPATH).toFile().exists()) {
+                classPaths.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
+            }
+        }
         
         compilerSourceVersion = parser.properties.get("javac.source");
+        if (compilerSourceVersion == null) {
+            compilerSourceVersion = JavaCore.VERSION_11;
+        }
         compilerTargetVersion = parser.properties.get("javac.target");
+        if (compilerTargetVersion == null) {
+            compilerTargetVersion = JavaCore.VERSION_11;
+        }
     }
     
     private class ConfigParser extends DefaultHandler {
@@ -147,7 +174,7 @@ class AntEnv extends ProjectEnv {
                 } else {
                     return defaultValue;
                 }
-                beginIndex = value.indexOf("${", 0);
+                beginIndex = value.indexOf("${", endIndex);
             }
             return value;
         }
@@ -162,6 +189,23 @@ class AntEnv extends ProjectEnv {
             
             classpath.add(basePath.resolve(DEFAULT_CLASSPATH).toString());
             classpath.add(libPath.toString());
+        }
+    }
+    
+    @Override
+    void setUpTopProject() throws Exception {
+        collectModules();
+        super.setUpTopProject();
+    }
+    
+    private void collectModules() {
+        try (Stream<Path> stream = Files.list(basePath)) {
+            modules = stream.map(p -> p.resolve(Paths.get(AntEnv.configName)).toFile())
+                            .filter(f -> f.exists())
+                            .map(f -> f.getParent())
+                            .collect(Collectors.toList());
+        } catch (IOException e) {
+            modules = new ArrayList<>();
         }
     }
     
