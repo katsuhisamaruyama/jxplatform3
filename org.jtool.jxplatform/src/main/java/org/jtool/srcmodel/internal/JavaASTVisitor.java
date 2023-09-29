@@ -64,6 +64,9 @@ public class JavaASTVisitor extends ASTVisitor {
             createClass(jclass);
             return true;
         } catch (JavaElementException e) {
+            JavaClass jclass = new DummyJavaClass();
+            outerClasses.push(jclass);
+            
             jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
             return false;
         }
@@ -100,6 +103,9 @@ public class JavaASTVisitor extends ASTVisitor {
             createClass(jclass);
             return true;
         } catch (JavaElementException e) {
+            JavaClass jclass = new DummyJavaClass();
+            outerClasses.push(jclass);
+            
             jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
             return false;
         }
@@ -117,6 +123,9 @@ public class JavaASTVisitor extends ASTVisitor {
             createClass(jclass);
             return true;
         } catch (JavaElementException e) {
+            JavaClass jclass = new DummyJavaClass();
+            outerClasses.push(jclass);
+            
             jfile.getJavaProject().getModelBuilderImpl().printCreationError(e.getMessage());
             return false;
         }
