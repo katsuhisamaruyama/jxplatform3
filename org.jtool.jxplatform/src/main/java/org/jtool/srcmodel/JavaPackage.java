@@ -113,8 +113,8 @@ public class JavaPackage {
         if (jpackage == null) {
             jpackage = new JavaPackage(null, name);
             jproject.addPackage(jpackage);
+            jpackage.inProject = false;
         }
-        jpackage.inProject = false;
         return jpackage;
     }
     
