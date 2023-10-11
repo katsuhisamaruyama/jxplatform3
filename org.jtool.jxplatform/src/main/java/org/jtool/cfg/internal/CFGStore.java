@@ -53,7 +53,6 @@ public class CFGStore {
         cfgs.clear();
         ucfgs.clear();
         ccfgs.clear();
-        updateBCStore();
     }
     
     public void cleanup() {
@@ -80,7 +79,7 @@ public class CFGStore {
         bcStore.create();
     }
     
-    private void updateBCStore() {
+    public void updateBCStore() {
         if (bcStore == null) {
             createBCStore();
         } else {
