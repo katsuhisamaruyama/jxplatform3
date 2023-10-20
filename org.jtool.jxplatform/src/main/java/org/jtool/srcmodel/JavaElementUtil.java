@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -35,12 +35,12 @@ public class JavaElementUtil {
         }
         
         String className = tbinding.getQualifiedName();
-        if (className.length() != 0) {
+        if (className != null && className.length() != 0) {
             return new QualifiedName(className, "");
         }
         
         className = tbinding.getBinaryName();
-        if (className.length() != 0) {
+        if (className != null && className.length() != 0) {
             return new QualifiedName(className, "");
         }
         

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -250,7 +250,16 @@ public class JavaPackage {
      * Collects packages containing classes that are used by classes belonging to this package.
      */
     private void collectEfferentPackages() {
-        for (JavaClass jclass : classes) {
+        Set<JavaClass> alreadyCollected = new HashSet<>();
+        while (true) {
+            List<JavaClass> copy = new ArrayList<>(classes);
+            copy.removeAll(alreadyCollected);
+            if (copy.size() == 0) {
+                break;
+            }
+            JavaClass jclass = copy.get(0);
+            alreadyCollected.add(jclass);
+            
             for (JavaClass jc : jclass.getEfferentClasses()) {
                 JavaPackage jpackage = jc.getPackage();
                 if (jpackage != null && !jpackage.equals(this)) {
@@ -280,7 +289,16 @@ public class JavaPackage {
      * Collects packages containing classes that use classes belonging to this package.
      */
     private void collectAfferentPackages() {
-        for (JavaClass jclass : classes) {
+        Set<JavaClass> alreadyCollected = new HashSet<>();
+        while (true) {
+            List<JavaClass> copy = new ArrayList<>(classes);
+            copy.removeAll(alreadyCollected);
+            if (copy.size() == 0) {
+                break;
+            }
+            JavaClass jclass = copy.get(0);
+            alreadyCollected.add(jclass);
+            
             for (JavaClass jc : jclass.getAfferentClasses()) {
                 JavaPackage jpackage = jc.getPackage();
                 if (jpackage != null && !jpackage.equals(this)) {
