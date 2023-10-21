@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -487,6 +487,10 @@ public class JavaProject {
      * @param classes the collection of the dependent classes
      */
     private void collectClassesDependingOn(JavaClass jclass, Set<JavaClass> classes) {
+        if (classes.contains(jclass)) {
+            return;
+        }
+        
         if (jclass != null && getClass(jclass.getQualifiedName().fqn()) != null) {
             for (JavaClass jc : jclass.getAncestors()) {
                 if (jc.isInProject() && !classes.contains(jc)) {
