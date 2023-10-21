@@ -41,11 +41,6 @@ public class IncrementalModelBuilder extends ModelBuilder {
     protected List<JavaProject> jprojects;
     
     /**
-     * The collection of files whose contents are obsolete.
-     */
-    protected Set<JavaFile> obsoleteFiles = new HashSet<>();
-    
-    /**
      * The collection of files that are added.
      */
     protected Set<FilePath> addedFiles = new HashSet<>();
@@ -54,6 +49,11 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * The collection of files that are removed.
      */
     protected Set<JavaFile> removedFiles = new HashSet<>();
+    
+    /**
+     * The collection of files that are updated.
+     */
+    protected Set<JavaFile> updatedFiles = new HashSet<>();
     
     /**
      * Creates an incremental-mode model builder.
@@ -82,15 +82,22 @@ public class IncrementalModelBuilder extends ModelBuilder {
     }
     
     /**
+     * Clear the records of changed files.
+     */
+    public void clearFiles() {
+        addedFiles.clear();
+        removedFiles.clear();
+        updatedFiles.clear();
+    }
+    
+    /**
      * Builds a source code model for target projects.
      * @param name the name of the created model
      * @param target the directory storing the target project
      * @return the created project data
      */
     public JavaProject build(String name, String target) {
-        obsoleteFiles.clear();
-        addedFiles.clear();
-        removedFiles.clear();
+        clearFiles();
         
         JavaProject jproject = super.build(name, target, target);
         jproject.setModelBuilder(this);
@@ -103,9 +110,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
      */
     @Override
     public JavaProject build(String name, String target, String classpath) {
-        obsoleteFiles.clear();
-        addedFiles.clear();
-        removedFiles.clear();
+        clearFiles();
         
         JavaProject jproject = super.build(name, target, classpath, (String)null, (String)null);
         jproject.setModelBuilder(this);
@@ -120,9 +125,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
      */
     @Override
     public JavaProject build(String name, String target, String classpath, String srcpath, String binpath) {
-        obsoleteFiles.clear();
-        addedFiles.clear();
-        removedFiles.clear();
+        clearFiles();
         
         JavaProject jproject = super.build(name, target, classpath, srcpath, binpath);
         jproject.setModelBuilder(this);
@@ -137,9 +140,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
      */
     @Override
     public JavaProject build(String name, String target, String[] classpath, String[] srcpath, String[] binpath) {
-        obsoleteFiles.clear();
-        addedFiles.clear();
-        removedFiles.clear();
+        clearFiles();
         
         JavaProject jproject = super.build(name, target, classpath, srcpath, binpath);
         jproject.setModelBuilder(this);
@@ -189,14 +190,6 @@ public class IncrementalModelBuilder extends ModelBuilder {
     }
     
     /**
-     * Returns the names of files whose contents are obsolete.
-     * @return the collection of the names of the obsolete files
-     */
-    public Set<String> getObsoleteFileNames() {
-        return obsoleteFiles.stream().map(jf -> jf.getPath()).collect(Collectors.toSet());
-    }
-    
-    /**
      * Returns the names of files that were added.
      * @return the collection of the names of the added files
      */
@@ -213,6 +206,34 @@ public class IncrementalModelBuilder extends ModelBuilder {
     }
     
     /**
+     * Returns the names of files that were updated.
+     * @return the collection of the names of the updated files
+     */
+    public Set<String> getUpdatedFileNames() {
+        return updatedFiles.stream().map(jf -> jf.getPath()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Returns the names of files whose contents are obsolete.
+     * @return the collection of the names of the obsolete files
+     */
+    public Set<String> getObsoleteFileNames() {
+        Set<JavaFile> obsoleteFiles = getObsoleteFiles();
+        return obsoleteFiles.stream().map(jf -> jf.getPath()).collect(Collectors.toSet());
+    }
+    
+    /**
+     * Collects files whose contents are obsolete.
+     * @return the collection of the obsolete files
+     */
+    private Set<JavaFile> getObsoleteFiles() {
+        Set<JavaFile> obsoleteFiles = new HashSet<>();
+        removedFiles.forEach(jfile -> obsoleteFiles.addAll(collectDependentFiles(jfile)));
+        updatedFiles.forEach(jfile -> obsoleteFiles.addAll(collectDependentFiles(jfile)));
+        return obsoleteFiles;
+    }
+    
+    /**
      * Collects files depending on a file that was added, removed or updated
      * @param jfile the added, removed or updated file
      * @return the collection of the depending files
@@ -220,7 +241,6 @@ public class IncrementalModelBuilder extends ModelBuilder {
     Set<JavaFile> collectDependentFiles(JavaFile jfile) {
         JavaProject jproject = jfile.getJavaProject();
         Set<JavaFile> files = new HashSet<>();
-        files.add(jfile);
         
         Set<JavaClass> classes = new HashSet<>();
         for (JavaClass jc : jfile.getClasses()) {
@@ -236,9 +256,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * Re-builds a source code model from all files.
      */
     public void rebuild() {
-        obsoleteFiles.clear();
-        addedFiles.clear();
-        removedFiles.clear();
+        clearFiles();
         
         for (JavaProject jproject : jprojects) {
             jproject.getFiles().forEach(jfile -> removeJavaFile(jfile));
@@ -252,21 +270,25 @@ public class IncrementalModelBuilder extends ModelBuilder {
     /**
      * Builds a source code model based on added and removed files.
      */
-    public void incrementalBuild() {
+    public void incrementalBuildByFileTime() {
         collectFilesByFileTime();
+        incrementalBuild();
+    }
+    /**
+     * Builds a source code model based on added and removed files.
+     */
+    public void incrementalBuild() {
+        Set<JavaFile> obsoleteFiles = getObsoleteFiles();
         
         Multimap<JavaProject, File> map = HashMultimap.create();
-        obsoleteFiles.forEach(jfile -> map.put(jfile.getJavaProject(), new File(jfile.getPath())));
         addedFiles.forEach(filepath-> map.put(filepath.jproject, filepath.path.toFile()));
+        updatedFiles.forEach(jfile ->  map.put(jfile.getJavaProject(), new File(jfile.getPath())));
+        obsoleteFiles.forEach(jfile ->  map.put(jfile.getJavaProject(), new File(jfile.getPath())));
         Map<JavaProject, Collection<File>> fmap = map.asMap();
         
-        obsoleteFiles.forEach(jfile -> removeJavaFile(jfile));
         removedFiles.forEach(jfile -> removeJavaFile(jfile));
-        
-        for (JavaProject jproject : fmap.keySet()) {
-            List<File> sourceFiles = new ArrayList<File>(new HashSet<>(fmap.get(jproject)));
-            builderImpl.parseFile(jproject, sourceFiles);
-        }
+        updatedFiles.forEach(jfile -> removeJavaFile(jfile));
+        obsoleteFiles.forEach(jfile -> removeJavaFile(jfile));
         
         for (JavaProject jproject : fmap.keySet()) {
             List<File> sourceFiles = new ArrayList<File>(new HashSet<>(fmap.get(jproject)));
@@ -274,14 +296,19 @@ public class IncrementalModelBuilder extends ModelBuilder {
                     .map(file -> jproject.getFile(file.getPath()))
                     .filter(jfile -> jfile != null)
                     .flatMap(jfile -> jfile.getClasses().stream()).collect(Collectors.toList());
+            
+            builderImpl.parseFile(jproject, sourceFiles);
             builderImpl.collectInfo(jproject, classes);
         }
+        
+        clearFiles();
     }
     
     /**
      * Disposes the created models.
      */
     public void unbuild() {
+        clearFiles();
         builderImpl.unbuild();
     }
     
@@ -289,7 +316,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * Removes a file and its contents.
      * @param jfile the file to be removed
      */
-    void removeJavaFile(JavaFile jfile) {
+   private  void removeJavaFile(JavaFile jfile) {
         JavaProject jproject = jfile.getJavaProject();
         for (JavaClass jc : jfile.getClasses()) {
             jproject.removeClass(jc);
@@ -344,7 +371,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * @param jproject a project that contains the added file
      * @param pathname the path name of the added file
      */
-    void addFile(JavaProject jproject, String pathname) {
+    public void addFile(JavaProject jproject, String pathname) {
         if (ModelBuilderImpl.isCompilableJavaFile(pathname)) {
             File file = new File(pathname);
             if (file.isFile()) {
@@ -352,7 +379,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
                 if (jfile == null) {
                     addedFiles.add(new FilePath(jproject, file.toPath()));
                 } else {
-                    obsoleteFiles.addAll(collectDependentFiles(jfile));
+                    updatedFiles.add(jfile);
                 }
             }
         }
@@ -363,7 +390,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * @param jproject a project that contains the added files
      * @param pathnames the collection of path names of the added files
      */
-    void addFiles(JavaProject jproject, Set<String> pathnames) {
+    public void addFiles(JavaProject jproject, Set<String> pathnames) {
         pathnames.forEach(pathname -> addFile(jproject, pathname));
     }
     
@@ -372,13 +399,11 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * @param jproject a project that contains the removed file
      * @param pathname the path name of the removed file
      */
-    void removeFile(JavaProject jproject, String pathname) {
+    public void removeFile(JavaProject jproject, String pathname) {
         File file = new File(pathname);
         if (!file.exists()) {
             JavaFile jfile = jproject.getFile(pathname);
             if (jfile != null) {
-                obsoleteFiles.addAll(collectDependentFiles(jfile));
-                obsoleteFiles.remove(jfile);
                 removedFiles.add(jfile);
             }
         }
@@ -389,7 +414,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * @param jproject a project that contains the removed files
      * @param pathnames the collection of path names of the removed files
      */
-    void removeFiles(JavaProject jproject, Set<String> pathnames) {
+    public void removeFiles(JavaProject jproject, Set<String> pathnames) {
         pathnames.forEach(pathname -> removeFile(jproject, pathname));
     }
     
@@ -398,10 +423,10 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * @param jproject a project that contains the updated file
      * @param pathname the path name of the updated file
      */
-    void updateFile(JavaProject jproject, String pathname) {
+    public void updateFile(JavaProject jproject, String pathname) {
         JavaFile jfile = jproject.getFile(pathname);
         if (jfile != null) {
-            obsoleteFiles.addAll(collectDependentFiles(jfile));
+            updatedFiles.add(jfile);
         }
     }
     
@@ -410,7 +435,7 @@ public class IncrementalModelBuilder extends ModelBuilder {
      * @param jproject a project that contains the updated files
      * @param pathnames the collection of path names of the updated files
      */
-    void updateFiles(JavaProject jproject, Set<String> pathnames) {
+    public void updateFiles(JavaProject jproject, Set<String> pathnames) {
         pathnames.forEach(pathname -> updateFile(jproject, pathname));
     }
     
