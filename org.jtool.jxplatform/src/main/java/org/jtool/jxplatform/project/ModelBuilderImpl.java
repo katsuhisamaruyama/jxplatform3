@@ -452,6 +452,7 @@ public class ModelBuilderImpl {
     
     public void setConsoleVisible(boolean visible) {
         this.visible = visible;
+        this.monitor = getConsoleProgressMonitor();
     }
     
     public boolean isConsoleVisible() {
