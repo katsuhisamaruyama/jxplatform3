@@ -27,7 +27,6 @@ import org.junit.runners.Suite;
     org.jtool.pdg.PDGNodeTest.class,
     org.jtool.pdg.PDGStatementTest.class,
     org.jtool.pdg.PDGTest.class,
-    
     org.jtool.pdg.SDGTest.class,
 })
 public class AllPDGTests {

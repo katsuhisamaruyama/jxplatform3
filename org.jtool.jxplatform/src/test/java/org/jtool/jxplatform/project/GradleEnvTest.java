@@ -101,9 +101,8 @@ public class GradleEnvTest {
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getBinaryPaths());
-        assertEquals(2, paths.size());
-        assertEquals(BuilderTestUtil.commonPath(target + "/bin/main"), paths.get(0));
-        assertEquals(BuilderTestUtil.commonPath(target + "/bin/test"), paths.get(1));
+        assertEquals(1, paths.size());
+        assertEquals(BuilderTestUtil.commonPath(target + "/bin"), paths.get(0));
     }
     
     @Test
@@ -154,7 +153,7 @@ public class GradleEnvTest {
         ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals("1.8", env.getCompilerSourceVersion());
+        assertEquals("11", env.getCompilerSourceVersion());
     }
     
     @Test
@@ -166,6 +165,6 @@ public class GradleEnvTest {
         ProjectEnv env = new GradleEnv(name, basePath, basePath);
         assertTrue(env.isApplicable());
         
-        assertEquals("1.8", env.getCompilerTargetVersion());
+        assertEquals("11", env.getCompilerTargetVersion());
     }
 }

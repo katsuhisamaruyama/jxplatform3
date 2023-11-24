@@ -86,9 +86,8 @@ public class SimpleEnvTest {
         assertTrue(env.isApplicable());
         
         List<String> paths = TestUtil.asSortedList(env.getSourcePaths());
-        assertEquals(2, paths.size());
+        assertEquals(1, paths.size());
         assertEquals(BuilderTestUtil.commonPath(target), paths.get(0));
-        assertEquals(BuilderTestUtil.commonPath(target + "/src"), paths.get(1));
     }
     
     @Test

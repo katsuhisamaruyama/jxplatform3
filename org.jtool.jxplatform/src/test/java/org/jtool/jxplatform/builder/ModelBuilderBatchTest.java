@@ -227,8 +227,8 @@ public class ModelBuilderBatchTest {
         assertEquals(4, projects.get(1).getClasses().size());
         assertEquals(320, projects.get(2).getFiles().size());
         assertEquals(1015, projects.get(2).getClasses().size());
-        assertEquals(489, projects.get(3).getFiles().size());
-        assertEquals(3251, projects.get(3).getClasses().size());
+        assertEquals(556, projects.get(3).getFiles().size());
+        assertEquals(3476, projects.get(3).getClasses().size());
         
         builder.unbuild();
         BuilderTestUtil.clearProject();

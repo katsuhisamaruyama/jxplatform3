@@ -205,15 +205,12 @@ public class JavaProjectTest {
         List<String> result = TetrisProject.getPackages().stream()
                 .map(JavaPackage::getName).collect(Collectors.toList());
         
-        assertEquals(9, result.size());
+        assertEquals(6, result.size());
         assertEquals("(default);"
                    + "java.awt;"
                    + "java.awt.event;"
-                   + "java.awt.image;"
-                   + "java.io;"
                    + "java.lang;"
                    + "java.util;"
-                   + "javax.accessibility;"
                    + "javax.swing",
             TestUtil.asSortedStr(result));
     }
@@ -392,9 +389,8 @@ public class JavaProjectTest {
         JavaClass jc = TetrisProject.getClass("Block");
         Set<JavaClass> result = TetrisProject.collectClassesDependingOn(jc);
         
-        assertEquals(11, result.size());
-        assertEquals("Block;"
-                   + "BlueBlock;"
+        assertEquals(10, result.size());
+        assertEquals("BlueBlock;"
                    + "CyanBlock;"
                    + "GameInfo;"
                    + "GreenBlock;"

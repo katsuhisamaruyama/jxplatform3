@@ -20,20 +20,18 @@ import org.junit.runners.Suite;
     org.jtool.srcmodel.JavaFileTest.class,
     org.jtool.srcmodel.JavaLocalVarTest.class,
     org.jtool.srcmodel.JavaMethodTest.class,
+    org.jtool.srcmodel.JavaPackageTest.class,
+    org.jtool.srcmodel.JavaProjectTest.class,
     
     org.jtool.srcmodel.internal.FieldAccessCollectorTest.class,
     org.jtool.srcmodel.internal.FieldInitializerCollectorTest.class,
     org.jtool.srcmodel.internal.LambdaCollectorTest.class,
     org.jtool.srcmodel.internal.LocalDeclarationCollectorTest.class,
     org.jtool.srcmodel.internal.MethodCallCollectorTest.class,
+    org.jtool.srcmodel.internal.ProjectStoreTest.class,
     org.jtool.srcmodel.internal.StatementCollectorTest.class,
     org.jtool.srcmodel.internal.TypeCollectorTest.class,
     org.jtool.srcmodel.internal.UncaughtExceptionTypeCollectorTest.class,
-    
-    org.jtool.srcmodel.JavaPackageTest.class,
-    org.jtool.srcmodel.JavaProjectTest.class,
-    
-    org.jtool.srcmodel.internal.ProjectStoreTest.class,
 })
 public class AllSrcTests {
     
