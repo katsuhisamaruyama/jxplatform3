@@ -19,6 +19,8 @@ import org.jtool.pdg.ClDG;
 import org.jtool.pdg.PDG;
 import org.jtool.pdg.SDG;
 import org.jtool.pdg.DependencyGraph;
+
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -92,6 +94,16 @@ public abstract class ModelBuilder {
      */
     public boolean useCache() {
         return builderImpl.useCache();
+    }
+    
+    /**
+     * Builds a source code model for target projects.
+     * @param name the name of the created model
+     * @param target the directory storing the target projects
+     * @return the collection of created project data
+     */
+    public List<JavaProject> build(String name, String target) {
+        return builderImpl.build(this, name, target);
     }
     
     /**

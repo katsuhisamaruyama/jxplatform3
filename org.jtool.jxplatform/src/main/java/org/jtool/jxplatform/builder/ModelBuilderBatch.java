@@ -1,13 +1,11 @@
 /*
- *  Copyright 2022
+ *  Copyright 2022-2023
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 package org.jtool.jxplatform.builder;
 
-import org.jtool.srcmodel.JavaProject;
 import org.jtool.jxplatform.project.ModelBuilderBatchImpl;
-import java.util.List;
 
 /**
  * A batch processing builder that builds models from Java source code.
@@ -41,15 +39,5 @@ public class ModelBuilderBatch extends ModelBuilder {
      */
     public ModelBuilderBatch() {
         this(true, true);
-    }
-    
-    /**
-     * Builds a source code model for target projects.
-     * @param name the name of the created model
-     * @param target the directory storing the target projects
-     * @return the collection of created project data
-     */
-    public List<JavaProject> build(String name, String target) {
-        return builderImpl.build(this, name, target);
     }
 }

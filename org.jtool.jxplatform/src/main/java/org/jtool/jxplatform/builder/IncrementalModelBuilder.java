@@ -90,19 +90,12 @@ public class IncrementalModelBuilder extends ModelBuilder {
         updatedFiles.clear();
     }
     
-    /**
-     * Builds a source code model for target projects.
-     * @param name the name of the created model
-     * @param target the directory storing the target project
-     * @return the created project data
-     */
-    public JavaProject build(String name, String target) {
+    @Override
+    public List<JavaProject> build(String name, String target) {
         clearFiles();
         
-        JavaProject jproject = super.build(name, target, target);
-        jproject.setModelBuilder(this);
-        jprojects.add(jproject);
-        return jproject;
+        jprojects = super.build(name, target);
+        return jprojects;
     }
     
     /**

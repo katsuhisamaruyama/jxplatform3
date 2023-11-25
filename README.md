@@ -154,6 +154,7 @@ The following two model builders are prepared.
 The both builder provides simple APIs described as follows:
 
 ```java
+List<JavaProject> build(String name, String target)
 JavaProject build(String name, String target, String classpath)
 JavaProject build(String name, String target, String classpath, String srcpath, String binpath)
 JavaProject build(String name, String target, String[] classpath, String[] srcpath, String[] binpath)
