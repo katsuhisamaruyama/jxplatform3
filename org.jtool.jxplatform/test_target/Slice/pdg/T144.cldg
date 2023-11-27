@@ -1,0 +1,155 @@
+Class Name = T144
+   0 methodEntry [ P144#get( java.lang.String ) ]
+   1 formalIn D = { key$0 } U = {  }
+   2 returnSt D = { $_ } U = { this.map.!get( java.lang.Object ) }
+   3 receiver D = {  } U = { this.map }
+   4 methodCall D = {  } U = { key$0, this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.table } TO = java.util.Map#get( java.lang.Object )
+   5 actualOut D = { this.map.!get( java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.table }
+   7 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ P144#map ]
+   1 fieldDeclaration D = { this.map } U = { java.util.HashMap.!HashMap( ), this.map }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )
+   4 actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
+--
+   0 constructorEntry [ P144#P144( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ T144#T144( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ T144#put( java.lang.String java.lang.String ) ]
+   1 formalIn D = { key$0 } U = {  }
+   2 formalIn D = { value$1 } U = {  }
+   3 assignment D = {  } U = { this.p.!put( java.lang.String java.lang.String ) }
+   4 receiver D = {  } U = { this.p }
+   5 methodCall D = {  } U = { this.p.map, this.p.map.!java.util.HashMap$Node.hash, this.p.map.!java.util.HashMap$Node.key, this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.modCount, this.p.map.!java.util.HashMap.size, this.p.map.!java.util.HashMap.table, this.p.map.!java.util.HashMap.threshold } TO = P144#put( java.lang.String java.lang.String )
+   6 actualIn D = {  } U = { key$0 }
+   7 actualIn D = {  } U = { value$1 }
+   8 actualOut D = { this.p.!put( java.lang.String java.lang.String ), this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.modCount, this.p.map.!java.util.HashMap.size } U = { this.p.map, this.p.map.!java.util.HashMap$Node.hash, this.p.map.!java.util.HashMap$Node.key, this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.modCount, this.p.map.!java.util.HashMap.size, this.p.map.!java.util.HashMap.table, this.p.map.!java.util.HashMap.threshold }
+  10 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ T144#get( java.lang.String ) ]
+   1 formalIn D = { key$0 } U = {  }
+   2 returnSt D = { $_ } U = { this.p.!get( java.lang.String ) }
+   3 receiver D = {  } U = { this.p }
+   4 methodCall D = {  } U = { this.p.map, this.p.map.!java.util.HashMap$Node.hash, this.p.map.!java.util.HashMap$Node.key, this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.table } TO = P144#get( java.lang.String )
+   5 actualIn D = {  } U = { key$0 }
+   6 actualOut D = { this.p.!get( java.lang.String ) } U = { this.p.map, this.p.map.!java.util.HashMap$Node.hash, this.p.map.!java.util.HashMap$Node.key, this.p.map.!java.util.HashMap$Node.next, this.p.map.!java.util.HashMap$Node.value, this.p.map.!java.util.HashMap.table }
+   8 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ P144#put( java.lang.String java.lang.String ) ]
+   1 formalIn D = { key$0 } U = {  }
+   2 formalIn D = { value$1 } U = {  }
+   3 assignment D = {  } U = { this.map.!put( java.lang.Object java.lang.Object ) }
+   4 receiver D = {  } U = { this.map }
+   5 methodCall D = {  } U = { key$0, this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!java.util.HashMap.table, this.map.!java.util.HashMap.threshold, value$1 } TO = java.util.Map#put( java.lang.Object java.lang.Object )
+   6 actualOut D = { this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!put( java.lang.Object java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!java.util.HashMap.table, this.map.!java.util.HashMap.threshold }
+   8 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ T144#p ]
+   1 fieldDeclaration D = { this.p } U = { P144.!P144( ), this.p }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P144#P144( )
+   4 actualOut D = { P144.!P144( ) } U = {  }
+--
+   0: get( java.lang.String )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    7 trueControlDependence
+   7:    1 ->    4 loopIndependentDefUseDependence key$0
+   8:    2 ->    7 loopIndependentDefUseDependence $_
+   9:    5 ->    2 loopIndependentDefUseDependence this.map.!get( java.lang.Object )
+--
+   0: map
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence java.util.HashMap.!HashMap( )
+--
+   0: P144( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: T144( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: put( java.lang.String java.lang.String )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    1 ->    6 loopIndependentDefUseDependence key$0
+  11:    2 ->    7 loopIndependentDefUseDependence value$1
+  12:    8 ->    3 loopIndependentDefUseDependence this.p.!put( java.lang.String java.lang.String )
+--
+   0: get( java.lang.String )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    1 ->    5 loopIndependentDefUseDependence key$0
+   9:    2 ->    8 loopIndependentDefUseDependence $_
+  10:    6 ->    2 loopIndependentDefUseDependence this.p.!get( java.lang.String )
+--
+   0: put( java.lang.String java.lang.String )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    8 trueControlDependence
+   8:    1 ->    5 loopIndependentDefUseDependence key$0
+   9:    2 ->    5 loopIndependentDefUseDependence value$1
+  10:    6 ->    3 loopIndependentDefUseDependence this.map.!put( java.lang.Object java.lang.Object )
+--
+   0: p
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence P144.!P144( )
+--
+   1: 100 -> 101 MEMBER
+   2: 100 -> 104 MEMBER
+   3: 100 -> 113 MEMBER
+   4: 100 -> 119 MEMBER
+   5: 1000 -> 120 PIN
+   6: 1008 -> 975 MEMBER
+   7: 1008 -> 978 MEMBER
+   8: 1008 -> 989 MEMBER
+   9: 1008 -> 995 MEMBER
+  10: 103 -> 993 POUT
+  11: 109 -> 986 CFACC
+  12: 112 -> 986 POUT
+  13: 114 -> 1001 FACC
+  14: 114 -> 108 FACC
+  15: 114 -> 114 FACC
+  16: 114 -> 122 FACC
+  17: 114 -> 983 FACC
+  18: 114 -> 986 FACC
+  19: 114 -> 999 FACC
+  20: 126 -> 1001 POUT
+  21: 983 -> 104 CALL
+  22: 984 -> 105 PIN
+  23: 985 -> 106 PIN
+  24: 990 -> 982 FACC
+  25: 990 -> 990 FACC
+  26: 990 -> 998 FACC
+  27: 992 -> 101 CALL
+  28: 999 -> 119 CALL
+--
+

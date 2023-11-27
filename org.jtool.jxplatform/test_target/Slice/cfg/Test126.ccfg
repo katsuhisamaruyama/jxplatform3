@@ -1,0 +1,120 @@
+Class Name = Test126
+   0 fieldEntry [ Test126#p ]
+   1 fieldDeclaration D = { this.p } U = { this.p }
+   2 fieldExit
+--
+   0 constructorEntry [ Test126#Test126( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test126#m( ) ]
+   1 localDeclaration D = { a$0 } U = { A126.!A126( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = A126#A126( )
+   4 actualOut D = { A126.!A126( ) } U = {  }
+   5 localDeclaration D = { p$1 } U = {  }
+   6 assignment D = { a$0.y } U = { A126.!A126( ).y, a$0, a$0.y }
+   7 localDeclaration D = { a2$2 } U = { a$0.!add( int ) }
+   8 receiver D = {  } U = { a$0 }
+   9 methodCall D = {  } U = { A126.!A126( ).y, a$0.y, ret$1.y } TO = A126#add( int )
+  10 actualIn D = {  } U = { p$1 }
+  11 actualOut D = { a$0.!add( int ) } U = { A126.!A126( ).y, a$0.y, ret$1.y }
+  12 assignment D = { a2$2.y } U = { a$0.!add( int ).y, a2$2, a2$2.y }
+  13 localDeclaration D = { q$3 } U = { a2$2.!getY( ) }
+  14 receiver D = {  } U = { a2$2 }
+  15 methodCall D = {  } U = { a$0.!add( int ).y, a2$2.y } TO = A126#getY( )
+  16 actualOut D = { a2$2.!getY( ) } U = { a$0.!add( int ).y, a2$2.y }
+  17 localDeclaration D = { r$4 } U = { a$0.!add( int ).!getY( ) }
+  18 receiver D = {  } U = { a$0.!add( int ) }
+  19 receiver D = {  } U = { a$0 }
+  20 methodCall D = {  } U = { A126.!A126( ).y, a$0.y, ret$1.y } TO = A126#add( int )
+  21 actualIn D = {  } U = { p$1 }
+  22 actualOut D = { a$0.!add( int ) } U = { A126.!A126( ).y, a$0.y, ret$1.y }
+  23 methodCall D = {  } U = { A126.!A126( ).!add( int ).y, a$0.!add( int ).y } TO = A126#getY( )
+  24 actualOut D = { a$0.!add( int ).!getY( ) } U = { A126.!A126( ).!add( int ).y, a$0.!add( int ).y }
+  25 localDeclaration D = { a3$5 } U = { A126.!A126( ) }
+  26 receiver D = {  } U = {  }
+  27 constructorCall D = {  } U = {  } TO = A126#A126( )
+  28 actualOut D = { A126.!A126( ) } U = {  }
+  29 assignment D = {  } U = { a3$5.!setY( int ) }
+  30 receiver D = {  } U = { a3$5 }
+  31 methodCall D = {  } U = {  } TO = A126#setY( int )
+  32 actualIn D = {  } U = {  }
+  33 actualOut D = { a3$5.!setY( int ) } U = {  }
+  34 localDeclaration D = { s$6 } U = { a3$5.!getY( ) }
+  35 receiver D = {  } U = { a3$5 }
+  36 methodCall D = {  } U = { A126.!A126( ).y, a3$5.y } TO = A126#getY( )
+  37 actualOut D = { a3$5.!getY( ) } U = { A126.!A126( ).y, a3$5.y }
+  38 localDeclaration D = { a4$7 } U = { a$0.!add2( int ) }
+  39 receiver D = {  } U = { a$0 }
+  40 methodCall D = {  } U = { A126.!A126( ).y, a$0.y, ret$1.y } TO = A126#add2( int )
+  41 actualIn D = {  } U = { p$1 }
+  42 actualOut D = { a$0.!add2( int ) } U = { A126.!A126( ).y, a$0.y, ret$1.y }
+  43 localDeclaration D = { t$8 } U = { a$0.!add( int ).y, a2$2, a2$2.y }
+  44 methodExit
+  45 formalOut D = {  } U = { $_ }
+   9+1673 actualOutByFieldAccess D = { a$0.ret$1.y } U = {  }
+  20+1678 actualOutByFieldAccess D = { a$0.ret$1.y } U = {  }
+  31+1679 actualOutByFieldAccess D = { a3$5.y } U = {  }
+  40+1690 actualOutByFieldAccess D = { ret$1.y } U = {  }
+--
+   0: p
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: Test126( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+   0: m( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    6 ->    8 trueControlFlow
+   8:    7 ->   12 trueControlFlow
+   9:    8 ->   10 trueControlFlow
+  10:    9 ->    9+1673 trueControlFlow
+  11:   10 ->    9 trueControlFlow
+  12:   11 ->    7 trueControlFlow
+  13:   12 ->   14 trueControlFlow
+  14:   13 ->   19 trueControlFlow
+  15:   14 ->   15 trueControlFlow
+  16:   15 ->   16 trueControlFlow
+  17:   16 ->   13 trueControlFlow
+  18:   17 ->   26 trueControlFlow
+  19:   18 ->   23 trueControlFlow
+  20:   19 ->   21 trueControlFlow
+  21:   20 ->   20+1678 trueControlFlow
+  22:   21 ->   20 trueControlFlow
+  23:   22 ->   18 trueControlFlow
+  24:   23 ->   24 trueControlFlow
+  25:   24 ->   17 trueControlFlow
+  26:   25 ->   30 trueControlFlow
+  27:   26 ->   27 trueControlFlow
+  28:   27 ->   28 trueControlFlow
+  29:   28 ->   25 trueControlFlow
+  30:   29 ->   35 trueControlFlow
+  31:   30 ->   32 trueControlFlow
+  32:   31 ->   31+1679 trueControlFlow
+  33:   32 ->   31 trueControlFlow
+  34:   33 ->   29 trueControlFlow
+  35:   34 ->   39 trueControlFlow
+  36:   35 ->   36 trueControlFlow
+  37:   36 ->   37 trueControlFlow
+  38:   37 ->   34 trueControlFlow
+  39:   38 ->   43 trueControlFlow
+  40:   39 ->   41 trueControlFlow
+  41:   40 ->   40+1690 trueControlFlow
+  42:   41 ->   40 trueControlFlow
+  43:   42 ->   38 trueControlFlow
+  44:   43 ->   45 trueControlFlow
+  45:   45 ->   44 trueControlFlow
+  46:    9+1673 ->   11 trueControlFlow
+  47:   20+1678 ->   22 trueControlFlow
+  48:   31+1679 ->   33 trueControlFlow
+  49:   40+1690 ->   42 trueControlFlow
+--
+

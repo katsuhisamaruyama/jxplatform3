@@ -1,0 +1,46 @@
+Class Name = A124
+   0 methodEntry [ A124#getX( ) ]
+   1 returnSt D = { $_ } U = { this.x }
+   2 methodExit
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ A124#x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+   2 fieldExit
+--
+   0 methodEntry [ A124#inc( int ) ]
+   1 formalIn D = { y$0 } U = {  }
+   2 returnSt D = { $_ } U = { this.x, y$0 }
+   3 methodExit
+   4 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ A124#A124( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = { this.x } U = { x$0 }
+   3 constructorExit
+   4 formalOut D = {  } U = { $_ }
+--
+   0: getX( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 fallThroughFlow
+   3:    1 ->    3 trueControlFlow
+   4:    3 ->    2 trueControlFlow
+--
+   0: x
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: inc( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 fallThroughFlow
+   4:    2 ->    4 trueControlFlow
+   5:    4 ->    3 trueControlFlow
+--
+   0: A124( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    4 ->    3 trueControlFlow
+--
+

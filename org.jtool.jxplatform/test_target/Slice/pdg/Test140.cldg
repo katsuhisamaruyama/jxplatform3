@@ -1,0 +1,41 @@
+Class Name = Test140
+   0 fieldEntry [ Test140#x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+--
+   0 constructorEntry [ Test140#Test140( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = { this.x } U = { x$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test140#m( ) ]
+   1 assignment D = {  } U = { this.!m( ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = {  } TO = Test140#m( )
+   4 actualOut D = { this.!m( ) } U = {  }
+   6 formalOut D = {  } U = { $_ }
+--
+   0: x
+   1:    0 ->    1 trueControlDependence
+--
+   0: Test140( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence x$0
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    4 ->    1 loopIndependentDefUseDependence this.!m( )
+--
+   1: 1126 -> 1127 MEMBER
+   2: 1126 -> 1132 MEMBER
+   3: 1126 -> 1139 MEMBER
+   4: 1135 -> 1132 CALL
+   5: 1138 -> 1136 POUT
+   6: 1140 -> 1140 FACC
+--
+

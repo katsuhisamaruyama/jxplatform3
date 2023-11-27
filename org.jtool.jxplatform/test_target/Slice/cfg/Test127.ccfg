@@ -1,0 +1,58 @@
+Class Name = Test127
+   0 fieldEntry [ Test127#p ]
+   1 fieldDeclaration D = { this.p } U = { this.p }
+   2 fieldExit
+--
+   0 constructorEntry [ Test127#Test127( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test127#m( ) ]
+   1 localDeclaration D = { a$0 } U = { A127.!A127( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = A127#A127( )
+   4 actualOut D = { A127.!A127( ) } U = {  }
+   5 assignment D = {  } U = { a$0.!setY( int ) }
+   6 receiver D = {  } U = { a$0 }
+   7 methodCall D = {  } U = {  } TO = A127#setY( int )
+   8 actualIn D = {  } U = {  }
+   9 actualOut D = { a$0.!setY( int ) } U = {  }
+  10 assignment D = { A127.z } U = {  }
+  11 localDeclaration D = { p$1 } U = { a$0.!getY( ) }
+  12 receiver D = {  } U = { a$0 }
+  13 methodCall D = {  } U = { A127.!A127( ).y, a$0.y } TO = A127#getY( )
+  14 actualOut D = { a$0.!getY( ) } U = { A127.!A127( ).y, a$0.y }
+  15 localDeclaration D = { q$2 } U = { A127.z }
+  16 methodExit
+  17 formalOut D = {  } U = { $_ }
+   7+1461 actualOutByFieldAccess D = { a$0.y } U = {  }
+--
+   0: p
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: Test127( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+   0: m( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+   6:    5 ->   10 trueControlFlow
+   7:    6 ->    8 trueControlFlow
+   8:    7 ->    7+1461 trueControlFlow
+   9:    8 ->    7 trueControlFlow
+  10:    9 ->    5 trueControlFlow
+  11:   10 ->   12 trueControlFlow
+  12:   11 ->   15 trueControlFlow
+  13:   12 ->   13 trueControlFlow
+  14:   13 ->   14 trueControlFlow
+  15:   14 ->   11 trueControlFlow
+  16:   15 ->   17 trueControlFlow
+  17:   17 ->   16 trueControlFlow
+  18:    7+1461 ->    9 trueControlFlow
+--
+

@@ -1,0 +1,115 @@
+Class Name = Test130
+   0 constructorEntry [ Test130#Test130( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ S130#getX( ) ]
+   1 returnSt D = { $_ } U = { this.x }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test130#n( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 returnSt D = { $_ } U = { S130.!S130( int ), S130.!S130( int ).x }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = S130#S130( int )
+   5 actualIn D = {  } U = { x$0 }
+   6 actualOut D = { S130.!S130( int ) } U = {  }
+   8 formalOut D = {  } U = { $_ }
+   4+1971 actualOutByFieldAccess D = { S130.!S130( int ).x } U = {  }
+--
+   0 fieldEntry [ S130#x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+--
+   0 constructorEntry [ S130#S130( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = { this.x } U = { x$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test130#m( ) ]
+   1 localDeclaration D = { p$0 } U = {  }
+   2 localDeclaration D = { q$1 } U = { this.!n( int ).!getX( ) }
+   3 receiver D = {  } U = { this.!n( int ) }
+   4 receiver D = {  } U = {  }
+   5 methodCall D = {  } U = {  } TO = Test130#n( int )
+   6 actualIn D = {  } U = {  }
+   7 actualOut D = { this.!n( int ) } U = {  }
+   8 methodCall D = {  } U = { this.!n( int ).x } TO = S130#getX( )
+   9 actualOut D = { this.!n( int ).!getX( ) } U = { this.!n( int ).x }
+  10 localDeclaration D = { r$2 } U = { q$1 }
+  12 formalOut D = {  } U = { $_ }
+   5+1976 actualOutByFieldAccess D = { this.!n( int ).x } U = {  }
+--
+   0: Test130( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: getX( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: n( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    4+1971 trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    1 ->    5 loopIndependentDefUseDependence x$0
+  10:    2 ->    8 loopIndependentDefUseDependence $_
+  11:    4+1971 ->    2 loopIndependentDefUseDependence S130.!S130( int ).x
+  12:    6 ->    2 loopIndependentDefUseDependence S130.!S130( int )
+--
+   0: x
+   1:    0 ->    1 trueControlDependence
+--
+   0: S130( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence x$0
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    5+1976 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    2 ->   10 declaration
+  14:    2 ->   10 loopIndependentDefUseDependence q$1
+  15:    5+1976 ->    8 loopIndependentDefUseDependence this.!n( int ).x
+  16:    5+1976 ->    9 loopIndependentDefUseDependence this.!n( int ).x
+  17:    7 ->    3 loopIndependentDefUseDependence this.!n( int )
+  18:    9 ->    2 loopIndependentDefUseDependence this.!n( int ).!getX( )
+--
+   1: 1940 -> 1941 MEMBER
+   2: 1940 -> 1944 MEMBER
+   3: 1940 -> 1957 MEMBER
+   4: 1949 -> 1957 CALL
+   5: 1950 -> 1958 PIN
+   6: 1952 -> 1977 CALL
+   7: 1961 -> 1966 CALL
+   8: 1961 -> 1976 CFACC
+   9: 1962 -> 1967 PIN
+  10: 1965 -> 1951 POUT
+  11: 1968 -> 1971 CFACC
+  12: 1968 -> 1976 CFACC
+  13: 1970 -> 1963 POUT
+  14: 1980 -> 1953 POUT
+  15: 1981 -> 1966 MEMBER
+  16: 1981 -> 1977 MEMBER
+  17: 1981 -> 1982 MEMBER
+  18: 1983 -> 1952 FACC
+  19: 1983 -> 1953 FACC
+  20: 1983 -> 1959 FACC
+  21: 1983 -> 1978 FACC
+  22: 1983 -> 1983 FACC
+--
+

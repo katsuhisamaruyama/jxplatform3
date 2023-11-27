@@ -1,0 +1,70 @@
+Class Name = Test106
+   0 methodEntry [ Test106#setA( int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 assignment D = { this.a } U = { a$0 }
+   3 returnSt D = { $_ } U = { a$0 }
+   5 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Test106#a ]
+   1 fieldDeclaration D = { this.a } U = { this.a }
+--
+   0 methodEntry [ Test106#m( ) ]
+   1 localDeclaration D = { x$0 } U = {  }
+   2 assignment D = { x$0 } U = { this.!setA( int ) }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = Test106#setA( int )
+   5 actualIn D = {  } U = {  }
+   6 actualOut D = { this.!setA( int ) } U = {  }
+   7 localDeclaration D = { y$1 } U = { x$0 }
+   8 localDeclaration D = { z$2 } U = { this.a }
+  10 formalOut D = {  } U = { $_ }
+   4+2566 actualOutByFieldAccess D = { this.a } U = {  }
+--
+   0 constructorEntry [ Test106#Test106( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: setA( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    5 trueControlDependence
+   5:    1 ->    2 loopIndependentDefUseDependence a$0
+   6:    1 ->    3 loopIndependentDefUseDependence a$0
+   7:    3 ->    5 loopIndependentDefUseDependence $_
+--
+   0: a
+   1:    0 ->    1 trueControlDependence
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    4+2566 trueControlDependence
+   6:    0 ->    5 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    1 ->    2 declaration
+  12:    1 ->    2 outputDependence x$0
+  13:    1 ->    7 declaration
+  14:    2 ->    7 loopIndependentDefUseDependence x$0
+  15:    4+2566 ->    8 loopIndependentDefUseDependence this.a
+  16:    6 ->    2 loopIndependentDefUseDependence this.!setA( int )
+--
+   0: Test106( )
+   1:    0 ->    2 trueControlDependence
+--
+   1: 2545 -> 2546 MEMBER
+   2: 2545 -> 2549 MEMBER
+   3: 2545 -> 2560 MEMBER
+   4: 2545 -> 2567 MEMBER
+   5: 2553 -> 2560 CALL
+   6: 2554 -> 2561 PIN
+   7: 2562 -> 2566 CFACC
+   8: 2565 -> 2555 POUT
+   9: 2568 -> 2557 FACC
+  10: 2568 -> 2568 FACC
+--
+

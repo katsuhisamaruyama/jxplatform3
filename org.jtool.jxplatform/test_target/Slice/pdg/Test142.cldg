@@ -1,0 +1,171 @@
+Class Name = Test142
+   0 constructorEntry [ P142#P142( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ P142#getKey( ) ]
+   1 returnSt D = { $_ } U = { this.key }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ P142#key ]
+   1 fieldDeclaration D = { this.key } U = { this.key }
+--
+   0 fieldEntry [ P142#value ]
+   1 fieldDeclaration D = { this.value } U = { this.value }
+--
+   0 constructorEntry [ Test142#Test142( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ P142#set( java.lang.String java.lang.String ) ]
+   1 formalIn D = { key$0 } U = {  }
+   2 formalIn D = { value$1 } U = {  }
+   3 assignment D = { this.key } U = { key$0 }
+   4 assignment D = { this.value } U = { value$1 }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ P142#getValue( ) ]
+   1 ifSt D = {  } U = { this.key.!equals( java.lang.Object ) }
+   2 receiver D = {  } U = { this.key }
+   3 methodCall D = {  } U = { this.key, this.key.!java.lang.String.COMPACT_STRINGS, this.key.!java.lang.String.coder, this.key.!java.lang.String.value } TO = java.lang.String#equals( java.lang.Object )
+   4 actualOut D = { this.key.!equals( java.lang.Object ) } U = { this.key.!java.lang.String.COMPACT_STRINGS, this.key.!java.lang.String.coder, this.key.!java.lang.String.value }
+   5 returnSt D = { $_ } U = { this.value }
+   7 returnSt D = { $_ } U = {  }
+   9 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test142#m( ) ]
+   1 assignment D = {  } U = { this.p.!set( java.lang.String java.lang.String ) }
+   2 receiver D = {  } U = { this.p }
+   3 methodCall D = {  } U = {  } TO = P142#set( java.lang.String java.lang.String )
+   4 actualIn D = {  } U = { $java.lang.String }
+   5 actualIn D = {  } U = { $java.lang.String }
+   6 actualOut D = { this.p.!set( java.lang.String java.lang.String ) } U = {  }
+   7 localDeclaration D = { k$0 } U = { this.p.!getKey( ) }
+   8 receiver D = {  } U = { this.p }
+   9 methodCall D = {  } U = { this.p.key } TO = P142#getKey( )
+  10 actualOut D = { this.p.!getKey( ) } U = { this.p.key }
+  11 localDeclaration D = { v$1 } U = { this.p.!getValue( ) }
+  12 receiver D = {  } U = { this.p }
+  13 methodCall D = {  } U = { this.p.key, this.p.key.!java.lang.String.COMPACT_STRINGS, this.p.key.!java.lang.String.coder, this.p.key.!java.lang.String.value, this.p.value } TO = P142#getValue( )
+  14 actualOut D = { this.p.!getValue( ) } U = { this.p.key, this.p.key.!java.lang.String.COMPACT_STRINGS, this.p.key.!java.lang.String.coder, this.p.key.!java.lang.String.value, this.p.value }
+  16 formalOut D = {  } U = { $_ }
+   3+1097 actualOutByFieldAccess D = { this.p.key } U = {  }
+   3+1098 actualOutByFieldAccess D = { this.p.value } U = {  }
+--
+   0 fieldEntry [ Test142#p ]
+   1 fieldDeclaration D = { this.p } U = { P142.!P142( ), this.p }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P142#P142( )
+   4 actualOut D = { P142.!P142( ) } U = {  }
+--
+   0: P142( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: getKey( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: key
+   1:    0 ->    1 trueControlDependence
+--
+   0: value
+   1:    0 ->    1 trueControlDependence
+--
+   0: Test142( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: set( java.lang.String java.lang.String )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    1 ->    3 loopIndependentDefUseDependence key$0
+   7:    2 ->    4 loopIndependentDefUseDependence value$1
+--
+   0: getValue( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    9 trueControlDependence
+   6:    1 ->    5 trueControlDependence
+   7:    1 ->    7 falseControlDependence
+   8:    4 ->    1 loopIndependentDefUseDependence this.key.!equals( java.lang.Object )
+   9:    5 ->    7 fallThroughControlDependence
+  10:    5 ->    9 loopIndependentDefUseDependence $_
+  11:    7 ->    9 loopIndependentDefUseDependence $_
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    3+1097 trueControlDependence
+   5:    0 ->    3+1098 trueControlDependence
+   6:    0 ->    4 trueControlDependence
+   7:    0 ->    5 trueControlDependence
+   8:    0 ->    6 trueControlDependence
+   9:    0 ->    7 trueControlDependence
+  10:    0 ->    8 trueControlDependence
+  11:    0 ->    9 trueControlDependence
+  12:    0 ->   10 trueControlDependence
+  13:    0 ->   11 trueControlDependence
+  14:    0 ->   12 trueControlDependence
+  15:    0 ->   13 trueControlDependence
+  16:    0 ->   14 trueControlDependence
+  17:    0 ->   16 trueControlDependence
+  18:    3+1097 ->    9 loopIndependentDefUseDependence this.p.key
+  19:    3+1097 ->   10 loopIndependentDefUseDependence this.p.key
+  20:    3+1097 ->   13 loopIndependentDefUseDependence this.p.key
+  21:    3+1097 ->   14 loopIndependentDefUseDependence this.p.key
+  22:    3+1098 ->   13 loopIndependentDefUseDependence this.p.value
+  23:    3+1098 ->   14 loopIndependentDefUseDependence this.p.value
+  24:    6 ->    1 loopIndependentDefUseDependence this.p.!set( java.lang.String java.lang.String )
+  25:   10 ->    7 loopIndependentDefUseDependence this.p.!getKey( )
+  26:   14 ->   11 loopIndependentDefUseDependence this.p.!getValue( )
+--
+   0: p
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence P142.!P142( )
+--
+   1: 1063 -> 1064 MEMBER
+   2: 1063 -> 1067 MEMBER
+   3: 1063 -> 1084 MEMBER
+   4: 1070 -> 1090 CALL
+   5: 1071 -> 1091 PIN
+   6: 1072 -> 1092 PIN
+   7: 1076 -> 1099 CALL
+   8: 1080 -> 1103 CALL
+   9: 1085 -> 1069 FACC
+  10: 1085 -> 1075 FACC
+  11: 1085 -> 1079 FACC
+  12: 1085 -> 1085 FACC
+  13: 1087 -> 1119 CALL
+  14: 1093 -> 1097 CFACC
+  15: 1094 -> 1098 CFACC
+  16: 1096 -> 1073 POUT
+  17: 1102 -> 1077 POUT
+  18: 1112 -> 1081 POUT
+  19: 1114 -> 1076 FACC
+  20: 1114 -> 1077 FACC
+  21: 1114 -> 1080 FACC
+  22: 1114 -> 1081 FACC
+  23: 1114 -> 1100 FACC
+  24: 1114 -> 1105 FACC
+  25: 1114 -> 1106 FACC
+  26: 1114 -> 1114 FACC
+  27: 1121 -> 1088 POUT
+  28: 1122 -> 1090 MEMBER
+  29: 1122 -> 1099 MEMBER
+  30: 1122 -> 1103 MEMBER
+  31: 1122 -> 1113 MEMBER
+  32: 1122 -> 1119 MEMBER
+  33: 1122 -> 1123 MEMBER
+  34: 1124 -> 1080 FACC
+  35: 1124 -> 1081 FACC
+  36: 1124 -> 1108 FACC
+  37: 1124 -> 1124 FACC
+--
+

@@ -1,0 +1,52 @@
+Class Name = Test101
+   0 methodEntry [ Test101#m( ) ]
+   1 localDeclaration D = { x$0 } U = {  }
+   2 localDeclaration D = { y$1 } U = { x$0 }
+   3 localDeclaration D = { z$2 } U = { this.p, x$0 }
+   5 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Test101#a ]
+   1 fieldDeclaration D = { this.a } U = { this.a }
+--
+   0 fieldEntry [ Test101#q ]
+   1 fieldDeclaration D = { this.q } U = { this.q }
+--
+   0 constructorEntry [ Test101#Test101( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Test101#p ]
+   1 fieldDeclaration D = { this.p } U = { this.p }
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    5 trueControlDependence
+   5:    1 ->    2 declaration
+   6:    1 ->    2 loopIndependentDefUseDependence x$0
+   7:    1 ->    3 declaration
+   8:    1 ->    3 loopIndependentDefUseDependence x$0
+--
+   0: a
+   1:    0 ->    1 trueControlDependence
+--
+   0: q
+   1:    0 ->    1 trueControlDependence
+--
+   0: Test101( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: p
+   1:    0 ->    1 trueControlDependence
+--
+   1: 2647 -> 2648 MEMBER
+   2: 2647 -> 2651 MEMBER
+   3: 2647 -> 2657 MEMBER
+   4: 2647 -> 2660 MEMBER
+   5: 2647 -> 2663 MEMBER
+   6: 2658 -> 2658 FACC
+   7: 2661 -> 2654 FACC
+   8: 2661 -> 2661 FACC
+   9: 2664 -> 2664 FACC
+--
+

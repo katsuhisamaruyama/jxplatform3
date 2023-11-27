@@ -1,0 +1,75 @@
+Class Name = Test116
+   0 methodEntry [ Test116#m( ) ]
+   1 localDeclaration D = { a$0 } U = {  }
+   2 localDeclaration D = { x$1 } U = {  }
+   3 localDeclaration D = { y$2 } U = {  }
+   4 localDeclaration D = { i$3 } U = {  }
+   5 forSt D = {  } U = { i$3 }
+   6 ifSt D = {  } U = { x$1 }
+   7 assignment D = { x$1 } U = { a$0, i$3, x$1 }
+   9 ifSt D = {  } U = { y$2 }
+  10 assignment D = { y$2 } U = { a$0, i$3, y$2 }
+  12 assignment D = { i$3 } U = { i$3 }
+  13 localDeclaration D = { p$4 } U = { x$1 }
+  14 localDeclaration D = { q$5 } U = { y$2 }
+  16 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test116#Test116( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->   13 trueControlDependence
+   7:    0 ->   14 trueControlDependence
+   8:    0 ->   16 trueControlDependence
+   9:    1 ->    7 declaration
+  10:    1 ->    7 loopIndependentDefUseDependence a$0
+  11:    1 ->   10 declaration
+  12:    1 ->   10 loopIndependentDefUseDependence a$0
+  13:    2 ->    6 declaration
+  14:    2 ->    6 loopIndependentDefUseDependence x$1
+  15:    2 ->    7 declaration
+  16:    2 ->    7 loopIndependentDefUseDependence x$1
+  17:    2 ->   13 declaration
+  18:    2 ->   13 loopIndependentDefUseDependence x$1
+  19:    3 ->    9 declaration
+  20:    3 ->    9 loopIndependentDefUseDependence y$2
+  21:    3 ->   10 declaration
+  22:    3 ->   10 loopIndependentDefUseDependence y$2
+  23:    3 ->   14 declaration
+  24:    3 ->   14 loopIndependentDefUseDependence y$2
+  25:    4 ->    5 declaration
+  26:    4 ->    5 loopIndependentDefUseDependence i$3
+  27:    4 ->    7 declaration
+  28:    4 ->    7 loopIndependentDefUseDependence i$3
+  29:    4 ->   10 declaration
+  30:    4 ->   10 loopIndependentDefUseDependence i$3
+  31:    4 ->   12 declaration
+  32:    4 ->   12 loopIndependentDefUseDependence i$3
+  33:    5 ->    6 trueControlDependence
+  34:    5 ->    9 trueControlDependence
+  35:    5 ->   12 trueControlDependence
+  36:    6 ->    7 trueControlDependence
+  37:    7 ->    6 loopCarriedDefUseDependence x$1 (LC = 5)
+  38:    7 ->    7 loopCarriedDefUseDependence x$1 (LC = 5)
+  39:    7 ->   13 loopIndependentDefUseDependence x$1
+  40:    9 ->   10 trueControlDependence
+  41:   10 ->    9 loopCarriedDefUseDependence y$2 (LC = 5)
+  42:   10 ->   10 loopCarriedDefUseDependence y$2 (LC = 5)
+  43:   10 ->   14 loopIndependentDefUseDependence y$2
+  44:   12 ->    5 loopCarriedDefUseDependence i$3 (LC = 5)
+  45:   12 ->    7 loopCarriedDefUseDependence i$3 (LC = 5)
+  46:   12 ->   10 loopCarriedDefUseDependence i$3 (LC = 5)
+  47:   12 ->   12 loopCarriedDefUseDependence i$3 (LC = 5)
+--
+   0: Test116( )
+   1:    0 ->    2 trueControlDependence
+--
+   1: 2230 -> 2231 MEMBER
+   2: 2230 -> 2234 MEMBER
+--
+

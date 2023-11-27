@@ -1,0 +1,52 @@
+Class Name = Test146
+   0 methodEntry [ Test146#m( ) ]
+   1 localDeclaration D = { total$0 } U = {  }
+   2 localDeclaration D = { strings$1 } U = { java.util.ArrayList.!ArrayList( ) }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
+   5 actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   6 enhancedForSt D = { str$2 } U = { strings$1 }
+   7 assignment D = { total$0 } U = { str$2.!length( ), total$0 }
+   8 receiver D = {  } U = { str$2 }
+   9 methodCall D = {  } U = { str$2.!java.lang.String.COMPACT_STRINGS, str$2.!java.lang.String.coder, str$2.!java.lang.String.value } TO = java.lang.String#length( )
+  10 actualOut D = { str$2.!length( ) } U = { str$2.!java.lang.String.COMPACT_STRINGS, str$2.!java.lang.String.coder, str$2.!java.lang.String.value }
+  11 localDeclaration D = { result$4 } U = { total$0 }
+  13 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test146#Test146( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->   11 trueControlDependence
+   8:    0 ->   13 trueControlDependence
+   9:    1 ->    7 declaration
+  10:    1 ->    7 loopIndependentDefUseDependence total$0
+  11:    1 ->   11 declaration
+  12:    1 ->   11 loopIndependentDefUseDependence total$0
+  13:    2 ->    6 declaration
+  14:    2 ->    6 loopIndependentDefUseDependence strings$1
+  15:    5 ->    2 loopIndependentDefUseDependence java.util.ArrayList.!ArrayList( )
+  16:    6 ->    6 defOrderDependence str$2
+  17:    6 ->    7 trueControlDependence
+  18:    6 ->    8 loopIndependentDefUseDependence str$2
+  19:    6 ->    8 trueControlDependence
+  20:    6 ->    9 trueControlDependence
+  21:    6 ->   10 trueControlDependence
+  22:    7 ->    7 loopCarriedDefUseDependence total$0 (LC = 6)
+  23:    7 ->   11 loopIndependentDefUseDependence total$0
+  24:   10 ->    7 loopIndependentDefUseDependence str$2.!length( )
+  25:   10 ->   10 defOrderDependence str$2.!length( )
+--
+   0: Test146( )
+   1:    0 ->    2 trueControlDependence
+--
+   1: 2738 -> 2739 MEMBER
+   2: 2738 -> 2742 MEMBER
+--
+

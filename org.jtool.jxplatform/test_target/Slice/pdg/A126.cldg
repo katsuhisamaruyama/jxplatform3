@@ -1,0 +1,122 @@
+Class Name = A126
+   0 constructorEntry [ A126#A126( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A126#add2( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 localDeclaration D = { ret$1 } U = { A126.!A126( ) }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = A126#A126( )
+   5 actualOut D = { A126.!A126( ) } U = {  }
+   6 assignment D = { ret$1.y } U = { A126.!A126( ).y, ret$1, ret$1.y, this.y, x$0 }
+   7 returnSt D = { $_ } U = { A126.!A126( ).y, ret$1, ret$1.y }
+   9 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A126#getY( ) ]
+   1 returnSt D = { $_ } U = { this.y }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A126#add( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 localDeclaration D = { ret$1 } U = { A126.!A126( ) }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = A126#A126( )
+   5 actualOut D = { A126.!A126( ) } U = {  }
+   6 assignment D = {  } U = { ret$1.!setY( int ) }
+   7 receiver D = {  } U = { ret$1 }
+   8 methodCall D = {  } U = {  } TO = A126#setY( int )
+   9 actualIn D = {  } U = { this.y, x$0 }
+  10 actualOut D = { ret$1.!setY( int ) } U = {  }
+  11 returnSt D = { $_ } U = { A126.!A126( ).y, ret$1, ret$1.y }
+  13 formalOut D = {  } U = { $_ }
+   8+1672 actualOutByFieldAccess D = { ret$1.y } U = {  }
+--
+   0 methodEntry [ A126#setY( int ) ]
+   1 formalIn D = { y$0 } U = {  }
+   2 assignment D = { this.y } U = { y$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ A126#y ]
+   1 fieldDeclaration D = { this.y } U = { this.y }
+--
+   0: A126( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: add2( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    9 trueControlDependence
+   9:    1 ->    6 loopIndependentDefUseDependence x$0
+  10:    2 ->    6 declaration
+  11:    2 ->    6 loopIndependentDefUseDependence ret$1
+  12:    2 ->    7 declaration
+  13:    2 ->    7 loopIndependentDefUseDependence ret$1
+  14:    5 ->    2 loopIndependentDefUseDependence A126.!A126( )
+  15:    6 ->    7 loopIndependentDefUseDependence ret$1.y
+  16:    7 ->    9 loopIndependentDefUseDependence $_
+--
+   0: getY( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: add( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    8+1672 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    1 ->    9 loopIndependentDefUseDependence x$0
+  15:    2 ->    7 declaration
+  16:    2 ->    7 loopIndependentDefUseDependence ret$1
+  17:    2 ->   11 declaration
+  18:    2 ->   11 loopIndependentDefUseDependence ret$1
+  19:    5 ->    2 loopIndependentDefUseDependence A126.!A126( )
+  20:    8+1672 ->   11 loopIndependentDefUseDependence ret$1.y
+  21:   10 ->    6 loopIndependentDefUseDependence ret$1.!setY( int )
+  22:   11 ->   13 loopIndependentDefUseDependence $_
+--
+   0: setY( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence y$0
+--
+   0: y
+   1:    0 ->    1 trueControlDependence
+--
+   1: 1654 -> 1664 CALL
+   2: 1658 -> 1667 CALL
+   3: 1659 -> 1668 PIN
+   4: 1666 -> 1655 POUT
+   5: 1666 -> 1685 POUT
+   6: 1669 -> 1672 CFACC
+   7: 1671 -> 1660 POUT
+   8: 1684 -> 1664 CALL
+   9: 1694 -> 1650 MEMBER
+  10: 1694 -> 1664 MEMBER
+  11: 1694 -> 1667 MEMBER
+  12: 1694 -> 1674 MEMBER
+  13: 1694 -> 1680 MEMBER
+  14: 1694 -> 1695 MEMBER
+  15: 1696 -> 1659 FACC
+  16: 1696 -> 1661 FACC
+  17: 1696 -> 1675 FACC
+  18: 1696 -> 1686 FACC
+  19: 1696 -> 1687 FACC
+  20: 1696 -> 1696 FACC
+--
+

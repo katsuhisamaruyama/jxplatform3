@@ -1,0 +1,58 @@
+Class Name = Test131
+   0 fieldEntry [ Test131#map ]
+   1 fieldDeclaration D = { this.map } U = { java.util.HashMap.!HashMap( ), this.map }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = java.util.HashMap#HashMap( )
+   4 actualOut D = { java.util.HashMap.!HashMap( ), java.util.HashMap.!java.util.HashMap.loadFactor } U = {  }
+--
+   0 methodEntry [ Test131#m( ) ]
+   1 assignment D = {  } U = { this.map.!put( java.lang.Object java.lang.Object ) }
+   2 receiver D = {  } U = { this.map }
+   3 methodCall D = {  } U = { $java.lang.String, this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!java.util.HashMap.table, this.map.!java.util.HashMap.threshold } TO = java.util.HashMap#put( java.lang.Object java.lang.Object )
+   4 actualOut D = { this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!put( java.lang.Object java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.modCount, this.map.!java.util.HashMap.size, this.map.!java.util.HashMap.table, this.map.!java.util.HashMap.threshold }
+   5 localDeclaration D = { z$0 } U = {  }
+   6 localDeclaration D = { x$1 } U = { this.map.!get( java.lang.Object ) }
+   7 receiver D = {  } U = { this.map }
+   8 methodCall D = {  } U = { $java.lang.String, this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.table } TO = java.util.HashMap#get( java.lang.Object )
+   9 actualOut D = { this.map.!get( java.lang.Object ) } U = { this.map.!java.util.HashMap$Node.hash, this.map.!java.util.HashMap$Node.key, this.map.!java.util.HashMap$Node.next, this.map.!java.util.HashMap$Node.value, this.map.!java.util.HashMap.table }
+  11 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test131#Test131( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: map
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence java.util.HashMap.!HashMap( )
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   11 trueControlDependence
+  11:    4 ->    1 loopIndependentDefUseDependence this.map.!put( java.lang.Object java.lang.Object )
+  12:    4 ->    8 loopIndependentDefUseDependence this.map.!java.util.HashMap$Node.next
+  13:    4 ->    8 loopIndependentDefUseDependence this.map.!java.util.HashMap$Node.value
+  14:    4 ->    9 loopIndependentDefUseDependence this.map.!java.util.HashMap$Node.next
+  15:    4 ->    9 loopIndependentDefUseDependence this.map.!java.util.HashMap$Node.value
+  16:    9 ->    6 loopIndependentDefUseDependence this.map.!get( java.lang.Object )
+--
+   0: Test131( )
+   1:    0 ->    2 trueControlDependence
+--
+   1: 1985 -> 1986 MEMBER
+   2: 1985 -> 1989 MEMBER
+   3: 1985 -> 2001 MEMBER
+   4: 2002 -> 1991 FACC
+   5: 2002 -> 1996 FACC
+   6: 2002 -> 2002 FACC
+--
+

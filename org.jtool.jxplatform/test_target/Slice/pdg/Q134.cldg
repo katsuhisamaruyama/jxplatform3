@@ -1,0 +1,43 @@
+Class Name = Q134
+   0 constructorEntry [ Q134#Q134( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ P134#f( int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 returnSt D = { $_ } U = { a$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ P134#P134( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Q134#f( int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 returnSt D = { $_ } U = { a$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0: Q134( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: f( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence a$0
+   5:    2 ->    4 loopIndependentDefUseDependence $_
+--
+   0: P134( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: f( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence a$0
+   5:    2 ->    4 loopIndependentDefUseDependence $_
+--
+   1: 883 -> 760 MEMBER
+   2: 883 -> 763 MEMBER
+   3: 885 -> 752 MEMBER
+   4: 885 -> 755 MEMBER
+--
+

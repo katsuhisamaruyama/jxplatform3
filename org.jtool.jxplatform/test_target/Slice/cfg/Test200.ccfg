@@ -1,0 +1,26 @@
+Class Name = Test200
+   0 methodEntry [ Test200#m( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 localDeclaration D = { a$1 } U = { x$0 }
+   3 localDeclaration D = { b$2 } U = { x$0 }
+   4 localDeclaration D = { c$3 } U = { a$1 }
+   5 methodExit
+   6 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test200#Test200( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    6 trueControlFlow
+   6:    6 ->    5 trueControlFlow
+--
+   0: Test200( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+

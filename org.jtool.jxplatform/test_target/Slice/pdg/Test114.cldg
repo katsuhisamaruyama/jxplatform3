@@ -1,0 +1,49 @@
+Class Name = Test114
+   0 constructorEntry [ Test114#Test114( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test114#m( ) ]
+   1 localDeclaration D = { x$0 } U = {  }
+   2 localDeclaration D = { y$1 } U = {  }
+   3 ifSt D = {  } U = { x$0 }
+   4 whileSt D = {  } U = { x$0 }
+   5 assignment D = { x$0 } U = { x$0 }
+   6 assignment D = { y$1 } U = {  }
+   8 localDeclaration D = { p$2 } U = { x$0 }
+   9 localDeclaration D = { q$3 } U = { y$1 }
+  11 formalOut D = {  } U = { $_ }
+--
+   0: Test114( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    8 trueControlDependence
+   5:    0 ->    9 trueControlDependence
+   6:    0 ->   11 trueControlDependence
+   7:    1 ->    3 declaration
+   8:    1 ->    3 loopIndependentDefUseDependence x$0
+   9:    1 ->    4 declaration
+  10:    1 ->    4 loopIndependentDefUseDependence x$0
+  11:    1 ->    5 declaration
+  12:    1 ->    5 loopIndependentDefUseDependence x$0
+  13:    1 ->    8 declaration
+  14:    1 ->    8 loopIndependentDefUseDependence x$0
+  15:    2 ->    6 declaration
+  16:    2 ->    6 outputDependence y$1
+  17:    2 ->    9 declaration
+  18:    2 ->    9 loopIndependentDefUseDependence y$1
+  19:    3 ->    4 trueControlDependence
+  20:    3 ->    6 falseControlDependence
+  21:    4 ->    5 trueControlDependence
+  22:    5 ->    4 loopCarriedDefUseDependence x$0 (LC = 4)
+  23:    5 ->    5 loopCarriedDefUseDependence x$0 (LC = 4)
+  24:    5 ->    8 loopIndependentDefUseDependence x$0
+  25:    6 ->    9 loopIndependentDefUseDependence y$1
+--
+   1: 2268 -> 2269 MEMBER
+   2: 2268 -> 2272 MEMBER
+--
+

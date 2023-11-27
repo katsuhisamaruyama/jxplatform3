@@ -1,0 +1,363 @@
+Class Name = Test118
+   0 methodEntry [ Test118#m0( int int int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 formalIn D = { b$1 } U = {  }
+   3 formalIn D = { c$2 } U = {  }
+   4 returnSt D = { $_ } U = {  }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test118#m2( int int int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 formalIn D = { b$1 } U = {  }
+   3 formalIn D = { c$2 } U = {  }
+   4 returnSt D = { $_ } U = { b$1 }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test118#m3( int int int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 formalIn D = { b$1 } U = {  }
+   3 formalIn D = { c$2 } U = {  }
+   4 returnSt D = { $_ } U = { c$2 }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test118#m5( int int int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 formalIn D = { b$1 } U = {  }
+   3 formalIn D = { c$2 } U = {  }
+   4 returnSt D = { $_ } U = { b$1, c$2 }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test118#m7( int int int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 formalIn D = { b$1 } U = {  }
+   3 formalIn D = { c$2 } U = {  }
+   4 returnSt D = { $_ } U = { a$0, b$1, c$2 }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test118#Test118( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test118#m8( ) ]
+   1 returnSt D = { $_ } U = {  }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test118#m1( int int int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 formalIn D = { b$1 } U = {  }
+   3 formalIn D = { c$2 } U = {  }
+   4 returnSt D = { $_ } U = { a$0 }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test118#m4( int int int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 formalIn D = { b$1 } U = {  }
+   3 formalIn D = { c$2 } U = {  }
+   4 returnSt D = { $_ } U = { a$0, b$1 }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test118#m8( int int int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 formalIn D = { b$1 } U = {  }
+   3 formalIn D = { c$2 } U = {  }
+   4 returnSt D = { $_ } U = {  }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test118#m( ) ]
+   1 localDeclaration D = { x$0 } U = { this.!m0( int int int ) }
+   2 receiver D = {  } U = {  }
+   3 methodCall D = {  } U = {  } TO = Test118#m0( int int int )
+   4 actualIn D = {  } U = {  }
+   5 actualIn D = {  } U = {  }
+   6 actualIn D = {  } U = {  }
+   7 actualOut D = { this.!m0( int int int ) } U = {  }
+   8 localDeclaration D = { y$1 } U = { this.!m1( int int int ) }
+   9 receiver D = {  } U = {  }
+  10 methodCall D = {  } U = {  } TO = Test118#m1( int int int )
+  11 actualIn D = {  } U = {  }
+  12 actualIn D = {  } U = {  }
+  13 actualIn D = {  } U = {  }
+  14 actualOut D = { this.!m1( int int int ) } U = {  }
+  15 localDeclaration D = { z$2 } U = { this.!m2( int int int ) }
+  16 receiver D = {  } U = {  }
+  17 methodCall D = {  } U = {  } TO = Test118#m2( int int int )
+  18 actualIn D = {  } U = {  }
+  19 actualIn D = {  } U = {  }
+  20 actualIn D = {  } U = {  }
+  21 actualOut D = { this.!m2( int int int ) } U = {  }
+  22 localDeclaration D = { p$3 } U = { this.!m3( int int int ) }
+  23 receiver D = {  } U = {  }
+  24 methodCall D = {  } U = {  } TO = Test118#m3( int int int )
+  25 actualIn D = {  } U = {  }
+  26 actualIn D = {  } U = {  }
+  27 actualIn D = {  } U = {  }
+  28 actualOut D = { this.!m3( int int int ) } U = {  }
+  29 localDeclaration D = { q$4 } U = { this.!m4( int int int ) }
+  30 receiver D = {  } U = {  }
+  31 methodCall D = {  } U = {  } TO = Test118#m4( int int int )
+  32 actualIn D = {  } U = {  }
+  33 actualIn D = {  } U = {  }
+  34 actualIn D = {  } U = {  }
+  35 actualOut D = { this.!m4( int int int ) } U = {  }
+  36 localDeclaration D = { r$5 } U = { this.!m5( int int int ) }
+  37 receiver D = {  } U = {  }
+  38 methodCall D = {  } U = {  } TO = Test118#m5( int int int )
+  39 actualIn D = {  } U = {  }
+  40 actualIn D = {  } U = {  }
+  41 actualIn D = {  } U = {  }
+  42 actualOut D = { this.!m5( int int int ) } U = {  }
+  43 localDeclaration D = { s$6 } U = { this.!m6( int int int ) }
+  44 receiver D = {  } U = {  }
+  45 methodCall D = {  } U = {  } TO = Test118#m6( int int int )
+  46 actualIn D = {  } U = {  }
+  47 actualIn D = {  } U = {  }
+  48 actualIn D = {  } U = {  }
+  49 actualOut D = { this.!m6( int int int ) } U = {  }
+  50 localDeclaration D = { t$7 } U = { this.!m7( int int int ) }
+  51 receiver D = {  } U = {  }
+  52 methodCall D = {  } U = {  } TO = Test118#m7( int int int )
+  53 actualIn D = {  } U = {  }
+  54 actualIn D = {  } U = {  }
+  55 actualIn D = {  } U = {  }
+  56 actualOut D = { this.!m7( int int int ) } U = {  }
+  57 localDeclaration D = { u$8 } U = { this.!m8( int int int ) }
+  58 receiver D = {  } U = {  }
+  59 methodCall D = {  } U = {  } TO = Test118#m8( int int int )
+  60 actualIn D = {  } U = {  }
+  61 actualIn D = {  } U = {  }
+  62 actualIn D = {  } U = {  }
+  63 actualOut D = { this.!m8( int int int ) } U = {  }
+  65 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test118#m6( int int int ) ]
+   1 formalIn D = { a$0 } U = {  }
+   2 formalIn D = { b$1 } U = {  }
+   3 formalIn D = { c$2 } U = {  }
+   4 returnSt D = { $_ } U = { a$0, c$2 }
+   6 formalOut D = {  } U = { $_ }
+--
+   0: m0( int int int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    4 ->    6 loopIndependentDefUseDependence $_
+--
+   0: m2( int int int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    2 ->    4 loopIndependentDefUseDependence b$1
+   7:    4 ->    6 loopIndependentDefUseDependence $_
+--
+   0: m3( int int int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    3 ->    4 loopIndependentDefUseDependence c$2
+   7:    4 ->    6 loopIndependentDefUseDependence $_
+--
+   0: m5( int int int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    2 ->    4 loopIndependentDefUseDependence b$1
+   7:    3 ->    4 loopIndependentDefUseDependence c$2
+   8:    4 ->    6 loopIndependentDefUseDependence $_
+--
+   0: m7( int int int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    1 ->    4 loopIndependentDefUseDependence a$0
+   7:    2 ->    4 loopIndependentDefUseDependence b$1
+   8:    3 ->    4 loopIndependentDefUseDependence c$2
+   9:    4 ->    6 loopIndependentDefUseDependence $_
+--
+   0: Test118( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: m8( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: m1( int int int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    1 ->    4 loopIndependentDefUseDependence a$0
+   7:    4 ->    6 loopIndependentDefUseDependence $_
+--
+   0: m4( int int int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    1 ->    4 loopIndependentDefUseDependence a$0
+   7:    2 ->    4 loopIndependentDefUseDependence b$1
+   8:    4 ->    6 loopIndependentDefUseDependence $_
+--
+   0: m8( int int int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    4 ->    6 loopIndependentDefUseDependence $_
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   27 trueControlDependence
+  28:    0 ->   28 trueControlDependence
+  29:    0 ->   29 trueControlDependence
+  30:    0 ->   30 trueControlDependence
+  31:    0 ->   31 trueControlDependence
+  32:    0 ->   32 trueControlDependence
+  33:    0 ->   33 trueControlDependence
+  34:    0 ->   34 trueControlDependence
+  35:    0 ->   35 trueControlDependence
+  36:    0 ->   36 trueControlDependence
+  37:    0 ->   37 trueControlDependence
+  38:    0 ->   38 trueControlDependence
+  39:    0 ->   39 trueControlDependence
+  40:    0 ->   40 trueControlDependence
+  41:    0 ->   41 trueControlDependence
+  42:    0 ->   42 trueControlDependence
+  43:    0 ->   43 trueControlDependence
+  44:    0 ->   44 trueControlDependence
+  45:    0 ->   45 trueControlDependence
+  46:    0 ->   46 trueControlDependence
+  47:    0 ->   47 trueControlDependence
+  48:    0 ->   48 trueControlDependence
+  49:    0 ->   49 trueControlDependence
+  50:    0 ->   50 trueControlDependence
+  51:    0 ->   51 trueControlDependence
+  52:    0 ->   52 trueControlDependence
+  53:    0 ->   53 trueControlDependence
+  54:    0 ->   54 trueControlDependence
+  55:    0 ->   55 trueControlDependence
+  56:    0 ->   56 trueControlDependence
+  57:    0 ->   57 trueControlDependence
+  58:    0 ->   58 trueControlDependence
+  59:    0 ->   59 trueControlDependence
+  60:    0 ->   60 trueControlDependence
+  61:    0 ->   61 trueControlDependence
+  62:    0 ->   62 trueControlDependence
+  63:    0 ->   63 trueControlDependence
+  64:    0 ->   65 trueControlDependence
+  65:    7 ->    1 loopIndependentDefUseDependence this.!m0( int int int )
+  66:   14 ->    8 loopIndependentDefUseDependence this.!m1( int int int )
+  67:   21 ->   15 loopIndependentDefUseDependence this.!m2( int int int )
+  68:   28 ->   22 loopIndependentDefUseDependence this.!m3( int int int )
+  69:   35 ->   29 loopIndependentDefUseDependence this.!m4( int int int )
+  70:   42 ->   36 loopIndependentDefUseDependence this.!m5( int int int )
+  71:   49 ->   43 loopIndependentDefUseDependence this.!m6( int int int )
+  72:   56 ->   50 loopIndependentDefUseDependence this.!m7( int int int )
+  73:   63 ->   57 loopIndependentDefUseDependence this.!m8( int int int )
+--
+   0: m6( int int int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    1 ->    4 loopIndependentDefUseDependence a$0
+   7:    3 ->    4 loopIndependentDefUseDependence c$2
+   8:    4 ->    6 loopIndependentDefUseDependence $_
+--
+   1: 2040 -> 2041 MEMBER
+   2: 2040 -> 2044 MEMBER
+   3: 2040 -> 2110 MEMBER
+   4: 2040 -> 2117 MEMBER
+   5: 2040 -> 2124 MEMBER
+   6: 2040 -> 2131 MEMBER
+   7: 2040 -> 2138 MEMBER
+   8: 2040 -> 2145 MEMBER
+   9: 2040 -> 2152 MEMBER
+  10: 2040 -> 2159 MEMBER
+  11: 2040 -> 2166 MEMBER
+  12: 2040 -> 2173 MEMBER
+  13: 2047 -> 2110 CALL
+  14: 2048 -> 2111 PIN
+  15: 2049 -> 2112 PIN
+  16: 2050 -> 2113 PIN
+  17: 2054 -> 2117 CALL
+  18: 2055 -> 2118 PIN
+  19: 2056 -> 2119 PIN
+  20: 2057 -> 2120 PIN
+  21: 2061 -> 2124 CALL
+  22: 2062 -> 2125 PIN
+  23: 2063 -> 2126 PIN
+  24: 2064 -> 2127 PIN
+  25: 2068 -> 2131 CALL
+  26: 2069 -> 2132 PIN
+  27: 2070 -> 2133 PIN
+  28: 2071 -> 2134 PIN
+  29: 2075 -> 2138 CALL
+  30: 2076 -> 2139 PIN
+  31: 2077 -> 2140 PIN
+  32: 2078 -> 2141 PIN
+  33: 2082 -> 2145 CALL
+  34: 2083 -> 2146 PIN
+  35: 2084 -> 2147 PIN
+  36: 2085 -> 2148 PIN
+  37: 2089 -> 2152 CALL
+  38: 2090 -> 2153 PIN
+  39: 2091 -> 2154 PIN
+  40: 2092 -> 2155 PIN
+  41: 2096 -> 2159 CALL
+  42: 2097 -> 2160 PIN
+  43: 2098 -> 2161 PIN
+  44: 2099 -> 2162 PIN
+  45: 2103 -> 2166 CALL
+  46: 2104 -> 2167 PIN
+  47: 2105 -> 2168 PIN
+  48: 2106 -> 2169 PIN
+  49: 2116 -> 2051 POUT
+  50: 2123 -> 2058 POUT
+  51: 2130 -> 2065 POUT
+  52: 2137 -> 2072 POUT
+  53: 2144 -> 2079 POUT
+  54: 2151 -> 2086 POUT
+  55: 2158 -> 2093 POUT
+  56: 2165 -> 2100 POUT
+  57: 2172 -> 2107 POUT
+--
+

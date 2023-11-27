@@ -1,0 +1,97 @@
+Class Name = A128
+   0 methodEntry [ A128#getY( ) ]
+   1 returnSt D = { $_ } U = { this.y }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A128#setY( int ) ]
+   1 formalIn D = { y$0 } U = {  }
+   2 assignment D = { this.y } U = { y$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ A128#z ]
+   1 fieldDeclaration D = { A128.z } U = { A128.z }
+--
+   0 constructorEntry [ A128#A128( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A128#add( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 localDeclaration D = { ret$1 } U = { A128.!A128( ) }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = A128#A128( )
+   5 actualOut D = { A128.!A128( ) } U = {  }
+   6 assignment D = {  } U = { ret$1.!setY( int ) }
+   7 receiver D = {  } U = { ret$1 }
+   8 methodCall D = {  } U = {  } TO = A128#setY( int )
+   9 actualIn D = {  } U = { this.y, x$0 }
+  10 actualOut D = { ret$1.!setY( int ) } U = {  }
+  11 returnSt D = { $_ } U = { A128.!A128( ).y, ret$1, ret$1.y }
+  13 formalOut D = {  } U = { $_ }
+   8+1546 actualOutByFieldAccess D = { ret$1.y } U = {  }
+--
+   0 fieldEntry [ A128#y ]
+   1 fieldDeclaration D = { this.y } U = { this.y }
+--
+   0: getY( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: setY( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence y$0
+--
+   0: z
+   1:    0 ->    1 trueControlDependence
+--
+   0: A128( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: add( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    8+1546 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    1 ->    9 loopIndependentDefUseDependence x$0
+  15:    2 ->    7 declaration
+  16:    2 ->    7 loopIndependentDefUseDependence ret$1
+  17:    2 ->   11 declaration
+  18:    2 ->   11 loopIndependentDefUseDependence ret$1
+  19:    5 ->    2 loopIndependentDefUseDependence A128.!A128( )
+  20:    8+1546 ->   11 loopIndependentDefUseDependence ret$1.y
+  21:   10 ->    6 loopIndependentDefUseDependence ret$1.!setY( int )
+  22:   11 ->   13 loopIndependentDefUseDependence $_
+--
+   0: y
+   1:    0 ->    1 trueControlDependence
+--
+   1: 1523 -> 1533 CALL
+   2: 1527 -> 1536 CALL
+   3: 1528 -> 1537 PIN
+   4: 1535 -> 1524 POUT
+   5: 1538 -> 1546 CFACC
+   6: 1540 -> 1529 POUT
+   7: 1558 -> 1519 MEMBER
+   8: 1558 -> 1533 MEMBER
+   9: 1558 -> 1536 MEMBER
+  10: 1558 -> 1542 MEMBER
+  11: 1558 -> 1559 MEMBER
+  12: 1558 -> 1562 MEMBER
+  13: 1560 -> 1560 FACC
+  14: 1563 -> 1528 FACC
+  15: 1563 -> 1530 FACC
+  16: 1563 -> 1543 FACC
+  17: 1563 -> 1563 FACC
+--
+

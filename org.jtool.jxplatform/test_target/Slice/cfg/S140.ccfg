@@ -1,0 +1,80 @@
+Class Name = S140
+   0 fieldEntry [ S140#x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+   2 fieldExit
+--
+   0 constructorEntry [ S140#S140( ) ]
+   1 assignment D = {  } U = { this.!S140( int ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = { super.x } TO = S140#S140( int )
+   4 actualIn D = {  } U = {  }
+   5 actualOut D = { this.!S140( int ) } U = { super.x }
+   6 localDeclaration D = { xx$0 } U = { this.x }
+   7 constructorExit
+   8 formalOut D = {  } U = { $_ }
+   3+1164 actualOutByFieldAccess D = { this.x } U = {  }
+   3+1165 actualOutByFieldAccess D = { super.x } U = {  }
+--
+   0 constructorEntry [ S140#S140( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = {  } U = { super.!Test140( int ) }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = Test140#Test140( int )
+   5 actualIn D = {  } U = { x$0 }
+   6 actualOut D = { super.!Test140( int ) } U = {  }
+   7 assignment D = { this.x } U = { x$0 }
+   8 localDeclaration D = { xx$1 } U = { super.x }
+   9 constructorExit
+  10 formalOut D = {  } U = { $_ }
+   4+1163 actualOutByFieldAccess D = { super.x } U = {  }
+--
+   0 methodEntry [ S140#m( ) ]
+   1 assignment D = { super.x } U = {  }
+   2 assignment D = {  } U = { super.!m( ) }
+   3 receiver D = {  } U = {  }
+   4 methodCall D = {  } U = {  } TO = Test140#m( )
+   5 actualOut D = { super.!m( ) } U = {  }
+   6 localDeclaration D = { xx$0 } U = { super.x }
+   7 methodExit
+   8 formalOut D = {  } U = { $_ }
+--
+   0: x
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: S140( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    3+1164 trueControlFlow
+   5:    4 ->    3 trueControlFlow
+   6:    5 ->    1 trueControlFlow
+   7:    6 ->    8 trueControlFlow
+   8:    8 ->    7 trueControlFlow
+   9:    3+1164 ->    3+1165 trueControlFlow
+  10:    3+1165 ->    5 trueControlFlow
+--
+   0: S140( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    5 trueControlFlow
+   5:    4 ->    4+1163 trueControlFlow
+   6:    5 ->    4 trueControlFlow
+   7:    6 ->    2 trueControlFlow
+   8:    7 ->    8 trueControlFlow
+   9:    8 ->   10 trueControlFlow
+  10:   10 ->    9 trueControlFlow
+  11:    4+1163 ->    6 trueControlFlow
+--
+   0: m( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    6 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->    8 trueControlFlow
+   8:    8 ->    7 trueControlFlow
+--
+

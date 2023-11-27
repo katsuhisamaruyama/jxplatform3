@@ -1,0 +1,10 @@
+Class Name = SubRuntimeException
+   0 constructorEntry [ SubRuntimeException#SubRuntimeException( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0: SubRuntimeException( )
+   1:    0 ->    2 trueControlDependence
+--
+   1: 35 -> 36 MEMBER
+--
+

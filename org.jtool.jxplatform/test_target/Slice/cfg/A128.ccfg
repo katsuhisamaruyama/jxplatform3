@@ -1,0 +1,82 @@
+Class Name = A128
+   0 methodEntry [ A128#getY( ) ]
+   1 returnSt D = { $_ } U = { this.y }
+   2 methodExit
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A128#setY( int ) ]
+   1 formalIn D = { y$0 } U = {  }
+   2 assignment D = { this.y } U = { y$0 }
+   3 methodExit
+   4 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ A128#z ]
+   1 fieldDeclaration D = { A128.z } U = { A128.z }
+   2 fieldExit
+--
+   0 constructorEntry [ A128#A128( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A128#add( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 localDeclaration D = { ret$1 } U = { A128.!A128( ) }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = A128#A128( )
+   5 actualOut D = { A128.!A128( ) } U = {  }
+   6 assignment D = {  } U = { ret$1.!setY( int ) }
+   7 receiver D = {  } U = { ret$1 }
+   8 methodCall D = {  } U = {  } TO = A128#setY( int )
+   9 actualIn D = {  } U = { this.y, x$0 }
+  10 actualOut D = { ret$1.!setY( int ) } U = {  }
+  11 returnSt D = { $_ } U = { A128.!A128( ).y, ret$1, ret$1.y }
+  12 methodExit
+  13 formalOut D = {  } U = { $_ }
+   8+1546 actualOutByFieldAccess D = { ret$1.y } U = {  }
+--
+   0 fieldEntry [ A128#y ]
+   1 fieldDeclaration D = { this.y } U = { this.y }
+   2 fieldExit
+--
+   0: getY( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 fallThroughFlow
+   3:    1 ->    3 trueControlFlow
+   4:    3 ->    2 trueControlFlow
+--
+   0: setY( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    4 ->    3 trueControlFlow
+--
+   0: z
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+   0: A128( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+   0: add( int )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    6 ->   11 trueControlFlow
+   8:    7 ->    9 trueControlFlow
+   9:    8 ->    8+1546 trueControlFlow
+  10:    9 ->    8 trueControlFlow
+  11:   10 ->    6 trueControlFlow
+  12:   11 ->   13 fallThroughFlow
+  13:   11 ->   13 trueControlFlow
+  14:   13 ->   12 trueControlFlow
+  15:    8+1546 ->   10 trueControlFlow
+--
+   0: y
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+

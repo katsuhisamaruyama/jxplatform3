@@ -1,0 +1,132 @@
+Class Name = Test124
+   0 methodEntry [ A124#getX( ) ]
+   1 returnSt D = { $_ } U = { this.x }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test124#Test124( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ A124#x ]
+   1 fieldDeclaration D = { this.x } U = { this.x }
+--
+   0 methodEntry [ A124#inc( int ) ]
+   1 formalIn D = { y$0 } U = {  }
+   2 returnSt D = { $_ } U = { this.x, y$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ A124#A124( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 assignment D = { this.x } U = { x$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test124#m( ) ]
+   1 localDeclaration D = { p$0 } U = {  }
+   2 localDeclaration D = { q$1 } U = {  }
+   3 localDeclaration D = { a$2 } U = { A124.!A124( int ) }
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = {  } U = {  } TO = A124#A124( int )
+   6 actualIn D = {  } U = { p$0 }
+   7 actualOut D = { A124.!A124( int ) } U = {  }
+   8 localDeclaration D = { b$3 } U = { a$2.!getX( ) }
+   9 receiver D = {  } U = { a$2 }
+  10 methodCall D = {  } U = { A124.!A124( int ).x, a$2.x } TO = A124#getX( )
+  11 actualOut D = { a$2.!getX( ) } U = { A124.!A124( int ).x, a$2.x }
+  12 localDeclaration D = { c$4 } U = { a$2.!inc( int ) }
+  13 receiver D = {  } U = { a$2 }
+  14 methodCall D = {  } U = { A124.!A124( int ).x, a$2.x } TO = A124#inc( int )
+  15 actualIn D = {  } U = { q$1 }
+  16 actualOut D = { a$2.!inc( int ) } U = { A124.!A124( int ).x, a$2.x }
+  18 formalOut D = {  } U = { $_ }
+   5+1816 actualOutByFieldAccess D = { A124.!A124( int ).x } U = {  }
+--
+   0 fieldEntry [ Test124#p ]
+   1 fieldDeclaration D = { this.p } U = { this.p }
+--
+   0: getX( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: Test124( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: x
+   1:    0 ->    1 trueControlDependence
+--
+   0: inc( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence y$0
+   5:    2 ->    4 loopIndependentDefUseDependence $_
+--
+   0: A124( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence x$0
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    5+1816 trueControlDependence
+   7:    0 ->    6 trueControlDependence
+   8:    0 ->    7 trueControlDependence
+   9:    0 ->    8 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   12 trueControlDependence
+  14:    0 ->   13 trueControlDependence
+  15:    0 ->   14 trueControlDependence
+  16:    0 ->   15 trueControlDependence
+  17:    0 ->   16 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    1 ->    6 declaration
+  20:    1 ->    6 loopIndependentDefUseDependence p$0
+  21:    2 ->   15 declaration
+  22:    2 ->   15 loopIndependentDefUseDependence q$1
+  23:    3 ->    9 declaration
+  24:    3 ->    9 loopIndependentDefUseDependence a$2
+  25:    3 ->   13 declaration
+  26:    3 ->   13 loopIndependentDefUseDependence a$2
+  27:    5+1816 ->   10 loopIndependentDefUseDependence A124.!A124( int ).x
+  28:    5+1816 ->   11 loopIndependentDefUseDependence A124.!A124( int ).x
+  29:    5+1816 ->   14 loopIndependentDefUseDependence A124.!A124( int ).x
+  30:    5+1816 ->   16 loopIndependentDefUseDependence A124.!A124( int ).x
+  31:    7 ->    3 loopIndependentDefUseDependence A124.!A124( int )
+  32:   11 ->    8 loopIndependentDefUseDependence a$2.!getX( )
+  33:   16 ->   12 loopIndependentDefUseDependence a$2.!inc( int )
+--
+   0: p
+   1:    0 ->    1 trueControlDependence
+--
+   1: 1788 -> 1789 MEMBER
+   2: 1788 -> 1792 MEMBER
+   3: 1788 -> 1826 MEMBER
+   4: 1797 -> 1811 CALL
+   5: 1798 -> 1812 PIN
+   6: 1802 -> 1817 CALL
+   7: 1806 -> 1821 CALL
+   8: 1807 -> 1822 PIN
+   9: 1813 -> 1816 CFACC
+  10: 1815 -> 1799 POUT
+  11: 1820 -> 1803 POUT
+  12: 1825 -> 1808 POUT
+  13: 1827 -> 1827 FACC
+  14: 1829 -> 1811 MEMBER
+  15: 1829 -> 1817 MEMBER
+  16: 1829 -> 1821 MEMBER
+  17: 1829 -> 1830 MEMBER
+  18: 1831 -> 1802 FACC
+  19: 1831 -> 1803 FACC
+  20: 1831 -> 1806 FACC
+  21: 1831 -> 1808 FACC
+  22: 1831 -> 1818 FACC
+  23: 1831 -> 1823 FACC
+  24: 1831 -> 1831 FACC
+--
+

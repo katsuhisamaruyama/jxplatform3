@@ -1,0 +1,318 @@
+Class Name = Test133
+   0 fieldEntry [ Test133#x ]
+   1 fieldDeclaration D = { this.x } U = { Test133.!Test133( ), this.x }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = Test133#Test133( )
+   4 actualOut D = { Test133.!Test133( ) } U = {  }
+--
+   0 fieldEntry [ Test133#y ]
+   1 fieldDeclaration D = { this.y } U = { Test133.!Test133( ), this.y }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = Test133#Test133( )
+   4 actualOut D = { Test133.!Test133( ) } U = {  }
+--
+   0 constructorEntry [ Test133#Test133( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test133#getX( ) ]
+   1 returnSt D = { $_ } U = { this.x, this.x.a, this.x.x, this.x.y }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Test133#a ]
+   1 fieldDeclaration D = { this.a } U = { this.a }
+--
+   0 methodEntry [ Test133#m( ) ]
+   1 localDeclaration D = { p1$0 } U = { this.a }
+   2 localDeclaration D = { p2$1 } U = { this.x, this.x.a, this.x.x, this.x.y }
+   3 localDeclaration D = { p3$2 } U = { this.x.!getA( ) }
+   4 receiver D = {  } U = { this.x }
+   5 methodCall D = {  } U = { this.x.a } TO = Test133#getA( )
+   6 actualOut D = { this.x.!getA( ) } U = { this.x.a }
+   7 localDeclaration D = { p4$3 } U = { this.!getX( ), this.!getX( ).a }
+   8 receiver D = {  } U = {  }
+   9 methodCall D = {  } U = { this.x, this.x.a, this.x.x, this.x.y } TO = Test133#getX( )
+  10 actualOut D = { this.!getX( ) } U = { this.x, this.x.a, this.x.x, this.x.y }
+  11 localDeclaration D = { p5$4 } U = { this.!getX( ).!getA( ) }
+  12 receiver D = {  } U = { this.!getX( ) }
+  13 receiver D = {  } U = {  }
+  14 methodCall D = {  } U = { this.x, this.x.a, this.x.x, this.x.y } TO = Test133#getX( )
+  15 actualOut D = { this.!getX( ) } U = { this.x, this.x.a, this.x.x, this.x.y }
+  16 methodCall D = {  } U = { this.!getX( ).a } TO = Test133#getA( )
+  17 actualOut D = { this.!getX( ).!getA( ) } U = { this.!getX( ).a }
+  18 localDeclaration D = { p6$5 } U = { this.x.y.!getA( ) }
+  19 receiver D = {  } U = { this.x, this.x.y }
+  20 methodCall D = {  } U = { this.x.y.a } TO = Test133#getA( )
+  21 actualOut D = { this.x.y.!getA( ) } U = { this.x.y.a }
+  22 localDeclaration D = { p7$6 } U = { this.!getX( ).!getY( ), this.!getX( ).!getY( ).a }
+  23 receiver D = {  } U = { this.!getX( ) }
+  24 receiver D = {  } U = {  }
+  25 methodCall D = {  } U = { this.x, this.x.a, this.x.x, this.x.y } TO = Test133#getX( )
+  26 actualOut D = { this.!getX( ) } U = { this.x, this.x.a, this.x.x, this.x.y }
+  27 methodCall D = {  } U = { this.!getX( ).y, this.!getX( ).y.a, this.!getX( ).y.x, this.!getX( ).y.y } TO = Test133#getY( )
+  28 actualOut D = { this.!getX( ).!getY( ) } U = { this.!getX( ).y, this.!getX( ).y.a, this.!getX( ).y.x, this.!getX( ).y.y }
+  29 localDeclaration D = { p8$7 } U = { this.!getX( ).!getY( ).!getA( ) }
+  30 receiver D = {  } U = { this.!getX( ).!getY( ) }
+  31 receiver D = {  } U = { this.!getX( ) }
+  32 receiver D = {  } U = {  }
+  33 methodCall D = {  } U = { this.x, this.x.a, this.x.x, this.x.y } TO = Test133#getX( )
+  34 actualOut D = { this.!getX( ) } U = { this.x, this.x.a, this.x.x, this.x.y }
+  35 methodCall D = {  } U = { this.!getX( ).y, this.!getX( ).y.a, this.!getX( ).y.x, this.!getX( ).y.y } TO = Test133#getY( )
+  36 actualOut D = { this.!getX( ).!getY( ) } U = { this.!getX( ).y, this.!getX( ).y.a, this.!getX( ).y.x, this.!getX( ).y.y }
+  37 methodCall D = {  } U = { this.!getX( ).!getY( ).a } TO = Test133#getA( )
+  38 actualOut D = { this.!getX( ).!getY( ).!getA( ) } U = { this.!getX( ).!getY( ).a }
+  39 localDeclaration D = { p9$8 } U = { this.!getX( ).y.!getA( ) }
+  40 receiver D = {  } U = { this.!getX( ), this.!getX( ).y }
+  41 receiver D = {  } U = {  }
+  42 methodCall D = {  } U = { this.x, this.x.a, this.x.x, this.x.y } TO = Test133#getX( )
+  43 actualOut D = { this.!getX( ) } U = { this.x, this.x.a, this.x.x, this.x.y }
+  44 methodCall D = {  } U = { this.!getX( ).y.a } TO = Test133#getA( )
+  45 actualOut D = { this.!getX( ).y.!getA( ) } U = { this.!getX( ).y.a }
+  46 localDeclaration D = { p10$9 } U = { this.x.!getY( ).!getA( ) }
+  47 receiver D = {  } U = { this.x.!getY( ) }
+  48 receiver D = {  } U = { this.x }
+  49 methodCall D = {  } U = { this.x.y, this.x.y.a, this.x.y.x, this.x.y.y } TO = Test133#getY( )
+  50 actualOut D = { this.x.!getY( ) } U = { this.x.y, this.x.y.a, this.x.y.x, this.x.y.y }
+  51 methodCall D = {  } U = { this.x.!getY( ).a } TO = Test133#getA( )
+  52 actualOut D = { this.x.!getY( ).!getA( ) } U = { this.x.!getY( ).a }
+  54 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test133#getA( ) ]
+   1 returnSt D = { $_ } U = { this.a }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test133#getY( ) ]
+   1 returnSt D = { $_ } U = { this.y, this.y.a, this.y.x, this.y.y }
+   3 formalOut D = {  } U = { $_ }
+--
+   0: x
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence Test133.!Test133( )
+--
+   0: y
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    4 ->    1 loopIndependentDefUseDependence Test133.!Test133( )
+--
+   0: Test133( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: getX( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: a
+   1:    0 ->    1 trueControlDependence
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->   10 trueControlDependence
+  11:    0 ->   11 trueControlDependence
+  12:    0 ->   12 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    0 ->   14 trueControlDependence
+  15:    0 ->   15 trueControlDependence
+  16:    0 ->   16 trueControlDependence
+  17:    0 ->   17 trueControlDependence
+  18:    0 ->   18 trueControlDependence
+  19:    0 ->   19 trueControlDependence
+  20:    0 ->   20 trueControlDependence
+  21:    0 ->   21 trueControlDependence
+  22:    0 ->   22 trueControlDependence
+  23:    0 ->   23 trueControlDependence
+  24:    0 ->   24 trueControlDependence
+  25:    0 ->   25 trueControlDependence
+  26:    0 ->   26 trueControlDependence
+  27:    0 ->   27 trueControlDependence
+  28:    0 ->   28 trueControlDependence
+  29:    0 ->   29 trueControlDependence
+  30:    0 ->   30 trueControlDependence
+  31:    0 ->   31 trueControlDependence
+  32:    0 ->   32 trueControlDependence
+  33:    0 ->   33 trueControlDependence
+  34:    0 ->   34 trueControlDependence
+  35:    0 ->   35 trueControlDependence
+  36:    0 ->   36 trueControlDependence
+  37:    0 ->   37 trueControlDependence
+  38:    0 ->   38 trueControlDependence
+  39:    0 ->   39 trueControlDependence
+  40:    0 ->   40 trueControlDependence
+  41:    0 ->   41 trueControlDependence
+  42:    0 ->   42 trueControlDependence
+  43:    0 ->   43 trueControlDependence
+  44:    0 ->   44 trueControlDependence
+  45:    0 ->   45 trueControlDependence
+  46:    0 ->   46 trueControlDependence
+  47:    0 ->   47 trueControlDependence
+  48:    0 ->   48 trueControlDependence
+  49:    0 ->   49 trueControlDependence
+  50:    0 ->   50 trueControlDependence
+  51:    0 ->   51 trueControlDependence
+  52:    0 ->   52 trueControlDependence
+  53:    0 ->   54 trueControlDependence
+  54:    6 ->    3 loopIndependentDefUseDependence this.x.!getA( )
+  55:   10 ->    7 loopIndependentDefUseDependence this.!getX( )
+  56:   10 ->   15 outputDependence this.!getX( )
+  57:   15 ->   12 loopIndependentDefUseDependence this.!getX( )
+  58:   15 ->   26 outputDependence this.!getX( )
+  59:   17 ->   11 loopIndependentDefUseDependence this.!getX( ).!getA( )
+  60:   21 ->   18 loopIndependentDefUseDependence this.x.y.!getA( )
+  61:   26 ->   23 loopIndependentDefUseDependence this.!getX( )
+  62:   26 ->   34 outputDependence this.!getX( )
+  63:   28 ->   22 loopIndependentDefUseDependence this.!getX( ).!getY( )
+  64:   28 ->   36 outputDependence this.!getX( ).!getY( )
+  65:   34 ->   31 loopIndependentDefUseDependence this.!getX( )
+  66:   34 ->   43 outputDependence this.!getX( )
+  67:   36 ->   30 loopIndependentDefUseDependence this.!getX( ).!getY( )
+  68:   38 ->   29 loopIndependentDefUseDependence this.!getX( ).!getY( ).!getA( )
+  69:   43 ->   40 loopIndependentDefUseDependence this.!getX( )
+  70:   45 ->   39 loopIndependentDefUseDependence this.!getX( ).y.!getA( )
+  71:   50 ->   47 loopIndependentDefUseDependence this.x.!getY( )
+  72:   52 ->   46 loopIndependentDefUseDependence this.x.!getY( ).!getA( )
+--
+   0: getA( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: getY( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   1: 1854 -> 1855 MEMBER
+   2: 1854 -> 1858 MEMBER
+   3: 1854 -> 1913 MEMBER
+   4: 1854 -> 1919 MEMBER
+   5: 1854 -> 1923 MEMBER
+   6: 1854 -> 1929 MEMBER
+   7: 1854 -> 1933 MEMBER
+   8: 1854 -> 1937 MEMBER
+   9: 1857 -> 1917 POUT
+  10: 1857 -> 1927 POUT
+  11: 1863 -> 1933 CALL
+  12: 1867 -> 1919 CALL
+  13: 1872 -> 1919 CALL
+  14: 1874 -> 1933 CALL
+  15: 1878 -> 1933 CALL
+  16: 1883 -> 1919 CALL
+  17: 1885 -> 1929 CALL
+  18: 1891 -> 1919 CALL
+  19: 1893 -> 1929 CALL
+  20: 1895 -> 1933 CALL
+  21: 1900 -> 1919 CALL
+  22: 1902 -> 1933 CALL
+  23: 1907 -> 1929 CALL
+  24: 1909 -> 1933 CALL
+  25: 1914 -> 1860 FACC
+  26: 1914 -> 1862 FACC
+  27: 1914 -> 1867 FACC
+  28: 1914 -> 1868 FACC
+  29: 1914 -> 1872 FACC
+  30: 1914 -> 1873 FACC
+  31: 1914 -> 1877 FACC
+  32: 1914 -> 1883 FACC
+  33: 1914 -> 1884 FACC
+  34: 1914 -> 1885 FACC
+  35: 1914 -> 1886 FACC
+  36: 1914 -> 1891 FACC
+  37: 1914 -> 1892 FACC
+  38: 1914 -> 1893 FACC
+  39: 1914 -> 1894 FACC
+  40: 1914 -> 1900 FACC
+  41: 1914 -> 1901 FACC
+  42: 1914 -> 1906 FACC
+  43: 1914 -> 1907 FACC
+  44: 1914 -> 1908 FACC
+  45: 1914 -> 1914 FACC
+  46: 1914 -> 1920 FACC
+  47: 1914 -> 1930 FACC
+  48: 1916 -> 1855 CALL
+  49: 1922 -> 1868 POUT
+  50: 1922 -> 1873 POUT
+  51: 1922 -> 1884 POUT
+  52: 1922 -> 1892 POUT
+  53: 1922 -> 1901 POUT
+  54: 1924 -> 1860 FACC
+  55: 1924 -> 1867 FACC
+  56: 1924 -> 1868 FACC
+  57: 1924 -> 1872 FACC
+  58: 1924 -> 1873 FACC
+  59: 1924 -> 1877 FACC
+  60: 1924 -> 1883 FACC
+  61: 1924 -> 1884 FACC
+  62: 1924 -> 1885 FACC
+  63: 1924 -> 1886 FACC
+  64: 1924 -> 1891 FACC
+  65: 1924 -> 1892 FACC
+  66: 1924 -> 1893 FACC
+  67: 1924 -> 1894 FACC
+  68: 1924 -> 1898 FACC
+  69: 1924 -> 1900 FACC
+  70: 1924 -> 1901 FACC
+  71: 1924 -> 1907 FACC
+  72: 1924 -> 1908 FACC
+  73: 1924 -> 1920 FACC
+  74: 1924 -> 1924 FACC
+  75: 1924 -> 1930 FACC
+  76: 1926 -> 1855 CALL
+  77: 1932 -> 1886 POUT
+  78: 1932 -> 1894 POUT
+  79: 1932 -> 1908 POUT
+  80: 1936 -> 1864 POUT
+  81: 1936 -> 1875 POUT
+  82: 1936 -> 1879 POUT
+  83: 1936 -> 1896 POUT
+  84: 1936 -> 1903 POUT
+  85: 1936 -> 1910 POUT
+  86: 1938 -> 1859 FACC
+  87: 1938 -> 1860 FACC
+  88: 1938 -> 1863 FACC
+  89: 1938 -> 1864 FACC
+  90: 1938 -> 1865 FACC
+  91: 1938 -> 1867 FACC
+  92: 1938 -> 1868 FACC
+  93: 1938 -> 1872 FACC
+  94: 1938 -> 1873 FACC
+  95: 1938 -> 1874 FACC
+  96: 1938 -> 1875 FACC
+  97: 1938 -> 1878 FACC
+  98: 1938 -> 1879 FACC
+  99: 1938 -> 1880 FACC
+ 100: 1938 -> 1883 FACC
+ 101: 1938 -> 1884 FACC
+ 102: 1938 -> 1885 FACC
+ 103: 1938 -> 1886 FACC
+ 104: 1938 -> 1891 FACC
+ 105: 1938 -> 1892 FACC
+ 106: 1938 -> 1893 FACC
+ 107: 1938 -> 1894 FACC
+ 108: 1938 -> 1895 FACC
+ 109: 1938 -> 1896 FACC
+ 110: 1938 -> 1900 FACC
+ 111: 1938 -> 1901 FACC
+ 112: 1938 -> 1902 FACC
+ 113: 1938 -> 1903 FACC
+ 114: 1938 -> 1907 FACC
+ 115: 1938 -> 1908 FACC
+ 116: 1938 -> 1909 FACC
+ 117: 1938 -> 1910 FACC
+ 118: 1938 -> 1920 FACC
+ 119: 1938 -> 1930 FACC
+ 120: 1938 -> 1934 FACC
+ 121: 1938 -> 1938 FACC
+--
+

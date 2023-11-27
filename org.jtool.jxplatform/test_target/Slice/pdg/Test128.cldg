@@ -1,0 +1,279 @@
+Class Name = Test128
+   0 methodEntry [ A128#getY( ) ]
+   1 returnSt D = { $_ } U = { this.y }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A128#setY( int ) ]
+   1 formalIn D = { y$0 } U = {  }
+   2 assignment D = { this.y } U = { y$0 }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Test128#p ]
+   1 fieldDeclaration D = { this.p } U = { this.p }
+--
+   0 constructorEntry [ Test128#Test128( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test128#m( ) ]
+   1 localDeclaration D = { a$0 } U = { A128.!A128( ) }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = A128#A128( )
+   4 actualOut D = { A128.!A128( ) } U = {  }
+   5 localDeclaration D = { p$1 } U = {  }
+   6 localDeclaration D = { q$2 } U = {  }
+   7 assignment D = {  } U = { a$0.!setY( int ) }
+   8 receiver D = {  } U = { a$0 }
+   9 methodCall D = {  } U = {  } TO = A128#setY( int )
+  10 actualIn D = {  } U = { q$2 }
+  11 actualOut D = { a$0.!setY( int ) } U = {  }
+  12 localDeclaration D = { r$3 } U = { a$0.!getY( ) }
+  13 receiver D = {  } U = { a$0 }
+  14 methodCall D = {  } U = { A128.!A128( ).y, a$0.y } TO = A128#getY( )
+  15 actualOut D = { a$0.!getY( ) } U = { A128.!A128( ).y, a$0.y }
+  16 localDeclaration D = { s$4 } U = { a$0.!add( int ).!getY( ) }
+  17 receiver D = {  } U = { a$0.!add( int ) }
+  18 receiver D = {  } U = { a$0 }
+  19 methodCall D = {  } U = { A128.!A128( ).y, a$0.y, ret$1.y } TO = A128#add( int )
+  20 actualIn D = {  } U = { p$1 }
+  21 actualOut D = { a$0.!add( int ) } U = { A128.!A128( ).y, a$0.y, ret$1.y }
+  22 methodCall D = {  } U = { A128.!A128( ).!add( int ).y, a$0.!add( int ).y } TO = A128#getY( )
+  23 actualOut D = { a$0.!add( int ).!getY( ) } U = { A128.!A128( ).!add( int ).y, a$0.!add( int ).y }
+  24 localDeclaration D = { t$5 } U = { this.!n( int int ) }
+  25 receiver D = {  } U = {  }
+  26 methodCall D = {  } U = {  } TO = Test128#n( int int )
+  27 actualIn D = {  } U = {  }
+  28 actualIn D = {  } U = { a$0.!add( int ).!getY( ) }
+  29 receiver D = {  } U = { a$0.!add( int ) }
+  30 receiver D = {  } U = { a$0 }
+  31 methodCall D = {  } U = { A128.!A128( ).y, a$0.y, ret$1.y } TO = A128#add( int )
+  32 actualIn D = {  } U = { p$1 }
+  33 actualOut D = { a$0.!add( int ) } U = { A128.!A128( ).y, a$0.y, ret$1.y }
+  34 methodCall D = {  } U = { A128.!A128( ).!add( int ).y, a$0.!add( int ).y } TO = A128#getY( )
+  35 actualOut D = { a$0.!add( int ).!getY( ) } U = { A128.!A128( ).!add( int ).y, a$0.!add( int ).y }
+  36 actualOut D = { this.!n( int int ) } U = {  }
+  38 formalOut D = {  } U = { $_ }
+   9+1541 actualOutByFieldAccess D = { a$0.y } U = {  }
+  19+1547 actualOutByFieldAccess D = { a$0.ret$1.y } U = {  }
+  31+1554 actualOutByFieldAccess D = { a$0.ret$1.y } U = {  }
+--
+   0 fieldEntry [ A128#z ]
+   1 fieldDeclaration D = { A128.z } U = { A128.z }
+--
+   0 constructorEntry [ A128#A128( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ A128#add( int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 localDeclaration D = { ret$1 } U = { A128.!A128( ) }
+   3 receiver D = {  } U = {  }
+   4 constructorCall D = {  } U = {  } TO = A128#A128( )
+   5 actualOut D = { A128.!A128( ) } U = {  }
+   6 assignment D = {  } U = { ret$1.!setY( int ) }
+   7 receiver D = {  } U = { ret$1 }
+   8 methodCall D = {  } U = {  } TO = A128#setY( int )
+   9 actualIn D = {  } U = { this.y, x$0 }
+  10 actualOut D = { ret$1.!setY( int ) } U = {  }
+  11 returnSt D = { $_ } U = { A128.!A128( ).y, ret$1, ret$1.y }
+  13 formalOut D = {  } U = { $_ }
+   8+1546 actualOutByFieldAccess D = { ret$1.y } U = {  }
+--
+   0 fieldEntry [ A128#y ]
+   1 fieldDeclaration D = { this.y } U = { this.y }
+--
+   0 methodEntry [ Test128#n( int int ) ]
+   1 formalIn D = { x$0 } U = {  }
+   2 formalIn D = { y$1 } U = {  }
+   3 returnSt D = { $_ } U = { y$1 }
+   5 formalOut D = {  } U = { $_ }
+--
+   0: getY( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: setY( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence y$0
+--
+   0: p
+   1:    0 ->    1 trueControlDependence
+--
+   0: Test128( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: m( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    9 trueControlDependence
+  10:    0 ->    9+1541 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   12 trueControlDependence
+  14:    0 ->   13 trueControlDependence
+  15:    0 ->   14 trueControlDependence
+  16:    0 ->   15 trueControlDependence
+  17:    0 ->   16 trueControlDependence
+  18:    0 ->   17 trueControlDependence
+  19:    0 ->   18 trueControlDependence
+  20:    0 ->   19 trueControlDependence
+  21:    0 ->   19+1547 trueControlDependence
+  22:    0 ->   20 trueControlDependence
+  23:    0 ->   21 trueControlDependence
+  24:    0 ->   22 trueControlDependence
+  25:    0 ->   23 trueControlDependence
+  26:    0 ->   24 trueControlDependence
+  27:    0 ->   25 trueControlDependence
+  28:    0 ->   26 trueControlDependence
+  29:    0 ->   27 trueControlDependence
+  30:    0 ->   28 trueControlDependence
+  31:    0 ->   29 trueControlDependence
+  32:    0 ->   30 trueControlDependence
+  33:    0 ->   31 trueControlDependence
+  34:    0 ->   31+1554 trueControlDependence
+  35:    0 ->   32 trueControlDependence
+  36:    0 ->   33 trueControlDependence
+  37:    0 ->   34 trueControlDependence
+  38:    0 ->   35 trueControlDependence
+  39:    0 ->   36 trueControlDependence
+  40:    0 ->   38 trueControlDependence
+  41:    1 ->    8 declaration
+  42:    1 ->    8 loopIndependentDefUseDependence a$0
+  43:    1 ->   13 declaration
+  44:    1 ->   13 loopIndependentDefUseDependence a$0
+  45:    1 ->   18 declaration
+  46:    1 ->   18 loopIndependentDefUseDependence a$0
+  47:    1 ->   30 declaration
+  48:    1 ->   30 loopIndependentDefUseDependence a$0
+  49:    4 ->    1 loopIndependentDefUseDependence A128.!A128( )
+  50:    5 ->   20 declaration
+  51:    5 ->   20 loopIndependentDefUseDependence p$1
+  52:    5 ->   32 declaration
+  53:    5 ->   32 loopIndependentDefUseDependence p$1
+  54:    6 ->   10 declaration
+  55:    6 ->   10 loopIndependentDefUseDependence q$2
+  56:    9+1541 ->   14 loopIndependentDefUseDependence a$0.y
+  57:    9+1541 ->   15 loopIndependentDefUseDependence a$0.y
+  58:    9+1541 ->   19 loopIndependentDefUseDependence a$0.y
+  59:    9+1541 ->   21 loopIndependentDefUseDependence a$0.y
+  60:    9+1541 ->   31 loopIndependentDefUseDependence a$0.y
+  61:    9+1541 ->   33 loopIndependentDefUseDependence a$0.y
+  62:   11 ->    7 loopIndependentDefUseDependence a$0.!setY( int )
+  63:   15 ->   12 loopIndependentDefUseDependence a$0.!getY( )
+  64:   19+1547 ->   31+1554 outputDependence a$0.ret$1.y
+  65:   21 ->   17 loopIndependentDefUseDependence a$0.!add( int )
+  66:   21 ->   33 outputDependence a$0.!add( int )
+  67:   23 ->   16 loopIndependentDefUseDependence a$0.!add( int ).!getY( )
+  68:   23 ->   35 outputDependence a$0.!add( int ).!getY( )
+  69:   33 ->   29 loopIndependentDefUseDependence a$0.!add( int )
+  70:   35 ->   28 loopIndependentDefUseDependence a$0.!add( int ).!getY( )
+  71:   36 ->   24 loopIndependentDefUseDependence this.!n( int int )
+--
+   0: z
+   1:    0 ->    1 trueControlDependence
+--
+   0: A128( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: add( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->    8+1546 trueControlDependence
+  10:    0 ->    9 trueControlDependence
+  11:    0 ->   10 trueControlDependence
+  12:    0 ->   11 trueControlDependence
+  13:    0 ->   13 trueControlDependence
+  14:    1 ->    9 loopIndependentDefUseDependence x$0
+  15:    2 ->    7 declaration
+  16:    2 ->    7 loopIndependentDefUseDependence ret$1
+  17:    2 ->   11 declaration
+  18:    2 ->   11 loopIndependentDefUseDependence ret$1
+  19:    5 ->    2 loopIndependentDefUseDependence A128.!A128( )
+  20:    8+1546 ->   11 loopIndependentDefUseDependence ret$1.y
+  21:   10 ->    6 loopIndependentDefUseDependence ret$1.!setY( int )
+  22:   11 ->   13 loopIndependentDefUseDependence $_
+--
+   0: y
+   1:    0 ->    1 trueControlDependence
+--
+   0: n( int int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    5 trueControlDependence
+   5:    2 ->    3 loopIndependentDefUseDependence y$1
+   6:    3 ->    5 loopIndependentDefUseDependence $_
+--
+   1: 1476 -> 1477 MEMBER
+   2: 1476 -> 1480 MEMBER
+   3: 1476 -> 1548 MEMBER
+   4: 1476 -> 1555 MEMBER
+   5: 1483 -> 1533 CALL
+   6: 1489 -> 1536 CALL
+   7: 1490 -> 1537 PIN
+   8: 1494 -> 1542 CALL
+   9: 1499 -> 1519 CALL
+  10: 1500 -> 1520 PIN
+  11: 1502 -> 1542 CALL
+  12: 1506 -> 1548 CALL
+  13: 1507 -> 1549 PIN
+  14: 1508 -> 1550 PIN
+  15: 1511 -> 1519 CALL
+  16: 1512 -> 1520 PIN
+  17: 1514 -> 1542 CALL
+  18: 1523 -> 1533 CALL
+  19: 1527 -> 1536 CALL
+  20: 1527 -> 1547 CFACC
+  21: 1527 -> 1554 CFACC
+  22: 1528 -> 1537 PIN
+  23: 1532 -> 1501 POUT
+  24: 1532 -> 1513 POUT
+  25: 1535 -> 1484 POUT
+  26: 1535 -> 1524 POUT
+  27: 1538 -> 1541 CFACC
+  28: 1538 -> 1546 CFACC
+  29: 1538 -> 1547 CFACC
+  30: 1538 -> 1554 CFACC
+  31: 1540 -> 1491 POUT
+  32: 1540 -> 1529 POUT
+  33: 1545 -> 1495 POUT
+  34: 1545 -> 1503 POUT
+  35: 1545 -> 1515 POUT
+  36: 1553 -> 1516 POUT
+  37: 1556 -> 1556 FACC
+  38: 1558 -> 1519 MEMBER
+  39: 1558 -> 1533 MEMBER
+  40: 1558 -> 1536 MEMBER
+  41: 1558 -> 1542 MEMBER
+  42: 1558 -> 1559 MEMBER
+  43: 1558 -> 1562 MEMBER
+  44: 1560 -> 1560 FACC
+  45: 1563 -> 1494 FACC
+  46: 1563 -> 1495 FACC
+  47: 1563 -> 1499 FACC
+  48: 1563 -> 1501 FACC
+  49: 1563 -> 1502 FACC
+  50: 1563 -> 1503 FACC
+  51: 1563 -> 1511 FACC
+  52: 1563 -> 1513 FACC
+  53: 1563 -> 1514 FACC
+  54: 1563 -> 1515 FACC
+  55: 1563 -> 1528 FACC
+  56: 1563 -> 1530 FACC
+  57: 1563 -> 1543 FACC
+  58: 1563 -> 1563 FACC
+--
+

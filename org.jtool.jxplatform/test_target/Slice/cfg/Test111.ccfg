@@ -1,0 +1,46 @@
+Class Name = Test111
+   0 methodEntry [ Test111#m( ) ]
+   1 localDeclaration D = { x$0 } U = {  }
+   2 localDeclaration D = { y$1 } U = {  }
+   3 localDeclaration D = { z$2 } U = {  }
+   4 switchSt D = { $SwitchDef } U = { x$0 }
+   5 switchCase D = {  } U = { $SwitchDef }
+   6 assignment D = { y$1 } U = {  }
+   7 breakSt D = {  } U = {  }
+   8 switchCase D = {  } U = { $SwitchDef }
+   9 assignment D = { z$2 } U = {  }
+  10 breakSt D = {  } U = {  }
+  11 merge switchSt(4)
+  12 localDeclaration D = { p$3 } U = { y$1 }
+  13 localDeclaration D = { q$4 } U = { z$2 }
+  14 methodExit
+  15 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test111#Test111( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    5 ->    8 falseControlFlow
+   8:    6 ->    7 trueControlFlow
+   9:    7 ->   11 trueControlFlow
+  10:    8 ->    9 trueControlFlow
+  11:    8 ->   11 falseControlFlow
+  12:    9 ->   10 trueControlFlow
+  13:   10 ->   11 trueControlFlow
+  14:   11 ->   12 trueControlFlow
+  15:   12 ->   13 trueControlFlow
+  16:   13 ->   15 trueControlFlow
+  17:   15 ->   14 trueControlFlow
+--
+   0: Test111( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+

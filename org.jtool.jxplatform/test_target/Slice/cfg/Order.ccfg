@@ -1,0 +1,59 @@
+Class Name = Order
+   0 methodEntry [ Order#getSize( ) ]
+   1 returnSt D = { $_ } U = { this.rentals.!size( ) }
+   2 receiver D = {  } U = { this.rentals }
+   3 methodCall D = {  } U = { this.rentals.!java.util.ArrayList.size } TO = java.util.List#size( )
+   4 actualOut D = { this.rentals.!size( ) } U = { this.rentals.!java.util.ArrayList.size }
+   5 methodExit
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Order#addRental( Rental ) ]
+   1 formalIn D = { rental$0 } U = {  }
+   2 assignment D = {  } U = { this.rentals.!add( java.lang.Object ) }
+   3 receiver D = {  } U = { this.rentals }
+   4 methodCall D = {  } U = { rental$0, rental$0.days, rental$0.price, this.rentals.!java.util.ArrayList.elementData, this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size } TO = java.util.List#add( java.lang.Object )
+   5 actualOut D = { this.rentals.!add( java.lang.Object ), this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size } U = { this.rentals.!java.util.ArrayList.elementData, this.rentals.!java.util.ArrayList.modCount, this.rentals.!java.util.ArrayList.size }
+   6 methodExit
+   7 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Order#rentals ]
+   1 fieldDeclaration D = { this.rentals } U = { java.util.ArrayList.!ArrayList( ), this.rentals }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA } TO = java.util.ArrayList#ArrayList( )
+   4 actualOut D = { java.util.ArrayList.!ArrayList( ), java.util.ArrayList.!java.util.AbstractList.modCount, java.util.ArrayList.!java.util.ArrayList.elementData } U = { java.util.ArrayList.!java.util.ArrayList.DEFAULTCAPACITY_EMPTY_ELEMENTDATA }
+   5 fieldExit
+--
+   0 constructorEntry [ Order#Order( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0: getSize( )
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    6 fallThroughFlow
+   3:    1 ->    6 trueControlFlow
+   4:    2 ->    3 trueControlFlow
+   5:    3 ->    4 trueControlFlow
+   6:    4 ->    1 trueControlFlow
+   7:    6 ->    5 trueControlFlow
+--
+   0: addRental( Rental )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 trueControlFlow
+   3:    2 ->    7 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    2 trueControlFlow
+   7:    7 ->    6 trueControlFlow
+--
+   0: rentals
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+--
+   0: Order( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+

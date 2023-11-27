@@ -1,0 +1,39 @@
+Class Name = Test115
+   0 methodEntry [ Test115#m( ) ]
+   1 localDeclaration D = { a$0 } U = {  }
+   2 localDeclaration D = { x$1 } U = {  }
+   3 localDeclaration D = { y$2 } U = {  }
+   4 localDeclaration D = { i$3 } U = {  }
+   5 forSt D = {  } U = { i$3 }
+   6 assignment D = { x$1 } U = { a$0, i$3, x$1 }
+   7 assignment D = { y$2 } U = { a$0, i$3, y$2 }
+   8 assignment D = { i$3 } U = { i$3 }
+   9 localDeclaration D = { p$4 } U = { x$1 }
+  10 localDeclaration D = { q$5 } U = { y$2 }
+  11 methodExit
+  12 formalOut D = {  } U = { $_ }
+--
+   0 constructorEntry [ Test115#Test115( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0: m( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    5 trueControlFlow
+   6:    5 ->    6 trueControlFlow
+   7:    5 ->    9 falseControlFlow
+   8:    6 ->    7 trueControlFlow
+   9:    7 ->    8 trueControlFlow
+  10:    8 ->    5 trueControlFlow (L = 5)
+  11:    9 ->   10 trueControlFlow
+  12:   10 ->   12 trueControlFlow
+  13:   12 ->   11 trueControlFlow
+--
+   0: Test115( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+

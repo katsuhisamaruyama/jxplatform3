@@ -1,0 +1,60 @@
+Class Name = Test124
+   0 constructorEntry [ Test124#Test124( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test124#m( ) ]
+   1 localDeclaration D = { p$0 } U = {  }
+   2 localDeclaration D = { q$1 } U = {  }
+   3 localDeclaration D = { a$2 } U = { A124.!A124( int ) }
+   4 receiver D = {  } U = {  }
+   5 constructorCall D = {  } U = {  } TO = A124#A124( int )
+   6 actualIn D = {  } U = { p$0 }
+   7 actualOut D = { A124.!A124( int ) } U = {  }
+   8 localDeclaration D = { b$3 } U = { a$2.!getX( ) }
+   9 receiver D = {  } U = { a$2 }
+  10 methodCall D = {  } U = { A124.!A124( int ).x, a$2.x } TO = A124#getX( )
+  11 actualOut D = { a$2.!getX( ) } U = { A124.!A124( int ).x, a$2.x }
+  12 localDeclaration D = { c$4 } U = { a$2.!inc( int ) }
+  13 receiver D = {  } U = { a$2 }
+  14 methodCall D = {  } U = { A124.!A124( int ).x, a$2.x } TO = A124#inc( int )
+  15 actualIn D = {  } U = { q$1 }
+  16 actualOut D = { a$2.!inc( int ) } U = { A124.!A124( int ).x, a$2.x }
+  17 methodExit
+  18 formalOut D = {  } U = { $_ }
+   5+1816 actualOutByFieldAccess D = { A124.!A124( int ).x } U = {  }
+--
+   0 fieldEntry [ Test124#p ]
+   1 fieldDeclaration D = { this.p } U = { this.p }
+   2 fieldExit
+--
+   0: Test124( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+   0: m( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+   3:    2 ->    4 trueControlFlow
+   4:    3 ->    9 trueControlFlow
+   5:    4 ->    6 trueControlFlow
+   6:    5 ->    5+1816 trueControlFlow
+   7:    6 ->    5 trueControlFlow
+   8:    7 ->    3 trueControlFlow
+   9:    8 ->   13 trueControlFlow
+  10:    9 ->   10 trueControlFlow
+  11:   10 ->   11 trueControlFlow
+  12:   11 ->    8 trueControlFlow
+  13:   12 ->   18 trueControlFlow
+  14:   13 ->   15 trueControlFlow
+  15:   14 ->   16 trueControlFlow
+  16:   15 ->   14 trueControlFlow
+  17:   16 ->   12 trueControlFlow
+  18:   18 ->   17 trueControlFlow
+  19:    5+1816 ->    7 trueControlFlow
+--
+   0: p
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    2 trueControlFlow
+--
+

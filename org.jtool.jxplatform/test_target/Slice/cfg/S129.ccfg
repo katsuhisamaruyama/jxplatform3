@@ -1,0 +1,35 @@
+Class Name = S129
+   0 constructorEntry [ S129#S129( ) ]
+   1 constructorExit
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ S129#getP( ) ]
+   1 returnSt D = { $_ } U = { this.p, this.p.key, this.p.map, this.p.value }
+   2 methodExit
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ S129#p ]
+   1 fieldDeclaration D = { this.p } U = { P129.!P129( ), this.p }
+   2 receiver D = {  } U = {  }
+   3 constructorCall D = {  } U = {  } TO = P129#P129( )
+   4 actualOut D = { P129.!P129( ) } U = {  }
+   5 fieldExit
+--
+   0: S129( )
+   1:    0 ->    2 trueControlFlow
+   2:    2 ->    1 trueControlFlow
+--
+   0: getP( )
+   1:    0 ->    1 trueControlFlow
+   2:    1 ->    3 fallThroughFlow
+   3:    1 ->    3 trueControlFlow
+   4:    3 ->    2 trueControlFlow
+--
+   0: p
+   1:    0 ->    2 trueControlFlow
+   2:    1 ->    5 trueControlFlow
+   3:    2 ->    3 trueControlFlow
+   4:    3 ->    4 trueControlFlow
+   5:    4 ->    1 trueControlFlow
+--
+
