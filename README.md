@@ -224,12 +224,16 @@ ibuilder.addFile(jproject, path + File.separator + "Added.java");
 // Re-builds the source code model from the added file and its related ones
 ibuilder.incrementalBuild();
 
+List<JavaClass> classes = jproject.getClasses();
+
 // Notifies the deletion and update of Java files
 ibuilder.removeFile(jproject, path + File.separator + "Deleled.java");
 ibuilder.updateFile(jproject, path + File.separator + "Updated.java");
 
 // Re-builds the source code model from the deleted and updated files and their related ones
 ibuilder.incrementalBuild();
+
+List<JavaClass> classes = jproject.getClasses();
 
 builder.unbuild();
 ```
