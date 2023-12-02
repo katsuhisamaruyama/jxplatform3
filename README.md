@@ -210,26 +210,26 @@ builder.unbuild();
 The code snippet incrementally building a source code model is describe below. 
 
 ```java
-IncrementalModelBuilder builder = new IncrementalModelBuilder();
-builder.analyzeBytecode(true);
-builder.useCache(true);
-builder.setConsoleVisible(true);
+ModelBuilderBatch builder = new ModelBuilderBatch();
+List<JavaProject> jprojects = builder.build(name, target);
+IncrementalModelBuilder ibuilder = new IncrementalModelBuilder(builder.getModelBuilderImpl(), projects);
 
-JavaProject jproject = builder.build(name, target, classpath);
-// One builder monitors just one project
+// Monitors just one project
+JavaProject jproject = jprojects.get(0);
+String path = jproject.getPath();
 
 // Notifies the addition of a Java file
-builder.addFile(path + File.separator + "Added.java");  
+ibuilder.addFile(jproject, path + File.separator + "Added.java");
 
 // Re-builds the source code model from the added file and its related ones
-builder.incrementalBuild();
+ibuilder.incrementalBuild();
 
 // Notifies the deletion and update of Java files
-builder.removeFile(path + File.separator + "Deleled.java");
-builder.updateFile(path + File.separator + "Updated.java");
+ibuilder.removeFile(jproject, path + File.separator + "Deleled.java");
+ibuilder.updateFile(jproject, path + File.separator + "Updated.java");
 
 // Re-builds the source code model from the deleted and updated files and their related ones
-builder.incrementalBuild();
+ibuilder.incrementalBuild();
 
 builder.unbuild();
 ```
