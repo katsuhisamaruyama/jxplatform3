@@ -35,7 +35,7 @@ import java.util.concurrent.TimeoutException;
 public class CDFinder {
     
     private static final int TIMEOUT_SEC = 5;
-    private static final int SHRORT_TIMEOUT_SEC = 2;
+    private static final int SHORT_TIMEOUT_SEC = 2;
     
     public void find(final JavaProject jproject, final PDG pdg, final CFG cfg) {
         Runnable task = new Runnable() {
@@ -62,7 +62,7 @@ public class CDFinder {
         GetNestingDepth nesting = new GetNestingDepth();
         int maxDepth = nesting.getMaximumNuberOfNestingDepth(cfg.getEntryNode());
         if (maxDepth > 30) {
-            return SHRORT_TIMEOUT_SEC;
+            return SHORT_TIMEOUT_SEC;
         } else {
             return TIMEOUT_SEC;
         }
