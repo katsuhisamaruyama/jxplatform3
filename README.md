@@ -174,7 +174,7 @@ This API automatically collects needed information from configuration files of A
 The code snippet building a source code model is describe below. 
 
 ```java
-ModelBuilderBatch builder = new ModelBuilderBatch();
+ModelBuilder builder = new ModelBuilderBatch();
 builder.analyzeBytecode(true);    // whether analyzing bytecode files or not 
 builder.useCache(true);           // whether using a cache of already analyzed data
 builder.setConsoleVisible(true);  // whether displaying messages on console
@@ -210,7 +210,7 @@ builder.unbuild();
 The code snippet incrementally building a source code model is describe below. 
 
 ```java
-ModelBuilderBatch builder = new ModelBuilderBatch();
+ModelBuilder builder = new ModelBuilderBatch();
 List<JavaProject> jprojects = builder.build(name, target);
 IncrementalModelBuilder ibuilder = new IncrementalModelBuilder(builder.getModelBuilderImpl(), projects);
 
@@ -243,7 +243,7 @@ builder.unbuild();
 The following code snippet builds CCFGs for all classes and CFGs for all methods and fields within a project.
 
 ```java
-ModelBuilderBatch builder = new ModelBuilderBatch();
+ModelBuilder builder = new ModelBuilderBatch();
 List<JavaProject> jprojects = builder.build(name, target);
 List<JavaClass> classes = jprojects.stream()
                                    .flatMap(p -> p.getClasses().stream())
@@ -282,7 +282,7 @@ CallGraph callGraph = builder.getCallGraph(jproject);
 The following code builds ClDGs for all classes and PDGs for all methods and fields within a project.
 
 ```java
-ModelBuilderBatch builder = new ModelBuilderBatch();
+ModelBuilder builder = new ModelBuilderBatch();
 List<JavaProject> jprojects = builder.build(name, target);
 List<JavaClass> classes = jprojects.stream()
                                    .flatMap(p -> p.getClasses().stream())
