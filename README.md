@@ -341,11 +341,10 @@ DependencyGraph graph = builder.getDependencyGraph(classes);  // force:false, wh
 A program slice can be created from an object of PDG as described below.
 
 ```java
-JavaClass jclass;        // a class to be sliced
+DependencyGraph graph;   // a dependency graph for a class to be sliced
 PDGNode node;            // a node given as a slice criterion
 JVariableReference var;  // a variable of interest given as a slice criterion
 
-DependencyGraph graph = builder.getDependencyGraph(jclass);
 SliceCriterion criterion = new SliceCriterion(graph, node, var);
 Slice slice = new Slice(criterion);
 slice.print();
