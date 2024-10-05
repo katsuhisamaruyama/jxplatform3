@@ -1,2 +1,3 @@
 # Ignore JxPlatform cache directory
 .jxplatform
+/.DS_Store

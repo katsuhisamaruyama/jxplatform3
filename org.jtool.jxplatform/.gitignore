@@ -3,8 +3,6 @@
 
 # Ignore Gradle build output directory
 bin
-build/classes
-build/libs
-build/generated
-build/tmp
-/build/
+build
+target
+.DS_Store
