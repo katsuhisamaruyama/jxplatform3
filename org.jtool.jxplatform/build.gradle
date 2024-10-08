@@ -1,21 +1,21 @@
 /*
- *  Copyright 2022
+ *  Copyright 2024
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
-buildscript {
-    repositories {
-        gradlePluginPortal()
-    }
-    dependencies {
-        classpath "gradle.plugin.com.github.johnrengelman:shadow:7.1.2"
-    }
+plugins {
+    id 'java'
+    id 'eclipse'
+    id "com.github.johnrengelman.shadow" version "8.1.1"
+    id 'java-library'
+    id 'maven-publish'
+    id 'org.jreleaser' version '1.14.0'
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'maven-publish'
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+}
 
 group = 'org.jtool.jxplatform'
 
@@ -28,14 +28,6 @@ eclipse {
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
-sourceCompatibility = '1.11'
-targetCompatibility = '1.11'
-
-repositories {
-    mavenCentral()
-    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
-}
-
 dependencies {
     implementation group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.32.0'
     implementation group: 'org.apache.maven', name: 'maven-model', version: '3.8.6'
@@ -43,7 +35,7 @@ dependencies {
     implementation group: 'net.lingala.zip4j', name: 'zip4j', version: '2.11.2'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.36'
     implementation group: 'org.javassist', name: 'javassist', version: '3.29.2-GA'
-    implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
+    implementation group: 'com.google.guava', name: 'guava', version: '33.3.1-jre'
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
     implementation group: 'org.gradle', name: 'gradle-tooling-api', version: '7.4.2'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.36'
@@ -105,6 +97,9 @@ task javadoc(type: Javadoc, overwrite: true) {
 }
 
 java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    
     withSourcesJar()
     withJavadocJar()
 }
@@ -115,21 +110,68 @@ shadowJar {
     }
     
     archiveBaseName = 'jxplatform'
-    classifier = 'SNAPSHOT'
-    archiveVersion = project.property('currentVersion')
+    archiveClassifier = 'SNAPSHOT'
+    archiveVersion = project.property('currentRelease')
     
     from sourceSets.main.allJava
 }
 
+version = project.hasProperty('productVersion')  ? productVersion : "3.x.x"
+
 publishing {
     publications {
-        maven(MavenPublication) {
+        mavenJava(MavenPublication) {
+            groupId = 'io.github.katsuhisamaruyama'
+            artifactId = 'org.jtool.jxplatform'
             from components.java
+            
+            pom {
+                name = 'org.jtool.jxplatform'
+                description = 'Java source code analyzer'
+                url = 'https://github.com/katsuhisamaruyama/jxplatform3'
+                licenses {
+                    license {
+                        name = 'Eclipse Public License 1.0'
+                        url = 'https://opensource.org/license/epl-1-0'
+                    }
+                }
+                developers {
+                    developer {
+                        name = 'Katsuhisa Maruyama'
+                        email = 'maru@cs.ritsumei.ac.jp'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/katsuhisamaruyama/jxplatform3.git'
+                    developerConnection = 'scm:git:ssh://github.com/katsuhisamaruyama/jxplatform3.git'
+                    url = 'https://github.com/katsuhisamaruyama/jxplatform3'
+                }
+            }
+        }
+    }
+    
+    repositories {
+        maven {
+            url = layout.buildDirectory.dir('staging-deploy')
         }
     }
 }
 
-wrapper {
-    gradleVersion = "7.5.1"
-    distributionType = Wrapper.DistributionType.ALL
+jreleaser {
+    gitRootSearch = true
+    signing {
+        active = 'ALWAYS'
+        armored = true
+    }
+    deploy {
+        maven {
+            mavenCentral {
+                sonatype {
+                    active = 'ALWAYS'
+                    url = 'https://central.sonatype.com/api/v1/publisher'
+                    stagingRepository('build/staging-deploy')
+                }
+            }
+        }
+    }
 }

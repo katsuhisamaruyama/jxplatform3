@@ -23,10 +23,10 @@ jobs:
 
     steps:
       - name: Checkout from Git
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'adopt'
           java-version: '11'
@@ -53,20 +53,20 @@ jobs:
 
     steps:
       - name: Checkout from Git
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v5
 
       - name: Generate javadoc
         run: ./gradlew javadoc
         working-directory: org.jtool.jxplatform
 
       - name: Upload javadoc
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: org.jtool.jxplatform/build/docs/javadoc/
 
       - name: Deploy javadoc to GitHub pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
