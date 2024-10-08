@@ -131,8 +131,8 @@ publishing {
                 url = 'https://github.com/katsuhisamaruyama/jxplatform3'
                 licenses {
                     license {
-                        name = 'Eclipse Public License 1.0'
-                        url = 'https://opensource.org/license/epl-1-0'
+                        name = 'Eclipse Public License 2.0'
+                        url = 'https://opensource.org/license/epl-2-0'
                     }
                 }
                 developers {
