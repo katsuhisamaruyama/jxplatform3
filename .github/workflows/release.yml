@@ -22,7 +22,6 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '11'
-          cache: 'gradle'
 
       - name: Generate jar file
         run: ./gradlew shadowJar
@@ -32,7 +31,7 @@ jobs:
         id: get_version
         run: |
           VERSION=${GITHUB_REF#refs/tags/}
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Get commit summary
         id: get_commit_summary
@@ -41,12 +40,12 @@ jobs:
           echo "PREVIOUS_TAG: $PREVIOUS_TAG"
           COMMIT_SUMMARY="$(git log --oneline --pretty=tformat:"%h %s" $PREVIOUS_TAG..${{ github.ref }})"
           COMMIT_SUMMARY="${COMMIT_SUMMARY//$'\n'/'%0A'}"
-          echo "COMMIT_SUMMARY=$COMMIT_SUMMARY" >> $GITHUB_ENV
+          echo "COMMIT_SUMMARY=$COMMIT_SUMMARY" >> $GITHUB_OUTPUT
 
       - name: Prepare artifacts
         run: |
-          mkdir -p releases \
-          cp org.jtool.jxplatform/build/libs/* releases \
+          mkdir -p releases
+          cp org.jtool.jxplatform/build/libs/* releases
           mv releases/jxplatform-3-SNAPSHOT.jar releases/jxplatform-${{ steps.get_version.outputs.VERSION }}.jar
 
       - name: Create release
@@ -55,9 +54,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: $VERSION
-          release_name: Version $VERSION
-          body: $COMMIT_SUMMARY
+          tag_name: ${{ steps.get_version.outputs.VERSION }}
+          release_name: Version ${{ steps.get_version.outputs.VERSION }}
+          body: ${{ steps.get_commit_summary.outputs.COMMIT_SUMMARY }}
           draft: false
           prerelease: false
 
@@ -67,15 +66,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: releases/jxplatform-$VERSION.jar
-          asset_name: jxplatform-$VERSION.jar
+          asset_path: releases/jxplatform-${{ steps.get_version.outputs.VERSION }}.jar
+          asset_name: jxplatform-${{ steps.get_version.outputs.VERSION }}.jar
           asset_content_type: application/java-archive
 
+      - name: Configure jreleaser
+        run: ./gradlew jreleaserConfig -PproductVersion=${{ steps.get_version.outputs.VERSION }}
+      - name: Clean stagingRepository
+        run: ./gradlew clean
+      - name: Create stagingRepository
+        run: ./gradlew publish -PproductVersion=${{ steps.get_version.outputs.VERSION }}
       - name: Publish to Central Repository
-        run: ./gradlew jreleaserConfig -PproductVersion=$VERSION \
-             ./gradlew clean \
-             ./gradlew publish -PproductVersion=$VERSION \
-             ./gradlew jreleaserFullRelease -PproductVersion=$VERSION
+        run:  ./gradlew jreleaserFullRelease -PproductVersion=${{ steps.get_version.outputs.VERSION }}
         env:
           JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           JRELEASER_MAVENCENTRAL_SONATYPE_TOKEN: ${{ secrets.SONATYPE_TOKEN }}
