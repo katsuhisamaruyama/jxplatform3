@@ -77,7 +77,7 @@ jobs:
           ./gradlew clean
           ./gradlew publish -PproductVersion=${{ steps.get_version.outputs.VERSION }}
           ./gradlew jreleaserFullRelease -PproductVersion=${{ steps.get_version.outputs.VERSION }}
-        with:
+        env:
           JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           JRELEASER_MAVENCENTRAL_SONATYPE_TOKEN: ${{ secrets.SONATYPE_TOKEN }}
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
