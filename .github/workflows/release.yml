@@ -72,11 +72,10 @@ jobs:
           asset_content_type: application/java-archive
 
       - name: Publish to Central Repository
-        run: |
-          ./gradlew jreleaserConfig -PproductVersion=${{ steps.get_version.outputs.VERSION }}
-          ./gradlew clean
-          ./gradlew publish -PproductVersion=${{ steps.get_version.outputs.VERSION }}
-          ./gradlew jreleaserFullRelease -PproductVersion=${{ steps.get_version.outputs.VERSION }}
+        run: ./gradlew jreleaserConfig -PproductVersion=${{ steps.get_version.outputs.VERSION }}
+             ./gradlew clean
+             ./gradlew publish -PproductVersion=${{ steps.get_version.outputs.VERSION }}
+             ./gradlew jreleaserFullRelease -PproductVersion=${{ steps.get_version.outputs.VERSION }}
         env:
           JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           JRELEASER_MAVENCENTRAL_SONATYPE_TOKEN: ${{ secrets.SONATYPE_TOKEN }}
