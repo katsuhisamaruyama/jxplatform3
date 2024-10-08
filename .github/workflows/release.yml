@@ -70,23 +70,16 @@ jobs:
           asset_name: jxplatform-${{ steps.get_version.outputs.VERSION }}.jar
           asset_content_type: application/java-archive
 
-      - name: Clean stagingRepository
-        run: ./gradlew jreleaserConfig -PproductVersion=${{ steps.get_version.outputs.VERSION }}
-        working-directory: org.jtool.jxplatform
-      - name: Clean stagingRepository
-        run: ./gradlew clean
-        working-directory: org.jtool.jxplatform
-      - name: Create stagingRepository
-        run: ./gradlew publish -PproductVersion=${{ steps.get_version.outputs.VERSION }}
-        working-directory: org.jtool.jxplatform
-      - name: Publish to Central Repository
-        run:  ./gradlew jreleaserFullRelease -PproductVersion=${{ steps.get_version.outputs.VERSION }}
-        working-directory: org.jtool.jxplatform
+      - name: Configure jreleaser
+        run: |
+          ./gradlew jreleaserConfig -PproductVersion=${{ steps.get_version.outputs.VERSION }}
+          ./gradlew clean
+          ./gradlew publish -PproductVersion=${{ steps.get_version.outputs.VERSION }}
+          ./gradlew jreleaserFullRelease -PproductVersion=${{ steps.get_version.outputs.VERSION }}
         env:
           JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           JRELEASER_MAVENCENTRAL_SONATYPE_TOKEN: ${{ secrets.SONATYPE_TOKEN }}
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.GPG_PUBLIC_KEY }}
           JRELEASER_GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY }}
-
-
+        working-directory: org.jtool.jxplatform
