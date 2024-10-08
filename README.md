@@ -95,7 +95,7 @@ It traverses only the PDG nodes that reach a node given as a slice criterion.
 
 ## License 
 
-[Eclipse Public License 1.0 (EPL-1.0)](<https://opensource.org/licenses/eclipse-1.0.php>) 
+[Eclipse Public License 2.0 (EPL-2.0)](<https://opensource.org/license/epl-2-0>) 
 
 ## Installation
 
@@ -115,15 +115,15 @@ and specify the directory as the build path and the runtime classpath under your
 When using the Eclipse, see the "Build Path" settings of a project.
 
 A easier way is to adopt Gradle or Maven. 
-You can import a jar file from JitPack [site](https://jitpack.io/#katsuhisamaruyama/jxplatform3).
+You can import a jar file from the maven repository.
 
 For Gradle,
-1. Please add the JitPack repository in your `build.gradle` file at the end of repositories. 
+1. Please add the maven central repository in your `build.gradle` file.
 
 ```
 repositories {
-    ...
-    maven { url 'https://jitpack.io' }
+    mavenCentral()
+    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
 }
 ```
 
@@ -132,14 +132,48 @@ repositories {
 ```
 dependencies {
     ...
-    implementation 'com.github.katsuhisamaruyama:jxplatform3:Tag'
+    implementation 'io.github.katsuhisamaruyama:org.jtool.jxplatform:3.x.x'
 }
 ```
 
-Please replace `Tag` with the latest version number (e.g., `3.x.x`).
+Please replace `3.x.x` with the latest version number (e.g., `3.0.28`).
 
 If you write code using JxPlatform3 in Eclipse, the command execution of `./gradlew eclipse` helps your configuration.
 
+
+For Maven,
+1. Please add the maven repository in your `build.gradle` file.
+
+```
+<repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo1.maven.org/maven2/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>gradle</id>
+      <url>https://repo.gradle.org/gradle/libs-releases/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
+```
+
+2. You add the dependency as follows:
+
+```
+<dependency>
+    <groupId>io.github.katsuhisamaruyama</groupId>
+    <artifactId>org.jtool.jxplatform</artifactId>
+    <version>3.x.x</version>
+</dependency>
+```
+
+Please replace `3.x.x` with the latest version number (e.g., `3.0.28`).
 
 ## Usage
 
