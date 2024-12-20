@@ -142,7 +142,7 @@ If you write code using JxPlatform3 in Eclipse, the command execution of `./grad
 
 
 For Maven,
-1. Please add the maven repository in your `build.gradle` file.
+1. Please add the maven repository in your `pom.xml` file.
 
 ```
 <repositories>
