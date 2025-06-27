@@ -23,6 +23,12 @@ import org.eclipse.jdt.core.dom.ITypeBinding;
 public class JavaElementUtil {
     
     /**
+     * Creates a new, empty object that represents the utility class for finding an instance of a Java program element.
+     */
+    private JavaElementUtil() {
+    }
+    
+    /**
      * Finds the fully-qualified name of a class having given type binding information.
      * @param tbinding the type binding information on the class
      * @return the fully-qualified name

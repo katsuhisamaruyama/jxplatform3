@@ -31,6 +31,12 @@ import java.util.Set;
 public abstract class ModelBuilder {
     
     /**
+     * Creates a new, empty object that builds Java models.
+     */
+    protected ModelBuilder() {
+    }
+    
+    /**
      * A line break symbol, "\n" for macOS and Linux, "\r\n" for Windows
      */
     public static final String br = System.getProperty("line.separator");

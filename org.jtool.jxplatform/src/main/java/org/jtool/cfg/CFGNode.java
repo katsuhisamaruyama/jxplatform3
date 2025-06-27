@@ -90,73 +90,329 @@ public class CFGNode extends GraphNode {
      */
     public enum Kind {
         
-        /*
-         * The following nodes appear in a CCFG.
+        /**
+         * Representing the start node for a class declaration, which is an instance of {@code CFGClassEntry} in {@code CCFG}.
+         * It corresponds to {@code TypeDeclaration} or {@code AnonymousClassDeclaration} in the JDT Core module.
          */
-        classEntry,                 // CFGClassEntry (TypeDeclaration, AnonymousClassDeclaration)
-        interfaceEntry,             // CFGClassEntry (TypeDeclaration, AnonymousClassDeclaration)
-        enumEntry,                  // CFGClassEntry (EnumDeclaration)
-        classExit,                  // CFGExit
-        interfaceExit,              // CFGExit
-        enumExit,                   // CFGExit
+        classEntry,
         
-        /*
-         * The following nodes appear in a CFG and CFGs within a CCFG.
+        /**
+         * Representing the start node for an interface declaration, which is an instance of {@code CFGClassEntry} in {@code CCFG}.
+         * It corresponds to {@code TypeDeclaration} or {@code AnonymousClassDeclaration} in the JDT Core module.
          */
-        methodEntry,                // CFGMethodEntry (MethodDeclaration)
-        constructorEntry,           // CFGMethodEntry (MethodDeclaration)
-        initializerEntry,           // CFGInitializerEntry (Initializer)
-        fieldEntry,                 // CFGFieldEntry (VariableDeclarationFragment/FieldDeclaration)
-        enumConstantEntry,          // CFGFieldEntry (EnumConstantDeclaration)
-        methodExit,                 // CFGExit
-        constructorExit,            // CFGExit
-        initializerExit,            // CFGExit
-        fieldExit,                  // CFGExit
-        enumConstantExit,           // CFGExit
+        interfaceEntry,
         
-        assignment,                 // CFGStatement (Assignment)
-        lambda,                     // CFGStatement (LambdaExpression)
-        conditionalExpression,      // CFGStatement (ConditionalExpression)
-        switchExpression,           // CFGStatement (SwitchExpression)
-        methodCall,                 // CFGMethodCall (MethodInvocation/SuperMethodInvocation)
-        constructorCall,            // CFGMethodCall (ConstructorInvocation/SuperConstructorInvocation)
-        instanceCreation,           // CFGMethodCall (InstanceCreation)
+        /**
+         * Representing the start node for an enum declaration, which is an instance of {@code CFGClassEntry} in {@code CCFG}.
+         * It corresponds to {@code EnumDeclaration} in the JDT Core module.
+         */
+        enumEntry,
         
-        fieldDeclaration,           // CFGStatement (VariableDeclarationFragment)
-        enumConstantDeclaration,    // CFGStatement (VariableDeclarationFragment)
-        localDeclaration,           // CFGStatement (VariableDeclarationFragment)
+        /**
+         * Representing the end node for a class declaration, which is an instance of {@code CFGExit} in {@code CCFG}.
+         * There is no corresponding node in the JDT Core module.
+         */
+        classExit,
         
-        assertSt,                   // CFGStatement (AssertStatement)
-        breakSt,                    // CFGStatement (BreakStatement)
-        continueSt,                 // CFGStatement (ContinueStatement)
-        doSt,                       // CFGStatement (DoStatement)
-        forSt,                      // CFGStatement (ForStatement)
-        enhancedForSt,              // CFGStatement (EnhancedForStatement)
-        ifSt,                       // CFGStatement (IfStatement)
-        returnSt,                   // CFGStatement (ReturnStatement)
-        switchCase,                 // CFGStatement (SwitchCase)
-        switchDefault,              // CFGStatement (SwitchCase)
-        whileSt,                    // CFGStatement (WhileStatement)
-        emptySt,                    // CFGStatement (EmptyStatement)
+        /**
+         * Representing the end node for an interface declaration, which is an instance of {@code CFGExit} in {@code CCFG}.
+         * There is no corresponding node in the JDT Core module.
+         */
+        interfaceExit,
         
-        labelSt,                    // CFGStatement (Identifier in LabeledStatement)
-        switchSt,                   // CFGStatement (SwitchStatement)
-        synchronizedSt,             // CFGStatement (SynchronizedStatement)
-        throwSt,                    // CFGStatement (ThrowStatement)
-        trySt,                      // CFGStatement (TryStatement)
-        catchClause,                // CFGStatement (CatchClause in TryStatement)
-        finallyClause,              // CFGStatement (Block in TryStatement)
-        throwsClause,               // CFGStatement (thrown exception Types in MethodDeclaration)
+        /**
+         * Representing the end node for an enum declaration, which is an instance of {@code CFGExit} in {@code CCFG}.
+         * There is no corresponding node in the JDT Core module.
+         */
+        enumExit,
         
-        formalIn,                   // CFGParameter
-        formalOut,                  // CFGParameter
-        actualIn,                   // CFGParameter
-        actualOut,                  // CFGParameter
-        actualOutByFieldAccess,     // CFGParameter
-        receiver,                   // CFGStatement
+        /**
+         * Representing the start node for a method declaration, which is an instance of {@code CFGMethodEntry} in {@code CFG}.
+         * It corresponds to {@code MethodDeclaration} in the JDT Core module.
+         */
+        methodEntry,
         
-        merge,                      // CFGMerge (for merge)
-        dummy;                      // CFGDummy (for dummy)
+        /**
+         * Representing the start node of a constructor declaration, which is an instance of {@code CFGMethodEntry} in {@code CFG}.
+         * It corresponds to {@code MethodDeclaration} in the JDT Core module.
+         */
+        constructorEntry,
+        
+        /**
+         * Representing the start node for an initializer declaration, which is an instance of {@code CFGInitializerEntry} in {@code CFG}.
+         * It corresponds to {@code Initializer} in the JDT Core module.
+         */
+        initializerEntry,
+        
+        /**
+         * Representing the start node for a field declaration, which is an instance of {@code CFGFieldEntry} in {@code CFG}.
+         * It corresponds to {@code VariableDeclarationFragment} or {@code FieldDeclaration} in the JDT Core module.
+         */
+        fieldEntry,
+        
+        /**
+         * Representing the start node for an enum constant declaration, which is an instance of {@code CFGFieldEntry} in {@code CFG}.
+         * It corresponds to {@code EnumConstantDeclaration} in the JDT Core module.
+         */
+        enumConstantEntry,
+        
+        /**
+         * Representing the end node for a method declaration, which is an instance of {@code CFGExit} in {@code CFG}.
+         * There is no corresponding node in the JDT Core module.
+         */
+        methodExit,
+        
+        /**
+         * Representing the end node for a constructor declaration, which is an instance of {@code CFGExit} in {@code CFG}.
+         * There is no corresponding node in the JDT Core module.
+         */
+        constructorExit,
+        
+        /**
+         * Representing the end node for an initializer declaration, which is an instance of {@code CFGExit} in {@code CFG}.
+         * There is no corresponding node in the JDT Core module.
+         */
+        initializerExit,
+        
+        /**
+         * Representing the end node for a field declaration, which is an instance of {@code CFGExit} in {@code CFG}.
+         * There is no corresponding node in the JDT Core module.
+         */
+        fieldExit,
+        
+        /**
+         * Representing the end node for an enum constant declaration, which is an instance of {@code CFGExit} in {@code CFG}.
+         * There is no corresponding node in the JDT Core module.
+         */
+        enumConstantExit,
+        
+        /**
+         * Representing the node for an assignment expression, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code Assignment} in the JDT Core module.
+         */
+        assignment,
+        
+        /**
+         * Representing the node for a lambda expression, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code LambdaExpression} in the JDT Core module.
+         */
+        lambda,
+        
+        /**
+         * Representing the node for a conditional expression, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code ConditionalExpression} in the JDT Core module.
+         */
+        conditionalExpression,
+        
+        /**
+         * Representing the node for a switch expression, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code SwitchExpression} in the JDT Core module.
+         */
+        switchExpression,
+        
+        /**
+         * Representing the node for a method call expression, which is an instance of {@code CFGMethodCall} in {@code CFG}.
+         * It corresponds to {@code MethodInvocation} or {@code SuperMethodInvocation} in the JDT Core module.
+         */
+        methodCall,
+        
+        /**
+         * Representing the node for a constructor call expression, which is an instance of {@code CFGMethodCall} in {@code CFG}.
+         * It corresponds to {@code ConstructorInvocation} or {@code SuperConstructorInvocation} in the JDT Core module.
+         */
+        constructorCall,
+        
+        /**
+         * Representing the node for an instance creation ({@code new}) expression which is an instance of {@code CFGMethodCall} in {@code CFG}.
+         * It corresponds to {@code InstanceCreation} in the JDT Core module.
+         */
+        instanceCreation,
+        
+        /**
+         * Representing the node for a field variable declaration, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code VariableDeclarationFragment} in the JDT Core module.
+         */
+        fieldDeclaration,
+        
+        /**
+         * Representing the node for an enum constant variable declaration, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code VariableDeclarationFragment} in the JDT Core module.
+         */
+        enumConstantDeclaration,
+        
+        /**
+         * Representing the node for a local variable declaration, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code VariableDeclarationFragment} in the JDT Core module.
+         */
+        localDeclaration,
+        
+        /**
+         * Representing the node for an assert statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code AssertStatement} in the JDT Core module.
+         */
+        assertSt,
+        
+        /**
+         * Representing the node for a break statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code BreakStatement} in the JDT Core module.
+         */
+        breakSt,
+        
+        /**
+         * Representing the node for a continue statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code ContinueStatement} in the JDT Core module.
+         */
+        continueSt,
+        
+        /**
+         * Representing the node for a do statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code DoStatement} in the JDT Core module.
+         */
+        doSt,
+        
+        /**
+         * Representing the node for a for statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code ForStatement} in the JDT Core module.
+         */
+        forSt,
+        
+        /**
+         * Representing the node for an enhanced-for statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code EnhancedForStatement} in the JDT Core module.
+         */
+        enhancedForSt,
+        
+        /**
+         * Representing the node for an if statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code IfStatement} in the JDT Core module.
+         */
+        ifSt,
+        
+        /**
+         * Representing the node for a return statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code ReturnStatement} in the JDT Core module.
+         */
+        returnSt,
+        
+        /**
+         * Representing the node for a switch case statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code SwitchCase} in the JDT Core module.
+         */
+        switchCase,
+        
+        /**
+         * Representing the node for a switch-default statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code SwitchCase} in the JDT Core module.
+         */
+        switchDefault,
+        
+        /**
+         * Representing the node for a while statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code WhileStatement} in the JDT Core module.
+         */
+        whileSt,
+        
+        /**
+         *Representing the node for an empty statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code EmptyStatement} in the JDT Core module.
+         */
+        emptySt,
+        
+        /**
+         * Representing the node for a label statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code Identifier} of {@code LabeledStatement} in the JDT Core module.
+         */
+        labelSt,
+        
+        /**
+         * Representing the node for a switch statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code SwitchStatement} in the JDT Core module.
+         */
+        switchSt,
+        
+        /**
+         * Representing the node for a synchronized statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code SynchronizedStatement} in the JDT Core module.
+         */
+        synchronizedSt,
+        
+        /**
+         * Representing the node for a throw statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code ThrowStatement} in the JDT Core module.
+         */
+        throwSt,
+        
+        /**
+         * Representing the node for a try statement, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code TryStatement} in the JDT Core module.
+         */
+        trySt,
+        
+        /**
+         * Representing the node for a catch clause, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code CatchClause} of {@code TryStatement} in the JDT Core module.
+         */
+        catchClause,
+        
+        /**
+         * Representing the node for a finally clause, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to {@code Block} of {@code TryStatement} in the JDT Core module.
+         */
+        finallyClause,
+        
+        /**
+         * Representing the node for a throws clause, which is an instance of {@code CFGStatement} in {@code CFG}.
+         * It corresponds to the thrown exception type of {@code MethodDeclaration} in the JDT Core module.
+         */
+        throwsClause,
+        
+        /**
+         * Representing the node for a formal-in parameter in a method declaration, which is an instance of {@code CFGParameter}.
+         * It corresponds to {@code VariableDeclaration} in the JDT Core module.
+         */
+        formalIn,
+        
+        /**
+         * Representing the node for a formal-out parameter in a method declaration, which is an instance of {@code CFGParameter}.
+         * It corresponds to {@code VariableDeclaration} in the JDT Core module.
+         */
+        formalOut,
+        
+        /**
+         * Representing the node for an actual-in parameter in a method call, which is an instance of {@code CFGParameter}.
+         * It corresponds to {@code Expression} in the JDT Core module.
+         */
+        actualIn,
+        
+        /**
+         * Representing the node for an actual-out parameter in a method call, which is an instance of {@code CFGParameter}.
+         * It corresponds to {@code Expression} in the JDT Core module.
+         */
+        actualOut,
+        
+        /**
+         * Representing the node for an actual-out parameter regarding the field value in a method call, which is an instance of {@code CFGParameter}.
+         * It corresponds to {@code CFGMethodCall} in the JDT Core module.
+         */
+        actualOutByFieldAccess,
+        
+        /**
+         * Representing the node for a receiver object in a method call, which is an instance of {@code CFGParameter}.
+         * It corresponds to {@code Expression} in the JDT Core module.
+         */
+        receiver,
+        
+        /**
+         * Representing the merge node of a branch or a loop, which is an instance of {@code CFGMerge} in {@code CFG}.
+         * There is no corresponding node in the JDT Core module.
+         */
+        merge,
+        
+        /**
+         * Representing the dummy node, which is an instance of {@code CFGDummy} in {@code CFG}.
+         * There is no corresponding node in the JDT Core module.
+         */
+        dummy;
     }
     
     /**

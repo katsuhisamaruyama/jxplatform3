@@ -57,24 +57,90 @@ public interface DependencyGraphEdge {
      * @author Katsuhisa Maruyama
      */
     public enum Kind {
-        trueControlDependence,           // Control dependence with respect to a true-branch flow
-        falseControlDependence,          // Control dependence with respect to a false-branch flow
-        fallThroughControlDependence,    // Control dependence with respect to a fall-through flow
-        declaration,                     // Control dependence between declaration and its references
-        exceptionCatch,                  // Control dependence with respect to an exception-catch within a try statement
-        classMember,                     // Dependence between a class and its members
-        call,                            // Dependence between a caller and its callee
         
-        loopIndependentDefUseDependence, // Data dependence with respect to a loop-independent variable
-        loopCarriedDefUseDependence,     // Data dependence with respect to a loop-carried variable
-        defOrderDependence,              // Data dependence based on the order of definitions of variables
-        outputDependence,                // Data dependence based on the order of outputs of variables
-        parameterIn,                     // Data dependence with respect to incoming parameter passing
-        parameterOut,                    // Data dependence with respect to outgoing parameter passing
-        summary,                         // Data dependence between actual-in and actual-out nodes
-        fieldAccess,                     // Data dependence with respect to a field access
-        uncoveredFieldAccess,            // Data dependence with respect to an uncovered field accesses
+        /**
+         * Representing the control dependence in {@code PDG}, regarding a true-branch flow in {@code CFG}.
+         */
+        trueControlDependence,
         
+        /**
+         * Representing the control dependence in {@code PDG}, regarding a false-branch flow in {@code CFG}.
+         */
+        falseControlDependence,
+        
+        /**
+         * Representing the control dependence in {@code PDG}, regarding a fall-through flow in {@code CFG}.
+         */
+        fallThroughControlDependence,
+        
+        /**
+         * Representing the control dependence between a declaration and its reference in {@code PDG}.
+         */
+        declaration,
+        
+        /**
+         * Representing the control dependence regarding an exception-catch within a try statement in {@code PDG}.
+         */
+        exceptionCatch,
+        
+        /**
+         * Representing the control dependence between a class and its member in {@code PDG}.
+         */
+        classMember,
+        
+        /**
+         * Representing the control dependence between between a caller and its callee in {@code PDG}.
+         */
+        call,
+        
+        /**
+         * Representing the data dependence regarding a loop-independent variable in {@code PDG}.
+         */
+        loopIndependentDefUseDependence,
+        
+        /**
+         * Representing the data dependence regarding a loop-carried variable in {@code PDG}.
+         */
+        loopCarriedDefUseDependence,
+        
+        /**
+         * Representing the data dependence based on the order of definitions of variables in {@code PDG}.
+         */
+        defOrderDependence,
+        
+        /**
+         * Representing the data dependence based on the order of outputs of variables in {@code PDG}.
+         */
+        outputDependence,
+        
+        /**
+         * Representing the data dependence regarding the incoming parameter passing in {@code PDG}.
+         */
+        parameterIn,
+        
+        /**
+         * Representing the data dependence regarding the outgoing parameter passing in {@code PDG}.
+         */
+        parameterOut,
+        
+        /**
+         * Representing the data dependence between an actual-in node and an actual-out node in {@code PDG}.
+         */
+        summary,
+        
+        /**
+         * Representing the data dependence regarding the the field access in {@code PDG}.
+         */
+        fieldAccess,
+        
+        /**
+         * Representing the data dependence regarding the uncovered field accesses in {@code PDG}.
+         */
+        uncoveredFieldAccess,
+        
+        /**
+         * Representing the uncategorized dependence.
+         */
         undefined,
     }
     

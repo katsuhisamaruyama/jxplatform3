@@ -32,11 +32,35 @@ public class ControlFlow extends GraphEdge {
      * The kind of a control flow edge.
      */
     public enum Kind {
-        trueControlFlow,                 // Control flow outgoing to a true-branch
-        falseControlFlow,                // Control flow outgoing to a false-branch
-        fallThroughFlow,                 // Control flow representing a fall-through
-        callFlow,                        // Flow representing the call to a method
-        exceptionCatchFlow,              // Flow representing the relationship between an exception occurrence and its catch
+        
+        /**
+         * Representing the control flow outgoing to a true-branch in {@code CFG}.
+         */
+        trueControlFlow,
+        
+        /**
+         * Representing the control flow outgoing to a false-branch in {@code CFG}.
+         */
+        falseControlFlow,
+        
+        /**
+         * Representing the control flow outgoing to a fall-through in {@code CFG}.
+         */
+        fallThroughFlow,
+        
+        /**
+         * Representing the call to a method in {@code CFG}.
+         */
+        callFlow,
+        
+        /**
+         * Representing relationship between an exception occurrence and its catch clause in {@code CFG}.
+         */
+        exceptionCatchFlow,
+        
+        /**
+         * Representing the uncategorized flow.
+         */
         undefined,
     }
     

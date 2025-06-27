@@ -18,6 +18,12 @@ import java.util.Calendar;
 public class TimeInfo {
     
     /**
+     * Creates a new, empty object that builds Java models.
+     */
+    private TimeInfo() {
+    }
+    
+    /**
      * Returns an {@code ZonedDateTime} object corresponding to the current time.
      * @return the {@code ZonedDateTime} object
      */

@@ -17,6 +17,12 @@ import java.util.Collection;
 public abstract class GraphElement {
     
     /**
+     * Creates a new, empty object that represents an element (a node or an edge) of a graph.
+     */
+    protected GraphElement() {
+    }
+    
+    /**
      * {@inheritDoc}
      */
     @Override

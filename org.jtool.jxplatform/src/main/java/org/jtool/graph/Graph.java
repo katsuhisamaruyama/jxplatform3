@@ -14,6 +14,9 @@ import java.util.ArrayList;
  * A graph object having nodes and edges.
  * 
  * @author Katsuhisa Maruyama
+ * 
+ * @param <N> The type of nodes in this graph
+ * @param <E> The type of edges in this graph
  */
 public class Graph<N extends GraphNode, E extends GraphEdge> {
     
