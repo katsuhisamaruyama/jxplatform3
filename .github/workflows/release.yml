@@ -69,18 +69,3 @@ jobs:
           asset_path: releases/jxplatform-${{ steps.get_version.outputs.VERSION }}.jar
           asset_name: jxplatform-${{ steps.get_version.outputs.VERSION }}.jar
           asset_content_type: application/java-archive
-
-      - name: Publish to Maven Central
-        run: |
-          ./gradlew jreleaserConfig -PproductVersion=${{ steps.get_version.outputs.VERSION }}
-          ./gradlew clean
-          ./gradlew publish -PproductVersion=${{ steps.get_version.outputs.VERSION }}
-          ./gradlew jreleaserFullRelease -PproductVersion=${{ steps.get_version.outputs.VERSION }}
-        env:
-          JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-          JRELEASER_MAVENCENTRAL_SONATYPE_TOKEN: ${{ secrets.SONATYPE_TOKEN }}
-          JRELEASER_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.GPG_PUBLIC_KEY }}
-          JRELEASER_GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY }}
-          JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        working-directory: org.jtool.jxplatform

@@ -1,20 +1,19 @@
 /*
- *  Copyright 2024
+ *  Copyright 2025
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
 plugins {
     id 'java'
     id 'eclipse'
-    id "com.github.johnrengelman.shadow" version "8.1.1"
     id 'java-library'
     id 'maven-publish'
-    id 'org.jreleaser' version '1.14.0'
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
     mavenCentral()
-    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+    maven { url('https://repo.gradle.org/gradle/libs-releases') }
 }
 
 group = 'org.jtool.jxplatform'
@@ -93,7 +92,7 @@ task javadoc(type: Javadoc, overwrite: true) {
     
     options.overview = "src/javadoc/overview.html"
     options.docTitle = "JxPlatform3 API Specification"
-    options.windowTitle="JxPlatform3"
+    options.windowTitle = "JxPlatform3"
 }
 
 java {
@@ -116,13 +115,11 @@ shadowJar {
     from sourceSets.main.allJava
 }
 
-version = project.hasProperty('productVersion')  ? productVersion : "3.x.x"
-
 publishing {
     publications {
-        mavenJava(MavenPublication) {
-            groupId = 'io.github.katsuhisamaruyama'
-            artifactId = 'org.jtool.jxplatform'
+        maven(MavenPublication) {
+            groupId('io.github.katsuhisamaruyama')
+            artifactId('jxplatform')
             from components.java
             
             pom {
@@ -149,7 +146,6 @@ publishing {
                 properties = [
                     "maven.compiler.source": "11",
                     "maven.compiler.target": "11",
-                    
                 ]
             }
         }
@@ -158,25 +154,6 @@ publishing {
     repositories {
         maven {
             url = layout.buildDirectory.dir('staging-deploy')
-        }
-    }
-}
-
-jreleaser {
-    gitRootSearch = true
-    signing {
-        active = 'ALWAYS'
-        armored = true
-    }
-    deploy {
-        maven {
-            mavenCentral {
-                sonatype {
-                    active = 'ALWAYS'
-                    url = 'https://central.sonatype.com/api/v1/publisher'
-                    stagingRepository('build/staging-deploy')
-                }
-            }
         }
     }
 }
