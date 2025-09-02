@@ -96,8 +96,8 @@ task javadoc(type: Javadoc, overwrite: true) {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
     
     withSourcesJar()
     withJavadocJar()
@@ -148,8 +148,8 @@ publishing {
                     url = 'https://github.com/katsuhisamaruyama/jxplatform3'
                 }
                 properties = [
-                    "maven.compiler.source": "11",
-                    "maven.compiler.target": "11",
+                    "maven.compiler.source": "17",
+                    "maven.compiler.target": "17",
                 ]
             }
         }
