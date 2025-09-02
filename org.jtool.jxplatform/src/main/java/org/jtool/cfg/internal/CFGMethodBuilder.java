@@ -46,7 +46,7 @@ class CFGMethodBuilder {
                 LambdaExpression node = (LambdaExpression)jmethod.getASTNode();
                 params = node.parameters();
             } else {
-                if (jmethod.isSynthetic()) {
+                if (!jmethod.isInProject() || jmethod.isSynthetic()) {
                     params = new ArrayList<>();
                 } else {
                     MethodDeclaration node = (MethodDeclaration)jmethod.getASTNode();
@@ -83,14 +83,20 @@ class CFGMethodBuilder {
             cfg.setExitNode(exit);
             cfg.add(exit);
             
-            CFGNode formalOut = createFormalOut(jmethod.getASTNode(), cfg, entry, entryStatement);
-            ControlFlow edge = new ControlFlow(entry, formalOut);
-            edge.setTrue();
-            cfg.add(edge);
-            
-            ControlFlow exitEdge = new ControlFlow(formalOut, exit);
-            exitEdge.setTrue();
-            cfg.add(exitEdge);
+            if (jmethod.isInProject()) {
+                CFGNode formalOut = createFormalOut(jmethod.getASTNode(), cfg, entry, entryStatement);
+                ControlFlow edge = new ControlFlow(entry, formalOut);
+                edge.setTrue();
+                cfg.add(edge);
+                
+                ControlFlow exitEdge = new ControlFlow(formalOut, exit);
+                exitEdge.setTrue();
+                cfg.add(exitEdge);
+            } else {
+                ControlFlow exitEdge = new ControlFlow(entry, exit);
+                exitEdge.setTrue();
+                cfg.add(exitEdge);
+            }
             
             cfg.registerDominantStatement(cfg.getEntryNode().getOutgoingTrueFlow(), entryStatement);
             
