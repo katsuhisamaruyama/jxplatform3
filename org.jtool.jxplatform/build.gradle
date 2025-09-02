@@ -8,7 +8,7 @@ plugins {
     id 'eclipse'
     id 'java-library'
     id 'maven-publish'
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradleup.shadow") version "9.1.0"
 }
 
 repositories {
@@ -111,6 +111,10 @@ shadowJar {
     archiveBaseName = 'jxplatform'
     archiveClassifier = 'SNAPSHOT'
     archiveVersion = project.property('currentRelease')
+    
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
     
     from sourceSets.main.allJava
 }
