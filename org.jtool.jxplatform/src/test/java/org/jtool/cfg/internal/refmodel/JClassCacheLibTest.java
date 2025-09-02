@@ -205,13 +205,13 @@ public class JClassCacheLibTest {
     @Category(FlakyByExternalLib.class)
     @Test
     public void testGetMethods4() {
-        assertEquals(41, listClass.getMethods().size());
+        assertEquals(48, listClass.getMethods().size());
     }
     
     @Category(FlakyByExternalLib.class)
     @Test
     public void testGetMethods5() {
-        assertEquals(63, arrayListClass.getMethods().size());
+        assertEquals(67, arrayListClass.getMethods().size());
     }
     
     @Category(FlakyByExternalLib.class)
@@ -286,7 +286,7 @@ public class JClassCacheLibTest {
     @Category(FlakyByExternalLib.class)
     @Test
     public void testGetFields4() {
-        assertEquals(7, arrayListClass.getFields().size());
+        assertEquals(6, arrayListClass.getFields().size());
     }
     
     @Category(FlakyByExternalLib.class)
@@ -379,7 +379,7 @@ public class JClassCacheLibTest {
         List<String> result = TestUtil.asSortedList(listClass.getSuperInterfaces());
         
         assertEquals(1, result.size());
-        assertEquals("java.util.Collection", result.get(0));
+        assertEquals("java.util.SequencedCollection", result.get(0));
     }
     
     @Category(FlakyByExternalLib.class)
@@ -579,7 +579,7 @@ public class JClassCacheLibTest {
                 .map(o -> o.getName()));
         
         assertEquals(61, result.size());
-        assertEquals("com.sun.java.util.jar.pack.ConstantPool.Index", result.get(0));
+        assertEquals("com.sun.jmx.remote.internal.ArrayQueue", result.get(0));
     }
     
     @Category(FlakyByExternalLib.class)

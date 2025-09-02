@@ -8,20 +8,20 @@ Class Name = Sample7
    5 assignment D = { numbers$1 } U = {  }
    6 assignment D = {  } U = { System.out.!println( int ) }
    7 receiver D = {  } U = { System.out }
-   8 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, numbers$1 } TO = java.io.PrintStream#println( int )
-   9 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+   8 methodCall D = {  } U = { System.out.!java.io.PrintStream.lock, numbers$1 } TO = java.io.PrintStream#println( int )
+   9 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.lock }
   11 catchClause D = { e$2 } U = {  }
   12 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   13 receiver D = {  } U = { System.out }
-  14 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, e$2.!toString( ) } TO = java.io.PrintStream#println( java.lang.String )
+  14 methodCall D = {  } U = { System.out.!java.io.PrintStream.lock, e$2.!toString( ) } TO = java.io.PrintStream#println( java.lang.String )
   15 receiver D = {  } U = { e$2 }
-  16 methodCall D = {  } U = { e$2.!java.lang.Class.name, e$2.!java.lang.StringBuilder.count, e$2.!java.lang.StringBuilder.value } TO = java.lang.Throwable#toString( )
-  17 actualOut D = { e$2.!toString( ) } U = { e$2.!java.lang.Class.name, e$2.!java.lang.StringBuilder.count, e$2.!java.lang.StringBuilder.value }
-  18 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  16 methodCall D = {  } U = { e$2.!java.lang.Class.name } TO = java.lang.Throwable#toString( )
+  17 actualOut D = { e$2.!toString( ) } U = { e$2.!java.lang.Class.name }
+  18 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   19 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   20 receiver D = {  } U = { System.out }
-  21 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut } TO = java.io.PrintStream#println( java.lang.String )
-  22 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  21 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.lock } TO = java.io.PrintStream#println( java.lang.String )
+  22 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   24 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Sample7#Sample7( ) ]
@@ -69,4 +69,5 @@ Class Name = Sample7
    1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
+
 

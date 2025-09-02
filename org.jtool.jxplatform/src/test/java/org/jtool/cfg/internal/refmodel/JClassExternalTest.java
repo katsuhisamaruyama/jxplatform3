@@ -243,17 +243,17 @@ public class JClassExternalTest {
     
     @Test
     public void testGetMethods1() {
-        assertEquals(108, stringClass.getMethods().size());
+        assertEquals(166, stringClass.getMethods().size());
     }
     
     @Test
     public void testGetMethods2() {
-        assertEquals(41, listClass.getMethods().size());
+        assertEquals(48, listClass.getMethods().size());
     }
     
     @Test
     public void testGetMethods3() {
-        assertEquals(63, arrayListClass.getMethods().size());
+        assertEquals(67, arrayListClass.getMethods().size());
     }
     
     @Test
@@ -283,7 +283,7 @@ public class JClassExternalTest {
     
     @Test
     public void testGetMethods9() {
-        assertEquals(51, hashMapClass.getMethods().size());
+        assertEquals(56, hashMapClass.getMethods().size());
     }
     
     @Test
@@ -335,7 +335,7 @@ public class JClassExternalTest {
     
     @Test
     public void testGetFields1() {
-        assertEquals(9, stringClass.getFields().size());
+        assertEquals(11, stringClass.getFields().size());
     }
     
     @Test
@@ -345,7 +345,7 @@ public class JClassExternalTest {
     
     @Test
     public void testGetFields3() {
-        assertEquals(7, arrayListClass.getFields().size());
+        assertEquals(6, arrayListClass.getFields().size());
     }
     
     @Test
@@ -450,10 +450,12 @@ public class JClassExternalTest {
     public void testGetSuperInterfaces1() {
         List<String> result = TestUtil.asSortedList(stringClass.getSuperInterfaces());
         
-        assertEquals(3, result.size());
+        assertEquals(5, result.size());
         assertEquals("java.io.Serializable", result.get(0));
         assertEquals("java.lang.CharSequence", result.get(1));
         assertEquals("java.lang.Comparable", result.get(2));
+        assertEquals("java.lang.constant.Constable", result.get(3));
+        assertEquals("java.lang.constant.ConstantDesc", result.get(4));
     }
     
     @Test
@@ -461,7 +463,7 @@ public class JClassExternalTest {
         List<String> result = TestUtil.asSortedList(listClass.getSuperInterfaces());
         
         assertEquals(1, result.size());
-        assertEquals("java.util.Collection", result.get(0));
+        assertEquals("java.util.SequencedCollection", result.get(0));
     }
     
     @Test
@@ -730,7 +732,7 @@ public class JClassExternalTest {
                 .map(o -> o.getName()));
         
         assertEquals(61, result.size());
-        assertEquals("com.sun.java.util.jar.pack.ConstantPool.Index", result.get(0));
+        assertEquals("com.sun.jmx.remote.internal.ArrayQueue", result.get(0));
     }
     
     @Test
@@ -747,7 +749,7 @@ public class JClassExternalTest {
         List<String> result = TestUtil.asSortedList(serializableClass.getDescendantClasses().stream()
                 .map(o -> o.getName()));
         
-        assertEquals(3106, result.size());
+        assertEquals(2991, result.size());
         assertEquals("apple.security.AppleProvider", result.get(0));
     }
     
@@ -766,7 +768,7 @@ public class JClassExternalTest {
         List<String> result = TestUtil.asSortedList(objectClass.getDescendantClasses().stream()
                 .map(o -> o.getName()));
         
-        assertEquals(20841, result.size());
+        assertEquals(21679, result.size());
         assertEquals("apple.laf.JRSUIConstants", result.get(0));
     }
     

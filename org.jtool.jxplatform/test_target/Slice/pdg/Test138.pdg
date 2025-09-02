@@ -43,8 +43,8 @@ Class Name = Test138
   37 actualOut D = { s2$1.!getList( ) } U = { P138.!P138( ).list, s2$1.list }
   38 localDeclaration D = { l4$7 } U = { s1$0.!getList2( ) }
   39 receiver D = {  } U = { s1$0, s3$3 }
-  40 methodCall D = {  } U = { P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.elementData, P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.size, P138.!P138( ).list, s1$0.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s1$0.java.util.ArrayList.!java.util.ArrayList.elementData, s1$0.java.util.ArrayList.!java.util.ArrayList.size, s1$0.list, s3$3.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s3$3.java.util.ArrayList.!java.util.ArrayList.elementData, s3$3.java.util.ArrayList.!java.util.ArrayList.size, s3$3.list } TO = P138#getList2( )
-  41 actualOut D = { s1$0.!getList2( ), s1$0.java.util.ArrayList.!java.util.AbstractList.modCount, s1$0.java.util.ArrayList.!java.util.ArrayList.elementData, s1$0.java.util.ArrayList.!java.util.ArrayList.size } U = { P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.elementData, P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.size, P138.!P138( ).list, s1$0.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s1$0.java.util.ArrayList.!java.util.ArrayList.elementData, s1$0.java.util.ArrayList.!java.util.ArrayList.size, s1$0.list, s3$3.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s3$3.java.util.ArrayList.!java.util.ArrayList.elementData, s3$3.java.util.ArrayList.!java.util.ArrayList.size, s3$3.list }
+  40 methodCall D = {  } U = { P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.size, P138.!P138( ).list, s1$0.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s1$0.java.util.ArrayList.!java.util.ArrayList.size, s1$0.list, s3$3.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s3$3.java.util.ArrayList.!java.util.ArrayList.size, s3$3.list } TO = P138#getList2( )
+  41 actualOut D = { s1$0.!getList2( ), s1$0.java.util.ArrayList.!java.util.AbstractList.modCount, s1$0.java.util.ArrayList.!java.util.ArrayList.elementData, s1$0.java.util.ArrayList.!java.util.ArrayList.size } U = { P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, P138.!P138( ).java.util.ArrayList.!java.util.ArrayList.size, P138.!P138( ).list, s1$0.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s1$0.java.util.ArrayList.!java.util.ArrayList.size, s1$0.list, s3$3.java.util.ArrayList.!java.util.ArrayList.EMPTY_ELEMENTDATA, s3$3.java.util.ArrayList.!java.util.ArrayList.size, s3$3.list }
   43 formalOut D = {  } U = { $_ }
 --
    0: Test138( )
@@ -130,4 +130,5 @@ Class Name = Test138
   77:   41 ->   38 loopIndependentDefUseDependence s1$0.!getList2( )
 --
 ----- ClDG (to here) -----
+
 

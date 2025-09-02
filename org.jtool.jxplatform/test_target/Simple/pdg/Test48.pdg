@@ -35,8 +35,8 @@ Class Name = Test48
   16 actualOut D = { t$0.!m3( ) } U = {  }
   17 assignment D = {  } U = { t$0.!toString( ) }
   18 receiver D = {  } U = { t$0 }
-  19 methodCall D = {  } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value } TO = java.lang.Object#toString( )
-  20 actualOut D = { t$0.!toString( ) } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value }
+  19 methodCall D = {  } U = { T48.!T48( ).!java.lang.Class.name, t$0.!java.lang.Class.name } TO = java.lang.Object#toString( )
+  20 actualOut D = { t$0.!toString( ) } U = { T48.!T48( ).!java.lang.Class.name, t$0.!java.lang.Class.name }
   22 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ Test48#m12( S48 ) ]
@@ -52,16 +52,16 @@ Class Name = Test48
    2 assignment D = {  } U = { str$0.!substring( int ).!length( ) }
    3 receiver D = {  } U = { str$0.!substring( int ) }
    4 receiver D = {  } U = { str$0 }
-   5 methodCall D = {  } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value } TO = java.lang.String#substring( int )
-   6 actualOut D = { str$0.!substring( int ) } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value }
+   5 methodCall D = {  } U = { str$0.!java.lang.String.value } TO = java.lang.String#substring( int )
+   6 actualOut D = { str$0.!substring( int ) } U = { str$0.!java.lang.String.value }
    7 methodCall D = {  } U = { str$0.!substring( int ).!java.lang.String.COMPACT_STRINGS, str$0.!substring( int ).!java.lang.String.coder, str$0.!substring( int ).!java.lang.String.value } TO = java.lang.String#length( )
    8 actualOut D = { str$0.!substring( int ).!length( ) } U = { str$0.!substring( int ).!java.lang.String.COMPACT_STRINGS, str$0.!substring( int ).!java.lang.String.coder, str$0.!substring( int ).!java.lang.String.value }
    9 trySt D = {  } U = {  }
   10 assignment D = {  } U = { str$0.!substring( int ).!wait( ) }
   11 receiver D = {  } U = { str$0.!substring( int ) }
   12 receiver D = {  } U = { str$0 }
-  13 methodCall D = {  } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value } TO = java.lang.String#substring( int )
-  14 actualOut D = { str$0.!substring( int ) } U = { str$0.!java.lang.String.COMPACT_STRINGS, str$0.!java.lang.String.coder, str$0.!java.lang.String.value }
+  13 methodCall D = {  } U = { str$0.!java.lang.String.value } TO = java.lang.String#substring( int )
+  14 actualOut D = { str$0.!substring( int ) } U = { str$0.!java.lang.String.value }
   15 methodCall D = {  } U = {  } TO = java.lang.Object#wait( )
   16 actualOut D = { str$0.!substring( int ).!wait( ) } U = {  }
   18 catchClause D = { e$1 } U = {  }
@@ -94,8 +94,8 @@ Class Name = Test48
   12 actualOut D = { s$0.!m2( ) } U = {  }
   13 assignment D = {  } U = { s$0.!toString( ) }
   14 receiver D = {  } U = { s$0 }
-  15 methodCall D = {  } U = { S48.!S48( ).!java.lang.Class.name, S48.!S48( ).!java.lang.StringBuilder.count, S48.!S48( ).!java.lang.StringBuilder.value, s$0.!java.lang.Class.name, s$0.!java.lang.StringBuilder.count, s$0.!java.lang.StringBuilder.value } TO = java.lang.Object#toString( )
-  16 actualOut D = { s$0.!toString( ) } U = { S48.!S48( ).!java.lang.Class.name, S48.!S48( ).!java.lang.StringBuilder.count, S48.!S48( ).!java.lang.StringBuilder.value, s$0.!java.lang.Class.name, s$0.!java.lang.StringBuilder.count, s$0.!java.lang.StringBuilder.value }
+  15 methodCall D = {  } U = { S48.!S48( ).!java.lang.Class.name, s$0.!java.lang.Class.name } TO = java.lang.Object#toString( )
+  16 actualOut D = { s$0.!toString( ) } U = { S48.!S48( ).!java.lang.Class.name, s$0.!java.lang.Class.name }
   18 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ Test48#m8( ) ]
@@ -113,8 +113,8 @@ Class Name = Test48
   12 actualOut D = { t$0.!m2( ) } U = {  }
   13 assignment D = {  } U = { t$0.!toString( ) }
   14 receiver D = {  } U = { t$0 }
-  15 methodCall D = {  } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value } TO = java.lang.Object#toString( )
-  16 actualOut D = { t$0.!toString( ) } U = { T48.!T48( ).!java.lang.Class.name, T48.!T48( ).!java.lang.StringBuilder.count, T48.!T48( ).!java.lang.StringBuilder.value, t$0.!java.lang.Class.name, t$0.!java.lang.StringBuilder.count, t$0.!java.lang.StringBuilder.value }
+  15 methodCall D = {  } U = { T48.!T48( ).!java.lang.Class.name, t$0.!java.lang.Class.name } TO = java.lang.Object#toString( )
+  16 actualOut D = { t$0.!toString( ) } U = { T48.!T48( ).!java.lang.Class.name, t$0.!java.lang.Class.name }
   18 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ Test48#m14( ) ]
@@ -819,4 +819,5 @@ Class Name = Test48
    9:    6 ->    2 loopIndependentDefUseDependence this.!m12( S48 )
 --
 ----- ClDG (to here) -----
+
 

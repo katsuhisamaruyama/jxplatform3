@@ -24,8 +24,8 @@ Class Name = jp.ac.ritsumei.cs.draw.AutoSave
    3 trySt D = {  } U = {  }
    4 assignment D = {  } U = { this.!sleep( long ) }
    5 receiver D = {  } U = {  }
-   6 methodCall D = {  } U = { jp.ac.ritsumei.cs.draw.AutoSave.SAVE_PERIOD } TO = java.lang.Thread#sleep( long )
-   7 actualOut D = { this.!sleep( long ) } U = {  }
+   6 methodCall D = {  } U = { jp.ac.ritsumei.cs.draw.AutoSave.SAVE_PERIOD, this.!java.lang.VirtualThread.$assertionsDisabled, this.!java.util.concurrent.TimeUnit.MILLISECONDS, this.!java.util.concurrent.TimeUnit.maxNanos, this.!java.util.concurrent.TimeUnit.scale } TO = java.lang.Thread#sleep( long )
+   7 actualOut D = { this.!jdk.internal.event.ThreadSleepEvent.time, this.!sleep( long ) } U = { this.!java.lang.VirtualThread.$assertionsDisabled, this.!java.util.concurrent.TimeUnit.MILLISECONDS, this.!java.util.concurrent.TimeUnit.maxNanos, this.!java.util.concurrent.TimeUnit.scale }
    9 catchClause D = { e$0 } U = {  }
   10 enhancedForSt D = { canvas$1 } U = { this.tabbedCanvas.!getAllCanvases( ) }
   11 receiver D = {  } U = { this.tabbedCanvas }
@@ -33,8 +33,8 @@ Class Name = jp.ac.ritsumei.cs.draw.AutoSave
   13 actualOut D = { this.tabbedCanvas.!getAllCanvases( ) } U = { this.tabbedCanvas.canvases }
   14 assignment D = {  } U = { canvas$1.!autoSave( ) }
   15 receiver D = {  } U = { canvas$1 }
-  16 methodCall D = {  } U = { System.err, canvas$1.changed, canvas$1.currentFigure, canvas$1.menu, canvas$1.menu.canvas$0.!getFigureManager( ).!java.lang.String.COMPACT_STRINGS, canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.autoFlush, canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.charOut, canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.out, canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.textOut, canvas$1.menu.canvas$0.!getFigureManager( ).figure$4.color.!java.awt.Color.value, canvas$1.menu.canvas$0.!getFigureManager( ).figures, canvas$1.menu.canvas$0.!getFigureManager( ).filename, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.lock, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.coder, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.String.COMPACT_STRINGS, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.count, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.value, canvas$1.menu.canvas$0.figureManager, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, this, this.currentFigure.color, this.currentFigure.endX, this.currentFigure.endY, this.currentFigure.outlineWidth, this.currentFigure.startX, this.currentFigure.startY, this.figureManager.figures, this.figureManager.filename, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#autoSave( )
-  17 actualOut D = { canvas$1.!autoSave( ), canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nextChar, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble, canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder, canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count } U = { System.err, canvas$1.changed, canvas$1.currentFigure, canvas$1.menu, canvas$1.menu.canvas$0.!getFigureManager( ).!java.lang.String.COMPACT_STRINGS, canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.autoFlush, canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.charOut, canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.out, canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.textOut, canvas$1.menu.canvas$0.!getFigureManager( ).figure$4.color.!java.awt.Color.value, canvas$1.menu.canvas$0.!getFigureManager( ).figures, canvas$1.menu.canvas$0.!getFigureManager( ).filename, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.lock, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.coder, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.String.COMPACT_STRINGS, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.count, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.StringBuilder.value, canvas$1.menu.canvas$0.figureManager, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, this, this.currentFigure.color, this.currentFigure.endX, this.currentFigure.endY, this.currentFigure.outlineWidth, this.currentFigure.startX, this.currentFigure.startY, this.figureManager.figures, this.figureManager.filename, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener }
+  16 methodCall D = {  } U = { System.err, canvas$1.changed, canvas$1.currentFigure, canvas$1.menu, canvas$1.menu.canvas$0.!getFigureManager( ).!java.lang.String.COMPACT_STRINGS, canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.lock, canvas$1.menu.canvas$0.!getFigureManager( ).figure$4.color.!java.awt.Color.value, canvas$1.menu.canvas$0.!getFigureManager( ).figures, canvas$1.menu.canvas$0.!getFigureManager( ).filename, canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.lock, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!jdk.internal.misc.InternalLock.lock, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count, canvas$1.menu.canvas$0.figureManager, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, this, this.currentFigure.color, this.currentFigure.endX, this.currentFigure.endY, this.currentFigure.outlineWidth, this.currentFigure.startX, this.currentFigure.startY, this.figureManager.figures, this.figureManager.filename, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener } TO = jp.ac.ritsumei.cs.draw.DrawCanvas#autoSave( )
+  17 actualOut D = { canvas$1.!autoSave( ), canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.maxChars, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut, canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble, canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder, canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count } U = { System.err, canvas$1.changed, canvas$1.currentFigure, canvas$1.menu, canvas$1.menu.canvas$0.!getFigureManager( ).!java.lang.String.COMPACT_STRINGS, canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.lock, canvas$1.menu.canvas$0.!getFigureManager( ).figure$4.color.!java.awt.Color.value, canvas$1.menu.canvas$0.!getFigureManager( ).figures, canvas$1.menu.canvas$0.!getFigureManager( ).filename, canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.String.COMPACT_STRINGS, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.lock, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out, canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!jdk.internal.misc.InternalLock.lock, canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count, canvas$1.menu.canvas$0.figureManager, figure$4.color, figure$4.endX, figure$4.endY, figure$4.outlineWidth, figure$4.startX, figure$4.startY, this, this.currentFigure.color, this.currentFigure.endX, this.currentFigure.endY, this.currentFigure.outlineWidth, this.currentFigure.startX, this.currentFigure.startY, this.figureManager.figures, this.figureManager.filename, this.menu.autoSave, this.menu.clipboard, this.menu.copyAction, this.menu.cutAction, this.menu.deleteAction, this.menu.directory, this.menu.fileListMenu, this.menu.fileListener, this.menu.menuBar, this.menu.newAction, this.menu.openAction, this.menu.pasteAction, this.menu.recentFiles, this.menu.redoAction, this.menu.saveAction, this.menu.tabbedCanvas, this.menu.tool, this.menu.toolBar, this.menu.undoAction, this.menu.windowListener }
   19 formalOut D = {  } U = { $_ }
 --
    0: SAVE_PERIOD
@@ -73,39 +73,41 @@ Class Name = jp.ac.ritsumei.cs.draw.AutoSave
   14:    6 ->    7 trueControlDependence
   15:    6 ->    9 exceptionCatch
   16:    7 ->    4 loopIndependentDefUseDependence this.!sleep( long )
-  17:    7 ->    7 defOrderDependence this.!sleep( long )
-  18:    9 ->    9 outputDependence e$0
-  19:   10 ->   10 defOrderDependence canvas$1
+  17:    7 ->    7 defOrderDependence this.!jdk.internal.event.ThreadSleepEvent.time
+  18:    7 ->    7 defOrderDependence this.!sleep( long )
+  19:    9 ->    9 outputDependence e$0
   20:   10 ->   10 defOrderDependence canvas$1
-  21:   10 ->   11 trueControlDependence
-  22:   10 ->   12 trueControlDependence
-  23:   10 ->   13 trueControlDependence
-  24:   10 ->   14 trueControlDependence
-  25:   10 ->   15 loopCarriedDefUseDependence canvas$1 (LC = 10)
-  26:   10 ->   15 trueControlDependence
-  27:   10 ->   16 trueControlDependence
-  28:   10 ->   17 trueControlDependence
-  29:   13 ->   10 loopCarriedDefUseDependence this.tabbedCanvas.!getAllCanvases( ) (LC = 10)
-  30:   13 ->   13 defOrderDependence this.tabbedCanvas.!getAllCanvases( )
-  31:   17 ->   14 loopIndependentDefUseDependence canvas$1.!autoSave( )
-  32:   17 ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC = 10)
-  33:   17 ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC = 10)
-  34:   17 ->   17 defOrderDependence canvas$1.!autoSave( )
-  35:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble
-  36:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb
-  37:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars
-  38:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nextChar
-  39:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out
-  40:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se
-  41:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush
-  42:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out
-  43:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut
-  44:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble
-  45:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder
-  46:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value
-  47:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble
-  48:   17 ->   17 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC = 10)
-  49:   17 ->   17 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC = 10)
+  21:   10 ->   10 defOrderDependence canvas$1
+  22:   10 ->   11 trueControlDependence
+  23:   10 ->   12 trueControlDependence
+  24:   10 ->   13 trueControlDependence
+  25:   10 ->   14 trueControlDependence
+  26:   10 ->   15 loopCarriedDefUseDependence canvas$1 (LC = 10)
+  27:   10 ->   15 trueControlDependence
+  28:   10 ->   16 trueControlDependence
+  29:   10 ->   17 trueControlDependence
+  30:   13 ->   10 loopCarriedDefUseDependence this.tabbedCanvas.!getAllCanvases( ) (LC = 10)
+  31:   13 ->   13 defOrderDependence this.tabbedCanvas.!getAllCanvases( )
+  32:   17 ->   14 loopIndependentDefUseDependence canvas$1.!autoSave( )
+  33:   17 ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC = 10)
+  34:   17 ->   16 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC = 10)
+  35:   17 ->   17 defOrderDependence canvas$1.!autoSave( )
+  36:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).System.err.!java.io.PrintStream.trouble
+  37:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.cb
+  38:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.maxChars
+  39:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.nChars
+  40:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.BufferedWriter.!java.io.BufferedWriter.out
+  41:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.FileWriter.!java.io.OutputStreamWriter.se
+  42:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.autoFlush
+  43:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.out
+  44:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.psOut
+  45:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.io.PrintWriter.!java.io.PrintWriter.trouble
+  46:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.coder
+  47:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).java.lang.StringBuilder.!java.lang.AbstractStringBuilder.value
+  48:   17 ->   17 defOrderDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.trouble
+  49:   17 ->   17 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).pw$1.!java.io.PrintWriter.out (LC = 10)
+  50:   17 ->   17 loopCarriedDefUseDependence canvas$1.menu.canvas$0.!getFigureManager( ).sb$6.!java.lang.AbstractStringBuilder.count (LC = 10)
 --
 ----- ClDG (to here) -----
+
 

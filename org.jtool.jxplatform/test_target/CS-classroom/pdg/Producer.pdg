@@ -15,15 +15,15 @@ Class Name = Producer
   12 actualOut D = { this.storage.!put( java.lang.String ) } U = { this.storage.data }
   13 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   14 receiver D = {  } U = { System.out }
-  15 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, data$1 } TO = java.io.PrintStream#println( java.lang.String )
-  16 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  15 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.lock, data$1 } TO = java.io.PrintStream#println( java.lang.String )
+  16 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   17 assignment D = {  } U = { this.!sleep( long ) }
   18 receiver D = {  } U = {  }
-  19 methodCall D = {  } U = { this.!random( ) } TO = java.lang.Thread#sleep( long )
+  19 methodCall D = {  } U = { this.!java.lang.VirtualThread.$assertionsDisabled, this.!java.util.concurrent.TimeUnit.MILLISECONDS, this.!java.util.concurrent.TimeUnit.maxNanos, this.!java.util.concurrent.TimeUnit.scale, this.!random( ) } TO = java.lang.Thread#sleep( long )
   20 receiver D = {  } U = {  }
   21 methodCall D = {  } U = { this.!java.lang.Math$RandomNumberGeneratorHolder.randomNumberGenerator } TO = java.lang.Math#random( )
   22 actualOut D = { this.!random( ) } U = { this.!java.lang.Math$RandomNumberGeneratorHolder.randomNumberGenerator }
-  23 actualOut D = { this.!sleep( long ) } U = {  }
+  23 actualOut D = { this.!jdk.internal.event.ThreadSleepEvent.time, this.!sleep( long ) } U = { this.!java.lang.VirtualThread.$assertionsDisabled, this.!java.util.concurrent.TimeUnit.MILLISECONDS, this.!java.util.concurrent.TimeUnit.maxNanos, this.!java.util.concurrent.TimeUnit.scale }
   24 assignment D = { i$0 } U = { i$0 }
   25 assignment D = {  } U = { this.storage.!put( java.lang.String ) }
   26 receiver D = {  } U = { this.storage }
@@ -103,16 +103,17 @@ Class Name = Producer
   57:   22 ->   19 loopIndependentDefUseDependence this.!random( )
   58:   22 ->   22 defOrderDependence this.!random( )
   59:   23 ->   17 loopIndependentDefUseDependence this.!sleep( long )
-  60:   23 ->   23 defOrderDependence this.!sleep( long )
-  61:   24 ->    3 loopCarriedDefUseDependence i$0 (LC = 3)
-  62:   24 ->    6 loopCarriedDefUseDependence i$0 (LC = 3)
-  63:   24 ->   24 loopCarriedDefUseDependence i$0 (LC = 3)
-  64:   27 ->   25 trueControlDependence
-  65:   27 ->   27+ trueControlDependence
-  66:   27 ->   29 trueControlDependence
-  67:   27 ->   31 exceptionCatch
-  68:   27+ ->   29 loopIndependentDefUseDependence this.storage.data
-  69:   29 ->   25 loopIndependentDefUseDependence this.storage.!put( java.lang.String )
+  60:   23 ->   23 defOrderDependence this.!jdk.internal.event.ThreadSleepEvent.time
+  61:   23 ->   23 defOrderDependence this.!sleep( long )
+  62:   24 ->    3 loopCarriedDefUseDependence i$0 (LC = 3)
+  63:   24 ->    6 loopCarriedDefUseDependence i$0 (LC = 3)
+  64:   24 ->   24 loopCarriedDefUseDependence i$0 (LC = 3)
+  65:   27 ->   25 trueControlDependence
+  66:   27 ->   27+ trueControlDependence
+  67:   27 ->   29 trueControlDependence
+  68:   27 ->   31 exceptionCatch
+  69:   27+ ->   29 loopIndependentDefUseDependence this.storage.data
+  70:   29 ->   25 loopIndependentDefUseDependence this.storage.!put( java.lang.String )
 --
    0: Producer( Storage )
    1:    0 ->    1 trueControlDependence
@@ -124,4 +125,5 @@ Class Name = Producer
    1:    0 ->    1 trueControlDependence
 --
 ----- ClDG (to here) -----
+
 

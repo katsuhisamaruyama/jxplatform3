@@ -3,11 +3,11 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
    0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureManager#getTitle( ) ]
    1 returnSt D = { $_ } U = { this.filename.!substring( int ) }
    2 receiver D = {  } U = { this.filename }
-   3 methodCall D = {  } U = { this.filename.!java.lang.String.COMPACT_STRINGS, this.filename.!java.lang.String.coder, this.filename.!java.lang.String.value, this.filename.!lastIndexOf( java.lang.String ) } TO = java.lang.String#substring( int )
+   3 methodCall D = {  } U = { this.filename.!java.lang.String.value, this.filename.!lastIndexOf( java.lang.String ) } TO = java.lang.String#substring( int )
    4 receiver D = {  } U = { this.filename }
    5 methodCall D = {  } U = { File.separator, this.filename.!java.lang.String.value } TO = java.lang.String#lastIndexOf( java.lang.String )
    6 actualOut D = { this.filename.!lastIndexOf( java.lang.String ) } U = { this.filename.!java.lang.String.value }
-   7 actualOut D = { this.filename.!substring( int ) } U = { this.filename.!java.lang.String.COMPACT_STRINGS, this.filename.!java.lang.String.coder, this.filename.!java.lang.String.value }
+   7 actualOut D = { this.filename.!substring( int ) } U = { this.filename.!java.lang.String.value }
    9 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.FigureManager#createFigure( java.lang.String int int int int java.awt.Color float ) ]
@@ -145,16 +145,16 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
    8 trySt D = {  } U = {  }
    9 assignment D = { br$1 } U = { java.io.BufferedReader.!BufferedReader( java.io.Reader ) }
   10 receiver D = {  } U = {  }
-  11 constructorCall D = {  } U = { java.io.BufferedReader.!java.io.BufferedReader.defaultCharBufferSize, java.io.FileReader.!FileReader( java.lang.String ) } TO = java.io.BufferedReader#BufferedReader( java.io.Reader )
+  11 constructorCall D = {  } U = { java.io.FileReader.!FileReader( java.lang.String ) } TO = java.io.BufferedReader#BufferedReader( java.io.Reader )
   12 receiver D = {  } U = {  }
   13 constructorCall D = {  } U = { filename$0 } TO = java.io.FileReader#FileReader( java.lang.String )
   14 actualOut D = { java.io.FileReader.!FileReader( java.lang.String ), java.io.FileReader.!java.io.InputStreamReader.sd } U = {  }
-  15 actualOut D = { java.io.BufferedReader.!BufferedReader( java.io.Reader ), java.io.BufferedReader.!java.io.BufferedReader.cb, java.io.BufferedReader.!java.io.BufferedReader.in, java.io.BufferedReader.!java.io.BufferedReader.markedChar, java.io.BufferedReader.!java.io.BufferedReader.markedSkipLF, java.io.BufferedReader.!java.io.BufferedReader.nChars, java.io.BufferedReader.!java.io.BufferedReader.nextChar, java.io.BufferedReader.!java.io.BufferedReader.readAheadLimit, java.io.BufferedReader.!java.io.BufferedReader.skipLF } U = { java.io.BufferedReader.!java.io.BufferedReader.defaultCharBufferSize }
+  15 actualOut D = { java.io.BufferedReader.!BufferedReader( java.io.Reader ), java.io.BufferedReader.!java.io.BufferedReader.cb, java.io.BufferedReader.!java.io.BufferedReader.in, java.io.BufferedReader.!java.io.BufferedReader.markedChar, java.io.BufferedReader.!java.io.BufferedReader.markedSkipLF, java.io.BufferedReader.!java.io.BufferedReader.nChars, java.io.BufferedReader.!java.io.BufferedReader.nextChar, java.io.BufferedReader.!java.io.BufferedReader.readAheadLimit, java.io.BufferedReader.!java.io.BufferedReader.skipLF } U = {  }
   16 localDeclaration D = { line$5 } U = {  }
   17 whileSt D = { line$5 } U = { br$1.!readLine( ) }
   18 receiver D = {  } U = { br$1 }
-  19 methodCall D = {  } U = { br$1.!java.io.BufferedReader.cb, br$1.!java.io.BufferedReader.defaultExpectedLineLength, br$1.!java.io.BufferedReader.lock, br$1.!java.io.BufferedReader.nChars, br$1.!java.io.BufferedReader.nextChar, br$1.!java.io.BufferedReader.skipLF, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.cb, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.defaultExpectedLineLength, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.nChars, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.nextChar, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.skipLF } TO = java.io.BufferedReader#readLine( )
-  20 actualOut D = { br$1.!java.io.BufferedReader.nextChar, br$1.!java.io.BufferedReader.skipLF, br$1.!readLine( ) } U = { br$1.!java.io.BufferedReader.cb, br$1.!java.io.BufferedReader.defaultExpectedLineLength, br$1.!java.io.BufferedReader.lock, br$1.!java.io.BufferedReader.nChars, br$1.!java.io.BufferedReader.nextChar, br$1.!java.io.BufferedReader.skipLF, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.cb, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.defaultExpectedLineLength, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.nChars, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.nextChar, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.skipLF }
+  19 methodCall D = {  } U = { br$1.!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock } TO = java.io.BufferedReader#readLine( )
+  20 actualOut D = { br$1.!readLine( ) } U = { br$1.!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock }
   21 localDeclaration D = { st$6 } U = { java.util.StringTokenizer.!StringTokenizer( java.lang.String ) }
   22 receiver D = {  } U = {  }
   23 constructorCall D = {  } U = { line$5 } TO = java.util.StringTokenizer#StringTokenizer( java.lang.String )
@@ -242,22 +242,22 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
  106 catchClause D = { e$18 } U = {  }
  107 assignment D = {  } U = { System.err.!println( java.lang.String ) }
  108 receiver D = {  } U = { System.err }
- 109 methodCall D = {  } U = { $java.lang.String, System.err.!java.io.PrintStream.autoFlush, System.err.!java.io.PrintStream.charOut, System.err.!java.io.PrintStream.out, System.err.!java.io.PrintStream.textOut, filename$0 } TO = java.io.PrintStream#println( java.lang.String )
- 110 actualOut D = { System.err.!java.io.PrintStream.trouble, System.err.!println( java.lang.String ) } U = { System.err.!java.io.PrintStream.autoFlush, System.err.!java.io.PrintStream.charOut, System.err.!java.io.PrintStream.out, System.err.!java.io.PrintStream.textOut }
+ 109 methodCall D = {  } U = { $java.lang.String, System.err.!java.io.PrintStream.lock, filename$0 } TO = java.io.PrintStream#println( java.lang.String )
+ 110 actualOut D = { System.err.!java.io.PrintStream.trouble, System.err.!println( java.lang.String ) } U = { System.err.!java.io.PrintStream.lock }
  111 returnSt D = { $_ } U = {  }
  112 catchClause D = { e$19 } U = {  }
  113 assignment D = {  } U = { System.err.!println( java.lang.String ) }
  114 receiver D = {  } U = { System.err }
- 115 methodCall D = {  } U = { $java.lang.String, System.err.!java.io.PrintStream.autoFlush, System.err.!java.io.PrintStream.charOut, System.err.!java.io.PrintStream.out, System.err.!java.io.PrintStream.textOut, filename$0 } TO = java.io.PrintStream#println( java.lang.String )
- 116 actualOut D = { System.err.!java.io.PrintStream.trouble, System.err.!println( java.lang.String ) } U = { System.err.!java.io.PrintStream.autoFlush, System.err.!java.io.PrintStream.charOut, System.err.!java.io.PrintStream.out, System.err.!java.io.PrintStream.textOut }
+ 115 methodCall D = {  } U = { $java.lang.String, System.err.!java.io.PrintStream.lock, filename$0 } TO = java.io.PrintStream#println( java.lang.String )
+ 116 actualOut D = { System.err.!java.io.PrintStream.trouble, System.err.!println( java.lang.String ) } U = { System.err.!java.io.PrintStream.lock }
  117 returnSt D = { $_ } U = {  }
  118 finallyClause D = {  } U = {  }
  119 trySt D = {  } U = {  }
  120 ifSt D = {  } U = { br$1 }
  121 assignment D = {  } U = { br$1.!close( ) }
  122 receiver D = {  } U = { br$1 }
- 123 methodCall D = {  } U = { br$1.!java.io.BufferedReader.in, br$1.!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.in, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock } TO = java.io.BufferedReader#close( )
- 124 actualOut D = { br$1.!close( ), br$1.!java.io.BufferedReader.cb, br$1.!java.io.BufferedReader.in } U = { br$1.!java.io.BufferedReader.in, br$1.!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.in, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock }
+ 123 methodCall D = {  } U = { br$1.!java.io.BufferedReader.in, br$1.!java.io.BufferedReader.lock, br$1.!jdk.internal.misc.InternalLock.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.in, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!jdk.internal.misc.InternalLock.lock } TO = java.io.BufferedReader#close( )
+ 124 actualOut D = { br$1.!close( ), br$1.!java.io.BufferedReader.cb, br$1.!java.io.BufferedReader.in } U = { br$1.!java.io.BufferedReader.in, br$1.!java.io.BufferedReader.lock, br$1.!jdk.internal.misc.InternalLock.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.in, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!jdk.internal.misc.InternalLock.lock }
  125 returnSt D = { $_ } U = {  }
  128 catchClause D = { e$4 } U = {  }
  129 returnSt D = { $_ } U = {  }
@@ -306,11 +306,11 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
    5 receiver D = {  } U = {  }
    6 constructorCall D = {  } U = { java.io.BufferedWriter.!BufferedWriter( java.io.Writer ) } TO = java.io.PrintWriter#PrintWriter( java.io.Writer )
    7 receiver D = {  } U = {  }
-   8 constructorCall D = {  } U = { java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, java.io.FileWriter.!FileWriter( java.lang.String ) } TO = java.io.BufferedWriter#BufferedWriter( java.io.Writer )
+   8 constructorCall D = {  } U = { java.io.FileWriter.!FileWriter( java.lang.String ) } TO = java.io.BufferedWriter#BufferedWriter( java.io.Writer )
    9 receiver D = {  } U = {  }
   10 constructorCall D = {  } U = { filename$0 } TO = java.io.FileWriter#FileWriter( java.lang.String )
   11 actualOut D = { java.io.FileWriter.!FileWriter( java.lang.String ), java.io.FileWriter.!java.io.OutputStreamWriter.se } U = {  }
-  12 actualOut D = { java.io.BufferedWriter.!BufferedWriter( java.io.Writer ), java.io.BufferedWriter.!java.io.BufferedWriter.cb, java.io.BufferedWriter.!java.io.BufferedWriter.nChars, java.io.BufferedWriter.!java.io.BufferedWriter.nextChar, java.io.BufferedWriter.!java.io.BufferedWriter.out } U = { java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize }
+  12 actualOut D = { java.io.BufferedWriter.!BufferedWriter( java.io.Writer ), java.io.BufferedWriter.!java.io.BufferedWriter.cb, java.io.BufferedWriter.!java.io.BufferedWriter.maxChars, java.io.BufferedWriter.!java.io.BufferedWriter.nChars, java.io.BufferedWriter.!java.io.BufferedWriter.out } U = {  }
   13 actualOut D = { java.io.PrintWriter.!PrintWriter( java.io.Writer ), java.io.PrintWriter.!java.io.PrintWriter.autoFlush, java.io.PrintWriter.!java.io.PrintWriter.out, java.io.PrintWriter.!java.io.PrintWriter.psOut, java.io.PrintWriter.!java.io.PrintWriter.trouble } U = {  }
   14 enhancedForSt D = { figure$4 } U = { this.figures }
   15 localDeclaration D = { sb$6 } U = { java.lang.StringBuilder.!StringBuilder( ) }
@@ -391,22 +391,22 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   90 actualOut D = { sb$6.!append( java.lang.String ), sb$6.!java.lang.AbstractStringBuilder.count } U = { java.lang.StringBuilder.!StringBuilder( ).!java.lang.AbstractStringBuilder.count, sb$6.!java.lang.AbstractStringBuilder.count }
   91 assignment D = {  } U = { pw$1.!println( java.lang.String ) }
   92 receiver D = {  } U = { pw$1 }
-  93 methodCall D = {  } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, pw$1.!java.io.PrintWriter.lock, sb$6.!toString( ) } TO = java.io.PrintWriter#println( java.lang.String )
+  93 methodCall D = {  } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!jdk.internal.misc.InternalLock.lock, pw$1.!java.io.PrintWriter.lock, pw$1.!jdk.internal.misc.InternalLock.lock, sb$6.!toString( ) } TO = java.io.PrintWriter#println( java.lang.String )
   94 receiver D = {  } U = { sb$6 }
-  95 methodCall D = {  } U = { java.lang.StringBuilder.!StringBuilder( ).!java.lang.AbstractStringBuilder.coder, java.lang.StringBuilder.!StringBuilder( ).!java.lang.String.COMPACT_STRINGS, java.lang.StringBuilder.!StringBuilder( ).!java.lang.StringBuilder.count, java.lang.StringBuilder.!StringBuilder( ).!java.lang.StringBuilder.value, sb$6.!java.lang.AbstractStringBuilder.coder, sb$6.!java.lang.String.COMPACT_STRINGS, sb$6.!java.lang.StringBuilder.count, sb$6.!java.lang.StringBuilder.value } TO = java.lang.StringBuilder#toString( )
-  96 actualOut D = { sb$6.!toString( ) } U = { java.lang.StringBuilder.!StringBuilder( ).!java.lang.AbstractStringBuilder.coder, java.lang.StringBuilder.!StringBuilder( ).!java.lang.String.COMPACT_STRINGS, java.lang.StringBuilder.!StringBuilder( ).!java.lang.StringBuilder.count, java.lang.StringBuilder.!StringBuilder( ).!java.lang.StringBuilder.value, sb$6.!java.lang.AbstractStringBuilder.coder, sb$6.!java.lang.String.COMPACT_STRINGS, sb$6.!java.lang.StringBuilder.count, sb$6.!java.lang.StringBuilder.value }
-  97 actualOut D = { pw$1.!println( java.lang.String ) } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, pw$1.!java.io.PrintWriter.lock }
+  95 methodCall D = {  } U = {  } TO = java.lang.StringBuilder#toString( )
+  96 actualOut D = { sb$6.!toString( ) } U = {  }
+  97 actualOut D = { pw$1.!println( java.lang.String ) } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!jdk.internal.misc.InternalLock.lock, pw$1.!java.io.PrintWriter.lock, pw$1.!jdk.internal.misc.InternalLock.lock }
   99 catchClause D = { e$7 } U = {  }
  100 assignment D = {  } U = { System.err.!println( java.lang.String ) }
  101 receiver D = {  } U = { System.err }
- 102 methodCall D = {  } U = { $java.lang.String, System.err.!java.io.PrintStream.autoFlush, System.err.!java.io.PrintStream.charOut, System.err.!java.io.PrintStream.out, System.err.!java.io.PrintStream.textOut, filename$0 } TO = java.io.PrintStream#println( java.lang.String )
- 103 actualOut D = { System.err.!java.io.PrintStream.trouble, System.err.!println( java.lang.String ) } U = { System.err.!java.io.PrintStream.autoFlush, System.err.!java.io.PrintStream.charOut, System.err.!java.io.PrintStream.out, System.err.!java.io.PrintStream.textOut }
+ 102 methodCall D = {  } U = { $java.lang.String, System.err.!java.io.PrintStream.lock, filename$0 } TO = java.io.PrintStream#println( java.lang.String )
+ 103 actualOut D = { System.err.!java.io.PrintStream.trouble, System.err.!println( java.lang.String ) } U = { System.err.!java.io.PrintStream.lock }
  104 finallyClause D = {  } U = {  }
  105 ifSt D = {  } U = { pw$1 }
  106 assignment D = {  } U = { pw$1.!close( ) }
  107 receiver D = {  } U = { pw$1 }
- 108 methodCall D = {  } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.out, pw$1.!java.io.PrintWriter.lock, pw$1.!java.io.PrintWriter.out } TO = java.io.PrintWriter#close( )
- 109 actualOut D = { pw$1.!close( ), pw$1.!java.io.PrintWriter.out, pw$1.!java.io.PrintWriter.trouble } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.out, pw$1.!java.io.PrintWriter.lock, pw$1.!java.io.PrintWriter.out }
+ 108 methodCall D = {  } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.out, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!jdk.internal.misc.InternalLock.lock, pw$1.!java.io.PrintWriter.lock, pw$1.!java.io.PrintWriter.out, pw$1.!jdk.internal.misc.InternalLock.lock } TO = java.io.PrintWriter#close( )
+ 109 actualOut D = { pw$1.!close( ), pw$1.!java.io.PrintWriter.out, pw$1.!java.io.PrintWriter.trouble } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.out, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!jdk.internal.misc.InternalLock.lock, pw$1.!java.io.PrintWriter.lock, pw$1.!java.io.PrintWriter.out, pw$1.!jdk.internal.misc.InternalLock.lock }
  110 returnSt D = { $_ } U = {  }
  112 returnSt D = { $_ } U = {  }
  114 formalOut D = {  } U = { $_ }
@@ -698,304 +698,300 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   61:   19 ->  112 exceptionCatch
   62:   19 ->  132 exceptionCatch
   63:   20 ->   17 loopCarriedDefUseDependence br$1.!readLine( ) (LC = 17)
-  64:   20 ->   19 loopCarriedDefUseDependence br$1.!java.io.BufferedReader.nextChar (LC = 17)
-  65:   20 ->   19 loopCarriedDefUseDependence br$1.!java.io.BufferedReader.skipLF (LC = 17)
-  66:   20 ->   20 defOrderDependence br$1.!readLine( )
-  67:   20 ->   20 loopCarriedDefUseDependence br$1.!java.io.BufferedReader.nextChar (LC = 17)
-  68:   20 ->   20 loopCarriedDefUseDependence br$1.!java.io.BufferedReader.skipLF (LC = 17)
-  69:   21 ->   21 defOrderDependence st$6
-  70:   21 ->   26 declaration
-  71:   21 ->   26 loopIndependentDefUseDependence st$6
-  72:   21 ->   32 declaration
-  73:   21 ->   32 loopIndependentDefUseDependence st$6
-  74:   21 ->   39 declaration
-  75:   21 ->   39 loopIndependentDefUseDependence st$6
-  76:   21 ->   46 declaration
-  77:   21 ->   46 loopIndependentDefUseDependence st$6
-  78:   21 ->   53 declaration
-  79:   21 ->   53 loopIndependentDefUseDependence st$6
-  80:   21 ->   60 declaration
-  81:   21 ->   60 loopIndependentDefUseDependence st$6
-  82:   21 ->   67 declaration
-  83:   21 ->   67 loopIndependentDefUseDependence st$6
-  84:   21 ->   74 declaration
-  85:   21 ->   74 loopIndependentDefUseDependence st$6
-  86:   21 ->   85 declaration
-  87:   21 ->   85 loopIndependentDefUseDependence st$6
-  88:   24 ->   21 loopIndependentDefUseDependence java.util.StringTokenizer.!StringTokenizer( java.lang.String )
-  89:   24 ->   24 defOrderDependence java.util.StringTokenizer.!StringTokenizer( java.lang.String )
-  90:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.currentPosition
-  91:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.delimiters
-  92:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.delimsChanged
-  93:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.hasSurrogates
-  94:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.maxPosition
-  95:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.newPosition
-  96:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.retDelims
-  97:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.str
-  98:   25 ->   25 defOrderDependence name$7
-  99:   25 ->   92 declaration
- 100:   25 ->   92 loopIndependentDefUseDependence name$7
- 101:   28 ->   25 loopIndependentDefUseDependence st$6.!nextToken( )
- 102:   28 ->   33 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 103:   28 ->   33 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 104:   28 ->   33 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 105:   28 ->   34 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 106:   28 ->   34 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 107:   28 ->   34 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 108:   28 ->   34 outputDependence st$6.!nextToken( )
- 109:   29 ->   29 defOrderDependence x1$8
- 110:   29 ->   93 declaration
- 111:   29 ->   93 loopIndependentDefUseDependence x1$8
- 112:   31 ->    1 exceptionCatch
- 113:   31 ->   29 trueControlDependence
- 114:   31 ->   35 trueControlDependence
- 115:   31 ->   37 trueControlDependence
- 116:   31 ->   38 trueControlDependence
- 117:   31 ->   39 trueControlDependence
- 118:   31 ->   40 trueControlDependence
- 119:   31 ->   41 trueControlDependence
- 120:   34 ->   31 loopIndependentDefUseDependence st$6.!nextToken( )
- 121:   34 ->   40 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 122:   34 ->   40 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 123:   34 ->   40 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 124:   34 ->   41 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 125:   34 ->   41 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 126:   34 ->   41 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 127:   34 ->   41 outputDependence st$6.!nextToken( )
- 128:   35 ->   29 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
- 129:   35 ->   42 outputDependence this.!parseInt( java.lang.String )
- 130:   36 ->   36 defOrderDependence y1$9
- 131:   36 ->   94 declaration
- 132:   36 ->   94 loopIndependentDefUseDependence y1$9
- 133:   38 ->    1 exceptionCatch
- 134:   38 ->   36 trueControlDependence
- 135:   38 ->   42 trueControlDependence
- 136:   38 ->   44 trueControlDependence
- 137:   38 ->   45 trueControlDependence
- 138:   38 ->   46 trueControlDependence
- 139:   38 ->   47 trueControlDependence
- 140:   38 ->   48 trueControlDependence
- 141:   41 ->   38 loopIndependentDefUseDependence st$6.!nextToken( )
- 142:   41 ->   47 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 143:   41 ->   47 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 144:   41 ->   47 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 145:   41 ->   48 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 146:   41 ->   48 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 147:   41 ->   48 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 148:   41 ->   48 outputDependence st$6.!nextToken( )
- 149:   42 ->   36 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
- 150:   42 ->   49 outputDependence this.!parseInt( java.lang.String )
- 151:   43 ->   43 defOrderDependence x2$10
- 152:   43 ->   95 declaration
- 153:   43 ->   95 loopIndependentDefUseDependence x2$10
- 154:   45 ->    1 exceptionCatch
- 155:   45 ->   43 trueControlDependence
- 156:   45 ->   49 trueControlDependence
- 157:   45 ->   51 trueControlDependence
- 158:   45 ->   52 trueControlDependence
- 159:   45 ->   53 trueControlDependence
- 160:   45 ->   54 trueControlDependence
- 161:   45 ->   55 trueControlDependence
- 162:   48 ->   45 loopIndependentDefUseDependence st$6.!nextToken( )
- 163:   48 ->   54 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 164:   48 ->   54 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 165:   48 ->   54 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 166:   48 ->   55 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 167:   48 ->   55 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 168:   48 ->   55 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 169:   48 ->   55 outputDependence st$6.!nextToken( )
- 170:   49 ->   43 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
- 171:   49 ->   56 outputDependence this.!parseInt( java.lang.String )
- 172:   50 ->   50 defOrderDependence y2$11
- 173:   50 ->   96 declaration
- 174:   50 ->   96 loopIndependentDefUseDependence y2$11
- 175:   52 ->    1 exceptionCatch
- 176:   52 ->   50 trueControlDependence
- 177:   52 ->   56 trueControlDependence
- 178:   52 ->   58 trueControlDependence
- 179:   52 ->   59 trueControlDependence
- 180:   52 ->   60 trueControlDependence
- 181:   52 ->   61 trueControlDependence
- 182:   52 ->   62 trueControlDependence
- 183:   55 ->   52 loopIndependentDefUseDependence st$6.!nextToken( )
- 184:   55 ->   61 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 185:   55 ->   61 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 186:   55 ->   61 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 187:   55 ->   62 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 188:   55 ->   62 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 189:   55 ->   62 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 190:   55 ->   62 outputDependence st$6.!nextToken( )
- 191:   56 ->   50 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
- 192:   56 ->   63 outputDependence this.!parseInt( java.lang.String )
- 193:   57 ->   57 defOrderDependence r$12
- 194:   57 ->   80 declaration
- 195:   57 ->   80 loopIndependentDefUseDependence r$12
- 196:   59 ->    1 exceptionCatch
- 197:   59 ->   57 trueControlDependence
- 198:   59 ->   63 trueControlDependence
- 199:   59 ->   65 trueControlDependence
- 200:   59 ->   66 trueControlDependence
- 201:   59 ->   67 trueControlDependence
- 202:   59 ->   68 trueControlDependence
- 203:   59 ->   69 trueControlDependence
- 204:   62 ->   59 loopIndependentDefUseDependence st$6.!nextToken( )
- 205:   62 ->   68 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 206:   62 ->   68 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 207:   62 ->   68 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 208:   62 ->   69 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 209:   62 ->   69 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 210:   62 ->   69 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 211:   62 ->   69 outputDependence st$6.!nextToken( )
- 212:   63 ->   57 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
- 213:   63 ->   70 outputDependence this.!parseInt( java.lang.String )
- 214:   64 ->   64 defOrderDependence g$13
- 215:   64 ->   80 declaration
- 216:   64 ->   80 loopIndependentDefUseDependence g$13
- 217:   66 ->    1 exceptionCatch
- 218:   66 ->   64 trueControlDependence
- 219:   66 ->   70 trueControlDependence
- 220:   66 ->   72 trueControlDependence
- 221:   66 ->   73 trueControlDependence
- 222:   66 ->   74 trueControlDependence
- 223:   66 ->   75 trueControlDependence
- 224:   66 ->   76 trueControlDependence
- 225:   69 ->   66 loopIndependentDefUseDependence st$6.!nextToken( )
- 226:   69 ->   75 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 227:   69 ->   75 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 228:   69 ->   75 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 229:   69 ->   76 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 230:   69 ->   76 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 231:   69 ->   76 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 232:   69 ->   76 outputDependence st$6.!nextToken( )
- 233:   70 ->   64 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
- 234:   70 ->   77 outputDependence this.!parseInt( java.lang.String )
- 235:   71 ->   71 defOrderDependence b$14
- 236:   71 ->   80 declaration
- 237:   71 ->   80 loopIndependentDefUseDependence b$14
- 238:   73 ->    1 exceptionCatch
- 239:   73 ->   71 trueControlDependence
- 240:   73 ->   77 trueControlDependence
- 241:   73 ->   78 trueControlDependence
- 242:   73 ->   79 trueControlDependence
- 243:   73 ->   80 trueControlDependence
- 244:   73 ->   81 trueControlDependence
- 245:   73 ->   83 trueControlDependence
- 246:   73 ->   84 trueControlDependence
- 247:   73 ->   85 trueControlDependence
- 248:   73 ->   86 trueControlDependence
- 249:   73 ->   87 trueControlDependence
- 250:   76 ->   73 loopIndependentDefUseDependence st$6.!nextToken( )
- 251:   76 ->   86 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 252:   76 ->   86 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 253:   76 ->   86 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 254:   76 ->   87 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
- 255:   76 ->   87 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
- 256:   76 ->   87 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
- 257:   76 ->   87 outputDependence st$6.!nextToken( )
- 258:   77 ->   35 outputDependence this.!parseInt( java.lang.String )
- 259:   77 ->   71 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
- 260:   78 ->   78 defOrderDependence c$15
- 261:   78 ->   97 declaration
- 262:   78 ->   97 loopIndependentDefUseDependence c$15
- 263:   81 ->   78 loopIndependentDefUseDependence java.awt.Color.!Color( int int int )
- 264:   81 ->   81 defOrderDependence java.awt.Color.!Color( int int int )
- 265:   81 ->   81 defOrderDependence java.awt.Color.!java.awt.Color.cs
- 266:   81 ->   81 defOrderDependence java.awt.Color.!java.awt.Color.falpha
- 267:   81 ->   81 defOrderDependence java.awt.Color.!java.awt.Color.frgbvalue
- 268:   81 ->   81 defOrderDependence java.awt.Color.!java.awt.Color.fvalue
- 269:   81 ->   81 defOrderDependence java.awt.Color.!java.awt.Color.value
- 270:   82 ->   82 defOrderDependence w$16
- 271:   82 ->   98 declaration
- 272:   82 ->   98 loopIndependentDefUseDependence w$16
- 273:   84 ->    1 exceptionCatch
- 274:   84 ->   18 trueControlDependence
- 275:   84 ->   19 trueControlDependence
- 276:   84 ->   82 trueControlDependence
- 277:   84 ->   88 trueControlDependence
- 278:   84 ->   89 trueControlDependence
- 279:   84 ->   90 trueControlDependence
- 280:   84 ->   91 trueControlDependence
+  64:   20 ->   20 defOrderDependence br$1.!readLine( )
+  65:   21 ->   21 defOrderDependence st$6
+  66:   21 ->   26 declaration
+  67:   21 ->   26 loopIndependentDefUseDependence st$6
+  68:   21 ->   32 declaration
+  69:   21 ->   32 loopIndependentDefUseDependence st$6
+  70:   21 ->   39 declaration
+  71:   21 ->   39 loopIndependentDefUseDependence st$6
+  72:   21 ->   46 declaration
+  73:   21 ->   46 loopIndependentDefUseDependence st$6
+  74:   21 ->   53 declaration
+  75:   21 ->   53 loopIndependentDefUseDependence st$6
+  76:   21 ->   60 declaration
+  77:   21 ->   60 loopIndependentDefUseDependence st$6
+  78:   21 ->   67 declaration
+  79:   21 ->   67 loopIndependentDefUseDependence st$6
+  80:   21 ->   74 declaration
+  81:   21 ->   74 loopIndependentDefUseDependence st$6
+  82:   21 ->   85 declaration
+  83:   21 ->   85 loopIndependentDefUseDependence st$6
+  84:   24 ->   21 loopIndependentDefUseDependence java.util.StringTokenizer.!StringTokenizer( java.lang.String )
+  85:   24 ->   24 defOrderDependence java.util.StringTokenizer.!StringTokenizer( java.lang.String )
+  86:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.currentPosition
+  87:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.delimiters
+  88:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.delimsChanged
+  89:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.hasSurrogates
+  90:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.maxPosition
+  91:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.newPosition
+  92:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.retDelims
+  93:   24 ->   24 defOrderDependence java.util.StringTokenizer.!java.util.StringTokenizer.str
+  94:   25 ->   25 defOrderDependence name$7
+  95:   25 ->   92 declaration
+  96:   25 ->   92 loopIndependentDefUseDependence name$7
+  97:   28 ->   25 loopIndependentDefUseDependence st$6.!nextToken( )
+  98:   28 ->   33 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+  99:   28 ->   33 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 100:   28 ->   33 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 101:   28 ->   34 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 102:   28 ->   34 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 103:   28 ->   34 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 104:   28 ->   34 outputDependence st$6.!nextToken( )
+ 105:   29 ->   29 defOrderDependence x1$8
+ 106:   29 ->   93 declaration
+ 107:   29 ->   93 loopIndependentDefUseDependence x1$8
+ 108:   31 ->    1 exceptionCatch
+ 109:   31 ->   29 trueControlDependence
+ 110:   31 ->   35 trueControlDependence
+ 111:   31 ->   37 trueControlDependence
+ 112:   31 ->   38 trueControlDependence
+ 113:   31 ->   39 trueControlDependence
+ 114:   31 ->   40 trueControlDependence
+ 115:   31 ->   41 trueControlDependence
+ 116:   34 ->   31 loopIndependentDefUseDependence st$6.!nextToken( )
+ 117:   34 ->   40 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 118:   34 ->   40 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 119:   34 ->   40 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 120:   34 ->   41 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 121:   34 ->   41 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 122:   34 ->   41 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 123:   34 ->   41 outputDependence st$6.!nextToken( )
+ 124:   35 ->   29 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
+ 125:   35 ->   42 outputDependence this.!parseInt( java.lang.String )
+ 126:   36 ->   36 defOrderDependence y1$9
+ 127:   36 ->   94 declaration
+ 128:   36 ->   94 loopIndependentDefUseDependence y1$9
+ 129:   38 ->    1 exceptionCatch
+ 130:   38 ->   36 trueControlDependence
+ 131:   38 ->   42 trueControlDependence
+ 132:   38 ->   44 trueControlDependence
+ 133:   38 ->   45 trueControlDependence
+ 134:   38 ->   46 trueControlDependence
+ 135:   38 ->   47 trueControlDependence
+ 136:   38 ->   48 trueControlDependence
+ 137:   41 ->   38 loopIndependentDefUseDependence st$6.!nextToken( )
+ 138:   41 ->   47 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 139:   41 ->   47 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 140:   41 ->   47 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 141:   41 ->   48 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 142:   41 ->   48 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 143:   41 ->   48 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 144:   41 ->   48 outputDependence st$6.!nextToken( )
+ 145:   42 ->   36 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
+ 146:   42 ->   49 outputDependence this.!parseInt( java.lang.String )
+ 147:   43 ->   43 defOrderDependence x2$10
+ 148:   43 ->   95 declaration
+ 149:   43 ->   95 loopIndependentDefUseDependence x2$10
+ 150:   45 ->    1 exceptionCatch
+ 151:   45 ->   43 trueControlDependence
+ 152:   45 ->   49 trueControlDependence
+ 153:   45 ->   51 trueControlDependence
+ 154:   45 ->   52 trueControlDependence
+ 155:   45 ->   53 trueControlDependence
+ 156:   45 ->   54 trueControlDependence
+ 157:   45 ->   55 trueControlDependence
+ 158:   48 ->   45 loopIndependentDefUseDependence st$6.!nextToken( )
+ 159:   48 ->   54 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 160:   48 ->   54 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 161:   48 ->   54 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 162:   48 ->   55 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 163:   48 ->   55 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 164:   48 ->   55 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 165:   48 ->   55 outputDependence st$6.!nextToken( )
+ 166:   49 ->   43 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
+ 167:   49 ->   56 outputDependence this.!parseInt( java.lang.String )
+ 168:   50 ->   50 defOrderDependence y2$11
+ 169:   50 ->   96 declaration
+ 170:   50 ->   96 loopIndependentDefUseDependence y2$11
+ 171:   52 ->    1 exceptionCatch
+ 172:   52 ->   50 trueControlDependence
+ 173:   52 ->   56 trueControlDependence
+ 174:   52 ->   58 trueControlDependence
+ 175:   52 ->   59 trueControlDependence
+ 176:   52 ->   60 trueControlDependence
+ 177:   52 ->   61 trueControlDependence
+ 178:   52 ->   62 trueControlDependence
+ 179:   55 ->   52 loopIndependentDefUseDependence st$6.!nextToken( )
+ 180:   55 ->   61 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 181:   55 ->   61 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 182:   55 ->   61 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 183:   55 ->   62 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 184:   55 ->   62 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 185:   55 ->   62 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 186:   55 ->   62 outputDependence st$6.!nextToken( )
+ 187:   56 ->   50 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
+ 188:   56 ->   63 outputDependence this.!parseInt( java.lang.String )
+ 189:   57 ->   57 defOrderDependence r$12
+ 190:   57 ->   80 declaration
+ 191:   57 ->   80 loopIndependentDefUseDependence r$12
+ 192:   59 ->    1 exceptionCatch
+ 193:   59 ->   57 trueControlDependence
+ 194:   59 ->   63 trueControlDependence
+ 195:   59 ->   65 trueControlDependence
+ 196:   59 ->   66 trueControlDependence
+ 197:   59 ->   67 trueControlDependence
+ 198:   59 ->   68 trueControlDependence
+ 199:   59 ->   69 trueControlDependence
+ 200:   62 ->   59 loopIndependentDefUseDependence st$6.!nextToken( )
+ 201:   62 ->   68 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 202:   62 ->   68 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 203:   62 ->   68 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 204:   62 ->   69 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 205:   62 ->   69 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 206:   62 ->   69 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 207:   62 ->   69 outputDependence st$6.!nextToken( )
+ 208:   63 ->   57 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
+ 209:   63 ->   70 outputDependence this.!parseInt( java.lang.String )
+ 210:   64 ->   64 defOrderDependence g$13
+ 211:   64 ->   80 declaration
+ 212:   64 ->   80 loopIndependentDefUseDependence g$13
+ 213:   66 ->    1 exceptionCatch
+ 214:   66 ->   64 trueControlDependence
+ 215:   66 ->   70 trueControlDependence
+ 216:   66 ->   72 trueControlDependence
+ 217:   66 ->   73 trueControlDependence
+ 218:   66 ->   74 trueControlDependence
+ 219:   66 ->   75 trueControlDependence
+ 220:   66 ->   76 trueControlDependence
+ 221:   69 ->   66 loopIndependentDefUseDependence st$6.!nextToken( )
+ 222:   69 ->   75 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 223:   69 ->   75 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 224:   69 ->   75 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 225:   69 ->   76 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 226:   69 ->   76 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 227:   69 ->   76 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 228:   69 ->   76 outputDependence st$6.!nextToken( )
+ 229:   70 ->   64 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
+ 230:   70 ->   77 outputDependence this.!parseInt( java.lang.String )
+ 231:   71 ->   71 defOrderDependence b$14
+ 232:   71 ->   80 declaration
+ 233:   71 ->   80 loopIndependentDefUseDependence b$14
+ 234:   73 ->    1 exceptionCatch
+ 235:   73 ->   71 trueControlDependence
+ 236:   73 ->   77 trueControlDependence
+ 237:   73 ->   78 trueControlDependence
+ 238:   73 ->   79 trueControlDependence
+ 239:   73 ->   80 trueControlDependence
+ 240:   73 ->   81 trueControlDependence
+ 241:   73 ->   83 trueControlDependence
+ 242:   73 ->   84 trueControlDependence
+ 243:   73 ->   85 trueControlDependence
+ 244:   73 ->   86 trueControlDependence
+ 245:   73 ->   87 trueControlDependence
+ 246:   76 ->   73 loopIndependentDefUseDependence st$6.!nextToken( )
+ 247:   76 ->   86 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 248:   76 ->   86 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 249:   76 ->   86 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 250:   76 ->   87 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.currentPosition
+ 251:   76 ->   87 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged
+ 252:   76 ->   87 loopIndependentDefUseDependence st$6.!java.util.StringTokenizer.newPosition
+ 253:   76 ->   87 outputDependence st$6.!nextToken( )
+ 254:   77 ->   35 outputDependence this.!parseInt( java.lang.String )
+ 255:   77 ->   71 loopIndependentDefUseDependence this.!parseInt( java.lang.String )
+ 256:   78 ->   78 defOrderDependence c$15
+ 257:   78 ->   97 declaration
+ 258:   78 ->   97 loopIndependentDefUseDependence c$15
+ 259:   81 ->   78 loopIndependentDefUseDependence java.awt.Color.!Color( int int int )
+ 260:   81 ->   81 defOrderDependence java.awt.Color.!Color( int int int )
+ 261:   81 ->   81 defOrderDependence java.awt.Color.!java.awt.Color.cs
+ 262:   81 ->   81 defOrderDependence java.awt.Color.!java.awt.Color.falpha
+ 263:   81 ->   81 defOrderDependence java.awt.Color.!java.awt.Color.frgbvalue
+ 264:   81 ->   81 defOrderDependence java.awt.Color.!java.awt.Color.fvalue
+ 265:   81 ->   81 defOrderDependence java.awt.Color.!java.awt.Color.value
+ 266:   82 ->   82 defOrderDependence w$16
+ 267:   82 ->   98 declaration
+ 268:   82 ->   98 loopIndependentDefUseDependence w$16
+ 269:   84 ->    1 exceptionCatch
+ 270:   84 ->   18 trueControlDependence
+ 271:   84 ->   19 trueControlDependence
+ 272:   84 ->   82 trueControlDependence
+ 273:   84 ->   88 trueControlDependence
+ 274:   84 ->   89 trueControlDependence
+ 275:   84 ->   90 trueControlDependence
+ 276:   84 ->   91 trueControlDependence
+ 277:   84 ->   91+ trueControlDependence
+ 278:   84 ->   91+ trueControlDependence
+ 279:   84 ->   91+ trueControlDependence
+ 280:   84 ->   91+ trueControlDependence
  281:   84 ->   91+ trueControlDependence
  282:   84 ->   91+ trueControlDependence
- 283:   84 ->   91+ trueControlDependence
- 284:   84 ->   91+ trueControlDependence
- 285:   84 ->   91+ trueControlDependence
- 286:   84 ->   91+ trueControlDependence
- 287:   84 ->   92 trueControlDependence
- 288:   84 ->   93 trueControlDependence
- 289:   84 ->   94 trueControlDependence
- 290:   84 ->   95 trueControlDependence
- 291:   84 ->   96 trueControlDependence
- 292:   84 ->   97 trueControlDependence
- 293:   84 ->   98 trueControlDependence
- 294:   84 ->   99 trueControlDependence
- 295:   84 ->  100 trueControlDependence
- 296:   84 ->  101 trueControlDependence
- 297:   84 ->  102 trueControlDependence
- 298:   84 ->  103 trueControlDependence
- 299:   84 ->  104 trueControlDependence
- 300:   87 ->   27 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.currentPosition (LC = 17)
- 301:   87 ->   27 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged (LC = 17)
- 302:   87 ->   27 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.newPosition (LC = 17)
- 303:   87 ->   28 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.currentPosition (LC = 17)
- 304:   87 ->   28 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged (LC = 17)
- 305:   87 ->   28 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.newPosition (LC = 17)
- 306:   87 ->   28 outputDependence st$6.!nextToken( )
- 307:   87 ->   84 loopIndependentDefUseDependence st$6.!nextToken( )
- 308:   88 ->   82 loopIndependentDefUseDependence this.!parseFloat( java.lang.String )
- 309:   88 ->   88 defOrderDependence this.!parseFloat( java.lang.String )
- 310:   89 ->   89 defOrderDependence figure$17
- 311:   89 ->  103 declaration
- 312:   89 ->  103 loopIndependentDefUseDependence figure$17
- 313:   91+ ->   91+ defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).color
- 314:   91+ ->   91+ defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth
- 315:   91+ ->   91+ outputDependence this.figure$7.endX
- 316:   91+ ->   91+ outputDependence this.figure$7.endY
- 317:   91+ ->   91+ outputDependence this.figure$7.startX
- 318:   91+ ->   91+ outputDependence this.figure$7.startY
- 319:   91+ ->  103 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).color
- 320:   91+ ->  103 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth
- 321:   99 ->   89 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float )
- 322:   99 ->   99 defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float )
- 323:  104 ->  100 loopIndependentDefUseDependence this.!add( jp.ac.ritsumei.cs.draw.Figure )
- 324:  104 ->  104 defOrderDependence this.!add( jp.ac.ritsumei.cs.draw.Figure )
- 325:  106 ->  107 trueControlDependence
- 326:  106 ->  108 trueControlDependence
- 327:  106 ->  109 trueControlDependence
- 328:  106 ->  110 trueControlDependence
- 329:  106 ->  111 trueControlDependence
- 330:  106 ->  118 fallThroughControlDependence
- 331:  110 ->  107 loopIndependentDefUseDependence System.err.!println( java.lang.String )
- 332:  111 ->  118 fallThroughControlDependence
- 333:  111 ->  132 loopIndependentDefUseDependence $_
- 334:  112 ->  113 trueControlDependence
- 335:  112 ->  114 trueControlDependence
- 336:  112 ->  115 trueControlDependence
- 337:  112 ->  116 trueControlDependence
- 338:  112 ->  117 trueControlDependence
- 339:  112 ->  118 fallThroughControlDependence
- 340:  116 ->  113 loopIndependentDefUseDependence System.err.!println( java.lang.String )
- 341:  117 ->  118 fallThroughControlDependence
- 342:  117 ->  132 loopIndependentDefUseDependence $_
- 343:  118 ->  119 trueControlDependence
- 344:  118 ->  120 trueControlDependence
- 345:  118 ->  130 fallThroughControlDependence
- 346:  119 ->  128 trueControlDependence
- 347:  120 ->  122 trueControlDependence
- 348:  120 ->  123 trueControlDependence
- 349:  120 ->  125 falseControlDependence
- 350:  123 ->  121 trueControlDependence
- 351:  123 ->  124 trueControlDependence
- 352:  123 ->  128 exceptionCatch
- 353:  123 ->  130 trueControlDependence
- 354:  124 ->  121 loopIndependentDefUseDependence br$1.!close( )
- 355:  125 ->  130 fallThroughControlDependence
- 356:  125 ->  132 loopIndependentDefUseDependence $_
- 357:  128 ->  129 trueControlDependence
- 358:  128 ->  130 fallThroughControlDependence
- 359:  129 ->  130 fallThroughControlDependence
- 360:  129 ->  132 loopIndependentDefUseDependence $_
- 361:  130 ->  132 loopIndependentDefUseDependence $_
+ 283:   84 ->   92 trueControlDependence
+ 284:   84 ->   93 trueControlDependence
+ 285:   84 ->   94 trueControlDependence
+ 286:   84 ->   95 trueControlDependence
+ 287:   84 ->   96 trueControlDependence
+ 288:   84 ->   97 trueControlDependence
+ 289:   84 ->   98 trueControlDependence
+ 290:   84 ->   99 trueControlDependence
+ 291:   84 ->  100 trueControlDependence
+ 292:   84 ->  101 trueControlDependence
+ 293:   84 ->  102 trueControlDependence
+ 294:   84 ->  103 trueControlDependence
+ 295:   84 ->  104 trueControlDependence
+ 296:   87 ->   27 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.currentPosition (LC = 17)
+ 297:   87 ->   27 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged (LC = 17)
+ 298:   87 ->   27 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.newPosition (LC = 17)
+ 299:   87 ->   28 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.currentPosition (LC = 17)
+ 300:   87 ->   28 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.delimsChanged (LC = 17)
+ 301:   87 ->   28 loopCarriedDefUseDependence st$6.!java.util.StringTokenizer.newPosition (LC = 17)
+ 302:   87 ->   28 outputDependence st$6.!nextToken( )
+ 303:   87 ->   84 loopIndependentDefUseDependence st$6.!nextToken( )
+ 304:   88 ->   82 loopIndependentDefUseDependence this.!parseFloat( java.lang.String )
+ 305:   88 ->   88 defOrderDependence this.!parseFloat( java.lang.String )
+ 306:   89 ->   89 defOrderDependence figure$17
+ 307:   89 ->  103 declaration
+ 308:   89 ->  103 loopIndependentDefUseDependence figure$17
+ 309:   91+ ->   91+ defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).color
+ 310:   91+ ->   91+ defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth
+ 311:   91+ ->   91+ outputDependence this.figure$7.endX
+ 312:   91+ ->   91+ outputDependence this.figure$7.endY
+ 313:   91+ ->   91+ outputDependence this.figure$7.startX
+ 314:   91+ ->   91+ outputDependence this.figure$7.startY
+ 315:   91+ ->  103 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).color
+ 316:   91+ ->  103 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float ).outlineWidth
+ 317:   99 ->   89 loopIndependentDefUseDependence this.!createFigure( java.lang.String int int int int java.awt.Color float )
+ 318:   99 ->   99 defOrderDependence this.!createFigure( java.lang.String int int int int java.awt.Color float )
+ 319:  104 ->  100 loopIndependentDefUseDependence this.!add( jp.ac.ritsumei.cs.draw.Figure )
+ 320:  104 ->  104 defOrderDependence this.!add( jp.ac.ritsumei.cs.draw.Figure )
+ 321:  106 ->  107 trueControlDependence
+ 322:  106 ->  108 trueControlDependence
+ 323:  106 ->  109 trueControlDependence
+ 324:  106 ->  110 trueControlDependence
+ 325:  106 ->  111 trueControlDependence
+ 326:  106 ->  118 fallThroughControlDependence
+ 327:  110 ->  107 loopIndependentDefUseDependence System.err.!println( java.lang.String )
+ 328:  111 ->  118 fallThroughControlDependence
+ 329:  111 ->  132 loopIndependentDefUseDependence $_
+ 330:  112 ->  113 trueControlDependence
+ 331:  112 ->  114 trueControlDependence
+ 332:  112 ->  115 trueControlDependence
+ 333:  112 ->  116 trueControlDependence
+ 334:  112 ->  117 trueControlDependence
+ 335:  112 ->  118 fallThroughControlDependence
+ 336:  116 ->  113 loopIndependentDefUseDependence System.err.!println( java.lang.String )
+ 337:  117 ->  118 fallThroughControlDependence
+ 338:  117 ->  132 loopIndependentDefUseDependence $_
+ 339:  118 ->  119 trueControlDependence
+ 340:  118 ->  120 trueControlDependence
+ 341:  118 ->  130 fallThroughControlDependence
+ 342:  119 ->  128 trueControlDependence
+ 343:  120 ->  122 trueControlDependence
+ 344:  120 ->  123 trueControlDependence
+ 345:  120 ->  125 falseControlDependence
+ 346:  123 ->  121 trueControlDependence
+ 347:  123 ->  124 trueControlDependence
+ 348:  123 ->  128 exceptionCatch
+ 349:  123 ->  130 trueControlDependence
+ 350:  124 ->  121 loopIndependentDefUseDependence br$1.!close( )
+ 351:  125 ->  130 fallThroughControlDependence
+ 352:  125 ->  132 loopIndependentDefUseDependence $_
+ 353:  128 ->  129 trueControlDependence
+ 354:  128 ->  130 fallThroughControlDependence
+ 355:  129 ->  130 fallThroughControlDependence
+ 356:  129 ->  132 loopIndependentDefUseDependence $_
+ 357:  130 ->  132 loopIndependentDefUseDependence $_
 --
    0: add( jp.ac.ritsumei.cs.draw.Figure )
    1:    0 ->    1 trueControlDependence
@@ -1266,4 +1262,5 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
  232:  112 ->  114 loopIndependentDefUseDependence $_
 --
 ----- ClDG (to here) -----
+
 

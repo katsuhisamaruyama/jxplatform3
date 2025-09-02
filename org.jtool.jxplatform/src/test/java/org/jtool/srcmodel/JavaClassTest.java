@@ -751,11 +751,10 @@ public class JavaClassTest {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
         List<JavaField> result = jc.getFields();
         
-        assertEquals(7, result.size());
+        assertEquals(6, result.size());
         assertEquals("java.util.ArrayList#DEFAULTCAPACITY_EMPTY_ELEMENTDATA;"
                    + "java.util.ArrayList#DEFAULT_CAPACITY;"
                    + "java.util.ArrayList#EMPTY_ELEMENTDATA;"
-                   + "java.util.ArrayList#MAX_ARRAY_SIZE;"
                    + "java.util.ArrayList#elementData;"
                    + "java.util.ArrayList#serialVersionUID;"
                    + "java.util.ArrayList#size",
@@ -836,7 +835,7 @@ public class JavaClassTest {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
         List<JavaMethod> result = jc.getMethods();
         
-        assertEquals(63, result.size());
+        assertEquals(67, result.size());
         String resultStr = TestUtil.asSortedStrOf(result);
         assertTrue(resultStr.startsWith("java.util.ArrayList#ArrayList( );"));
         assertTrue(resultStr.endsWith(";java.util.ArrayList#writeObject( java.io.ObjectOutputStream )"));
@@ -1137,13 +1136,14 @@ public class JavaClassTest {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
         Set<JavaClass> result = jc.getAllSuperInterfaces();
         
-        assertEquals(6, result.size());
+        assertEquals(7, result.size());
         assertEquals("java.io.Serializable;"
                    + "java.lang.Cloneable;"
                    + "java.lang.Iterable;"
                    + "java.util.Collection;"
                    + "java.util.List;"
-                   + "java.util.RandomAccess",
+                   + "java.util.RandomAccess;"
+                   + "java.util.SequencedCollection",
             TestUtil.asSortedStrOf(result));
     }
     
@@ -1189,7 +1189,7 @@ public class JavaClassTest {
         JavaClass jc = VideoStoreProject.getExternalClass("java.util.ArrayList");
         Set<JavaClass> result = jc.getAncestors();
         
-        assertEquals(9, result.size());
+        assertEquals(10, result.size());
         assertEquals("java.io.Serializable;"
                    + "java.lang.Cloneable;"
                    + "java.lang.Iterable;"
@@ -1198,7 +1198,8 @@ public class JavaClassTest {
                    + "java.util.AbstractList;"
                    + "java.util.Collection;"
                    + "java.util.List;"
-                   + "java.util.RandomAccess",
+                   + "java.util.RandomAccess;"
+                   + "java.util.SequencedCollection",
             TestUtil.asSortedStrOf(result));
     }
     

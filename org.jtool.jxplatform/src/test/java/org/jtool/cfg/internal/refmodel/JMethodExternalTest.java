@@ -246,12 +246,13 @@ public class JMethodExternalTest {
         List<String> result = TestUtil.asSortedList(indexOfMethod.getAccessedMethods().stream()
                 .map(o -> o.getQualifiedName()));
         
-        assertEquals(5, result.size());
-        assertEquals("java.lang.String#coder( )", result.get(0));
-        assertEquals("java.lang.String#length( )", result.get(1));
-        assertEquals("java.lang.StringLatin1#indexOf( byte[] int byte[] int int )", result.get(2));
-        assertEquals("java.lang.StringUTF16#indexOf( byte[] int byte[] int int )", result.get(3));
-        assertEquals("java.lang.StringUTF16#indexOfLatin1( byte[] int byte[] int int )", result.get(4));
+        assertEquals(6, result.size());
+        assertEquals("java.lang.Math#clamp( long int int )", result.get(0));
+        assertEquals("java.lang.String#coder( )", result.get(1));
+        assertEquals("java.lang.String#length( )", result.get(2));
+        assertEquals("java.lang.StringLatin1#indexOf( byte[] int byte[] int int )", result.get(3));
+        assertEquals("java.lang.StringUTF16#indexOf( byte[] int byte[] int int )", result.get(4));
+        assertEquals("java.lang.StringUTF16#indexOfLatin1( byte[] int byte[] int int )", result.get(5));
     }
     
     @Test

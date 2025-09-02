@@ -8,22 +8,22 @@ Class Name = Test01
    5 assignment D = { a$0 } U = { a$0 }
    6 assignment D = {  } U = { System.out.!println( int ) }
    7 receiver D = {  } U = { System.out }
-   8 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, a$0 } TO = java.io.PrintStream#println( int )
-   9 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+   8 methodCall D = {  } U = { System.out.!java.io.PrintStream.lock, a$0 } TO = java.io.PrintStream#println( int )
+   9 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.lock }
   10 assignment D = { a$0 } U = { a$0 }
   11 assignment D = { a$0 } U = { b$1 }
   12 assignment D = {  } U = { System.out.!println( int ) }
   13 receiver D = {  } U = { System.out }
-  14 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, a$0 } TO = java.io.PrintStream#println( int )
-  15 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  14 methodCall D = {  } U = { System.out.!java.io.PrintStream.lock, a$0 } TO = java.io.PrintStream#println( int )
+  15 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.lock }
   17 assignment D = {  } U = { System.out.!println( int ) }
   18 receiver D = {  } U = { System.out }
-  19 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, a$0 } TO = java.io.PrintStream#println( int )
-  20 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  19 methodCall D = {  } U = { System.out.!java.io.PrintStream.lock, a$0 } TO = java.io.PrintStream#println( int )
+  20 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.lock }
   21 assignment D = {  } U = { System.out.!println( int ) }
   22 receiver D = {  } U = { System.out }
-  23 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, b$1 } TO = java.io.PrintStream#println( int )
-  24 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  23 methodCall D = {  } U = { System.out.!java.io.PrintStream.lock, b$1 } TO = java.io.PrintStream#println( int )
+  24 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( int ) } U = { System.out.!java.io.PrintStream.lock }
   26 formalOut D = {  } U = { $_ }
 --
    0 fieldEntry [ Test01#ABC ]
@@ -96,4 +96,5 @@ Class Name = Test01
    1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
+
 

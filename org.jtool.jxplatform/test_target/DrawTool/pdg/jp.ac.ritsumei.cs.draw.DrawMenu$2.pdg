@@ -22,8 +22,8 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$2
   15 receiver D = {  } U = {  }
   16 constructorCall D = {  } U = { fmanager$10.!getTitle( ) } TO = javax.swing.JMenuItem#JMenuItem( java.lang.String )
   17 receiver D = {  } U = { fmanager$10 }
-  18 methodCall D = {  } U = { File.separator, canvas$8.!getFigureManager( ).filename, canvas$8.!getFigureManager( ).filename.!java.lang.String.COMPACT_STRINGS, canvas$8.!getFigureManager( ).filename.!java.lang.String.coder, canvas$8.!getFigureManager( ).filename.!java.lang.String.value, fmanager$10.filename, fmanager$10.filename.!java.lang.String.COMPACT_STRINGS, fmanager$10.filename.!java.lang.String.coder, fmanager$10.filename.!java.lang.String.value } TO = jp.ac.ritsumei.cs.draw.FigureManager#getTitle( )
-  19 actualOut D = { fmanager$10.!getTitle( ) } U = { File.separator, canvas$8.!getFigureManager( ).filename, canvas$8.!getFigureManager( ).filename.!java.lang.String.COMPACT_STRINGS, canvas$8.!getFigureManager( ).filename.!java.lang.String.coder, canvas$8.!getFigureManager( ).filename.!java.lang.String.value, fmanager$10.filename, fmanager$10.filename.!java.lang.String.COMPACT_STRINGS, fmanager$10.filename.!java.lang.String.coder, fmanager$10.filename.!java.lang.String.value }
+  18 methodCall D = {  } U = { File.separator, canvas$8.!getFigureManager( ).filename, canvas$8.!getFigureManager( ).filename.!java.lang.String.value, fmanager$10.filename, fmanager$10.filename.!java.lang.String.value } TO = jp.ac.ritsumei.cs.draw.FigureManager#getTitle( )
+  19 actualOut D = { fmanager$10.!getTitle( ) } U = { File.separator, canvas$8.!getFigureManager( ).filename, canvas$8.!getFigureManager( ).filename.!java.lang.String.value, fmanager$10.filename, fmanager$10.filename.!java.lang.String.value }
   20 actualOut D = { javax.swing.JMenuItem.!JMenuItem( java.lang.String ), javax.swing.JMenuItem.!javax.swing.JMenuItem.isMouseDragged } U = {  }
   21 assignment D = {  } U = { windowMenu$3.!add( javax.swing.JMenuItem ) }
   22 receiver D = {  } U = { windowMenu$3 }
@@ -105,4 +105,5 @@ Class Name = jp.ac.ritsumei.cs.draw.DrawMenu$2
    2:    0 ->    3 trueControlDependence
 --
 ----- ClDG (to here) -----
+
 

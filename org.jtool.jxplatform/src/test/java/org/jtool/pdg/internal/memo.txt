@@ -1,0 +1,3 @@
+foreach n (*.pdg0)   
+mv -f $n ${n%0}
+end

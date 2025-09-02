@@ -13,8 +13,8 @@ Class Name = Test40
    7 methodCall D = {  } U = { $LAMBDA, button$0.!javax.swing.AbstractButton.listenerList, button$0.!javax.swing.event.EventListenerList.NULL_ARRAY, button$0.!javax.swing.event.EventListenerList.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.listenerList } TO = javax.swing.AbstractButton#addActionListener( java.awt.event.ActionListener )
    8 lambda D = { $LAMBDA } U = { System.out.!println( java.lang.Object ) }
    9 receiver D = {  } U = { System.out }
-  10 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, e$1 } TO = java.io.PrintStream#println( java.lang.Object )
-  11 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.Object ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  10 methodCall D = {  } U = { System.out.!java.io.PrintStream.lock, e$1 } TO = java.io.PrintStream#println( java.lang.Object )
+  11 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.Object ) } U = { System.out.!java.io.PrintStream.lock }
   12 actualOut D = { button$0.!addActionListener( java.awt.event.ActionListener ), button$0.!javax.swing.event.EventListenerList.listenerList } U = { button$0.!javax.swing.AbstractButton.listenerList, button$0.!javax.swing.event.EventListenerList.NULL_ARRAY, button$0.!javax.swing.event.EventListenerList.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.AbstractButton.listenerList, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.NULL_ARRAY, javax.swing.JButton.!JButton( java.lang.String ).!javax.swing.event.EventListenerList.listenerList }
   14 formalOut D = {  } U = { $_ }
 --
@@ -108,4 +108,5 @@ Class Name = Test40
   19:   12 ->    5 loopIndependentDefUseDependence button$0.!addActionListener( java.awt.event.ActionListener )
 --
 ----- ClDG (to here) -----
+
 

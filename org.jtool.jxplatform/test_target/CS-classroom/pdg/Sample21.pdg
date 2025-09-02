@@ -11,18 +11,18 @@ Class Name = Sample21
    5 actualOut D = { ThreadB.!ThreadB( ) } U = {  }
    6 localDeclaration D = { thread$2 } U = { java.lang.Thread.!Thread( java.lang.Runnable ) }
    7 receiver D = {  } U = {  }
-   8 constructorCall D = {  } U = { java.lang.Thread.!java.lang.StringBuilder.count, java.lang.Thread.!java.lang.StringBuilder.value, java.lang.Thread.!java.lang.Thread.threadInitNumber, th$1 } TO = java.lang.Thread#Thread( java.lang.Runnable )
-   9 actualOut D = { java.lang.Thread.!Thread( java.lang.Runnable ), java.lang.Thread.!java.lang.Thread.threadInitNumber } U = { java.lang.Thread.!java.lang.StringBuilder.count, java.lang.Thread.!java.lang.StringBuilder.value, java.lang.Thread.!java.lang.Thread.threadInitNumber }
+   8 constructorCall D = {  } U = { java.lang.Thread.!java.lang.Thread.NEW_THREAD_BINDINGS, java.lang.Thread.!java.lang.Thread.inheritableThreadLocals, java.lang.Thread.!sun.security.util.SecurityConstants.SUBCLASS_IMPLEMENTATION_PERMISSION, th$1 } TO = java.lang.Thread#Thread( java.lang.Runnable )
+   9 actualOut D = { java.lang.Thread.!Thread( java.lang.Runnable ), java.lang.Thread.!java.lang.Thread.contextClassLoader, java.lang.Thread.!java.lang.Thread.holder, java.lang.Thread.!java.lang.Thread.inheritableThreadLocals, java.lang.Thread.!java.lang.Thread.inheritedAccessControlContext, java.lang.Thread.!java.lang.Thread.interruptLock, java.lang.Thread.!java.lang.Thread.name, java.lang.Thread.!java.lang.Thread.scopedValueBindings, java.lang.Thread.!java.lang.Thread.tid } U = { java.lang.Thread.!java.lang.Thread.NEW_THREAD_BINDINGS, java.lang.Thread.!java.lang.Thread.inheritableThreadLocals, java.lang.Thread.!sun.security.util.SecurityConstants.SUBCLASS_IMPLEMENTATION_PERMISSION }
   10 assignment D = {  } U = { thread$2.!start( ) }
   11 receiver D = {  } U = { thread$2 }
-  12 methodCall D = {  } U = { java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.group, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.threadStatus, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.destroyed, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.nUnstartedThreads, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.nthreads, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.threads, thread$2.!java.lang.Thread.group, thread$2.!java.lang.Thread.threadStatus, thread$2.!java.lang.ThreadGroup.destroyed, thread$2.!java.lang.ThreadGroup.nUnstartedThreads, thread$2.!java.lang.ThreadGroup.nthreads, thread$2.!java.lang.ThreadGroup.threads } TO = java.lang.Thread#start( )
-  13 actualOut D = { thread$2.!java.lang.ThreadGroup.nUnstartedThreads, thread$2.!java.lang.ThreadGroup.nthreads, thread$2.!java.lang.ThreadGroup.threads, thread$2.!start( ) } U = { java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.group, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.threadStatus, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.destroyed, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.nUnstartedThreads, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.nthreads, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.ThreadGroup.threads, thread$2.!java.lang.Thread.group, thread$2.!java.lang.Thread.threadStatus, thread$2.!java.lang.ThreadGroup.destroyed, thread$2.!java.lang.ThreadGroup.nUnstartedThreads, thread$2.!java.lang.ThreadGroup.nthreads, thread$2.!java.lang.ThreadGroup.threads }
+  12 methodCall D = {  } U = { java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread$FieldHolder.threadStatus, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.holder, thread$2.!java.lang.Thread$FieldHolder.threadStatus, thread$2.!java.lang.Thread.holder } TO = java.lang.Thread#start( )
+  13 actualOut D = { thread$2.!start( ) } U = { java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread$FieldHolder.threadStatus, java.lang.Thread.!Thread( java.lang.Runnable ).!java.lang.Thread.holder, thread$2.!java.lang.Thread$FieldHolder.threadStatus, thread$2.!java.lang.Thread.holder }
   14 localDeclaration D = { i$3 } U = {  }
   15 forSt D = {  } U = { i$3 }
   16 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   17 receiver D = {  } U = { System.out }
-  18 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, i$3 } TO = java.io.PrintStream#println( java.lang.String )
-  19 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  18 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.lock, i$3 } TO = java.io.PrintStream#println( java.lang.String )
+  19 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   20 assignment D = { i$3 } U = { i$3 }
   22 formalOut D = {  } U = { $_ }
 --
@@ -72,4 +72,5 @@ Class Name = Sample21
   40:   20 ->   20 loopCarriedDefUseDependence i$3 (LC = 15)
 --
 ----- ClDG (to here) -----
+
 

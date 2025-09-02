@@ -1,0 +1,3 @@
+foreach n (*.cfg0)
+echo $n ${n%0}
+end

@@ -14,19 +14,19 @@ Class Name = Sample2
    8 actualOut D = { Circle.!Circle( int int int ) } U = {  }
    9 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   10 receiver D = {  } U = { System.out }
-  11 methodCall D = {  } U = { $java.lang.String, Circle.!Circle( int int int ).radius, Circle.!Circle( int int int ).x, Circle.!Circle( int int int ).y, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, circle1$1, circle1$1.radius, circle1$1.x, circle1$1.y } TO = java.io.PrintStream#println( java.lang.String )
-  12 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  11 methodCall D = {  } U = { $java.lang.String, Circle.!Circle( int int int ).radius, Circle.!Circle( int int int ).x, Circle.!Circle( int int int ).y, System.out.!java.io.PrintStream.lock, circle1$1, circle1$1.radius, circle1$1.x, circle1$1.y } TO = java.io.PrintStream#println( java.lang.String )
+  12 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   13 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   14 receiver D = {  } U = { System.out }
-  15 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, circle1$1.!getRadius( ) } TO = java.io.PrintStream#println( java.lang.String )
+  15 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.lock, circle1$1.!getRadius( ) } TO = java.io.PrintStream#println( java.lang.String )
   16 receiver D = {  } U = { circle1$1 }
   17 methodCall D = {  } U = { Circle.!Circle( int int int ).radius, circle1$1.radius } TO = Circle#getRadius( )
   18 actualOut D = { circle1$1.!getRadius( ) } U = { Circle.!Circle( int int int ).radius, circle1$1.radius }
-  19 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  19 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   20 assignment D = {  } U = { circle1$1.!print( ) }
   21 receiver D = {  } U = { circle1$1 }
-  22 methodCall D = {  } U = { Circle.!Circle( int int int ).System.out.!java.io.PrintStream.autoFlush, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.charOut, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.out, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.textOut, Circle.!Circle( int int int ).radius, Circle.!Circle( int int int ).x, Circle.!Circle( int int int ).y, System.out, circle1$1.System.out.!java.io.PrintStream.autoFlush, circle1$1.System.out.!java.io.PrintStream.charOut, circle1$1.System.out.!java.io.PrintStream.out, circle1$1.System.out.!java.io.PrintStream.textOut, circle1$1.radius, circle1$1.x, circle1$1.y } TO = Circle#print( )
-  23 actualOut D = { circle1$1.!print( ), circle1$1.System.out.!java.io.PrintStream.trouble } U = { Circle.!Circle( int int int ).System.out.!java.io.PrintStream.autoFlush, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.charOut, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.out, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.textOut, Circle.!Circle( int int int ).radius, Circle.!Circle( int int int ).x, Circle.!Circle( int int int ).y, System.out, circle1$1.System.out.!java.io.PrintStream.autoFlush, circle1$1.System.out.!java.io.PrintStream.charOut, circle1$1.System.out.!java.io.PrintStream.out, circle1$1.System.out.!java.io.PrintStream.textOut, circle1$1.radius, circle1$1.x, circle1$1.y }
+  22 methodCall D = {  } U = { Circle.!Circle( int int int ).System.out.!java.io.PrintStream.lock, Circle.!Circle( int int int ).radius, Circle.!Circle( int int int ).x, Circle.!Circle( int int int ).y, System.out, circle1$1.System.out.!java.io.PrintStream.lock, circle1$1.radius, circle1$1.x, circle1$1.y } TO = Circle#print( )
+  23 actualOut D = { circle1$1.!print( ), circle1$1.System.out.!java.io.PrintStream.trouble } U = { Circle.!Circle( int int int ).System.out.!java.io.PrintStream.lock, Circle.!Circle( int int int ).radius, Circle.!Circle( int int int ).x, Circle.!Circle( int int int ).y, System.out, circle1$1.System.out.!java.io.PrintStream.lock, circle1$1.radius, circle1$1.x, circle1$1.y }
   24 localDeclaration D = { circle2$2 } U = { Circle.!Circle( int int ) }
   25 receiver D = {  } U = {  }
   26 constructorCall D = {  } U = {  } TO = Circle#Circle( int int )
@@ -35,11 +35,11 @@ Class Name = Sample2
   29 actualOut D = { Circle.!Circle( int int ) } U = {  }
   30 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   31 receiver D = {  } U = { System.out }
-  32 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, circle2$2.!getRadius( ) } TO = java.io.PrintStream#println( java.lang.String )
+  32 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.lock, circle2$2.!getRadius( ) } TO = java.io.PrintStream#println( java.lang.String )
   33 receiver D = {  } U = { circle2$2 }
   34 methodCall D = {  } U = { Circle.!Circle( int int ).radius, circle2$2.radius } TO = Circle#getRadius( )
   35 actualOut D = { circle2$2.!getRadius( ) } U = { Circle.!Circle( int int ).radius, circle2$2.radius }
-  36 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  36 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   37 assignment D = {  } U = { circle2$2.!setRadius( int ) }
   38 receiver D = {  } U = { circle2$2 }
   39 methodCall D = {  } U = {  } TO = Circle#setRadius( int )
@@ -47,15 +47,15 @@ Class Name = Sample2
   41 actualOut D = { circle2$2.!setRadius( int ) } U = {  }
   42 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   43 receiver D = {  } U = { System.out }
-  44 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, circle2$2.!getRadius( ) } TO = java.io.PrintStream#println( java.lang.String )
+  44 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.lock, circle2$2.!getRadius( ) } TO = java.io.PrintStream#println( java.lang.String )
   45 receiver D = {  } U = { circle2$2 }
   46 methodCall D = {  } U = { Circle.!Circle( int int ).radius, circle2$2.radius } TO = Circle#getRadius( )
   47 actualOut D = { circle2$2.!getRadius( ) } U = { Circle.!Circle( int int ).radius, circle2$2.radius }
-  48 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  48 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   49 assignment D = {  } U = { circle2$2.!print( ) }
   50 receiver D = {  } U = { circle2$2 }
-  51 methodCall D = {  } U = { Circle.!Circle( int int ).System.out.!java.io.PrintStream.autoFlush, Circle.!Circle( int int ).System.out.!java.io.PrintStream.charOut, Circle.!Circle( int int ).System.out.!java.io.PrintStream.out, Circle.!Circle( int int ).System.out.!java.io.PrintStream.textOut, Circle.!Circle( int int ).radius, Circle.!Circle( int int ).x, Circle.!Circle( int int ).y, System.out, circle2$2.System.out.!java.io.PrintStream.autoFlush, circle2$2.System.out.!java.io.PrintStream.charOut, circle2$2.System.out.!java.io.PrintStream.out, circle2$2.System.out.!java.io.PrintStream.textOut, circle2$2.radius, circle2$2.x, circle2$2.y } TO = Circle#print( )
-  52 actualOut D = { circle2$2.!print( ), circle2$2.System.out.!java.io.PrintStream.trouble } U = { Circle.!Circle( int int ).System.out.!java.io.PrintStream.autoFlush, Circle.!Circle( int int ).System.out.!java.io.PrintStream.charOut, Circle.!Circle( int int ).System.out.!java.io.PrintStream.out, Circle.!Circle( int int ).System.out.!java.io.PrintStream.textOut, Circle.!Circle( int int ).radius, Circle.!Circle( int int ).x, Circle.!Circle( int int ).y, System.out, circle2$2.System.out.!java.io.PrintStream.autoFlush, circle2$2.System.out.!java.io.PrintStream.charOut, circle2$2.System.out.!java.io.PrintStream.out, circle2$2.System.out.!java.io.PrintStream.textOut, circle2$2.radius, circle2$2.x, circle2$2.y }
+  51 methodCall D = {  } U = { Circle.!Circle( int int ).System.out.!java.io.PrintStream.lock, Circle.!Circle( int int ).radius, Circle.!Circle( int int ).x, Circle.!Circle( int int ).y, System.out, circle2$2.System.out.!java.io.PrintStream.lock, circle2$2.radius, circle2$2.x, circle2$2.y } TO = Circle#print( )
+  52 actualOut D = { circle2$2.!print( ), circle2$2.System.out.!java.io.PrintStream.trouble } U = { Circle.!Circle( int int ).System.out.!java.io.PrintStream.lock, Circle.!Circle( int int ).radius, Circle.!Circle( int int ).x, Circle.!Circle( int int ).y, System.out, circle2$2.System.out.!java.io.PrintStream.lock, circle2$2.radius, circle2$2.x, circle2$2.y }
   53 localDeclaration D = { circle3$3 } U = { Circle.!Circle( int ) }
   54 receiver D = {  } U = {  }
   55 constructorCall D = {  } U = {  } TO = Circle#Circle( int )
@@ -206,4 +206,5 @@ Class Name = Sample2
  127:   57 ->   53 loopIndependentDefUseDependence Circle.!Circle( int )
 --
 ----- ClDG (to here) -----
+
 

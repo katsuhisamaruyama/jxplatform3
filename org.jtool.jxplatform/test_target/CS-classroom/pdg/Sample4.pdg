@@ -20,22 +20,22 @@ Class Name = Sample4
   14 actualOut D = { ColoredCircle.!ColoredCircle( Circle java.lang.String ) } U = { circle$0.radius, circle$0.x, circle$0.y }
   15 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   16 receiver D = {  } U = { System.out }
-  17 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, ccircle$2.!getColor( ) } TO = java.io.PrintStream#println( java.lang.String )
+  17 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.lock, ccircle$2.!getColor( ) } TO = java.io.PrintStream#println( java.lang.String )
   18 receiver D = {  } U = { ccircle$2 }
   19 methodCall D = {  } U = { ColoredCircle.!ColoredCircle( Circle java.lang.String ).color, ccircle$2.color } TO = ColoredCircle#getColor( )
   20 actualOut D = { ccircle$2.!getColor( ) } U = { ColoredCircle.!ColoredCircle( Circle java.lang.String ).color, ccircle$2.color }
-  21 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  21 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   22 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   23 receiver D = {  } U = { System.out }
-  24 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, ccircle$2.!getRadius( ) } TO = java.io.PrintStream#println( java.lang.String )
+  24 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.lock, ccircle$2.!getRadius( ) } TO = java.io.PrintStream#println( java.lang.String )
   25 receiver D = {  } U = { ccircle$2 }
   26 methodCall D = {  } U = { ColoredCircle.!ColoredCircle( Circle java.lang.String ).circle, ColoredCircle.!ColoredCircle( Circle java.lang.String ).circle.radius, ccircle$2.circle, ccircle$2.circle.radius } TO = ColoredCircle#getRadius( )
   27 actualOut D = { ccircle$2.!getRadius( ) } U = { ColoredCircle.!ColoredCircle( Circle java.lang.String ).circle, ColoredCircle.!ColoredCircle( Circle java.lang.String ).circle.radius, ccircle$2.circle, ccircle$2.circle.radius }
-  28 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  28 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   29 assignment D = {  } U = { circle$1.!print( ) }
   30 receiver D = {  } U = { circle$1 }
-  31 methodCall D = {  } U = { Circle.!Circle( int int int ).System.out.!java.io.PrintStream.autoFlush, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.charOut, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.out, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.textOut, Circle.!Circle( int int int ).radius, Circle.!Circle( int int int ).x, Circle.!Circle( int int int ).y, System.out, circle$1.System.out.!java.io.PrintStream.autoFlush, circle$1.System.out.!java.io.PrintStream.charOut, circle$1.System.out.!java.io.PrintStream.out, circle$1.System.out.!java.io.PrintStream.textOut, circle$1.radius, circle$1.x, circle$1.y } TO = Circle#print( )
-  32 actualOut D = { circle$1.!print( ), circle$1.System.out.!java.io.PrintStream.trouble } U = { Circle.!Circle( int int int ).System.out.!java.io.PrintStream.autoFlush, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.charOut, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.out, Circle.!Circle( int int int ).System.out.!java.io.PrintStream.textOut, Circle.!Circle( int int int ).radius, Circle.!Circle( int int int ).x, Circle.!Circle( int int int ).y, System.out, circle$1.System.out.!java.io.PrintStream.autoFlush, circle$1.System.out.!java.io.PrintStream.charOut, circle$1.System.out.!java.io.PrintStream.out, circle$1.System.out.!java.io.PrintStream.textOut, circle$1.radius, circle$1.x, circle$1.y }
+  31 methodCall D = {  } U = { Circle.!Circle( int int int ).System.out.!java.io.PrintStream.lock, Circle.!Circle( int int int ).radius, Circle.!Circle( int int int ).x, Circle.!Circle( int int int ).y, System.out, circle$1.System.out.!java.io.PrintStream.lock, circle$1.radius, circle$1.x, circle$1.y } TO = Circle#print( )
+  32 actualOut D = { circle$1.!print( ), circle$1.System.out.!java.io.PrintStream.trouble } U = { Circle.!Circle( int int int ).System.out.!java.io.PrintStream.lock, Circle.!Circle( int int int ).radius, Circle.!Circle( int int int ).x, Circle.!Circle( int int int ).y, System.out, circle$1.System.out.!java.io.PrintStream.lock, circle$1.radius, circle$1.x, circle$1.y }
   34 formalOut D = {  } U = { $_ }
    4+ actualOutByFieldAccess D = { Circle.!Circle( int int int ).radius } U = {  }
    4+ actualOutByFieldAccess D = { Circle.!Circle( int int int ).x } U = {  }
@@ -117,4 +117,5 @@ Class Name = Sample4
   68:   32 ->   29 loopIndependentDefUseDependence circle$1.!print( )
 --
 ----- ClDG (to here) -----
+
 

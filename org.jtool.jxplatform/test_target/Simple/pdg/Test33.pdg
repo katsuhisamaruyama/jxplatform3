@@ -7,13 +7,13 @@ Class Name = Test33
    1 trySt D = {  } U = {  }
    2 localDeclaration D = { in$2 } U = { java.io.FileInputStream.!FileInputStream( java.lang.String ) }
    3 receiver D = {  } U = {  }
-   4 constructorCall D = {  } U = { $java.lang.String, java.io.FileInputStream.!java.io.File.fs, java.io.FileInputStream.!java.io.File.path, java.io.FileInputStream.!java.io.FileInputStream.altFinalizer, java.io.FileInputStream.!java.io.FileInputStream.fd } TO = java.io.FileInputStream#FileInputStream( java.lang.String )
-   5 actualOut D = { java.io.FileInputStream.!FileInputStream( java.lang.String ), java.io.FileInputStream.!java.io.File.path, java.io.FileInputStream.!java.io.File.prefixLength, java.io.FileInputStream.!java.io.File.status, java.io.FileInputStream.!java.io.FileInputStream.altFinalizer, java.io.FileInputStream.!java.io.FileInputStream.closeLock, java.io.FileInputStream.!java.io.FileInputStream.fd, java.io.FileInputStream.!java.io.FileInputStream.path } U = { java.io.FileInputStream.!java.io.File.fs, java.io.FileInputStream.!java.io.File.path, java.io.FileInputStream.!java.io.FileInputStream.altFinalizer, java.io.FileInputStream.!java.io.FileInputStream.fd }
+   4 constructorCall D = {  } U = { $java.lang.String, java.io.FileInputStream.!java.io.File.FS, java.io.FileInputStream.!java.io.File.path, java.io.FileInputStream.!java.io.FileInputStream.fd } TO = java.io.FileInputStream#FileInputStream( java.lang.String )
+   5 actualOut D = { java.io.FileInputStream.!FileInputStream( java.lang.String ), java.io.FileInputStream.!java.io.File.path, java.io.FileInputStream.!java.io.File.prefixLength, java.io.FileInputStream.!java.io.File.status, java.io.FileInputStream.!java.io.FileInputStream.closeLock, java.io.FileInputStream.!java.io.FileInputStream.fd, java.io.FileInputStream.!java.io.FileInputStream.path } U = { java.io.FileInputStream.!java.io.File.FS, java.io.FileInputStream.!java.io.File.path, java.io.FileInputStream.!java.io.FileInputStream.fd }
    6 localDeclaration D = { c$3 } U = {  }
    7 whileSt D = { c$3 } U = { in$2.!read( ) }
    8 receiver D = {  } U = { in$2 }
-   9 methodCall D = {  } U = {  } TO = java.io.FileInputStream#read( )
-  10 actualOut D = { in$2.!read( ) } U = {  }
+   9 methodCall D = {  } U = { in$2.!jdk.internal.misc.Blocker.$assertionsDisabled, java.io.FileInputStream.!FileInputStream( java.lang.String ).!jdk.internal.misc.Blocker.$assertionsDisabled } TO = java.io.FileInputStream#read( )
+  10 actualOut D = { in$2.!read( ) } U = { in$2.!jdk.internal.misc.Blocker.$assertionsDisabled, java.io.FileInputStream.!FileInputStream( java.lang.String ).!jdk.internal.misc.Blocker.$assertionsDisabled }
   11 emptySt D = {  } U = {  }
   13 catchClause D = { e$4 } U = {  }
   14 assignment D = {  } U = { e$4.!printStackTrace( ) }
@@ -59,4 +59,5 @@ Class Name = Test33
   31:   17 ->   14 loopIndependentDefUseDependence e$4.!printStackTrace( )
 --
 ----- ClDG (to here) -----
+
 

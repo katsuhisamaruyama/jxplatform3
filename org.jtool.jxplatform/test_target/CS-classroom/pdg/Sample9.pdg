@@ -8,52 +8,52 @@ Class Name = Sample9
    5 receiver D = {  } U = {  }
    6 constructorCall D = {  } U = { java.io.BufferedWriter.!BufferedWriter( java.io.Writer ) } TO = java.io.PrintWriter#PrintWriter( java.io.Writer )
    7 receiver D = {  } U = {  }
-   8 constructorCall D = {  } U = { java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize, java.io.FileWriter.!FileWriter( java.lang.String ) } TO = java.io.BufferedWriter#BufferedWriter( java.io.Writer )
+   8 constructorCall D = {  } U = { java.io.FileWriter.!FileWriter( java.lang.String ) } TO = java.io.BufferedWriter#BufferedWriter( java.io.Writer )
    9 receiver D = {  } U = {  }
   10 constructorCall D = {  } U = { filename$1 } TO = java.io.FileWriter#FileWriter( java.lang.String )
   11 actualOut D = { java.io.FileWriter.!FileWriter( java.lang.String ), java.io.FileWriter.!java.io.OutputStreamWriter.se } U = {  }
-  12 actualOut D = { java.io.BufferedWriter.!BufferedWriter( java.io.Writer ), java.io.BufferedWriter.!java.io.BufferedWriter.cb, java.io.BufferedWriter.!java.io.BufferedWriter.nChars, java.io.BufferedWriter.!java.io.BufferedWriter.nextChar, java.io.BufferedWriter.!java.io.BufferedWriter.out } U = { java.io.BufferedWriter.!java.io.BufferedWriter.defaultCharBufferSize }
+  12 actualOut D = { java.io.BufferedWriter.!BufferedWriter( java.io.Writer ), java.io.BufferedWriter.!java.io.BufferedWriter.cb, java.io.BufferedWriter.!java.io.BufferedWriter.maxChars, java.io.BufferedWriter.!java.io.BufferedWriter.nChars, java.io.BufferedWriter.!java.io.BufferedWriter.out } U = {  }
   13 actualOut D = { java.io.PrintWriter.!PrintWriter( java.io.Writer ), java.io.PrintWriter.!java.io.PrintWriter.autoFlush, java.io.PrintWriter.!java.io.PrintWriter.out, java.io.PrintWriter.!java.io.PrintWriter.psOut, java.io.PrintWriter.!java.io.PrintWriter.trouble } U = {  }
   14 assignment D = {  } U = { pw$4.!println( java.lang.String ) }
   15 receiver D = {  } U = { pw$4 }
-  16 methodCall D = {  } U = { $java.lang.String, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, pw$4.!java.io.PrintWriter.lock } TO = java.io.PrintWriter#println( java.lang.String )
-  17 actualOut D = { pw$4.!println( java.lang.String ) } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, pw$4.!java.io.PrintWriter.lock }
+  16 methodCall D = {  } U = { $java.lang.String, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!jdk.internal.misc.InternalLock.lock, pw$4.!java.io.PrintWriter.lock, pw$4.!jdk.internal.misc.InternalLock.lock } TO = java.io.PrintWriter#println( java.lang.String )
+  17 actualOut D = { pw$4.!println( java.lang.String ) } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!jdk.internal.misc.InternalLock.lock, pw$4.!java.io.PrintWriter.lock, pw$4.!jdk.internal.misc.InternalLock.lock }
   18 assignment D = {  } U = { pw$4.!println( java.lang.String ) }
   19 receiver D = {  } U = { pw$4 }
-  20 methodCall D = {  } U = { $java.lang.String, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, pw$4.!java.io.PrintWriter.lock } TO = java.io.PrintWriter#println( java.lang.String )
-  21 actualOut D = { pw$4.!println( java.lang.String ) } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, pw$4.!java.io.PrintWriter.lock }
+  20 methodCall D = {  } U = { $java.lang.String, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!jdk.internal.misc.InternalLock.lock, pw$4.!java.io.PrintWriter.lock, pw$4.!jdk.internal.misc.InternalLock.lock } TO = java.io.PrintWriter#println( java.lang.String )
+  21 actualOut D = { pw$4.!println( java.lang.String ) } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!jdk.internal.misc.InternalLock.lock, pw$4.!java.io.PrintWriter.lock, pw$4.!jdk.internal.misc.InternalLock.lock }
   23 catchClause D = { e$5 } U = {  }
   24 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   25 receiver D = {  } U = { System.out }
-  26 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, filename$1 } TO = java.io.PrintStream#println( java.lang.String )
-  27 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  26 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.lock, filename$1 } TO = java.io.PrintStream#println( java.lang.String )
+  27 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   28 trySt D = {  } U = {  }
   29 localDeclaration D = { br$8 } U = { java.io.BufferedReader.!BufferedReader( java.io.Reader ) }
   30 receiver D = {  } U = {  }
-  31 constructorCall D = {  } U = { java.io.BufferedReader.!java.io.BufferedReader.defaultCharBufferSize, java.io.FileReader.!FileReader( java.lang.String ) } TO = java.io.BufferedReader#BufferedReader( java.io.Reader )
+  31 constructorCall D = {  } U = { java.io.FileReader.!FileReader( java.lang.String ) } TO = java.io.BufferedReader#BufferedReader( java.io.Reader )
   32 receiver D = {  } U = {  }
   33 constructorCall D = {  } U = { filename$1 } TO = java.io.FileReader#FileReader( java.lang.String )
   34 actualOut D = { java.io.FileReader.!FileReader( java.lang.String ), java.io.FileReader.!java.io.InputStreamReader.sd } U = {  }
-  35 actualOut D = { java.io.BufferedReader.!BufferedReader( java.io.Reader ), java.io.BufferedReader.!java.io.BufferedReader.cb, java.io.BufferedReader.!java.io.BufferedReader.in, java.io.BufferedReader.!java.io.BufferedReader.markedChar, java.io.BufferedReader.!java.io.BufferedReader.markedSkipLF, java.io.BufferedReader.!java.io.BufferedReader.nChars, java.io.BufferedReader.!java.io.BufferedReader.nextChar, java.io.BufferedReader.!java.io.BufferedReader.readAheadLimit, java.io.BufferedReader.!java.io.BufferedReader.skipLF } U = { java.io.BufferedReader.!java.io.BufferedReader.defaultCharBufferSize }
+  35 actualOut D = { java.io.BufferedReader.!BufferedReader( java.io.Reader ), java.io.BufferedReader.!java.io.BufferedReader.cb, java.io.BufferedReader.!java.io.BufferedReader.in, java.io.BufferedReader.!java.io.BufferedReader.markedChar, java.io.BufferedReader.!java.io.BufferedReader.markedSkipLF, java.io.BufferedReader.!java.io.BufferedReader.nChars, java.io.BufferedReader.!java.io.BufferedReader.nextChar, java.io.BufferedReader.!java.io.BufferedReader.readAheadLimit, java.io.BufferedReader.!java.io.BufferedReader.skipLF } U = {  }
   36 localDeclaration D = { line$9 } U = {  }
   37 whileSt D = { line$9 } U = { br$8.!readLine( ) }
   38 receiver D = {  } U = { br$8 }
-  39 methodCall D = {  } U = { br$8.!java.io.BufferedReader.cb, br$8.!java.io.BufferedReader.defaultExpectedLineLength, br$8.!java.io.BufferedReader.lock, br$8.!java.io.BufferedReader.nChars, br$8.!java.io.BufferedReader.nextChar, br$8.!java.io.BufferedReader.skipLF, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.cb, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.defaultExpectedLineLength, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.nChars, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.nextChar, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.skipLF } TO = java.io.BufferedReader#readLine( )
-  40 actualOut D = { br$8.!java.io.BufferedReader.nextChar, br$8.!java.io.BufferedReader.skipLF, br$8.!readLine( ) } U = { br$8.!java.io.BufferedReader.cb, br$8.!java.io.BufferedReader.defaultExpectedLineLength, br$8.!java.io.BufferedReader.lock, br$8.!java.io.BufferedReader.nChars, br$8.!java.io.BufferedReader.nextChar, br$8.!java.io.BufferedReader.skipLF, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.cb, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.defaultExpectedLineLength, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.nChars, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.nextChar, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.skipLF }
+  39 methodCall D = {  } U = { br$8.!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock } TO = java.io.BufferedReader#readLine( )
+  40 actualOut D = { br$8.!readLine( ) } U = { br$8.!java.io.BufferedReader.lock, java.io.BufferedReader.!BufferedReader( java.io.Reader ).!java.io.BufferedReader.lock }
   41 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   42 receiver D = {  } U = { System.out }
-  43 methodCall D = {  } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, line$9 } TO = java.io.PrintStream#println( java.lang.String )
-  44 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  43 methodCall D = {  } U = { System.out.!java.io.PrintStream.lock, line$9 } TO = java.io.PrintStream#println( java.lang.String )
+  44 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   46 catchClause D = { e$10 } U = {  }
   47 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   48 receiver D = {  } U = { System.out }
-  49 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, filename$1 } TO = java.io.PrintStream#println( java.lang.String )
-  50 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  49 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.lock, filename$1 } TO = java.io.PrintStream#println( java.lang.String )
+  50 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   51 catchClause D = { e$11 } U = {  }
   52 assignment D = {  } U = { System.out.!println( java.lang.String ) }
   53 receiver D = {  } U = { System.out }
-  54 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut, filename$1 } TO = java.io.PrintStream#println( java.lang.String )
-  55 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.autoFlush, System.out.!java.io.PrintStream.charOut, System.out.!java.io.PrintStream.out, System.out.!java.io.PrintStream.textOut }
+  54 methodCall D = {  } U = { $java.lang.String, System.out.!java.io.PrintStream.lock, filename$1 } TO = java.io.PrintStream#println( java.lang.String )
+  55 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   57 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Sample9#Sample9( ) ]
@@ -149,29 +149,26 @@ Class Name = Sample9
   87:   39 ->   40 trueControlDependence
   88:   39 ->   51 exceptionCatch
   89:   40 ->   37 loopCarriedDefUseDependence br$8.!readLine( ) (LC = 37)
-  90:   40 ->   39 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.nextChar (LC = 37)
-  91:   40 ->   39 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.skipLF (LC = 37)
-  92:   40 ->   40 defOrderDependence br$8.!readLine( )
-  93:   40 ->   40 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.nextChar (LC = 37)
-  94:   40 ->   40 loopCarriedDefUseDependence br$8.!java.io.BufferedReader.skipLF (LC = 37)
-  95:   44 ->   41 loopIndependentDefUseDependence System.out.!println( java.lang.String )
-  96:   44 ->   44 defOrderDependence System.out.!java.io.PrintStream.trouble
-  97:   44 ->   44 defOrderDependence System.out.!println( java.lang.String )
-  98:   44 ->   55 outputDependence System.out.!java.io.PrintStream.trouble
-  99:   44 ->   55 outputDependence System.out.!println( java.lang.String )
- 100:   46 ->   47 trueControlDependence
- 101:   46 ->   48 trueControlDependence
- 102:   46 ->   49 trueControlDependence
- 103:   46 ->   50 trueControlDependence
- 104:   50 ->   47 loopIndependentDefUseDependence System.out.!println( java.lang.String )
- 105:   51 ->   52 trueControlDependence
- 106:   51 ->   53 trueControlDependence
- 107:   51 ->   54 trueControlDependence
- 108:   51 ->   55 trueControlDependence
- 109:   55 ->   52 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+  90:   40 ->   40 defOrderDependence br$8.!readLine( )
+  91:   44 ->   41 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+  92:   44 ->   44 defOrderDependence System.out.!java.io.PrintStream.trouble
+  93:   44 ->   44 defOrderDependence System.out.!println( java.lang.String )
+  94:   44 ->   55 outputDependence System.out.!java.io.PrintStream.trouble
+  95:   44 ->   55 outputDependence System.out.!println( java.lang.String )
+  96:   46 ->   47 trueControlDependence
+  97:   46 ->   48 trueControlDependence
+  98:   46 ->   49 trueControlDependence
+  99:   46 ->   50 trueControlDependence
+ 100:   50 ->   47 loopIndependentDefUseDependence System.out.!println( java.lang.String )
+ 101:   51 ->   52 trueControlDependence
+ 102:   51 ->   53 trueControlDependence
+ 103:   51 ->   54 trueControlDependence
+ 104:   51 ->   55 trueControlDependence
+ 105:   55 ->   52 loopIndependentDefUseDependence System.out.!println( java.lang.String )
 --
    0: Sample9( )
    1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
+
 
