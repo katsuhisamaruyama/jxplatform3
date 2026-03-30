@@ -420,6 +420,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the forward-traversed nodes
      */
+    @SuppressWarnings("unused")
     public List<CFGNode> forwardReachableNodes(CFGNode startnode, boolean loopbackOk, boolean fallthroughOk) {
         return forwardReachableNodes(startnode, loopbackOk, fallthroughOk, node -> { return false; });
     }
@@ -484,6 +485,7 @@ public class CFG extends Graph<CFGNode, ControlFlow> {
      * @param fallthroughOk {@code true} if fall-through edges can be traversed, otherwise {@code false}
      * @return the collection of the backward-traversed nodes
      */
+    @SuppressWarnings("unused")
     public List<CFGNode> backwardReachableNodes(CFGNode startnode, boolean loopbackOk, boolean fallthroughOk) {
         return backwardReachableNodes(startnode, loopbackOk, fallthroughOk, node -> { return false; });
     }

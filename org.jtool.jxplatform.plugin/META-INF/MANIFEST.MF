@@ -4,7 +4,7 @@ Bundle-Name: jxplatform3 plugin
 Bundle-SymbolicName: org.jtool.jxplatform.plugin;singleton:=true
 Bundle-Version: 3.0.0.qualifier
 Automatic-Module-Name: org.jtool.srcplatform.plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-23
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
