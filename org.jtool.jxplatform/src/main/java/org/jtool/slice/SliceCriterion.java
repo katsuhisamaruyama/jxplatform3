@@ -1,5 +1,5 @@
 /*
- *  Copyright 2022
+ *  Copyright 2026
  *  Software Science and Technology Lab., Ritsumeikan University
  */
 
@@ -48,9 +48,7 @@ public class SliceCriterion {
     public SliceCriterion(DependencyGraph graph, PDGNode node, JVariableReference var) {
         this.graph = graph;
         this.node = node;
-        if (var.isVariableAccess()) {
-            variables.add(var);
-        }
+        this.variables.add(var);
     }
     
     /**
@@ -62,7 +60,7 @@ public class SliceCriterion {
     public SliceCriterion(DependencyGraph graph, PDGNode node, Set<JVariableReference> vars) {
         this.graph = graph;
         this.node = node;
-        vars.stream().filter(var -> var.isVariableAccess()).forEach(var -> variables.add(var));
+        this.variables = vars;
     }
     
     /**
