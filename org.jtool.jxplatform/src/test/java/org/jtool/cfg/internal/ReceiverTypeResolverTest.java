@@ -554,6 +554,17 @@ public class ReceiverTypeResolverTest {
     }
     
     @Test
+    public void testGetApproximatedTypeNames_ForFormalReceiver9() {
+        CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test64", "m1( Elem )");
+        //CFGMethodCall node = (CFGMethodCall)CFGTestUtil.getNode(cfg, 4);
+        //assert node.isMethodCall();
+        //Set<String> result = node.getApproximatedTypeNames();
+        
+        //assertEquals("S48", TestUtil.asSortedStr(result));
+        cfg.print();
+    }
+    
+    @Test
     public void testGetApproximatedTypeNames_ForEnhancedFor1() {
         CFG cfg = CFGTestUtil.createCFG(SimpleProject, "Test50", "m( )");
         

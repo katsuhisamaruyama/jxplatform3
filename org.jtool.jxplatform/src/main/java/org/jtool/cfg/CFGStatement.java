@@ -10,7 +10,6 @@ import org.eclipse.jdt.core.dom.ArrayAccess;
 import org.eclipse.jdt.core.dom.Assignment;
 import org.eclipse.jdt.core.dom.ClassInstanceCreation;
 import org.eclipse.jdt.core.dom.ConditionalExpression;
-import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.FieldAccess;
 import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.Name;
@@ -290,8 +289,10 @@ public class CFGStatement extends CFGNode {
      * @return the collection of the primary variables
      */
     public List<JVariableReference> findPrimaryUseVariables() {
-        Expression expr = null;
-        if (astNode instanceof VariableDeclarationFragment) {
+        ASTNode expr = null;
+        if (astNode instanceof Name) {
+            expr = astNode;
+        } else if (astNode instanceof VariableDeclarationFragment) {
             expr = ((VariableDeclarationFragment)astNode).getInitializer();
         } else if (astNode instanceof Assignment) {
             expr = ((Assignment)astNode).getRightHandSide();
@@ -312,13 +313,13 @@ public class CFGStatement extends CFGNode {
      * @param expr the expression that contains used variables
      * @return the collection of the primary variables
      */
-    public List<JVariableReference> findPrimaryUseVariables(Expression expr) {
+    public List<JVariableReference> findPrimaryUseVariables(ASTNode expr) {
         List <JVariableReference> vars = new ArrayList<>();
         if (expr == null) {
             return vars;
         }
         
-        List<Expression> exprs = new ArrayList<>();
+        List<ASTNode> exprs = new ArrayList<>();
         if (expr instanceof ArrayAccess) {
             exprs.add(((ArrayAccess)expr).getArray());
         } else if (expr instanceof FieldAccess || expr instanceof Name) {
@@ -334,7 +335,7 @@ public class CFGStatement extends CFGNode {
             return vars;
         }
         
-        for (Expression e : exprs) {
+        for (ASTNode e : exprs) {
             uses.stream()
                 .filter(v -> v.getASTNode().equals(e))
                 .findFirst().ifPresent(v -> vars.add(v));

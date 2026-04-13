@@ -27,6 +27,11 @@ eclipse {
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_23
+    targetCompatibility = JavaVersion.VERSION_23
+}
+
 dependencies {
     api group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.45.0'
     implementation group: 'org.apache.maven', name: 'maven-model', version: '3.8.6'
