@@ -243,7 +243,7 @@ public class JClassExternalTest {
     
     @Test
     public void testGetMethods1() {
-        assertEquals(166, stringClass.getMethods().size());
+        assertEquals(169, stringClass.getMethods().size());
     }
     
     @Test
@@ -749,7 +749,7 @@ public class JClassExternalTest {
         List<String> result = TestUtil.asSortedList(serializableClass.getDescendantClasses().stream()
                 .map(o -> o.getName()));
         
-        assertEquals(2991, result.size());
+        assertEquals(3003, result.size());
         assertEquals("apple.security.AppleProvider", result.get(0));
     }
     
@@ -768,7 +768,7 @@ public class JClassExternalTest {
         List<String> result = TestUtil.asSortedList(objectClass.getDescendantClasses().stream()
                 .map(o -> o.getName()));
         
-        assertEquals(21679, result.size());
+        assertEquals(21539, result.size());
         assertEquals("apple.laf.JRSUIConstants", result.get(0));
     }
     
@@ -777,7 +777,7 @@ public class JClassExternalTest {
         List<String> result = TestUtil.asSortedList(mapClass.getDescendantClasses().stream()
                 .map(o -> o.getName()));
         
-        assertEquals(100, result.size());
+        assertEquals(101, result.size());
         assertEquals("apple.security.AppleProvider", result.get(0));
     }
     

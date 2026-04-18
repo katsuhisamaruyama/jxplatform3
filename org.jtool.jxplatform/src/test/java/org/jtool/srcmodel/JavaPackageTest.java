@@ -116,17 +116,20 @@ public class JavaPackageTest {
         JavaPackage jp = VideoStoreProject.getPackage("java.lang");
         Set<JavaClass> result = jp.getClasses();
         
-        assertEquals(11, result.size());
+        assertEquals(13, result.size());
         assertEquals("java.lang.AssertionError;"
-                   + "java.lang.Enum;java.lang.Enum.EnumDesc;"
+                   + "java.lang.Enum;"
+                   + "java.lang.Enum.EnumDesc;"
                    + "java.lang.Object;"
                    + "java.lang.String;"
                    + "java.lang.String.CaseInsensitiveComparator;"
                    + "java.lang.System;"
                    + "java.lang.System.CallersHolder;"
+                   + "java.lang.System.In;"
                    + "java.lang.System.Logger;"
                    + "java.lang.System.Logger.Level;"
-                   + "java.lang.System.LoggerFinder",
+                   + "java.lang.System.LoggerFinder;"
+                   + "java.lang.System.Out",
             TestUtil.asSortedStrOf(result));
     }
     
