@@ -80,12 +80,12 @@ class LocalAliasResolver {
             }
             
             if (jfield.isField() && jfield.isFinal()) {
-                VariableDeclarationFragment decllaration = (VariableDeclarationFragment)jfield.getASTNode();
-                CFGStatement declNode = new CFGStatement(decllaration, CFGNode.Kind.dummy);
+                VariableDeclarationFragment declaration = (VariableDeclarationFragment)jfield.getASTNode();
+                CFGStatement declNode = new CFGStatement(declaration, CFGNode.Kind.dummy);
                 ExpressionVisitor expressionVisitor = new ExpressionVisitor(jproject, declNode);
-                decllaration.accept(expressionVisitor);
+                declaration.accept(expressionVisitor);
                 
-                Alias alias = getAliasRelation(declNode, decllaration.getInitializer());
+                Alias alias = getAliasRelation(declNode, declaration.getInitializer());
                 if (alias != null && isFinalField(alias.righthand)) {
                     cfg.getNodes().stream()
                             .filter(node -> node.isStatement() && !node.isFormal())
@@ -264,17 +264,19 @@ class LocalAliasResolver {
             
             for (ControlFlow edge : top.getOutgoingFlows()) {
                 CFGNode succ = edge.getDstNode();
-                if (succ.isStatement()) {
-                    CFGStatement stNode = (CFGStatement)succ;
-                    if (stNode.isActualOut()) {
-                        registerAlias(stNode, alias);
-                    } else if (define(stNode, alias.lefthand) || define(stNode, alias.righthand)) {
-                        return;
-                    } else {
-                        registerAlias(stNode, alias);
-                    }
-                }
                 if (!track.contains(succ)) {
+                    
+                    if (succ.isStatement()) {
+                        CFGStatement stNode = (CFGStatement)succ;
+                        if (stNode.isActualOut()) {
+                            registerAlias(stNode, alias);
+                        } else if (define(stNode, alias.lefthand) || define(stNode, alias.righthand)) {
+                            return;
+                        } else {
+                            registerAlias(stNode, alias);
+                        }
+                    }
+                    
                     stack.push(succ);
                 }
             }
