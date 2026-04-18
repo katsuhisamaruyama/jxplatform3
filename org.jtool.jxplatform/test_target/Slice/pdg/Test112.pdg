@@ -13,9 +13,9 @@ Class Name = Test112
   10 switchCase D = {  } U = { $SwitchDef }
   11 assignment D = { z$2 } U = {  }
   12 breakSt D = {  } U = {  }
-  14 localDeclaration D = { p$3 } U = { y$1 }
-  15 localDeclaration D = { q$4 } U = { z$2 }
-  16 localDeclaration D = { r$5 } U = { x$0 }
+  14 localDeclaration D = { p$4 } U = { y$1 }
+  15 localDeclaration D = { q$5 } U = { z$2 }
+  16 localDeclaration D = { r$6 } U = { x$0 }
   18 formalOut D = {  } U = { $_ }
 --
    0 constructorEntry [ Test112#Test112( ) ]
@@ -62,4 +62,5 @@ Class Name = Test112
    1:    0 ->    2 trueControlDependence
 --
 ----- ClDG (to here) -----
+
 

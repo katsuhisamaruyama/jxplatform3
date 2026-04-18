@@ -1,0 +1,54 @@
+----- ClDG (from here) -----
+Class Name = Book
+   0 methodEntry [ Book#getPrice( int ) ]
+   1 formalIn D = { p$0 } U = {  }
+   2 returnSt D = { $_ } U = { p$0, this.price }
+   4 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Book#title ]
+   1 fieldDeclaration D = { this.title } U = { this.title }
+--
+   0 constructorEntry [ Book#Book( java.lang.String int ) ]
+   1 formalIn D = { title$0 } U = {  }
+   2 formalIn D = { price$1 } U = {  }
+   3 assignment D = { this.title } U = { title$0 }
+   4 assignment D = { this.price } U = { price$1 }
+   6 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Book#getPrice( ) ]
+   1 returnSt D = { $_ } U = { this.price }
+   3 formalOut D = {  } U = { $_ }
+--
+   0 fieldEntry [ Book#price ]
+   1 fieldDeclaration D = { this.price } U = { this.price }
+--
+   0: getPrice( int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    4 trueControlDependence
+   4:    1 ->    2 loopIndependentDefUseDependence p$0
+   5:    2 ->    4 loopIndependentDefUseDependence $_
+--
+   0: title
+   1:    0 ->    1 trueControlDependence
+--
+   0: Book( java.lang.String int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    6 trueControlDependence
+   6:    1 ->    3 loopIndependentDefUseDependence title$0
+   7:    2 ->    4 loopIndependentDefUseDependence price$1
+--
+   0: getPrice( )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    3 trueControlDependence
+   3:    1 ->    3 loopIndependentDefUseDependence $_
+--
+   0: price
+   1:    0 ->    1 trueControlDependence
+--
+----- ClDG (to here) -----
+
+

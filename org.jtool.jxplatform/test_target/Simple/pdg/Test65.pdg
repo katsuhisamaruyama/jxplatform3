@@ -1,0 +1,117 @@
+----- ClDG (from here) -----
+Class Name = Test65
+   0 methodEntry [ Test65#m( java.lang.String int ) ]
+   1 formalIn D = { title$0 } U = {  }
+   2 formalIn D = { price$1 } U = {  }
+   3 localDeclaration D = { sum$2 } U = {  }
+   4 localDeclaration D = { i$3 } U = {  }
+   5 forSt D = {  } U = { i$3 }
+   6 localDeclaration D = { book$4 } U = { Book.!Book( java.lang.String int ) }
+   7 receiver D = {  } U = {  }
+   8 constructorCall D = {  } U = {  } TO = Book#Book( java.lang.String int )
+   9 actualIn D = {  } U = { title$0 }
+  10 actualIn D = {  } U = { i$3 }
+  11 actualOut D = { Book.!Book( java.lang.String int ) } U = {  }
+  12 ifSt D = {  } U = {  }
+  13 assignment D = { sum$2 } U = { sum$2, this.!getPrice( Book int ) }
+  14 receiver D = {  } U = {  }
+  15 methodCall D = {  } U = { this.book$0.price } TO = Test65#getPrice( Book int )
+  16 actualIn D = {  } U = { Book.!Book( java.lang.String int ).price, Book.!Book( java.lang.String int ).title, book$4, book$4.price, book$4.title }
+  17 actualIn D = {  } U = {  }
+  18 actualOut D = { this.!getPrice( Book int ) } U = { this.book$0.price }
+  20 assignment D = { i$3 } U = { i$3 }
+  21 returnSt D = { $_ } U = { sum$2 }
+  23 formalOut D = {  } U = { $_ }
+   8+ actualOutByFieldAccess D = { Book.!Book( java.lang.String int ).price } U = {  }
+   8+ actualOutByFieldAccess D = { Book.!Book( java.lang.String int ).title } U = {  }
+--
+   0 constructorEntry [ Test65#Test65( ) ]
+   2 formalOut D = {  } U = { $_ }
+--
+   0 methodEntry [ Test65#getPrice( Book int ) ]
+   1 formalIn D = { book$0 } U = {  }
+   2 formalIn D = { x$1 } U = {  }
+   3 localDeclaration D = { y$2 } U = { x$1 }
+   4 returnSt D = { $_ } U = { book$0.!getPrice( int ) }
+   5 receiver D = {  } U = { book$0 }
+   6 methodCall D = {  } U = { book$0.price } TO = Book#getPrice( int )
+   7 actualIn D = {  } U = { y$2 }
+   8 actualOut D = { book$0.!getPrice( int ) } U = { book$0.price }
+  10 formalOut D = {  } U = { $_ }
+--
+   0: m( java.lang.String int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->   21 trueControlDependence
+   7:    0 ->   23 trueControlDependence
+   8:    1 ->    9 loopIndependentDefUseDependence title$0
+   9:    3 ->   13 declaration
+  10:    3 ->   13 loopIndependentDefUseDependence sum$2
+  11:    3 ->   21 declaration
+  12:    3 ->   21 loopIndependentDefUseDependence sum$2
+  13:    4 ->    5 declaration
+  14:    4 ->    5 loopIndependentDefUseDependence i$3
+  15:    4 ->   10 declaration
+  16:    4 ->   10 loopIndependentDefUseDependence i$3
+  17:    4 ->   20 declaration
+  18:    4 ->   20 loopIndependentDefUseDependence i$3
+  19:    5 ->    6 trueControlDependence
+  20:    5 ->    7 trueControlDependence
+  21:    5 ->    8 trueControlDependence
+  22:    5 ->    8+ trueControlDependence
+  23:    5 ->    8+ trueControlDependence
+  24:    5 ->    9 trueControlDependence
+  25:    5 ->   10 trueControlDependence
+  26:    5 ->   11 trueControlDependence
+  27:    5 ->   12 trueControlDependence
+  28:    5 ->   20 trueControlDependence
+  29:    6 ->    6 defOrderDependence book$4
+  30:    6 ->   16 declaration
+  31:    6 ->   16 loopIndependentDefUseDependence book$4
+  32:    8+ ->    8+ defOrderDependence Book.!Book( java.lang.String int ).price
+  33:    8+ ->    8+ defOrderDependence Book.!Book( java.lang.String int ).title
+  34:    8+ ->   16 loopIndependentDefUseDependence Book.!Book( java.lang.String int ).price
+  35:    8+ ->   16 loopIndependentDefUseDependence Book.!Book( java.lang.String int ).title
+  36:   11 ->    6 loopIndependentDefUseDependence Book.!Book( java.lang.String int )
+  37:   11 ->   11 defOrderDependence Book.!Book( java.lang.String int )
+  38:   12 ->   13 trueControlDependence
+  39:   12 ->   14 trueControlDependence
+  40:   12 ->   15 trueControlDependence
+  41:   12 ->   16 trueControlDependence
+  42:   12 ->   17 trueControlDependence
+  43:   12 ->   18 trueControlDependence
+  44:   13 ->   13 loopCarriedDefUseDependence sum$2 (LC = 5)
+  45:   13 ->   21 loopIndependentDefUseDependence sum$2
+  46:   18 ->   13 loopIndependentDefUseDependence this.!getPrice( Book int )
+  47:   18 ->   18 defOrderDependence this.!getPrice( Book int )
+  48:   20 ->    5 loopCarriedDefUseDependence i$3 (LC = 5)
+  49:   20 ->   10 loopCarriedDefUseDependence i$3 (LC = 5)
+  50:   20 ->   20 loopCarriedDefUseDependence i$3 (LC = 5)
+  51:   21 ->   23 loopIndependentDefUseDependence $_
+--
+   0: Test65( )
+   1:    0 ->    2 trueControlDependence
+--
+   0: getPrice( Book int )
+   1:    0 ->    1 trueControlDependence
+   2:    0 ->    2 trueControlDependence
+   3:    0 ->    3 trueControlDependence
+   4:    0 ->    4 trueControlDependence
+   5:    0 ->    5 trueControlDependence
+   6:    0 ->    6 trueControlDependence
+   7:    0 ->    7 trueControlDependence
+   8:    0 ->    8 trueControlDependence
+   9:    0 ->   10 trueControlDependence
+  10:    1 ->    5 loopIndependentDefUseDependence book$0
+  11:    2 ->    3 loopIndependentDefUseDependence x$1
+  12:    3 ->    7 declaration
+  13:    3 ->    7 loopIndependentDefUseDependence y$2
+  14:    4 ->   10 loopIndependentDefUseDependence $_
+  15:    8 ->    4 loopIndependentDefUseDependence book$0.!getPrice( int )
+--
+----- ClDG (to here) -----
+
+

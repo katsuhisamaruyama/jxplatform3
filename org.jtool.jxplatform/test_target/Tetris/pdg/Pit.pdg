@@ -88,9 +88,9 @@ Class Name = Pit
   19 ifSt D = {  } U = { this.!getBox( int int ).color, this.!getBox( int int ).posX, this.!getBox( int int ).posY, tile$2, tile$2.color, tile$2.posX, tile$2.posY }
   20 assignment D = {  } U = { tile$2.!paint( java.awt.Graphics ) }
   21 receiver D = {  } U = { tile$2 }
-  22 methodCall D = {  } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, tile$2.color, tile$2.posX, tile$2.posY } TO = Tile#paint( java.awt.Graphics )
+  22 methodCall D = {  } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.!getBox( int int ).color, this.!getBox( int int ).posX, this.!getBox( int int ).posY, tile$2.color, tile$2.posX, tile$2.posY } TO = Tile#paint( java.awt.Graphics )
   23 actualIn D = {  } U = { this.offg }
-  24 actualOut D = { tile$2.!paint( java.awt.Graphics ), tile$2.color.!java.awt.Color.cs, tile$2.color.!java.awt.Color.falpha, tile$2.color.!java.awt.Color.frgbvalue, tile$2.color.!java.awt.Color.fvalue, tile$2.color.!java.awt.Color.value } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, tile$2.color, tile$2.posX, tile$2.posY }
+  24 actualOut D = { tile$2.!paint( java.awt.Graphics ), tile$2.color.!java.awt.Color.cs, tile$2.color.!java.awt.Color.falpha, tile$2.color.!java.awt.Color.frgbvalue, tile$2.color.!java.awt.Color.fvalue, tile$2.color.!java.awt.Color.value } U = { Color.black, Color.white, Tile.BORDER, Tile.SIZE, this.!getBox( int int ).color, this.!getBox( int int ).posX, this.!getBox( int int ).posY, tile$2.color, tile$2.posX, tile$2.posY }
   26 assignment D = { x$1 } U = { x$1 }
   27 assignment D = { y$0 } U = { y$0 }
   28 ifSt D = {  } U = { this.currentBlock, this.currentBlock.offsetX, this.currentBlock.offsetY, this.currentBlock.pit, this.currentBlock.posX, this.currentBlock.posY, this.currentBlock.tiles }
@@ -168,8 +168,8 @@ Class Name = Pit
   24 methodCall D = {  } U = {  } TO = Tile#setPosY( int )
   25 actualIn D = {  } U = { tile$4.!getPosY( ) }
   26 receiver D = {  } U = { tile$4 }
-  27 methodCall D = {  } U = { tile$4.posY } TO = Tile#getPosY( )
-  28 actualOut D = { tile$4.!getPosY( ) } U = { tile$4.posY }
+  27 methodCall D = {  } U = { this.!getBox( int int ).posY, tile$4.posY } TO = Tile#getPosY( )
+  28 actualOut D = { tile$4.!getPosY( ) } U = { this.!getBox( int int ).posY, tile$4.posY }
   29 actualOut D = { tile$4.!setPosY( int ) } U = {  }
   31 assignment D = {  } U = { this.!setBox( int int Tile ) }
   32 receiver D = {  } U = {  }
@@ -1040,4 +1040,5 @@ Class Name = Pit
    1:    0 ->    1 trueControlDependence
 --
 ----- ClDG (to here) -----
+
 

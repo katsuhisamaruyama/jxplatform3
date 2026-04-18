@@ -393,8 +393,8 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
   92 receiver D = {  } U = { pw$1 }
   93 methodCall D = {  } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!jdk.internal.misc.InternalLock.lock, pw$1.!java.io.PrintWriter.lock, pw$1.!jdk.internal.misc.InternalLock.lock, sb$6.!toString( ) } TO = java.io.PrintWriter#println( java.lang.String )
   94 receiver D = {  } U = { sb$6 }
-  95 methodCall D = {  } U = {  } TO = java.lang.StringBuilder#toString( )
-  96 actualOut D = { sb$6.!toString( ) } U = {  }
+  95 methodCall D = {  } U = { java.lang.StringBuilder.!StringBuilder( ).!java.lang.AbstractStringBuilder.maybeLatin1, java.lang.StringBuilder.!StringBuilder( ).!java.lang.String.COMPACT_STRINGS, java.lang.StringBuilder.!StringBuilder( ).!java.lang.String.value, sb$6.!java.lang.AbstractStringBuilder.maybeLatin1, sb$6.!java.lang.String.COMPACT_STRINGS, sb$6.!java.lang.String.value } TO = java.lang.StringBuilder#toString( )
+  96 actualOut D = { sb$6.!java.lang.String.coder, sb$6.!java.lang.String.value, sb$6.!toString( ) } U = { java.lang.StringBuilder.!StringBuilder( ).!java.lang.AbstractStringBuilder.maybeLatin1, java.lang.StringBuilder.!StringBuilder( ).!java.lang.String.COMPACT_STRINGS, java.lang.StringBuilder.!StringBuilder( ).!java.lang.String.value, sb$6.!java.lang.AbstractStringBuilder.maybeLatin1, sb$6.!java.lang.String.COMPACT_STRINGS, sb$6.!java.lang.String.value }
   97 actualOut D = { pw$1.!println( java.lang.String ) } U = { java.io.PrintWriter.!PrintWriter( java.io.Writer ).!java.io.PrintWriter.lock, java.io.PrintWriter.!PrintWriter( java.io.Writer ).!jdk.internal.misc.InternalLock.lock, pw$1.!java.io.PrintWriter.lock, pw$1.!jdk.internal.misc.InternalLock.lock }
   99 catchClause D = { e$7 } U = {  }
  100 assignment D = {  } U = { System.err.!println( java.lang.String ) }
@@ -1240,26 +1240,29 @@ Class Name = jp.ac.ritsumei.cs.draw.FigureManager
  210:   90 ->   25 outputDependence sb$6.!append( java.lang.String )
  211:   90 ->   84 loopIndependentDefUseDependence sb$6.!append( java.lang.String )
  212:   96 ->   93 loopIndependentDefUseDependence sb$6.!toString( )
- 213:   96 ->   96 defOrderDependence sb$6.!toString( )
- 214:   97 ->   91 loopIndependentDefUseDependence pw$1.!println( java.lang.String )
- 215:   97 ->   97 defOrderDependence pw$1.!println( java.lang.String )
- 216:   99 ->  100 trueControlDependence
- 217:   99 ->  101 trueControlDependence
- 218:   99 ->  102 trueControlDependence
- 219:   99 ->  103 trueControlDependence
- 220:  103 ->  100 loopIndependentDefUseDependence System.err.!println( java.lang.String )
- 221:  104 ->  105 trueControlDependence
- 222:  104 ->  112 fallThroughControlDependence
- 223:  105 ->  106 trueControlDependence
- 224:  105 ->  107 trueControlDependence
- 225:  105 ->  108 trueControlDependence
- 226:  105 ->  109 trueControlDependence
- 227:  105 ->  110 falseControlDependence
- 228:  105 ->  112 trueControlDependence
- 229:  109 ->  106 loopIndependentDefUseDependence pw$1.!close( )
- 230:  110 ->  112 fallThroughControlDependence
- 231:  110 ->  114 loopIndependentDefUseDependence $_
- 232:  112 ->  114 loopIndependentDefUseDependence $_
+ 213:   96 ->   95 loopCarriedDefUseDependence sb$6.!java.lang.String.value (LC = 14)
+ 214:   96 ->   96 defOrderDependence sb$6.!java.lang.String.coder
+ 215:   96 ->   96 defOrderDependence sb$6.!toString( )
+ 216:   96 ->   96 loopCarriedDefUseDependence sb$6.!java.lang.String.value (LC = 14)
+ 217:   97 ->   91 loopIndependentDefUseDependence pw$1.!println( java.lang.String )
+ 218:   97 ->   97 defOrderDependence pw$1.!println( java.lang.String )
+ 219:   99 ->  100 trueControlDependence
+ 220:   99 ->  101 trueControlDependence
+ 221:   99 ->  102 trueControlDependence
+ 222:   99 ->  103 trueControlDependence
+ 223:  103 ->  100 loopIndependentDefUseDependence System.err.!println( java.lang.String )
+ 224:  104 ->  105 trueControlDependence
+ 225:  104 ->  112 fallThroughControlDependence
+ 226:  105 ->  106 trueControlDependence
+ 227:  105 ->  107 trueControlDependence
+ 228:  105 ->  108 trueControlDependence
+ 229:  105 ->  109 trueControlDependence
+ 230:  105 ->  110 falseControlDependence
+ 231:  105 ->  112 trueControlDependence
+ 232:  109 ->  106 loopIndependentDefUseDependence pw$1.!close( )
+ 233:  110 ->  112 fallThroughControlDependence
+ 234:  110 ->  114 loopIndependentDefUseDependence $_
+ 235:  112 ->  114 loopIndependentDefUseDependence $_
 --
 ----- ClDG (to here) -----
 

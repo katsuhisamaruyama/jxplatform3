@@ -23,11 +23,11 @@ Class Name = Consumer
   16 actualOut D = { System.out.!java.io.PrintStream.trouble, System.out.!println( java.lang.String ) } U = { System.out.!java.io.PrintStream.lock }
   17 assignment D = {  } U = { this.!sleep( long ) }
   18 receiver D = {  } U = {  }
-  19 methodCall D = {  } U = { this.!java.lang.VirtualThread.$assertionsDisabled, this.!java.util.concurrent.TimeUnit.MILLISECONDS, this.!java.util.concurrent.TimeUnit.maxNanos, this.!java.util.concurrent.TimeUnit.scale, this.!random( ) } TO = java.lang.Thread#sleep( long )
+  19 methodCall D = {  } U = { this.!java.util.concurrent.TimeUnit.MILLISECONDS, this.!java.util.concurrent.TimeUnit.maxNanos, this.!java.util.concurrent.TimeUnit.scale, this.!random( ) } TO = java.lang.Thread#sleep( long )
   20 receiver D = {  } U = {  }
   21 methodCall D = {  } U = { this.!java.lang.Math$RandomNumberGeneratorHolder.randomNumberGenerator } TO = java.lang.Math#random( )
   22 actualOut D = { this.!random( ) } U = { this.!java.lang.Math$RandomNumberGeneratorHolder.randomNumberGenerator }
-  23 actualOut D = { this.!jdk.internal.event.ThreadSleepEvent.time, this.!sleep( long ) } U = { this.!java.lang.VirtualThread.$assertionsDisabled, this.!java.util.concurrent.TimeUnit.MILLISECONDS, this.!java.util.concurrent.TimeUnit.maxNanos, this.!java.util.concurrent.TimeUnit.scale }
+  23 actualOut D = { this.!sleep( long ) } U = { this.!java.util.concurrent.TimeUnit.MILLISECONDS, this.!java.util.concurrent.TimeUnit.maxNanos, this.!java.util.concurrent.TimeUnit.scale }
   25 catchClause D = { e$1 } U = {  }
   27 formalOut D = {  } U = { $_ }
    5+ actualOutByFieldAccess D = { this.storage.data } U = {  }
@@ -104,8 +104,7 @@ Class Name = Consumer
   60:   22 ->   19 loopIndependentDefUseDependence this.!random( )
   61:   22 ->   22 defOrderDependence this.!random( )
   62:   23 ->   17 loopIndependentDefUseDependence this.!sleep( long )
-  63:   23 ->   23 defOrderDependence this.!jdk.internal.event.ThreadSleepEvent.time
-  64:   23 ->   23 defOrderDependence this.!sleep( long )
+  63:   23 ->   23 defOrderDependence this.!sleep( long )
 --
    0: storage
    1:    0 ->    1 trueControlDependence

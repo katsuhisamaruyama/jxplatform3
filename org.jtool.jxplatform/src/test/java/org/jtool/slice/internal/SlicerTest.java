@@ -1444,7 +1444,7 @@ public class SlicerTest {
         Slicer slicer = new Slicer(criterion);
         List<String> result = PDGTestUtil.getIdList(criterion.getDependencyGraph(), slicer.getNodes());
         
-        assertEquals("13;14;15;16;17;37;38;39;40;41;42;43;45;46;47;49;50;58;59;"
+        assertEquals("13;14;15;16;17;19;20;21;22;23;25;37;38;39;40;41;42;43;45;46;47;49;50;58;59;"
                 + "60;63;64;65;66;67;69;70;71;72;73;155;156;157;158;159;160;161;162;163;164;166;178;179",
                 TestUtil.asStr(result));
     }

@@ -117,26 +117,26 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    4 methodCall D = {  } U = { this.endX, this.startX } TO = jp.ac.ritsumei.cs.draw.Figure#getLeft( )
    5 actualOut D = { this.!getLeft( ) } U = { this.endX, this.startX }
    6 receiver D = {  } U = { figure$0 }
-   7 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#getLeft( )
-   8 actualOut D = { figure$0.!getLeft( ) } U = {  }
+   7 methodCall D = {  } U = { figure$0.endX, figure$0.startX } TO = jp.ac.ritsumei.cs.draw.Figure#getLeft( )
+   8 actualOut D = { figure$0.!getLeft( ) } U = { figure$0.endX, figure$0.startX }
    9 receiver D = {  } U = {  }
   10 methodCall D = {  } U = { this.endY, this.startY } TO = jp.ac.ritsumei.cs.draw.Figure#getTop( )
   11 actualOut D = { this.!getTop( ) } U = { this.endY, this.startY }
   12 receiver D = {  } U = { figure$0 }
-  13 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#getTop( )
-  14 actualOut D = { figure$0.!getTop( ) } U = {  }
+  13 methodCall D = {  } U = { figure$0.endY, figure$0.startY } TO = jp.ac.ritsumei.cs.draw.Figure#getTop( )
+  14 actualOut D = { figure$0.!getTop( ) } U = { figure$0.endY, figure$0.startY }
   15 receiver D = {  } U = {  }
   16 methodCall D = {  } U = { this.endX, this.startX } TO = jp.ac.ritsumei.cs.draw.Figure#getRight( )
   17 actualOut D = { this.!getRight( ) } U = { this.endX, this.startX }
   18 receiver D = {  } U = { figure$0 }
-  19 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#getRight( )
-  20 actualOut D = { figure$0.!getRight( ) } U = {  }
+  19 methodCall D = {  } U = { figure$0.endX, figure$0.startX } TO = jp.ac.ritsumei.cs.draw.Figure#getRight( )
+  20 actualOut D = { figure$0.!getRight( ) } U = { figure$0.endX, figure$0.startX }
   21 receiver D = {  } U = {  }
   22 methodCall D = {  } U = { this.endY, this.startY } TO = jp.ac.ritsumei.cs.draw.Figure#getBottom( )
   23 actualOut D = { this.!getBottom( ) } U = { this.endY, this.startY }
   24 receiver D = {  } U = { figure$0 }
-  25 methodCall D = {  } U = {  } TO = jp.ac.ritsumei.cs.draw.Figure#getBottom( )
-  26 actualOut D = { figure$0.!getBottom( ) } U = {  }
+  25 methodCall D = {  } U = { figure$0.endY, figure$0.startY } TO = jp.ac.ritsumei.cs.draw.Figure#getBottom( )
+  26 actualOut D = { figure$0.!getBottom( ) } U = { figure$0.endY, figure$0.startY }
   28 formalOut D = {  } U = { $_ }
 --
    0 methodEntry [ jp.ac.ritsumei.cs.draw.Figure#equals( jp.ac.ritsumei.cs.draw.Figure ) ]
@@ -703,4 +703,5 @@ Class Name = jp.ac.ritsumei.cs.draw.Figure
    2:    0 ->    3 trueControlDependence
 --
 ----- ClDG (to here) -----
+
 
