@@ -250,4 +250,58 @@ public class ModelBuilderBatchTest {
         builder.unbuild();
         BuilderTestUtil.clearProject();
     }
+    
+    @Test
+    public void testBuild1() {
+        String name = "Simple";
+        String dir = BuilderTestUtil.testTargetDir;
+        String target = dir + name + File.separatorChar;
+        String classPath = target + "lib" + File.separatorChar + "*";
+        String srcPath = target + "src";
+        String testPath = target + "test";
+        String sourcePath = srcPath + File.pathSeparator + testPath;
+        String binaryPath = target + "src";
+        
+        String[] classPaths = classPath.split(File.pathSeparator);
+        String[] sourcePaths = sourcePath.split(File.pathSeparator);
+        String[] binaryPaths = binaryPath.split(File.pathSeparator);
+        
+        BuilderTestUtil.clearProject();
+        ModelBuilderBatch builder = new ModelBuilderBatch(true, false);
+        builder.setConsoleVisible(true);
+        
+        JavaProject targetProject = builder.build(name, target, classPaths, sourcePaths, binaryPaths);
+        
+        assertEquals(1, targetProject.getFiles().size());
+        
+        builder.unbuild();
+        BuilderTestUtil.clearProject();
+    }
+    
+    @Test
+    public void testBuild2() {
+        String name = "Simple";
+        String dir = BuilderTestUtil.testTargetDir;
+        String target = dir + name + File.separatorChar;
+        String classPath = target + "lib" + File.separatorChar + "*";
+        String srcPath = target + "src";
+        String testPath = target + "test2";    // non-existence
+        String sourcePath = srcPath + File.pathSeparator + testPath;
+        String binaryPath = target + "src";
+        
+        String[] classPaths = classPath.split(File.pathSeparator);
+        String[] sourcePaths = sourcePath.split(File.pathSeparator);
+        String[] binaryPaths = binaryPath.split(File.pathSeparator);
+        
+        BuilderTestUtil.clearProject();
+        ModelBuilderBatch builder = new ModelBuilderBatch(true, false);
+        builder.setConsoleVisible(true);
+        
+        JavaProject targetProject = builder.build(name, target, classPaths, sourcePaths, binaryPaths);
+        
+        assertEquals(1, targetProject.getFiles().size());
+        
+        builder.unbuild();
+        BuilderTestUtil.clearProject();
+    }
 }

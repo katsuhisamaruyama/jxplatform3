@@ -157,11 +157,18 @@ public class ModelBuilderImpl {
         JavaProject jproject = new JavaProject(name, basePath.toString(), topPath.toString());
         jproject.setModelBuilder(modelBuilder);
         jproject.setClassPath(getClassPath(classpath));
-        jproject.setSourceBinaryPaths(srcpath, binpath);
+        jproject.setSourceBinaryPaths(removeNonExistingPath(srcpath), binpath);
         jproject.getCFGStore().create(jproject);
         
         ProjectStore.getInstance().addProject(jproject);
         return jproject;
+    }
+    
+    private String[] removeNonExistingPath(String[] paths) {
+        return Arrays.stream(paths).map(p -> new File(p))
+                                   .filter(p -> p.exists() && p.isDirectory())
+                                   .map(p -> p.getAbsolutePath())
+                                   .toArray(String[]::new);
     }
     
     protected String[] getPath(Set<String> pathSet) {
