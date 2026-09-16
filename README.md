@@ -90,7 +90,7 @@ It traverses only the PDG nodes that reach a node given as a slice criterion.
 
 ## Requirement
 
-* JDK 17 
+* JDK 23 
 * [Eclipse](https://www.eclipse.org/) 2022-09 (4.25.0) and later 
 
 ## License 
